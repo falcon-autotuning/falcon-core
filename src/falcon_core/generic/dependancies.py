@@ -9,6 +9,7 @@ from ..dependancies import (
     np,
     pickle,
     sys,
+    untyped_uniform_filter1d,
 )
 from ..typing import (
     Generic,
@@ -34,4 +35,5 @@ __all__ = [
     "get_origin",
     "Generic",
     "TypeVar",
+    "untyped_uniform_filter1d",
 ]

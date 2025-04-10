@@ -2,6 +2,7 @@
 
 from ...dependancies import np, overload
 from ...generic import Jsonable
+from ...generic.scipy_typing import uniform_filter1d
 from ...typing import (
     Generic,
     Protocol,
@@ -25,4 +26,5 @@ __all__ = [
     "Self",
     "array1D",
     "runtime_checkable",
+    "uniform_filter1d",
 ]
