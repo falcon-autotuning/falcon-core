@@ -1,0 +1,166 @@
+[build-system]
+requires = [
+    "setuptools >= 65.5.0",
+    # "setuptools >= 68.1.0",
+    "versioningit >= 2.2.1",
+    "setuptools_scm >= 7.1.0",
+]
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = "falcon_core"
+maintainers = [{name = "FAlCon Core Developers", email = "falcon-support@falcon.com"}]
+description = "Core utilities for all falcon applications used for autotuning of quantum devices"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering",
+]
+license = {text = "MIT"}
+requires-python = ">=3.11"
+dependencies = [
+    "interpret==0.5.0",
+    "interpret-core==0.5.0",
+    "ipykernel==6.25.2",
+    "ipython==8.15.0",
+    "ipywidgets==8.1.1",
+    "Jinja2==3.1.2",
+    "jupyter_client==8.3.1",
+    "jupyter_core==5.3.1",
+    "jupyterlab-widgets==3.0.9",
+    "matplotlib==3.7.3",
+    "nidaqmx==0.8.0",
+    "regex==2024.9.11",
+    "numpy==1.25.2",
+    "openpyxl==3.1.2",
+    "pandas==2.1.0",
+    "Pillow==10.0.0",
+    "pyplotter==0.3.7",
+    "PyVISA==1.13.0",
+    "qcodes==0.40.0",
+    "scikit-image==0.22.0",
+    "scipy==1.11.2",
+    "tabulate==0.9.0",
+    "tqdm==4.66.1",
+    "pydantic==2.7.1",
+    "pydantic_core==2.18.2",
+    "pyyaml==6.0.1",
+    "pytest==8.2.1"
+]
+
+dynamic = ["version"]
+
+[project.readme]
+file = "README.rst"
+content-type = "text/x-rst"
+
+# [project.urls]
+# Homepage = "https://github.com/microsoft/Qcodes"
+# Documentation = "https://microsoft.github.io/Qcodes/"
+# Source = "https://github.com/microsoft/qcodes"
+# Tracker = "https://github.com/microsoft/Qcodes/issues"
+# Changelog = "https://microsoft.github.io/Qcodes/changes/index.html"
+
+[tool.coverage.run]
+omit = [
+    "src/falcon/__init__.py",
+    "*/__init__.py",
+]
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+]
+
+# we ignore warnings
+# triggered by third party packages
+# and error on all other warnings
+filterwarnings = [
+    'error',
+    'ignore:Deprecated call to `pkg_resources\.declare_namespace:DeprecationWarning',  # google, sphinxcontrib
+    'ignore:pkg_resources is deprecated as an API:DeprecationWarning', # pyvisa-sim
+    'ignore:open_binary is deprecated:DeprecationWarning', # pyvisa-sim
+    'ignore:datetime.datetime.utcfromtimestamp\(\) is deprecated and scheduled for removal in a future version:DeprecationWarning', # tqdm dateutil
+    'ignore:Jupyter is migrating its paths to use standard platformdirs:DeprecationWarning', # jupyter
+    'ignore:Parsing dates involving a day of month without a year specified is ambiguious:DeprecationWarning', # ipykernel 3.13+
+    'ignore:unclosed database in:ResourceWarning' # internal should be fixed
+]
+
+# known-first-party = ["falcon"]
+
+# TID253 these imports are fine at module level
+# in tests and examples
+"docs/*" = ["TID253"]
+"tests/*" = ["TID253"]
+
+# [tool.versioningit]
+# default-version = "0.0"
+
+# [tool.versioningit.format]
+# distance = "{next_version}.dev{distance}+{branch}.{vcs}{rev}"
+# dirty = "{next_version}.dev{distance}+{branch}.{vcs}{rev}.dirty"
+# distance-dirty = "{next_version}.dev{distance}+{branch}.{vcs}{rev}.dirty"
+
+# [tool.versioningit.vcs]
+# method = "git"
+# match = ["v*"]
+
+# [tool.versioningit.onbuild]
+# source-file = "src/falcon/_version.py"
+# build-file = "falcon/_version.py"
+
+[tool.setuptools.packages.find]
+# All the following settings are optional:
+where = ["src"]  # ["."] by default
+include = ["falcon*"]  # ["*"] by default
+exclude = []  # empty by default
+namespaces = false  # true by default
+
+[tool.pytest.ini_options]
+# addopts="-n 5 --dist worksteal"
+
+[tool.mypy]
+strict_optional = true
+incremental = true
+cache_dir = ".mypy_cache"
+show_column_numbers = true
+plugins = "numpy.typing.mypy_plugin"
+show_error_codes = true
+enable_error_code = "ignore-without-code"
+# strict confic. Eventually we would like to
+# turn all of these on. These are all setings
+# turned on by strict as of mypy 0.971
+warn_unused_configs = true
+# waiting for variadic generics so we
+# can type numpy array constructors
+disallow_any_generics = false
+# we subclass non typed classes (from ipython / wrapt)
+disallow_subclassing_any = false
+# we are calling into untyped code from 3th parties
+disallow_untyped_calls = false
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+# triggers warnings in untyped code
+check_untyped_defs = false
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+# this triggers failures due to returning
+# values from untyped 3th party libs
+warn_return_any = false
+no_implicit_reexport = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "tests.*",
+]
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+[tool.ruff]
+line-length = 88
