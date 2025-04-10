@@ -7,6 +7,7 @@ from ..typing import (
     JsonableAttributeName,
     Self,
     TypeAlias,
+    array1D,
 )
 
 __all__ = [
@@ -16,4 +17,5 @@ __all__ = [
     "Callable",
     "Self",
     "Iterator",
+    "array1D",
 ]
