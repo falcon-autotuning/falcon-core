@@ -15,10 +15,12 @@ class MeasurementRequest(BaseRequest, Jsonable):
     _waveforms: list["Waveform"]
     _meter_tranforms: list["MeterTransforms"]
     _time_domain: "Domain "
+    _measurement_name: str
 
     def __init__(
         self,
         message: str,
+        measurement_name: str,
         waveforms: list["Waveform"],
         meter_tranforms: list["MeterTransforms"],
         time_domain: "Domain" = Domain(bounds=(0, 1)),
@@ -28,6 +30,12 @@ class MeasurementRequest(BaseRequest, Jsonable):
         self._waveforms = waveforms
         self._meter_tranforms = meter_tranforms
         self._time_domain = time_domain
+        self._measurement_name = measurement_name
+
+    @property
+    def measurement_name(self) -> str:
+        """Return the measurement name."""
+        return self._measurement_name
 
     @property
     def waveforms(self) -> list["Waveform"]:
