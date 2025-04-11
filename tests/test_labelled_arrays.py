@@ -1,24 +1,24 @@
 """Tests for labelled array classes."""
 
-import numpy as np
 import pytest
 
-from falcon_core.datatypes.arrays import ControlArray, MeasuredArray
-from falcon_core.datatypes.connections import Ohmic, PlungerGate
-from falcon_core.datatypes.instrument_interfaces import (
-    AcquisitionContext,
+from falcon_core.autotuner_interfaces.contexts import AcquisitionContext
+from falcon_core.dependancies import np
+from falcon_core.device_interfaces import Ohmic, PlungerGate
+from falcon_core.instrument_interfaces.names import (
     Knob,
     Knobs,
     Meter,
     Meters,
 )
-from falcon_core.datatypes.labelled_arrays import (
+from falcon_core.instrument_interfaces.physics_units.units import Units
+from falcon_core.math.arrays import ControlArray, MeasuredArray
+from falcon_core.math.labelled_arrays import (
     LabelledControlArray,
     LabelledControlArrays,
     LabelledMeasuredArray,
     LabelledMeasuredArrays,
 )
-from falcon_core.datatypes.units.common_units import CommonUnits
 from falcon_core.typing import array1D
 
 
@@ -52,7 +52,7 @@ class TestLabelledControlArray:
         """
         return Knob(
             default_name="gate1",
-            units=CommonUnits.VOLT,
+            units=Units.VOLT,
             pseudo_name=PlungerGate("P1"),
         )
 
@@ -150,7 +150,7 @@ class TestLabelledControlArrays:
             [
                 Knob(
                     default_name=f"gate{i}",
-                    units=CommonUnits.VOLT,
+                    units=Units.VOLT,
                     pseudo_name=PlungerGate(name=f"P{i}"),
                 )
                 for i in range(1, 4)
@@ -280,7 +280,7 @@ class TestLabelledMeasuredArray:
             Meter: A Meter object.
         """
         return Meter(
-            default_name="sensor1", units=CommonUnits.AMPERE, pseudo_name=Ohmic("O1")
+            default_name="sensor1", units=Units.AMPERE, pseudo_name=Ohmic("O1")
         )
 
     @pytest.fixture
@@ -369,7 +369,7 @@ class TestLabelledMeasuredArrays:
             [
                 Meter(
                     default_name=f"sensor{i}",
-                    units=CommonUnits.AMPERE,
+                    units=Units.AMPERE,
                     pseudo_name=Ohmic(f"O{i}"),
                 )
                 for i in range(1, 4)
@@ -499,7 +499,7 @@ class TestMixedArrayOperations:
         """
         knob = Knob(
             default_name="gate1",
-            units=CommonUnits.VOLT,
+            units=Units.VOLT,
             pseudo_name=PlungerGate("P1"),
         )
         context = AcquisitionContext.from_instrument_port(port=knob)
@@ -517,7 +517,7 @@ class TestMixedArrayOperations:
         """
         meter = Meter(
             default_name="sensor1",
-            units=CommonUnits.AMPERE,
+            units=Units.AMPERE,
             pseudo_name=Ohmic("O1"),
         )
         context = AcquisitionContext.from_instrument_port(port=meter)
@@ -536,7 +536,7 @@ class TestMixedArrayOperations:
         # Create a copy of control_array
         knob = Knob(
             default_name="gate1",
-            units=CommonUnits.VOLT,
+            units=Units.VOLT,
             pseudo_name=PlungerGate("P1"),
         )
         context = AcquisitionContext.from_instrument_port(port=knob)
@@ -551,7 +551,7 @@ class TestMixedArrayOperations:
         # Arrays with same data but different label should not be equal
         knob3 = Knob(
             default_name="gate2",
-            units=CommonUnits.VOLT,
+            units=Units.VOLT,
             pseudo_name=PlungerGate("P2"),
         )
         context3 = AcquisitionContext.from_instrument_port(port=knob3)

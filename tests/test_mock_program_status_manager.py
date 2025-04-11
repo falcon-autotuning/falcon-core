@@ -15,7 +15,7 @@ from falcon_core.communications.managers.status_type import ProgramStatusType
 def mock_valkey():
     """Mock the valkey client."""
     with patch(
-        "falcon.communications.managers.dependancies.valkey.Valkey"
+        "falcon_core.communications.managers.dependancies.valkey.Valkey"
     ) as MockValkey:
         # Create mock client and methods
         mock_client = MagicMock()
@@ -37,7 +37,7 @@ class TestMockProgramStatusManager:
         assert ctx.namespace == "program_status"
         # Validate that the status is set correctly
         mock_valkey.hset.assert_called_with(
-            "program_status", "test_app", ProgramStatusType.STARTED.value
+            "program_status", "test_app", ProgramStatusType.RUNNING.value
         )
 
     def test_init_without_startup(self, mock_valkey):

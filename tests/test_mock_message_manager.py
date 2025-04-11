@@ -31,7 +31,7 @@ class TestJsonable(Jsonable):
 def mock_valkey():
     """Mock the valkey client."""
     with patch(
-        "falcon.communications.managers.dependancies.valkey.Valkey"
+        "falcon_core.communications.managers.dependancies.valkey.Valkey"
     ) as MockValkey:
         # Create mock client and methods
         mock_client = MagicMock()
