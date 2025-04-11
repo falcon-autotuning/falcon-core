@@ -1,7 +1,7 @@
 """Typing for the contexts module."""
 
-from ...device_interfaces import Connection
 from ...instrument_interfaces.names import InstrumentPort
+from ...physics import Connection
 from ...typing import Self
 
 __all__ = [

@@ -2,7 +2,8 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Generic, Jsonable, TypeVar, arrayND
+from .base_message import BaseMessage
+from .dependancies import Generic, TypeVar, arrayND
 
 if TYPE_CHECKING:
     from .typing import LabelledMeasuredArrays
@@ -10,7 +11,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound=arrayND)
 
 
-class Response(Jsonable, Generic[T]):
+class MeasurementResponse(BaseMessage, Generic[T]):
     """A response for a request that Falcon posited to a measurement server."""
 
     _arrays: "LabelledMeasuredArrays[T]"

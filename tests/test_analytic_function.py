@@ -1,11 +1,11 @@
 """Test the AnalyticFunction class."""
 
-from falcon_core.device_interfaces.plunger_gate import PlungerGate
 from falcon_core.instrument_interfaces.names import Knob, Knobs
 from falcon_core.math.analytic_functions import (
     AnalyticFunction,
     Identity,
 )
+from falcon_core.physics import PlungerGate
 
 
 def test_analytic_function_identity():

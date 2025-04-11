@@ -4,14 +4,12 @@ import pytest
 
 from falcon_core.autotuner_interfaces.contexts import AcquisitionContext
 from falcon_core.dependancies import np
-from falcon_core.device_interfaces import Ohmic, PlungerGate
 from falcon_core.instrument_interfaces.names import (
     Knob,
     Knobs,
     Meter,
     Meters,
 )
-from falcon_core.instrument_interfaces.physics_units.units import Units
 from falcon_core.math.arrays import ControlArray, MeasuredArray
 from falcon_core.math.labelled_arrays import (
     LabelledControlArray,
@@ -19,6 +17,7 @@ from falcon_core.math.labelled_arrays import (
     LabelledMeasuredArray,
     LabelledMeasuredArrays,
 )
+from falcon_core.physics import Ohmic, PlungerGate, Units
 from falcon_core.typing import array1D
 
 

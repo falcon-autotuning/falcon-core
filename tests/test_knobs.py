@@ -2,10 +2,9 @@
 
 import pytest
 
-from falcon_core.device_interfaces import ScreeningGate
 from falcon_core.instrument_interfaces.names import Knob, Knobs
-from falcon_core.instrument_interfaces.physics_units import Units
 from falcon_core.math.domains import KnobDomain
+from falcon_core.physics import ScreeningGate, Units
 
 
 def test_knob_default_name():

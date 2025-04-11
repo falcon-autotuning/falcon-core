@@ -2,7 +2,7 @@
 
 from ...dependancies import contextlib
 from ...generic import Jsonable
-from ..physics_units import Units
+from ...physics import Units
 
 __all__ = [
     "Jsonable",

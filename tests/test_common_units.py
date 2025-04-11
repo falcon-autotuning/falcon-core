@@ -3,8 +3,8 @@
 import pytest
 
 from falcon_core.constants import MILLI_SYMBOL
-from falcon_core.instrument_interfaces.physics_units import Dimension
-from falcon_core.instrument_interfaces.physics_units.common_units import CommonUnits
+from falcon_core.physics.units import Dimension
+from falcon_core.physics.units.common_units import CommonUnits
 
 
 class TestCommonUnits:

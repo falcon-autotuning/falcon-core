@@ -1,7 +1,7 @@
 """Dependencies for the autotuner context."""
 
 from ...generic import Jsonable
-from ...instrument_interfaces.physics_units import SymbolUnit, Units
+from ...physics import SymbolUnit, Units
 from ..contexts.base_context import BaseContext
 
 __all__ = [

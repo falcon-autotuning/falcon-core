@@ -12,7 +12,7 @@ from .reservoir_gate import ReservoirGate, ReservoirGates
 from .screening_gate import ScreeningGate, ScreeningGates
 
 if TYPE_CHECKING:
-    from ..typing import TypeAlias
+    from ...typing import TypeAlias
 
 NamedPrimitiveGates: "TypeAlias" = (
     ScreeningGates | ReservoirGates | PlungerGates | BarrierGates

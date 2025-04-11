@@ -2,14 +2,14 @@
 
 from typing import TYPE_CHECKING
 
-from .base_request import BaseRequest
+from .base_message import BaseMessage
 from .dependancies import Domain, Jsonable
 
 if TYPE_CHECKING:
     from .typing import MeterTransforms, Waveform
 
 
-class MeasurementRequest(BaseRequest, Jsonable):
+class MeasurementRequest(BaseMessage, Jsonable):
     """A request for a measurement that Falcon can perform."""
 
     _waveforms: list["Waveform"]

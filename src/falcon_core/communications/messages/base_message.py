@@ -3,7 +3,7 @@
 from .dependancies import Jsonable
 
 
-class BaseRequest(Jsonable):
+class BaseMessage(Jsonable):
     """A request for something."""
 
     _message: str

@@ -17,8 +17,8 @@ from falcon_core.constants import (
     UNIT_SYMBOL_SECOND,
     UNIT_SYMBOL_VOLT,
 )
-from falcon_core.instrument_interfaces.physics_units import SymbolUnit, Units
-from falcon_core.instrument_interfaces.physics_units.unit import Unit
+from falcon_core.physics import SymbolUnit, Units
+from falcon_core.physics.units.unit import Unit
 
 
 class TestSymbolUnit:
