@@ -13,14 +13,13 @@ import uuid
 
 import pytest
 import valkey
-import valkey.client
 
 from falcon_core.communications.managers.status_type import (
     ChannelStatusType,
     ProgramStatusType,
 )
 from falcon_core.communications.message_io.base_message_io import BaseMessageIO
-from falcon_core.json_building import Jsonable
+from falcon_core.generic import Jsonable
 
 # Mark the entire module as integration tests
 pytestmark = pytest.mark.integration

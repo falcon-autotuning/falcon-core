@@ -1,6 +1,6 @@
-from falcon_core.datatypes.axes import Axes
-from falcon_core.measurement_interface import Cartesian2DSpace, UnitSpace
-from falcon_core.measurement_interface.discretizers import CartesianDiscretizer
+from falcon_core.math.axes import Axes
+from falcon_core.math.discretizers import CartesianDiscretizer
+from falcon_core.math.spaces import Cartesian2DSpace, UnitSpace
 
 # from falcon.datatypes import Domain
 

@@ -14,7 +14,7 @@ from falcon_core.communications.managers.status_type import ChannelStatusType
 def mock_valkey():
     """Mock the valkey client."""
     with patch(
-        "falcon.communications.managers.dependancies.valkey.Valkey"
+        "falcon_core.communications.managers.dependancies.valkey.Valkey"
     ) as MockValkey:
         # Create mock client and methods
         mock_client = MagicMock()
@@ -95,7 +95,7 @@ class TestMockChannelStatusManager:
     def test_get_channels(self, mock_valkey):
         """Test getting the channels."""
         ctx = ChannelStatusManager()
-        mock_valkey.hkeys.return_value = ["channel1", "channel2"]
+        mock_valkey.hkeys.return_value = [b"channel1", b"channel2"]
 
         result = ctx.get_channels()
 
@@ -105,8 +105,8 @@ class TestMockChannelStatusManager:
     def test_get_and_claim_available_channel_success(self, mock_valkey):
         """Test getting and claiming an available channel successfully."""
         ctx = ChannelStatusManager()
-        mock_valkey.hkeys.return_value = ["channel1", "channel2"]
-        mock_valkey.hget.return_value = ChannelStatusType.IDLE.value
+        mock_valkey.hkeys.return_value = [b"channel1"]
+        mock_valkey.hget.return_value = ChannelStatusType.IDLE.value.encode("utf-8")
         channel = "channel1"
 
         with patch.object(ctx, "_set_status", return_value=True):
@@ -118,8 +118,8 @@ class TestMockChannelStatusManager:
     def test_get_and_claim_available_channel_none_available(self, mock_valkey):
         """Test getting and claiming when no channels are available."""
         ctx = ChannelStatusManager()
-        mock_valkey.hkeys.return_value = ["channel1", "channel2"]
-        mock_valkey.hget.return_value = ChannelStatusType.BUSY.value
+        mock_valkey.hkeys.return_value = [b"channel1", b"channel2"]
+        mock_valkey.hget.return_value = ChannelStatusType.BUSY.value.encode("utf-8")
 
         with patch.object(ctx, "_set_status", return_value=False):
             result = ctx.get_and_claim_available_channel()

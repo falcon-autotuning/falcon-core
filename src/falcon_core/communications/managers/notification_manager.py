@@ -159,8 +159,8 @@ class NotificationManager(LockingCommunication):
             # Get current notifications
             notifications = self.get_notifications(self._my_name)
 
-            if not notifications:
-                return Notification()
+            if not notifications or len(notifications) == 0:
+                return None
 
             # Get oldest notification
             result = notifications.pop(0)

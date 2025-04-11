@@ -1,9 +1,11 @@
-from falcon_core.datatypes.connections.plunger_gate import PlungerGate
-from falcon_core.datatypes.instrument_interfaces import Knob, Knobs
-from falcon_core.measurement_interface.analytic_functions.analytic_function import (
+"""Test the AnalyticFunction class."""
+
+from falcon_core.device_interfaces.plunger_gate import PlungerGate
+from falcon_core.instrument_interfaces.names import Knob, Knobs
+from falcon_core.math.analytic_functions import (
     AnalyticFunction,
+    Identity,
 )
-from falcon_core.measurement_interface.analytic_functions.identity import Identity
 
 
 def test_analytic_function_identity():
@@ -31,7 +33,7 @@ def test_analytic_function_custom():
     stuff = ["a"]
     knobs = Knobs(
         [
-            Knob(default_name=stuffi, pseudo_name=PlungerGate(name=stuffi), units="V")
+            Knob(default_name=stuffi, pseudo_name=PlungerGate(name=stuffi))
             for stuffi in stuff
         ]
     )
@@ -53,7 +55,7 @@ def test_analytic_function_custom_reversed():
     stuff = ["a"]
     knobs = Knobs(
         [
-            Knob(default_name=stuffi, pseudo_name=PlungerGate(name=stuffi), units="V")
+            Knob(default_name=stuffi, pseudo_name=PlungerGate(name=stuffi))
             for stuffi in stuff
         ]
     )
