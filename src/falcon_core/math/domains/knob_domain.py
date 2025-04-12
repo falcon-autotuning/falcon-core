@@ -18,7 +18,7 @@ class KnobDomain(Knob, Domain, Jsonable):
         default_name: str,
         bounds: tuple[float, float],
         pseudo_name: "Connection | None" = None,
-        instrument_type: str = INSTRUMENT_TYPES[0],
+        instrument_type: str = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE.value,
         lesser_bound_contained: bool = True,
         greater_bound_contained: bool = True,
         units: "SymbolUnit" = Units.VOLT,
@@ -83,7 +83,7 @@ class KnobDomain(Knob, Domain, Jsonable):
         domain: Domain,
         default_name: str,
         pseudo_name: "Connection | None" = None,
-        instrument_type: str = INSTRUMENT_TYPES[0],
+        instrument_type: str = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE.value,
         units: "SymbolUnit" = Units.VOLT,
         description: str = "",
     ) -> "KnobDomain":

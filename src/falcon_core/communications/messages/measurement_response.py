@@ -2,8 +2,8 @@
 
 from typing import TYPE_CHECKING
 
-from .base_message import BaseMessage
 from .dependancies import Generic, TypeVar, arrayND
+from .measurement_request import BaseMessage
 
 if TYPE_CHECKING:
     from .typing import LabelledMeasuredArrays
