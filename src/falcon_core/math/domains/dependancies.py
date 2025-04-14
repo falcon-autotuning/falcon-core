@@ -2,11 +2,12 @@
 
 from ...generic import Jsonable
 from ...instrument_interfaces.names import Knob, Knobs
-from ...physics import Units
+from ...physics import Connection, Units
 
 __all__ = [
     "Jsonable",
     "Units",
     "Knob",
+    "Connection",
     "Knobs",
 ]

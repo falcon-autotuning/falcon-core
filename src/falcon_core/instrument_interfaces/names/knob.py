@@ -17,7 +17,7 @@ class Knob(InstrumentPort):
         self,
         default_name: str,
         pseudo_name: "Connection | None" = None,
-        instrument_type: str = INSTRUMENT_TYPES[0],
+        instrument_type: str = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE.value,
         description: str = "",
         units: "SymbolUnit" = Units.VOLT,
     ) -> None:

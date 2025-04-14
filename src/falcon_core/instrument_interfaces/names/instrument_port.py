@@ -30,7 +30,7 @@ class InstrumentPort(Jsonable):
         self,
         default_name: str,
         pseudo_name: "Connection | None" = None,
-        instrument_type: str = INSTRUMENT_TYPES[0],
+        instrument_type: str = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE.value,
         units: "SymbolUnit" = Units.VOLT,
         description: str = "",
     ) -> None:
