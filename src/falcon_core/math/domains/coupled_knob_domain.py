@@ -45,3 +45,7 @@ class CoupledKnobDomain(Jsonable):
                 return domain
         msg = f"Knob {knob} not found in coupled knob domain."
         raise ValueError(msg)
+
+    def __iter__(self):
+        """Return an iterator over the domains."""
+        return iter(self._domains)
