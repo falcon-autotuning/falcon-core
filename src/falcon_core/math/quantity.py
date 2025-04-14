@@ -2,13 +2,15 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Jsonable, Units
+from .dependancies import Generic, Jsonable, TypeVar, Units
 
 if TYPE_CHECKING:
     from .typing import SymbolUnit
 
+T = TypeVar("T", bound="SymbolUnit")
 
-class Quantity(Jsonable):
+
+class Quantity(Jsonable, Generic["T"]):
     """A quantity class that represents a physical quantity with units and dimensions."""
 
     def __init__(self, value: float, unit: "SymbolUnit" = Units.VOLT):

@@ -241,3 +241,4 @@ class INSTRUMENT_TYPES(Enum):
     VOLTMETER = "voltmeter"
     FPGA = "fpga"
     CLOCK = "clock"
+    DISCRETE = "discrete"
