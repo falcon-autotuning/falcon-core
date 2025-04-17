@@ -8,3 +8,5 @@ if TYPE_CHECKING:
 Channel: "TypeAlias" = str
 
 ApplicationName: "TypeAlias" = str
+
+ProcessName: "TypeAlias" = str

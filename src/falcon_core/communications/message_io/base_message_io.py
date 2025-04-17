@@ -19,6 +19,7 @@ if TYPE_CHECKING:
         Jsonable,
         LockingCommunication,
         Notification,
+        ProcessName,
     )
 
 
@@ -30,14 +31,15 @@ class BaseMessageIO:
     """
 
     _timeout: float
-    _my_name: "ApplicationName"
+    _application_name: "ApplicationName"
+    _my_name: "ProcessName"
     _lock_timeout: int
     _max_retries: int
     _retry_delay: float
 
     def __init__(
         self,
-        application_name: str,
+        application_name: "ApplicationName",
         timeout: float = 3600,
         channels: list["Channel"] = [],
         startup_program: bool = False,
@@ -45,11 +47,13 @@ class BaseMessageIO:
         lock_timeout: int = 5,
         max_retries: int = 3,
         retry_delay: float = 0.2,
+        process_name: "ProcessName | None" = None,
     ):
         """Initialize the message I/O object.
 
         Args:
             application_name: The name of the application.
+            process_name: The name of the process. If None, use the application name.
             timeout: Timeout for the message I/O operations.
             channels: List of channels to manage.
             startup: If True, initialize the program status and setup channels
@@ -69,7 +73,7 @@ class BaseMessageIO:
                 startup_channels=channels,
             )
         self._timeout = timeout
-        self._my_name = application_name
+        self._my_name = process_name if process_name else application_name
         self._lock_timeout = lock_timeout
         self._max_retries = max_retries
         self._retry_delay = retry_delay
@@ -114,7 +118,9 @@ class BaseMessageIO:
         """
         man = self._create_manager(
             ProgramStatusManager,
-            application_name=application_name or self._my_name,
+            application_name=application_name
+            if application_name
+            else self._application_name,
             **kwargs,
         )
         assert isinstance(man, ProgramStatusManager)
@@ -401,7 +407,7 @@ class BaseMessageIO:
             name: The name of the application we are sending the command to.
         """
         self.check_communication_status(name=name)
-        self.check_communication_status(name=self._my_name)
+        self.check_communication_status(name=self._application_name)
         channel = self.wait_for_channel_opening()
         self.publish(
             channel=channel,
@@ -416,6 +422,6 @@ class BaseMessageIO:
         Returns:
             The received message.
         """
-        self.check_communication_status(name=self._my_name)
+        self.check_communication_status(name=self._application_name)
         notification = self.wait_for_notification()
         return self.retrieve_message_from_notification(notification=notification)
