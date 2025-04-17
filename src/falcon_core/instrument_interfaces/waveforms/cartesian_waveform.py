@@ -13,7 +13,7 @@ from .dependancies import (
 )
 
 if TYPE_CHECKING:
-    from .typing import Axes, CoupledKnobDomain, KnobTransform, Self
+    from .typing import Axes, CoupledKnobDomain, PortTransform, Self
 
 
 class CartesianWaveform(BaseCartesianWaveform[CartesianDiscreteSpace], Jsonable):
@@ -24,7 +24,7 @@ class CartesianWaveform(BaseCartesianWaveform[CartesianDiscreteSpace], Jsonable)
         cls,
         divisions: "Axes[int]",
         axes: "Axes[CoupledKnobDomain]",
-        transforms: list["KnobTransform"],
+        transforms: list["PortTransform"] = [],
         domain: Domain = Domain(bounds=(0, 1)),
     ) -> "Self":
         """Create a CartesianWaveform from raw deltas.

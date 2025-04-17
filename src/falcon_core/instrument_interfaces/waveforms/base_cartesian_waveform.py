@@ -11,18 +11,18 @@ from .dependancies import (
 )
 
 if TYPE_CHECKING:
-    from .typing import Knob, KnobTransform, PortTransform, Self, Sequence
+    from .typing import PortTransform, Self
 
 T = TypeVar("T", bound=BaseCartesianDiscreteSpace)
 
 
-class BaseCartesianWaveform(BaseWaveform, Generic[T]):
+class BaseCartesianWaveform(BaseWaveform[T], Generic[T]):
     """A distinct measurement on a cartesian domain with any time dependant phenomena."""
 
     def __init__(
         self,
         space: T,
-        transforms: "list[KnobTransform] | Sequence[PortTransform[Knob]]" = [],
+        transforms: "list[PortTransform]" = [],
     ):
         super().__init__(space, transforms)
 

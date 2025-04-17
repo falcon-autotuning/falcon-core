@@ -2,36 +2,34 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Generic, InstrumentPort, Jsonable, TypeVar
+from .dependancies import Jsonable
 
 if TYPE_CHECKING:
+    from .dependancies import InstrumentPort
     from .port_transform import PortTransform
-    from .typing import Sequence
-
-T = TypeVar("T", bound=InstrumentPort)
 
 
-class PortTransforms(Jsonable, Generic[T]):
+class PortTransforms(Jsonable):
     """Many transfromations for port objects to analytic time domain functions."""
 
-    _transforms: "Sequence[PortTransform[T]]"
+    _transforms: "list[PortTransform]"
 
     def __init__(
         self,
-        transforms: "Sequence[PortTransform[T]]",
+        transforms: "list[PortTransform]",
     ):
         """Initialize the PortTransform object."""
         self._transforms = transforms
 
     @property
-    def transforms(self) -> "list[PortTransform[T]]":
+    def transforms(self) -> "list[PortTransform]":
         """Return the port."""
         return [transform for transform in self._transforms]
 
     def __getitem__(
         self,
-        port: InstrumentPort,
-    ) -> "PortTransform[T]":
+        port: "InstrumentPort",
+    ) -> "PortTransform":
         """Return the port.
 
         Args:

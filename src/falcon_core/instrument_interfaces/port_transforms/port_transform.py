@@ -3,32 +3,31 @@
 from typing import TYPE_CHECKING
 
 from .dependancies import (
-    Generic,
-    InstrumentPort,
     Jsonable,
     Knob,
     Knobs,
     Meter,
     Meters,
     OneToOneMapping,
-    TypeVar,
 )
 
 if TYPE_CHECKING:
+    from .dependancies import (
+        InstrumentPort,
+    )
     from .typing import AnalyticFunction
 
-T = TypeVar("T", bound=InstrumentPort)
 
 PORT_COLLECTION_MAP = OneToOneMapping([(Knob, Knobs), (Meter, Meters)])
 
 
-class PortTransform(Jsonable, Generic[T]):
+class PortTransform(Jsonable):
     """A transform that maps a port to a port on a time domain."""
 
-    _port: T
+    _port: "InstrumentPort"
     _transform: "AnalyticFunction"
 
-    def __init__(self, port: T, transform: "AnalyticFunction"):
+    def __init__(self, port: "InstrumentPort", transform: "AnalyticFunction"):
         """Initialize the PortTransform object."""
         port_type = port.__class__.__name__
         for knob_type, knobs_type in PORT_COLLECTION_MAP.items():
@@ -41,7 +40,7 @@ class PortTransform(Jsonable, Generic[T]):
         self.validate_transform()
 
     @property
-    def port(self) -> T:
+    def port(self) -> "InstrumentPort":
         """Return the port."""
         return self._port
 

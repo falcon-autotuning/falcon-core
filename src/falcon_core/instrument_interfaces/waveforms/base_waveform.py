@@ -9,17 +9,17 @@ from .dependancies import (
     BaseDiscreteSpace,
     Generic,
     Jsonable,
-    KnobTransforms,
+    PortTransforms,
     TypeVar,
 )
 
 if TYPE_CHECKING:
-    from .typing import Knob, KnobTransform, PortTransform, Sequence
+    from .typing import PortTransform
 
 T = TypeVar("T", bound=BaseDiscreteSpace)
 
 
-class BaseWaveform(KnobTransforms, Jsonable, Generic[T]):
+class BaseWaveform(PortTransforms, Jsonable, Generic[T]):
     """A distinct measurement.
 
     consists of a measurement domain and \
@@ -33,7 +33,7 @@ class BaseWaveform(KnobTransforms, Jsonable, Generic[T]):
     def __init__(
         self,
         space: T,
-        transforms: "list[KnobTransform] | Sequence[PortTransform[Knob]]" = [],
+        transforms: "list[PortTransform]" = [],
     ):
         """Initialize the Waveform object."""
         super().__init__(transforms=transforms)
