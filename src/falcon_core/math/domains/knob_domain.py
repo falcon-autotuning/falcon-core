@@ -2,15 +2,16 @@
 
 from typing import TYPE_CHECKING
 
+from .base_labelled_domain import BaseLabelledDomain
 from .constants import INSTRUMENT_TYPES
-from .dependancies import Jsonable, Knob, Units
+from .dependancies import Knob, Units
 from .domain import Domain
 
 if TYPE_CHECKING:
     from .typing import Connection, SymbolUnit
 
 
-class KnobDomain(Knob, Domain, Jsonable):
+class KnobDomain(BaseLabelledDomain[Knob]):
     """A Knob with physical bounds."""
 
     def __init__(
@@ -36,16 +37,15 @@ class KnobDomain(Knob, Domain, Jsonable):
             units (str): The units of the knob.
             description (str): The description of the knob.
         """
-        Knob.__init__(
-            self,
+        label = Knob(
             default_name=default_name,
             pseudo_name=pseudo_name,
             instrument_type=instrument_type,
             units=units,
             description=description,
         )
-        Domain.__init__(
-            self,
+        super().__init__(
+            label=label,
             bounds=bounds,
             lesser_bound_contained=lesser_bound_contained,
             greater_bound_contained=greater_bound_contained,
@@ -144,13 +144,7 @@ class KnobDomain(Knob, Domain, Jsonable):
     @property
     def knob(self) -> Knob:
         """Return the knob."""
-        return Knob(
-            default_name=self.default_name,
-            pseudo_name=self.pseudo_name,
-            instrument_type=self.instrument_type,
-            units=self.units,
-            description=self.description,
-        )
+        return self._label
 
     @property
     def domain(self) -> Domain:

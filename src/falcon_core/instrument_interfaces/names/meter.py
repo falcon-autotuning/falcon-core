@@ -17,7 +17,7 @@ class Meter(InstrumentPort):
         self,
         default_name: str,
         pseudo_name: "Connection | None" = None,
-        instrument_type: str = INSTRUMENT_TYPES[1],
+        instrument_type: str = INSTRUMENT_TYPES.AMNMETER.value,
         units: "SymbolUnit" = Units.AMPERE,
         description: str = "",
     ) -> None:

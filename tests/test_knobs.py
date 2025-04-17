@@ -108,7 +108,7 @@ def test_knob_domain_initialization():
     bounds = (0.0, 5.0)
     # Test with min, max, step
     domain = KnobDomain(default_name="voltage", bounds=bounds, units=Units.VOLT)
-    assert domain.default_name == "voltage"
+    assert domain._label.default_name == "voltage"
     assert domain.bounds == bounds
     assert not domain.is_empty()
 
@@ -121,7 +121,7 @@ def test_knob_domain_serialization():
     # Test to_dict and from_dict
     domain_dict = domain.to_dict()
     domain_loaded = KnobDomain.from_dict(domain_dict)
-    assert domain_loaded.default_name == "power"
+    assert domain_loaded._label.default_name == "power"
     assert domain_loaded.lesser_bound == 10
     assert domain_loaded.greater_bound == 100
-    assert domain_loaded.units == Units.WATT
+    assert domain_loaded._label.units == Units.WATT

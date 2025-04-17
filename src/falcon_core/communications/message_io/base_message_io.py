@@ -77,6 +77,7 @@ class BaseMessageIO:
         self._lock_timeout = lock_timeout
         self._max_retries = max_retries
         self._retry_delay = retry_delay
+        self._application_name = application_name
 
     def _create_manager(
         self,
