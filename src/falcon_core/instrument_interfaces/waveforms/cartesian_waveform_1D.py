@@ -7,7 +7,7 @@ from .dependancies import CartesianDiscreteSpace1D, Domain, IdentityTransform
 
 if TYPE_CHECKING:
     from .dependancies import Knob
-    from .typing import CoupledKnobDomain, PortTransform
+    from .typing import CoupledKnobDomain, KnobTransform, PortTransform, Sequence
 
 
 class CartesianWaveform1D(BaseCartesianWaveform[CartesianDiscreteSpace1D]):
@@ -16,7 +16,7 @@ class CartesianWaveform1D(BaseCartesianWaveform[CartesianDiscreteSpace1D]):
     def __init__(
         self,
         space: CartesianDiscreteSpace1D,
-        transforms: list["PortTransform[Knob]"],
+        transforms: "list[KnobTransform] | Sequence[PortTransform[Knob]]" = [],
     ):
         super().__init__(space, transforms)
 
@@ -25,7 +25,7 @@ class CartesianWaveform1D(BaseCartesianWaveform[CartesianDiscreteSpace1D]):
         cls: type["CartesianWaveform1D"],
         division: int,
         shared_domain: "CoupledKnobDomain",
-        transforms: list["PortTransform[Knob]"],
+        transforms: list["KnobTransform"],
         domain: Domain = Domain(bounds=(0, 1)),
     ):
         """Create a CartesianWaveform from raw deltas.

@@ -87,7 +87,7 @@ class CoupledKnobDomain(Jsonable):
                 and domain.knob.instrument_type == primary
             ):
                 return domain
-        msg = f"Primary control {primary} not found in domains {domains}"
+        msg = f"Primary control {primary} not found in domains {self._domains}"
         raise ValueError(msg)
 
     def __iter__(self):

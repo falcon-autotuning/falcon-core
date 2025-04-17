@@ -10,7 +10,7 @@ from ...math.discrete_spaces.base_cartesian_discrete_space import (
 from ...math.discrete_spaces.base_discrete_space import BaseDiscreteSpace
 from ...math.domains import Domain
 from ...typing import Generic, TypeVar
-from ..port_transforms import IdentityTransform, PortTransforms
+from ..port_transforms import IdentityTransform, KnobTransforms
 
 __all__ = [
     "chain",
@@ -20,7 +20,7 @@ __all__ = [
     "Generic",
     "TypeVar",
     "Domain",
-    "PortTransforms",
+    "KnobTransforms",
     "IdentityTransform",
     "BaseDiscreteSpace",
     "BaseCartesianDiscreteSpace",

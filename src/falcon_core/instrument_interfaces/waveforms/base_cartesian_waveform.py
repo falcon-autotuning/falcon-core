@@ -11,8 +11,7 @@ from .dependancies import (
 )
 
 if TYPE_CHECKING:
-    from .dependancies import Knob
-    from .typing import PortTransform, Self
+    from .typing import Knob, KnobTransform, PortTransform, Self, Sequence
 
 T = TypeVar("T", bound=BaseCartesianDiscreteSpace)
 
@@ -23,7 +22,7 @@ class BaseCartesianWaveform(BaseWaveform, Generic[T]):
     def __init__(
         self,
         space: T,
-        transforms: list["PortTransform[Knob]"],
+        transforms: "list[KnobTransform] | Sequence[PortTransform[Knob]]" = [],
     ):
         super().__init__(space, transforms)
 

@@ -6,8 +6,12 @@ from .cartesian_waveform import CartesianWaveform
 from .dependancies import Domain, Jsonable
 
 if TYPE_CHECKING:
-    from .dependancies import Knob
-    from .typing import Axes, CoupledKnobDomain, PortTransform, Self
+    from .typing import (
+        Axes,
+        CoupledKnobDomain,
+        KnobTransform,
+        Self,
+    )
 
 
 NUM_DIMENSIONS = 2
@@ -21,7 +25,7 @@ class CartesianWaveform2D(CartesianWaveform, Jsonable):
         cls,
         divisions: "Axes[int]",
         axes: "Axes[CoupledKnobDomain]",
-        transforms: list["PortTransform[Knob]"],
+        transforms: "list[KnobTransform]" = [],
         domain: Domain = Domain(bounds=(0, 1)),
     ) -> "Self":
         """Create a CartesianWaveform from raw deltas.
