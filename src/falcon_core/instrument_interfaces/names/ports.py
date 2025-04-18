@@ -2,6 +2,7 @@
 
 from typing import TYPE_CHECKING
 
+from .constants import INSTRUMENT_TYPES
 from .dependancies import Jsonable, contextlib
 from .instrument_port import InstrumentPort
 from .knob import Knob
@@ -108,3 +109,85 @@ class Ports(Jsonable, Generic[T]):
     def _get_raw_names(self) -> list[str]:
         """Return the raw string names of the ports."""
         return [pseudo_name.name for pseudo_name in self.get_pseudo_names()]
+
+    def _contains_port(
+        self,
+        port: "T",
+    ) -> bool:
+        """Check if a port is in the collection.
+
+        Args:
+            port: The port to check for.
+
+        Returns:
+            True if the port is in the collection, False otherwise.
+        """
+        return port in self.ports
+
+    def _get_psuedoname_matching_port(
+        self,
+        pseudoname: Connection,
+    ) -> "T":
+        """Check if any port has the given pseudoname.
+
+        Args:
+            pseudoname: The pseudoname to check for.
+
+        Returns:
+            The port with the given pseudoname.
+
+        Raises:
+            KeyError: If no port with the given pseudoname is found.
+        """
+        try:
+            return next(port for port in self.ports if port.pseudo_name == pseudoname)
+        except StopIteration:
+            msg = f"No port with pseudoname '{pseudoname}'"
+            raise KeyError(msg)
+
+    def _get_instrument_type_matching_port(
+        self,
+        instrument_type: INSTRUMENT_TYPES,
+    ) -> "T":
+        """Check if any port has the given instrument type.
+
+        Args:
+            instrument_type: The instrument type to check for.
+
+        Returns:
+            The port with the given instrument type.
+
+        Raises:
+            KeyError: If no port with the given instrument type is found.
+        """
+        try:
+            return next(
+                port for port in self.ports if port.instrument_type == instrument_type
+            )
+        except StopIteration:
+            msg = f"No port with instrument type '{instrument_type}'"
+            raise KeyError(msg)
+
+    def get_matching_port(
+        self,
+        query: "Connection | INSTRUMENT_TYPES | T",
+    ) -> "T":
+        """Get a port matching the given query.
+
+        Args:
+            query: The query to match. Can be a pseudoname, instrument type, or port object.
+
+        Returns:
+            The matching port.
+
+        Raises:
+            TypeError: If the query is not a valid type.
+        """
+        if isinstance(query, Connection):
+            return self._get_psuedoname_matching_port(query)
+        if isinstance(query, INSTRUMENT_TYPES):
+            return self._get_instrument_type_matching_port(query)
+        if isinstance(query, InstrumentPort):
+            return self._get_psuedoname_matching_port(query.pseudo_name)
+        msg = f"Invalid query type: {type(query)}. Expected Connection, INSTRUMENT_TYPES, or InstrumentPort."
+        raise TypeError(msg)
