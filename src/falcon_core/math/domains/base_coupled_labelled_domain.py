@@ -7,17 +7,20 @@ from .dependancies import Connection, Generic, Jsonable, Knob, TypeVar
 
 if TYPE_CHECKING:
     from .labelled_domain import LabelledDomain
-    from .typing import Sequence
+    from .typing import Any, Sequence
 
 T = TypeVar("T", bound=Jsonable)
 
 
-class BaseCoupledLabelledDomain(Jsonable, Generic[T]):
+class BaseCoupledLabelledDomain(Generic[T]):
     """A collection of coupled labelled domains to be attached together."""
 
     _domains: "Sequence[LabelledDomain[T]]"
 
-    def __init__(self, domains: "Sequence[LabelledDomain[T]]"):
+    def __init__(
+        self,
+        domains: "Sequence[LabelledDomain[T]]",
+    ):
         """Initialize the CoupledLabelledDomain object."""
         self._domains = domains
 
@@ -33,12 +36,12 @@ class BaseCoupledLabelledDomain(Jsonable, Generic[T]):
 
     def get_domain(
         self,
-        search: Jsonable,
+        search: "Any",
     ) -> "LabelledDomain":
         """Return the domain with the given knob.
 
         Args:
-            knob: The knob to search for.
+            search: The element to search for.
 
         Returns:
             The domain with the given knob.

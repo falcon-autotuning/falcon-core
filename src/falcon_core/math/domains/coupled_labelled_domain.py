@@ -6,5 +6,5 @@ from .dependancies import Generic, Jsonable, TypeVar
 T = TypeVar("T", bound=Jsonable)
 
 
-class CoupledLabelledDomain(BaseCoupledLabelledDomain, Generic[T]):
+class CoupledLabelledDomain(BaseCoupledLabelledDomain, Jsonable, Generic[T]):
     """A collection of coupled labelled domains to be attached together."""
