@@ -1,6 +1,7 @@
 """A domain with a label for pretty much anything."""
 
-from .dependancies import Generic, Jsonable, TypeVar
+from .constants import INSTRUMENT_TYPES
+from .dependancies import Connection, Generic, InstrumentPort, Jsonable, TypeVar
 from .domain import Domain
 
 T = TypeVar("T", bound=Jsonable)
@@ -38,4 +39,28 @@ class BaseLabelledDomain(Domain, Jsonable, Generic[T]):
             bounds=self.bounds,
             lesser_bound_contained=self.lesser_bound_contained,
             greater_bound_contained=self.greater_bound_contained,
+        )
+
+    def matching_label(
+        self,
+        label: "T",
+    ) -> bool:
+        """If the label matches the given label.
+
+        Args:
+            label: The label to match.
+
+        Returns:
+            True if the label matches the given label, False otherwise.
+        """
+        if not isinstance(label, InstrumentPort) and not isinstance(
+            self.label, InstrumentPort
+        ):
+            return self.label == label
+        assert isinstance(self.label, InstrumentPort), "label must be an InstrumentPort"
+        return (
+            isinstance(label, Connection)
+            and self.label.pseudo_name == label
+            or isinstance(label, INSTRUMENT_TYPES)
+            and self.label.instrument_type == label
         )

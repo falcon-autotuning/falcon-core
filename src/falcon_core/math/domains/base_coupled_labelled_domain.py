@@ -3,7 +3,13 @@
 from typing import TYPE_CHECKING
 
 from .constants import INSTRUMENT_TYPES
-from .dependancies import Connection, Generic, Jsonable, Knob, TypeVar
+from .dependancies import (
+    Connection,
+    Generic,
+    Jsonable,
+    Knob,
+    TypeVar,
+)
 
 if TYPE_CHECKING:
     from .labelled_domain import LabelledDomain
@@ -30,14 +36,14 @@ class BaseCoupledLabelledDomain(Generic[T]):
         return [domain for domain in self._domains]
 
     @property
-    def labels(self) -> list[T]:
+    def labels(self) -> "list[T]":
         """Return the labels."""
         return [domain.label for domain in self._domains]
 
     def get_domain(
         self,
         search: "Any",
-    ) -> "LabelledDomain":
+    ) -> "LabelledDomain[T]":
         """Return the domain with the given knob.
 
         Args:
@@ -49,14 +55,12 @@ class BaseCoupledLabelledDomain(Generic[T]):
         Raises:
             ValueError: If the knob is not found.
         """
+        self.labels
         for domain in self._domains:
-            if isinstance(domain._label, Knob) and (
-                isinstance(search, Knob)
-                and domain._label == search
-                or isinstance(search, Connection)
-                and domain._label.pseudo_name == search
-                or isinstance(search, INSTRUMENT_TYPES)
-                and domain._label.instrument_type == search
+            if (
+                isinstance(domain._label, Knob)
+                and isinstance(search, Knob)
+                and domain.matching_label(search)
             ):
                 return domain
         if isinstance(search, Knob):

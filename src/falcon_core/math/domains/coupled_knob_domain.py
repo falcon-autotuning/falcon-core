@@ -22,4 +22,4 @@ class CoupledKnobDomain(BaseCoupledLabelledDomain[Knob], Jsonable):
     @property
     def knobs(self) -> "Knobs":
         """Return the knobs."""
-        return Knobs([domain._label for domain in self._domains])
+        return Knobs(self.labels)
