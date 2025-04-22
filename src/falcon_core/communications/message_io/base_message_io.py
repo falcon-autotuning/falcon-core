@@ -13,6 +13,8 @@ from .dependancies import (
 )
 
 if TYPE_CHECKING:
+    from .message_config import MessageConfig
+if TYPE_CHECKING:
     from .typing import (
         ApplicationName,
         Channel,
@@ -39,29 +41,20 @@ class BaseMessageIO:
 
     def __init__(
         self,
-        application_name: "ApplicationName",
-        timeout: float = 3600,
-        channels: list["Channel"] = [],
+        message_config: "MessageConfig",
+        process_name: "ProcessName | None" = None,
         startup_program: bool = False,
         startup: bool = False,
-        lock_timeout: int = 5,
-        max_retries: int = 3,
-        retry_delay: float = 0.2,
-        process_name: "ProcessName | None" = None,
     ):
         """Initialize the message I/O object.
 
         Args:
-            application_name: The name of the application.
+            message_config: The message configuration object.
             process_name: The name of the process. If None, use the application name.
-            timeout: Timeout for the message I/O operations.
-            channels: List of channels to manage.
             startup: If True, initialize the program status and setup channels
             startup_program: If True, initialize the program status to started.
-            lock_timeout: Timeout for the locks built into the managers.
-            max_retries: Maximum number of retries for lock acquisition for the managers.
-            retry_delay: Delay between retries in seconds for the managers.
         """
+        application_name = message_config.application_name
         if startup | startup_program:
             ProgramStatusManager(
                 startup=startup_program | startup,
@@ -70,13 +63,13 @@ class BaseMessageIO:
         if startup:
             ChannelStatusManager(
                 startup=startup,
-                startup_channels=channels,
+                startup_channels=message_config.channels,
             )
-        self._timeout = timeout
+        self._timeout = message_config.message_timeout
         self._my_name = process_name if process_name else application_name
-        self._lock_timeout = lock_timeout
-        self._max_retries = max_retries
-        self._retry_delay = retry_delay
+        self._lock_timeout = message_config.lock_timeout
+        self._max_retries = message_config.max_retries
+        self._retry_delay = message_config.retry_delay
         self._application_name = application_name
 
     def _create_manager(

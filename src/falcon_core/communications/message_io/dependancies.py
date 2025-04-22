@@ -1,6 +1,6 @@
 """Manage dependencies for message_io."""
 
-from ...dependancies import time
+from ...dependancies import dataclass, time
 from ..managers import (
     ChannelStatusManager,
     MessageManager,
@@ -11,6 +11,7 @@ from ..managers.status_type import ChannelStatusType, ProgramStatusType
 
 __all__ = [
     "time",
+    "dataclass",
     "ProgramStatusType",
     "ChannelStatusType",
     "MessageManager",
