@@ -2,17 +2,14 @@
 
 from typing import TYPE_CHECKING
 
-from .constants import INSTRUMENT_TYPES
 from .dependancies import (
-    Connection,
     Generic,
     Jsonable,
-    Knob,
     TypeVar,
 )
 
 if TYPE_CHECKING:
-    from .labelled_domain import LabelledDomain
+    from .labelled_domain import BaseLabelledDomain
     from .typing import Any, Sequence
 
 T = TypeVar("T", bound=Jsonable)
@@ -21,17 +18,17 @@ T = TypeVar("T", bound=Jsonable)
 class BaseCoupledLabelledDomain(Generic[T]):
     """A collection of coupled labelled domains to be attached together."""
 
-    _domains: "Sequence[LabelledDomain[T]]"
+    _domains: "Sequence[BaseLabelledDomain[T]]"
 
     def __init__(
         self,
-        domains: "Sequence[LabelledDomain[T]]",
+        domains: "Sequence[BaseLabelledDomain[T]]",
     ):
-        """Initialize the CoupledLabelledDomain object."""
+        """Initialize the CoupledBaseLabelledDomain object."""
         self._domains = domains
 
     @property
-    def domains(self) -> list["LabelledDomain[T]"]:
+    def domains(self) -> list["BaseLabelledDomain[T]"]:
         """Return the domains."""
         return [domain for domain in self._domains]
 
@@ -43,7 +40,7 @@ class BaseCoupledLabelledDomain(Generic[T]):
     def get_domain(
         self,
         search: "Any",
-    ) -> "LabelledDomain[T]":
+    ) -> "BaseLabelledDomain[T]":
         """Return the domain with the given knob.
 
         Args:
@@ -55,50 +52,13 @@ class BaseCoupledLabelledDomain(Generic[T]):
         Raises:
             ValueError: If the knob is not found.
         """
-        self.labels
-        for domain in self._domains:
-            if (
-                isinstance(domain._label, Knob)
-                and isinstance(search, Knob)
-                and domain.matching_label(search)
-            ):
-                return domain
-        if isinstance(search, Knob):
-            type = "Knob"
-        elif isinstance(search, Connection):
-            type = "Connection"
-        elif isinstance(search, INSTRUMENT_TYPES):
-            type = "Instrument Type"
-        else:
-            type = search.__class__.__name__
-        msg = f"{type} {search} not found in coupled knob domain."
-        raise ValueError(msg)
-
-    def _get_primary_domain(
-        self,
-        primary: Jsonable,
-    ) -> "LabelledDomain":
-        """Gets the primary domain assocated with the primary control.
-
-        Args:
-            primary : the primary control
-
-        Returns:
-            LabelledDomain : the primary domain
-
-        Raises:
-            ValueError : if the primary control is not found in the domains
-        """
-        for domain in self._domains:
-            if isinstance(domain._label, Knob) and (
-                isinstance(primary, Connection)
-                and domain._label.pseudo_name == primary
-                or isinstance(primary, INSTRUMENT_TYPES)
-                and domain._label.instrument_type == primary
-            ):
-                return domain
-        msg = f"Primary control {primary} not found in domains {self._domains}"
-        raise ValueError(msg)
+        domain = next(
+            (domain for domain in self._domains if domain.matching_label(search)), None
+        )
+        if domain is None:
+            msg = f"No domain found matching label: {search}"
+            raise ValueError(msg)
+        return domain
 
     def __iter__(self):
         """Return an iterator over the domains."""

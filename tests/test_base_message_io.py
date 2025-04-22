@@ -19,10 +19,8 @@ from falcon_core.communications.managers.status_type import (
     ProgramStatusType,
 )
 from falcon_core.communications.message_io.base_message_io import BaseMessageIO
+from falcon_core.communications.message_io.message_config import MessageConfig
 from falcon_core.generic import Jsonable
-
-# Mark the entire module as integration tests
-pytestmark = pytest.mark.integration
 
 
 class TestMessage(Jsonable):
@@ -112,18 +110,30 @@ def unique_name():
 
 
 @pytest.fixture
-def message_io(clean_valkey, unique_name):
+def message_config(unique_name):
+    """Create a message configuration for testing.
+
+    Returns:
+        A MessageConfig instance with a unique application name and test settings.
+    """
+    return MessageConfig(
+        _application_name=unique_name,
+        _message_timeout=2.0,
+        _lock_timeout=1,
+        _max_retries=2,
+        _retry_delay=0.01,
+        _channels=[f"channel_{i}" for i in range(3)],
+    )
+
+
+@pytest.fixture
+def message_io(clean_valkey, message_config: MessageConfig):
     """Create a BaseMessageIO instance connected to the real Valkey server."""
     # Create instance with test-appropriate settings
     io = BaseMessageIO(
-        application_name=unique_name,
-        timeout=2.0,  # Short timeout for faster tests
-        lock_timeout=1,
-        max_retries=2,
-        retry_delay=0.01,
+        message_config=message_config,
         startup=True,
         startup_program=True,
-        channels=[f"channel_{i}" for i in range(3)],
     )
 
     yield io
@@ -220,10 +230,16 @@ def test_real_listen_command_workflow(message_io, unique_name):
     """Test complete listen/command workflow with real Valkey."""
     # Create a receiver that will listen for commands
     receiver_name = f"{unique_name}_listener"
+    config = MessageConfig(
+        _application_name=receiver_name,
+        _message_timeout=2.0,
+        _lock_timeout=1,
+        _max_retries=2,
+        _retry_delay=0.01,
+        _channels=[f"channel_{i}" for i in range(3)],
+    )
     receiver = BaseMessageIO(
-        application_name=receiver_name,
-        timeout=60.0,
-        lock_timeout=3,
+        message_config=config,
         startup=True,
         startup_program=True,
     )
@@ -273,7 +289,7 @@ def test_real_listen_command_workflow(message_io, unique_name):
             )
 
     # Wait for listener to receive the command
-    timeout_reached = not listen_complete.wait(timeout=5.0)
+    not listen_complete.wait(timeout=5.0)
 
     if listen_error:
         pytest.fail(f"Listener thread failed: {listen_error}")
@@ -352,10 +368,16 @@ def test_real_communication_status_checks(message_io, unique_name):
     """Test communication status check methods."""
     # Create another app to check
     other_name = f"{unique_name}_status_check"
+    config = MessageConfig(
+        _application_name=other_name,
+        _message_timeout=2.0,
+        _lock_timeout=1,
+        _max_retries=2,
+        _retry_delay=0.01,
+        _channels=[f"channel_{i}" for i in range(3)],
+    )
     other_io = BaseMessageIO(
-        application_name=other_name,
-        timeout=2.0,
-        lock_timeout=1,
+        message_config=config,
         startup=True,
         startup_program=True,
     )

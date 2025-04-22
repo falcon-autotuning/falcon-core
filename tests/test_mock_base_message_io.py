@@ -10,6 +10,7 @@ from falcon_core.communications.managers.status_type import (
     ProgramStatusType,
 )
 from falcon_core.communications.message_io.base_message_io import BaseMessageIO
+from falcon_core.communications.message_io.message_config import MessageConfig
 from falcon_core.communications.notifications import Notification, Notifications
 from falcon_core.dependancies import time
 from falcon_core.generic import Jsonable
@@ -71,21 +72,35 @@ def reset_mocks(mock_valkey):
 
 
 @pytest.fixture
-def message_io(mock_valkey):
+def message_config():
+    """Create a message configuration for testing."""
+    return MessageConfig(
+        _application_name="test_app",
+        _channels=["channel1"],
+        _lock_timeout=1,
+        _max_retries=2,
+        _retry_delay=0.01,
+        _message_timeout=1.0,
+    )
+
+
+@pytest.fixture
+def message_io(mock_valkey, message_config: MessageConfig):
     """Create a BaseMessageIO instance with mocked valkey client."""
     return BaseMessageIO(
-        application_name="test_app",
-        timeout=1.0,  # Short timeout for tests
-        lock_timeout=1,
-        max_retries=2,
-        retry_delay=0.01,  # Short delay for faster tests
+        message_config=message_config,
     )
 
 
 # Tests
 def test_initialization(mock_valkey):
     """Test BaseMessageIO initialization."""
-    io = BaseMessageIO("test_app")
+    io = BaseMessageIO(
+        message_config=MessageConfig(
+            _application_name="test_app",
+            _channels=["channel1"],
+        )
+    )
     assert io._my_name == "test_app"
     assert io._timeout == 3600
     assert io._lock_timeout == 5
@@ -93,7 +108,14 @@ def test_initialization(mock_valkey):
     assert io._retry_delay == 0.2
 
     # Test with startup flags
-    io = BaseMessageIO("test_application", startup=True, startup_program=True)
+    io = BaseMessageIO(
+        message_config=MessageConfig(
+            _application_name="test_app",
+            _channels=["channel1"],
+        ),
+        startup=True,
+        startup_program=True,
+    )
 
     # Verify that the right keys were set in valkey for program status
     startup_calls = [
@@ -341,12 +363,15 @@ def test_concurrent_notification_handling(mock_valkey):
     mock_valkey.time.return_value = (1234567890, 0)
 
     # Create BaseMessageIO instance with shorter timeout for faster tests
+    message_config = MessageConfig(
+        _application_name="test_app",
+        _max_retries=5,
+        _retry_delay=1,
+        _channels=[f"channel_{i}" for i in range(3)],
+    )
     message_io = BaseMessageIO(
-        "test_app",
-        max_retries=5,
-        retry_delay=1,
+        message_config=message_config,
         startup=True,
-        channels=[f"channel_{i}" for i in range(3)],
     )
 
     # Define a cleaner thread function with better error handling
@@ -500,14 +525,17 @@ def test_message_collision_with_concurrent_threads(mock_valkey):
     mock_valkey.time.return_value = (1234567890, 0)
 
     # Create BaseMessageIO instance with shorter timeout for faster tests
+    message_config = MessageConfig(
+        _application_name="test_app",
+        _message_timeout=10,
+        _channels=["channel1"],
+        _lock_timeout=1,
+        _max_retries=2,
+        _retry_delay=0.01,
+    )
     io = BaseMessageIO(
-        "test_app",
-        timeout=10,  # Short timeout for faster tests
-        lock_timeout=1,
-        max_retries=2,
-        retry_delay=0.01,
+        message_config=message_config,
         startup=True,
-        channels=["channel1"],
     )
 
     # Thread function to send command

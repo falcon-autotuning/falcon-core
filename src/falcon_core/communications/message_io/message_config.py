@@ -28,7 +28,7 @@ class MessageConfig:
     def lock_timeout(self) -> int:
         """The timeout for acquiring a lock on a message."""
         return self._lock_timeout
-    :
+
     @property
     def max_retries(self) -> int:
         """The maximum number of retries for sending a message."""

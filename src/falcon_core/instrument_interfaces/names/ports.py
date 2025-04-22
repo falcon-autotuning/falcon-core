@@ -7,10 +7,10 @@ from .dependancies import Jsonable, contextlib
 from .instrument_port import InstrumentPort
 from .knob import Knob
 from .meter import Meter
-from .typing import Generic, Iterable, TypeVar
+from .typing import Connection, Generic, Iterable, TypeVar
 
 if TYPE_CHECKING:
-    from .typing import Connection, Iterator
+    from .typing import Iterator
 
 T = TypeVar("T", bound=Knob | Meter | InstrumentPort)
 
