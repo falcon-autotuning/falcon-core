@@ -1,7 +1,7 @@
 """Dependencies for the context manager."""
 
-from ...dependancies import Enum, abstractmethod, json, random, time, uuid, valkey
-from ...generic import Jsonable
+from ...dependancies import abstractmethod, json, random, time, uuid, valkey
+from ...generic import Enum, Jsonable
 from ...typing import TypeVar
 from ..notifications import Notification, Notifications
 

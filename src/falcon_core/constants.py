@@ -1,6 +1,5 @@
 """The constants used throughout Falcon."""
 
-from enum import Enum
 from math import pi
 
 PI = pi
@@ -223,22 +222,3 @@ UNIT_NAME_PERCENT = "percent"
 UNIT_NAME_RADIAN = "radian"
 
 UNIT_SCALE_FAHRENHEIT = 5 / 9
-
-
-class INSTRUMENT_TYPES(Enum):
-    """Instrument types."""
-
-    DC_VOLTAGE_SOURCE = "dc_voltage_source"
-    AMNMETER = "amnmeter"
-    MAGNET = "magnet"
-    LOCKIN = "lockin"
-    VOLTAGE_SOURCE = "voltage_source"
-    CURRENT_SOURCE = "current_source"
-    HF_VOLTAGE_SOURCE = "hf_voltage_source"
-    DC_CURRENT_SOURCE = "dc_current_source"
-    HF_CURRENT_SOURCE = "hf_current_source"
-    THERMOMETER = "thermometer"
-    VOLTMETER = "voltmeter"
-    FPGA = "fpga"
-    CLOCK = "clock"
-    DISCRETE = "discrete"
