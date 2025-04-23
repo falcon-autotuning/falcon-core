@@ -14,6 +14,7 @@ from ..constants import (
     JSONABLE_TYPE_VAR,
 )
 from .dependancies import (
+    Enum,
     GenericAlias,
     JSONprimitives,
     b64decode,
@@ -181,7 +182,7 @@ def check_serializable(
     if (
         (callable(value) and not isinstance(value, type))
         or is_type_object(value)
-        or isinstance(value, np.ndarray | JSONprimitives)
+        or isinstance(value, np.ndarray | JSONprimitives | Enum)
     ):
         return True
     if isinstance(value, Jsonable):
@@ -305,6 +306,34 @@ def construct_typed_np_array_from_raw(
     return pickle.loads(binary_data)
 
 
+def construct_enum_from_raw(data: "dict") -> "Enum":
+    """Deserialize an enum from a serialized format.
+
+    Args:
+        data: The serialized enum data.
+
+    Returns:
+        The deserialized enum.
+
+    Raises:
+        ValueError: If the enum cannot be deserialized
+    """
+    module_name = data.get("module")
+    class_name = data.get("class")
+    enum_value = data.get("value")
+
+    assert module_name is not None
+    assert class_name is not None
+    assert enum_value is not None
+    try:
+        module = sys.modules.get(module_name) or __import__(module_name)
+        enum_class = getattr(module, class_name)
+        return enum_class(enum_value)
+    except (ImportError, AttributeError, ValueError) as e:
+        msg = f"Could not deserialize enum: {module_name}.{class_name}({enum_value}): {e!s}"
+        raise ValueError(msg)
+
+
 def construct_typed_attribute_from_raw(value: "Any") -> "Any":
     """Construct a typed attribute from a raw value.
 
@@ -320,6 +349,8 @@ def construct_typed_attribute_from_raw(value: "Any") -> "Any":
         return [construct_typed_attribute_from_raw(item) for item in value]
     if isinstance(value, dict) and value.get(JSONABLE_FUNCTION) is True:
         return construct_function_from_raw(value)
+    if isinstance(value, dict) and value.get("enum_type") is True:
+        return construct_enum_from_raw(value)
     if JSONABLE_TYPE_VAR in value:
         return construct_type_variable_from_raw(value)
     if JSONABLE_BLOB in value:
@@ -549,6 +580,23 @@ def is_type_object(value: "Any") -> bool:
     )
 
 
+def construct_raw_from_enum(enum_value: "Enum") -> "dict[str, Any]":
+    """Convert Enum value to raw values for JSON serialization.
+
+    Args:
+        enum_value: The Enum value to convert.
+
+    Returns:
+        The raw value suitable for JSON serialization.
+    """
+    return {
+        "enum_type": True,
+        "module": enum_value.__class__.__module__,
+        "class": enum_value.__class__.__name__,
+        "value": enum_value.value,
+    }
+
+
 def construct_raw_from_typed_attribute(
     attribute_value: "Any",
 ) -> "Any":
@@ -568,6 +616,8 @@ def construct_raw_from_typed_attribute(
         return construct_raw_array_from_typed_attribute(attribute_value)
     if isinstance(attribute_value, Jsonable):
         return attribute_value.to_dict()
+    if isinstance(attribute_value, Enum):
+        return construct_raw_from_enum(attribute_value)
     if isinstance(attribute_value, list):
         return [construct_raw_from_typed_attribute(item) for item in attribute_value]
     if not isinstance(attribute_value, dict):
@@ -627,6 +677,8 @@ class Jsonable:
     """A Jsonable object is an object that can be converted to and from a dictionary.
 
     Implied syntax is that jsonable attributes begin with _
+
+    Things that do not need to be explicitly jsonable are np.arrays, enums, and types
     """
 
     jsonable_attribute_indicator = JSONABLE_ATTRIBUTE_INDICATOR

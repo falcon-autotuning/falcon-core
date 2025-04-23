@@ -3,7 +3,7 @@
 Need to make sure they cna be transformed into and from json and dict.
 """
 
-from falcon_core.dependancies import np
+from falcon_core.dependancies import Enum, np
 from falcon_core.generic import Jsonable
 from falcon_core.typing import Any
 
@@ -54,10 +54,16 @@ class numpyjson(Jsonable):
         self._value = value
 
 
+class enum(Enum):
+    STUFF = "stuff"
+
+
 class complexjson(Jsonable):
     _value: list[str | strjson]
+    _other: enum
 
-    def __init__(self, value: list[str | strjson]):
+    def __init__(self, value: list[str | strjson], other: enum):
+        self._other = other
         self._value = value
 
 
@@ -118,7 +124,7 @@ def test_numpyjsonable():
 
 
 def test_complexjsonable():
-    x = complexjson(["hello", strjson("world")])
+    x = complexjson(["hello", strjson("world")], enum.STUFF)
     jsondict = x.to_dict()
     print(jsondict)
     newx = complexjson.from_dict(jsondict)
@@ -130,7 +136,7 @@ def test_destroyerjsonable():
         {strjson("hello"): listjson(["world"])},
         {"hello": numpyjson(np.array([1, 2, 3]))},
         {strjson("hello"): {strjson("world"): [numpyjson(np.array([1, 2, 3]))]}},
-        complexjson(["hello", strjson("world")]),
+        complexjson(["hello", strjson("world")], enum.STUFF),
         ["hello", "world"],
         {
             "hello": typejson(
@@ -143,7 +149,7 @@ def test_destroyerjsonable():
             )
         },
         {"hello": {strjson("world"): listjson(["hello"])}},
-        [complexjson(["hello", strjson("world")])],
+        [complexjson(["hello", strjson("world")], enum.STUFF)],
     )
     jsondict = x.to_dict()
     print(jsondict)
@@ -158,7 +164,7 @@ def test_destroyerjsonable():
     assert newx._woah_types["hello"]._nested_type == dict[str, list[tuple[int, str]]]
     assert newx._woah_types["hello"]._any_type == Any
     assert newx._others == {"hello": {strjson("world"): listjson(["hello"])}}
-    assert newx._even_more == [complexjson(["hello", strjson("world")])]
+    assert newx._even_more == [complexjson(["hello", strjson("world")], enum.STUFF)]
 
 
 def test_typejsonable():
@@ -202,7 +208,7 @@ def test_listjsonable_json():
 
 
 def test_complexjsonable_json():
-    x = complexjson(["hello", strjson("world")])
+    x = complexjson(["hello", strjson("world")], enum.STUFF)
     jsondict = x.to_json()
     print(jsondict)
     newx = complexjson.from_json(jsondict)
@@ -214,7 +220,7 @@ def test_destroyerjsonable_json():
         {strjson("hello"): listjson(["world"])},
         {"hello": numpyjson(np.array([1, 2, 3]))},
         {strjson("hello"): {strjson("world"): [numpyjson(np.array([1, 2, 3]))]}},
-        complexjson(["hello", strjson("world")]),
+        complexjson(["hello", strjson("world")], enum.STUFF),
         ["hello", "world"],
         {
             "hello": typejson(
@@ -227,7 +233,7 @@ def test_destroyerjsonable_json():
             )
         },
         {"hello": {strjson("world"): listjson(["hello"])}},
-        [complexjson(["hello", strjson("world")])],
+        [complexjson(["hello", strjson("world")], enum.STUFF)],
     )
     jsondict = x.to_json()
     print(jsondict)
@@ -242,4 +248,4 @@ def test_destroyerjsonable_json():
     assert newx._woah_types["hello"]._nested_type == dict[str, list[tuple[int, str]]]
     assert newx._woah_types["hello"]._any_type == Any
     assert newx._others == {"hello": {strjson("world"): listjson(["hello"])}}
-    assert newx._even_more == [complexjson(["hello", strjson("world")])]
+    assert newx._even_more == [complexjson(["hello", strjson("world")], enum.STUFF)]
