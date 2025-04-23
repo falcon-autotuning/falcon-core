@@ -182,9 +182,12 @@ def check_serializable(
     if (
         (callable(value) and not isinstance(value, type))
         or is_type_object(value)
-        or isinstance(value, np.ndarray | JSONprimitives | Enum)
+        or isinstance(value, np.ndarray | JSONprimitives)
     ):
         return True
+    if isinstance(value, Enum):
+        valid_types = (int, float, str)
+        return isinstance(value.value, valid_types)
     if isinstance(value, Jsonable):
         throw_error_if_not_serializable(dictionary=value.to_dict())
         return True

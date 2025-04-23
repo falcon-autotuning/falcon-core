@@ -136,7 +136,10 @@ def test_destroyerjsonable():
         {strjson("hello"): listjson(["world"])},
         {"hello": numpyjson(np.array([1, 2, 3]))},
         {strjson("hello"): {strjson("world"): [numpyjson(np.array([1, 2, 3]))]}},
-        complexjson(["hello", strjson("world")], enum.STUFF),
+        complexjson(
+            ["hello", strjson("world")],
+            enum.STUFF,
+        ),
         ["hello", "world"],
         {
             "hello": typejson(
