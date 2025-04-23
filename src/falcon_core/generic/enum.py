@@ -1,7 +1,6 @@
 """A restricted Enum class that only allows JsonablePrimitive values."""
 
-from .dependancies import Enum as StandardEnum
-from .dependancies import JSONprimitives
+from .dependancies import JSONprimitives, StandardEnum
 
 
 class Enum(StandardEnum):
