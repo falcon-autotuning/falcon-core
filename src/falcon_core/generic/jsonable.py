@@ -38,8 +38,8 @@ if TYPE_CHECKING:
         TypeAlias,
     )
 
-
-JSONable_type: "TypeAlias" = dict[str, "JSONprimitives | Jsonable"]
+JsonableSubUnits: "TypeAlias" = "Jsonable | JSONprimitives"
+JsonableType: "TypeAlias" = dict[str, JsonableSubUnits]
 _jsonable_registry: dict[str, type["Jsonable"]] = {}
 
 
@@ -231,7 +231,7 @@ def parse_metadata_to_collect_class_type(
 
 
 def construct_dict_typed_attribute_from_raw(
-    dictionary: "JSONable_type",
+    dictionary: "JsonableType",
 ) -> "Any":
     """Construct a dictionary of typed attributes from raw values.
 
@@ -247,7 +247,7 @@ def construct_dict_typed_attribute_from_raw(
 
 
 def construct_dict_attributes_from_raw(
-    dictionary: "JSONable_type",
+    dictionary: "JsonableType",
 ) -> "Any":
     """Construct a dictionary of attributes from raw values.
 
@@ -659,8 +659,8 @@ def process_attributes(
 
 
 def remove_non_jsonable_attributes(
-    dictionary: "JSONable_type",
-) -> "JSONable_type":
+    dictionary: "JsonableType",
+) -> "JsonableType":
     """Remove non-jsonable attributes from the dictionary.
 
     Args:
