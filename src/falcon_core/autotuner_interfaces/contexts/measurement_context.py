@@ -6,7 +6,7 @@ from .base_context import BaseContext
 
 if TYPE_CHECKING:
     from .acquisition_context import AcquisitionContext
-    from .typing import Connection, Self
+    from .typing import Connection, Instrument, Self
 
 
 class MeasurementContext(BaseContext):
@@ -18,12 +18,12 @@ class MeasurementContext(BaseContext):
     """
 
     _connection: "Connection | None"
-    _instrument_type: str
+    _instrument_type: "Instrument"
 
     def __init__(
         self,
         connection: "Connection | None",
-        instrument_type: str,
+        instrument_type: "Instrument",
     ):
         """Initialize the MeasurementContext object.
 

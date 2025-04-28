@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from .dependancies import Jsonable
 
 if TYPE_CHECKING:
-    from .typing import Connection, InstrumentPort, Self
+    from .typing import Connection, Instrument, InstrumentPort, Self
 
 
 class BaseContext(Jsonable):
@@ -17,12 +17,12 @@ class BaseContext(Jsonable):
     """
 
     _connection: "Connection | None"
-    _instrument_type: str
+    _instrument_type: "Instrument"
 
     def __init__(
         self,
         connection: "Connection | None",
-        instrument_type: str,
+        instrument_type: "Instrument",
     ):
         """Initialize the BaseContext object.
 
@@ -43,7 +43,7 @@ class BaseContext(Jsonable):
         return self._connection
 
     @property
-    def instrument_type(self) -> str:
+    def instrument_type(self) -> "Instrument":
         """Return the instrument type."""
         return self._instrument_type
 

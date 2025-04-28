@@ -2,14 +2,14 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import BaseContext, SymbolUnit, Units
-from .typing import Connection
+from .dependancies import BaseContext, Jsonable, SymbolUnit, Units
+from .typing import Connection, Instrument
 
 if TYPE_CHECKING:
-    from .typing import InstrumentPort, Self
+    from .typing import Instrument, InstrumentPort, Self
 
 
-class AcquisitionContext(BaseContext):
+class AcquisitionContext(BaseContext, Jsonable):
     """A context that describes data acquisition with unit information.
 
     This class extends BaseContext by adding unit information,
@@ -21,7 +21,7 @@ class AcquisitionContext(BaseContext):
     def __init__(
         self,
         connection: Connection | None,
-        instrument_type: str,
+        instrument_type: "Instrument",
         units: SymbolUnit,
     ):
         """Initialize the AcquisitionContext object.

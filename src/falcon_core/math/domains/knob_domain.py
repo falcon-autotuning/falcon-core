@@ -8,6 +8,7 @@ from .dependancies import Knob, Units
 from .domain import Domain
 
 if TYPE_CHECKING:
+    from .dependancies import Instrument
     from .typing import Connection, SymbolUnit
 
 
@@ -19,7 +20,7 @@ class KnobDomain(BaseLabelledDomain[Knob]):
         default_name: str,
         bounds: tuple[float, float],
         pseudo_name: "Connection | None" = None,
-        instrument_type: str = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE.value,
+        instrument_type: "Instrument" = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE.value,
         lesser_bound_contained: bool = True,
         greater_bound_contained: bool = True,
         units: "SymbolUnit" = Units.VOLT,
@@ -83,7 +84,7 @@ class KnobDomain(BaseLabelledDomain[Knob]):
         domain: Domain,
         default_name: str,
         pseudo_name: "Connection | None" = None,
-        instrument_type: str = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE.value,
+        instrument_type: "Instrument" = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE.value,
         units: "SymbolUnit" = Units.VOLT,
         description: str = "",
     ) -> "KnobDomain":

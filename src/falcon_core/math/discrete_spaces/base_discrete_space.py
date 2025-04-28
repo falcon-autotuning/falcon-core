@@ -91,7 +91,7 @@ class BaseDiscreteSpace(Jsonable):
         """
         axis = self.get_axis(knob=knob)
         coupled_domain = self._axes[axis]
-        return coupled_domain.get_domain(knob=knob)
+        return coupled_domain.get_domain(search=knob)
 
     def get_projection(
         self,
@@ -124,7 +124,7 @@ class BaseDiscreteSpace(Jsonable):
 
         return Axes(
             [
-                LabelledControlArray(array=proj.data, label=knob)
+                LabelledControlArray.from_port(array=proj.data, port=knob)
                 for proj, knob in zip(scaled_projections, projection)
             ]
         )

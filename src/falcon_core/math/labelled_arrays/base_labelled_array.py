@@ -10,10 +10,10 @@ from .dependancies import (
     TypeVar,
     overload,
 )
+from .typing import Instrument
 
 if TYPE_CHECKING:
-    from .typing import Connection, InstrumentPort, Self, SymbolUnit
-
+    from .typing import Connection, Instrument, InstrumentPort, Self, SymbolUnit
 
 ArrayT = TypeVar("ArrayT", bound=BaseArray)
 
@@ -63,7 +63,7 @@ class BaseLabelledArray(Jsonable, Generic[ArrayT]):
         return self._label.connection
 
     @property
-    def instrument_type(self) -> str:
+    def instrument_type(self) -> "Instrument":
         """Return the instrument type."""
         return self._label.instrument_type
 

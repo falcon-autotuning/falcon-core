@@ -2,8 +2,8 @@
 
 from typing import TYPE_CHECKING
 
-from .constants import INSTRUMENT_TYPES
 from .dependancies import Jsonable, contextlib
+from .instrument import Instrument
 from .instrument_port import InstrumentPort
 from .knob import Knob
 from .meter import Meter
@@ -147,7 +147,7 @@ class Ports(Jsonable, Generic[T]):
 
     def _get_instrument_type_matching_port(
         self,
-        instrument_type: INSTRUMENT_TYPES,
+        instrument_type: "Instrument",
     ) -> "T":
         """Check if any port has the given instrument type.
 
@@ -170,7 +170,7 @@ class Ports(Jsonable, Generic[T]):
 
     def get_matching_port(
         self,
-        query: "Connection | INSTRUMENT_TYPES | T",
+        query: "Connection | Instrument | T",
     ) -> "T":
         """Get a port matching the given query.
 
@@ -185,7 +185,7 @@ class Ports(Jsonable, Generic[T]):
         """
         if isinstance(query, Connection):
             return self._get_psuedoname_matching_port(query)
-        if isinstance(query, INSTRUMENT_TYPES):
+        if isinstance(query, Instrument):
             return self._get_instrument_type_matching_port(query)
         if isinstance(query, InstrumentPort):
             return self._get_psuedoname_matching_port(query.pseudo_name)
