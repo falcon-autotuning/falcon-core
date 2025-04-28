@@ -37,6 +37,9 @@ class BaseContext(Jsonable):
     @property
     def connection(self) -> "Connection | None":
         """Return the connection."""
+        assert self._connection is not None, (
+            "Connection is None, Tried to invoke invalid comparison."
+        )
         return self._connection
 
     @property

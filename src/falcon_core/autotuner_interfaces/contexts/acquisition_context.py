@@ -3,9 +3,10 @@
 from typing import TYPE_CHECKING
 
 from .dependancies import BaseContext, SymbolUnit, Units
+from .typing import Connection
 
 if TYPE_CHECKING:
-    from .typing import Connection, InstrumentPort, Self
+    from .typing import InstrumentPort, Self
 
 
 class AcquisitionContext(BaseContext):
@@ -19,7 +20,7 @@ class AcquisitionContext(BaseContext):
 
     def __init__(
         self,
-        connection: "Connection | None",
+        connection: Connection | None,
         instrument_type: str,
         units: SymbolUnit,
     ):
@@ -110,6 +111,16 @@ class AcquisitionContext(BaseContext):
             return False
         return super().__eq__(other) and self._units == other._units
 
-    def __hash__(self):
-        """Return the hash of the context."""
-        return hash((super().__hash__(), self._units))
+    def match_connection(self, other: Connection) -> bool:
+        """Returns if the connection is inside this context."""
+        return self.connection == other
+
+    def match_instrument_type(self, other: str) -> bool:
+        """Returns if the instrument type is inside this context."""
+        return self.instrument_type == other
+
+    def match_raw_arg(self, other: Connection | str) -> bool:
+        """Returns if the raw argument is inside this context."""
+        if isinstance(other, Connection):
+            return self.match_connection(other)
+        return self.match_instrument_type(other)
