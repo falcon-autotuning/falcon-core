@@ -6,6 +6,7 @@ from .constants import INSTRUMENT_TYPES
 from .dependancies import Jsonable, Units
 
 if TYPE_CHECKING:
+    from .instrument import Instrument
     from .typing import Connection, SymbolUnit
 
 
@@ -22,7 +23,7 @@ class InstrumentPort(Jsonable):
 
     _defualt_name: str
     _pseudo_name: "Connection | None"
-    _instrument_type: str
+    _instrument_type: "Instrument"
     _units: "SymbolUnit"
     _description: str
 
@@ -30,7 +31,7 @@ class InstrumentPort(Jsonable):
         self,
         default_name: str,
         pseudo_name: "Connection | None" = None,
-        instrument_type: str = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE.value,
+        instrument_type: "Instrument" = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE.value,
         units: "SymbolUnit" = Units.VOLT,
         description: str = "",
     ) -> None:
@@ -74,7 +75,7 @@ class InstrumentPort(Jsonable):
         return self._pseudo_name
 
     @property
-    def instrument_type(self) -> str:
+    def instrument_type(self) -> "Instrument":
         """Return the type of instrument that the port is connected to."""
         return self._instrument_type
 

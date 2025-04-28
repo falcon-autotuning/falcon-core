@@ -1,22 +1,23 @@
 """Starts up the falcon_core package."""
 
 from .generic import Enum
+from .instrument_interfaces.names.instrument import Instrument
 
 
 class INSTRUMENT_TYPES(Enum):
     """Instrument types."""
 
-    DC_VOLTAGE_SOURCE = "dc_voltage_source"
-    AMNMETER = "amnmeter"
-    MAGNET = "magnet"
-    LOCKIN = "lockin"
-    VOLTAGE_SOURCE = "voltage_source"
-    CURRENT_SOURCE = "current_source"
-    HF_VOLTAGE_SOURCE = "hf_voltage_source"
-    DC_CURRENT_SOURCE = "dc_current_source"
-    HF_CURRENT_SOURCE = "hf_current_source"
-    THERMOMETER = "thermometer"
-    VOLTMETER = "voltmeter"
-    FPGA = "fpga"
-    CLOCK = "clock"
-    DISCRETE = "discrete"
+    DC_VOLTAGE_SOURCE = Instrument("dc_voltage_source")
+    AMNMETER = Instrument("amnmeter")
+    MAGNET = Instrument("magnet")
+    LOCKIN = Instrument("lockin")
+    VOLTAGE_SOURCE = Instrument("voltage_source")
+    CURRENT_SOURCE = Instrument("current_source")
+    HF_VOLTAGE_SOURCE = Instrument("hf_voltage_source")
+    DC_CURRENT_SOURCE = Instrument("dc_current_source")
+    HF_CURRENT_SOURCE = Instrument("hf_current_source")
+    THERMOMETER = Instrument("thermometer")
+    VOLTMETER = Instrument("voltmeter")
+    FPGA = Instrument("fpga")
+    CLOCK = Instrument("clock")
+    DISCRETE = Instrument("discrete")
