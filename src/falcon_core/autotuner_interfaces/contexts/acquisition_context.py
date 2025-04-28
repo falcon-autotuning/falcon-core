@@ -115,11 +115,11 @@ class AcquisitionContext(BaseContext, Jsonable):
         """Returns if the connection is inside this context."""
         return self.connection == other
 
-    def match_instrument_type(self, other: str) -> bool:
+    def match_instrument_type(self, other: Instrument) -> bool:
         """Returns if the instrument type is inside this context."""
         return self.instrument_type == other
 
-    def match_raw_arg(self, other: Connection | str) -> bool:
+    def match_raw_arg(self, other: Connection | Instrument) -> bool:
         """Returns if the raw argument is inside this context."""
         if isinstance(other, Connection):
             return self.match_connection(other)
