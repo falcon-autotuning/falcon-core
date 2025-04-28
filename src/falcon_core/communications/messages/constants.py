@@ -1,6 +1,6 @@
 """Constants for messages."""
 
-from ... import INSTRUMENT_TYPES
+from ...instrument_types import INSTRUMENT_TYPES
 
 __all__ = [
     "INSTRUMENT_TYPES",

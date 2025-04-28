@@ -46,11 +46,11 @@ class MeasurementRequest(BaseMessage, Jsonable):
         self._meter_tranforms = meter_tranforms
 
         # we need to ensure that the unit of the units of the time domain are in seconds
-        time_units = time_domain.units.unit.dimensions
+        time_units = time_domain.label.units.unit.dimensions
         seconds = Units.SECOND.unit.dimensions
         assert time_units == seconds, "The units of the time domain must be in seconds."
         # we also need to ensure that the instrument type is a clock
-        assert time_domain.instrument_type == INSTRUMENT_TYPES.CLOCK.value, (
+        assert time_domain.label.instrument_type == INSTRUMENT_TYPES.CLOCK.value, (
             "The instrument type of the time domain must be a clock."
         )
         self._time_domain = time_domain

@@ -1,8 +1,8 @@
 """Dependencies for the Falcon Core generics."""
 
 from ..dependancies import (
+    Enum,
     b64decode,
-    StandardEnum,
     b64encode,
     deepcopy,
     dill,
@@ -24,7 +24,7 @@ from ..typing import (
 __all__ = [
     "b64decode",
     "b64encode",
-    "StandardEnum",
+    "Enum",
     "deepcopy",
     "dill",
     "json",

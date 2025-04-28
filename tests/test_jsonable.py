@@ -3,8 +3,8 @@
 Need to make sure they cna be transformed into and from json and dict.
 """
 
-from falcon_core.dependancies import np
-from falcon_core.generic import Enum, Jsonable
+from falcon_core.dependancies import Enum, np
+from falcon_core.generic import Jsonable
 from falcon_core.typing import Any
 
 

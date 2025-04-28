@@ -14,6 +14,7 @@ from ..constants import (
     JSONABLE_TYPE_VAR,
 )
 from .dependancies import (
+    Enum,
     GenericAlias,
     JSONprimitives,
     b64decode,
@@ -27,7 +28,6 @@ from .dependancies import (
     pickle,
     sys,
 )
-from .enum import Enum
 
 if TYPE_CHECKING:
     from .typing import (

@@ -124,3 +124,6 @@ class AcquisitionContext(BaseContext, Jsonable):
         if isinstance(other, Connection):
             return self.match_connection(other)
         return self.match_instrument_type(other)
+
+    def __hash__(self):
+        return super().__hash__()

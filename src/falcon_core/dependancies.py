@@ -14,7 +14,7 @@ from abc import abstractmethod
 from base64 import b64decode, b64encode
 from copy import copy, deepcopy
 from dataclasses import dataclass
-from enum import Enum as StandardEnum
+from enum import Enum
 from functools import wraps
 from io import IOBase
 from itertools import chain
@@ -50,7 +50,7 @@ __all__ = [
     "copy",
     "json",
     "dataclass",
-    "StandardEnum",
+    "Enum",
     "np",
     "sys",
     "IOBase",
