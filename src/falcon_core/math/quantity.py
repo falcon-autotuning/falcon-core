@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="SymbolUnit")
 
 
-class Quantity(Jsonable, Generic["T"]):
+class Quantity(Jsonable, Generic[T]):
     """A quantity class that represents a physical quantity with units and dimensions."""
 
     def __init__(self, value: float, unit: "SymbolUnit" = Units.VOLT):
