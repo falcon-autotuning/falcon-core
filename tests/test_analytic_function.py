@@ -4,6 +4,7 @@ from falcon_core.instrument_interfaces.names import Knob, Knobs
 from falcon_core.math.analytic_functions import (
     AnalyticFunction,
     Identity,
+    ValidatedAnalyticFunction,
 )
 from falcon_core.physics import PlungerGate
 
@@ -24,8 +25,8 @@ def test_analytic_function_identity():
     jid = id.to_json()
     idfromjson = Identity.from_json(jid)
     assert id == idfromjson
-    assert id.function(**{key: 0.0 for key in ["t"] + stuff}) == 0
-    assert idfromjson.function(**{key: 0.0 for key in ["t"] + stuff}) == 0
+    assert id.function.function(**{key: 0.0 for key in ["t"] + stuff}) == 0
+    assert idfromjson.function.function(**{key: 0.0 for key in ["t"] + stuff}) == 0
 
 
 def test_analytic_function_custom():
@@ -41,13 +42,13 @@ def test_analytic_function_custom():
     def func(t: float, a: float) -> float:
         return a * 2
 
-    af = AnalyticFunction(ports=knobs, function=func)
-    assert af.function(t=0, a=1) == 2
-    assert af.function(a=1, t=0) == 2
+    af = ValidatedAnalyticFunction(ports=knobs, function=AnalyticFunction(func))
+    assert af.function.function(t=0, a=1) == 2
+    assert af.function.function(a=1, t=0) == 2
     jaf = af.to_json()
-    af_from_json = AnalyticFunction.from_json(jaf)
+    af_from_json = ValidatedAnalyticFunction.from_json(jaf)
     # assert af == af_from_json
-    assert af_from_json.function(t=0, a=1) == 2
+    assert af_from_json.function.function(t=0, a=1) == 2
 
 
 def test_analytic_function_custom_reversed():
@@ -63,10 +64,10 @@ def test_analytic_function_custom_reversed():
     def func(a: float, t: float) -> float:
         return a * 2
 
-    af = AnalyticFunction(ports=knobs, function=func)
-    assert af.function(t=0, a=1) == 2
-    assert af.function(a=1, t=0) == 2
+    af = ValidatedAnalyticFunction(ports=knobs, function=AnalyticFunction(func))
+    assert af.function.function(t=0, a=1) == 2
+    assert af.function.function(a=1, t=0) == 2
     jaf = af.to_json()
-    af_from_json = AnalyticFunction.from_json(jaf)
+    af_from_json = ValidatedAnalyticFunction.from_json(jaf)
     # assert af == af_from_json
-    assert af_from_json.function(t=0, a=1) == 2
+    assert af_from_json.function.function(t=0, a=1) == 2

@@ -4,12 +4,13 @@ from typing import TYPE_CHECKING
 
 from .analytic_function import AnalyticFunction
 from .dependancies import Knobs
+from .validated_analytic_function import ValidatedAnalyticFunction
 
 if TYPE_CHECKING:
     from .typing import Knob
 
 
-class Identity(AnalyticFunction[Knobs]):
+class Identity(ValidatedAnalyticFunction[Knobs]):
     """A type of function that does nothig to the underlying discrete data."""
 
     def __init__(
@@ -25,7 +26,7 @@ class Identity(AnalyticFunction[Knobs]):
         """
         super().__init__(ports=knobs)
         self.knob = knob
-        self.function = self._support_runtime_names(self.identity)
+        self.function = self._support_runtime_names(AnalyticFunction(self.identity))
 
     def identity(
         self,
