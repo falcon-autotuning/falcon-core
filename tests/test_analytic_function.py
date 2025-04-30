@@ -29,6 +29,15 @@ def test_analytic_function_identity():
     assert idfromjson.function.function(**{key: 0.0 for key in ["t"] + stuff}) == 0
 
 
+class mult2(AnalyticFunction):
+    def __init__(self):
+        super().__init__(function=self.multiply)
+
+    @staticmethod
+    def multiply(t: float, a: float) -> float:
+        return a * 2
+
+
 def test_analytic_function_custom():
     """Test initialization+compile of UnitSpace class for weird 3D space."""
     stuff = ["a"]
@@ -42,7 +51,7 @@ def test_analytic_function_custom():
     def func(t: float, a: float) -> float:
         return a * 2
 
-    af = ValidatedAnalyticFunction(ports=knobs, function=AnalyticFunction(func))
+    af = ValidatedAnalyticFunction(ports=knobs, function=mult2())
     assert af.function.function(t=0, a=1) == 2
     assert af.function.function(a=1, t=0) == 2
     jaf = af.to_json()

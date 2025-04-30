@@ -48,5 +48,5 @@ class BaseWaveform(PortTransforms, Jsonable, Generic[T]):
         discrete_knobs = [knob for axis in self._space._axes for knob in axis.knobs]
         function_knobs = [knob for knob in self.transforms]
         assert set(function_knobs).issubset(discrete_knobs), (
-            "Function knobs do not match discrete space."
+            f"Function knobs do not match discrete space. The function has {function_knobs} and the discrete space has {discrete_knobs}."
         )
