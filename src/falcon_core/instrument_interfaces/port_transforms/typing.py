@@ -1,9 +1,9 @@
 """Typing for port transforms."""
 
-from ...math.analytic_functions import AnalyticFunction
+from ...math.analytic_functions import ValidatedAnalyticFunction
 from ...typing import Sequence
 
 __all__ = [
-    "AnalyticFunction",
     "Sequence",
+    "ValidatedAnalyticFunction",
 ]

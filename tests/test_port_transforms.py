@@ -11,15 +11,19 @@ from falcon_core.instrument_interfaces.names import (
 from falcon_core.instrument_interfaces.port_transforms.port_transform import (
     PortTransform,
 )
-from falcon_core.math.analytic_functions import AnalyticFunction, Identity
+from falcon_core.math.analytic_functions import (
+    AnalyticFunction,
+    Identity,
+    ValidatedAnalyticFunction,
+)
 from falcon_core.physics.device_structures import Ohmic, PlungerGate
 
 
-class DoNothing(AnalyticFunction):
+class DoNothing(ValidatedAnalyticFunction):
     """A transform that does nothing."""
 
     def __init__(self, port: Meter):
-        super().__init__(ports=Meters(port), function=lambda t: t)
+        super().__init__(ports=Meters(port), function=AnalyticFunction(lambda t: t))
 
 
 class TestPortTransform:
@@ -38,7 +42,7 @@ class TestPortTransform:
         return Identity(knobs=Knobs(knob), knob=knob)
 
     @pytest.fixture
-    def meter_transform(self, meter: Meter) -> AnalyticFunction:
+    def meter_transform(self, meter: Meter) -> ValidatedAnalyticFunction:
         return DoNothing(
             port=meter,
         )
@@ -60,7 +64,7 @@ class TestPortTransform:
     def test_port_transform_initialization_with_meter(
         self,
         meter: Meter,
-        meter_transform: AnalyticFunction,
+        meter_transform: ValidatedAnalyticFunction,
     ):
         """Test that a port transform can be initialized with a meter."""
         port_transform = PortTransform(
@@ -77,7 +81,7 @@ class TestPortTransform:
         knob: Knob,
         meter: Meter,
         knob_transform: Identity,
-        meter_transform: AnalyticFunction,
+        meter_transform: ValidatedAnalyticFunction,
     ):
         """Test that a port transform raises an error if the transform is not valid for the port."""
         # Test that creating a port transform with mismatched port types raises an AssertionError
@@ -109,7 +113,7 @@ class TestPortTransform:
     def test_meter_transform_to_json_from_json(
         self,
         meter: Meter,
-        meter_transform: AnalyticFunction,
+        meter_transform: ValidatedAnalyticFunction,
     ):
         """Test that a port transform can be converted to and from JSON."""
         # Create a port transform
