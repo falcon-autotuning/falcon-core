@@ -31,6 +31,9 @@ class AnalyticFunction(Jsonable, Generic[T]):
             function: the symbolic function stored in this
                 Note that the function must at least take a single argument, t.
         """
+        if self.__class__ is AnalyticFunction:
+            msg = "AnalyticFunction is an abstract base class and cannot be instantiated directly. Use a subclass instead."
+            raise TypeError(msg)
         super().__init__()
         self.ports = ports
         self._function = lambda t: t
