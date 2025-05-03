@@ -10,7 +10,7 @@ from .dependancies import (
 
 if TYPE_CHECKING:
     from .labelled_domain import BaseLabelledDomain
-    from .typing import Any, Sequence
+    from .typing import Any, Sequence, Iterator
 
 T = TypeVar("T", bound=Jsonable)
 
@@ -60,6 +60,6 @@ class BaseCoupledLabelledDomain(Generic[T]):
             raise ValueError(msg)
         return domain
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator["BaseLabelledDomain[T]"]:
         """Return an iterator over the domains."""
         return iter(self._domains)
