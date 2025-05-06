@@ -3,7 +3,7 @@
 from .gate import Gate, Gates
 
 
-class GateDict(dict[Gate, Gates]):
+class GateRelations(dict[Gate, Gates]):
     """holds the gate dictionary used to organize the gate relation lookup dictionary from the operators."""
 
     valid_values = list[Gate]
