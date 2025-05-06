@@ -2,18 +2,16 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Jsonable
+from .dependancies import Jsonable, Quantity
 
 if TYPE_CHECKING:
     from .typing import BaseConnection, SymbolUnit
 
 
-class DeviceVoltageState(Jsonable):
+class DeviceVoltageState(Quantity, Jsonable):
     """The state of a single connection on a device."""
 
     _connection: "BaseConnection"
-    _voltage: float
-    _unit: "SymbolUnit"
 
     def __init__(
         self,
@@ -29,8 +27,7 @@ class DeviceVoltageState(Jsonable):
             unit (SymbolUnit): The unit of the voltage.
         """
         self._connection = connection
-        self._voltage = voltage
-        self._unit = unit
+        super().__init__(voltage, unit)
 
     @property
     def connection(self) -> "BaseConnection":
@@ -40,9 +37,4 @@ class DeviceVoltageState(Jsonable):
     @property
     def voltage(self) -> float:
         """Returns the voltage of the device."""
-        return self._voltage
-
-    @property
-    def unit(self) -> "SymbolUnit":
-        """Returns the unit of the voltage."""
-        return self._unit
+        return self._value

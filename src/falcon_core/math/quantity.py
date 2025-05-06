@@ -2,10 +2,10 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Generic, Jsonable, TypeVar, Units
+from .dependancies import Generic, Jsonable, TypeVar, Units, deepcopy
 
 if TYPE_CHECKING:
-    from .typing import SymbolUnit
+    from .typing import Self, SymbolUnit
 
 T = TypeVar("T", bound="SymbolUnit")
 
@@ -33,6 +33,10 @@ class Quantity(Jsonable, Generic[T]):
         """Return the unit of the quantity."""
         return self._unit
 
+    def deepcopy(self) -> "Self":
+        """Return a deep copy of the quantity."""
+        return deepcopy(self)
+
     def convert_to(self, target_unit: "SymbolUnit"):
         """Convert the quantity to a different unit.
 
@@ -41,7 +45,7 @@ class Quantity(Jsonable, Generic[T]):
         """
         self.unit.unit.convert_value_to(self._value, target_unit.unit)
 
-    def __mul__(self, other: "Quantity | int | float") -> "Quantity":
+    def __mul__(self, other: "Quantity | int | float") -> "Self":
         """Multiply two quantities.
 
         Args:
@@ -50,13 +54,16 @@ class Quantity(Jsonable, Generic[T]):
         Returns:
             a new Quantity object with the result.
         """
+        clone = self.deepcopy()
         if isinstance(other, int | float):
-            return Quantity(self.value * other, self.unit)
-        new_value = self._value * other.value
-        new_unit = self.unit * other.unit
-        return Quantity(new_value, new_unit)
+            clone._value *= other
+            clone._unit = self.unit
+        else:
+            clone._value *= other.value
+            clone._unit *= other.unit
+        return clone
 
-    def __truediv__(self, other: "Quantity | int | float") -> "Quantity":
+    def __truediv__(self, other: "Quantity | int | float") -> "Self":
         """Performs the division of two quantities.
 
         Args:
@@ -65,13 +72,16 @@ class Quantity(Jsonable, Generic[T]):
         Returns:
             the Qauantity object with the result.
         """
+        clone = self.deepcopy()
         if isinstance(other, int | float):
-            return Quantity(self.value / other, self.unit)
-        new_value = self._value / other.value
-        new_unit = self.unit / other.unit
-        return Quantity(new_value, new_unit)
+            clone._value /= other
+            clone._unit = self.unit
+        else:
+            clone._value /= other.value
+            clone._unit /= other.unit
+        return clone
 
-    def __pow__(self, power: int) -> "Quantity":
+    def __pow__(self, power: int) -> "Self":
         """Raise the quantity to a power.
 
         Args:
@@ -80,6 +90,7 @@ class Quantity(Jsonable, Generic[T]):
         Returns:
             a new Quantity object with the result.
         """
-        new_value = self._value**power
-        new_unit = self.unit**power
-        return Quantity(new_value, new_unit)
+        clone = self.deepcopy()
+        clone._value = self._value**power
+        clone._unit = self.unit**power
+        return clone
