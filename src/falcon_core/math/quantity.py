@@ -32,3 +32,11 @@ class Quantity(Jsonable, Generic[T]):
     def unit(self) -> "SymbolUnit":
         """Return the unit of the quantity."""
         return self._unit
+
+    def convert_to(self, target_unit: "SymbolUnit"):
+        """Convert the quantity to a different unit.
+
+        Args:
+            target_unit: The target unit to convert to.
+        """
+        self.unit.unit.convert_value_to(self._value, target_unit.unit)
