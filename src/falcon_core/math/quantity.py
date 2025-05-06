@@ -49,7 +49,7 @@ class Quantity(Jsonable, Generic[T]):
         """Multiply two quantities.
 
         Args:
-            ohter: The other quantity or a scalar to multiply with.
+            other: The other quantity or a scalar to multiply with.
 
         Returns:
             a new Quantity object with the result.
@@ -63,6 +63,19 @@ class Quantity(Jsonable, Generic[T]):
             clone._unit *= other.unit
         return clone
 
+    def __rmul__(self, other: "int | float") -> "Self":
+        """Multiply a quantity by a scale.
+
+        Args:
+            other: The scalar to multiply with.
+
+        Returns:
+            the modified Quantity object.
+        """
+        clone = self.deepcopy()
+        clone._value *= other
+        return clone
+
     def __truediv__(self, other: "Quantity | int | float") -> "Self":
         """Performs the division of two quantities.
 
@@ -70,7 +83,7 @@ class Quantity(Jsonable, Generic[T]):
             other: The other quantity or a scalar to divide by.
 
         Returns:
-            the Qauantity object with the result.
+            the Quantity object with the result.
         """
         clone = self.deepcopy()
         if isinstance(other, int | float):
@@ -94,3 +107,45 @@ class Quantity(Jsonable, Generic[T]):
         clone._value = self._value**power
         clone._unit = self.unit**power
         return clone
+
+    def __add__(self, other: "Quantity | int | float") -> "Self":
+        """Performs the addition of two quantities.
+
+        Args:
+            other: the other quantity or a scalar to add.
+
+        Returns:
+            the Quantity object with the result.
+        """
+        clone = self.deepcopy()
+        if isinstance(other, int | float):
+            clone._value += other
+            clone._unit = self.unit
+        else:
+            other_clone = other.deepcopy()
+            other_clone.convert_to(self.unit)
+            clone._value += other_clone.value
+            clone._unit = self.unit
+        return clone
+
+    def __radd__(self, other: "Quantity | int | float") -> "Self":
+        """Performs the addition of two quantities.
+
+        Args:
+            other: the other quantity or a scalar to add.
+
+        Returns:
+            the Quantity object with the result.
+        """
+        return self + other
+
+    def __sub__(self, other: "Quantity | int | float") -> "Self":
+        """Preforms the subtraction of two quantities.
+
+        Args:
+            other: the other quantity or a scalar to subtract.
+
+        Returns:
+            the Quantity object with the result.
+        """
+        return self + (-1 * other)
