@@ -1,14 +1,21 @@
 """This is a specific type of gate on the device."""
 
-from typing import TYPE_CHECKING
-
+from .base_connections import BaseConnections
+from .dependancies import Jsonable
 from .dot_gate import DotGate
-
-if TYPE_CHECKING:
-    from .typing import TypeAlias
-
-PlungerGates: "TypeAlias" = list["PlungerGate"]
 
 
 class PlungerGate(DotGate):
     """A specific type of gate on the device."""
+
+
+class PlungerGates(BaseConnections[PlungerGate], Jsonable):
+    """Contains a group of gates on the sample."""
+
+    def __init__(self, gates: list[PlungerGate]) -> None:
+        """Initialize the Gates object.
+
+        Args:
+            gates: A list of Gate objects.
+        """
+        super().__init__(gates)
