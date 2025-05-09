@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from .constants import INSTRUMENT_TYPES
 from .dependancies import Units
 from .instrument_port import InstrumentPort
+from .typing import Ohmic
 
 if TYPE_CHECKING:
     from .dependancies import Instrument
@@ -39,3 +40,18 @@ class Meter(InstrumentPort):
             units=units,
             description=description,
         )
+
+    @property
+    def pseudo_name(self) -> "Ohmic":
+        """Return the pseudo name of the port.
+
+        Raises:
+            ValueError: If the pseudo name is not set.
+        """
+        if self._pseudo_name is None:
+            msg = "The pseudo name of the port is not set."
+            raise ValueError(msg)
+        assert isinstance(self._pseudo_name, Ohmic), (
+            "A Meter must have a Ohmic pseudo name."
+        )
+        return self._pseudo_name
