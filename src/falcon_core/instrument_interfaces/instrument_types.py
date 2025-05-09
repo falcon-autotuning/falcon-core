@@ -1,10 +1,9 @@
 """All of the available instuemtn types for falcon."""
 
-from .dependancies import Enum
-from .instrument_interfaces.names.instrument import Instrument
+from .instrument import Instrument
 
 
-class INSTRUMENT_TYPES(Enum):
+class INSTRUMENT_TYPES:
     """Instrument types."""
 
     DC_VOLTAGE_SOURCE = Instrument("dc_voltage_source")

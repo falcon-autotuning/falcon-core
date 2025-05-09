@@ -7,7 +7,7 @@ from .dependancies import Units
 from .instrument_port import InstrumentPort
 
 if TYPE_CHECKING:
-    from .instrument import Instrument
+    from .dependancies import Instrument
     from .typing import Connection, SymbolUnit
 
 
@@ -18,7 +18,7 @@ class Knob(InstrumentPort):
         self,
         default_name: str,
         pseudo_name: "Connection | None" = None,
-        instrument_type: "Instrument" = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE.value,
+        instrument_type: "Instrument" = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE,
         description: str = "",
         units: "SymbolUnit" = Units.VOLT,
     ) -> None:

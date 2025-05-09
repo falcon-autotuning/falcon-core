@@ -1,7 +1,7 @@
 """Typing for the labelled_arrays module."""
 
+from ...instrument_interfaces.instrument import Instrument
 from ...instrument_interfaces.names import InstrumentPort
-from ...instrument_interfaces.names.instrument import Instrument
 from ...physics import Connection, SymbolUnit
 from ...typing import Iterator, Self
 

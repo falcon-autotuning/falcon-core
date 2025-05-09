@@ -2,8 +2,7 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Jsonable, contextlib
-from .instrument import Instrument
+from .dependancies import Instrument, Jsonable, contextlib
 from .instrument_port import InstrumentPort
 from .knob import Knob
 from .meter import Meter
