@@ -43,3 +43,14 @@ class BaseConnections(Jsonable, Generic[T]):
             value: The connection object to set.
         """
         self._values[index] = value
+
+    def index(self, value: T) -> int:
+        """Get the index of a connection.
+
+        Args:
+            value: The connection object to find.
+
+        Returns:
+            The index of the connection object.
+        """
+        return self._values.index(value)
