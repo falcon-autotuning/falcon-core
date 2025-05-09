@@ -27,7 +27,7 @@ class MeasurementRequest(BaseMessage, Jsonable):
         time_domain: "KnobDomain" = KnobDomain(
             default_name="time",
             bounds=(0, 1),
-            instrument_type=INSTRUMENT_TYPES.CLOCK.value,
+            instrument_type=INSTRUMENT_TYPES.CLOCK,
             greater_bound_contained=False,
             units=Units.SECOND,
         ),
