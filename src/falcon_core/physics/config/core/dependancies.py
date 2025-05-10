@@ -11,9 +11,11 @@ from ...device_structures import (
     ReservoirGate,
     ScreeningGate,
 )
+from ....generic import Jsonable
 from ...device_structures.gate_relations import GateRelations
 
 __all__ = [
+    "Jsonable",
     "Ohmics",
     "deepcopy",
     "BarrierGate",

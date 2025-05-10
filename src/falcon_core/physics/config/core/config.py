@@ -8,6 +8,7 @@ from .dependancies import (
     DotGate,
     Gate,
     GateRelations,
+    Jsonable,
     Ohmic,
     ReservoirGate,
     ScreeningGate,
@@ -45,13 +46,13 @@ if TYPE_CHECKING:
     )
 
 
-class Config(StandardConfigConnections):
+class Config(StandardConfigConnections, Jsonable):
     """The imported config for the autotuner."""
 
-    num_unique_channels: int
-    groups: dict["Gname", "Group"]
-    channels: "Channels"
-    wiring_DC: "Impedances"
+    _num_unique_channels: int
+    _groups: dict["Gname", "Group"]
+    _wiring_DC: "Impedances"
+    _channels: "Channels"
 
     def __init__(
         self,
@@ -71,14 +72,30 @@ class Config(StandardConfigConnections):
             barrier_gates=barrier_gates,
             reservoir_gates=reservoir_gates,
         )
-        self.groups = groups
-        self.wiring_DC = wiring_DC
-        self.num_unique_channels = len(self.get_all_gnames())
-        assert self.num_unique_channels > 0
+        self._groups = groups
+        self._wiring_DC = wiring_DC
+        self._num_unique_channels = len(self.get_all_gnames())
+        assert self._num_unique_channels > 0
 
         self.compile_channels()
         self.check_group_consistency()
         self.check_impendance_consistency()
+
+    @property
+    def num_unique_channels(self) -> int:
+        return self._num_unique_channels
+
+    @property
+    def groups(self) -> dict["Gname", "Group"]:
+        return self._groups
+
+    @property
+    def wiring_DC(self) -> "Impedances":
+        return self._wiring_DC
+
+    @property
+    def channels(self) -> "Channels":
+        return self._channels
 
     def check_impendance_consistency(self) -> None:
         """Check that all impedances are consistent.
@@ -131,7 +148,7 @@ class Config(StandardConfigConnections):
 
     def compile_channels(self) -> None:
         """Searches through all Group and collects all of the Channel."""
-        self.channels = [group.name for group in self.get_all_groups()]
+        self._channels = [group.name for group in self.get_all_groups()]
 
     def has_channel(self, channel: "Channel") -> bool:
         """Validates if this is a proper Channel name in the set of all device Channels.
@@ -142,7 +159,7 @@ class Config(StandardConfigConnections):
         Returns:
             existence
         """
-        return channel in self.channels
+        return channel in self._channels
 
     def has_gname(self, group: "Gname") -> bool:
         """Validates if this is a proper gatename.
@@ -222,7 +239,7 @@ class Config(StandardConfigConnections):
         Returns:
             list of all of the current channels
         """
-        return self.channels
+        return self._channels
 
     def get_gname(self, channel: "Channel") -> "Gname | None":
         """Gets the associated Gname with a Channel if it exists.
