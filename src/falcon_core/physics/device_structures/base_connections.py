@@ -1,7 +1,7 @@
 """Base class for all groups of connections."""
 
 from .base_connection import BaseConnection
-from .dependancies import Generic, Jsonable, TypeVar
+from .dependancies import Generic, Jsonable, TypeVar, overload
 
 T = TypeVar("T", bound=BaseConnection)
 
@@ -19,8 +19,14 @@ class BaseConnections(Jsonable, Generic[T]):
         """
         self._values = connections
 
-    def __getitem__(self, index: int) -> T:
+    @overload
+    def __getitem__(self, index: int) -> T: ...
+    @overload
+    def __getitem__(self, index: slice) -> list[T]: ...
+    def __getitem__(self, index: int | slice) -> T | list[T]:
         """Get a connection by index."""
+        if isinstance(index, slice):
+            return self._values[index]
         return self._values[index]
 
     def __len__(self) -> int:

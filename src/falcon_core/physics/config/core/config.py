@@ -32,7 +32,6 @@ if TYPE_CHECKING:
         BarrierGates,
         BaseConnection,
         Channel,
-        Connection,
         DotGates,
         Gname,
         Impedance,
@@ -424,24 +423,6 @@ class Config(StandardConfigConnections, Jsonable):
                 return group.get_all_ohmics()
         return None
 
-    def get_channel_order(self, channel: "Channel") -> "list[Connection] | None":
-        """Gets all of the gates in order at the selected channel from the config.
-
-        TODO: DEPRECATE this function
-
-        Args:
-            channel : the channel of interest
-
-        Returns:
-            If the channel is valid, the list of gates and ohmics
-        """
-        if not self.has_channel(channel=channel):
-            return None
-        for group in self.get_all_groups():
-            if group.has_channel(channel=channel):
-                return group.order.lineararray
-        return None
-
     def get_channel_order_no_ohmics(
         self,
         channel: "Channel",
@@ -454,7 +435,9 @@ class Config(StandardConfigConnections, Jsonable):
         Returns:
             If the channel is valid, the list of gates
         """
-        order = self.get_channel_order(channel=channel)
+        gname = self.get_gname(channel=channel)
+        assert gname is not None
+        order = self.groups[gname].order
         if order is None:
             return None
         typed_order: list[DotGate | ReservoirGate] = []

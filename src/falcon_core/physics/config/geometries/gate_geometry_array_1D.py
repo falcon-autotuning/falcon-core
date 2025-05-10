@@ -7,6 +7,7 @@ from .dependancies import (
     BarrierGate,
     DotGate,
     Gates,
+    Jsonable,
     Ohmic,
     PlungerGate,
     ReservoirGate,
@@ -19,6 +20,9 @@ from .typing import (
 )
 
 if TYPE_CHECKING:
+    from .dependancies import (
+        BaseConnections,
+    )
     from .typing import (
         Connection,
         Gate,
@@ -26,7 +30,7 @@ if TYPE_CHECKING:
     )
 
 
-class GateGeometryArray1D:
+class GateGeometryArray1D(Jsonable):
     """An assumption made about the geometry of the gates in the device.
 
     The assumed geometry is a 1D array:
@@ -37,35 +41,35 @@ class GateGeometryArray1D:
     Located around that channel are screening gates.
     """
 
-    left_reservoir: "LeftReservoirWithImplantedOhmic"
-    right_reservoir: "RightReservoirWithImplantedOhmic"
-    left_barrier: "BarrierGateWithNeighbors"
-    right_barrier: "BarrierGateWithNeighbors"
-    central_dot_gates: list["PlungerGateWithNeighbors | BarrierGateWithNeighbors"]
-    raw_gates: "Gates"
-    ohmics: "Ohmics"
-    screening_gates: "ScreeningGates"
-    lineararray: "list[Connection]"  # allows custom parsing
+    _left_reservoir: "LeftReservoirWithImplantedOhmic"
+    _right_reservoir: "RightReservoirWithImplantedOhmic"
+    _left_barrier: "BarrierGateWithNeighbors"
+    _right_barrier: "BarrierGateWithNeighbors"
+    _central_dot_gates: list["PlungerGateWithNeighbors | BarrierGateWithNeighbors"]
+    _raw_central_gates: "Gates"
+    _ohmics: "Ohmics"
+    _screening_gates: "ScreeningGates"
+    _lineararray: "BaseConnections"
 
     def __init__(
         self,
-        lineararray: "list[Connection]",
+        lineararray: "BaseConnections",
         screening_gates: "ScreeningGates",
     ):
         """Starts the geometry of the gates.
 
         Args:
-            lineararray (Connections): The gates in the channel.
+            lineararray (Connections): The gates and ohmics in the channel.
             screening_gates (ScreeningGates): The screening gates
             bottom_screening_gate (ScreeningGate): The bottom screening gate.
         """
         if len(screening_gates) != 2:
             msg = "Expected two screening gates."
             raise ValueError(msg)
-        self.screening_gates = screening_gates
-        self.lineararray = lineararray
+        self._screening_gates = screening_gates
+        self._lineararray = lineararray
         if len(lineararray) % 2 == 0:
-            msg = "Expected an odd number of elements in the linear array."
+            msg = f"Expected an odd number of elements in the linear array. Got {len(lineararray)} elements."
             raise ValueError(msg)
 
         if (not isinstance(lineararray[0], Ohmic)) or (
@@ -74,7 +78,7 @@ class GateGeometryArray1D:
             msg = "Expected Ohmic at the ends of the linear array."
             raise TypeError(msg)
 
-        self.ohmics = Ohmics([lineararray[0], lineararray[-1]])
+        self._ohmics = Ohmics([lineararray[0], lineararray[-1]])
 
         if (not isinstance(lineararray[1], ReservoirGate)) or (
             not isinstance(lineararray[-2], ReservoirGate)
@@ -102,30 +106,30 @@ class GateGeometryArray1D:
             msg = "Expected Barrier Gates bounding the exterior reservoir gates."
             raise TypeError(msg)
 
-        self.left_reservoir = LeftReservoirWithImplantedOhmic(
+        self._left_reservoir = LeftReservoirWithImplantedOhmic(
             name=lineararray[1].name,
             ohmic=lineararray[0],
             right_neighbor=dot_gates[0],
         )
-        self.right_reservoir = RightReservoirWithImplantedOhmic(
+        self._right_reservoir = RightReservoirWithImplantedOhmic(
             name=lineararray[-2].name,
             ohmic=lineararray[-1],
             left_neighbor=dot_gates[-1],
         )
 
-        self.left_barrier = BarrierGateWithNeighbors(
+        self._left_barrier = BarrierGateWithNeighbors(
             name=dot_gates[0].name,
             left_neighbor=lineararray[1],
             right_neighbor=dot_gates[1],
         )
 
-        self.right_barrier = BarrierGateWithNeighbors(
+        self._right_barrier = BarrierGateWithNeighbors(
             name=dot_gates[-1].name,
             left_neighbor=dot_gates[-2],
             right_neighbor=lineararray[-2],
         )
 
-        self.central_dot_gates = []
+        self._central_dot_gates = []
         for i in range(3, len(lineararray) - 3):
             selected_gate = lineararray[i]
             left_neighbor = lineararray[i - 1]
@@ -136,6 +140,57 @@ class GateGeometryArray1D:
             self.store_central_gate(
                 selected_gates=[left_neighbor, selected_gate, right_neighbor],
             )
+
+    @property
+    def left_reservoir(self) -> "LeftReservoirWithImplantedOhmic":
+        """The left reservoir in the geometry."""
+        return self._left_reservoir
+
+    @property
+    def right_reservoir(self) -> "RightReservoirWithImplantedOhmic":
+        """The right reservoir in the geometry."""
+        return self._right_reservoir
+
+    @property
+    def left_barrier(self) -> "BarrierGateWithNeighbors":
+        """The left barrier in the geometry."""
+        return self._left_barrier
+
+    @property
+    def right_barrier(self) -> "BarrierGateWithNeighbors":
+        """The right barrier in the geometry."""
+        return self._right_barrier
+
+    @property
+    def central_dot_gates(
+        self,
+    ) -> "list[PlungerGateWithNeighbors | BarrierGateWithNeighbors]":
+        """The central dot gates in the geometry."""
+        return self._central_dot_gates
+
+    @property
+    def raw_central_gates(self) -> "Gates":
+        """The raw gates in the geometry."""
+        return self._raw_central_gates
+
+    @property
+    def ohmics(self) -> "Ohmics":
+        """The ohmics in the geometry."""
+        return self._ohmics
+
+    @property
+    def screening_gates(self) -> "ScreeningGates":
+        """The screening gates in the geometry."""
+        return self._screening_gates
+
+    @property
+    def lineararray(self) -> "BaseConnections":
+        """The linear array of gates in the geometry."""
+        return self._lineararray
+
+    def __iter__(self):
+        """Iterates over the gates in the geometry."""
+        return iter(self._lineararray)
 
     def store_raw_central_gates(self, dot_gates: "list[Connection]") -> None:
         """Stores the raw gates in the geometry.
@@ -150,7 +205,7 @@ class GateGeometryArray1D:
             else:
                 msg = "Expected DotGates in the middle of the linear array."
                 raise TypeError(msg)
-        self.raw_gates = Gates(out)
+        self._raw_central_gates = Gates(out)
 
     def store_central_gate(
         self,
@@ -239,7 +294,7 @@ class GateGeometryArray1D:
                 return Gates(
                     [
                         self.left_barrier.left_neighbor,
-                        *self.raw_gates,
+                        *self.raw_central_gates,
                         self.right_barrier.right_neighbor,
                     ]
                 )

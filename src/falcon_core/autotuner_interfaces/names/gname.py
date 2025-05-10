@@ -6,8 +6,9 @@ from .name_base import NameBase
 class Gname(NameBase):
     """Names of the form "group#" where # is a int."""
 
+    _index_string = "group"
+
     def __init__(self, value: str | int):
-        self.index_string = "group"
         super().__init__(value)
 
     @property

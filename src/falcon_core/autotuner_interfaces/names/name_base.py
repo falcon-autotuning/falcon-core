@@ -1,34 +1,55 @@
 """Creation of default names for structures within FAlCon."""
 
-from .dependancies import Generic, TypeVar
+from .dependancies import Generic, Jsonable, TypeVar
 
 T = TypeVar("T", bound="NameBase")
 
 
-class NameBase(Generic[T]):
+class NameBase(Generic[T], Jsonable):
     """Base class for ordering name types.
 
     Index string can be set for different children to act differently.
     """
 
-    value: str | int
-    name: str  # pattern=r"group\d+"
-    num: int = 0
+    _value: str | int
+    _name: str  # pattern=r"group\d+"
+    _num: int = 0
 
-    index_string: str = ""
+    _index_string: str = ""
 
     def __init__(self, value: str | int):
         if isinstance(value, int):
-            self.value = value
-            self.name = self.index_string + str(self.value)
-            self.num = self.value
+            self._value = value
+            self._name = self.index_string + str(self.value)
+            self._num = value
         elif isinstance(value, str):
-            self.value = value
-            self.name = self.value
-            self.num = int(self.value[len(self.index_string) :])
+            self._value = value
+            self._name = value
+            self._num = int(value[len(self.index_string) :])
         else:
             msg = "Value must be an int or str"
             raise TypeError(msg)
+
+    @property
+    def value(self) -> str | int:
+        """The value of the name."""
+        return self._value
+
+    @property
+    def name(self) -> str:
+        """The name of hte object."""
+        return self._name
+
+    @property
+    def num(self) -> int:
+        """The number of the object."""
+        return self._num
+
+    @classmethod
+    @property
+    def index_string(cls) -> str:
+        """The index string of the object."""
+        return cls._index_string
 
     def __hash__(self):
         """Allows it to be a key in dictionaries."""
