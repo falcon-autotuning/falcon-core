@@ -6,6 +6,7 @@ from .constants import CONNECTION_TO_ATTRIBUTE_NAME
 from .dependancies import (
     BarrierGate,
     DotGate,
+    Jsonable,
     PlungerGate,
     deepcopy,
     overload,
@@ -33,14 +34,14 @@ if TYPE_CHECKING:
     )
 
 
-class StandardConfigConnections:
+class StandardConfigConnections(Jsonable):
     """Base config functionality. Used for core config classes."""
 
-    screening_gates: "ScreeningGates"
-    reservoir_gates: "ReservoirGates"
-    plunger_gates: "PlungerGates"
-    barrier_gates: "BarrierGates"
-    ohmics: "Ohmics"
+    _screening_gates: "ScreeningGates"
+    _reservoir_gates: "ReservoirGates"
+    _plunger_gates: "PlungerGates"
+    _barrier_gates: "BarrierGates"
+    _ohmics: "Ohmics"
 
     def __init__(
         self,
@@ -59,11 +60,36 @@ class StandardConfigConnections:
             barrier_gates (BarrierGates): The barrier gates.
             ohmics (Ohmics): The ohmics.
         """
-        self.screening_gates = screening_gates
-        self.reservoir_gates = reservoir_gates
-        self.plunger_gates = plunger_gates
-        self.barrier_gates = barrier_gates
-        self.ohmics = ohmics
+        self._screening_gates = screening_gates
+        self._reservoir_gates = reservoir_gates
+        self._plunger_gates = plunger_gates
+        self._barrier_gates = barrier_gates
+        self._ohmics = ohmics
+
+    @property
+    def screening_gates(self) -> "ScreeningGates":
+        """The screening gates of the config."""
+        return self._screening_gates
+
+    @property
+    def reservoir_gates(self) -> "ReservoirGates":
+        """The reservoir gates of the config."""
+        return self._reservoir_gates
+
+    @property
+    def plunger_gates(self) -> "PlungerGates":
+        """The plunger gates of the config."""
+        return self._plunger_gates
+
+    @property
+    def barrier_gates(self) -> "BarrierGates":
+        """The barrier gates of the config."""
+        return self._barrier_gates
+
+    @property
+    def ohmics(self) -> "Ohmics":
+        """The ohmics of the config."""
+        return self._ohmics
 
     @overload
     def get_connections(  # noqa: D102

@@ -17,6 +17,7 @@ from .dependancies import (
 )
 from .standard_config_connections import StandardConfigConnections
 from .typing import (
+    Channels,
     Gates,
 )
 
@@ -31,7 +32,6 @@ if TYPE_CHECKING:
         BarrierGates,
         BaseConnection,
         Channel,
-        Channels,
         Connection,
         DotGates,
         Gname,
@@ -83,18 +83,22 @@ class Config(StandardConfigConnections, Jsonable):
 
     @property
     def num_unique_channels(self) -> int:
+        """Returns the number of unique channels associated with the current sample."""
         return self._num_unique_channels
 
     @property
     def groups(self) -> dict["Gname", "Group"]:
+        """Returns the groups of the config."""
         return self._groups
 
     @property
     def wiring_DC(self) -> "Impedances":
+        """Returns the wiring impedances of the config."""
         return self._wiring_DC
 
     @property
     def channels(self) -> "Channels":
+        """Returns the channels of the config."""
         return self._channels
 
     def check_impendance_consistency(self) -> None:
@@ -124,7 +128,7 @@ class Config(StandardConfigConnections, Jsonable):
             collection: list[BaseConnection] = []
             for group in self.get_all_groups():
                 collection += group.get_connections(connection_type=connection_type)
-            if set(self.__getattribute__(connection_name)) != set(collection):
+            if set(getattr(self, connection_name)) != set(collection):
                 msg = f"Inconsistent {connection_name} between groups and the total"
                 raise ValueError(msg)
 
@@ -132,23 +136,23 @@ class Config(StandardConfigConnections, Jsonable):
         self,
         connection: "BaseConnection",
     ) -> "Impedance | None":
-        """Searches through the config and finds the connection in the dcwiring."""
+        """Returns the impedance matching the connection in the dcwiring."""
         for impedance in self.wiring_DC:
             if impedance.connection == connection:
                 return impedance
         return None
 
     def get_all_gnames(self) -> list["Gname"]:
-        """Searches through the config and finds all group names."""
+        """Returns all all group names."""
         return list(self.groups.keys())
 
     def get_all_groups(self) -> list["Group"]:
-        """Searches through config and finds all Group."""
+        """Returns all Group."""
         return list(self.groups.values())
 
     def compile_channels(self) -> None:
         """Searches through all Group and collects all of the Channel."""
-        self._channels = [group.name for group in self.get_all_groups()]
+        self._channels = Channels([group.name for group in self.get_all_groups()])
 
     def has_channel(self, channel: "Channel") -> bool:
         """Validates if this is a proper Channel name in the set of all device Channels.
@@ -221,6 +225,9 @@ class Config(StandardConfigConnections, Jsonable):
         """Every reservoir gate has an associated ohmic.
 
         This pulls the associated ohmic from the config.
+
+        Returns:
+            An ohmic if it exists
         """
         for group in self.get_all_groups():
             if not group.has_gate(gate=rgate):
@@ -482,7 +489,7 @@ class Config(StandardConfigConnections, Jsonable):
         for group in self.get_all_groups():
             if group.has_gate(gate=gate):
                 channels.union([group.name])
-        return list(channels)
+        return Channels(list(channels))
 
     def return_channel_from_gate(self, gate: "Gate") -> "Channel | None":
         """Returns the channel a given gate belongs to.
@@ -699,9 +706,9 @@ class Config(StandardConfigConnections, Jsonable):
         gate_type: "UsefulGateType",
     ) -> "UsefulGates | None":
         """Task to find shared gates stored in the config.
-        nvim newline at arbitrary line number
-                Args:
-                    gate_type : string corresponding to the gatetype pulled from the config.
+
+        Args:
+            gate_type : string corresponding to the gatetype pulled from the config.
 
         Returns:
                     dict : organized from most shared to least shared gate of the gatetype
@@ -912,7 +919,7 @@ class Config(StandardConfigConnections, Jsonable):
         return out
 
     def generate_gate_relations(self) -> GateRelations:
-        """Generates the gate relations in the config."""
+        """Returns the gate relations in the config."""
         out = {}
         for gate in self.get_all_gates():
             out[gate] = []

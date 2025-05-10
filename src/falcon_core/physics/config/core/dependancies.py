@@ -1,6 +1,7 @@
 """Dependancies for the core config module."""
 
 from ....dependancies import collections, deepcopy, overload
+from ....generic import Jsonable
 from ...device_structures import (
     BarrierGate,
     DotGate,
@@ -11,7 +12,6 @@ from ...device_structures import (
     ReservoirGate,
     ScreeningGate,
 )
-from ....generic import Jsonable
 from ...device_structures.gate_relations import GateRelations
 
 __all__ = [

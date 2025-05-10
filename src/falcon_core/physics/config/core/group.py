@@ -3,7 +3,7 @@
 from typing import TYPE_CHECKING
 
 from ..geometries import GateGeometryArray1D
-from .dependancies import Ohmics
+from .dependancies import Jsonable, Ohmics
 from .standard_config_connections import StandardConfigConnections
 
 if TYPE_CHECKING:
@@ -18,12 +18,12 @@ if TYPE_CHECKING:
     )
 
 
-class Group(StandardConfigConnections):
+class Group(StandardConfigConnections, Jsonable):
     """Elements of the config that pertain to an individual group of gates."""
 
-    name: "Channel"
-    num_dots: int
-    order: GateGeometryArray1D
+    _name: "Channel"
+    _num_dots: int
+    _order: GateGeometryArray1D
 
     def __init__(
         self,
@@ -44,9 +44,9 @@ class Group(StandardConfigConnections):
             ohmics=Ohmics([]),
         )
         assert num_dots > 0
-        self.name = name
-        self.num_dots = num_dots
-        self.order = GateGeometryArray1D(
+        self._name = name
+        self._num_dots = num_dots
+        self._order = GateGeometryArray1D(
             lineararray=order,
             screening_gates=screening_gates,
         )
@@ -59,9 +59,24 @@ class Group(StandardConfigConnections):
             msg = "Gate lists and the Order are inconsistent. Some gates are not present in both"
             raise ValueError(msg)
 
+    @property
+    def name(self) -> "Channel":
+        """The name of the group."""
+        return self._name
+
+    @property
+    def num_dots(self) -> int:
+        """The number of dots in the group."""
+        return self._num_dots
+
+    @property
+    def order(self) -> "GateGeometryArray1D":
+        """The order of the gates in the group."""
+        return self._order
+
     def compile_ohmics(self) -> None:
         """Gets all of the ohmics in the Group."""
-        self.ohmics = self.order.ohmics
+        self._ohmics = self.order.ohmics
 
     def has_channel(self, channel: "Channel") -> bool:
         """Validates if this Channel is present.
@@ -76,7 +91,7 @@ class Group(StandardConfigConnections):
 
     def get_num_dots(self) -> int:
         """Gets the stored NumDots."""
-        return self.num_dots
+        return self._num_dots
 
     def is_chargesensor(self) -> bool:
         """Queries group if it is a chargesensor. A chargesensor has only 1 dot."""
