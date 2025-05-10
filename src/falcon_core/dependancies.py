@@ -1,5 +1,6 @@
 """The various external dependencies required by Falcon."""
 
+import collections
 import contextlib
 import inspect
 import io
@@ -25,11 +26,14 @@ from typing import overload
 import dill  # type: ignore  # noqa: PGH003
 import numpy as np
 import valkey  # type: ignore  # noqa: PGH003
+import yaml
 from scipy.ndimage import (  # type: ignore  # noqa: PGH003
     uniform_filter1d as untyped_uniform_filter1d,
 )
 
 __all__ = [
+    "yaml",
+    "collections",
     "uuid",
     "log10",
     "wraps",
