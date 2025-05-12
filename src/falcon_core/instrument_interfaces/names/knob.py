@@ -5,13 +5,14 @@ from typing import TYPE_CHECKING
 from .constants import INSTRUMENT_TYPES
 from .dependancies import Units
 from .instrument_port import InstrumentPort
+from .dependancies import Jsonable
 
 if TYPE_CHECKING:
     from .dependancies import Instrument
     from .typing import Connection, SymbolUnit
 
 
-class Knob(InstrumentPort):
+class Knob(InstrumentPort, Jsonable):
     """A type of instument port that is used to control a knob on an instrument."""
 
     def __init__(

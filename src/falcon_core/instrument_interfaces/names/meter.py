@@ -3,7 +3,7 @@
 from typing import TYPE_CHECKING
 
 from .constants import INSTRUMENT_TYPES
-from .dependancies import Units
+from .dependancies import Units, Jsonable
 from .instrument_port import InstrumentPort
 from .typing import Ohmic
 
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from .typing import Connection, SymbolUnit
 
 
-class Meter(InstrumentPort):
+class Meter(InstrumentPort, Jsonable):
     """A type of instrument port that is used to measure the output of an instrument."""
 
     def __init__(
