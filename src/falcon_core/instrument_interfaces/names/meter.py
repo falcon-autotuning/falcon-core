@@ -3,7 +3,7 @@
 from typing import TYPE_CHECKING
 
 from .constants import INSTRUMENT_TYPES
-from .dependancies import Units, Jsonable
+from .dependancies import Jsonable, Units
 from .instrument_port import InstrumentPort
 from .typing import Ohmic
 

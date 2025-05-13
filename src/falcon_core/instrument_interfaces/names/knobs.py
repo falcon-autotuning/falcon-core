@@ -2,9 +2,9 @@
 
 from typing import TYPE_CHECKING
 
+from .dependancies import Jsonable
 from .knob import Knob
 from .ports import Ports
-from .dependancies import Jsonable
 
 if TYPE_CHECKING:
     from .typing import Iterable

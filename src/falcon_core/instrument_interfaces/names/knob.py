@@ -3,9 +3,8 @@
 from typing import TYPE_CHECKING
 
 from .constants import INSTRUMENT_TYPES
-from .dependancies import Units
+from .dependancies import Jsonable, Units
 from .instrument_port import InstrumentPort
-from .dependancies import Jsonable
 
 if TYPE_CHECKING:
     from .dependancies import Instrument
