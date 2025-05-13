@@ -5,7 +5,7 @@ from .base_connections import BaseConnections
 from .dependancies import Jsonable
 
 
-class Gate(BaseConnection):
+class Gate(BaseConnection, Jsonable):
     """Contains the name corresponding to a particular gate on the sample."""
 
 

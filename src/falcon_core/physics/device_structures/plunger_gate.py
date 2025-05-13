@@ -5,7 +5,7 @@ from .dependancies import Jsonable
 from .dot_gate import DotGate
 
 
-class PlungerGate(DotGate):
+class PlungerGate(DotGate, Jsonable):
     """A specific type of gate on the device."""
 
 

@@ -5,7 +5,7 @@ from .dependancies import Jsonable
 from .gate import Gate
 
 
-class ReservoirGate(Gate):
+class ReservoirGate(Gate, Jsonable):
     """A specific type of gate on the device."""
 
 

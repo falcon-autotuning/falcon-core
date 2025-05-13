@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from .typing import TypeAlias
 
 
-class BarrierGate(DotGate):
+class BarrierGate(DotGate, Jsonable):
     """A specific type of gate on the device."""
 
 
