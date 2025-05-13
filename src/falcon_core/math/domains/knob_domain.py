@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 
 from .base_labelled_domain import BaseLabelledDomain
 from .constants import INSTRUMENT_TYPES
-from .dependancies import Knob, Units
+from .dependancies import Knob, Units, Jsonable
 from .domain import Domain
 
 if TYPE_CHECKING:
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from .typing import Connection, SymbolUnit
 
 
-class KnobDomain(BaseLabelledDomain[Knob]):
+class KnobDomain(BaseLabelledDomain[Knob], Jsonable):
     """A Knob with physical bounds."""
 
     def __init__(

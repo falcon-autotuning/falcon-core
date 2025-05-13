@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound=Jsonable)
 
 
-class BaseCoupledLabelledDomain(Generic[T]):
+class BaseCoupledLabelledDomain(Jsonable, Generic[T]):
     """A collection of coupled labelled domains to be attached together."""
 
     _domains: "Sequence[BaseLabelledDomain[T]]"

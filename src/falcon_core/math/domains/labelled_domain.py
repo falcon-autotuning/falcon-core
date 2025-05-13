@@ -6,5 +6,5 @@ from .dependancies import Generic, Jsonable, TypeVar
 T = TypeVar("T", bound=Jsonable)
 
 
-class LabelledDomain(BaseLabelledDomain, Generic[T]):
+class LabelledDomain(BaseLabelledDomain, Jsonable, Generic[T]):
     """A domain with a label for pretty much anything."""
