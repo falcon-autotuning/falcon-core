@@ -134,7 +134,6 @@ def assert_metadata_exists(
     Raises:
         ValueError: If metadata does not exist.
     """
-    print(dictionary)
     if JSONABLE_CLASS_METADATA not in list(dictionary.keys()):
         msg = f"Cannot create instance of abstract Jsonable class without {JSONABLE_CLASS_METADATA} information"
         raise ValueError(msg)
