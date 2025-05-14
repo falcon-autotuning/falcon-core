@@ -1,6 +1,11 @@
 """A generic BaseConnection on a quantum dot device."""
 
+from typing import TYPE_CHECKING
+
 from .dependancies import Generic, Jsonable, TypeVar, overload
+
+if TYPE_CHECKING:
+    from .typing import Any
 
 T = TypeVar("T", bound="BaseConnection")
 
@@ -36,9 +41,11 @@ class BaseConnections(Jsonable, Generic[T]):
         """Iterate over the connections."""
         return iter(self._values)
 
-    def __contains__(self, item: T) -> bool:
+    def __contains__(self, item: "Any") -> bool:
         """Check if a connection is in the list."""
-        return item in self._values
+        if isinstance(item, BaseConnection):
+            return item in self._values
+        return False
 
     def __setitem__(self, index: int, value: T) -> None:
         """Set a connection at a specific index.
