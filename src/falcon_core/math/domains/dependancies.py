@@ -6,9 +6,11 @@ from ...instrument_interfaces.names import Knob, Knobs
 from ...instrument_interfaces.names.instrument_port import InstrumentPort
 from ...instrument_interfaces.names.ports import Ports
 from ...physics import Connection, Units
+from ...physics.device_structures import UsefulGate
 from ...typing import Generic, TypeVar, cast
 
 __all__ = [
+    "UsefulGate",
     "Jsonable",
     "Instrument",
     "Units",

@@ -4,12 +4,12 @@ from typing import TYPE_CHECKING
 
 from .base_labelled_domain import BaseLabelledDomain
 from .constants import INSTRUMENT_TYPES
-from .dependancies import Jsonable, Knob, Units
+from .dependancies import Jsonable, Knob, Units, UsefulGate
 from .domain import Domain
 
 if TYPE_CHECKING:
     from .dependancies import Instrument
-    from .typing import Connection, SymbolUnit
+    from .typing import SymbolUnit
 
 
 class KnobDomain(BaseLabelledDomain[Knob], Jsonable):
@@ -19,7 +19,7 @@ class KnobDomain(BaseLabelledDomain[Knob], Jsonable):
         self,
         default_name: str,
         bounds: tuple[float, float],
-        pseudo_name: "Connection | None" = None,
+        pseudo_name: "UsefulGate | None" = None,
         instrument_type: "Instrument" = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE,
         lesser_bound_contained: bool = True,
         greater_bound_contained: bool = True,
@@ -31,7 +31,7 @@ class KnobDomain(BaseLabelledDomain[Knob], Jsonable):
         Args:
             default_name (str): The default name of the knob.
             bounds (tuple[float, float]): The bounds of the knob.
-            pseudo_name (Connection | None): The pseudo name of the knob.
+            pseudo_name (UsefulGate | None): The pseudo name of the knob.
             instrument_type (type): The type of instrument.
             lesser_bound_contained (bool): Whether the lesser bound is contained.
             greater_bound_contained (bool): Whether the greater bound is contained.
@@ -83,7 +83,7 @@ class KnobDomain(BaseLabelledDomain[Knob], Jsonable):
         cls,
         domain: Domain,
         default_name: str,
-        pseudo_name: "Connection | None" = None,
+        pseudo_name: "UsefulGate | None" = None,
         instrument_type: "Instrument" = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE,
         units: "SymbolUnit" = Units.VOLT,
         description: str = "",

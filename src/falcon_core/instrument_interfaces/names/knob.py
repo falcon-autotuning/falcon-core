@@ -3,21 +3,22 @@
 from typing import TYPE_CHECKING
 
 from .constants import INSTRUMENT_TYPES
-from .dependancies import Jsonable, Units
+from .dependancies import Jsonable, Units, UsefulGate
 from .instrument_port import InstrumentPort
+
 
 if TYPE_CHECKING:
     from .dependancies import Instrument
     from .typing import Connection, SymbolUnit
 
 
-class Knob(InstrumentPort, Jsonable):
+class Knob(InstrumentPort[UsefulGate], Jsonable):
     """A type of instument port that is used to control a knob on an instrument."""
 
     def __init__(
         self,
         default_name: str,
-        pseudo_name: "Connection | None" = None,
+        pseudo_name: "UsefulGate | None" = None,
         instrument_type: "Instrument" = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE,
         description: str = "",
         units: "SymbolUnit" = Units.VOLT,

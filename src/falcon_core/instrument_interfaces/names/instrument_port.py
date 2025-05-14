@@ -3,14 +3,16 @@
 from typing import TYPE_CHECKING
 
 from .constants import INSTRUMENT_TYPES
-from .dependancies import Instrument, Jsonable, Units
+from .dependancies import Connection, Generic, Instrument, Jsonable, TypeVar, Units
 
 if TYPE_CHECKING:
     from .dependancies import Instrument
-    from .typing import Connection, SymbolUnit
+    from .typing import SymbolUnit
+
+T = TypeVar("T", bound=Connection)
 
 
-class InstrumentPort(Jsonable):
+class InstrumentPort(Jsonable, Generic[T]):
     """The base unit type of port that all instrument ports consist of.
 
     Note that this class stores attributes and is meant for users to lookup
@@ -22,7 +24,7 @@ class InstrumentPort(Jsonable):
     """
 
     _defualt_name: str
-    _pseudo_name: "Connection | None"
+    _pseudo_name: "T | None"
     _instrument_type: "Instrument"
     _units: "SymbolUnit"
     _description: str
@@ -30,7 +32,7 @@ class InstrumentPort(Jsonable):
     def __init__(
         self,
         default_name: str,
-        pseudo_name: "Connection | None" = None,
+        pseudo_name: "T | None" = None,
         instrument_type: "Instrument" = INSTRUMENT_TYPES.DC_VOLTAGE_SOURCE,
         units: "SymbolUnit" = Units.VOLT,
         description: str = "",
@@ -63,7 +65,7 @@ class InstrumentPort(Jsonable):
         return self._defualt_name
 
     @property
-    def pseudo_name(self) -> "Connection":
+    def pseudo_name(self) -> "T":
         """Return the pseudo name of the port.
 
         Raises:
