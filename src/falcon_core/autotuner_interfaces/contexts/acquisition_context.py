@@ -50,7 +50,7 @@ class AcquisitionContext(BaseContext, Jsonable):
             The AcquisitionContext object.
         """
         return cls(
-            connection=port.pseudo_name,
+            connection=port._pseudo_name,
             instrument_type=port.instrument_type,
             units=port.units,
         )

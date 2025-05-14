@@ -134,7 +134,7 @@ class KnobDomain(BaseLabelledDomain[Knob], Jsonable):
         return cls(
             default_name=knob.default_name,
             bounds=bounds,
-            pseudo_name=knob.pseudo_name,
+            pseudo_name=knob._pseudo_name,
             instrument_type=knob.instrument_type,
             lesser_bound_contained=lesser_bound_contained,
             greater_bound_contained=greater_bound_contained,

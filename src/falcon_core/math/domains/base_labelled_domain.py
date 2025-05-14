@@ -1,7 +1,13 @@
 """A domain with a label for pretty much anything."""
 
-from .constants import INSTRUMENT_TYPES
-from .dependancies import Connection, Generic, InstrumentPort, Jsonable, TypeVar
+from .dependancies import (
+    Connection,
+    Generic,
+    Instrument,
+    InstrumentPort,
+    Jsonable,
+    TypeVar,
+)
 from .domain import Domain
 
 T = TypeVar("T", bound=Jsonable)
@@ -53,14 +59,12 @@ class BaseLabelledDomain(Domain, Jsonable, Generic[T]):
         Returns:
             True if the label matches the given label, False otherwise.
         """
-        if not isinstance(label, InstrumentPort) and not isinstance(
-            self.label, InstrumentPort
-        ):
-            return self.label == label
         assert isinstance(self.label, InstrumentPort), "label must be an InstrumentPort"
         return (
-            isinstance(label, Connection)
+            isinstance(label, InstrumentPort)
+            and self.label == label
+            or isinstance(label, Connection)
             and self.label.pseudo_name == label
-            or isinstance(label, INSTRUMENT_TYPES)
+            or isinstance(label, Instrument)
             and self.label.instrument_type == label
         )
