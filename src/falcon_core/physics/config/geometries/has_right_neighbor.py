@@ -2,11 +2,13 @@
 
 from typing import TYPE_CHECKING
 
+from .dependancies import Jsonable
+
 if TYPE_CHECKING:
     from .typing import Gate
 
 
-class HasRightNeighbor:
+class HasRightNeighbor(Jsonable):
     """A gate with a left neighbor."""
 
     _right_neighbor: "Gate"

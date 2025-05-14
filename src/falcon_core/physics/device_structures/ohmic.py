@@ -1,15 +1,10 @@
 """An ohmic that represents a named ohmic connection to a quantum dot device."""
 
-from typing import TYPE_CHECKING
-from .base_connection import BaseConnection
-from .base_connections import BaseConnections
+from .base_connection import BaseConnection, BaseConnections
 from .dependancies import Jsonable
 
-if TYPE_CHECKING:
-    from .typing import TypeAlias
 
-
-class Ohmic(BaseConnection):
+class Ohmic(BaseConnection, Jsonable):
     """Contains the name corresponding to a particular ohmic on the sample."""
 
 

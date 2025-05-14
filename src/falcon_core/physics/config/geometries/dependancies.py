@@ -9,7 +9,7 @@ from ...device_structures import (
     PlungerGate,
     ReservoirGate,
 )
-from ...device_structures.base_connections import BaseConnections
+from ...device_structures.base_connection import BaseConnections
 
 __all__ = [
     "BaseConnections",

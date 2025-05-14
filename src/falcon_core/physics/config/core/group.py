@@ -9,6 +9,7 @@ from .standard_config_connections import StandardConfigConnections
 if TYPE_CHECKING:
     from .typing import (
         BarrierGates,
+        BaseConnection,
         BaseConnections,
         Channel,
         Gates,
@@ -33,7 +34,7 @@ class Group(StandardConfigConnections, Jsonable):
         reservoir_gates: "ReservoirGates",
         plunger_gates: "PlungerGates",
         barrier_gates: "BarrierGates",
-        order: "BaseConnections",
+        order: "BaseConnections[BaseConnection]",
     ) -> None:
         """This class holds information about a group of gates."""
         super().__init__(
@@ -60,9 +61,6 @@ class Group(StandardConfigConnections, Jsonable):
                 *self.reservoir_gates._values,
             ]
         ):
-            expr1 = set(self.get_all_gates()._values)
-            expr2 = set([*self.order.raw_gates._values, *self.screening_gates._values])
-            expr1 == expr2
             msg = "Gate lists and the Order are inconsistent. Some gates are not present in both"
             raise ValueError(msg)
 

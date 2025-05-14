@@ -1,5 +1,6 @@
 """Test the AnalyticFunction class."""
 
+from falcon_core.instrument_interfaces.instrument_types import INSTRUMENT_TYPES
 from falcon_core.instrument_interfaces.names import Knob, Knobs
 from falcon_core.math.analytic_functions import (
     AnalyticFunction,
@@ -7,6 +8,18 @@ from falcon_core.math.analytic_functions import (
     ValidatedAnalyticFunction,
 )
 from falcon_core.physics import PlungerGate
+from falcon_core.physics.units import Units
+
+
+class Clock(Knob):
+    def __init__(self):
+        super().__init__(
+            default_name=INSTRUMENT_TYPES.CLOCK.value,
+            pseudo_name=None,
+            instrument_type=INSTRUMENT_TYPES.CLOCK,
+            description="Clock",
+            units=Units.SECOND,
+        )
 
 
 def test_analytic_function_identity():
@@ -18,6 +31,7 @@ def test_analytic_function_identity():
             Knob(default_name=stuffi, pseudo_name=PlungerGate(name=stuffi))
             for stuffi in stuff
         ]
+        + [Clock()]
     )
     knob = knobs[0]
 
@@ -25,16 +39,13 @@ def test_analytic_function_identity():
     jid = id.to_json()
     idfromjson = Identity.from_json(jid)
     assert id == idfromjson
-    assert id.function.function(**{key: 0.0 for key in ["t"] + stuff}) == 0
-    assert idfromjson.function.function(**{key: 0.0 for key in ["t"] + stuff}) == 0
+    assert id(**{key: 0.0 for key in knobs._get_instrument_facing_names()}) == 0
+    assert idfromjson(**{key: 0.0 for key in knobs._get_instrument_facing_names()}) == 0
 
 
 class mult2(AnalyticFunction):
-    def __init__(self):
-        super().__init__(function=self.multiply)
-
-    @staticmethod
-    def multiply(t: float, a: float) -> float:
+    @classmethod
+    def _function(cls, t: float = 0.0, a: float = 0.0, **parameters) -> float:
         return a * 2
 
 
@@ -46,36 +57,15 @@ def test_analytic_function_custom():
             Knob(default_name=stuffi, pseudo_name=PlungerGate(name=stuffi))
             for stuffi in stuff
         ]
+        + [Clock()]
     )
 
-    def func(t: float, a: float) -> float:
-        return a * 2
-
-    af = ValidatedAnalyticFunction(ports=knobs, function=mult2())
-    assert af.function.function(t=0, a=1) == 2
-    assert af.function.function(a=1, t=0) == 2
-    jaf = af.to_json()
-    af_from_json = ValidatedAnalyticFunction.from_json(jaf)
-    # assert af == af_from_json
-    assert af_from_json.function.function(t=0, a=1) == 2
-
-
-def test_analytic_function_custom_reversed():
-    """Test initialization+compile of UnitSpace class for weird 3D space."""
-    stuff = ["a"]
-    knobs = Knobs(
-        [
-            Knob(default_name=stuffi, pseudo_name=PlungerGate(name=stuffi))
-            for stuffi in stuff
-        ]
+    af = ValidatedAnalyticFunction(
+        ports=knobs,
+        function=mult2(mapping={"a": "a", INSTRUMENT_TYPES.CLOCK.value: "t"}),
     )
-
-    def func(a: float, t: float) -> float:
-        return a * 2
-
-    af = ValidatedAnalyticFunction(ports=knobs, function=AnalyticFunction(func))
-    assert af.function.function(t=0, a=1) == 2
     assert af.function.function(a=1, t=0) == 2
+    assert af.function.function(t=0, a=1) == 2
     jaf = af.to_json()
     af_from_json = ValidatedAnalyticFunction.from_json(jaf)
     # assert af == af_from_json

@@ -109,6 +109,10 @@ class Ports(Jsonable, Generic[T]):
         """Return the raw string names of the ports."""
         return [pseudo_name.name for pseudo_name in self.get_pseudo_names()]
 
+    def _get_instrument_facing_names(self) -> list[str]:
+        """Gets a list of names to satisfy an instument interface."""
+        return [port.instrument_facing_name() for port in self.ports]
+
     def _contains_port(
         self,
         port: "T",

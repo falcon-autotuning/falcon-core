@@ -470,7 +470,7 @@ class Utilities:
         """Gets the config and returns it to the user."""
         return self.config
 
-    def get_current_channels(self) -> list[Channel]:
+    def get_current_channels(self) -> "Channels":
         """Gets all of the current channels from the config.
 
         Returns:

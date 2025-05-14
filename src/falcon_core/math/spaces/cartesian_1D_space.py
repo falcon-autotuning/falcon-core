@@ -1,10 +1,10 @@
 """A Cartesian 1D space."""
 
 from .cartesian_space import CartesianSpace
-from .dependancies import Domain
+from .dependancies import Domain, Jsonable
 
 
-class Cartesian1DSpace(CartesianSpace):
+class Cartesian1DSpace(CartesianSpace, Jsonable):
     """A Cartesian 1D space.
 
     A Cartesian 1D space is a unit space with a single axis.

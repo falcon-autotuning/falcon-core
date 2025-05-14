@@ -2,11 +2,13 @@
 
 from typing import TYPE_CHECKING
 
+from .dependancies import Jsonable
+
 if TYPE_CHECKING:
     from .dependancies import Ohmic
 
 
-class HasImplantedOhmic:
+class HasImplantedOhmic(Jsonable):
     """A gate with an ohmic below it."""
 
     ohmic: "Ohmic"

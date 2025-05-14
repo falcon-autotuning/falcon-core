@@ -1,6 +1,6 @@
 """A special dot gate surrounded by dot gates."""
 
-from .dependancies import BarrierGate, PlungerGate, ReservoirGate
+from .dependancies import BarrierGate, Jsonable, PlungerGate, ReservoirGate
 from .has_left_neighbor import HasLeftNeighbor
 from .has_right_neighbor import HasRightNeighbor
 
@@ -9,6 +9,7 @@ class BarrierGateWithNeighbors(
     BarrierGate,
     HasRightNeighbor,
     HasLeftNeighbor,
+    Jsonable,
 ):
     """A special barrier."""
 

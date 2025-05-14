@@ -2,14 +2,14 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Identity
+from .dependancies import Identity, Jsonable
 from .port_transform import PortTransform
 
 if TYPE_CHECKING:
     from .dependancies import Knob, Knobs
 
 
-class IdentityTransform(PortTransform):
+class IdentityTransform(PortTransform, Jsonable):
     """A special transform that applies the Identity function to the data."""
 
     def __init__(

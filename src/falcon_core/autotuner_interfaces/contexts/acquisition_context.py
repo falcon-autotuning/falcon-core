@@ -6,7 +6,7 @@ from .dependancies import BaseContext, Jsonable, SymbolUnit, Units
 from .typing import Connection, Instrument
 
 if TYPE_CHECKING:
-    from .typing import Instrument, InstrumentPort, Self
+    from .typing import InstrumentPort, Self
 
 
 class AcquisitionContext(BaseContext, Jsonable):
@@ -123,6 +123,7 @@ class AcquisitionContext(BaseContext, Jsonable):
         """Returns if the raw argument is inside this context."""
         if isinstance(other, Connection):
             return self.match_connection(other)
+        assert isinstance(other, Instrument)
         return self.match_instrument_type(other)
 
     def __hash__(self):

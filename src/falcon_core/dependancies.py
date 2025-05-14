@@ -2,6 +2,7 @@
 
 import collections
 import contextlib
+import importlib
 import inspect
 import io
 import itertools
@@ -32,6 +33,7 @@ from scipy.ndimage import (  # type: ignore  # noqa: PGH003
 )
 
 __all__ = [
+    "importlib",
     "yaml",
     "collections",
     "uuid",

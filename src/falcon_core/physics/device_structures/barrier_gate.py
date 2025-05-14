@@ -1,13 +1,8 @@
 """This module defines the BarrierGate class, which represents a specific type of gate on the device."""
 
-from typing import TYPE_CHECKING
-
-from .dot_gate import DotGate
+from .base_connection import BaseConnections
 from .dependancies import Jsonable
-from .base_connections import BaseConnections
-
-if TYPE_CHECKING:
-    from .typing import TypeAlias
+from .dot_gate import DotGate
 
 
 class BarrierGate(DotGate, Jsonable):

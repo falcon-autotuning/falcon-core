@@ -1,5 +1,6 @@
 """A Jsonable object is an object that can be converted to and from a dictionary."""
 
+from importlib import metadata
 from typing import TYPE_CHECKING
 
 from ..constants import (
@@ -23,6 +24,7 @@ from .dependancies import (
     dill,
     get_args,
     get_origin,
+    importlib,
     json,
     np,
     pickle,
@@ -37,6 +39,10 @@ if TYPE_CHECKING:
         Self,
         TypeAlias,
     )
+
+# Loads all Jsonable plugins
+for entry_point in metadata.entry_points(group="core_messaging.plugins"):
+    importlib.import_module(entry_point.value)
 
 JsonableSubUnits: "TypeAlias" = "Jsonable | JSONprimitives"
 JsonableType: "TypeAlias" = dict[str, JsonableSubUnits]

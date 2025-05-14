@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 
 from .base_labelled_domain import BaseLabelledDomain
 from .constants import INSTRUMENT_TYPES
-from .dependancies import Knob, Units, Jsonable
+from .dependancies import Jsonable, Knob, Units
 from .domain import Domain
 
 if TYPE_CHECKING:

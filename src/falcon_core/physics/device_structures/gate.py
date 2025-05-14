@@ -1,7 +1,6 @@
 """A gate on a quantum dot device."""
 
-from .base_connection import BaseConnection
-from .base_connections import BaseConnections
+from .base_connection import BaseConnection, BaseConnections
 from .dependancies import Jsonable
 
 

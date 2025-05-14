@@ -18,10 +18,14 @@ from ..device_structures import (
     ScreeningGate,
     ScreeningGates,
 )
-from ..device_structures.impedance import Impedance
+from ..device_structures.base_connection import BaseConnection, BaseConnections
+from ..device_structures.impedance import Impedance, Impedances
 from .geometries import NeighborGate
 
 __all__ = [
+    "BaseConnections",
+    "Impedances",
+    "BaseConnection",
     "Path",
     "yaml",
     "NeighborGate",

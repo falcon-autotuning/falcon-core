@@ -1,6 +1,6 @@
 """This module contains a specific type of gate, the DotGate."""
 
-from .base_connections import BaseConnections
+from .base_connection import BaseConnections
 from .dependancies import Jsonable
 from .gate import Gate
 

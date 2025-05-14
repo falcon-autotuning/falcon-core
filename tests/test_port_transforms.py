@@ -2,6 +2,7 @@
 
 import pytest
 
+from falcon_core.instrument_interfaces.instrument_types import INSTRUMENT_TYPES
 from falcon_core.instrument_interfaces.names import (
     Knob,
     Knobs,
@@ -17,17 +18,46 @@ from falcon_core.math.analytic_functions import (
     ValidatedAnalyticFunction,
 )
 from falcon_core.physics.device_structures import Ohmic, PlungerGate
+from falcon_core.physics.units import Units
+
+from .test_analytic_function import Clock
 
 
-class DoNothing(ValidatedAnalyticFunction):
+class ExecutionClock(Meter):
+    """A clock that is used to execute analysis over the raw data."""
+
+    def __init__(self):
+        super().__init__(
+            default_name=INSTRUMENT_TYPES.CLOCK.value,
+            instrument_type=INSTRUMENT_TYPES.CLOCK,
+            pseudo_name=None,
+            description="Execution clock",
+            units=Units.SECOND,
+        )
+
+
+class TimeFunction(AnalyticFunction):
+    @classmethod
+    def _function(cls, t: float = 0.0, **parameters) -> float:
+        return t
+
+
+class Time(ValidatedAnalyticFunction):
     """A transform that does nothing."""
 
     def __init__(self, port: Meter):
-        super().__init__(ports=Meters(port), function=AnalyticFunction(lambda t: t))
+        super().__init__(
+            ports=Meters([port] + [ExecutionClock()]),
+            function=TimeFunction(mapping={INSTRUMENT_TYPES.CLOCK.value: "t"}),
+        )
 
 
 class TestPortTransform:
     """Test the PortTransform class."""
+
+    @pytest.fixture
+    def clock(self) -> Clock:
+        return Clock()
 
     @pytest.fixture
     def knob(self) -> Knob:
@@ -38,12 +68,12 @@ class TestPortTransform:
         return Meter(default_name="test_meter", pseudo_name=Ohmic("O2"))
 
     @pytest.fixture
-    def knob_transform(self, knob: Knob) -> Identity:
-        return Identity(knobs=Knobs(knob), knob=knob)
+    def knob_transform(self, knob: Knob, clock: Clock) -> Identity:
+        return Identity(knobs=Knobs([knob, clock]), knob=knob)
 
     @pytest.fixture
-    def meter_transform(self, meter: Meter) -> ValidatedAnalyticFunction:
-        return DoNothing(
+    def meter_transform(self, meter: Meter, clock: Clock) -> ValidatedAnalyticFunction:
+        return Time(
             port=meter,
         )
 

@@ -2,7 +2,7 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import BarrierGate, ReservoirGate
+from .dependancies import BarrierGate, Jsonable, ReservoirGate
 from .has_implanted_ohmic import HasImplantedOhmic
 from .has_right_neighbor import HasRightNeighbor
 
@@ -14,6 +14,7 @@ class LeftReservoirWithImplantedOhmic(
     ReservoirGate,
     HasImplantedOhmic,
     HasRightNeighbor,
+    Jsonable,
 ):
     """A special reservoir gate with an ohmic below it and the rest of the channel extending to the right."""
 

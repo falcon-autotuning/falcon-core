@@ -6,6 +6,7 @@ from ..dependancies import (
     b64encode,
     deepcopy,
     dill,
+    importlib,
     json,
     np,
     pickle,
@@ -22,6 +23,7 @@ from ..typing import (
 )
 
 __all__ = [
+    "importlib",
     "b64decode",
     "b64encode",
     "Enum",

@@ -9,11 +9,13 @@ from .core import (
 from .core.standard_config_connections import StandardConfigConnections
 from .dependancies import (
     BarrierGate,
+    BaseConnections,
     Channel,
     Gate,
     Gates,
     Gname,
     Impedance,
+    Impedances,
     Ohmic,
     Ohmics,
     PlungerGate,
@@ -95,7 +97,7 @@ class ConfigManipulations:
         self,
         dictionary: dict[str, dict[str, dict[str, float] | None]],
         ohmics: Ohmics,
-    ) -> list[Impedance]:
+    ) -> Impedances:
         """Extracts a dcwiring from a dictionary.
 
         Args:
@@ -128,7 +130,7 @@ class ConfigManipulations:
                         capacitance=values["capacitance"],
                     )
                 )
-        return outs
+        return Impedances(outs)
 
     @overload
     def _extract_gates(
@@ -256,7 +258,7 @@ class ConfigManipulations:
         self,
         dictionary: dict[str, str],
         connections: StandardConfigConnections,
-    ) -> "list[Connection]":
+    ) -> "BaseConnections":
         """Extracts a gate from a dictionary.
 
         Performs the tranformation from string index by ";" to list
@@ -287,4 +289,4 @@ class ConfigManipulations:
             order.append(gatetype(gate))
         order.insert(0, Ohmic(raworder[0]))
         order.append(Ohmic(raworder[-1]))
-        return order
+        return BaseConnections(order)

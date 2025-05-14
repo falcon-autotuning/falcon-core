@@ -88,3 +88,11 @@ class InstrumentPort(Jsonable):
     def description(self) -> str:
         """Return the description of the port."""
         return self._description
+
+    def instrument_facing_name(self) -> str:
+        """Returns psuedo_name.name if it exists, otherwise the instrument.value."""
+        return (
+            self._pseudo_name.name
+            if self._pseudo_name is not None
+            else self.instrument_type.value
+        )

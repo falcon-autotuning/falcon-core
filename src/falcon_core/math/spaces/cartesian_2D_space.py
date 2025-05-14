@@ -1,10 +1,10 @@
 """A Cartesian 2D space."""
 
 from .cartesian_space import CartesianSpace
-from .dependancies import Domain
+from .dependancies import Domain, Jsonable
 
 
-class Cartesian2DSpace(CartesianSpace):
+class Cartesian2DSpace(CartesianSpace, Jsonable):
     """A Cartesian 2D space.
 
     A Cartesian 2D space is a unit space with a two axis.
