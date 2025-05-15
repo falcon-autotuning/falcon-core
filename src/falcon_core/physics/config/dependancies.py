@@ -20,9 +20,11 @@ from ..device_structures import (
 )
 from ..device_structures.base_connection import BaseConnection, BaseConnections
 from ..device_structures.impedance import Impedance, Impedances
+from .core import Config
 from .geometries import NeighborGate
 
 __all__ = [
+    "Config",
     "BaseConnections",
     "Impedances",
     "BaseConnection",

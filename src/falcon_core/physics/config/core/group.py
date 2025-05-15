@@ -9,7 +9,6 @@ from .standard_config_connections import StandardConfigConnections
 if TYPE_CHECKING:
     from .typing import (
         BarrierGates,
-        BaseConnection,
         BaseConnections,
         Channel,
         Gates,
@@ -34,7 +33,7 @@ class Group(StandardConfigConnections, Jsonable):
         reservoir_gates: "ReservoirGates",
         plunger_gates: "PlungerGates",
         barrier_gates: "BarrierGates",
-        order: "BaseConnections[BaseConnection]",
+        order: "BaseConnections",
     ) -> None:
         """This class holds information about a group of gates."""
         super().__init__(

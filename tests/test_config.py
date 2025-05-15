@@ -5,6 +5,7 @@ from falcon_core.physics.config.core.group import Group
 from falcon_core.physics.config.dependancies import (
     BarrierGate,
     BarrierGates,
+    BaseConnections,
     Channel,
     Gname,
     Impedance,
@@ -32,17 +33,19 @@ def test_config_json_serialization():
     ohmics = Ohmics([Ohmic("O1"), Ohmic("O2")])
 
     # Create order list for the group
-    order = [
-        Ohmic("O1"),
-        ReservoirGate("R1"),
-        BarrierGate("B1"),
-        PlungerGate("P1"),
-        BarrierGate("B2"),
-        PlungerGate("P2"),
-        BarrierGate("B3"),
-        ReservoirGate("R2"),
-        Ohmic("O2"),
-    ]
+    order = BaseConnections(
+        [
+            Ohmic("O1"),
+            ReservoirGate("R1"),
+            BarrierGate("B1"),
+            PlungerGate("P1"),
+            BarrierGate("B2"),
+            PlungerGate("P2"),
+            BarrierGate("B3"),
+            ReservoirGate("R2"),
+            Ohmic("O2"),
+        ]
+    )
 
     # Create a group
     group = Group(

@@ -6,20 +6,20 @@ This module defines the configLoader class, which is used to load a config file.
 from typing import TYPE_CHECKING
 
 from .config_manipulations import ConfigManipulations
-from .dependancies import Path, yaml
-from .utilities import Utilities
+from .dependancies import Config, Path, yaml
 
 if TYPE_CHECKING:
+    from .dependancies import Config
     from .typing import Any
 
 
 class Loader(
-    Utilities,
     ConfigManipulations,
 ):
     """Special configFuncs with the ability to load a config on startup."""
 
     _config_path: Path
+    _config: "Config"
 
     def __init__(
         self,
@@ -35,11 +35,7 @@ class Loader(
         # Load YAML file
         self._config_path = config_path
         config = self.load_config()
-
-        Utilities.__init__(
-            self,
-            config=self.unpack_device_config(config=config["config"]),
-        )
+        self._config = config["config"]
 
     def load_config(self) -> dict[str, "Any"]:
         """Load the config file.
