@@ -3,7 +3,6 @@
 from typing import TYPE_CHECKING
 
 from .dependancies import (
-    Generic,
     Jsonable,
     TypeVar,
 )
@@ -15,7 +14,9 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound=Jsonable)
 
 
-class BaseCoupledLabelledDomain(Jsonable, Generic[T]):
+class BaseCoupledLabelledDomain[T](
+    Jsonable,
+):
     """A collection of coupled labelled domains to be attached together."""
 
     _domains: "Sequence[BaseLabelledDomain[T]]"

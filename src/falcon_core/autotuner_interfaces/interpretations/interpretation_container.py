@@ -2,16 +2,14 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Axes, Generic, Jsonable, TypeVar, Units
+from .dependancies import Axes, Jsonable, Units
 from .interpretation_context import InterpretationContext
 
 if TYPE_CHECKING:
     from .typing import Any, Connection, Iterator, SymbolUnit
 
-T = TypeVar("T")
 
-
-class InterpretationContainer(Jsonable, Generic[T]):
+class InterpretationContainer[T](Jsonable):
     """A container for storing values associated with different interpretation contexts.
 
     This container acts like a dictionary that maps InterpretationContext objects to values

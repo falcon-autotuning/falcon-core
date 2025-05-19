@@ -205,7 +205,7 @@ class GateGeometryArray1D(Jsonable):
             else:
                 msg = "Expected DotGates in the middle of the linear array."
                 raise TypeError(msg)
-        self._raw_central_gates = Gates(out)
+        self._raw_central_gates = Gates(out)  # type: ignore[assignment]
 
     def store_central_gate(
         self,
@@ -288,7 +288,7 @@ class GateGeometryArray1D(Jsonable):
             self.right_reservoir,
             *self.all_dot_gates(),
         ]:
-            if name != gate_geometry.value:
+            if name != gate_geometry.name:
                 continue
             if gate_geometry in self.screening_gates:
                 return Gates(

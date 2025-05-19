@@ -2,15 +2,16 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Generic, Jsonable, TypeVar
+from .dependancies import Jsonable, TypeVar
 
 if TYPE_CHECKING:
     from .typing import Any
 
+
 T = TypeVar("T", covariant=True)
 
 
-class Axes(Jsonable, Generic[T]):
+class Axes[T](Jsonable):
     """An adressable set of hypercube axes.
 
     The order matters, as it is used to index the hypercube.

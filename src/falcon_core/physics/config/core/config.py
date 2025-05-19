@@ -644,9 +644,13 @@ class Config(StandardConfigConnections, Jsonable):
         for group in self.get_all_groups():
             connection = group.get_connection(connection_type=gate_type)
             gates.append(connection)
-        gate_count = collections.Counter(gates)
+        if not gates:
+            msg = f"No gates found in the config for the type {gate_type}"
+            raise ValueError(msg)
+        gate_count = collections.Counter([gate.name for gate in gates])
         # Removing gates that are counted once
-        return Gates([gate for gate, count in gate_count.items() if count == 1])
+        gate_names = [gate for gate, count in gate_count.items() if count == 1]
+        return Gates([gate for gate in gates if gate.name in gate_names])
 
     @overload
     def get_shared_gates(  # noqa: D102, F811 , PGH003 # type: ignore
@@ -700,7 +704,16 @@ class Config(StandardConfigConnections, Jsonable):
         for group in self.get_all_groups():
             connection = group.get_connection(connection_type=gate_type)
             gates.append(connection)
-        gate_count = collections.Counter(gates)
+        if gates is None:
+            msg = "No gates found in the config"
+            raise ValueError(msg)
+        gate_count = collections.Counter([gate.name for gate in gates])
+        real_gate_count = {
+            real_gate: count
+            for gate, count in gate_count.items()
+            for real_gate in gates
+            if real_gate.name == gate
+        }
         # Removing gates that are counted once
         isolated_channel = self.get_isolated_gates(gate_type=gate_type)
         if isolated_channel is None:
@@ -708,8 +721,8 @@ class Config(StandardConfigConnections, Jsonable):
         # The dictionary of more than counted once gates
         shared_gates = {
             k: v
-            for k, v in gate_count.items()
-            if k in (set(gate_count.keys()) - set(isolated_channel))
+            for k, v in real_gate_count.items()
+            if k in (set(real_gate_count.keys()) - set(isolated_channel))
         }
         # sorting the dictionary from high to low
         return Gates(

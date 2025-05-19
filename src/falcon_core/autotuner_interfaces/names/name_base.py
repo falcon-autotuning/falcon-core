@@ -1,11 +1,9 @@
 """Creation of default names for structures within FAlCon."""
 
-from .dependancies import Generic, Jsonable, TypeVar
-
-T = TypeVar("T", bound="NameBase")
+from .dependancies import Jsonable
 
 
-class NameBase(Generic[T], Jsonable):
+class NameBase[T: NameBase](Jsonable):
     """Base class for ordering name types.
 
     Index string can be set for different children to act differently.
@@ -20,12 +18,12 @@ class NameBase(Generic[T], Jsonable):
     def __init__(self, value: str | int):
         if isinstance(value, int):
             self._value = value
-            self._name = self.index_string + str(self.value)
+            self._name = self._index_string + str(self.value)
             self._num = value
         elif isinstance(value, str):
             self._value = value
             self._name = value
-            self._num = int(value[len(self.index_string) :])
+            self._num = int(value[len(self._index_string) :])
         else:
             msg = "Value must be an int or str"
             raise TypeError(msg)
@@ -44,12 +42,6 @@ class NameBase(Generic[T], Jsonable):
     def num(self) -> int:
         """The number of the object."""
         return self._num
-
-    @classmethod
-    @property
-    def index_string(cls) -> str:
-        """The index string of the object."""
-        return cls._index_string
 
     def __hash__(self):
         """Allows it to be a key in dictionaries."""

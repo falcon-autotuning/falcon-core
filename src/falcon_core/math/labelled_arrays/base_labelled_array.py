@@ -5,7 +5,6 @@ from typing import TYPE_CHECKING
 from .dependancies import (
     AcquisitionContext,
     BaseArray,
-    Generic,
     Jsonable,
     TypeVar,
     overload,
@@ -15,20 +14,24 @@ from .typing import Instrument
 if TYPE_CHECKING:
     from .typing import Connection, Instrument, InstrumentPort, Self, SymbolUnit
 
-ArrayT = TypeVar("ArrayT", bound=BaseArray)
+T = TypeVar("T", bound=BaseArray)
 
 
-class BaseLabelledArray(Jsonable, Generic[ArrayT]):
-    _array: "ArrayT"
+class BaseLabelledArray[T: BaseArray](Jsonable):
+    _array: T
     _label: "AcquisitionContext"
 
-    def __init__(self, array: "ArrayT", label: "AcquisitionContext"):
+    def __init__(
+        self,
+        array: T,
+        label: "AcquisitionContext",
+    ):
         """Initialize the LabelledArray object."""
         self._array = array
         self._label = label
 
     @property
-    def array(self) -> "ArrayT":
+    def array(self) -> T:
         """Return the array."""
         return self._array
 
@@ -40,7 +43,7 @@ class BaseLabelledArray(Jsonable, Generic[ArrayT]):
     @classmethod
     def from_port(
         cls,
-        array: "ArrayT",
+        array: T,
         port: "InstrumentPort",
     ) -> "Self":
         """Create a LabelledArray from a port.
@@ -87,23 +90,20 @@ class BaseLabelledArray(Jsonable, Generic[ArrayT]):
             self.__class__ | BaseLabelledArray | BaseArray | int | float,
         ):
             raise NotImplementedError
-        if isinstance(other, int | float | BaseArray):
-            return self.__class__(self.array + other, self.label)
-        if self.label != other.label:
-            msg = "Cannot add two labelled arrays with different labels."
-            raise ValueError(msg)
-        return self.__class__(self.array + other.array, self.label)
+        if isinstance(other, self.__class__ | BaseLabelledArray):
+            if self.label != other.label:
+                msg = "Cannot add two labelled arrays with different labels."
+                raise ValueError(msg)
+            return self.__class__(self.array + other.array, self.label)
+        return self.__class__(self.array + other, self.label)
 
     def __neg__(self) -> "Self":
         """Negate the data by multiplying by -1."""
         return self.__class__(-self.array, self.label)
 
-    def __sub__(self, other: object) -> "Self":
+    def __sub__(self, other: "Self | BaseArray | int | float") -> "Self":
         """Subtract the data from the other data."""
-        if isinstance(
-            other,
-            self.__class__ | BaseLabelledArray | BaseArray | int | float,
-        ):
+        if isinstance(other, BaseLabelledArray | BaseArray | int | float):
             return self.__add__(-other)
         return NotImplemented
 
@@ -115,29 +115,23 @@ class BaseLabelledArray(Jsonable, Generic[ArrayT]):
 
     def __mul__(self, other: object) -> "Self":
         """Multiply the data by the other data."""
-        if not isinstance(
-            other,
-            self.__class__ | BaseLabelledArray | BaseArray | int | float,
-        ):
-            raise NotImplementedError
         if isinstance(other, int | float | BaseArray):
             return self.__class__(self.array * other, self.label)
-        label = self.label
-        label._units *= other.label.units
-        return self.__class__(self.array * other.array, label)
+        if isinstance(other, self.__class__ | BaseLabelledArray):
+            label = self.label
+            label._units *= other.label.units
+            return self.__class__(self.array * other.array, label)
+        raise NotImplementedError
 
     def __truediv__(self, other: object) -> "Self":
         """Divide the data by the other data."""
-        if not isinstance(
-            other,
-            self.__class__ | BaseLabelledArray | BaseArray | int | float,
-        ):
-            raise NotImplementedError
         if isinstance(other, int | float | BaseArray):
             return self.__class__(self.array / other, self.label)
-        label = self.label
-        label._units /= other.label.units
-        return self.__class__(self.array / other.array, label)
+        if isinstance(other, self.__class__ | BaseLabelledArray):
+            label = self.label
+            label._units /= other.label.units
+            return self.__class__(self.array / other.array, label)
+        raise NotImplementedError
 
     def get_sum_of_squares(self) -> float:
         """Get the sum of squares of the data."""

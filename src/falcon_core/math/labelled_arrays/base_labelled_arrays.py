@@ -3,7 +3,7 @@
 from typing import TYPE_CHECKING
 
 from .base_labelled_array import BaseLabelledArray
-from .dependancies import Generic, Jsonable, TypeVar
+from .dependancies import Jsonable, TypeVar
 
 if TYPE_CHECKING:
     from .dependancies import AcquisitionContext
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound=BaseLabelledArray)
 
 
-class BaseLabelledArrays(Jsonable, Generic[T]):
+class BaseLabelledArrays[T](Jsonable):
     """A collection of labelled arrays that are kept together."""
 
     _arrays: list[T]
@@ -28,9 +28,14 @@ class BaseLabelledArrays(Jsonable, Generic[T]):
         return self._arrays
 
     @property
+    def base_arrays(self) -> list[BaseLabelledArray]:
+        """Return the base arrays."""
+        return [array.base_array for array in self.arrays]  # type: ignore[return-value]
+
+    @property
     def labels(self) -> list["AcquisitionContext"]:
         """Return the labels of the arrays."""
-        return [array.label for array in self.arrays]
+        return [array.label for array in self.base_arrays]
 
     def check_array_labels(self) -> None:
         """Make sure that all the arrays have unique labels.
@@ -38,7 +43,7 @@ class BaseLabelledArrays(Jsonable, Generic[T]):
         Raises:
             ValueError: If any of the arrays have the same label.
         """
-        labels = [array.label for array in self.arrays]
+        labels = [array.label for array in self.base_arrays]
         if len(labels) != len(set(labels)):
             msg = "All arrays must have unique labels."
             raise ValueError(msg)
@@ -56,6 +61,7 @@ class BaseLabelledArrays(Jsonable, Generic[T]):
             KeyError: If the port is not found in the LabelledArrays object.
         """
         for array in self.arrays:
+            assert isinstance(array, BaseLabelledArray)
             if array.label == key:
                 return array
         msg = f"Context {key} not found in the LabelledArrays object."

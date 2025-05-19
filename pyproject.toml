@@ -9,28 +9,28 @@ build-backend = 'setuptools.build_meta'
 [project]
 name = "falcon_core"
 maintainers = [
-  { name = "FAlCon Core Developers", email = "falcon-support@falcon.com" },
+  { name = "falcon core developers", email = "falcon-support@falcon.com" },
 ]
-description = "Core utilities for all falcon applications used for autotuning of quantum devices"
+description = "core utilities for all falcon applications used for autotuning of quantum devices"
 classifiers = [
-  "Development Status :: 3 - Alpha",
-  "Intended Audience :: Science/Research",
-  "License :: OSI Approved :: MIT License",
-  "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.11",
-  "Topic :: Scientific/Engineering",
+  "development status :: 3 - alpha",
+  "intended audience :: science/research",
+  "license :: osi approved :: mit license",
+  "programming language :: python :: 3 :: only",
+  "programming language :: python :: 3.13",
+  "topic :: scientific/engineering",
 ]
 version = "0.0.0"
-license = { text = "MIT" }
-requires-python = ">=3.11"
+license = { text = "mit" }
+requires-python = ">=3.13"
 dependencies = [
-  "numpy==1.25.2",
-  "scipy==1.11.2",
+  "numpy>=2.0.0",
+  "scipy>=1.11.2",
   "pytest==8.2.1",
-  "valkey==6.1.0",
   "setuptools-scm==8.1.0",
   "pytest-xdist==3.6.1",
   "dill==0.3.9",
+  "pyyaml>=6.0.2",
 ]
 
 [project.entry-points."core_messaging.plugins"]
@@ -62,24 +62,24 @@ port_transforms = "falcon_core.instrument_interfaces.port_transforms.port_transf
 base_cartesian_waveform = "falcon_core.instrument_interfaces.waveforms.base_cartesian_waveform"
 base_waveform = "falcon_core.instrument_interfaces.waveforms.base_waveform"
 cartesian_waveform = "falcon_core.instrument_interfaces.waveforms.cartesian_waveform"
-cartesian_waveform_2D = "falcon_core.instrument_interfaces.waveforms.cartesian_waveform_2D"
-cartesian_waveform_1D = "falcon_core.instrument_interfaces.waveforms.cartesian_waveform_1D"
+cartesian_waveform_2d = "falcon_core.instrument_interfaces.waveforms.cartesian_waveform_2d"
+cartesian_waveform_1d = "falcon_core.instrument_interfaces.waveforms.cartesian_waveform_1d"
 waveform = "falcon_core.instrument_interfaces.waveforms.waveform"
 instrument = "falcon_core.instrument_interfaces.instrument"
 analytic_function = "falco_core.math.analytic_functions.analytic_function"
 identity = "falcon_core.math.analytic_functions.identity"
 validated_analytic_function = "falcon_core.math.analytic_functions.validated_analytic_function"
 control_array = "falcon_core.math.arrays.control_array"
-control_array_1D = "falcon_core.math.arrays.control_array_1D"
+control_array_1d = "falcon_core.math.arrays.control_array_1d"
 increasing_alignment = "falcon_core.math.arrays.increasing_alignment"
 measured_array = "falcon_core.math.arrays.measured_array"
-measured_array_1D = "falcon_core.math.arrays.measured_array_1D"
+measured_array_1d = "falcon_core.math.arrays.measured_array_1d"
 numpy_array_wrapper = "falcon_core.math.arrays.numpy_array_wrapper"
 base_cartesian_discrete_space = "falcon_core.math.discrete_spaces.base_cartesian_discrete_space"
 base_discrete_space = "falcon_core.math.discrete_spaces.base_discrete_space"
 cartesian_discrete_space = "falcon_core.math.discrete_spaces.cartesian_discrete_space"
-cartesian_discrete_space_2D = "falcon_core.math.discrete_spaces.cartesian_discrete_space_2D"
-cartesian_discrete_space_1D = "falcon_core.math.discrete_spaces.cartesian_discrete_space_1D"
+cartesian_discrete_space_2d = "falcon_core.math.discrete_spaces.cartesian_discrete_space_2d"
+cartesian_discrete_space_1d = "falcon_core.math.discrete_spaces.cartesian_discrete_space_1d"
 discrete_space = "falcon_core.math.discrete_spaces.discrete_space"
 base_discretizer = "falcon_core.math.discretizers.base_discretizer"
 cartesian_discretizer = "falcon_core.math.discretizers.cartesian_discretizer"
@@ -94,13 +94,13 @@ labelled_domain = "falcon_core.math.domains.labelled_domain"
 base_labelled_array = "falcon_core.math.labelled_arrays.base_labelled_array"
 base_labelled_arrays = "falcon_core.math.labelled_arrays.base_labelled_arrays"
 labelled_control_array = "falcon_core.math.labelled_arrays.labelled_control_array"
-labelled_control_array_1D = "falcon_core.math.labelled_arrays.labelled_control_array_1D"
+labelled_control_array_1d = "falcon_core.math.labelled_arrays.labelled_control_array_1d"
 labelled_control_arrays = "falcon_core.math.labelled_arrays.labelled_control_arrays"
 labelled_measured_array = "falcon_core.math.labelled_arrays.labelled_measured_array"
-labelled_measured_array_1D = "falcon_core.math.labelled_arrays.labelled_measured_array_1D"
+labelled_measured_array_1d = "falcon_core.math.labelled_arrays.labelled_measured_array_1d"
 labelled_measured_arrays = "falcon_core.math.labelled_arrays.labelled_measured_arrays"
-cartesian_1D_space = "falcon_core.math.spaces.cartesian_1D_space"
-cartesian_2D_space = "falcon_core.math.spaces.cartesian_2D_space"
+cartesian_1d_space = "falcon_core.math.spaces.cartesian_1d_space"
+cartesian_2d_space = "falcon_core.math.spaces.cartesian_2d_space"
 cartesian_space = "falcon_core.math.spaces.cartesian_space"
 ray_space = "falcon_core.math.spaces.ray_space"
 unit_space = "falcon_core.math.spaces.unit_space"
@@ -110,7 +110,7 @@ config = "falcon_core.physics.config.core.config"
 group = "falcon_core.physics.config.core.group"
 standard_config_connections = "falcon_core.physics.config.core.standard_config_connections"
 barrier_gate_with_neighbors = "falcon_core.physics.config.geometries.barrier_gate_with_neighbors"
-gate_geometry_array_1D = "falcon_core.physics.config.geometries.gate_geometry_array_1D"
+gate_geometry_array_1d = "falcon_core.physics.config.geometries.gate_geometry_array_1d"
 has_implanted_ohmic = "falcon_core.physics.config.geometries.has_implanted_ohmic"
 has_left_neighbor = "falcon_core.physics.config.geometries.has_left_neighbor"
 has_right_neighbor = "falcon_core.physics.config.geometries.has_right_neighbor"
@@ -132,47 +132,47 @@ unit = "falcon_core.physics.units.unit"
 
 
 [project.readme]
-file = "README.rst"
+file = "readme.rst"
 content-type = "text/x-rst"
 
 # [project.urls]
-# Homepage = "https://github.com/microsoft/Qcodes"
-# Documentation = "https://microsoft.github.io/Qcodes/"
-# Source = "https://github.com/microsoft/qcodes"
-# Tracker = "https://github.com/microsoft/Qcodes/issues"
-# Changelog = "https://microsoft.github.io/Qcodes/changes/index.html"
+# homepage = "https://github.com/microsoft/qcodes"
+# documentation = "https://microsoft.github.io/qcodes/"
+# source = "https://github.com/microsoft/qcodes"
+# tracker = "https://github.com/microsoft/qcodes/issues"
+# changelog = "https://microsoft.github.io/qcodes/changes/index.html"
 
 [tool.setuptools_scm]
 version_scheme = "post-release"
 [tool.coverage.run]
 omit = ["src/falcon/__init__.py", "*/__init__.py"]
 [tool.coverage.report]
-exclude_lines = ["pragma: no cover", "if TYPE_CHECKING:"]
+exclude_lines = ["pragma: no cover", "if type_checking:"]
 
 # we ignore warnings
 # triggered by third party packages
 # and error on all other warnings
 filterwarnings = [
   'error',
-  'ignore:Deprecated call to `pkg_resources\.declare_namespace:DeprecationWarning',                                               # google, sphinxcontrib
-  'ignore:pkg_resources is deprecated as an API:DeprecationWarning',                                                              # pyvisa-sim
-  'ignore:open_binary is deprecated:DeprecationWarning',                                                                          # pyvisa-sim
-  'ignore:datetime.datetime.utcfromtimestamp\(\) is deprecated and scheduled for removal in a future version:DeprecationWarning', # tqdm dateutil
-  'ignore:Jupyter is migrating its paths to use standard platformdirs:DeprecationWarning',                                        # jupyter
-  'ignore:Parsing dates involving a day of month without a year specified is ambiguious:DeprecationWarning',                      # ipykernel 3.13+
-  'ignore:unclosed database in:ResourceWarning',                                                                                  # internal should be fixed
+  'ignore:deprecated call to `pkg_resources\.declare_namespace:deprecationwarning',                                               # google, sphinxcontrib
+  'ignore:pkg_resources is deprecated as an api:deprecationwarning',                                                              # pyvisa-sim
+  'ignore:open_binary is deprecated:deprecationwarning',                                                                          # pyvisa-sim
+  'ignore:datetime.datetime.utcfromtimestamp\(\) is deprecated and scheduled for removal in a future version:deprecationwarning', # tqdm dateutil
+  'ignore:jupyter is migrating its paths to use standard platformdirs:deprecationwarning',                                        # jupyter
+  'ignore:parsing dates involving a day of month without a year specified is ambiguious:deprecationwarning',                      # ipykernel 3.13+
+  'ignore:unclosed database in:resourcewarning',                                                                                  # internal should be fixed
 ]
 
 # known-first-party = ["falcon"]
 
-# TID253 these imports are fine at module level
+# tid253 these imports are fine at module level
 # in tests and examples
-"docs/*" = ["TID253"]
-"tests/*" = ["TID253"]
+"docs/*" = ["tid253"]
+"tests/*" = ["tid253"]
 
 
 [tool.setuptools.packages.find]
-# All the following settings are optional:
+# all the following settings are optional:
 where = ["src"]       # ["."] by default
 include = ["falcon*"] # ["*"] by default
 exclude = []          # empty by default
@@ -181,44 +181,26 @@ namespaces = false    # true by default
 [tool.pytest.ini_options]
 # addopts="-n 5 --dist worksteal"
 
-[tool.mypy]
-strict_optional = true
-incremental = true
-cache_dir = ".mypy_cache"
-show_column_numbers = true
-plugins = "numpy.typing.mypy_plugin"
-show_error_codes = true
-enable_error_code = "ignore-without-code"
-# strict confic. Eventually we would like to
-# turn all of these on. These are all setings
-# turned on by strict as of mypy 0.971
-warn_unused_configs = true
-# waiting for variadic generics so we
-# can type numpy array constructors
-disallow_any_generics = false
-# we subclass non typed classes (from ipython / wrapt)
-disallow_subclassing_any = false
-# we are calling into untyped code from 3th parties
-disallow_untyped_calls = false
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
-# triggers warnings in untyped code
-check_untyped_defs = false
-disallow_untyped_decorators = true
-no_implicit_optional = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-# this triggers failures due to returning
-# values from untyped 3th party libs
-warn_return_any = false
-no_implicit_reexport = true
-strict_equality = true
-
-[[tool.mypy.overrides]]
-module = ["tests.*"]
-disallow_untyped_defs = false
-disallow_incomplete_defs = false
 
 [tool.ruff]
 line-length = 88
 
+# Pyrefly header
+[tool.pyrefly]
+
+#### configuring what to type check and where to import from
+project_includes = ["**/*.py"]
+project_excludes = ["**/.[!/.]*", "**/tests"]
+search_path = ["."]
+
+#### configuring your python environment
+python_platform = "linux"
+python_version = "3.13"
+
+ignore_errors_in_generated_code = true
+use_untyped_imports = true
+ignore_missing_source = true
+
+[tool.pyrefly.errors]
+bad-assignment = false
+invalid-argument = false

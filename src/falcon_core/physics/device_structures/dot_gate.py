@@ -5,7 +5,7 @@ from .dependancies import Jsonable
 from .gate import Gate
 
 
-class DotGate(Gate):
+class DotGate(Gate, Jsonable):
     """The group of plunger and barrier gates."""
 
 
@@ -18,4 +18,4 @@ class DotGates(BaseConnections[DotGate], Jsonable):
         Args:
             gates: A list of Gate objects.
         """
-        super().__init__(gates)
+        super().__init__(gates)  # type: ignore[call-arg]

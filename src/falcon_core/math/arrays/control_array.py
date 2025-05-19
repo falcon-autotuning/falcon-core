@@ -1,13 +1,13 @@
 """An array of ND data."""
 
 from .base_array import BaseArray
-from .dependancies import Generic, Jsonable, TypeVar, arrayND, np
+from .dependancies import Jsonable, TypeVar, arrayND, np
 from .increasing_alignment import IncreasingAlignment
 
 T = TypeVar("T", bound=arrayND)
 
 
-class ControlArray(BaseArray, Jsonable, Generic[T]):
+class ControlArray[T: arrayND](BaseArray, Jsonable):
     """A domain array that an array is built upon."""
 
     _alignment: IncreasingAlignment

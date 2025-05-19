@@ -17,4 +17,4 @@ class Gates(BaseConnections[Gate], Jsonable):
         Args:
             gates: A list of Gate objects.
         """
-        super().__init__(gates)
+        super().__init__(connections=gates)  # type: ignore[call-arg]

@@ -2,7 +2,7 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Generic, Jsonable, TypeVar, arrayND, cast, np, overload
+from .dependancies import Jsonable, TypeVar, arrayND, cast, np, overload
 from .numpy_array_wrapper import NumpyArrayWrapper
 
 if TYPE_CHECKING:
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound=arrayND)
 
 
-class BaseArray(NumpyArrayWrapper[T], Generic[T]):
+class BaseArray[T: arrayND](NumpyArrayWrapper[T]):
     """A base array of ND data."""
 
     def __init__(

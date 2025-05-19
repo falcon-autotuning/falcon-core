@@ -1,11 +1,12 @@
 """Dependancies for the Falcon Core Device Interfaces module."""
 
-from ...dependancies import overload
+from typing import Protocol, TypeVar, cast, overload
+
 from ...generic import Jsonable
-from ...typing import Generic, TypeVar
 
 __all__ = [
-    "Generic",
+    "Protocol",
+    "cast",
     "TypeVar",
     "Jsonable",
     "overload",

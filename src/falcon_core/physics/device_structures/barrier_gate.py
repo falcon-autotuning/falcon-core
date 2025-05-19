@@ -18,4 +18,4 @@ class BarrierGates(BaseConnections[BarrierGate], Jsonable):
         Args:
             gates: A list of Gate objects.
         """
-        super().__init__(gates)
+        super().__init__(gates)  # type: ignore[call-arg]

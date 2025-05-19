@@ -2,7 +2,6 @@
 
 from .dependancies import (
     Connection,
-    Generic,
     Instrument,
     InstrumentPort,
     Jsonable,
@@ -13,7 +12,10 @@ from .domain import Domain
 T = TypeVar("T", bound=Jsonable)
 
 
-class BaseLabelledDomain(Domain, Jsonable, Generic[T]):
+class BaseLabelledDomain[T](
+    Domain,
+    Jsonable,
+):
     """A domain with a label for pretty much anything."""
 
     _label: "T"

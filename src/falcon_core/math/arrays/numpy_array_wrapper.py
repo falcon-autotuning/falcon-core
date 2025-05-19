@@ -2,7 +2,7 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Generic, Jsonable, TypeVar, arrayND, cast, np, overload
+from .dependancies import Jsonable, TypeVar, arrayND, cast, np, overload
 
 if TYPE_CHECKING:
     from .dependancies import Self
@@ -11,14 +11,14 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound=arrayND)
 
 
-class NumpyArrayWrapper(Jsonable, Generic[T]):
+class NumpyArrayWrapper[T: arrayND](Jsonable):
     """A wrapper of basic numpy functionality."""
 
-    _data: "T"
+    _data: T
 
     def __init__(
         self,
-        data: "T",
+        data: T,
     ):
         """Initialize the Array object."""
         self._data = data

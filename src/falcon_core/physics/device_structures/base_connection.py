@@ -2,20 +2,28 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Generic, Jsonable, TypeVar, overload
+from .dependancies import Jsonable, Protocol, TypeVar, overload
 
 if TYPE_CHECKING:
     from .typing import Any
 
-T = TypeVar("T", bound="BaseConnection")
+
+class BaseConnectionProtocol(Protocol):
+    """A Protocol for a BaseConnection."""
+
+    @property
+    def name(self) -> str: ...
 
 
-class BaseConnections(Jsonable, Generic[T]):
+T = TypeVar("T", bound="BaseConnectionProtocol")
+
+
+class BaseConnections[T: BaseConnectionProtocol](Jsonable):
     """Contains multiple different connections for a single sample."""
 
     _values: list[T]
 
-    def __init__(self, connections: list[T]):
+    def __init__(self, connections: list[T]) -> None:
         """Initialize the BaseConnections object.
 
         Args:
@@ -68,7 +76,7 @@ class BaseConnections(Jsonable, Generic[T]):
         return self._values.index(value)
 
 
-class BaseConnection(Jsonable):
+class BaseConnection(BaseConnectionProtocol, Jsonable):
     """Contains the name corresponding to a particular BaseConnection on the sample."""
 
     _name: str
@@ -119,13 +127,6 @@ class BaseConnection(Jsonable):
             return other
         msg = f"Addition only works between Gate and Ohmic objects through concatenation. You supplied a {type(other)}"
         raise TypeError(msg)
-
-    def __radd__(
-        self,
-        other: "str | BaseConnections | BaseConnection",
-    ) -> str | BaseConnections:
-        """Addition support."""
-        return self.__add__(other)
 
     def __str__(self) -> str:
         return self.name

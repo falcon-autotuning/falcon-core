@@ -26,8 +26,7 @@ from typing import overload
 
 import dill  # type: ignore  # noqa: PGH003
 import numpy as np
-import valkey  # type: ignore  # noqa: PGH003
-import yaml
+import yaml  # type: ignore  # noqa: PGH003
 from scipy.ndimage import (  # type: ignore  # noqa: PGH003
     uniform_filter1d as untyped_uniform_filter1d,
 )
@@ -41,7 +40,6 @@ __all__ = [
     "wraps",
     "abstractmethod",
     "time",
-    "valkey",
     "chain",
     "dill",
     "contextlib",

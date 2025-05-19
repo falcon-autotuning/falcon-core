@@ -9,18 +9,15 @@ if TYPE_CHECKING:
     from .dependancies import AcquisitionContext
     from .typing import Self
 
-ArrayT = TypeVar("ArrayT", bound=arrayND)  # Type for the array data
 
-
-class LabelledMeasuredArray(
-    BaseLabelledArray[MeasuredArray[ArrayT]],
-    Generic[ArrayT],
+class LabelledMeasuredArray[T: arrayND](
+    BaseLabelledArray[MeasuredArray[T]],
 ):
     """An array with a port label."""
 
     def __init__(
         self,
-        array: MeasuredArray[ArrayT],
+        array: MeasuredArray[T],
         label: "AcquisitionContext",
     ):
         """Initialize the LabelledArray object."""
@@ -29,7 +26,7 @@ class LabelledMeasuredArray(
     @classmethod
     def from_array(
         cls,
-        array: ArrayT,
+        array: T,
         label: "AcquisitionContext",
     ) -> "Self":
         """Create a LabelledArray from an array.

@@ -3,7 +3,7 @@
 from typing import TYPE_CHECKING
 
 from .base_labelled_array import BaseLabelledArray
-from .dependancies import ControlArray, Generic, TypeVar, arrayND
+from .dependancies import ControlArray, TypeVar, arrayND
 
 if TYPE_CHECKING:
     from .dependancies import AcquisitionContext
@@ -12,9 +12,8 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound=arrayND)
 
 
-class LabelledControlArray(
+class LabelledControlArray[T: arrayND](
     BaseLabelledArray[ControlArray[T]],
-    Generic[T],
 ):
     """An array with a port label."""
 

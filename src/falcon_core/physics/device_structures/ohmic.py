@@ -15,4 +15,4 @@ class Ohmics(BaseConnections[Ohmic], Jsonable):
         Args:
             ohmics: A list of Ohmic objects.
         """
-        super().__init__(ohmics)
+        super().__init__(ohmics)  # type: ignore[call-arg]
