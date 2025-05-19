@@ -13,7 +13,7 @@ class ControlArray[T: arrayND](BaseArray, Jsonable):
     _alignment: IncreasingAlignment
     _principle_dimension: int | None
 
-    def __init__(self, data: "T"):
+    def __init__(self, data: T):
         BaseArray.__init__(self, data=data)
         self._alignment = self._determine_alignments()
         self._principle_dimension = None

@@ -1,5 +1,7 @@
 """Tests for labelled array classes."""
 
+from typing import cast
+
 import pytest
 
 from falcon_core.autotuner_interfaces.contexts import AcquisitionContext
@@ -31,7 +33,8 @@ class TestLabelledControlArray:
         Returns:
             array1D: A 1D array of data.
         """
-        return np.linspace(-1.0, 1.0, 10)
+        data = np.linspace(-1.0, 1.0, 10)
+        return cast("array1D", data)
 
     @pytest.fixture
     def control_array(self, raw_data: array1D) -> ControlArray[array1D]:
@@ -188,6 +191,7 @@ class TestLabelledControlArrays:
         for i, context in enumerate(acquisition_contexts):
             # Create arrays with different shapes to test handling of heterogeneous arrays
             data = np.linspace(-1.0, 1.0, 10 + i)
+            data = cast("array1D", data)
             control_array = ControlArray[array1D](data=data)
             labelled_array = LabelledControlArray[array1D](
                 array=control_array, label=context
@@ -474,6 +478,7 @@ class TestMixedArrayOperations:
             ControlArray: A ControlArray
         """
         data = np.linspace(-1, 1, 10)
+        data = cast("array1D", data)
         return ControlArray(data=data)
 
     @pytest.fixture

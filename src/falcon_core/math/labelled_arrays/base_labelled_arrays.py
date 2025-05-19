@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound=BaseLabelledArray)
 
 
-class BaseLabelledArrays[T](Jsonable):
+class BaseLabelledArrays[T: BaseLabelledArray](Jsonable):
     """A collection of labelled arrays that are kept together."""
 
     _arrays: list[T]
@@ -28,14 +28,9 @@ class BaseLabelledArrays[T](Jsonable):
         return self._arrays
 
     @property
-    def base_arrays(self) -> list[BaseLabelledArray]:
-        """Return the base arrays."""
-        return [array.base_array for array in self.arrays]  # type: ignore[return-value]
-
-    @property
     def labels(self) -> list["AcquisitionContext"]:
         """Return the labels of the arrays."""
-        return [array.label for array in self.base_arrays]
+        return [array.label for array in self.arrays]
 
     def check_array_labels(self) -> None:
         """Make sure that all the arrays have unique labels.
@@ -43,7 +38,7 @@ class BaseLabelledArrays[T](Jsonable):
         Raises:
             ValueError: If any of the arrays have the same label.
         """
-        labels = [array.label for array in self.base_arrays]
+        labels = [array.label for array in self.arrays]
         if len(labels) != len(set(labels)):
             msg = "All arrays must have unique labels."
             raise ValueError(msg)
