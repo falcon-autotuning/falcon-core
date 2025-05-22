@@ -7,7 +7,6 @@ from typing import TYPE_CHECKING
 
 from .dependancies import (
     BaseDiscreteSpace,
-    Generic,
     Jsonable,
     PortTransforms,
     TypeVar,
@@ -16,10 +15,8 @@ from .dependancies import (
 if TYPE_CHECKING:
     from .typing import PortTransform
 
-T = TypeVar("T", bound=BaseDiscreteSpace)
 
-
-class BaseWaveform(PortTransforms, Jsonable, Generic[T]):
+class BaseWaveform[T: BaseDiscreteSpace](PortTransforms, Jsonable):
     """A distinct measurement.
 
     consists of a measurement domain and \
