@@ -9,7 +9,6 @@ from .dependancies import (
     BaseDiscreteSpace,
     Jsonable,
     PortTransforms,
-    TypeVar,
 )
 
 if TYPE_CHECKING:

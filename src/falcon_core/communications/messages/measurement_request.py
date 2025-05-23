@@ -14,7 +14,7 @@ class MeasurementRequest(BaseMessage, Jsonable):
     """A request for a measurement that Falcon can perform."""
 
     _waveforms: "Sequence[BaseWaveform]"
-    _meter_tranforms: list["PortTransform"]
+    _meter_transforms: list["PortTransform"]
     _time_domain: "KnobDomain "
     _measurement_name: str
 
@@ -23,7 +23,7 @@ class MeasurementRequest(BaseMessage, Jsonable):
         message: str,
         measurement_name: str,
         waveforms: "Sequence[BaseWaveform]",
-        meter_tranforms: list["PortTransform"],
+        meter_transforms: list["PortTransform"],
         time_domain: "KnobDomain" = KnobDomain(
             default_name="time",
             bounds=(0, 1),
@@ -38,12 +38,12 @@ class MeasurementRequest(BaseMessage, Jsonable):
             message: The message to be sent.
             measurement_name: The name of the measurement.
             waveforms: The waveforms to be used in the measurement.
-            meter_tranforms: The meter transforms to be used in the measurement.
+            meter_transforms: The meter transforms to be used in the measurement.
             time_domain: The time domain for the measurement.
         """
         super().__init__(message)
         self._waveforms = waveforms
-        self._meter_tranforms = meter_tranforms
+        self._meter_transforms = meter_transforms
 
         # we need to ensure that the unit of the units of the time domain are in seconds
         time_units = time_domain.label.units.unit.dimensions
@@ -67,9 +67,9 @@ class MeasurementRequest(BaseMessage, Jsonable):
         return [waveform for waveform in self._waveforms]
 
     @property
-    def meter_tranforms(self) -> list["PortTransform"]:
+    def meter_transforms(self) -> list["PortTransform"]:
         """Return the meter transforms."""
-        return self._meter_tranforms
+        return self._meter_transforms
 
     @property
     def time_domain(self) -> "KnobDomain":

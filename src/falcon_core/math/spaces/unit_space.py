@@ -131,6 +131,9 @@ class UnitSpace(Jsonable):
         return Axes(
             [
                 ControlArray(data=array)
-                for array in np.meshgrid(*[self._ranges[i]._data for i in axes])
+                for array in np.meshgrid(
+                    *[self._ranges[i]._data for i in axes],
+                    indexing="ij",
+                )
             ]
         )
