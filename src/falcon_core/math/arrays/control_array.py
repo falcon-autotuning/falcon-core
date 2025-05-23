@@ -7,7 +7,7 @@ from .increasing_alignment import IncreasingAlignment
 T = TypeVar("T", bound=arrayND)
 
 
-class ControlArray[T: arrayND](BaseArray, Jsonable):
+class ControlArray[T: arrayND](BaseArray[T], Jsonable):
     """A domain array that an array is built upon."""
 
     _alignment: IncreasingAlignment
