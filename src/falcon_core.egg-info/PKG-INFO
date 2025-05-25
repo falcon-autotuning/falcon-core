@@ -19,3 +19,4 @@ Requires-Dist: setuptools-scm==8.1.0
 Requires-Dist: pytest-xdist==3.6.1
 Requires-Dist: dill==0.3.9
 Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: h5py==3.13.0

@@ -5,3 +5,4 @@ setuptools-scm==8.1.0
 pytest-xdist==3.6.1
 dill==0.3.9
 pyyaml>=6.0.2
+h5py==3.13.0

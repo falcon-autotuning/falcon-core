@@ -220,3 +220,20 @@ class Is1D:
             int: The index of the closest element to the given value.
         """
         return int(np.abs(self.as_1D() - value).argmin())
+
+    def even_divisions(self, divisions: int) -> tuple[array1D, ...]:
+        """Splits the array into even division if possible.
+
+        Args:
+            divisions: The number of divisions to split the array into.
+
+        Returns:
+            the many divisions of the array as a tuple of arrays.
+        """
+        partition_length = len(self) / divisions
+        assert isinstance(partition_length, int), "Array cannot be evenly divided"
+        arr = self.as_1D()
+        return tuple(
+            cast(array1D, arr[i * partition_length : (i + 1) * partition_length])
+            for i in range(divisions)
+        )
