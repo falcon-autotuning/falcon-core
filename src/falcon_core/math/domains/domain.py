@@ -178,3 +178,33 @@ class Domain(Jsonable):
             lesser_bound_contained=self.lesser_bound_contained,
             greater_bound_contained=self.greater_bound_contained,
         )
+
+    def calculate_transform(
+        self,
+        other: "Domain",
+    ) -> tuple[float, float]:
+        """Calculate the transform from this domain to another domain.
+
+        Args:
+            other: The other domain to transform to.
+
+        Returns:
+            the first value is the scale factor and the second value is the offset.
+        """
+        scale = self.range / other.range
+        offset = other.lesser_bound - self.lesser_bound * scale
+        return scale, offset
+
+    def transform(self, value: float, other: "Domain") -> float:
+        """Transform a value from this domain to another domain.
+
+        Args:
+            value: The value to transform.
+            other: The other domain to transform to.
+
+        Returns:
+            The transformed value in the other domain.
+        """
+        assert value in self, "Value must be in the current domain."
+        scale, offset = self.calculate_transform(other=other)
+        return value * scale + offset
