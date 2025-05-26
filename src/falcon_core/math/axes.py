@@ -8,28 +8,28 @@ if TYPE_CHECKING:
     from .typing import Any
 
 
-T = TypeVar("T", covariant=True)
+T_co = TypeVar("T_co", covariant=True)
 
 
-class Axes(Jsonable, Generic[T]):
+class Axes(Jsonable, Generic[T_co]):
     """An adressable set of hypercube axes.
 
     The order matters, as it is used to index the hypercube.
     """
 
-    _axes: list[T]
+    _axes: list[T_co]
 
-    def __init__(self, axes: list[T]):
+    def __init__(self, axes: list[T_co]):
         """Initialize the Axes object."""
         super().__init__()
         self._axes = axes
 
     @property
-    def axes(self) -> list[T]:
+    def axes(self) -> list[T_co]:
         """Return the axes."""
         return self._axes
 
-    def __getitem__(self, index: int) -> T:
+    def __getitem__(self, index: int) -> T_co:
         """Return the axis at the given index."""
         return self._axes[index]
 
