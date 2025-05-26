@@ -166,12 +166,12 @@ class HDF5Data(Jsonable):
         Returns:
             the HDF5Data object.
         """
-        [wave._space.space.compile() for wave in request.waveforms]
+        [wave._space._space.compile() for wave in request.waveforms]
         valid_waveform = next(
             (
                 waveform
                 for waveform in request.waveforms
-                if waveform._space.space.space.shape[1]
+                if waveform._space._space.space.shape[1]
                 == waveform._space._axes.dimension
             ),
             None,
@@ -232,7 +232,7 @@ class HDF5Data(Jsonable):
                 for i, dim in enumerate(self._domains)
             ]
             for i, domain in enumerate(self._domains.values()):
-                for j, (label, metadata) in enumerate(domain["labels"].items()):
+                for j, (label, metadata) in enumerate(domain["labels"].items()):  # type: ignore[assignment]
                     label_group = sub_domains[i].create_group(f"label{j}")
                     label_group.create_dataset(
                         "label",
@@ -322,7 +322,7 @@ class HDF5Data(Jsonable):
             metadata = _extract_group_dict(f["metadata"])
             assert isinstance(metadata, dict), "Invalid metadata."
             domains = {}
-            for i, sub_domain in enumerate(f["domains"].values()):
+            for i, sub_domain in enumerate(f["domains"].values()):  # type: ignore[assignment]
                 data = ""
                 label = ""
                 unit = ""
@@ -347,7 +347,7 @@ class HDF5Data(Jsonable):
 
             assert isinstance(domains, dict), "Invalid domains."
             ranges = {}
-            for values in f["ranges"].values():
+            for values in f["ranges"].values():  # type: ignore[assignment]
                 data = values[()]
                 if isinstance(data, bytes):
                     data = data.decode()

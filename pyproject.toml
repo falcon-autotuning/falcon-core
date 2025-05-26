@@ -205,3 +205,9 @@ ignore_missing_source = true
 [tool.pyrefly.errors]
 bad-assignment = false
 invalid-argument = false
+
+[tool.basedpyright]
+include = ["src"]
+exclude = ["**/__pycache__"]
+pythonVersion = "3.13"
+typeCheckingMode = "standard"

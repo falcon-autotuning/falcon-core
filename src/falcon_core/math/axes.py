@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, TypeVar
 from .dependancies import Generic, Jsonable
 
 if TYPE_CHECKING:
-    from .typing import Any
+    from .typing import Any, Iterable
 
 
 T_co = TypeVar("T_co", covariant=True)
@@ -19,10 +19,10 @@ class Axes(Jsonable, Generic[T_co]):
 
     _axes: list[T_co]
 
-    def __init__(self, axes: list[T_co]):
+    def __init__(self, axes: "Iterable[T_co]"):
         """Initialize the Axes object."""
         super().__init__()
-        self._axes = axes
+        self._axes = [thing for thing in axes]
 
     @property
     def axes(self) -> list[T_co]:
