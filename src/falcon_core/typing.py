@@ -27,17 +27,17 @@ import numpy.typing as npt
 
 from .dependancies import np
 
-arrayND: TypeAlias = npt.NDArray[np.float64]  # ND array of float64
-array1D: TypeAlias = arrayND  # 1D array of float64
-array2D: TypeAlias = arrayND  # 2D array of float64
-array3D: TypeAlias = arrayND  # 3D array of float64
-arrays: TypeAlias = arrayND | array1D | array2D | array3D  # Any array type
+type arrayND = npt.NDArray[np.float64]  # ND array of float64
+type array1D = arrayND  # 1D array of float64
+type array2D = arrayND  # 2D array of float64
+type array3D = arrayND  # 3D array of float64
+type arrays = arrayND | array1D | array2D | array3D  # Any array type
 
-JSONprimitivesWithoutNone: TypeAlias = str | int | float | bool
-JSONprimitives: TypeAlias = JSONprimitivesWithoutNone | None
-JsonableAttributeName: "TypeAlias" = str
-
-analytic_function: TypeAlias = Callable[..., float]
+type JSONprimitivesWithoutNone = str | int | float | bool
+type JSONprimitives = JSONprimitivesWithoutNone | None
+type JsonableAttributeName = str
+type Instrument = str
+type analytic_function = Callable[..., float]
 
 __all__ = [
     "Any",

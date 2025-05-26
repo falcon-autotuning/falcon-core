@@ -3,12 +3,10 @@
 from typing import TYPE_CHECKING
 
 from .constants import INSTRUMENT_TYPES
-from .dependancies import Connection, Generic, Instrument, Jsonable, TypeVar, Units
+from .dependancies import Connection, Generic, Jsonable, TypeVar, Units
 
 if TYPE_CHECKING:
-    from .dependancies import Instrument
-    from .typing import SymbolUnit
-
+    from .typing import Instrument, SymbolUnit
 T = TypeVar("T", bound=Connection)
 
 
@@ -96,5 +94,5 @@ class InstrumentPort(Jsonable, Generic[T]):
         return (
             self._pseudo_name.name
             if self._pseudo_name is not None
-            else self.instrument_type.value
+            else self.instrument_type
         )

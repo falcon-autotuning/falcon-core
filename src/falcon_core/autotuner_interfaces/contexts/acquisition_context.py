@@ -3,10 +3,9 @@
 from typing import TYPE_CHECKING
 
 from .dependancies import BaseContext, Jsonable, SymbolUnit, Units
-from .typing import Instrument
 
 if TYPE_CHECKING:
-    from .typing import Connection, InstrumentPort, Self
+    from .typing import Connection, Instrument, InstrumentPort, Self
 
 
 class AcquisitionContext(BaseContext, Jsonable):
@@ -121,9 +120,9 @@ class AcquisitionContext(BaseContext, Jsonable):
 
     def match_raw_arg(self, other: "Connection | Instrument") -> bool:
         """Returns if the raw argument is inside this context."""
-        if not isinstance(other, Instrument):
+        if not isinstance(other, str):
             return self.match_connection(other)
-        assert isinstance(other, Instrument)
+        assert isinstance(other, str)
         return self.match_instrument_type(other)
 
     def __hash__(self):

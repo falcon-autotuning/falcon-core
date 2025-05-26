@@ -8,8 +8,7 @@ from .instrument_port import InstrumentPort
 from .typing import Ohmic
 
 if TYPE_CHECKING:
-    from .dependancies import Instrument
-    from .typing import SymbolUnit
+    from .typing import Instrument, SymbolUnit
 
 
 class Meter(InstrumentPort[Ohmic], Jsonable):

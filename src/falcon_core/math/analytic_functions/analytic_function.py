@@ -19,7 +19,8 @@ class AnalyticFunction(Jsonable):
     This object can wrap a function of the form
     def func(cls, t: Number=0.0, x : Number=0.0,..., **parameters: Number) -> Number
     where the user can specify specific arguments if they so choose.
-    Every argument muct be a keyword argument, so you must supply a default value."""
+    Every argument muct be a keyword argument, so you must supply a default value.
+    """
 
     _mapping: InstrumentFacingVariableMap
 

@@ -33,7 +33,7 @@ class UnitSpace(Jsonable):
     _domain: Domain
     _ranges: "Axes[ControlArray1D]"
     _space: "BaseArray"
-    _shape: tuple[int, ...]
+    _shape: list[int]
 
     def __init__(
         self,
@@ -64,7 +64,7 @@ class UnitSpace(Jsonable):
     @property
     def shape(self) -> tuple[int, ...]:
         """Return the shape of the unit space."""
-        return self._shape
+        return tuple(self._shape)
 
     def __getitem__(self, index: int) -> "BaseDiscretizer":
         """Return the axis at the given index."""
@@ -113,7 +113,7 @@ class UnitSpace(Jsonable):
 
     def compute_shape(self):
         """Compute the shape of the unit space."""
-        self._shape = tuple([len(array) for array in self._ranges])
+        self._shape = [len(array) for array in self._ranges]
 
     def compile(self):
         """Compile the unit space into a space."""

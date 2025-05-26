@@ -2,14 +2,14 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Instrument, Jsonable, contextlib
+from .dependancies import Jsonable, contextlib
 from .instrument_port import InstrumentPort
 from .knob import Knob
 from .meter import Meter
 from .typing import Connection, Generic, Iterable, TypeVar
 
 if TYPE_CHECKING:
-    from .typing import Iterator
+    from .typing import Instrument, Iterator
 
 T = TypeVar("T", bound=Knob | Meter | InstrumentPort)
 
@@ -188,9 +188,6 @@ class Ports(Jsonable, Generic[T]):
         """
         if isinstance(query, Connection):
             return self._get_psuedoname_matching_port(query)
-        if isinstance(query, Instrument):
+        if isinstance(query, str):
             return self._get_instrument_type_matching_port(query)
-        if isinstance(query, InstrumentPort):
-            return self._get_psuedoname_matching_port(query.pseudo_name)
-        msg = f"Invalid query type: {type(query)}. Expected Connection, INSTRUMENT_TYPES, or InstrumentPort."
-        raise TypeError(msg)
+        return self._get_psuedoname_matching_port(query.pseudo_name)

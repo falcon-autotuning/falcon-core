@@ -16,7 +16,6 @@ from ..constants import (
 from .dependancies import (
     Enum,
     GenericAlias,
-    JSONprimitives,
     b64decode,
     b64encode,
     deepcopy,
@@ -39,8 +38,8 @@ if TYPE_CHECKING:
     )
 
 
-JsonableSubUnits: "TypeAlias" = "Jsonable | JSONprimitives"
-JsonableType: "TypeAlias" = dict[str, JsonableSubUnits]
+type JsonableSubUnits = Jsonable | str | int | float | bool | None
+type JsonableType = dict[str, JsonableSubUnits]
 _jsonable_registry: dict[str, type] = {}
 
 
@@ -180,9 +179,10 @@ def check_serializable(
         True if all elements in the value are JSON serializable, False otherwise.
     """
     if (
-        (callable(value) and not isinstance(value, type))
+        callable(value)
+        and not isinstance(value, type)
         or is_type_object(value)
-        or isinstance(value, np.ndarray | JSONprimitives)
+        or isinstance(value, (np.ndarray, str | int | float | bool | None))
     ):
         return True
     if isinstance(value, Enum):
@@ -720,6 +720,7 @@ class Jsonable:
             Reconstructed Jsonable object
         """
         data = json.loads(json_string)
+
         return cls.from_dict(data)
 
     def _prepare_metadata(self) -> "dict[str, str]":

@@ -1,4 +1,4 @@
-from falcon_core.instrument_interfaces.instrument_types import INSTRUMENT_TYPES
+from falcon_core.constants import INSTRUMENT_TYPES
 from falcon_core.instrument_interfaces.names import Knob
 from falcon_core.math.axes import Axes
 from falcon_core.math.discrete_spaces.base_discrete_space import BaseDiscreteSpace
@@ -10,7 +10,7 @@ from falcon_core.physics import PlungerGate
 from falcon_core.physics.units import Units
 
 Timer = Knob(
-    default_name=INSTRUMENT_TYPES.CLOCK.value,
+    default_name=INSTRUMENT_TYPES.CLOCK,
     pseudo_name=None,
     instrument_type=INSTRUMENT_TYPES.CLOCK,
     description="Clock",

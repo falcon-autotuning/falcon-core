@@ -38,7 +38,7 @@ class IdentityFunction(AnalyticFunction):
         super().__init__(
             mapping={
                 self.knob.instrument_facing_name(): "x",
-                INSTRUMENT_TYPES.CLOCK.value: "t",
+                INSTRUMENT_TYPES.CLOCK: "t",
             }
         )
 

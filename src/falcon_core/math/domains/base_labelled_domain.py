@@ -2,7 +2,6 @@
 
 from .dependancies import (
     Connection,
-    Instrument,
     InstrumentPort,
     Jsonable,
     TypeVar,
@@ -67,6 +66,6 @@ class BaseLabelledDomain[T](
             and self.label == label
             or isinstance(label, Connection)
             and self.label.pseudo_name == label
-            or isinstance(label, Instrument)
+            or isinstance(label, str)
             and self.label.instrument_type == label
         )

@@ -4,12 +4,12 @@ from typing import TYPE_CHECKING
 
 from .base_labelled_domain import BaseLabelledDomain
 from .constants import INSTRUMENT_TYPES
-from .dependancies import Jsonable, Knob, Units, UsefulGate
+from .dependancies import Jsonable, Knob, Units
 from .domain import Domain
 
 if TYPE_CHECKING:
-    from .dependancies import Instrument
-    from .typing import SymbolUnit
+    from .dependancies import UsefulGate
+    from .typing import Instrument, SymbolUnit
 
 
 class KnobDomain(BaseLabelledDomain[Knob], Jsonable):

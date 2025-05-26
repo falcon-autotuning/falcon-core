@@ -32,7 +32,7 @@ class ValidatedAnalyticFunction(Jsonable, Generic[T]):
             function: the symbolic function stored in this
         """
         self.ports = ports
-        assert INSTRUMENT_TYPES.CLOCK.value in self.input_variables, (
+        assert INSTRUMENT_TYPES.CLOCK in self.input_variables, (
             "User did not provide a clock port"
         )
 
@@ -90,7 +90,7 @@ class ValidatedAnalyticFunction(Jsonable, Generic[T]):
             ValueError: If the variables in the function are not in the knobs.
         """
         input_variables = set(function.mapping.keys())
-        if INSTRUMENT_TYPES.CLOCK.value not in input_variables:
+        if INSTRUMENT_TYPES.CLOCK not in input_variables:
             msg = "Function must always depend on a clock."
             raise ValueError(msg)
         if missing_vars := input_variables - set(self.input_variables):

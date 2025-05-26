@@ -118,7 +118,7 @@ class HDF5Data(Jsonable):
                     "labels": {
                         domain.label._pseudo_name.name
                         if domain.label._pseudo_name is not None
-                        else domain.label.instrument_type.value: {
+                        else domain.label.instrument_type: {
                             "unit": domain.label.units.symbol,
                             "start": float(domain.domain.bounds[0]),
                             "stop": float(domain.domain.bounds[1]),
@@ -135,7 +135,7 @@ class HDF5Data(Jsonable):
             self._ranges.__setitem__(
                 range.connection.name
                 if range.connection is not None
-                else range.instrument_type.value,
+                else range.instrument_type,
                 {
                     "unit": range.units.symbol,
                     "data": ",".join(map(str, range.array.data.ravel(order="C"))),
@@ -382,7 +382,7 @@ class HDF5Data(Jsonable):
             if range.connection is not None:
                 target_name = range.connection.name
             else:
-                target_name = range.instrument_type.value
+                target_name = range.instrument_type
             data_str = self._ranges[target_name]["data"]
             shape = tuple(self._dimensions.values())
             range._array = MeasuredArray(

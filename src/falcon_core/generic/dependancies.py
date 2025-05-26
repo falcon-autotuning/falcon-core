@@ -1,5 +1,7 @@
 """Dependencies for the Falcon Core generics."""
 
+from numpy.typing import NDArray
+
 from ..dependancies import (
     Enum,
     b64decode,
@@ -24,6 +26,7 @@ from ..typing import (
 
 __all__ = [
     "importlib",
+    "NDArray",
     "b64decode",
     "b64encode",
     "Enum",

@@ -20,13 +20,10 @@ class NameBase[T: NameBase](Jsonable):
             self._value = value
             self._name = self._index_string + str(self.value)
             self._num = value
-        elif isinstance(value, str):
-            self._value = value
-            self._name = value
-            self._num = int(value[len(self._index_string) :])
-        else:
-            msg = "Value must be an int or str"
-            raise TypeError(msg)
+            return
+        self._value = value
+        self._name = value
+        self._num = int(value[len(self._index_string) :])
 
     @property
     def value(self) -> str | int:

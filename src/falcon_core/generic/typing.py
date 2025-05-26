@@ -8,12 +8,14 @@ from ..typing import (
     Self,
     TypeAlias,
     array1D,
+    arrayND,
 )
 
 __all__ = [
     "JsonableAttributeName",
     "TypeAlias",
     "Any",
+    "arrayND",
     "Callable",
     "Self",
     "Iterator",

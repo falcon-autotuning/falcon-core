@@ -9,7 +9,6 @@ from .dependancies import (
     TypeVar,
     overload,
 )
-from .typing import Instrument
 
 if TYPE_CHECKING:
     from .typing import Connection, Instrument, InstrumentPort, Self, SymbolUnit

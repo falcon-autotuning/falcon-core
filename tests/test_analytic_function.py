@@ -1,6 +1,6 @@
 """Test the AnalyticFunction class."""
 
-from falcon_core.instrument_interfaces.instrument_types import INSTRUMENT_TYPES
+from falcon_core.constants import INSTRUMENT_TYPES
 from falcon_core.instrument_interfaces.names import Knob, Knobs
 from falcon_core.math.analytic_functions import (
     AnalyticFunction,
@@ -14,7 +14,7 @@ from falcon_core.physics.units import Units
 class Clock(Knob):
     def __init__(self):
         super().__init__(
-            default_name=INSTRUMENT_TYPES.CLOCK.value,
+            default_name=INSTRUMENT_TYPES.CLOCK,
             pseudo_name=None,
             instrument_type=INSTRUMENT_TYPES.CLOCK,
             description="Clock",
@@ -62,7 +62,7 @@ def test_analytic_function_custom():
 
     af = ValidatedAnalyticFunction(
         ports=knobs,
-        function=mult2(mapping={"a": "a", INSTRUMENT_TYPES.CLOCK.value: "t"}),
+        function=mult2(mapping={"a": "a", INSTRUMENT_TYPES.CLOCK: "t"}),
     )
     assert af.function.function(a=1, t=0) == 2
     assert af.function.function(t=0, a=1) == 2

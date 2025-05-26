@@ -6,10 +6,8 @@ from .constants import INSTRUMENT_TYPES
 from .dependancies import Jsonable, Units, UsefulGate
 from .instrument_port import InstrumentPort
 
-
 if TYPE_CHECKING:
-    from .dependancies import Instrument
-    from .typing import Connection, SymbolUnit
+    from .typing import Instrument, SymbolUnit
 
 
 class Knob(InstrumentPort[UsefulGate], Jsonable):

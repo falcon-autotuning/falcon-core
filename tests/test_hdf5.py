@@ -8,7 +8,7 @@ import pytest
 from falcon_core.communications.hdf5.data import HDF5Data
 from falcon_core.communications.messages.measurement_request import MeasurementRequest
 from falcon_core.communications.messages.measurement_response import MeasurementResponse
-from falcon_core.instrument_interfaces.instrument_types import INSTRUMENT_TYPES
+from falcon_core.constants import INSTRUMENT_TYPES
 from falcon_core.instrument_interfaces.names import Knob
 from falcon_core.instrument_interfaces.waveforms.cartesian_waveform import (
     CartesianWaveform,
@@ -207,7 +207,7 @@ def test_json_serialization(hdf5_data):
 def test_hdf5_file_serialization(hdf5_data):
     with tempfile.NamedTemporaryFile(delete=False) as tmp:
         hdf5_data.to_file(tmp.name)
-        loaded = HDF5Data.from_file(tmp.name)
+        loaded = HDF5Data.from_file(tmp.name)  # type: ignore[call-arg]
         assert loaded._dimensions == hdf5_data._dimensions
         assert loaded._metadata == hdf5_data._metadata
         assert loaded._measurement_title == hdf5_data._measurement_title
@@ -215,7 +215,7 @@ def test_hdf5_file_serialization(hdf5_data):
         assert loaded._timestamp == hdf5_data._timestamp
         assert loaded._ranges == hdf5_data._ranges
         assert loaded._domains == hdf5_data._domains
-    Path.unlink(tmp.name)
+    Path.unlink(tmp.name)  # type: ignore[union-attr]
 
 
 def test_communications_serialization(
@@ -234,8 +234,8 @@ def test_communications_serialization(
         timestamp=timestamp,
     )
     with tempfile.NamedTemporaryFile(delete=False) as tmp:
-        data.to_file(tmp.name)
-        loaded = HDF5Data.from_file(tmp.name)
+        data.to_file(tmp.name)  # type: ignore[call-arg]
+        loaded = HDF5Data.from_file(tmp.name)  # type: ignore[call-arg]
     loaded_response, loaded_request = loaded.to_communications()
     assert loaded_request == measurement_request
     assert loaded_response == response

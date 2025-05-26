@@ -2,16 +2,11 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Generic, TypeVar
-
 if TYPE_CHECKING:
     from .typing import Iterator
 
-K = TypeVar("K")
-V = TypeVar("V")
 
-
-class OneToOneMapping(Generic[K, V]):
+class OneToOneMapping[K, V]:
     """A mapping that enforces a one-to-one relationship between keys and values."""
 
     def __init__(

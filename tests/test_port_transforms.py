@@ -2,7 +2,7 @@
 
 import pytest
 
-from falcon_core.instrument_interfaces.instrument_types import INSTRUMENT_TYPES
+from falcon_core.constants import INSTRUMENT_TYPES
 from falcon_core.instrument_interfaces.names import (
     Knob,
     Knobs,
@@ -28,7 +28,7 @@ class ExecutionClock(Meter):
 
     def __init__(self):
         super().__init__(
-            default_name=INSTRUMENT_TYPES.CLOCK.value,
+            default_name=INSTRUMENT_TYPES.CLOCK,
             instrument_type=INSTRUMENT_TYPES.CLOCK,
             pseudo_name=None,
             description="Execution clock",
@@ -48,7 +48,7 @@ class Time(ValidatedAnalyticFunction):
     def __init__(self, port: Meter):
         super().__init__(
             ports=Meters([port] + [ExecutionClock()]),
-            function=TimeFunction(mapping={INSTRUMENT_TYPES.CLOCK.value: "t"}),
+            function=TimeFunction(mapping={INSTRUMENT_TYPES.CLOCK: "t"}),
         )
 
 
