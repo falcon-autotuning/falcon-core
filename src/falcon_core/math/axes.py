@@ -1,8 +1,8 @@
 """An adressable set of hypercube axes."""
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, TypeVar
 
-from .dependancies import Jsonable, TypeVar, Generic
+from .dependancies import Generic, Jsonable
 
 if TYPE_CHECKING:
     from .typing import Any
