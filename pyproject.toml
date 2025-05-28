@@ -128,7 +128,7 @@ symbol_unit = "falcon_core.physics.units.symbol_unit"
 unit = "falcon_core.physics.units.unit"
 
 [project.scripts]
-generate-constants = "generate_constants:main"
+generate-constants = "src.generate_constants:main"
 
 [project.readme]
 file = "readme.rst"
@@ -172,10 +172,10 @@ filterwarnings = [
 
 [tool.setuptools.packages.find]
 # all the following settings are optional:
-where = ["src"]            # ["."] by default
+where = ["src"]                                  # ["."] by default
 include = ["falcon_core*", "generate_constants"] # ["*"] by default
-exclude = []               # empty by default
-namespaces = false         # true by default
+exclude = []                                     # empty by default
+namespaces = false                               # true by default
 
 [tool.pytest.ini_options]
 # addopts="-n 5 --dist worksteal"
