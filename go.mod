@@ -1,4 +1,4 @@
-module falcon-core
+module github.com/falcon-autotuning/falcon-core
 
 go 1.24.2
 
