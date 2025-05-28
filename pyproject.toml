@@ -130,9 +130,6 @@ unit = "falcon_core.physics.units.unit"
 [project.scripts]
 generate-constants = "generate_constants:main"
 
-[tool.setuptools]
-generate_constants = []
-
 [project.readme]
 file = "readme.rst"
 content-type = "text/x-rst"
@@ -176,7 +173,7 @@ filterwarnings = [
 [tool.setuptools.packages.find]
 # all the following settings are optional:
 where = ["src"]            # ["."] by default
-include = ["falcon_core*"] # ["*"] by default
+include = ["falcon_core*", "generate_constants"] # ["*"] by default
 exclude = []               # empty by default
 namespaces = false         # true by default
 
