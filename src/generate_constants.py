@@ -83,7 +83,7 @@ def generate_constants_file(
         output_file: Path to output constants file.
         runtime_collection_name: Name of the runtime collection class.
     """
-    # Start with the base classes
+    # Start with only the base class
     output = '''"""Constants for the dawmons contained for the instrument server."""
 
 
@@ -96,31 +96,14 @@ class BASE_COMMAND:
         msg = "This is an abstract base class. Must implement in subclass."
         raise NotImplementedError(msg)
 
-
-class RESPONSE(BASE_COMMAND):
-    """A response contains a timestamp."""
-
-    @property
-    def TIMESTAMP(self) -> str:
-        """This is the timestamp when the response was completed."""
-        return "timestamp"
-
 '''
 
-    # Generate a class for each command
+    # Generate a class for each command, all directly inheriting from BASE_COMMAND
     for command in commands:
         class_name = command["name"]
-        # Check if timestamp is in any of the parameters
-        has_timestamp = False
-        if "parameters" in command:
-            params = command["parameters"]
-            if isinstance(params, dict) and "timestamp" in params:
-                has_timestamp = True
-
-        parent_class = "RESPONSE" if has_timestamp else "BASE_COMMAND"
 
         output += f'''
-class {class_name}({parent_class}):
+class {class_name}(BASE_COMMAND):
     """The substrings necessary for {command.get("description", "").lower() if "description" in command else class_name.lower()}."""
 
     @property
@@ -129,14 +112,10 @@ class {class_name}({parent_class}):
         return "{class_name}"
 '''
 
-        # Add properties for each parameter
+        # Add properties for each parameter, including timestamp
         if "parameters" in command and isinstance(command["parameters"], dict):
             for param_name, param_def in command["parameters"].items():
-                # Skip timestamp which is already included in RESPONSE
-                if param_name == "timestamp" and parent_class == "RESPONSE":
-                    continue
-
-                # Handle simple parameters or complex parameter definitions
+                # Include all parameters (including timestamp) directly in each class
                 if isinstance(param_def, dict) and "type" in param_def:
                     snake_case_name = param_name.upper()
                     description = param_def.get(
