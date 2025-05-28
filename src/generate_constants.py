@@ -76,34 +76,18 @@ def generate_constants_file(
     output_file: Path,
     runtime_collection_name: str,
 ) -> None:
-    """Generate the constants.py file from command definitions.
-
-    Args:
-        commands: List of command definitions.
-        output_file: Path to output constants file.
-        runtime_collection_name: Name of the runtime collection class.
-    """
-    # Start with only the base class
+    """Generate the constants.py file from command definitions."""
+    # Start with just the file docstring
     output = '''"""Constants for the dawmons contained for the instrument server."""
-
-
-class BASE_COMMAND:
-    """Contains the substrings for a base command."""
-
-    @property
-    def COMM_CHANNEL(self) -> str:
-        """This is the communication channel to issue the command on."""
-        msg = "This is an abstract base class. Must implement in subclass."
-        raise NotImplementedError(msg)
 
 '''
 
-    # Generate a class for each command, all directly inheriting from BASE_COMMAND
+    # Generate a class for each command, with no inheritance
     for command in commands:
         class_name = command["name"]
 
         output += f'''
-class {class_name}(BASE_COMMAND):
+class {class_name}:
     """The substrings necessary for {command.get("description", "").lower() if "description" in command else class_name.lower()}."""
 
     @property
@@ -112,10 +96,10 @@ class {class_name}(BASE_COMMAND):
         return "{class_name}"
 '''
 
-        # Add properties for each parameter, including timestamp
+        # Add properties for each parameter
         if "parameters" in command and isinstance(command["parameters"], dict):
             for param_name, param_def in command["parameters"].items():
-                # Include all parameters (including timestamp) directly in each class
+                # Include all parameters directly in each class
                 if isinstance(param_def, dict) and "type" in param_def:
                     snake_case_name = param_name.upper()
                     description = param_def.get(
