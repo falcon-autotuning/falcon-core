@@ -1,4 +1,4 @@
-module instrument_server
+module falcon-core
 
 go 1.24.2
 
