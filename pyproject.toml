@@ -130,7 +130,7 @@ unit = "falcon_core.physics.units.unit"
 [project.scripts]
 generate-constants = "generate_constants:main"
 
-[tool.setuptools.py-modules]
+[tool.setuptools]
 generate_constants = []
 
 [project.readme]
