@@ -1,9 +1,5 @@
 [build-system]
-requires = [
-  "setuptools >= 65.5.0",
-  # "setuptools >= 68.1.0",
-  "setuptools_scm",
-]
+requires = ["setuptools >= 65.5.0", "setuptools_scm"]
 build-backend = 'setuptools.build_meta'
 
 [project]
@@ -131,6 +127,11 @@ screening_gate = "falcon_core.physics.device_structures.screening_gate"
 symbol_unit = "falcon_core.physics.units.symbol_unit"
 unit = "falcon_core.physics.units.unit"
 
+[project.scripts]
+generate-constants = "generate_constants:main"
+
+[tool.setuptools.py-modules]
+generate_constants = []
 
 [project.readme]
 file = "readme.rst"
@@ -174,10 +175,10 @@ filterwarnings = [
 
 [tool.setuptools.packages.find]
 # all the following settings are optional:
-where = ["src"]       # ["."] by default
-include = ["falcon*"] # ["*"] by default
-exclude = []          # empty by default
-namespaces = false    # true by default
+where = ["src"]            # ["."] by default
+include = ["falcon_core*"] # ["*"] by default
+exclude = []               # empty by default
+namespaces = false         # true by default
 
 [tool.pytest.ini_options]
 # addopts="-n 5 --dist worksteal"
