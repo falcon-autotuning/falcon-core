@@ -128,7 +128,7 @@ symbol_unit = "falcon_core.physics.units.symbol_unit"
 unit = "falcon_core.physics.units.unit"
 
 [project.scripts]
-generate-constants = "src.generate_constants:main"
+generate-constants = "generate_constants:main"
 
 [project.readme]
 file = "readme.rst"
@@ -169,6 +169,8 @@ filterwarnings = [
 "docs/*" = ["tid253"]
 "tests/*" = ["tid253"]
 
+[tool.setuptools]
+py-modules = ["generate_constants"]
 
 [tool.setuptools.packages.find]
 # all the following settings are optional:
