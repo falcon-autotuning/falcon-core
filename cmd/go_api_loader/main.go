@@ -139,7 +139,7 @@ func generate(commandsDir, commonDir, outputFile, packageName string) error {
 	fmt.Fprintf(&out, "// CommandRegistry maps command names to empty struct instances\n")
 	fmt.Fprintf(&out, "var CommandRegistry = map[string]interface{}{\n")
 	for _, cmd := range commands {
-		structName := toExported(cmd.Name) + "Command"
+		structName := toExported(cmd.Name)
 		fmt.Fprintf(&out, "    \"%s\": %s{},\n", cmd.Name, structName)
 	}
 	fmt.Fprintf(&out, "}\n")
