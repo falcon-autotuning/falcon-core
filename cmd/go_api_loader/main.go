@@ -172,7 +172,7 @@ func main() {
 	rootCmd.Flags().StringVar(&commandsDir, "commands-dir", "api/commands/v1", "Directory containing command YAML files")
 	rootCmd.Flags().StringVar(&commonDir, "common-dir", "api/common", "Directory containing common YAML files")
 	rootCmd.Flags().StringVar(&outputFile, "output", "commands_gen.go", "Output Go file")
-	rootCmd.Flags().StringVar(&packageName, "package", "commands", "Go package name for generated file")
+	rootCmd.Flags().StringVar(&packageName, "package", "api", "Go package name for generated file")
 
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
