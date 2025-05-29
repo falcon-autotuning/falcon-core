@@ -123,7 +123,7 @@ func generate(commandsDir, commonDir, outputFile, packageName string) error {
 	fmt.Fprintf(&out, "/*\nThis file is auto-generated from YAML command schemas.\n*/\n\n")
 
 	for _, cmd := range commands {
-		structName := toExported(cmd.Name) + "Command"
+		structName := toExported(cmd.Name)
 		fmt.Printf("Generating struct for command: %s\n", cmd.Name)
 		fmt.Fprintf(&out, "// %s: %s\n", structName, cmd.Description)
 		fmt.Fprintf(&out, "type %s struct {\n", structName)
