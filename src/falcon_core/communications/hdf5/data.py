@@ -87,7 +87,7 @@ class HDF5Data(Jsonable):
     _metadata: "Metadata"
     _unique_id: str
     _measurement_title: str
-    _timestamp: str
+    _timestamp: int
 
     def __init__(
         self,
@@ -98,7 +98,7 @@ class HDF5Data(Jsonable):
         metadata: "Metadata",
         measurement_title: str,
         unique_id: str,
-        timestamp: str,
+        timestamp: int,
     ) -> None:
         """Initializes the HDF5Data object.
 
@@ -152,7 +152,7 @@ class HDF5Data(Jsonable):
         response: "MeasurementResponse",
         measurement_title: str,
         unique_id: str,
-        timestamp: str,
+        timestamp: int,
     ) -> "HDF5Data":
         """Load the HDF5Data object from a MeasurementRequest and MeasurementResponse.
 
@@ -313,8 +313,8 @@ class HDF5Data(Jsonable):
         with h5py.File(path, "r") as f:
             measurement_title = f["metadata"].attrs["measurement_title"]
             assert isinstance(measurement_title, str), "Invalid measurement title."
-            timestamp = f["metadata"].attrs["timestamp"]
-            assert isinstance(timestamp, str), "Invalid timestamp."
+            timestamp = int(f["metadata"].attrs["timestamp"])  # type: ignore[assignment]
+            assert isinstance(timestamp, int), "Invalid timestamp."
             unique_id = f["metadata"].attrs["unique_id"]
             assert isinstance(unique_id, str), "Invalid unique ID."
             dimensions = _extract_group_dict(f["dimensions"])

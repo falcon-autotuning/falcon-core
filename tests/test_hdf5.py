@@ -8,6 +8,7 @@ import pytest
 from falcon_core.communications.hdf5.data import HDF5Data
 from falcon_core.communications.messages.measurement_request import MeasurementRequest
 from falcon_core.communications.messages.measurement_response import MeasurementResponse
+from falcon_core.communications.time import Time
 from falcon_core.constants import INSTRUMENT_TYPES
 from falcon_core.instrument_interfaces.names import Knob
 from falcon_core.instrument_interfaces.waveforms.cartesian_waveform import (
@@ -162,7 +163,7 @@ def unique_id():
 
 @pytest.fixture
 def timestamp():
-    return "now"
+    return Time().time
 
 
 @pytest.fixture
@@ -174,7 +175,7 @@ def hdf5_data(
     unit_domain: Axes["ControlArray"],
     measurement_title: str,
     unique_id: str,
-    timestamp: str,
+    timestamp: int,
     shape: tuple[int, ...],
 ):
     metadata = {
@@ -204,7 +205,7 @@ def test_json_serialization(hdf5_data):
     assert loaded._timestamp == hdf5_data._timestamp
 
 
-def test_hdf5_file_serialization(hdf5_data):
+def test_hdf5_file_serialization(hdf5_data: HDF5Data):
     with tempfile.NamedTemporaryFile(delete=False) as tmp:
         hdf5_data.to_file(tmp.name)
         loaded = HDF5Data.from_file(tmp.name)  # type: ignore[call-arg]
@@ -223,7 +224,7 @@ def test_communications_serialization(
     response: MeasurementResponse,
     measurement_title: str,
     unique_id: str,
-    timestamp: str,
+    timestamp: int,
 ):
     print("the measurement request is", measurement_request)
     data = HDF5Data.from_communications(
