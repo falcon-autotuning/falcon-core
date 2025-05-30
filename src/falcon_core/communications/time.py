@@ -1,7 +1,6 @@
 """Our timing module so everyone knows what time it is."""
 
-import math
-import time
+from .dependancies import math, time
 
 
 class Time:
