@@ -85,7 +85,7 @@ class HDF5Data(Jsonable):
     _domains: "Domains"
     _ranges: "Ranges"
     _metadata: "Metadata"
-    _unique_id: str
+    _unique_id: int
     _measurement_title: str
     _timestamp: int
 
@@ -97,7 +97,7 @@ class HDF5Data(Jsonable):
         ranges: "LabelledMeasuredArrays[arrayND]",
         metadata: "Metadata",
         measurement_title: str,
-        unique_id: str,
+        unique_id: int,
         timestamp: int,
     ) -> None:
         """Initializes the HDF5Data object.
@@ -151,7 +151,7 @@ class HDF5Data(Jsonable):
         request: "MeasurementRequest",
         response: "MeasurementResponse",
         measurement_title: str,
-        unique_id: str,
+        unique_id: int,
         timestamp: int,
     ) -> "HDF5Data":
         """Load the HDF5Data object from a MeasurementRequest and MeasurementResponse.
@@ -315,7 +315,7 @@ class HDF5Data(Jsonable):
             assert isinstance(measurement_title, str), "Invalid measurement title."
             timestamp = int(f["metadata"].attrs["timestamp"])  # type: ignore[assignment]
             assert isinstance(timestamp, int), "Invalid timestamp."
-            unique_id = f["metadata"].attrs["unique_id"]
+            unique_id = int(f["metadata"].attrs["unique_id"])  # type: ignore[assignment]
             assert isinstance(unique_id, str), "Invalid unique ID."
             dimensions = _extract_group_dict(f["dimensions"])
             assert isinstance(dimensions, dict), "Invalid dimensions."
