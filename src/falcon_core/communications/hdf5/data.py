@@ -316,7 +316,7 @@ class HDF5Data(Jsonable):
             timestamp = int(f["metadata"].attrs["timestamp"])  # type: ignore[assignment]
             assert isinstance(timestamp, int), "Invalid timestamp."
             unique_id = int(f["metadata"].attrs["unique_id"])  # type: ignore[assignment]
-            assert isinstance(unique_id, str), "Invalid unique ID."
+            assert isinstance(unique_id, int), "Invalid unique ID."
             dimensions = _extract_group_dict(f["dimensions"])
             assert isinstance(dimensions, dict), "Invalid dimensions."
             metadata = _extract_group_dict(f["metadata"])

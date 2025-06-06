@@ -158,7 +158,7 @@ def measurement_title():
 
 @pytest.fixture
 def unique_id():
-    return "123"
+    return 123
 
 
 @pytest.fixture
@@ -174,7 +174,7 @@ def hdf5_data(
     ranges: LabelledMeasuredArrays,
     unit_domain: Axes["ControlArray"],
     measurement_title: str,
-    unique_id: str,
+    unique_id: int,
     timestamp: int,
     shape: tuple[int, ...],
 ):
@@ -223,7 +223,7 @@ def test_communications_serialization(
     measurement_request: MeasurementRequest,
     response: MeasurementResponse,
     measurement_title: str,
-    unique_id: str,
+    unique_id: int,
     timestamp: int,
 ):
     print("the measurement request is", measurement_request)
