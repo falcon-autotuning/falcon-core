@@ -62,7 +62,6 @@ cartesian_waveform = "falcon_core.instrument_interfaces.waveforms.cartesian_wave
 cartesian_waveform_2D = "falcon_core.instrument_interfaces.waveforms.cartesian_waveform_2D"
 cartesian_waveform_1D = "falcon_core.instrument_interfaces.waveforms.cartesian_waveform_1D"
 waveform = "falcon_core.instrument_interfaces.waveforms.waveform"
-instrument = "falcon_core.instrument_interfaces.instrument"
 analytic_function = "falcon_core.math.analytic_functions.analytic_function"
 identity = "falcon_core.math.analytic_functions.identity"
 validated_analytic_function = "falcon_core.math.analytic_functions.validated_analytic_function"
