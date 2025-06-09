@@ -1,6 +1,6 @@
 [core_messaging.plugins]
 acquisition_context = falcon_core.autotuner_interfaces.contexts.acquisition_context
-analytic_function = falco_core.math.analytic_functions.analytic_function
+analytic_function = falcon_core.math.analytic_functions.analytic_function
 axes = falcon_core.math.axes
 barrier_gate = falcon_core.physics.device_structures.barrier_gate
 barrier_gate_with_neighbors = falcon_core.physics.config.geometries.barrier_gate_with_neighbors
