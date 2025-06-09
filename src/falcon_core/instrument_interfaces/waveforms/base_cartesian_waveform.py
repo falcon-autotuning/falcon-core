@@ -40,5 +40,5 @@ class BaseCartesianWaveform(BaseWaveform[T], Generic[T]):
         knobs = space.knobs
         return cls(
             space=space,
-            transforms=[IdentityTransform(knob=knob, knobs=knobs) for knob in knobs],
+            transforms=[IdentityTransform(port=knob, ports=knobs) for knob in knobs],
         )

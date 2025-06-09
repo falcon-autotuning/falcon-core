@@ -69,7 +69,7 @@ class TestPortTransform:
 
     @pytest.fixture
     def knob_transform(self, knob: Knob, clock: Clock) -> Identity:
-        return Identity(knobs=Knobs([knob, clock]), knob=knob)
+        return Identity(ports=Knobs([knob, clock]), port=knob)
 
     @pytest.fixture
     def meter_transform(self, meter: Meter, clock: Clock) -> ValidatedAnalyticFunction:

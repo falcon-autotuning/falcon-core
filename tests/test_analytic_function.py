@@ -35,7 +35,7 @@ def test_analytic_function_identity():
     )
     knob = knobs[0]
 
-    id = Identity(knobs=knobs, knob=knob)
+    id = Identity(ports=knobs, port=knob)
     jid = id.to_json()
     idfromjson = Identity.from_json(jid)
     assert id == idfromjson

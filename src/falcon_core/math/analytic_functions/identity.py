@@ -4,21 +4,21 @@ from typing import TYPE_CHECKING
 
 from .analytic_function import AnalyticFunction
 from .constants import INSTRUMENT_TYPES
-from .dependancies import Knobs
+from .dependancies import Ports
 from .validated_analytic_function import ValidatedAnalyticFunction
 
 if TYPE_CHECKING:
     from .analytic_function import Number
-    from .typing import Knob
+    from .typing import InstrumentPort
 
 
-class IdentityFunction(AnalyticFunction):
+class IdentityFunction[T: InstrumentPort](AnalyticFunction):
     """A special type of AnalyticFunction that does nothing to the underlying discrete data."""
 
     @property
-    def knob(self) -> "Knob":
-        """Return the knob for this function."""
-        return self._knob
+    def port(self) -> "T":
+        """Return the port for this function."""
+        return self._port
 
     @classmethod
     def _function(
@@ -28,28 +28,28 @@ class IdentityFunction(AnalyticFunction):
     ) -> "Number":
         return x
 
-    def __init__(self, knob: "Knob") -> None:
+    def __init__(self, port: T) -> None:
         """Initialize the IdentityFunction object.
 
         Args:
-            knob: the knob for the function.
+            port: the port for the function.
         """
-        self._knob = knob
+        self._port = port
         super().__init__(
             mapping={
-                self.knob.instrument_facing_name(): "x",
+                self.port.instrument_facing_name(): "x",
                 INSTRUMENT_TYPES.CLOCK: "t",
             }
         )
 
 
-class Identity(ValidatedAnalyticFunction[Knobs]):
+class Identity[T: Ports](ValidatedAnalyticFunction[T]):
     """A type of function that does nothing to the underlying discrete data."""
 
     def __init__(
         self,
-        knobs: Knobs,
-        knob: "Knob",
+        ports: T,
+        port: "InstrumentPort",
     ):
         """Initialize the Identity object.
 
@@ -57,4 +57,4 @@ class Identity(ValidatedAnalyticFunction[Knobs]):
             knobs: the knobs for the function.
             knob: the selected knob for the function.
         """
-        super().__init__(ports=knobs, function=IdentityFunction(knob=knob))
+        super().__init__(ports=ports, function=IdentityFunction(port=port))
