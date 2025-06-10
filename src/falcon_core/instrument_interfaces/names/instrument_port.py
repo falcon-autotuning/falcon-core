@@ -21,7 +21,7 @@ class InstrumentPort(Jsonable, Generic[T]):
     constants module.
     """
 
-    _defualt_name: str
+    _default_name: str
     _pseudo_name: "T | None"
     _instrument_type: "Instrument"
     _units: "SymbolUnit"
@@ -51,7 +51,7 @@ class InstrumentPort(Jsonable, Generic[T]):
         if not default_name:
             msg = "The default name of the port cannot be an empty string."
             raise ValueError(msg)
-        self._defualt_name = default_name
+        self._default_name = default_name
         self._pseudo_name = pseudo_name
         self._instrument_type = instrument_type
         self._units = units
@@ -60,7 +60,7 @@ class InstrumentPort(Jsonable, Generic[T]):
     @property
     def default_name(self) -> str:
         """Return the default name of the port."""
-        return self._defualt_name
+        return self._default_name
 
     @property
     def pseudo_name(self) -> "T":
