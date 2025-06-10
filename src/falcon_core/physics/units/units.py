@@ -82,6 +82,7 @@ class Units:
     NEWTON_PER_METER = SymbolUnit(CommonUnits.NEWTON / CommonUnits.METER)
 
     VOLT_PER_METER = SymbolUnit(CommonUnits.VOLT / CommonUnits.METER)
+    VOLT_PER_SECOND = SymbolUnit(CommonUnits.VOLT / CommonUnits.SECOND)
 
     AMPERE_PER_VOLT = SymbolUnit(CommonUnits.AMPERE / CommonUnits.VOLT)  # Siemens
     VOLT_PER_AMPERE = SymbolUnit(CommonUnits.VOLT / CommonUnits.AMPERE)  # Ohm
