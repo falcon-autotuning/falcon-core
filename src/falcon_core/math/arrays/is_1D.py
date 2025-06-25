@@ -230,8 +230,8 @@ class Is1D:
         Returns:
             the many divisions of the array as a tuple of arrays.
         """
-        partition_length = len(self) / divisions
-        assert isinstance(partition_length, int), "Array cannot be evenly divided"
+        partition_length = len(self) // divisions
+        assert len(self) % divisions == 0, "Array cannot be evenly divided"
         arr = self.as_1D()
         return tuple(
             cast(array1D, arr[i * partition_length : (i + 1) * partition_length])
