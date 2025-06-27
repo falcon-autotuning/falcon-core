@@ -96,7 +96,7 @@ class ValidatedAnalyticFunction(Jsonable, Generic[T]):
         if missing_vars := input_variables - set(self.input_variables):
             msg = (
                 f"Function requires input variables {missing_vars} "
-                f"that are not included in the provided knobs: {self.ports}"
+                f"that are not included in the provided ports: {self.ports}"
             )
             raise ValueError(msg)
 

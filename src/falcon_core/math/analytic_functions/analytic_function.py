@@ -29,8 +29,7 @@ class AnalyticFunction(Jsonable):
         """Return a mapping of the function's arguments to their names."""
         return self._mapping
 
-    @classmethod
-    def _function(cls, **parameters: Number) -> Number: ...
+    def _function(self, **parameters: Number) -> Number: ...
 
     def __init__(
         self,

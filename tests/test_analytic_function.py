@@ -4,6 +4,7 @@ from falcon_core.constants import INSTRUMENT_TYPES
 from falcon_core.instrument_interfaces.names import Knob, Knobs
 from falcon_core.math.analytic_functions import (
     AnalyticFunction,
+    Constant,
     Identity,
     ValidatedAnalyticFunction,
 )
@@ -20,6 +21,26 @@ class Clock(Knob):
             description="Clock",
             units=Units.SECOND,
         )
+
+
+def test_constant_function():
+    """Test constant functiion."""
+    stuff = ["a", "b", "c", "d", "e", "f", "g", "h"]
+    knobs = Knobs(
+        [
+            Knob(default_name=stuffi, pseudo_name=PlungerGate(name=stuffi))
+            for stuffi in stuff
+        ]
+        + [Clock()]
+    )
+    knobs[0]
+
+    id = Constant(ports=knobs, scale=5)
+    jid = id.to_json()
+    idfromjson = Constant.from_json(jid)
+    assert id == idfromjson
+    assert id(**{key: 0.0 for key in knobs._get_instrument_facing_names()}) == 5
+    assert idfromjson(**{key: 0.0 for key in knobs._get_instrument_facing_names()}) == 5
 
 
 def test_analytic_function_identity():
@@ -44,8 +65,7 @@ def test_analytic_function_identity():
 
 
 class mult2(AnalyticFunction):
-    @classmethod
-    def _function(cls, t: float = 0.0, a: float = 0.0, **parameters) -> float:
+    def _function(self, t: float = 0.0, a: float = 0.0, **parameters) -> float:
         return a * 2
 
 

@@ -1,4 +1,4 @@
-"""A type of function that does nothig to the underlying discrete data."""
+"""A function that is all ones."""
 
 from typing import TYPE_CHECKING
 
@@ -9,51 +9,48 @@ from .validated_analytic_function import ValidatedAnalyticFunction
 
 if TYPE_CHECKING:
     from .analytic_function import Number
-    from .typing import InstrumentPort
 
 
-class IdentityFunction[T: InstrumentPort](AnalyticFunction):
-    """A special type of AnalyticFunction that does nothing to the underlying discrete data."""
+class ConstantFunction(AnalyticFunction):
+    """A special type of AnalyticFunction that multiplies a constant onto the data."""
 
     @property
-    def port(self) -> "T":
-        """Return the port for this function."""
-        return self._port
+    def scale(self) -> "Number":
+        """Returns the scale factor for this function."""
+        return self._scale
 
     def _function(
         self,
-        x: "Number" = 0.0,
         **parameters: "Number",
     ) -> "Number":
-        return x
+        return self.scale
 
-    def __init__(self, port: T) -> None:
+    def __init__(self, scale: "Number") -> None:
         """Initialize the IdentityFunction object.
 
         Args:
-            port: the port for the function.
+            scale: The scale factor for the function.
         """
-        self._port = port
+        self._scale = scale
         super().__init__(
             mapping={
-                self.port.instrument_facing_name(): "x",
                 INSTRUMENT_TYPES.CLOCK: "t",
             }
         )
 
 
-class Identity[T: Ports](ValidatedAnalyticFunction[T]):
+class Constant[T: Ports](ValidatedAnalyticFunction[T]):
     """A type of function that does nothing to the underlying discrete data."""
 
     def __init__(
         self,
         ports: T,
-        port: "InstrumentPort",
+        scale: "Number",
     ):
         """Initialize the Identity object.
 
         Args:
             knobs: the knobs for the function.
-            knob: the selected knob for the function.
+            scale: the scale factor for the function.
         """
-        super().__init__(ports=ports, function=IdentityFunction(port=port))
+        super().__init__(ports=ports, function=ConstantFunction(scale=scale))
