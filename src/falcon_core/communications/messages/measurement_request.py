@@ -7,14 +7,21 @@ from .constants import INSTRUMENT_TYPES
 from .dependancies import Jsonable, KnobDomain, Units
 
 if TYPE_CHECKING:
-    from .typing import BaseDiscreteSpace, BaseWaveform, Meters, PortTransform, Sequence
+    from .typing import (
+        BaseDiscreteSpace,
+        BaseWaveform,
+        Meter,
+        Meters,
+        PortTransform,
+        Sequence,
+    )
 
 
 class MeasurementRequest(BaseMessage, Jsonable):
     """A request for a measurement that Falcon can perform."""
 
     _waveforms: "Sequence[BaseWaveform[BaseDiscreteSpace]]"
-    _meter_transforms: list["PortTransform"]
+    _meter_transforms: dict["Meter", "PortTransform"]
     _getters: "Meters"
     _time_domain: "KnobDomain "
     _measurement_name: str
@@ -25,7 +32,7 @@ class MeasurementRequest(BaseMessage, Jsonable):
         measurement_name: str,
         waveforms: "Sequence[BaseWaveform[BaseDiscreteSpace]]",
         getters: "Meters",
-        meter_transforms: list["PortTransform"],
+        meter_transforms: dict["Meter", "PortTransform"],
         time_domain: "KnobDomain" = KnobDomain(
             default_name="time",
             bounds=(0, 1),
@@ -75,7 +82,7 @@ class MeasurementRequest(BaseMessage, Jsonable):
         return [waveform for waveform in self._waveforms]
 
     @property
-    def meter_transforms(self) -> list["PortTransform"]:
+    def meter_transforms(self) -> dict["Meter", "PortTransform"]:
         """Return the meter transforms."""
         return self._meter_transforms
 
