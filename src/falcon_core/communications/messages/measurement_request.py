@@ -7,7 +7,7 @@ from .constants import INSTRUMENT_TYPES
 from .dependancies import Jsonable, KnobDomain, Units
 
 if TYPE_CHECKING:
-    from .typing import BaseDiscreteSpace, BaseWaveform, PortTransform, Sequence
+    from .typing import BaseDiscreteSpace, BaseWaveform, Meters, PortTransform, Sequence
 
 
 class MeasurementRequest(BaseMessage, Jsonable):
@@ -15,6 +15,7 @@ class MeasurementRequest(BaseMessage, Jsonable):
 
     _waveforms: "Sequence[BaseWaveform[BaseDiscreteSpace]]"
     _meter_transforms: list["PortTransform"]
+    _getters: "Meters"
     _time_domain: "KnobDomain "
     _measurement_name: str
 
@@ -23,6 +24,7 @@ class MeasurementRequest(BaseMessage, Jsonable):
         message: str,
         measurement_name: str,
         waveforms: "Sequence[BaseWaveform[BaseDiscreteSpace]]",
+        getters: "Meters",
         meter_transforms: list["PortTransform"],
         time_domain: "KnobDomain" = KnobDomain(
             default_name="time",
@@ -43,6 +45,7 @@ class MeasurementRequest(BaseMessage, Jsonable):
         """
         super().__init__(message)
         self._waveforms = waveforms
+        self._getters = getters
         self._meter_transforms = meter_transforms
 
         # we need to ensure that the unit of the units of the time domain are in seconds
@@ -60,6 +63,11 @@ class MeasurementRequest(BaseMessage, Jsonable):
     def measurement_name(self) -> str:
         """Return the measurement name."""
         return self._measurement_name
+
+    @property
+    def getters(self) -> "Meters":
+        """Return the getters for the measurement."""
+        return self._getters
 
     @property
     def waveforms(self) -> list["BaseWaveform[BaseDiscreteSpace]"]:
