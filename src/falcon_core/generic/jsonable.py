@@ -34,7 +34,6 @@ if TYPE_CHECKING:
         Callable,
         JsonableAttributeName,
         Self,
-        TypeAlias,
     )
 
 
@@ -284,10 +283,12 @@ def construct_special_dict_attributes_from_raw(
         if isinstance(k, str) and k.startswith(JSONABLE_KEY)
     }
     result = {}
-    for key, entry in special_items.items():
+    for entry in special_items.values():
         key_dict = entry["key"]
         value_raw = entry["value"]
-        key_class = collect_jsonable_class_from_registry(class_name=key)
+        # Get class name from the serialized key object, not from the identifier
+        key_class_name = key_dict[JSONABLE_CLASS_METADATA]
+        key_class = collect_jsonable_class_from_registry(class_name=key_class_name)
         key_obj = key_class.from_dict(key_dict)
         result[key_obj] = construct_typed_attribute_from_raw(value_raw)
 
