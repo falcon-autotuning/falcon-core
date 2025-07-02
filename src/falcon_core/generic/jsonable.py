@@ -376,7 +376,7 @@ def construct_special_jsonable_key(
     Returns:
         The special Jsonable key.
     """
-    return f"{JSONABLE_KEY}{key.__class__.__name__}"
+    return f"{JSONABLE_KEY}{hash(key)}"
 
 
 def construct_raw_key_from_special_jsonable_key(
