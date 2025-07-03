@@ -117,8 +117,8 @@ class UnitSpace(Jsonable):
 
     def compile(self):
         """Compile the unit space into a space."""
-        space = np.array(list(itertools.product(*self._ranges)))
-        self._space = BaseArray(space[::-1])
+        space = np.array(list(itertools.product(*list(self._ranges)[::-1])))
+        self._space = BaseArray(space)
 
     @property
     def dimension(self):
