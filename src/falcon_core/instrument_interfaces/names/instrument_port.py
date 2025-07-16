@@ -70,7 +70,7 @@ class InstrumentPort(Jsonable, Generic[T]):
             ValueError: If the pseudo name is not set.
         """
         if self._pseudo_name is None:
-            msg = "The pseudo name of the port is not set."
+            msg = f"The pseudo name of the port {self} is not set"
             raise ValueError(msg)
         return self._pseudo_name
 
