@@ -15,8 +15,8 @@ class ControlArray[T: arrayND](BaseArray[T], Jsonable):
 
     def __init__(self, data: T):
         BaseArray.__init__(self, data=data)
-        self._alignment = self._determine_alignments()
         self._principle_dimension = None
+        self._alignment = self._determine_alignments()
 
     @property
     def principle_dimension(self) -> int:
