@@ -143,6 +143,7 @@ class Ports(Jsonable, Generic[T]):
             KeyError: If no port with the given pseudoname is found.
         """
         try:
+            print(f"The ports when matching port via pseudoname are {self.ports}")
             return next(port for port in self.ports if port._pseudo_name == pseudoname)
         except StopIteration:
             msg = f"No port with pseudoname '{pseudoname}'"
