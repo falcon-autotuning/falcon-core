@@ -190,4 +190,8 @@ class Ports(Jsonable, Generic[T]):
             return self._get_psuedoname_matching_port(query)
         if isinstance(query, str):
             return self._get_instrument_type_matching_port(query)
+        # we must be an instrument port
+        if query.pseudo_name is None:
+            msg = f"Cannot get matching port for {self} with query {query}, since it has no pseudo_name"
+            raise TypeError(msg)
         return self._get_psuedoname_matching_port(query.pseudo_name)
