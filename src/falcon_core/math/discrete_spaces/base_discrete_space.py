@@ -7,13 +7,15 @@ from .dependancies import (
     Jsonable,
     LabelledControlArray,
 )
+from .typing import (
+    ControlArray,
+    Knob,
+)
 
 if TYPE_CHECKING:
     from .dependancies import Domain
     from .typing import (
-        ControlArray,
         CoupledKnobDomain,
-        Knob,
         UnitSpace,
     )
 
@@ -117,6 +119,12 @@ class BaseDiscreteSpace(Jsonable):
 
         scaled_projections: list[ControlArray] = []
         for unitprojection, knob in zip(unitprojections, projection):
+            assert isinstance(unitprojection, ControlArray), (
+                f"Expected the type of each unit projection to be Control Array, but it was {type(unitprojection)}"
+            )
+            assert isinstance(knob, Knob), (
+                f"Expected the type of the the knob to be a Knob, but it was {type(knob)}"
+            )
             domain = self.get_domain(knob=knob)
             difference = domain.range
             min_value = domain.lesser_bound
