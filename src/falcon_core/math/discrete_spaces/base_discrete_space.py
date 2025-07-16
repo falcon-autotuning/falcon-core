@@ -132,7 +132,7 @@ class BaseDiscreteSpace(Jsonable):
 
         return Axes(
             [
-                LabelledControlArray.from_port(array=proj.data, port=knob)
+                LabelledControlArray.from_port(array=ControlArray(proj.data), port=knob)
                 for proj, knob in zip(scaled_projections, projection)
             ]
         )
