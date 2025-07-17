@@ -83,7 +83,7 @@ class GateGeometryArray1D(Jsonable):
         if (not isinstance(lineararray[1], ReservoirGate)) or (
             not isinstance(lineararray[-2], ReservoirGate)
         ):
-            msg = f"Expected Reservoir Gates bounding the central dot gates. For reference, the lineararray is {lineararray}"
+            msg = f"Expected Reservoir Gates bounding the central dot gates. For reference, the linear array is {lineararray}"
             raise TypeError(msg)
 
         dot_gates = lineararray[2:-2]
@@ -91,7 +91,7 @@ class GateGeometryArray1D(Jsonable):
         self.store_raw_central_gates(dot_gates=dot_gates)
 
         if not all([isinstance(gate, DotGate) for gate in dot_gates]):
-            msg = "Expected DotGates in the middle of the linear array."
+            msg = f"Expected DotGates in the middle of the linear array. For reference, the gates in the middle of the linear array were {dot_gates}"
             raise TypeError(msg)
 
         if (not isinstance(dot_gates[0], BarrierGate)) or (
