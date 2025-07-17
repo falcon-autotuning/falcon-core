@@ -203,7 +203,7 @@ class GateGeometryArray1D(Jsonable):
             if isinstance(gate, DotGate):
                 out.append(gate)
             else:
-                msg = "Expected DotGates in the middle of the linear array."
+                msg = f"Expected DotGates in the middle of the linear array. For reference, the gates in the middle of the linear array were {dot_gates}"
                 raise TypeError(msg)
         self._raw_central_gates = Gates(out)  # type: ignore[assignment]
 
