@@ -21,11 +21,7 @@ class InterpretationContainer[T](Jsonable):
 
     def __init__(
         self,
-        contexts: list["InterpretationContext"] = [
-            InterpretationContext(
-                independent_variables=Axes([]), dependent_variables=[]
-            )
-        ],
+        contexts: list["InterpretationContext"] = [],
     ):
         """Initialize the InterpretationContainer.
 
