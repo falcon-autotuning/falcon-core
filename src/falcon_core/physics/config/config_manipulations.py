@@ -2,6 +2,8 @@
 
 from typing import TYPE_CHECKING
 
+from falcon_core.physics.device_structures import UsefulGate
+
 from .core import (
     Config,
     Group,
@@ -82,6 +84,7 @@ class ConfigManipulations:
         wiring_DC = self._extract_dcwiring(
             dictionary=config,
             ohmics=ohmics,
+            connections=connections,
         )
         return Config(
             ohmics=ohmics,
@@ -97,6 +100,7 @@ class ConfigManipulations:
         self,
         dictionary: dict[str, dict[str, dict[str, float] | None]],
         ohmics: Ohmics,
+        connections: StandardConfigConnections,
     ) -> Impedances:
         """Extracts a dcwiring from a dictionary.
 
@@ -123,9 +127,19 @@ class ConfigManipulations:
                     )
                 )
             else:
+                if key in [pgate.name for pgate in connections.plunger_gates]:
+                    gt = PlungerGate
+                elif key in [pgate.name for pgate in connections.barrier_gates]:
+                    gt = BarrierGate
+                elif key in [pgate.name for pgate in connections.screening_gates]:
+                    gt = ScreeningGate
+                elif key in [pgate.name for pgate in connections.reservoir_gates]:
+                    gt = ReservoirGate
+                else:
+                    raise TypeError("Cannot use that gate")
                 outs.append(
                     Impedance(
-                        connection=Gate(key),
+                        connection=gt(key),
                         resistance=values["resistance"],
                         capacitance=values["capacitance"],
                     )
