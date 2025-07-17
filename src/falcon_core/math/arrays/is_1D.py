@@ -61,8 +61,11 @@ class Is1D:
             raise TypeError(msg)
 
         if not self.is_1D:
-            msg = f"Cannot convert non-1D array to 1D. Got shape {self.shape}"
-            raise ValueError(msg)
+            try:
+                self._data = self.data.reshape(self.shape[0])
+            except:
+                msg = f"Cannot convert non-1D array to 1D (even after attempted reshape). Got shape {self.shape}"
+                raise ValueError(msg)
 
         return cast(array1D, self.data)
 
