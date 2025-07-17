@@ -83,7 +83,7 @@ class GateGeometryArray1D(Jsonable):
         if (not isinstance(lineararray[1], ReservoirGate)) or (
             not isinstance(lineararray[-2], ReservoirGate)
         ):
-            msg = "Expected Reservoir Gates bounding the central dot gates."
+            msg = f"Expected Reservoir Gates bounding the central dot gates. For reference, the lineararray is {lineararray}"
             raise TypeError(msg)
 
         dot_gates = lineararray[2:-2]
