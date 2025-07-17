@@ -147,12 +147,6 @@ class Ports(Jsonable, Generic[T]):
                 return port
         msg = f"No port with pseudoname '{pseudoname}'"
         raise KeyError(msg)
-        # try:
-        #     print(f"The ports when matching port via pseudoname are {self.ports}")
-        #     return next(port for port in self.ports if port._pseudo_name == pseudoname)
-        # except StopIteration:
-        #     msg = f"No port with pseudoname '{pseudoname}'"
-        #     raise KeyError(msg)
 
     def _get_instrument_type_matching_port(
         self,
@@ -169,13 +163,11 @@ class Ports(Jsonable, Generic[T]):
         Raises:
             KeyError: If no port with the given instrument type is found.
         """
-        try:
-            return next(
-                port for port in self.ports if port.instrument_type == instrument_type
-            )
-        except StopIteration:
-            msg = f"No port with instrument type '{instrument_type}'"
-            raise KeyError(msg)
+        for port in self.ports:
+            if port.instrument_type == instrument_type:
+                return port
+        msg = f"No port with instrument type '{instrument_type}'"
+        raise KeyError(msg)
 
     def get_matching_port(
         self,
