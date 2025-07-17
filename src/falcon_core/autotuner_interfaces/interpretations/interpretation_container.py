@@ -2,10 +2,10 @@
 
 from typing import TYPE_CHECKING
 
-from .dependancies import Axes, Jsonable, Units
-from .interpretation_context import InterpretationContext
+from .dependancies import Jsonable, Units
 
 if TYPE_CHECKING:
+    from .interpretation_context import InterpretationContext
     from .typing import Any, Connection, Iterator, SymbolUnit
 
 
@@ -17,15 +17,11 @@ class InterpretationContainer[T](Jsonable):
     """
 
     _data: dict["InterpretationContext", T | None]
-    _unit: "SymbolUnit"
+    _unit: "SymbolUnit | None"
 
     def __init__(
         self,
-        contexts: list["InterpretationContext"] = [
-            InterpretationContext(
-                independent_variables=Axes([]), dependent_variables=[]
-            )
-        ],
+        contexts: list["InterpretationContext"] = [],
     ):
         """Initialize the InterpretationContainer.
 
@@ -37,6 +33,7 @@ class InterpretationContainer[T](Jsonable):
         """
         super().__init__()
         self._data = {}
+        self._unit = None
 
         # Initialize with provided contexts
         if contexts and len(contexts) > 0:
@@ -53,6 +50,9 @@ class InterpretationContainer[T](Jsonable):
     @property
     def unit(self) -> "SymbolUnit":
         """Return the unit that all contexts in this container must have."""
+        assert self._unit is not None, (
+            "The unit cannot be accessed until a context is added."
+        )
         return self._unit
 
     def add_context(
