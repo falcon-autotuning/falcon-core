@@ -281,11 +281,13 @@ class ConfigManipulations:
         order: list[Connection] = []
         for gate in raworder[1:-1]:
             if gate in [sgate.name for sgate in connections.screening_gates]:
-                gatetype = ReservoirGate
+                gatetype = ScreeningGate
             elif gate in [bgate.name for bgate in connections.barrier_gates]:
                 gatetype = BarrierGate
-            else:
+            elif gate in [pgate.name for pgate in connections.plunger_gates]:
                 gatetype = PlungerGate
+            else:  # will be ReservoirGate
+                gatetype = ReservoirGate
             order.append(gatetype(gate))
         order.insert(0, Ohmic(raworder[0]))
         order.append(Ohmic(raworder[-1]))
