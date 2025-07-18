@@ -27,6 +27,8 @@ dependencies = [
   "pyyaml>=6.0.2",
   "h5py==3.13.0",
 ]
+[project.optional-dependencies]
+test = ["pytest==8.2.1", "pytest-xdist==3.6.1"]
 
 [project.entry-points."core_messaging.plugins"]
 acquisition_context = "falcon_core.autotuner_interfaces.contexts.acquisition_context"
