@@ -724,7 +724,7 @@ class Jsonable:
             data = json.loads(json_string)
         except:
             raise ValueError(
-                f"Tried to from_json but failed to load from string. For reference, the string is {json_string}"
+                f"Tried to from_json into {cls.__name__} but failed to load from string. For reference, the string is {json_string}"
             )
 
         return cls.from_dict(data)
