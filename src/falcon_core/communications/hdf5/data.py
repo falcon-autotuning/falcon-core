@@ -357,7 +357,6 @@ class HDF5Data(Jsonable):
 
         obj = cls.__new__(cls)
         obj._dimensions = dimensions
-        print(f"The dimensions are {dimensions}")
         obj._domains = domains
         obj._ranges = ranges
         obj._metadata = metadata
