@@ -206,12 +206,10 @@ def throw_error_if_not_serializable(dictionary: dict[str, str]):
         TypeError: If the value is not JSON serializable.
     """
     for attribute_name, attribute_value in dictionary.items():
-        if check_jsonable_attribute(attribute_name):
-            msg = f"""Name {attribute_name} of type {type(attribute_name)}
-            is not JSON serializable."""
-            raise TypeError(msg)
-        if not check_serializable(attribute_value):
-            msg = f"""Value {attribute_value} of type {type(attribute_value)}
+        if check_jsonable_attribute(attribute_name) and not check_serializable(
+            attribute_value
+        ):
+            msg = f"""Name {attribute_name} may not contain the jsonable indicator {JSONABLE_ATTRIBUTE_INDICATOR} as the first character, or Value {attribute_value} of type {type(attribute_value)}
             is not JSON serializable."""
             raise TypeError(msg)
 
@@ -725,8 +723,9 @@ class Jsonable:
         try:
             data = json.loads(json_string)
         except:
-            msg = f"Tried to from_json into {cls.__name__} but failed to load from string. For reference, the string is {json_string}"
-            raise ValueError(msg)
+            raise ValueError(
+                f"Tried to from_json into {cls.__name__} but failed to load from string. For reference, the string is {json_string}"
+            )
 
         return cls.from_dict(data)
 
