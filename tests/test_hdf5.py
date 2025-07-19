@@ -11,6 +11,7 @@ from falcon_core.communications.messages.measurement_response import Measurement
 from falcon_core.communications.time import Time
 from falcon_core.constants import INSTRUMENT_TYPES
 from falcon_core.instrument_interfaces.names import Knob
+from falcon_core.instrument_interfaces.names.meters import Meters
 from falcon_core.instrument_interfaces.waveforms.cartesian_waveform import (
     CartesianWaveform,
 )
@@ -133,15 +134,22 @@ def unit_domain(waveform: CartesianWaveform):
 
 
 @pytest.fixture
+def getters():
+    return Meters(meters=[])
+
+
+@pytest.fixture
 def measurement_request(
     domain_labels: Axes[CoupledKnobDomain],
     unit_domain: Axes["ControlArray"],
+    getters: Meters,
     shape: tuple[int, ...],
 ):
     return MeasurementRequest(
-        meter_transforms=[],
+        meter_transforms={},
         measurement_name="test",
         message="Conversion tests",
+        getters=getters,
         waveforms=[
             CartesianWaveform.from_divisions(
                 divisions=Axes([s - 1 for s in shape]),
