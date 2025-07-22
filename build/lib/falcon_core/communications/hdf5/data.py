@@ -181,7 +181,7 @@ class HDF5Data(Jsonable):
         count = valid_waveform_copy._space._axes.dimension
         axes = Axes([int(value) for value in np.arange(start=0, stop=count, step=1)])
         unit_domain = valid_waveform_copy._space._space.create_array(axes=axes)  # type: ignore[]
-        shape = unit_domain[0].shape
+        shape = list(unit_domain[0].shape)
         domain_labels = valid_waveform_copy._space._axes
         ranges = response.arrays
         # removing compiled array from the waveform

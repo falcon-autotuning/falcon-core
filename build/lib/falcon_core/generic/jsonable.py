@@ -181,7 +181,7 @@ def check_serializable(
         callable(value)
         and not isinstance(value, type)
         or is_type_object(value)
-        or isinstance(value, (np.ndarray, str | int | float | bool | None))
+        or isinstance(value, (np.ndarray, str | int | float | bool | None, np.int64))  # type: ignore
     ):
         return True
     if isinstance(value, Enum):
@@ -209,7 +209,7 @@ def throw_error_if_not_serializable(dictionary: dict[str, str]):
         if check_jsonable_attribute(attribute_name) and not check_serializable(
             attribute_value
         ):
-            msg = f"""Value {attribute_name} of type {type(attribute_name)}
+            msg = f"""Name {attribute_name} may not contain the jsonable indicator {JSONABLE_ATTRIBUTE_INDICATOR} as the first character, or Value {attribute_value} of type {type(attribute_value)}
             is not JSON serializable."""
             raise TypeError(msg)
 
@@ -355,6 +355,8 @@ def construct_typed_attribute_from_raw(value: "Any") -> "Any":
         return construct_function_from_raw(value)
     if isinstance(value, dict) and value.get("enum_type") is True:
         return construct_enum_from_raw(value)
+    if isinstance(value, dict) and value.get("numpyint64") is True:
+        return np.int64(value["int"])
     if JSONABLE_TYPE_VAR in value:
         return construct_type_variable_from_raw(value)
     if JSONABLE_BLOB in value:
@@ -601,6 +603,11 @@ def construct_raw_from_enum(enum_value: "Enum") -> "dict[str, Any]":
     }
 
 
+def construct_raw_from_int64(value: np.int64) -> dict[str, "Any"]:
+    """Convert an int64 to a raw value in a dict."""
+    return {"int": int(value), "numpyint64": True}
+
+
 def construct_raw_from_typed_attribute(
     attribute_value: "Any",
 ) -> "Any":
@@ -618,6 +625,8 @@ def construct_raw_from_typed_attribute(
         return construct_raw_from_type_variable(attribute_value)
     if isinstance(attribute_value, np.ndarray):
         return construct_raw_array_from_typed_attribute(attribute_value)
+    if isinstance(attribute_value, np.int64):  # type: ignore
+        return construct_raw_from_int64(attribute_value)
     if isinstance(attribute_value, Jsonable):
         return attribute_value.to_dict()
     if isinstance(attribute_value, Enum):
@@ -723,9 +732,8 @@ class Jsonable:
         try:
             data = json.loads(json_string)
         except:
-            raise ValueError(
-                f"Tried to from_json into {cls.__name__} but failed to load from string. For reference, the string is {json_string}"
-            )
+            msg = f"Tried to from_json into {cls.__name__} but failed to load from string. For reference, the string is {json_string}"
+            raise ValueError(msg)
 
         return cls.from_dict(data)
 

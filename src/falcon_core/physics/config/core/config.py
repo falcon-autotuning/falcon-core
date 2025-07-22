@@ -204,6 +204,19 @@ class Config(StandardConfigConnections, Jsonable):
                 return group.get_num_dots()
         return None
 
+    def get_charge_sense_groups(self) -> list[Gname]:
+        """Finds all of the arrays of dots that are charge sensors, i.e. only one quantum dot per channel."""
+        outs: list[Gname] = []
+        for channel in self.channels:
+            number = self.get_dot_number(channel)
+            if number != 1:
+                continue
+            gname = self.get_gname(channel)
+            if gname is None:
+                continue
+            outs.append(gname)
+        return outs
+
     def ohmic_in_charge_sensor(self, ohmic: Ohmic) -> bool | None:
         """If the ohmic is inside of a charge sensor channel this outputs true.
 
