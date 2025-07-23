@@ -35,16 +35,15 @@ class VoltageConstraints:
                 -1 * np.identity(len(adjacency)),
             ]
         )
-        self._limits = np.array([bounds[1]] * 2 * len(adjacency)).T
+        limits = [bounds[1]] * 2 * len(adjacency)
         for pair in self.adjacency.get_true_pairs():
             constraint = np.zeros(len(adjacency))
             constraint[pair[0]] = 1
             constraint[pair[1]] = -1
             inv_constraint = -1 * constraint
             self._matrix = np.vstack([self._matrix, constraint, inv_constraint])
-            self._limits = np.vstack(
-                [self._limits, np.array([max_safe_diff, max_safe_diff]).T]
-            )
+            limits += [max_safe_diff, max_safe_diff]
+        self._limits = np.array(limits).T
 
     @property
     def matrix(self) -> np.ndarray:
