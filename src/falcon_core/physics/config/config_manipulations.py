@@ -156,7 +156,7 @@ class ConfigManipulations:
         if not isinstance(max_safe_diff, float):
             msg = f"Expected the type of the max safe diff to be a float, but got {type(max_safe_diff)} instead."
             raise TypeError(msg)
-        name = "bounds"
+        name = "safe_voltage_bounds"
         if name not in map:
             msg = f"Expected to find index {name} in the config but only found available indexes {map.keys()}"
             raise IndexError(msg)
