@@ -31,7 +31,8 @@ class VoltageConstraints:
         self._adjacency = adjacency
         self._matrix = np.vstack(
             [
-                np.identity(len(adjacency), -1 * np.identity(len(adjacency))),
+                np.identity(len(adjacency)),
+                -1 * np.identity(len(adjacency)),
             ]
         )
         self._limits = np.array([bounds[1]] * 2 * len(adjacency)).T
