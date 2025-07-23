@@ -2,18 +2,19 @@
 
 from typing import TYPE_CHECKING
 
-from falcon_core.physics.device_structures import UsefulGate
+from falcon_core.physics.config.core.voltage_constraints import VoltageConstraints
 
+from ...dependancies import np
 from .core import (
     Config,
     Group,
 )
+from .core.adjacency import Adjacency
 from .core.standard_config_connections import StandardConfigConnections
 from .dependancies import (
     BarrierGate,
     BaseConnections,
     Channel,
-    Gate,
     Gates,
     Gname,
     Impedance,
@@ -86,6 +87,16 @@ class ConfigManipulations:
             ohmics=ohmics,
             connections=connections,
         )
+
+        total_gates = [
+            *connections.screening_gates,
+            *connections.reservoir_gates,
+            *connections.plunger_gates,
+            *connections.barrier_gates,
+        ]
+        constraints = self._extract_voltage_constraints(
+            map=config, total_gates=total_gates
+        )
         return Config(
             ohmics=ohmics,
             wiring_DC=wiring_DC,
@@ -94,6 +105,76 @@ class ConfigManipulations:
             reservoir_gates=connections.reservoir_gates,
             plunger_gates=connections.plunger_gates,
             barrier_gates=connections.barrier_gates,
+            constraints=constraints,
+        )
+
+    def _extract_adjacency(
+        self,
+        map: dict[str, dict[str, dict[str, str]]],
+        total_gates: list,
+    ) -> Adjacency:
+        """Given the available gates loaded from the config, lets generate the adjacency matrix for this device."""
+        num_gates = len(total_gates)
+        total_gate_names = [gate.name for gate in total_gates]
+        adjacency = np.array(np.zeros((num_gates, num_gates)), dtype=np.bool)
+        name = "adjacency"
+        if name not in map:
+            msg = f"Expected to find {name} in {map} but the config did not contain the entry"
+            raise IndexError(msg)
+        adjacency_map = map[name]
+        for i, gate in enumerate(total_gate_names):
+            if gate not in adjacency_map:
+                continue
+            adjacent_matches = adjacency_map[gate]
+            if not isinstance(adjacent_matches, str):
+                msg = f"Expected the type of the adjacent matches in the config to be strings, but got{type(adjacent_matches)} instead."
+                raise TypeError(msg)
+            gate_names = adjacent_matches.split(";")
+            for j, gate in enumerate(total_gate_names):
+                if gate not in gate_names:
+                    continue
+                adjacency[i, j] = True
+                adjacency[j, i] = True
+
+        return Adjacency(
+            matrix=adjacency,
+            indexes=total_gates,
+        )
+
+    def _extract_voltage_constraints(
+        self,
+        map: dict[str, dict[str, dict[str, str]]],
+        total_gates: list,
+    ) -> VoltageConstraints:
+        """Given the available gates and the config lets produce a voltage constraints object."""
+        adjacency = self._extract_adjacency(map=map, total_gates=total_gates)
+        name = "max_safe_diff"
+        if name not in map:
+            msg = f"Expected to find index {name} in the config but only found available indexes {map.keys()}"
+            raise IndexError(msg)
+        max_safe_diff = map[name]
+        if not isinstance(max_safe_diff, float):
+            msg = f"Expected the type of the max safe diff to be a float, but got {type(max_safe_diff)} instead."
+            raise TypeError(msg)
+        name = "bounds"
+        if name not in map:
+            msg = f"Expected to find index {name} in the config but only found available indexes {map.keys()}"
+            raise IndexError(msg)
+        bounds = map[name]
+        if not isinstance(bounds, tuple):
+            msg = f"Expected the type of the bounds to be a tuple, but got {type(bounds)} instead."
+            raise TypeError(msg)
+        for bound in bounds:
+            if not isinstance(bound, float):
+                msg = f"Expected the type of a bound inside the bounds to be float, but got {type(bounds)} instead."
+                raise TypeError(msg)
+        if len(bounds) != 2:
+            msg = f"Expected two bounds stored for the max and min, but got {len(bounds)} bounds instead."
+            raise ValueError(msg)
+        return VoltageConstraints(
+            adjacency=adjacency,
+            max_safe_diff=max_safe_diff,
+            bounds=bounds,
         )
 
     def _extract_dcwiring(
@@ -136,7 +217,8 @@ class ConfigManipulations:
                 elif key in [pgate.name for pgate in connections.reservoir_gates]:
                     gt = ReservoirGate
                 else:
-                    raise TypeError("Cannot use that gate")
+                    msg = "Cannot use that gate"
+                    raise TypeError(msg)
                 outs.append(
                     Impedance(
                         connection=gt(key),

@@ -2,6 +2,8 @@
 
 from typing import TYPE_CHECKING
 
+from falcon_core.physics.config.core import voltage_constraints
+
 from ..geometries import NeighborGate
 from .constants import CONNECTION_TO_ATTRIBUTE_NAME
 from .dependancies import (
@@ -22,6 +24,7 @@ from .typing import (
 )
 
 if TYPE_CHECKING:
+    from .adjacency import Adjacency
     from .dependancies import (
         BarrierGate,
         Ohmics,
@@ -43,6 +46,7 @@ if TYPE_CHECKING:
         UsefulGates,
         UsefulGateType,
     )
+    from .voltage_constraints import VoltageConstraints
 
 
 class Config(StandardConfigConnections, Jsonable):
@@ -52,6 +56,7 @@ class Config(StandardConfigConnections, Jsonable):
     _groups: dict["Gname", "Group"]
     _wiring_DC: "Impedances"
     _channels: "Channels"
+    _adjacency: "Adjacency"
 
     def __init__(
         self,
@@ -62,6 +67,7 @@ class Config(StandardConfigConnections, Jsonable):
         reservoir_gates: "ReservoirGates",
         groups: dict["Gname", "Group"],
         wiring_DC: "Impedances",
+        constraints: "VoltageConstraints",
     ) -> None:
         """After the constructor provides some verification on Gates imported."""
         super().__init__(
@@ -71,6 +77,7 @@ class Config(StandardConfigConnections, Jsonable):
             barrier_gates=barrier_gates,
             reservoir_gates=reservoir_gates,
         )
+        self._voltage_constraints = voltage_constraints
         self._groups = groups
         self._wiring_DC = wiring_DC
         self._num_unique_channels = len(self.get_all_gnames())
@@ -84,6 +91,11 @@ class Config(StandardConfigConnections, Jsonable):
     def num_unique_channels(self) -> int:
         """Returns the number of unique channels associated with the current sample."""
         return self._num_unique_channels
+
+    @property
+    def voltage_constraints(self) -> "VoltageConstraints":
+        """Returns the voltage constraints for the physical layout."""
+        return self.voltage_constraints
 
     @property
     def groups(self) -> dict["Gname", "Group"]:
