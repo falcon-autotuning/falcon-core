@@ -143,7 +143,7 @@ class ConfigManipulations:
 
     def _extract_voltage_constraints(
         self,
-        map: dict[str, dict[str, dict[str, str]]],
+        map: dict[str, "Any"],
         total_gates: list,
     ) -> VoltageConstraints:
         """Given the available gates and the config lets produce a voltage constraints object."""
@@ -161,8 +161,8 @@ class ConfigManipulations:
             msg = f"Expected to find index {name} in the config but only found available indexes {map.keys()}"
             raise IndexError(msg)
         bounds = map[name]
-        if not isinstance(bounds, tuple):
-            msg = f"Expected the type of the bounds to be a tuple, but got {type(bounds)} instead."
+        if not isinstance(bounds, list):
+            msg = f"Expected the type of the bounds to be a list, but got {type(bounds)} instead."
             raise TypeError(msg)
         for bound in bounds:
             if not isinstance(bound, float):
@@ -174,7 +174,7 @@ class ConfigManipulations:
         return VoltageConstraints(
             adjacency=adjacency,
             max_safe_diff=max_safe_diff,
-            bounds=bounds,
+            bounds=tuple(bounds),
         )
 
     def _extract_dcwiring(
