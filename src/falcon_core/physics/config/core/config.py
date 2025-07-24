@@ -56,7 +56,7 @@ class Config(StandardConfigConnections, Jsonable):
     _groups: dict["Gname", "Group"]
     _wiring_DC: "Impedances"
     _channels: "Channels"
-    _adjacency: "Adjacency"
+    _voltage_constraints: "VoltageConstraints"
 
     def __init__(
         self,
@@ -77,7 +77,7 @@ class Config(StandardConfigConnections, Jsonable):
             barrier_gates=barrier_gates,
             reservoir_gates=reservoir_gates,
         )
-        self._voltage_constraints = voltage_constraints
+        self._voltage_constraints = constraints
         self._groups = groups
         self._wiring_DC = wiring_DC
         self._num_unique_channels = len(self.get_all_gnames())
@@ -95,7 +95,7 @@ class Config(StandardConfigConnections, Jsonable):
     @property
     def voltage_constraints(self) -> "VoltageConstraints":
         """Returns the voltage constraints for the physical layout."""
-        return self.voltage_constraints
+        return self._voltage_constraints
 
     @property
     def groups(self) -> dict["Gname", "Group"]:
