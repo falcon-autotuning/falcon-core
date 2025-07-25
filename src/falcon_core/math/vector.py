@@ -2,8 +2,8 @@
 
 from typing import TYPE_CHECKING, cast
 
-from physics.device_structures.base_connection import BaseConnection
-from physics.units import SymbolUnit, Units
+from ..physics.device_structures.base_connection import BaseConnection
+from ..physics.units import SymbolUnit, Units
 
 from ..dependancies import deepcopy, np, overload
 from ..generic import Jsonable
@@ -11,11 +11,9 @@ from .point import Point
 from .quantity import Quantity
 
 if TYPE_CHECKING:
-    from ..physics.device_structures.base_connection import BaseConnections
-
     from ..communications.voltage_states import DeviceVoltageStates
+    from ..physics.device_structures.base_connection import BaseConnections
     from ..physics.units import SymbolUnit
-
     from .point import RawPoint, RawPointWUnits
 
 
