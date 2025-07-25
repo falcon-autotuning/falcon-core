@@ -59,7 +59,7 @@ class BaseLabelledArrays[T: BaseLabelledArray](Jsonable):
             assert isinstance(array, BaseLabelledArray)
             if array.label == key:
                 return array
-        msg = f"Context {key} not found in the LabelledArrays object."
+        msg = f"Context {key} not found in the LabelledArrays object. The available keys are {self.labels}"
         raise KeyError(msg)
 
     def __iter__(self) -> "Iterator[T]":
