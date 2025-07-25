@@ -121,12 +121,12 @@ class Vector[T: SymbolUnit](Jsonable):
     @property
     def end(self) -> Point[T]:
         """Returns the point at the end."""
-        return self.end
+        return self._end
 
     @property
     def start(self) -> Point[T]:
         """Returns the point at the start."""
-        return self.start
+        return self._start
 
     @property
     def end_quantities(self) -> "RawPointWUnits[T]":
