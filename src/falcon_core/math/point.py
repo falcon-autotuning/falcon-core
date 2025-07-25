@@ -32,6 +32,7 @@ class Point[T: SymbolUnit](Jsonable):
         unit: T | None = None,
     ) -> None:
         """Starts the point object."""
+        self._coordinates = {}
         if unit is None:
             self._unit = cast("T", Units.VOLT)
             for conn, value in coordinates.items():
