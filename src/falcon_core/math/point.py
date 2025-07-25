@@ -14,27 +14,27 @@ type RawPoint = dict[BaseConnection, float]
 type RawPointWUnits[T: SymbolUnit] = dict[BaseConnection, Quantity[T]]
 
 
-class Point[T: SymbolUnit](Jsonable):
+class Point(Jsonable):
     """A bunch of quantities indexed by connection."""
 
-    _coordinates: RawPointWUnits[T]
-    _unit: T
+    _coordinates: RawPointWUnits
+    _unit: SymbolUnit
 
     @overload
-    def __init__(self, coordinates: RawPointWUnits[T]): ...
+    def __init__(self, coordinates: RawPointWUnits): ...
 
     @overload
-    def __init__(self, coordinates: RawPoint, unit: T): ...
+    def __init__(self, coordinates: RawPoint, unit: SymbolUnit): ...
 
     def __init__(
         self,
         coordinates: RawPointWUnits | RawPoint,
-        unit: T | None = None,
+        unit: SymbolUnit | None = None,
     ) -> None:
         """Starts the point object."""
         self._coordinates = {}
         if unit is None:
-            self._unit = cast("T", Units.VOLT)
+            self._unit = cast("SymbolUnit", Units.VOLT)
             for conn, value in coordinates.items():
                 if isinstance(value, float | int):
                     self[conn] = Quantity(value, unit=self._unit)
@@ -50,7 +50,7 @@ class Point[T: SymbolUnit](Jsonable):
                 self[conn] = Quantity(value, unit=self._unit)
 
     @property
-    def coordinates(self) -> RawPointWUnits[T]:
+    def coordinates(self) -> RawPointWUnits:
         """Returns the coordinates of the point."""
         return self._coordinates
 
@@ -60,18 +60,18 @@ class Point[T: SymbolUnit](Jsonable):
         return list(self._coordinates.keys())
 
     @property
-    def unit(self) -> T:
+    def unit(self) -> SymbolUnit:
         """Returns the unit for the point."""
         return self._unit
 
-    def __getitem__(self, index: "BaseConnection") -> "Quantity[T]":
+    def __getitem__(self, index: "BaseConnection") -> "Quantity":
         """Returns the quantity at the index specified."""
         return self.coordinates[index]
 
     def __setitem__(
         self,
         index: "BaseConnection",
-        value: "Quantity[T]",
+        value: "Quantity",
     ) -> None:
         """Sets the coordinate at the index and the value."""
         self._coordinates[index] = value

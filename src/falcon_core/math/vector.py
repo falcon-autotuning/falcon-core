@@ -16,24 +16,24 @@ if TYPE_CHECKING:
     from .point import RawPoint, RawPointWUnits
 
 
-class Vector[T: SymbolUnit](Jsonable):
+class Vector(Jsonable):
     """A point in device gate space. And is N dimensional."""
 
-    _end: "Point[T]"
-    _start: "Point[T]"
+    _end: "Point"
+    _start: "Point"
     _connections: list[BaseConnection]
-    _unit: "T"
+    _unit: SymbolUnit
 
     @overload
     def __init__(
         self,
-        end_point: "RawPointWUnits[T]",
+        end_point: "RawPointWUnits",
     ): ...
     @overload
     def __init__(
         self,
-        end_point: "RawPointWUnits[T]",
-        start_point: "RawPointWUnits[T]",
+        end_point: "RawPointWUnits",
+        start_point: "RawPointWUnits",
     ): ...
 
     @overload
@@ -41,34 +41,34 @@ class Vector[T: SymbolUnit](Jsonable):
         self,
         end_point: "RawPoint",
         start_point: None,
-        unit: "T",
+        unit: "SymbolUnit",
     ): ...
     @overload
     def __init__(
         self,
         end_point: "RawPoint",
         start_point: "RawPoint",
-        unit: "T",
+        unit: "SymbolUnit",
     ): ...
 
     @overload
     def __init__(
         self,
-        end_point: "Point[T]",
+        end_point: "Point",
     ): ...
 
     @overload
     def __init__(
         self,
-        end_point: "Point[T]",
-        start_point: "Point[T]",
+        end_point: "Point",
+        start_point: "Point",
     ): ...
 
     def __init__(
         self,
-        end_point: "RawPointWUnits[T] | RawPoint | Point[T]",
-        start_point: "RawPointWUnits[T] | RawPoint | Point[T] | None" = None,
-        unit: "T | None" = None,
+        end_point: "RawPointWUnits | RawPoint | Point",
+        start_point: "RawPointWUnits | RawPoint | Point | None" = None,
+        unit: "SymbolUnit | None" = None,
     ) -> None:
         """Constructs a point.
 
@@ -77,23 +77,23 @@ class Vector[T: SymbolUnit](Jsonable):
             unit: optional type unit for the point
         """
         if unit is None:
-            unit = cast("T", Units.VOLT)
+            unit = cast("SymbolUnit", Units.VOLT)
         if not isinstance(end_point, Point):
             first = list(end_point.values())[0]
             if isinstance(first, float):
                 end_point = cast("RawPoint", end_point)
-                end_point = Point[T](
+                end_point = Point(
                     end_point,
                     unit=unit,
                 )
             else:
-                end_point = cast("RawPointWUnits[T]", end_point)
+                end_point = cast("RawPointWUnits", end_point)
                 if unit is not None:
                     for quant in end_point.values():
                         quant.convert_to(unit)
                 end_point = Point(end_point)
         if start_point is None:
-            start_point = Point[T](
+            start_point = Point(
                 {conn: 0.0 for conn in end_point.connections},
                 unit=unit,
             )
@@ -101,12 +101,12 @@ class Vector[T: SymbolUnit](Jsonable):
             first = list(start_point.values())[0]
             if isinstance(first, float):
                 start_point = cast("RawPoint", start_point)
-                start_point = Point[T](
+                start_point = Point(
                     start_point,
                     unit=unit,
                 )
             else:
-                start_point = cast("RawPointWUnits[T]", start_point)
+                start_point = cast("RawPointWUnits", start_point)
                 if unit is not None:
                     for quant in start_point.values():
                         quant.convert_to(unit)
@@ -119,17 +119,17 @@ class Vector[T: SymbolUnit](Jsonable):
         self._unit = end_point.unit
 
     @property
-    def end(self) -> Point[T]:
+    def end(self) -> Point:
         """Returns the point at the end."""
         return self._end
 
     @property
-    def start(self) -> Point[T]:
+    def start(self) -> Point:
         """Returns the point at the start."""
         return self._start
 
     @property
-    def end_quantities(self) -> "RawPointWUnits[T]":
+    def end_quantities(self) -> "RawPointWUnits":
         """Returns the map of quantities."""
         return self._end._coordinates
 
@@ -139,7 +139,7 @@ class Vector[T: SymbolUnit](Jsonable):
         return {comp: value.value for comp, value in self.end_quantities.items()}
 
     @property
-    def start_quantities(self) -> "RawPointWUnits[T]":
+    def start_quantities(self) -> "RawPointWUnits":
         """Returns the map of quantities."""
         return self._start._coordinates
 
@@ -166,7 +166,7 @@ class Vector[T: SymbolUnit](Jsonable):
         return big_conn
 
     @property
-    def unit(self) -> "T":
+    def unit(self) -> SymbolUnit:
         """Returns the unit of the point."""
         return self._unit
 
@@ -237,7 +237,7 @@ class Vector[T: SymbolUnit](Jsonable):
             start_point=self.end_quantities,
         )
 
-    def update_start_from_states(self, state: "DeviceVoltageStates") -> "Vector[T]":
+    def update_start_from_states(self, state: "DeviceVoltageStates") -> "Vector":
         """Updates the vector to start from the given DeviceVoltageStates
         Args:
             state: the new device voltage state
@@ -252,9 +252,9 @@ class Vector[T: SymbolUnit](Jsonable):
 
     def translate(
         self,
-        point: "RawPointWUnits[T] | RawPoint | Point[T]",
-        unit: "T | None" = None,
-    ) -> "Vector[T]":
+        point: "RawPointWUnits | RawPoint | Point",
+        unit: "SymbolUnit | None" = None,
+    ) -> "Vector":
         """Displaces the origin of a vector by a point.
 
         Args:
@@ -270,12 +270,12 @@ class Vector[T: SymbolUnit](Jsonable):
             first = list(point.values())[0]
             if isinstance(first, float):
                 point = cast("RawPoint", point)
-                point = Point[T](
+                point = Point(
                     point,
                     unit=unit,
                 )
             else:
-                point = cast("RawPointWUnits[T]", point)
+                point = cast("RawPointWUnits", point)
                 if unit is not None:
                     for quant in point.values():
                         quant.convert_to(unit)
@@ -303,13 +303,13 @@ class Vector[T: SymbolUnit](Jsonable):
             start_point=start,
         )
 
-    def translate_to_origin(self) -> "Vector[T]":
+    def translate_to_origin(self) -> "Vector":
         """Translates a vector to the origin."""
         return self.translate(
             {conn: -1 * value for conn, value in self.start_quantities.items()}
         )
 
-    def extend(self, extension: int | float) -> "Vector[T]":
+    def extend(self, extension: int | float) -> "Vector":
         """Extends a vector in place with its start point anchored."""
         origin = deepcopy(self.start_map)
         displacement = {component: -value for component, value in origin.items()}
@@ -320,7 +320,7 @@ class Vector[T: SymbolUnit](Jsonable):
             unit=self.unit,
         )
 
-    def shrink(self, shrink: int | float) -> "Vector[T]":
+    def shrink(self, shrink: int | float) -> "Vector":
         """Shrinks a vector in place with its start point anchored."""
         origin = deepcopy(self.start_map)
         displacement = {component: -value for component, value in origin.items()}
@@ -332,7 +332,7 @@ class Vector[T: SymbolUnit](Jsonable):
         )
 
     @property
-    def unit_vector(self) -> "Vector[T]":
+    def unit_vector(self) -> "Vector":
         """Generates the unit vector for the direction of the vector."""
         unit_vector = self.translate(
             point={
@@ -342,18 +342,18 @@ class Vector[T: SymbolUnit](Jsonable):
         )
         return unit_vector / self.magnitude
 
-    def __add__(self, other: "Vector[T]") -> "Vector[T]":
+    def __add__(self, other: "Vector") -> "Vector":
         """The addition of two points is a vector."""
         return Vector(
             start_point=self.start_quantities,
             end_point=other.translate(point=self.end_quantities).end_quantities,
         )
 
-    def __sub__(self, other: "Vector[T]") -> "Vector[T]":
+    def __sub__(self, other: "Vector") -> "Vector":
         """The subtraction of two vector is a vector."""
         return self + (-other)
 
-    def __mul__(self, other: float | int) -> "Vector[T]":
+    def __mul__(self, other: float | int) -> "Vector":
         """The multiplication of a vector by a scalar is a vector."""
         return Vector(
             end_point={
@@ -366,11 +366,11 @@ class Vector[T: SymbolUnit](Jsonable):
             unit=self.unit,
         )
 
-    def __rmul__(self, other: float | int) -> "Vector[T]":
+    def __rmul__(self, other: float | int) -> "Vector":
         """The reverse multiplication of a vector by a scalar is a vector."""
         return other * self
 
-    def __truediv__(self, other: float | int) -> "Vector[T]":
+    def __truediv__(self, other: float | int) -> "Vector":
         """The division of a vector by a scalar is a vector."""
         # return (1 / float(other)) * self
         return Vector(
@@ -385,11 +385,11 @@ class Vector[T: SymbolUnit](Jsonable):
             unit=self.unit,
         )
 
-    def normalize(self) -> "Vector[T]":
+    def normalize(self) -> "Vector":
         """Returns the normalized vector starting at the anchored starting point."""
         return self.shrink(self.magnitude)
 
-    def project(self, other: "Vector[T]") -> "Vector[T]":
+    def project(self, other: "Vector") -> "Vector":
         """Projects ourself onto the other vector."""
         if other.unit != self.unit:
             for quant in other.end_quantities.values():
