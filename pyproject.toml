@@ -127,6 +127,8 @@ reservoir_gate = "falcon_core.physics.device_structures.reservoir_gate"
 screening_gate = "falcon_core.physics.device_structures.screening_gate"
 symbol_unit = "falcon_core.physics.units.symbol_unit"
 unit = "falcon_core.physics.units.unit"
+point = "falcon_core.math.point"
+vector = "falcon_core.math.vector"
 
 
 [project.readme]

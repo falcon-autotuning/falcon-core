@@ -1,50 +1,77 @@
 """Vector control parameters for feature optimizers."""
 
-from collections.abc import Mapping
 from typing import TYPE_CHECKING, cast
 
-from ..generic import Jsonable
-from .quantity import Quantity
-
 from physics.device_structures.base_connection import BaseConnection
+from physics.units import SymbolUnit, Units
 
 from ..dependancies import deepcopy, np, overload
+from ..generic import Jsonable
+from .point import Point
+from .quantity import Quantity
 
 if TYPE_CHECKING:
+    from physics.device_structures.base_connection import BaseConnections
+
     from falcon_core.communications.voltage_states import DeviceVoltageStates
     from falcon_core.physics.units import SymbolUnit
 
-    from physics.device_structures.base_connection import BaseConnections
-
-type Point = Mapping[BaseConnection, Quantity]
-type RawPoint = Mapping[BaseConnection, float]
+    from .point import RawPoint, RawPointWUnits
 
 
-class Vector(Jsonable):
+class Vector[T: SymbolUnit](Jsonable):
     """A point in device gate space. And is N dimensional."""
 
-    _end_quantities: Point
-    _start_quantities: Point
+    _end: "Point[T]"
+    _start: "Point[T]"
     _connections: list[BaseConnection]
-    _unit: "SymbolUnit"
+    _unit: "T"
 
-    @overload
-    def __init__(self, end_point: Point): ...
-    @overload
-    def __init__(self, end_point: Point, start_point: Point): ...
-
-    @overload
-    def __init__(self, end_point: RawPoint, start_point: None, unit: "SymbolUnit"): ...
     @overload
     def __init__(
-        self, end_point: RawPoint, start_point: RawPoint, unit: "SymbolUnit"
+        self,
+        end_point: "RawPointWUnits[T]",
+    ): ...
+    @overload
+    def __init__(
+        self,
+        end_point: "RawPointWUnits[T]",
+        start_point: "RawPointWUnits[T]",
+    ): ...
+
+    @overload
+    def __init__(
+        self,
+        end_point: "RawPoint",
+        start_point: None,
+        unit: "T",
+    ): ...
+    @overload
+    def __init__(
+        self,
+        end_point: "RawPoint",
+        start_point: "RawPoint",
+        unit: "T",
+    ): ...
+
+    @overload
+    def __init__(
+        self,
+        end_point: "Point[T]",
+    ): ...
+
+    @overload
+    def __init__(
+        self,
+        end_point: "Point[T]",
+        start_point: "Point[T]",
     ): ...
 
     def __init__(
         self,
-        end_point: Point | RawPoint,
-        start_point: Point | RawPoint | None = None,
-        unit: "SymbolUnit | None" = None,
+        end_point: "RawPointWUnits[T] | RawPoint | Point[T]",
+        start_point: "RawPointWUnits[T] | RawPoint | Point[T] | None" = None,
+        unit: "T | None" = None,
     ) -> None:
         """Constructs a point.
 
@@ -52,85 +79,75 @@ class Vector(Jsonable):
             value : the value of the point
             unit: optional type unit for the point
         """
-        end_connections = set(end_point.keys())
-        all_connections = end_connections
-        self._connections = list(all_connections)
-        if start_point is not None:
-            all_connections = set(start_point.keys()).union(set(end_point.keys()))
-        primary_quantity = list(end_point.values())[0]
-        extra_end_connections = all_connections - end_connections
-        if isinstance(primary_quantity, Quantity):
-            self._unit = primary_quantity.unit
-            for quant in end_point.values():
-                if not isinstance(quant, Quantity):
-                    msg = "Mixed types were used. All of the values must be Quantity or float not some of each."
-                    raise TypeError(msg)
-                quant.convert_to(self._unit)
-            end_point = cast("Point", end_point)
-            self._end_quantities = end_point
-        else:
-            if unit is None:
-                msg = "The unit needs to specified when Quantities are not used"
-                raise ValueError(msg)
-            self._unit = unit
-            end_point = cast("RawPoint", end_point)
-            self._end_quantities = {
-                comp: Quantity(value, unit=self.unit)
-                for comp, value in end_point.items()
-            }
-        for connection in extra_end_connections:
-            self._end_quantities = {
-                connection: Quantity(0.0, unit=self.unit),
-                **self._end_quantities,
-            }
-        self._start_quantities = {
-            c: Quantity(0.0, unit=self.unit) for c in all_connections
-        }
-        if start_point is not None:
-            extra_start_connections = all_connections - set(start_point.keys())
-            primary_quantity = list(start_point.values())[0]
-            if isinstance(primary_quantity, Quantity):
-                for quant in start_point.values():
-                    if not isinstance(quant, Quantity):
-                        msg = "Mixed types were used. All of the values must be Quantity or float not some of each."
-                        raise TypeError(msg)
-                    quant.convert_to(self._unit)
-                start_point = cast("Point", start_point)
-                self._start_quantities = start_point
+        if unit is None:
+            unit = cast("T", Units.VOLT)
+        if not isinstance(end_point, Point):
+            first = list(end_point.values())[0]
+            if isinstance(first, float):
+                end_point = cast("RawPoint", end_point)
+                end_point = Point[T](
+                    end_point,
+                    unit=unit,
+                )
             else:
-                if unit is None:
-                    msg = "The unit needs to specified when Quantities are not used"
-                    raise ValueError(msg)
-                self._unit = unit
+                end_point = cast("RawPointWUnits[T]", end_point)
+                if unit is not None:
+                    for quant in end_point.values():
+                        quant.convert_to(unit)
+                end_point = Point(end_point)
+        if start_point is None:
+            start_point = Point[T](
+                {conn: 0.0 for conn in end_point.connections},
+                unit=unit,
+            )
+        elif not isinstance(start_point, Point):
+            first = list(start_point.values())[0]
+            if isinstance(first, float):
                 start_point = cast("RawPoint", start_point)
-                self._start_quantities = {
-                    comp: Quantity(value, unit=self.unit)
-                    for comp, value in start_point.items()
-                }
-
-            for connection in extra_start_connections:
-                self._start_quantities = {
-                    connection: Quantity(0.0, unit=self.unit),
-                    **self._start_quantities,
-                }
+                start_point = Point[T](
+                    start_point,
+                    unit=unit,
+                )
+            else:
+                start_point = cast("RawPointWUnits[T]", start_point)
+                if unit is not None:
+                    for quant in start_point.values():
+                        quant.convert_to(unit)
+                start_point = Point(start_point)
+        self._end = end_point
+        self._start = start_point
+        self._connections = list(
+            set(end_point.connections).union(set(start_point.connections))
+        )
+        self._unit = end_point.unit
 
     @property
-    def end_quantities(self) -> Point:
+    def end(self) -> Point[T]:
+        """Returns the point at the end."""
+        return self.end
+
+    @property
+    def start(self) -> Point[T]:
+        """Returns the point at the start."""
+        return self.start
+
+    @property
+    def end_quantities(self) -> "RawPointWUnits[T]":
         """Returns the map of quantities."""
-        return self._end_quantities
+        return self._end._coordinates
 
     @property
-    def end_map(self) -> RawPoint:
+    def end_map(self) -> "RawPoint":
         """Returns the map of the point."""
         return {comp: value.value for comp, value in self.end_quantities.items()}
 
     @property
-    def start_quantities(self) -> Point:
+    def start_quantities(self) -> "RawPointWUnits[T]":
         """Returns the map of quantities."""
-        return self._start_quantities
+        return self._start._coordinates
 
     @property
-    def start_map(self) -> RawPoint:
+    def start_map(self) -> "RawPoint":
         """Returns the map of the point."""
         return {comp: value.value for comp, value in self.start_quantities.items()}
 
@@ -152,7 +169,7 @@ class Vector(Jsonable):
         return big_conn
 
     @property
-    def unit(self) -> "SymbolUnit":
+    def unit(self) -> "T":
         """Returns the unit of the point."""
         return self._unit
 
@@ -209,24 +226,12 @@ class Vector(Jsonable):
             value : the value (start, end)
         """
         if isinstance(connection, BaseConnection):
-            self._end_quantities = {
-                connection: Quantity(value[1], unit=self.unit),
-                **self._end_quantities,
-            }
-            self._start_quantities = {
-                connection: Quantity(value[0], unit=self.unit),
-                **self._start_quantities,
-            }
+            self._end[connection] = Quantity(value[1], self.unit)
+            self._start[connection] = Quantity(value[0], self.unit)
         else:
             for conn in connection:
-                self._end_quantities = {
-                    conn: Quantity(value[1], unit=self.unit),
-                    **self._end_quantities,
-                }
-                self._start_quantities = {
-                    conn: Quantity(value[0], unit=self.unit),
-                    **self._start_quantities,
-                }
+                self._end[conn] = Quantity(value[1], self.unit)
+                self._start[conn] = Quantity(value[0], self.unit)
 
     def __neg__(self) -> "Vector":
         """The negation of a point is a point."""
@@ -235,14 +240,7 @@ class Vector(Jsonable):
             start_point=self.end_quantities,
         )
 
-    # def __neg__(self) -> "Vector":
-    #     """The negation of a point is a point."""
-    #     return Vector(
-    #         end_point=self.end_quantities,
-    #         start_point={k: -1 * v for k, v in self.start_quantities.items()},
-    #     )
-
-    def update_start_from_states(self, state: "DeviceVoltageStates") -> "Vector":
+    def update_start_from_states(self, state: "DeviceVoltageStates") -> "Vector[T]":
         """Updates the vector to start from the given DeviceVoltageStates
         Args:
             state: the new device voltage state
@@ -250,23 +248,16 @@ class Vector(Jsonable):
             the displaced vector which starts at the given state.
         """
         new_origin = {}
-        # for connection in self._end_quantities:
-        #     dv_state = state.find_state(connection)
-        #     if dv_state is None:
-        #         raise RuntimeError(
-        #             f"Vector contains a connection {connection} which is not in the current device voltage states."
-        #         )
-        #     new_origin[connection] = Quantity(dv_state.value, unit=self._unit)
         for dv_state in state.states:
             connection = dv_state.connection
-            new_origin[connection] = Quantity(dv_state.value, unit=self._unit)
+            new_origin[connection] = Quantity(dv_state.value, unit=self.unit)
         return self.translate(new_origin)
 
     def translate(
         self,
-        point: Point | RawPoint,
-        unit: "SymbolUnit | None" = None,
-    ) -> "Vector":
+        point: "RawPointWUnits[T] | RawPoint | Point[T]",
+        unit: "T | None" = None,
+    ) -> "Vector[T]":
         """Displaces the origin of a vector by a point.
 
         Args:
@@ -276,43 +267,52 @@ class Vector(Jsonable):
         Returns:
             the displaced vector that is translated
         """
-        all_components = set(point.keys()).union(self.connections)
-        primary_component = list(point.values())[0]
-        start = {component: 0.0 for component in all_components}
-        end = {component: 0.0 for component in all_components}
-        for component, value in self.start_map.items():
-            start[component] += value
-        for component, value in self.end_map.items():
-            end[component] += value
-        if not isinstance(primary_component, Quantity):
-            if unit is None:
-                msg = "The unit must be specified when not using Quantities"
-                raise TypeError(msg)
-            point = cast("RawPoint", point)
-            point = {
-                component: Quantity(value=value, unit=unit)
-                for component, value in point.items()
-            }
-        point = cast("Point", point)
-        for component in point.values():
+        if unit is None:
+            unit = self.unit
+        if not isinstance(point, Point):
+            first = list(point.values())[0]
+            if isinstance(first, float):
+                point = cast("RawPoint", point)
+                point = Point[T](
+                    point,
+                    unit=unit,
+                )
+            else:
+                point = cast("RawPointWUnits[T]", point)
+                if unit is not None:
+                    for quant in point.values():
+                        quant.convert_to(unit)
+                point = Point(point)
+
+        all_components = set(point.connections).union(self.connections)
+        start = deepcopy(self.start)
+        end = deepcopy(self.end)
+        for component in all_components:
+            if component not in point.connections:
+                point[component] = Quantity(0.0, self.unit)
+            if component not in start.connections:
+                start[component] = Quantity(0.0, self.unit)
+            if component not in end.connections:
+                end[component] = Quantity(0.0, self.unit)
+
+        for component in point.coordinates.values():
             component.convert_to(self.unit)
-        for component, value in point.items():
+        for component, value in point.coordinates.items():
             start[component] += value.value
-        for component, value in point.items():
+        for component, value in point.coordinates.items():
             end[component] += value.value
         return Vector(
             end_point=end,
             start_point=start,
-            unit=self.unit,
         )
 
-    def translate_to_origin(self) -> "Vector":
+    def translate_to_origin(self) -> "Vector[T]":
         """Translates a vector to the origin."""
         return self.translate(
             {conn: -1 * value for conn, value in self.start_quantities.items()}
         )
 
-    def extend(self, extension: int | float) -> "Vector":
+    def extend(self, extension: int | float) -> "Vector[T]":
         """Extends a vector in place with its start point anchored."""
         origin = deepcopy(self.start_map)
         displacement = {component: -value for component, value in origin.items()}
@@ -323,7 +323,7 @@ class Vector(Jsonable):
             unit=self.unit,
         )
 
-    def shrink(self, shrink: int | float) -> "Vector":
+    def shrink(self, shrink: int | float) -> "Vector[T]":
         """Shrinks a vector in place with its start point anchored."""
         origin = deepcopy(self.start_map)
         displacement = {component: -value for component, value in origin.items()}
@@ -335,7 +335,7 @@ class Vector(Jsonable):
         )
 
     @property
-    def unit_vector(self) -> "Vector":
+    def unit_vector(self) -> "Vector[T]":
         """Generates the unit vector for the direction of the vector."""
         unit_vector = self.translate(
             point={
@@ -345,18 +345,18 @@ class Vector(Jsonable):
         )
         return unit_vector / self.magnitude
 
-    def __add__(self, other: "Vector") -> "Vector":
+    def __add__(self, other: "Vector[T]") -> "Vector[T]":
         """The addition of two points is a vector."""
         return Vector(
             start_point=self.start_quantities,
             end_point=other.translate(point=self.end_quantities).end_quantities,
         )
 
-    def __sub__(self, other: "Vector") -> "Vector":
+    def __sub__(self, other: "Vector[T]") -> "Vector[T]":
         """The subtraction of two vector is a vector."""
         return self + (-other)
 
-    def __mul__(self, other: float | int) -> "Vector":
+    def __mul__(self, other: float | int) -> "Vector[T]":
         """The multiplication of a vector by a scalar is a vector."""
         return Vector(
             end_point={
@@ -369,11 +369,11 @@ class Vector(Jsonable):
             unit=self.unit,
         )
 
-    def __rmul__(self, other: float | int) -> "Vector":
+    def __rmul__(self, other: float | int) -> "Vector[T]":
         """The reverse multiplication of a vector by a scalar is a vector."""
         return other * self
 
-    def __truediv__(self, other: float | int) -> "Vector":
+    def __truediv__(self, other: float | int) -> "Vector[T]":
         """The division of a vector by a scalar is a vector."""
         # return (1 / float(other)) * self
         return Vector(
@@ -388,11 +388,11 @@ class Vector(Jsonable):
             unit=self.unit,
         )
 
-    def normalize(self) -> "Vector":
+    def normalize(self) -> "Vector[T]":
         """Returns the normalized vector starting at the anchored starting point."""
         return self.shrink(self.magnitude)
 
-    def project(self, other: "Vector") -> "Vector":
+    def project(self, other: "Vector[T]") -> "Vector[T]":
         """Projects ourself onto the other vector."""
         if other.unit != self.unit:
             for quant in other.end_quantities.values():
