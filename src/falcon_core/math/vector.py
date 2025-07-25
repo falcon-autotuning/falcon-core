@@ -2,11 +2,10 @@
 
 from typing import TYPE_CHECKING, cast
 
-from ..physics.device_structures.base_connection import BaseConnection
-from ..physics.units import SymbolUnit, Units
-
 from ..dependancies import deepcopy, np, overload
 from ..generic import Jsonable
+from ..physics.device_structures.base_connection import BaseConnection
+from ..physics.units import SymbolUnit, Units
 from .point import Point
 from .quantity import Quantity
 
