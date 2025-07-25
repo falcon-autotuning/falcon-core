@@ -13,8 +13,8 @@ from .quantity import Quantity
 if TYPE_CHECKING:
     from physics.device_structures.base_connection import BaseConnections
 
-    from falcon_core.communications.voltage_states import DeviceVoltageStates
-    from falcon_core.physics.units import SymbolUnit
+    from ..communications.voltage_states import DeviceVoltageStates
+    from ..physics.units import SymbolUnit
 
     from .point import RawPoint, RawPointWUnits
 
