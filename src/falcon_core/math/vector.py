@@ -11,7 +11,7 @@ from .point import Point
 from .quantity import Quantity
 
 if TYPE_CHECKING:
-    from physics.device_structures.base_connection import BaseConnections
+    from ..physics.device_structures.base_connection import BaseConnections
 
     from ..communications.voltage_states import DeviceVoltageStates
     from ..physics.units import SymbolUnit
