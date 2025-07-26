@@ -1,7 +1,10 @@
 """Tests that the config is serializeable."""
 
+from falcon_core.dependancies import np
 from falcon_core.physics.config.core import Config
+from falcon_core.physics.config.core.adjacency import Adjacency
 from falcon_core.physics.config.core.group import Group
+from falcon_core.physics.config.core.voltage_constraints import VoltageConstraints
 from falcon_core.physics.config.dependancies import (
     BarrierGate,
     BarrierGates,
@@ -58,6 +61,15 @@ def test_config_json_serialization():
         order=order,
     )
 
+    constraints = VoltageConstraints(
+        max_safe_diff=1.0,
+        bounds=(-1.0, 1.0),
+        adjacency=Adjacency(
+            matrix=np.ones((9, 9)),
+            indexes=group.get_all_gates()._values,
+        ),
+    )
+
     # Create wiring impedances
     wiring_DC = Impedances(
         [
@@ -102,6 +114,7 @@ def test_config_json_serialization():
         reservoir_gates=reservoir_gates,
         groups={Gname(value="group1"): group},
         wiring_DC=wiring_DC,
+        constraints=constraints,
     )
 
     # Serialize to JSON

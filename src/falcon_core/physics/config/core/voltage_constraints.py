@@ -3,12 +3,13 @@
 from typing import TYPE_CHECKING
 
 from ....dependancies import np
+from ....generic.jsonable import Jsonable
 
 if TYPE_CHECKING:
     from .adjacency import Adjacency
 
 
-class VoltageConstraints:
+class VoltageConstraints(Jsonable):
     """Contains a ready to use voltage constraints matrix and matching limits for each constraint."""
 
     _matrix: "np.ndarray"

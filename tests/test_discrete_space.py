@@ -1,3 +1,5 @@
+from typing import TYPE_CHECKING, cast
+
 from falcon_core.constants import INSTRUMENT_TYPES
 from falcon_core.instrument_interfaces.names import Knob
 from falcon_core.math.axes import Axes
@@ -8,6 +10,10 @@ from falcon_core.math.domains.knob_domain import KnobDomain
 from falcon_core.math.spaces import UnitSpace
 from falcon_core.physics import PlungerGate
 from falcon_core.physics.units import Units
+
+if TYPE_CHECKING:
+    from falcon_core.physics.device_structures import Connection
+    from falcon_core.typing import Instrument
 
 Timer = Knob(
     default_name=INSTRUMENT_TYPES.CLOCK,
@@ -33,6 +39,7 @@ def test_get_projection_runs():
         )
         for i in range(2)
     ]
+    increasing = Axes([{PlungerGate(f"P{i}"): True} for i in range(2)])
 
     # Create KnobDomains for each Knob
     knob_domains_list = [
@@ -44,7 +51,11 @@ def test_get_projection_runs():
     ]
     # Create CoupledKnobDomain axes for BaseDiscreteSpace
     coupled_knob_domains = Axes([CoupledKnobDomain([kd]) for kd in knob_domains_list])
-    bds = BaseDiscreteSpace(space=uspace, axes=coupled_knob_domains)
+    bds = BaseDiscreteSpace(
+        space=uspace,
+        axes=coupled_knob_domains,
+        increasing=cast("Axes[dict[Connection | Instrument, bool]]", increasing),
+    )
 
     # Project onto both Knobs
     projection = Axes(knobs)
@@ -75,6 +86,10 @@ def test_get_projection_runs_with_instrument():
         for i in range(2)
     ] + [Timer]
 
+    increasing = Axes(
+        [{PlungerGate(f"P{i}"): True} for i in range(2)]
+        + [{Timer.instrument_type: True}]
+    )
     # Create KnobDomains for each Knob
     knob_domains_list = [
         KnobDomain.from_knob(
@@ -85,7 +100,11 @@ def test_get_projection_runs_with_instrument():
     ]
     # Create CoupledKnobDomain axes for BaseDiscreteSpace
     coupled_knob_domains = Axes([CoupledKnobDomain([kd]) for kd in knob_domains_list])
-    bds = BaseDiscreteSpace(space=uspace, axes=coupled_knob_domains)
+    bds = BaseDiscreteSpace(
+        space=uspace,
+        axes=coupled_knob_domains,
+        increasing=cast("Axes[dict[Connection | Instrument, bool]]", increasing),
+    )
 
     # Project onto both Knobs
     projection = Axes(knobs)
