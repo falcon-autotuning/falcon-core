@@ -3,11 +3,20 @@
 from typing import TYPE_CHECKING
 
 from .base_cartesian_discrete_space import BaseCartesianDiscreteSpace
-from .dependancies import CartesianSpace, Domain, Jsonable
+from .dependancies import (
+    Axes,
+    CartesianSpace,
+    Domain,
+    Jsonable,
+)
 
 if TYPE_CHECKING:
+    from ...physics.device_structures import Connection
+    from ...typing import Instrument
     from .dependancies import Axes
-    from .typing import CoupledKnobDomain
+    from .typing import (
+        CoupledKnobDomain,
+    )
 
 
 class CartesianDiscreteSpace(BaseCartesianDiscreteSpace, Jsonable):
@@ -18,6 +27,7 @@ class CartesianDiscreteSpace(BaseCartesianDiscreteSpace, Jsonable):
         cls,
         divisions: "Axes[int]",
         axes: "Axes[CoupledKnobDomain]",
+        increasing: "Axes[dict[Connection | Instrument, bool]]",
         domain: Domain = Domain(bounds=(0, 1)),
     ) -> "BaseCartesianDiscreteSpace":
         """Create a CartesianDiscreteSpace from raw deltas.
@@ -35,4 +45,5 @@ class CartesianDiscreteSpace(BaseCartesianDiscreteSpace, Jsonable):
         return cls(
             space=CartesianSpace(deltas=deltas, domain=domain),
             axes=axes,
+            increasing=increasing,
         )

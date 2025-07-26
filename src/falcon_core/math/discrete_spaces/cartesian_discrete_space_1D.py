@@ -6,6 +6,8 @@ from .base_cartesian_discrete_space import BaseCartesianDiscreteSpace
 from .dependancies import Axes, Cartesian1DSpace, Domain, Jsonable
 
 if TYPE_CHECKING:
+    from ...physics.device_structures import Connection
+    from ...typing import Instrument
     from .typing import CoupledKnobDomain
 
 
@@ -17,6 +19,7 @@ class CartesianDiscreteSpace1D(BaseCartesianDiscreteSpace, Jsonable):
         cls,
         division: int,
         shared_domain: "CoupledKnobDomain",
+        increasing: "Axes[dict[Connection | Instrument, bool]]",
         domain: Domain = Domain(bounds=(0, 1)),
     ) -> "BaseCartesianDiscreteSpace":
         """Create a CartesianDiscreteSpace1D from a single division.
@@ -32,4 +35,5 @@ class CartesianDiscreteSpace1D(BaseCartesianDiscreteSpace, Jsonable):
         return cls(
             space=Cartesian1DSpace(delta=domain.range / division, domain=domain),
             axes=Axes([shared_domain]),
+            increasing=increasing,
         )

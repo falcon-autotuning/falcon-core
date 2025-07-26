@@ -6,7 +6,9 @@ from .base_discrete_space import BaseDiscreteSpace
 from .dependancies import Jsonable
 
 if TYPE_CHECKING:
-    from .dependancies import Axes
+    from ...physics.device_structures import Connection
+    from ...typing import Instrument
+    from ..axes import Axes
     from .typing import CoupledKnobDomain, UnitSpace
 
 
@@ -17,6 +19,7 @@ class DiscreteSpace(BaseDiscreteSpace, Jsonable):
         self,
         space: "UnitSpace",
         axes: "Axes[CoupledKnobDomain]",
+        increasing: "Axes[dict['Connection | Instrument', bool]]",
     ):
         """Initialize the DiscreteSpace object.
 
@@ -26,7 +29,7 @@ class DiscreteSpace(BaseDiscreteSpace, Jsonable):
             space: the space that the discrete values fill.
             axes: the axes of the discrete values.
         """
-        super().__init__(space=space, axes=axes)
+        super().__init__(space=space, axes=axes, increasing=increasing)
 
     @property
     def space(self) -> "UnitSpace":

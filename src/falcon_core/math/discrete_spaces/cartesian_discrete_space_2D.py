@@ -6,6 +6,8 @@ from .cartesian_discrete_space import CartesianDiscreteSpace
 from .dependancies import Jsonable
 
 if TYPE_CHECKING:
+    from ...physics.device_structures import Connection
+    from ...typing import Instrument
     from .dependancies import Axes, CartesianSpace
     from .typing import CoupledKnobDomain
 
@@ -15,7 +17,12 @@ NUM_DIMENSIONS = 2
 class CartesianDiscreteSpace2D(CartesianDiscreteSpace, Jsonable):
     """A special type of discrete space that is restricted to a 2D cartesian domain."""
 
-    def __init__(self, space: "CartesianSpace", axes: "Axes[CoupledKnobDomain]"):
+    def __init__(
+        self,
+        space: "CartesianSpace",
+        axes: "Axes[CoupledKnobDomain]",
+        increasing: "Axes[dict[Connection | Instrument, bool]]",
+    ):
         """Initialize the CartesianDiscreteSpace2D object.
 
         Args:
@@ -28,4 +35,8 @@ class CartesianDiscreteSpace2D(CartesianDiscreteSpace, Jsonable):
         if axes.dimension != NUM_DIMENSIONS:
             msg = f"The axes must have a dimension of {NUM_DIMENSIONS} for CartesianDiscreteSpace2D."
             raise ValueError(msg)
-        super().__init__(space, axes)
+        super().__init__(
+            space,
+            axes,
+            increasing=increasing,
+        )

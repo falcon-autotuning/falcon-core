@@ -6,6 +6,8 @@ from .base_discrete_space import BaseDiscreteSpace
 from .dependancies import CartesianSpace, Jsonable, Knobs
 
 if TYPE_CHECKING:
+    from ...physics.device_structures import Connection
+    from ...typing import Instrument
     from .dependancies import Axes
     from .typing import CoupledKnobDomain
 
@@ -17,9 +19,10 @@ class BaseCartesianDiscreteSpace(BaseDiscreteSpace, Jsonable):
         self,
         space: CartesianSpace,
         axes: "Axes[CoupledKnobDomain]",
+        increasing: "Axes[dict[Connection | Instrument, bool]]",
     ):
         """Initialize the CartesianDiscreteSpace object."""
-        super().__init__(space=space, axes=axes)
+        super().__init__(space=space, axes=axes, increasing=increasing)
 
     @property
     def space(self) -> "CartesianSpace":
