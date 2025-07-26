@@ -233,9 +233,9 @@ class Vector(Jsonable):
     def __neg__(self) -> "Vector":
         """The negation of a point is a point."""
         start = deepcopy(self.start_quantities)
-        self.translate_to_origin()
+        new = self.translate_to_origin()
         new = Vector(
-            end_point={conn: -1 * quan for conn, quan in self.end_quantities.items()},
+            end_point={conn: -1 * quan for conn, quan in new.end_quantities.items()},
         )
         return new.translate(start)
 
