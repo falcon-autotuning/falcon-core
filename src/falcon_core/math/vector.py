@@ -235,7 +235,7 @@ class Vector(Jsonable):
         start = deepcopy(self.start_quantities)
         self.translate_to_origin()
         new = Vector(
-            end_point={conn: -1 * quan for conn, quan in self.start_quantities.items()},
+            end_point={conn: -1 * quan for conn, quan in self.end_quantities.items()},
         )
         return new.translate(start)
 
