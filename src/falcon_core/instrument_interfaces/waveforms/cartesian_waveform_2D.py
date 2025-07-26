@@ -6,6 +6,8 @@ from .cartesian_waveform import CartesianWaveform
 from .dependancies import Domain, Jsonable
 
 if TYPE_CHECKING:
+    from ...physics.device_structures import Connection
+    from ...typing import Instrument
     from .typing import Axes, CoupledKnobDomain, PortTransform, Self
 
 
@@ -20,6 +22,7 @@ class CartesianWaveform2D(CartesianWaveform, Jsonable):
         cls,
         divisions: "Axes[int]",
         axes: "Axes[CoupledKnobDomain]",
+        increasing: "Axes[dict[Connection | Instrument, bool]]",
         transforms: "list[PortTransform]" = [],
         domain: Domain = Domain(bounds=(0, 1)),
     ) -> "Self":
@@ -30,6 +33,7 @@ class CartesianWaveform2D(CartesianWaveform, Jsonable):
             axes: the axes of the CartesianSpace.
             domain: the base domain of the CartesianSpace.
             transforms: the transforms to apply to the waveform.
+            increasing: if the array should increase following the domain or not
 
         Returns:
             CartesianWaveform: the CartesianWaveform.
@@ -42,4 +46,5 @@ class CartesianWaveform2D(CartesianWaveform, Jsonable):
             axes=axes,
             transforms=transforms,
             domain=domain,
+            increasing=increasing,
         )

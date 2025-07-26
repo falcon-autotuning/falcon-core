@@ -33,11 +33,23 @@ from falcon_core.physics.units import Units
 
 if TYPE_CHECKING:
     from falcon_core.math.spaces.dependancies import ControlArray
+    from falcon_core.physics.device_structures import Connection
+    from falcon_core.typing import Instrument
 
 
 @pytest.fixture
 def shape():
     return (69, 37, 42)
+
+
+@pytest.fixture
+def increasing():
+    return Axes(
+        [
+            {PlungerGate("P1"): True, BarrierGate("B1"): True},
+            {BarrierGate("B5"): True, BarrierGate("B9"): True},
+        ]
+    )
 
 
 @pytest.fixture
@@ -117,10 +129,15 @@ def response(ranges):
 
 
 @pytest.fixture
-def waveform(domain_labels: Axes[CoupledKnobDomain], shape: tuple[int, ...]):
+def waveform(
+    domain_labels: Axes[CoupledKnobDomain],
+    shape: tuple[int, ...],
+    increasing: Axes[dict["Connection | Instrument", bool]],
+):
     wave = CartesianWaveform.from_divisions(
         divisions=Axes([s - 1 for s in shape]),
         axes=domain_labels,
+        increasing=increasing,
     )
     wave._space.space.compile()
     return wave
@@ -142,6 +159,7 @@ def getters():
 def measurement_request(
     domain_labels: Axes[CoupledKnobDomain],
     unit_domain: Axes["ControlArray"],
+    increasing: Axes[dict["Connection | Instrument", bool]],
     getters: Meters,
     shape: tuple[int, ...],
 ):
@@ -154,6 +172,7 @@ def measurement_request(
             CartesianWaveform.from_divisions(
                 divisions=Axes([s - 1 for s in shape]),
                 axes=domain_labels,
+                increasing=increasing,
             )
         ],
     )
