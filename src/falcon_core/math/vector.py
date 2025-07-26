@@ -22,7 +22,7 @@ class Vector(Jsonable):
     _end: "Point"
     _start: "Point"
     _connections: list[BaseConnection]
-    _unit: SymbolUnit
+    _unit: "SymbolUnit"
 
     @overload
     def __init__(
@@ -166,7 +166,7 @@ class Vector(Jsonable):
         return big_conn
 
     @property
-    def unit(self) -> SymbolUnit:
+    def unit(self) -> "SymbolUnit":
         """Returns the unit of the point."""
         return self._unit
 
@@ -232,10 +232,12 @@ class Vector(Jsonable):
 
     def __neg__(self) -> "Vector":
         """The negation of a point is a point."""
-        return Vector(
-            end_point=self.start_quantities,
-            start_point=self.end_quantities,
+        start = deepcopy(self.start_quantities)
+        self.translate_to_origin()
+        new = Vector(
+            end_point={conn: -1 * quan for conn, quan in self.start_quantities.items()},
         )
+        return new.translate(start)
 
     def update_start_from_states(self, state: "DeviceVoltageStates") -> "Vector":
         """Updates the vector to start from the given DeviceVoltageStates
