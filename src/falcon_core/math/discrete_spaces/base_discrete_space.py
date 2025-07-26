@@ -13,6 +13,8 @@ from .typing import (
 )
 
 if TYPE_CHECKING:
+    from ...physics.device_structures import Connection
+    from ...typing import Instrument
     from .dependancies import Domain
     from .typing import (
         CoupledKnobDomain,
@@ -25,11 +27,13 @@ class BaseDiscreteSpace(Jsonable):
 
     _space: "UnitSpace"
     _axes: "Axes[CoupledKnobDomain]"
+    _increasing: Axes[dict["Connection | Instrument", bool]]
 
     def __init__(
         self,
         space: "UnitSpace",
         axes: "Axes[CoupledKnobDomain]",
+        increasing: Axes[dict["Connection | Instrument", bool]],
     ):
         """Initialize the DiscreteSpace object.
 
@@ -38,9 +42,11 @@ class BaseDiscreteSpace(Jsonable):
         Args:
             space: the space that the discrete values fill.
             axes: the axes of the discrete values.
+            increasing: if the axis increases with the direction of the domain or against
         """
         self._space = space
         self._axes = axes
+        self._increasing = increasing
         self.validate_unit_space_dimensionality_matches_knobs()
         self.validate_knob_uniqueness()
 
@@ -118,7 +124,9 @@ class BaseDiscreteSpace(Jsonable):
         unitprojections = self._space.create_array(axes=projection_axes)
 
         scaled_projections: list[ControlArray] = []
-        for unitprojection, knob in zip(unitprojections, projection):
+        for unitprojection, knob, increasing in zip(
+            unitprojections, projection, self._increasing
+        ):
             assert isinstance(unitprojection, ControlArray), (
                 f"Expected the type of each unit projection to be Control Array, but it was {type(unitprojection)}"
             )
@@ -127,8 +135,12 @@ class BaseDiscreteSpace(Jsonable):
             )
             domain = self.get_domain(knob=knob)
             difference = domain.range
-            min_value = domain.lesser_bound
-            scaled_projections.append(unitprojection * difference + min_value)
+            index = knob._pseudo_name
+            if index is None:
+                index = knob.instrument_type
+            sign = 1 if increasing[index] else -1
+            value = domain.lesser_bound if sign else domain.greater_bound
+            scaled_projections.append(unitprojection * difference * sign + value)
 
         return Axes(
             [
