@@ -139,7 +139,7 @@ class BaseDiscreteSpace(Jsonable):
             if index is None:
                 index = knob.instrument_type
             sign = 1 if increasing[index] else -1
-            value = domain.lesser_bound if sign else domain.greater_bound
+            value = domain.lesser_bound if sign > 0 else domain.greater_bound
             scaled_projections.append(unitprojection * difference * sign + value)
 
         return Axes(
