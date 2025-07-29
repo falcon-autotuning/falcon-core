@@ -149,3 +149,23 @@ class Quantity(Jsonable, Generic[T]):
             the Quantity object with the result.
         """
         return self + (-1 * other)
+
+    def __abs__(self) -> "Self":
+        """Preforms the absolute value of a quantity.
+
+        Returns:
+            the Quantity object with the result.
+        """
+        clone = self.deepcopy()
+        clone._value = abs(clone._value)
+        return clone
+
+    def __neg__(self) -> "Self":
+        """Preforms the absolute value of a quantity.
+
+        Returns:
+            the Quantity object with the result.
+        """
+        clone = self.deepcopy()
+        clone._value = -clone._value
+        return clone
