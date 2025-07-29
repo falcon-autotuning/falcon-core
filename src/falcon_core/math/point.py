@@ -75,3 +75,18 @@ class Point(Jsonable):
     ) -> None:
         """Sets the coordinate at the index and the value."""
         self._coordinates[index] = value
+
+    def __add__(self, other: "Point") -> "Point":
+        """Adds two points together."""
+        all_connections = set(self.connections).union(other.connections)
+        outs: RawPointWUnits = {}
+        for connection in all_connections:
+            our_value = Quantity(0.0, self.unit)
+            if connection in self.coordinates:
+                our_value = self.coordinates[connection]
+            other_value = Quantity(0.0, self.unit)
+            if connection in other.coordinates:
+                other_value = other.coordinates[connection]
+                other_value.convert_to(self.unit)
+            outs[connection] = our_value + other_value
+        return Point(outs)
