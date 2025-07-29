@@ -407,7 +407,7 @@ class Vector(Jsonable):
         )
         shared_components = set(self.connections).intersection(set(other.connections))
         end = {
-            comp: origin_self.end_map[comp] * origin_other.end_map[comp]
+            comp: float(origin_self.end_map[comp] * origin_other.end_map[comp])
             for comp in shared_components
         }
         out = Vector(
