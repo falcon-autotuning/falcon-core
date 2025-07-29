@@ -2,6 +2,10 @@
 
 from typing import TYPE_CHECKING
 
+from falcon_core.communications.voltage_states.device_voltage_states import (
+    DeviceVoltageStates,
+)
+
 from .dependancies import (
     Axes,
     Jsonable,
@@ -150,6 +154,7 @@ class HDF5Data(Jsonable):
         cls,
         request: "MeasurementRequest",
         response: "MeasurementResponse",
+        device_voltage_states: "DeviceVoltageStates",
         measurement_title: str,
         unique_id: int,
         timestamp: int,
@@ -198,6 +203,7 @@ class HDF5Data(Jsonable):
             metadata={
                 "jsonable_request": request.to_json(),
                 "jsonable_response": response.to_json(),
+                "device_voltage_states": device_voltage_states.to_json(),
             },
             timestamp=timestamp,
             unique_id=unique_id,
