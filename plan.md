@@ -23,11 +23,11 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 ---
 
-## Phase 0: Project Setup and Foundation
+## Phase 0: Project Setup and Foundation (Completed)
 
 **Goal:** Establish the core C++ project structure, build system, and port the most basic utilities.
 
-1.  **Repository and Build System Setup:**
+1.  **Repository and Build System Setup: (Completed)**
     *   Create a C++ project structure (`include/falcon_core`, `src/`, `tests/`, `swig/`).
     *   Set up a CMake build system.
     *   Integrate Google Test for C++ unit testing.
@@ -35,12 +35,12 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
     *   Integrate `xtensor` and `xtensor-python` for NumPy compatibility.
     *   Configure CMake to run SWIG for Python and Go.
 
-2.  **Port Core Utilities:**
+2.  **Port Core Utilities: (Completed)**
     *   **C++:** Port `constants.py` to a C++ header with `constexpr` values. Port the `Time` class.
     *   **C++ Test:** Write tests for the `Time` class.
     *   **SWIG:** Expose constants and the `Time` class.
 
-3.  **Port `Jsonable` Base Class:**
+3.  **Port `Jsonable` Base Class: (Completed)**
     *   **C++:** Create a `Jsonable` base class in C++ with virtual methods for serialization. Replicate the logic for handling metadata keys (`__class__`, etc.) within the C++ implementation.
     *   **C++ Test:** Write tests to confirm serialization/deserialization with metadata works correctly.
     *   **SWIG:** In `jsonable.i`, define the `Jsonable` class and enable the director feature (`%feature("director") Jsonable;`).
