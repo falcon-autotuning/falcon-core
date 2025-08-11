@@ -84,11 +84,17 @@ target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
 
 # --- SWIG Python Bindings ---
 set(SWIG_MODULE_NAME falcon_core)
-set(CMAKE_SWIG_FLAGS -c++ "-I${CMAKE_CURRENT_SOURCE_DIR}/include" "-I${SWIG_DIR}")
+# Add -cpperraswarn to handle SWIG library errors and remove manual include paths
+set(CMAKE_SWIG_FLAGS -c++ -cpperraswarn)
 set_source_files_properties(swig/${SWIG_MODULE_NAME}.i PROPERTIES CPLUSPLUS ON)
 swig_add_library(${SWIG_MODULE_NAME}
     LANGUAGE python
     SOURCES swig/${SWIG_MODULE_NAME}.i
+)
+
+# Use target_include_directories to provide project headers to SWIG
+target_include_directories(${SWIG_MODULE_NAME} PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 swig_link_libraries(${SWIG_MODULE_NAME}
