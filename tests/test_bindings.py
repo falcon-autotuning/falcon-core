@@ -30,6 +30,29 @@ class TestBindings(unittest.TestCase):
         self.assertIsInstance(t.time(), int)
         self.assertGreater(t.time(), 1609459200) # Greater than 2021-01-01
 
+    def test_units(self):
+        # Create a dimension for length
+        len_dims = falcon_core.DimensionMap({falcon_core.BaseDimension.LENGTH: 1})
+        dim_len = falcon_core.Dimension(len_dims)
+        self.assertFalse(dim_len.is_dimensionless())
+
+        # Create a meter unit
+        meter_unit_ptr = falcon_core.Unit(1.0, dim_len)
+        self.assertIsInstance(meter_unit_ptr, falcon_core.Unit)
+
+        # Create a SymbolUnit for meters
+        meter = falcon_core.SymbolUnit(meter_unit_ptr, "m")
+        self.assertEqual(meter.symbol(), "m")
+        
+        # Test with prefix
+        km = meter.with_prefix("k")
+        self.assertEqual(km.symbol(), "km")
+
+        # Test conversion
+        m_unit = meter.unit()
+        km_unit = km.unit()
+        self.assertAlmostEqual(km_unit.get_conversion_factor(m_unit), 1000.0)
+
     def test_jsonable_director(self):
         py_obj = MyPythonJsonable("py_obj", 123)
         

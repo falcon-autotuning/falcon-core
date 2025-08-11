@@ -48,11 +48,11 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 ---
 
-## Phase 1: Core Physics Units and Primitives
+## Phase 1: Core Physics Units and Primitives (Completed)
 
 **Goal:** Port the fundamental classes related to physical units. These are self-contained and widely used.
 
-1.  **Port `Dimension`, `Prefix`, `Unit`, `SymbolUnit`, `Sign`:**
+1.  **Port `Dimension`, `Prefix`, `Unit`, `SymbolUnit`, `Sign`: (Completed)**
     *   **C++:** Implement these classes in C++. Use `std::map` or `std::unordered_map` for internal lookups. Replicate the logic for unit conversion and compatibility.
     *   **C++ Test:** Write Google Test cases for unit conversions, prefix math, and compatibility checks.
     *   **SWIG:** Add these classes to a `units.i` file. Expose methods and properties.

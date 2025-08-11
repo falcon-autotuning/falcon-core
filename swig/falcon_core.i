@@ -10,6 +10,9 @@
 %include <std_string.i>
 %include <cstddef.i> // For size_t
 
+// Include the new units definitions
+%include "units.i"
+
 // Typemap for nlohmann::json to a Python string.
 // The user code in python will be responsible for json.loads()
 %typemap(out) nlohmann::json {

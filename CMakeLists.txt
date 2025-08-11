@@ -63,7 +63,14 @@ find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 include_directories(${Python3_INCLUDE_DIRS})
 
 # --- C++ Library Target ---
-add_library(falcon_core_cpp src/Time.cpp src/Jsonable.cpp)
+add_library(falcon_core_cpp
+    src/Time.cpp
+    src/Jsonable.cpp
+    src/Dimension.cpp
+    src/Prefix.cpp
+    src/Unit.cpp
+    src/SymbolUnit.cpp
+)
 target_include_directories(falcon_core_cpp PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
@@ -93,6 +100,8 @@ enable_testing()
 add_executable(run_tests
     tests/test_time.cpp
     tests/test_jsonable.cpp
+    tests/test_dimension.cpp
+    tests/test_unit.cpp
 )
 target_link_libraries(run_tests
     GTest::gtest_main
