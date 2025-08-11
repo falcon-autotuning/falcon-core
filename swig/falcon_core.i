@@ -1,5 +1,7 @@
 %module(directors="1") falcon_core
 
+%feature("builtin") throw;
+
 %{
 #include "falcon_core/Time.hpp"
 #include "falcon_core/Jsonable.hpp"
@@ -9,7 +11,8 @@
 %}
 
 // Include standard library support
-%include <string>
+// %include "std_except.i"
+// %include "std_string.i"
 
 // Include the new units definitions
 %include "units.i"

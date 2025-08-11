@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
-project(FalconCore LANGUAGES CXX C)
+project(FalconCore LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # --- Dependencies ---
 include(FetchContent)
@@ -101,7 +101,6 @@ set_target_properties(${SWIG_MODULE_NAME} PROPERTIES
     # This is the crucial part: it makes target_include_directories()
     # also apply to the SWIG compiler invocation.
     SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE
-    SWIG_FLAGS "-cpperraswarn"
 )
 
 # Add include directories that BOTH the C++ compiler and SWIG need.
