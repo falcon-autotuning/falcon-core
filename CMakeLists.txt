@@ -57,22 +57,7 @@ FetchContent_MakeAvailable(xtensor-python)
 
 # --- SWIG and Python ---
 find_package(SWIG REQUIRED)
-include(${SWIG_USE_FILE})
-
-# Get SWIG's library directory for standard .i files
-execute_process(COMMAND ${SWIG_EXECUTABLE} -swiglib
-  OUTPUT_VARIABLE SWIG_LIB_DIR
-  OUTPUT_STRIP_TRAILING_WHITESPACE)
-
-# --- Debugging ---
-message(STATUS "--- SWIG PATH DIAGNOSTICS ---")
-message(STATUS "SWIG Executable: ${SWIG_EXECUTABLE}")
-message(STATUS "SWIG Library Directory (SWIG_LIB_DIR): ${SWIG_LIB_DIR}")
-message(STATUS "Project Include Directory: ${CMAKE_CURRENT_SOURCE_DIR}/include")
-message(STATUS "-----------------------------")
-
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
-include_directories(${Python3_INCLUDE_DIRS})
 
 
 # --- C++ Library Target ---
@@ -95,53 +80,28 @@ target_include_directories(falcon_core_cpp PUBLIC
 target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
 
 
-# --- SWIG Python Bindings (Manual Custom Command) ---
 set(SWIG_MODULE_NAME "falcon_core")
-set(SWIG_I_FILE "${CMAKE_CURRENT_SOURCE_DIR}/swig/${SWIG_MODULE_NAME}.i")
-set(SWIG_WRAP_CXX "${CMAKE_CURRENT_BINARY_DIR}/${SWIG_MODULE_NAME}_wrap.cxx")
 
-# Define all files that, if changed, should trigger a re-run of SWIG.
-file(GLOB SWIG_DEPENDENCIES
-    "${CMAKE_CURRENT_SOURCE_DIR}/include/falcon_core/*.hpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/swig/*.i"
+# The swig_add_library command from modern CMake handles the custom command,
+# dependencies, and wrapper file generation automatically.
+swig_add_library(${SWIG_MODULE_NAME}
+    TYPE MODULE
+    LANGUAGE python
+    SOURCES swig/${SWIG_MODULE_NAME}.i
 )
 
-# Manually define the command to run SWIG. This version separates the command
-# from its arguments, which is a more robust way to ensure correct parsing by the shell.
-add_custom_command(
-    OUTPUT ${SWIG_WRAP_CXX}
-    # --- Debugging Step: Print the exact command before executing it ---
-    COMMAND ${CMAKE_COMMAND} -E echo "--- Executing SWIG Command ---"
-    COMMAND ${CMAKE_COMMAND} -E echo "COMMAND: ${SWIG_EXECUTABLE}"
-    COMMAND ${CMAKE_COMMAND} -E echo "ARGS: -python -c++ -I\"${SWIG_LIB_DIR}\" -I\"${CMAKE_CURRENT_SOURCE_DIR}/include\" -I\"${CMAKE_CURRENT_SOURCE_DIR}/swig\" -cpperraswarn -o ${SWIG_WRAP_CXX} -outdir \"${CMAKE_CURRENT_BINARY_DIR}\" ${SWIG_I_FILE}"
-    COMMAND ${CMAKE_COMMAND} -E echo "----------------------------"
-    # --- End Debugging Step ---
-    COMMAND ${SWIG_EXECUTABLE}
-    ARGS
-        -python
-        -c++
-        -I"${SWIG_LIB_DIR}"
-        -I"${CMAKE_CURRENT_SOURCE_DIR}/include"
-        -I"${CMAKE_CURRENT_SOURCE_DIR}/swig"
-        -cpperraswarn
-        -o ${SWIG_WRAP_CXX}
-        -outdir "${CMAKE_CURRENT_BINARY_DIR}"
-        ${SWIG_I_FILE}
-    DEPENDS ${SWIG_DEPENDENCIES}
-    COMMENT "Generating Python wrapper for ${SWIG_MODULE_NAME} via custom command"
-    VERBATIM
+# The generated module will be called `_falcon_core`. This is the convention for python C extensions.
+set_target_properties(${SWIG_MODULE_NAME} PROPERTIES
+    PREFIX "_"
+    # This is the crucial part: it makes target_include_directories()
+    # also apply to the SWIG compiler invocation.
+    SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE
 )
 
-# Create a custom target that depends on the generated wrapper file.
-# This ensures the SWIG command is executed during the build.
-add_custom_target(swig_wrapper DEPENDS ${SWIG_WRAP_CXX})
-
-# Create the Python module from the generated C++ wrapper file.
-add_library(${SWIG_MODULE_NAME} SHARED ${SWIG_WRAP_CXX})
-
-# The C++ compiler needs to find our project's headers.
+# Add include directories that BOTH the C++ compiler and SWIG need.
 target_include_directories(${SWIG_MODULE_NAME} PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
+    "${CMAKE_CURRENT_SOURCE_DIR}/swig"
     ${Python3_INCLUDE_DIRS}
 )
 
@@ -149,15 +109,6 @@ target_include_directories(${SWIG_MODULE_NAME} PRIVATE
 target_link_libraries(${SWIG_MODULE_NAME} PRIVATE
     Python3::Python
     falcon_core_cpp
-)
-
-# Ensure the C++ library is built before this module.
-add_dependencies(${SWIG_MODULE_NAME} falcon_core_cpp swig_wrapper)
-
-# Set the output name to be `_falcon_core.so` so python can import it.
-set_target_properties(${SWIG_MODULE_NAME} PROPERTIES
-    PREFIX "_"
-    OUTPUT_NAME "${SWIG_MODULE_NAME}"
 )
 
 # --- C++ Tests ---

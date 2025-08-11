@@ -10,8 +10,8 @@
 %}
 
 // Include standard library support
-%include <std_string.i>
-%include <cstddef.i> // For size_t
+%include "std_string.i"
+%include "cstddef.i" // For size_t
 
 // Include the new units definitions
 %include "units.i"
