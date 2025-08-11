@@ -92,10 +92,9 @@ swig_add_library(${SWIG_MODULE_NAME}
     SOURCES swig/${SWIG_MODULE_NAME}.i
 )
 
-# Use target_include_directories to provide project headers to SWIG
-target_include_directories(${SWIG_MODULE_NAME} PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
+# Use set_property to add include paths to the SWIG command for this target.
+# This can be more reliable than target_include_directories for SWIG.
+set_property(TARGET ${SWIG_MODULE_NAME} APPEND PROPERTY SWIG_FLAGS "-I${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 swig_link_libraries(${SWIG_MODULE_NAME}
     Python3::Python
