@@ -84,7 +84,7 @@ target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
 
 # --- SWIG Python Bindings ---
 set(SWIG_MODULE_NAME falcon_core)
-set(CMAKE_SWIG_FLAGS -c++ "-I${CMAKE_CURRENT_SOURCE_DIR}/include")
+set(CMAKE_SWIG_FLAGS -c++ "-I${CMAKE_CURRENT_SOURCE_DIR}/include" "-I${SWIG_DIR}")
 set_source_files_properties(swig/${SWIG_MODULE_NAME}.i PROPERTIES CPLUSPLUS ON)
 swig_add_library(${SWIG_MODULE_NAME}
     LANGUAGE python
