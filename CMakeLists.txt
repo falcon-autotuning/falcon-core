@@ -59,7 +59,10 @@ FetchContent_MakeAvailable(xtensor-python)
 find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
 
-
+# Get SWIG's library directory for standard .i files
+execute_process(COMMAND ${SWIG_EXECUTABLE} -swiglib
+  OUTPUT_VARIABLE SWIG_LIB_DIR
+  OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 include_directories(${Python3_INCLUDE_DIRS})
@@ -95,15 +98,18 @@ swig_add_library(${SWIG_MODULE_NAME}
 )
 
 # Use modern CMake properties to configure SWIG
-# Add SWIG's own library paths automatically
-set_property(TARGET ${SWIG_MODULE_NAME} PROPERTY SWIG_USE_LIBRARY_INCLUDE_DIRECTORIES TRUE)
-# Add our project's include directories for C++ headers and other .i files
+# Manually add include directories for SWIG, as auto-detection can be unreliable on older CMake.
+set_property(TARGET ${SWIG_MODULE_NAME} APPEND PROPERTY SWIG_FLAGS
+    "-I${SWIG_LIB_DIR}"
+    "-I${CMAKE_CURRENT_SOURCE_DIR}/include"
+    "-cpperraswarn"
+)
+
+# Add our project's include directories for the C++ compiler and for SWIG to find other .i files
 target_include_directories(${SWIG_MODULE_NAME} PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
     "${CMAKE_CURRENT_SOURCE_DIR}/swig"
 )
-# Add flag to handle preprocessor errors in modern SWIG
-set_property(TARGET ${SWIG_MODULE_NAME} APPEND PROPERTY SWIG_FLAGS "-cpperraswarn")
 
 swig_link_libraries(${SWIG_MODULE_NAME}
     Python3::Python
