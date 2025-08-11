@@ -99,15 +99,24 @@ swig_add_library(${SWIG_MODULE_NAME}
     SOURCES swig/${SWIG_MODULE_NAME}.i
 )
 
-# Add SWIG flags. -cpperraswarn is needed for modern SWIG versions.
-set_property(TARGET ${SWIG_MODULE_NAME} APPEND PROPERTY SWIG_FLAGS "-cpperraswarn")
+# Explicitly construct the list of include paths for the SWIG compiler.
+# This is a more forceful method than relying on target_include_directories,
+# which is not working correctly in this build environment.
+set(SWIG_INCLUDE_PATHS
+    "-I${SWIG_LIB_DIR}"
+    "-I${CMAKE_CURRENT_SOURCE_DIR}/include"
+    "-I${CMAKE_CURRENT_SOURCE_DIR}/swig"
+)
 
-# Tell SWIG where to find its own library files (.i) and our project's headers (.hpp).
-# This also tells the C++ compiler where to find headers when compiling the wrapper.
+# Set the SWIG flags directly on the target.
+set_property(TARGET ${SWIG_MODULE_NAME} APPEND PROPERTY SWIG_FLAGS
+    ${SWIG_INCLUDE_PATHS}
+    "-cpperraswarn"
+)
+
+# The C++ compiler still needs the include directories to compile the generated wrapper.
 target_include_directories(${SWIG_MODULE_NAME} PUBLIC
-    "${SWIG_LIB_DIR}"
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
-    "${CMAKE_CURRENT_SOURCE_DIR}/swig"
 )
 
 # Link the final Python module against the Python library and our C++ library.
