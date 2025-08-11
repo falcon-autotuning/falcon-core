@@ -110,6 +110,12 @@ file(GLOB SWIG_DEPENDENCIES
 # from its arguments, which is a more robust way to ensure correct parsing by the shell.
 add_custom_command(
     OUTPUT ${SWIG_WRAP_CXX}
+    # --- Debugging Step: Print the exact command before executing it ---
+    COMMAND ${CMAKE_COMMAND} -E echo "--- Executing SWIG Command ---"
+    COMMAND ${CMAKE_COMMAND} -E echo "COMMAND: ${SWIG_EXECUTABLE}"
+    COMMAND ${CMAKE_COMMAND} -E echo "ARGS: -python -c++ -I\"${SWIG_LIB_DIR}\" -I\"${CMAKE_CURRENT_SOURCE_DIR}/include\" -I\"${CMAKE_CURRENT_SOURCE_DIR}/swig\" -cpperraswarn -o ${SWIG_WRAP_CXX} -outdir \"${CMAKE_CURRENT_BINARY_DIR}\" ${SWIG_I_FILE}"
+    COMMAND ${CMAKE_COMMAND} -E echo "----------------------------"
+    # --- End Debugging Step ---
     COMMAND ${SWIG_EXECUTABLE}
     ARGS
         -python
