@@ -106,11 +106,14 @@ file(GLOB SWIG_DEPENDENCIES
     "${CMAKE_CURRENT_SOURCE_DIR}/swig/*.i"
 )
 
-# Manually define the command to run SWIG. This bypasses the failing
-# swig_add_library function and gives us explicit control over the command line.
+# Manually define the command to run SWIG. This version separates the command
+# from its arguments, which is a more robust way to ensure correct parsing by the shell.
 add_custom_command(
     OUTPUT ${SWIG_WRAP_CXX}
-    COMMAND ${SWIG_EXECUTABLE} -python -c++
+    COMMAND ${SWIG_EXECUTABLE}
+    ARGS
+        -python
+        -c++
         -I"${SWIG_LIB_DIR}"
         -I"${CMAKE_CURRENT_SOURCE_DIR}/include"
         -I"${CMAKE_CURRENT_SOURCE_DIR}/swig"
