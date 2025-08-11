@@ -1,17 +1,14 @@
 %module(directors="1") falcon_core
 
-// With C++11 enabled, SWIG provides modern, automatic exception handling.
-// Explicitly including the deprecated "exception.i" causes conflicts.
-
 %{
 #include "falcon_core/Time.hpp"
 #include "falcon_core/Jsonable.hpp"
 #include <string>
+#include <cstddef>
+#include <stdexcept>
 %}
 
 // Include standard library support
-%include "std_string.i"
-%include "cstddef.i" // For size_t
 
 // Include the new units definitions
 %include "units.i"

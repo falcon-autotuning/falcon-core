@@ -3,7 +3,6 @@ project(FalconCore LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 # --- Dependencies ---
 include(FetchContent)
 
@@ -11,7 +10,7 @@ include(FetchContent)
 FetchContent_Declare(
   json
   GIT_REPOSITORY https://github.com/nlohmann/json.git
-  GIT_TAG v3.11.2
+  GIT_TAG v3.12.0
 )
 FetchContent_MakeAvailable(json)
 
@@ -102,6 +101,7 @@ set_target_properties(${SWIG_MODULE_NAME} PROPERTIES
     # This is the crucial part: it makes target_include_directories()
     # also apply to the SWIG compiler invocation.
     SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE
+    SWIG_FLAGS "-cpperraswarn"
 )
 
 # Add include directories that BOTH the C++ compiler and SWIG need.
