@@ -1,9 +1,9 @@
 %{
-#include "include/falcon_core/Dimension.hpp"
-#include "include/falcon_core/Prefix.hpp"
-#include "include/falcon_core/Sign.hpp"
-#include "include/falcon_core/Unit.hpp"
-#include "include/falcon_core/SymbolUnit.hpp"
+#include "falcon_core/Dimension.hpp"
+#include "falcon_core/Prefix.hpp"
+#include "falcon_core/Sign.hpp"
+#include "falcon_core/Unit.hpp"
+#include "falcon_core/SymbolUnit.hpp"
 #include <memory>
 %}
 
@@ -20,17 +20,17 @@
 %shared_ptr(falcon_core::SymbolUnit);
 
 // Expose the enums
-%include "include/falcon_core/Sign.hpp"
+%include "falcon_core/Sign.hpp"
 enum falcon_core::Sign;
-%include "include/falcon_core/Dimension.hpp"
+%include "falcon_core/Dimension.hpp"
 enum falcon_core::BaseDimension;
 
 
 // Process the class headers
-%include "include/falcon_core/Dimension.hpp"
-%include "include/falcon_core/Prefix.hpp"
-%include "include/falcon_core/Unit.hpp"
-%include "include/falcon_core/SymbolUnit.hpp"
+%include "falcon_core/Dimension.hpp"
+%include "falcon_core/Prefix.hpp"
+%include "falcon_core/Unit.hpp"
+%include "falcon_core/SymbolUnit.hpp"
 
 // Add python-like special methods for Unit
 %extend falcon_core::Unit {
