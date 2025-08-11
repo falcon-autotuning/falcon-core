@@ -67,15 +67,6 @@ execute_process(COMMAND ${SWIG_EXECUTABLE} -swiglib
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 include_directories(${Python3_INCLUDE_DIRS})
 
-# Add include directories globally for SWIG and C++ targets.
-# This is an older CMake practice, but it is more forceful and may resolve
-# issues with target-specific include paths not being correctly propagated to SWIG.
-message(STATUS "Adding global SWIG include path: ${SWIG_LIB_DIR}")
-include_directories(
-    "${SWIG_LIB_DIR}"
-    "${CMAKE_CURRENT_SOURCE_DIR}/include"
-    "${CMAKE_CURRENT_SOURCE_DIR}/swig"
-)
 
 # --- C++ Library Target ---
 add_library(falcon_core_cpp
@@ -99,7 +90,6 @@ target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
 
 # --- SWIG Python Bindings ---
 set(SWIG_MODULE_NAME falcon_core)
-set(CMAKE_SWIG_FLAGS "") # Ensure global SWIG flags are empty to avoid interference
 
 set_source_files_properties(swig/${SWIG_MODULE_NAME}.i PROPERTIES CPLUSPLUS ON)
 swig_add_library(${SWIG_MODULE_NAME}
@@ -111,8 +101,14 @@ swig_add_library(${SWIG_MODULE_NAME}
 # Add flag to handle preprocessor errors in modern SWIG
 set_property(TARGET ${SWIG_MODULE_NAME} APPEND PROPERTY SWIG_FLAGS "-cpperraswarn")
 
-# The include directories are now handled globally via the `include_directories`
-# command, so this target-specific call is no longer needed.
+# Add include directories for all stages of the build (SWIG and C++).
+# This provides the path to SWIG's library (cstddef.i), our project's headers (*.hpp),
+# and our project's other interface files (*.i).
+target_include_directories(${SWIG_MODULE_NAME} PUBLIC
+    "${SWIG_LIB_DIR}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include"
+    "${CMAKE_CURRENT_SOURCE_DIR}/swig"
+)
 
 swig_link_libraries(${SWIG_MODULE_NAME}
     Python3::Python

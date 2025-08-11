@@ -1,7 +1,7 @@
 %module(directors="1") falcon_core
 
-// Include exception handling first to avoid redefinition errors with modern SWIG
-%include "exception.i"
+// With C++11 enabled, SWIG provides modern, automatic exception handling.
+// Explicitly including the deprecated "exception.i" causes conflicts.
 
 %{
 #include "falcon_core/Time.hpp"
