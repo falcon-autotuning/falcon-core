@@ -18,6 +18,11 @@ enum class BaseDimension {
     ANGLE
 };
 
+// Provide operator< for std::map
+inline bool operator<(BaseDimension lhs, BaseDimension rhs) {
+    return static_cast<int>(lhs) < static_cast<int>(rhs);
+}
+
 class Dimension {
 public:
     Dimension(std::map<BaseDimension, int> dims = {});
