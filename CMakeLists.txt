@@ -59,6 +59,17 @@ FetchContent_MakeAvailable(xtensor-python)
 find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
 
+# Find SWIG library path to pass it explicitly, as it can get lost.
+execute_process(
+    COMMAND ${SWIG_EXECUTABLE} -swiglib
+    RESULT_VARIABLE _swig_lib_result
+    OUTPUT_VARIABLE SWIG_LIB_DIR
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+if(NOT _swig_lib_result EQUAL 0)
+    message(FATAL_ERROR "Failed to get SWIG library path with 'swig -swiglib'")
+endif()
+
 
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 include_directories(${Python3_INCLUDE_DIRS})
@@ -94,8 +105,12 @@ swig_add_library(${SWIG_MODULE_NAME}
 )
 
 # Use set_property to add include paths to the SWIG command for this target.
-# We add the project root so we can use paths like "include/falcon_core/Time.hpp".
-set_property(TARGET ${SWIG_MODULE_NAME} APPEND PROPERTY SWIG_FLAGS "-cpperraswarn" "-I${CMAKE_CURRENT_SOURCE_DIR}")
+# We add the project root for project headers and the SWIG library path for its headers.
+set_property(TARGET ${SWIG_MODULE_NAME} APPEND PROPERTY SWIG_FLAGS
+    "-cpperraswarn"
+    "-I${CMAKE_CURRENT_SOURCE_DIR}"
+    "-I${SWIG_LIB_DIR}"
+)
 
 swig_link_libraries(${SWIG_MODULE_NAME}
     Python3::Python
