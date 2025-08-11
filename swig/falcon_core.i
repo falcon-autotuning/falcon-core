@@ -1,5 +1,8 @@
 %module(directors="1") falcon_core
 
+// Include exception handling first to avoid redefinition errors with modern SWIG
+%include "exception.i"
+
 %{
 #include "falcon_core/Time.hpp"
 #include "falcon_core/Jsonable.hpp"
