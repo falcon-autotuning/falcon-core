@@ -23,6 +23,14 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
+# xtl (dependency for xtensor)
+FetchContent_Declare(
+  xtl
+  GIT_REPOSITORY https://github.com/xtensor-stack/xtl.git
+  GIT_TAG 0.7.5
+)
+FetchContent_MakeAvailable(xtl)
+
 # xtensor
 FetchContent_Declare(
   xtensor
@@ -52,6 +60,7 @@ target_include_directories(falcon_core_cpp PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
     ${json_SOURCE_DIR}/include
+    ${xtl_SOURCE_DIR}/include
     ${xtensor_SOURCE_DIR}/include
     ${xtensor-python_SOURCE_DIR}/include
 )
