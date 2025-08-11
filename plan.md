@@ -11,23 +11,40 @@ This document outlines a detailed, iterative plan to refactor the `falcon-core` 
 
 ---
 
+## Detailed SWIG Strategy
+
+SWIG will be the bridge between C++ and the target languages. Our strategy will involve:
+
+*   **Modular Interface Files:** We will create multiple SWIG interface files (`.i`), grouping related classes (e.g., `units.i`, `math.i`, `devices.i`). This keeps the declarations manageable.
+*   **Polymorphism with Directors:** For C++ base classes that are designed to be subclassed in Python (e.g., `Jsonable`, `PortTransform`, `AnalyticFunction`), we will enable SWIG's "director" feature (`%feature("director") ClassName;`). This allows virtual method calls from C++ to be correctly dispatched to overriding methods in Python subclasses, preserving the original polymorphic behavior.
+*   **Template Instantiation:** C++ templates will be exposed to Python and Go by creating explicit instantiations in SWIG using the `%template` directive. For example: `%template(QuantityDouble) Quantity<double>;` will create a Python class `QuantityDouble`.
+*   **STL and Smart Pointer Support:** We will heavily use SWIG's standard library support for `std::vector`, `std::map`, `std::string`, and `std::shared_ptr`. This provides natural conversions (e.g., `std::vector` to Python list) and robust memory management. `std::shared_ptr` is critical for managing object lifetimes across the C++/Python boundary.
+*   **NumPy Integration with Typemaps:** To ensure seamless NumPy compatibility, we will use `xtensor-python`. It provides SWIG typemaps that automatically convert C++ `xt::xarray` objects to and from NumPy arrays without copying data when possible. This is essential for performance and API parity.
+
+---
+
 ## Phase 0: Project Setup and Foundation
 
 **Goal:** Establish the core C++ project structure, build system, and port the most basic utilities.
 
 1.  **Repository and Build System Setup:**
-    *   Create a C++ project structure (`include/`, `src/`, `tests/`, `swig/`).
+    *   Create a C++ project structure (`include/falcon_core`, `src/`, `tests/`, `swig/`).
     *   Set up a CMake build system.
     *   Integrate Google Test for C++ unit testing.
     *   Integrate a C++ JSON library (e.g., nlohmann/json).
-    *   Integrate a C++ numerical array library (e.g., `xtensor` with `xtensor-python` for NumPy compatibility).
+    *   Integrate `xtensor` and `xtensor-python` for NumPy compatibility.
     *   Configure CMake to run SWIG for Python and Go.
 
-2.  **Port `Jsonable` Base Class:**
-    *   **C++:** Create a `Jsonable` base class in C++ with virtual methods for serialization/deserialization.
-    *   **C++ Test:** Write tests to confirm the base serialization logic works.
-    *   **SWIG:** Create the initial SWIG interface file (`.i`). Define the `Jsonable` class and enable the "director" feature (`%feature("director") Jsonable;`) to allow Python classes to inherit from it.
-    *   **Binding Test:** Write a simple Python test to subclass `Jsonable` and verify that the director functionality works.
+2.  **Port Core Utilities:**
+    *   **C++:** Port `constants.py` to a C++ header with `constexpr` values. Port the `Time` class.
+    *   **C++ Test:** Write tests for the `Time` class.
+    *   **SWIG:** Expose constants and the `Time` class.
+
+3.  **Port `Jsonable` Base Class:**
+    *   **C++:** Create a `Jsonable` base class in C++ with virtual methods for serialization. Replicate the logic for handling metadata keys (`__class__`, etc.) within the C++ implementation.
+    *   **C++ Test:** Write tests to confirm serialization/deserialization with metadata works correctly.
+    *   **SWIG:** In `jsonable.i`, define the `Jsonable` class and enable the director feature (`%feature("director") Jsonable;`).
+    *   **Binding Test:** Write a simple Python test to subclass `Jsonable` and verify that serialization and director functionality work.
 
 ---
 
@@ -35,40 +52,34 @@ This document outlines a detailed, iterative plan to refactor the `falcon-core` 
 
 **Goal:** Port the fundamental classes related to physical units. These are self-contained and widely used.
 
-1.  **Port `Dimension`, `Prefix`, `Unit`, `SymbolUnit`:**
+1.  **Port `Dimension`, `Prefix`, `Unit`, `SymbolUnit`, `Sign`:**
     *   **C++:** Implement these classes in C++. Use `std::map` or `std::unordered_map` for internal lookups. Replicate the logic for unit conversion and compatibility.
     *   **C++ Test:** Write Google Test cases for unit conversions, prefix math, and compatibility checks.
-    *   **SWIG:** Add these classes to the SWIG interface. Expose methods and properties.
+    *   **SWIG:** Add these classes to a `units.i` file. Expose methods and properties.
     *   **Binding Test:** Write Python/Go tests to create units, perform conversions, and check compatibility.
 
 ---
 
 ## Phase 2: Mathematical Structures
 
-**Goal:** Port the core mathematical data structures, including domains, arrays, and quantities.
+**Goal:** Port the core mathematical data structures.
 
-1.  **Port `Domain` and `Quantity`:**
-    *   **C++:** Implement `Domain`. Port `Quantity<T>`, making it a C++ template class that holds a value and a `SymbolUnit`.
-    *   **C++ Test:** Test `Domain` operations (intersect, union) and `Quantity` conversions.
-    *   **SWIG:** Add `Domain`. Use `%template` to instantiate concrete `Quantity` types needed (e.g., `Quantity<double>`).
-    *   **Binding Test:** Verify `Domain` and `Quantity` functionality in the target languages.
+1.  **Port Generic Containers and Domains:**
+    *   **C++:** Implement `Domain` and its subclasses (`LabelledDomain`, `CoupledLabelledDomain`). Implement `OneToOneMapping<K, V>`. Implement `Quantity<T>`.
+    *   **C++ Test:** Test `Domain` operations, `Quantity` conversions, and `OneToOneMapping` constraints.
+    *   **SWIG:** Add classes to `math.i`. Use `%template` to instantiate concrete types needed (e.g., `Quantity<double>`).
+    *   **Binding Test:** Verify functionality in the target languages.
 
-2.  **Port Base Array Classes (`BaseArray`, `Is1D`):**
-    *   **C++:** Create a `BaseArray` template class wrapping an `xtensor` array. Implement methods like `min`, `abs`. Implement `Is1D` logic as a mixin or via static checks.
-    *   **C++ Test:** Test basic array operations.
-    *   **SWIG:** Expose `BaseArray`. Use `xtensor-python`'s SWIG support for automatic NumPy conversion.
-    *   **Binding Test:** Test passing a NumPy array to C++ and receiving one back.
+2.  **Port Array Classes:**
+    *   **C++:** Create `BaseArray<T>` wrapping `xt::xarray`. Implement `Is1D` logic. Implement subclasses `ControlArray`, `MeasuredArray`, `BaseLabelledArrays`, and `IncreasingAlignment`.
+    *   **C++ Test:** Test basic array operations and the specific functionality of each type.
+    *   **SWIG:** Use `xtensor-python` typemaps for automatic NumPy conversion. Instantiate required array templates.
+    *   **Binding Test:** Test creating arrays in Python (from NumPy), passing them to C++, performing operations, and getting them back.
 
-3.  **Port Concrete Array Classes (`ControlArray`, `MeasuredArray`, and 1D versions):**
-    *   **C++:** Implement these classes inheriting from `BaseArray`.
-    *   **C++ Test:** Test the specific functionality of each array type.
-    *   **SWIG:** Instantiate the required templates (e.g., `%template(ControlArray1D) ControlArray<xt::xarray<double>>`).
-    *   **Binding Test:** Verify these specific array types in Python and Go.
-
-4.  **Port `Axes`:**
+3.  **Port `Axes`:**
     *   **C++:** Implement `Axes<T>` as a template class wrapping a `std::vector` of shared pointers.
     *   **C++ Test:** Test indexing and other container operations.
-    *   **SWIG:** Use `std_vector.i` and `std_shared_ptr.i` and instantiate `Axes` for required types.
+    *   **SWIG:** Use `std_vector.i` and `std_shared_ptr.i` and instantiate `Axes` for required types (e.g., `Axes<MeasurementContext>`).
     *   **Binding Test:** Test `Axes` functionality from Python/Go.
 
 ---
@@ -77,23 +88,23 @@ This document outlines a detailed, iterative plan to refactor the `falcon-core` 
 
 **Goal:** Port the classes that define the physical device layout and configuration.
 
-1.  **Port Connection Primitives (`Channel`, `BaseConnection`, `Gate`, `Ohmic`, etc.):**
-    *   **C++:** Implement the class hierarchy (`DotGate` -> `Gate` -> `BaseConnection`). Use smart pointers (`std::shared_ptr`) for object ownership.
+1.  **Port Naming and Connection Primitives:**
+    *   **C++:** Implement `NameBase<T>`, `Channel`. Implement the class hierarchy `BaseConnection`, `Gate`, `Ohmic`, and their subclasses. Use `std::shared_ptr` for ownership.
     *   **C++ Test:** Test object creation, property access, and inheritance structure.
-    *   **SWIG:** Expose the class hierarchy. Use directors for base classes if they are meant to be extended.
+    *   **SWIG:** Expose the class hierarchy in a `devices.i` file. Use directors for base classes if they are meant to be extended.
     *   **Binding Test:** Create instances of gates in Python/Go and verify their types and properties.
 
-2.  **Port Connection Collections (`Gates`, `DotGates`, `Meters`, etc.):**
-    *   **C++:** Implement these as template containers wrapping a `std::vector` of smart pointers (e.g., `std::vector<std::shared_ptr<T>>`).
-    *   **C++ Test:** Test adding, removing, and indexing elements.
+2.  **Port Collections and Relations:**
+    *   **C++:** Implement template containers (`BaseConnections<T>`, `Ports<T>`) wrapping `std::vector<std::shared_ptr<T>>`. Implement `Impedances` and `GateRelations`.
+    *   **C++ Test:** Test adding, removing, indexing, and relation lookups.
     *   **SWIG:** Use `%template` to instantiate each collection type (e.g., `%template(Gates) BaseConnections<Gate>`).
-    *   **Binding Test:** Test collection manipulation from Python/Go.
+    *   **Binding Test:** Test collection and relation manipulation from Python/Go.
 
-3.  **Port `InstrumentPort` and `Ports`:**
-    *   **C++:** Implement `InstrumentPort` using the already-ported `SymbolUnit` and device classes. `Ports` will be another template instantiation.
-    *   **C++ Test:** Verify `InstrumentPort` properties.
-    *   **SWIG:** Expose `InstrumentPort` and instantiate `Ports`.
-    *   **Binding Test:** Verify creation and property access.
+3.  **Port `InstrumentPort`, `StandardConfigConnections`, `Loader`:**
+    *   **C++:** Implement `InstrumentPort`. Implement `StandardConfigConnections` to hold the device structure. Implement `Loader` to populate the config from JSON.
+    *   **C++ Test:** Verify port properties and test loading a full configuration.
+    *   **SWIG:** Expose these higher-level classes.
+    *   **Binding Test:** Test loading a JSON config and querying it via a `Loader` instance.
 
 ---
 
@@ -101,14 +112,14 @@ This document outlines a detailed, iterative plan to refactor the `falcon-core` 
 
 **Goal:** Port the high-level classes that describe the context of a measurement.
 
-1.  **Port `AcquisitionContext`:**
-    *   **C++:** Implement the class. It will contain instances of the already-ported `InstrumentPort` and `Connection` types.
-    *   **C++ Test:** Test context creation and its methods.
-    *   **SWIG:** Expose the class.
-    *   **Binding Test:** Create contexts from Python/Go.
+1.  **Port `AcquisitionContext` and `InterpretationContext`:**
+    *   **C++:** Implement these classes. They will contain instances of the already-ported `InstrumentPort` and `Connection` types.
+    *   **C++ Test:** Test context creation and matching logic.
+    *   **SWIG:** Expose the classes in a `contexts.i` file.
+    *   **Binding Test:** Create contexts and test matching from Python/Go.
 
-2.  **Port `InterpretationContext` and `InterpretationContainer`:**
-    *   **C++:** Implement `InterpretationContext`. Implement the generic `InterpretationContainer<T>` as a C++ template class, wrapping a `std::map` from `InterpretationContext` to `T`.
+2.  **Port `InterpretationContainer`:**
+    *   **C++:** Implement the generic `InterpretationContainer<T>` as a C++ template class, wrapping a `std::map` from `InterpretationContext` to `T`.
     *   **C++ Test:** Test adding contexts and selecting by connection.
     *   **SWIG:** Expose `InterpretationContext`. Use `%template` to instantiate `InterpretationContainer` for the types it will hold.
     *   **Binding Test:** Test creating and querying interpretation containers.
@@ -119,14 +130,14 @@ This document outlines a detailed, iterative plan to refactor the `falcon-core` 
 
 **Goal:** Port the final application-level components and assemble the complete library.
 
-1.  **Port `PortTransform` Hierarchy (`IdentityTransform`, `ConstantTransform`):**
-    *   **C++:** Implement the `PortTransform` base class and its children.
-    *   **C++ Test:** Test each transform implementation.
-    *   **SWIG:** Expose the hierarchy. Enable directors on `PortTransform` (`%feature("director") PortTransform;`).
-    *   **Binding Test:** Create transforms and test their application.
+1.  **Port `AnalyticFunction` and `PortTransform` Hierarchies:**
+    *   **C++:** Implement the `AnalyticFunction` and `PortTransform` base classes and their children. Implement the `PortTransforms` collection class.
+    *   **C++ Test:** Test each function and transform implementation.
+    *   **SWIG:** Expose the hierarchies. Enable directors on base classes (`%feature("director") AnalyticFunction;`).
+    *   **Binding Test:** Create functions and transforms, test their application, and test subclassing them in Python.
 
-2.  **Port `Spaces` and `Waveforms` (`UnitSpace`, `CartesianWaveform1D`, etc.):**
-    *   **C++:** Implement the space and waveform classes. These will compose many of the previously ported components (Arrays, Transforms, Contexts).
+2.  **Port Discretizers, Spaces, and Waveforms:**
+    *   **C++:** Implement `BaseDiscretizer` hierarchy. Implement `Spaces` and `Waveform` classes, which compose many previously ported components.
     *   **C++ Test:** Test waveform creation and data generation.
     *   **SWIG:** Expose these final high-level classes.
     *   **Binding Test:** Perform end-to-end tests creating a full waveform object from Python/Go.
@@ -138,7 +149,7 @@ This document outlines a detailed, iterative plan to refactor the `falcon-core` 
 **Goal:** Package the bindings for distribution.
 
 1.  **Python Packaging:**
-    *   Create a `setup.py` that uses CMake to build the C++ core, run SWIG, and compile the final Python C-extension module.
+    *   Create a `setup.py` or `pyproject.toml` that uses CMake/scikit-build to build the C++ core, run SWIG, and compile the final Python C-extension module.
     *   Ensure the final package structure (`falcon_core`) matches the original so that user import statements do not break.
 
 2.  **Go Packaging:**
@@ -147,3 +158,10 @@ This document outlines a detailed, iterative plan to refactor the `falcon-core` 
 
 3.  **Final Validation:**
     *   Run the complete, original Python test suite against the new C++/Python bindings to ensure API and behavioral parity.
+
+---
+
+## Post-Porting Tasks
+
+*   **HDF5 Serialization:** Investigate and implement HDF5 serialization/deserialization as a parallel mechanism to JSON, if required. This would involve a C++ HDF5 library and extending `Jsonable` or creating a new `HDF5Serializable` interface.
+*   **Performance Profiling:** Profile and optimize hot spots in the C++ code and the binding layer.
