@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.31)
+cmake_minimum_required(VERSION 3.20)
 project(FalconCore LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -88,52 +88,34 @@ target_include_directories(falcon_core_cpp PUBLIC
 target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
 
 
-# --- SWIG Python Bindings (Manual Configuration) ---
-set(SWIG_MODULE_NAME "falcon_core")
-set(SWIG_I_FILE "${CMAKE_CURRENT_SOURCE_DIR}/swig/${SWIG_MODULE_NAME}.i")
-set(SWIG_WRAP_CXX "${CMAKE_CURRENT_BINARY_DIR}/${SWIG_MODULE_NAME}_wrap.cxx")
+# --- SWIG Python Bindings (Modern Approach) ---
+set(SWIG_MODULE_NAME falcon_core)
 
-# Define C++ headers and SWIG interfaces that the main SWIG interface depends on.
-file(GLOB SWIG_DEPENDENCIES
-    "${CMAKE_CURRENT_SOURCE_DIR}/include/falcon_core/*.hpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/swig/*.i"
+# Use the modern swig_add_library command.
+# This command handles the custom command generation internally.
+set_source_files_properties(swig/${SWIG_MODULE_NAME}.i PROPERTIES CPLUSPLUS ON)
+swig_add_library(${SWIG_MODULE_NAME}
+    LANGUAGE python
+    SOURCES swig/${SWIG_MODULE_NAME}.i
 )
 
-# Manually define the command to run SWIG. This gives explicit control and
-# bypasses the UseSWIG module's high-level commands, which are failing to
-# pass include paths correctly on this platform.
-add_custom_command(
-    OUTPUT ${SWIG_WRAP_CXX} ${CMAKE_CURRENT_BINARY_DIR}/${SWIG_MODULE_NAME}.py
-    COMMAND ${SWIG_EXECUTABLE} -python -c++
-        -I"${SWIG_LIB_DIR}"
-        -I"${CMAKE_CURRENT_SOURCE_DIR}/include"
-        -I"${CMAKE_CURRENT_SOURCE_DIR}/swig"
-        -cpperraswarn
-        -o ${SWIG_WRAP_CXX}
-        -outdir "${CMAKE_CURRENT_BINARY_DIR}"
-        ${SWIG_I_FILE}
-    DEPENDS ${SWIG_DEPENDENCIES}
-    COMMENT "Generating Python wrapper for ${SWIG_MODULE_NAME} via custom command"
-    VERBATIM
+# Add SWIG flags. -cpperraswarn is needed for modern SWIG versions.
+set_property(TARGET ${SWIG_MODULE_NAME} APPEND PROPERTY SWIG_FLAGS "-cpperraswarn")
+
+# Tell SWIG where to find its own library files (.i) and our project's headers (.hpp).
+# This also tells the C++ compiler where to find headers when compiling the wrapper.
+target_include_directories(${SWIG_MODULE_NAME} PUBLIC
+    "${SWIG_LIB_DIR}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include"
+    "${CMAKE_CURRENT_SOURCE_DIR}/swig"
 )
 
-# Create the Python module library from the generated C++ wrapper.
-add_library(${SWIG_MODULE_NAME}_module MODULE ${SWIG_WRAP_CXX})
-
-# The C++ compiler needs to find our project's headers when building the wrapper.
-target_include_directories(${SWIG_MODULE_NAME}_module PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
-
-# Link the Python module against Python libraries and our C++ core library.
-target_link_libraries(${SWIG_MODULE_NAME}_module PRIVATE Python3::Python falcon_core_cpp)
-
-# Set the output name and location for the Python C-extension.
-set_target_properties(${SWIG_MODULE_NAME}_module PROPERTIES
-    OUTPUT_NAME "_${SWIG_MODULE_NAME}"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+# Link the final Python module against the Python library and our C++ library.
+swig_link_libraries(${SWIG_MODULE_NAME}
+    PUBLIC
+        Python3::Python
+        falcon_core_cpp
 )
-
-# Ensure our C++ library is built before the SWIG module that depends on it.
-add_dependencies(${SWIG_MODULE_NAME}_module falcon_core_cpp)
 
 # --- C++ Tests ---
 enable_testing()
