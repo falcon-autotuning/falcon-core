@@ -4,8 +4,8 @@
 %include "exception.i"
 
 %{
-#include "falcon_core/Time.hpp"
-#include "falcon_core/Jsonable.hpp"
+#include "include/falcon_core/Time.hpp"
+#include "include/falcon_core/Jsonable.hpp"
 #include <string>
 %}
 
@@ -14,7 +14,7 @@
 %include <cstddef.i> // For size_t
 
 // Include the new units definitions
-%include "units.i"
+%include "swig/units.i"
 
 // Typemap for nlohmann::json to a Python string.
 // The user code in python will be responsible for json.loads()
@@ -26,8 +26,8 @@
 %feature("director") falcon_core::Jsonable;
 
 // Process the header files
-%include "falcon_core/Time.hpp"
-%include "falcon_core/Jsonable.hpp"
+%include "include/falcon_core/Time.hpp"
+%include "include/falcon_core/Jsonable.hpp"
 
 // Add python-like special methods
 %extend falcon_core::Jsonable {
