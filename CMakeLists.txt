@@ -19,7 +19,7 @@ FetchContent_MakeAvailable(json)
 FetchContent_Declare(
   googletest
   GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG v1.12.1 # Using a specific tag is better practice
+  GIT_TAG release-1.12.1
 )
 FetchContent_MakeAvailable(googletest)
 
