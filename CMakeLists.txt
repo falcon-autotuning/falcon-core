@@ -97,16 +97,15 @@ swig_add_library(${SWIG_MODULE_NAME}
     SOURCES swig/${SWIG_MODULE_NAME}.i
 )
 
-# Use modern CMake properties to configure SWIG
-# Manually add include directories for SWIG, as auto-detection can be unreliable on older CMake.
-set_property(TARGET ${SWIG_MODULE_NAME} APPEND PROPERTY SWIG_FLAGS
-    "-I${SWIG_LIB_DIR}"
-    "-I${CMAKE_CURRENT_SOURCE_DIR}/include"
-    "-cpperraswarn"
-)
+# Use modern CMake properties to configure SWIG.
+# Add flag to handle preprocessor errors in modern SWIG
+set_property(TARGET ${SWIG_MODULE_NAME} APPEND PROPERTY SWIG_FLAGS "-cpperraswarn")
 
-# Add our project's include directories for the C++ compiler and for SWIG to find other .i files
+# Add include directories for all stages of the build (SWIG and C++).
+# This provides the path to SWIG's library (cstddef.i), our project's headers (*.hpp),
+# and our project's other interface files (*.i).
 target_include_directories(${SWIG_MODULE_NAME} PUBLIC
+    "${SWIG_LIB_DIR}"
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
     "${CMAKE_CURRENT_SOURCE_DIR}/swig"
 )
