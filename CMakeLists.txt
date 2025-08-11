@@ -57,6 +57,7 @@ FetchContent_MakeAvailable(xtensor-python)
 
 # --- SWIG and Python ---
 find_package(SWIG REQUIRED)
+include(${SWIG_USE_FILE})
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 
 
