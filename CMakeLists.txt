@@ -59,6 +59,17 @@ FetchContent_MakeAvailable(xtensor-python)
 find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
 
+# Find SWIG library path to pass it explicitly, as it seems to get lost.
+execute_process(
+    COMMAND ${SWIG_EXECUTABLE} -swiglib
+    RESULT_VARIABLE _swig_lib_result
+    OUTPUT_VARIABLE SWIG_LIB_DIR
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+if(NOT _swig_lib_result EQUAL 0)
+    message(FATAL_ERROR "Failed to get SWIG library path with 'swig -swiglib'")
+endif()
+
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 include_directories(${Python3_INCLUDE_DIRS})
 
@@ -84,17 +95,15 @@ target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
 
 # --- SWIG Python Bindings ---
 set(SWIG_MODULE_NAME falcon_core)
-# Add -cpperraswarn to handle SWIG library errors and remove manual include paths
-set(CMAKE_SWIG_FLAGS -c++ -cpperraswarn)
+
+# Set all SWIG flags, including include paths for project headers and the SWIG library itself.
+set(CMAKE_SWIG_FLAGS -c++ -cpperraswarn "-I${CMAKE_CURRENT_SOURCE_DIR}/include" "-I${SWIG_LIB_DIR}")
+
 set_source_files_properties(swig/${SWIG_MODULE_NAME}.i PROPERTIES CPLUSPLUS ON)
 swig_add_library(${SWIG_MODULE_NAME}
     LANGUAGE python
     SOURCES swig/${SWIG_MODULE_NAME}.i
 )
-
-# Use set_property to add include paths to the SWIG command for this target.
-# This can be more reliable than target_include_directories for SWIG.
-set_property(TARGET ${SWIG_MODULE_NAME} APPEND PROPERTY SWIG_FLAGS "-I${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 swig_link_libraries(${SWIG_MODULE_NAME}
     Python3::Python
