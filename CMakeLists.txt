@@ -90,6 +90,12 @@ swig_add_library(${SWIG_MODULE_NAME}
     LANGUAGE python
     SOURCES swig/${SWIG_MODULE_NAME}.i
 )
+
+# Add include directory for SWIG to find project headers
+target_include_directories(${SWIG_MODULE_NAME} PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
 swig_link_libraries(${SWIG_MODULE_NAME}
     Python3::Python
     falcon_core_cpp
