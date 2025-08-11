@@ -9,6 +9,7 @@
 %}
 
 // Include standard library support
+%include <string>
 
 // Include the new units definitions
 %include "units.i"

@@ -8,7 +8,6 @@
 %}
 
 // std library support
-%include "std_string.i"
 %include "std_map.i"
 %include "std_shared_ptr.i"
 

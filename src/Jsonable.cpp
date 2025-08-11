@@ -8,8 +8,8 @@ std::string Jsonable::to_json_string() const {
 }
 
 void Jsonable::add_metadata(nlohmann::json& j, const std::string& module_name, const std::string& class_name) const {
-    j[std::string(constants::JSONABLE_MODULE_METADATA)] = module_name;
-    j[std::string(constants::JSONABLE_CLASS_METADATA)] = class_name;
+    j[constants::JSONABLE_MODULE_METADATA] = module_name;
+    j[constants::JSONABLE_CLASS_METADATA] = class_name;
 }
 
 } // namespace falcon_core

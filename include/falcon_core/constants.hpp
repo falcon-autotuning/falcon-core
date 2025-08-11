@@ -1,22 +1,22 @@
 #pragma once
 
-#include <string_view>
+#include <string>
 #include <set>
 
 namespace falcon_core::constants {
 
-constexpr std::string_view JSONABLE_ATTRIBUTE_INDICATOR = "_";
+const char* const JSONABLE_ATTRIBUTE_INDICATOR = "_";
 
-constexpr std::string_view JSONABLE_CLASS_METADATA = "__class__";
-constexpr std::string_view JSONABLE_MODULE_METADATA = "__module__";
-constexpr std::string_view JSONABLE_KEY = "__jsonable_key__";
-constexpr std::string_view JSONABLE_BLOB = "__binary_blob__";
-constexpr std::string_view JSONABLE_TYPE_VAR = "__jsonable_type__";
-constexpr std::string_view JSONABLE_FUNCTION = "__jsonable_function__";
-constexpr std::string_view JSONABLE_FUNCTION_DILL = "__function_dill__";
+const char* const JSONABLE_CLASS_METADATA = "__class__";
+const char* const JSONABLE_MODULE_METADATA = "__module__";
+const char* const JSONABLE_KEY = "__jsonable_key__";
+const char* const JSONABLE_BLOB = "__binary_blob__";
+const char* const JSONABLE_TYPE_VAR = "__jsonable_type__";
+const char* const JSONABLE_FUNCTION = "__jsonable_function__";
+const char* const JSONABLE_FUNCTION_DILL = "__function_dill__";
 
 // Cannot make a constexpr set easily before C++20. A function is fine.
-inline std::set<std::string_view> get_jsonable_metadata() {
+inline std::set<std::string> get_jsonable_metadata() {
     return {
         JSONABLE_CLASS_METADATA,
         JSONABLE_MODULE_METADATA
