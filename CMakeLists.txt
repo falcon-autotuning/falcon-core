@@ -31,6 +31,14 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(xtensor)
 
+# xtensor-python
+FetchContent_Declare(
+  xtensor-python
+  GIT_REPOSITORY https://github.com/xtensor-stack/xtensor-python.git
+  GIT_TAG 0.26.1
+)
+FetchContent_MakeAvailable(xtensor-python)
+
 # --- SWIG and Python ---
 find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
@@ -45,6 +53,7 @@ target_include_directories(falcon_core_cpp PUBLIC
     $<INSTALL_INTERFACE:include>
     ${json_SOURCE_DIR}/include
     ${xtensor_SOURCE_DIR}/include
+    ${xtensor-python_SOURCE_DIR}/include
 )
 target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
 
@@ -75,3 +84,14 @@ target_link_libraries(run_tests
 
 include(GoogleTest)
 gtest_discover_tests(run_tests)
+
+# --- Python Binding Tests ---
+# This configures ctest to run the python test script from the build directory,
+# so that it can correctly import the generated falcon_core module.
+add_test(
+    NAME python_bindings_test
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_bindings.py
+)
+set_tests_properties(python_bindings_test PROPERTIES
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)
