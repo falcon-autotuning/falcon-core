@@ -64,6 +64,13 @@ execute_process(COMMAND ${SWIG_EXECUTABLE} -swiglib
   OUTPUT_VARIABLE SWIG_LIB_DIR
   OUTPUT_STRIP_TRAILING_WHITESPACE)
 
+# --- Debugging ---
+message(STATUS "--- SWIG PATH DIAGNOSTICS ---")
+message(STATUS "SWIG Executable: ${SWIG_EXECUTABLE}")
+message(STATUS "SWIG Library Directory (SWIG_LIB_DIR): ${SWIG_LIB_DIR}")
+message(STATUS "Project Include Directory: ${CMAKE_CURRENT_SOURCE_DIR}/include")
+message(STATUS "-----------------------------")
+
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 include_directories(${Python3_INCLUDE_DIRS})
 
