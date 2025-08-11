@@ -39,6 +39,14 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(xtensor)
 
+# pybind11 (dependency for xtensor-python)
+FetchContent_Declare(
+  pybind11
+  GIT_REPOSITORY https://github.com/pybind/pybind11.git
+  GIT_TAG v2.10.4
+)
+FetchContent_MakeAvailable(pybind11)
+
 # xtensor-python
 FetchContent_Declare(
   xtensor-python
