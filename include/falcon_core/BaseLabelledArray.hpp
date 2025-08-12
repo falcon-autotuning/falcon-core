@@ -1,6 +1,5 @@
 #pragma once
 
-#include "falcon_core/BaseArray.hpp"
 #include "falcon_core/Jsonable.hpp"
 #include <memory>
 

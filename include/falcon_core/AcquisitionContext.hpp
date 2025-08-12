@@ -1,8 +1,6 @@
 #pragma once
 
-#include "falcon_core/Gate.hpp" // Using Gate as a placeholder for Connection
 #include "falcon_core/Jsonable.hpp"
-#include "falcon_core/Ports.hpp"
 
 namespace falcon_core {
 
