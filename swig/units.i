@@ -14,15 +14,15 @@
 // %include <map>
 // %include <memory>
 %include <std_string.i>
-%include <std_map.i>
-%include <std_shared_ptr.i>
+// %include <std_map.i>
+// %include <std_shared_ptr.i>
 
 // Expose std::map<BaseDimension, int> to python
-%template(DimensionMap) std::map<falcon_core::BaseDimension, int>;
+// %template(DimensionMap) std::map<falcon_core::BaseDimension, int>;
 
 // std::shared_ptr support for Unit and SymbolUnit
-%shared_ptr(falcon_core::Unit);
-%shared_ptr(falcon_core::SymbolUnit);
+// %shared_ptr(falcon_core::Unit);
+// %shared_ptr(falcon_core::SymbolUnit);
 
 // The %include directive is sufficient for SWIG to parse and generate
 // wrappers for all classes, enums, and other constructs in these headers.
