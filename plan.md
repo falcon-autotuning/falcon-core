@@ -67,19 +67,19 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 1.  **Port Generic Containers and Domains: (Completed)**
     *   **C++:** Implement `Domain` and its subclasses (`LabelledDomain`, `CoupledLabelledDomain`). Implement `OneToOneMapping<K, V>`. Implement `Quantity<T>`.
-    *   **C++ Test:** Test `Domain` operations, `Quantity` conversions, and `OneToOneMapping` constraints.
+    *   **C++ Test:** Test `Domain` operations, `Quantity` conversions, and `OneToOneMapping` constraints. (Completed)
     *   **SWIG:** Add classes to `math.i`. Use `%template` to instantiate concrete types needed (e.g., `Quantity<double>`).
     *   **Binding Test:** Verify functionality in the target languages.
 
 2.  **Port Array Classes: (Completed)**
     *   **C++:** Create `BaseArray<T>` wrapping an `Eigen` type (e.g., `Eigen::MatrixXd`). Implement `Is1D` logic. Implement subclasses `ControlArray`, `MeasuredArray`, `BaseLabelledArrays`, and `IncreasingAlignment`.
-    *   **C++ Test:** Test basic array operations and the specific functionality of each type using `Eigen`.
+    *   **C++ Test:** Test basic array operations and the specific functionality of each type using `Eigen`. (Completed)
     *   **SWIG:** Use `Eigen` typemaps for automatic NumPy conversion. Instantiate required array templates.
     *   **Binding Test:** Test creating arrays in Python (from NumPy), passing them to C++, performing operations, and getting them back.
 
 3.  **Port `Axes`: (Completed)**
     *   **C++:** Implement `Axes<T>` as a template class wrapping a `std::vector` of shared pointers.
-    *   **C++ Test:** Test indexing and other container operations.
+    *   **C++ Test:** Test indexing and other container operations. (Completed)
     *   **SWIG:** Use `std_vector.i` and `std_shared_ptr.i` and instantiate `Axes` for required types (e.g., `Axes<MeasurementContext>`).
     *   **Binding Test:** Test `Axes` functionality from Python/Go.
 

@@ -17,7 +17,7 @@ enum class BaseDimension {
 
 class Dimension : public Jsonable {
 public:
-    // Dimension(std::map<BaseDimension, int> dimensions);
+    Dimension(std::map<BaseDimension, int> dimensions);
 
     bool is_dimensionless() const;
     std::string to_string() const;
@@ -29,10 +29,10 @@ public:
     bool operator==(const Dimension& other) const;
     bool operator!=(const Dimension& other) const;
 
-    // const std::map<BaseDimension, int>& get_dimensions() const;
+    const std::map<BaseDimension, int>& get_dimensions() const;
 
 private:
-    // std::map<BaseDimension, int> _dimensions;
+    std::map<BaseDimension, int> _dimensions;
 };
 
 } // namespace falcon_core
