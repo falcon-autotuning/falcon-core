@@ -2,9 +2,30 @@
 
 #include "falcon_core/Jsonable.hpp"
 #include "falcon_core/SymbolUnit.hpp"
+#include <complex>
 #include <functional>
 #include <memory>
 #include <nlohmann/json.hpp>
+
+namespace nlohmann {
+template <typename T> struct adl_serializer<std::complex<T>> {
+  static void to_json(json &j, const std::complex<T> &c) {
+    j = {{"real", c.real()}, {"imag", c.imag()}};
+  }
+};
+} // namespace nlohmann
+
+namespace std {
+template <typename T> struct hash<std::complex<T>> {
+  size_t operator()(const std::complex<T> &c) const {
+    size_t h1 = std::hash<T>{}(c.real());
+    size_t h2 = std::hash<T>{}(c.imag());
+    // A simple way to combine hashes.
+    // See boost::hash_combine for a more robust implementation.
+    return h1 ^ (h2 << 1);
+  }
+};
+} // namespace std
 
 namespace falcon_core {
 
