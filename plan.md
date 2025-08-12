@@ -113,13 +113,13 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 **Goal:** Port the high-level classes that describe the context of a measurement.
 
-1.  **Port `AcquisitionContext` and `InterpretationContext`: (In Progress)**
+1.  **Port `AcquisitionContext` and `InterpretationContext`: (Completed)**
     *   **C++:** Implement these classes. They will contain instances of the already-ported `InstrumentPort` and `Connection` types.
-    *   **C++ Test:** Test context creation and matching logic.
+    *   **C++ Test:** Test context creation and matching logic. (Completed)
     *   **SWIG:** Expose the classes in a `contexts.i` file.
     *   **Binding Test:** Create contexts and test matching from Python/Go.
 
-2.  **Port `InterpretationContainer`:**
+2.  **Port `InterpretationContainer`: (Completed)**
     *   **C++:** Implement the generic `InterpretationContainer<T>` as a C++ template class, wrapping a `std::map` from `InterpretationContext` to `T`.
     *   **C++ Test:** Test adding contexts and selecting by connection.
     *   **SWIG:** Expose `InterpretationContext`. Use `%template` to instantiate `InterpretationContainer` for the types it will hold.

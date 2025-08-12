@@ -194,4 +194,6 @@ autotuner_interfaces.contexts.AcquisitionContext = AcquisitionContext
 del AcquisitionContext
 autotuner_interfaces.interpretations.InterpretationContext = InterpretationContext
 del InterpretationContext
+autotuner_interfaces.interpretations.InterpretationContainer = InterpretationContainerControlArray
+del InterpretationContainerControlArray
 %}
