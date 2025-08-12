@@ -275,6 +275,10 @@ del InterpretationContainerControlArray
 # Move transform classes
 math.functions.AnalyticFunction = AnalyticFunction
 del AnalyticFunction
+math.functions.ConstantFunction = ConstantFunction
+del ConstantFunction
+math.functions.Identity = Identity
+del Identity
 physics.transforms.PortTransform = PortTransform
 del PortTransform
 physics.transforms.PortTransforms = PortTransforms

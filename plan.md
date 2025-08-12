@@ -167,9 +167,9 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
     *   **SWIG:** Expose these classes in `math.i`.
     *   **Binding Test:** Verify functionality from Python.
 
-4.  **Port Concrete Analytic Functions:**
+4.  **Port Concrete Analytic Functions: (In Progress)**
     *   **C++:** Implement `ConstantFunction` and `Identity` as subclasses of `AnalyticFunction`.
-    *   **C++ Test:** Test the specific evaluation logic of these functions.
+    *   **C++ Test:** Test the specific evaluation logic of these functions. (Completed)
     *   **SWIG:** Expose these classes in `transforms.i`.
     *   **Binding Test:** Verify functionality from Python.
 

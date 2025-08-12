@@ -72,3 +72,18 @@ TEST(DirectorTest, PolymorphicCall) {
     // The PortTransform should call the overridden `evaluate` method.
     ASSERT_DOUBLE_EQ(transform.apply(5.0), 25.0);
 }
+
+#include "falcon_core/ConstantFunction.hpp"
+#include "falcon_core/Identity.hpp"
+
+TEST(ConstantFunctionTest, Evaluation) {
+    ConstantFunction const_func(42.0);
+    ASSERT_DOUBLE_EQ(const_func.evaluate(0.0), 42.0);
+    ASSERT_DOUBLE_EQ(const_func.evaluate(100.0), 42.0);
+}
+
+TEST(IdentityFunctionTest, Evaluation) {
+    Identity identity_func;
+    ASSERT_DOUBLE_EQ(identity_func.evaluate(0.0), 0.0);
+    ASSERT_DOUBLE_EQ(identity_func.evaluate(-5.5), -5.5);
+}
