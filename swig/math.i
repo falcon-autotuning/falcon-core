@@ -23,7 +23,7 @@
 %shared_ptr(falcon_core::ControlArray1D);
 %shared_ptr(falcon_core::LabelledControlArray1D);
 %shared_ptr(falcon_core::BaseLabelledArray<falcon_core::ControlArray1D, falcon_core::InstrumentPort<falcon_core::Gate>>);
-%shared_ptr(falcon_core::OneToOneMapping);
+
 
 %include "falcon_core/Domain.hpp"
 %include "falcon_core/Quantity.hpp"
@@ -73,4 +73,5 @@
 
 // A full implementation would require typemaps for K,V to be useful in Python.
 // This is a basic starting point.
+%shared_ptr(falcon_core::OneToOneMapping);
 %template(OneToOneMappingStringString) falcon_core::OneToOneMapping<std::string, std::string>;
