@@ -1,6 +1,7 @@
 .gitignore
 CMakeLists.txt
 Makefile
+README.md
 README.rst
 go.mod
 go.sum
@@ -34,7 +35,6 @@ src/falcon_core/typing.py
 src/falcon_core.egg-info/PKG-INFO
 src/falcon_core.egg-info/SOURCES.txt
 src/falcon_core.egg-info/dependency_links.txt
-src/falcon_core.egg-info/entry_points.txt
 src/falcon_core.egg-info/requires.txt
 src/falcon_core.egg-info/top_level.txt
 src/falcon_core/__pycache__/ErrorHandling.cpython-311.pyc

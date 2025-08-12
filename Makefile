@@ -20,7 +20,7 @@ build:
 # Install the Python package using pip
 install:
 	@echo "--- Installing Python package ---"
-	@pip install .
+	@uv pip install .
 
 # Run tests using CTest
 test: build

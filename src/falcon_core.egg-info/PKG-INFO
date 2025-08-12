@@ -1,23 +1,22 @@
 Metadata-Version: 2.4
 Name: falcon_core
-Version: 0.0.0
-Summary: core utilities for all falcon applications used for autotuning of quantum devices
-Maintainer-email: falcon core developers <falcon-support@falcon.com>
-License: mit
-Classifier: development status :: 3 - alpha
-Classifier: intended audience :: science/research
-Classifier: license :: osi approved :: mit license
-Classifier: programming language :: python :: 3 :: only
-Classifier: programming language :: python :: 3.13
-Classifier: topic :: scientific/engineering
+Version: 0.0.post257+g6a1ebeb7a.d20250812
+Summary: Core utilities for all falcon applications used for autotuning of quantum devices
+License-Expression: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Scientific/Engineering
 Requires-Python: >=3.13
-Description-Content-Type: text/x-rst
+Description-Content-Type: text/markdown
 Requires-Dist: numpy>=2.0.0
 Requires-Dist: scipy>=1.11.2
-Requires-Dist: setuptools-scm==8.1.0
-Requires-Dist: dill==0.3.9
-Requires-Dist: pyyaml>=6.0.2
 Requires-Dist: h5py==3.13.0
 Provides-Extra: test
 Requires-Dist: pytest==8.2.1; extra == "test"
 Requires-Dist: pytest-xdist==3.6.1; extra == "test"
+
+# Falcon Core
+
+Core utilities for all falcon applications used for autotuning of quantum devices.
