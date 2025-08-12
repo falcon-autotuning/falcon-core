@@ -97,7 +97,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 2.  **Port Collections and Relations: (In Progress)**
     *   **C++:** Implement template containers (`BaseConnections<T>`, `Ports<T>`) wrapping `std::vector<std::shared_ptr<T>>`. Implement `Impedances` and `GateRelations`.
-    *   **C++ Test:** Test adding, removing, indexing, and relation lookups.
+    *   **C++ Test:** Test adding, removing, indexing, and relation lookups. (Completed)
     *   **SWIG:** Use `%template` to instantiate each collection type (e.g., `%template(Gates) BaseConnections<Gate>`).
     *   **Binding Test:** Test collection and relation manipulation from Python/Go.
 
