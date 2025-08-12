@@ -6,6 +6,10 @@
 #include "falcon_core/Ohmic.hpp"
 #include "falcon_core/InstrumentPort.hpp"
 #include "falcon_core/Ports.hpp"
+#include "falcon_core/BaseConnections.hpp"
+#include "falcon_core/Impedance.hpp"
+#include "falcon_core/Impedances.hpp"
+#include "falcon_core/GateRelations.hpp"
 %}
 
 %include "falcon_core/NameBase.hpp"
@@ -15,6 +19,10 @@
 %include "falcon_core/Ohmic.hpp"
 %include "falcon_core/InstrumentPort.hpp"
 %include "falcon_core/Ports.hpp"
+%include "falcon_core/BaseConnections.hpp"
+%include "falcon_core/Impedance.hpp"
+%include "falcon_core/Impedances.hpp"
+%include "falcon_core/GateRelations.hpp"
 
 // Instantiate NameBase for int and string
 %template(NameBaseInt) falcon_core::NameBase<int>;
@@ -31,3 +39,15 @@ class Instrument {};
 %template(InstrumentPortGate) falcon_core::InstrumentPort<falcon_core::Gate>;
 %shared_ptr(falcon_core::InstrumentPort<falcon_core::Gate>)
 %template(PortsGate) falcon_core::Ports<falcon_core::InstrumentPort<falcon_core::Gate>>;
+
+// Instantiate templates for connections and relations
+%shared_ptr(falcon_core::Gate)
+%template(Gates) falcon_core::BaseConnections<falcon_core::Gate>;
+%shared_ptr(falcon_core::BaseConnections<falcon_core::Gate>)
+
+%include "std_complex.i"
+%template(QuantityComplexDouble) falcon_core::Quantity<std::complex<double>>;
+%shared_ptr(falcon_core::Quantity<std::complex<double>>)
+%shared_ptr(falcon_core::Impedance)
+
+%shared_ptr(falcon_core::GateRelations)

@@ -184,6 +184,14 @@ physics.device_structures.Gate = Gate
 del Gate
 physics.device_structures.Ohmic = Ohmic
 del Ohmic
+physics.device_structures.Gates = Gates
+del Gates
+physics.device_structures.Impedance = Impedance
+del Impedance
+physics.device_structures.Impedances = Impedances
+del Impedances
+physics.device_structures.GateRelations = GateRelations
+del GateRelations
 
 # Move instrument and context classes
 instrument_interfaces.names.InstrumentPort = InstrumentPortGate

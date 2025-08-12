@@ -95,7 +95,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
     *   **SWIG:** Expose the class hierarchy in a `devices.i` file. Use directors for base classes if they are meant to be extended.
     *   **Binding Test:** Create instances of gates in Python/Go and verify their types and properties.
 
-2.  **Port Collections and Relations:**
+2.  **Port Collections and Relations: (In Progress)**
     *   **C++:** Implement template containers (`BaseConnections<T>`, `Ports<T>`) wrapping `std::vector<std::shared_ptr<T>>`. Implement `Impedances` and `GateRelations`.
     *   **C++ Test:** Test adding, removing, indexing, and relation lookups.
     *   **SWIG:** Use `%template` to instantiate each collection type (e.g., `%template(Gates) BaseConnections<Gate>`).
