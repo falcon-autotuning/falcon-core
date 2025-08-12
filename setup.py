@@ -6,7 +6,9 @@ import sys
 from setuptools import Extension, setup
 from setuptools.command.build_ext import build_ext
 
-# The name of the python package from pyproject.toml
+# The name of the SWIG module, which starts with an underscore
+MODULE_NAME = "_falcon_core"
+# The name of the Python package
 PKG_NAME = "falcon_core"
 
 
@@ -33,13 +35,15 @@ class CMakeBuild(build_ext):
         # The path to the Python executable
         python_exe = sys.executable
 
-        # The output directory for the compiled module, relative to the project root.
-        # This matches the `package_dir` and `where` settings.
-        output_dir = pathlib.Path(self.get_ext_fullpath(ext.name)).parent.resolve()
+        # The output directory for the compiled module.
+        # We want the .so file and the .py wrapper to end up in `src/falcon_core/`
+        ext_path = self.get_ext_fullpath(ext.name)
+        output_dir = pathlib.Path(ext_path).parent.resolve()
 
         # Configure CMake
         cmake_args = [
             f"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={output_dir}",
+            f"-DCMAKE_SWIG_OUTDIR={output_dir}",
             f"-DPYTHON_EXECUTABLE={python_exe}",
             "-DCMAKE_BUILD_TYPE=Release",
         ]
@@ -57,6 +61,7 @@ class CMakeBuild(build_ext):
 # We only need to specify the custom build steps for the C++ extension.
 setup(
     cmdclass={"build_ext": CMakeBuild},
-    ext_modules=[CMakeExtension(PKG_NAME)],
+    # The extension name must match the package structure for setuptools to place it correctly.
+    ext_modules=[CMakeExtension(f"{PKG_NAME}.{MODULE_NAME}")],
     zip_safe=False,
 )
