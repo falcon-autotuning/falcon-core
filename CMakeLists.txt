@@ -3,6 +3,7 @@ project(FalconCore LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # --- Dependencies ---
 include(FetchContent)
 
@@ -64,8 +65,9 @@ target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
 
 # --- SWIG Module ---
 set(SWIG_MODULE_NAME "falcon_core")
+set_property(SOURCE swig/${SWIG_MODULE_NAME}.i PROPERTY CPLUSPLUS ON)
+set(CMAKE_SWIG_FLAGS -c++ -cpperraswarn)
 swig_add_library(${SWIG_MODULE_NAME}
-    TYPE MODULE
     LANGUAGE python
     SOURCES swig/${SWIG_MODULE_NAME}.i
 )
@@ -73,7 +75,14 @@ swig_add_library(${SWIG_MODULE_NAME}
 set_target_properties(${SWIG_MODULE_NAME} PROPERTIES
     PREFIX "_"
     SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE
-    SWIG_FLAGS "-cpperraswarn"
+    LINKER_LANGUAGE CXX
+)
+
+# Force the wrapper to be compiled as C++
+set_source_files_properties(
+    ${CMAKE_CURRENT_BINARY_DIR}/falcon_corePYTHON_wrap.cpp
+    PROPERTIES
+    LANGUAGE CXX
 )
 
 target_include_directories(${SWIG_MODULE_NAME} PRIVATE

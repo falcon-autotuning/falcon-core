@@ -1,6 +1,6 @@
 %module(directors="1") falcon_core
 
-%feature("builtin") throw;
+// %feature("builtin") throw;
 
 %{
 #include "falcon_core/Time.hpp"
