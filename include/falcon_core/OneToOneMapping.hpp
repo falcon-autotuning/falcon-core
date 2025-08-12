@@ -34,7 +34,7 @@ public:
     // Note: JSON keys must be strings. This serialization is a simplification.
     // A full implementation would need to handle non-string-convertible keys.
     for (const auto &pair : _forward) {
-      j[std::to_string(pair.first)] = pair.second;
+      j[pair.first] = pair.second;
     }
     return j;
   }
