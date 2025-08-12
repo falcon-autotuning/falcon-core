@@ -51,6 +51,11 @@ sys.modules[math.arrays.__name__] = math.arrays
 _axes_spec = importlib.util.spec_from_loader(f'{_pkg_name}.math.axes', loader=None)
 math.axes = importlib.util.module_from_spec(_axes_spec)
 sys.modules[math.axes.__name__] = math.axes
+
+# Create falcon_core.physics.device_structures
+_devices_spec = importlib.util.spec_from_loader(f'{_pkg_name}.physics.device_structures', loader=None)
+physics.device_structures = importlib.util.module_from_spec(_devices_spec)
+sys.modules[physics.device_structures.__name__] = physics.device_structures
 %}
 
 %{
@@ -74,6 +79,9 @@ sys.modules[math.axes.__name__] = math.axes
 
 // Include the math definitions
 %include "math.i"
+
+// Include the device definitions
+%include "devices.i"
 
 // Typemap for nlohmann::json to a Python string.
 // The user code in python will be responsible for json.loads()
@@ -132,4 +140,18 @@ del MeasuredArrayDouble
 # Move axes classes
 math.axes.Axes = AxesDomain
 del AxesDomain
+
+# Move device classes
+physics.device_structures.NameBaseInt = NameBaseInt
+del NameBaseInt
+physics.device_structures.NameBaseString = NameBaseString
+del NameBaseString
+physics.device_structures.Channel = Channel
+del Channel
+physics.device_structures.BaseConnection = BaseConnection
+del BaseConnection
+physics.device_structures.Gate = Gate
+del Gate
+physics.device_structures.Ohmic = Ohmic
+del Ohmic
 %}

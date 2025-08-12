@@ -89,7 +89,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 **Goal:** Port the classes that define the physical device layout and configuration.
 
-1.  **Port Naming and Connection Primitives:**
+1.  **Port Naming and Connection Primitives: (In Progress)**
     *   **C++:** Implement `NameBase<T>`, `Channel`. Implement the class hierarchy `BaseConnection`, `Gate`, `Ohmic`, and their subclasses. Use `std::shared_ptr` for ownership.
     *   **C++ Test:** Test object creation, property access, and inheritance structure.
     *   **SWIG:** Expose the class hierarchy in a `devices.i` file. Use directors for base classes if they are meant to be extended.
