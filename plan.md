@@ -16,6 +16,7 @@ This document outlines a detailed, iterative plan to refactor the `falcon-core` 
 SWIG will be the bridge between C++ and the target languages. Our strategy will involve:
 
 *   **Modular Interface Files:** We will create multiple SWIG interface files (`.i`), grouping related classes (e.g., `units.i`, `math.i`, `devices.i`). This keeps the declarations manageable.
+*   **Python Package Structure:** The Python package structure (e.g., `falcon_core.generic`, `falcon_core.physics.units`) will be created directly by the SWIG-generated module at import time. We will use the `%pythoncode` directive in the main `falcon_core.i` file to create submodule objects and attach the wrapped C++ classes to them. This approach eliminates the need for Python `__init__.py` files to construct the package, allowing a single compiled extension to provide the entire package hierarchy.
 *   **Polymorphism with Directors:** For C++ base classes that are designed to be subclassed in Python (e.g., `Jsonable`, `PortTransform`, `AnalyticFunction`), we will enable SWIG's "director" feature (`%feature("director") ClassName;`). This allows virtual method calls from C++ to be correctly dispatched to overriding methods in Python subclasses, preserving the original polymorphic behavior.
 *   **Template Instantiation:** C++ templates will be exposed to Python and Go by creating explicit instantiations in SWIG using the `%template` directive. For example: `%template(QuantityDouble) Quantity<double>;` will create a Python class `QuantityDouble`.
 *   **STL and Smart Pointer Support:** We will heavily use SWIG's standard library support for `std::vector`, `std::map`, `std::string`, and `std::shared_ptr`. This provides natural conversions (e.g., `std::vector` to Python list) and robust memory management. `std::shared_ptr` is critical for managing object lifetimes across the C++/Python boundary.
@@ -38,12 +39,12 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 2.  **Port Core Utilities: (Completed)**
     *   **C++:** Port `constants.py` to a C++ header with `constexpr` values. Port the `Time` class.
     *   **C++ Test:** Write tests for the `Time` class.
-    *   **SWIG:** Expose constants and the `Time` class.
+    *   **SWIG:** Expose constants and the `Time` class. In `falcon_core.i`, use `%pythoncode` to place `Time` into the `falcon_core.communications` submodule.
 
 3.  **Port `Jsonable` Base Class: (Completed)**
     *   **C++:** Create a `Jsonable` base class in C++ with virtual methods for serialization. Replicate the logic for handling metadata keys (`__class__`, etc.) within the C++ implementation.
     *   **C++ Test:** Write tests to confirm serialization/deserialization with metadata works correctly.
-    *   **SWIG:** In `jsonable.i`, define the `Jsonable` class and enable the director feature (`%feature("director") Jsonable;`).
+    *   **SWIG:** In `falcon_core.i`, include `Jsonable.hpp`, enable the director feature (`%feature("director") Jsonable;`), and use `%pythoncode` to place the `Jsonable` class into the `falcon_core.generic` submodule.
     *   **Binding Test:** Write a simple Python test to subclass `Jsonable` and verify that serialization and director functionality work.
 
 ---
@@ -55,7 +56,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 1.  **Port `Dimension`, `Prefix`, `Unit`, `SymbolUnit`, `Sign`: (Completed)**
     *   **C++:** Implement these classes in C++. Use `std::map` or `std::unordered_map` for internal lookups. Replicate the logic for unit conversion and compatibility.
     *   **C++ Test:** Write Google Test cases for unit conversions, prefix math, and compatibility checks.
-    *   **SWIG:** Add these classes to a `units.i` file. Expose methods and properties.
+    *   **SWIG:** Add these classes to a `units.i` file. In `falcon_core.i`, include `units.i` and use `%pythoncode` to move the wrapped classes into the `falcon_core.physics.units` submodule.
     *   **Binding Test:** Write Python/Go tests to create units, perform conversions, and check compatibility.
 
 ---
