@@ -4,10 +4,10 @@
 #include "falcon_core/Sign.hpp"
 #include "falcon_core/Unit.hpp"
 #include "falcon_core/SymbolUnit.hpp"
-#include <memory>
-#include <map>
 %}
 
+<<<<<<< HEAD
+=======
 // %include <exception.i>
 
 // std library support
@@ -23,6 +23,7 @@
 // std::shared_ptr support for Unit and SymbolUnit
 // %shared_ptr(falcon_core::Unit);
 // %shared_ptr(falcon_core::SymbolUnit);
+>>>>>>> a0c46a44b586bc31633613c401acb75a9215aa05
 
 // The %include directive is sufficient for SWIG to parse and generate
 // wrappers for all classes, enums, and other constructs in these headers.
@@ -32,6 +33,8 @@
 %include "falcon_core/Unit.hpp"
 %include "falcon_core/SymbolUnit.hpp"
 
+<<<<<<< HEAD
+=======
 // Add python-like special methods for Unit
 // %extend falcon_core::Unit {
 //     std::shared_ptr<falcon_core::Unit> __mul__(const falcon_core::Unit& other) {
@@ -41,3 +44,4 @@
 //         return self->operator/(other);
 //     }
 // }
+>>>>>>> a0c46a44b586bc31633613c401acb75a9215aa05

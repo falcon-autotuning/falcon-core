@@ -1,22 +1,26 @@
-#include <gtest/gtest.h>
 #include "falcon_core/Time.hpp"
 #include "falcon_core/constants.hpp"
+<<<<<<< HEAD
+=======
 #include <thread>
+>>>>>>> a0c46a44b586bc31633613c401acb75a9215aa05
 #include <chrono>
+#include <gtest/gtest.h>
+#include <thread>
 
 using namespace falcon_core;
 
 TEST(TimeTest, TimeIncreases) {
-    Time t1;
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-    Time t2;
-    ASSERT_GT(t2.time(), t1.time());
+  Time t1;
+  std::this_thread::sleep_for(std::chrono::seconds(1));
+  Time t2;
+  ASSERT_GT(t2.time(), t1.time());
 }
 
 TEST(TimeTest, Serialization) {
-    Time t;
-    nlohmann::json j = t.to_json();
-    ASSERT_TRUE(j.contains("time"));
-    ASSERT_TRUE(j.contains(constants::JSONABLE_CLASS_METADATA));
-    ASSERT_EQ(j[constants::JSONABLE_CLASS_METADATA], "Time");
+  Time t;
+  nlohmann::json j = t.to_json();
+  ASSERT_TRUE(j.contains("time"));
+  ASSERT_TRUE(j.contains(constants::JSONABLE_CLASS_METADATA));
+  ASSERT_EQ(j[constants::JSONABLE_CLASS_METADATA], "Time");
 }
