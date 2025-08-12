@@ -7,7 +7,8 @@
 #include "falcon_core/Units.hpp"
 %}
 
-
+%shared_ptr(falcon_core::Unit);
+%shared_ptr(falcon_core::SymbolUnit);
 
 // The %include directive is sufficient for SWIG to parse and generate
 // wrappers for all classes, enums, and other constructs in these headers.

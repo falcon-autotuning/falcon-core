@@ -132,7 +132,11 @@ sys.modules[math.labelled_arrays.__name__] = math.labelled_arrays
 // Include the Eigen typemaps for NumPy conversion
 %include "eigen.i"
 
+// Include the std::shared_ptr library for smart pointer support
+%include "std_shared_ptr.i"
+
 // Process the header files
+%shared_ptr(falcon_core::Jsonable);
 %include "falcon_core/Jsonable.hpp"
 %include "falcon_core/Time.hpp"
 
