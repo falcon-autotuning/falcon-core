@@ -126,8 +126,42 @@ sys.modules[math.labelled_arrays.__name__] = math.labelled_arrays
 #include <string>
 #include <cstddef>
 // #include <stdexcept>
+#include <stdexcept>
 // C++ headers for units are included via units.i
 %}
+
+// --- Exception Handling ---
+
+// Include SWIG's standard exception handler for std::exception types.
+// This automatically maps std::invalid_argument to ValueError, std::out_of_range to IndexError, etc.
+%include "std_except.i"
+
+// Handle exceptions that occur in Python director methods called from C++
+%feature("director:except") {
+  if ($error != NULL) {
+    // An error occurred during a call to a Python method.
+    // We need to translate this into a C++ exception to be handled by the %exception block below.
+    throw Swig::DirectorMethodException();
+  }
+}
+
+// Global exception handler for all wrapped C++ code.
+%exception {
+  try {
+    $action
+  } catch (const Swig::DirectorException& e) {
+    // This catches exceptions thrown by director methods,
+    // allowing the original Python exception to be propagated.
+    SWIG_fail;
+  } catch (const std::exception& e) {
+    // This catches standard C++ exceptions and converts them to Python exceptions.
+    SWIG_exception(SWIG_RuntimeError, e.what());
+  } catch (...) {
+    // Catch any other C++ exceptions.
+    SWIG_exception(SWIG_RuntimeError, "An unknown C++ exception occurred");
+  }
+}
+
 
 // Include the Eigen typemaps for NumPy conversion
 %include "eigen.i"
