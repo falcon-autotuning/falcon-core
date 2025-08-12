@@ -4,7 +4,7 @@
 
 # Variables
 BUILD_DIR := build
-
+SWIG_LIB_DIR := swig -swiglib
 # Default target: build the project
 all: build
 
@@ -12,7 +12,7 @@ all: build
 build:
 	@echo "--- Configuring and Building Project ---"
 	@mkdir -p $(BUILD_DIR)
-	@cmake -S . -B $(BUILD_DIR)
+	@cmake -S . -B $(BUILD_DIR) -D CMAKE_CXX_COMPILER=g++
 	@$(MAKE) -C $(BUILD_DIR)
 	@echo "--- Build complete ---"
 
@@ -25,3 +25,6 @@ test: build
 clean:
 	@echo "--- Cleaning build directory ---"
 	@rm -rf $(BUILD_DIR)
+
+test-make-cpp:
+	@gcc

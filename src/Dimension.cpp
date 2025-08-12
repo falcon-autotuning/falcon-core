@@ -58,7 +58,10 @@ Dimension Dimension::operator/(const Dimension& other) const {
 }
 
 bool Dimension::operator==(const Dimension& other) const {
-    return _dimensions == other._dimensions;
+  return _dimensions == other._dimensions;
+}
+bool Dimension::operator!=(const Dimension& other) const {
+  return !(*this == other);
 }
 
 const std::map<BaseDimension, int>& Dimension::get_dimensions() const {

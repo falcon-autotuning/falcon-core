@@ -11,8 +11,7 @@
 %}
 
 // Include standard library support
-%include <string>
-%include "std_except.i"
+// %include "std_except.i"
 
 // Include the new units definitions
 %include "units.i"

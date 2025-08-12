@@ -5,11 +5,14 @@
 #include "falcon_core/Unit.hpp"
 #include "falcon_core/SymbolUnit.hpp"
 #include <memory>
+#include <map>
 %}
 
 // std library support
-%include "std_map.i"
-%include "std_shared_ptr.i"
+// %include <map>
+// %include <memory>
+%include <std_map.i>
+%include <std_shared_ptr.i>
 
 // Expose std::map<BaseDimension, int> to python
 %template(DimensionMap) std::map<falcon_core::BaseDimension, int>;

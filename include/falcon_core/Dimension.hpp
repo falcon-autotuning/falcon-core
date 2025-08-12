@@ -28,6 +28,7 @@ public:
     Dimension operator*(const Dimension& other) const;
     Dimension operator/(const Dimension& other) const;
     bool operator==(const Dimension& other) const;
+    bool operator!=(const Dimension& other) const;
 
     const std::map<BaseDimension, int>& get_dimensions() const;
 
