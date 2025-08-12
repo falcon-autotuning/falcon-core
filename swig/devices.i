@@ -4,6 +4,8 @@
 #include "falcon_core/BaseConnection.hpp"
 #include "falcon_core/Gate.hpp"
 #include "falcon_core/Ohmic.hpp"
+#include "falcon_core/InstrumentPort.hpp"
+#include "falcon_core/Ports.hpp"
 %}
 
 %include "falcon_core/NameBase.hpp"
@@ -11,6 +13,8 @@
 %include "falcon_core/BaseConnection.hpp"
 %include "falcon_core/Gate.hpp"
 %include "falcon_core/Ohmic.hpp"
+%include "falcon_core/InstrumentPort.hpp"
+%include "falcon_core/Ports.hpp"
 
 // Instantiate NameBase for int and string
 %template(NameBaseInt) falcon_core::NameBase<int>;
@@ -18,3 +22,12 @@
 
 // Enable directors for BaseConnection if it's meant to be subclassed in Python
 %feature("director") falcon_core::BaseConnection;
+
+// Forward declare Instrument to resolve dependency in InstrumentPort
+class Instrument {};
+%shared_ptr(Instrument)
+
+// Instantiate templates for ports
+%template(InstrumentPortGate) falcon_core::InstrumentPort<falcon_core::Gate>;
+%shared_ptr(falcon_core::InstrumentPort<falcon_core::Gate>)
+%template(PortsGate) falcon_core::Ports<falcon_core::InstrumentPort<falcon_core::Gate>>;

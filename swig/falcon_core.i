@@ -56,6 +56,33 @@ sys.modules[math.axes.__name__] = math.axes
 _devices_spec = importlib.util.spec_from_loader(f'{_pkg_name}.physics.device_structures', loader=None)
 physics.device_structures = importlib.util.module_from_spec(_devices_spec)
 sys.modules[physics.device_structures.__name__] = physics.device_structures
+
+# Create falcon_core.instrument_interfaces
+_instruments_spec = importlib.util.spec_from_loader(f'{_pkg_name}.instrument_interfaces', loader=None)
+instrument_interfaces = importlib.util.module_from_spec(_instruments_spec)
+sys.modules[instrument_interfaces.__name__] = instrument_interfaces
+setattr(sys.modules[_pkg_name], 'instrument_interfaces', instrument_interfaces)
+
+# Create falcon_core.instrument_interfaces.names
+_instruments_names_spec = importlib.util.spec_from_loader(f'{_pkg_name}.instrument_interfaces.names', loader=None)
+instrument_interfaces.names = importlib.util.module_from_spec(_instruments_names_spec)
+sys.modules[instrument_interfaces.names.__name__] = instrument_interfaces.names
+
+# Create falcon_core.autotuner_interfaces
+_autotuner_spec = importlib.util.spec_from_loader(f'{_pkg_name}.autotuner_interfaces', loader=None)
+autotuner_interfaces = importlib.util.module_from_spec(_autotuner_spec)
+sys.modules[autotuner_interfaces.__name__] = autotuner_interfaces
+setattr(sys.modules[_pkg_name], 'autotuner_interfaces', autotuner_interfaces)
+
+# Create falcon_core.autotuner_interfaces.contexts
+_contexts_spec = importlib.util.spec_from_loader(f'{_pkg_name}.autotuner_interfaces.contexts', loader=None)
+autotuner_interfaces.contexts = importlib.util.module_from_spec(_contexts_spec)
+sys.modules[autotuner_interfaces.contexts.__name__] = autotuner_interfaces.contexts
+
+# Create falcon_core.autotuner_interfaces.interpretations
+_interpretations_spec = importlib.util.spec_from_loader(f'{_pkg_name}.autotuner_interfaces.interpretations', loader=None)
+autotuner_interfaces.interpretations = importlib.util.module_from_spec(_interpretations_spec)
+sys.modules[autotuner_interfaces.interpretations.__name__] = autotuner_interfaces.interpretations
 %}
 
 %{
@@ -82,6 +109,9 @@ sys.modules[physics.device_structures.__name__] = physics.device_structures
 
 // Include the device definitions
 %include "devices.i"
+
+// Include the context definitions
+%include "contexts.i"
 
 // Typemap for nlohmann::json to a Python string.
 // The user code in python will be responsible for json.loads()
@@ -154,4 +184,14 @@ physics.device_structures.Gate = Gate
 del Gate
 physics.device_structures.Ohmic = Ohmic
 del Ohmic
+
+# Move instrument and context classes
+instrument_interfaces.names.InstrumentPort = InstrumentPortGate
+del InstrumentPortGate
+instrument_interfaces.names.Ports = PortsGate
+del PortsGate
+autotuner_interfaces.contexts.AcquisitionContext = AcquisitionContext
+del AcquisitionContext
+autotuner_interfaces.interpretations.InterpretationContext = InterpretationContext
+del InterpretationContext
 %}

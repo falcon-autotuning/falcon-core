@@ -109,11 +109,11 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 ---
 
-## Phase 4: Measurement Contexts and Interpretations
+## Phase 4: Measurement Contexts and Interpretations (In Progress)
 
 **Goal:** Port the high-level classes that describe the context of a measurement.
 
-1.  **Port `AcquisitionContext` and `InterpretationContext`:**
+1.  **Port `AcquisitionContext` and `InterpretationContext`: (In Progress)**
     *   **C++:** Implement these classes. They will contain instances of the already-ported `InstrumentPort` and `Connection` types.
     *   **C++ Test:** Test context creation and matching logic.
     *   **SWIG:** Expose the classes in a `contexts.i` file.
