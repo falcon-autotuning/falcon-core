@@ -178,8 +178,10 @@ math.arrays.MeasuredArray = MeasuredArrayDouble
 del MeasuredArrayDouble
 
 # Move axes classes
-math.axes.Axes = AxesDomain
+math.axes.AxesDomain = AxesDomain
 del AxesDomain
+math.axes.Axes = AxesMeasurementContext
+del AxesMeasurementContext
 
 # Move device classes
 physics.device_structures.NameBaseInt = NameBaseInt
@@ -218,6 +220,8 @@ instrument_interfaces.names.Ports = PortsGate
 del PortsGate
 autotuner_interfaces.contexts.AcquisitionContext = AcquisitionContext
 del AcquisitionContext
+autotuner_interfaces.contexts.MeasurementContext = MeasurementContext
+del MeasurementContext
 autotuner_interfaces.interpretations.InterpretationContext = InterpretationContext
 del InterpretationContext
 autotuner_interfaces.interpretations.InterpretationContainer = InterpretationContainerControlArray

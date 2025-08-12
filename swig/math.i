@@ -27,6 +27,7 @@
 %include "std_shared_ptr.i"
 %shared_ptr(falcon_core::Domain)
 %template(AxesDomain) falcon_core::Axes<falcon_core::Domain>;
+%template(AxesMeasurementContext) falcon_core::Axes<falcon_core::MeasurementContext>;
 // Add other instantiations as needed, e.g., for int or complex types.
 
 // A full implementation would require typemaps for K,V to be useful in Python.

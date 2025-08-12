@@ -2,7 +2,7 @@
 
 #include "falcon_core/Jsonable.hpp"
 #include "falcon_core/Axes.hpp"
-#include "falcon_core/Domain.hpp" // Using Domain as placeholder for MeasurementContext
+#include "falcon_core/MeasurementContext.hpp"
 
 namespace falcon_core {
 
@@ -10,7 +10,7 @@ namespace falcon_core {
 // A full implementation would depend on MeasurementContext.
 class InterpretationContext : public Jsonable {
 public:
-    InterpretationContext(std::shared_ptr<Axes<Domain>> independent_variables)
+    InterpretationContext(std::shared_ptr<Axes<MeasurementContext>> independent_variables)
         : _independent_variables(std::move(independent_variables)) {}
 
     nlohmann::json to_json() const override {
@@ -25,7 +25,7 @@ public:
     }
 
 private:
-    std::shared_ptr<Axes<Domain>> _independent_variables;
+    std::shared_ptr<Axes<MeasurementContext>> _independent_variables;
 };
 
 } // namespace falcon_core
