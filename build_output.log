@@ -1,0 +1,321 @@
+make[1]: Entering directory '/home/tylerk/falcon-dev/falcon-core/build'
+[100%] Built target falcon_core_cpp
+[100%] Built target falcon_core_swig_compilation
+[100%] [32mBuilding CXX object CMakeFiles/falcon_core.dir/src/falcon_core/falcon_corePYTHON_wrap.cxx.o[0m
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_delete_Time(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:5111:26: error: ‘smartarg1’ was not declared in this scope
+ 5111 |       (void)arg1; delete smartarg1;
+      |                          ^~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_delete_Dimension(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:5447:26: error: ‘smartarg1’ was not declared in this scope
+ 5447 |       (void)arg1; delete smartarg1;
+      |                          ^~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_delete_Prefix(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:5659:26: error: ‘smartarg1’ was not declared in this scope
+ 5659 |       (void)arg1; delete smartarg1;
+      |                          ^~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_new_LabelledControlArray1D(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:7037:95: error: no matching function for call to ‘falcon_core::LabelledControlArray1D::LabelledControlArray1D()’
+ 7037 |       result = (falcon_core::LabelledControlArray1D *)new falcon_core::LabelledControlArray1D();
+      |                                                                                               ^
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:7037:95: note: there are 5 candidates
+In file included from /home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:4175:
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/BaseLabelledArray.hpp:10:7: note: candidate 1: ‘falcon_core::BaseLabelledArray<falcon_core::ControlArray1D, falcon_core::InstrumentPort<falcon_core::Gate> >::BaseLabelledArray(const falcon_core::BaseLabelledArray<falcon_core::ControlArray1D, falcon_core::InstrumentPort<falcon_core::Gate> >&)’
+   10 | class BaseLabelledArray : public Jsonable {
+      |       ^~~~~~~~~~~~~~~~~
+In file included from /home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:4176:
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/LabelledControlArray1D.hpp:17:15: note: inherited here
+   17 |   using Base::Base;
+      |               ^~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/LabelledControlArray1D.hpp:17:15: note: candidate expects 1 argument, 0 provided
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/BaseLabelledArray.hpp:10:7: note: candidate 2: ‘falcon_core::BaseLabelledArray<falcon_core::ControlArray1D, falcon_core::InstrumentPort<falcon_core::Gate> >::BaseLabelledArray(falcon_core::BaseLabelledArray<falcon_core::ControlArray1D, falcon_core::InstrumentPort<falcon_core::Gate> >&&)’
+   10 | class BaseLabelledArray : public Jsonable {
+      |       ^~~~~~~~~~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/LabelledControlArray1D.hpp:17:15: note: inherited here
+   17 |   using Base::Base;
+      |               ^~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/LabelledControlArray1D.hpp:17:15: note: candidate expects 1 argument, 0 provided
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/LabelledControlArray1D.hpp:19:3: note: candidate 3: ‘falcon_core::LabelledControlArray1D::LabelledControlArray1D(std::shared_ptr<falcon_core::ControlArray1D>, std::shared_ptr<falcon_core::InstrumentPort<falcon_core::Gate> >)’
+   19 |   LabelledControlArray1D(std::shared_ptr<ControlArray1D> array,
+      |   ^~~~~~~~~~~~~~~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/LabelledControlArray1D.hpp:19:3: note: candidate expects 2 arguments, 0 provided
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/LabelledControlArray1D.hpp:12:7: note: candidate 4: ‘falcon_core::LabelledControlArray1D::LabelledControlArray1D(const falcon_core::LabelledControlArray1D&)’
+   12 | class LabelledControlArray1D
+      |       ^~~~~~~~~~~~~~~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/LabelledControlArray1D.hpp:12:7: note: candidate expects 1 argument, 0 provided
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/LabelledControlArray1D.hpp:12:7: note: candidate 5: ‘falcon_core::LabelledControlArray1D::LabelledControlArray1D(falcon_core::LabelledControlArray1D&&)’
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/LabelledControlArray1D.hpp:12:7: note: candidate expects 1 argument, 0 provided
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_new_ControlArray1D(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:7277:3: error: ‘MatrixType’ was not declared in this scope
+ 7277 |   MatrixType *arg1 = 0 ;
+      |   ^~~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:7277:15: error: ‘arg1’ was not declared in this scope; did you mean ‘args’?
+ 7277 |   MatrixType *arg1 = 0 ;
+      |               ^~~~
+      |               args
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:7293:28: error: ‘MatrixType’ does not name a type
+ 7293 |   arg1 = reinterpret_cast< MatrixType * >(argp1);
+      |                            ^~~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:7293:39: error: expected ‘>’ before ‘*’ token
+ 7293 |   arg1 = reinterpret_cast< MatrixType * >(argp1);
+      |                                       ^
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:7296:90: error: expected ‘)’ before ‘const’
+ 7296 |       result = (falcon_core::ControlArray1D *)new falcon_core::ControlArray1D((MatrixType const &)*arg1);
+      |                                                                               ~          ^~~~~~
+      |                                                                                          )
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:7296:105: error: expected ‘)’ before ‘;’ token
+ 7296 |       result = (falcon_core::ControlArray1D *)new falcon_core::ControlArray1D((MatrixType const &)*arg1);
+      |                                                                              ~                          ^
+      |                                                                                                         )
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_delete_OneToOneMappingStringString(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:11405:26: error: ‘smartarg1’ was not declared in this scope
+11405 |       (void)arg1; delete smartarg1;
+      |                          ^~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_new_Channel(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:11482:65: error: use of deleted function ‘falcon_core::Channel::Channel()’
+11482 |       result = (falcon_core::Channel *)new falcon_core::Channel();
+      |                                                                 ^
+In file included from /home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:4616:
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Channel.hpp:7:7: note: ‘falcon_core::Channel::Channel()’ is implicitly deleted because the default definition would be ill-formed:
+    7 | class Channel : public NameBase<int> {
+      |       ^~~~~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Channel.hpp: At global scope:
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Channel.hpp:7:7: error: no matching function for call to ‘falcon_core::NameBase<int>::NameBase()’
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Channel.hpp:7:7: note: there are 3 candidates
+In file included from /home/tylerk/falcon-dev/falcon-core/include/falcon_core/BaseConnection.hpp:3,
+                 from /home/tylerk/falcon-dev/falcon-core/include/falcon_core/Gate.hpp:3,
+                 from /home/tylerk/falcon-dev/falcon-core/include/falcon_core/LabelledControlArray1D.hpp:5:
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/NameBase.hpp:12:3: note: candidate 1: ‘falcon_core::NameBase<T>::NameBase(T) [with T = int]’
+   12 |   NameBase(T name) : _name(name) {}
+      |   ^~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/NameBase.hpp:12:3: note: candidate expects 1 argument, 0 provided
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/NameBase.hpp:10:29: note: candidate 2: ‘constexpr falcon_core::NameBase<int>::NameBase(const falcon_core::NameBase<int>&)’
+   10 | template <typename T> class NameBase : public Jsonable {
+      |                             ^~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/NameBase.hpp:10:29: note: candidate expects 1 argument, 0 provided
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/NameBase.hpp:10:29: note: candidate 3: ‘constexpr falcon_core::NameBase<int>::NameBase(falcon_core::NameBase<int>&&)’
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/NameBase.hpp:10:29: note: candidate expects 1 argument, 0 provided
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_new_Channel(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:11482:65: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+11482 |       result = (falcon_core::Channel *)new falcon_core::Channel();
+      |                                                                 ^
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_new_BaseConnection(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:11605:79: error: use of deleted function ‘falcon_core::BaseConnection::BaseConnection()’
+11605 |       result = (falcon_core::BaseConnection *)new falcon_core::BaseConnection();
+      |                                                                               ^
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/BaseConnection.hpp:8:7: note: ‘falcon_core::BaseConnection::BaseConnection()’ is implicitly deleted because the default definition would be ill-formed:
+    8 | class BaseConnection : public NameBase<std::string> {
+      |       ^~~~~~~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/BaseConnection.hpp: At global scope:
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/BaseConnection.hpp:8:7: error: no matching function for call to ‘falcon_core::NameBase<std::__cxx11::basic_string<char> >::NameBase()’
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/BaseConnection.hpp:8:7: note: there are 3 candidates
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/NameBase.hpp:12:3: note: candidate 1: ‘falcon_core::NameBase<T>::NameBase(T) [with T = std::__cxx11::basic_string<char>]’
+   12 |   NameBase(T name) : _name(name) {}
+      |   ^~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/NameBase.hpp:12:3: note: candidate expects 1 argument, 0 provided
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/NameBase.hpp:10:29: note: candidate 2: ‘falcon_core::NameBase<std::__cxx11::basic_string<char> >::NameBase(const falcon_core::NameBase<std::__cxx11::basic_string<char> >&)’
+   10 | template <typename T> class NameBase : public Jsonable {
+      |                             ^~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/NameBase.hpp:10:29: note: candidate expects 1 argument, 0 provided
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/NameBase.hpp:10:29: note: candidate 3: ‘falcon_core::NameBase<std::__cxx11::basic_string<char> >::NameBase(falcon_core::NameBase<std::__cxx11::basic_string<char> >&&)’
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/NameBase.hpp:10:29: note: candidate expects 1 argument, 0 provided
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_new_BaseConnection(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:11605:79: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+11605 |       result = (falcon_core::BaseConnection *)new falcon_core::BaseConnection();
+      |                                                                               ^
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_new_Gate(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:11684:59: error: use of deleted function ‘falcon_core::Gate::Gate()’
+11684 |       result = (falcon_core::Gate *)new falcon_core::Gate();
+      |                                                           ^
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Gate.hpp:7:7: note: ‘falcon_core::Gate::Gate()’ is implicitly deleted because the default definition would be ill-formed:
+    7 | class Gate : public BaseConnection {
+      |       ^~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Gate.hpp: At global scope:
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Gate.hpp:7:7: error: use of deleted function ‘falcon_core::BaseConnection::BaseConnection()’
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Gate.hpp:7:7: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_new_Gate(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:11684:59: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+11684 |       result = (falcon_core::Gate *)new falcon_core::Gate();
+      |                                                           ^
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_new_Ohmic(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:11807:61: error: use of deleted function ‘falcon_core::Ohmic::Ohmic()’
+11807 |       result = (falcon_core::Ohmic *)new falcon_core::Ohmic();
+      |                                                             ^
+In file included from /home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:4619:
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Ohmic.hpp:7:7: note: ‘falcon_core::Ohmic::Ohmic()’ is implicitly deleted because the default definition would be ill-formed:
+    7 | class Ohmic : public BaseConnection {
+      |       ^~~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Ohmic.hpp: At global scope:
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Ohmic.hpp:7:7: error: use of deleted function ‘falcon_core::BaseConnection::BaseConnection()’
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Ohmic.hpp:7:7: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_new_Ohmic(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:11807:61: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+11807 |       result = (falcon_core::Ohmic *)new falcon_core::Ohmic();
+      |                                                             ^
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_delete_Impedances(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:12301:26: error: ‘smartarg1’ was not declared in this scope
+12301 |       (void)arg1; delete smartarg1;
+      |                          ^~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_new_Instrument(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:13717:3: error: ‘Instrument’ was not declared in this scope; did you mean ‘falcon_core::Instrument’?
+13717 |   Instrument *result = 0 ;
+      |   ^~~~~~~~~~
+      |   falcon_core::Instrument
+In file included from /home/tylerk/falcon-dev/falcon-core/include/falcon_core/LabelledControlArray1D.hpp:6:
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/InstrumentPort.hpp:11:7: note: ‘falcon_core::Instrument’ declared here
+   11 | class Instrument;
+      |       ^~~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:13717:15: error: ‘result’ was not declared in this scope; did you mean ‘resultobj’?
+13717 |   Instrument *result = 0 ;
+      |               ^~~~~~
+      |               resultobj
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:13723:29: error: expected primary-expression before ‘)’ token
+13723 |       result = (Instrument *)new Instrument();
+      |                             ^
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_delete_Instrument(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:13739:3: error: ‘Instrument’ was not declared in this scope; did you mean ‘falcon_core::Instrument’?
+13739 |   Instrument *arg1 = (Instrument *) 0 ;
+      |   ^~~~~~~~~~
+      |   falcon_core::Instrument
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/InstrumentPort.hpp:11:7: note: ‘falcon_core::Instrument’ declared here
+   11 | class Instrument;
+      |       ^~~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:13739:15: error: ‘arg1’ was not declared in this scope; did you mean ‘args’?
+13739 |   Instrument *arg1 = (Instrument *) 0 ;
+      |               ^~~~
+      |               args
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:13739:35: error: expected primary-expression before ‘)’ token
+13739 |   Instrument *arg1 = (Instrument *) 0 ;
+      |                                   ^
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:13751:28: error: ‘Instrument’ does not name a type
+13751 |   arg1 = reinterpret_cast< Instrument * >(argp1);
+      |                            ^~~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:13751:39: error: expected ‘>’ before ‘*’ token
+13751 |   arg1 = reinterpret_cast< Instrument * >(argp1);
+      |                                       ^
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:13754:7: error: type ‘<type error>’ argument given to ‘delete’, expected pointer
+13754 |       delete arg1;
+      |       ^~~~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_delete_AcquisitionContext(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:15415:26: error: ‘smartarg1’ was not declared in this scope
+15415 |       (void)arg1; delete smartarg1;
+      |                          ^~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx: In function ‘PyObject* _wrap_delete_InterpretationContainerControlArray(PyObject*, PyObject*)’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:16262:26: error: ‘smartarg1’ was not declared in this scope
+16262 |       (void)arg1; delete smartarg1;
+      |                          ^~~~~~~~~
+In file included from /home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:4167:
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Quantity.hpp: In instantiation of ‘nlohmann::json_abi_v3_12_0::json falcon_core::Quantity<T>::to_json() const [with T = std::complex<double>; nlohmann::json_abi_v3_12_0::json = nlohmann::json_abi_v3_12_0::basic_json<>]’:
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Impedance.hpp:24:42:   required from here
+   24 |     j["_impedance"] = _impedance->to_json();
+      |                       ~~~~~~~~~~~~~~~~~~~^~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Quantity.hpp:30:15: error: no match for ‘operator=’ (operand types are ‘nlohmann::json_abi_v3_12_0::basic_json<>::value_type’ {aka ‘nlohmann::json_abi_v3_12_0::basic_json<>’} and ‘const std::complex<double>’)
+   30 |   j["_value"] = _value;
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Quantity.hpp:30:15: note: there is 1 candidate
+In file included from /home/tylerk/falcon-dev/falcon-core/include/falcon_core/Jsonable.hpp:3,
+                 from /home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:3990:
+/home/tylerk/falcon-dev/falcon-core/build/_deps/json-src/include/nlohmann/json.hpp:1252:17: note: candidate 1: ‘nlohmann::json_abi_v3_12_0::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass>& nlohmann::json_abi_v3_12_0::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass>::operator=(nlohmann::json_abi_v3_12_0::basic_json<ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType, CustomBaseClass>) [with ObjectType = std::map; ArrayType = std::vector; StringType = std::__cxx11::basic_string<char>; BooleanType = bool; NumberIntegerType = long int; NumberUnsignedType = long unsigned int; NumberFloatType = double; AllocatorType = std::allocator; JSONSerializer = nlohmann::json_abi_v3_12_0::adl_serializer; BinaryType = std::vector<unsigned char>; CustomBaseClass = void]’
+ 1252 |     basic_json& operator=(basic_json other) noexcept (
+      |                 ^~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/build/_deps/json-src/include/nlohmann/json.hpp:1252:38: note: no known conversion for argument 1 from ‘const std::complex<double>’ to ‘nlohmann::json_abi_v3_12_0::basic_json<>’
+ 1252 |     basic_json& operator=(basic_json other) noexcept (
+      |                           ~~~~~~~~~~~^~~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Quantity.hpp: In instantiation of ‘size_t falcon_core::Quantity<T>::hash() const [with T = std::complex<double>; size_t = long unsigned int]’:
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Impedance.hpp:28:70:   required from here
+   28 |   size_t hash() const override { return _impedance ? _impedance->hash() : 0; }
+      |                                                      ~~~~~~~~~~~~~~~~^~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Quantity.hpp:36:29: error: use of deleted function ‘std::hash<std::complex<double> >::hash()’
+   36 |   size_t h1 = std::hash<T>{}(_value);
+      |               ~~~~~~~~~~~~~~^~~~~~~~
+In file included from /usr/include/c++/15.1.1/bits/basic_string.h:4895,
+                 from /usr/include/c++/15.1.1/string:56,
+                 from /home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:3362:
+/usr/include/c++/15.1.1/bits/functional_hash.h:104:12: note: ‘std::hash<std::complex<double> >::hash()’ is implicitly deleted because the default definition would be ill-formed:
+  104 |     struct hash
+      |            ^~~~
+/usr/include/c++/15.1.1/bits/functional_hash.h:104:12: error: no matching function for call to ‘std::__hash_not_enabled<std::complex<double> >::__hash_not_enabled()’
+/usr/include/c++/15.1.1/bits/functional_hash.h:104:12: note: there are 2 candidates
+/usr/include/c++/15.1.1/bits/functional_hash.h:86:7: note: candidate 1: ‘std::__hash_not_enabled<_Tp>::__hash_not_enabled(std::__hash_not_enabled<_Tp>&&) [with _Tp = std::complex<double>]’ (deleted)
+   86 |       __hash_not_enabled(__hash_not_enabled&&) = delete;
+      |       ^~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/bits/functional_hash.h:86:7: note: candidate expects 1 argument, 0 provided
+/usr/include/c++/15.1.1/bits/functional_hash.h:84:12: note: candidate 2: ‘constexpr std::__hash_not_enabled<std::complex<double> >::__hash_not_enabled(const std::__hash_not_enabled<std::complex<double> >&)’ (deleted)
+   84 |     struct __hash_not_enabled
+      |            ^~~~~~~~~~~~~~~~~~
+/usr/include/c++/15.1.1/bits/functional_hash.h:84:12: note: candidate expects 1 argument, 0 provided
+/usr/include/c++/15.1.1/bits/functional_hash.h:104:12: error: use of deleted function ‘std::__hash_not_enabled<_Tp>::~__hash_not_enabled() [with _Tp = std::complex<double>]’
+  104 |     struct hash
+      |            ^~~~
+/usr/include/c++/15.1.1/bits/functional_hash.h:87:7: note: declared here
+   87 |       ~__hash_not_enabled() = delete;
+      |       ^
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/Quantity.hpp:36:29: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+   36 |   size_t h1 = std::hash<T>{}(_value);
+      |               ~~~~~~~~~~~~~~^~~~~~~~
+In file included from /home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:4168:
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/OneToOneMapping.hpp: In instantiation of ‘nlohmann::json_abi_v3_12_0::json falcon_core::OneToOneMapping<K, V>::to_json() const [with K = std::__cxx11::basic_string<char>; V = std::__cxx11::basic_string<char>; nlohmann::json_abi_v3_12_0::json = nlohmann::json_abi_v3_12_0::basic_json<>]’:
+/home/tylerk/falcon-dev/falcon-core/src/falcon_core/falcon_corePYTHON_wrap.cxx:11342:96:   required from here
+11342 |       result = ((falcon_core::OneToOneMapping< std::string,std::string > const *)arg1)->to_json();
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/OneToOneMapping.hpp:37:23: error: no matching function for call to ‘to_string(const std::__cxx11::basic_string<char>&)’
+   37 |       j[std::to_string(pair.first)] = pair.second;
+      |         ~~~~~~~~~~~~~~^~~~~~~~~~~~
+/home/tylerk/falcon-dev/falcon-core/include/falcon_core/OneToOneMapping.hpp:37:23: note: there are 9 candidates
+/usr/include/c++/15.1.1/bits/basic_string.h:4530:3: note: candidate 1: ‘std::string std::__cxx11::to_string(int)’
+ 4530 |   to_string(int __val)
+      |   ^~~~~~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4530:17: note: no known conversion for argument 1 from ‘const std::__cxx11::basic_string<char>’ to ‘int’
+ 4530 |   to_string(int __val)
+      |             ~~~~^~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4549:3: note: candidate 2: ‘std::string std::__cxx11::to_string(unsigned int)’
+ 4549 |   to_string(unsigned __val)
+      |   ^~~~~~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4549:22: note: no known conversion for argument 1 from ‘const std::__cxx11::basic_string<char>’ to ‘unsigned int’
+ 4549 |   to_string(unsigned __val)
+      |             ~~~~~~~~~^~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4565:3: note: candidate 3: ‘std::string std::__cxx11::to_string(long int)’
+ 4565 |   to_string(long __val)
+      |   ^~~~~~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4565:18: note: no known conversion for argument 1 from ‘const std::__cxx11::basic_string<char>’ to ‘long int’
+ 4565 |   to_string(long __val)
+      |             ~~~~~^~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4584:3: note: candidate 4: ‘std::string std::__cxx11::to_string(long unsigned int)’
+ 4584 |   to_string(unsigned long __val)
+      |   ^~~~~~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4584:27: note: no known conversion for argument 1 from ‘const std::__cxx11::basic_string<char>’ to ‘long unsigned int’
+ 4584 |   to_string(unsigned long __val)
+      |             ~~~~~~~~~~~~~~^~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4600:3: note: candidate 5: ‘std::string std::__cxx11::to_string(long long int)’
+ 4600 |   to_string(long long __val)
+      |   ^~~~~~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4600:23: note: no known conversion for argument 1 from ‘const std::__cxx11::basic_string<char>’ to ‘long long int’
+ 4600 |   to_string(long long __val)
+      |             ~~~~~~~~~~^~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4617:3: note: candidate 6: ‘std::string std::__cxx11::to_string(long long unsigned int)’
+ 4617 |   to_string(unsigned long long __val)
+      |   ^~~~~~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4617:32: note: no known conversion for argument 1 from ‘const std::__cxx11::basic_string<char>’ to ‘long long unsigned int’
+ 4617 |   to_string(unsigned long long __val)
+      |             ~~~~~~~~~~~~~~~~~~~^~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4693:3: note: candidate 7: ‘std::string std::__cxx11::to_string(float)’
+ 4693 |   to_string(float __val)
+      |   ^~~~~~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4693:19: note: no known conversion for argument 1 from ‘const std::__cxx11::basic_string<char>’ to ‘float’
+ 4693 |   to_string(float __val)
+      |             ~~~~~~^~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4703:3: note: candidate 8: ‘std::string std::__cxx11::to_string(double)’
+ 4703 |   to_string(double __val)
+      |   ^~~~~~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4703:20: note: no known conversion for argument 1 from ‘const std::__cxx11::basic_string<char>’ to ‘double’
+ 4703 |   to_string(double __val)
+      |             ~~~~~~~^~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4713:3: note: candidate 9: ‘std::string std::__cxx11::to_string(long double)’
+ 4713 |   to_string(long double __val)
+      |   ^~~~~~~~~
+/usr/include/c++/15.1.1/bits/basic_string.h:4713:25: note: no known conversion for argument 1 from ‘const std::__cxx11::basic_string<char>’ to ‘long double’
+ 4713 |   to_string(long double __val)
+      |             ~~~~~~~~~~~~^~~~~
+make[3]: *** [CMakeFiles/falcon_core.dir/build.make:79: CMakeFiles/falcon_core.dir/src/falcon_core/falcon_corePYTHON_wrap.cxx.o] Error 1
+make[2]: *** [CMakeFiles/Makefile2:4446: CMakeFiles/falcon_core.dir/all] Error 2
+make[1]: *** [Makefile:146: all] Error 2
+make[1]: Leaving directory '/home/tylerk/falcon-dev/falcon-core/build'
