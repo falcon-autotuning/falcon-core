@@ -1,7 +1,5 @@
 %module(directors="1") falcon_core
 
-%feature("builtin") throw;
-
 %{
 #include "falcon_core/Time.hpp"
 #include "falcon_core/Jsonable.hpp"
@@ -12,6 +10,12 @@
 
 // Include standard library support
 // %include "std_except.i"
+
+
+
+// Process the header files
+%include "falcon_core/Jsonable.hpp"
+%include "falcon_core/Time.hpp"
 
 // Include the new units definitions
 %include "units.i"
@@ -24,10 +28,6 @@
 
 // Enable directors for Jsonable to allow subclassing in Python
 %feature("director") falcon_core::Jsonable;
-
-// Process the header files
-%include "falcon_core/Time.hpp"
-%include "falcon_core/Jsonable.hpp"
 
 // Add python-like special methods
 %extend falcon_core::Jsonable {

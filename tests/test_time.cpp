@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "falcon_core/Time.hpp"
+#include "falcon_core/constants.hpp"
 #include <thread>
 #include <chrono>
 
