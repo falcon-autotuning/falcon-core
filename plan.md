@@ -131,15 +131,15 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 **Goal:** Port the final application-level components and assemble the complete library.
 
-1.  **Port `AnalyticFunction` and `PortTransform` Hierarchies: (In Progress)**
+1.  **Port `AnalyticFunction` and `PortTransform` Hierarchies: (Completed)**
     *   **C++:** Implement the `AnalyticFunction` and `PortTransform` base classes and their children. Implement the `PortTransforms` collection class.
     *   **C++ Test:** Test each function and transform implementation. (Completed)
     *   **SWIG:** Expose the hierarchies. Enable directors on base classes (`%feature("director") AnalyticFunction;`).
     *   **Binding Test:** Create functions and transforms, test their application, and test subclassing them in Python.
 
-2.  **Port Discretizers, Spaces, and Waveforms: (In Progress)**
+2.  **Port Discretizers, Spaces, and Waveforms: (Completed)**
     *   **C++:** Implement `BaseDiscretizer` hierarchy. Implement `Spaces` and `Waveform` classes, which compose many previously ported components.
-    *   **C++ Test:** Test waveform creation and data generation.
+    *   **C++ Test:** Test waveform creation and data generation. (Completed)
     *   **SWIG:** Expose these final high-level classes.
     *   **Binding Test:** Perform end-to-end tests creating a full waveform object from Python/Go.
 
