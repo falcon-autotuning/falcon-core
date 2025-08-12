@@ -46,6 +46,11 @@ sys.modules[math.domains.__name__] = math.domains
 _arrays_spec = importlib.util.spec_from_loader(f'{_pkg_name}.math.arrays', loader=None)
 math.arrays = importlib.util.module_from_spec(_arrays_spec)
 sys.modules[math.arrays.__name__] = math.arrays
+
+# Create falcon_core.math.axes
+_axes_spec = importlib.util.spec_from_loader(f'{_pkg_name}.math.axes', loader=None)
+math.axes = importlib.util.module_from_spec(_axes_spec)
+sys.modules[math.axes.__name__] = math.axes
 %}
 
 %{
@@ -123,4 +128,8 @@ math.arrays.ControlArray = ControlArrayDouble
 del ControlArrayDouble
 math.arrays.MeasuredArray = MeasuredArrayDouble
 del MeasuredArrayDouble
+
+# Move axes classes
+math.axes.Axes = AxesDomain
+del AxesDomain
 %}

@@ -77,7 +77,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
     *   **SWIG:** Use `Eigen` typemaps for automatic NumPy conversion. Instantiate required array templates.
     *   **Binding Test:** Test creating arrays in Python (from NumPy), passing them to C++, performing operations, and getting them back.
 
-3.  **Port `Axes`:**
+3.  **Port `Axes`: (Completed)**
     *   **C++:** Implement `Axes<T>` as a template class wrapping a `std::vector` of shared pointers.
     *   **C++ Test:** Test indexing and other container operations.
     *   **SWIG:** Use `std_vector.i` and `std_shared_ptr.i` and instantiate `Axes` for required types (e.g., `Axes<MeasurementContext>`).
