@@ -287,10 +287,14 @@ physics.transforms.PortTransform = PortTransform
 del PortTransform
 physics.transforms.PortTransforms = PortTransforms
 del PortTransforms
+physics.transforms.IdentityTransform = IdentityTransform
+del IdentityTransform
 
 # Move waveform classes
 math.discretizers.BaseDiscretizer = BaseDiscretizer
 del BaseDiscretizer
+math.discretizers.CartesianDiscretizer = CartesianDiscretizer
+del CartesianDiscretizer
 math.waveform.Spaces = Spaces
 del Spaces
 math.waveform.Waveform = Waveform

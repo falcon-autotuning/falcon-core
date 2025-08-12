@@ -87,3 +87,11 @@ TEST(IdentityFunctionTest, Evaluation) {
     ASSERT_DOUBLE_EQ(identity_func.evaluate(0.0), 0.0);
     ASSERT_DOUBLE_EQ(identity_func.evaluate(-5.5), -5.5);
 }
+
+#include "falcon_core/IdentityTransform.hpp"
+
+TEST(IdentityTransformTest, Application) {
+    IdentityTransform id_transform;
+    // IdentityTransform should just return the input value
+    ASSERT_DOUBLE_EQ(id_transform.apply(123.45), 123.45);
+}

@@ -62,3 +62,12 @@ TEST(WaveformTest, Construction) {
     ASSERT_TRUE(j.contains("_measured_array"));
     ASSERT_TRUE(j.contains("_spaces"));
 }
+
+#include "falcon_core/CartesianDiscretizer.hpp"
+
+TEST(CartesianDiscretizerTest, Construction) {
+    auto domain = std::make_shared<Domain>(0.0, 1.0);
+    CartesianDiscretizer cd(0.1, domain);
+    nlohmann::json j = cd.to_json();
+    ASSERT_EQ(j["__class__"], "CartesianDiscretizer");
+}
