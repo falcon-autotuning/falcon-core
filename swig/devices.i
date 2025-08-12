@@ -64,3 +64,8 @@ class Instrument {};
 %shared_ptr(falcon_core::BaseConnections<falcon_core::Ohmic>)
 %shared_ptr(falcon_core::StandardConfigConnections)
 %shared_ptr(falcon_core::Loader)
+
+// Instantiate Channels
+%shared_ptr(falcon_core::Channel)
+%template(Channels) falcon_core::BaseConnections<falcon_core::Channel>;
+%shared_ptr(falcon_core::BaseConnections<falcon_core::Channel>)

@@ -55,6 +55,9 @@ add_library(falcon_core_cpp
     src/Prefix.cpp
     src/Unit.cpp
     src/SymbolUnit.cpp
+    src/Domain.cpp
+    src/MeasurementContext.cpp
+    src/Units.cpp
 )
 target_include_directories(falcon_core_cpp PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -108,6 +111,12 @@ add_executable(run_tests
     tests/test_time.cpp
     tests/test_dimension.cpp
     tests/test_unit.cpp
+    tests/test_math.cpp
+    tests/test_devices.cpp
+    tests/test_contexts.cpp
+    tests/test_transforms.cpp
+    tests/test_waveforms.cpp
+    tests/test_units_utility.cpp
 )
 target_link_libraries(run_tests
     GTest::gtest_main
