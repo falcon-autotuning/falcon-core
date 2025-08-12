@@ -13,9 +13,6 @@ class LabelledControlArray1D
     : public BaseLabelledArray<ControlArray1D, LabelType>,
       public IsLabelled1D<LabelledControlArray1D> {
 public:
-  using Base = BaseLabelledArray<ControlArray1D, LabelType>;
-  using Base::Base;
-
   LabelledControlArray1D(std::shared_ptr<ControlArray1D> array,
                          std::shared_ptr<InstrumentPort<Gate>> label)
       : BaseLabelledArray<ControlArray1D, InstrumentPort<Gate>>(array, label) {}
@@ -27,7 +24,7 @@ public:
   }
 
   nlohmann::json to_json() const override {
-    nlohmann::json j = Base::to_json();
+    nlohmann::json j = this->to_json();
     add_metadata(j,
                  "falcon_core.math.labelled_arrays.labelled_control_array_1D",
                  "LabelledControlArray1D");
