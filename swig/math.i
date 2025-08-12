@@ -73,5 +73,5 @@
 
 // A full implementation would require typemaps for K,V to be useful in Python.
 // This is a basic starting point.
-%shared_ptr(falcon_core::OneToOneMapping);
+%shared_ptr(falcon_core::OneToOneMapping<std::string, std::string>);
 %template(OneToOneMappingStringString) falcon_core::OneToOneMapping<std::string, std::string>;
