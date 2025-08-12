@@ -39,33 +39,33 @@
 
 // Forward declare Instrument to resolve dependency in InstrumentPort
 class Instrument {};
-%shared_ptr(Instrument)
+//%shared_ptr(Instrument)
 
 // Instantiate templates for ports
 %template(InstrumentPortGate) falcon_core::InstrumentPort<falcon_core::Gate>;
-%shared_ptr(falcon_core::InstrumentPort<falcon_core::Gate>)
+//%shared_ptr(falcon_core::InstrumentPort<falcon_core::Gate>)
 %template(PortsGate) falcon_core::Ports<falcon_core::InstrumentPort<falcon_core::Gate>>;
 
 // Instantiate templates for connections and relations
-%shared_ptr(falcon_core::Gate)
+//%shared_ptr(falcon_core::Gate)
 %template(Gates) falcon_core::BaseConnections<falcon_core::Gate>;
-%shared_ptr(falcon_core::BaseConnections<falcon_core::Gate>)
+//%shared_ptr(falcon_core::BaseConnections<falcon_core::Gate>)
 
 %include "std_complex.i"
 %template(QuantityComplexDouble) falcon_core::Quantity<std::complex<double>>;
-%shared_ptr(falcon_core::Quantity<std::complex<double>>)
-%shared_ptr(falcon_core::Impedance)
+//%shared_ptr(falcon_core::Quantity<std::complex<double>>)
+//%shared_ptr(falcon_core::Impedance)
 
-%shared_ptr(falcon_core::GateRelations)
+//%shared_ptr(falcon_core::GateRelations)
 
 // Instantiate templates for StandardConfigConnections
-%shared_ptr(falcon_core::Ohmic)
+//%shared_ptr(falcon_core::Ohmic)
 %template(Ohmics) falcon_core::BaseConnections<falcon_core::Ohmic>;
-%shared_ptr(falcon_core::BaseConnections<falcon_core::Ohmic>)
-%shared_ptr(falcon_core::StandardConfigConnections)
-%shared_ptr(falcon_core::Loader)
+//%shared_ptr(falcon_core::BaseConnections<falcon_core::Ohmic>)
+//%shared_ptr(falcon_core::StandardConfigConnections)
+//%shared_ptr(falcon_core::Loader)
 
 // Instantiate Channels
-%shared_ptr(falcon_core::Channel)
+//%shared_ptr(falcon_core::Channel)
 %template(Channels) falcon_core::BaseConnections<falcon_core::Channel>;
-%shared_ptr(falcon_core::BaseConnections<falcon_core::Channel>)
+//%shared_ptr(falcon_core::BaseConnections<falcon_core::Channel>)

@@ -12,7 +12,7 @@
 
 %feature("director") falcon_core::BaseDiscretizer;
 
-%shared_ptr(falcon_core::BaseDiscretizer)
-%shared_ptr(falcon_core::CartesianDiscretizer)
-%shared_ptr(falcon_core::Spaces)
-%shared_ptr(falcon_core::Waveform)
+//%shared_ptr(falcon_core::BaseDiscretizer)
+//%shared_ptr(falcon_core::CartesianDiscretizer)
+//%shared_ptr(falcon_core::Spaces)
+//%shared_ptr(falcon_core::Waveform)

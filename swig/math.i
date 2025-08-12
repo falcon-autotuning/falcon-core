@@ -39,25 +39,25 @@
 // Instantiate Axes for Domain as a placeholder until MeasurementContext is available
 %include "std_vector.i"
 %include "std_shared_ptr.i"
-%shared_ptr(falcon_core::Domain)
+//%shared_ptr(falcon_core::Domain)
 %template(AxesDomain) falcon_core::Axes<falcon_core::Domain>;
 %template(AxesMeasurementContext) falcon_core::Axes<falcon_core::MeasurementContext>;
 
 // Instantiate Domain subclasses
-%shared_ptr(falcon_core::BaseConnection)
+//%shared_ptr(falcon_core::BaseConnection)
 %template(LabelledDomainBC) falcon_core::LabelledDomain<falcon_core::BaseConnection>;
-%shared_ptr(falcon_core::LabelledDomain<falcon_core::BaseConnection>)
+//%shared_ptr(falcon_core::LabelledDomain<falcon_core::BaseConnection>)
 %template(CoupledLabelledDomainBC) falcon_core::CoupledLabelledDomain<falcon_core::BaseConnection>;
 
 // Instantiate Labelled Array classes
-%shared_ptr(falcon_core::ControlArray<double>)
-%shared_ptr(falcon_core::InstrumentPort<falcon_core::Gate>)
-%shared_ptr(falcon_core::LabelledControlArray1D)
+//%shared_ptr(falcon_core::ControlArray<double>)
+//%shared_ptr(falcon_core::InstrumentPort<falcon_core::Gate>)
+//%shared_ptr(falcon_core::LabelledControlArray1D)
 %template(BaseLabelledArraysLCA1D) falcon_core::BaseLabelledArrays<falcon_core::LabelledControlArray1D>;
 
 // Expose concrete math/array classes
-%shared_ptr(falcon_core::IncreasingAlignment)
-%shared_ptr(falcon_core::ControlArray1D)
+//%shared_ptr(falcon_core::IncreasingAlignment)
+//%shared_ptr(falcon_core::ControlArray1D)
 // Add other instantiations as needed, e.g., for int or complex types.
 
 // A full implementation would require typemaps for K,V to be useful in Python.
