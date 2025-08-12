@@ -67,11 +67,12 @@ target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
 # --- SWIG Module ---
 set(SWIG_MODULE_NAME "falcon_core")
 
-# Set the output directory for the Python wrapper file (falcon_core.py)
-# This will be handled by the setup.py build process, but we can set a default for direct cmake builds.
-if(NOT CMAKE_SWIG_OUTDIR)
-    set(CMAKE_SWIG_OUTDIR ${CMAKE_CURRENT_BINARY_DIR})
-endif()
+# Set the output directory for Python package files
+set(PYTHON_PACKAGE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/falcon_core)
+file(MAKE_DIRECTORY ${PYTHON_PACKAGE_DIR}) # Ensure the directory exists
+
+# Set output for the python wrapper file (falcon_core.py)
+set(CMAKE_SWIG_OUTDIR ${PYTHON_PACKAGE_DIR})
 
 set_property(SOURCE swig/${SWIG_MODULE_NAME}.i PROPERTY CPLUSPLUS ON)
 
@@ -82,6 +83,7 @@ swig_add_library(${SWIG_MODULE_NAME}
 )
 
 set_target_properties(${SWIG_MODULE_NAME} PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY ${PYTHON_PACKAGE_DIR}
     PREFIX "_"
     SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE
 )

@@ -57,6 +57,10 @@ filterwarnings = [
 [tool.setuptools]
 packages = ["falcon_core"]
 package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.package-data]
+falcon_core = ["*.so"]
 
 [tool.pytest.ini_options]
 # addopts="-n 5 --dist worksteal"

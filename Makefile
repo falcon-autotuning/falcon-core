@@ -1,30 +1,37 @@
 # Makefile to simplify the CMake build process for falcon-core
 
-.PHONY: all build test clean
+.PHONY: all build install test clean
 
 # Variables
 BUILD_DIR := build
-SWIG_LIB_DIR := swig -swiglib
+
 # Default target: build the project
 all: build
 
 # Configure and build the project using CMake
+# This compiles the C++ code and places the Python extension in src/falcon_core
 build:
-	@echo "--- Configuring and Building Project ---"
+	@echo "--- Configuring and Building C++ Extension ---"
 	@mkdir -p $(BUILD_DIR)
-	@cmake -S . -B $(BUILD_DIR) -D CMAKE_CXX_COMPILER=g++
+	@cmake -S . -B $(BUILD_DIR)
 	@$(MAKE) -C $(BUILD_DIR)
-	@echo "--- Build complete ---"
+	@echo "--- Build complete. Python extension is now in src/falcon_core/ ---"
+
+# Install the Python package using pip
+install:
+	@echo "--- Installing Python package ---"
+	@pip install .
 
 # Run tests using CTest
 test: build
-	@echo "--- Running Tests ---"
+	@echo "--- Running C++ Tests ---"
 	@cd $(BUILD_DIR) && ctest -V
 
 # Clean up build artifacts
 clean:
-	@echo "--- Cleaning build directory ---"
+	@echo "--- Cleaning build directory and compiled extension ---"
 	@rm -rf $(BUILD_DIR)
+	@rm -f src/falcon_core/_falcon_core*.so src/falcon_core/falcon_core.py
 
 test-make-cpp:
 	@gcc
