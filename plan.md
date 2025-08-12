@@ -131,7 +131,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 **Goal:** Port the final application-level components and assemble the complete library.
 
-1.  **Port `AnalyticFunction` and `PortTransform` Hierarchies:**
+1.  **Port `AnalyticFunction` and `PortTransform` Hierarchies: (In Progress)**
     *   **C++:** Implement the `AnalyticFunction` and `PortTransform` base classes and their children. Implement the `PortTransforms` collection class.
     *   **C++ Test:** Test each function and transform implementation.
     *   **SWIG:** Expose the hierarchies. Enable directors on base classes (`%feature("director") AnalyticFunction;`).

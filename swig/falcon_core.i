@@ -93,6 +93,16 @@ sys.modules[autotuner_interfaces.contexts.__name__] = autotuner_interfaces.conte
 _interpretations_spec = importlib.util.spec_from_loader(f'{_pkg_name}.autotuner_interfaces.interpretations', loader=None)
 autotuner_interfaces.interpretations = importlib.util.module_from_spec(_interpretations_spec)
 sys.modules[autotuner_interfaces.interpretations.__name__] = autotuner_interfaces.interpretations
+
+# Create falcon_core.math.functions
+_functions_spec = importlib.util.spec_from_loader(f'{_pkg_name}.math.functions', loader=None)
+math.functions = importlib.util.module_from_spec(_functions_spec)
+sys.modules[math.functions.__name__] = math.functions
+
+# Create falcon_core.physics.transforms
+_transforms_spec = importlib.util.spec_from_loader(f'{_pkg_name}.physics.transforms', loader=None)
+physics.transforms = importlib.util.module_from_spec(_transforms_spec)
+sys.modules[physics.transforms.__name__] = physics.transforms
 %}
 
 %{
@@ -122,6 +132,9 @@ sys.modules[autotuner_interfaces.interpretations.__name__] = autotuner_interface
 
 // Include the context definitions
 %include "contexts.i"
+
+// Include the transform definitions
+%include "transforms.i"
 
 // Typemap for nlohmann::json to a Python string.
 // The user code in python will be responsible for json.loads()
@@ -226,4 +239,12 @@ autotuner_interfaces.interpretations.InterpretationContext = InterpretationConte
 del InterpretationContext
 autotuner_interfaces.interpretations.InterpretationContainer = InterpretationContainerControlArray
 del InterpretationContainerControlArray
+
+# Move transform classes
+math.functions.AnalyticFunction = AnalyticFunction
+del AnalyticFunction
+physics.transforms.PortTransform = PortTransform
+del PortTransform
+physics.transforms.PortTransforms = PortTransforms
+del PortTransforms
 %}
