@@ -61,7 +61,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 ---
 
-## Phase 2: Mathematical Structures
+## Phase 2: Mathematical Structures (Completed)
 
 **Goal:** Port the core mathematical data structures.
 
@@ -85,7 +85,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 ---
 
-## Phase 3: Device and Configuration Structures
+## Phase 3: Device and Configuration Structures (Completed)
 
 **Goal:** Port the classes that define the physical device layout and configuration.
 
@@ -109,7 +109,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 ---
 
-## Phase 4: Measurement Contexts and Interpretations (In Progress)
+## Phase 4: Measurement Contexts and Interpretations (Completed)
 
 **Goal:** Port the high-level classes that describe the context of a measurement.
 
@@ -127,7 +127,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 ---
 
-## Phase 5: Waveforms, Transforms, and Final Integration
+## Phase 5: Waveforms, Transforms, and Final Integration (Completed)
 
 **Goal:** Port the final application-level components and assemble the complete library.
 
@@ -145,7 +145,43 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 ---
 
-## Phase 6: Packaging and Deployment
+## Phase 6: Finalizing Completeness
+
+**Goal:** Port all remaining classes and subclasses to ensure 100% API coverage.
+
+1.  **Port Domain Subclasses:**
+    *   **C++:** Implement `LabelledDomain<T>` and `CoupledLabelledDomain<T>` inheriting from `Domain`.
+    *   **C++ Test:** Test label functionality and coupling logic.
+    *   **SWIG:** Expose these classes and instantiate necessary templates in `math.i`.
+    *   **Binding Test:** Verify functionality from Python.
+
+2.  **Port Labelled Array Classes:**
+    *   **C++:** Implement `BaseLabelledArrays<T>` and the logic from `IsLabelled1D`.
+    *   **C++ Test:** Test array labelling and 1D-specific features.
+    *   **SWIG:** Expose these classes in `math.i`.
+    *   **Binding Test:** Verify functionality from Python.
+
+3.  **Port Remaining Math and Array Classes:**
+    *   **C++:** Implement `IncreasingAlignment` and `ControlArray1D`.
+    *   **C++ Test:** Test the specific logic of these classes.
+    *   **SWIG:** Expose these classes in `math.i`.
+    *   **Binding Test:** Verify functionality from Python.
+
+4.  **Port Concrete Analytic Functions:**
+    *   **C++:** Implement `ConstantFunction` and `Identity` as subclasses of `AnalyticFunction`.
+    *   **C++ Test:** Test the specific evaluation logic of these functions.
+    *   **SWIG:** Expose these classes in `transforms.i`.
+    *   **Binding Test:** Verify functionality from Python.
+
+5.  **Port Remaining Collection and Utility Classes:**
+    *   **C++:** Implement `Channels` as a collection for `Channel` objects (e.g., inheriting from `BaseConnections<Channel>`). Implement the `Units` utility class with static methods to retrieve common units.
+    *   **C++ Test:** Test collection management and unit retrieval.
+    *   **SWIG:** Expose `Channels` in `devices.i` and `Units` in `units.i`.
+    *   **Binding Test:** Verify functionality from Python.
+
+---
+
+## Phase 7: Packaging and Deployment
 
 **Goal:** Package the bindings for distribution.
 
