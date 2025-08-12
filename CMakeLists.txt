@@ -31,13 +31,43 @@ target_include_directories(falcon_core_cpp PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
     ${json_SOURCE_DIR}/include
+    ${blaze_SOURCE_DIR}
 )
 target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
+
+# --- SWIG Module ---
+set(SWIG_MODULE_NAME "falcon_core")
+swig_add_library(${SWIG_MODULE_NAME}
+    TYPE MODULE
+    LANGUAGE python
+    SOURCES swig/${SWIG_MODULE_NAME}.i
+)
+
+set_target_properties(${SWIG_MODULE_NAME} PROPERTIES
+    PREFIX "_"
+    SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE
+    SWIG_FLAGS "-cpperraswarn"
+)
+
+target_include_directories(${SWIG_MODULE_NAME} PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/include"
+    "${CMAKE_CURRENT_SOURCE_DIR}/swig"
+    ${Python3_INCLUDE_DIRS}
+    "${SWIG_LIB_DIR}"
+)
+
+target_link_libraries(${SWIG_MODULE_NAME} PRIVATE
+    Python3::Python
+    falcon_core_cpp
+)
 
 # --- C++ Tests ---
 enable_testing()
 add_executable(run_tests
     tests/test_jsonable.cpp
+    tests/test_time.cpp
+    tests/test_dimension.cpp
+    tests/test_unit.cpp
 )
 target_link_libraries(run_tests
     GTest::gtest_main
@@ -46,3 +76,12 @@ target_link_libraries(run_tests
 
 include(GoogleTest)
 gtest_discover_tests(run_tests)
+
+# --- Python Binding Tests ---
+add_test(
+    NAME python_bindings_test
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_bindings.py
+)
+set_tests_properties(python_bindings_test PROPERTIES
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)
