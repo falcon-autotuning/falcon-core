@@ -137,7 +137,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
     *   **SWIG:** Expose the hierarchies. Enable directors on base classes (`%feature("director") AnalyticFunction;`).
     *   **Binding Test:** Create functions and transforms, test their application, and test subclassing them in Python.
 
-2.  **Port Discretizers, Spaces, and Waveforms:**
+2.  **Port Discretizers, Spaces, and Waveforms: (In Progress)**
     *   **C++:** Implement `BaseDiscretizer` hierarchy. Implement `Spaces` and `Waveform` classes, which compose many previously ported components.
     *   **C++ Test:** Test waveform creation and data generation.
     *   **SWIG:** Expose these final high-level classes.

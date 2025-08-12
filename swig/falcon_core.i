@@ -103,6 +103,16 @@ sys.modules[math.functions.__name__] = math.functions
 _transforms_spec = importlib.util.spec_from_loader(f'{_pkg_name}.physics.transforms', loader=None)
 physics.transforms = importlib.util.module_from_spec(_transforms_spec)
 sys.modules[physics.transforms.__name__] = physics.transforms
+
+# Create falcon_core.math.discretizers
+_discretizers_spec = importlib.util.spec_from_loader(f'{_pkg_name}.math.discretizers', loader=None)
+math.discretizers = importlib.util.module_from_spec(_discretizers_spec)
+sys.modules[math.discretizers.__name__] = math.discretizers
+
+# Create falcon_core.math.waveform
+_waveform_spec = importlib.util.spec_from_loader(f'{_pkg_name}.math.waveform', loader=None)
+math.waveform = importlib.util.module_from_spec(_waveform_spec)
+sys.modules[math.waveform.__name__] = math.waveform
 %}
 
 %{
@@ -135,6 +145,9 @@ sys.modules[physics.transforms.__name__] = physics.transforms
 
 // Include the transform definitions
 %include "transforms.i"
+
+// Include the waveform definitions
+%include "waveforms.i"
 
 // Typemap for nlohmann::json to a Python string.
 // The user code in python will be responsible for json.loads()
@@ -247,4 +260,12 @@ physics.transforms.PortTransform = PortTransform
 del PortTransform
 physics.transforms.PortTransforms = PortTransforms
 del PortTransforms
+
+# Move waveform classes
+math.discretizers.BaseDiscretizer = BaseDiscretizer
+del BaseDiscretizer
+math.waveform.Spaces = Spaces
+del Spaces
+math.waveform.Waveform = Waveform
+del Waveform
 %}
