@@ -66,14 +66,9 @@ target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
 
 # --- SWIG Module ---
 set(SWIG_MODULE_NAME "falcon_core")
-<<<<<<< HEAD
-set_property(SOURCE swig/${SWIG_MODULE_NAME}.i PROPERTY CPLUSPLUS ON)
-set(CMAKE_SWIG_FLAGS -c++ -cpperraswarn)
-=======
 
 set_property(SOURCE swig/${SWIG_MODULE_NAME}.i PROPERTY CPLUSPLUS ON)
 
->>>>>>> a0c46a44b586bc31633613c401acb75a9215aa05
 swig_add_library(${SWIG_MODULE_NAME}
     LANGUAGE python
     SOURCES swig/${SWIG_MODULE_NAME}.i
@@ -84,18 +79,9 @@ swig_add_library(${SWIG_MODULE_NAME}
 set_target_properties(${SWIG_MODULE_NAME} PROPERTIES
     PREFIX "_"
     SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE
-<<<<<<< HEAD
     LINKER_LANGUAGE CXX
 )
 
-# Force the wrapper to be compiled as C++
-set_source_files_properties(
-    ${CMAKE_CURRENT_BINARY_DIR}/falcon_corePYTHON_wrap.cpp
-    PROPERTIES
-    LANGUAGE CXX
-=======
->>>>>>> a0c46a44b586bc31633613c401acb75a9215aa05
-)
 
 target_include_directories(${SWIG_MODULE_NAME} PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
