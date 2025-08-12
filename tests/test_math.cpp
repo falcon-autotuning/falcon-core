@@ -146,3 +146,39 @@ TEST(CoupledLabelledDomainTest, ConstructionAndAccessors) {
     ASSERT_EQ(j["__class__"], "CoupledLabelledDomain");
     ASSERT_TRUE(j.contains("_coupled_domains"));
 }
+
+#include "falcon_core/LabelledControlArray1D.hpp"
+#include "falcon_core/BaseLabelledArrays.hpp"
+#include "falcon_core/InstrumentPort.hpp"
+#include "falcon_core/Gate.hpp"
+
+TEST(LabelledControlArray1DTest, ConstructionAndGetStart) {
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> m(1, 3);
+    m << 10.0, 20.0, 30.0;
+    auto array = std::make_shared<ControlArray1D>(m);
+    
+    auto instrument = std::shared_ptr<Instrument>(); // Null for testing
+    auto gate = std::make_shared<Gate>("g1");
+    auto port = std::make_shared<InstrumentPort<Gate>>("port1", gate, instrument, "desc");
+
+    LabelledControlArray1D lca(array, port);
+
+    ASSERT_DOUBLE_EQ(lca.get_start(), 10.0);
+    ASSERT_EQ(lca.label()->default_name(), "port1");
+}
+
+TEST(BaseLabelledArraysTest, AppendAndAccess) {
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> m(1, 2);
+    m << 1.0, 2.0;
+    auto array = std::make_shared<ControlArray1D>(m);
+    auto instrument = std::shared_ptr<Instrument>();
+    auto gate = std::make_shared<Gate>("g1");
+    auto port = std::make_shared<InstrumentPort<Gate>>("port1", gate, instrument, "desc");
+    auto lca = std::make_shared<LabelledControlArray1D>(array, port);
+
+    BaseLabelledArrays<LabelledControlArray1D> arrays;
+    arrays.append(lca);
+
+    ASSERT_EQ(arrays.get_arrays().size(), 1);
+    ASSERT_EQ(arrays.get_arrays()[0], lca);
+}

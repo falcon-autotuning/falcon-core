@@ -113,6 +113,11 @@ sys.modules[math.discretizers.__name__] = math.discretizers
 _waveform_spec = importlib.util.spec_from_loader(f'{_pkg_name}.math.waveform', loader=None)
 math.waveform = importlib.util.module_from_spec(_waveform_spec)
 sys.modules[math.waveform.__name__] = math.waveform
+
+# Create falcon_core.math.labelled_arrays
+_labelled_arrays_spec = importlib.util.spec_from_loader(f'{_pkg_name}.math.labelled_arrays', loader=None)
+math.labelled_arrays = importlib.util.module_from_spec(_labelled_arrays_spec)
+sys.modules[math.labelled_arrays.__name__] = math.labelled_arrays
 %}
 
 %{
@@ -206,6 +211,12 @@ math.arrays.ControlArray = ControlArrayDouble
 del ControlArrayDouble
 math.arrays.MeasuredArray = MeasuredArrayDouble
 del MeasuredArrayDouble
+
+# Move labelled array classes
+math.labelled_arrays.LabelledControlArray1D = LabelledControlArray1D
+del LabelledControlArray1D
+math.labelled_arrays.BaseLabelledArrays = BaseLabelledArraysLCA1D
+del BaseLabelledArraysLCA1D
 
 # Move axes classes
 math.axes.AxesDomain = AxesDomain

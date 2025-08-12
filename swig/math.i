@@ -8,6 +8,9 @@
 #include "falcon_core/Axes.hpp"
 #include "falcon_core/LabelledDomain.hpp"
 #include "falcon_core/CoupledLabelledDomain.hpp"
+#include "falcon_core/BaseLabelledArray.hpp"
+#include "falcon_core/LabelledControlArray1D.hpp"
+#include "falcon_core/BaseLabelledArrays.hpp"
 %}
 
 %include "falcon_core/Domain.hpp"
@@ -38,6 +41,12 @@
 %template(LabelledDomainBC) falcon_core::LabelledDomain<falcon_core::BaseConnection>;
 %shared_ptr(falcon_core::LabelledDomain<falcon_core::BaseConnection>)
 %template(CoupledLabelledDomainBC) falcon_core::CoupledLabelledDomain<falcon_core::BaseConnection>;
+
+// Instantiate Labelled Array classes
+%shared_ptr(falcon_core::ControlArray<double>)
+%shared_ptr(falcon_core::InstrumentPort<falcon_core::Gate>)
+%shared_ptr(falcon_core::LabelledControlArray1D)
+%template(BaseLabelledArraysLCA1D) falcon_core::BaseLabelledArrays<falcon_core::LabelledControlArray1D>;
 // Add other instantiations as needed, e.g., for int or complex types.
 
 // A full implementation would require typemaps for K,V to be useful in Python.

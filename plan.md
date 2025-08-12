@@ -155,9 +155,9 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
     *   **SWIG:** Expose these classes and instantiate necessary templates in `math.i`.
     *   **Binding Test:** Verify functionality from Python.
 
-2.  **Port Labelled Array Classes:**
+2.  **Port Labelled Array Classes: (In Progress)**
     *   **C++:** Implement `BaseLabelledArrays<T>` and the logic from `IsLabelled1D`.
-    *   **C++ Test:** Test array labelling and 1D-specific features.
+    *   **C++ Test:** Test array labelling and 1D-specific features. (Completed)
     *   **SWIG:** Expose these classes in `math.i`.
     *   **Binding Test:** Verify functionality from Python.
 
