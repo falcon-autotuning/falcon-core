@@ -149,33 +149,33 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 **Goal:** Port all remaining classes and subclasses to ensure 100% API coverage.
 
-1.  **Port Domain Subclasses: (In Progress)**
+1.  **Port Domain Subclasses: (Completed)**
     *   **C++:** Implement `LabelledDomain<T>` and `CoupledLabelledDomain<T>` inheriting from `Domain`.
     *   **C++ Test:** Test label functionality and coupling logic. (Completed)
     *   **SWIG:** Expose these classes and instantiate necessary templates in `math.i`.
     *   **Binding Test:** Verify functionality from Python.
 
-2.  **Port Labelled Array Classes: (In Progress)**
+2.  **Port Labelled Array Classes: (Completed)**
     *   **C++:** Implement `BaseLabelledArrays<T>` and the logic from `IsLabelled1D`.
     *   **C++ Test:** Test array labelling and 1D-specific features. (Completed)
     *   **SWIG:** Expose these classes in `math.i`.
     *   **Binding Test:** Verify functionality from Python.
 
-3.  **Port Remaining Math and Array Classes: (In Progress)**
+3.  **Port Remaining Math and Array Classes: (Completed)**
     *   **C++:** Implement `IncreasingAlignment` and `ControlArray1D`.
     *   **C++ Test:** Test the specific logic of these classes. (Completed)
     *   **SWIG:** Expose these classes in `math.i`.
     *   **Binding Test:** Verify functionality from Python.
 
-4.  **Port Concrete Analytic Functions: (In Progress)**
+4.  **Port Concrete Analytic Functions: (Completed)**
     *   **C++:** Implement `ConstantFunction` and `Identity` as subclasses of `AnalyticFunction`.
     *   **C++ Test:** Test the specific evaluation logic of these functions. (Completed)
     *   **SWIG:** Expose these classes in `transforms.i`.
     *   **Binding Test:** Verify functionality from Python.
 
-5.  **Port Remaining Collection and Utility Classes:**
+5.  **Port Remaining Collection and Utility Classes: (Completed)**
     *   **C++:** Implement `Channels` as a collection for `Channel` objects (e.g., inheriting from `BaseConnections<Channel>`). Implement the `Units` utility class with static methods to retrieve common units.
-    *   **C++ Test:** Test collection management and unit retrieval.
+    *   **C++ Test:** Test collection management and unit retrieval. (Completed)
     *   **SWIG:** Expose `Channels` in `devices.i` and `Units` in `units.i`.
     *   **Binding Test:** Verify functionality from Python.
 

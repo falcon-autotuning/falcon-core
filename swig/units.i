@@ -4,6 +4,7 @@
 #include "falcon_core/Sign.hpp"
 #include "falcon_core/Unit.hpp"
 #include "falcon_core/SymbolUnit.hpp"
+#include "falcon_core/Units.hpp"
 %}
 
 
@@ -15,5 +16,6 @@
 %include "falcon_core/Prefix.hpp"
 %include "falcon_core/Unit.hpp"
 %include "falcon_core/SymbolUnit.hpp"
+%include "falcon_core/Units.hpp"
 
 

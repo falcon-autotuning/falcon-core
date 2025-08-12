@@ -155,3 +155,17 @@ TEST(LoaderTest, Construction) {
     ASSERT_EQ(j_loader["__class__"], "Loader");
     ASSERT_TRUE(j_loader.contains("_config"));
 }
+
+#include "falcon_core/Channels.hpp"
+
+TEST(ChannelsTest, AppendAndIndex) {
+    auto c1 = std::make_shared<Channel>(1);
+    auto c2 = std::make_shared<Channel>(2);
+    Channels channels;
+    channels.append(c1);
+    channels.append(c2);
+
+    ASSERT_EQ(channels.index(c1), 0);
+    ASSERT_EQ(channels.index(c2), 1);
+    ASSERT_THROW(channels.index(std::make_shared<Channel>(3)), std::out_of_range);
+}

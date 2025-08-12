@@ -191,6 +191,8 @@ physics.units.SymbolUnit = SymbolUnit
 del SymbolUnit
 physics.units.Unit = Unit
 del Unit
+physics.units.Units = Units
+del Units
 
 # Move math classes
 math.QuantityDouble = QuantityDouble
@@ -251,6 +253,8 @@ physics.device_structures.GateRelations = GateRelations
 del GateRelations
 physics.device_structures.Ohmics = Ohmics
 del Ohmics
+physics.device_structures.Channels = Channels
+del Channels
 
 # Move config classes
 physics.config.core.StandardConfigConnections = StandardConfigConnections

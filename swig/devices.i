@@ -12,6 +12,7 @@
 #include "falcon_core/GateRelations.hpp"
 #include "falcon_core/StandardConfigConnections.hpp"
 #include "falcon_core/Loader.hpp"
+#include "falcon_core/Channels.hpp"
 %}
 
 %include "falcon_core/NameBase.hpp"
@@ -27,6 +28,7 @@
 %include "falcon_core/GateRelations.hpp"
 %include "falcon_core/StandardConfigConnections.hpp"
 %include "falcon_core/Loader.hpp"
+%include "falcon_core/Channels.hpp"
 
 // Instantiate NameBase for int and string
 %template(NameBaseInt) falcon_core::NameBase<int>;
