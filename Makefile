@@ -13,7 +13,8 @@ all: build
 build:
 	@echo "--- Configuring and Building C++ Extension ---"
 	@mkdir -p $(BUILD_DIR)
-	@cmake -S . -B $(BUILD_DIR)
+	@cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON . -S . -B $(BUILD_DIR)
+	ln -s build/compile_commands.json .
 	@$(MAKE) -C $(BUILD_DIR)
 	@echo "--- Build complete. Python extension is now in src/falcon_core/ ---"
 
