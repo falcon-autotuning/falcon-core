@@ -28,6 +28,10 @@ FetchContent_Declare(
   GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
   GIT_TAG 3.4.0
 )
+# Eigen is header-only, so we don't need to build its tests.
+# This prevents its test configuration from running, which cleans up CMake output
+# and ensures our project's C++ standard is used.
+set(EIGEN_BUILD_TESTING OFF CACHE BOOL "Disable Eigen tests" FORCE)
 FetchContent_MakeAvailable(eigen)
 
 # --- SWIG and Python ---

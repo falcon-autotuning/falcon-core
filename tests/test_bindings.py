@@ -80,7 +80,7 @@ import sys
 # Test that we can subclass a C++ director class in Python
 class MyPythonJsonable(falcon_core.Jsonable):
     def __init__(self, name, value):
-        super(MyPythonJsonable, self).__init__()
+        super().__init__()
         self.name = name
         self.value = value
     
