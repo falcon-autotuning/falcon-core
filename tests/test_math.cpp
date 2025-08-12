@@ -182,3 +182,23 @@ TEST(BaseLabelledArraysTest, AppendAndAccess) {
     ASSERT_EQ(arrays.get_arrays().size(), 1);
     ASSERT_EQ(arrays.get_arrays()[0], lca);
 }
+
+#include "falcon_core/IncreasingAlignment.hpp"
+#include "falcon_core/ControlArray1D.hpp"
+
+TEST(IncreasingAlignmentTest, Construction) {
+    IncreasingAlignment ia;
+    nlohmann::json j = ia.to_json();
+    ASSERT_EQ(j["__class__"], "IncreasingAlignment");
+}
+
+TEST(ControlArray1DTest, Construction) {
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> m(1, 3);
+    m << 1.0, 2.0, 3.0;
+    ControlArray1D ca1d(m);
+    ASSERT_TRUE(ca1d.is_1d());
+
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> m_bad(2, 2);
+    m_bad << 1, 2, 3, 4;
+    ASSERT_THROW(ControlArray1D(m_bad), std::invalid_argument);
+}

@@ -161,9 +161,9 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
     *   **SWIG:** Expose these classes in `math.i`.
     *   **Binding Test:** Verify functionality from Python.
 
-3.  **Port Remaining Math and Array Classes:**
+3.  **Port Remaining Math and Array Classes: (In Progress)**
     *   **C++:** Implement `IncreasingAlignment` and `ControlArray1D`.
-    *   **C++ Test:** Test the specific logic of these classes.
+    *   **C++ Test:** Test the specific logic of these classes. (Completed)
     *   **SWIG:** Expose these classes in `math.i`.
     *   **Binding Test:** Verify functionality from Python.
 

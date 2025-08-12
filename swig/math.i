@@ -11,6 +11,8 @@
 #include "falcon_core/BaseLabelledArray.hpp"
 #include "falcon_core/LabelledControlArray1D.hpp"
 #include "falcon_core/BaseLabelledArrays.hpp"
+#include "falcon_core/IncreasingAlignment.hpp"
+#include "falcon_core/ControlArray1D.hpp"
 %}
 
 %include "falcon_core/Domain.hpp"
@@ -25,6 +27,8 @@
 %include "falcon_core/BaseLabelledArray.hpp"
 %include "falcon_core/LabelledControlArray1D.hpp"
 %include "falcon_core/BaseLabelledArrays.hpp"
+%include "falcon_core/IncreasingAlignment.hpp"
+%include "falcon_core/ControlArray1D.hpp"
 
 // Expose concrete instantiations of template classes
 %template(QuantityDouble) falcon_core::Quantity<double>;
@@ -50,6 +54,10 @@
 %shared_ptr(falcon_core::InstrumentPort<falcon_core::Gate>)
 %shared_ptr(falcon_core::LabelledControlArray1D)
 %template(BaseLabelledArraysLCA1D) falcon_core::BaseLabelledArrays<falcon_core::LabelledControlArray1D>;
+
+// Expose concrete math/array classes
+%shared_ptr(falcon_core::IncreasingAlignment)
+%shared_ptr(falcon_core::ControlArray1D)
 // Add other instantiations as needed, e.g., for int or complex types.
 
 // A full implementation would require typemaps for K,V to be useful in Python.

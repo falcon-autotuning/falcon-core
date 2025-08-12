@@ -211,6 +211,10 @@ math.arrays.ControlArray = ControlArrayDouble
 del ControlArrayDouble
 math.arrays.MeasuredArray = MeasuredArrayDouble
 del MeasuredArrayDouble
+math.arrays.IncreasingAlignment = IncreasingAlignment
+del IncreasingAlignment
+math.arrays.ControlArray1D = ControlArray1D
+del ControlArray1D
 
 # Move labelled array classes
 math.labelled_arrays.LabelledControlArray1D = LabelledControlArray1D
