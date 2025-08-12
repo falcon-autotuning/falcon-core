@@ -2,7 +2,7 @@
 
 #include "falcon_core/BaseArray.hpp"
 
-using namespace falcon_core;
+namespace falcon_core {
 
 template <typename T> class ControlArray : public BaseArray<T> {
 public:
@@ -18,3 +18,4 @@ public:
     return j;
   }
 };
+} // namespace falcon_core

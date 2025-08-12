@@ -7298,26 +7298,36 @@ SWIGINTERN PyObject *IncreasingAlignment_swiginit(PyObject *SWIGUNUSEDPARM(self)
 
 SWIGINTERN PyObject *_wrap_new_ControlArray1D(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
-  MatrixType *arg1 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
+  falcon_core::ControlArray< double >::MatrixType *arg1 = 0 ;
+  Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > temp1 ;
   PyObject *swig_obj[1] ;
   ControlArray1D *result = 0 ;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_MatrixType,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_ControlArray1D" "', argument " "1"" of type '" "MatrixType const &""'"); 
+  {
+    if (!PyArray_Check(swig_obj[0])) {
+      PyErr_SetString(PyExc_ValueError, "Expected a NumPy array.");
+      SWIG_fail;
+    }
+    PyArrayObject *array = (PyArrayObject*)swig_obj[0];
+    if (PyArray_NDIM(array) != 2) {
+      PyErr_SetString(PyExc_ValueError, "Expected a 2D NumPy array.");
+      SWIG_fail;
+    }
+    if (PyArray_TYPE(array) != NPY_DOUBLE) {
+      PyErr_SetString(PyExc_ValueError, "Expected a NumPy array of type float64.");
+      SWIG_fail;
+    }
+    npy_intp* dims = PyArray_DIMS(array);
+    temp1.resize(dims[0], dims[1]);
+    memcpy(temp1.data(), PyArray_DATA(array), dims[0] * dims[1] * sizeof(double));
+    arg1 = &temp1;
   }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_ControlArray1D" "', argument " "1"" of type '" "MatrixType const &""'"); 
-  }
-  arg1 = reinterpret_cast< MatrixType * >(argp1);
   {
     try {
-      result = (ControlArray1D *)new ControlArray1D((MatrixType const &)*arg1);
+      result = (ControlArray1D *)new ControlArray1D((falcon_core::ControlArray< double >::MatrixType const &)*arg1);
     } catch (const Swig::DirectorException& e) {
       // This catches exceptions thrown by director methods,
       // allowing the original Python exception to be propagated.
@@ -19169,7 +19179,7 @@ static void *_p_std__shared_ptrT_falcon_core__IdentityTransform_tTo_p_std__share
 static swig_type_info _swigt__p_AxesType = {"_p_AxesType", "AxesType *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ComplexQuantity = {"_p_ComplexQuantity", "ComplexQuantity *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ControlArray1D = {"_p_ControlArray1D", "ControlArray1D *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Eigen__MatrixT_double_Eigen__Dynamic_Eigen__Dynamic_t = {"_p_Eigen__MatrixT_double_Eigen__Dynamic_Eigen__Dynamic_t", "falcon_core::BaseArray< double >::MatrixType *|Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Eigen__MatrixT_double_Eigen__Dynamic_Eigen__Dynamic_t = {"_p_Eigen__MatrixT_double_Eigen__Dynamic_Eigen__Dynamic_t", "falcon_core::BaseArray< double >::MatrixType *|falcon_core::ControlArray< double >::MatrixType *|Eigen::Matrix< double,Eigen::Dynamic,Eigen::Dynamic > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Instrument = {"_p_Instrument", "Instrument *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MatrixType = {"_p_MatrixType", "MatrixType *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
