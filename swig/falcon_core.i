@@ -165,6 +165,7 @@ using namespace falcon_core;
 
 // Process the header files
 %shared_ptr(falcon_core::Jsonable);
+%shared_ptr(falcon_core::Time);
 %include "falcon_core/Jsonable.hpp"
 %include "falcon_core/Time.hpp"
 
