@@ -106,7 +106,7 @@ target_include_directories(
   ${SWIG_MODULE_NAME}
   PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include"
           "${CMAKE_CURRENT_SOURCE_DIR}/swig" ${Python3_INCLUDE_DIRS}
-          "${SWIG_LIB_DIR}" ${NUMPY_INCLUDE_DIR})
+          "${SWIG_LIB_DIR}/python" ${NUMPY_INCLUDE_DIR})
 
 target_link_libraries(${SWIG_MODULE_NAME} PRIVATE Python3::Python
                                                   falcon_core_cpp)
