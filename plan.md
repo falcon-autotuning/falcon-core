@@ -20,7 +20,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 *   **Polymorphism with Directors:** For C++ base classes that are designed to be subclassed in Python (e.g., `Jsonable`, `PortTransform`, `AnalyticFunction`), we will enable SWIG's "director" feature (`%feature("director") ClassName;`). This allows virtual method calls from C++ to be correctly dispatched to overriding methods in Python subclasses, preserving the original polymorphic behavior.
 *   **Template Instantiation:** C++ templates will be exposed to Python and Go by creating explicit instantiations in SWIG using the `%template` directive. For example: `%template(QuantityDouble) Quantity<double>;` will create a Python class `QuantityDouble`.
 *   **STL and Smart Pointer Support:** We will heavily use SWIG's standard library support for `std::vector`, `std::map`, `std::string`, and `std::shared_ptr`. This provides natural conversions (e.g., `std::vector` to Python list) and robust memory management. `std::shared_ptr` is critical for managing object lifetimes across the C++/Python boundary.
-*   **NumPy Integration with Typemaps:** To ensure seamless NumPy compatibility, we will use `xtensor-python`. It provides SWIG typemaps that automatically convert C++ `xt::xarray` objects to and from NumPy arrays without copying data when possible. This is essential for performance and API parity.
+*   **NumPy Integration with Typemaps:** To ensure seamless NumPy compatibility, we will use SWIG typemaps to convert between C++ `Eigen` types (matrices, vectors) and NumPy arrays. This will likely involve using a community-provided interface file like `eigen.i` to handle the conversions automatically, ensuring both performance and API parity.
 
 ---
 
@@ -71,10 +71,10 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
     *   **SWIG:** Add classes to `math.i`. Use `%template` to instantiate concrete types needed (e.g., `Quantity<double>`).
     *   **Binding Test:** Verify functionality in the target languages.
 
-2.  **Port Array Classes:**
-    *   **C++:** Create `BaseArray<T>` wrapping `xt::xarray`. Implement `Is1D` logic. Implement subclasses `ControlArray`, `MeasuredArray`, `BaseLabelledArrays`, and `IncreasingAlignment`.
-    *   **C++ Test:** Test basic array operations and the specific functionality of each type.
-    *   **SWIG:** Use `xtensor-python` typemaps for automatic NumPy conversion. Instantiate required array templates.
+2.  **Port Array Classes: (In Progress)**
+    *   **C++:** Create `BaseArray<T>` wrapping an `Eigen` type (e.g., `Eigen::MatrixXd`). Implement `Is1D` logic. Implement subclasses `ControlArray`, `MeasuredArray`, `BaseLabelledArrays`, and `IncreasingAlignment`.
+    *   **C++ Test:** Test basic array operations and the specific functionality of each type using `Eigen`.
+    *   **SWIG:** Use `Eigen` typemaps for automatic NumPy conversion. Instantiate required array templates.
     *   **Binding Test:** Test creating arrays in Python (from NumPy), passing them to C++, performing operations, and getting them back.
 
 3.  **Port `Axes`:**

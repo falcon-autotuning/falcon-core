@@ -41,6 +41,11 @@ setattr(sys.modules[_pkg_name], 'math', math)
 _domains_spec = importlib.util.spec_from_loader(f'{_pkg_name}.math.domains', loader=None)
 math.domains = importlib.util.module_from_spec(_domains_spec)
 sys.modules[math.domains.__name__] = math.domains
+
+# Create falcon_core.math.arrays
+_arrays_spec = importlib.util.spec_from_loader(f'{_pkg_name}.math.arrays', loader=None)
+math.arrays = importlib.util.module_from_spec(_arrays_spec)
+sys.modules[math.arrays.__name__] = math.arrays
 %}
 
 %{
@@ -107,4 +112,12 @@ generic.OneToOneMappingStringString = OneToOneMappingStringString # Mapped to ge
 del OneToOneMappingStringString
 math.domains.Domain = Domain
 del Domain
+
+# Move array classes
+math.arrays.BaseArray = BaseArrayDouble
+del BaseArrayDouble
+math.arrays.ControlArray = ControlArrayDouble
+del ControlArrayDouble
+math.arrays.MeasuredArray = MeasuredArrayDouble
+del MeasuredArrayDouble
 %}
