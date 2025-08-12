@@ -11,6 +11,11 @@ ruff.toml
 uv.lock
 .vscode/settings.json
 __pycache__/__init__.cpython-311.pyc
+fray/__init__.py
+fray/fray.c
+fray/fray.h
+fray/fray.py
+fray/pyproject.toml
 include/falcon_core/Dimension.hpp
 include/falcon_core/Jsonable.hpp
 include/falcon_core/Prefix.hpp
@@ -19,6 +24,7 @@ include/falcon_core/SymbolUnit.hpp
 include/falcon_core/Time.hpp
 include/falcon_core/Unit.hpp
 include/falcon_core/constants.hpp
+physics/device-structures.c
 src/Dimension.cpp
 src/Jsonable.cpp
 src/Prefix.cpp
@@ -26,9 +32,11 @@ src/SymbolUnit.cpp
 src/Time.cpp
 src/Unit.cpp
 src/falcon_core/__init__.py
+src/falcon_core/_falcon_core.so
 src/falcon_core/_jsonable_registry_loader.py
 src/falcon_core/constants.py
 src/falcon_core/dependancies.py
+src/falcon_core/falcon_core.py
 src/falcon_core/falcon_core_dependencies.svg
 src/falcon_core/py.typed
 src/falcon_core/typing.py

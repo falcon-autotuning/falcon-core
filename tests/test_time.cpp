@@ -1,9 +1,5 @@
 #include "falcon_core/Time.hpp"
 #include "falcon_core/constants.hpp"
-<<<<<<< HEAD
-=======
-#include <thread>
->>>>>>> a0c46a44b586bc31633613c401acb75a9215aa05
 #include <chrono>
 #include <gtest/gtest.h>
 #include <thread>

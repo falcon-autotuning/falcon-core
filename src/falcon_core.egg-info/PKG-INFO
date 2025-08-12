@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: falcon_core
-Version: 0.0.post257+g6a1ebeb7a.d20250812
+Version: 0.0.post266+g3c64c16fd.d20250812
 Summary: Core utilities for all falcon applications used for autotuning of quantum devices
 License-Expression: MIT
 Classifier: Development Status :: 3 - Alpha
