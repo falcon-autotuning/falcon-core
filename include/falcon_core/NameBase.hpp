@@ -1,32 +1,29 @@
 #pragma once
 
 #include "falcon_core/Jsonable.hpp"
-#include <string>
-#include <nlohmann/json.hpp>
 #include <functional>
+#include <nlohmann/json.hpp>
+#include <string>
 
 namespace falcon_core {
 
-template<typename T>
-class NameBase : public Jsonable {
+template <typename T> class NameBase : public Jsonable {
 public:
-    NameBase(T name) : _name(name) {}
+  NameBase(T name) : _name(name) {}
 
-    T name() const { return _name; }
+  T name() const { return _name; }
 
-    nlohmann::json to_json() const override {
-        nlohmann::json j;
-        // Subclasses should call this and add their own metadata
-        j["_name"] = _name;
-        return j;
-    }
+  nlohmann::json to_json() const override {
+    nlohmann::json j;
+    // Subclasses should call this and add their own metadata
+    j["_name"] = _name;
+    return j;
+  }
 
-    size_t hash() const override {
-        return std::hash<T>{}(_name);
-    }
+  size_t hash() const override { return std::hash<T>{}(_name); }
 
 protected:
-    T _name;
+  T _name;
 };
 
 } // namespace falcon_core

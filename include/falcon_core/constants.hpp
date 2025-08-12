@@ -17,10 +17,7 @@ const char* const JSONABLE_FUNCTION_DILL = "__function_dill__";
 
 // Cannot make a constexpr set easily before C++20. A function is fine.
 inline std::set<std::string> get_jsonable_metadata() {
-    return {
-        JSONABLE_CLASS_METADATA,
-        JSONABLE_MODULE_METADATA
-    };
+  return {JSONABLE_CLASS_METADATA, JSONABLE_MODULE_METADATA};
 }
 
 } // namespace falcon_core::constants

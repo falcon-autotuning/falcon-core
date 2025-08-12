@@ -8,25 +8,27 @@ namespace falcon_core {
 
 class Impedance : public Jsonable {
 public:
-    using ComplexQuantity = Quantity<std::complex<double>>;
+  using ComplexQuantity = Quantity<std::complex<double>>;
 
-    Impedance(std::shared_ptr<ComplexQuantity> impedance) : _impedance(std::move(impedance)) {}
+  Impedance(std::shared_ptr<ComplexQuantity> impedance)
+      : _impedance(std::move(impedance)) {}
 
-    const std::shared_ptr<ComplexQuantity>& get_impedance() const { return _impedance; }
+  const std::shared_ptr<ComplexQuantity> &get_impedance() const {
+    return _impedance;
+  }
 
-    nlohmann::json to_json() const override {
-        nlohmann::json j;
-        add_metadata(j, "falcon_core.physics.device_structures.impedance", "Impedance");
-        j["_impedance"] = _impedance->to_json();
-        return j;
-    }
+  nlohmann::json to_json() const override {
+    nlohmann::json j;
+    add_metadata(j, "falcon_core.physics.device_structures.impedance",
+                 "Impedance");
+    j["_impedance"] = _impedance->to_json();
+    return j;
+  }
 
-    size_t hash() const override {
-        return _impedance ? _impedance->hash() : 0;
-    }
+  size_t hash() const override { return _impedance ? _impedance->hash() : 0; }
 
 private:
-    std::shared_ptr<ComplexQuantity> _impedance;
+  std::shared_ptr<ComplexQuantity> _impedance;
 };
 
 } // namespace falcon_core

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "falcon_core/Jsonable.hpp"
 #include "falcon_core/BaseConnection.hpp"
+#include "falcon_core/Jsonable.hpp"
 #include "falcon_core/SymbolUnit.hpp"
 #include <memory>
 
@@ -9,17 +9,18 @@ namespace falcon_core {
 
 class MeasurementContext : public Jsonable {
 public:
-    MeasurementContext(std::shared_ptr<BaseConnection> connection, std::shared_ptr<SymbolUnit> unit);
+  MeasurementContext(std::shared_ptr<BaseConnection> connection,
+                     std::shared_ptr<SymbolUnit> unit);
 
-    const std::shared_ptr<BaseConnection>& connection() const;
-    const std::shared_ptr<SymbolUnit>& unit() const;
+  const std::shared_ptr<BaseConnection> &connection() const;
+  const std::shared_ptr<SymbolUnit> &unit() const;
 
-    nlohmann::json to_json() const override;
-    size_t hash() const override;
+  nlohmann::json to_json() const override;
+  size_t hash() const override;
 
 private:
-    std::shared_ptr<BaseConnection> _connection;
-    std::shared_ptr<SymbolUnit> _unit;
+  std::shared_ptr<BaseConnection> _connection;
+  std::shared_ptr<SymbolUnit> _unit;
 };
 
 } // namespace falcon_core
