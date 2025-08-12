@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Dimension.hpp"
-#include <memory>
+// #include <memory>
 
 namespace falcon_core {
 
@@ -16,8 +16,8 @@ public:
     nlohmann::json to_json() const override;
     size_t hash() const override;
 
-    std::shared_ptr<Unit> operator*(const Unit& other) const;
-    std::shared_ptr<Unit> operator/(const Unit& other) const;
+    // std::shared_ptr<Unit> operator*(const Unit& other) const;
+    // std::shared_ptr<Unit> operator/(const Unit& other) const;
 
 private:
     double _factor;

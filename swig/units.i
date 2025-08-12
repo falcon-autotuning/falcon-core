@@ -33,11 +33,11 @@
 %include "falcon_core/SymbolUnit.hpp"
 
 // Add python-like special methods for Unit
-%extend falcon_core::Unit {
-    std::shared_ptr<falcon_core::Unit> __mul__(const falcon_core::Unit& other) {
-        return self->operator*(other);
-    }
-    std::shared_ptr<falcon_core::Unit> __truediv__(const falcon_core::Unit& other) {
-        return self->operator/(other);
-    }
-}
+// %extend falcon_core::Unit {
+//     std::shared_ptr<falcon_core::Unit> __mul__(const falcon_core::Unit& other) {
+//         return self->operator*(other);
+//     }
+//     std::shared_ptr<falcon_core::Unit> __truediv__(const falcon_core::Unit& other) {
+//         return self->operator/(other);
+//     }
+// }

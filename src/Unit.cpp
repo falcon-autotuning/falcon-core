@@ -34,12 +34,12 @@ size_t Unit::hash() const {
     return std::hash<double>{}(_factor) ^ _dimension.hash();
 }
 
-std::shared_ptr<Unit> Unit::operator*(const Unit& other) const {
-    return std::make_shared<Unit>(_factor * other._factor, _dimension * other._dimension);
-}
+// std::shared_ptr<Unit> Unit::operator*(const Unit& other) const {
+//     return std::make_shared<Unit>(_factor * other._factor, _dimension * other._dimension);
+// }
 
-std::shared_ptr<Unit> Unit::operator/(const Unit& other) const {
-    return std::make_shared<Unit>(_factor / other._factor, _dimension / other._dimension);
-}
+// std::shared_ptr<Unit> Unit::operator/(const Unit& other) const {
+//     return std::make_shared<Unit>(_factor / other._factor, _dimension / other._dimension);
+// }
 
 } // namespace falcon_core
