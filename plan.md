@@ -133,7 +133,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 1.  **Port `AnalyticFunction` and `PortTransform` Hierarchies: (In Progress)**
     *   **C++:** Implement the `AnalyticFunction` and `PortTransform` base classes and their children. Implement the `PortTransforms` collection class.
-    *   **C++ Test:** Test each function and transform implementation.
+    *   **C++ Test:** Test each function and transform implementation. (Completed)
     *   **SWIG:** Expose the hierarchies. Enable directors on base classes (`%feature("director") AnalyticFunction;`).
     *   **Binding Test:** Create functions and transforms, test their application, and test subclassing them in Python.
 
