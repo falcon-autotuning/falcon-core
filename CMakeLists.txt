@@ -22,10 +22,33 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
+# blaze
+FetchContent_Declare(
+  blaze
+  GIT_REPOSITORY https://github.com/bitbucket/blaze-lib/blaze.git
+  GIT_TAG v3.8
+)
+FetchContent_MakeAvailable(blaze)
+
+# --- SWIG and Python ---
+find_package(SWIG REQUIRED)
+include(${SWIG_USE_FILE})
+find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
+
+# Get SWIG's library directory for standard .i files
+execute_process(COMMAND ${SWIG_EXECUTABLE} -swiglib
+  OUTPUT_VARIABLE SWIG_LIB_DIR
+  OUTPUT_STRIP_TRAILING_WHITESPACE)
+
 
 # --- C++ Library Target ---
 add_library(falcon_core_cpp
     src/Jsonable.cpp
+    src/Time.cpp
+    src/Dimension.cpp
+    src/Prefix.cpp
+    src/Unit.cpp
+    src/SymbolUnit.cpp
 )
 target_include_directories(falcon_core_cpp PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
