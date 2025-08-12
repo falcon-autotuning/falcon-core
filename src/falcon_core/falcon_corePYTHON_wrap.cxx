@@ -11478,31 +11478,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_new_Channel(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  falcon_core::Channel *result = 0 ;
-  
-  (void)self;
-  if (!SWIG_Python_UnpackTuple(args, "new_Channel", 0, 0, 0)) SWIG_fail;
-  {
-    try {
-      result = (falcon_core::Channel *)new falcon_core::Channel();
-    } catch (const Swig::DirectorException& e) {
-      // This catches exceptions thrown by director methods,
-      // allowing the original Python exception to be propagated.
-      SWIG_fail;
-    }
-  }
-  {
-    std::shared_ptr<  falcon_core::Channel > *smartresult = result ? new std::shared_ptr<  falcon_core::Channel >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
-    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__Channel_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
-  }
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_delete_Channel(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   falcon_core::Channel *arg1 = (falcon_core::Channel *) 0 ;
@@ -11553,10 +11528,6 @@ SWIGINTERN PyObject *Channel_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObje
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *Channel_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  return SWIG_Python_InitShadowInstance(args);
-}
-
 SWIGINTERN PyObject *_wrap_BaseConnection_to_json(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   falcon_core::BaseConnection *arg1 = (falcon_core::BaseConnection *) 0 ;
@@ -11595,31 +11566,6 @@ SWIGINTERN PyObject *_wrap_BaseConnection_to_json(PyObject *self, PyObject *args
     }
   }
   resultobj = SWIG_NewPointerObj((new nlohmann::json(result)), SWIGTYPE_p_nlohmann__json, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_BaseConnection(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  falcon_core::BaseConnection *result = 0 ;
-  
-  (void)self;
-  if (!SWIG_Python_UnpackTuple(args, "new_BaseConnection", 0, 0, 0)) SWIG_fail;
-  {
-    try {
-      result = (falcon_core::BaseConnection *)new falcon_core::BaseConnection();
-    } catch (const Swig::DirectorException& e) {
-      // This catches exceptions thrown by director methods,
-      // allowing the original Python exception to be propagated.
-      SWIG_fail;
-    }
-  }
-  {
-    std::shared_ptr<  falcon_core::BaseConnection > *smartresult = result ? new std::shared_ptr<  falcon_core::BaseConnection >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
-    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseConnection_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
-  }
   return resultobj;
 fail:
   return NULL;
@@ -11675,35 +11621,6 @@ SWIGINTERN PyObject *BaseConnection_swigregister(PyObject *SWIGUNUSEDPARM(self),
   SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseConnection_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
-
-SWIGINTERN PyObject *BaseConnection_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  return SWIG_Python_InitShadowInstance(args);
-}
-
-SWIGINTERN PyObject *_wrap_new_Gate(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  falcon_core::Gate *result = 0 ;
-  
-  (void)self;
-  if (!SWIG_Python_UnpackTuple(args, "new_Gate", 0, 0, 0)) SWIG_fail;
-  {
-    try {
-      result = (falcon_core::Gate *)new falcon_core::Gate();
-    } catch (const Swig::DirectorException& e) {
-      // This catches exceptions thrown by director methods,
-      // allowing the original Python exception to be propagated.
-      SWIG_fail;
-    }
-  }
-  {
-    std::shared_ptr<  falcon_core::Gate > *smartresult = result ? new std::shared_ptr<  falcon_core::Gate >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
-    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__Gate_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
-  }
-  return resultobj;
-fail:
-  return NULL;
-}
-
 
 SWIGINTERN PyObject *_wrap_Gate_to_json(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
@@ -11799,35 +11716,6 @@ SWIGINTERN PyObject *Gate_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject 
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *Gate_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  return SWIG_Python_InitShadowInstance(args);
-}
-
-SWIGINTERN PyObject *_wrap_new_Ohmic(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  falcon_core::Ohmic *result = 0 ;
-  
-  (void)self;
-  if (!SWIG_Python_UnpackTuple(args, "new_Ohmic", 0, 0, 0)) SWIG_fail;
-  {
-    try {
-      result = (falcon_core::Ohmic *)new falcon_core::Ohmic();
-    } catch (const Swig::DirectorException& e) {
-      // This catches exceptions thrown by director methods,
-      // allowing the original Python exception to be propagated.
-      SWIG_fail;
-    }
-  }
-  {
-    std::shared_ptr<  falcon_core::Ohmic > *smartresult = result ? new std::shared_ptr<  falcon_core::Ohmic >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
-    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__Ohmic_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
-  }
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Ohmic_to_json(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   falcon_core::Ohmic *arg1 = (falcon_core::Ohmic *) 0 ;
@@ -11920,10 +11808,6 @@ SWIGINTERN PyObject *Ohmic_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject
   if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
   SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__Ohmic_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *Ohmic_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  return SWIG_Python_InitShadowInstance(args);
 }
 
 SWIGINTERN PyObject *_wrap_new_Impedance(PyObject *self, PyObject *args) {
@@ -18598,25 +18482,17 @@ static PyMethodDef SwigMethods[] = {
 	 { "OneToOneMappingStringString_swigregister", OneToOneMappingStringString_swigregister, METH_O, NULL},
 	 { "OneToOneMappingStringString_swiginit", OneToOneMappingStringString_swiginit, METH_VARARGS, NULL},
 	 { "Channel_to_json", _wrap_Channel_to_json, METH_O, NULL},
-	 { "new_Channel", _wrap_new_Channel, METH_NOARGS, NULL},
 	 { "delete_Channel", _wrap_delete_Channel, METH_O, NULL},
 	 { "Channel_swigregister", Channel_swigregister, METH_O, NULL},
-	 { "Channel_swiginit", Channel_swiginit, METH_VARARGS, NULL},
 	 { "BaseConnection_to_json", _wrap_BaseConnection_to_json, METH_O, NULL},
-	 { "new_BaseConnection", _wrap_new_BaseConnection, METH_NOARGS, NULL},
 	 { "delete_BaseConnection", _wrap_delete_BaseConnection, METH_O, NULL},
 	 { "BaseConnection_swigregister", BaseConnection_swigregister, METH_O, NULL},
-	 { "BaseConnection_swiginit", BaseConnection_swiginit, METH_VARARGS, NULL},
-	 { "new_Gate", _wrap_new_Gate, METH_NOARGS, NULL},
 	 { "Gate_to_json", _wrap_Gate_to_json, METH_O, NULL},
 	 { "delete_Gate", _wrap_delete_Gate, METH_O, NULL},
 	 { "Gate_swigregister", Gate_swigregister, METH_O, NULL},
-	 { "Gate_swiginit", Gate_swiginit, METH_VARARGS, NULL},
-	 { "new_Ohmic", _wrap_new_Ohmic, METH_NOARGS, NULL},
 	 { "Ohmic_to_json", _wrap_Ohmic_to_json, METH_O, NULL},
 	 { "delete_Ohmic", _wrap_delete_Ohmic, METH_O, NULL},
 	 { "Ohmic_swigregister", Ohmic_swigregister, METH_O, NULL},
-	 { "Ohmic_swiginit", Ohmic_swiginit, METH_VARARGS, NULL},
 	 { "new_Impedance", _wrap_new_Impedance, METH_O, NULL},
 	 { "Impedance_get_impedance", _wrap_Impedance_get_impedance, METH_O, NULL},
 	 { "Impedance_to_json", _wrap_Impedance_to_json, METH_O, NULL},

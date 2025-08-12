@@ -1,20 +1,18 @@
 #pragma once
 
 #include "falcon_core/Jsonable.hpp"
-#include "falcon_core/NameBase.hpp"
 #include <memory>
 #include <string>
 
 namespace falcon_core {
 
 // Forward declaration
-class Instrument;
+using Instrument = std::string;
 
 template <typename T> class InstrumentPort : public Jsonable {
 public:
   InstrumentPort(std::string default_name, std::shared_ptr<T> pseudo_name,
-                 std::shared_ptr<Instrument> instrument_type,
-                 std::string description)
+                 Instrument instrument_type, std::string description)
       : _default_name(std::move(default_name)),
         _pseudo_name(std::move(pseudo_name)),
         _instrument_type(std::move(instrument_type)),
@@ -44,7 +42,7 @@ public:
 private:
   std::string _default_name;
   std::shared_ptr<T> _pseudo_name;
-  std::shared_ptr<Instrument> _instrument_type;
+  Instrument _instrument_type;
   std::string _description;
 };
 
