@@ -112,3 +112,37 @@ TEST(AxesTest, AppendAndAccess) {
     ASSERT_EQ(axes.at(1), d2);
     ASSERT_FALSE(axes.empty());
 }
+
+#include "falcon_core/LabelledDomain.hpp"
+#include "falcon_core/CoupledLabelledDomain.hpp"
+#include "falcon_core/BaseConnection.hpp"
+
+TEST(LabelledDomainTest, ConstructionAndAccessors) {
+    auto label = std::make_shared<BaseConnection>("my_label");
+    LabelledDomain<BaseConnection> ld(0.0, 10.0, label);
+
+    ASSERT_DOUBLE_EQ(ld.min(), 0.0);
+    ASSERT_EQ(ld.label()->name(), "my_label");
+
+    nlohmann::json j = ld.to_json();
+    ASSERT_EQ(j["__class__"], "LabelledDomain");
+    ASSERT_TRUE(j.contains("_label"));
+}
+
+TEST(CoupledLabelledDomainTest, ConstructionAndAccessors) {
+    auto label1 = std::make_shared<BaseConnection>("label1");
+    auto coupled_domain = std::make_shared<LabelledDomain<BaseConnection>>(0, 5, label1);
+
+    auto main_label = std::make_shared<BaseConnection>("main_label");
+    std::vector<std::shared_ptr<LabelledDomain<BaseConnection>>> coupled_vec;
+    coupled_vec.push_back(coupled_domain);
+
+    CoupledLabelledDomain<BaseConnection> cld(0, 10, main_label, coupled_vec);
+
+    ASSERT_EQ(cld.coupled_domains().size(), 1);
+    ASSERT_EQ(cld.coupled_domains()[0]->label()->name(), "label1");
+
+    nlohmann::json j = cld.to_json();
+    ASSERT_EQ(j["__class__"], "CoupledLabelledDomain");
+    ASSERT_TRUE(j.contains("_coupled_domains"));
+}

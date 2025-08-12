@@ -149,9 +149,9 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 **Goal:** Port all remaining classes and subclasses to ensure 100% API coverage.
 
-1.  **Port Domain Subclasses:**
+1.  **Port Domain Subclasses: (In Progress)**
     *   **C++:** Implement `LabelledDomain<T>` and `CoupledLabelledDomain<T>` inheriting from `Domain`.
-    *   **C++ Test:** Test label functionality and coupling logic.
+    *   **C++ Test:** Test label functionality and coupling logic. (Completed)
     *   **SWIG:** Expose these classes and instantiate necessary templates in `math.i`.
     *   **Binding Test:** Verify functionality from Python.
 

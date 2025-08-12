@@ -194,6 +194,10 @@ generic.OneToOneMappingStringString = OneToOneMappingStringString # Mapped to ge
 del OneToOneMappingStringString
 math.domains.Domain = Domain
 del Domain
+math.domains.LabelledDomain = LabelledDomainBC
+del LabelledDomainBC
+math.domains.CoupledLabelledDomain = CoupledLabelledDomainBC
+del CoupledLabelledDomainBC
 
 # Move array classes
 math.arrays.BaseArray = BaseArrayDouble
