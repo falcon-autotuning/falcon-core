@@ -23,6 +23,7 @@
 %shared_ptr(falcon_core::ControlArray1D);
 %shared_ptr(falcon_core::LabelledControlArray1D);
 %shared_ptr(falcon_core::BaseLabelledArray<falcon_core::ControlArray1D, falcon_core::InstrumentPort<falcon_core::Gate>>);
+%shared_ptr(falcon_core::OneToOneMapping);
 
 %include "falcon_core/Domain.hpp"
 %include "falcon_core/Quantity.hpp"

@@ -31,6 +31,7 @@
 %shared_ptr(falcon_core::GateRelations);
 %shared_ptr(falcon_core::StandardConfigConnections);
 %shared_ptr(falcon_core::Loader);
+%shared_ptr(falcon_core::Impedances);
 
 %include "falcon_core/NameBase.hpp"
 %include "falcon_core/Channel.hpp"
@@ -46,6 +47,7 @@
 %include "falcon_core/StandardConfigConnections.hpp"
 %include "falcon_core/Loader.hpp"
 %include "falcon_core/Channels.hpp"
+
 
 // Instantiate NameBase for int and string
 %template(NameBaseInt) falcon_core::NameBase<int>;

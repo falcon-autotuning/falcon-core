@@ -3778,68 +3778,75 @@ namespace Swig {
 #define SWIGTYPE_p_std__invalid_argument swig_types[64]
 #define SWIGTYPE_p_std__mapT_falcon_core__BaseDimension_int_t swig_types[65]
 #define SWIGTYPE_p_std__mapT_std__string_int_t swig_types[66]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__AnalyticFunction_t swig_types[67]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__AxesT_falcon_core__Domain_t_t swig_types[68]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t swig_types[69]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseArrayT_double_t_t swig_types[70]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseConnection_t swig_types[71]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Channel_t_t swig_types[72]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Gate_t_t swig_types[73]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Ohmic_t_t swig_types[74]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseDiscretizer_t swig_types[75]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseLabelledArrayT_falcon_core__ControlArray1D_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t swig_types[76]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseLabelledArraysT_falcon_core__LabelledControlArray1D_t_t swig_types[77]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__CartesianDiscretizer_t swig_types[78]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Channel_t swig_types[79]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__ConstantFunction_t swig_types[80]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__ControlArray1D_t swig_types[81]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__ControlArrayT_double_t_t swig_types[82]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_t swig_types[83]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Domain_t swig_types[84]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__GateRelations_t swig_types[85]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Gate_t swig_types[86]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__IdentityTransform_t swig_types[87]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Identity_t swig_types[88]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Impedance_t swig_types[89]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__IncreasingAlignment_t swig_types[90]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t swig_types[91]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Instrument_t swig_types[92]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__InterpretationContext_t swig_types[93]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Jsonable_t swig_types[94]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t swig_types[95]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t swig_types[96]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Loader_t swig_types[97]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__MeasuredArrayT_double_t_t swig_types[98]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__MeasurementContext_t swig_types[99]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__NameBaseT_int_t_t swig_types[100]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_t swig_types[101]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Ohmic_t swig_types[102]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__PortTransform_t swig_types[103]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__PortTransforms_t swig_types[104]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t swig_types[105]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__QuantityT_double_t_t swig_types[106]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_t swig_types[107]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Spaces_t swig_types[108]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__StandardConfigConnections_t swig_types[109]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__SymbolUnit_t swig_types[110]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Unit_t swig_types[111]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Waveform_t swig_types[112]
-#define SWIGTYPE_p_std__string swig_types[113]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t_std__allocatorT_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t_t_t swig_types[114]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Domain_t_std__allocatorT_std__shared_ptrT_falcon_core__Domain_t_t_t swig_types[115]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Domain_t_std__allocatorT_std__shared_ptrT_falcon_core__Domain_t_t_t__const_iterator swig_types[116]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Gate_t_std__allocatorT_std__shared_ptrT_falcon_core__Gate_t_t_t swig_types[117]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_std__allocatorT_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t_t swig_types[118]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__LabelledControlArray1D_t_std__allocatorT_std__shared_ptrT_falcon_core__LabelledControlArray1D_t_t_t swig_types[119]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t_std__allocatorT_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t_t_t swig_types[120]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__MeasurementContext_t_std__allocatorT_std__shared_ptrT_falcon_core__MeasurementContext_t_t_t swig_types[121]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__MeasurementContext_t_std__allocatorT_std__shared_ptrT_falcon_core__MeasurementContext_t_t_t__const_iterator swig_types[122]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Ohmic_t_std__allocatorT_std__shared_ptrT_falcon_core__Ohmic_t_t_t swig_types[123]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__PortTransform_t_std__allocatorT_std__shared_ptrT_falcon_core__PortTransform_t_t_t swig_types[124]
-#define SWIGTYPE_p_swig__SwigPyIterator swig_types[125]
-#define SWIGTYPE_p_value_type swig_types[126]
-static swig_type_info *swig_types[128];
-static swig_module_info swig_module = {swig_types, 127, 0, 0, 0, 0};
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__AcquisitionContext_t swig_types[67]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__AnalyticFunction_t swig_types[68]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__AxesT_falcon_core__Domain_t_t swig_types[69]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t swig_types[70]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseArrayT_double_t_t swig_types[71]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseConnection_t swig_types[72]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Channel_t_t swig_types[73]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Gate_t_t swig_types[74]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Ohmic_t_t swig_types[75]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseDiscretizer_t swig_types[76]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseLabelledArrayT_falcon_core__ControlArray1D_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t swig_types[77]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__BaseLabelledArraysT_falcon_core__LabelledControlArray1D_t_t swig_types[78]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__CartesianDiscretizer_t swig_types[79]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Channel_t swig_types[80]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__ConstantFunction_t swig_types[81]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__ControlArray1D_t swig_types[82]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__ControlArrayT_double_t_t swig_types[83]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_t swig_types[84]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Dimension_t swig_types[85]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Domain_t swig_types[86]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__GateRelations_t swig_types[87]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Gate_t swig_types[88]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__IdentityTransform_t swig_types[89]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Identity_t swig_types[90]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Impedance_t swig_types[91]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Impedances_t swig_types[92]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__IncreasingAlignment_t swig_types[93]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t swig_types[94]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Instrument_t swig_types[95]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t swig_types[96]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__InterpretationContext_t swig_types[97]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Jsonable_t swig_types[98]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t swig_types[99]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t swig_types[100]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Loader_t swig_types[101]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__MeasuredArrayT_double_t_t swig_types[102]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__MeasurementContext_t swig_types[103]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__NameBaseT_int_t_t swig_types[104]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_t swig_types[105]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Ohmic_t swig_types[106]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__OneToOneMapping_t swig_types[107]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__PortTransform_t swig_types[108]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__PortTransforms_t swig_types[109]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t swig_types[110]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Prefix_t swig_types[111]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__QuantityT_double_t_t swig_types[112]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_t swig_types[113]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Spaces_t swig_types[114]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__StandardConfigConnections_t swig_types[115]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__SymbolUnit_t swig_types[116]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Time_t swig_types[117]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Unit_t swig_types[118]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Waveform_t swig_types[119]
+#define SWIGTYPE_p_std__string swig_types[120]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t_std__allocatorT_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t_t_t swig_types[121]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Domain_t_std__allocatorT_std__shared_ptrT_falcon_core__Domain_t_t_t swig_types[122]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Domain_t_std__allocatorT_std__shared_ptrT_falcon_core__Domain_t_t_t__const_iterator swig_types[123]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Gate_t_std__allocatorT_std__shared_ptrT_falcon_core__Gate_t_t_t swig_types[124]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_std__allocatorT_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t_t swig_types[125]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__LabelledControlArray1D_t_std__allocatorT_std__shared_ptrT_falcon_core__LabelledControlArray1D_t_t_t swig_types[126]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t_std__allocatorT_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t_t_t swig_types[127]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__MeasurementContext_t_std__allocatorT_std__shared_ptrT_falcon_core__MeasurementContext_t_t_t swig_types[128]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__MeasurementContext_t_std__allocatorT_std__shared_ptrT_falcon_core__MeasurementContext_t_t_t__const_iterator swig_types[129]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Ohmic_t_std__allocatorT_std__shared_ptrT_falcon_core__Ohmic_t_t_t swig_types[130]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__PortTransform_t_std__allocatorT_std__shared_ptrT_falcon_core__PortTransform_t_t_t swig_types[131]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[132]
+#define SWIGTYPE_p_value_type swig_types[133]
+static swig_type_info *swig_types[135];
+static swig_module_info swig_module = {swig_types, 134, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -4074,6 +4081,19 @@ SWIGINTERN size_t falcon_core_Jsonable___hash__(falcon_core::Jsonable *self){
         return self->hash();
     }
 
+struct SWIG_null_deleter {
+  void operator() (void const *) const {
+  }
+};
+#define SWIG_NO_NULL_DELETER_0 , SWIG_null_deleter()
+#define SWIG_NO_NULL_DELETER_1
+#define SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW
+#define SWIG_NO_NULL_DELETER_SWIG_POINTER_OWN
+
+
+#define SWIG_NO_NULL_DELETER_SWIG_BUILTIN_INIT
+
+
 #ifdef SWIG_LONG_LONG_AVAILABLE
 SWIGINTERNINLINE PyObject* 
 SWIG_From_long_SS_long  (long long value)
@@ -4146,19 +4166,6 @@ SWIG_AsVal_double (PyObject *obj, double *val)
 
 
   #define SWIG_From_double   PyFloat_FromDouble 
-
-
-struct SWIG_null_deleter {
-  void operator() (void const *) const {
-  }
-};
-#define SWIG_NO_NULL_DELETER_0 , SWIG_null_deleter()
-#define SWIG_NO_NULL_DELETER_1
-#define SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW
-#define SWIG_NO_NULL_DELETER_SWIG_POINTER_OWN
-
-
-#define SWIG_NO_NULL_DELETER_SWIG_BUILTIN_INIT
 
 
 #include "falcon_core/Domain.hpp"
@@ -4986,7 +4993,10 @@ SWIGINTERN PyObject *_wrap_new_Time(PyObject *self, PyObject *args) {
       SWIG_fail;
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__Time, SWIG_POINTER_NEW |  0 );
+  {
+    std::shared_ptr<  falcon_core::Time > *smartresult = result ? new std::shared_ptr<  falcon_core::Time >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__Time_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -4998,17 +5008,29 @@ SWIGINTERN PyObject *_wrap_Time_time(PyObject *self, PyObject *args) {
   falcon_core::Time *arg1 = (falcon_core::Time *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Time const > tempshared1 ;
+  std::shared_ptr< falcon_core::Time const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   long long result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Time, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Time_time" "', argument " "1"" of type '" "falcon_core::Time const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Time_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Time_time" "', argument " "1"" of type '" "falcon_core::Time const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Time > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Time > * >(argp1);
+      arg1 = const_cast< falcon_core::Time * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Time > * >(argp1);
+      arg1 = const_cast< falcon_core::Time * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Time * >(argp1);
   {
     try {
       result = (long long)((falcon_core::Time const *)arg1)->time();
@@ -5030,17 +5052,29 @@ SWIGINTERN PyObject *_wrap_Time_to_json(PyObject *self, PyObject *args) {
   falcon_core::Time *arg1 = (falcon_core::Time *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Time const > tempshared1 ;
+  std::shared_ptr< falcon_core::Time const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   nlohmann::json result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Time, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Time_to_json" "', argument " "1"" of type '" "falcon_core::Time const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Time_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Time_to_json" "', argument " "1"" of type '" "falcon_core::Time const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Time > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Time > * >(argp1);
+      arg1 = const_cast< falcon_core::Time * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Time > * >(argp1);
+      arg1 = const_cast< falcon_core::Time * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Time * >(argp1);
   {
     try {
       result = ((falcon_core::Time const *)arg1)->to_json();
@@ -5062,17 +5096,29 @@ SWIGINTERN PyObject *_wrap_Time_hash(PyObject *self, PyObject *args) {
   falcon_core::Time *arg1 = (falcon_core::Time *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Time const > tempshared1 ;
+  std::shared_ptr< falcon_core::Time const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   size_t result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Time, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Time_hash" "', argument " "1"" of type '" "falcon_core::Time const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Time_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Time_hash" "', argument " "1"" of type '" "falcon_core::Time const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Time > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Time > * >(argp1);
+      arg1 = const_cast< falcon_core::Time * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Time > * >(argp1);
+      arg1 = const_cast< falcon_core::Time * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Time * >(argp1);
   {
     try {
       result = ((falcon_core::Time const *)arg1)->hash();
@@ -5094,16 +5140,28 @@ SWIGINTERN PyObject *_wrap_delete_Time(PyObject *self, PyObject *args) {
   falcon_core::Time *arg1 = (falcon_core::Time *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Time > tempshared1 ;
+  std::shared_ptr< falcon_core::Time > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Time, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Time" "', argument " "1"" of type '" "falcon_core::Time *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Time_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Time" "', argument " "1"" of type '" "falcon_core::Time *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::Time > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr<  falcon_core::Time > * >(argp1);
+      arg1 = const_cast< falcon_core::Time * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::Time > * >(argp1);
+      arg1 = const_cast< falcon_core::Time * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Time * >(argp1);
   {
     try {
       (void)arg1; delete smartarg1;
@@ -5123,7 +5181,7 @@ fail:
 SWIGINTERN PyObject *Time_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj = NULL;
   if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__Time, SWIG_NewClientData(obj));
+  SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__Time_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -5164,7 +5222,10 @@ SWIGINTERN PyObject *_wrap_new_Dimension(PyObject *self, PyObject *args) {
       SWIG_fail;
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__Dimension, SWIG_POINTER_NEW |  0 );
+  {
+    std::shared_ptr<  falcon_core::Dimension > *smartresult = result ? new std::shared_ptr<  falcon_core::Dimension >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__Dimension_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -5176,17 +5237,29 @@ SWIGINTERN PyObject *_wrap_Dimension_is_dimensionless(PyObject *self, PyObject *
   falcon_core::Dimension *arg1 = (falcon_core::Dimension *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Dimension const > tempshared1 ;
+  std::shared_ptr< falcon_core::Dimension const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   bool result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Dimension, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Dimension_is_dimensionless" "', argument " "1"" of type '" "falcon_core::Dimension const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Dimension_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Dimension_is_dimensionless" "', argument " "1"" of type '" "falcon_core::Dimension const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Dimension * >(argp1);
   {
     try {
       result = (bool)((falcon_core::Dimension const *)arg1)->is_dimensionless();
@@ -5208,17 +5281,29 @@ SWIGINTERN PyObject *_wrap_Dimension_to_string(PyObject *self, PyObject *args) {
   falcon_core::Dimension *arg1 = (falcon_core::Dimension *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Dimension const > tempshared1 ;
+  std::shared_ptr< falcon_core::Dimension const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   std::string result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Dimension, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Dimension_to_string" "', argument " "1"" of type '" "falcon_core::Dimension const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Dimension_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Dimension_to_string" "', argument " "1"" of type '" "falcon_core::Dimension const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Dimension * >(argp1);
   {
     try {
       result = ((falcon_core::Dimension const *)arg1)->to_string();
@@ -5240,17 +5325,29 @@ SWIGINTERN PyObject *_wrap_Dimension_to_json(PyObject *self, PyObject *args) {
   falcon_core::Dimension *arg1 = (falcon_core::Dimension *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Dimension const > tempshared1 ;
+  std::shared_ptr< falcon_core::Dimension const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   nlohmann::json result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Dimension, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Dimension_to_json" "', argument " "1"" of type '" "falcon_core::Dimension const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Dimension_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Dimension_to_json" "', argument " "1"" of type '" "falcon_core::Dimension const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Dimension * >(argp1);
   {
     try {
       result = ((falcon_core::Dimension const *)arg1)->to_json();
@@ -5272,17 +5369,29 @@ SWIGINTERN PyObject *_wrap_Dimension_hash(PyObject *self, PyObject *args) {
   falcon_core::Dimension *arg1 = (falcon_core::Dimension *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Dimension const > tempshared1 ;
+  std::shared_ptr< falcon_core::Dimension const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   size_t result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Dimension, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Dimension_hash" "', argument " "1"" of type '" "falcon_core::Dimension const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Dimension_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Dimension_hash" "', argument " "1"" of type '" "falcon_core::Dimension const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Dimension * >(argp1);
   {
     try {
       result = ((falcon_core::Dimension const *)arg1)->hash();
@@ -5305,26 +5414,48 @@ SWIGINTERN PyObject *_wrap_Dimension___eq__(PyObject *self, PyObject *args) {
   falcon_core::Dimension *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Dimension const > tempshared1 ;
+  std::shared_ptr< falcon_core::Dimension const > *smartarg1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
+  std::shared_ptr< falcon_core::Dimension const > tempshared2 ;
   PyObject *swig_obj[2] ;
   bool result;
   
   (void)self;
   if (!SWIG_Python_UnpackTuple(args, "Dimension___eq__", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Dimension, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Dimension___eq__" "', argument " "1"" of type '" "falcon_core::Dimension const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Dimension_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Dimension___eq__" "', argument " "1"" of type '" "falcon_core::Dimension const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Dimension * >(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_falcon_core__Dimension,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Dimension___eq__" "', argument " "2"" of type '" "falcon_core::Dimension const &""'"); 
+  {
+    int newmem = 0;
+    res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__Dimension_t,  0 , &newmem);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Dimension___eq__" "', argument " "2"" of type '" "falcon_core::Dimension const &""'");
+    }
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Dimension___eq__" "', argument " "2"" of type '" "falcon_core::Dimension const &""'"); 
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared2 = *reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp2);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp2);
+      arg2 = const_cast< falcon_core::Dimension * >(tempshared2.get());
+    } else {
+      arg2 = const_cast< falcon_core::Dimension * >(reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp2)->get());
+    }
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Dimension___eq__" "', argument " "2"" of type '" "falcon_core::Dimension const &""'"); 
-  }
-  arg2 = reinterpret_cast< falcon_core::Dimension * >(argp2);
   {
     try {
       result = (bool)((falcon_core::Dimension const *)arg1)->operator ==((falcon_core::Dimension const &)*arg2);
@@ -5352,26 +5483,48 @@ SWIGINTERN PyObject *_wrap_Dimension___ne__(PyObject *self, PyObject *args) {
   falcon_core::Dimension *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Dimension const > tempshared1 ;
+  std::shared_ptr< falcon_core::Dimension const > *smartarg1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
+  std::shared_ptr< falcon_core::Dimension const > tempshared2 ;
   PyObject *swig_obj[2] ;
   bool result;
   
   (void)self;
   if (!SWIG_Python_UnpackTuple(args, "Dimension___ne__", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Dimension, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Dimension___ne__" "', argument " "1"" of type '" "falcon_core::Dimension const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Dimension_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Dimension___ne__" "', argument " "1"" of type '" "falcon_core::Dimension const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Dimension * >(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_falcon_core__Dimension,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Dimension___ne__" "', argument " "2"" of type '" "falcon_core::Dimension const &""'"); 
+  {
+    int newmem = 0;
+    res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__Dimension_t,  0 , &newmem);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Dimension___ne__" "', argument " "2"" of type '" "falcon_core::Dimension const &""'");
+    }
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Dimension___ne__" "', argument " "2"" of type '" "falcon_core::Dimension const &""'"); 
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared2 = *reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp2);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp2);
+      arg2 = const_cast< falcon_core::Dimension * >(tempshared2.get());
+    } else {
+      arg2 = const_cast< falcon_core::Dimension * >(reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp2)->get());
+    }
   }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Dimension___ne__" "', argument " "2"" of type '" "falcon_core::Dimension const &""'"); 
-  }
-  arg2 = reinterpret_cast< falcon_core::Dimension * >(argp2);
   {
     try {
       result = (bool)((falcon_core::Dimension const *)arg1)->operator !=((falcon_core::Dimension const &)*arg2);
@@ -5398,17 +5551,29 @@ SWIGINTERN PyObject *_wrap_Dimension_get_dimensions(PyObject *self, PyObject *ar
   falcon_core::Dimension *arg1 = (falcon_core::Dimension *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Dimension const > tempshared1 ;
+  std::shared_ptr< falcon_core::Dimension const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   std::map< falcon_core::BaseDimension,int > *result = 0 ;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Dimension, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Dimension_get_dimensions" "', argument " "1"" of type '" "falcon_core::Dimension const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Dimension_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Dimension_get_dimensions" "', argument " "1"" of type '" "falcon_core::Dimension const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Dimension * >(argp1);
   {
     try {
       result = (std::map< falcon_core::BaseDimension,int > *) &((falcon_core::Dimension const *)arg1)->get_dimensions();
@@ -5430,16 +5595,28 @@ SWIGINTERN PyObject *_wrap_delete_Dimension(PyObject *self, PyObject *args) {
   falcon_core::Dimension *arg1 = (falcon_core::Dimension *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Dimension > tempshared1 ;
+  std::shared_ptr< falcon_core::Dimension > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Dimension, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Dimension" "', argument " "1"" of type '" "falcon_core::Dimension *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Dimension_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Dimension" "', argument " "1"" of type '" "falcon_core::Dimension *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::Dimension > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr<  falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::Dimension > * >(argp1);
+      arg1 = const_cast< falcon_core::Dimension * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Dimension * >(argp1);
   {
     try {
       (void)arg1; delete smartarg1;
@@ -5459,7 +5636,7 @@ fail:
 SWIGINTERN PyObject *Dimension_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj = NULL;
   if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__Dimension, SWIG_NewClientData(obj));
+  SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__Dimension_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -5502,7 +5679,10 @@ SWIGINTERN PyObject *_wrap_new_Prefix(PyObject *self, PyObject *args) {
       SWIG_fail;
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__Prefix, SWIG_POINTER_NEW |  0 );
+  {
+    std::shared_ptr<  falcon_core::Prefix > *smartresult = result ? new std::shared_ptr<  falcon_core::Prefix >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__Prefix_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -5514,17 +5694,29 @@ SWIGINTERN PyObject *_wrap_Prefix_symbol(PyObject *self, PyObject *args) {
   falcon_core::Prefix *arg1 = (falcon_core::Prefix *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Prefix const > tempshared1 ;
+  std::shared_ptr< falcon_core::Prefix const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   std::string result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Prefix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Prefix_symbol" "', argument " "1"" of type '" "falcon_core::Prefix const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Prefix_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Prefix_symbol" "', argument " "1"" of type '" "falcon_core::Prefix const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Prefix > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Prefix > * >(argp1);
+      arg1 = const_cast< falcon_core::Prefix * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Prefix > * >(argp1);
+      arg1 = const_cast< falcon_core::Prefix * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Prefix * >(argp1);
   {
     try {
       result = ((falcon_core::Prefix const *)arg1)->symbol();
@@ -5546,17 +5738,29 @@ SWIGINTERN PyObject *_wrap_Prefix_factor(PyObject *self, PyObject *args) {
   falcon_core::Prefix *arg1 = (falcon_core::Prefix *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Prefix const > tempshared1 ;
+  std::shared_ptr< falcon_core::Prefix const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   double result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Prefix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Prefix_factor" "', argument " "1"" of type '" "falcon_core::Prefix const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Prefix_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Prefix_factor" "', argument " "1"" of type '" "falcon_core::Prefix const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Prefix > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Prefix > * >(argp1);
+      arg1 = const_cast< falcon_core::Prefix * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Prefix > * >(argp1);
+      arg1 = const_cast< falcon_core::Prefix * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Prefix * >(argp1);
   {
     try {
       result = (double)((falcon_core::Prefix const *)arg1)->factor();
@@ -5578,17 +5782,29 @@ SWIGINTERN PyObject *_wrap_Prefix_to_json(PyObject *self, PyObject *args) {
   falcon_core::Prefix *arg1 = (falcon_core::Prefix *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Prefix const > tempshared1 ;
+  std::shared_ptr< falcon_core::Prefix const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   nlohmann::json result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Prefix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Prefix_to_json" "', argument " "1"" of type '" "falcon_core::Prefix const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Prefix_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Prefix_to_json" "', argument " "1"" of type '" "falcon_core::Prefix const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Prefix > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Prefix > * >(argp1);
+      arg1 = const_cast< falcon_core::Prefix * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Prefix > * >(argp1);
+      arg1 = const_cast< falcon_core::Prefix * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Prefix * >(argp1);
   {
     try {
       result = ((falcon_core::Prefix const *)arg1)->to_json();
@@ -5610,17 +5826,29 @@ SWIGINTERN PyObject *_wrap_Prefix_hash(PyObject *self, PyObject *args) {
   falcon_core::Prefix *arg1 = (falcon_core::Prefix *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Prefix const > tempshared1 ;
+  std::shared_ptr< falcon_core::Prefix const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   size_t result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Prefix, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Prefix_hash" "', argument " "1"" of type '" "falcon_core::Prefix const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Prefix_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Prefix_hash" "', argument " "1"" of type '" "falcon_core::Prefix const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Prefix > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Prefix > * >(argp1);
+      arg1 = const_cast< falcon_core::Prefix * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Prefix > * >(argp1);
+      arg1 = const_cast< falcon_core::Prefix * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Prefix * >(argp1);
   {
     try {
       result = ((falcon_core::Prefix const *)arg1)->hash();
@@ -5642,16 +5870,28 @@ SWIGINTERN PyObject *_wrap_delete_Prefix(PyObject *self, PyObject *args) {
   falcon_core::Prefix *arg1 = (falcon_core::Prefix *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Prefix > tempshared1 ;
+  std::shared_ptr< falcon_core::Prefix > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Prefix, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Prefix" "', argument " "1"" of type '" "falcon_core::Prefix *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Prefix_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Prefix" "', argument " "1"" of type '" "falcon_core::Prefix *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::Prefix > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr<  falcon_core::Prefix > * >(argp1);
+      arg1 = const_cast< falcon_core::Prefix * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::Prefix > * >(argp1);
+      arg1 = const_cast< falcon_core::Prefix * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Prefix * >(argp1);
   {
     try {
       (void)arg1; delete smartarg1;
@@ -5671,7 +5911,7 @@ fail:
 SWIGINTERN PyObject *Prefix_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj = NULL;
   if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__Prefix, SWIG_NewClientData(obj));
+  SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__Prefix_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -11185,7 +11425,10 @@ SWIGINTERN PyObject *_wrap_new_OneToOneMappingStringString(PyObject *self, PyObj
       SWIG_fail;
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__OneToOneMappingT_std__string_std__string_t, SWIG_POINTER_NEW |  0 );
+  {
+    std::shared_ptr<  falcon_core::OneToOneMapping > *smartresult = result ? new std::shared_ptr<  falcon_core::OneToOneMapping >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__OneToOneMapping_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -11199,6 +11442,8 @@ SWIGINTERN PyObject *_wrap_OneToOneMappingStringString_insert(PyObject *self, Py
   std::string *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::OneToOneMapping > tempshared1 ;
+  std::shared_ptr< falcon_core::OneToOneMapping > *smartarg1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
   void *argp3 = 0 ;
@@ -11207,11 +11452,21 @@ SWIGINTERN PyObject *_wrap_OneToOneMappingStringString_insert(PyObject *self, Py
   
   (void)self;
   if (!SWIG_Python_UnpackTuple(args, "OneToOneMappingStringString_insert", 3, 3, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__OneToOneMappingT_std__string_std__string_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OneToOneMappingStringString_insert" "', argument " "1"" of type '" "falcon_core::OneToOneMapping< std::string,std::string > *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__OneToOneMapping_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OneToOneMappingStringString_insert" "', argument " "1"" of type '" "falcon_core::OneToOneMapping< std::string,std::string > *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::OneToOneMapping > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr<  falcon_core::OneToOneMapping > * >(argp1);
+      arg1 = const_cast< falcon_core::OneToOneMapping< std::string,std::string > * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::OneToOneMapping > * >(argp1);
+      arg1 = const_cast< falcon_core::OneToOneMapping< std::string,std::string > * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::OneToOneMapping< std::string,std::string > * >(argp1);
   res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__string,  0  | 0);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OneToOneMappingStringString_insert" "', argument " "2"" of type '" "std::string const &""'"); 
@@ -11250,6 +11505,8 @@ SWIGINTERN PyObject *_wrap_OneToOneMappingStringString_at_key(PyObject *self, Py
   std::string *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::OneToOneMapping const > tempshared1 ;
+  std::shared_ptr< falcon_core::OneToOneMapping const > *smartarg1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
   PyObject *swig_obj[2] ;
@@ -11257,11 +11514,21 @@ SWIGINTERN PyObject *_wrap_OneToOneMappingStringString_at_key(PyObject *self, Py
   
   (void)self;
   if (!SWIG_Python_UnpackTuple(args, "OneToOneMappingStringString_at_key", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__OneToOneMappingT_std__string_std__string_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OneToOneMappingStringString_at_key" "', argument " "1"" of type '" "falcon_core::OneToOneMapping< std::string,std::string > const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__OneToOneMapping_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OneToOneMappingStringString_at_key" "', argument " "1"" of type '" "falcon_core::OneToOneMapping< std::string,std::string > const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::OneToOneMapping > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::OneToOneMapping > * >(argp1);
+      arg1 = const_cast< falcon_core::OneToOneMapping< std::string,std::string > * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::OneToOneMapping > * >(argp1);
+      arg1 = const_cast< falcon_core::OneToOneMapping< std::string,std::string > * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::OneToOneMapping< std::string,std::string > * >(argp1);
   res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__string,  0  | 0);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OneToOneMappingStringString_at_key" "', argument " "2"" of type '" "std::string const &""'"); 
@@ -11292,6 +11559,8 @@ SWIGINTERN PyObject *_wrap_OneToOneMappingStringString_at_value(PyObject *self, 
   std::string *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::OneToOneMapping const > tempshared1 ;
+  std::shared_ptr< falcon_core::OneToOneMapping const > *smartarg1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
   PyObject *swig_obj[2] ;
@@ -11299,11 +11568,21 @@ SWIGINTERN PyObject *_wrap_OneToOneMappingStringString_at_value(PyObject *self, 
   
   (void)self;
   if (!SWIG_Python_UnpackTuple(args, "OneToOneMappingStringString_at_value", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__OneToOneMappingT_std__string_std__string_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OneToOneMappingStringString_at_value" "', argument " "1"" of type '" "falcon_core::OneToOneMapping< std::string,std::string > const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__OneToOneMapping_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OneToOneMappingStringString_at_value" "', argument " "1"" of type '" "falcon_core::OneToOneMapping< std::string,std::string > const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::OneToOneMapping > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::OneToOneMapping > * >(argp1);
+      arg1 = const_cast< falcon_core::OneToOneMapping< std::string,std::string > * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::OneToOneMapping > * >(argp1);
+      arg1 = const_cast< falcon_core::OneToOneMapping< std::string,std::string > * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::OneToOneMapping< std::string,std::string > * >(argp1);
   res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__string,  0  | 0);
   if (!SWIG_IsOK(res2)) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OneToOneMappingStringString_at_value" "', argument " "2"" of type '" "std::string const &""'"); 
@@ -11333,17 +11612,29 @@ SWIGINTERN PyObject *_wrap_OneToOneMappingStringString_to_json(PyObject *self, P
   falcon_core::OneToOneMapping< std::string,std::string > *arg1 = (falcon_core::OneToOneMapping< std::string,std::string > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::OneToOneMapping const > tempshared1 ;
+  std::shared_ptr< falcon_core::OneToOneMapping const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   nlohmann::json result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__OneToOneMappingT_std__string_std__string_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OneToOneMappingStringString_to_json" "', argument " "1"" of type '" "falcon_core::OneToOneMapping< std::string,std::string > const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__OneToOneMapping_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OneToOneMappingStringString_to_json" "', argument " "1"" of type '" "falcon_core::OneToOneMapping< std::string,std::string > const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::OneToOneMapping > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::OneToOneMapping > * >(argp1);
+      arg1 = const_cast< falcon_core::OneToOneMapping< std::string,std::string > * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::OneToOneMapping > * >(argp1);
+      arg1 = const_cast< falcon_core::OneToOneMapping< std::string,std::string > * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::OneToOneMapping< std::string,std::string > * >(argp1);
   {
     try {
       result = ((falcon_core::OneToOneMapping< std::string,std::string > const *)arg1)->to_json();
@@ -11365,17 +11656,29 @@ SWIGINTERN PyObject *_wrap_OneToOneMappingStringString_hash(PyObject *self, PyOb
   falcon_core::OneToOneMapping< std::string,std::string > *arg1 = (falcon_core::OneToOneMapping< std::string,std::string > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::OneToOneMapping const > tempshared1 ;
+  std::shared_ptr< falcon_core::OneToOneMapping const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   size_t result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__OneToOneMappingT_std__string_std__string_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OneToOneMappingStringString_hash" "', argument " "1"" of type '" "falcon_core::OneToOneMapping< std::string,std::string > const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__OneToOneMapping_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OneToOneMappingStringString_hash" "', argument " "1"" of type '" "falcon_core::OneToOneMapping< std::string,std::string > const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::OneToOneMapping > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::OneToOneMapping > * >(argp1);
+      arg1 = const_cast< falcon_core::OneToOneMapping< std::string,std::string > * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::OneToOneMapping > * >(argp1);
+      arg1 = const_cast< falcon_core::OneToOneMapping< std::string,std::string > * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::OneToOneMapping< std::string,std::string > * >(argp1);
   {
     try {
       result = ((falcon_core::OneToOneMapping< std::string,std::string > const *)arg1)->hash();
@@ -11397,16 +11700,28 @@ SWIGINTERN PyObject *_wrap_delete_OneToOneMappingStringString(PyObject *self, Py
   falcon_core::OneToOneMapping< std::string,std::string > *arg1 = (falcon_core::OneToOneMapping< std::string,std::string > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::OneToOneMapping > tempshared1 ;
+  std::shared_ptr< falcon_core::OneToOneMapping > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__OneToOneMappingT_std__string_std__string_t, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_OneToOneMappingStringString" "', argument " "1"" of type '" "falcon_core::OneToOneMapping< std::string,std::string > *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__OneToOneMapping_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_OneToOneMappingStringString" "', argument " "1"" of type '" "falcon_core::OneToOneMapping< std::string,std::string > *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::OneToOneMapping > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr<  falcon_core::OneToOneMapping > * >(argp1);
+      arg1 = const_cast< falcon_core::OneToOneMapping< std::string,std::string > * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::OneToOneMapping > * >(argp1);
+      arg1 = const_cast< falcon_core::OneToOneMapping< std::string,std::string > * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::OneToOneMapping< std::string,std::string > * >(argp1);
   {
     try {
       (void)arg1; delete smartarg1;
@@ -11426,7 +11741,7 @@ fail:
 SWIGINTERN PyObject *OneToOneMappingStringString_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj = NULL;
   if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__OneToOneMappingT_std__string_std__string_t, SWIG_NewClientData(obj));
+  SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__OneToOneMapping_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -12169,7 +12484,10 @@ SWIGINTERN PyObject *_wrap_new_Impedances(PyObject *self, PyObject *args) {
       SWIG_fail;
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__Impedances, SWIG_POINTER_NEW |  0 );
+  {
+    std::shared_ptr<  falcon_core::Impedances > *smartresult = result ? new std::shared_ptr<  falcon_core::Impedances >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__Impedances_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -12182,6 +12500,8 @@ SWIGINTERN PyObject *_wrap_Impedances_append(PyObject *self, PyObject *args) {
   std::shared_ptr< falcon_core::Impedances::value_type > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Impedances > tempshared1 ;
+  std::shared_ptr< falcon_core::Impedances > *smartarg1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
   std::shared_ptr< falcon_core::Impedances::value_type > tempshared2 ;
@@ -12189,11 +12509,21 @@ SWIGINTERN PyObject *_wrap_Impedances_append(PyObject *self, PyObject *args) {
   
   (void)self;
   if (!SWIG_Python_UnpackTuple(args, "Impedances_append", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Impedances, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Impedances_append" "', argument " "1"" of type '" "falcon_core::Impedances *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Impedances_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Impedances_append" "', argument " "1"" of type '" "falcon_core::Impedances *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::Impedances > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr<  falcon_core::Impedances > * >(argp1);
+      arg1 = const_cast< falcon_core::Impedances * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::Impedances > * >(argp1);
+      arg1 = const_cast< falcon_core::Impedances * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Impedances * >(argp1);
   {
     int newmem = 0;
     res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__Impedance_t,  0 , &newmem);
@@ -12229,17 +12559,29 @@ SWIGINTERN PyObject *_wrap_Impedances_to_json(PyObject *self, PyObject *args) {
   falcon_core::Impedances *arg1 = (falcon_core::Impedances *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Impedances const > tempshared1 ;
+  std::shared_ptr< falcon_core::Impedances const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   nlohmann::json result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Impedances, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Impedances_to_json" "', argument " "1"" of type '" "falcon_core::Impedances const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Impedances_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Impedances_to_json" "', argument " "1"" of type '" "falcon_core::Impedances const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Impedances > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Impedances > * >(argp1);
+      arg1 = const_cast< falcon_core::Impedances * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Impedances > * >(argp1);
+      arg1 = const_cast< falcon_core::Impedances * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Impedances * >(argp1);
   {
     try {
       result = ((falcon_core::Impedances const *)arg1)->to_json();
@@ -12261,17 +12603,29 @@ SWIGINTERN PyObject *_wrap_Impedances_hash(PyObject *self, PyObject *args) {
   falcon_core::Impedances *arg1 = (falcon_core::Impedances *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Impedances const > tempshared1 ;
+  std::shared_ptr< falcon_core::Impedances const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   size_t result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Impedances, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Impedances_hash" "', argument " "1"" of type '" "falcon_core::Impedances const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Impedances_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Impedances_hash" "', argument " "1"" of type '" "falcon_core::Impedances const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::Impedances > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::Impedances > * >(argp1);
+      arg1 = const_cast< falcon_core::Impedances * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::Impedances > * >(argp1);
+      arg1 = const_cast< falcon_core::Impedances * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Impedances * >(argp1);
   {
     try {
       result = ((falcon_core::Impedances const *)arg1)->hash();
@@ -12293,16 +12647,28 @@ SWIGINTERN PyObject *_wrap_delete_Impedances(PyObject *self, PyObject *args) {
   falcon_core::Impedances *arg1 = (falcon_core::Impedances *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::Impedances > tempshared1 ;
+  std::shared_ptr< falcon_core::Impedances > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__Impedances, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Impedances" "', argument " "1"" of type '" "falcon_core::Impedances *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__Impedances_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Impedances" "', argument " "1"" of type '" "falcon_core::Impedances *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::Impedances > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr<  falcon_core::Impedances > * >(argp1);
+      arg1 = const_cast< falcon_core::Impedances * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::Impedances > * >(argp1);
+      arg1 = const_cast< falcon_core::Impedances * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::Impedances * >(argp1);
   {
     try {
       (void)arg1; delete smartarg1;
@@ -12322,7 +12688,7 @@ fail:
 SWIGINTERN PyObject *Impedances_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj = NULL;
   if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__Impedances, SWIG_NewClientData(obj));
+  SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__Impedances_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -15331,7 +15697,10 @@ SWIGINTERN PyObject *_wrap_new_AcquisitionContext(PyObject *self, PyObject *args
       SWIG_fail;
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__AcquisitionContext, SWIG_POINTER_NEW |  0 );
+  {
+    std::shared_ptr<  falcon_core::AcquisitionContext > *smartresult = result ? new std::shared_ptr<  falcon_core::AcquisitionContext >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__AcquisitionContext_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -15343,17 +15712,29 @@ SWIGINTERN PyObject *_wrap_AcquisitionContext_to_json(PyObject *self, PyObject *
   falcon_core::AcquisitionContext *arg1 = (falcon_core::AcquisitionContext *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::AcquisitionContext const > tempshared1 ;
+  std::shared_ptr< falcon_core::AcquisitionContext const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   nlohmann::json result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__AcquisitionContext, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AcquisitionContext_to_json" "', argument " "1"" of type '" "falcon_core::AcquisitionContext const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__AcquisitionContext_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AcquisitionContext_to_json" "', argument " "1"" of type '" "falcon_core::AcquisitionContext const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::AcquisitionContext > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::AcquisitionContext > * >(argp1);
+      arg1 = const_cast< falcon_core::AcquisitionContext * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::AcquisitionContext > * >(argp1);
+      arg1 = const_cast< falcon_core::AcquisitionContext * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::AcquisitionContext * >(argp1);
   {
     try {
       result = ((falcon_core::AcquisitionContext const *)arg1)->to_json();
@@ -15375,17 +15756,29 @@ SWIGINTERN PyObject *_wrap_AcquisitionContext_hash(PyObject *self, PyObject *arg
   falcon_core::AcquisitionContext *arg1 = (falcon_core::AcquisitionContext *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::AcquisitionContext const > tempshared1 ;
+  std::shared_ptr< falcon_core::AcquisitionContext const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   size_t result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__AcquisitionContext, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AcquisitionContext_hash" "', argument " "1"" of type '" "falcon_core::AcquisitionContext const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__AcquisitionContext_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AcquisitionContext_hash" "', argument " "1"" of type '" "falcon_core::AcquisitionContext const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::AcquisitionContext > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::AcquisitionContext > * >(argp1);
+      arg1 = const_cast< falcon_core::AcquisitionContext * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::AcquisitionContext > * >(argp1);
+      arg1 = const_cast< falcon_core::AcquisitionContext * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::AcquisitionContext * >(argp1);
   {
     try {
       result = ((falcon_core::AcquisitionContext const *)arg1)->hash();
@@ -15407,16 +15800,28 @@ SWIGINTERN PyObject *_wrap_delete_AcquisitionContext(PyObject *self, PyObject *a
   falcon_core::AcquisitionContext *arg1 = (falcon_core::AcquisitionContext *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::AcquisitionContext > tempshared1 ;
+  std::shared_ptr< falcon_core::AcquisitionContext > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__AcquisitionContext, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_AcquisitionContext" "', argument " "1"" of type '" "falcon_core::AcquisitionContext *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__AcquisitionContext_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_AcquisitionContext" "', argument " "1"" of type '" "falcon_core::AcquisitionContext *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::AcquisitionContext > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr<  falcon_core::AcquisitionContext > * >(argp1);
+      arg1 = const_cast< falcon_core::AcquisitionContext * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::AcquisitionContext > * >(argp1);
+      arg1 = const_cast< falcon_core::AcquisitionContext * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::AcquisitionContext * >(argp1);
   {
     try {
       (void)arg1; delete smartarg1;
@@ -15436,7 +15841,7 @@ fail:
 SWIGINTERN PyObject *AcquisitionContext_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj = NULL;
   if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__AcquisitionContext, SWIG_NewClientData(obj));
+  SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__AcquisitionContext_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -16057,7 +16462,10 @@ SWIGINTERN PyObject *_wrap_new_InterpretationContainerControlArray(PyObject *sel
       SWIG_fail;
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t, SWIG_POINTER_NEW |  0 );
+  {
+    std::shared_ptr<  falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > *smartresult = result ? new std::shared_ptr<  falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -16071,6 +16479,8 @@ SWIGINTERN PyObject *_wrap_InterpretationContainerControlArray_insert(PyObject *
   falcon_core::InterpretationContainer< falcon_core::ControlArray< double > >::mapped_type *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > > tempshared1 ;
+  std::shared_ptr< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > > *smartarg1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
   falcon_core::InterpretationContainer< falcon_core::ControlArray< double > >::key_type tempshared2 ;
@@ -16081,11 +16491,21 @@ SWIGINTERN PyObject *_wrap_InterpretationContainerControlArray_insert(PyObject *
   
   (void)self;
   if (!SWIG_Python_UnpackTuple(args, "InterpretationContainerControlArray_insert", 3, 3, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InterpretationContainerControlArray_insert" "', argument " "1"" of type '" "falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InterpretationContainerControlArray_insert" "', argument " "1"" of type '" "falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr<  falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      arg1 = const_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      arg1 = const_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >(argp1);
   {
     int newmem = 0;
     res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__InterpretationContext_t,  0 , &newmem);
@@ -16139,6 +16559,8 @@ SWIGINTERN PyObject *_wrap_InterpretationContainerControlArray_at(PyObject *self
   falcon_core::InterpretationContainer< falcon_core::ControlArray< double > >::key_type *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > const > tempshared1 ;
+  std::shared_ptr< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > const > *smartarg1 = 0 ;
   void *argp2 ;
   int res2 = 0 ;
   falcon_core::InterpretationContainer< falcon_core::ControlArray< double > >::key_type tempshared2 ;
@@ -16147,11 +16569,21 @@ SWIGINTERN PyObject *_wrap_InterpretationContainerControlArray_at(PyObject *self
   
   (void)self;
   if (!SWIG_Python_UnpackTuple(args, "InterpretationContainerControlArray_at", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InterpretationContainerControlArray_at" "', argument " "1"" of type '" "falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InterpretationContainerControlArray_at" "', argument " "1"" of type '" "falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      arg1 = const_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      arg1 = const_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >(argp1);
   {
     int newmem = 0;
     res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__InterpretationContext_t,  0 , &newmem);
@@ -16190,17 +16622,29 @@ SWIGINTERN PyObject *_wrap_InterpretationContainerControlArray_to_json(PyObject 
   falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > *arg1 = (falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > const > tempshared1 ;
+  std::shared_ptr< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   nlohmann::json result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InterpretationContainerControlArray_to_json" "', argument " "1"" of type '" "falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InterpretationContainerControlArray_to_json" "', argument " "1"" of type '" "falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      arg1 = const_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      arg1 = const_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >(argp1);
   {
     try {
       result = ((falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > const *)arg1)->to_json();
@@ -16222,17 +16666,29 @@ SWIGINTERN PyObject *_wrap_InterpretationContainerControlArray_hash(PyObject *se
   falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > *arg1 = (falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > const > tempshared1 ;
+  std::shared_ptr< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   size_t result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InterpretationContainerControlArray_hash" "', argument " "1"" of type '" "falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > const *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "InterpretationContainerControlArray_hash" "', argument " "1"" of type '" "falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      arg1 = const_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      arg1 = const_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >(argp1);
   {
     try {
       result = ((falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > const *)arg1)->hash();
@@ -16254,16 +16710,28 @@ SWIGINTERN PyObject *_wrap_delete_InterpretationContainerControlArray(PyObject *
   falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > *arg1 = (falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  std::shared_ptr< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > > tempshared1 ;
+  std::shared_ptr< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_InterpretationContainerControlArray" "', argument " "1"" of type '" "falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > *""'"); 
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_InterpretationContainerControlArray" "', argument " "1"" of type '" "falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr<  falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      arg1 = const_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::InterpretationContainer<falcon_core::ControlArray<double>> > * >(argp1);
+      arg1 = const_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >((smartarg1 ? smartarg1->get() : 0));
+    }
   }
-  arg1 = reinterpret_cast< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > * >(argp1);
   {
     try {
       (void)arg1; delete smartarg1;
@@ -16283,7 +16751,7 @@ fail:
 SWIGINTERN PyObject *InterpretationContainerControlArray_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj = NULL;
   if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t, SWIG_NewClientData(obj));
+  SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -19024,6 +19492,10 @@ static void *_p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseC
     *newmemory = SWIG_CAST_NEW_MEMORY;
     return (void *) new std::shared_ptr< falcon_core::Domain >(*(std::shared_ptr< falcon_core::LabelledDomain< falcon_core::BaseConnection > > *)x);
 }
+static void *_p_std__shared_ptrT_falcon_core__AcquisitionContext_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
+    *newmemory = SWIG_CAST_NEW_MEMORY;
+    return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::AcquisitionContext > *)x);
+}
 static void *_p_std__shared_ptrT_falcon_core__AnalyticFunction_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
     *newmemory = SWIG_CAST_NEW_MEMORY;
     return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::AnalyticFunction > *)x);
@@ -19072,6 +19544,10 @@ static void *_p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core
     *newmemory = SWIG_CAST_NEW_MEMORY;
     return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::CoupledLabelledDomain< falcon_core::BaseConnection > > *)x);
 }
+static void *_p_std__shared_ptrT_falcon_core__Dimension_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
+    *newmemory = SWIG_CAST_NEW_MEMORY;
+    return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::Dimension > *)x);
+}
 static void *_p_std__shared_ptrT_falcon_core__Domain_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
     *newmemory = SWIG_CAST_NEW_MEMORY;
     return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::Domain > *)x);
@@ -19092,6 +19568,10 @@ static void *_p_std__shared_ptrT_falcon_core__Impedance_tTo_p_std__shared_ptrT_f
     *newmemory = SWIG_CAST_NEW_MEMORY;
     return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::Impedance > *)x);
 }
+static void *_p_std__shared_ptrT_falcon_core__Impedances_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
+    *newmemory = SWIG_CAST_NEW_MEMORY;
+    return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::Impedances > *)x);
+}
 static void *_p_std__shared_ptrT_falcon_core__IncreasingAlignment_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
     *newmemory = SWIG_CAST_NEW_MEMORY;
     return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::IncreasingAlignment > *)x);
@@ -19099,6 +19579,10 @@ static void *_p_std__shared_ptrT_falcon_core__IncreasingAlignment_tTo_p_std__sha
 static void *_p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
     *newmemory = SWIG_CAST_NEW_MEMORY;
     return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::InstrumentPort< falcon_core::Gate > > *)x);
+}
+static void *_p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
+    *newmemory = SWIG_CAST_NEW_MEMORY;
+    return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > > *)x);
 }
 static void *_p_std__shared_ptrT_falcon_core__InterpretationContext_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
     *newmemory = SWIG_CAST_NEW_MEMORY;
@@ -19128,6 +19612,10 @@ static void *_p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_tTo_p_std_
     *newmemory = SWIG_CAST_NEW_MEMORY;
     return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::NameBase< std::string > > *)x);
 }
+static void *_p_std__shared_ptrT_falcon_core__OneToOneMapping_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
+    *newmemory = SWIG_CAST_NEW_MEMORY;
+    return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::OneToOneMapping > *)x);
+}
 static void *_p_std__shared_ptrT_falcon_core__PortTransform_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
     *newmemory = SWIG_CAST_NEW_MEMORY;
     return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::PortTransform > *)x);
@@ -19139,6 +19627,10 @@ static void *_p_std__shared_ptrT_falcon_core__PortTransforms_tTo_p_std__shared_p
 static void *_p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
     *newmemory = SWIG_CAST_NEW_MEMORY;
     return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::Ports< falcon_core::InstrumentPort< falcon_core::Gate > > > *)x);
+}
+static void *_p_std__shared_ptrT_falcon_core__Prefix_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
+    *newmemory = SWIG_CAST_NEW_MEMORY;
+    return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::Prefix > *)x);
 }
 static void *_p_std__shared_ptrT_falcon_core__QuantityT_double_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
     *newmemory = SWIG_CAST_NEW_MEMORY;
@@ -19159,6 +19651,10 @@ static void *_p_std__shared_ptrT_falcon_core__StandardConfigConnections_tTo_p_st
 static void *_p_std__shared_ptrT_falcon_core__SymbolUnit_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
     *newmemory = SWIG_CAST_NEW_MEMORY;
     return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::SymbolUnit > *)x);
+}
+static void *_p_std__shared_ptrT_falcon_core__Time_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
+    *newmemory = SWIG_CAST_NEW_MEMORY;
+    return (void *) new std::shared_ptr< falcon_core::Jsonable >(*(std::shared_ptr< falcon_core::Time > *)x);
 }
 static void *_p_std__shared_ptrT_falcon_core__Unit_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t(void *x, int *newmemory) {
     *newmemory = SWIG_CAST_NEW_MEMORY;
@@ -19243,6 +19739,7 @@ static swig_type_info _swigt__p_nlohmann__json = {"_p_nlohmann__json", "nlohmann
 static swig_type_info _swigt__p_std__invalid_argument = {"_p_std__invalid_argument", "std::invalid_argument *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_falcon_core__BaseDimension_int_t = {"_p_std__mapT_falcon_core__BaseDimension_int_t", "std::map< falcon_core::BaseDimension,int > *|std::map< enum falcon_core::BaseDimension,int > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_std__string_int_t = {"_p_std__mapT_std__string_int_t", "std::map< std::string,int > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__AcquisitionContext_t = {"_p_std__shared_ptrT_falcon_core__AcquisitionContext_t", "std::shared_ptr< falcon_core::AcquisitionContext > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__AnalyticFunction_t = {"_p_std__shared_ptrT_falcon_core__AnalyticFunction_t", "std::shared_ptr< falcon_core::AnalyticFunction > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__Domain_t_t = {"_p_std__shared_ptrT_falcon_core__AxesT_falcon_core__Domain_t_t", "std::shared_ptr< falcon_core::Axes< falcon_core::Domain > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t = {"_p_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t", "std::shared_ptr< falcon_core::Axes< falcon_core::MeasurementContext > > *", 0, 0, (void*)0, 0};
@@ -19260,15 +19757,18 @@ static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__ConstantFunction_t
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__ControlArray1D_t = {"_p_std__shared_ptrT_falcon_core__ControlArray1D_t", "std::shared_ptr< falcon_core::ControlArray1D > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__ControlArrayT_double_t_t = {"_p_std__shared_ptrT_falcon_core__ControlArrayT_double_t_t", "std::shared_ptr< falcon_core::ControlArray< double > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_t = {"_p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_t", "std::shared_ptr< falcon_core::CoupledLabelledDomain< falcon_core::BaseConnection > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Dimension_t = {"_p_std__shared_ptrT_falcon_core__Dimension_t", "std::shared_ptr< falcon_core::Dimension > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Domain_t = {"_p_std__shared_ptrT_falcon_core__Domain_t", "std::shared_ptr< falcon_core::Domain > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__GateRelations_t = {"_p_std__shared_ptrT_falcon_core__GateRelations_t", "std::shared_ptr< falcon_core::GateRelations > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Gate_t = {"_p_std__shared_ptrT_falcon_core__Gate_t", "std::shared_ptr< falcon_core::Gate > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__IdentityTransform_t = {"_p_std__shared_ptrT_falcon_core__IdentityTransform_t", "std::shared_ptr< falcon_core::IdentityTransform > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Identity_t = {"_p_std__shared_ptrT_falcon_core__Identity_t", "std::shared_ptr< falcon_core::Identity > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Impedance_t = {"_p_std__shared_ptrT_falcon_core__Impedance_t", "std::shared_ptr< falcon_core::Impedance > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Impedances_t = {"_p_std__shared_ptrT_falcon_core__Impedances_t", "std::shared_ptr< falcon_core::Impedances > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__IncreasingAlignment_t = {"_p_std__shared_ptrT_falcon_core__IncreasingAlignment_t", "std::shared_ptr< falcon_core::IncreasingAlignment > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t = {"_p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t", "std::shared_ptr< falcon_core::InstrumentPort< falcon_core::Gate > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Instrument_t = {"_p_std__shared_ptrT_falcon_core__Instrument_t", "std::shared_ptr< falcon_core::Instrument > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t = {"_p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t", "std::shared_ptr< falcon_core::InterpretationContainer< falcon_core::ControlArray< double > > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__InterpretationContext_t = {"_p_std__shared_ptrT_falcon_core__InterpretationContext_t", "std::shared_ptr< falcon_core::InterpretationContext > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Jsonable_t = {"_p_std__shared_ptrT_falcon_core__Jsonable_t", "std::shared_ptr< falcon_core::Jsonable > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t = {"_p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t", "std::shared_ptr< falcon_core::LabelledControlArray1D > *", 0, 0, (void*)0, 0};
@@ -19279,14 +19779,17 @@ static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__MeasurementContext
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__NameBaseT_int_t_t = {"_p_std__shared_ptrT_falcon_core__NameBaseT_int_t_t", "std::shared_ptr< falcon_core::NameBase< int > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_t = {"_p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_t", "std::shared_ptr< falcon_core::NameBase< std::string > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Ohmic_t = {"_p_std__shared_ptrT_falcon_core__Ohmic_t", "std::shared_ptr< falcon_core::Ohmic > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__OneToOneMapping_t = {"_p_std__shared_ptrT_falcon_core__OneToOneMapping_t", "std::shared_ptr< falcon_core::OneToOneMapping > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__PortTransform_t = {"_p_std__shared_ptrT_falcon_core__PortTransform_t", "std::shared_ptr< falcon_core::PortTransform > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__PortTransforms_t = {"_p_std__shared_ptrT_falcon_core__PortTransforms_t", "std::shared_ptr< falcon_core::PortTransforms > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t = {"_p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t", "std::shared_ptr< falcon_core::Ports< falcon_core::InstrumentPort< falcon_core::Gate > > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Prefix_t = {"_p_std__shared_ptrT_falcon_core__Prefix_t", "std::shared_ptr< falcon_core::Prefix > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__QuantityT_double_t_t = {"_p_std__shared_ptrT_falcon_core__QuantityT_double_t_t", "std::shared_ptr< falcon_core::Quantity< double > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_t = {"_p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_t", "std::shared_ptr< falcon_core::Quantity< std::complex< double > > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Spaces_t = {"_p_std__shared_ptrT_falcon_core__Spaces_t", "std::shared_ptr< falcon_core::Spaces > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__StandardConfigConnections_t = {"_p_std__shared_ptrT_falcon_core__StandardConfigConnections_t", "std::shared_ptr< falcon_core::StandardConfigConnections > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__SymbolUnit_t = {"_p_std__shared_ptrT_falcon_core__SymbolUnit_t", "std::shared_ptr< falcon_core::SymbolUnit > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Time_t = {"_p_std__shared_ptrT_falcon_core__Time_t", "std::shared_ptr< falcon_core::Time > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Unit_t = {"_p_std__shared_ptrT_falcon_core__Unit_t", "std::shared_ptr< falcon_core::Unit > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Waveform_t = {"_p_std__shared_ptrT_falcon_core__Waveform_t", "std::shared_ptr< falcon_core::Waveform > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
@@ -19372,6 +19875,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__invalid_argument,
   &_swigt__p_std__mapT_falcon_core__BaseDimension_int_t,
   &_swigt__p_std__mapT_std__string_int_t,
+  &_swigt__p_std__shared_ptrT_falcon_core__AcquisitionContext_t,
   &_swigt__p_std__shared_ptrT_falcon_core__AnalyticFunction_t,
   &_swigt__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__Domain_t_t,
   &_swigt__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t,
@@ -19389,15 +19893,18 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__shared_ptrT_falcon_core__ControlArray1D_t,
   &_swigt__p_std__shared_ptrT_falcon_core__ControlArrayT_double_t_t,
   &_swigt__p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_t,
+  &_swigt__p_std__shared_ptrT_falcon_core__Dimension_t,
   &_swigt__p_std__shared_ptrT_falcon_core__Domain_t,
   &_swigt__p_std__shared_ptrT_falcon_core__GateRelations_t,
   &_swigt__p_std__shared_ptrT_falcon_core__Gate_t,
   &_swigt__p_std__shared_ptrT_falcon_core__IdentityTransform_t,
   &_swigt__p_std__shared_ptrT_falcon_core__Identity_t,
   &_swigt__p_std__shared_ptrT_falcon_core__Impedance_t,
+  &_swigt__p_std__shared_ptrT_falcon_core__Impedances_t,
   &_swigt__p_std__shared_ptrT_falcon_core__IncreasingAlignment_t,
   &_swigt__p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t,
   &_swigt__p_std__shared_ptrT_falcon_core__Instrument_t,
+  &_swigt__p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t,
   &_swigt__p_std__shared_ptrT_falcon_core__InterpretationContext_t,
   &_swigt__p_std__shared_ptrT_falcon_core__Jsonable_t,
   &_swigt__p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t,
@@ -19408,14 +19915,17 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__shared_ptrT_falcon_core__NameBaseT_int_t_t,
   &_swigt__p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_t,
   &_swigt__p_std__shared_ptrT_falcon_core__Ohmic_t,
+  &_swigt__p_std__shared_ptrT_falcon_core__OneToOneMapping_t,
   &_swigt__p_std__shared_ptrT_falcon_core__PortTransform_t,
   &_swigt__p_std__shared_ptrT_falcon_core__PortTransforms_t,
   &_swigt__p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t,
+  &_swigt__p_std__shared_ptrT_falcon_core__Prefix_t,
   &_swigt__p_std__shared_ptrT_falcon_core__QuantityT_double_t_t,
   &_swigt__p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_t,
   &_swigt__p_std__shared_ptrT_falcon_core__Spaces_t,
   &_swigt__p_std__shared_ptrT_falcon_core__StandardConfigConnections_t,
   &_swigt__p_std__shared_ptrT_falcon_core__SymbolUnit_t,
+  &_swigt__p_std__shared_ptrT_falcon_core__Time_t,
   &_swigt__p_std__shared_ptrT_falcon_core__Unit_t,
   &_swigt__p_std__shared_ptrT_falcon_core__Waveform_t,
   &_swigt__p_std__string,
@@ -19501,6 +20011,7 @@ static swig_cast_info _swigc__p_nlohmann__json[] = {  {&_swigt__p_nlohmann__json
 static swig_cast_info _swigc__p_std__invalid_argument[] = {  {&_swigt__p_std__invalid_argument, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_falcon_core__BaseDimension_int_t[] = {  {&_swigt__p_std__mapT_falcon_core__BaseDimension_int_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_int_t[] = {  {&_swigt__p_std__mapT_std__string_int_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__AcquisitionContext_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__AcquisitionContext_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__AnalyticFunction_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__AnalyticFunction_t, 0, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__ConstantFunction_t, _p_std__shared_ptrT_falcon_core__ConstantFunction_tTo_p_std__shared_ptrT_falcon_core__AnalyticFunction_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Identity_t, _p_std__shared_ptrT_falcon_core__Identity_tTo_p_std__shared_ptrT_falcon_core__AnalyticFunction_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__Domain_t_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__Domain_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -19518,17 +20029,20 @@ static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__ConstantFunction_t
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__ControlArray1D_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__ControlArray1D_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__ControlArrayT_double_t_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__ControlArrayT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Dimension_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Dimension_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Domain_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Domain_t, 0, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_t, _p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_tTo_p_std__shared_ptrT_falcon_core__Domain_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t, _p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_tTo_p_std__shared_ptrT_falcon_core__Domain_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__GateRelations_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__GateRelations_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Gate_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Gate_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__IdentityTransform_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__IdentityTransform_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Identity_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Identity_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Impedance_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Impedance_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Impedances_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Impedances_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__IncreasingAlignment_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__IncreasingAlignment_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Instrument_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Instrument_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__InterpretationContext_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__InterpretationContext_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Jsonable_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__AnalyticFunction_t, _p_std__shared_ptrT_falcon_core__AnalyticFunction_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__Domain_t_t, _p_std__shared_ptrT_falcon_core__AxesT_falcon_core__Domain_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t, _p_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseArrayT_double_t_t, _p_std__shared_ptrT_falcon_core__BaseArrayT_double_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Gate_t_t, _p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Gate_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Ohmic_t_t, _p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Ohmic_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseDiscretizer_t, _p_std__shared_ptrT_falcon_core__BaseDiscretizer_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseLabelledArraysT_falcon_core__LabelledControlArray1D_t_t, _p_std__shared_ptrT_falcon_core__BaseLabelledArraysT_falcon_core__LabelledControlArray1D_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__CartesianDiscretizer_t, _p_std__shared_ptrT_falcon_core__CartesianDiscretizer_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__ConstantFunction_t, _p_std__shared_ptrT_falcon_core__ConstantFunction_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__ControlArrayT_double_t_t, _p_std__shared_ptrT_falcon_core__ControlArrayT_double_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_t, _p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Domain_t, _p_std__shared_ptrT_falcon_core__Domain_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__GateRelations_t, _p_std__shared_ptrT_falcon_core__GateRelations_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__IdentityTransform_t, _p_std__shared_ptrT_falcon_core__IdentityTransform_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Identity_t, _p_std__shared_ptrT_falcon_core__Identity_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Impedance_t, _p_std__shared_ptrT_falcon_core__Impedance_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__IncreasingAlignment_t, _p_std__shared_ptrT_falcon_core__IncreasingAlignment_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t, _p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__InterpretationContext_t, _p_std__shared_ptrT_falcon_core__InterpretationContext_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t, _p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Loader_t, _p_std__shared_ptrT_falcon_core__Loader_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__MeasuredArrayT_double_t_t, _p_std__shared_ptrT_falcon_core__MeasuredArrayT_double_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__MeasurementContext_t, _p_std__shared_ptrT_falcon_core__MeasurementContext_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__NameBaseT_int_t_t, _p_std__shared_ptrT_falcon_core__NameBaseT_int_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_t, _p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__PortTransform_t, _p_std__shared_ptrT_falcon_core__PortTransform_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__PortTransforms_t, _p_std__shared_ptrT_falcon_core__PortTransforms_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t, _p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__QuantityT_double_t_t, _p_std__shared_ptrT_falcon_core__QuantityT_double_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_t, _p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Spaces_t, _p_std__shared_ptrT_falcon_core__Spaces_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__StandardConfigConnections_t, _p_std__shared_ptrT_falcon_core__StandardConfigConnections_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__SymbolUnit_t, _p_std__shared_ptrT_falcon_core__SymbolUnit_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Unit_t, _p_std__shared_ptrT_falcon_core__Unit_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Waveform_t, _p_std__shared_ptrT_falcon_core__Waveform_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Jsonable_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__AcquisitionContext_t, _p_std__shared_ptrT_falcon_core__AcquisitionContext_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__AnalyticFunction_t, _p_std__shared_ptrT_falcon_core__AnalyticFunction_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__Domain_t_t, _p_std__shared_ptrT_falcon_core__AxesT_falcon_core__Domain_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t, _p_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseArrayT_double_t_t, _p_std__shared_ptrT_falcon_core__BaseArrayT_double_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Gate_t_t, _p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Gate_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Ohmic_t_t, _p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Ohmic_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseDiscretizer_t, _p_std__shared_ptrT_falcon_core__BaseDiscretizer_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseLabelledArraysT_falcon_core__LabelledControlArray1D_t_t, _p_std__shared_ptrT_falcon_core__BaseLabelledArraysT_falcon_core__LabelledControlArray1D_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__CartesianDiscretizer_t, _p_std__shared_ptrT_falcon_core__CartesianDiscretizer_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__ConstantFunction_t, _p_std__shared_ptrT_falcon_core__ConstantFunction_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__ControlArrayT_double_t_t, _p_std__shared_ptrT_falcon_core__ControlArrayT_double_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_t, _p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Dimension_t, _p_std__shared_ptrT_falcon_core__Dimension_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Domain_t, _p_std__shared_ptrT_falcon_core__Domain_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__GateRelations_t, _p_std__shared_ptrT_falcon_core__GateRelations_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__IdentityTransform_t, _p_std__shared_ptrT_falcon_core__IdentityTransform_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Identity_t, _p_std__shared_ptrT_falcon_core__Identity_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Impedance_t, _p_std__shared_ptrT_falcon_core__Impedance_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Impedances_t, _p_std__shared_ptrT_falcon_core__Impedances_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__IncreasingAlignment_t, _p_std__shared_ptrT_falcon_core__IncreasingAlignment_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t, _p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t, _p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__InterpretationContext_t, _p_std__shared_ptrT_falcon_core__InterpretationContext_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t, _p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Loader_t, _p_std__shared_ptrT_falcon_core__Loader_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__MeasuredArrayT_double_t_t, _p_std__shared_ptrT_falcon_core__MeasuredArrayT_double_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__MeasurementContext_t, _p_std__shared_ptrT_falcon_core__MeasurementContext_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__NameBaseT_int_t_t, _p_std__shared_ptrT_falcon_core__NameBaseT_int_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_t, _p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__OneToOneMapping_t, _p_std__shared_ptrT_falcon_core__OneToOneMapping_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__PortTransform_t, _p_std__shared_ptrT_falcon_core__PortTransform_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__PortTransforms_t, _p_std__shared_ptrT_falcon_core__PortTransforms_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t, _p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Prefix_t, _p_std__shared_ptrT_falcon_core__Prefix_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__QuantityT_double_t_t, _p_std__shared_ptrT_falcon_core__QuantityT_double_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_t, _p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Spaces_t, _p_std__shared_ptrT_falcon_core__Spaces_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__StandardConfigConnections_t, _p_std__shared_ptrT_falcon_core__StandardConfigConnections_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__SymbolUnit_t, _p_std__shared_ptrT_falcon_core__SymbolUnit_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Time_t, _p_std__shared_ptrT_falcon_core__Time_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Unit_t, _p_std__shared_ptrT_falcon_core__Unit_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Waveform_t, _p_std__shared_ptrT_falcon_core__Waveform_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t, 0, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_t, _p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_tTo_p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Loader_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Loader_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -19537,14 +20051,17 @@ static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__MeasurementContext
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__NameBaseT_int_t_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__NameBaseT_int_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Ohmic_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Ohmic_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__OneToOneMapping_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__OneToOneMapping_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__PortTransform_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__PortTransform_t, 0, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__IdentityTransform_t, _p_std__shared_ptrT_falcon_core__IdentityTransform_tTo_p_std__shared_ptrT_falcon_core__PortTransform_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__PortTransforms_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__PortTransforms_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Prefix_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Prefix_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__QuantityT_double_t_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__QuantityT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Spaces_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Spaces_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__StandardConfigConnections_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__StandardConfigConnections_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__SymbolUnit_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__SymbolUnit_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Time_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Time_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Unit_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Unit_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Waveform_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Waveform_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
@@ -19630,6 +20147,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__invalid_argument,
   _swigc__p_std__mapT_falcon_core__BaseDimension_int_t,
   _swigc__p_std__mapT_std__string_int_t,
+  _swigc__p_std__shared_ptrT_falcon_core__AcquisitionContext_t,
   _swigc__p_std__shared_ptrT_falcon_core__AnalyticFunction_t,
   _swigc__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__Domain_t_t,
   _swigc__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t,
@@ -19647,15 +20165,18 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__shared_ptrT_falcon_core__ControlArray1D_t,
   _swigc__p_std__shared_ptrT_falcon_core__ControlArrayT_double_t_t,
   _swigc__p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_t,
+  _swigc__p_std__shared_ptrT_falcon_core__Dimension_t,
   _swigc__p_std__shared_ptrT_falcon_core__Domain_t,
   _swigc__p_std__shared_ptrT_falcon_core__GateRelations_t,
   _swigc__p_std__shared_ptrT_falcon_core__Gate_t,
   _swigc__p_std__shared_ptrT_falcon_core__IdentityTransform_t,
   _swigc__p_std__shared_ptrT_falcon_core__Identity_t,
   _swigc__p_std__shared_ptrT_falcon_core__Impedance_t,
+  _swigc__p_std__shared_ptrT_falcon_core__Impedances_t,
   _swigc__p_std__shared_ptrT_falcon_core__IncreasingAlignment_t,
   _swigc__p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t,
   _swigc__p_std__shared_ptrT_falcon_core__Instrument_t,
+  _swigc__p_std__shared_ptrT_falcon_core__InterpretationContainerT_falcon_core__ControlArrayT_double_t_t_t,
   _swigc__p_std__shared_ptrT_falcon_core__InterpretationContext_t,
   _swigc__p_std__shared_ptrT_falcon_core__Jsonable_t,
   _swigc__p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t,
@@ -19666,14 +20187,17 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__shared_ptrT_falcon_core__NameBaseT_int_t_t,
   _swigc__p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_t,
   _swigc__p_std__shared_ptrT_falcon_core__Ohmic_t,
+  _swigc__p_std__shared_ptrT_falcon_core__OneToOneMapping_t,
   _swigc__p_std__shared_ptrT_falcon_core__PortTransform_t,
   _swigc__p_std__shared_ptrT_falcon_core__PortTransforms_t,
   _swigc__p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t,
+  _swigc__p_std__shared_ptrT_falcon_core__Prefix_t,
   _swigc__p_std__shared_ptrT_falcon_core__QuantityT_double_t_t,
   _swigc__p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_t,
   _swigc__p_std__shared_ptrT_falcon_core__Spaces_t,
   _swigc__p_std__shared_ptrT_falcon_core__StandardConfigConnections_t,
   _swigc__p_std__shared_ptrT_falcon_core__SymbolUnit_t,
+  _swigc__p_std__shared_ptrT_falcon_core__Time_t,
   _swigc__p_std__shared_ptrT_falcon_core__Unit_t,
   _swigc__p_std__shared_ptrT_falcon_core__Waveform_t,
   _swigc__p_std__string,
