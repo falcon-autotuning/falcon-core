@@ -179,6 +179,12 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
     *   **SWIG:** Expose `Channels` in `devices.i` and `Units` in `units.i`.
     *   **Binding Test:** Verify functionality from Python.
 
+6.  **Port Concrete Discretizers and Transforms:**
+    *   **C++:** Implement `CartesianDiscretizer` as a subclass of `BaseDiscretizer`. Implement `IdentityTransform` as a subclass of `PortTransform`.
+    *   **C++ Test:** Test the specific logic of these classes.
+    *   **SWIG:** Expose these classes in `waveforms.i` and `transforms.i` respectively.
+    *   **Binding Test:** Verify functionality from Python.
+
 ---
 
 ## Phase 7: Packaging and Deployment

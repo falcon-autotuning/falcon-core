@@ -8,12 +8,19 @@
 
 namespace falcon_core {
 
+struct InterpretationContextPtrCompare {
+    bool operator()(const std::shared_ptr<InterpretationContext>& lhs, const std::shared_ptr<InterpretationContext>& rhs) const {
+        if (!lhs || !rhs) return !lhs && rhs; // nulls sort first
+        return lhs->hash() < rhs->hash();
+    }
+};
+
 template<typename T>
 class InterpretationContainer : public Jsonable {
 public:
     using key_type = std::shared_ptr<InterpretationContext>;
     using mapped_type = T;
-    using container_type = std::map<key_type, mapped_type>;
+    using container_type = std::map<key_type, mapped_type, InterpretationContextPtrCompare>;
 
     InterpretationContainer() = default;
 

@@ -33,9 +33,13 @@ TEST(AcquisitionContextTest, ConstructionAndSerialization) {
 }
 
 TEST(InterpretationContextTest, ConstructionAndSerialization) {
-    auto d1 = std::make_shared<Domain>(0, 1);
-    auto axes = std::make_shared<Axes<Domain>>();
-    axes->append(d1);
+    auto conn = std::make_shared<BaseConnection>("v_gate_1");
+    auto unit = std::make_shared<Unit>(1.0, std::map<std::string, int>{});
+    auto symbol_unit = std::make_shared<SymbolUnit>(unit, "V");
+    auto mc = std::make_shared<MeasurementContext>(conn, symbol_unit);
+
+    auto axes = std::make_shared<Axes<MeasurementContext>>();
+    axes->append(mc);
 
     InterpretationContext ic(axes);
     nlohmann::json j = ic.to_json();
