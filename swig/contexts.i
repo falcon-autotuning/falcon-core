@@ -7,6 +7,7 @@
 
 %shared_ptr(falcon_core::MeasurementContext);
 %shared_ptr(falcon_core::InterpretationContext);
+%shared_ptr(falcon_core::InterpretationContainer<falcon_core::ControlArray<double>>);
 %include "falcon_core/AcquisitionContext.hpp"
 %include "falcon_core/MeasurementContext.hpp"
 %include "falcon_core/InterpretationContext.hpp"

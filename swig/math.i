@@ -17,6 +17,9 @@
 
 %shared_ptr(falcon_core::Domain);
 %shared_ptr(falcon_core::IncreasingAlignment);
+%shared_ptr(falcon_core::BaseArray<double>);
+%shared_ptr(falcon_core::ControlArray<double>);
+%shared_ptr(falcon_core::MeasuredArray<double>);
 %shared_ptr(falcon_core::ControlArray1D);
 %shared_ptr(falcon_core::LabelledControlArray1D);
 %shared_ptr(falcon_core::BaseLabelledArray<falcon_core::ControlArray1D, falcon_core::InstrumentPort<falcon_core::Gate>>);
