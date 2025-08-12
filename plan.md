@@ -101,7 +101,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
     *   **SWIG:** Use `%template` to instantiate each collection type (e.g., `%template(Gates) BaseConnections<Gate>`).
     *   **Binding Test:** Test collection and relation manipulation from Python/Go.
 
-3.  **Port `InstrumentPort`, `StandardConfigConnections`, `Loader`:**
+3.  **Port `InstrumentPort`, `StandardConfigConnections`, `Loader`: (In Progress)**
     *   **C++:** Implement `InstrumentPort`. Implement `StandardConfigConnections` to hold the device structure. Implement `Loader` to populate the config from JSON.
     *   **C++ Test:** Verify port properties and test loading a full configuration.
     *   **SWIG:** Expose these higher-level classes.

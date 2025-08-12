@@ -57,6 +57,16 @@ _devices_spec = importlib.util.spec_from_loader(f'{_pkg_name}.physics.device_str
 physics.device_structures = importlib.util.module_from_spec(_devices_spec)
 sys.modules[physics.device_structures.__name__] = physics.device_structures
 
+# Create falcon_core.physics.config
+_config_spec = importlib.util.spec_from_loader(f'{_pkg_name}.physics.config', loader=None)
+physics.config = importlib.util.module_from_spec(_config_spec)
+sys.modules[physics.config.__name__] = physics.config
+
+# Create falcon_core.physics.config.core
+_config_core_spec = importlib.util.spec_from_loader(f'{_pkg_name}.physics.config.core', loader=None)
+physics.config.core = importlib.util.module_from_spec(_config_core_spec)
+sys.modules[physics.config.core.__name__] = physics.config.core
+
 # Create falcon_core.instrument_interfaces
 _instruments_spec = importlib.util.spec_from_loader(f'{_pkg_name}.instrument_interfaces', loader=None)
 instrument_interfaces = importlib.util.module_from_spec(_instruments_spec)
@@ -192,6 +202,14 @@ physics.device_structures.Impedances = Impedances
 del Impedances
 physics.device_structures.GateRelations = GateRelations
 del GateRelations
+physics.device_structures.Ohmics = Ohmics
+del Ohmics
+
+# Move config classes
+physics.config.core.StandardConfigConnections = StandardConfigConnections
+del StandardConfigConnections
+physics.config.Loader = Loader
+del Loader
 
 # Move instrument and context classes
 instrument_interfaces.names.InstrumentPort = InstrumentPortGate

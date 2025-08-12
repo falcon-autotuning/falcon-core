@@ -10,6 +10,8 @@
 #include "falcon_core/Impedance.hpp"
 #include "falcon_core/Impedances.hpp"
 #include "falcon_core/GateRelations.hpp"
+#include "falcon_core/StandardConfigConnections.hpp"
+#include "falcon_core/Loader.hpp"
 %}
 
 %include "falcon_core/NameBase.hpp"
@@ -23,6 +25,8 @@
 %include "falcon_core/Impedance.hpp"
 %include "falcon_core/Impedances.hpp"
 %include "falcon_core/GateRelations.hpp"
+%include "falcon_core/StandardConfigConnections.hpp"
+%include "falcon_core/Loader.hpp"
 
 // Instantiate NameBase for int and string
 %template(NameBaseInt) falcon_core::NameBase<int>;
@@ -51,3 +55,10 @@ class Instrument {};
 %shared_ptr(falcon_core::Impedance)
 
 %shared_ptr(falcon_core::GateRelations)
+
+// Instantiate templates for StandardConfigConnections
+%shared_ptr(falcon_core::Ohmic)
+%template(Ohmics) falcon_core::BaseConnections<falcon_core::Ohmic>;
+%shared_ptr(falcon_core::BaseConnections<falcon_core::Ohmic>)
+%shared_ptr(falcon_core::StandardConfigConnections)
+%shared_ptr(falcon_core::Loader)
