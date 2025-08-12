@@ -401,14 +401,14 @@ class LabelledControlArray1D(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
+    def __init__(self, array, label):
+        _falcon_core.LabelledControlArray1D_swiginit(self, _falcon_core.new_LabelledControlArray1D(array, label))
+
     def get_array(self):
         return _falcon_core.LabelledControlArray1D_get_array(self)
 
     def to_json(self):
         return _falcon_core.LabelledControlArray1D_to_json(self)
-
-    def __init__(self):
-        _falcon_core.LabelledControlArray1D_swiginit(self, _falcon_core.new_LabelledControlArray1D())
     __swig_destroy__ = _falcon_core.delete_LabelledControlArray1D
 
 # Register LabelledControlArray1D in _falcon_core:
