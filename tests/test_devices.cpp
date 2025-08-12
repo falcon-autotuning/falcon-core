@@ -121,3 +121,37 @@ TEST(GateRelationsTest, Insert) {
     nlohmann::json j = relations.to_json();
     ASSERT_EQ(j["container_size"], 1);
 }
+
+#include "falcon_core/StandardConfigConnections.hpp"
+#include "falcon_core/Loader.hpp"
+
+TEST(StandardConfigConnectionsTest, ConstructionAndAccessors) {
+    auto ohmics = std::make_shared<BaseConnections<Ohmic>>();
+    ohmics->append(std::make_shared<Ohmic>("o1"));
+    
+    auto gates = std::make_shared<BaseConnections<Gate>>();
+    gates->append(std::make_shared<Gate>("g1"));
+
+    StandardConfigConnections scc(ohmics, gates);
+
+    ASSERT_EQ(scc.get_ohmics()->get_connections().size(), 1);
+    ASSERT_EQ(scc.get_gates()->get_connections().size(), 1);
+
+    nlohmann::json j_scc = scc.to_json();
+    ASSERT_EQ(j_scc["__module__"], "falcon_core.physics.config.core.standard_config_connections");
+    ASSERT_EQ(j_scc["__class__"], "StandardConfigConnections");
+    ASSERT_TRUE(j_scc.contains("_ohmics"));
+    ASSERT_TRUE(j_scc.contains("_gates"));
+}
+
+TEST(LoaderTest, Construction) {
+    auto ohmics = std::make_shared<BaseConnections<Ohmic>>();
+    auto gates = std::make_shared<BaseConnections<Gate>>();
+    auto scc = std::make_shared<StandardConfigConnections>(ohmics, gates);
+    Loader loader(scc);
+
+    nlohmann::json j_loader = loader.to_json();
+    ASSERT_EQ(j_loader["__module__"], "falcon_core.physics.config.loader");
+    ASSERT_EQ(j_loader["__class__"], "Loader");
+    ASSERT_TRUE(j_loader.contains("_config"));
+}

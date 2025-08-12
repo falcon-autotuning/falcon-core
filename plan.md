@@ -89,21 +89,21 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 **Goal:** Port the classes that define the physical device layout and configuration.
 
-1.  **Port Naming and Connection Primitives: (In Progress)**
+1.  **Port Naming and Connection Primitives: (Completed)**
     *   **C++:** Implement `NameBase<T>`, `Channel`. Implement the class hierarchy `BaseConnection`, `Gate`, `Ohmic`, and their subclasses. Use `std::shared_ptr` for ownership.
     *   **C++ Test:** Test object creation, property access, and inheritance structure. (Completed)
     *   **SWIG:** Expose the class hierarchy in a `devices.i` file. Use directors for base classes if they are meant to be extended.
     *   **Binding Test:** Create instances of gates in Python/Go and verify their types and properties.
 
-2.  **Port Collections and Relations: (In Progress)**
+2.  **Port Collections and Relations: (Completed)**
     *   **C++:** Implement template containers (`BaseConnections<T>`, `Ports<T>`) wrapping `std::vector<std::shared_ptr<T>>`. Implement `Impedances` and `GateRelations`.
     *   **C++ Test:** Test adding, removing, indexing, and relation lookups. (Completed)
     *   **SWIG:** Use `%template` to instantiate each collection type (e.g., `%template(Gates) BaseConnections<Gate>`).
     *   **Binding Test:** Test collection and relation manipulation from Python/Go.
 
-3.  **Port `InstrumentPort`, `StandardConfigConnections`, `Loader`: (In Progress)**
+3.  **Port `InstrumentPort`, `StandardConfigConnections`, `Loader`: (Completed)**
     *   **C++:** Implement `InstrumentPort`. Implement `StandardConfigConnections` to hold the device structure. Implement `Loader` to populate the config from JSON.
-    *   **C++ Test:** Verify port properties and test loading a full configuration.
+    *   **C++ Test:** Verify port properties and test loading a full configuration. (Completed)
     *   **SWIG:** Expose these higher-level classes.
     *   **Binding Test:** Test loading a JSON config and querying it via a `Loader` instance.
 
