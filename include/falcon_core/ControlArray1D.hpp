@@ -3,7 +3,7 @@
 #include "falcon_core/ControlArray.hpp"
 #include <stdexcept>
 
-namespace falcon_core {
+using namespace falcon_core;
 
 class ControlArray1D : public ControlArray<double> {
 public:
@@ -25,5 +25,3 @@ public:
     return j;
   }
 };
-
-} // namespace falcon_core

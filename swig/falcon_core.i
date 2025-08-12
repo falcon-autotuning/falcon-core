@@ -125,9 +125,8 @@ sys.modules[math.labelled_arrays.__name__] = math.labelled_arrays
 #include "falcon_core/Time.hpp"
 #include <string>
 #include <cstddef>
-// #include <stdexcept>
 #include <stdexcept>
-// C++ headers for units are included via units.i
+using namespace falcon_core;
 %}
 
 // --- Exception Handling ---

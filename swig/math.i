@@ -32,6 +32,7 @@
 %include "falcon_core/CoupledLabelledDomain.hpp"
 %include "falcon_core/BaseLabelledArray.hpp"
 %include "falcon_core/LabelledControlArray1D.hpp"
+%nodefaultctor falcon_core::LabelledControlArray1D;
 %include "falcon_core/BaseLabelledArrays.hpp"
 %include "falcon_core/IncreasingAlignment.hpp"
 %include "falcon_core/ControlArray1D.hpp"
