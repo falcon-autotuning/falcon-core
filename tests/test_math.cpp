@@ -14,23 +14,6 @@
 
 using namespace falcon_core;
 
-// Mock Unit implementation for testing purposes
-namespace falcon_core {
-    Unit::Unit(double factor, std::map<std::string, int> dimensions) : _factor(factor), _dimensions(std::move(dimensions)) {}
-    double Unit::get_factor() const { return _factor; }
-    const std::map<std::string, int>& Unit::dimensions() const { return _dimensions; }
-    nlohmann::json Unit::to_json() const {
-        nlohmann::json j;
-        add_metadata(j, "falcon_core.physics.units.unit", "Unit");
-        j["_factor"] = _factor;
-        return j;
-    }
-    size_t Unit::hash() const { return std::hash<double>{}(_factor); }
-    std::shared_ptr<Unit> Unit::operator*(const Unit& other) const { return nullptr; }
-    std::shared_ptr<Unit> Unit::operator/(const Unit& other) const { return nullptr; }
-}
-
-
 TEST(DomainTest, ConstructionAndAccessors) {
     Domain d(0.0, 5.0);
     ASSERT_DOUBLE_EQ(d.min(), 0.0);

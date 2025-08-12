@@ -41,6 +41,16 @@ find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 
+# Find NumPy include directory
+execute_process(
+  COMMAND ${Python3_EXECUTABLE} -c "import numpy; print(numpy.get_include())"
+  OUTPUT_VARIABLE NUMPY_INCLUDE_DIR
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+if(NOT NUMPY_INCLUDE_DIR)
+    message(FATAL_ERROR "NumPy include directory not found. Is NumPy installed?")
+endif()
+
 # Get SWIG's library directory for standard .i files
 execute_process(COMMAND ${SWIG_EXECUTABLE} -swiglib
   OUTPUT_VARIABLE SWIG_LIB_DIR
@@ -58,6 +68,7 @@ add_library(falcon_core_cpp
     src/Domain.cpp
     src/MeasurementContext.cpp
     src/Units.cpp
+    src/Unit.cpp
 )
 target_include_directories(falcon_core_cpp PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -97,6 +108,7 @@ target_include_directories(${SWIG_MODULE_NAME} PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/swig"
     ${Python3_INCLUDE_DIRS}
     "${SWIG_LIB_DIR}"
+    ${NUMPY_INCLUDE_DIR}
 )
 
 target_link_libraries(${SWIG_MODULE_NAME} PRIVATE
