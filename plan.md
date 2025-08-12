@@ -71,7 +71,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
     *   **SWIG:** Add classes to `math.i`. Use `%template` to instantiate concrete types needed (e.g., `Quantity<double>`).
     *   **Binding Test:** Verify functionality in the target languages.
 
-2.  **Port Array Classes: (In Progress)**
+2.  **Port Array Classes: (Completed)**
     *   **C++:** Create `BaseArray<T>` wrapping an `Eigen` type (e.g., `Eigen::MatrixXd`). Implement `Is1D` logic. Implement subclasses `ControlArray`, `MeasuredArray`, `BaseLabelledArrays`, and `IncreasingAlignment`.
     *   **C++ Test:** Test basic array operations and the specific functionality of each type using `Eigen`.
     *   **SWIG:** Use `Eigen` typemaps for automatic NumPy conversion. Instantiate required array templates.

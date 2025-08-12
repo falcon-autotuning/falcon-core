@@ -57,6 +57,9 @@ sys.modules[math.arrays.__name__] = math.arrays
 // C++ headers for units are included via units.i
 %}
 
+// Include the Eigen typemaps for NumPy conversion
+%include "eigen.i"
+
 // Process the header files
 %include "falcon_core/Jsonable.hpp"
 %include "falcon_core/Time.hpp"
