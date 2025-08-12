@@ -7,7 +7,7 @@
 namespace falcon_core {
 
 // Helper to convert BaseDimension to string
-static std::string to_string(BaseDimension dim) {
+static std::string base_dimension_to_string(BaseDimension dim) {
     switch (dim) {
         case BaseDimension::LENGTH: return "LENGTH";
         case BaseDimension::MASS: return "MASS";
@@ -35,7 +35,7 @@ std::string Dimension::to_string() const {
     std::stringstream ss;
     for(const auto& pair : _dimensions) {
         if(pair.second != 0) {
-            ss << to_string(pair.first) << "^" << pair.second << " ";
+            ss << base_dimension_to_string(pair.first) << "^" << pair.second << " ";
         }
     }
     std::string result = ss.str();
@@ -52,7 +52,7 @@ nlohmann::json Dimension::to_json() const {
     nlohmann::json dims_json;
     for (const auto& pair : _dimensions) {
         if (pair.second != 0) {
-            dims_json[to_string(pair.first)] = pair.second;
+            dims_json[base_dimension_to_string(pair.first)] = pair.second;
         }
     }
     j["_dimensions"] = dims_json;
