@@ -22,13 +22,13 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-# blaze
+# eigen
 FetchContent_Declare(
-  blaze
-  GIT_REPOSITORY https://github.com/bitbucket/blaze-lib/blaze.git
-  GIT_TAG v3.8
+  eigen
+  GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
+  GIT_TAG 3.4.0
 )
-FetchContent_MakeAvailable(blaze)
+FetchContent_MakeAvailable(eigen)
 
 # --- SWIG and Python ---
 find_package(SWIG REQUIRED)
@@ -54,7 +54,7 @@ target_include_directories(falcon_core_cpp PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
     ${json_SOURCE_DIR}/include
-    ${blaze_SOURCE_DIR}
+    ${eigen_SOURCE_DIR}
 )
 target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
 
