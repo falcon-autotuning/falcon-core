@@ -8,9 +8,12 @@
 #include <map>
 %}
 
+// %include <exception.i>
+
 // std library support
 // %include <map>
 // %include <memory>
+%include <std_string.i>
 %include <std_map.i>
 %include <std_shared_ptr.i>
 
