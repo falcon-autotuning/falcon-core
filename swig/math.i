@@ -22,6 +22,9 @@
 %include "falcon_core/Axes.hpp"
 %include "falcon_core/LabelledDomain.hpp"
 %include "falcon_core/CoupledLabelledDomain.hpp"
+%include "falcon_core/BaseLabelledArray.hpp"
+%include "falcon_core/LabelledControlArray1D.hpp"
+%include "falcon_core/BaseLabelledArrays.hpp"
 
 // Expose concrete instantiations of template classes
 %template(QuantityDouble) falcon_core::Quantity<double>;
