@@ -30,6 +30,17 @@ setattr(sys.modules[_pkg_name], 'physics', physics)
 _units_spec = importlib.util.spec_from_loader(f'{_pkg_name}.physics.units', loader=None)
 physics.units = importlib.util.module_from_spec(_units_spec)
 sys.modules[physics.units.__name__] = physics.units
+
+# Create falcon_core.math
+_math_spec = importlib.util.spec_from_loader(f'{_pkg_name}.math', loader=None)
+math = importlib.util.module_from_spec(_math_spec)
+sys.modules[math.__name__] = math
+setattr(sys.modules[_pkg_name], 'math', math)
+
+# Create falcon_core.math.domains
+_domains_spec = importlib.util.spec_from_loader(f'{_pkg_name}.math.domains', loader=None)
+math.domains = importlib.util.module_from_spec(_domains_spec)
+sys.modules[math.domains.__name__] = math.domains
 %}
 
 %{
@@ -47,6 +58,9 @@ sys.modules[physics.units.__name__] = physics.units
 
 // Include the units definitions
 %include "units.i"
+
+// Include the math definitions
+%include "math.i"
 
 // Typemap for nlohmann::json to a Python string.
 // The user code in python will be responsible for json.loads()
@@ -85,4 +99,12 @@ physics.units.SymbolUnit = SymbolUnit
 del SymbolUnit
 physics.units.Unit = Unit
 del Unit
+
+# Move math classes
+math.QuantityDouble = QuantityDouble
+del QuantityDouble
+generic.OneToOneMappingStringString = OneToOneMappingStringString # Mapped to generic for now
+del OneToOneMappingStringString
+math.domains.Domain = Domain
+del Domain
 %}

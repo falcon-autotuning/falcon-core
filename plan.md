@@ -65,7 +65,7 @@ SWIG will be the bridge between C++ and the target languages. Our strategy will 
 
 **Goal:** Port the core mathematical data structures.
 
-1.  **Port Generic Containers and Domains:**
+1.  **Port Generic Containers and Domains: (Completed)**
     *   **C++:** Implement `Domain` and its subclasses (`LabelledDomain`, `CoupledLabelledDomain`). Implement `OneToOneMapping<K, V>`. Implement `Quantity<T>`.
     *   **C++ Test:** Test `Domain` operations, `Quantity` conversions, and `OneToOneMapping` constraints.
     *   **SWIG:** Add classes to `math.i`. Use `%template` to instantiate concrete types needed (e.g., `Quantity<double>`).
