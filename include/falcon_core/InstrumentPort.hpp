@@ -1,13 +1,11 @@
 #pragma once
 
+#include "falcon_core/Instrument.hpp"
 #include "falcon_core/Jsonable.hpp"
 #include <memory>
 #include <string>
 
 namespace falcon_core {
-
-// Forward declaration
-using Instrument = std::string;
 
 template <typename T> class InstrumentPort : public Jsonable {
 public:

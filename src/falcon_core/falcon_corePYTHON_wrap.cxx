@@ -3803,43 +3803,42 @@ namespace Swig {
 #define SWIGTYPE_p_std__shared_ptrT_falcon_core__Impedance_t swig_types[89]
 #define SWIGTYPE_p_std__shared_ptrT_falcon_core__IncreasingAlignment_t swig_types[90]
 #define SWIGTYPE_p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t swig_types[91]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Instrument_t swig_types[92]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__InterpretationContext_t swig_types[93]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Jsonable_t swig_types[94]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t swig_types[95]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t swig_types[96]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Loader_t swig_types[97]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__MeasuredArrayT_double_t_t swig_types[98]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__MeasurementContext_t swig_types[99]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__NameBaseT_int_t_t swig_types[100]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_t swig_types[101]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Ohmic_t swig_types[102]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__PortTransform_t swig_types[103]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__PortTransforms_t swig_types[104]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t swig_types[105]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__QuantityT_double_t_t swig_types[106]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_t swig_types[107]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Spaces_t swig_types[108]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__StandardConfigConnections_t swig_types[109]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__SymbolUnit_t swig_types[110]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Unit_t swig_types[111]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Waveform_t swig_types[112]
-#define SWIGTYPE_p_std__string swig_types[113]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t_std__allocatorT_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t_t_t swig_types[114]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Domain_t_std__allocatorT_std__shared_ptrT_falcon_core__Domain_t_t_t swig_types[115]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Domain_t_std__allocatorT_std__shared_ptrT_falcon_core__Domain_t_t_t__const_iterator swig_types[116]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Gate_t_std__allocatorT_std__shared_ptrT_falcon_core__Gate_t_t_t swig_types[117]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_std__allocatorT_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t_t swig_types[118]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__LabelledControlArray1D_t_std__allocatorT_std__shared_ptrT_falcon_core__LabelledControlArray1D_t_t_t swig_types[119]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t_std__allocatorT_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t_t_t swig_types[120]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__MeasurementContext_t_std__allocatorT_std__shared_ptrT_falcon_core__MeasurementContext_t_t_t swig_types[121]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__MeasurementContext_t_std__allocatorT_std__shared_ptrT_falcon_core__MeasurementContext_t_t_t__const_iterator swig_types[122]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Ohmic_t_std__allocatorT_std__shared_ptrT_falcon_core__Ohmic_t_t_t swig_types[123]
-#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__PortTransform_t_std__allocatorT_std__shared_ptrT_falcon_core__PortTransform_t_t_t swig_types[124]
-#define SWIGTYPE_p_swig__SwigPyIterator swig_types[125]
-#define SWIGTYPE_p_value_type swig_types[126]
-static swig_type_info *swig_types[128];
-static swig_module_info swig_module = {swig_types, 127, 0, 0, 0, 0};
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__InterpretationContext_t swig_types[92]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Jsonable_t swig_types[93]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t swig_types[94]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t swig_types[95]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Loader_t swig_types[96]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__MeasuredArrayT_double_t_t swig_types[97]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__MeasurementContext_t swig_types[98]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__NameBaseT_int_t_t swig_types[99]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_t swig_types[100]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Ohmic_t swig_types[101]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__PortTransform_t swig_types[102]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__PortTransforms_t swig_types[103]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t swig_types[104]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__QuantityT_double_t_t swig_types[105]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_t swig_types[106]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Spaces_t swig_types[107]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__StandardConfigConnections_t swig_types[108]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__SymbolUnit_t swig_types[109]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Unit_t swig_types[110]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__Waveform_t swig_types[111]
+#define SWIGTYPE_p_std__string swig_types[112]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t_std__allocatorT_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t_t_t swig_types[113]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Domain_t_std__allocatorT_std__shared_ptrT_falcon_core__Domain_t_t_t swig_types[114]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Domain_t_std__allocatorT_std__shared_ptrT_falcon_core__Domain_t_t_t__const_iterator swig_types[115]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Gate_t_std__allocatorT_std__shared_ptrT_falcon_core__Gate_t_t_t swig_types[116]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_std__allocatorT_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t_t swig_types[117]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__LabelledControlArray1D_t_std__allocatorT_std__shared_ptrT_falcon_core__LabelledControlArray1D_t_t_t swig_types[118]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t_std__allocatorT_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t_t_t swig_types[119]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__MeasurementContext_t_std__allocatorT_std__shared_ptrT_falcon_core__MeasurementContext_t_t_t swig_types[120]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__MeasurementContext_t_std__allocatorT_std__shared_ptrT_falcon_core__MeasurementContext_t_t_t__const_iterator swig_types[121]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__Ohmic_t_std__allocatorT_std__shared_ptrT_falcon_core__Ohmic_t_t_t swig_types[122]
+#define SWIGTYPE_p_std__vectorT_std__shared_ptrT_falcon_core__PortTransform_t_std__allocatorT_std__shared_ptrT_falcon_core__PortTransform_t_t_t swig_types[123]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[124]
+#define SWIGTYPE_p_value_type swig_types[125]
+static swig_type_info *swig_types[127];
+static swig_module_info swig_module = {swig_types, 126, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -13671,7 +13670,7 @@ SWIGINTERN PyObject *_wrap_new_InstrumentPortGate(PyObject *self, PyObject *args
   PyObject *resultobj = 0;
   std::string arg1 ;
   std::shared_ptr< falcon_core::Gate > arg2 ;
-  SwigValueWrapper< std::shared_ptr< falcon_core::Instrument > > arg3 ;
+  Instrument arg3 ;
   std::string arg4 ;
   void *argp1 ;
   int res1 = 0 ;
@@ -13709,14 +13708,14 @@ SWIGINTERN PyObject *_wrap_new_InstrumentPortGate(PyObject *self, PyObject *args
     if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr< falcon_core::Gate > * >(argp2);
   }
   {
-    res3 = SWIG_ConvertPtr(swig_obj[2], &argp3, SWIGTYPE_p_std__shared_ptrT_falcon_core__Instrument_t,  0  | 0);
+    res3 = SWIG_ConvertPtr(swig_obj[2], &argp3, SWIGTYPE_p_Instrument,  0  | 0);
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "new_InstrumentPortGate" "', argument " "3"" of type '" "std::shared_ptr< falcon_core::Instrument >""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "new_InstrumentPortGate" "', argument " "3"" of type '" "Instrument""'"); 
     }  
     if (!argp3) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_InstrumentPortGate" "', argument " "3"" of type '" "std::shared_ptr< falcon_core::Instrument >""'");
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_InstrumentPortGate" "', argument " "3"" of type '" "Instrument""'");
     } else {
-      std::shared_ptr< falcon_core::Instrument > * temp = reinterpret_cast< std::shared_ptr< falcon_core::Instrument > * >(argp3);
+      Instrument * temp = reinterpret_cast< Instrument * >(argp3);
       arg3 = *temp;
       if (SWIG_IsNewObj(res3)) delete temp;
     }
@@ -19144,7 +19143,6 @@ static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Identity_t = {"_p_
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Impedance_t = {"_p_std__shared_ptrT_falcon_core__Impedance_t", "std::shared_ptr< falcon_core::Impedance > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__IncreasingAlignment_t = {"_p_std__shared_ptrT_falcon_core__IncreasingAlignment_t", "std::shared_ptr< falcon_core::IncreasingAlignment > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t = {"_p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t", "std::shared_ptr< falcon_core::InstrumentPort< falcon_core::Gate > > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Instrument_t = {"_p_std__shared_ptrT_falcon_core__Instrument_t", "std::shared_ptr< falcon_core::Instrument > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__InterpretationContext_t = {"_p_std__shared_ptrT_falcon_core__InterpretationContext_t", "std::shared_ptr< falcon_core::InterpretationContext > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__Jsonable_t = {"_p_std__shared_ptrT_falcon_core__Jsonable_t", "std::shared_ptr< falcon_core::Jsonable > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t = {"_p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t", "std::shared_ptr< falcon_core::LabelledControlArray1D > *", 0, 0, (void*)0, 0};
@@ -19273,7 +19271,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__shared_ptrT_falcon_core__Impedance_t,
   &_swigt__p_std__shared_ptrT_falcon_core__IncreasingAlignment_t,
   &_swigt__p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t,
-  &_swigt__p_std__shared_ptrT_falcon_core__Instrument_t,
   &_swigt__p_std__shared_ptrT_falcon_core__InterpretationContext_t,
   &_swigt__p_std__shared_ptrT_falcon_core__Jsonable_t,
   &_swigt__p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t,
@@ -19402,7 +19399,6 @@ static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Identity_t[] = {  
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Impedance_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Impedance_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__IncreasingAlignment_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__IncreasingAlignment_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Instrument_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Instrument_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__InterpretationContext_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__InterpretationContext_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__Jsonable_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__AnalyticFunction_t, _p_std__shared_ptrT_falcon_core__AnalyticFunction_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__Domain_t_t, _p_std__shared_ptrT_falcon_core__AxesT_falcon_core__Domain_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_t, _p_std__shared_ptrT_falcon_core__AxesT_falcon_core__MeasurementContext_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseArrayT_double_t_t, _p_std__shared_ptrT_falcon_core__BaseArrayT_double_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Gate_t_t, _p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Gate_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Ohmic_t_t, _p_std__shared_ptrT_falcon_core__BaseConnectionsT_falcon_core__Ohmic_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseDiscretizer_t, _p_std__shared_ptrT_falcon_core__BaseDiscretizer_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__BaseLabelledArraysT_falcon_core__LabelledControlArray1D_t_t, _p_std__shared_ptrT_falcon_core__BaseLabelledArraysT_falcon_core__LabelledControlArray1D_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__CartesianDiscretizer_t, _p_std__shared_ptrT_falcon_core__CartesianDiscretizer_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__ConstantFunction_t, _p_std__shared_ptrT_falcon_core__ConstantFunction_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__ControlArrayT_double_t_t, _p_std__shared_ptrT_falcon_core__ControlArrayT_double_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_t, _p_std__shared_ptrT_falcon_core__CoupledLabelledDomainT_falcon_core__BaseConnection_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Domain_t, _p_std__shared_ptrT_falcon_core__Domain_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__GateRelations_t, _p_std__shared_ptrT_falcon_core__GateRelations_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__IdentityTransform_t, _p_std__shared_ptrT_falcon_core__IdentityTransform_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Identity_t, _p_std__shared_ptrT_falcon_core__Identity_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Impedance_t, _p_std__shared_ptrT_falcon_core__Impedance_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__IncreasingAlignment_t, _p_std__shared_ptrT_falcon_core__IncreasingAlignment_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t, _p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__InterpretationContext_t, _p_std__shared_ptrT_falcon_core__InterpretationContext_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_t, _p_std__shared_ptrT_falcon_core__LabelledDomainT_falcon_core__BaseConnection_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Loader_t, _p_std__shared_ptrT_falcon_core__Loader_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__MeasuredArrayT_double_t_t, _p_std__shared_ptrT_falcon_core__MeasuredArrayT_double_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__MeasurementContext_t, _p_std__shared_ptrT_falcon_core__MeasurementContext_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__NameBaseT_int_t_t, _p_std__shared_ptrT_falcon_core__NameBaseT_int_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_t, _p_std__shared_ptrT_falcon_core__NameBaseT_std__string_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__PortTransform_t, _p_std__shared_ptrT_falcon_core__PortTransform_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__PortTransforms_t, _p_std__shared_ptrT_falcon_core__PortTransforms_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_t, _p_std__shared_ptrT_falcon_core__PortsT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__QuantityT_double_t_t, _p_std__shared_ptrT_falcon_core__QuantityT_double_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_t, _p_std__shared_ptrT_falcon_core__QuantityT_std__complexT_double_t_t_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Spaces_t, _p_std__shared_ptrT_falcon_core__Spaces_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__StandardConfigConnections_t, _p_std__shared_ptrT_falcon_core__StandardConfigConnections_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__SymbolUnit_t, _p_std__shared_ptrT_falcon_core__SymbolUnit_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Unit_t, _p_std__shared_ptrT_falcon_core__Unit_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__Waveform_t, _p_std__shared_ptrT_falcon_core__Waveform_tTo_p_std__shared_ptrT_falcon_core__Jsonable_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -19531,7 +19527,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__shared_ptrT_falcon_core__Impedance_t,
   _swigc__p_std__shared_ptrT_falcon_core__IncreasingAlignment_t,
   _swigc__p_std__shared_ptrT_falcon_core__InstrumentPortT_falcon_core__Gate_t_t,
-  _swigc__p_std__shared_ptrT_falcon_core__Instrument_t,
   _swigc__p_std__shared_ptrT_falcon_core__InterpretationContext_t,
   _swigc__p_std__shared_ptrT_falcon_core__Jsonable_t,
   _swigc__p_std__shared_ptrT_falcon_core__LabelledControlArray1D_t,
