@@ -18,9 +18,13 @@
 %shared_ptr(falcon_core::NameBase<int>);
 %shared_ptr(falcon_core::NameBase<std::string>);
 %shared_ptr(falcon_core::Channel);
+%nodefaultctor falcon_core::Channel;
 %shared_ptr(falcon_core::BaseConnection);
+%nodefaultctor falcon_core::BaseConnection;
 %shared_ptr(falcon_core::Gate);
+%nodefaultctor falcon_core::Gate;
 %shared_ptr(falcon_core::Ohmic);
+%nodefaultctor falcon_core::Ohmic;
 %shared_ptr(falcon_core::InstrumentPort<falcon_core::Gate>);
 %shared_ptr(falcon_core::Ports<falcon_core::InstrumentPort<falcon_core::Gate>>);
 %shared_ptr(falcon_core::BaseConnections<falcon_core::Gate>);

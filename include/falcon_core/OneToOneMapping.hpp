@@ -1,7 +1,6 @@
 #pragma once
 
 #include "falcon_core/Jsonable.hpp"
-#include <functional>
 #include <map>
 #include <nlohmann/json.hpp>
 #include <stdexcept>

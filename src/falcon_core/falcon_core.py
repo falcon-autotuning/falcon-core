@@ -727,36 +727,36 @@ class OneToOneMappingStringString(Jsonable):
 _falcon_core.OneToOneMappingStringString_swigregister(OneToOneMappingStringString)
 class Channel(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
 
     def to_json(self):
         return _falcon_core.Channel_to_json(self)
-
-    def __init__(self):
-        _falcon_core.Channel_swiginit(self, _falcon_core.new_Channel())
     __swig_destroy__ = _falcon_core.delete_Channel
 
 # Register Channel in _falcon_core:
 _falcon_core.Channel_swigregister(Channel)
 class BaseConnection(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
 
     def to_json(self):
         return _falcon_core.BaseConnection_to_json(self)
-
-    def __init__(self):
-        _falcon_core.BaseConnection_swiginit(self, _falcon_core.new_BaseConnection())
     __swig_destroy__ = _falcon_core.delete_BaseConnection
 
 # Register BaseConnection in _falcon_core:
 _falcon_core.BaseConnection_swigregister(BaseConnection)
 class Gate(BaseConnection):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
 
-    def __init__(self):
-        _falcon_core.Gate_swiginit(self, _falcon_core.new_Gate())
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
 
     def to_json(self):
         return _falcon_core.Gate_to_json(self)
@@ -766,10 +766,10 @@ class Gate(BaseConnection):
 _falcon_core.Gate_swigregister(Gate)
 class Ohmic(BaseConnection):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
 
-    def __init__(self):
-        _falcon_core.Ohmic_swiginit(self, _falcon_core.new_Ohmic())
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
 
     def to_json(self):
         return _falcon_core.Ohmic_to_json(self)
