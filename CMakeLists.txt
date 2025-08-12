@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 project(FalconCore LANGUAGES CXX C)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # --- Dependencies ---
@@ -34,6 +34,7 @@ FetchContent_Declare(
 # and ensures our project's C++ standard is used.
 set(EIGEN_BUILD_TESTING OFF CACHE BOOL "Disable Eigen tests" FORCE)
 FetchContent_MakeAvailable(eigen)
+set_property(DIRECTORY ${eigen_SOURCE_DIR} PROPERTY EXCLUDE_FROM_ALL TRUE)
 
 # --- SWIG and Python ---
 find_package(SWIG REQUIRED)
@@ -65,16 +66,25 @@ target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
 
 # --- SWIG Module ---
 set(SWIG_MODULE_NAME "falcon_core")
+<<<<<<< HEAD
 set_property(SOURCE swig/${SWIG_MODULE_NAME}.i PROPERTY CPLUSPLUS ON)
 set(CMAKE_SWIG_FLAGS -c++ -cpperraswarn)
+=======
+
+set_property(SOURCE swig/${SWIG_MODULE_NAME}.i PROPERTY CPLUSPLUS ON)
+
+>>>>>>> a0c46a44b586bc31633613c401acb75a9215aa05
 swig_add_library(${SWIG_MODULE_NAME}
     LANGUAGE python
     SOURCES swig/${SWIG_MODULE_NAME}.i
 )
 
+
+
 set_target_properties(${SWIG_MODULE_NAME} PROPERTIES
     PREFIX "_"
     SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE
+<<<<<<< HEAD
     LINKER_LANGUAGE CXX
 )
 
@@ -83,6 +93,8 @@ set_source_files_properties(
     ${CMAKE_CURRENT_BINARY_DIR}/falcon_corePYTHON_wrap.cpp
     PROPERTIES
     LANGUAGE CXX
+=======
+>>>>>>> a0c46a44b586bc31633613c401acb75a9215aa05
 )
 
 target_include_directories(${SWIG_MODULE_NAME} PRIVATE

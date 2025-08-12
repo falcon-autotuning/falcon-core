@@ -25,11 +25,32 @@ double Unit::get_conversion_factor(const Unit &target_unit) const {
 }
 
 nlohmann::json Unit::to_json() const {
+<<<<<<< HEAD
   nlohmann::json j;
   j["factor"] = _factor;
   j["dimension"] = _dimensions;
   add_metadata(j, "falcon_core", "Unit");
   return j;
 }
+=======
+    nlohmann::json j;
+    j["factor"] = _factor;
+    j["dimension"] = _dimension.to_json();
+    add_metadata(j, "falcon_core", "Unit");
+    return j;
+}
+
+size_t Unit::hash() const {
+    return std::hash<double>{}(_factor) ^ _dimension.hash();
+}
+
+// std::shared_ptr<Unit> Unit::operator*(const Unit& other) const {
+//     return std::make_shared<Unit>(_factor * other._factor, _dimension * other._dimension);
+// }
+
+// std::shared_ptr<Unit> Unit::operator/(const Unit& other) const {
+//     return std::make_shared<Unit>(_factor / other._factor, _dimension / other._dimension);
+// }
+>>>>>>> a0c46a44b586bc31633613c401acb75a9215aa05
 
 } // namespace falcon_core
