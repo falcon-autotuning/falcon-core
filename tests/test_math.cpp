@@ -105,9 +105,9 @@ using namespace falcon_core;
 //   ASSERT_FALSE (axes.empty ());
 // }
 //
-// #include "falcon_core/BaseConnection.hpp"
-// #include "falcon_core/CoupledLabelledDomain.hpp"
-// #include "falcon_core/LabelledDomain.hpp"
+// #include "falcon_core/physics/device_structures/BaseConnection.hpp"
+// #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
+// #include "falcon_core/math/domains/LabelledDomain.hpp"
 //
 // TEST (LabelledDomainTest, ConstructionAndAccessors)
 // {
@@ -143,10 +143,10 @@ using namespace falcon_core;
 //   ASSERT_TRUE (j.contains ("_coupled_domains"));
 // }
 //
-// #include "falcon_core/BaseLabelledArrays.hpp"
-// #include "falcon_core/Gate.hpp"
-// #include "falcon_core/InstrumentPort.hpp"
-// #include "falcon_core/LabelledControlArray1D.hpp"
+// #include "falcon_core/math/labelled_arrays/BaseLabelledArrays.hpp"
+// #include "falcon_core/physics/device_structures/Gate.hpp"
+// #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+// #include "falcon_core/math/labelled_arrays/LabelledControlArray1D.hpp"
 //
 // TEST (LabelledControlArray1DTest, ConstructionAndGetStart)
 // {
@@ -183,8 +183,8 @@ using namespace falcon_core;
 //   ASSERT_EQ (arrays.get_arrays ()[0], lca);
 // }
 //
-// #include "falcon_core/ControlArray1D.hpp"
-// #include "falcon_core/IncreasingAlignment.hpp"
+// #include "falcon_core/math/arrays/ControlArray1D.hpp"
+// #include "falcon_core/math/arrays/IncreasingAlignment.hpp"
 //
 // TEST (IncreasingAlignmentTest, Construction)
 // {
