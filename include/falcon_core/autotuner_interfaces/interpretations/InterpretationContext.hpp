@@ -1,8 +1,8 @@
 #pragma once
 
-#include "falcon_core/Axes.hpp"
-#include "falcon_core/Jsonable.hpp"
-#include "falcon_core/MeasurementContext.hpp"
+#include "falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp"
+#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/math/Axes.hpp"
 
 namespace falcon_core {
 

@@ -1,8 +1,10 @@
 #pragma once
 
+#include "falcon_core/generic/Jsonable.hpp"
 #include "falcon_core/physics/units/Prefix.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
 
+#include <memory>
 #include <string>
 // #include <memory>
 

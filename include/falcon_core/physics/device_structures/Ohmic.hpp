@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
 
 namespace falcon_core {
 

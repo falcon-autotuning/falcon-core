@@ -1,7 +1,7 @@
 #pragma once
 
-#include "falcon_core/Jsonable.hpp"
-#include "falcon_core/Quantity.hpp"
+#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/math/Quantity.hpp"
 #include <complex>
 
 namespace falcon_core {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "falcon_core/BaseConnections.hpp"
-#include "falcon_core/Channel.hpp"
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
+#include "falcon_core/physics/device_structures/Channel.hpp"
 
 namespace falcon_core {
 

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "falcon_core/BaseConnections.hpp"
-#include "falcon_core/Gate.hpp"
-#include "falcon_core/Jsonable.hpp"
+#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
+#include "falcon_core/physics/device_structures/Gate.hpp"
 #include <map>
 #include <memory>
 

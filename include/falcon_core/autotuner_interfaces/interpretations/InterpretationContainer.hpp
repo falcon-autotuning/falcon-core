@@ -1,7 +1,7 @@
 #pragma once
 
-#include "falcon_core/InterpretationContext.hpp"
-#include "falcon_core/Jsonable.hpp"
+#include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
+#include "falcon_core/generic/Jsonable.hpp"
 #include <map>
 #include <memory>
 #include <nlohmann/json.hpp>

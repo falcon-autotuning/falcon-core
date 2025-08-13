@@ -1,8 +1,8 @@
 #pragma once
 
-#include "falcon_core/BaseConnection.hpp"
-#include "falcon_core/Jsonable.hpp"
-#include "falcon_core/SymbolUnit.hpp"
+#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/units/SymbolUnit.hpp"
 
 #include <memory>
 

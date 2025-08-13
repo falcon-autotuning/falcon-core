@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/NameBase.hpp"
+#include "falcon_core/generic/NameBase.hpp"
 
 namespace falcon_core {
 

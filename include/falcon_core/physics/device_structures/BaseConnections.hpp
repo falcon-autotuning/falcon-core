@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/Jsonable.hpp"
+#include "falcon_core/generic/Jsonable.hpp"
 #include <algorithm>
 #include <memory>
 #include <stdexcept>

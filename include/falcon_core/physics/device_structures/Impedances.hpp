@@ -1,7 +1,7 @@
 #pragma once
 
-#include "falcon_core/Impedance.hpp"
-#include "falcon_core/Jsonable.hpp"
+#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/physics/device_structures/Impedance.hpp"
 #include <memory>
 #include <vector>
 

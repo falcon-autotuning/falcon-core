@@ -1,6 +1,7 @@
 #pragma once
 
-#include "falcon_core/Jsonable.hpp"
+#include "falcon_core/generic/Jsonable.hpp"
+#include <map>
 #include <string>
 
 namespace falcon_core {
