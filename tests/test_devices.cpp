@@ -1,8 +1,8 @@
-#include "falcon_core/BaseConnection.hpp"
-#include "falcon_core/Channel.hpp"
-#include "falcon_core/Gate.hpp"
-#include "falcon_core/NameBase.hpp"
-#include "falcon_core/Ohmic.hpp"
+#include "falcon_core/generic/NameBase.hpp"
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/Channel.hpp"
+#include "falcon_core/physics/device_structures/Gate.hpp"
+#include "falcon_core/physics/device_structures/Ohmic.hpp"
 
 #include <gtest/gtest.h>
 #include <string>
@@ -71,12 +71,12 @@ TEST (OhmicTest, InheritanceAndSerialization)
   ASSERT_EQ (j["_name"], "ohmic1");
 }
 
-#include "falcon_core/BaseConnections.hpp"
-#include "falcon_core/GateRelations.hpp"
-#include "falcon_core/Impedance.hpp"
-#include "falcon_core/Impedances.hpp"
-#include "falcon_core/Quantity.hpp"
-#include "falcon_core/SymbolUnit.hpp"
+#include "falcon_core/math/Quantity.hpp"
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
+#include "falcon_core/physics/device_structures/GateRelations.hpp"
+#include "falcon_core/physics/device_structures/Impedance.hpp"
+#include "falcon_core/physics/device_structures/Impedances.hpp"
+#include "falcon_core/physics/units/SymbolUnit.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
 
 #include <complex>

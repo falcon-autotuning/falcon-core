@@ -1,4 +1,4 @@
-#include "falcon_core/Domain.hpp"
+#include "falcon_core/math/domains/Domain.hpp"
 #include "falcon_core/constants.hpp"
 #include <functional>
 

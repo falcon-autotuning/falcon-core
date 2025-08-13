@@ -1,7 +1,7 @@
 #pragma once
 
 #include "falcon_core/Constants.hpp"
-#include "falcon_core/Jsonable.hpp"
+#include "falcon_core/generic/Jsonable.hpp"
 #include "falcon_core/physics/units/TotalDimensions.hpp"
 
 #include <memory>

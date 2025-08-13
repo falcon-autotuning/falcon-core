@@ -1,6 +1,6 @@
-#include "falcon_core/SymbolUnit.hpp"
-#include "falcon_core/Units.hpp"
+#include "falcon_core/physics/units/SymbolUnit.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
+#include "falcon_core/physics/units/Units.hpp"
 
 #include <gtest/gtest.h>
 

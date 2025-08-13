@@ -1,7 +1,7 @@
 #include "falcon_core/physics/units/Unit.hpp"
 
 #include "falcon_core/Constants.hpp"
-#include "falcon_core/Dimension.hpp"
+#include "falcon_core/physics/units/Dimension.hpp"
 #include "falcon_core/physics/units/Prefix.hpp"
 #include "falcon_core/physics/units/TotalDimensions.hpp"
 

@@ -1,17 +1,17 @@
-#include "falcon_core/MeasurementContext.hpp"
+#include "falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp"
 #include "falcon_core/constants.hpp"
 #include <functional>
 
 namespace falcon_core {
 
-MeasurementContext::MeasurementContext(std::shared_ptr<BaseConnection> connection, std::shared_ptr<SymbolUnit> unit)
+MeasurementContext::MeasurementContext(std::shared_ptr<physics::device_structures::BaseConnection> connection, std::shared_ptr<physics::units::SymbolUnit> unit)
     : _connection(std::move(connection)), _unit(std::move(unit)) {}
 
-const std::shared_ptr<BaseConnection>& MeasurementContext::connection() const {
+const std::shared_ptr<physics::device_structures::BaseConnection>& MeasurementContext::connection() const {
     return _connection;
 }
 
-const std::shared_ptr<SymbolUnit>& MeasurementContext::unit() const {
+const std::shared_ptr<physics::units::SymbolUnit>& MeasurementContext::unit() const {
     return _unit;
 }
 

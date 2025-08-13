@@ -1,4 +1,4 @@
-#include "falcon_core/SymbolUnit.hpp"
+#include "falcon_core/physics/units/SymbolUnit.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
 
 #include <gtest/gtest.h>
