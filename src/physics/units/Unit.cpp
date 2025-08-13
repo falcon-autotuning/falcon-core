@@ -23,8 +23,8 @@ Unit::Unit (TotalDimensions dimensions,
 std::shared_ptr<Unit>
 Unit::operator* (const Unit &other) const
 {
-  TotalDimensions copy_dims = _dimensions;
-  for (const auto &pair : other._dimensions)
+  TotalDimensions copy_dims = dimensions ();
+  for (const auto &pair : other.dimensions ())
     {
       const std::string &dim_ptr   = pair.first;
       const int         &power_ptr = pair.second;
@@ -41,42 +41,92 @@ Unit::operator* (const Unit &other) const
           copy_dims[dim_ptr] = power_ptr;
         }
     }
-  double new_scale = _scale_factor * other._scale_factor
-                     + _scale_factor * other._offset
-                     + _offset * other._scale_factor;
+  double new_scale = scale_factor () * other.scale_factor ()
+                     + scale_factor () * other.offset ()
+                     + offset () * other.scale_factor ();
 
   auto result = Prefix::prefix_multiplication (
-      std::string (1, _prefix), std::string (1, other._prefix), new_scale);
+      std::string (1, prefix ()), std::string (1, other.prefix ()), new_scale);
   double      &new_mult = result.first;
   std::string &prefix   = result.second;
 
   return std::make_shared<Unit> (
-      copy_dims, new_mult, prefix, _offset * other._offset);
+      copy_dims, new_mult, prefix, offset () * other.offset ());
 }
 
 std::shared_ptr<Unit>
 Unit::operator/ (const Unit &other) const
 {
-  TotalDimensions inv_dims = _dimensions;
-  for (const auto &pair : other._dimensions)
+  TotalDimensions inv_dims = dimensions ();
+  for (const auto &pair : other.dimensions ())
     {
       const std::string &dim_ptr   = pair.first;
       const int         &power_ptr = pair.second;
       inv_dims[dim_ptr]            = -power_ptr;
     }
-  auto result = Prefix::prefix_multiplication (
-      Prefix::get_symbol (-Prefix::get_value (std::string (1, other._prefix))),
-      SI::UNIT_SYMBOL,
-      1.0 / other._scale_factor);
+  auto result
+      = Prefix::prefix_multiplication (Prefix::get_symbol (-Prefix::get_value (
+                                           std::string (1, other.prefix ()))),
+                                       SI::UNIT_SYMBOL,
+                                       1.0 / other.scale_factor ());
   double      &new_mult = result.first;
   std::string &prefix   = result.second;
-  Unit         inverse_unit (
-      inv_dims,
-      new_mult,
-      prefix,
-      -other._offset
-          / (other._scale_factor * (other._scale_factor + other._offset)));
+  Unit         inverse_unit (inv_dims,
+                     new_mult,
+                     prefix,
+                     -other.offset ()
+                         / (other.scale_factor ()
+                            * (other.scale_factor () + other.offset ())));
   return (*this) * inverse_unit;
+}
+
+std::shared_ptr<Unit>
+Unit::operator^ (int power) const
+{
+  TotalDimensions new_dims;
+  for (const auto &pair : dimensions ())
+    {
+      const std::string &dim_ptr   = pair.first;
+      const int         &power_ptr = pair.second;
+      new_dims[dim_ptr]            = power_ptr * power;
+    }
+  double new_scale = std::pow (scale_factor (), power);
+  // Assuming _prefix and _offset can be copied directly
+  return std::make_shared<Unit> (new_dims, new_scale, offset (), prefix ());
+}
+
+std::shared_ptr<Unit>
+Unit::with_prefix (const std::string prefix) const
+{
+  int current_prefix_value
+      = Prefix::get_value (std::string (1, this->prefix ()));
+  if (!Prefix::is_valid (prefix))
+    {
+      throw std::invalid_argument ("Invalid prefix: " + prefix);
+    }
+  int    new_prefix_value = Prefix::get_value (prefix);
+  double new_scale_factor
+      = scale_factor () * pow (10, new_prefix_value - current_prefix_value);
+  return std::make_shared<Unit> (
+      dimensions (), new_scale_factor, offset (), prefix);
+}
+
+double
+Unit::convert_value_to (const double value, const Unit target_unit) const
+{
+  if (dimensions () != target_unit.dimensions ())
+    {
+      throw std::invalid_argument (
+          "Cannot convert between units with different dimensions.");
+    }
+  double base_value = (value - offset ()) / scale_factor ();
+  return (base_value / target_unit.scale_factor ()) - target_unit.offset ();
+}
+
+bool
+Unit::is_compatible_with (const Unit other) const
+{
+  return dimensions () == other.dimensions ();
 }
 
 } // namespace falcon_core
