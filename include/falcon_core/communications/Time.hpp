@@ -1,26 +1,21 @@
 #pragma once
 
-#include "falcon_core/generic/Song.hpp"
-
 #include <chrono>
 
-namespace falcon_core
-{
-namespace communications
-{
+#include "falcon_core/generic/Song.hpp"
 
-class Time : public generic::Song
-{
-public:
-  Time ();
+namespace falcon_core {
+namespace communications {
+
+class Time : public generic::Song<Time> {
+ public:
+  Time();
 
   // Returns seconds since epoch
-  long long      time () const;
-  nlohmann::json to_json () const override;
-  size_t         hash () const override;
+  long long time() const;
 
-private:
+ private:
   std::chrono::system_clock::time_point _now;
 };
-}
-} // namespace falcon_core
+}  // namespace communications
+}  // namespace falcon_core
