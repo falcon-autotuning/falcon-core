@@ -85,6 +85,13 @@ class Unit : public generic::Song<Unit> {
    */
   bool is_compatible_with(const Unit other) const;
 
+  struct UnitLess {
+    bool operator()(const std::shared_ptr<Unit> &a,
+                    const std::shared_ptr<Unit> &b) const {
+      throw std::logic_error("UnitLess comparator should not be used.");
+    }
+  };
+
  private:
   double          _scale_factor;  // Scale factor relative to SI base units
   double          _offset;        // Offset form base unit (e.g. for Celsius)

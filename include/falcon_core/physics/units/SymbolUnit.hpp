@@ -155,6 +155,13 @@ class SymbolUnit : public generic::Song<SymbolUnit> {
    */
   bool is_compatible_with(const std::shared_ptr<SymbolUnit> other) const;
 
+  struct SymbolUnitLess {
+    bool operator()(const std::shared_ptr<Unit> &a,
+                    const std::shared_ptr<Unit> &b) const {
+      throw std::logic_error("SymbolUnitLess comparator should not be used.");
+    }
+  };
+
  private:
   std::shared_ptr<Unit> _unit;
   std::string           _symbol;
