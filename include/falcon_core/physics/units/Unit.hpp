@@ -16,12 +16,12 @@ public:
   Unit (TotalDimensions dimensions,
         double          scale_factor = 1.0,
         double          offset       = 0.0,
-        char            prefix       = *SI::UNIT_SYMBOL);
+        std::string     prefix       = SI::UNIT_SYMBOL);
 
   /**
    * @brief The prefix applied to this unit.
    */
-  char
+  std::string
   prefix () const
   {
     return this->_prefix;
@@ -50,6 +50,26 @@ public:
   {
     return this->_offset;
   }
+
+  nlohmann::json
+  to_json () const override
+  {
+    nlohmann::json j;
+    j["dimensions"]   = _dimensions;   // Serialize the dimensions
+    j["scale_factor"] = _scale_factor; // Serialize the scale factor
+    j["offset"]       = _offset;       // Serialize the offset
+    j["prefix"]       = _prefix;       // Serialize the prefix
+    return j;
+  }
+
+  size_t
+  hash () const override
+  {
+    // Implement your hashing function here
+    return std::hash<std::string> () (
+        this->to_json ().dump ()); // Example implementation
+  }
+
   /*
    * @brief Multiply this unit by another unit.
    * @param other The unit to multiply by.
@@ -94,7 +114,7 @@ public:
 private:
   double          _scale_factor; // Scale factor relative to SI base units
   double          _offset;       // Offset form base unit (e.g. for Celsius)
-  char            _prefix;       // The SI prefix symbol (e.g. "k" for kilo)
+  std::string     _prefix;       // The SI prefix symbol (e.g. "k" for kilo)
   TotalDimensions _dimensions; // dictionary mapping dimensions to their powers
 };
 };

@@ -266,41 +266,52 @@ class Dimension(Jsonable):
 _falcon_core.Dimension_swigregister(Dimension)
 class Prefix(Jsonable):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined - class is abstract")
     __repr__ = _swig_repr
 
-    def __init__(self, symbol, factor):
-        _falcon_core.Prefix_swiginit(self, _falcon_core.new_Prefix(symbol, factor))
+    @staticmethod
+    def get_symbol(prefix_value):
+        return _falcon_core.Prefix_get_symbol(prefix_value)
 
-    def symbol(self):
-        return _falcon_core.Prefix_symbol(self)
+    @staticmethod
+    def get_value(prefix_symbol):
+        return _falcon_core.Prefix_get_value(prefix_symbol)
 
-    def factor(self):
-        return _falcon_core.Prefix_factor(self)
+    @staticmethod
+    def is_valid(prefix_symbol):
+        return _falcon_core.Prefix_is_valid(prefix_symbol)
 
-    def to_json(self):
-        return _falcon_core.Prefix_to_json(self)
-
-    def hash(self):
-        return _falcon_core.Prefix_hash(self)
+    @staticmethod
+    def prefix_multiplication(first_prefix, second_prefix, scale_factor):
+        return _falcon_core.Prefix_prefix_multiplication(first_prefix, second_prefix, scale_factor)
     __swig_destroy__ = _falcon_core.delete_Prefix
 
 # Register Prefix in _falcon_core:
 _falcon_core.Prefix_swigregister(Prefix)
+cvar = _falcon_core.cvar
+power_to_symbol = cvar.power_to_symbol
+symbol_to_power = cvar.symbol_to_power
+
 class Unit(Jsonable):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
-    def __init__(self, factor, dimensions):
-        _falcon_core.Unit_swiginit(self, _falcon_core.new_Unit(factor, dimensions))
+    def __init__(self, *args):
+        _falcon_core.Unit_swiginit(self, _falcon_core.new_Unit(*args))
 
-    def get_factor(self):
-        return _falcon_core.Unit_get_factor(self)
+    def prefix(self):
+        return _falcon_core.Unit_prefix(self)
 
     def dimensions(self):
         return _falcon_core.Unit_dimensions(self)
 
-    def get_conversion_factor(self, target_unit):
-        return _falcon_core.Unit_get_conversion_factor(self, target_unit)
+    def scale_factor(self):
+        return _falcon_core.Unit_scale_factor(self)
+
+    def offset(self):
+        return _falcon_core.Unit_offset(self)
 
     def to_json(self):
         return _falcon_core.Unit_to_json(self)
@@ -316,6 +327,18 @@ class Unit(Jsonable):
     __div__ = __truediv__
 
 
+
+    def __xor__(self, power):
+        return _falcon_core.Unit___xor__(self, power)
+
+    def with_prefix(self, prefix):
+        return _falcon_core.Unit_with_prefix(self, prefix)
+
+    def convert_value_to(self, value, target_unit):
+        return _falcon_core.Unit_convert_value_to(self, value, target_unit)
+
+    def is_compatible_with(self, other):
+        return _falcon_core.Unit_is_compatible_with(self, other)
     __swig_destroy__ = _falcon_core.delete_Unit
 
 # Register Unit in _falcon_core:

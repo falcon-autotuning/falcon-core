@@ -64,13 +64,12 @@ add_library(
   src/Jsonable.cpp
   src/Time.cpp
   src/Dimension.cpp
-  src/Prefix.cpp
-  src/Unit.cpp
+  src/physics/units/Prefix.cpp
   src/SymbolUnit.cpp
   src/Domain.cpp
   src/MeasurementContext.cpp
   src/Units.cpp
-  src/Unit.cpp)
+  src/physics/units/Unit.cpp)
 target_include_directories(
   falcon_core_cpp
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

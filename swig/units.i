@@ -1,8 +1,8 @@
 %{
 #include "falcon_core/Dimension.hpp"
-#include "falcon_core/Prefix.hpp"
+#include "falcon_core/physics/units/Prefix.hpp"
 #include "falcon_core/Sign.hpp"
-#include "falcon_core/Unit.hpp"
+#include "falcon_core/physics/units/Unit.hpp"
 #include "falcon_core/SymbolUnit.hpp"
 #include "falcon_core/Units.hpp"
 %}
@@ -15,8 +15,8 @@
 // wrappers for all classes, enums, and other constructs in these headers.
 %include "falcon_core/Sign.hpp"
 %include "falcon_core/Dimension.hpp"
-%include "falcon_core/Prefix.hpp"
-%include "falcon_core/Unit.hpp"
+%include "falcon_core/physics/units/Prefix.hpp"
+%include "falcon_core/physics/units/Unit.hpp"
 %include "falcon_core/SymbolUnit.hpp"
 %include "falcon_core/Units.hpp"
 

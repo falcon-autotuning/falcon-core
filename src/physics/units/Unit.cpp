@@ -14,7 +14,7 @@ namespace falcon_core
 Unit::Unit (TotalDimensions dimensions,
             double          scale_factor,
             double          offset,
-            char            prefix)
+            std::string     prefix)
     : _scale_factor (scale_factor), _dimensions (dimensions), _offset (offset),
       _prefix (prefix)
 {
@@ -45,13 +45,13 @@ Unit::operator* (const Unit &other) const
                      + scale_factor () * other.offset ()
                      + offset () * other.scale_factor ();
 
-  auto result = Prefix::prefix_multiplication (
-      std::string (1, prefix ()), std::string (1, other.prefix ()), new_scale);
+  auto result
+      = Prefix::prefix_multiplication (prefix (), other.prefix (), new_scale);
   double      &new_mult = result.first;
   std::string &prefix   = result.second;
 
   return std::make_shared<Unit> (
-      copy_dims, new_mult, prefix, offset () * other.offset ());
+      copy_dims, new_mult,  offset () * other.offset (), prefix);
 }
 
 std::shared_ptr<Unit>
@@ -64,19 +64,19 @@ Unit::operator/ (const Unit &other) const
       const int         &power_ptr = pair.second;
       inv_dims[dim_ptr]            = -power_ptr;
     }
-  auto result
-      = Prefix::prefix_multiplication (Prefix::get_symbol (-Prefix::get_value (
-                                           std::string (1, other.prefix ()))),
-                                       SI::UNIT_SYMBOL,
-                                       1.0 / other.scale_factor ());
-  double      &new_mult = result.first;
-  std::string &prefix   = result.second;
-  Unit         inverse_unit (inv_dims,
+  auto result = Prefix::prefix_multiplication (
+      Prefix::get_symbol (-Prefix::get_value (other.prefix ())),
+      SI::UNIT_SYMBOL,
+      1.0 / other.scale_factor ());
+  double      new_mult = result.first;
+  std::string prefix   = result.second;
+  Unit        inverse_unit (inv_dims,
                      new_mult,
-                     prefix,
+
                      -other.offset ()
                          / (other.scale_factor ()
-                            * (other.scale_factor () + other.offset ())));
+                            * (other.scale_factor () + other.offset ())),
+                     prefix);
   return (*this) * inverse_unit;
 }
 
@@ -98,8 +98,7 @@ Unit::operator^ (int power) const
 std::shared_ptr<Unit>
 Unit::with_prefix (const std::string prefix) const
 {
-  int current_prefix_value
-      = Prefix::get_value (std::string (1, this->prefix ()));
+  int current_prefix_value = Prefix::get_value (this->prefix ());
   if (!Prefix::is_valid (prefix))
     {
       throw std::invalid_argument ("Invalid prefix: " + prefix);
