@@ -76,7 +76,6 @@ add_library(
   src/physics/units/SymbolUnit.cpp # Corrected path
   src/math/domains/Domain.cpp # Corrected path
   src/autotuner_interfaces/contexts/MeasurementContext.cpp # Corrected path
-  src/physics/units/Units.cpp # Corrected path
   src/physics/units/Unit.cpp)
 target_include_directories(
   falcon_core_cpp

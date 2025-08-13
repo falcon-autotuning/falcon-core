@@ -12,11 +12,11 @@ Unit::Unit(TotalDimensions dimensions,
            double          scale_factor,
            double          offset,
            std::string     prefix)
-    : _scale_factor(scale_factor),
+    : generic::Song<Unit>("Unit"),
+      _scale_factor(scale_factor),
       _dimensions(dimensions),
       _offset(offset),
       _prefix(prefix) {}
-SONG_EXPAND_MEMBERS(Unit, UNIT_MEMBERS)
 
 std::shared_ptr<Unit> Unit::operator*(const Unit &other) const {
   TotalDimensions copy_dims = dimensions();

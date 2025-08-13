@@ -17,14 +17,16 @@ namespace falcon_core {
 namespace physics {
 namespace units {
 
-class Unit : public generic::Song {
+class Unit : public generic::Song<Unit> {
  public:
   Unit(TotalDimensions dimensions,
        double          scale_factor = 1.0,
        double          offset       = 0.0,
        std::string     prefix       = SI::UNIT_SYMBOL);
+  static constexpr const char *member_names[] = {
+      "_class_name", "_scale_factor", "_offset", "_prefix", "_dimensions"};
+  static std::string _static_class_name() { return "Unit"; }
 
-  SONG_EXPAND_MEMBERS(Unit, UNIT_MEMBERS)
   /**
    * @brief The prefix applied to this unit.
    */

@@ -4,26 +4,21 @@
 
 using namespace falcon_core::physics::units;
 
-bool
-is_valid (std::string dimension)
-{
-  return std::find (std::begin (falcon_core::SI::ALL_DIMENSIONS),
-                    std::end (falcon_core::SI::ALL_DIMENSIONS),
-                    dimension)
-         != std::end (falcon_core::SI::ALL_DIMENSIONS);
+bool is_valid(std::string dimension) {
+  using namespace falcon_core::SI;
+  return std::__find_if(std::begin(ALL_DIMENSIONS),
+                        std::end(ALL_DIMENSIONS),
+                        [&](const char* dim) { return dimension == dim; }) !=
+         std::end(ALL_DIMENSIONS);
 }
 
-TotalDimensions
-validate_dimensions (TotalDimensions dimensions)
-{
-  for (const auto &dim : dimensions)
-    {
-      if (!is_valid (dim.first))
-        {
-          std::ostringstream oss;
-          oss << "Invalid dimension: " << dim.first;
-          throw std::invalid_argument (oss.str ());
-        }
+TotalDimensions validate_dimensions(TotalDimensions dimensions) {
+  for (const auto& dim : dimensions) {
+    if (!is_valid(dim.first)) {
+      std::ostringstream oss;
+      oss << "Invalid dimension: " << dim.first;
+      throw std::invalid_argument(oss.str());
     }
+  }
   return dimensions;
 }

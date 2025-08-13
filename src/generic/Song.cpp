@@ -4,7 +4,7 @@
 #include <stdexcept>
 
 // --- SongRegistry Implementation ---
-using falcon_core::generic::Song;
+using namespace falcon_core::generic;
 SongRegistry& SongRegistry::instance() {
   static SongRegistry reg;
   return reg;
@@ -36,7 +36,7 @@ void pfr_from_json(const nlohmann::json& j,
                    T&                    obj,
                    const char* const (&names)[N]) {
   boost::pfr::for_each_field(obj, [&](auto& field, std::size_t idx) {
-    field = j.at(names[idx]).get<std::decay_t<decltype(field)>>();
+    field = j.at(names[idx]).template get<std::decay_t<decltype(field)>>();
   });
 }
 

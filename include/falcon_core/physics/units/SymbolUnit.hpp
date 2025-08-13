@@ -1,156 +1,143 @@
 #pragma once
 
+#include <memory>
+#include <string>
+
 #include "falcon_core/Constants.hpp"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/units/CommonUnits.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
 
-#include <memory>
-#include <string>
+namespace falcon_core {
+namespace physics {
+namespace units {
 
-namespace falcon_core
-{
-namespace physics
-{
-namespace units
-{
-
-class SymbolUnit : public generic::Song
-{
-public:
+class SymbolUnit : public generic::Song<SymbolUnit> {
+ public:
   /*
    * @brief Construct a SymbolUnit with a specific symbol and associated Unit.
    * @param unit The Unit object associated with this symbol.
    */
-  SymbolUnit (std::shared_ptr<Unit> unit);
+  SymbolUnit(std::shared_ptr<Unit> unit);
+  static constexpr const char *member_names[] = {
+      "_class_name", "_unit", "_symbol", "_name"};
+  static std::string _static_class_name() { return "SymbolUnit"; }
 
   const std::map<Unit, std::string> _UNIT_SYMBOLS = {
-    { common_units::Meter, SI::UNIT_SYMBOL_METER },
-    { common_units::Kilogram, SI::UNIT_SYMBOL_KILOGRAM },
-    { common_units::Second, SI::UNIT_NAME_SECOND },
-    { common_units::Ampere, SI::UNIT_SYMBOL_AMPERE },
-    { common_units::Kelvin, SI::UNIT_SYMBOL_KELVIN },
-    { common_units::Mole, SI::UNIT_SYMBOL_MOLE },
-    { common_units::Candela, SI::UNIT_SYMBOL_CANDELA },
-    { common_units::Hertz, SI::UNIT_SYMBOL_HERTZ },
-    { common_units::Newton, SI::UNIT_SYMBOL_NEWTON },
-    { common_units::Pascal, SI::UNIT_SYMBOL_PASCAL },
-    { common_units::Joule, SI::UNIT_SYMBOL_JOULE },
-    { common_units::Watt, SI::UNIT_SYMBOL_WATT },
-    { common_units::Coulomb, SI::UNIT_SYMBOL_COULOMB },
-    { common_units::Volt, SI::UNIT_SYMBOL_VOLT },
-    { common_units::Farad, SI::UNIT_SYMBOL_FARAD },
-    { common_units::Ohm, SI::UNIT_SYMBOL_OHM },
-    { common_units::Siemens, SI::UNIT_SYMBOL_SIEMENS },
-    { common_units::Weber, SI::UNIT_SYMBOL_WEBER },
-    { common_units::Tesla, SI::UNIT_SYMBOL_TESLA },
-    { common_units::Henry, SI::UNIT_SYMBOL_HENRY },
-    { common_units::Minute, SI::UNIT_SYMBOL_MINUTE },
-    { common_units::Hour, SI::UNIT_SYMBOL_HOUR },
-    { common_units::ElectronVolt, SI::UNIT_SYMBOL_ELECTRON_VOLT },
-    { common_units::Celsius, SI::UNIT_SYMBOL_CELSIUS },
-    { common_units::Fahrenheit, SI::UNIT_SYMBOL_FAHRENHEIT },
-    { common_units::Dimensionless, SI::UNIT_SYMBOL },
-    { common_units::Percent, SI::UNIT_SYMBOL_PERCENT },
-    { common_units::Radian, SI::UNIT_SYMBOL_RADIAN },
+      {common_units::Meter, SI::UNIT_SYMBOL_METER},
+      {common_units::Kilogram, SI::UNIT_SYMBOL_KILOGRAM},
+      {common_units::Second, SI::UNIT_NAME_SECOND},
+      {common_units::Ampere, SI::UNIT_SYMBOL_AMPERE},
+      {common_units::Kelvin, SI::UNIT_SYMBOL_KELVIN},
+      {common_units::Mole, SI::UNIT_SYMBOL_MOLE},
+      {common_units::Candela, SI::UNIT_SYMBOL_CANDELA},
+      {common_units::Hertz, SI::UNIT_SYMBOL_HERTZ},
+      {common_units::Newton, SI::UNIT_SYMBOL_NEWTON},
+      {common_units::Pascal, SI::UNIT_SYMBOL_PASCAL},
+      {common_units::Joule, SI::UNIT_SYMBOL_JOULE},
+      {common_units::Watt, SI::UNIT_SYMBOL_WATT},
+      {common_units::Coulomb, SI::UNIT_SYMBOL_COULOMB},
+      {common_units::Volt, SI::UNIT_SYMBOL_VOLT},
+      {common_units::Farad, SI::UNIT_SYMBOL_FARAD},
+      {common_units::Ohm, SI::UNIT_SYMBOL_OHM},
+      {common_units::Siemens, SI::UNIT_SYMBOL_SIEMENS},
+      {common_units::Weber, SI::UNIT_SYMBOL_WEBER},
+      {common_units::Tesla, SI::UNIT_SYMBOL_TESLA},
+      {common_units::Henry, SI::UNIT_SYMBOL_HENRY},
+      {common_units::Minute, SI::UNIT_SYMBOL_MINUTE},
+      {common_units::Hour, SI::UNIT_SYMBOL_HOUR},
+      {common_units::ElectronVolt, SI::UNIT_SYMBOL_ELECTRON_VOLT},
+      {common_units::Celsius, SI::UNIT_SYMBOL_CELSIUS},
+      {common_units::Fahrenheit, SI::UNIT_SYMBOL_FAHRENHEIT},
+      {common_units::Dimensionless, SI::UNIT_SYMBOL},
+      {common_units::Percent, SI::UNIT_SYMBOL_PERCENT},
+      {common_units::Radian, SI::UNIT_SYMBOL_RADIAN},
   };
 
   const std::map<Unit, std::string> _UNIT_NAMES = {
-    { common_units::Meter, SI::UNIT_NAME_METER },
-    { common_units::Kilogram, SI::UNIT_NAME_KILOGRAM },
-    { common_units::Second, SI::UNIT_NAME_SECOND },
-    { common_units::Ampere, SI::UNIT_NAME_AMPERE },
-    { common_units::Kelvin, SI::UNIT_NAME_KELVIN },
-    { common_units::Mole, SI::UNIT_NAME_MOLE },
-    { common_units::Candela, SI::UNIT_NAME_CANDELA },
-    { common_units::Hertz, SI::UNIT_NAME_HERTZ },
-    { common_units::Newton, SI::UNIT_NAME_NEWTON },
-    { common_units::Pascal, SI::UNIT_NAME_PASCAL },
-    { common_units::Joule, SI::UNIT_NAME_JOULE },
-    { common_units::Watt, SI::UNIT_NAME_WATT },
-    { common_units::Coulomb, SI::UNIT_NAME_COULOMB },
-    { common_units::Volt, SI::UNIT_NAME_VOLT },
-    { common_units::Farad, SI::UNIT_NAME_FARAD },
-    { common_units::Ohm, SI::UNIT_NAME_OHM },
-    { common_units::Siemens, SI::UNIT_NAME_SIEMENS },
-    { common_units::Weber, SI::UNIT_NAME_WEBER },
-    { common_units::Tesla, SI::UNIT_NAME_TESLA },
-    { common_units::Henry, SI::UNIT_NAME_HENRY },
-    { common_units::Minute, SI::UNIT_NAME_MINUTE },
-    { common_units::Hour, SI::UNIT_NAME_HOUR },
-    { common_units::ElectronVolt, SI::UNIT_NAME_ELECTRON_VOLT },
-    { common_units::Celsius, SI::UNIT_NAME_CELSIUS },
-    { common_units::Fahrenheit, SI::UNIT_NAME_FAHRENHEIT },
-    { common_units::Dimensionless, SI::UNIT_NAME_DIMENSIONLESS },
-    { common_units::Percent, SI::UNIT_NAME_PERCENT },
-    { common_units::Radian, SI::UNIT_NAME_RADIAN },
+      {common_units::Meter, SI::UNIT_NAME_METER},
+      {common_units::Kilogram, SI::UNIT_NAME_KILOGRAM},
+      {common_units::Second, SI::UNIT_NAME_SECOND},
+      {common_units::Ampere, SI::UNIT_NAME_AMPERE},
+      {common_units::Kelvin, SI::UNIT_NAME_KELVIN},
+      {common_units::Mole, SI::UNIT_NAME_MOLE},
+      {common_units::Candela, SI::UNIT_NAME_CANDELA},
+      {common_units::Hertz, SI::UNIT_NAME_HERTZ},
+      {common_units::Newton, SI::UNIT_NAME_NEWTON},
+      {common_units::Pascal, SI::UNIT_NAME_PASCAL},
+      {common_units::Joule, SI::UNIT_NAME_JOULE},
+      {common_units::Watt, SI::UNIT_NAME_WATT},
+      {common_units::Coulomb, SI::UNIT_NAME_COULOMB},
+      {common_units::Volt, SI::UNIT_NAME_VOLT},
+      {common_units::Farad, SI::UNIT_NAME_FARAD},
+      {common_units::Ohm, SI::UNIT_NAME_OHM},
+      {common_units::Siemens, SI::UNIT_NAME_SIEMENS},
+      {common_units::Weber, SI::UNIT_NAME_WEBER},
+      {common_units::Tesla, SI::UNIT_NAME_TESLA},
+      {common_units::Henry, SI::UNIT_NAME_HENRY},
+      {common_units::Minute, SI::UNIT_NAME_MINUTE},
+      {common_units::Hour, SI::UNIT_NAME_HOUR},
+      {common_units::ElectronVolt, SI::UNIT_NAME_ELECTRON_VOLT},
+      {common_units::Celsius, SI::UNIT_NAME_CELSIUS},
+      {common_units::Fahrenheit, SI::UNIT_NAME_FAHRENHEIT},
+      {common_units::Dimensionless, SI::UNIT_NAME_DIMENSIONLESS},
+      {common_units::Percent, SI::UNIT_NAME_PERCENT},
+      {common_units::Radian, SI::UNIT_NAME_RADIAN},
   };
 
   const std::map<std::string, std::string> _DIMENSION_SYMBOLS = {
-    { SI::DIMENSION_LENGTH, SI::UNIT_SYMBOL_METER },
-    { SI::DIMENSION_MASS, SI::UNIT_SYMBOL_KILOGRAM },
-    { SI::DIMENSION_TIME, SI::UNIT_SYMBOL_SECOND },
-    { SI::DIMENSION_CURRENT, SI::UNIT_SYMBOL_AMPERE },
-    { SI::DIMENSION_TEMPERATURE, SI::UNIT_SYMBOL_KELVIN },
-    { SI::DIMENSION_AMOUNT, SI::UNIT_SYMBOL_MOLE },
-    { SI::DIMENSION_LUMINOSITY, SI::UNIT_SYMBOL_CANDELA },
+      {SI::DIMENSION_LENGTH, SI::UNIT_SYMBOL_METER},
+      {SI::DIMENSION_MASS, SI::UNIT_SYMBOL_KILOGRAM},
+      {SI::DIMENSION_TIME, SI::UNIT_SYMBOL_SECOND},
+      {SI::DIMENSION_CURRENT, SI::UNIT_SYMBOL_AMPERE},
+      {SI::DIMENSION_TEMPERATURE, SI::UNIT_SYMBOL_KELVIN},
+      {SI::DIMENSION_AMOUNT, SI::UNIT_SYMBOL_MOLE},
+      {SI::DIMENSION_LUMINOSITY, SI::UNIT_SYMBOL_CANDELA},
   };
   /*
    * @brief Get the symbol of the unit.
    * @return The symbol as a string.
    */
-  const std::shared_ptr<Unit>
-  unit () const
-  {
-    return _unit;
-  }
+  const std::shared_ptr<Unit> unit() const { return _unit; }
   /*
    * @brief Get the name of the unit.
    * @return The name as a string.
    */
-  const std::string &
-  symbol () const
-  {
-    return _symbol;
-  }
+  const std::string &symbol() const { return _symbol; }
   /*
    * @brief Get the name of the unit.
    * @return The name as a string.
    */
-  const std::string &
-  name () const
-  {
-    return _name;
-  }
+  const std::string &name() const { return _name; }
   /*
    * @brief Multiply this symbol unit by another symbol unit.
    * @param other The symbol unit to multiply by.
    * @return A new SymbolUnit representing the product of this symbol unit and
    * the other.
    */
-  std::shared_ptr<SymbolUnit> operator* (const SymbolUnit &other) const;
-  std::shared_ptr<SymbolUnit> operator* (const Unit &other) const;
+  std::shared_ptr<SymbolUnit> operator*(const SymbolUnit &other) const;
+  std::shared_ptr<SymbolUnit> operator*(const Unit &other) const;
   /*
    * @brief Divide this symbol unit by another symbol unit.
    * @param other The symbol unit to divide by.
    * @return A new SymbolUnit representing the division of this symbol unit by
    * the other.
    */
-  std::shared_ptr<SymbolUnit> operator/ (const SymbolUnit &other) const;
-  std::shared_ptr<SymbolUnit> operator/ (const Unit &other) const;
+  std::shared_ptr<SymbolUnit> operator/(const SymbolUnit &other) const;
+  std::shared_ptr<SymbolUnit> operator/(const Unit &other) const;
   /*
    * @brief Raise the symbol unit to a power.
    * @param power The exponent to raise the symbol unit to.
    * @return A new SymbolUnit raised to the specified power.
    */
-  std::shared_ptr<SymbolUnit> operator^ (const int power) const;
+  std::shared_ptr<SymbolUnit> operator^(const int power) const;
   /*
    * @brief Apply a prefix to this symbol unit.
    * @param prefix The prefix symbol to apply (e.g. "k" for kilo
    * @return A new SymbolUnit with the specified prefix applied.
    * @throws std::invalid_argument if the prefix is not valid.
    */
-  std::shared_ptr<SymbolUnit> with_prefix (const std::string prefix) const;
+  std::shared_ptr<SymbolUnit> with_prefix(const std::string prefix) const;
   /*
    * @brief Convert a value from this symbol unit to a target symbol unit.
    * @param value The value in this symbol unit to convert.
@@ -158,18 +145,17 @@ public:
    * @return The converted value in the target symbol unit.
    * @throws std::invalid_argument if the units are not compatible.
    */
-  double
-  convert_value_to (const double                      value,
-                    const std::shared_ptr<SymbolUnit> target_unit) const;
+  double convert_value_to(const double                      value,
+                          const std::shared_ptr<SymbolUnit> target_unit) const;
   /*
    * @brief Check if this symbol unit is compatible with another symbol unit.
    * @param other The symbol unit to check compatibility with.
    * @return True if the symbol units are compatible (same dimensions), false
    * otherwise.
    */
-  bool is_compatible_with (const std::shared_ptr<SymbolUnit> other) const;
+  bool is_compatible_with(const std::shared_ptr<SymbolUnit> other) const;
 
-private:
+ private:
   std::shared_ptr<Unit> _unit;
   std::string           _symbol;
   std::string           _name;
@@ -178,25 +164,25 @@ private:
    * @brief Find a matching common unit for the given unit.
    * @return A pair containing the matching common unit's symbol and name.
    */
-  std::pair<std::string, std::string> _find_matching_common_unit () const;
+  std::pair<std::string, std::string> _find_matching_common_unit() const;
   /*
    * @brief Generate a symbol for the unit based on its dimensions.
    * @return A string representing the generated symbol.
    */
-  std::string _generate_symbol () const;
+  std::string _generate_symbol() const;
   /*
    * @brief Get the symbol for a given dimension.
    * @param dimension The dimension to get the symbol for.
    * @return A string representing the symbol for the dimension.
    */
-  std::string _get_dimension_symbol (std::string dimension) const;
+  std::string _get_dimension_symbol(std::string dimension) const;
   /*
    * @brief Generate a name for the unit based on its dimensions.
    * @return A string representing the generated name.
    */
-  std::string _generate_name () const;
+  std::string _generate_name() const;
 };
 
-}
-}
-} // namespace falcon_core
+}  // namespace units
+}  // namespace physics
+}  // namespace falcon_core
