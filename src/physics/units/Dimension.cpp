@@ -1,14 +1,14 @@
 #include "falcon_core/physics/units/Dimension.hpp"
 
+#include <algorithm>
 #include <sstream>
-
 using namespace falcon_core::physics::units;
 
 bool is_valid(std::string dimension) {
   using namespace falcon_core::SI;
-  return std::__find_if(std::begin(ALL_DIMENSIONS),
-                        std::end(ALL_DIMENSIONS),
-                        [&](const char* dim) { return dimension == dim; }) !=
+  return std::find_if(std::begin(ALL_DIMENSIONS),
+                      std::end(ALL_DIMENSIONS),
+                      [&](const char* dim) { return dimension == dim; }) !=
          std::end(ALL_DIMENSIONS);
 }
 
