@@ -6,7 +6,6 @@
 
 #include <memory>
 #include <nlohmann/json.hpp>
-#include <string>
 
 namespace falcon_core
 {
