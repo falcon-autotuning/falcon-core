@@ -19,9 +19,7 @@ const std::map<int, std::string> power_to_symbol
         { SI::MICRO_EXPONENT, SI::MICRO_SYMBOL },
         { SI::MILLI_EXPONENT, SI::MILLI_SYMBOL },
         { SI::CENTI_EXPONENT, SI::CENTI_SYMBOL },
-        { SI::DECI_EXPONENT, SI::DECI_SYMBOL },
         { SI::UNIT_EXPONENT, SI::UNIT_SYMBOL },
-        { SI::DECA_EXPONENT, SI::DECA_SYMBOL },
         { SI::HECTO_EXPONENT, SI::HECTO_SYMBOL },
         { SI::KILO_EXPONENT, SI::KILO_SYMBOL },
         { SI::MEGA_EXPONENT, SI::MEGA_SYMBOL },
@@ -51,19 +49,19 @@ public:
    * @param prefix_value The exponent value of the prefix.
    * @return The symbol corresponding to the prefix value.
    */
-  std::string get_symbol (int prefix_value);
+  static std::string get_symbol (int prefix_value);
   /*
    * @brief Get the exponent value for a prefix symbol.
    * @param prefix_symbol The symbol of the prefix.
    * @return The exponent value corresponding to the prefix symbol.
    */
-  int get_value (std::string prefix_symbol);
+  static int get_value (std::string prefix_symbol);
   /*
    * @brief Check if a prefix symbol is valid.
    * @param prefix_symbol The symbol of the prefix.
    * @return True if the prefix is valid
    */
-  bool is_valid (std::string prefix_symbol);
+  static bool is_valid (std::string prefix_symbol);
   /*
    * @brief Multiply two prefixes together.
    * @param first_prefix The first prefix symbol.
@@ -71,7 +69,7 @@ public:
    * @param scale_factor The scale factor to apply.
    * @return A pair containing the resulting prefix symbol and scale factor.
    */
-  std::pair<double, std::string>
+  static std::pair<double, std::string>
   prefix_multiplication (std::string first_prefix,
                          std::string second_prefix,
                          double      scale_factor);

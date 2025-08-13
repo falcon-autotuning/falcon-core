@@ -42,9 +42,7 @@ constexpr int NANO_EXPONENT  = -9;
 constexpr int MICRO_EXPONENT = -6;
 constexpr int MILLI_EXPONENT = -3;
 constexpr int CENTI_EXPONENT = -2;
-constexpr int DECI_EXPONENT  = -1;
 constexpr int UNIT_EXPONENT  = 0; // No prefix
-constexpr int DECA_EXPONENT  = 1;
 constexpr int HECTO_EXPONENT = 2;
 constexpr int KILO_EXPONENT  = 3;
 constexpr int MEGA_EXPONENT  = 6;
@@ -64,9 +62,7 @@ constexpr const char *NANO_SYMBOL  = "n";
 constexpr const char *MICRO_SYMBOL = "μ";
 constexpr const char *MILLI_SYMBOL = "m";
 constexpr const char *CENTI_SYMBOL = "c";
-constexpr const char *DECI_SYMBOL  = "d";
 constexpr const char *UNIT_SYMBOL  = ""; // No prefix
-constexpr const char *DECA_SYMBOL  = "da";
 constexpr const char *HECTO_SYMBOL = "h";
 constexpr const char *KILO_SYMBOL  = "k";
 constexpr const char *MEGA_SYMBOL  = "M";
@@ -79,10 +75,9 @@ constexpr const char *YOTTA_SYMBOL = "Y";
 
 constexpr const char *ALL_PREFIXES[]
     = { YOCTO_SYMBOL, ZEPTO_SYMBOL, ATTO_SYMBOL,  FEMTO_SYMBOL, PICO_SYMBOL,
-        NANO_SYMBOL,  MICRO_SYMBOL, MILLI_SYMBOL, CENTI_SYMBOL, DECI_SYMBOL,
-        UNIT_SYMBOL,  DECA_SYMBOL,  HECTO_SYMBOL, KILO_SYMBOL,  MEGA_SYMBOL,
-        GIGA_SYMBOL,  TERA_SYMBOL,  PETA_SYMBOL,  EXA_SYMBOL,   ZETTA_SYMBOL,
-        YOTTA_SYMBOL };
+        NANO_SYMBOL,  MICRO_SYMBOL, MILLI_SYMBOL, CENTI_SYMBOL, UNIT_SYMBOL,
+        HECTO_SYMBOL, KILO_SYMBOL,  MEGA_SYMBOL,  GIGA_SYMBOL,  TERA_SYMBOL,
+        PETA_SYMBOL,  EXA_SYMBOL,   ZETTA_SYMBOL, YOTTA_SYMBOL };
 // Physical dimension constants
 constexpr const char *DIMENSION_LENGTH      = "LENGTH";
 constexpr const char *DIMENSION_MASS        = "MASS";
