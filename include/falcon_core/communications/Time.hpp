@@ -11,6 +11,8 @@ class Time : public generic::Song<Time> {
  public:
   Time();
 
+  static constexpr const char *member_names[] = {"_class_name", "_now"};
+  static std::string           _static_class_name() { return "Time"; }
   // Returns seconds since epoch
   long long time() const;
 
