@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 project(FalconCore LANGUAGES CXX C)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # --- Dependencies ---
@@ -13,6 +13,14 @@ FetchContent_Declare(
   GIT_REPOSITORY https://github.com/nlohmann/json.git
   GIT_TAG v3.12.0)
 FetchContent_MakeAvailable(json)
+
+# boost/pfr
+FetchContent_Declare(
+  boost_pfr
+  GIT_REPOSITORY https://github.com/boostorg/pfr.git
+  GIT_TAG boost-1.85.0  # or the latest release tag
+)
+FetchContent_MakeAvailable(boost_pfr)
 
 # GoogleTest
 FetchContent_Declare(
@@ -74,7 +82,8 @@ target_include_directories(
   falcon_core_cpp
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
          $<INSTALL_INTERFACE:include> ${json_SOURCE_DIR}/include
-         ${eigen_SOURCE_DIR})
+         ${eigen_SOURCE_DIR}
+         ${boost_pfr_SOURCE_DIR}/include )
 target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
 
 # --- SWIG Module ---

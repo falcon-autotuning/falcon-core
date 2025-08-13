@@ -1,4 +1,4 @@
-BasedOnStyle: GNU
+BasedOnStyle: Google
 SortIncludes: CaseSensitive
 IncludeBlocks: Regroup
 AlignConsecutiveAssignments: Consecutive

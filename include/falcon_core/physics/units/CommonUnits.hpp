@@ -9,6 +9,8 @@ namespace physics
 {
 namespace units
 {
+namespace common_units
+{
 const Unit Meter (SI::DIMENSIONS_METER, 1.0, 0.0, SI::UNIT_SYMBOL_METER);
 const Unit
     Kilogram (SI::DIMENSIONS_KILOGRAM, 1.0, 0.0, SI::UNIT_SYMBOL_KILOGRAM);
@@ -104,6 +106,7 @@ std::shared_ptr<Unit> get_mega (Unit unit);
  * @return A shared pointer to the new unit with the giga- prefix.
  */
 std::shared_ptr<Unit> get_giga (Unit unit);
+}
 }
 }
 }
