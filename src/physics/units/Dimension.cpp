@@ -1,115 +1,29 @@
 #include "falcon_core/physics/units/Dimension.hpp"
 
-#include <functional>
-#include <map>
 #include <sstream>
 
-using namespace falcon_core;
-using physics::units::BaseDimension;
-using physics::units::Dimension;
-
-// Helper to convert BaseDimension to string
-static std::string
-base_dimension_to_string (BaseDimension dim)
-{
-  switch (dim)
-    {
-    case BaseDimension::LENGTH:
-      return "LENGTH";
-    case BaseDimension::MASS:
-      return "MASS";
-    case BaseDimension::TIME:
-      return "TIME";
-    case BaseDimension::CURRENT:
-      return "CURRENT";
-    case BaseDimension::TEMPERATURE:
-      return "TEMPERATURE";
-    case BaseDimension::LUMINOUS_INTENSITY:
-      return "LUMINOUS_INTENSITY";
-    case BaseDimension::AMOUNT_OF_SUBSTANCE:
-      return "AMOUNT_OF_SUBSTANCE";
-    }
-  return ""; // Should not happen
-}
-
-Dimension::Dimension (std::map<BaseDimension, int> dimensions)
-    : _dimensions (std::move (dimensions))
-{
-}
+using namespace falcon_core::physics::units;
 
 bool
-Dimension::is_dimensionless () const
+is_valid (std::string dimension)
 {
-  for (const auto &pair : _dimensions)
+  return std::find (std::begin (falcon_core::SI::ALL_DIMENSIONS),
+                    std::end (falcon_core::SI::ALL_DIMENSIONS),
+                    dimension)
+         != std::end (falcon_core::SI::ALL_DIMENSIONS);
+}
+
+TotalDimensions
+validate_dimensions (TotalDimensions dimensions)
+{
+  for (const auto &dim : dimensions)
     {
-      if (pair.second != 0)
+      if (!is_valid (dim.first))
         {
-          return false;
+          std::ostringstream oss;
+          oss << "Invalid dimension: " << dim.first;
+          throw std::invalid_argument (oss.str ());
         }
     }
-  return true;
-}
-
-std::string
-Dimension::to_string () const
-{
-  std::stringstream ss;
-  for (const auto &pair : _dimensions)
-    {
-      if (pair.second != 0)
-        {
-          ss << base_dimension_to_string (pair.first) << "^" << pair.second
-             << " ";
-        }
-    }
-  std::string result = ss.str ();
-  // remove trailing space
-  if (!result.empty ())
-    {
-      result.pop_back ();
-    }
-  return result;
-}
-
-nlohmann::json
-Dimension::to_json () const
-{
-  nlohmann::json j;
-  add_metadata (j, "falcon_core.physics.units.dimension", "Dimension");
-  nlohmann::json dims_json;
-  for (const auto &pair : _dimensions)
-    {
-      if (pair.second != 0)
-        {
-          dims_json[base_dimension_to_string (pair.first)] = pair.second;
-        }
-    }
-  j["_dimensions"] = dims_json;
-  return j;
-}
-
-size_t
-Dimension::hash () const
-{
-  size_t seed = _dimensions.size ();
-  for (const auto &pair : _dimensions)
-    {
-      seed ^= std::hash<int>{}(static_cast<int> (pair.first)) + 0x9e3779b9
-              + (seed << 6) + (seed >> 2);
-      seed ^= std::hash<int>{}(pair.second) + 0x9e3779b9 + (seed << 6)
-              + (seed >> 2);
-    }
-  return seed;
-}
-
-const std::map<BaseDimension, int> &
-Dimension::get_dimensions () const
-{
-  return _dimensions;
-}
-
-bool
-Dimension::operator== (const Dimension &other) const
-{
-  return _dimensions == other._dimensions;
+  return dimensions;
 }
