@@ -1,8 +1,12 @@
 #pragma once
 
-#include "falcon_core/math/analytic_function/AnalyticFunction.hpp"
+#include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 
 namespace falcon_core
+{
+namespace math
+{
+namespace analytic_functions
 {
 
 class ConstantFunction : public AnalyticFunction
@@ -22,8 +26,9 @@ public:
   to_json () const override
   {
     nlohmann::json j = AnalyticFunction::to_json ();
-    add_metadata (
-        j, "falcon_core.math.functions.analytic_function", "ConstantFunction");
+    add_metadata (j,
+                  "falcon_core.math.analytic_functions.analytic_function",
+                  "ConstantFunction");
     j["_value"] = _value;
     return j;
   }
@@ -31,5 +36,6 @@ public:
 private:
   double _value;
 };
-
+}
+}
 } // namespace falcon_core

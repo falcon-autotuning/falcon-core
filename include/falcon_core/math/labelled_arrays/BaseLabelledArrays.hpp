@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/labelled_arrays/BaseLabelledArray.hpp"
 
 #include <memory>
@@ -8,8 +8,11 @@
 
 namespace falcon_core
 {
-
-template <typename T> class BaseLabelledArrays : public Jsonable
+namespace math
+{
+namespace labelled_arrays
+{
+template <typename T> class BaseLabelledArrays : public generic::Song
 {
 public:
   using value_type     = T;
@@ -59,5 +62,6 @@ public:
 private:
   container_type _arrays;
 };
-
+}
+}
 } // namespace falcon_core

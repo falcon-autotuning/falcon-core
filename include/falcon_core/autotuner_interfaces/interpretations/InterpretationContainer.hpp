@@ -1,13 +1,17 @@
 #pragma once
 
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 #include <map>
 #include <memory>
 #include <nlohmann/json.hpp>
 
 namespace falcon_core
+{
+namespace autotuner_interfaces
+{
+namespace interpretations
 {
 
 struct InterpretationContextPtrCompare
@@ -22,7 +26,7 @@ struct InterpretationContextPtrCompare
   }
 };
 
-template <typename T> class InterpretationContainer : public Jsonable
+template <typename T> class InterpretationContainer : public generic::Song
 {
 public:
   using key_type    = std::shared_ptr<InterpretationContext>;
@@ -68,5 +72,6 @@ public:
 private:
   container_type _container;
 };
-
+}
+}
 } // namespace falcon_core

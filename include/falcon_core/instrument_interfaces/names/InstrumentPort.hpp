@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/Instrument.hpp"
 
 #include <memory>
@@ -8,8 +8,12 @@
 
 namespace falcon_core
 {
+namespace instrument_interfaces
+{
+namespace names
+{
 
-template <typename T> class InstrumentPort : public Jsonable
+template <typename T> class InstrumentPort : public generic::Song
 {
 public:
   InstrumentPort (std::string        default_name,
@@ -63,5 +67,6 @@ private:
   Instrument         _instrument_type;
   std::string        _description;
 };
-
+}
+}
 } // namespace falcon_core

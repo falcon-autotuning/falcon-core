@@ -2,7 +2,8 @@
 
 #include <map>
 #include <string>
-
+namespace falcon_core
+{
 // Mathematical and physical constants for unit conversions and calculations
 
 // The mathematical constant pi (π), ratio of a circle's circumference to its
@@ -254,4 +255,5 @@ constexpr const char *VOLTMETER         = "voltmeter";
 constexpr const char *FPGA              = "fpga";
 constexpr const char *CLOCK             = "clock";
 constexpr const char *DISCRETE          = "discrete";
+}
 }

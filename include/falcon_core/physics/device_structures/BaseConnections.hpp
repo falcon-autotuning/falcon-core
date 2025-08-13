@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 #include <algorithm>
 #include <memory>
@@ -9,8 +9,12 @@
 
 namespace falcon_core
 {
+namespace physics
+{
+namespace device_structures
+{
 
-template <typename T> class BaseConnections : public Jsonable
+template <typename T> class BaseConnections : public generic::Song
 {
 public:
   using value_type     = T;
@@ -71,5 +75,6 @@ public:
 private:
   container_type _connections;
 };
-
+}
+}
 } // namespace falcon_core

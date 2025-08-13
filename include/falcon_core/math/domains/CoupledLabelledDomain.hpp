@@ -6,6 +6,10 @@
 
 namespace falcon_core
 {
+namespace math
+{
+namespace domains
+{
 
 template <typename T> class CoupledLabelledDomain : public LabelledDomain<T>
 {
@@ -57,5 +61,6 @@ public:
 private:
   std::vector<std::shared_ptr<LabelledDomain<T>>> _coupled_domains;
 };
-
+}
+}
 } // namespace falcon_core

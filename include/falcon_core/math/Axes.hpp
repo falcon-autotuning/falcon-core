@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 #include <memory>
 #include <nlohmann/json.hpp>
@@ -8,8 +8,10 @@
 
 namespace falcon_core
 {
+namespace math
+{
 
-template <typename T> class Axes : public Jsonable
+template <typename T> class Axes : public generic::Song
 {
 public:
   using value_type     = std::shared_ptr<T>;
@@ -81,5 +83,5 @@ public:
 private:
   container_type _items;
 };
-
+}
 } // namespace falcon_core

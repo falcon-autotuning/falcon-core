@@ -3,9 +3,7 @@
 #include "falcon_core/constants.hpp"
 
 #include <functional>
-
-namespace falcon_core
-{
+using namespace falcon_core::math::domains;
 
 nlohmann::json
 Domain::to_json () const
@@ -24,5 +22,3 @@ Domain::hash () const
   size_t h2 = std::hash<double>{}(_max);
   return h1 ^ (h2 << 1);
 }
-
-} // namespace falcon_core

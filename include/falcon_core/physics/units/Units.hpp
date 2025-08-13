@@ -6,6 +6,10 @@
 
 namespace falcon_core
 {
+namespace physics
+{
+namespace units
+{
 
 class Units
 {
@@ -18,5 +22,6 @@ public:
   static std::shared_ptr<SymbolUnit> Hz ();
   static std::shared_ptr<SymbolUnit> dimensionless ();
 };
-
+}
+}
 } // namespace falcon_core

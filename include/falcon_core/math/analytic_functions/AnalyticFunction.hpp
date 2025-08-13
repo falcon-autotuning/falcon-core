@@ -1,11 +1,15 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core
 {
+namespace math
+{
+namespace analytic_functions
+{
 
-class AnalyticFunction : public Jsonable
+class AnalyticFunction : public generic::Song
 {
 public:
   virtual ~AnalyticFunction ()             = default;
@@ -15,8 +19,9 @@ public:
   to_json () const override
   {
     nlohmann::json j;
-    add_metadata (
-        j, "falcon_core.math.functions.analytic_function", "AnalyticFunction");
+    add_metadata (j,
+                  "falcon_core.math.analytic_functions.analytic_function",
+                  "AnalyticFunction");
     return j;
   }
 
@@ -26,5 +31,6 @@ public:
     return 0; // Base hash
   }
 };
-
+}
+}
 } // namespace falcon_core

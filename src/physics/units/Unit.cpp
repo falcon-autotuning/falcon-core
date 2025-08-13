@@ -1,15 +1,12 @@
 #include "falcon_core/physics/units/Unit.hpp"
 
 #include "falcon_core/Constants.hpp"
-#include "falcon_core/physics/units/Dimension.hpp"
 #include "falcon_core/physics/units/Prefix.hpp"
 #include "falcon_core/physics/units/TotalDimensions.hpp"
 
 #include <stdexcept>
 #include <string>
-
-namespace falcon_core
-{
+using namespace falcon_core::physics::units;
 
 Unit::Unit (TotalDimensions dimensions,
             double          scale_factor,
@@ -127,5 +124,3 @@ Unit::is_compatible_with (const Unit other) const
 {
   return dimensions () == other.dimensions ();
 }
-
-} // namespace falcon_core

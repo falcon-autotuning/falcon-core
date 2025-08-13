@@ -6,6 +6,10 @@
 
 namespace falcon_core
 {
+namespace math
+{
+namespace labelled_arrays
+{
 
 // This is a mixin-like template class.
 // The Derived class is expected to have a `get_array()` method.
@@ -24,5 +28,6 @@ public:
     return array.data () (0);
   }
 };
-
+}
+}
 } // namespace falcon_core

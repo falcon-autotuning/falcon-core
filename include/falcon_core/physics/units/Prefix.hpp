@@ -1,12 +1,16 @@
 #pragma once
 
 #include "falcon_core/Constants.hpp"
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 #include <map>
 #include <string>
 
 namespace falcon_core
+{
+namespace physics
+{
+namespace units
 {
 
 const std::map<int, std::string> power_to_symbol
@@ -30,17 +34,6 @@ const std::map<int, std::string> power_to_symbol
         { SI::ZETTA_EXPONENT, SI::ZETTA_SYMBOL },
         { SI::YOTTA_EXPONENT, SI::YOTTA_SYMBOL } };
 
-// const std::map<std::string, int> symbol_to_power = [] {
-//   std::map<std::string, int> m;
-//   for (const auto &pair : power_to_symbol)
-//     {
-//       // const int         *exp_ptr    = &pair.first;
-//       // const std::string *symbol_ptr = &pair.second;
-//       m[pair.second] = pair.first;
-//     }
-//   return m;
-// }();
-
 const std::map<std::string, int> symbol_to_power
     = { { SI::YOCTO_SYMBOL, SI::YOCTO_EXPONENT },
         { SI::ZEPTO_SYMBOL, SI::ZEPTO_EXPONENT },
@@ -62,7 +55,7 @@ const std::map<std::string, int> symbol_to_power
         { SI::ZETTA_SYMBOL, SI::ZETTA_EXPONENT },
         { SI::YOTTA_SYMBOL, SI::YOTTA_EXPONENT } };
 
-class Prefix : public Jsonable
+class Prefix : public generic::Song
 {
 public:
   /*
@@ -95,4 +88,6 @@ public:
                          std::string second_prefix,
                          double      scale_factor);
 };
+}
+}
 } // namespace falcon_core

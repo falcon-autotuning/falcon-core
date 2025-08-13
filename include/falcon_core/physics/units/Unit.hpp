@@ -1,7 +1,7 @@
 #pragma once
 
 #include "falcon_core/Constants.hpp"
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/units/TotalDimensions.hpp"
 
 #include <memory>
@@ -9,8 +9,12 @@
 
 namespace falcon_core
 {
+namespace physics
+{
+namespace units
+{
 
-class Unit : public Jsonable
+class Unit : public generic::Song
 {
 public:
   Unit (TotalDimensions dimensions,
@@ -117,4 +121,6 @@ private:
   std::string     _prefix;       // The SI prefix symbol (e.g. "k" for kilo)
   TotalDimensions _dimensions; // dictionary mapping dimensions to their powers
 };
+}
+}
 };

@@ -1,7 +1,6 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
-#include "falcon_core/physics/units/Prefix.hpp"
+#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
 
 #include <memory>
@@ -15,7 +14,7 @@ namespace physics
 namespace units
 {
 
-class SymbolUnit : public Jsonable
+class SymbolUnit : public generic::Song
 {
 public:
   SymbolUnit (std::shared_ptr<Unit> unit, std::string symbol);

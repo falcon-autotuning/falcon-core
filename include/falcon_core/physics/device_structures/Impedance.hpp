@@ -1,17 +1,21 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/Quantity.hpp"
 
 #include <complex>
 
 namespace falcon_core
 {
+namespace physics
+{
+namespace device_structures
+{
 
-class Impedance : public Jsonable
+class Impedance : public generic::Song
 {
 public:
-  using ComplexQuantity = Quantity<std::complex<double>>;
+  using ComplexQuantity = math::Quantity<std::complex<double>>;
 
   Impedance (std::shared_ptr<ComplexQuantity> impedance)
       : _impedance (std::move (impedance))
@@ -43,5 +47,6 @@ public:
 private:
   std::shared_ptr<ComplexQuantity> _impedance;
 };
-
+}
+}
 } // namespace falcon_core

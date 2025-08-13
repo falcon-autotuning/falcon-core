@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 #include <map>
 #include <nlohmann/json.hpp>
@@ -8,8 +8,10 @@
 
 namespace falcon_core
 {
+namespace generic
+{
 
-template <typename K, typename V> class OneToOneMapping : public Jsonable
+template <typename K, typename V> class OneToOneMapping : public generic::Song
 {
 public:
   OneToOneMapping () = default;
@@ -67,5 +69,5 @@ private:
   std::map<K, V> _forward;
   std::map<V, K> _backward;
 };
-
+}
 } // namespace falcon_core

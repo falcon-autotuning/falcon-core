@@ -1,11 +1,15 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core
 {
+namespace math
+{
+namespace arrays
+{
 
-class IncreasingAlignment : public Jsonable
+class IncreasingAlignment : public generic::Song
 {
 public:
   IncreasingAlignment () = default;
@@ -27,5 +31,6 @@ public:
     return 1;
   }
 };
-
+}
+}
 } // namespace falcon_core

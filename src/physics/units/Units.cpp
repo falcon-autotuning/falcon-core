@@ -1,9 +1,7 @@
 #include "falcon_core/physics/units/Units.hpp"
 
 #include <map>
-
-namespace falcon_core
-{
+using namespace falcon_core::physics::units;
 
 // Helper functions to create dimensions for common units
 static std::map<std::string, int>
@@ -66,5 +64,3 @@ Units::dimensionless ()
   auto unit = std::make_shared<Unit> (dimensionless_dims ());
   return std::make_shared<SymbolUnit> (unit, "");
 }
-
-} // namespace falcon_core

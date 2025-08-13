@@ -4,6 +4,10 @@
 
 namespace falcon_core
 {
+namespace math
+{
+namespace discretizers
+{
 
 class CartesianDiscretizer : public BaseDiscretizer
 {
@@ -20,5 +24,6 @@ public:
     return j;
   }
 };
-
+}
+}
 } // namespace falcon_core

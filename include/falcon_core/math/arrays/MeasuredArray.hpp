@@ -4,6 +4,10 @@
 
 namespace falcon_core
 {
+namespace math
+{
+namespace arrays
+{
 
 template <typename T> class MeasuredArray : public BaseArray<T>
 {
@@ -22,5 +26,6 @@ public:
     return j;
   }
 };
-
+}
+}
 } // namespace falcon_core

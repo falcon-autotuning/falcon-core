@@ -1,14 +1,17 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 #include <memory>
 #include <vector>
 
 namespace falcon_core
 {
-
-template <typename T> class Ports : public Jsonable
+namespace instrument_interfaces
+{
+namespace names
+{
+template <typename T> class Ports : public generic::Song
 {
 public:
   using value_type     = T;
@@ -56,5 +59,6 @@ public:
 private:
   container_type _ports;
 };
-
+}
+}
 } // namespace falcon_core

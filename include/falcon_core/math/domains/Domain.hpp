@@ -1,14 +1,17 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 #include <nlohmann/json.hpp>
 #include <stdexcept>
 
 namespace falcon_core
 {
-
-class Domain : public Jsonable
+namespace math
+{
+namespace domains
+{
+class Domain : public generic::Song
 {
 public:
   Domain (double min_val, double max_val) : _min (min_val), _max (max_val)
@@ -42,5 +45,6 @@ private:
   double _min;
   double _max;
 };
-
+}
+}
 } // namespace falcon_core

@@ -4,6 +4,10 @@
 
 namespace falcon_core
 {
+namespace physics
+{
+namespace device_structures
+{
 
 class Gate : public BaseConnection
 {
@@ -18,5 +22,6 @@ public:
     return j;
   }
 };
-
+}
+}
 } // namespace falcon_core

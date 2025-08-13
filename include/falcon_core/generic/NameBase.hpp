@@ -1,14 +1,15 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 #include <functional>
 #include <nlohmann/json.hpp>
 
 namespace falcon_core
 {
-
-template <typename T> class NameBase : public Jsonable
+namespace generic
+{
+template <typename T> class NameBase : public Song
 {
 public:
   NameBase (T name) : _name (name) {}
@@ -37,5 +38,5 @@ public:
 protected:
   T _name;
 };
-
+}
 } // namespace falcon_core

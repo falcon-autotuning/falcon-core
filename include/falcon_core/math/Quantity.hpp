@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
 #include <complex>
@@ -38,11 +38,13 @@ template <typename T> struct hash<std::complex<T>>
 
 namespace falcon_core
 {
+namespace math
+{
 
-template <typename T> class Quantity : public Jsonable
+template <typename T> class Quantity : public generic::Song
 {
 public:
-  Quantity (T value, std::shared_ptr<SymbolUnit> unit)
+  Quantity (T value, std::shared_ptr<physics::units::SymbolUnit> unit)
       : _value (value), _unit (std::move (unit))
   {
   }
@@ -52,7 +54,7 @@ public:
   {
     return _value;
   }
-  const std::shared_ptr<SymbolUnit> &
+  const std::shared_ptr<physics::units::SymbolUnit> &
   unit () const
   {
     return _unit;
@@ -62,8 +64,8 @@ public:
   size_t         hash () const override;
 
 private:
-  T                           _value;
-  std::shared_ptr<SymbolUnit> _unit;
+  T                                           _value;
+  std::shared_ptr<physics::units::SymbolUnit> _unit;
 };
 
 template <typename T>
@@ -85,5 +87,5 @@ Quantity<T>::hash () const
   size_t h2 = _unit ? _unit->hash () : 0;
   return h1 ^ (h2 << 1);
 }
-
+}
 } // namespace falcon_core

@@ -1,6 +1,5 @@
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
-#include "falcon_core/constants.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
 
 #include <functional>

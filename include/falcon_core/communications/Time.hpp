@@ -1,13 +1,15 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 #include <chrono>
 
 namespace falcon_core
 {
+namespace communications
+{
 
-class Time : public Jsonable
+class Time : public generic::Song
 {
 public:
   Time ();
@@ -20,5 +22,5 @@ public:
 private:
   std::chrono::system_clock::time_point _now;
 };
-
+}
 } // namespace falcon_core

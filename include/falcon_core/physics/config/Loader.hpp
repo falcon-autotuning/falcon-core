@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 
 #include <memory>
@@ -8,13 +8,17 @@
 
 namespace falcon_core
 {
+namespace physics
+{
+namespace config
+{
 
 // This is a placeholder for the Loader. A full implementation would require
 // a factory pattern to deserialize from JSON into the correct C++ types.
-class Loader : public Jsonable
+class Loader : public generic::Song
 {
 public:
-  Loader (std::shared_ptr<StandardConfigConnections> config)
+  Loader (std::shared_ptr<core::StandardConfigConnections> config)
       : _config (std::move (config))
   {
   }
@@ -35,7 +39,8 @@ public:
   }
 
 private:
-  std::shared_ptr<StandardConfigConnections> _config;
+  std::shared_ptr<core::StandardConfigConnections> _config;
 };
-
+}
+}
 } // namespace falcon_core

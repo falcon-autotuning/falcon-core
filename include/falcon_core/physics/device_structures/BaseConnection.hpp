@@ -6,8 +6,11 @@
 
 namespace falcon_core
 {
-
-class BaseConnection : public NameBase<std::string>
+namespace physics
+{
+namespace device_structures
+{
+class BaseConnection : public generic::NameBase<std::string>
 {
 public:
   using NameBase<std::string>::NameBase;
@@ -22,5 +25,6 @@ public:
     return j;
   }
 };
-
+}
+}
 } // namespace falcon_core

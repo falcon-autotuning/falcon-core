@@ -4,7 +4,12 @@
 
 #include <stdexcept>
 
-using namespace falcon_core;
+namespace falcon_core
+{
+namespace math
+{
+namespace arrays
+{
 
 class ControlArray1D : public ControlArray<double>
 {
@@ -33,3 +38,6 @@ public:
     return j;
   }
 };
+}
+}
+}

@@ -4,8 +4,11 @@
 
 namespace falcon_core
 {
-
-class Channel : public NameBase<int>
+namespace physics
+{
+namespace device_structures
+{
+class Channel : public generic::NameBase<int>
 {
 public:
   using NameBase<int>::NameBase;
@@ -19,5 +22,6 @@ public:
     return j;
   }
 };
-
+}
+}
 } // namespace falcon_core

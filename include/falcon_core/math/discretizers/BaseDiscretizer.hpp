@@ -1,17 +1,20 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/domains/Domain.hpp"
 
 #include <memory>
 
 namespace falcon_core
 {
-
-class BaseDiscretizer : public Jsonable
+namespace math
+{
+namespace discretizers
+{
+class BaseDiscretizer : public generic::Song
 {
 public:
-  BaseDiscretizer (double delta, std::shared_ptr<Domain> delta_domain)
+  BaseDiscretizer (double delta, std::shared_ptr<domains::Domain> delta_domain)
       : _delta (delta), _delta_domain (std::move (delta_domain))
   {
   }
@@ -29,7 +32,7 @@ public:
     _delta = delta;
   }
 
-  const std::shared_ptr<Domain> &
+  const std::shared_ptr<domains::Domain> &
   delta_domain () const
   {
     return _delta_domain;
@@ -59,8 +62,9 @@ public:
   }
 
 private:
-  double                  _delta;
-  std::shared_ptr<Domain> _delta_domain;
+  double                           _delta;
+  std::shared_ptr<domains::Domain> _delta_domain;
 };
-
+}
+}
 } // namespace falcon_core

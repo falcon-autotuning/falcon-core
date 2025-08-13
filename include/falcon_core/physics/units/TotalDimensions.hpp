@@ -4,5 +4,11 @@
 #include <string>
 namespace falcon_core
 {
+namespace physics
+{
+namespace units
+{
 using TotalDimensions = std::map<std::string, int>;
+}
+}
 }

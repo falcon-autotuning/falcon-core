@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/BaseConnections.hpp"
 #include "falcon_core/physics/device_structures/Gate.hpp"
 
@@ -8,6 +8,10 @@
 #include <memory>
 
 namespace falcon_core
+{
+namespace physics
+{
+namespace device_structures
 {
 
 // Using BaseConnections<Gate> as a placeholder for the value type 'Gates'
@@ -28,7 +32,7 @@ struct GatePtrCompare
   }
 };
 
-class GateRelations : public Jsonable
+class GateRelations : public generic::Song
 {
 public:
   using key_type       = std::shared_ptr<Gate>;
@@ -63,5 +67,6 @@ public:
 private:
   container_type _relations;
 };
-
+}
+}
 } // namespace falcon_core

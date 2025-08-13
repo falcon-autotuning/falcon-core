@@ -1,26 +1,30 @@
 #pragma once
 
-#include "falcon_core/instrument_interfaces/InstrumentPort.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/arrays/ControlArray1D.hpp"
 #include "falcon_core/math/labelled_arrays/BaseLabelledArray.hpp"
 #include "falcon_core/math/labelled_arrays/IsLabelled1D.hpp"
 #include "falcon_core/physics/device_structures/Gate.hpp"
 namespace falcon_core
 {
-
-using LabelType = InstrumentPort<Gate>;
+namespace math
+{
+namespace labelled_arrays
+{
+using LabelType = instrument_interfaces::names::InstrumentPort<
+    physics::device_structures::Gate>;
 
 class LabelledControlArray1D
-    : public BaseLabelledArray<ControlArray1D, LabelType>,
+    : public BaseLabelledArray<arrays::ControlArray1D, LabelType>,
       public IsLabelled1D<LabelledControlArray1D>
 {
 public:
-  LabelledControlArray1D (std::shared_ptr<ControlArray1D>       array,
-                          std::shared_ptr<InstrumentPort<Gate>> label)
-      : BaseLabelledArray<ControlArray1D, InstrumentPort<Gate>> (array, label)
+  LabelledControlArray1D (std::shared_ptr<arrays::ControlArray1D> array,
+                          std::shared_ptr<LabelType>              label)
+      : BaseLabelledArray<arrays::ControlArray1D, LabelType> (array, label)
   {
   }
-  const ControlArray1D &
+  const arrays::ControlArray1D &
   get_array () const
   {
     if (!this->_array)
@@ -40,5 +44,6 @@ public:
     return j;
   }
 };
-
+}
+}
 } // namespace falcon_core

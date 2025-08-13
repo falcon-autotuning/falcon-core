@@ -1,11 +1,15 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 #include <map>
 #include <string>
 
 namespace falcon_core
+{
+namespace physics
+{
+namespace units
 {
 
 enum class BaseDimension
@@ -19,7 +23,7 @@ enum class BaseDimension
   AMOUNT_OF_SUBSTANCE
 };
 
-class Dimension : public Jsonable
+class Dimension : public generic::Song
 {
 public:
   Dimension (std::map<BaseDimension, int> dimensions);
@@ -39,5 +43,6 @@ public:
 private:
   std::map<BaseDimension, int> _dimensions;
 };
-
+}
+}
 } // namespace falcon_core

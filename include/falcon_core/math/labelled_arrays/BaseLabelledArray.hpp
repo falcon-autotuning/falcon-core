@@ -1,14 +1,17 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 #include <memory>
 
 namespace falcon_core
 {
-
+namespace math
+{
+namespace labelled_arrays
+{
 template <typename ArrayType, typename LabelType>
-class BaseLabelledArray : public Jsonable
+class BaseLabelledArray : public generic::Song
 {
 public:
   BaseLabelledArray (std::shared_ptr<ArrayType> array,
@@ -58,5 +61,6 @@ protected:
   std::shared_ptr<ArrayType> _array;
   std::shared_ptr<LabelType> _label;
 };
-
+}
+}
 } // namespace falcon_core

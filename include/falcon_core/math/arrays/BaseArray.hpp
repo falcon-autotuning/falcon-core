@@ -1,14 +1,18 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 #include <Eigen/Dense>
 #include <nlohmann/json.hpp>
 
 namespace falcon_core
 {
+namespace math
+{
+namespace arrays
+{
 
-template <typename T> class BaseArray : public Jsonable
+template <typename T> class BaseArray : public generic::Song
 {
 public:
   using MatrixType = Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>;
@@ -55,5 +59,6 @@ public:
 protected:
   MatrixType _data;
 };
-
+}
+}
 } // namespace falcon_core

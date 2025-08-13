@@ -5,11 +5,12 @@
 
 namespace falcon_core
 {
-
-class Jsonable
+namespace generic
+{
+class Song
 {
 public:
-  virtual ~Jsonable () = default;
+  virtual ~Song () = default;
 
   // In python, from_dict is a classmethod. In C++, this can't be virtual.
   // Deserialization will be handled by concrete classes or a factory.
@@ -27,5 +28,5 @@ protected:
                      const std::string &module_name,
                      const std::string &class_name) const;
 };
-
+}
 } // namespace falcon_core

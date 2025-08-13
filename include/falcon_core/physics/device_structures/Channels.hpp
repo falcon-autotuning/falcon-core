@@ -5,6 +5,10 @@
 
 namespace falcon_core
 {
+namespace physics
+{
+namespace device_structures
+{
 
 class Channels : public BaseConnections<Channel>
 {
@@ -20,5 +24,6 @@ public:
     return j;
   }
 };
-
+}
+}
 } // namespace falcon_core

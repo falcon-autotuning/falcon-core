@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/generic/Jsonable.hpp"
+#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/Impedance.hpp"
 
 #include <memory>
@@ -8,8 +8,12 @@
 
 namespace falcon_core
 {
+namespace physics
+{
+namespace device_structures
+{
 
-class Impedances : public Jsonable
+class Impedances : public generic::Song
 {
 public:
   using value_type     = Impedance;
@@ -52,5 +56,6 @@ public:
 private:
   container_type _impedances;
 };
-
+}
+}
 } // namespace falcon_core

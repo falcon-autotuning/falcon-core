@@ -5,8 +5,7 @@
 #include <algorithm>
 #include <sstream>
 
-namespace falcon_core
-{
+using namespace falcon_core::physics::units;
 std::string
 get_symbol (int prefix_value)
 {
@@ -34,10 +33,10 @@ get_value (std::string prefix_symbol)
 bool
 is_valid (std::string prefix_symbol)
 {
-  return std::find (std::begin (SI::ALL_PREFIXES),
-                    std::end (SI::ALL_PREFIXES),
+  return std::find (std::begin (falcon_core::SI::ALL_PREFIXES),
+                    std::end (falcon_core::SI::ALL_PREFIXES),
                     prefix_symbol)
-         != std::end (SI::ALL_PREFIXES);
+         != std::end (falcon_core::SI::ALL_PREFIXES);
 }
 std::pair<double, std::string>
 prefix_multiplication (std::string first_prefix,
@@ -64,4 +63,3 @@ prefix_multiplication (std::string first_prefix,
     }
   throw std::out_of_range ("No valid prefix symbol found for exponent range.");
 }
-};

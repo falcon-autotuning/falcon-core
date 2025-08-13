@@ -1,13 +1,12 @@
 #include "falcon_core/physics/units/Dimension.hpp"
 
-#include "falcon_core/constants.hpp"
-
 #include <functional>
 #include <map>
 #include <sstream>
 
-namespace falcon_core
-{
+using namespace falcon_core;
+using physics::units::BaseDimension;
+using physics::units::Dimension;
 
 // Helper to convert BaseDimension to string
 static std::string
@@ -114,5 +113,3 @@ Dimension::operator== (const Dimension &other) const
 {
   return _dimensions == other._dimensions;
 }
-
-} // namespace falcon_core

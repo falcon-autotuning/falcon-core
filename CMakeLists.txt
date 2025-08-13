@@ -61,7 +61,7 @@ execute_process(
 # --- C++ Library Target ---
 add_library(
   falcon_core_cpp
-  src/generic/Jsonable.cpp
+  src/generic/Song.cpp
   src/communications/Time.cpp # Corrected path
   src/physics/units/Dimension.cpp # Corrected path
   src/physics/units/Prefix.cpp
