@@ -2,23 +2,30 @@
 
 #include "falcon_core/generic/Jsonable.hpp"
 
-namespace falcon_core {
+namespace falcon_core
+{
 
 // This is a simplified placeholder for AcquisitionContext.
 // A full implementation would depend on MeasurementContext.
-class AcquisitionContext : public Jsonable {
+class AcquisitionContext : public Jsonable
+{
 public:
-  AcquisitionContext() = default;
+  AcquisitionContext () = default;
 
-  nlohmann::json to_json() const override {
+  nlohmann::json
+  to_json () const override
+  {
     nlohmann::json j;
-    add_metadata(
-        j, "falcon_core.autotuner_interfaces.contexts.acquisition_context",
+    add_metadata (
+        j,
+        "falcon_core.autotuner_interfaces.contexts.acquisition_context",
         "AcquisitionContext");
     return j;
   }
 
-  size_t hash() const override {
+  size_t
+  hash () const override
+  {
     return 0; // Placeholder
   }
 };

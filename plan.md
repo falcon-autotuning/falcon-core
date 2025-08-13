@@ -1,210 +1,584 @@
-# C++ Porting and Binding Generation Plan
-
-This document outlines a detailed, iterative plan to refactor the `falcon-core` Python library into a core C++ library with Python and Go bindings generated via SWIG. The goal is to maintain the existing Python API's behavior while providing a high-performance C++ backend.
-
-## Guiding Principles
-
-1.  **Iterative Porting:** The project is broken down into logical phases, porting a small group of related classes at a time.
-2.  **Test at Every Stage:** Each C++ component will be unit-tested using Google Test before bindings are created. Bindings will be tested in Python and Go to ensure correctness.
-3.  **Dependency-First:** The plan proceeds from the most fundamental, low-dependency classes to the most complex, high-level ones.
-4.  **Consistent Tooling:** All C++ development will use a unified build system (e.g., CMake) to manage compilation, testing, and binding generation.
-
----
-
-## Detailed SWIG Strategy
-
-SWIG will be the bridge between C++ and the target languages. Our strategy will involve:
-
-*   **Modular Interface Files:** We will create multiple SWIG interface files (`.i`), grouping related classes (e.g., `units.i`, `math.i`, `devices.i`). This keeps the declarations manageable.
-*   **Python Package Structure:** The Python package structure (e.g., `falcon_core.generic`, `falcon_core.physics.units`) will be created directly by the SWIG-generated module at import time. We will use the `%pythoncode` directive in the main `falcon_core.i` file to create submodule objects and attach the wrapped C++ classes to them. This approach eliminates the need for Python `__init__.py` files to construct the package, allowing a single compiled extension to provide the entire package hierarchy.
-*   **Polymorphism with Directors:** For C++ base classes that are designed to be subclassed in Python (e.g., `Jsonable`, `PortTransform`, `AnalyticFunction`), we will enable SWIG's "director" feature (`%feature("director") ClassName;`). This allows virtual method calls from C++ to be correctly dispatched to overriding methods in Python subclasses, preserving the original polymorphic behavior.
-*   **Template Instantiation:** C++ templates will be exposed to Python and Go by creating explicit instantiations in SWIG using the `%template` directive. For example: `%template(QuantityDouble) Quantity<double>;` will create a Python class `QuantityDouble`.
-*   **STL and Smart Pointer Support:** We will heavily use SWIG's standard library support for `std::vector`, `std::map`, `std::string`, and `std::shared_ptr`. This provides natural conversions (e.g., `std::vector` to Python list) and robust memory management. `std::shared_ptr` is critical for managing object lifetimes across the C++/Python boundary.
-*   **NumPy Integration with Typemaps:** To ensure seamless NumPy compatibility, we will use SWIG typemaps to convert between C++ `Eigen` types (matrices, vectors) and NumPy arrays. This will likely involve using a community-provided interface file like `eigen.i` to handle the conversions automatically, ensuring both performance and API parity.
-
----
-
-## Phase 0: Project Setup and Foundation (Completed)
-
-**Goal:** Establish the core C++ project structure, build system, and port the most basic utilities.
-
-1.  **Repository and Build System Setup: (Completed)**
-    *   Create a C++ project structure (`include/falcon_core`, `src/`, `tests/`, `swig/`).
-    *   Set up a CMake build system.
-    *   Integrate Google Test for C++ unit testing.
-    *   Integrate a C++ JSON library (e.g., nlohmann/json).
-    *   Integrate `xtensor` and `xtensor-python` for NumPy compatibility.
-    *   Configure CMake to run SWIG for Python and Go.
-
-2.  **Port Core Utilities: (Completed)**
-    *   **C++:** Port `constants.py` to a C++ header with `constexpr` values. Port the `Time` class.
-    *   **C++ Test:** Write tests for the `Time` class.
-    *   **SWIG:** Expose constants and the `Time` class. In `falcon_core.i`, use `%pythoncode` to place `Time` into the `falcon_core.communications` submodule.
-
-3.  **Port `Jsonable` Base Class: (Completed)**
-    *   **C++:** Create a `Jsonable` base class in C++ with virtual methods for serialization. Replicate the logic for handling metadata keys (`__class__`, etc.) within the C++ implementation.
-    *   **C++ Test:** Write tests to confirm serialization/deserialization with metadata works correctly.
-    *   **SWIG:** In `falcon_core.i`, include `Jsonable.hpp`, enable the director feature (`%feature("director") Jsonable;`), and use `%pythoncode` to place the `Jsonable` class into the `falcon_core.generic` submodule.
-    *   **Binding Test:** Write a simple Python test to subclass `Jsonable` and verify that serialization and director functionality work.
-
----
-
-## Phase 1: Core Physics Units and Primitives (Completed)
-
-**Goal:** Port the fundamental classes related to physical units. These are self-contained and widely used.
-
-1.  **Port `Dimension`, `Prefix`, `Unit`, `SymbolUnit`, `Sign`: (Completed)**
-    *   **C++:** Implement these classes in C++. Use `std::map` or `std::unordered_map` for internal lookups. Replicate the logic for unit conversion and compatibility.
-    *   **C++ Test:** Write Google Test cases for unit conversions, prefix math, and compatibility checks.
-    *   **SWIG:** Add these classes to a `units.i` file. In `falcon_core.i`, include `units.i` and use `%pythoncode` to move the wrapped classes into the `falcon_core.physics.units` submodule.
-    *   **Binding Test:** Write Python/Go tests to create units, perform conversions, and check compatibility.
-
----
-
-## Phase 2: Mathematical Structures (Completed)
-
-**Goal:** Port the core mathematical data structures.
-
-1.  **Port Generic Containers and Domains: (Completed)**
-    *   **C++:** Implement `Domain` and its subclasses (`LabelledDomain`, `CoupledLabelledDomain`). Implement `OneToOneMapping<K, V>`. Implement `Quantity<T>`.
-    *   **C++ Test:** Test `Domain` operations, `Quantity` conversions, and `OneToOneMapping` constraints. (Completed)
-    *   **SWIG:** Add classes to `math.i`. Use `%template` to instantiate concrete types needed (e.g., `Quantity<double>`).
-    *   **Binding Test:** Verify functionality in the target languages.
-
-2.  **Port Array Classes: (Completed)**
-    *   **C++:** Create `BaseArray<T>` wrapping an `Eigen` type (e.g., `Eigen::MatrixXd`). Implement `Is1D` logic. Implement subclasses `ControlArray`, `MeasuredArray`, `BaseLabelledArrays`, and `IncreasingAlignment`.
-    *   **C++ Test:** Test basic array operations and the specific functionality of each type using `Eigen`. (Completed)
-    *   **SWIG:** Use `Eigen` typemaps for automatic NumPy conversion. Instantiate required array templates.
-    *   **Binding Test:** Test creating arrays in Python (from NumPy), passing them to C++, performing operations, and getting them back.
-
-3.  **Port `Axes`: (Completed)**
-    *   **C++:** Implement `Axes<T>` as a template class wrapping a `std::vector` of shared pointers.
-    *   **C++ Test:** Test indexing and other container operations. (Completed)
-    *   **SWIG:** Use `std_vector.i` and `std_shared_ptr.i` and instantiate `Axes` for required types (e.g., `Axes<MeasurementContext>`).
-    *   **Binding Test:** Test `Axes` functionality from Python/Go.
-
----
-
-## Phase 3: Device and Configuration Structures (Completed)
-
-**Goal:** Port the classes that define the physical device layout and configuration.
-
-1.  **Port Naming and Connection Primitives: (Completed)**
-    *   **C++:** Implement `NameBase<T>`, `Channel`. Implement the class hierarchy `BaseConnection`, `Gate`, `Ohmic`, and their subclasses. Use `std::shared_ptr` for ownership.
-    *   **C++ Test:** Test object creation, property access, and inheritance structure. (Completed)
-    *   **SWIG:** Expose the class hierarchy in a `devices.i` file. Use directors for base classes if they are meant to be extended.
-    *   **Binding Test:** Create instances of gates in Python/Go and verify their types and properties.
-
-2.  **Port Collections and Relations: (Completed)**
-    *   **C++:** Implement template containers (`BaseConnections<T>`, `Ports<T>`) wrapping `std::vector<std::shared_ptr<T>>`. Implement `Impedances` and `GateRelations`.
-    *   **C++ Test:** Test adding, removing, indexing, and relation lookups. (Completed)
-    *   **SWIG:** Use `%template` to instantiate each collection type (e.g., `%template(Gates) BaseConnections<Gate>`).
-    *   **Binding Test:** Test collection and relation manipulation from Python/Go.
-
-3.  **Port `InstrumentPort`, `StandardConfigConnections`, `Loader`: (Completed)**
-    *   **C++:** Implement `InstrumentPort`. Implement `StandardConfigConnections` to hold the device structure. Implement `Loader` to populate the config from JSON.
-    *   **C++ Test:** Verify port properties and test loading a full configuration. (Completed)
-    *   **SWIG:** Expose these higher-level classes.
-    *   **Binding Test:** Test loading a JSON config and querying it via a `Loader` instance.
-
----
-
-## Phase 4: Measurement Contexts and Interpretations (Completed)
-
-**Goal:** Port the high-level classes that describe the context of a measurement.
-
-1.  **Port `AcquisitionContext` and `InterpretationContext`: (Completed)**
-    *   **C++:** Implement these classes. They will contain instances of the already-ported `InstrumentPort` and `Connection` types.
-    *   **C++ Test:** Test context creation and matching logic. (Completed)
-    *   **SWIG:** Expose the classes in a `contexts.i` file.
-    *   **Binding Test:** Create contexts and test matching from Python/Go.
-
-2.  **Port `InterpretationContainer`: (Completed)**
-    *   **C++:** Implement the generic `InterpretationContainer<T>` as a C++ template class, wrapping a `std::map` from `InterpretationContext` to `T`.
-    *   **C++ Test:** Test adding contexts and selecting by connection.
-    *   **SWIG:** Expose `InterpretationContext`. Use `%template` to instantiate `InterpretationContainer` for the types it will hold.
-    *   **Binding Test:** Test creating and querying interpretation containers.
-
----
-
-## Phase 5: Waveforms, Transforms, and Final Integration (Completed)
-
-**Goal:** Port the final application-level components and assemble the complete library.
-
-1.  **Port `AnalyticFunction` and `PortTransform` Hierarchies: (Completed)**
-    *   **C++:** Implement the `AnalyticFunction` and `PortTransform` base classes and their children. Implement the `PortTransforms` collection class.
-    *   **C++ Test:** Test each function and transform implementation. (Completed)
-    *   **SWIG:** Expose the hierarchies. Enable directors on base classes (`%feature("director") AnalyticFunction;`).
-    *   **Binding Test:** Create functions and transforms, test their application, and test subclassing them in Python.
-
-2.  **Port Discretizers, Spaces, and Waveforms: (Completed)**
-    *   **C++:** Implement `BaseDiscretizer` hierarchy. Implement `Spaces` and `Waveform` classes, which compose many previously ported components.
-    *   **C++ Test:** Test waveform creation and data generation. (Completed)
-    *   **SWIG:** Expose these final high-level classes.
-    *   **Binding Test:** Perform end-to-end tests creating a full waveform object from Python/Go.
-
----
-
-## Phase 6: Finalizing Completeness (Completed)
-
-**Goal:** Port all remaining classes and subclasses to ensure 100% API coverage.
-
-1.  **Port Domain Subclasses: (Completed)**
-    *   **C++:** Implement `LabelledDomain<T>` and `CoupledLabelledDomain<T>` inheriting from `Domain`.
-    *   **C++ Test:** Test label functionality and coupling logic. (Completed)
-    *   **SWIG:** Expose these classes and instantiate necessary templates in `math.i`.
-    *   **Binding Test:** Verify functionality from Python.
-
-2.  **Port Labelled Array Classes: (Completed)**
-    *   **C++:** Implement `BaseLabelledArrays<T>` and the logic from `IsLabelled1D`.
-    *   **C++ Test:** Test array labelling and 1D-specific features. (Completed)
-    *   **SWIG:** Expose these classes in `math.i`.
-    *   **Binding Test:** Verify functionality from Python.
-
-3.  **Port Remaining Math and Array Classes: (Completed)**
-    *   **C++:** Implement `IncreasingAlignment` and `ControlArray1D`.
-    *   **C++ Test:** Test the specific logic of these classes. (Completed)
-    *   **SWIG:** Expose these classes in `math.i`.
-    *   **Binding Test:** Verify functionality from Python.
-
-4.  **Port Concrete Analytic Functions: (Completed)**
-    *   **C++:** Implement `ConstantFunction` and `Identity` as subclasses of `AnalyticFunction`.
-    *   **C++ Test:** Test the specific evaluation logic of these functions. (Completed)
-    *   **SWIG:** Expose these classes in `transforms.i`.
-    *   **Binding Test:** Verify functionality from Python.
-
-5.  **Port Remaining Collection and Utility Classes: (Completed)**
-    *   **C++:** Implement `Channels` as a collection for `Channel` objects (e.g., inheriting from `BaseConnections<Channel>`). Implement the `Units` utility class with static methods to retrieve common units.
-    *   **C++ Test:** Test collection management and unit retrieval. (Completed)
-    *   **SWIG:** Expose `Channels` in `devices.i` and `Units` in `units.i`.
-    *   **Binding Test:** Verify functionality from Python.
-
-6.  **Port Concrete Discretizers and Transforms: (Completed)**
-    *   **C++:** Implement `CartesianDiscretizer` as a subclass of `BaseDiscretizer`. Implement `IdentityTransform` as a subclass of `PortTransform`.
-    *   **C++ Test:** Test the specific logic of these classes. (Completed)
-    *   **SWIG:** Expose these classes in `waveforms.i` and `transforms.i` respectively.
-    *   **Binding Test:** Verify functionality from Python.
-
----
-
-## Phase 7: Packaging and Deployment
-
-**Goal:** Package the bindings for distribution.
-
-1.  **Python Packaging:**
-    *   Create a `setup.py` or `pyproject.toml` that uses CMake/scikit-build to build the C++ core, run SWIG, and compile the final Python C-extension module.
-    *   Ensure the final package structure (`falcon_core`) matches the original so that user import statements do not break.
-
-2.  **Go Packaging:**
-    *   Provide scripts and documentation (likely using `go generate` and CMake) to build the shared C++ library and the Go wrapper package.
-    *   Write example Go applications to demonstrate usage.
-
-3.  **Final Validation:**
-    *   Run the complete, original Python test suite against the new C++/Python bindings to ensure API and behavioral parity.
-
----
-
-## Post-Porting Tasks
-
-*   **HDF5 Serialization:** Investigate and implement HDF5 serialization/deserialization as a parallel mechanism to JSON, if required. This would involve a C++ HDF5 library and extending `Jsonable` or creating a new `HDF5Serializable` interface.
-*   **Performance Profiling:** Profile and optimize hot spots in the C++ code and the binding layer.
+src/falcon_core/
+├── autotuner_interfaces
+│   ├── contexts
+│   │   ├── acquisition_context.py
+│   │   ├── base_context.py
+│   │   ├── dependancies.py
+│   │   ├── __init__.py
+│   │   ├── measurement_context.py
+│   │   ├── __pycache__
+│   │   │   ├── acquisition_context.cpython-311.pyc
+│   │   │   ├── acquisition_context.cpython-313.pyc
+│   │   │   ├── base_context.cpython-311.pyc
+│   │   │   ├── base_context.cpython-313.pyc
+│   │   │   ├── dependancies.cpython-311.pyc
+│   │   │   ├── dependancies.cpython-313.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── __init__.cpython-313.pyc
+│   │   │   ├── measurement_context.cpython-311.pyc
+│   │   │   ├── measurement_context.cpython-313.pyc
+│   │   │   ├── typing.cpython-311.pyc
+│   │   │   └── typing.cpython-313.pyc
+│   │   └── typing.py
+│   ├── interpretations
+│   │   ├── dependancies.py
+│   │   ├── __init__.py
+│   │   ├── interpretation_container.py
+│   │   ├── interpretation_context.py
+│   │   └── typing.py
+│   └── names
+│       ├── channel.py
+│       ├── dependancies.py
+│       ├── gname.py
+│       ├── __init__.py
+│       ├── name_base.py
+│       ├── __pycache__
+│       │   ├── channel.cpython-311.pyc
+│       │   ├── channel.cpython-313.pyc
+│       │   ├── dependancies.cpython-311.pyc
+│       │   ├── dependancies.cpython-313.pyc
+│       │   ├── gname.cpython-311.pyc
+│       │   ├── gname.cpython-313.pyc
+│       │   ├── __init__.cpython-311.pyc
+│       │   ├── __init__.cpython-313.pyc
+│       │   ├── name_base.cpython-311.pyc
+│       │   └── name_base.cpython-313.pyc
+│       └── typing.py
+├── communications
+│   ├── dependancies.py
+│   ├── hdf5
+│   │   ├── data.py
+│   │   ├── dependancies.py
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── data.cpython-313.pyc
+│   │   │   ├── dependancies.cpython-313.pyc
+│   │   │   └── __init__.cpython-313.pyc
+│   │   └── typing.py
+│   ├── __init__.py
+│   ├── messages
+│   │   ├── base_message.py
+│   │   ├── constants.py
+│   │   ├── dependancies.py
+│   │   ├── __init__.py
+│   │   ├── measurement_request.py
+│   │   ├── measurement_response.py
+│   │   ├── __pycache__
+│   │   │   ├── base_message.cpython-313.pyc
+│   │   │   ├── base_request.cpython-311.pyc
+│   │   │   ├── constants.cpython-313.pyc
+│   │   │   ├── dependancies.cpython-313.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── __init__.cpython-313.pyc
+│   │   │   ├── measurement_request.cpython-311.pyc
+│   │   │   ├── measurement_request.cpython-313.pyc
+│   │   │   ├── measurement_response.cpython-313.pyc
+│   │   │   ├── standard_request.cpython-311.pyc
+│   │   │   └── standard_request.cpython-313.pyc
+│   │   ├── standard_request.py
+│   │   ├── standard_response.py
+│   │   ├── typing.py
+│   │   └── voltage_states_response.py
+│   ├── __pycache__
+│   │   ├── dependancies.cpython-311.pyc
+│   │   ├── dependancies.cpython-313.pyc
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── __init__.cpython-313.pyc
+│   │   ├── notification.cpython-311.pyc
+│   │   ├── notifications.cpython-311.pyc
+│   │   ├── time.cpython-313.pyc
+│   │   └── typing.cpython-311.pyc
+│   ├── time.py
+│   ├── typing.py
+│   └── voltage_states
+│       ├── dependancies.py
+│       ├── device_voltage_state.py
+│       ├── device_voltage_states.py
+│       ├── __init__.py
+│       └── typing.py
+├── constants.py
+├── dependancies.py
+├── falcon_core_dependencies.svg
+├── falcon_core.py
+├── falcon_corePYTHON_wrap.cxx
+├── falcon_corePYTHON_wrap.h
+├── _falcon_core.so
+├── generic
+│   ├── dependancies.py
+│   ├── __init__.py
+│   ├── jsonable.py
+│   ├── one_to_one_mapping.py
+│   ├── __pycache__
+│   │   ├── dependancies.cpython-311.pyc
+│   │   ├── dependancies.cpython-313.pyc
+│   │   ├── enum.cpython-311.pyc
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── __init__.cpython-313.pyc
+│   │   ├── jsonable.cpython-311.pyc
+│   │   ├── jsonable.cpython-313.pyc
+│   │   ├── one_to_one_mapping.cpython-311.pyc
+│   │   ├── one_to_one_mapping.cpython-313.pyc
+│   │   ├── scipy_typing.cpython-311.pyc
+│   │   ├── scipy_typing.cpython-313.pyc
+│   │   └── typing.cpython-311.pyc
+│   ├── scipy_typing.py
+│   └── typing.py
+├── __init__.py
+├── instrument_interfaces
+│   ├── __init__.py
+│   ├── names
+│   │   ├── clock.py
+│   │   ├── constants.py
+│   │   ├── dependancies.py
+│   │   ├── __init__.py
+│   │   ├── instrument_port.py
+│   │   ├── knob.py
+│   │   ├── knobs.py
+│   │   ├── meter.py
+│   │   ├── meters.py
+│   │   ├── ports.py
+│   │   ├── __pycache__
+│   │   │   ├── acquisition_context.cpython-311.pyc
+│   │   │   ├── constants.cpython-311.pyc
+│   │   │   ├── constants.cpython-313.pyc
+│   │   │   ├── dependancies.cpython-311.pyc
+│   │   │   ├── dependancies.cpython-313.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── __init__.cpython-313.pyc
+│   │   │   ├── instrument.cpython-311.pyc
+│   │   │   ├── instrument_port.cpython-311.pyc
+│   │   │   ├── instrument_port.cpython-313.pyc
+│   │   │   ├── knob.cpython-311.pyc
+│   │   │   ├── knob.cpython-313.pyc
+│   │   │   ├── knobs.cpython-311.pyc
+│   │   │   ├── knobs.cpython-313.pyc
+│   │   │   ├── meter.cpython-311.pyc
+│   │   │   ├── meter.cpython-313.pyc
+│   │   │   ├── meters.cpython-311.pyc
+│   │   │   ├── meters.cpython-313.pyc
+│   │   │   ├── ports.cpython-311.pyc
+│   │   │   ├── ports.cpython-313.pyc
+│   │   │   ├── typing.cpython-311.pyc
+│   │   │   └── typing.cpython-313.pyc
+│   │   └── typing.py
+│   ├── port_transforms
+│   │   ├── constant_transform.py
+│   │   ├── dependancies.py
+│   │   ├── identity_transform.py
+│   │   ├── __init__.py
+│   │   ├── port_transform.py
+│   │   ├── port_transforms.py
+│   │   ├── __pycache__
+│   │   │   ├── dependancies.cpython-311.pyc
+│   │   │   ├── dependancies.cpython-313.pyc
+│   │   │   ├── identity_transform.cpython-311.pyc
+│   │   │   ├── identity_transform.cpython-313.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── __init__.cpython-313.pyc
+│   │   │   ├── port_transform.cpython-311.pyc
+│   │   │   ├── port_transform.cpython-313.pyc
+│   │   │   ├── port_transforms.cpython-311.pyc
+│   │   │   └── port_transforms.cpython-313.pyc
+│   │   └── typing.py
+│   ├── __pycache__
+│   │   ├── dependancies.cpython-311.pyc
+│   │   ├── dependancies.cpython-313.pyc
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── __init__.cpython-313.pyc
+│   │   ├── instrument.cpython-311.pyc
+│   │   ├── instrument.cpython-313.pyc
+│   │   ├── instrument_types.cpython-311.pyc
+│   │   └── instrument_types.cpython-313.pyc
+│   └── waveforms
+│       ├── base_cartesian_waveform.py
+│       ├── base_waveform.py
+│       ├── cartesian_waveform_1D.py
+│       ├── cartesian_waveform_2D.py
+│       ├── cartesian_waveform.py
+│       ├── dependancies.py
+│       ├── __init__.py
+│       ├── __pycache__
+│       │   ├── base_cartesian_waveform.cpython-313.pyc
+│       │   ├── base_waveform.cpython-313.pyc
+│       │   ├── cartesian_waveform.cpython-313.pyc
+│       │   ├── dependancies.cpython-313.pyc
+│       │   ├── __init__.cpython-313.pyc
+│       │   └── waveform.cpython-313.pyc
+│       ├── typing.py
+│       └── waveform.py
+├── _jsonable_registry_loader.py
+├── math
+│   ├── analytic_functions
+│   │   ├── analytic_function.py
+│   │   ├── constants.py
+│   │   ├── dependancies.py
+│   │   ├── identity.py
+│   │   ├── __init__.py
+│   │   ├── ones.py
+│   │   ├── __pycache__
+│   │   │   ├── analytic_function.cpython-311.pyc
+│   │   │   ├── analytic_function.cpython-313.pyc
+│   │   │   ├── constants.cpython-311.pyc
+│   │   │   ├── constants.cpython-313.pyc
+│   │   │   ├── dependancies.cpython-311.pyc
+│   │   │   ├── dependancies.cpython-313.pyc
+│   │   │   ├── identity.cpython-311.pyc
+│   │   │   ├── identity.cpython-313.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── __init__.cpython-313.pyc
+│   │   │   ├── ones.cpython-313.pyc
+│   │   │   ├── validated_analytic_function.cpython-311.pyc
+│   │   │   └── validated_analytic_function.cpython-313.pyc
+│   │   ├── typing.py
+│   │   └── validated_analytic_function.py
+│   ├── arrays
+│   │   ├── base_array.py
+│   │   ├── control_array_1D.py
+│   │   ├── control_array.py
+│   │   ├── dependancies.py
+│   │   ├── increasing_alignment.py
+│   │   ├── __init__.py
+│   │   ├── is_1D.py
+│   │   ├── measured_array_1D.py
+│   │   ├── measured_array.py
+│   │   ├── numpy_array_wrapper.py
+│   │   └── __pycache__
+│   │       ├── base_array.cpython-311.pyc
+│   │       ├── base_array.cpython-313.pyc
+│   │       ├── control_array_1D.cpython-311.pyc
+│   │       ├── control_array_1D.cpython-313.pyc
+│   │       ├── control_array.cpython-311.pyc
+│   │       ├── control_array.cpython-313.pyc
+│   │       ├── dependancies.cpython-311.pyc
+│   │       ├── dependancies.cpython-313.pyc
+│   │       ├── increasing_alignment.cpython-311.pyc
+│   │       ├── increasing_alignment.cpython-313.pyc
+│   │       ├── __init__.cpython-311.pyc
+│   │       ├── __init__.cpython-313.pyc
+│   │       ├── is_1D.cpython-311.pyc
+│   │       ├── is_1D.cpython-313.pyc
+│   │       ├── measured_array_1D.cpython-311.pyc
+│   │       ├── measured_array_1D.cpython-313.pyc
+│   │       ├── measured_array.cpython-311.pyc
+│   │       ├── measured_array.cpython-313.pyc
+│   │       ├── numpy_array_wrapper.cpython-311.pyc
+│   │       └── numpy_array_wrapper.cpython-313.pyc
+│   ├── axes.py
+│   ├── dependancies.py
+│   ├── discrete_spaces
+│   │   ├── base_cartesian_discrete_space.py
+│   │   ├── base_discrete_space.py
+│   │   ├── cartesian_discrete_space_1D.py
+│   │   ├── cartesian_discrete_space_2D.py
+│   │   ├── cartesian_discrete_space.py
+│   │   ├── dependancies.py
+│   │   ├── discrete_space.py
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── base_cartesian_discrete_space.cpython-311.pyc
+│   │   │   ├── base_cartesian_discrete_space.cpython-313.pyc
+│   │   │   ├── base_discrete_space.cpython-311.pyc
+│   │   │   ├── base_discrete_space.cpython-313.pyc
+│   │   │   ├── cartesian_discrete_space_1D.cpython-311.pyc
+│   │   │   ├── cartesian_discrete_space_1D.cpython-313.pyc
+│   │   │   ├── cartesian_discrete_space_2D.cpython-311.pyc
+│   │   │   ├── cartesian_discrete_space_2D.cpython-313.pyc
+│   │   │   ├── cartesian_discrete_space.cpython-311.pyc
+│   │   │   ├── cartesian_discrete_space.cpython-313.pyc
+│   │   │   ├── dependancies.cpython-311.pyc
+│   │   │   ├── dependancies.cpython-313.pyc
+│   │   │   ├── discrete_space.cpython-311.pyc
+│   │   │   ├── discrete_space.cpython-313.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   └── __init__.cpython-313.pyc
+│   │   └── typing.py
+│   ├── discretizers
+│   │   ├── base_discretizer.py
+│   │   ├── cartesian_discretizer.py
+│   │   ├── constants.py
+│   │   ├── dependancies.py
+│   │   ├── __init__.py
+│   │   ├── polar_discretizer.py
+│   │   └── __pycache__
+│   │       ├── base_discretizer.cpython-311.pyc
+│   │       ├── base_discretizer.cpython-313.pyc
+│   │       ├── cartesian_discretizer.cpython-311.pyc
+│   │       ├── cartesian_discretizer.cpython-313.pyc
+│   │       ├── constants.cpython-311.pyc
+│   │       ├── constants.cpython-313.pyc
+│   │       ├── dependancies.cpython-311.pyc
+│   │       ├── dependancies.cpython-313.pyc
+│   │       ├── __init__.cpython-311.pyc
+│   │       ├── __init__.cpython-313.pyc
+│   │       ├── polar_discretizer.cpython-311.pyc
+│   │       └── polar_discretizer.cpython-313.pyc
+│   ├── domains
+│   │   ├── base_coupled_labelled_domain.py
+│   │   ├── base_labelled_domain.py
+│   │   ├── constants.py
+│   │   ├── coupled_knob_domain.py
+│   │   ├── coupled_labelled_domain.py
+│   │   ├── dependancies.py
+│   │   ├── domain.py
+│   │   ├── __init__.py
+│   │   ├── knob_domain.py
+│   │   ├── labelled_domain.py
+│   │   ├── __pycache__
+│   │   │   ├── base_coupled_labelled_domain.cpython-311.pyc
+│   │   │   ├── base_coupled_labelled_domain.cpython-313.pyc
+│   │   │   ├── base_labelled_domain.cpython-311.pyc
+│   │   │   ├── base_labelled_domain.cpython-313.pyc
+│   │   │   ├── constants.cpython-311.pyc
+│   │   │   ├── constants.cpython-313.pyc
+│   │   │   ├── coupled_knob_domain.cpython-311.pyc
+│   │   │   ├── coupled_knob_domain.cpython-313.pyc
+│   │   │   ├── dependancies.cpython-311.pyc
+│   │   │   ├── dependancies.cpython-313.pyc
+│   │   │   ├── domain.cpython-311.pyc
+│   │   │   ├── domain.cpython-313.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── __init__.cpython-313.pyc
+│   │   │   ├── knob_domain.cpython-311.pyc
+│   │   │   ├── knob_domain.cpython-313.pyc
+│   │   │   ├── labelled_domain.cpython-311.pyc
+│   │   │   ├── labelled_domain.cpython-313.pyc
+│   │   │   ├── typing.cpython-311.pyc
+│   │   │   └── typing.cpython-313.pyc
+│   │   └── typing.py
+│   ├── __init__.py
+│   ├── labelled_arrays
+│   │   ├── base_labelled_array.py
+│   │   ├── base_labelled_arrays.py
+│   │   ├── dependancies.py
+│   │   ├── __init__.py
+│   │   ├── is_labelled_1D.py
+│   │   ├── labelled_control_array_1D.py
+│   │   ├── labelled_control_array.py
+│   │   ├── labelled_control_arrays.py
+│   │   ├── labelled_measured_array_1D.py
+│   │   ├── labelled_measured_array.py
+│   │   ├── labelled_measured_arrays.py
+│   │   ├── __pycache__
+│   │   │   ├── base_labelled_array.cpython-311.pyc
+│   │   │   ├── base_labelled_array.cpython-313.pyc
+│   │   │   ├── base_labelled_arrays.cpython-311.pyc
+│   │   │   ├── base_labelled_arrays.cpython-313.pyc
+│   │   │   ├── dependancies.cpython-311.pyc
+│   │   │   ├── dependancies.cpython-313.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── __init__.cpython-313.pyc
+│   │   │   ├── is_labelled_1D.cpython-311.pyc
+│   │   │   ├── is_labelled_1D.cpython-313.pyc
+│   │   │   ├── labelled_control_array_1D.cpython-311.pyc
+│   │   │   ├── labelled_control_array_1D.cpython-313.pyc
+│   │   │   ├── labelled_control_array.cpython-311.pyc
+│   │   │   ├── labelled_control_array.cpython-313.pyc
+│   │   │   ├── labelled_control_arrays.cpython-311.pyc
+│   │   │   ├── labelled_control_arrays.cpython-313.pyc
+│   │   │   ├── labelled_measured_array_1D.cpython-311.pyc
+│   │   │   ├── labelled_measured_array_1D.cpython-313.pyc
+│   │   │   ├── labelled_measured_array.cpython-311.pyc
+│   │   │   ├── labelled_measured_array.cpython-313.pyc
+│   │   │   ├── labelled_measured_arrays.cpython-311.pyc
+│   │   │   ├── labelled_measured_arrays.cpython-313.pyc
+│   │   │   ├── typing.cpython-311.pyc
+│   │   │   └── typing.cpython-313.pyc
+│   │   └── typing.py
+│   ├── point.py
+│   ├── __pycache__
+│   │   ├── axes.cpython-311.pyc
+│   │   ├── axes.cpython-313.pyc
+│   │   ├── dependancies.cpython-311.pyc
+│   │   ├── dependancies.cpython-313.pyc
+│   │   ├── __init__.cpython-311.pyc
+│   │   └── __init__.cpython-313.pyc
+│   ├── quantity.py
+│   ├── sign.py
+│   ├── spaces
+│   │   ├── cartesian_1D_space.py
+│   │   ├── cartesian_2D_space.py
+│   │   ├── cartesian_space.py
+│   │   ├── constants.py
+│   │   ├── dependancies.py
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── cartesian_1D_space.cpython-311.pyc
+│   │   │   ├── cartesian_1D_space.cpython-313.pyc
+│   │   │   ├── cartesian_2D_space.cpython-311.pyc
+│   │   │   ├── cartesian_2D_space.cpython-313.pyc
+│   │   │   ├── cartesian_space.cpython-311.pyc
+│   │   │   ├── cartesian_space.cpython-313.pyc
+│   │   │   ├── constants.cpython-311.pyc
+│   │   │   ├── constants.cpython-313.pyc
+│   │   │   ├── dependancies.cpython-311.pyc
+│   │   │   ├── dependancies.cpython-313.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── __init__.cpython-313.pyc
+│   │   │   ├── ray_space.cpython-311.pyc
+│   │   │   ├── ray_space.cpython-313.pyc
+│   │   │   ├── unit_space.cpython-311.pyc
+│   │   │   └── unit_space.cpython-313.pyc
+│   │   ├── ray_space.py
+│   │   ├── typing.py
+│   │   └── unit_space.py
+│   ├── typing.py
+│   └── vector.py
+├── physics
+│   ├── config
+│   │   ├── config_manipulations.py
+│   │   ├── core
+│   │   │   ├── adjacency.py
+│   │   │   ├── config.py
+│   │   │   ├── constants.py
+│   │   │   ├── dependancies.py
+│   │   │   ├── group.py
+│   │   │   ├── __init__.py
+│   │   │   ├── __pycache__
+│   │   │   │   ├── config.cpython-311.pyc
+│   │   │   │   ├── config.cpython-313.pyc
+│   │   │   │   ├── constants.cpython-311.pyc
+│   │   │   │   ├── constants.cpython-313.pyc
+│   │   │   │   ├── dependancies.cpython-311.pyc
+│   │   │   │   ├── dependancies.cpython-313.pyc
+│   │   │   │   ├── group.cpython-311.pyc
+│   │   │   │   ├── group.cpython-313.pyc
+│   │   │   │   ├── __init__.cpython-311.pyc
+│   │   │   │   ├── __init__.cpython-313.pyc
+│   │   │   │   ├── standard_config_connections.cpython-311.pyc
+│   │   │   │   ├── standard_config_connections.cpython-313.pyc
+│   │   │   │   ├── typing.cpython-311.pyc
+│   │   │   │   └── typing.cpython-313.pyc
+│   │   │   ├── standard_config_connections.py
+│   │   │   ├── typing.py
+│   │   │   └── voltage_constraints.py
+│   │   ├── dependancies.py
+│   │   ├── geometries
+│   │   │   ├── barrier_gate_with_neighbors.py
+│   │   │   ├── dependancies.py
+│   │   │   ├── gate_geometry_array_1D.py
+│   │   │   ├── has_implanted_ohmic.py
+│   │   │   ├── has_left_neighbor.py
+│   │   │   ├── has_right_neighbor.py
+│   │   │   ├── __init__.py
+│   │   │   ├── left_reservoir_with_implanted_ohmic.py
+│   │   │   ├── plunger_gate_with_neighbors.py
+│   │   │   ├── __pycache__
+│   │   │   │   ├── barrier_gate_with_neighbors.cpython-311.pyc
+│   │   │   │   ├── barrier_gate_with_neighbors.cpython-313.pyc
+│   │   │   │   ├── dependancies.cpython-311.pyc
+│   │   │   │   ├── dependancies.cpython-313.pyc
+│   │   │   │   ├── gate_geometry_array_1D.cpython-311.pyc
+│   │   │   │   ├── gate_geometry_array_1D.cpython-313.pyc
+│   │   │   │   ├── has_implanted_ohmic.cpython-311.pyc
+│   │   │   │   ├── has_implanted_ohmic.cpython-313.pyc
+│   │   │   │   ├── has_left_neighbor.cpython-311.pyc
+│   │   │   │   ├── has_left_neighbor.cpython-313.pyc
+│   │   │   │   ├── has_right_neighbor.cpython-311.pyc
+│   │   │   │   ├── has_right_neighbor.cpython-313.pyc
+│   │   │   │   ├── __init__.cpython-311.pyc
+│   │   │   │   ├── __init__.cpython-313.pyc
+│   │   │   │   ├── left_reservoir_with_implanted_ohmic.cpython-311.pyc
+│   │   │   │   ├── left_reservoir_with_implanted_ohmic.cpython-313.pyc
+│   │   │   │   ├── plunger_gate_with_neighbors.cpython-311.pyc
+│   │   │   │   ├── plunger_gate_with_neighbors.cpython-313.pyc
+│   │   │   │   ├── right_reservoir_with_implanted_ohmic.cpython-311.pyc
+│   │   │   │   ├── right_reservoir_with_implanted_ohmic.cpython-313.pyc
+│   │   │   │   ├── typing.cpython-311.pyc
+│   │   │   │   └── typing.cpython-313.pyc
+│   │   │   ├── right_reservoir_with_implanted_ohmic.py
+│   │   │   └── typing.py
+│   │   ├── __init__.py
+│   │   ├── loader.py
+│   │   ├── __pycache__
+│   │   │   ├── dependancies.cpython-311.pyc
+│   │   │   ├── dependancies.cpython-313.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   └── __init__.cpython-313.pyc
+│   │   └── typing.py
+│   ├── device_structures
+│   │   ├── barrier_gate.py
+│   │   ├── base_connection.py
+│   │   ├── dependancies.py
+│   │   ├── dot_gate.py
+│   │   ├── gate.py
+│   │   ├── gate_relations.py
+│   │   ├── impedance.py
+│   │   ├── __init__.py
+│   │   ├── ohmic.py
+│   │   ├── plunger_gate.py
+│   │   ├── __pycache__
+│   │   │   ├── barrier_gate.cpython-311.pyc
+│   │   │   ├── barrier_gate.cpython-313.pyc
+│   │   │   ├── base_connection.cpython-311.pyc
+│   │   │   ├── base_connection.cpython-313.pyc
+│   │   │   ├── base_connections.cpython-311.pyc
+│   │   │   ├── dependancies.cpython-311.pyc
+│   │   │   ├── dependancies.cpython-313.pyc
+│   │   │   ├── dot_gate.cpython-311.pyc
+│   │   │   ├── dot_gate.cpython-313.pyc
+│   │   │   ├── gate.cpython-311.pyc
+│   │   │   ├── gate.cpython-313.pyc
+│   │   │   ├── gate_relations.cpython-311.pyc
+│   │   │   ├── gate_relations.cpython-313.pyc
+│   │   │   ├── impedance.cpython-311.pyc
+│   │   │   ├── impedance.cpython-313.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── __init__.cpython-313.pyc
+│   │   │   ├── ohmic.cpython-311.pyc
+│   │   │   ├── ohmic.cpython-313.pyc
+│   │   │   ├── plunger_gate.cpython-311.pyc
+│   │   │   ├── plunger_gate.cpython-313.pyc
+│   │   │   ├── reservoir_gate.cpython-311.pyc
+│   │   │   ├── reservoir_gate.cpython-313.pyc
+│   │   │   ├── screening_gate.cpython-311.pyc
+│   │   │   └── screening_gate.cpython-313.pyc
+│   │   ├── reservoir_gate.py
+│   │   ├── screening_gate.py
+│   │   └── typing.py
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   └── __init__.cpython-313.pyc
+│   └── units
+│       ├── common_units.py
+│       ├── constants.py
+│       ├── dependancies.py
+│       ├── dimension.py
+│       ├── __init__.py
+│       ├── prefix.py
+│       ├── __pycache__
+│       │   ├── common_units.cpython-311.pyc
+│       │   ├── common_units.cpython-313.pyc
+│       │   ├── constants.cpython-311.pyc
+│       │   ├── constants.cpython-313.pyc
+│       │   ├── dependancies.cpython-311.pyc
+│       │   ├── dependancies.cpython-313.pyc
+│       │   ├── dimension.cpython-311.pyc
+│       │   ├── dimension.cpython-313.pyc
+│       │   ├── __init__.cpython-311.pyc
+│       │   ├── __init__.cpython-313.pyc
+│       │   ├── prefix.cpython-311.pyc
+│       │   ├── prefix.cpython-313.pyc
+│       │   ├── symbol_unit.cpython-311.pyc
+│       │   ├── symbol_unit.cpython-313.pyc
+│       │   ├── unit.cpython-311.pyc
+│       │   ├── unit.cpython-313.pyc
+│       │   ├── units.cpython-311.pyc
+│       │   └── units.cpython-313.pyc
+│       ├── symbol_unit.py
+│       ├── typing.py
+│       ├── unit.py
+│       └── units.py
+├── __pycache__
+│   ├── constants.cpython-311.pyc
+│   ├── constants.cpython-313.pyc
+│   ├── dependancies.cpython-311.pyc
+│   ├── dependancies.cpython-313.pyc
+│   ├── ErrorHandling.cpython-311.pyc
+│   ├── __init__.cpython-311.pyc
+│   ├── __init__.cpython-313.pyc
+│   ├── instrument_types.cpython-311.pyc
+│   ├── typing.cpython-311.pyc
+│   └── typing.cpython-313.pyc
+├── py.typed
+└── typing.py

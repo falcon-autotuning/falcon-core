@@ -10,6 +10,10 @@
 
 namespace falcon_core
 {
+namespace physics
+{
+namespace units
+{
 
 class SymbolUnit : public Jsonable
 {
@@ -29,4 +33,6 @@ private:
   std::string           _symbol;
 };
 
+}
+}
 } // namespace falcon_core

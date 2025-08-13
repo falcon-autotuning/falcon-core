@@ -61,14 +61,14 @@ execute_process(
 # --- C++ Library Target ---
 add_library(
   falcon_core_cpp
-  src/Jsonable.cpp
-  src/Time.cpp
-  src/Dimension.cpp
+  src/generic/Jsonable.cpp
+  src/communications/Time.cpp # Corrected path
+  src/physics/units/Dimension.cpp # Corrected path
   src/physics/units/Prefix.cpp
-  src/SymbolUnit.cpp
-  src/Domain.cpp
-  src/MeasurementContext.cpp
-  src/Units.cpp
+  src/physics/units/SymbolUnit.cpp # Corrected path
+  src/math/domains/Domain.cpp # Corrected path
+  src/autotuner_interfaces/contexts/MeasurementContext.cpp # Corrected path
+  src/physics/units/Units.cpp # Corrected path
   src/physics/units/Unit.cpp)
 target_include_directories(
   falcon_core_cpp

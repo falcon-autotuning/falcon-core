@@ -51,7 +51,7 @@ Unit::operator* (const Unit &other) const
   std::string &prefix   = result.second;
 
   return std::make_shared<Unit> (
-      copy_dims, new_mult,  offset () * other.offset (), prefix);
+      copy_dims, new_mult, offset () * other.offset (), prefix);
 }
 
 std::shared_ptr<Unit>
