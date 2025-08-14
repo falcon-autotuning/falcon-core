@@ -1,5 +1,5 @@
 // SWIG typemaps for Eigen::Matrix <-> NumPy array conversion.
-
+/*
 %{
 #define SWIG_FILE_WITH_INIT
 #include <Eigen/Dense>
@@ -47,3 +47,4 @@ import_array();
     $result = PyArray_SimpleNew(2, dims, NPY_DOUBLE);
     memcpy(PyArray_DATA((PyArrayObject*)$result), $1->data(), $1->size() * sizeof(double));
 }
+*/

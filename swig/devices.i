@@ -1,18 +1,18 @@
+/*
 %{
-#include "falcon_core/NameBase.hpp"
-#include "falcon_core/Channel.hpp"
-#include "falcon_core/BaseConnection.hpp"
-#include "falcon_core/Gate.hpp"
-#include "falcon_core/Ohmic.hpp"
-#include "falcon_core/InstrumentPort.hpp"
-#include "falcon_core/Ports.hpp"
-#include "falcon_core/BaseConnections.hpp"
-#include "falcon_core/Impedance.hpp"
-#include "falcon_core/Impedances.hpp"
-#include "falcon_core/GateRelations.hpp"
-#include "falcon_core/StandardConfigConnections.hpp"
-#include "falcon_core/Loader.hpp"
-#include "falcon_core/Channels.hpp"
+#include "falcon_core/physics/device_structures/NameBase.hpp"
+#include "falcon_core/physics/device_structures/Channel.hpp"
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/Gate.hpp"
+#include "falcon_core/physics/device_structures/Ohmic.hpp"
+#include "falcon_core/physics/device_structures/InstrumentPort.hpp"
+#include "falcon_core/physics/device_structures/Ports.hpp"
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
+#include "falcon_core/physics/device_structures/Impedance.hpp"
+#include "falcon_core/physics/device_structures/Impedances.hpp"
+#include "falcon_core/physics/device_structures/GateRelations.hpp"
+
+#include "falcon_core/physics/device_structures/Channels.hpp"
 %}
 
 %shared_ptr(falcon_core::NameBase<int>);
@@ -25,32 +25,28 @@
 %nodefaultctor falcon_core::Gate;
 %shared_ptr(falcon_core::Ohmic);
 %nodefaultctor falcon_core::Ohmic;
-%shared_ptr(falcon_core::InstrumentPort<falcon_core::Gate>);
-%shared_ptr(falcon_core::Ports<falcon_core::InstrumentPort<falcon_core::Gate>>);
-%shared_ptr(falcon_core::BaseConnections<falcon_core::Gate>);
-%shared_ptr(falcon_core::BaseConnections<falcon_core::Ohmic>);
-%shared_ptr(falcon_core::BaseConnections<falcon_core::Channel>);
-%shared_ptr(falcon_core::Quantity<std::complex<double>>);
-%shared_ptr(falcon_core::Impedance);
-%shared_ptr(falcon_core::GateRelations);
-%shared_ptr(falcon_core::StandardConfigConnections);
-%shared_ptr(falcon_core::Loader);
+%shared_ptr(falcon_core::physics::device_structures::InstrumentPort<falcon_core::Gate>);
+%shared_ptr(falcon_core::physics::device_structures::Ports<falcon_core::InstrumentPort<falcon_core::Gate>>);
+%shared_ptr(falcon_core::physics::device_structures::BaseConnections<falcon_core::Gate>);
+%shared_ptr(falcon_core::physics::device_structures::BaseConnections<falcon_core::Ohmic>);
+%shared_ptr(falcon_core::physics::device_structures::BaseConnections<falcon_core::Channel>);
+%shared_ptr(falcon_core::physics::device_structures::Impedance);
+%shared_ptr(falcon_core::physics::device_structures::GateRelations);
 %shared_ptr(falcon_core::Impedances);
 
-%include "falcon_core/NameBase.hpp"
-%include "falcon_core/Channel.hpp"
-%include "falcon_core/BaseConnection.hpp"
-%include "falcon_core/Gate.hpp"
-%include "falcon_core/Ohmic.hpp"
-%include "falcon_core/InstrumentPort.hpp"
-%include "falcon_core/Ports.hpp"
-%include "falcon_core/BaseConnections.hpp"
-%include "falcon_core/Impedance.hpp"
-%include "falcon_core/Impedances.hpp"
-%include "falcon_core/GateRelations.hpp"
-%include "falcon_core/StandardConfigConnections.hpp"
-%include "falcon_core/Loader.hpp"
-%include "falcon_core/Channels.hpp"
+%include "falcon_core/physics/device_structures/NameBase.hpp"
+%include "falcon_core/physics/device_structures/Channel.hpp"
+%include "falcon_core/physics/device_structures/BaseConnection.hpp"
+%include "falcon_core/physics/device_structures/Gate.hpp"
+%include "falcon_core/physics/device_structures/Ohmic.hpp"
+%include "falcon_core/physics/device_structures/InstrumentPort.hpp"
+
+%include "falcon_core/physics/device_structures/BaseConnections.hpp"
+%include "falcon_core/physics/device_structures/Impedance.hpp"
+%include "falcon_core/physics/device_structures/Impedances.hpp"
+%include "falcon_core/physics/device_structures/GateRelations.hpp"
+
+%include "falcon_core/physics/device_structures/Channels.hpp"
 
 
 // Instantiate NameBase for int and string
@@ -78,3 +74,4 @@ class Instrument {};
 
 // Instantiate Channels
 %template(Channels) falcon_core::BaseConnections<falcon_core::Channel>;
+*/

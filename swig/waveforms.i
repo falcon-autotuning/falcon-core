@@ -1,3 +1,4 @@
+/*
 %{
 #include "falcon_core/BaseDiscretizer.hpp"
 #include "falcon_core/math/discretizers/CartesianDiscretizer.hpp"
@@ -15,3 +16,4 @@
 %include "falcon_core/Waveform.hpp"
 
 %feature("director") falcon_core::BaseDiscretizer;
+*/

@@ -1,3 +1,4 @@
+/*
 %{
 #include "falcon_core/AcquisitionContext.hpp"
 #include "falcon_core/MeasurementContext.hpp"
@@ -16,3 +17,4 @@
 
 // Instantiate InterpretationContainer for ControlArray<double>
 %template(InterpretationContainerControlArray) falcon_core::InterpretationContainer<falcon_core::ControlArray<double>>;
+*/
