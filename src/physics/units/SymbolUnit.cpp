@@ -45,10 +45,10 @@ bool SymbolUnit::is_compatible_with(
 }
 std::pair<std::string, std::string> SymbolUnit::_find_matching_common_unit()
     const {
-  for (auto &pair : _UNIT_SYMBOLS) {
-    if (pair.first.dimensions() == _unit->dimensions()) {
-      return {_unit->prefix() + pair.second.first,
-              _unit->prefix() + pair.second.second};
+  for (const auto &triplet : _UNIT_SYMBOLS) {
+    if (std::get<0>(triplet).dimensions() == _unit->dimensions()) {
+      return {_unit->prefix() + std::get<1>(triplet),
+              _unit->prefix() + std::get<2>(triplet)};
     }
   }
   // No exact match found, generate a custom symbol and name
@@ -144,9 +144,10 @@ std::string SymbolUnit::_get_dimension_symbol(std::string dimension) const {
 }
 std::string SymbolUnit::_generate_name() const {
   // Look for a predefined name based on dimensions
-  auto it = _UNIT_SYMBOLS.find(_unit->dimensions());
-  if (it != _UNIT_SYMBOLS.end()) {
-    return it->second.second;
+  for (const auto &triplet : _UNIT_SYMBOLS) {
+    if (std::get<0>(triplet).dimensions() == _unit->dimensions()) {
+      return std::get<1>(triplet);
+    }
   }
   // Otherwise, use the symbol as the name
   return _generate_symbol();

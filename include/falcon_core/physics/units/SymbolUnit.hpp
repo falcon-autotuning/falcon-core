@@ -12,6 +12,58 @@ namespace falcon_core {
 namespace physics {
 namespace units {
 
+/*
+ * @brief organizes the common units and their symbols and their names.
+ */
+static const std::vector<std::tuple<Unit, std::string, std::string>>
+    _UNIT_SYMBOLS = {
+        {common_units::Meter, SI::UNIT_SYMBOL_METER, SI::UNIT_NAME_METER},
+        {common_units::Kilogram,
+         SI::UNIT_SYMBOL_KILOGRAM,
+         SI::UNIT_NAME_KILOGRAM},
+        {common_units::Second, SI::UNIT_SYMBOL_SECOND, SI::UNIT_NAME_SECOND},
+        {common_units::Ampere, SI::UNIT_SYMBOL_AMPERE, SI::UNIT_NAME_AMPERE},
+        {common_units::Kelvin, SI::UNIT_SYMBOL_KELVIN, SI::UNIT_NAME_KELVIN},
+        {common_units::Mole, SI::UNIT_SYMBOL_MOLE, SI::UNIT_NAME_MOLE},
+        {common_units::Candela, SI::UNIT_SYMBOL_CANDELA, SI::UNIT_NAME_CANDELA},
+        {common_units::Hertz, SI::UNIT_SYMBOL_HERTZ, SI::UNIT_NAME_HERTZ},
+        {common_units::Newton, SI::UNIT_SYMBOL_NEWTON, SI::UNIT_NAME_NEWTON},
+        {common_units::Pascal, SI::UNIT_SYMBOL_PASCAL, SI::UNIT_NAME_PASCAL},
+        {common_units::Joule, SI::UNIT_SYMBOL_JOULE, SI::UNIT_NAME_JOULE},
+        {common_units::Watt, SI::UNIT_SYMBOL_WATT, SI::UNIT_NAME_WATT},
+        {common_units::Coulomb, SI::UNIT_SYMBOL_COULOMB, SI::UNIT_NAME_COULOMB},
+        {common_units::Volt, SI::UNIT_SYMBOL_VOLT, SI::UNIT_NAME_VOLT},
+        {common_units::Farad, SI::UNIT_SYMBOL_FARAD, SI::UNIT_NAME_FARAD},
+        {common_units::Ohm, SI::UNIT_SYMBOL_OHM, SI::UNIT_NAME_OHM},
+        {common_units::Siemens, SI::UNIT_SYMBOL_SIEMENS, SI::UNIT_NAME_SIEMENS},
+        {common_units::Weber, SI::UNIT_SYMBOL_WEBER, SI::UNIT_NAME_WEBER},
+        {common_units::Tesla, SI::UNIT_SYMBOL_TESLA, SI::UNIT_NAME_TESLA},
+        {common_units::Henry, SI::UNIT_SYMBOL_HENRY, SI::UNIT_NAME_HENRY},
+        {common_units::Minute, SI::UNIT_SYMBOL_MINUTE, SI::UNIT_NAME_MINUTE},
+        {common_units::Hour, SI::UNIT_SYMBOL_HOUR, SI::UNIT_NAME_HOUR},
+        {common_units::ElectronVolt,
+         SI::UNIT_SYMBOL_ELECTRON_VOLT,
+         SI::UNIT_NAME_ELECTRON_VOLT},
+        {common_units::Celsius, SI::UNIT_SYMBOL_CELSIUS, SI::UNIT_NAME_CELSIUS},
+        {common_units::Fahrenheit,
+         SI::UNIT_SYMBOL_FAHRENHEIT,
+         SI::UNIT_NAME_FAHRENHEIT},
+        {common_units::Dimensionless,
+         SI::UNIT_SYMBOL,
+         SI::UNIT_NAME_DIMENSIONLESS},
+        {common_units::Percent, SI::UNIT_SYMBOL_PERCENT, SI::UNIT_NAME_PERCENT},
+        {common_units::Radian, SI::UNIT_SYMBOL_RADIAN, SI::UNIT_NAME_RADIAN},
+};
+static const std::map<std::string, std::string> _DIMENSION_SYMBOLS = {
+    {SI::DIMENSION_LENGTH, SI::UNIT_SYMBOL_METER},
+    {SI::DIMENSION_MASS, SI::UNIT_SYMBOL_KILOGRAM},
+    {SI::DIMENSION_TIME, SI::UNIT_SYMBOL_SECOND},
+    {SI::DIMENSION_CURRENT, SI::UNIT_SYMBOL_AMPERE},
+    {SI::DIMENSION_TEMPERATURE, SI::UNIT_SYMBOL_KELVIN},
+    {SI::DIMENSION_AMOUNT, SI::UNIT_SYMBOL_MOLE},
+    {SI::DIMENSION_LUMINOSITY, SI::UNIT_SYMBOL_CANDELA},
+};
+
 class SymbolUnit : public generic::Song {
  public:
   /*
@@ -19,53 +71,6 @@ class SymbolUnit : public generic::Song {
    * @param unit The Unit object associated with this symbol.
    */
   SymbolUnit(std::shared_ptr<Unit> unit);
-  /*
-   * @brief organizes the common units and their symbols and their names.
-   */
-  const std::map<Unit, std::pair<std::string, std::string>> _UNIT_SYMBOLS = {
-      {common_units::Meter, {SI::UNIT_SYMBOL_METER, SI::UNIT_NAME_METER}},
-      {common_units::Kilogram,
-       {SI::UNIT_SYMBOL_KILOGRAM, SI::UNIT_NAME_KILOGRAM}},
-      {common_units::Second, {SI::UNIT_SYMBOL_SECOND, SI::UNIT_NAME_SECOND}},
-      {common_units::Ampere, {SI::UNIT_SYMBOL_AMPERE, SI::UNIT_NAME_AMPERE}},
-      {common_units::Kelvin, {SI::UNIT_SYMBOL_KELVIN, SI::UNIT_NAME_KELVIN}},
-      {common_units::Mole, {SI::UNIT_SYMBOL_MOLE, SI::UNIT_NAME_MOLE}},
-      {common_units::Candela, {SI::UNIT_SYMBOL_CANDELA, SI::UNIT_NAME_CANDELA}},
-      {common_units::Hertz, {SI::UNIT_SYMBOL_HERTZ, SI::UNIT_NAME_HERTZ}},
-      {common_units::Newton, {SI::UNIT_SYMBOL_NEWTON, SI::UNIT_NAME_NEWTON}},
-      {common_units::Pascal, {SI::UNIT_SYMBOL_PASCAL, SI::UNIT_NAME_PASCAL}},
-      {common_units::Joule, {SI::UNIT_SYMBOL_JOULE, SI::UNIT_NAME_JOULE}},
-      {common_units::Watt, {SI::UNIT_SYMBOL_WATT, SI::UNIT_NAME_WATT}},
-      {common_units::Coulomb, {SI::UNIT_SYMBOL_COULOMB, SI::UNIT_NAME_COULOMB}},
-      {common_units::Volt, {SI::UNIT_SYMBOL_VOLT, SI::UNIT_NAME_VOLT}},
-      {common_units::Farad, {SI::UNIT_SYMBOL_FARAD, SI::UNIT_NAME_FARAD}},
-      {common_units::Ohm, {SI::UNIT_SYMBOL_OHM, SI::UNIT_NAME_OHM}},
-      {common_units::Siemens, {SI::UNIT_SYMBOL_SIEMENS, SI::UNIT_NAME_SIEMENS}},
-      {common_units::Weber, {SI::UNIT_SYMBOL_WEBER, SI::UNIT_NAME_WEBER}},
-      {common_units::Tesla, {SI::UNIT_SYMBOL_TESLA, SI::UNIT_NAME_TESLA}},
-      {common_units::Henry, {SI::UNIT_SYMBOL_HENRY, SI::UNIT_NAME_HENRY}},
-      {common_units::Minute, {SI::UNIT_SYMBOL_MINUTE, SI::UNIT_NAME_MINUTE}},
-      {common_units::Hour, {SI::UNIT_SYMBOL_HOUR, SI::UNIT_NAME_HOUR}},
-      {common_units::ElectronVolt,
-       {SI::UNIT_SYMBOL_ELECTRON_VOLT, SI::UNIT_NAME_ELECTRON_VOLT}},
-      {common_units::Celsius, {SI::UNIT_SYMBOL_CELSIUS, SI::UNIT_NAME_CELSIUS}},
-      {common_units::Fahrenheit,
-       {SI::UNIT_SYMBOL_FAHRENHEIT, SI::UNIT_NAME_FAHRENHEIT}},
-      {common_units::Dimensionless,
-       {SI::UNIT_SYMBOL, SI::UNIT_NAME_DIMENSIONLESS}},
-      {common_units::Percent, {SI::UNIT_SYMBOL_PERCENT, SI::UNIT_NAME_PERCENT}},
-      {common_units::Radian, {SI::UNIT_SYMBOL_RADIAN, SI::UNIT_NAME_RADIAN}},
-  };
-
-  const std::map<std::string, std::string> _DIMENSION_SYMBOLS = {
-      {SI::DIMENSION_LENGTH, SI::UNIT_SYMBOL_METER},
-      {SI::DIMENSION_MASS, SI::UNIT_SYMBOL_KILOGRAM},
-      {SI::DIMENSION_TIME, SI::UNIT_SYMBOL_SECOND},
-      {SI::DIMENSION_CURRENT, SI::UNIT_SYMBOL_AMPERE},
-      {SI::DIMENSION_TEMPERATURE, SI::UNIT_SYMBOL_KELVIN},
-      {SI::DIMENSION_AMOUNT, SI::UNIT_SYMBOL_MOLE},
-      {SI::DIMENSION_LUMINOSITY, SI::UNIT_SYMBOL_CANDELA},
-  };
   /*
    * @brief Get the symbol of the unit.
    * @return The symbol as a string.
@@ -136,6 +141,13 @@ class SymbolUnit : public generic::Song {
   // };
 
  private:
+  SymbolUnit() = default;       // for cereal access
+  friend class cereal::access;  // cereal can access protected/private
+  // members
+  template <class Archive>
+  void serialize(Archive &ar) {
+    ar(cereal::base_class<Song>(this), _unit, _symbol, _name);
+  }
   std::shared_ptr<Unit> _unit;
   std::string           _symbol;
   std::string           _name;
@@ -162,7 +174,6 @@ class SymbolUnit : public generic::Song {
    */
   std::string _generate_name() const;
 };
-
 }  // namespace units
 }  // namespace physics
 }  // namespace falcon_core

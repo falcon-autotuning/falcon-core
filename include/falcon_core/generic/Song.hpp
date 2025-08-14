@@ -1,10 +1,12 @@
 #pragma once
 
 #include <cereal/archives/json.hpp>
+#include <cereal/types/map.hpp>
 #include <cereal/types/memory.hpp>
 #include <cereal/types/polymorphic.hpp>
+#include <cereal/types/string.hpp>
+#include <cereal/types/vector.hpp>
 #include <memory>
-#include <sstream>
 #include <string>
 
 namespace falcon_core {

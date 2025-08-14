@@ -1,8 +1,5 @@
 #pragma once
 
-#include <cereal/archives/json.hpp>
-#include <cereal/types/memory.hpp>
-#include <cereal/types/polymorphic.hpp>
 #include <memory>
 
 #include "falcon_core/Constants.hpp"
@@ -78,14 +75,17 @@ class Unit : public generic::Song {
    */
   bool is_compatible_with(const Unit other) const;
 
-  struct UnitLess {
-    bool operator()(const std::shared_ptr<Unit> &a,
-                    const std::shared_ptr<Unit> &b) const {
-      throw std::logic_error("UnitLess comparator should not be used.");
-    }
-  };
-
  private:
+  Unit() = default;             // for cereal access
+  friend class cereal::access;  // cereal can access private members
+  template <class Archive>
+  void serialize(Archive &ar) {
+    ar(cereal::base_class<Unit>(this),
+       _scale_factor,
+       _offset,
+       _prefix,
+       _dimensions);
+  }
   double          _scale_factor;  // Scale factor relative to SI base units
   double          _offset;        // Offset form base unit (e.g. for Celsius)
   std::string     _prefix;        // The SI prefix symbol (e.g. "k" for kilo)
