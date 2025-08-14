@@ -23,4 +23,15 @@ std::shared_ptr<Song> Song::from_json_stream(std::istream& is) {
   archive(ptr);
   return ptr;
 }
+bool Song::operator==(const Song& other) const {
+  return to_json_string() == other.to_json_string();
+}
+namespace std {
+template <>
+struct hash<Song> {
+  std::size_t operator()(const falcon_core::generic::Song& s) const {
+    return std::hash<std::string>()(s.to_json_string());
+  };
+};
+}  // namespace std
 CEREAL_REGISTER_TYPE(Song)
