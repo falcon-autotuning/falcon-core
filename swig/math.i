@@ -1,3 +1,4 @@
+/* 
 %{
 #include "falcon_core/Domain.hpp"
 #include "falcon_core/Quantity.hpp"
@@ -75,3 +76,4 @@
 // This is a basic starting point.
 %shared_ptr(falcon_core::OneToOneMapping<std::string, std::string>);
 %template(OneToOneMappingStringString) falcon_core::OneToOneMapping<std::string, std::string>;
+*/

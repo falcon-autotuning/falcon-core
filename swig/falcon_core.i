@@ -121,8 +121,8 @@ sys.modules[math.labelled_arrays.__name__] = math.labelled_arrays
 %}
 
 %{
-#include "falcon_core/Jsonable.hpp"
-#include "falcon_core/Time.hpp"
+#include "falcon_core/generic/Song.hpp"
+#include "falcon_core/communications/Time.hpp"
 #include <string>
 #include <cstddef>
 #include <stdexcept>
@@ -164,10 +164,10 @@ using namespace falcon_core;
 %include "std_shared_ptr.i"
 
 // Process the header files
-%shared_ptr(falcon_core::Jsonable);
-%shared_ptr(falcon_core::Time);
-%include "falcon_core/Jsonable.hpp"
-%include "falcon_core/Time.hpp"
+%shared_ptr(falcon_core::generic::Song);
+%shared_ptr(falcon_core::communications::Time);
+%include "falcon_core/generic/Song.hpp"
+%include "falcon_core/communications/Time.hpp"
 
 // Include the units definitions
 %include "units.i"

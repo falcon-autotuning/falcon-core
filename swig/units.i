@@ -1,3 +1,4 @@
+/*
 %{
 #include "falcon_core/Dimension.hpp"
 #include "falcon_core/physics/units/Prefix.hpp"
@@ -19,5 +20,5 @@
 %include "falcon_core/physics/units/Unit.hpp"
 %include "falcon_core/SymbolUnit.hpp"
 %include "falcon_core/Units.hpp"
-
+*/
 
