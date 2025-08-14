@@ -19,67 +19,42 @@ class SymbolUnit : public generic::Song {
    * @param unit The Unit object associated with this symbol.
    */
   SymbolUnit(std::shared_ptr<Unit> unit);
-
-  const std::map<Unit, std::string> _UNIT_SYMBOLS = {
-      {common_units::Meter, SI::UNIT_SYMBOL_METER},
-      {common_units::Kilogram, SI::UNIT_SYMBOL_KILOGRAM},
-      {common_units::Second, SI::UNIT_NAME_SECOND},
-      {common_units::Ampere, SI::UNIT_SYMBOL_AMPERE},
-      {common_units::Kelvin, SI::UNIT_SYMBOL_KELVIN},
-      {common_units::Mole, SI::UNIT_SYMBOL_MOLE},
-      {common_units::Candela, SI::UNIT_SYMBOL_CANDELA},
-      {common_units::Hertz, SI::UNIT_SYMBOL_HERTZ},
-      {common_units::Newton, SI::UNIT_SYMBOL_NEWTON},
-      {common_units::Pascal, SI::UNIT_SYMBOL_PASCAL},
-      {common_units::Joule, SI::UNIT_SYMBOL_JOULE},
-      {common_units::Watt, SI::UNIT_SYMBOL_WATT},
-      {common_units::Coulomb, SI::UNIT_SYMBOL_COULOMB},
-      {common_units::Volt, SI::UNIT_SYMBOL_VOLT},
-      {common_units::Farad, SI::UNIT_SYMBOL_FARAD},
-      {common_units::Ohm, SI::UNIT_SYMBOL_OHM},
-      {common_units::Siemens, SI::UNIT_SYMBOL_SIEMENS},
-      {common_units::Weber, SI::UNIT_SYMBOL_WEBER},
-      {common_units::Tesla, SI::UNIT_SYMBOL_TESLA},
-      {common_units::Henry, SI::UNIT_SYMBOL_HENRY},
-      {common_units::Minute, SI::UNIT_SYMBOL_MINUTE},
-      {common_units::Hour, SI::UNIT_SYMBOL_HOUR},
-      {common_units::ElectronVolt, SI::UNIT_SYMBOL_ELECTRON_VOLT},
-      {common_units::Celsius, SI::UNIT_SYMBOL_CELSIUS},
-      {common_units::Fahrenheit, SI::UNIT_SYMBOL_FAHRENHEIT},
-      {common_units::Dimensionless, SI::UNIT_SYMBOL},
-      {common_units::Percent, SI::UNIT_SYMBOL_PERCENT},
-      {common_units::Radian, SI::UNIT_SYMBOL_RADIAN},
-  };
-
-  const std::map<Unit, std::string> _UNIT_NAMES = {
-      {common_units::Meter, SI::UNIT_NAME_METER},
-      {common_units::Kilogram, SI::UNIT_NAME_KILOGRAM},
-      {common_units::Second, SI::UNIT_NAME_SECOND},
-      {common_units::Ampere, SI::UNIT_NAME_AMPERE},
-      {common_units::Kelvin, SI::UNIT_NAME_KELVIN},
-      {common_units::Mole, SI::UNIT_NAME_MOLE},
-      {common_units::Candela, SI::UNIT_NAME_CANDELA},
-      {common_units::Hertz, SI::UNIT_NAME_HERTZ},
-      {common_units::Newton, SI::UNIT_NAME_NEWTON},
-      {common_units::Pascal, SI::UNIT_NAME_PASCAL},
-      {common_units::Joule, SI::UNIT_NAME_JOULE},
-      {common_units::Watt, SI::UNIT_NAME_WATT},
-      {common_units::Coulomb, SI::UNIT_NAME_COULOMB},
-      {common_units::Volt, SI::UNIT_NAME_VOLT},
-      {common_units::Farad, SI::UNIT_NAME_FARAD},
-      {common_units::Ohm, SI::UNIT_NAME_OHM},
-      {common_units::Siemens, SI::UNIT_NAME_SIEMENS},
-      {common_units::Weber, SI::UNIT_NAME_WEBER},
-      {common_units::Tesla, SI::UNIT_NAME_TESLA},
-      {common_units::Henry, SI::UNIT_NAME_HENRY},
-      {common_units::Minute, SI::UNIT_NAME_MINUTE},
-      {common_units::Hour, SI::UNIT_NAME_HOUR},
-      {common_units::ElectronVolt, SI::UNIT_NAME_ELECTRON_VOLT},
-      {common_units::Celsius, SI::UNIT_NAME_CELSIUS},
-      {common_units::Fahrenheit, SI::UNIT_NAME_FAHRENHEIT},
-      {common_units::Dimensionless, SI::UNIT_NAME_DIMENSIONLESS},
-      {common_units::Percent, SI::UNIT_NAME_PERCENT},
-      {common_units::Radian, SI::UNIT_NAME_RADIAN},
+  /*
+   * @brief organizes the common units and their symbols and their names.
+   */
+  const std::map<Unit, std::pair<std::string, std::string>> _UNIT_SYMBOLS = {
+      {common_units::Meter, {SI::UNIT_SYMBOL_METER, SI::UNIT_NAME_METER}},
+      {common_units::Kilogram,
+       {SI::UNIT_SYMBOL_KILOGRAM, SI::UNIT_NAME_KILOGRAM}},
+      {common_units::Second, {SI::UNIT_SYMBOL_SECOND, SI::UNIT_NAME_SECOND}},
+      {common_units::Ampere, {SI::UNIT_SYMBOL_AMPERE, SI::UNIT_NAME_AMPERE}},
+      {common_units::Kelvin, {SI::UNIT_SYMBOL_KELVIN, SI::UNIT_NAME_KELVIN}},
+      {common_units::Mole, {SI::UNIT_SYMBOL_MOLE, SI::UNIT_NAME_MOLE}},
+      {common_units::Candela, {SI::UNIT_SYMBOL_CANDELA, SI::UNIT_NAME_CANDELA}},
+      {common_units::Hertz, {SI::UNIT_SYMBOL_HERTZ, SI::UNIT_NAME_HERTZ}},
+      {common_units::Newton, {SI::UNIT_SYMBOL_NEWTON, SI::UNIT_NAME_NEWTON}},
+      {common_units::Pascal, {SI::UNIT_SYMBOL_PASCAL, SI::UNIT_NAME_PASCAL}},
+      {common_units::Joule, {SI::UNIT_SYMBOL_JOULE, SI::UNIT_NAME_JOULE}},
+      {common_units::Watt, {SI::UNIT_SYMBOL_WATT, SI::UNIT_NAME_WATT}},
+      {common_units::Coulomb, {SI::UNIT_SYMBOL_COULOMB, SI::UNIT_NAME_COULOMB}},
+      {common_units::Volt, {SI::UNIT_SYMBOL_VOLT, SI::UNIT_NAME_VOLT}},
+      {common_units::Farad, {SI::UNIT_SYMBOL_FARAD, SI::UNIT_NAME_FARAD}},
+      {common_units::Ohm, {SI::UNIT_SYMBOL_OHM, SI::UNIT_NAME_OHM}},
+      {common_units::Siemens, {SI::UNIT_SYMBOL_SIEMENS, SI::UNIT_NAME_SIEMENS}},
+      {common_units::Weber, {SI::UNIT_SYMBOL_WEBER, SI::UNIT_NAME_WEBER}},
+      {common_units::Tesla, {SI::UNIT_SYMBOL_TESLA, SI::UNIT_NAME_TESLA}},
+      {common_units::Henry, {SI::UNIT_SYMBOL_HENRY, SI::UNIT_NAME_HENRY}},
+      {common_units::Minute, {SI::UNIT_SYMBOL_MINUTE, SI::UNIT_NAME_MINUTE}},
+      {common_units::Hour, {SI::UNIT_SYMBOL_HOUR, SI::UNIT_NAME_HOUR}},
+      {common_units::ElectronVolt,
+       {SI::UNIT_SYMBOL_ELECTRON_VOLT, SI::UNIT_NAME_ELECTRON_VOLT}},
+      {common_units::Celsius, {SI::UNIT_SYMBOL_CELSIUS, SI::UNIT_NAME_CELSIUS}},
+      {common_units::Fahrenheit,
+       {SI::UNIT_SYMBOL_FAHRENHEIT, SI::UNIT_NAME_FAHRENHEIT}},
+      {common_units::Dimensionless,
+       {SI::UNIT_SYMBOL, SI::UNIT_NAME_DIMENSIONLESS}},
+      {common_units::Percent, {SI::UNIT_SYMBOL_PERCENT, SI::UNIT_NAME_PERCENT}},
+      {common_units::Radian, {SI::UNIT_SYMBOL_RADIAN, SI::UNIT_NAME_RADIAN}},
   };
 
   const std::map<std::string, std::string> _DIMENSION_SYMBOLS = {
@@ -152,12 +127,13 @@ class SymbolUnit : public generic::Song {
    */
   bool is_compatible_with(const std::shared_ptr<SymbolUnit> other) const;
 
-  struct SymbolUnitLess {
-    bool operator()(const std::shared_ptr<Unit> &a,
-                    const std::shared_ptr<Unit> &b) const {
-      throw std::logic_error("SymbolUnitLess comparator should not be used.");
-    }
-  };
+  // struct SymbolUnitLess {
+  //   bool operator()(const std::shared_ptr<Unit> &a,
+  //                   const std::shared_ptr<Unit> &b) const {
+  //     throw std::logic_error("SymbolUnitLess comparator should not be
+  //     used.");
+  //   }
+  // };
 
  private:
   std::shared_ptr<Unit> _unit;

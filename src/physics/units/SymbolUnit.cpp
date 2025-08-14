@@ -47,8 +47,8 @@ std::pair<std::string, std::string> SymbolUnit::_find_matching_common_unit()
     const {
   for (auto &pair : _UNIT_SYMBOLS) {
     if (pair.first.dimensions() == _unit->dimensions()) {
-      return {_unit->prefix() + pair.second,
-              _unit->prefix() + _UNIT_NAMES.at(pair.first)};
+      return {_unit->prefix() + pair.second.first,
+              _unit->prefix() + pair.second.second};
     }
   }
   // No exact match found, generate a custom symbol and name
@@ -144,9 +144,9 @@ std::string SymbolUnit::_get_dimension_symbol(std::string dimension) const {
 }
 std::string SymbolUnit::_generate_name() const {
   // Look for a predefined name based on dimensions
-  auto it = _UNIT_NAMES.find(_unit->dimensions());
-  if (it != _UNIT_NAMES.end()) {
-    return it->second;
+  auto it = _UNIT_SYMBOLS.find(_unit->dimensions());
+  if (it != _UNIT_SYMBOLS.end()) {
+    return it->second.second;
   }
   // Otherwise, use the symbol as the name
   return _generate_symbol();
