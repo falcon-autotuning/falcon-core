@@ -1,30 +1,20 @@
 #pragma once
 
-#include "falcon_core/generic/NameBase.hpp"
+#include "falcon_core/generic/Song.hpp"
 
-#include <string>
+namespace falcon_core {
+namespace physics {
+namespace device_structures {
+class BaseConnection : public generic::Song<BaseConnection> {
+ public:
+  BaseConnection(std::string name);
+  static constexpr const char *member_names[] = {"_class_name", "_name"};
+  static std::string           _static_class_name() { return "BaseConnection"; }
+  std::string                  name() const { return _name; }
 
-namespace falcon_core
-{
-namespace physics
-{
-namespace device_structures
-{
-class BaseConnection : public generic::NameBase<std::string>
-{
-public:
-  using NameBase<std::string>::NameBase;
-
-  nlohmann::json
-  to_json () const override
-  {
-    nlohmann::json j = NameBase<std::string>::to_json ();
-    add_metadata (j,
-                  "falcon_core.physics.device_structures.base_connection",
-                  "BaseConnection");
-    return j;
-  }
+ private:
+  std::string _name;
 };
-}
-}
-} // namespace falcon_core
+}  // namespace device_structures
+}  // namespace physics
+}  // namespace falcon_core

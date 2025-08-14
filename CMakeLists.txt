@@ -1,26 +1,19 @@
 cmake_minimum_required(VERSION 3.20)
 project(FalconCore LANGUAGES CXX C)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # --- Dependencies ---
 include(FetchContent)
 
-# nlohmann/json
+# cereal
 FetchContent_Declare(
-  json
-  GIT_REPOSITORY https://github.com/nlohmann/json.git
-  GIT_TAG v3.12.0)
-FetchContent_MakeAvailable(json)
-
-# boost/pfr
-FetchContent_Declare(
-  boost_pfr
-  GIT_REPOSITORY https://github.com/boostorg/pfr.git
-  GIT_TAG boost-1.85.0  # or the latest release tag
+  cereal
+  GIT_REPOSITORY https://github.com/USCiLab/cereal.git
+  GIT_TAG v1.3.2 # or latest release
 )
-FetchContent_MakeAvailable(boost_pfr)
+FetchContent_Populate(cereal)
 
 # GoogleTest
 FetchContent_Declare(
@@ -80,10 +73,9 @@ add_library(
 target_include_directories(
   falcon_core_cpp
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-         $<INSTALL_INTERFACE:include> ${json_SOURCE_DIR}/include
+         $<INSTALL_INTERFACE:include>
          ${eigen_SOURCE_DIR}
-         ${boost_pfr_SOURCE_DIR}/include )
-target_link_libraries(falcon_core_cpp PRIVATE nlohmann_json::nlohmann_json)
+         ${cereal_SOURCE_DIR}/include)
 
 # --- SWIG Module ---
 set(SWIG_MODULE_NAME "falcon_core")
@@ -115,8 +107,7 @@ target_include_directories(
           "${CMAKE_CURRENT_SOURCE_DIR}/swig" ${Python3_INCLUDE_DIRS}
           "${SWIG_LIB_DIR}/python" ${NUMPY_INCLUDE_DIR})
 
-target_link_libraries(${SWIG_MODULE_NAME} PRIVATE Python3::Python
-                                                  falcon_core_cpp)
+target_link_libraries(${SWIG_MODULE_NAME} PRIVATE Python3::Python falcon_core_cpp)
 
 # --- C++ Tests ---
 enable_testing()
