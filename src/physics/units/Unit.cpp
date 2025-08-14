@@ -1,19 +1,20 @@
 #include "falcon_core/physics/units/Unit.hpp"
 
+#include <cmath>
 #include <stdexcept>
 #include <string>
 
 #include "falcon_core/Constants.hpp"
 #include "falcon_core/physics/units/Prefix.hpp"
 #include "falcon_core/physics/units/TotalDimensions.hpp"
+using namespace falcon_core;
 using namespace falcon_core::physics::units;
 
 Unit::Unit(TotalDimensions dimensions,
            double          scale_factor,
            double          offset,
            std::string     prefix)
-    : generic::Song<Unit>("Unit"),
-      _scale_factor(scale_factor),
+    : _scale_factor(scale_factor),
       _dimensions(dimensions),
       _offset(offset),
       _prefix(prefix) {}
@@ -104,3 +105,5 @@ double Unit::convert_value_to(const double value,
 bool Unit::is_compatible_with(const Unit other) const {
   return dimensions() == other.dimensions();
 }
+CEREAL_REGISTER_TYPE(Unit)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, Unit)

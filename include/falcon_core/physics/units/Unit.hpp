@@ -1,31 +1,24 @@
 #pragma once
 
+#include <cereal/archives/json.hpp>
+#include <cereal/types/memory.hpp>
+#include <cereal/types/polymorphic.hpp>
 #include <memory>
-#include <nlohmann/json.hpp>
 
 #include "falcon_core/Constants.hpp"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/units/TotalDimensions.hpp"
 
-#define UNIT_MEMBERS \
-  X(_scale_factor)   \
-  X(_offset)         \
-  X(_prefix)         \
-  X(_dimensions)
-
 namespace falcon_core {
 namespace physics {
 namespace units {
 
-class Unit : public generic::Song<Unit> {
+class Unit : public generic::Song {
  public:
   Unit(TotalDimensions dimensions,
        double          scale_factor = 1.0,
        double          offset       = 0.0,
        std::string     prefix       = SI::UNIT_SYMBOL);
-  static constexpr const char *member_names[] = {
-      "_class_name", "_scale_factor", "_offset", "_prefix", "_dimensions"};
-  static std::string _static_class_name() { return "Unit"; }
 
   /**
    * @brief The prefix applied to this unit.
