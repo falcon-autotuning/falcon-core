@@ -5,14 +5,18 @@
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
-class BaseConnection : public generic::Song<BaseConnection> {
+class BaseConnection : public generic::Song {
  public:
   BaseConnection(std::string name);
-  static constexpr const char *member_names[] = {"_class_name", "_name"};
-  static std::string           _static_class_name() { return "BaseConnection"; }
-  std::string                  name() const { return _name; }
+  std::string name() const { return _name; }
 
  private:
+  BaseConnection() = default;   // for cereal access
+  friend class cereal::access;  // cereal can access private members
+  template <class Archive>
+  void serialize(Archive &ar) {
+    ar(cereal::base_class<Song>(this), _name);
+  }
   std::string _name;
 };
 }  // namespace device_structures

@@ -80,7 +80,7 @@ class Unit : public generic::Song {
   friend class cereal::access;  // cereal can access private members
   template <class Archive>
   void serialize(Archive &ar) {
-    ar(cereal::base_class<Unit>(this),
+    ar(cereal::base_class<Song>(this),
        _scale_factor,
        _offset,
        _prefix,
