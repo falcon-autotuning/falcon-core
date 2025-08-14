@@ -1,72 +1,43 @@
 #pragma once
 
-#include "falcon_core/generic/Song.hpp"
-#include "falcon_core/physics/device_structures/BaseConnections.hpp"
-#include "falcon_core/physics/device_structures/Gate.hpp"
-
-#include <map>
 #include <memory>
 
-namespace falcon_core
-{
-namespace physics
-{
-namespace device_structures
-{
+#include "falcon_core/physics/device_structures/Gate.hpp"
+#include "falcon_core/physics/device_structures/Gates.hpp"
 
-// Using BaseConnections<Gate> as a placeholder for the value type 'Gates'
-using Gates = BaseConnections<Gate>;
+namespace falcon_core {
+namespace physics {
+namespace device_structures {
 
-// Using BaseConnections<Gate> as a placeholder for the value type 'Gates'
-using Gates = BaseConnections<Gate>;
+/**
+ * @brief A serializable vector of Gate pointers, also a Song.
+ *
+ * Supports all std::vector methods and cereal serialization.
+ */
+template <typename K, typename V>
+class GateRelations : public std::map<std::shared_ptr<K>, std::shared_ptr<V>>,
+                      public falcon_core::generic::Song {
+  static_assert(std::is_base_of<Gate, K>::value, "T must be derived from Gate");
+  static_assert(std::is_base_of<Gates<Gate>, V>::value,
+                "T must be derived from Gates");
 
-struct GatePtrCompare
-{
-  bool
-  operator() (const std::shared_ptr<Gate> &lhs,
-              const std::shared_ptr<Gate> &rhs) const
-  {
-    if (!lhs || !rhs)
-      return !lhs && rhs; // nulls sort first
-    return lhs->name () < rhs->name ();
+ public:
+  using std::map<std::shared_ptr<K>, std::shared_ptr<V>>::map;
+
+ private:
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this),
+       cereal::base_class<
+           std::map<std::shared_ptr<Gate>, std::shared_ptr<Gates<Gate>>>>(
+           this));
   }
+
+ protected:
+  GateRelations() = default;
+  friend class cereal::access;
 };
 
-class GateRelations : public generic::Song
-{
-public:
-  using key_type       = std::shared_ptr<Gate>;
-  using mapped_type    = std::shared_ptr<Gates>;
-  using container_type = std::map<key_type, mapped_type, GatePtrCompare>;
-
-  GateRelations () = default;
-
-  void
-  insert (const key_type &key, const mapped_type &value)
-  {
-    _relations[key] = value;
-  }
-
-  nlohmann::json
-  to_json () const override
-  {
-    nlohmann::json j;
-    add_metadata (j,
-                  "falcon_core.physics.device_structures.gate_relations",
-                  "GateRelations");
-    j["container_size"] = _relations.size (); // Placeholder serialization
-    return j;
-  }
-
-  size_t
-  hash () const override
-  {
-    return _relations.size (); // Placeholder hash
-  }
-
-private:
-  container_type _relations;
-};
-}
-}
-} // namespace falcon_core
+}  // namespace device_structures
+}  // namespace physics
+}  // namespace falcon_core

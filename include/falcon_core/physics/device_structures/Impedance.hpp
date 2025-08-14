@@ -1,52 +1,54 @@
 #pragma once
 
+#include <memory>
+
 #include "falcon_core/generic/Song.hpp"
-#include "falcon_core/math/Quantity.hpp"
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
 
-#include <complex>
+namespace falcon_core {
+namespace physics {
+namespace device_structures {
 
-namespace falcon_core
-{
-namespace physics
-{
-namespace device_structures
-{
+class Impedance : public generic::Song {
+ public:
+  Impedance(std::shared_ptr<BaseConnection> connection,
+            double                          resistance,
+            double                          capacitance)
+      : _connection(std::move(connection)),
+        _resistance(resistance),
+        _capacitance(capacitance) {}
+  /*
+   * @brief Gets the connection leading to the fridge with this impedance
+   * @return A shared pointer to the BaseConnection
+   */
+  std::shared_ptr<BaseConnection> connection() const { return _connection; }
+  /*
+   * @brief Gets the resistance of the impedance
+   * @return The resistance in ohms
+   */
+  double resistance() const { return _resistance; }
+  /*
+   * @brief Gets the capacitance of the impedance
+   * @return The capacitance in farads
+   */
+  double capacitance() const { return _capacitance; }
 
-class Impedance : public generic::Song
-{
-public:
-  using ComplexQuantity = math::Quantity<std::complex<double>>;
-
-  Impedance (std::shared_ptr<ComplexQuantity> impedance)
-      : _impedance (std::move (impedance))
-  {
+ private:
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this),
+       _connection,
+       _resistance,
+       _capacitance);
   }
+  std::shared_ptr<BaseConnection> _connection;
+  double                          _resistance;
+  double                          _capacitance;
 
-  const std::shared_ptr<ComplexQuantity> &
-  get_impedance () const
-  {
-    return _impedance;
-  }
-
-  nlohmann::json
-  to_json () const override
-  {
-    nlohmann::json j;
-    add_metadata (
-        j, "falcon_core.physics.device_structures.impedance", "Impedance");
-    j["_impedance"] = _impedance->to_json ();
-    return j;
-  }
-
-  size_t
-  hash () const override
-  {
-    return _impedance ? _impedance->hash () : 0;
-  }
-
-private:
-  std::shared_ptr<ComplexQuantity> _impedance;
+ protected:
+  Impedance() = default;  // For cereal
+  friend class cereal::access;
 };
-}
-}
-} // namespace falcon_core
+}  // namespace device_structures
+}  // namespace physics
+}  // namespace falcon_core

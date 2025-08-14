@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/physics/device_structures/BaseConnections.hpp"
+#include "falcon_core/physics/device_structures/Gates.hpp"
 #include "falcon_core/physics/device_structures/ReservoirGate.hpp"
 namespace falcon_core {
 namespace physics {
@@ -12,17 +12,17 @@ namespace device_structures {
  * Supports all std::vector methods and cereal serialization.
  */
 template <typename T>
-class ReservoirGates : public BaseConnections<T> {
+class ReservoirGates : public Gates<T> {
   static_assert(std::is_base_of<ReservoirGate, T>::value,
                 "T must be derived from ReservoirGate");
 
  public:
-  using BaseConnections<T>::BaseConnections;
+  using Gates<T>::Gates;
 
  private:
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseConnections<T>>(this));
+    ar(cereal::base_class<Gates<T>>(this));
   }
 
  protected:

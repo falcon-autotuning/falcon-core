@@ -17,6 +17,10 @@ namespace generic {
  * Inherit from Song in your serializable class, implement serialize(), and
  * register with cereal.
  *
+ * @note
+ * std::hash<falcon_core::generic::Song> is specialized (see Song.cpp)
+ * so Song can be used as a key in std::unordered_map.
+ *
  * @section usage Usage
  * @code
  * struct Animal : public Song {
@@ -68,6 +72,12 @@ class Song {
    * @return std::shared_ptr<Song> (actually the derived type)
    */
   static std::shared_ptr<Song> from_json_stream(std::istream& is);
+  /**
+   * @brief Equality operator.
+   * Override in derived classes to compare member variables.
+   */
+  bool operator==(const Song& other) const;
 };
 }  // namespace generic
 }  // namespace falcon_core
+   //
