@@ -1,24 +1,26 @@
 #pragma once
 
-#include "falcon_core/generic/Song.hpp"
+#include "falcon_core/physics/device_structures/Gate.hpp"
 
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
-class BaseConnection : public generic::Song {
+
+/*
+ * @brief A dot gate on a quantum dot device.
+ */
+class DotGate : public Gate {
  public:
-  BaseConnection(std::string name) : _name(std::move(name)) {}
-  std::string name() const { return _name; }
+  DotGate(std::string name) : Gate(std::move(name)) {}
 
  private:
   template <class Archive>
   void serialize(Archive &ar) {
-    ar(cereal::base_class<Song>(this), _name);
+    ar(cereal::base_class<Gate>(this));
   }
-  std::string _name;
 
  protected:
-  BaseConnection() = default;   // for cereal access
+  DotGate() = default;          // for cereal access
   friend class cereal::access;  // cereal can access private members
 };
 }  // namespace device_structures

@@ -2,26 +2,26 @@
 
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 
-namespace falcon_core
-{
-namespace physics
-{
-namespace device_structures
-{
+namespace falcon_core {
+namespace physics {
+namespace device_structures {
+/*
+ * @brief A gate on a quantum dot device.
+ */
+class Gate : public BaseConnection {
+ public:
+  Gate(std::string name) : BaseConnection(std::move(name)) {}
 
-class Gate : public BaseConnection
-{
-public:
-  using BaseConnection::BaseConnection;
-
-  nlohmann::json
-  to_json () const override
-  {
-    nlohmann::json j = BaseConnection::to_json ();
-    add_metadata (j, "falcon_core.physics.device_structures.gate", "Gate");
-    return j;
+ private:
+  template <class Archive>
+  void serialize(Archive &ar) {
+    ar(cereal::base_class<BaseConnection>(this));
   }
+
+ protected:
+  Gate() = default;             // for cereal access
+  friend class cereal::access;  // cereal can access private members
 };
-}
-}
-} // namespace falcon_core
+}  // namespace device_structures
+}  // namespace physics
+}  // namespace falcon_core

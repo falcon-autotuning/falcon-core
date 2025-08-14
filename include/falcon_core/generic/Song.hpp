@@ -41,11 +41,6 @@ class Song {
  public:
   virtual ~Song() = default;
   /**
-   * @brief Returns the class name (override if desired).
-   */
-  virtual std::string class_name() const { return "Song"; }
-
-  /**
    * @brief cereal serialization interface.
    * Override in derived classes.
    */
