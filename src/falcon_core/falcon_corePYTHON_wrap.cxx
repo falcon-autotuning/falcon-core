@@ -3708,16 +3708,30 @@ namespace Swig {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_char swig_types[0]
-#define SWIGTYPE_p_falcon_core__communications__Time swig_types[1]
+#define SWIGTYPE_p_SymbolUnit swig_types[0]
+#define SWIGTYPE_p_char swig_types[1]
 #define SWIGTYPE_p_falcon_core__generic__Song swig_types[2]
-#define SWIGTYPE_p_std__istream swig_types[3]
-#define SWIGTYPE_p_std__ostream swig_types[4]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__communications__Time_t swig_types[5]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__generic__Song_t swig_types[6]
-#define SWIGTYPE_p_std__string swig_types[7]
-static swig_type_info *swig_types[9];
-static swig_module_info swig_module = {swig_types, 8, 0, 0, 0, 0};
+#define SWIGTYPE_p_falcon_core__physics__units__Prefix swig_types[3]
+#define SWIGTYPE_p_falcon_core__physics__units__SymbolUnit swig_types[4]
+#define SWIGTYPE_p_falcon_core__physics__units__Unit swig_types[5]
+#define SWIGTYPE_p_std__istream swig_types[6]
+#define SWIGTYPE_p_std__mapT_int_std__string_t swig_types[7]
+#define SWIGTYPE_p_std__mapT_std__string_int_t swig_types[8]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[9]
+#define SWIGTYPE_p_std__ostream swig_types[10]
+#define SWIGTYPE_p_std__pairT_double_std__string_t swig_types[11]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__communications__Time_t swig_types[12]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__generic__Song_t swig_types[13]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__CommonUnits_t swig_types[14]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Prefix_t swig_types[15]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t swig_types[16]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t swig_types[17]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t swig_types[18]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Units_t swig_types[19]
+#define SWIGTYPE_p_std__string swig_types[20]
+#define SWIGTYPE_p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t swig_types[21]
+static swig_type_info *swig_types[23];
+static swig_module_info swig_module = {swig_types, 22, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3864,11 +3878,10 @@ namespace swig {
 }
 
 
-#include "falcon_core/generic/Song.hpp"
-#include "falcon_core/communications/Time.hpp"
 #include <string>
 #include <cstddef>
 #include <stdexcept>
+#include <falcon_core/Constants.hpp>
 using namespace falcon_core;
 
 
@@ -3877,6 +3890,9 @@ SWIGINTERNINLINE PyObject*
 {
   return PyInt_FromLong((long) value);
 }
+
+
+#include "falcon_core/generic/Song.hpp"
 
 
 struct SWIG_null_deleter {
@@ -3892,6 +3908,63 @@ struct SWIG_null_deleter {
 #define SWIG_NO_NULL_DELETER_SWIG_BUILTIN_INIT
 
 
+#include "falcon_core/physics/units/TotalDimensions.hpp"
+#include "falcon_core/physics/units/Unit.hpp"
+#include "falcon_core/physics/units/CommonUnits.hpp"
+#include "falcon_core/physics/units/Units.hpp"
+#include "falcon_core/physics/units/Prefix.hpp"
+#include "falcon_core/physics/units/SymbolUnit.hpp"
+
+
+SWIGINTERN int
+SWIG_AsVal_double (PyObject *obj, double *val)
+{
+  int res = SWIG_TypeError;
+  if (PyFloat_Check(obj)) {
+    if (val) *val = PyFloat_AsDouble(obj);
+    return SWIG_OK;
+#if PY_VERSION_HEX < 0x03000000
+  } else if (PyInt_Check(obj)) {
+    if (val) *val = (double) PyInt_AsLong(obj);
+    return SWIG_OK;
+#endif
+  } else if (PyLong_Check(obj)) {
+    double v = PyLong_AsDouble(obj);
+    if (!PyErr_Occurred()) {
+      if (val) *val = v;
+      return SWIG_OK;
+    } else {
+      PyErr_Clear();
+    }
+  }
+#ifdef SWIG_PYTHON_CAST_MODE
+  {
+    int dispatch = 0;
+    double d = PyFloat_AsDouble(obj);
+    if (!PyErr_Occurred()) {
+      if (val) *val = d;
+      return SWIG_AddCast(SWIG_OK);
+    } else {
+      PyErr_Clear();
+    }
+    if (!dispatch) {
+      long v = PyLong_AsLong(obj);
+      if (!PyErr_Occurred()) {
+	if (val) *val = v;
+	return SWIG_AddCast(SWIG_AddCast(SWIG_OK));
+      } else {
+	PyErr_Clear();
+      }
+    }
+  }
+#endif
+  return res;
+}
+
+
+  #define SWIG_From_double   PyFloat_FromDouble 
+
+
 #include <limits.h>
 #if !defined(SWIG_NO_LLONG_MAX)
 # if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
@@ -3902,19 +3975,113 @@ struct SWIG_null_deleter {
 #endif
 
 
-#if defined(LLONG_MAX) && !defined(SWIG_LONG_LONG_AVAILABLE)
-#  define SWIG_LONG_LONG_AVAILABLE
-#endif
+#include <float.h>
 
 
-#ifdef SWIG_LONG_LONG_AVAILABLE
-SWIGINTERNINLINE PyObject* 
-SWIG_From_long_SS_long  (long long value)
-{
-  return ((value < LONG_MIN) || (value > LONG_MAX)) ?
-    PyLong_FromLongLong(value) : PyInt_FromLong(static_cast< long >(value));
+#include <math.h>
+
+
+SWIGINTERNINLINE int
+SWIG_CanCastAsInteger(double *d, double min, double max) {
+  double x = *d;
+  if ((min <= x && x <= max)) {
+   double fx, cx, rd;
+   errno = 0;
+   fx = floor(x);
+   cx = ceil(x);
+   rd =  ((x - fx) < 0.5) ? fx : cx; /* simple rint */
+   if ((errno == EDOM) || (errno == ERANGE)) {
+     errno = 0;
+   } else {
+     double summ, reps, diff;
+     if (rd < x) {
+       diff = x - rd;
+     } else if (rd > x) {
+       diff = rd - x;
+     } else {
+       return 1;
+     }
+     summ = rd + x;
+     reps = diff/summ;
+     if (reps < 8*DBL_EPSILON) {
+       *d = rd;
+       return 1;
+     }
+   }
+  }
+  return 0;
 }
+
+
+SWIGINTERN int
+SWIG_AsVal_long (PyObject *obj, long* val)
+{
+#if PY_VERSION_HEX < 0x03000000
+  if (PyInt_Check(obj)) {
+    if (val) *val = PyInt_AsLong(obj);
+    return SWIG_OK;
+  } else
 #endif
+  if (PyLong_Check(obj)) {
+    long v = PyLong_AsLong(obj);
+    if (!PyErr_Occurred()) {
+      if (val) *val = v;
+      return SWIG_OK;
+    } else {
+      PyErr_Clear();
+      return SWIG_OverflowError;
+    }
+  }
+#ifdef SWIG_PYTHON_CAST_MODE
+  {
+    int dispatch = 0;
+    long v = PyInt_AsLong(obj);
+    if (!PyErr_Occurred()) {
+      if (val) *val = v;
+      return SWIG_AddCast(SWIG_OK);
+    } else {
+      PyErr_Clear();
+    }
+    if (!dispatch) {
+      double d;
+      int res = SWIG_AddCast(SWIG_AsVal_double (obj,&d));
+      // Largest double not larger than LONG_MAX (not portably calculated easily)
+      // Note that double(LONG_MAX) is stored in a double rounded up by one (for 64-bit long)
+      // 0x7ffffffffffffc00LL == (int64_t)std::nextafter(double(__uint128_t(LONG_MAX)+1), double(0))
+      const double long_max = sizeof(long) == 8 ? 0x7ffffffffffffc00LL : LONG_MAX;
+      // No equivalent needed for 64-bit double(LONG_MIN) is exactly LONG_MIN
+      if (SWIG_IsOK(res) && SWIG_CanCastAsInteger(&d, LONG_MIN, long_max)) {
+	if (val) *val = (long)(d);
+	return res;
+      }
+    }
+  }
+#endif
+  return SWIG_TypeError;
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_int (PyObject * obj, int *val)
+{
+  long v;
+  int res = SWIG_AsVal_long (obj, &v);
+  if (SWIG_IsOK(res)) {
+    if ((v < INT_MIN || v > INT_MAX)) {
+      return SWIG_OverflowError;
+    } else {
+      if (val) *val = static_cast< int >(v);
+    }
+  }  
+  return res;
+}
+
+
+SWIGINTERNINLINE PyObject*
+  SWIG_From_bool  (bool value)
+{
+  return PyBool_FromLong(value ? 1 : 0);
+}
 
 
 
@@ -3964,50 +4131,6 @@ SWIGINTERN PyObject *_wrap_delete_Song(PyObject *self, PyObject *args) {
     }
   }
   resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Song_class_name(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  falcon_core::generic::Song *arg1 = (falcon_core::generic::Song *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  std::shared_ptr< falcon_core::generic::Song const > tempshared1 ;
-  std::shared_ptr< falcon_core::generic::Song const > *smartarg1 = 0 ;
-  PyObject *swig_obj[1] ;
-  std::string result;
-  
-  (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  {
-    int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__generic__Song_t, 0 |  0 , &newmem);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Song_class_name" "', argument " "1"" of type '" "falcon_core::generic::Song const *""'");
-    }
-    if (newmem & SWIG_CAST_NEW_MEMORY) {
-      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::generic::Song > * >(argp1);
-      delete reinterpret_cast< std::shared_ptr< const falcon_core::generic::Song > * >(argp1);
-      arg1 = const_cast< falcon_core::generic::Song * >(tempshared1.get());
-    } else {
-      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::generic::Song > * >(argp1);
-      arg1 = const_cast< falcon_core::generic::Song * >((smartarg1 ? smartarg1->get() : 0));
-    }
-  }
-  {
-    try {
-      result = ((falcon_core::generic::Song const *)arg1)->class_name();
-    } catch (const Swig::DirectorException& e) {
-      // This catches exceptions thrown by director methods,
-      // allowing the original Python exception to be propagated.
-      SWIG_fail;
-    }
-  }
-  resultobj = SWIG_NewPointerObj((new std::string(result)), SWIGTYPE_p_std__string, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -4223,15 +4346,63 @@ SWIGINTERN PyObject *Song_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *arg
   return SWIG_Python_InitShadowInstance(args);
 }
 
-SWIGINTERN PyObject *_wrap_new_Time(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_Unit__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
   PyObject *resultobj = 0;
-  falcon_core::communications::Time *result = 0 ;
+  falcon_core::physics::units::TotalDimensions arg1 ;
+  double arg2 ;
+  double arg3 ;
+  std::string arg4 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  void *argp4 ;
+  int res4 = 0 ;
+  falcon_core::physics::units::Unit *result = 0 ;
   
   (void)self;
-  if (!SWIG_Python_UnpackTuple(args, "new_Time", 0, 0, 0)) SWIG_fail;
+  if ((nobjs < 4) || (nobjs > 4)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Unit" "', argument " "1"" of type '" "falcon_core::physics::units::TotalDimensions""'");
+    }
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_Unit" "', argument " "1"" of type '" "falcon_core::physics::units::TotalDimensions""'");
+    } else {
+      arg1 = *(reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::TotalDimensions > * >(argp1)->get());
+      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::TotalDimensions > * >(argp1);
+    }
+  }
+  ecode2 = SWIG_AsVal_double(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Unit" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  ecode3 = SWIG_AsVal_double(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Unit" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
+  {
+    res4 = SWIG_ConvertPtr(swig_obj[3], &argp4, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "new_Unit" "', argument " "4"" of type '" "std::string""'"); 
+    }  
+    if (!argp4) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_Unit" "', argument " "4"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp4);
+      arg4 = *temp;
+      if (SWIG_IsNewObj(res4)) delete temp;
+    }
+  }
   {
     try {
-      result = (falcon_core::communications::Time *)new falcon_core::communications::Time();
+      result = (falcon_core::physics::units::Unit *)new falcon_core::physics::units::Unit(SWIG_STD_MOVE(arg1),arg2,arg3,SWIG_STD_MOVE(arg4));
     } catch (const Swig::DirectorException& e) {
       // This catches exceptions thrown by director methods,
       // allowing the original Python exception to be propagated.
@@ -4239,8 +4410,8 @@ SWIGINTERN PyObject *_wrap_new_Time(PyObject *self, PyObject *args) {
     }
   }
   {
-    std::shared_ptr<  falcon_core::communications::Time > *smartresult = result ? new std::shared_ptr<  falcon_core::communications::Time >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
-    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__communications__Time_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
   }
   return resultobj;
 fail:
@@ -4248,57 +4419,816 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Time_time(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_Unit__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
   PyObject *resultobj = 0;
-  falcon_core::communications::Time *arg1 = (falcon_core::communications::Time *) 0 ;
-  void *argp1 = 0 ;
+  falcon_core::physics::units::TotalDimensions arg1 ;
+  double arg2 ;
+  double arg3 ;
+  void *argp1 ;
   int res1 = 0 ;
-  std::shared_ptr< falcon_core::communications::Time const > tempshared1 ;
-  std::shared_ptr< falcon_core::communications::Time const > *smartarg1 = 0 ;
-  PyObject *swig_obj[1] ;
-  long long result;
+  double val2 ;
+  int ecode2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  falcon_core::physics::units::Unit *result = 0 ;
   
   (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
+  if ((nobjs < 3) || (nobjs > 3)) SWIG_fail;
   {
     int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__communications__Time_t, 0 |  0 , &newmem);
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t,  0 , &newmem);
     if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Time_time" "', argument " "1"" of type '" "falcon_core::communications::Time const *""'");
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Unit" "', argument " "1"" of type '" "falcon_core::physics::units::TotalDimensions""'");
     }
-    if (newmem & SWIG_CAST_NEW_MEMORY) {
-      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::communications::Time > * >(argp1);
-      delete reinterpret_cast< std::shared_ptr< const falcon_core::communications::Time > * >(argp1);
-      arg1 = const_cast< falcon_core::communications::Time * >(tempshared1.get());
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_Unit" "', argument " "1"" of type '" "falcon_core::physics::units::TotalDimensions""'");
     } else {
-      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::communications::Time > * >(argp1);
-      arg1 = const_cast< falcon_core::communications::Time * >((smartarg1 ? smartarg1->get() : 0));
+      arg1 = *(reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::TotalDimensions > * >(argp1)->get());
+      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::TotalDimensions > * >(argp1);
     }
   }
+  ecode2 = SWIG_AsVal_double(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Unit" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  ecode3 = SWIG_AsVal_double(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Unit" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
   {
     try {
-      result = (long long)((falcon_core::communications::Time const *)arg1)->time();
+      result = (falcon_core::physics::units::Unit *)new falcon_core::physics::units::Unit(SWIG_STD_MOVE(arg1),arg2,arg3);
     } catch (const Swig::DirectorException& e) {
       // This catches exceptions thrown by director methods,
       // allowing the original Python exception to be propagated.
       SWIG_fail;
     }
   }
-  resultobj = SWIG_From_long_SS_long(static_cast< long long >(result));
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
+  }
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_delete_Time(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_Unit__SWIG_2(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
   PyObject *resultobj = 0;
-  falcon_core::communications::Time *arg1 = (falcon_core::communications::Time *) 0 ;
+  falcon_core::physics::units::TotalDimensions arg1 ;
+  double arg2 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  falcon_core::physics::units::Unit *result = 0 ;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Unit" "', argument " "1"" of type '" "falcon_core::physics::units::TotalDimensions""'");
+    }
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_Unit" "', argument " "1"" of type '" "falcon_core::physics::units::TotalDimensions""'");
+    } else {
+      arg1 = *(reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::TotalDimensions > * >(argp1)->get());
+      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::TotalDimensions > * >(argp1);
+    }
+  }
+  ecode2 = SWIG_AsVal_double(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Unit" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  {
+    try {
+      result = (falcon_core::physics::units::Unit *)new falcon_core::physics::units::Unit(SWIG_STD_MOVE(arg1),arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_Unit__SWIG_3(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::TotalDimensions arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  falcon_core::physics::units::Unit *result = 0 ;
+  
+  (void)self;
+  if ((nobjs < 1) || (nobjs > 1)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Unit" "', argument " "1"" of type '" "falcon_core::physics::units::TotalDimensions""'");
+    }
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_Unit" "', argument " "1"" of type '" "falcon_core::physics::units::TotalDimensions""'");
+    } else {
+      arg1 = *(reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::TotalDimensions > * >(argp1)->get());
+      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::TotalDimensions > * >(argp1);
+    }
+  }
+  {
+    try {
+      result = (falcon_core::physics::units::Unit *)new falcon_core::physics::units::Unit(SWIG_STD_MOVE(arg1));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_Unit(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[5] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "new_Unit", 0, 4, argv))) SWIG_fail;
+  --argc;
+  if (argc == 1) {
+    int _v = 0;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_Unit__SWIG_3(self, argc, argv);
+    }
+  }
+  if (argc == 2) {
+    int _v = 0;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_double(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_new_Unit__SWIG_2(self, argc, argv);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v = 0;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_double(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_double(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_new_Unit__SWIG_1(self, argc, argv);
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v = 0;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_double(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_double(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_std__string, SWIG_POINTER_NO_NULL | 0);
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            return _wrap_new_Unit__SWIG_0(self, argc, argv);
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'new_Unit'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    falcon_core::physics::units::Unit::Unit(falcon_core::physics::units::TotalDimensions,double,double,std::string)\n"
+    "    falcon_core::physics::units::Unit::Unit(falcon_core::physics::units::TotalDimensions,double,double)\n"
+    "    falcon_core::physics::units::Unit::Unit(falcon_core::physics::units::TotalDimensions,double)\n"
+    "    falcon_core::physics::units::Unit::Unit(falcon_core::physics::units::TotalDimensions)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Unit_prefix(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::Unit *arg1 = (falcon_core::physics::units::Unit *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  std::shared_ptr< falcon_core::communications::Time > tempshared1 ;
-  std::shared_ptr< falcon_core::communications::Time > *smartarg1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > *smartarg1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::string result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Unit_prefix" "', argument " "1"" of type '" "falcon_core::physics::units::Unit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    try {
+      result = ((falcon_core::physics::units::Unit const *)arg1)->prefix();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj((new std::string(result)), SWIGTYPE_p_std__string, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Unit_dimensions(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::Unit *arg1 = (falcon_core::physics::units::Unit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > *smartarg1 = 0 ;
+  PyObject *swig_obj[1] ;
+  falcon_core::physics::units::TotalDimensions result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Unit_dimensions" "', argument " "1"" of type '" "falcon_core::physics::units::Unit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    try {
+      result = ((falcon_core::physics::units::Unit const *)arg1)->dimensions();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::TotalDimensions > *smartresult = new std::shared_ptr<  falcon_core::physics::units::TotalDimensions >(new falcon_core::physics::units::TotalDimensions(result));
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Unit_scale_factor(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::Unit *arg1 = (falcon_core::physics::units::Unit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > *smartarg1 = 0 ;
+  PyObject *swig_obj[1] ;
+  double result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Unit_scale_factor" "', argument " "1"" of type '" "falcon_core::physics::units::Unit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    try {
+      result = (double)((falcon_core::physics::units::Unit const *)arg1)->scale_factor();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Unit_offset(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::Unit *arg1 = (falcon_core::physics::units::Unit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > *smartarg1 = 0 ;
+  PyObject *swig_obj[1] ;
+  double result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Unit_offset" "', argument " "1"" of type '" "falcon_core::physics::units::Unit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    try {
+      result = (double)((falcon_core::physics::units::Unit const *)arg1)->offset();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Unit___mul__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::Unit *arg1 = (falcon_core::physics::units::Unit *) 0 ;
+  falcon_core::physics::units::Unit *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > *smartarg1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > tempshared2 ;
+  PyObject *swig_obj[2] ;
+  std::shared_ptr< falcon_core::physics::units::Unit > result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "Unit___mul__", 2, 2, swig_obj)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Unit___mul__" "', argument " "1"" of type '" "falcon_core::physics::units::Unit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    int newmem = 0;
+    res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Unit___mul__" "', argument " "2"" of type '" "falcon_core::physics::units::Unit const &""'");
+    }
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Unit___mul__" "', argument " "2"" of type '" "falcon_core::physics::units::Unit const &""'"); 
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared2 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp2);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp2);
+      arg2 = const_cast< falcon_core::physics::units::Unit * >(tempshared2.get());
+    } else {
+      arg2 = const_cast< falcon_core::physics::units::Unit * >(reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp2)->get());
+    }
+  }
+  {
+    try {
+      result = ((falcon_core::physics::units::Unit const *)arg1)->operator *((falcon_core::physics::units::Unit const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_Unit___truediv__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::Unit *arg1 = (falcon_core::physics::units::Unit *) 0 ;
+  falcon_core::physics::units::Unit *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > *smartarg1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > tempshared2 ;
+  PyObject *swig_obj[2] ;
+  std::shared_ptr< falcon_core::physics::units::Unit > result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "Unit___truediv__", 2, 2, swig_obj)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Unit___truediv__" "', argument " "1"" of type '" "falcon_core::physics::units::Unit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    int newmem = 0;
+    res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Unit___truediv__" "', argument " "2"" of type '" "falcon_core::physics::units::Unit const &""'");
+    }
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Unit___truediv__" "', argument " "2"" of type '" "falcon_core::physics::units::Unit const &""'"); 
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared2 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp2);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp2);
+      arg2 = const_cast< falcon_core::physics::units::Unit * >(tempshared2.get());
+    } else {
+      arg2 = const_cast< falcon_core::physics::units::Unit * >(reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp2)->get());
+    }
+  }
+  {
+    try {
+      result = ((falcon_core::physics::units::Unit const *)arg1)->operator /((falcon_core::physics::units::Unit const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_Unit___xor__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::Unit *arg1 = (falcon_core::physics::units::Unit *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > *smartarg1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  std::shared_ptr< falcon_core::physics::units::Unit > result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "Unit___xor__", 2, 2, swig_obj)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Unit___xor__" "', argument " "1"" of type '" "falcon_core::physics::units::Unit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Unit___xor__" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = ((falcon_core::physics::units::Unit const *)arg1)->operator ^(arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_Unit_with_prefix(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::Unit *arg1 = (falcon_core::physics::units::Unit *) 0 ;
+  std::string arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > *smartarg1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  std::shared_ptr< falcon_core::physics::units::Unit > result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "Unit_with_prefix", 2, 2, swig_obj)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Unit_with_prefix" "', argument " "1"" of type '" "falcon_core::physics::units::Unit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Unit_with_prefix" "', argument " "2"" of type '" "std::string const""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Unit_with_prefix" "', argument " "2"" of type '" "std::string const""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  {
+    try {
+      result = ((falcon_core::physics::units::Unit const *)arg1)->with_prefix(SWIG_STD_MOVE(arg2));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Unit_convert_value_to(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::Unit *arg1 = (falcon_core::physics::units::Unit *) 0 ;
+  double arg2 ;
+  SwigValueWrapper< falcon_core::physics::units::Unit > arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > *smartarg1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  void *argp3 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  double result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "Unit_convert_value_to", 3, 3, swig_obj)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Unit_convert_value_to" "', argument " "1"" of type '" "falcon_core::physics::units::Unit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  ecode2 = SWIG_AsVal_double(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Unit_convert_value_to" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  {
+    int newmem = 0;
+    res3 = SWIG_ConvertPtrAndOwn(swig_obj[2], &argp3, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Unit_convert_value_to" "', argument " "3"" of type '" "falcon_core::physics::units::Unit const""'");
+    }
+    if (!argp3) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Unit_convert_value_to" "', argument " "3"" of type '" "falcon_core::physics::units::Unit const""'");
+    } else {
+      arg3 = *(reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp3)->get());
+      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp3);
+    }
+  }
+  {
+    try {
+      result = (double)((falcon_core::physics::units::Unit const *)arg1)->convert_value_to(arg2,SWIG_STD_MOVE(arg3));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Unit_is_compatible_with(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::Unit *arg1 = (falcon_core::physics::units::Unit *) 0 ;
+  SwigValueWrapper< falcon_core::physics::units::Unit > arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > *smartarg1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  bool result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "Unit_is_compatible_with", 2, 2, swig_obj)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Unit_is_compatible_with" "', argument " "1"" of type '" "falcon_core::physics::units::Unit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    int newmem = 0;
+    res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Unit_is_compatible_with" "', argument " "2"" of type '" "falcon_core::physics::units::Unit const""'");
+    }
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Unit_is_compatible_with" "', argument " "2"" of type '" "falcon_core::physics::units::Unit const""'");
+    } else {
+      arg2 = *(reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp2)->get());
+      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp2);
+    }
+  }
+  {
+    try {
+      result = (bool)((falcon_core::physics::units::Unit const *)arg1)->is_compatible_with(SWIG_STD_MOVE(arg2));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_Unit(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::Unit *arg1 = (falcon_core::physics::units::Unit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::Unit > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
   
   (void)self;
@@ -4306,17 +5236,17 @@ SWIGINTERN PyObject *_wrap_delete_Time(PyObject *self, PyObject *args) {
   swig_obj[0] = args;
   {
     int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__communications__Time_t, 0 |  0 , &newmem);
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0 |  0 , &newmem);
     if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Time" "', argument " "1"" of type '" "falcon_core::communications::Time *""'");
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Unit" "', argument " "1"" of type '" "falcon_core::physics::units::Unit *""'");
     }
     if (newmem & SWIG_CAST_NEW_MEMORY) {
-      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::communications::Time > * >(argp1);
-      delete reinterpret_cast< std::shared_ptr<  falcon_core::communications::Time > * >(argp1);
-      arg1 = const_cast< falcon_core::communications::Time * >(tempshared1.get());
+      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >(tempshared1.get());
     } else {
-      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::communications::Time > * >(argp1);
-      arg1 = const_cast< falcon_core::communications::Time * >((smartarg1 ? smartarg1->get() : 0));
+      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Unit * >((smartarg1 ? smartarg1->get() : 0));
     }
   }
   {
@@ -4335,20 +5265,2301 @@ fail:
 }
 
 
-SWIGINTERN PyObject *Time_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *Unit_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj = NULL;
   if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__communications__Time_t, SWIG_NewClientData(obj));
+  SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *Time_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *Unit_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
+SWIGINTERN PyObject *_wrap_get_unit_with_prefix(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  SwigValueWrapper< falcon_core::physics::units::Unit > arg1 ;
+  std::string arg2 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  std::shared_ptr< falcon_core::physics::units::Unit > result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "get_unit_with_prefix", 2, 2, swig_obj)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "get_unit_with_prefix" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    }
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "get_unit_with_prefix" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    } else {
+      arg1 = *(reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1)->get());
+      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1);
+    }
+  }
+  {
+    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "get_unit_with_prefix" "', argument " "2"" of type '" "std::string""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "get_unit_with_prefix" "', argument " "2"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  {
+    try {
+      result = falcon_core::physics::units::common_units::get_unit_with_prefix(SWIG_STD_MOVE(arg1),SWIG_STD_MOVE(arg2));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_get_milli(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  SwigValueWrapper< falcon_core::physics::units::Unit > arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::shared_ptr< falcon_core::physics::units::Unit > result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "get_milli" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    }
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "get_milli" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    } else {
+      arg1 = *(reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1)->get());
+      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1);
+    }
+  }
+  {
+    try {
+      result = falcon_core::physics::units::common_units::get_milli(SWIG_STD_MOVE(arg1));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_get_micro(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  SwigValueWrapper< falcon_core::physics::units::Unit > arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::shared_ptr< falcon_core::physics::units::Unit > result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "get_micro" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    }
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "get_micro" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    } else {
+      arg1 = *(reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1)->get());
+      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1);
+    }
+  }
+  {
+    try {
+      result = falcon_core::physics::units::common_units::get_micro(SWIG_STD_MOVE(arg1));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_get_nano(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  SwigValueWrapper< falcon_core::physics::units::Unit > arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::shared_ptr< falcon_core::physics::units::Unit > result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "get_nano" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    }
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "get_nano" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    } else {
+      arg1 = *(reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1)->get());
+      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1);
+    }
+  }
+  {
+    try {
+      result = falcon_core::physics::units::common_units::get_nano(SWIG_STD_MOVE(arg1));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_get_pico(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  SwigValueWrapper< falcon_core::physics::units::Unit > arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::shared_ptr< falcon_core::physics::units::Unit > result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "get_pico" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    }
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "get_pico" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    } else {
+      arg1 = *(reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1)->get());
+      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1);
+    }
+  }
+  {
+    try {
+      result = falcon_core::physics::units::common_units::get_pico(SWIG_STD_MOVE(arg1));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_get_kilo(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  SwigValueWrapper< falcon_core::physics::units::Unit > arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::shared_ptr< falcon_core::physics::units::Unit > result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "get_kilo" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    }
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "get_kilo" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    } else {
+      arg1 = *(reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1)->get());
+      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1);
+    }
+  }
+  {
+    try {
+      result = falcon_core::physics::units::common_units::get_kilo(SWIG_STD_MOVE(arg1));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_get_mega(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  SwigValueWrapper< falcon_core::physics::units::Unit > arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::shared_ptr< falcon_core::physics::units::Unit > result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "get_mega" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    }
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "get_mega" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    } else {
+      arg1 = *(reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1)->get());
+      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1);
+    }
+  }
+  {
+    try {
+      result = falcon_core::physics::units::common_units::get_mega(SWIG_STD_MOVE(arg1));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_get_giga(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  SwigValueWrapper< falcon_core::physics::units::Unit > arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::shared_ptr< falcon_core::physics::units::Unit > result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "get_giga" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    }
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "get_giga" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
+    } else {
+      arg1 = *(reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1)->get());
+      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1);
+    }
+  }
+  {
+    try {
+      result = falcon_core::physics::units::common_units::get_giga(SWIG_STD_MOVE(arg1));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN int Swig_var_Meter_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Meter is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Meter_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Meter), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Kilogram_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Kilogram is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Kilogram_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Kilogram), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Second_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Second is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Second_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Second), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Ampere_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Ampere is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Ampere_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Ampere), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Kelvin_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Kelvin is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Kelvin_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Kelvin), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Mole_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Mole is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Mole_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Mole), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Candela_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Candela is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Candela_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Candela), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Hertz_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Hertz is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Hertz_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Hertz), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Newton_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Newton is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Newton_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Newton), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Pascal_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Pascal is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Pascal_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Pascal), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Joule_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Joule is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Joule_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Joule), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Watt_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Watt is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Watt_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Watt), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Coulomb_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Coulomb is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Coulomb_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Coulomb), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Volt_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Volt is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Volt_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Volt), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Farad_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Farad is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Farad_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Farad), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Ohm_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Ohm is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Ohm_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Ohm), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Siemens_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Siemens is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Siemens_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Siemens), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Weber_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Weber is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Weber_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Weber), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Tesla_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Tesla is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Tesla_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Tesla), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Henry_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Henry is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Henry_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Henry), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Minute_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Minute is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Minute_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Minute), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Hour_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Hour is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Hour_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Hour), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_ElectronVolt_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable ElectronVolt is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_ElectronVolt_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::ElectronVolt), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Celsius_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Celsius is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Celsius_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Celsius), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Fahrenheit_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Fahrenheit is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Fahrenheit_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Fahrenheit), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Dimensionless_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Dimensionless is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Dimensionless_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Dimensionless), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Percent_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Percent is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Percent_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Percent), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_Radian_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable Radian is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_Radian_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::Radian), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_MilliMeter_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable MilliMeter is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_MilliMeter_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::MilliMeter), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_KiloMeter_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable KiloMeter is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_KiloMeter_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::KiloMeter), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_MilliVolt_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable MilliVolt is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_MilliVolt_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::MilliVolt), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_KiloVolt_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable KiloVolt is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_KiloVolt_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::KiloVolt), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_MilliAmpere_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable MilliAmpere is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_MilliAmpere_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::MilliAmpere), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_MicroAmpere_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable MicroAmpere is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_MicroAmpere_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::MicroAmpere), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_NanoAmpere_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable NanoAmpere is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_NanoAmpere_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::NanoAmpere), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_PicoAmpere_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable PicoAmpere is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_PicoAmpere_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::PicoAmpere), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_MilliSecond_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable MilliSecond is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_MilliSecond_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::MilliSecond), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_MicroSecond_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable MicroSecond is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_MicroSecond_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::MicroSecond), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_NanoSecond_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable NanoSecond is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_NanoSecond_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::NanoSecond), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_PicoSecond_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable PicoSecond is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_PicoSecond_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::PicoSecond), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_MilliOhm_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable MilliOhm is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_MilliOhm_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::MilliOhm), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_KiloOhm_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable KiloOhm is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_KiloOhm_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::KiloOhm), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_MegaOhm_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable MegaOhm is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_MegaOhm_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::MegaOhm), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_MilliHertz_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable MilliHertz is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_MilliHertz_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::MilliHertz), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_KiloHertz_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable KiloHertz is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_KiloHertz_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::KiloHertz), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_MegaHertz_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable MegaHertz is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_MegaHertz_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::MegaHertz), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_GigaHertz_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable GigaHertz is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_GigaHertz_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::GigaHertz), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_MetersPerSecond_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable MetersPerSecond is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_MetersPerSecond_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::MetersPerSecond), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_MetersPerSecondSquared_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable MetersPerSecondSquared is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_MetersPerSecondSquared_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::MetersPerSecondSquared), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_NewtonMeter_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable NewtonMeter is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_NewtonMeter_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::NewtonMeter), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_NewtonPerMeter_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable NewtonPerMeter is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_NewtonPerMeter_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::NewtonPerMeter), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_VoltsPerMeter_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable VoltsPerMeter is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_VoltsPerMeter_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::VoltsPerMeter), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_VoltsPerSecond_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable VoltsPerSecond is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_VoltsPerSecond_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::VoltsPerSecond), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_AmperesPerMeter_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable AmperesPerMeter is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_AmperesPerMeter_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::AmperesPerMeter), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_VoltsPerAmpere_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable VoltsPerAmpere is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_VoltsPerAmpere_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::VoltsPerAmpere), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_WattsPerMeterKelvin_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable WattsPerMeterKelvin is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_WattsPerMeterKelvin_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::WattsPerMeterKelvin), SWIGTYPE_p_SymbolUnit,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_power_to_symbol_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable power_to_symbol is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_power_to_symbol_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::power_to_symbol), SWIGTYPE_p_std__mapT_int_std__string_t,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_symbol_to_power_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable symbol_to_power is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_symbol_to_power_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::symbol_to_power), SWIGTYPE_p_std__mapT_std__string_int_t,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN PyObject *_wrap_Prefix_get_symbol(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  int arg1 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::string result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  ecode1 = SWIG_AsVal_int(swig_obj[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "Prefix_get_symbol" "', argument " "1"" of type '" "int""'");
+  } 
+  arg1 = static_cast< int >(val1);
+  {
+    try {
+      result = falcon_core::physics::units::Prefix::get_symbol(arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj((new std::string(result)), SWIGTYPE_p_std__string, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Prefix_get_value(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::string arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Prefix_get_value" "', argument " "1"" of type '" "std::string""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Prefix_get_value" "', argument " "1"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp1);
+      arg1 = *temp;
+      if (SWIG_IsNewObj(res1)) delete temp;
+    }
+  }
+  {
+    try {
+      result = (int)falcon_core::physics::units::Prefix::get_value(SWIG_STD_MOVE(arg1));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Prefix_is_valid(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::string arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  bool result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Prefix_is_valid" "', argument " "1"" of type '" "std::string""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Prefix_is_valid" "', argument " "1"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp1);
+      arg1 = *temp;
+      if (SWIG_IsNewObj(res1)) delete temp;
+    }
+  }
+  {
+    try {
+      result = (bool)falcon_core::physics::units::Prefix::is_valid(SWIG_STD_MOVE(arg1));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Prefix_prefix_multiplication(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::string arg1 ;
+  std::string arg2 ;
+  double arg3 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[3] ;
+  std::pair< double,std::string > result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "Prefix_prefix_multiplication", 3, 3, swig_obj)) SWIG_fail;
+  {
+    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Prefix_prefix_multiplication" "', argument " "1"" of type '" "std::string""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Prefix_prefix_multiplication" "', argument " "1"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp1);
+      arg1 = *temp;
+      if (SWIG_IsNewObj(res1)) delete temp;
+    }
+  }
+  {
+    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Prefix_prefix_multiplication" "', argument " "2"" of type '" "std::string""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Prefix_prefix_multiplication" "', argument " "2"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  ecode3 = SWIG_AsVal_double(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Prefix_prefix_multiplication" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
+  {
+    try {
+      result = falcon_core::physics::units::Prefix::prefix_multiplication(SWIG_STD_MOVE(arg1),SWIG_STD_MOVE(arg2),arg3);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj((new std::pair< double,std::string >(result)), SWIGTYPE_p_std__pairT_double_std__string_t, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_Prefix(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::Prefix *result = 0 ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "new_Prefix", 0, 0, 0)) SWIG_fail;
+  {
+    try {
+      result = (falcon_core::physics::units::Prefix *)new falcon_core::physics::units::Prefix();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Prefix > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Prefix >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Prefix_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_Prefix(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::Prefix *arg1 = (falcon_core::physics::units::Prefix *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Prefix > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::Prefix > *smartarg1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Prefix_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Prefix" "', argument " "1"" of type '" "falcon_core::physics::units::Prefix *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Prefix > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Prefix > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Prefix * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Prefix > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::Prefix * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    try {
+      (void)arg1; delete smartarg1;
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Prefix_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Prefix_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *Prefix_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
+SWIGINTERN int Swig_var__UNIT_SYMBOLS_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable _UNIT_SYMBOLS is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var__UNIT_SYMBOLS_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::_UNIT_SYMBOLS), SWIGTYPE_p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var__DIMENSION_SYMBOLS_set(PyObject *) {
+  SWIG_Error(SWIG_AttributeError,"Variable _DIMENSION_SYMBOLS is read-only.");
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var__DIMENSION_SYMBOLS_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::_DIMENSION_SYMBOLS), SWIGTYPE_p_std__mapT_std__string_std__string_t,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_SymbolUnit(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::shared_ptr< falcon_core::physics::units::Unit > arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  falcon_core::physics::units::SymbolUnit *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_SymbolUnit" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::units::Unit >""'");
+    }
+    if (argp1) arg1 = *(reinterpret_cast< std::shared_ptr< falcon_core::physics::units::Unit > * >(argp1));
+    if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr< falcon_core::physics::units::Unit > * >(argp1);
+  }
+  {
+    try {
+      result = (falcon_core::physics::units::SymbolUnit *)new falcon_core::physics::units::SymbolUnit(SWIG_STD_MOVE(arg1));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::SymbolUnit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::SymbolUnit >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolUnit_unit(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::SymbolUnit *arg1 = (falcon_core::physics::units::SymbolUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > *smartarg1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::shared_ptr< falcon_core::physics::units::Unit > result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolUnit_unit" "', argument " "1"" of type '" "falcon_core::physics::units::SymbolUnit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    try {
+      result = ((falcon_core::physics::units::SymbolUnit const *)arg1)->unit();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::Unit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::Unit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolUnit_symbol(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::SymbolUnit *arg1 = (falcon_core::physics::units::SymbolUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > *smartarg1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::string *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolUnit_symbol" "', argument " "1"" of type '" "falcon_core::physics::units::SymbolUnit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    try {
+      result = (std::string *) &((falcon_core::physics::units::SymbolUnit const *)arg1)->symbol();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__string, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolUnit_name(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::SymbolUnit *arg1 = (falcon_core::physics::units::SymbolUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > *smartarg1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::string *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolUnit_name" "', argument " "1"" of type '" "falcon_core::physics::units::SymbolUnit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    try {
+      result = (std::string *) &((falcon_core::physics::units::SymbolUnit const *)arg1)->name();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__string, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolUnit___mul____SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::SymbolUnit *arg1 = (falcon_core::physics::units::SymbolUnit *) 0 ;
+  falcon_core::physics::units::SymbolUnit *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > *smartarg1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared2 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit > result;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolUnit___mul__" "', argument " "1"" of type '" "falcon_core::physics::units::SymbolUnit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    int newmem = 0;
+    res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolUnit___mul__" "', argument " "2"" of type '" "falcon_core::physics::units::SymbolUnit const &""'");
+    }
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolUnit___mul__" "', argument " "2"" of type '" "falcon_core::physics::units::SymbolUnit const &""'"); 
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared2 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp2);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp2);
+      arg2 = const_cast< falcon_core::physics::units::SymbolUnit * >(tempshared2.get());
+    } else {
+      arg2 = const_cast< falcon_core::physics::units::SymbolUnit * >(reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp2)->get());
+    }
+  }
+  {
+    try {
+      result = ((falcon_core::physics::units::SymbolUnit const *)arg1)->operator *((falcon_core::physics::units::SymbolUnit const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::SymbolUnit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::SymbolUnit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolUnit___mul____SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::SymbolUnit *arg1 = (falcon_core::physics::units::SymbolUnit *) 0 ;
+  falcon_core::physics::units::Unit *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > *smartarg1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > tempshared2 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit > result;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolUnit___mul__" "', argument " "1"" of type '" "falcon_core::physics::units::SymbolUnit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    int newmem = 0;
+    res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolUnit___mul__" "', argument " "2"" of type '" "falcon_core::physics::units::Unit const &""'");
+    }
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolUnit___mul__" "', argument " "2"" of type '" "falcon_core::physics::units::Unit const &""'"); 
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared2 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp2);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp2);
+      arg2 = const_cast< falcon_core::physics::units::Unit * >(tempshared2.get());
+    } else {
+      arg2 = const_cast< falcon_core::physics::units::Unit * >(reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp2)->get());
+    }
+  }
+  {
+    try {
+      result = ((falcon_core::physics::units::SymbolUnit const *)arg1)->operator *((falcon_core::physics::units::Unit const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::SymbolUnit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::SymbolUnit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolUnit___mul__(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[3] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "SymbolUnit___mul__", 0, 2, argv))) SWIG_fail;
+  --argc;
+  if (argc == 2) {
+    int _v = 0;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_SymbolUnit___mul____SWIG_0(self, argc, argv);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v = 0;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_SymbolUnit___mul____SWIG_1(self, argc, argv);
+      }
+    }
+  }
+  
+fail:
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolUnit___truediv____SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::SymbolUnit *arg1 = (falcon_core::physics::units::SymbolUnit *) 0 ;
+  falcon_core::physics::units::SymbolUnit *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > *smartarg1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared2 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit > result;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolUnit___truediv__" "', argument " "1"" of type '" "falcon_core::physics::units::SymbolUnit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    int newmem = 0;
+    res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolUnit___truediv__" "', argument " "2"" of type '" "falcon_core::physics::units::SymbolUnit const &""'");
+    }
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolUnit___truediv__" "', argument " "2"" of type '" "falcon_core::physics::units::SymbolUnit const &""'"); 
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared2 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp2);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp2);
+      arg2 = const_cast< falcon_core::physics::units::SymbolUnit * >(tempshared2.get());
+    } else {
+      arg2 = const_cast< falcon_core::physics::units::SymbolUnit * >(reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp2)->get());
+    }
+  }
+  {
+    try {
+      result = ((falcon_core::physics::units::SymbolUnit const *)arg1)->operator /((falcon_core::physics::units::SymbolUnit const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::SymbolUnit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::SymbolUnit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolUnit___truediv____SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::SymbolUnit *arg1 = (falcon_core::physics::units::SymbolUnit *) 0 ;
+  falcon_core::physics::units::Unit *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > *smartarg1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::Unit const > tempshared2 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit > result;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolUnit___truediv__" "', argument " "1"" of type '" "falcon_core::physics::units::SymbolUnit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    int newmem = 0;
+    res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolUnit___truediv__" "', argument " "2"" of type '" "falcon_core::physics::units::Unit const &""'");
+    }
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolUnit___truediv__" "', argument " "2"" of type '" "falcon_core::physics::units::Unit const &""'"); 
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared2 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp2);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp2);
+      arg2 = const_cast< falcon_core::physics::units::Unit * >(tempshared2.get());
+    } else {
+      arg2 = const_cast< falcon_core::physics::units::Unit * >(reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::Unit > * >(argp2)->get());
+    }
+  }
+  {
+    try {
+      result = ((falcon_core::physics::units::SymbolUnit const *)arg1)->operator /((falcon_core::physics::units::Unit const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::SymbolUnit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::SymbolUnit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolUnit___truediv__(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[3] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "SymbolUnit___truediv__", 0, 2, argv))) SWIG_fail;
+  --argc;
+  if (argc == 2) {
+    int _v = 0;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_SymbolUnit___truediv____SWIG_0(self, argc, argv);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v = 0;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_SymbolUnit___truediv____SWIG_1(self, argc, argv);
+      }
+    }
+  }
+  
+fail:
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolUnit___xor__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::SymbolUnit *arg1 = (falcon_core::physics::units::SymbolUnit *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > *smartarg1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit > result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SymbolUnit___xor__", 2, 2, swig_obj)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolUnit___xor__" "', argument " "1"" of type '" "falcon_core::physics::units::SymbolUnit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SymbolUnit___xor__" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = ((falcon_core::physics::units::SymbolUnit const *)arg1)->operator ^(arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::SymbolUnit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::SymbolUnit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolUnit_with_prefix(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::SymbolUnit *arg1 = (falcon_core::physics::units::SymbolUnit *) 0 ;
+  std::string arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > *smartarg1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit > result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SymbolUnit_with_prefix", 2, 2, swig_obj)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolUnit_with_prefix" "', argument " "1"" of type '" "falcon_core::physics::units::SymbolUnit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolUnit_with_prefix" "', argument " "2"" of type '" "std::string const""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolUnit_with_prefix" "', argument " "2"" of type '" "std::string const""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  {
+    try {
+      result = ((falcon_core::physics::units::SymbolUnit const *)arg1)->with_prefix(SWIG_STD_MOVE(arg2));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  {
+    std::shared_ptr<  falcon_core::physics::units::SymbolUnit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::SymbolUnit >(result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, SWIG_POINTER_OWN);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolUnit_convert_value_to(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::SymbolUnit *arg1 = (falcon_core::physics::units::SymbolUnit *) 0 ;
+  double arg2 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit > arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > *smartarg1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  void *argp3 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  double result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SymbolUnit_convert_value_to", 3, 3, swig_obj)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolUnit_convert_value_to" "', argument " "1"" of type '" "falcon_core::physics::units::SymbolUnit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  ecode2 = SWIG_AsVal_double(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SymbolUnit_convert_value_to" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  {
+    int newmem = 0;
+    res3 = SWIG_ConvertPtrAndOwn(swig_obj[2], &argp3, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "SymbolUnit_convert_value_to" "', argument " "3"" of type '" "std::shared_ptr< falcon_core::physics::units::SymbolUnit > const""'");
+    }
+    if (argp3) arg3 = *(reinterpret_cast< std::shared_ptr< falcon_core::physics::units::SymbolUnit > * >(argp3));
+    if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr< falcon_core::physics::units::SymbolUnit > * >(argp3);
+  }
+  {
+    try {
+      result = (double)((falcon_core::physics::units::SymbolUnit const *)arg1)->convert_value_to(arg2,SWIG_STD_MOVE(arg3));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolUnit_is_compatible_with(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::SymbolUnit *arg1 = (falcon_core::physics::units::SymbolUnit *) 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit > arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit const > *smartarg1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  bool result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SymbolUnit_is_compatible_with", 2, 2, swig_obj)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolUnit_is_compatible_with" "', argument " "1"" of type '" "falcon_core::physics::units::SymbolUnit const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    int newmem = 0;
+    res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t,  0 , &newmem);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolUnit_is_compatible_with" "', argument " "2"" of type '" "std::shared_ptr< falcon_core::physics::units::SymbolUnit > const""'");
+    }
+    if (argp2) arg2 = *(reinterpret_cast< std::shared_ptr< falcon_core::physics::units::SymbolUnit > * >(argp2));
+    if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr< falcon_core::physics::units::SymbolUnit > * >(argp2);
+  }
+  {
+    try {
+      result = (bool)((falcon_core::physics::units::SymbolUnit const *)arg1)->is_compatible_with(SWIG_STD_MOVE(arg2));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_SymbolUnit(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::units::SymbolUnit *arg1 = (falcon_core::physics::units::SymbolUnit *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::units::SymbolUnit > *smartarg1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_SymbolUnit" "', argument " "1"" of type '" "falcon_core::physics::units::SymbolUnit *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::SymbolUnit > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::SymbolUnit > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::units::SymbolUnit * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    try {
+      (void)arg1; delete smartarg1;
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *SymbolUnit_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *SymbolUnit_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   return SWIG_Python_InitShadowInstance(args);
 }
 
 static PyMethodDef SwigMethods[] = {
 	 { "delete_Song", _wrap_delete_Song, METH_O, NULL},
-	 { "Song_class_name", _wrap_Song_class_name, METH_O, NULL},
 	 { "Song_to_json_string", _wrap_Song_to_json_string, METH_O, NULL},
 	 { "Song_to_json_stream", _wrap_Song_to_json_stream, METH_VARARGS, NULL},
 	 { "Song_from_json_string", _wrap_Song_from_json_string, METH_O, NULL},
@@ -4356,62 +7567,163 @@ static PyMethodDef SwigMethods[] = {
 	 { "new_Song", _wrap_new_Song, METH_NOARGS, NULL},
 	 { "Song_swigregister", Song_swigregister, METH_O, NULL},
 	 { "Song_swiginit", Song_swiginit, METH_VARARGS, NULL},
-	 { "new_Time", _wrap_new_Time, METH_NOARGS, NULL},
-	 { "Time_time", _wrap_Time_time, METH_O, NULL},
-	 { "delete_Time", _wrap_delete_Time, METH_O, NULL},
-	 { "Time_swigregister", Time_swigregister, METH_O, NULL},
-	 { "Time_swiginit", Time_swiginit, METH_VARARGS, NULL},
+	 { "new_Unit", _wrap_new_Unit, METH_VARARGS, NULL},
+	 { "Unit_prefix", _wrap_Unit_prefix, METH_O, NULL},
+	 { "Unit_dimensions", _wrap_Unit_dimensions, METH_O, NULL},
+	 { "Unit_scale_factor", _wrap_Unit_scale_factor, METH_O, NULL},
+	 { "Unit_offset", _wrap_Unit_offset, METH_O, NULL},
+	 { "Unit___mul__", _wrap_Unit___mul__, METH_VARARGS, NULL},
+	 { "Unit___truediv__", _wrap_Unit___truediv__, METH_VARARGS, NULL},
+	 { "Unit___xor__", _wrap_Unit___xor__, METH_VARARGS, NULL},
+	 { "Unit_with_prefix", _wrap_Unit_with_prefix, METH_VARARGS, NULL},
+	 { "Unit_convert_value_to", _wrap_Unit_convert_value_to, METH_VARARGS, NULL},
+	 { "Unit_is_compatible_with", _wrap_Unit_is_compatible_with, METH_VARARGS, NULL},
+	 { "delete_Unit", _wrap_delete_Unit, METH_O, NULL},
+	 { "Unit_swigregister", Unit_swigregister, METH_O, NULL},
+	 { "Unit_swiginit", Unit_swiginit, METH_VARARGS, NULL},
+	 { "get_unit_with_prefix", _wrap_get_unit_with_prefix, METH_VARARGS, NULL},
+	 { "get_milli", _wrap_get_milli, METH_O, NULL},
+	 { "get_micro", _wrap_get_micro, METH_O, NULL},
+	 { "get_nano", _wrap_get_nano, METH_O, NULL},
+	 { "get_pico", _wrap_get_pico, METH_O, NULL},
+	 { "get_kilo", _wrap_get_kilo, METH_O, NULL},
+	 { "get_mega", _wrap_get_mega, METH_O, NULL},
+	 { "get_giga", _wrap_get_giga, METH_O, NULL},
+	 { "Prefix_get_symbol", _wrap_Prefix_get_symbol, METH_O, NULL},
+	 { "Prefix_get_value", _wrap_Prefix_get_value, METH_O, NULL},
+	 { "Prefix_is_valid", _wrap_Prefix_is_valid, METH_O, NULL},
+	 { "Prefix_prefix_multiplication", _wrap_Prefix_prefix_multiplication, METH_VARARGS, NULL},
+	 { "new_Prefix", _wrap_new_Prefix, METH_NOARGS, NULL},
+	 { "delete_Prefix", _wrap_delete_Prefix, METH_O, NULL},
+	 { "Prefix_swigregister", Prefix_swigregister, METH_O, NULL},
+	 { "Prefix_swiginit", Prefix_swiginit, METH_VARARGS, NULL},
+	 { "new_SymbolUnit", _wrap_new_SymbolUnit, METH_O, NULL},
+	 { "SymbolUnit_unit", _wrap_SymbolUnit_unit, METH_O, NULL},
+	 { "SymbolUnit_symbol", _wrap_SymbolUnit_symbol, METH_O, NULL},
+	 { "SymbolUnit_name", _wrap_SymbolUnit_name, METH_O, NULL},
+	 { "SymbolUnit___mul__", _wrap_SymbolUnit___mul__, METH_VARARGS, NULL},
+	 { "SymbolUnit___truediv__", _wrap_SymbolUnit___truediv__, METH_VARARGS, NULL},
+	 { "SymbolUnit___xor__", _wrap_SymbolUnit___xor__, METH_VARARGS, NULL},
+	 { "SymbolUnit_with_prefix", _wrap_SymbolUnit_with_prefix, METH_VARARGS, NULL},
+	 { "SymbolUnit_convert_value_to", _wrap_SymbolUnit_convert_value_to, METH_VARARGS, NULL},
+	 { "SymbolUnit_is_compatible_with", _wrap_SymbolUnit_is_compatible_with, METH_VARARGS, NULL},
+	 { "delete_SymbolUnit", _wrap_delete_SymbolUnit, METH_O, NULL},
+	 { "SymbolUnit_swigregister", SymbolUnit_swigregister, METH_O, NULL},
+	 { "SymbolUnit_swiginit", SymbolUnit_swiginit, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static void *_p_falcon_core__communications__TimeTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((falcon_core::generic::Song *)  ((falcon_core::communications::Time *) x));
+static void *_p_falcon_core__physics__units__SymbolUnitTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::generic::Song *)  ((falcon_core::physics::units::SymbolUnit *) x));
 }
-static void *_p_std__shared_ptrT_falcon_core__communications__Time_tTo_p_std__shared_ptrT_falcon_core__generic__Song_t(void *x, int *newmemory) {
+static void *_p_falcon_core__physics__units__UnitTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::generic::Song *)  ((falcon_core::physics::units::Unit *) x));
+}
+static void *_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_tTo_p_std__shared_ptrT_falcon_core__generic__Song_t(void *x, int *newmemory) {
     *newmemory = SWIG_CAST_NEW_MEMORY;
-    return (void *) new std::shared_ptr< falcon_core::generic::Song >(*(std::shared_ptr< falcon_core::communications::Time > *)x);
+    return (void *) new std::shared_ptr< falcon_core::generic::Song >(*(std::shared_ptr< falcon_core::physics::units::SymbolUnit > *)x);
 }
+static void *_p_std__shared_ptrT_falcon_core__physics__units__Unit_tTo_p_std__shared_ptrT_falcon_core__generic__Song_t(void *x, int *newmemory) {
+    *newmemory = SWIG_CAST_NEW_MEMORY;
+    return (void *) new std::shared_ptr< falcon_core::generic::Song >(*(std::shared_ptr< falcon_core::physics::units::Unit > *)x);
+}
+static swig_type_info _swigt__p_SymbolUnit = {"_p_SymbolUnit", "SymbolUnit *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_falcon_core__communications__Time = {"_p_falcon_core__communications__Time", "falcon_core::communications::Time *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__generic__Song = {"_p_falcon_core__generic__Song", "falcon_core::generic::Song *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__physics__units__Prefix = {"_p_falcon_core__physics__units__Prefix", "falcon_core::physics::units::Prefix *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__physics__units__SymbolUnit = {"_p_falcon_core__physics__units__SymbolUnit", "falcon_core::physics::units::SymbolUnit *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__physics__units__Unit = {"_p_falcon_core__physics__units__Unit", "falcon_core::physics::units::Unit *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__istream = {"_p_std__istream", "std::istream *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__mapT_int_std__string_t = {"_p_std__mapT_int_std__string_t", "std::map< int,std::string > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__mapT_std__string_int_t = {"_p_std__mapT_std__string_int_t", "falcon_core::physics::units::TotalDimensions *|std::map< std::string,int > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__mapT_std__string_std__string_t = {"_p_std__mapT_std__string_std__string_t", "std::map< std::string,std::string > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__ostream = {"_p_std__ostream", "std::ostream *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__pairT_double_std__string_t = {"_p_std__pairT_double_std__string_t", "std::pair< double,std::string > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__communications__Time_t = {"_p_std__shared_ptrT_falcon_core__communications__Time_t", "std::shared_ptr< falcon_core::communications::Time > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__generic__Song_t = {"_p_std__shared_ptrT_falcon_core__generic__Song_t", "std::shared_ptr< falcon_core::generic::Song > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__units__CommonUnits_t = {"_p_std__shared_ptrT_falcon_core__physics__units__CommonUnits_t", "std::shared_ptr< falcon_core::physics::units::CommonUnits > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__units__Prefix_t = {"_p_std__shared_ptrT_falcon_core__physics__units__Prefix_t", "std::shared_ptr< falcon_core::physics::units::Prefix > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t = {"_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t", "std::shared_ptr< falcon_core::physics::units::SymbolUnit > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t = {"_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t", "std::shared_ptr< falcon_core::physics::units::TotalDimensions > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__units__Unit_t = {"_p_std__shared_ptrT_falcon_core__physics__units__Unit_t", "std::shared_ptr< falcon_core::physics::units::Unit > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__units__Units_t = {"_p_std__shared_ptrT_falcon_core__physics__units__Units_t", "std::shared_ptr< falcon_core::physics::units::Units > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t = {"_p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t", "std::vector< std::tuple< falcon_core::physics::units::Unit,std::string,std::string > > *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__p_SymbolUnit,
   &_swigt__p_char,
-  &_swigt__p_falcon_core__communications__Time,
   &_swigt__p_falcon_core__generic__Song,
+  &_swigt__p_falcon_core__physics__units__Prefix,
+  &_swigt__p_falcon_core__physics__units__SymbolUnit,
+  &_swigt__p_falcon_core__physics__units__Unit,
   &_swigt__p_std__istream,
+  &_swigt__p_std__mapT_int_std__string_t,
+  &_swigt__p_std__mapT_std__string_int_t,
+  &_swigt__p_std__mapT_std__string_std__string_t,
   &_swigt__p_std__ostream,
+  &_swigt__p_std__pairT_double_std__string_t,
   &_swigt__p_std__shared_ptrT_falcon_core__communications__Time_t,
   &_swigt__p_std__shared_ptrT_falcon_core__generic__Song_t,
+  &_swigt__p_std__shared_ptrT_falcon_core__physics__units__CommonUnits_t,
+  &_swigt__p_std__shared_ptrT_falcon_core__physics__units__Prefix_t,
+  &_swigt__p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t,
+  &_swigt__p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t,
+  &_swigt__p_std__shared_ptrT_falcon_core__physics__units__Unit_t,
+  &_swigt__p_std__shared_ptrT_falcon_core__physics__units__Units_t,
   &_swigt__p_std__string,
+  &_swigt__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t,
 };
 
+static swig_cast_info _swigc__p_SymbolUnit[] = {  {&_swigt__p_SymbolUnit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_falcon_core__communications__Time[] = {  {&_swigt__p_falcon_core__communications__Time, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_falcon_core__generic__Song[] = {  {&_swigt__p_falcon_core__generic__Song, 0, 0, 0},  {&_swigt__p_falcon_core__communications__Time, _p_falcon_core__communications__TimeTo_p_falcon_core__generic__Song, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__generic__Song[] = {  {&_swigt__p_falcon_core__generic__Song, 0, 0, 0},  {&_swigt__p_falcon_core__physics__units__SymbolUnit, _p_falcon_core__physics__units__SymbolUnitTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__units__Unit, _p_falcon_core__physics__units__UnitTo_p_falcon_core__generic__Song, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__physics__units__Prefix[] = {  {&_swigt__p_falcon_core__physics__units__Prefix, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__physics__units__SymbolUnit[] = {  {&_swigt__p_falcon_core__physics__units__SymbolUnit, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__physics__units__Unit[] = {  {&_swigt__p_falcon_core__physics__units__Unit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__istream[] = {  {&_swigt__p_std__istream, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__mapT_int_std__string_t[] = {  {&_swigt__p_std__mapT_int_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__mapT_std__string_int_t[] = {  {&_swigt__p_std__mapT_std__string_int_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__mapT_std__string_std__string_t[] = {  {&_swigt__p_std__mapT_std__string_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__ostream[] = {  {&_swigt__p_std__ostream, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__pairT_double_std__string_t[] = {  {&_swigt__p_std__pairT_double_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__communications__Time_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__communications__Time_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__generic__Song_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__generic__Song_t, 0, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__communications__Time_t, _p_std__shared_ptrT_falcon_core__communications__Time_tTo_p_std__shared_ptrT_falcon_core__generic__Song_t, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__generic__Song_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__generic__Song_t, 0, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, _p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_tTo_p_std__shared_ptrT_falcon_core__generic__Song_t, 0, 0},  {&_swigt__p_std__shared_ptrT_falcon_core__physics__units__Unit_t, _p_std__shared_ptrT_falcon_core__physics__units__Unit_tTo_p_std__shared_ptrT_falcon_core__generic__Song_t, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__units__CommonUnits_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__units__CommonUnits_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__units__Prefix_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__units__Prefix_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__units__Unit_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__units__Units_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__units__Units_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t[] = {  {&_swigt__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__p_SymbolUnit,
   _swigc__p_char,
-  _swigc__p_falcon_core__communications__Time,
   _swigc__p_falcon_core__generic__Song,
+  _swigc__p_falcon_core__physics__units__Prefix,
+  _swigc__p_falcon_core__physics__units__SymbolUnit,
+  _swigc__p_falcon_core__physics__units__Unit,
   _swigc__p_std__istream,
+  _swigc__p_std__mapT_int_std__string_t,
+  _swigc__p_std__mapT_std__string_int_t,
+  _swigc__p_std__mapT_std__string_std__string_t,
   _swigc__p_std__ostream,
+  _swigc__p_std__pairT_double_std__string_t,
   _swigc__p_std__shared_ptrT_falcon_core__communications__Time_t,
   _swigc__p_std__shared_ptrT_falcon_core__generic__Song_t,
+  _swigc__p_std__shared_ptrT_falcon_core__physics__units__CommonUnits_t,
+  _swigc__p_std__shared_ptrT_falcon_core__physics__units__Prefix_t,
+  _swigc__p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t,
+  _swigc__p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t,
+  _swigc__p_std__shared_ptrT_falcon_core__physics__units__Unit_t,
+  _swigc__p_std__shared_ptrT_falcon_core__physics__units__Units_t,
   _swigc__p_std__string,
+  _swigc__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t,
 };
 
 
@@ -4879,6 +8191,76 @@ SWIG_init(void) {
   SWIG_InstallConstants(d,swig_const_table);
   
   SWIG_Python_SetConstant(d, "SHARED_PTR_DISOWN",SWIG_From_int(static_cast< int >(0)));
+  globals = SWIG_globals();
+  if (!globals) {
+    PyErr_SetString(PyExc_TypeError, "Failure to create SWIG globals.");
+#if PY_VERSION_HEX >= 0x03000000
+    return NULL;
+#else
+    return;
+#endif
+  }
+  PyDict_SetItemString(md, "cvar", globals);
+  SWIG_addvarlink(globals, "Meter", Swig_var_Meter_get, Swig_var_Meter_set);
+  SWIG_addvarlink(globals, "Kilogram", Swig_var_Kilogram_get, Swig_var_Kilogram_set);
+  SWIG_addvarlink(globals, "Second", Swig_var_Second_get, Swig_var_Second_set);
+  SWIG_addvarlink(globals, "Ampere", Swig_var_Ampere_get, Swig_var_Ampere_set);
+  SWIG_addvarlink(globals, "Kelvin", Swig_var_Kelvin_get, Swig_var_Kelvin_set);
+  SWIG_addvarlink(globals, "Mole", Swig_var_Mole_get, Swig_var_Mole_set);
+  SWIG_addvarlink(globals, "Candela", Swig_var_Candela_get, Swig_var_Candela_set);
+  SWIG_addvarlink(globals, "Hertz", Swig_var_Hertz_get, Swig_var_Hertz_set);
+  SWIG_addvarlink(globals, "Newton", Swig_var_Newton_get, Swig_var_Newton_set);
+  SWIG_addvarlink(globals, "Pascal", Swig_var_Pascal_get, Swig_var_Pascal_set);
+  SWIG_addvarlink(globals, "Joule", Swig_var_Joule_get, Swig_var_Joule_set);
+  SWIG_addvarlink(globals, "Watt", Swig_var_Watt_get, Swig_var_Watt_set);
+  SWIG_addvarlink(globals, "Coulomb", Swig_var_Coulomb_get, Swig_var_Coulomb_set);
+  SWIG_addvarlink(globals, "Volt", Swig_var_Volt_get, Swig_var_Volt_set);
+  SWIG_addvarlink(globals, "Farad", Swig_var_Farad_get, Swig_var_Farad_set);
+  SWIG_addvarlink(globals, "Ohm", Swig_var_Ohm_get, Swig_var_Ohm_set);
+  SWIG_addvarlink(globals, "Siemens", Swig_var_Siemens_get, Swig_var_Siemens_set);
+  SWIG_addvarlink(globals, "Weber", Swig_var_Weber_get, Swig_var_Weber_set);
+  SWIG_addvarlink(globals, "Tesla", Swig_var_Tesla_get, Swig_var_Tesla_set);
+  SWIG_addvarlink(globals, "Henry", Swig_var_Henry_get, Swig_var_Henry_set);
+  SWIG_addvarlink(globals, "Minute", Swig_var_Minute_get, Swig_var_Minute_set);
+  SWIG_addvarlink(globals, "Hour", Swig_var_Hour_get, Swig_var_Hour_set);
+  SWIG_addvarlink(globals, "ElectronVolt", Swig_var_ElectronVolt_get, Swig_var_ElectronVolt_set);
+  SWIG_addvarlink(globals, "Celsius", Swig_var_Celsius_get, Swig_var_Celsius_set);
+  SWIG_addvarlink(globals, "Fahrenheit", Swig_var_Fahrenheit_get, Swig_var_Fahrenheit_set);
+  SWIG_addvarlink(globals, "Dimensionless", Swig_var_Dimensionless_get, Swig_var_Dimensionless_set);
+  SWIG_addvarlink(globals, "Percent", Swig_var_Percent_get, Swig_var_Percent_set);
+  SWIG_addvarlink(globals, "Radian", Swig_var_Radian_get, Swig_var_Radian_set);
+  SWIG_addvarlink(globals, "MilliMeter", Swig_var_MilliMeter_get, Swig_var_MilliMeter_set);
+  SWIG_addvarlink(globals, "KiloMeter", Swig_var_KiloMeter_get, Swig_var_KiloMeter_set);
+  SWIG_addvarlink(globals, "MilliVolt", Swig_var_MilliVolt_get, Swig_var_MilliVolt_set);
+  SWIG_addvarlink(globals, "KiloVolt", Swig_var_KiloVolt_get, Swig_var_KiloVolt_set);
+  SWIG_addvarlink(globals, "MilliAmpere", Swig_var_MilliAmpere_get, Swig_var_MilliAmpere_set);
+  SWIG_addvarlink(globals, "MicroAmpere", Swig_var_MicroAmpere_get, Swig_var_MicroAmpere_set);
+  SWIG_addvarlink(globals, "NanoAmpere", Swig_var_NanoAmpere_get, Swig_var_NanoAmpere_set);
+  SWIG_addvarlink(globals, "PicoAmpere", Swig_var_PicoAmpere_get, Swig_var_PicoAmpere_set);
+  SWIG_addvarlink(globals, "MilliSecond", Swig_var_MilliSecond_get, Swig_var_MilliSecond_set);
+  SWIG_addvarlink(globals, "MicroSecond", Swig_var_MicroSecond_get, Swig_var_MicroSecond_set);
+  SWIG_addvarlink(globals, "NanoSecond", Swig_var_NanoSecond_get, Swig_var_NanoSecond_set);
+  SWIG_addvarlink(globals, "PicoSecond", Swig_var_PicoSecond_get, Swig_var_PicoSecond_set);
+  SWIG_addvarlink(globals, "MilliOhm", Swig_var_MilliOhm_get, Swig_var_MilliOhm_set);
+  SWIG_addvarlink(globals, "KiloOhm", Swig_var_KiloOhm_get, Swig_var_KiloOhm_set);
+  SWIG_addvarlink(globals, "MegaOhm", Swig_var_MegaOhm_get, Swig_var_MegaOhm_set);
+  SWIG_addvarlink(globals, "MilliHertz", Swig_var_MilliHertz_get, Swig_var_MilliHertz_set);
+  SWIG_addvarlink(globals, "KiloHertz", Swig_var_KiloHertz_get, Swig_var_KiloHertz_set);
+  SWIG_addvarlink(globals, "MegaHertz", Swig_var_MegaHertz_get, Swig_var_MegaHertz_set);
+  SWIG_addvarlink(globals, "GigaHertz", Swig_var_GigaHertz_get, Swig_var_GigaHertz_set);
+  SWIG_addvarlink(globals, "MetersPerSecond", Swig_var_MetersPerSecond_get, Swig_var_MetersPerSecond_set);
+  SWIG_addvarlink(globals, "MetersPerSecondSquared", Swig_var_MetersPerSecondSquared_get, Swig_var_MetersPerSecondSquared_set);
+  SWIG_addvarlink(globals, "NewtonMeter", Swig_var_NewtonMeter_get, Swig_var_NewtonMeter_set);
+  SWIG_addvarlink(globals, "NewtonPerMeter", Swig_var_NewtonPerMeter_get, Swig_var_NewtonPerMeter_set);
+  SWIG_addvarlink(globals, "VoltsPerMeter", Swig_var_VoltsPerMeter_get, Swig_var_VoltsPerMeter_set);
+  SWIG_addvarlink(globals, "VoltsPerSecond", Swig_var_VoltsPerSecond_get, Swig_var_VoltsPerSecond_set);
+  SWIG_addvarlink(globals, "AmperesPerMeter", Swig_var_AmperesPerMeter_get, Swig_var_AmperesPerMeter_set);
+  SWIG_addvarlink(globals, "VoltsPerAmpere", Swig_var_VoltsPerAmpere_get, Swig_var_VoltsPerAmpere_set);
+  SWIG_addvarlink(globals, "WattsPerMeterKelvin", Swig_var_WattsPerMeterKelvin_get, Swig_var_WattsPerMeterKelvin_set);
+  SWIG_addvarlink(globals, "power_to_symbol", Swig_var_power_to_symbol_get, Swig_var_power_to_symbol_set);
+  SWIG_addvarlink(globals, "symbol_to_power", Swig_var_symbol_to_power_get, Swig_var_symbol_to_power_set);
+  SWIG_addvarlink(globals, "_UNIT_SYMBOLS", Swig_var__UNIT_SYMBOLS_get, Swig_var__UNIT_SYMBOLS_set);
+  SWIG_addvarlink(globals, "_DIMENSION_SYMBOLS", Swig_var__DIMENSION_SYMBOLS_get, Swig_var__DIMENSION_SYMBOLS_set);
 #if PY_VERSION_HEX >= 0x03000000
   return m;
 #else

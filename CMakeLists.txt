@@ -60,21 +60,12 @@ execute_process(
   OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 # --- C++ Library Target ---
-add_library(
-  falcon_core_cpp
-  src/generic/Song.cpp
-  src/communications/Time.cpp # Corrected path
-  src/physics/units/Dimension.cpp # Corrected path
-  src/physics/units/Prefix.cpp
-  src/physics/units/SymbolUnit.cpp # Corrected path
-  src/math/domains/Domain.cpp # Corrected path
-  src/autotuner_interfaces/contexts/MeasurementContext.cpp # Corrected path
-  src/physics/units/Unit.cpp)
+file(GLOB_RECURSE FALCON_CORE_SOURCES CONFIGURE_DEPENDS "src/*.cpp")
+add_library(falcon_core_cpp ${FALCON_CORE_SOURCES})
 target_include_directories(
   falcon_core_cpp
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-         $<INSTALL_INTERFACE:include>
-         ${eigen_SOURCE_DIR}
+         $<INSTALL_INTERFACE:include> ${eigen_SOURCE_DIR}
          ${cereal_SOURCE_DIR}/include)
 
 # --- SWIG Module ---
@@ -107,7 +98,8 @@ target_include_directories(
           "${CMAKE_CURRENT_SOURCE_DIR}/swig" ${Python3_INCLUDE_DIRS}
           "${SWIG_LIB_DIR}/python" ${NUMPY_INCLUDE_DIR})
 
-target_link_libraries(${SWIG_MODULE_NAME} PRIVATE Python3::Python falcon_core_cpp)
+target_link_libraries(${SWIG_MODULE_NAME} PRIVATE Python3::Python
+                                                  falcon_core_cpp)
 
 # --- C++ Tests ---
 enable_testing()

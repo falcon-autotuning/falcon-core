@@ -57,17 +57,16 @@ const SymbolUnit KiloHertz{common_units::get_kilo(common_units::Hertz)};
 const SymbolUnit MegaHertz{common_units::get_mega(common_units::Hertz)};
 const SymbolUnit GigaHertz{common_units::get_giga(common_units::Hertz)};
 const SymbolUnit MetersPerSecond{common_units::Meter / common_units::Second};
-const SymbolUnit MetersPerSecondSquared{std::make_shared<Unit>(
-    (*std::make_shared<Unit>(common_units::Meter)) /
-    (*((*std::make_shared<Unit>(common_units::Second)) ^ 2)))};
+const SymbolUnit MetersPerSecondSquared{common_units::Meter /
+                                        *(common_units::Second ^ 2)};
 const SymbolUnit NewtonMeter{common_units::Newton * common_units::Meter};
 const SymbolUnit NewtonPerMeter{common_units::Newton / common_units::Meter};
 const SymbolUnit VoltsPerMeter{common_units::Volt / common_units::Meter};
 const SymbolUnit VoltsPerSecond{common_units::Volt / common_units::Second};
 const SymbolUnit AmperesPerMeter{common_units::Ampere / common_units::Meter};
 const SymbolUnit VoltsPerAmpere{common_units::Volt / common_units::Ampere};
-const SymbolUnit WattsPerMeterKelvin{std::make_shared<Unit>(
-    common_units::Watt / (*(common_units::Meter * common_units::Kelvin)))};
+const SymbolUnit WattsPerMeterKelvin{
+    common_units::Watt / (*(common_units::Meter * common_units::Kelvin))};
 }  // namespace units
 }  // namespace physics
 }  // namespace falcon_core
