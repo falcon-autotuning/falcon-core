@@ -1,19 +1,19 @@
-#include "falcon_core/generic/OneToOneMapping.hpp"
-#include "falcon_core/math/Axes.hpp"
-#include "falcon_core/math/Quantity.hpp"
-#include "falcon_core/math/arrays/BaseArray.hpp"
-#include "falcon_core/math/arrays/ControlArray.hpp"
-#include "falcon_core/math/arrays/MeasuredArray.hpp"
-#include "falcon_core/math/domains/Domain.hpp"
-#include "falcon_core/physics/units/Dimension.hpp"
-#include "falcon_core/physics/units/SymbolUnit.hpp"
-#include "falcon_core/physics/units/Unit.hpp"
-
-#include <Eigen/Dense>
-#include <gtest/gtest.h>
-#include <memory>
-
-using namespace falcon_core;
+// #include "falcon_core/generic/OneToOneMapping.hpp"
+// #include "falcon_core/math/Axes.hpp"
+// #include "falcon_core/math/Quantity.hpp"
+// #include "falcon_core/math/arrays/BaseArray.hpp"
+// #include "falcon_core/math/arrays/ControlArray.hpp"
+// #include "falcon_core/math/arrays/MeasuredArray.hpp"
+// #include "falcon_core/math/domains/Domain.hpp"
+// #include "falcon_core/physics/units/Dimension.hpp"
+// #include "falcon_core/physics/units/SymbolUnit.hpp"
+// #include "falcon_core/physics/units/Unit.hpp"
+//
+// #include <Eigen/Dense>
+// #include <gtest/gtest.h>
+// #include <memory>
+//
+// using namespace falcon_core;
 
 // TEST (DomainTest, ConstructionAndAccessors)
 // {

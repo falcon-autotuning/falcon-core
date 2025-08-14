@@ -121,11 +121,10 @@ sys.modules[math.labelled_arrays.__name__] = math.labelled_arrays
 %}
 
 %{
-#include "falcon_core/generic/Song.hpp"
-#include "falcon_core/communications/Time.hpp"
 #include <string>
 #include <cstddef>
 #include <stdexcept>
+#include <falcon_core/Constants.hpp>
 using namespace falcon_core;
 %}
 
@@ -164,47 +163,18 @@ using namespace falcon_core;
 %include "std_shared_ptr.i"
 
 // Process the header files
-%shared_ptr(falcon_core::generic::Song);
+
 %shared_ptr(falcon_core::communications::Time);
-%include "falcon_core/generic/Song.hpp"
-%include "falcon_core/communications/Time.hpp"
+%include "generic/generic.i"
 
-// Include the units definitions
-%include "units.i"
+%include "physics/physics.i"
 
-// Include the math definitions
-%include "math.i"
 
-// Include the device definitions
-%include "devices.i"
 
-// Include the context definitions
-%include "contexts.i"
 
-// Include the transform definitions
-%include "transforms.i"
-
-// Include the waveform definitions
-%include "waveforms.i"
-
-// Typemap for nlohmann::json to a Python string.
-// The user code in python will be responsible for json.loads()
-%typemap(out) nlohmann::json {
-  $result = PyUnicode_FromString($1.dump().c_str());
-}
 
 // Enable directors for Jsonable to allow subclassing in Python
-%feature("director") falcon_core::Jsonable;
-
-// Add python-like special methods to Jsonable
-%extend falcon_core::Jsonable {
-    std::string __str__() {
-        return self->to_json_string();
-    }
-    size_t __hash__() {
-        return self->hash();
-    }
-}
+%feature("director") falcon_core::generic::Song;
 
 %pythoncode %{
 # Move the wrapped C++ classes into their respective submodules
