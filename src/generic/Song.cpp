@@ -23,3 +23,4 @@ std::shared_ptr<Song> Song::from_json_stream(std::istream& is) {
   archive(ptr);
   return ptr;
 }
+CEREAL_REGISTER_TYPE(Song)

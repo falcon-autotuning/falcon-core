@@ -38,7 +38,6 @@ namespace generic {
 class Song {
  public:
   virtual ~Song() = default;
-  std::string class_name_;
   /**
    * @brief Returns the class name (override if desired).
    */

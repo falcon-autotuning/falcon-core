@@ -12,16 +12,13 @@ namespace falcon_core {
 namespace physics {
 namespace units {
 
-class SymbolUnit : public generic::Song<SymbolUnit> {
+class SymbolUnit : public generic::Song {
  public:
   /*
    * @brief Construct a SymbolUnit with a specific symbol and associated Unit.
    * @param unit The Unit object associated with this symbol.
    */
   SymbolUnit(std::shared_ptr<Unit> unit);
-  static constexpr const char *member_names[] = {
-      "_class_name", "_unit", "_symbol", "_name"};
-  static std::string _static_class_name() { return "SymbolUnit"; }
 
   const std::map<Unit, std::string> _UNIT_SYMBOLS = {
       {common_units::Meter, SI::UNIT_SYMBOL_METER},

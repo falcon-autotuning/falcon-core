@@ -8,8 +8,7 @@
 using namespace falcon_core;
 using namespace falcon_core::physics::units;
 
-SymbolUnit::SymbolUnit(std::shared_ptr<Unit> unit)
-    : generic::Song<SymbolUnit>("SymbolUnit"), _unit(std::move(unit)) {
+SymbolUnit::SymbolUnit(std::shared_ptr<Unit> unit) : _unit(std::move(unit)) {
   auto results = this->_find_matching_common_unit();
   _symbol      = results.first;
   _name        = results.second;
@@ -152,3 +151,5 @@ std::string SymbolUnit::_generate_name() const {
   // Otherwise, use the symbol as the name
   return _generate_symbol();
 }
+CEREAL_REGISTER_TYPE(SymbolUnit)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, SymbolUnit)
