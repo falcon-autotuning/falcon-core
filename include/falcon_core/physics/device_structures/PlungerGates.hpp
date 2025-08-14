@@ -17,12 +17,12 @@ class PlungerGates : public DotGates<T> {
                 "T must be derived from PlungerGate");
 
  public:
-  using DotGates<T>::DotGates;
+  using Gates<T>::Gates;
 
  private:
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<DotGates<T>>(this));
+    ar(cereal::base_class<Gates<T>>(this));
   }
 
  protected:

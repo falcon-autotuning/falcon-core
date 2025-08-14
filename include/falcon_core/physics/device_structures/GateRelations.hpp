@@ -16,7 +16,7 @@ namespace device_structures {
  */
 template <typename K, typename V>
 class GateRelations : public std::map<std::shared_ptr<K>, std::shared_ptr<V>>,
-                      public falcon_core::generic::Song {
+                      public generic::Song {
   static_assert(std::is_base_of<Gate, K>::value, "T must be derived from Gate");
   static_assert(std::is_base_of<Gates<Gate>, V>::value,
                 "T must be derived from Gates");
