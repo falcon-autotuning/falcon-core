@@ -2,34 +2,16 @@
 
 #include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 
-namespace falcon_core
-{
-namespace math
-{
-namespace analytic_functions
-{
+namespace falcon_core {
+namespace math {
+namespace analytic_functions {
 
-class Identity : public AnalyticFunction
-{
-public:
-  Identity () = default;
+class Identity : public AnalyticFunction {
+ public:
+  Identity() = default;
 
-  double
-  evaluate (double x) const override
-  {
-    return x;
-  }
-
-  nlohmann::json
-  to_json () const override
-  {
-    nlohmann::json j = AnalyticFunction::to_json ();
-    add_metadata (j,
-                  "falcon_core.math.analytic_functions.analytic_function",
-                  "Identity");
-    return j;
-  }
+  double evaluate(double x) const override { return x; }
 };
-}
-}
-} // namespace falcon_core
+}  // namespace analytic_functions
+}  // namespace math
+}  // namespace falcon_core
