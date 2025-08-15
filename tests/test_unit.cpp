@@ -57,7 +57,7 @@ TEST(TestCommonUnits, DerivedUnits) {
   TotalDimensions expected_tesla_dims = {
       {SI::DIMENSION_MASS, 1},
       {SI::DIMENSION_TIME, -2},
-      {SI::DIMENSION_CURRENT, 1},
+      {SI::DIMENSION_CURRENT, -1},
   };
   ASSERT_EQ(tesla.dimensions(), expected_tesla_dims);
 }
