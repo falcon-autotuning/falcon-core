@@ -4142,6 +4142,16 @@ SWIG_AsVal_int (PyObject * obj, int *val)
 
 #include "falcon_corePYTHON_wrap.h"
 
+SwigDirector_Song::SwigDirector_Song(PyObject *self): falcon_core::generic::Song(), Swig::Director(self) {
+  SWIG_DIRECTOR_RGTR((falcon_core::generic::Song *)this, this); 
+}
+
+
+
+
+SwigDirector_Song::~SwigDirector_Song() {
+}
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -4432,13 +4442,23 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_Song(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
+  PyObject *arg1 = (PyObject *) 0 ;
+  PyObject *swig_obj[1] ;
   falcon_core::generic::Song *result = 0 ;
   
   (void)self;
-  if (!SWIG_Python_UnpackTuple(args, "new_Song", 0, 0, 0)) SWIG_fail;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  arg1 = swig_obj[0];
   {
     try {
-      result = (falcon_core::generic::Song *)new falcon_core::generic::Song();
+      if ( arg1 != Py_None ) {
+        /* subclassed */
+        result = (falcon_core::generic::Song *)new SwigDirector_Song(arg1); 
+      } else {
+        result = (falcon_core::generic::Song *)new falcon_core::generic::Song(); 
+      }
+      
     } catch (const Swig::DirectorException& e) {
       // This catches exceptions thrown by director methods,
       // allowing the original Python exception to be propagated.
@@ -4449,6 +4469,45 @@ SWIGINTERN PyObject *_wrap_new_Song(PyObject *self, PyObject *args) {
     std::shared_ptr<  falcon_core::generic::Song > *smartresult = result ? new std::shared_ptr<  falcon_core::generic::Song >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
     resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__generic__Song_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
   }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_disown_Song(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::generic::Song *arg1 = (falcon_core::generic::Song *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::generic::Song > tempshared1 ;
+  std::shared_ptr< falcon_core::generic::Song > *smartarg1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__generic__Song_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "disown_Song" "', argument " "1"" of type '" "falcon_core::generic::Song *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr<  falcon_core::generic::Song > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr<  falcon_core::generic::Song > * >(argp1);
+      arg1 = const_cast< falcon_core::generic::Song * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr<  falcon_core::generic::Song > * >(argp1);
+      arg1 = const_cast< falcon_core::generic::Song * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    Swig::Director *director = SWIG_DIRECTOR_CAST(arg1);
+    if (director) director->swig_disown();
+  }
+  
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -8748,7 +8807,8 @@ static PyMethodDef SwigMethods[] = {
 	 { "Song_from_json_string", _wrap_Song_from_json_string, METH_O, NULL},
 	 { "Song_from_json_stream", _wrap_Song_from_json_stream, METH_O, NULL},
 	 { "Song___eq__", _wrap_Song___eq__, METH_VARARGS, NULL},
-	 { "new_Song", _wrap_new_Song, METH_NOARGS, NULL},
+	 { "new_Song", _wrap_new_Song, METH_O, NULL},
+	 { "disown_Song", _wrap_disown_Song, METH_O, NULL},
 	 { "Song_swigregister", Song_swigregister, METH_O, NULL},
 	 { "Song_swiginit", Song_swiginit, METH_VARARGS, NULL},
 	 { "new_Unit", _wrap_new_Unit, METH_VARARGS, NULL},
