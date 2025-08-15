@@ -9,17 +9,21 @@ std::string Song::to_json_string() const {
 
 void Song::to_json_stream(std::ostream& os) const {
   cereal::JSONOutputArchive archive(os);
-  archive(*this);
+  // archive(*this);
+  std::shared_ptr<const Song> ptr(this, [](const Song*) {});
+  archive(ptr);
 }
 
-std::shared_ptr<Song> Song::from_json_string(const std::string& json) {
+template <typename T>
+std::shared_ptr<T> Song::from_json_string(const std::string& json) {
   std::istringstream iss(json);
-  return from_json_stream(iss);
+  return from_json_stream<T>(iss);
 }
 
-std::shared_ptr<Song> Song::from_json_stream(std::istream& is) {
+template <typename T>
+std::shared_ptr<T> Song::from_json_stream(std::istream& is) {
   cereal::JSONInputArchive archive(is);
-  std::shared_ptr<Song>    ptr;
+  std::shared_ptr<T>       ptr;
   archive(ptr);
   return ptr;
 }

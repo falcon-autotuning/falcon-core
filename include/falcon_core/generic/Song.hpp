@@ -5,6 +5,7 @@
 #include <cereal/types/memory.hpp>
 #include <cereal/types/polymorphic.hpp>
 #include <cereal/types/string.hpp>
+#include <cereal/types/unordered_map.hpp>
 #include <cereal/types/vector.hpp>
 #include <memory>
 #include <string>
@@ -41,6 +42,7 @@ namespace generic {
  * CEREAL_REGISTER_POLYMORPHIC_RELATION(Animal, Dog)
  * @endcode
  */
+
 class Song {
  public:
   virtual ~Song() = default;
@@ -65,13 +67,15 @@ class Song {
    * @brief Deserialize an object from a JSON string.
    * @return std::shared_ptr<Song> (actually the derived type)
    */
-  static std::shared_ptr<Song> from_json_string(const std::string& json);
+  template <typename T>
+  static std::shared_ptr<T> from_json_string(const std::string& json);
 
   /**
    * @brief Deserialize an object from a JSON archive (input stream).
    * @return std::shared_ptr<Song> (actually the derived type)
    */
-  static std::shared_ptr<Song> from_json_stream(std::istream& is);
+  template <typename T>
+  static std::shared_ptr<T> from_json_stream(std::istream& is);
   /**
    * @brief Equality operator.
    * Override in derived classes to compare member variables.

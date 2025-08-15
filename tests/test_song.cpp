@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+
 #include <cereal/archives/json.hpp>
 #include <cereal/types/memory.hpp>
 #include <cereal/types/string.hpp>
@@ -28,7 +29,9 @@ class StrSong : public falcon_core::generic::Song {
 class ListSong : public falcon_core::generic::Song {
  public:
   ListSong(std::vector<std::string> value = {}) : _value(std::move(value)) {}
-  bool operator==(const ListSong& other) const { return _value == other._value; }
+  bool operator==(const ListSong& other) const {
+    return _value == other._value;
+  }
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -47,9 +50,7 @@ class ComplexSong : public falcon_core::generic::Song {
   ComplexSong(std::vector<std::string>              strings = {},
               std::vector<std::shared_ptr<StrSong>> songs   = {},
               MyEnum                                other   = MyEnum::STUFF)
-      : _strings(std::move(strings)),
-        _songs(std::move(songs)),
-        _other(other) {}
+      : _strings(std::move(strings)), _songs(std::move(songs)), _other(other) {}
 
   bool operator==(const ComplexSong& other) const {
     if (_strings != other._strings || _other != other._other ||
@@ -94,16 +95,15 @@ struct StrSongPtrEqual {
 // Mirrors python `the_destroyer`
 class TheDestroyerSong : public falcon_core::generic::Song {
  public:
-  using StrSongListSongMap =
-      std::unordered_map<std::shared_ptr<StrSong>,
-                         std::shared_ptr<ListSong>,
-                         StrSongPtrHash,
-                         StrSongPtrEqual>;
+  using StrSongListSongMap = std::unordered_map<std::shared_ptr<StrSong>,
+                                                std::shared_ptr<ListSong>,
+                                                StrSongPtrHash,
+                                                StrSongPtrEqual>;
 
-  StrSongListSongMap                          _value;
-  std::shared_ptr<ComplexSong>                _stuff;
-  std::vector<std::string>                    _args;
-  std::vector<std::shared_ptr<ComplexSong>>   _even_more;
+  StrSongListSongMap                        _value;
+  std::shared_ptr<ComplexSong>              _stuff;
+  std::vector<std::string>                  _args;
+  std::vector<std::shared_ptr<ComplexSong>> _even_more;
   // Intentionally omitting _others from python test as it's repetitive
 
   template <class Archive>
@@ -124,7 +124,8 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ListSong)
 CEREAL_REGISTER_TYPE(ComplexSong)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ComplexSong)
 CEREAL_REGISTER_TYPE(TheDestroyerSong)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, TheDestroyerSong)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     TheDestroyerSong)
 
 // --- Test Fixture ---
 
@@ -133,7 +134,7 @@ void test_serialization(const T& original) {
   // Test string methods
   std::string json_str = original.to_json_string();
   auto        deserialized_song_ptr =
-      falcon_core::generic::Song::from_json_string(json_str);
+      falcon_core::generic::Song::from_json_string<T>(json_str);
   auto deserialized_ptr = std::dynamic_pointer_cast<T>(deserialized_song_ptr);
   ASSERT_NE(deserialized_ptr, nullptr);
   ASSERT_EQ(original, *deserialized_ptr);
@@ -142,7 +143,7 @@ void test_serialization(const T& original) {
   std::stringstream ss;
   original.to_json_stream(ss);
   auto deserialized_from_stream_ptr =
-      falcon_core::generic::Song::from_json_stream(ss);
+      falcon_core::generic::Song::from_json_stream<T>(ss);
   auto deserialized_stream_ptr =
       std::dynamic_pointer_cast<T>(deserialized_from_stream_ptr);
   ASSERT_NE(deserialized_stream_ptr, nullptr);
@@ -163,22 +164,21 @@ TEST(SongTest, ComplexSerialization) {
 }
 
 TEST(SongTest, DestroyerSerialization) {
-  auto original = std::make_shared<TheDestroyerSong>();
+  auto original    = std::make_shared<TheDestroyerSong>();
   original->_value = {
       {std::make_shared<StrSong>("hello"),
        std::make_shared<ListSong>(std::vector<std::string>{"world"})}};
   original->_stuff = std::make_shared<ComplexSong>(
       std::vector<std::string>{"hello"},
-      std::vector<std::shared_ptr<StrSong>>{
-          std::make_shared<StrSong>("world")},
+      std::vector<std::shared_ptr<StrSong>>{std::make_shared<StrSong>("world")},
       MyEnum::STUFF);
   original->_args      = {"hello", "world"};
   original->_even_more = {original->_stuff};
 
   // Test string methods
   std::string json_str = original->to_json_string();
-  auto deserialized_song_ptr =
-      falcon_core::generic::Song::from_json_string(json_str);
+  auto        deserialized_song_ptr =
+      falcon_core::generic::Song::from_json_string<TheDestroyerSong>(json_str);
   auto deserialized =
       std::dynamic_pointer_cast<TheDestroyerSong>(deserialized_song_ptr);
 
@@ -194,22 +194,43 @@ TEST(SongTest, DestroyerSerialization) {
   ASSERT_EQ(*(orig_it->first), *(des_it->first));
   ASSERT_EQ(*(orig_it->second), *(des_it->second));
 
+  // Test string methods
+  auto deserialized_destroyer_ptr =
+      TheDestroyerSong::from_json_string<TheDestroyerSong>(json_str);
+  auto deserialized_destroyer =
+      std::dynamic_pointer_cast<TheDestroyerSong>(deserialized_song_ptr);
+
+  // Manual checks for equivalence
+  ASSERT_NE(deserialized, nullptr);
+  ASSERT_EQ(original->_args, deserialized_destroyer->_args);
+  ASSERT_EQ(*(original->_stuff), *(deserialized_destroyer->_stuff));
+  ASSERT_EQ(original->_even_more.size(),
+            deserialized_destroyer->_even_more.size());
+  ASSERT_EQ(*(original->_even_more[0]),
+            *(deserialized_destroyer->_even_more[0]));
+  ASSERT_EQ(original->_value.size(), deserialized_destroyer->_value.size());
+  auto dorig_it = original->_value.begin();
+  auto ddes_it  = deserialized->_value.begin();
+  ASSERT_EQ(*(dorig_it->first), *(des_it->first));
+  ASSERT_EQ(*(dorig_it->second), *(des_it->second));
+
   // Test stream methods
   std::stringstream ss;
   original->to_json_stream(ss);
   auto deserialized_from_stream_ptr =
-      falcon_core::generic::Song::from_json_stream(ss);
+      TheDestroyerSong::from_json_stream<TheDestroyerSong>(ss);
   auto deserialized_stream =
       std::dynamic_pointer_cast<TheDestroyerSong>(deserialized_from_stream_ptr);
 
   ASSERT_NE(deserialized_stream, nullptr);
   ASSERT_EQ(original->_args, deserialized_stream->_args);
   ASSERT_EQ(*(original->_stuff), *(deserialized_stream->_stuff));
-  ASSERT_EQ(original->_even_more.size(), deserialized_stream->_even_more.size());
+  ASSERT_EQ(original->_even_more.size(),
+            deserialized_stream->_even_more.size());
   ASSERT_EQ(*(original->_even_more[0]), *(deserialized_stream->_even_more[0]));
   ASSERT_EQ(original->_value.size(), deserialized_stream->_value.size());
-  orig_it = original->_value.begin();
-  auto des_stream_it  = deserialized_stream->_value.begin();
+  orig_it            = original->_value.begin();
+  auto des_stream_it = deserialized_stream->_value.begin();
   ASSERT_EQ(*(orig_it->first), *(des_stream_it->first));
   ASSERT_EQ(*(orig_it->second), *(des_stream_it->second));
 }
