@@ -11,6 +11,8 @@ namespace physics {
 namespace units {
 
 class Unit : public generic::Song {
+  using UnitSP = std::shared_ptr<Unit>;
+
  public:
   Unit(TotalDimensions dimensions,
        double          scale_factor = 1.0,
@@ -39,26 +41,26 @@ class Unit : public generic::Song {
    * @param other The unit to multiply by.
    * @return A new Unit representing the product of this unit and the other.
    */
-  std::shared_ptr<Unit> operator*(const Unit &other) const;
+  UnitSP operator*(const Unit &other) const;
   /*
    * @brief Divide this unit by another unit.
    * @param other The unit to divide by.
    * @return A new Unit representing the division of this unit by the other.
    */
-  std::shared_ptr<Unit> operator/(const Unit &other) const;
+  UnitSP operator/(const Unit &other) const;
   /*
    * @brief Raise the unit to a power.
    * @param power The exponent to raise the unit to.
    * @return A new Unit raised to the specified power.
    */
-  std::shared_ptr<Unit> operator^(const int power) const;
+  UnitSP operator^(const int power) const;
   /*
    * @brief Apply a prefix to this unit.
    * @param prefix The prefix symbol to apply (e.g. "k" for kilo
    * @return A new Unit with the specified prefix applied.
    * @throws std::invalid_argument if the prefix is not valid.
    */
-  std::shared_ptr<Unit> with_prefix(const std::string prefix) const;
+  UnitSP with_prefix(const std::string prefix) const;
   /*
    * @brief Convert a value from this unit to a target unit.
    * @param value The value in this unit to convert.
@@ -91,6 +93,7 @@ class Unit : public generic::Song {
   std::string     _prefix;        // The SI prefix symbol (e.g. "k" for kilo)
   TotalDimensions _dimensions;  // dictionary mapping dimensions to their powers
 };
+using UnitSP = std::shared_ptr<Unit>;
 }  // namespace units
 }  // namespace physics
 };  // namespace falcon_core

@@ -15,18 +15,20 @@ SymbolUnit::SymbolUnit(std::shared_ptr<Unit> unit) : _unit(std::move(unit)) {
 }
 
 std::shared_ptr<SymbolUnit> SymbolUnit::operator*(
-    const SymbolUnit &other) const {
-  return std::make_shared<SymbolUnit>(*_unit * *other._unit);
+    const std::shared_ptr<SymbolUnit> other) const {
+  return std::make_shared<SymbolUnit>(*_unit * *other->_unit);
 }
-std::shared_ptr<SymbolUnit> SymbolUnit::operator*(const Unit &other) const {
-  return std::make_shared<SymbolUnit>(*_unit * other);
+std::shared_ptr<SymbolUnit> SymbolUnit::operator*(
+    const std::shared_ptr<Unit> other) const {
+  return std::make_shared<SymbolUnit>(*_unit * *other);
 }
 std::shared_ptr<SymbolUnit> SymbolUnit::operator/(
-    const SymbolUnit &other) const {
-  return std::make_shared<SymbolUnit>(*_unit / *other._unit);
+    const std::shared_ptr<SymbolUnit> other) const {
+  return std::make_shared<SymbolUnit>(*_unit / *other->_unit);
 }
-std::shared_ptr<SymbolUnit> SymbolUnit::operator/(const Unit &other) const {
-  return std::make_shared<SymbolUnit>(*_unit / other);
+std::shared_ptr<SymbolUnit> SymbolUnit::operator/(
+    const std::shared_ptr<Unit> other) const {
+  return std::make_shared<SymbolUnit>(*_unit / *other);
 }
 std::shared_ptr<SymbolUnit> SymbolUnit::operator^(const int power) const {
   return std::make_shared<SymbolUnit>(*_unit ^ power);

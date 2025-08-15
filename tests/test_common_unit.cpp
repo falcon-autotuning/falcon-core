@@ -64,33 +64,29 @@ TEST(TestCommonUnits, DerivedUnits) {
 
 TEST(TestCommonUnits, ConsistencyWithDefinitionJoule) {
   // Joule = Newton * Meter
-  Unit                  joule = common_units::Joule;
-  std::shared_ptr<Unit> newton_meter =
-      common_units::Newton * common_units::Meter;
+  Unit   joule        = common_units::Joule;
+  UnitSP newton_meter = common_units::Newton * common_units::Meter;
   ASSERT_EQ(joule.dimensions(), newton_meter->dimensions());
 }
 
 TEST(TestCommonUnits, ConsistencyWithDefinitionWatt) {
   // Watt = Joule / Second
-  Unit                  watt = common_units::Watt;
-  std::shared_ptr<Unit> joule_per_second =
-      common_units::Joule / common_units::Second;
+  Unit   watt             = common_units::Watt;
+  UnitSP joule_per_second = common_units::Joule / common_units::Second;
   ASSERT_EQ(watt.dimensions(), joule_per_second->dimensions());
 }
 
 TEST(TestCommonUnits, ConsistencyWithDefinitionVolt) {
   // Volt = Watt / Ampere
-  Unit                  volt = common_units::Volt;
-  std::shared_ptr<Unit> watt_per_ampere =
-      common_units::Watt / common_units::Ampere;
+  Unit   volt            = common_units::Volt;
+  UnitSP watt_per_ampere = common_units::Watt / common_units::Ampere;
   ASSERT_EQ(volt.dimensions(), watt_per_ampere->dimensions());
 }
 
 TEST(TestCommonUnits, ConsistencyWithDefinitionOhm) {
   // Ohm = Volt / Ampere
-  Unit                  ohm = common_units::Ohm;
-  std::shared_ptr<Unit> volt_per_ampere =
-      common_units::Volt / common_units::Ampere;
+  Unit   ohm             = common_units::Ohm;
+  UnitSP volt_per_ampere = common_units::Volt / common_units::Ampere;
   ASSERT_EQ(ohm.dimensions(), volt_per_ampere->dimensions());
 }
 
@@ -166,41 +162,41 @@ TEST(TestCommonUnits, DimensionlessUnits) {
 // Get unit with prefix
 TEST(TestCommonUnits, GetUnitWithPrefix) {
   // General prefix method
-  std::shared_ptr<Unit> millimeter =
+  UnitSP millimeter =
       common_units::get_unit_with_prefix(common_units::Meter, SI::MILLI_SYMBOL);
   TotalDimensions len_dim = {{SI::DIMENSION_LENGTH, 1}};
   ASSERT_EQ(millimeter->dimensions(), len_dim);
   ASSERT_DOUBLE_EQ(millimeter->scale_factor(), 0.001);
 
   // Specific prefix methods
-  std::shared_ptr<Unit> km = common_units::get_kilo(common_units::Meter);
+  UnitSP km = common_units::get_kilo(common_units::Meter);
   ASSERT_DOUBLE_EQ(km->scale_factor(), 1000.0);
 
-  std::shared_ptr<Unit> uA = common_units::get_micro(common_units::Ampere);
+  UnitSP uA = common_units::get_micro(common_units::Ampere);
   ASSERT_DOUBLE_EQ(uA->scale_factor(), 1e-6);
 
-  std::shared_ptr<Unit> mV = common_units::get_milli(common_units::Volt);
+  UnitSP mV = common_units::get_milli(common_units::Volt);
   ASSERT_DOUBLE_EQ(mV->scale_factor(), 0.001);
 
-  std::shared_ptr<Unit> MW = common_units::get_mega(common_units::Watt);
+  UnitSP MW = common_units::get_mega(common_units::Watt);
   ASSERT_DOUBLE_EQ(MW->scale_factor(), 1e6);
 }
 
 // Conversion between prefixed units
 TEST(TestCommonUnits, ConversionBetweenPrefixedUnits) {
   // 1 km to m
-  std::shared_ptr<Unit> km = common_units::get_kilo(common_units::Meter);
-  double meters_in_km      = km->convert_value_to(1.0, common_units::Meter);
+  UnitSP km           = common_units::get_kilo(common_units::Meter);
+  double meters_in_km = km->convert_value_to(1.0, common_units::Meter);
   ASSERT_DOUBLE_EQ(meters_in_km, 1000.0);
 
   // 1000 mV to V
-  std::shared_ptr<Unit> mV = common_units::get_milli(common_units::Volt);
-  double volts_in_mV       = mV->convert_value_to(1000.0, common_units::Volt);
+  UnitSP mV          = common_units::get_milli(common_units::Volt);
+  double volts_in_mV = mV->convert_value_to(1000.0, common_units::Volt);
   ASSERT_DOUBLE_EQ(volts_in_mV, 1.0);
 
   // 1 MW to kW
-  std::shared_ptr<Unit> MW       = common_units::get_mega(common_units::Watt);
-  std::shared_ptr<Unit> kW       = common_units::get_kilo(common_units::Watt);
-  double                kW_in_MW = MW->convert_value_to(1.0, *kW);
+  UnitSP MW       = common_units::get_mega(common_units::Watt);
+  UnitSP kW       = common_units::get_kilo(common_units::Watt);
+  double kW_in_MW = MW->convert_value_to(1.0, *kW);
   ASSERT_DOUBLE_EQ(kW_in_MW, 1000.0);
 }

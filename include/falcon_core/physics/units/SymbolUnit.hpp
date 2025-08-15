@@ -65,17 +65,19 @@ static const std::map<std::string, std::string> _DIMENSION_SYMBOLS = {
 };
 
 class SymbolUnit : public generic::Song {
+  using SymbolUnitSP = std::shared_ptr<SymbolUnit>;
+
  public:
   /*
    * @brief Construct a SymbolUnit with a specific symbol and associated Unit.
    * @param unit The Unit object associated with this symbol.
    */
-  SymbolUnit(std::shared_ptr<Unit> unit);
+  SymbolUnit(UnitSP unit);
   /*
    * @brief Get the symbol of the unit.
    * @return The symbol as a string.
    */
-  const std::shared_ptr<Unit> unit() const { return _unit; }
+  const UnitSP unit() const { return _unit; }
   /*
    * @brief Get the name of the unit.
    * @return The name as a string.
@@ -92,29 +94,29 @@ class SymbolUnit : public generic::Song {
    * @return A new SymbolUnit representing the product of this symbol unit and
    * the other.
    */
-  std::shared_ptr<SymbolUnit> operator*(const SymbolUnit &other) const;
-  std::shared_ptr<SymbolUnit> operator*(const Unit &other) const;
+  SymbolUnitSP operator*(const SymbolUnitSP other) const;
+  SymbolUnitSP operator*(const UnitSP other) const;
   /*
    * @brief Divide this symbol unit by another symbol unit.
    * @param other The symbol unit to divide by.
    * @return A new SymbolUnit representing the division of this symbol unit by
    * the other.
    */
-  std::shared_ptr<SymbolUnit> operator/(const SymbolUnit &other) const;
-  std::shared_ptr<SymbolUnit> operator/(const Unit &other) const;
+  SymbolUnitSP operator/(const SymbolUnitSP other) const;
+  SymbolUnitSP operator/(const UnitSP other) const;
   /*
    * @brief Raise the symbol unit to a power.
    * @param power The exponent to raise the symbol unit to.
    * @return A new SymbolUnit raised to the specified power.
    */
-  std::shared_ptr<SymbolUnit> operator^(const int power) const;
+  SymbolUnitSP operator^(const int power) const;
   /*
    * @brief Apply a prefix to this symbol unit.
    * @param prefix The prefix symbol to apply (e.g. "k" for kilo
    * @return A new SymbolUnit with the specified prefix applied.
    * @throws std::invalid_argument if the prefix is not valid.
    */
-  std::shared_ptr<SymbolUnit> with_prefix(const std::string prefix) const;
+  SymbolUnitSP with_prefix(const std::string prefix) const;
   /*
    * @brief Convert a value from this symbol unit to a target symbol unit.
    * @param value The value in this symbol unit to convert.
@@ -122,19 +124,19 @@ class SymbolUnit : public generic::Song {
    * @return The converted value in the target symbol unit.
    * @throws std::invalid_argument if the units are not compatible.
    */
-  double convert_value_to(const double                      value,
-                          const std::shared_ptr<SymbolUnit> target_unit) const;
+  double convert_value_to(const double       value,
+                          const SymbolUnitSP target_unit) const;
   /*
    * @brief Check if this symbol unit is compatible with another symbol unit.
    * @param other The symbol unit to check compatibility with.
    * @return True if the symbol units are compatible (same dimensions), false
    * otherwise.
    */
-  bool is_compatible_with(const std::shared_ptr<SymbolUnit> other) const;
+  bool is_compatible_with(const SymbolUnitSP other) const;
 
   // struct SymbolUnitLess {
-  //   bool operator()(const std::shared_ptr<Unit> &a,
-  //                   const std::shared_ptr<Unit> &b) const {
+  //   bool operator()(const UnitSP &a,
+  //                   const UnitSP &b) const {
   //     throw std::logic_error("SymbolUnitLess comparator should not be
   //     used.");
   //   }
@@ -148,9 +150,9 @@ class SymbolUnit : public generic::Song {
   void serialize(Archive &ar) {
     ar(cereal::base_class<Song>(this), _unit, _symbol, _name);
   }
-  std::shared_ptr<Unit> _unit;
-  std::string           _symbol;
-  std::string           _name;
+  UnitSP      _unit;
+  std::string _symbol;
+  std::string _name;
 
   /*
    * @brief Find a matching common unit for the given unit.
@@ -174,6 +176,7 @@ class SymbolUnit : public generic::Song {
    */
   std::string _generate_name() const;
 };
+using SymbolUnitSP = std::shared_ptr<SymbolUnit>;
 }  // namespace units
 }  // namespace physics
 }  // namespace falcon_core
