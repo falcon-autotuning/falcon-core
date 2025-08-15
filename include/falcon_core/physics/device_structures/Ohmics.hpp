@@ -16,18 +16,13 @@ class Ohmics : public BaseConnections<T> {
   static_assert(std::is_base_of<Ohmic, T>::value,
                 "T must be derived from Ohmic");
 
- public:
-  using BaseConnections<T>::BaseConnections;
-
- private:
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<BaseConnections<T>>(this));
   }
 
- protected:
-  Ohmics() = default;
-  friend class cereal::access;
+ public:
+  using BaseConnections<T>::BaseConnections;
 };
 
 }  // namespace device_structures

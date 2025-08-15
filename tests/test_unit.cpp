@@ -116,26 +116,26 @@ TEST(TestSymbolUnit, ComplexUnits) {
 
 TEST(TestSymbolUnit, CustomUnit) {
   // Create a custom unit with dimensions {length: 3}
-  UnitSP     custom_unit = SPU(Unit({{"LENGTH", 3}}));
-  SymbolUnit symbol_unit{custom_unit};
+  Unit         custom_unit = Unit({{"LENGTH", 3}});
+  SymbolUnitSP symbol_unit = SPS(SymbolUnit({custom_unit}));
 
-  ASSERT_TRUE(symbol_unit.symbol().find("^3") != std::string::npos);
+  ASSERT_TRUE(symbol_unit->symbol().find("^3") != std::string::npos);
 }
 
 TEST(TestSymbolUnit, SymbolGeneration) {
-  UnitSP length_time  = SPU(Unit({{"LENGTH", 1}, {"TIME", 1}}));
-  UnitSP complex_unit = SPU(Unit({{"LENGTH", 2}, {"TIME", -1}, {"MASS", 1}}));
+  Unit length_time  = Unit({{"LENGTH", 1}, {"TIME", 1}});
+  Unit complex_unit = Unit({{"LENGTH", 2}, {"TIME", -1}, {"MASS", 1}});
 
-  SymbolUnit length_time_symbol{length_time};
-  SymbolUnit complex_symbol{complex_unit};
+  SymbolUnitSP length_time_symbol = SPS(SymbolUnit({length_time}));
+  SymbolUnitSP complex_symbol     = SPS(SymbolUnit({complex_unit}));
 
-  ASSERT_TRUE(length_time_symbol.symbol().find(SI::UNIT_SYMBOL_METER) !=
+  ASSERT_TRUE(length_time_symbol->symbol().find(SI::UNIT_SYMBOL_METER) !=
               std::string::npos);
-  ASSERT_TRUE(length_time_symbol.symbol().find(SI::UNIT_SYMBOL_SECOND) !=
+  ASSERT_TRUE(length_time_symbol->symbol().find(SI::UNIT_SYMBOL_SECOND) !=
               std::string::npos);
-  ASSERT_TRUE(complex_symbol.symbol().find("kg") != std::string::npos);
-  ASSERT_TRUE(complex_symbol.symbol().find("m^2") != std::string::npos);
-  ASSERT_TRUE(complex_symbol.symbol().find("s") != std::string::npos);
+  ASSERT_TRUE(complex_symbol->symbol().find("kg") != std::string::npos);
+  ASSERT_TRUE(complex_symbol->symbol().find("m^2") != std::string::npos);
+  ASSERT_TRUE(complex_symbol->symbol().find("s") != std::string::npos);
 }
 
 TEST(TestSymbolUnit, WithPrefix) {

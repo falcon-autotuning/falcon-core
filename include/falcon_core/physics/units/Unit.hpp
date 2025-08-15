@@ -11,8 +11,18 @@ namespace physics {
 namespace units {
 
 class Unit : public generic::Song {
-  using UnitSP = std::shared_ptr<Unit>;
-
+  template <class Archive>
+  void serialize(Archive &ar) {
+    ar(cereal::base_class<Song>(this),
+       _scale_factor,
+       _offset,
+       _prefix,
+       _dimensions);
+  }
+  double          _scale_factor;  // Scale factor relative to SI base units
+  double          _offset;        // Offset form base unit (e.g. for Celsius)
+  std::string     _prefix;        // The SI prefix symbol (e.g. "k" for kilo)
+  TotalDimensions _dimensions;  // dictionary mapping dimensions to their powers
  public:
   Unit(TotalDimensions dimensions,
        double          scale_factor = 1.0,
@@ -41,26 +51,26 @@ class Unit : public generic::Song {
    * @param other The unit to multiply by.
    * @return A new Unit representing the product of this unit and the other.
    */
-  UnitSP operator*(const Unit &other) const;
+  std::shared_ptr<Unit> operator*(const std::shared_ptr<Unit> other) const;
   /*
    * @brief Divide this unit by another unit.
    * @param other The unit to divide by.
    * @return A new Unit representing the division of this unit by the other.
    */
-  UnitSP operator/(const Unit &other) const;
+  std::shared_ptr<Unit> operator/(const std::shared_ptr<Unit> other) const;
   /*
    * @brief Raise the unit to a power.
    * @param power The exponent to raise the unit to.
    * @return A new Unit raised to the specified power.
    */
-  UnitSP operator^(const int power) const;
+  std::shared_ptr<Unit> operator^(const int power) const;
   /*
    * @brief Apply a prefix to this unit.
    * @param prefix The prefix symbol to apply (e.g. "k" for kilo
    * @return A new Unit with the specified prefix applied.
    * @throws std::invalid_argument if the prefix is not valid.
    */
-  UnitSP with_prefix(const std::string prefix) const;
+  std::shared_ptr<Unit> with_prefix(const std::string prefix) const;
   /*
    * @brief Convert a value from this unit to a target unit.
    * @param value The value in this unit to convert.
@@ -68,30 +78,15 @@ class Unit : public generic::Song {
    * @return The converted value in the target unit.
    * @throws std::invalid_argument if the units are not compatible.
    */
-  double convert_value_to(const double value, const Unit target_unit) const;
+  double convert_value_to(const double                value,
+                          const std::shared_ptr<Unit> target_unit) const;
   /*
    * @brief Check if this unit is compatible with another unit.
    * @param other The unit to check compatibility with.
    * @return True if the units are compatible (same dimensions), false
    * otherwise.
    */
-  bool is_compatible_with(const Unit other) const;
-
- private:
-  Unit() = default;             // for cereal access
-  friend class cereal::access;  // cereal can access private members
-  template <class Archive>
-  void serialize(Archive &ar) {
-    ar(cereal::base_class<Song>(this),
-       _scale_factor,
-       _offset,
-       _prefix,
-       _dimensions);
-  }
-  double          _scale_factor;  // Scale factor relative to SI base units
-  double          _offset;        // Offset form base unit (e.g. for Celsius)
-  std::string     _prefix;        // The SI prefix symbol (e.g. "k" for kilo)
-  TotalDimensions _dimensions;  // dictionary mapping dimensions to their powers
+  bool is_compatible_with(const std::shared_ptr<Unit> other) const;
 };
 using UnitSP = std::shared_ptr<Unit>;
 }  // namespace units

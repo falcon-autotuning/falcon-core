@@ -10,6 +10,17 @@ namespace physics {
 namespace device_structures {
 
 class Impedance : public generic::Song {
+  std::shared_ptr<BaseConnection> _connection;
+  double                          _resistance;
+  double                          _capacitance;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this),
+       _connection,
+       _resistance,
+       _capacitance);
+  }
+
  public:
   Impedance(std::shared_ptr<BaseConnection> connection,
             double                          resistance,
@@ -32,22 +43,6 @@ class Impedance : public generic::Song {
    * @return The capacitance in farads
    */
   double capacitance() const { return _capacitance; }
-
- private:
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this),
-       _connection,
-       _resistance,
-       _capacitance);
-  }
-  std::shared_ptr<BaseConnection> _connection;
-  double                          _resistance;
-  double                          _capacitance;
-
- protected:
-  Impedance() = default;  // For cereal
-  friend class cereal::access;
 };
 }  // namespace device_structures
 }  // namespace physics

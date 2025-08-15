@@ -21,10 +21,6 @@ class GateRelations : public std::map<std::shared_ptr<K>, std::shared_ptr<V>>,
   static_assert(std::is_base_of<Gates<Gate>, V>::value,
                 "T must be derived from Gates");
 
- public:
-  using std::map<std::shared_ptr<K>, std::shared_ptr<V>>::map;
-
- private:
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this),
@@ -33,9 +29,8 @@ class GateRelations : public std::map<std::shared_ptr<K>, std::shared_ptr<V>>,
            this));
   }
 
- protected:
-  GateRelations() = default;
-  friend class cereal::access;
+ public:
+  using std::map<std::shared_ptr<K>, std::shared_ptr<V>>::map;
 };
 
 }  // namespace device_structures

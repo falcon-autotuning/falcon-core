@@ -1,12 +1,13 @@
 #include <gtest/gtest.h>
 
 #include "falcon_core/Constants.hpp"
+#include "falcon_core/macros.hpp"
 #include "falcon_core/physics/units/CommonUnits.hpp"
 #include "falcon_core/physics/units/TotalDimensions.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
 using namespace falcon_core;
 using namespace falcon_core::physics::units;
-
+#define SPU(...) SP(Unit, __VA_ARGS__)
 /**
  * @brief test that the base SI units are correctly defined.
  */
@@ -65,28 +66,28 @@ TEST(TestCommonUnits, DerivedUnits) {
 TEST(TestCommonUnits, ConsistencyWithDefinitionJoule) {
   // Joule = Newton * Meter
   Unit   joule        = common_units::Joule;
-  UnitSP newton_meter = common_units::Newton * common_units::Meter;
+  UnitSP newton_meter = common_units::Newton * SPU(common_units::Meter);
   ASSERT_EQ(joule.dimensions(), newton_meter->dimensions());
 }
 
 TEST(TestCommonUnits, ConsistencyWithDefinitionWatt) {
   // Watt = Joule / Second
   Unit   watt             = common_units::Watt;
-  UnitSP joule_per_second = common_units::Joule / common_units::Second;
+  UnitSP joule_per_second = common_units::Joule / SPU(common_units::Second);
   ASSERT_EQ(watt.dimensions(), joule_per_second->dimensions());
 }
 
 TEST(TestCommonUnits, ConsistencyWithDefinitionVolt) {
   // Volt = Watt / Ampere
   Unit   volt            = common_units::Volt;
-  UnitSP watt_per_ampere = common_units::Watt / common_units::Ampere;
+  UnitSP watt_per_ampere = common_units::Watt / SPU(common_units::Ampere);
   ASSERT_EQ(volt.dimensions(), watt_per_ampere->dimensions());
 }
 
 TEST(TestCommonUnits, ConsistencyWithDefinitionOhm) {
   // Ohm = Volt / Ampere
   Unit   ohm             = common_units::Ohm;
-  UnitSP volt_per_ampere = common_units::Volt / common_units::Ampere;
+  UnitSP volt_per_ampere = common_units::Volt / SPU(common_units::Ampere);
   ASSERT_EQ(ohm.dimensions(), volt_per_ampere->dimensions());
 }
 
@@ -117,17 +118,17 @@ TEST(TestCommonUnits, NonSIUnits) {
 // Temperature units
 TEST(TestCommonUnits, TemperatureUnits) {
   // Kelvin (base unit)
-  Unit            kelvin   = common_units::Kelvin;
+  UnitSP          kelvin   = SPU(common_units::Kelvin);
   TotalDimensions temp_dim = {{SI::DIMENSION_TEMPERATURE, 1}};
-  ASSERT_EQ(kelvin.dimensions(), temp_dim);
-  ASSERT_DOUBLE_EQ(kelvin.scale_factor(), 1.0);
-  ASSERT_DOUBLE_EQ(kelvin.offset(), 0.0);
+  ASSERT_EQ(kelvin->dimensions(), temp_dim);
+  ASSERT_DOUBLE_EQ(kelvin->scale_factor(), 1.0);
+  ASSERT_DOUBLE_EQ(kelvin->offset(), 0.0);
 
   // Celsius
-  Unit celsius = common_units::Celsius;
-  ASSERT_EQ(celsius.dimensions(), temp_dim);
-  ASSERT_DOUBLE_EQ(celsius.scale_factor(), 1.0);
-  ASSERT_DOUBLE_EQ(celsius.offset(), 273.15);
+  UnitSP celsius = SPU(common_units::Celsius);
+  ASSERT_EQ(celsius->dimensions(), temp_dim);
+  ASSERT_DOUBLE_EQ(celsius->scale_factor(), 1.0);
+  ASSERT_DOUBLE_EQ(celsius->offset(), 273.15);
 
   // Fahrenheit
   Unit fahrenheit = common_units::Fahrenheit;
@@ -137,19 +138,19 @@ TEST(TestCommonUnits, TemperatureUnits) {
 
   // Temperature conversion validation
   // 0°C = 273.15K
-  ASSERT_NEAR(celsius.convert_value_to(0.0, kelvin), 273.15, 1e-10);
+  ASSERT_NEAR(celsius->convert_value_to(0.0, kelvin), 273.15, 1e-10);
   // 0K = -273.15°C
-  ASSERT_NEAR(kelvin.convert_value_to(0.0, celsius), -273.15, 1e-10);
+  ASSERT_NEAR(kelvin->convert_value_to(0.0, celsius), -273.15, 1e-10);
   // 32°F = 0°C
   ASSERT_NEAR(fahrenheit.convert_value_to(32.0, celsius), 0.0, 1e-10);
 }
 
 // Dimensionless units
 TEST(TestCommonUnits, DimensionlessUnits) {
-  Unit            dimensionless = common_units::Dimensionless;
+  UnitSP          dimensionless = SPU(common_units::Dimensionless);
   TotalDimensions empty_dims;
-  ASSERT_EQ(dimensionless.dimensions(), empty_dims);
-  ASSERT_DOUBLE_EQ(dimensionless.scale_factor(), 1.0);
+  ASSERT_EQ(dimensionless->dimensions(), empty_dims);
+  ASSERT_DOUBLE_EQ(dimensionless->scale_factor(), 1.0);
 
   Unit percent = common_units::Percent;
   ASSERT_EQ(percent.dimensions(), empty_dims);
@@ -186,17 +187,17 @@ TEST(TestCommonUnits, GetUnitWithPrefix) {
 TEST(TestCommonUnits, ConversionBetweenPrefixedUnits) {
   // 1 km to m
   UnitSP km           = common_units::get_kilo(common_units::Meter);
-  double meters_in_km = km->convert_value_to(1.0, common_units::Meter);
+  double meters_in_km = km->convert_value_to(1.0, SPU(common_units::Meter));
   ASSERT_DOUBLE_EQ(meters_in_km, 1000.0);
 
   // 1000 mV to V
   UnitSP mV          = common_units::get_milli(common_units::Volt);
-  double volts_in_mV = mV->convert_value_to(1000.0, common_units::Volt);
+  double volts_in_mV = mV->convert_value_to(1000.0, SPU(common_units::Volt));
   ASSERT_DOUBLE_EQ(volts_in_mV, 1.0);
 
   // 1 MW to kW
   UnitSP MW       = common_units::get_mega(common_units::Watt);
   UnitSP kW       = common_units::get_kilo(common_units::Watt);
-  double kW_in_MW = MW->convert_value_to(1.0, *kW);
+  double kW_in_MW = MW->convert_value_to(1.0, kW);
   ASSERT_DOUBLE_EQ(kW_in_MW, 1000.0);
 }
