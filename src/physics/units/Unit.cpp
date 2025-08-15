@@ -45,25 +45,38 @@ std::shared_ptr<Unit> Unit::operator*(const Unit &other) const {
 }
 
 std::shared_ptr<Unit> Unit::operator/(const Unit &other) const {
-  TotalDimensions inv_dims = dimensions();
+  TotalDimensions copy_dims = dimensions();
   for (const auto &pair : other.dimensions()) {
-    const std::string &dim_ptr   = pair.first;
-    const int         &power_ptr = pair.second;
-    inv_dims[dim_ptr]            = -power_ptr;
+    if (copy_dims.count(pair.first)) {
+      copy_dims[pair.first] -= pair.second;
+      if (copy_dims[pair.first] == 0) {
+        copy_dims.erase(pair.first);
+      }
+    } else {
+      copy_dims[pair.first] = -pair.second;
+    }
   }
-  auto result = Prefix::prefix_multiplication(
-      Prefix::get_symbol(-Prefix::get_value(other.prefix())),
-      SI::UNIT_SYMBOL,
-      1.0 / other.scale_factor());
-  double      new_mult = result.first;
-  std::string prefix   = result.second;
-  Unit        inverse_unit(inv_dims,
-                    new_mult,
 
-                    -other.offset() / (other.scale_factor() *
-                                       (other.scale_factor() + other.offset())),
-                    prefix);
-  return (*this) * inverse_unit;
+  // Create an inverse of `other` to calculate the new scale factor and offset
+  Unit inverse_other(
+      {},
+      1.0 / other.scale_factor(),
+      -other.offset() / other.scale_factor(),
+      Prefix::get_symbol(-Prefix::get_value(other.prefix())));
+
+  // Now multiply `this` by the `inverse_other` to get the final unit
+  // properties
+  double new_scale = scale_factor() * inverse_other.scale_factor() +
+                     scale_factor() * inverse_other.offset() +
+                     offset() * inverse_other.scale_factor();
+
+  auto result =
+      Prefix::prefix_multiplication(prefix(), inverse_other.prefix(), new_scale);
+  double      &new_mult = result.first;
+  std::string &prefix   = result.second;
+
+  return std::make_shared<Unit>(
+      copy_dims, new_mult, offset() * inverse_other.offset(), prefix);
 }
 
 std::shared_ptr<Unit> Unit::operator^(int power) const {
