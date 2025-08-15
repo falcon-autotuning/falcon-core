@@ -103,8 +103,9 @@ target_link_libraries(${SWIG_MODULE_NAME} PRIVATE Python3::Python
 
 # --- C++ Tests ---
 enable_testing()
-add_executable(run_tests tests/test_common_unit.cpp tests/test_song.cpp tests/test_unit.cpp # tests/test_math.cpp
-)
+
+add_executable(run_tests tests/test_common_unit.cpp tests/test_unit.cpp tests/test_song.cpp tests/test_math.cpp)
+
 target_link_libraries(run_tests GTest::gtest_main falcon_core_cpp)
 
 include(GoogleTest)

@@ -9,50 +9,18 @@ namespace falcon_core {
 namespace physics {
 namespace units {
 
-const std::map<int, std::string> power_to_symbol = {
-    {SI::YOCTO_EXPONENT, SI::YOCTO_SYMBOL},
-    {SI::ZEPTO_EXPONENT, SI::ZEPTO_SYMBOL},
-    {SI::ATTO_EXPONENT, SI::ATTO_SYMBOL},
-    {SI::FEMTO_EXPONENT, SI::FEMTO_SYMBOL},
-    {SI::PICO_EXPONENT, SI::PICO_SYMBOL},
-    {SI::NANO_EXPONENT, SI::NANO_SYMBOL},
-    {SI::MICRO_EXPONENT, SI::MICRO_SYMBOL},
-    {SI::MILLI_EXPONENT, SI::MILLI_SYMBOL},
-    {SI::CENTI_EXPONENT, SI::CENTI_SYMBOL},
-    {SI::UNIT_EXPONENT, SI::UNIT_SYMBOL},
-    {SI::HECTO_EXPONENT, SI::HECTO_SYMBOL},
-    {SI::KILO_EXPONENT, SI::KILO_SYMBOL},
-    {SI::MEGA_EXPONENT, SI::MEGA_SYMBOL},
-    {SI::GIGA_EXPONENT, SI::GIGA_SYMBOL},
-    {SI::TERA_EXPONENT, SI::TERA_SYMBOL},
-    {SI::PETA_EXPONENT, SI::PETA_SYMBOL},
-    {SI::EXA_EXPONENT, SI::EXA_SYMBOL},
-    {SI::ZETTA_EXPONENT, SI::ZETTA_SYMBOL},
-    {SI::YOTTA_EXPONENT, SI::YOTTA_SYMBOL}};
-
-const std::map<std::string, int> symbol_to_power = {
-    {SI::YOCTO_SYMBOL, SI::YOCTO_EXPONENT},
-    {SI::ZEPTO_SYMBOL, SI::ZEPTO_EXPONENT},
-    {SI::ATTO_SYMBOL, SI::ATTO_EXPONENT},
-    {SI::FEMTO_SYMBOL, SI::FEMTO_EXPONENT},
-    {SI::PICO_SYMBOL, SI::PICO_EXPONENT},
-    {SI::NANO_SYMBOL, SI::NANO_EXPONENT},
-    {SI::MICRO_SYMBOL, SI::MICRO_EXPONENT},
-    {SI::MILLI_SYMBOL, SI::MILLI_EXPONENT},
-    {SI::CENTI_SYMBOL, SI::CENTI_EXPONENT},
-    {SI::UNIT_SYMBOL, SI::UNIT_EXPONENT},
-    {SI::HECTO_SYMBOL, SI::HECTO_EXPONENT},
-    {SI::KILO_SYMBOL, SI::KILO_EXPONENT},
-    {SI::MEGA_SYMBOL, SI::MEGA_EXPONENT},
-    {SI::GIGA_SYMBOL, SI::GIGA_EXPONENT},
-    {SI::TERA_SYMBOL, SI::TERA_EXPONENT},
-    {SI::PETA_SYMBOL, SI::PETA_EXPONENT},
-    {SI::EXA_SYMBOL, SI::EXA_EXPONENT},
-    {SI::ZETTA_SYMBOL, SI::ZETTA_EXPONENT},
-    {SI::YOTTA_SYMBOL, SI::YOTTA_EXPONENT}};
-
 class Prefix {
  public:
+  /**
+   * @brief Get the symbol to power map.
+   * @return A constant reference to the symbol to power map.
+   */
+  static const std::map<std::string, int>& get_symbol_to_power_map();
+  /**
+   * @brief Get the power to symbol map.
+   * @return A constant reference to the power to symbol map.
+   */
+  static const std::map<int, std::string>& get_power_to_symbol_map();
   /*
    * @brief Get the symbol for a prefix value.
    * @param prefix_value The exponent value of the prefix.

@@ -3202,6 +3202,9 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIG_contract_assert(expr, msg) do { if (!(expr)) { SWIG_Error(SWIG_RuntimeError, msg); SWIG_fail; } } while (0) 
 
 
+
+  #define SWIG_exception(code, msg) do { SWIG_Error(code, msg); SWIG_fail;; } while(0) 
+
 /* -----------------------------------------------------------------------------
  * director_common.swg
  *
@@ -3709,57 +3712,69 @@ namespace Swig {
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_SymbolUnit swig_types[0]
-#define SWIGTYPE_p_char swig_types[1]
-#define SWIGTYPE_p_falcon_core__generic__Song swig_types[2]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__BarrierGate swig_types[3]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__BaseConnection swig_types[4]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__DotGate swig_types[5]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__Gate swig_types[6]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__Impedance swig_types[7]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__Ohmic swig_types[8]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__PlungerGate swig_types[9]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__ReservoirGate swig_types[10]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__ScreeningGate swig_types[11]
-#define SWIGTYPE_p_falcon_core__physics__units__Prefix swig_types[12]
-#define SWIGTYPE_p_falcon_core__physics__units__SymbolUnit swig_types[13]
-#define SWIGTYPE_p_falcon_core__physics__units__Unit swig_types[14]
-#define SWIGTYPE_p_std__istream swig_types[15]
-#define SWIGTYPE_p_std__mapT_int_std__string_t swig_types[16]
-#define SWIGTYPE_p_std__mapT_std__string_int_t swig_types[17]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[18]
-#define SWIGTYPE_p_std__ostream swig_types[19]
-#define SWIGTYPE_p_std__pairT_double_std__string_t swig_types[20]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__communications__Time_t swig_types[21]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__generic__Song_t swig_types[22]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGate_t swig_types[23]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGates_t swig_types[24]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t swig_types[25]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnections_t swig_types[26]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__DotGate_t swig_types[27]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__DotGates_t swig_types[28]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__GateRelations_t swig_types[29]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Gate_t swig_types[30]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Gates_t swig_types[31]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t swig_types[32]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedances_t swig_types[33]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Ohmic_t swig_types[34]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Ohmics_t swig_types[35]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__PlungerGate_t swig_types[36]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__PlungerGates_t swig_types[37]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ReservoirGate_t swig_types[38]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ReservoirGates_t swig_types[39]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ScreeningGate_t swig_types[40]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ScreeningGates_t swig_types[41]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__CommonUnits_t swig_types[42]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Prefix_t swig_types[43]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t swig_types[44]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t swig_types[45]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t swig_types[46]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Units_t swig_types[47]
-#define SWIGTYPE_p_std__string swig_types[48]
-#define SWIGTYPE_p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t swig_types[49]
-static swig_type_info *swig_types[51];
-static swig_module_info swig_module = {swig_types, 50, 0, 0, 0, 0};
+#define SWIGTYPE_p_allocator_type swig_types[1]
+#define SWIGTYPE_p_char swig_types[2]
+#define SWIGTYPE_p_difference_type swig_types[3]
+#define SWIGTYPE_p_falcon_core__generic__Song swig_types[4]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__BarrierGate swig_types[5]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__BaseConnection swig_types[6]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__DotGate swig_types[7]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__Gate swig_types[8]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__Impedance swig_types[9]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__Ohmic swig_types[10]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__PlungerGate swig_types[11]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__ReservoirGate swig_types[12]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__ScreeningGate swig_types[13]
+#define SWIGTYPE_p_falcon_core__physics__units__Prefix swig_types[14]
+#define SWIGTYPE_p_falcon_core__physics__units__SymbolUnit swig_types[15]
+#define SWIGTYPE_p_falcon_core__physics__units__Unit swig_types[16]
+#define SWIGTYPE_p_key_type swig_types[17]
+#define SWIGTYPE_p_mapped_type swig_types[18]
+#define SWIGTYPE_p_p_PyObject swig_types[19]
+#define SWIGTYPE_p_size_type swig_types[20]
+#define SWIGTYPE_p_std__allocatorT_std__pairT_int_const_std__string_t_t swig_types[21]
+#define SWIGTYPE_p_std__allocatorT_std__pairT_std__string_const_int_t_t swig_types[22]
+#define SWIGTYPE_p_std__invalid_argument swig_types[23]
+#define SWIGTYPE_p_std__lessT_int_t swig_types[24]
+#define SWIGTYPE_p_std__lessT_std__string_t swig_types[25]
+#define SWIGTYPE_p_std__mapT_int_std__string_t swig_types[26]
+#define SWIGTYPE_p_std__mapT_std__string_int_t swig_types[27]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[28]
+#define SWIGTYPE_p_std__ostream swig_types[29]
+#define SWIGTYPE_p_std__pairT_double_std__string_t swig_types[30]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__communications__Time_t swig_types[31]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__generic__Song_t swig_types[32]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGate_t swig_types[33]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGates_t swig_types[34]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t swig_types[35]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnections_t swig_types[36]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__DotGate_t swig_types[37]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__DotGates_t swig_types[38]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__GateRelations_t swig_types[39]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Gate_t swig_types[40]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Gates_t swig_types[41]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t swig_types[42]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedances_t swig_types[43]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Ohmic_t swig_types[44]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Ohmics_t swig_types[45]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__PlungerGate_t swig_types[46]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__PlungerGates_t swig_types[47]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ReservoirGate_t swig_types[48]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ReservoirGates_t swig_types[49]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ScreeningGate_t swig_types[50]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ScreeningGates_t swig_types[51]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__CommonUnits_t swig_types[52]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Prefix_t swig_types[53]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t swig_types[54]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t swig_types[55]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t swig_types[56]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Units_t swig_types[57]
+#define SWIGTYPE_p_std__string swig_types[58]
+#define SWIGTYPE_p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t swig_types[59]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[60]
+#define SWIGTYPE_p_value_type swig_types[61]
+static swig_type_info *swig_types[63];
+static swig_module_info swig_module = {swig_types, 62, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3949,6 +3964,158 @@ struct SWIG_null_deleter {
 #include "falcon_core/physics/units/Units.hpp"
 #include "falcon_core/physics/units/Prefix.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
+#include "falcon_core/generic/Song.hpp"
+
+
+#include <string>
+
+
+#include <typeinfo>
+#include <stdexcept>
+
+
+#if defined(__GNUC__)
+#  if __GNUC__ == 2 && __GNUC_MINOR <= 96
+#     define SWIG_STD_NOMODERN_STL
+#  endif
+#endif
+
+
+#include <stddef.h>
+
+
+#include <utility>
+
+
+#include <iostream>
+
+#if PY_VERSION_HEX >= 0x03020000
+# define SWIGPY_SLICEOBJECT PyObject
+#else
+# define SWIGPY_SLICEOBJECT PySliceObject
+#endif
+
+
+namespace swig {
+  struct stop_iteration {
+  };
+
+  struct SwigPyIterator {
+  private:
+    SwigPtr_PyObject _seq;
+
+  protected:
+    SwigPyIterator(PyObject *seq) : _seq(seq)
+    {
+    }
+      
+  public:
+    virtual ~SwigPyIterator() {}
+
+    // Access iterator method, required by Python
+    virtual PyObject *value() const = 0;
+
+    // Forward iterator method, required by Python
+    virtual SwigPyIterator *incr(size_t n = 1) = 0;
+    
+    // Backward iterator method, very common in C++, but not required in Python
+    virtual SwigPyIterator *decr(size_t /*n*/ = 1)
+    {
+      throw stop_iteration();
+    }
+
+    // Random access iterator methods, but not required in Python
+    virtual ptrdiff_t distance(const SwigPyIterator &/*x*/) const
+    {
+      throw std::invalid_argument("operation not supported");
+    }
+
+    virtual bool equal (const SwigPyIterator &/*x*/) const
+    {
+      throw std::invalid_argument("operation not supported");
+    }
+    
+    // C++ common/needed methods
+    virtual SwigPyIterator *copy() const = 0;
+
+    PyObject *next()     
+    {
+      SWIG_PYTHON_THREAD_BEGIN_BLOCK; // disable threads       
+      PyObject *obj = value();
+      incr();       
+      SWIG_PYTHON_THREAD_END_BLOCK; // re-enable threads
+      return obj;     
+    }
+
+    /* Make an alias for Python 3.x */
+    PyObject *__next__()
+    {
+      return next();
+    }
+
+    PyObject *previous()
+    {
+      SWIG_PYTHON_THREAD_BEGIN_BLOCK; // disable threads       
+      decr();
+      PyObject *obj = value();
+      SWIG_PYTHON_THREAD_END_BLOCK; // re-enable threads       
+      return obj;
+    }
+
+    SwigPyIterator *advance(ptrdiff_t n)
+    {
+      return  (n > 0) ?  incr(n) : decr(-n);
+    }
+      
+    bool operator == (const SwigPyIterator& x)  const
+    {
+      return equal(x);
+    }
+      
+    bool operator != (const SwigPyIterator& x) const
+    {
+      return ! operator==(x);
+    }
+      
+    SwigPyIterator& operator += (ptrdiff_t n)
+    {
+      return *advance(n);
+    }
+
+    SwigPyIterator& operator -= (ptrdiff_t n)
+    {
+      return *advance(-n);
+    }
+      
+    SwigPyIterator* operator + (ptrdiff_t n) const
+    {
+      return copy()->advance(n);
+    }
+
+    SwigPyIterator* operator - (ptrdiff_t n) const
+    {
+      return copy()->advance(-n);
+    }
+      
+    ptrdiff_t operator - (const SwigPyIterator& x) const
+    {
+      return x.distance(*this);
+    }
+      
+    static swig_type_info* descriptor() {
+      static swig_type_info* desc = SWIG_TypeQuery("swig::SwigPyIterator *");
+      return desc;
+    }    
+  };
+
+#if defined(SWIGPYTHON_BUILTIN)
+  inline PyObject* make_output_iterator_builtin (PyObject *pyself)
+  {
+    SWIG_Py_INCREF(pyself);
+    return pyself;
+  }
+#endif
+}
 
 
 SWIGINTERN int
@@ -3997,19 +4164,6 @@ SWIG_AsVal_double (PyObject *obj, double *val)
 }
 
 
-  #define SWIG_From_double   PyFloat_FromDouble 
-
-
-#include <limits.h>
-#if !defined(SWIG_NO_LLONG_MAX)
-# if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
-#   define LLONG_MAX __LONG_LONG_MAX__
-#   define LLONG_MIN (-LLONG_MAX - 1LL)
-#   define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
-# endif
-#endif
-
-
 #include <float.h>
 
 
@@ -4045,6 +4199,164 @@ SWIG_CanCastAsInteger(double *d, double min, double max) {
    }
   }
   return 0;
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_unsigned_SS_long (PyObject *obj, unsigned long *val) 
+{
+#if PY_VERSION_HEX < 0x03000000
+  if (PyInt_Check(obj)) {
+    long v = PyInt_AsLong(obj);
+    if (v >= 0) {
+      if (val) *val = v;
+      return SWIG_OK;
+    } else {
+      return SWIG_OverflowError;
+    }
+  } else
+#endif
+  if (PyLong_Check(obj)) {
+    unsigned long v = PyLong_AsUnsignedLong(obj);
+    if (!PyErr_Occurred()) {
+      if (val) *val = v;
+      return SWIG_OK;
+    } else {
+      PyErr_Clear();
+      return SWIG_OverflowError;
+    }
+  }
+#ifdef SWIG_PYTHON_CAST_MODE
+  {
+    int dispatch = 0;
+    unsigned long v = PyLong_AsUnsignedLong(obj);
+    if (!PyErr_Occurred()) {
+      if (val) *val = v;
+      return SWIG_AddCast(SWIG_OK);
+    } else {
+      PyErr_Clear();
+    }
+    if (!dispatch) {
+      double d;
+      int res = SWIG_AddCast(SWIG_AsVal_double (obj,&d));
+      // Largest double not larger than ULONG_MAX (not portably calculated easily)
+      // Note that double(ULONG_MAX) is stored in a double rounded up by one (for 64-bit unsigned long)
+      // 0xfffffffffffff800ULL == (uint64_t)std::nextafter(double(__uint128_t(ULONG_MAX)+1), double(0))
+      const double ulong_max = sizeof(unsigned long) == 8 ? 0xfffffffffffff800ULL : ULONG_MAX;
+      if (SWIG_IsOK(res) && SWIG_CanCastAsInteger(&d, 0, ulong_max)) {
+	if (val) *val = (unsigned long)(d);
+	return res;
+      }
+    }
+  }
+#endif
+  return SWIG_TypeError;
+}
+
+
+#include <limits.h>
+#if !defined(SWIG_NO_LLONG_MAX)
+# if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
+#   define LLONG_MAX __LONG_LONG_MAX__
+#   define LLONG_MIN (-LLONG_MAX - 1LL)
+#   define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
+# endif
+#endif
+
+
+#if defined(LLONG_MAX) && !defined(SWIG_LONG_LONG_AVAILABLE)
+#  define SWIG_LONG_LONG_AVAILABLE
+#endif
+
+
+#ifdef SWIG_LONG_LONG_AVAILABLE
+SWIGINTERN int
+SWIG_AsVal_unsigned_SS_long_SS_long (PyObject *obj, unsigned long long *val)
+{
+  int res = SWIG_TypeError;
+  if (PyLong_Check(obj)) {
+    unsigned long long v = PyLong_AsUnsignedLongLong(obj);
+    if (!PyErr_Occurred()) {
+      if (val) *val = v;
+      return SWIG_OK;
+    } else {
+      PyErr_Clear();
+      res = SWIG_OverflowError;
+    }
+  } else {
+    unsigned long v;
+    res = SWIG_AsVal_unsigned_SS_long (obj,&v);
+    if (SWIG_IsOK(res)) {
+      if (val) *val = v;
+      return res;
+    }
+  }
+#ifdef SWIG_PYTHON_CAST_MODE
+  {
+    const double mant_max = 1LL << DBL_MANT_DIG;
+    double d;
+    res = SWIG_AsVal_double (obj,&d);
+    if (SWIG_IsOK(res) && !SWIG_CanCastAsInteger(&d, 0, mant_max))
+      return SWIG_OverflowError;
+    if (SWIG_IsOK(res) && SWIG_CanCastAsInteger(&d, 0, mant_max)) {
+      if (val) *val = (unsigned long long)(d);
+      return SWIG_AddCast(res);
+    }
+    res = SWIG_TypeError;
+  }
+#endif
+  return res;
+}
+#endif
+
+
+SWIGINTERNINLINE int
+SWIG_AsVal_size_t (PyObject * obj, size_t *val)
+{
+  int res = SWIG_TypeError;
+#ifdef SWIG_LONG_LONG_AVAILABLE
+  if (sizeof(size_t) <= sizeof(unsigned long)) {
+#endif
+    unsigned long v;
+    res = SWIG_AsVal_unsigned_SS_long (obj, val ? &v : 0);
+    if (SWIG_IsOK(res) && val) *val = static_cast< size_t >(v);
+#ifdef SWIG_LONG_LONG_AVAILABLE
+  } else if (sizeof(size_t) <= sizeof(unsigned long long)) {
+    unsigned long long v;
+    res = SWIG_AsVal_unsigned_SS_long_SS_long (obj, val ? &v : 0);
+    if (SWIG_IsOK(res) && val) *val = static_cast< size_t >(v);
+  }
+#endif
+  return res;
+}
+
+
+  #define SWIG_From_long   PyInt_FromLong 
+
+
+#ifdef SWIG_LONG_LONG_AVAILABLE
+SWIGINTERNINLINE PyObject* 
+SWIG_From_long_SS_long  (long long value)
+{
+  return ((value < LONG_MIN) || (value > LONG_MAX)) ?
+    PyLong_FromLongLong(value) : PyInt_FromLong(static_cast< long >(value));
+}
+#endif
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_ptrdiff_t  (ptrdiff_t value)
+{    
+#ifdef SWIG_LONG_LONG_AVAILABLE
+  if (sizeof(ptrdiff_t) <= sizeof(long)) {
+#endif
+    return SWIG_From_long  (static_cast< long >(value));
+#ifdef SWIG_LONG_LONG_AVAILABLE
+  } else {
+    /* assume sizeof(ptrdiff_t) <= sizeof(long long) */
+    return SWIG_From_long_SS_long  (static_cast< long long >(value));
+  }
+#endif
 }
 
 
@@ -4096,6 +4408,819 @@ SWIG_AsVal_long (PyObject *obj, long* val)
 }
 
 
+#ifdef SWIG_LONG_LONG_AVAILABLE
+SWIGINTERN int
+SWIG_AsVal_long_SS_long (PyObject *obj, long long *val)
+{
+  int res = SWIG_TypeError;
+  if (PyLong_Check(obj)) {
+    long long v = PyLong_AsLongLong(obj);
+    if (!PyErr_Occurred()) {
+      if (val) *val = v;
+      return SWIG_OK;
+    } else {
+      PyErr_Clear();
+      res = SWIG_OverflowError;
+    }
+  } else {
+    long v;
+    res = SWIG_AsVal_long (obj,&v);
+    if (SWIG_IsOK(res)) {
+      if (val) *val = v;
+      return res;
+    }
+  }
+#ifdef SWIG_PYTHON_CAST_MODE
+  {
+    const double mant_max = 1LL << DBL_MANT_DIG;
+    const double mant_min = -mant_max;
+    double d;
+    res = SWIG_AsVal_double (obj,&d);
+    if (SWIG_IsOK(res) && !SWIG_CanCastAsInteger(&d, mant_min, mant_max))
+      return SWIG_OverflowError;
+    if (SWIG_IsOK(res) && SWIG_CanCastAsInteger(&d, mant_min, mant_max)) {
+      if (val) *val = (long long)(d);
+      return SWIG_AddCast(res);
+    }
+    res = SWIG_TypeError;
+  }
+#endif
+  return res;
+}
+#endif
+
+
+SWIGINTERNINLINE int
+SWIG_AsVal_ptrdiff_t (PyObject * obj, ptrdiff_t *val)
+{
+  int res = SWIG_TypeError;
+#ifdef SWIG_LONG_LONG_AVAILABLE
+  if (sizeof(ptrdiff_t) <= sizeof(long)) {
+#endif
+    long v;
+    res = SWIG_AsVal_long (obj, val ? &v : 0);
+    if (SWIG_IsOK(res) && val) *val = static_cast< ptrdiff_t >(v);
+#ifdef SWIG_LONG_LONG_AVAILABLE
+  } else if (sizeof(ptrdiff_t) <= sizeof(long long)) {
+    long long v;
+    res = SWIG_AsVal_long_SS_long (obj, val ? &v : 0);
+    if (SWIG_IsOK(res) && val) *val = static_cast< ptrdiff_t >(v);
+  }
+#endif
+  return res;
+}
+
+
+#include <algorithm>
+
+
+#include <map>
+
+
+#include <algorithm>
+
+
+namespace swig {
+  template <class Type>
+  struct noconst_traits {
+    typedef Type noconst_type;
+  };
+
+  template <class Type>
+  struct noconst_traits<const Type> {
+    typedef Type noconst_type;
+  };
+
+  /*
+    type categories
+  */
+  struct pointer_category { };
+  struct value_category { };
+
+  /*
+    General traits that provides type_name and type_info
+  */
+  template <class Type> struct traits { };
+
+  template <class Type>
+  inline const char* type_name() {
+    return traits<typename noconst_traits<Type >::noconst_type >::type_name();
+  }
+
+  template <class Type> struct traits_info {
+    static swig_type_info *type_query(std::string name) {
+      name += " *";
+      return SWIG_TypeQuery(name.c_str());
+    }
+    static swig_type_info *type_info() {
+      static swig_type_info *info = type_query(type_name<Type>());
+      return info;
+    }
+  };
+
+  /*
+    Partial specialization for pointers (traits_info)
+  */
+  template <class Type> struct traits_info<Type *> {
+    static swig_type_info *type_query(std::string name) {
+      name += " *";
+      return SWIG_TypeQuery(name.c_str());
+    }
+    static swig_type_info *type_info() {
+      static swig_type_info *info = type_query(type_name<Type>());
+      return info;
+    }
+  };
+
+  template <class Type>
+  inline swig_type_info *type_info() {
+    return traits_info<Type>::type_info();
+  }
+
+  /*
+    Partial specialization for pointers (traits)
+  */
+  template <class Type> struct traits <Type *> {
+    typedef pointer_category category;
+    static std::string make_ptr_name(const char* name) {
+      std::string ptrname = name;
+      ptrname += " *";
+      return ptrname;
+    }
+    static const char* type_name() {
+      static std::string name = make_ptr_name(swig::type_name<Type>());
+      return name.c_str();
+    }
+  };
+
+  template <class Type, class Category>
+  struct traits_as { };
+
+  template <class Type, class Category>
+  struct traits_check { };
+
+}
+
+
+namespace swig {  
+  /*
+    Traits that provides the from method
+  */
+  template <class Type> struct traits_from_ptr {
+    static PyObject *from(Type *val, int owner = 0) {
+      return SWIG_InternalNewPointerObj(val, type_info<Type>(), owner);
+    }
+  };
+
+  template <class Type> struct traits_from {
+    static PyObject *from(const Type& val) {
+      return traits_from_ptr<Type>::from(new Type(val), 1);
+    }
+  };
+
+  template <class Type> struct traits_from<Type *> {
+    static PyObject *from(Type* val) {
+      return traits_from_ptr<Type>::from(val, 0);
+    }
+  };
+
+  template <class Type> struct traits_from<const Type *> {
+    static PyObject *from(const Type* val) {
+      return traits_from_ptr<Type>::from(const_cast<Type*>(val), 0);
+    }
+  };
+
+
+  template <class Type>
+  inline PyObject *from(const Type& val) {
+    return traits_from<Type>::from(val);
+  }
+
+  template <class Type>
+  inline PyObject *from_ptr(Type* val, int owner) {
+    return traits_from_ptr<Type>::from(val, owner);
+  }
+
+  /*
+    Traits that provides the asval/as/check method
+  */
+  template <class Type>
+  struct traits_asptr {   
+    static int asptr(PyObject *obj, Type **val) {
+      int res = SWIG_ERROR;
+      swig_type_info *descriptor = type_info<Type>();
+      if (val) {
+        Type *p = 0;
+        int newmem = 0;
+        res = descriptor ? SWIG_ConvertPtrAndOwn(obj, (void **)&p, descriptor, 0, &newmem) : SWIG_ERROR;
+        if (SWIG_IsOK(res)) {
+          if (newmem & SWIG_CAST_NEW_MEMORY) {
+            res |= SWIG_NEWOBJMASK;
+          }
+          *val = p;
+        }
+      } else {
+        res = descriptor ? SWIG_ConvertPtr(obj, 0, descriptor, 0) : SWIG_ERROR;
+      }
+      return res;
+    }
+  }; 
+
+  template <class Type>
+  inline int asptr(PyObject *obj, Type **vptr) {
+    return traits_asptr<Type>::asptr(obj, vptr);
+  }
+
+  template <class Type> 
+  struct traits_asval {
+    static int asval(PyObject *obj, Type *val) {
+      if (val) {
+	Type *p = 0;
+	int res = traits_asptr<Type>::asptr(obj, &p);
+	if (!SWIG_IsOK(res)) return res;	
+	if (p) {
+	  typedef typename noconst_traits<Type>::noconst_type noconst_type;
+	  *(const_cast<noconst_type*>(val)) = *p;
+	  if (SWIG_IsNewObj(res)){
+	    delete p;
+	    res = SWIG_DelNewMask(res);
+	  }
+	  return res;
+	} else {
+	  return SWIG_ERROR;
+	}
+      } else {
+	return traits_asptr<Type>::asptr(obj, (Type **)(0));
+      }
+    }
+  };
+
+  template <class Type> struct traits_asval<Type*> {
+    static int asval(PyObject *obj, Type **val) {
+      if (val) {
+        typedef typename noconst_traits<Type>::noconst_type noconst_type;
+        noconst_type *p = 0;
+        int res = traits_asptr<noconst_type>::asptr(obj,  &p);
+        if (SWIG_IsOK(res)) {
+          *(const_cast<noconst_type**>(val)) = p;
+	}
+	return res;
+      } else {
+	return traits_asptr<Type>::asptr(obj, (Type **)(0));
+      }
+    }
+  };
+  
+  template <class Type>
+  inline int asval(PyObject *obj, Type *val) {
+    return traits_asval<Type>::asval(obj, val);
+  }
+
+  template <class Type> 
+  struct traits_as<Type, value_category> {
+    static Type as(PyObject *obj) {
+      Type v;
+      int res = asval(obj, &v);
+      if (!obj || !SWIG_IsOK(res)) {
+	if (!PyErr_Occurred()) {
+	  ::SWIG_Error(SWIG_TypeError,  swig::type_name<Type>());
+	}
+	throw std::invalid_argument("bad type");
+      }
+      return v;
+    }
+  };
+
+  template <class Type> 
+  struct traits_as<Type, pointer_category> {
+    static Type as(PyObject *obj) {
+      Type *v = 0;      
+      int res = (obj ? traits_asptr<Type>::asptr(obj, &v) : SWIG_ERROR);
+      if (SWIG_IsOK(res) && v) {
+	if (SWIG_IsNewObj(res)) {
+	  Type r(*v);
+	  delete v;
+	  return r;
+	} else {
+	  return *v;
+	}
+      } else {
+	if (!PyErr_Occurred()) {
+	  SWIG_Error(SWIG_TypeError,  swig::type_name<Type>());
+	}
+	throw std::invalid_argument("bad type");
+      }
+    }
+  };
+
+  template <class Type> 
+  struct traits_as<Type*, pointer_category> {
+    static Type* as(PyObject *obj) {
+      Type *v = 0;      
+      int res = (obj ? traits_asptr<Type>::asptr(obj, &v) : SWIG_ERROR);
+      if (SWIG_IsOK(res)) {
+	return v;
+      } else {
+	if (!PyErr_Occurred()) {
+	  SWIG_Error(SWIG_TypeError,  swig::type_name<Type>());
+	}
+	throw std::invalid_argument("bad type");
+      }
+    }
+  };
+    
+  template <class Type>
+  inline Type as(PyObject *obj) {
+    return traits_as<Type, typename traits<Type>::category>::as(obj);
+  }
+
+  template <class Type> 
+  struct traits_check<Type, value_category> {
+    static bool check(PyObject *obj) {
+      int res = obj ? asval(obj, (Type *)(0)) : SWIG_ERROR;
+      return SWIG_IsOK(res) ? true : false;
+    }
+  };
+
+  template <class Type> 
+  struct traits_check<Type, pointer_category> {
+    static bool check(PyObject *obj) {
+      int res = obj ? asptr(obj, (Type **)(0)) : SWIG_ERROR;
+      return SWIG_IsOK(res) ? true : false;
+    }
+  };
+
+  template <class Type>
+  inline bool check(PyObject *obj) {
+    return traits_check<Type, typename traits<Type>::category>::check(obj);
+  }
+}
+
+
+#if defined(__SUNPRO_CC) && defined(_RWSTD_VER)
+#  if !defined(SWIG_NO_STD_NOITERATOR_TRAITS_STL)
+#    define SWIG_STD_NOITERATOR_TRAITS_STL
+#  endif
+#endif
+
+#if !defined(SWIG_STD_NOITERATOR_TRAITS_STL)
+#include <iterator>
+#else
+namespace std {
+  template <class Iterator>
+  struct iterator_traits {
+    typedef ptrdiff_t difference_type;
+    typedef typename Iterator::value_type value_type;
+  };
+
+  template <class Iterator, class Category,class T, class Reference, class Pointer, class Distance>
+  struct iterator_traits<__reverse_bi_iterator<Iterator,Category,T,Reference,Pointer,Distance> > {
+    typedef Distance difference_type;
+    typedef T value_type;
+  };
+
+  template <class T>
+  struct iterator_traits<T*> {
+    typedef T value_type;
+    typedef ptrdiff_t difference_type;
+  };
+
+  template<typename _InputIterator>
+  inline typename iterator_traits<_InputIterator>::difference_type
+  distance(_InputIterator __first, _InputIterator __last)
+  {
+    typename iterator_traits<_InputIterator>::difference_type __n = 0;
+    while (__first != __last) {
+      ++__first; ++__n;
+    }
+    return __n;
+  }
+}
+#endif
+
+
+namespace swig {
+  template<typename OutIterator>
+  class SwigPyIterator_T :  public SwigPyIterator
+  {
+  public:
+    typedef OutIterator out_iterator;
+    typedef typename std::iterator_traits<out_iterator>::value_type value_type;    
+    typedef SwigPyIterator_T<out_iterator> self_type;
+
+    SwigPyIterator_T(out_iterator curr, PyObject *seq)
+      : SwigPyIterator(seq), current(curr)
+    {
+    }
+
+    const out_iterator& get_current() const
+    {
+      return current;
+    }
+
+    
+    bool equal (const SwigPyIterator &iter) const
+    {
+      const self_type *iters = dynamic_cast<const self_type *>(&iter);
+      if (iters) {
+	return (current == iters->get_current());
+      } else {
+	throw std::invalid_argument("bad iterator type");
+      }
+    }
+    
+    ptrdiff_t distance(const SwigPyIterator &iter) const
+    {
+      const self_type *iters = dynamic_cast<const self_type *>(&iter);
+      if (iters) {
+	return std::distance(current, iters->get_current());
+      } else {
+	throw std::invalid_argument("bad iterator type");
+      }
+    }    
+    
+  protected:
+    out_iterator current;
+  };
+  
+  template <class ValueType>
+  struct from_oper 
+  {
+    typedef const ValueType& argument_type;
+    typedef PyObject *result_type;
+    result_type operator()(argument_type v) const
+    {
+      return swig::from(v);
+    }
+  };
+
+  template<typename OutIterator, 
+	   typename ValueType = typename std::iterator_traits<OutIterator>::value_type,
+	   typename FromOper = from_oper<ValueType> >
+  class SwigPyForwardIteratorOpen_T :  public SwigPyIterator_T<OutIterator>
+  {
+  public:
+    FromOper from;
+    typedef OutIterator out_iterator;
+    typedef ValueType value_type;
+    typedef SwigPyIterator_T<out_iterator>  base;
+    typedef SwigPyForwardIteratorOpen_T<OutIterator, ValueType, FromOper> self_type;
+    
+    SwigPyForwardIteratorOpen_T(out_iterator curr, PyObject *seq)
+      : SwigPyIterator_T<OutIterator>(curr, seq)
+    {
+    }
+    
+    PyObject *value() const {
+      return from(static_cast<const value_type&>(*(base::current)));
+    }
+    
+    SwigPyIterator *copy() const
+    {
+      return new self_type(*this);
+    }
+
+    SwigPyIterator *incr(size_t n = 1)
+    {
+      while (n--) {
+	++base::current;
+      }
+      return this;
+    }
+
+  };
+
+  template<typename OutIterator, 
+	   typename ValueType = typename std::iterator_traits<OutIterator>::value_type,
+	   typename FromOper = from_oper<ValueType> >
+  class SwigPyIteratorOpen_T :  public SwigPyForwardIteratorOpen_T<OutIterator, ValueType, FromOper>
+  {
+  public:
+    FromOper from;
+    typedef OutIterator out_iterator;
+    typedef ValueType value_type;
+    typedef SwigPyIterator_T<out_iterator>  base;
+    typedef SwigPyIteratorOpen_T<OutIterator, ValueType, FromOper> self_type;
+    
+    SwigPyIteratorOpen_T(out_iterator curr, PyObject *seq)
+      : SwigPyForwardIteratorOpen_T<OutIterator>(curr, seq)
+    {
+    }
+
+    SwigPyIterator *decr(size_t n = 1)
+    {
+      while (n--) {
+	--base::current;
+      }
+      return this;
+    }
+  };
+
+  template<typename OutIterator, 
+	   typename ValueType = typename std::iterator_traits<OutIterator>::value_type,
+	   typename FromOper = from_oper<ValueType> >
+  class SwigPyForwardIteratorClosed_T :  public SwigPyIterator_T<OutIterator>
+  {
+  public:
+    FromOper from;
+    typedef OutIterator out_iterator;
+    typedef ValueType value_type;
+    typedef SwigPyIterator_T<out_iterator>  base;    
+    typedef SwigPyForwardIteratorClosed_T<OutIterator, ValueType, FromOper> self_type;
+    
+    SwigPyForwardIteratorClosed_T(out_iterator curr, out_iterator first, out_iterator last, PyObject *seq)
+      : SwigPyIterator_T<OutIterator>(curr, seq), begin(first), end(last)
+    {
+    }
+    
+    PyObject *value() const {
+      if (base::current == end) {
+	throw stop_iteration();
+      } else {
+	return from(static_cast<const value_type&>(*(base::current)));
+      }
+    }
+    
+    SwigPyIterator *copy() const
+    {
+      return new self_type(*this);
+    }
+
+    SwigPyIterator *incr(size_t n = 1)
+    {
+      while (n--) {
+	if (base::current == end) {
+	  throw stop_iteration();
+	} else {
+	  ++base::current;
+	}
+      }
+      return this;
+    }
+
+  protected:
+    out_iterator begin;
+    out_iterator end;
+  };
+
+  template<typename OutIterator, 
+	   typename ValueType = typename std::iterator_traits<OutIterator>::value_type,
+	   typename FromOper = from_oper<ValueType> >
+  class SwigPyIteratorClosed_T :  public SwigPyForwardIteratorClosed_T<OutIterator,ValueType,FromOper>
+  {
+  public:
+    FromOper from;
+    typedef OutIterator out_iterator;
+    typedef ValueType value_type;
+    typedef SwigPyIterator_T<out_iterator>  base;
+    typedef SwigPyForwardIteratorClosed_T<OutIterator, ValueType, FromOper> base0;
+    typedef SwigPyIteratorClosed_T<OutIterator, ValueType, FromOper> self_type;
+    
+    SwigPyIteratorClosed_T(out_iterator curr, out_iterator first, out_iterator last, PyObject *seq)
+      : SwigPyForwardIteratorClosed_T<OutIterator,ValueType,FromOper>(curr, first, last, seq)
+    {
+    }
+
+    SwigPyIterator *decr(size_t n = 1)
+    {
+      while (n--) {
+	if (base::current == base0::begin) {
+	  throw stop_iteration();
+	} else {
+	  --base::current;
+	}
+      }
+      return this;
+    }
+  };
+
+
+  template<typename OutIter>
+  inline SwigPyIterator*
+  make_output_forward_iterator(const OutIter& current, const OutIter& begin,const OutIter& end, PyObject *seq = 0)
+  {
+    return new SwigPyForwardIteratorClosed_T<OutIter>(current, begin, end, seq);
+  }
+
+  template<typename OutIter>
+  inline SwigPyIterator*
+  make_output_iterator(const OutIter& current, const OutIter& begin,const OutIter& end, PyObject *seq = 0)
+  {
+    return new SwigPyIteratorClosed_T<OutIter>(current, begin, end, seq);
+  }
+
+  template<typename OutIter>
+  inline SwigPyIterator*
+  make_output_forward_iterator(const OutIter& current, PyObject *seq = 0)
+  {
+    return new SwigPyForwardIteratorOpen_T<OutIter>(current, seq);
+  }
+
+  template<typename OutIter>
+  inline SwigPyIterator*
+  make_output_iterator(const OutIter& current, PyObject *seq = 0)
+  {
+    return new SwigPyIteratorOpen_T<OutIter>(current, seq);
+  }
+
+}
+
+
+SWIGINTERN swig_type_info*
+SWIG_pchar_descriptor(void)
+{
+  static swig_type_info* info = 0;
+  if (!info) {
+    info = SWIG_TypeQuery("_p_char");
+  }
+  return info;
+}
+
+
+/* Return string from Python obj. NOTE: obj must remain in scope in order
+   to use the returned cptr (but only when alloc is set to SWIG_OLDOBJ) */
+SWIGINTERN int
+SWIG_AsCharPtrAndSize(PyObject *obj, char **cptr, size_t *psize, int *alloc)
+{
+#if PY_VERSION_HEX>=0x03000000
+#if defined(SWIG_PYTHON_STRICT_BYTE_CHAR)
+  if (PyBytes_Check(obj))
+#else
+  if (PyUnicode_Check(obj))
+#endif
+#else  
+  if (PyString_Check(obj))
+#endif
+  {
+    char *cstr; Py_ssize_t len;
+    PyObject *bytes = NULL;
+    int ret = SWIG_OK;
+    if (alloc)
+      *alloc = SWIG_OLDOBJ;
+#if PY_VERSION_HEX>=0x03000000 && defined(SWIG_PYTHON_STRICT_BYTE_CHAR)
+    if (PyBytes_AsStringAndSize(obj, &cstr, &len) == -1)
+      return SWIG_TypeError;
+#else
+    cstr = (char *)SWIG_PyUnicode_AsUTF8AndSize(obj, &len, &bytes);
+    if (!cstr)
+      return SWIG_TypeError;
+    /* The returned string is only duplicated if the char * returned is not owned and memory managed by obj */
+    if (bytes && cptr) {
+      if (alloc) {
+        cstr = reinterpret_cast< char* >(memcpy(new char[len + 1], cstr, sizeof(char)*(len + 1)));
+        *alloc = SWIG_NEWOBJ;
+      } else {
+        /* alloc must be set in order to clean up allocated memory */
+        return SWIG_RuntimeError;
+      }
+    }
+#endif
+    if (cptr) *cptr = cstr;
+    if (psize) *psize = len + 1;
+    SWIG_Py_XDECREF(bytes);
+    return ret;
+  } else {
+#if defined(SWIG_PYTHON_2_UNICODE)
+#if defined(SWIG_PYTHON_STRICT_BYTE_CHAR)
+#error "Cannot use both SWIG_PYTHON_2_UNICODE and SWIG_PYTHON_STRICT_BYTE_CHAR at once"
+#endif
+#if PY_VERSION_HEX<0x03000000
+    if (PyUnicode_Check(obj)) {
+      char *cstr; Py_ssize_t len;
+      if (!alloc && cptr) {
+        return SWIG_RuntimeError;
+      }
+      obj = PyUnicode_AsUTF8String(obj);
+      if (!obj)
+        return SWIG_TypeError;
+      if (PyString_AsStringAndSize(obj, &cstr, &len) != -1) {
+        if (cptr) {
+          if (alloc) *alloc = SWIG_NEWOBJ;
+          *cptr = reinterpret_cast< char* >(memcpy(new char[len + 1], cstr, sizeof(char)*(len + 1)));
+        }
+        if (psize) *psize = len + 1;
+
+        SWIG_Py_XDECREF(obj);
+        return SWIG_OK;
+      } else {
+        SWIG_Py_XDECREF(obj);
+      }
+    }
+#endif
+#endif
+
+    swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
+    if (pchar_descriptor) {
+      void* vptr = 0;
+      if (SWIG_ConvertPtr(obj, &vptr, pchar_descriptor, 0) == SWIG_OK) {
+	if (cptr) *cptr = (char *) vptr;
+	if (psize) *psize = vptr ? (strlen((char *)vptr) + 1) : 0;
+	if (alloc) *alloc = SWIG_OLDOBJ;
+	return SWIG_OK;
+      }
+    }
+  }
+  return SWIG_TypeError;
+}
+
+
+SWIGINTERN int
+SWIG_AsPtr_std_string (PyObject * obj, std::string **val) 
+{
+  char* buf = 0 ; size_t size = 0; int alloc = SWIG_OLDOBJ;
+  if (SWIG_IsOK((SWIG_AsCharPtrAndSize(obj, &buf, &size, &alloc)))) {
+    if (buf) {
+      if (val) *val = new std::string(buf, size - 1);
+      if (alloc == SWIG_NEWOBJ) delete[] buf;
+      return SWIG_NEWOBJ;
+    } else {
+      if (val) *val = 0;
+      return SWIG_OLDOBJ;
+    }
+  } else {
+    PyErr_Clear();
+    static swig_type_info *descriptor = SWIG_TypeQuery("std::string" " *");
+    if (descriptor) {
+      std::string *vptr;
+      int res = SWIG_ConvertPtr(obj, (void**)&vptr, descriptor, 0);
+      if (SWIG_IsOK(res) && val) *val = vptr;
+      return res;
+    }
+  }
+  return SWIG_ERROR;
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_std_string (PyObject * obj, std::string *val)
+{
+  std::string* v = (std::string *) 0;
+  int res = SWIG_AsPtr_std_string (obj, &v);
+  if (!SWIG_IsOK(res)) return res;
+  if (v) {
+    if (val) *val = *v;
+    if (SWIG_IsNewObj(res)) {
+      delete v;
+      res = SWIG_DelNewMask(res);
+    }
+    return res;
+  }
+  return SWIG_ERROR;
+}
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_FromCharPtrAndSize(const char* carray, size_t size)
+{
+  if (carray) {
+    if (size > INT_MAX) {
+      swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
+      return pchar_descriptor ? 
+	SWIG_InternalNewPointerObj(const_cast< char * >(carray), pchar_descriptor, 0) : SWIG_Py_Void();
+    } else {
+#if PY_VERSION_HEX >= 0x03000000
+#if defined(SWIG_PYTHON_STRICT_BYTE_CHAR)
+      return PyBytes_FromStringAndSize(carray, static_cast< Py_ssize_t >(size));
+#else
+      return PyUnicode_DecodeUTF8(carray, static_cast< Py_ssize_t >(size), "surrogateescape");
+#endif
+#else
+      return PyString_FromStringAndSize(carray, static_cast< Py_ssize_t >(size));
+#endif
+    }
+  } else {
+    return SWIG_Py_Void();
+  }
+}
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_std_string  (const std::string& s)
+{
+  return SWIG_FromCharPtrAndSize(s.data(), s.size());
+}
+
+
+namespace swig {
+  template <> struct traits< std::string > {
+    typedef value_category category;
+    static const char* type_name() { return"std::string"; }
+  };
+  template <>  struct traits_asval< std::string > {
+    typedef std::string value_type;
+    static int asval(PyObject *obj, value_type *val) {
+      return SWIG_AsVal_std_string (obj, val);
+    }
+  };
+  template <>  struct traits_from< std::string > {
+    typedef std::string value_type;
+    static PyObject *from(const value_type& val) {
+      return SWIG_From_std_string  (val);
+    }
+  };
+}
+
+
 SWIGINTERN int
 SWIG_AsVal_int (PyObject * obj, int *val)
 {
@@ -4110,6 +5235,1013 @@ SWIG_AsVal_int (PyObject * obj, int *val)
   }  
   return res;
 }
+
+
+namespace swig {
+  template <> struct traits< int > {
+    typedef value_category category;
+    static const char* type_name() { return"int"; }
+  };
+  template <>  struct traits_asval< int > {
+    typedef int value_type;
+    static int asval(PyObject *obj, value_type *val) {
+      return SWIG_AsVal_int (obj, val);
+    }
+  };
+  template <>  struct traits_from< int > {
+    typedef int value_type;
+    static PyObject *from(const value_type& val) {
+      return SWIG_From_int  (val);
+    }
+  };
+}
+
+
+  namespace swig {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    template <class T, class U >
+    struct traits_asptr<std::pair<T,U> >  {
+      typedef std::pair<T,U> value_type;
+
+      static int get_pair(PyObject* first, PyObject* second,
+			  std::pair<T,U> **val) 
+      {
+	if (val) {
+	  value_type *vp = (new std::pair<T,U>());
+	  T *pfirst = &(vp->first);
+	  int res1 = swig::asval((PyObject*)first, pfirst);
+	  if (!SWIG_IsOK(res1)) {
+	    delete vp;
+	    return res1;
+	  }
+	  U *psecond = &(vp->second);
+	  int res2 = swig::asval((PyObject*)second, psecond);
+	  if (!SWIG_IsOK(res2)) {
+	    delete vp;
+	    return res2;
+	  }
+	  *val = vp;
+	  return SWIG_AddNewMask(res1 > res2 ? res1 : res2);
+	} else {
+	  T *pfirst = 0;
+	  int res1 = swig::asval((PyObject*)first, pfirst);
+	  if (!SWIG_IsOK(res1)) return res1;
+	  U *psecond = 0;
+	  int res2 = swig::asval((PyObject*)second, psecond);
+	  if (!SWIG_IsOK(res2)) return res2;
+	  return res1 > res2 ? res1 : res2;
+	}
+      }
+
+      static int asptr(PyObject *obj, std::pair<T,U> **val) {
+	int res = SWIG_ERROR;
+	if (PyTuple_Check(obj)) {
+	  if (PyTuple_GET_SIZE(obj) == 2) {
+	    res = get_pair(PyTuple_GET_ITEM(obj,0),PyTuple_GET_ITEM(obj,1), val);
+	  }
+	} else if (PySequence_Check(obj)) {
+	  if (PySequence_Size(obj) == 2) {
+	    swig::SwigVar_PyObject first = PySequence_GetItem(obj,0);
+	    swig::SwigVar_PyObject second = PySequence_GetItem(obj,1);
+	    res = get_pair(first, second, val);
+	  }
+	} else {
+	  value_type *p = 0;
+	  swig_type_info *descriptor = swig::type_info<value_type>();
+	  res = descriptor ? SWIG_ConvertPtr(obj, (void **)&p, descriptor, 0) : SWIG_ERROR;
+	  if (SWIG_IsOK(res) && val)  *val = p;
+	}
+	return res;
+      }
+    };
+
+
+    template <class T, class U >
+    struct traits_from<std::pair<T,U> >   {
+      static PyObject *from(const std::pair<T,U>& val) {
+	PyObject* obj = PyTuple_New(2);
+	PyTuple_SetItem(obj,0,swig::from(val.first));
+	PyTuple_SetItem(obj,1,swig::from(val.second));
+	return obj;
+      }
+    };
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      namespace swig {
+	template <>  struct traits<std::pair< std::string, int > > {
+	  typedef pointer_category category;
+	  static const char* type_name() {
+	    return "std::pair<" "std::string" "," "int" " >";
+	  }
+	};
+      }
+    
+
+#include <functional>
+
+namespace std {
+  template <>
+  struct less <PyObject *>
+  {
+    bool
+    operator()(PyObject * v, PyObject *w) const
+    { 
+      bool res;
+      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+      res = PyObject_RichCompareBool(v, w, Py_LT) ? true : false;
+      /* This may fall into a case of inconsistent
+               eg. ObjA > ObjX > ObjB
+               but ObjA < ObjB
+      */
+      if( PyErr_Occurred() && PyErr_ExceptionMatches(PyExc_TypeError) )
+      {
+        /* Objects can't be compared, this mostly occurred in Python 3.0 */
+        /* Compare their ptr directly for a workaround */
+        res = (v < w);
+        PyErr_Clear();
+      }
+      SWIG_PYTHON_THREAD_END_BLOCK;
+      return res;
+    }
+  };
+
+  template <>
+  struct less <swig::SwigPtr_PyObject>
+  {
+    bool
+    operator()(const swig::SwigPtr_PyObject& v, const swig::SwigPtr_PyObject& w) const
+    {
+      return std::less<PyObject *>()(v, w);
+    }
+  };
+
+  template <>
+  struct less <swig::SwigVar_PyObject>
+  {
+    bool
+    operator()(const swig::SwigVar_PyObject& v, const swig::SwigVar_PyObject& w) const
+    {
+      return std::less<PyObject *>()(v, w);
+    }
+  };
+
+}
+
+namespace swig {
+  template <> struct traits<PyObject *> {
+    typedef value_category category;
+    static const char* type_name() { return "PyObject *"; }
+  };  
+
+  template <>  struct traits_asval<PyObject * > {   
+    typedef PyObject * value_type;
+    static int asval(PyObject *obj, value_type *val) {
+      if (val) *val = obj;
+      return SWIG_OK;
+    }
+  };
+
+  template <> 
+  struct traits_check<PyObject *, value_category> {
+    static bool check(PyObject *) {
+      return true;
+    }
+  };
+
+  template <>  struct traits_from<PyObject *> {
+    typedef PyObject * value_type;
+    static PyObject *from(const value_type& val) {
+      SWIG_Py_XINCREF(val);
+      return val;
+    }
+  };
+  
+}
+
+namespace swig {
+  template <class Difference>
+  inline size_t
+  check_index(Difference i, size_t size, bool insert = false) {
+    if ( i < 0 ) {
+      if ((size_t) (-i) <= size)
+	return (size_t) (i + size);
+    } else if ( (size_t) i < size ) {
+      return (size_t) i;
+    } else if (insert && ((size_t) i == size)) {
+      return size;
+    }
+    throw std::out_of_range("index out of range");
+  }
+
+  template <class Difference>
+  void
+  slice_adjust(Difference i, Difference j, Py_ssize_t step, size_t size, Difference &ii, Difference &jj, bool insert = false) {
+    if (step == 0) {
+      throw std::invalid_argument("slice step cannot be zero");
+    } else if (step > 0) {
+      // Required range: 0 <= i < size, 0 <= j < size, i <= j
+      if (i < 0) {
+        ii = 0;
+      } else if (i < (Difference)size) {
+        ii = i;
+      } else if (insert && (i >= (Difference)size)) {
+        ii = (Difference)size;
+      }
+      if (j < 0) {
+        jj = 0;
+      } else {
+        jj = (j < (Difference)size) ? j : (Difference)size;
+      }
+      if (jj < ii)
+        jj = ii;
+    } else {
+      // Required range: -1 <= i < size-1, -1 <= j < size-1, i >= j
+      if (i < -1) {
+        ii = -1;
+      } else if (i < (Difference) size) {
+        ii = i;
+      } else if (i >= (Difference)(size-1)) {
+        ii = (Difference)(size-1);
+      }
+      if (j < -1) {
+        jj = -1;
+      } else {
+        jj = (j < (Difference)size ) ? j : (Difference)(size-1);
+      }
+      if (ii < jj)
+        ii = jj;
+    }
+  }
+
+  template <class Sequence, class Difference>
+  inline typename Sequence::iterator
+  getpos(Sequence* self, Difference i)  {
+    typename Sequence::iterator pos = self->begin();
+    std::advance(pos, check_index(i,self->size()));
+    return pos;
+  }
+
+  template <class Sequence, class Difference>
+  inline typename Sequence::const_iterator
+  cgetpos(const Sequence* self, Difference i)  {
+    typename Sequence::const_iterator pos = self->begin();
+    std::advance(pos, check_index(i,self->size()));
+    return pos;
+  }
+
+  template <class Sequence>
+  inline void
+  erase(Sequence* seq, const typename Sequence::iterator& position) {
+    seq->erase(position);
+  }
+
+  template <class Sequence>
+  struct traits_reserve {
+    static void reserve(Sequence & /*seq*/, typename Sequence::size_type /*n*/) {
+      // This should be specialized for types that support reserve
+    }
+  };
+
+  template <class Sequence, class Difference>
+  inline Sequence*
+  getslice(const Sequence* self, Difference i, Difference j, Py_ssize_t step) {
+    typename Sequence::size_type size = self->size();
+    Difference ii = 0;
+    Difference jj = 0;
+    swig::slice_adjust(i, j, step, size, ii, jj);
+
+    if (step > 0) {
+      typename Sequence::const_iterator sb = self->begin();
+      typename Sequence::const_iterator se = self->begin();
+      std::advance(sb,ii);
+      std::advance(se,jj);
+      if (step == 1) {
+        return new Sequence(sb, se);
+      } else {
+        Sequence *sequence = new Sequence();
+        swig::traits_reserve<Sequence>::reserve(*sequence, (jj - ii + step - 1) / step);
+        typename Sequence::const_iterator it = sb;
+        while (it!=se) {
+          sequence->push_back(*it);
+          for (Py_ssize_t c=0; c<step && it!=se; ++c)
+            it++;
+        }
+        return sequence;
+      } 
+    } else {
+      Sequence *sequence = new Sequence();
+      swig::traits_reserve<Sequence>::reserve(*sequence, (ii - jj - step - 1) / -step);
+      typename Sequence::const_reverse_iterator sb = self->rbegin();
+      typename Sequence::const_reverse_iterator se = self->rbegin();
+      std::advance(sb,size-ii-1);
+      std::advance(se,size-jj-1);
+      typename Sequence::const_reverse_iterator it = sb;
+      while (it!=se) {
+        sequence->push_back(*it);
+        for (Py_ssize_t c=0; c<-step && it!=se; ++c)
+          it++;
+      }
+      return sequence;
+    }
+  }
+
+  template <class Sequence, class Difference, class InputSeq>
+  inline void
+  setslice(Sequence* self, Difference i, Difference j, Py_ssize_t step, const InputSeq& is = InputSeq()) {
+    typename Sequence::size_type size = self->size();
+    Difference ii = 0;
+    Difference jj = 0;
+    swig::slice_adjust(i, j, step, size, ii, jj, true);
+    if (step > 0) {
+      if (step == 1) {
+        size_t ssize = jj - ii;
+        if (ssize <= is.size()) {
+          // expanding/staying the same size
+          swig::traits_reserve<Sequence>::reserve(*self, self->size() - ssize + is.size());
+          typename Sequence::iterator sb = self->begin();
+          typename InputSeq::const_iterator isit = is.begin();
+          std::advance(sb,ii);
+          std::advance(isit, jj - ii);
+          self->insert(std::copy(is.begin(), isit, sb), isit, is.end());
+        } else {
+          // shrinking
+          typename Sequence::iterator sb = self->begin();
+          typename Sequence::iterator se = self->begin();
+          std::advance(sb,ii);
+          std::advance(se,jj);
+          self->erase(sb,se);
+          sb = self->begin();
+          std::advance(sb,ii);
+          self->insert(sb, is.begin(), is.end());
+        }
+      } else {
+        size_t replacecount = (jj - ii + step - 1) / step;
+        if (is.size() != replacecount) {
+          char msg[1024];
+          PyOS_snprintf(msg, sizeof(msg), "attempt to assign sequence of size %lu to extended slice of size %lu", (unsigned long)is.size(), (unsigned long)replacecount);
+          throw std::invalid_argument(msg);
+        }
+        typename Sequence::const_iterator isit = is.begin();
+        typename Sequence::iterator it = self->begin();
+        std::advance(it,ii);
+        for (size_t rc=0; rc<replacecount && it != self->end(); ++rc) {
+          *it++ = *isit++;
+          for (Py_ssize_t c=0; c<(step-1) && it != self->end(); ++c)
+            it++;
+        }
+      }
+    } else {
+      size_t replacecount = (ii - jj - step - 1) / -step;
+      if (is.size() != replacecount) {
+        char msg[1024];
+        PyOS_snprintf(msg, sizeof(msg), "attempt to assign sequence of size %lu to extended slice of size %lu", (unsigned long)is.size(), (unsigned long)replacecount);
+        throw std::invalid_argument(msg);
+      }
+      typename Sequence::const_iterator isit = is.begin();
+      typename Sequence::reverse_iterator it = self->rbegin();
+      std::advance(it,size-ii-1);
+      for (size_t rc=0; rc<replacecount && it != self->rend(); ++rc) {
+        *it++ = *isit++;
+        for (Py_ssize_t c=0; c<(-step-1) && it != self->rend(); ++c)
+          it++;
+      }
+    }
+  }
+
+  template <class Sequence, class Difference>
+  inline void
+  delslice(Sequence* self, Difference i, Difference j, Py_ssize_t step) {
+    typename Sequence::size_type size = self->size();
+    Difference ii = 0;
+    Difference jj = 0;
+    swig::slice_adjust(i, j, step, size, ii, jj, true);
+    if (step > 0) {
+      typename Sequence::iterator sb = self->begin();
+      std::advance(sb,ii);
+      if (step == 1) {
+        typename Sequence::iterator se = self->begin();
+        std::advance(se,jj);
+        self->erase(sb,se);
+      } else {
+        typename Sequence::iterator it = sb;
+        size_t delcount = (jj - ii + step - 1) / step;
+        while (delcount) {
+          it = self->erase(it);
+          for (Py_ssize_t c=0; c<(step-1) && it != self->end(); ++c)
+            it++;
+          delcount--;
+        }
+      }
+    } else {
+      typename Sequence::reverse_iterator sb = self->rbegin();
+      std::advance(sb,size-ii-1);
+      typename Sequence::reverse_iterator it = sb;
+      size_t delcount = (ii - jj - step - 1) / -step;
+      while (delcount) {
+        it = typename Sequence::reverse_iterator(self->erase((++it).base()));
+        for (Py_ssize_t c=0; c<(-step-1) && it != self->rend(); ++c)
+          it++;
+        delcount--;
+      }
+    }
+  }
+}
+
+
+namespace swig {
+  template <class Seq, class T = typename Seq::value_type >
+  struct IteratorProtocol {
+    static void assign(PyObject *obj, Seq *seq) {
+      SwigVar_PyObject iter = PyObject_GetIter(obj);
+      if (iter) {
+        SwigVar_PyObject item = PyIter_Next(iter);
+        while (item) {
+          seq->insert(seq->end(), swig::as<T>(item));
+          item = PyIter_Next(iter);
+        }
+      }
+    }
+
+    static bool check(PyObject *obj) {
+      bool ret = false;
+      SwigVar_PyObject iter = PyObject_GetIter(obj);
+      if (iter) {
+        SwigVar_PyObject item = PyIter_Next(iter);
+        ret = true;
+        while (item) {
+          ret = swig::check<T>(item);
+          item = ret ? PyIter_Next(iter) : 0;
+        }
+      }
+      return ret;
+    }
+  };
+
+  template <class Seq, class T = typename Seq::value_type >
+  struct traits_asptr_stdseq {
+    typedef Seq sequence;
+    typedef T value_type;
+
+    static bool is_iterable(PyObject *obj) {
+      SwigVar_PyObject iter = PyObject_GetIter(obj);
+      PyErr_Clear();
+      return iter != 0;
+    }
+
+    static int asptr(PyObject *obj, sequence **seq) {
+      int ret = SWIG_ERROR;
+      if (obj == Py_None || SWIG_Python_GetSwigThis(obj)) {
+	sequence *p;
+	swig_type_info *descriptor = swig::type_info<sequence>();
+	if (descriptor && SWIG_IsOK(::SWIG_ConvertPtr(obj, (void **)&p, descriptor, 0))) {
+	  if (seq) *seq = p;
+	  return SWIG_OLDOBJ;
+	}
+      } else if (is_iterable(obj)) {
+	try {
+	  if (seq) {
+	    *seq = new sequence();
+            IteratorProtocol<Seq, T>::assign(obj, *seq);
+            if (!PyErr_Occurred())
+              return SWIG_NEWOBJ;
+	  } else {
+	    return IteratorProtocol<Seq, T>::check(obj) ? SWIG_OK : SWIG_ERROR;
+	  }
+	} catch (std::exception& e) {
+          if (seq && !PyErr_Occurred())
+            PyErr_SetString(PyExc_TypeError, e.what());
+	}
+        if (seq)
+          delete *seq;
+	return SWIG_ERROR;
+      }
+      return ret;
+    }
+  };
+
+  template <class Seq, class T = typename Seq::value_type >
+  struct traits_from_stdseq {
+    typedef Seq sequence;
+    typedef T value_type;
+    typedef typename Seq::size_type size_type;
+    typedef typename sequence::const_iterator const_iterator;
+
+    static PyObject *from(const sequence& seq) {
+#ifdef SWIG_PYTHON_EXTRA_NATIVE_CONTAINERS
+      swig_type_info *desc = swig::type_info<sequence>();
+      if (desc && desc->clientdata) {
+	return SWIG_InternalNewPointerObj(new sequence(seq), desc, SWIG_POINTER_OWN);
+      }
+#endif
+      size_type size = seq.size();
+      if (size <= (size_type)INT_MAX) {
+	PyObject *obj = PyTuple_New((Py_ssize_t)size);
+	Py_ssize_t i = 0;
+	for (const_iterator it = seq.begin(); it != seq.end(); ++it, ++i) {
+	  PyTuple_SetItem(obj,i,swig::from<value_type>(*it));
+	}
+	return obj;
+      } else {
+	PyErr_SetString(PyExc_OverflowError,"sequence size not valid in python");
+	return NULL;
+      }
+    }
+  };
+}
+
+
+  namespace swig {
+    template <class ValueType>
+    struct from_key_oper 
+    {
+      typedef const ValueType& argument_type;
+      typedef  PyObject *result_type;
+      result_type operator()(argument_type v) const
+      {
+	return swig::from(v.first);
+      }
+    };
+
+    template <class ValueType>
+    struct from_value_oper 
+    {
+      typedef const ValueType& argument_type;
+      typedef  PyObject *result_type;
+      result_type operator()(argument_type v) const
+      {
+	return swig::from(v.second);
+      }
+    };
+
+    template<class OutIterator, class FromOper, class ValueType = typename OutIterator::value_type>
+    struct SwigPyMapIterator_T : SwigPyIteratorClosed_T<OutIterator, ValueType, FromOper>
+    {
+      SwigPyMapIterator_T(OutIterator curr, OutIterator first, OutIterator last, PyObject *seq)
+	: SwigPyIteratorClosed_T<OutIterator,ValueType,FromOper>(curr, first, last, seq)
+      {
+      }
+    };
+
+
+    template<class OutIterator,
+	     class FromOper = from_key_oper<typename OutIterator::value_type> >
+    struct SwigPyMapKeyIterator_T : SwigPyMapIterator_T<OutIterator, FromOper>
+    {
+      SwigPyMapKeyIterator_T(OutIterator curr, OutIterator first, OutIterator last, PyObject *seq)
+	: SwigPyMapIterator_T<OutIterator, FromOper>(curr, first, last, seq)
+      {
+      }
+    };
+
+    template<typename OutIter>
+    inline SwigPyIterator*
+    make_output_key_iterator(const OutIter& current, const OutIter& begin, const OutIter& end, PyObject *seq = 0)
+    {
+      return new SwigPyMapKeyIterator_T<OutIter>(current, begin, end, seq);
+    }
+
+    template<class OutIterator,
+	     class FromOper = from_value_oper<typename OutIterator::value_type> >
+    struct SwigPyMapValueIterator_T : SwigPyMapIterator_T<OutIterator, FromOper>
+    {
+      SwigPyMapValueIterator_T(OutIterator curr, OutIterator first, OutIterator last, PyObject *seq)
+	: SwigPyMapIterator_T<OutIterator, FromOper>(curr, first, last, seq)
+      {
+      }
+    };
+    
+
+    template<typename OutIter>
+    inline SwigPyIterator*
+    make_output_value_iterator(const OutIter& current, const OutIter& begin, const OutIter& end, PyObject *seq = 0)
+    {
+      return new SwigPyMapValueIterator_T<OutIter>(current, begin, end, seq);
+    }
+  }
+
+
+  namespace swig {
+    template <class K, class T, class Compare, class Alloc>
+    struct traits_asptr<std::map<K,T,Compare,Alloc > >  {
+      typedef std::map<K,T,Compare,Alloc > map_type;
+      static int asptr(PyObject *obj, map_type **val) {
+	int res = SWIG_ERROR;
+	SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+	if (PyDict_Check(obj)) {
+	  SwigVar_PyObject items = PyObject_CallMethod(obj,(char *)"items",NULL);
+#if PY_VERSION_HEX >= 0x03000000
+          /* In Python 3.x the ".items()" method returns a dict_items object */
+          items = PySequence_Fast(items, ".items() didn't return a sequence!");
+#endif
+	  res = traits_asptr_stdseq<map_type, std::pair<K, T> >::asptr(items, val);
+	} else {
+	  map_type *p = 0;
+	  swig_type_info *descriptor = swig::type_info<map_type>();
+	  res = descriptor ? SWIG_ConvertPtr(obj, (void **)&p, descriptor, 0) : SWIG_ERROR;
+	  if (SWIG_IsOK(res) && val)  *val = p;
+	}
+	SWIG_PYTHON_THREAD_END_BLOCK;
+	return res;
+      }      
+    };
+      
+    template <class K, class T, class Compare, class Alloc >
+    struct traits_from<std::map<K,T,Compare,Alloc > >  {
+      typedef std::map<K,T,Compare,Alloc > map_type;
+      typedef typename map_type::const_iterator const_iterator;
+      typedef typename map_type::size_type size_type;
+
+      static PyObject *asdict(const map_type& map) {
+	SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+	size_type size = map.size();
+	Py_ssize_t pysize = (size <= (size_type) INT_MAX) ? (Py_ssize_t) size : -1;
+	if (pysize < 0) {
+	  PyErr_SetString(PyExc_OverflowError, "map size not valid in python");
+	  SWIG_PYTHON_THREAD_END_BLOCK;
+	  return NULL;
+	}
+	PyObject *obj = PyDict_New();
+	for (const_iterator i= map.begin(); i!= map.end(); ++i) {
+	  swig::SwigVar_PyObject key = swig::from(i->first);
+	  swig::SwigVar_PyObject val = swig::from(i->second);
+	  PyDict_SetItem(obj, key, val);
+	}
+	SWIG_PYTHON_THREAD_END_BLOCK;
+	return obj;
+      }
+                
+      static PyObject *from(const map_type& map) {
+	swig_type_info *desc = swig::type_info<map_type>();
+	if (desc && desc->clientdata) {
+	  return SWIG_InternalNewPointerObj(new map_type(map), desc, SWIG_POINTER_OWN);
+	} else {
+	  return asdict(map);
+	}
+      }
+    };
+  }
+
+
+      namespace swig {
+	template <>  struct traits<std::map< std::string, int, std::less< std::string >, std::allocator< std::pair< std::string const,int > > > > {
+	  typedef pointer_category category;
+	  static const char* type_name() {
+	    return "std::map<" "std::string" "," "int" "," "std::less< std::string >" "," "std::allocator< std::pair< std::string const,int > >" " >";
+	  }
+	};
+      }
+    
+SWIGINTERN swig::SwigPyIterator *std_map_Sl_std_string_Sc_int_Sg__iterator(std::map< std::string,int > *self,PyObject **PYTHON_SELF){
+      return swig::make_output_iterator(self->begin(), self->begin(), self->end(), *PYTHON_SELF);
+    }
+SWIGINTERN bool std_map_Sl_std_string_Sc_int_Sg____nonzero__(std::map< std::string,int > const *self){
+      return !(self->empty());
+    }
+SWIGINTERN bool std_map_Sl_std_string_Sc_int_Sg____bool__(std::map< std::string,int > const *self){
+      return !(self->empty());
+    }
+SWIGINTERN std::map< std::string,int >::size_type std_map_Sl_std_string_Sc_int_Sg____len__(std::map< std::string,int > const *self){
+      return self->size();
+    }
+
+SWIGINTERNINLINE PyObject* 
+SWIG_From_unsigned_SS_long  (unsigned long value)
+{
+  return (value > LONG_MAX) ?
+    PyLong_FromUnsignedLong(value) : PyInt_FromLong(static_cast< long >(value));
+}
+
+
+#ifdef SWIG_LONG_LONG_AVAILABLE
+SWIGINTERNINLINE PyObject* 
+SWIG_From_unsigned_SS_long_SS_long  (unsigned long long value)
+{
+  return (value > LONG_MAX) ?
+    PyLong_FromUnsignedLongLong(value) : PyInt_FromLong(static_cast< long >(value));
+}
+#endif
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_size_t  (size_t value)
+{    
+#ifdef SWIG_LONG_LONG_AVAILABLE
+  if (sizeof(size_t) <= sizeof(unsigned long)) {
+#endif
+    return SWIG_From_unsigned_SS_long  (static_cast< unsigned long >(value));
+#ifdef SWIG_LONG_LONG_AVAILABLE
+  } else {
+    /* assume sizeof(size_t) <= sizeof(unsigned long long) */
+    return SWIG_From_unsigned_SS_long_SS_long  (static_cast< unsigned long long >(value));
+  }
+#endif
+}
+
+SWIGINTERN std::map< std::string,int >::mapped_type const &std_map_Sl_std_string_Sc_int_Sg____getitem__(std::map< std::string,int > *self,std::map< std::string,int >::key_type const &key){
+      std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >::const_iterator i = self->find(key);
+      if (i != self->end())
+	return i->second;
+      else
+	throw std::out_of_range("key not found");
+    }
+SWIGINTERN void std_map_Sl_std_string_Sc_int_Sg____delitem__(std::map< std::string,int > *self,std::map< std::string,int >::key_type const &key){
+      std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >::iterator i = self->find(key);
+      if (i != self->end())
+	self->erase(i);
+      else
+	throw std::out_of_range("key not found");
+    }
+SWIGINTERN bool std_map_Sl_std_string_Sc_int_Sg__has_key(std::map< std::string,int > const *self,std::map< std::string,int >::key_type const &key){
+      std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >::const_iterator i = self->find(key);
+      return i != self->end();
+    }
+SWIGINTERN PyObject *std_map_Sl_std_string_Sc_int_Sg__keys(std::map< std::string,int > *self){
+      std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >::size_type size = self->size();
+      Py_ssize_t pysize = (size <= (std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >::size_type) INT_MAX) ? (Py_ssize_t) size : -1;
+      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+      if (pysize < 0) {
+	PyErr_SetString(PyExc_OverflowError, "map size not valid in python");
+	SWIG_PYTHON_THREAD_END_BLOCK;
+	return NULL;
+      }
+      PyObject* keyList = PyList_New(pysize);
+      std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >::const_iterator i = self->begin();
+      for (Py_ssize_t j = 0; j < pysize; ++i, ++j) {
+	PyList_SET_ITEM(keyList, j, swig::from(i->first));
+      }
+      SWIG_PYTHON_THREAD_END_BLOCK;
+      return keyList;
+    }
+SWIGINTERN PyObject *std_map_Sl_std_string_Sc_int_Sg__values(std::map< std::string,int > *self){
+      std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >::size_type size = self->size();
+      Py_ssize_t pysize = (size <= (std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >::size_type) INT_MAX) ? (Py_ssize_t) size : -1;
+      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+      if (pysize < 0) {
+	PyErr_SetString(PyExc_OverflowError, "map size not valid in python");
+	SWIG_PYTHON_THREAD_END_BLOCK;
+	return NULL;
+      }
+      PyObject* valList = PyList_New(pysize);
+      std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >::const_iterator i = self->begin();
+      for (Py_ssize_t j = 0; j < pysize; ++i, ++j) {
+	PyList_SET_ITEM(valList, j, swig::from(i->second));
+      }
+      SWIG_PYTHON_THREAD_END_BLOCK;
+      return valList;
+    }
+SWIGINTERN PyObject *std_map_Sl_std_string_Sc_int_Sg__items(std::map< std::string,int > *self){
+      std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >::size_type size = self->size();
+      Py_ssize_t pysize = (size <= (std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >::size_type) INT_MAX) ? (Py_ssize_t) size : -1;
+      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+      if (pysize < 0) {
+	PyErr_SetString(PyExc_OverflowError, "map size not valid in python");
+	SWIG_PYTHON_THREAD_END_BLOCK;
+	return NULL;
+      }    
+      PyObject* itemList = PyList_New(pysize);
+      std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >::const_iterator i = self->begin();
+      for (Py_ssize_t j = 0; j < pysize; ++i, ++j) {
+	PyList_SET_ITEM(itemList, j, swig::from(*i));
+      }
+      SWIG_PYTHON_THREAD_END_BLOCK;
+      return itemList;
+    }
+SWIGINTERN bool std_map_Sl_std_string_Sc_int_Sg____contains__(std::map< std::string,int > *self,std::map< std::string,int >::key_type const &key){
+      return self->find(key) != self->end();
+    }
+SWIGINTERN swig::SwigPyIterator *std_map_Sl_std_string_Sc_int_Sg__key_iterator(std::map< std::string,int > *self,PyObject **PYTHON_SELF){
+      return swig::make_output_key_iterator(self->begin(), self->begin(), self->end(), *PYTHON_SELF);
+    }
+SWIGINTERN swig::SwigPyIterator *std_map_Sl_std_string_Sc_int_Sg__value_iterator(std::map< std::string,int > *self,PyObject **PYTHON_SELF){
+      return swig::make_output_value_iterator(self->begin(), self->begin(), self->end(), *PYTHON_SELF);
+    }
+SWIGINTERN void std_map_Sl_std_string_Sc_int_Sg____setitem____SWIG_0(std::map< std::string,int > *self,std::map< std::string,int >::key_type const &key){
+      self->erase(key);
+    }
+SWIGINTERN void std_map_Sl_std_string_Sc_int_Sg____setitem____SWIG_1(std::map< std::string,int > *self,std::map< std::string,int >::key_type const &key,std::map< std::string,int >::mapped_type const &x){
+#ifdef __cpp_lib_map_try_emplace
+      (*self).insert_or_assign(key, x);
+#else
+      (*self)[key] = x;
+#endif
+    }
+SWIGINTERN PyObject *std_map_Sl_std_string_Sc_int_Sg__asdict(std::map< std::string,int > *self){
+      return swig::traits_from< std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > >::asdict(*self);
+    }
+SWIGINTERN void std_map_Sl_std_string_Sc_int_Sg__erase__SWIG_1(std::map< std::string,int > *self,std::map< std::string,int >::iterator position){ self->erase(position); }
+SWIGINTERN void std_map_Sl_std_string_Sc_int_Sg__erase__SWIG_2(std::map< std::string,int > *self,std::map< std::string,int >::iterator first,std::map< std::string,int >::iterator last){ self->erase(first, last); }
+
+      namespace swig {
+	template <>  struct traits<std::pair< int, std::string > > {
+	  typedef pointer_category category;
+	  static const char* type_name() {
+	    return "std::pair<" "int" "," "std::string" " >";
+	  }
+	};
+      }
+    
+
+      namespace swig {
+	template <>  struct traits<std::map< int, std::string, std::less< int >, std::allocator< std::pair< int const,std::string > > > > {
+	  typedef pointer_category category;
+	  static const char* type_name() {
+	    return "std::map<" "int" "," "std::string" "," "std::less< int >" "," "std::allocator< std::pair< int const,std::string > >" " >";
+	  }
+	};
+      }
+    
+SWIGINTERN swig::SwigPyIterator *std_map_Sl_int_Sc_std_string_Sg__iterator(std::map< int,std::string > *self,PyObject **PYTHON_SELF){
+      return swig::make_output_iterator(self->begin(), self->begin(), self->end(), *PYTHON_SELF);
+    }
+SWIGINTERN bool std_map_Sl_int_Sc_std_string_Sg____nonzero__(std::map< int,std::string > const *self){
+      return !(self->empty());
+    }
+SWIGINTERN bool std_map_Sl_int_Sc_std_string_Sg____bool__(std::map< int,std::string > const *self){
+      return !(self->empty());
+    }
+SWIGINTERN std::map< int,std::string >::size_type std_map_Sl_int_Sc_std_string_Sg____len__(std::map< int,std::string > const *self){
+      return self->size();
+    }
+SWIGINTERN std::map< int,std::string >::mapped_type const &std_map_Sl_int_Sc_std_string_Sg____getitem__(std::map< int,std::string > *self,std::map< int,std::string >::key_type const &key){
+      std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >::const_iterator i = self->find(key);
+      if (i != self->end())
+	return i->second;
+      else
+	throw std::out_of_range("key not found");
+    }
+SWIGINTERN void std_map_Sl_int_Sc_std_string_Sg____delitem__(std::map< int,std::string > *self,std::map< int,std::string >::key_type const &key){
+      std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >::iterator i = self->find(key);
+      if (i != self->end())
+	self->erase(i);
+      else
+	throw std::out_of_range("key not found");
+    }
+SWIGINTERN bool std_map_Sl_int_Sc_std_string_Sg__has_key(std::map< int,std::string > const *self,std::map< int,std::string >::key_type const &key){
+      std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >::const_iterator i = self->find(key);
+      return i != self->end();
+    }
+SWIGINTERN PyObject *std_map_Sl_int_Sc_std_string_Sg__keys(std::map< int,std::string > *self){
+      std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >::size_type size = self->size();
+      Py_ssize_t pysize = (size <= (std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >::size_type) INT_MAX) ? (Py_ssize_t) size : -1;
+      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+      if (pysize < 0) {
+	PyErr_SetString(PyExc_OverflowError, "map size not valid in python");
+	SWIG_PYTHON_THREAD_END_BLOCK;
+	return NULL;
+      }
+      PyObject* keyList = PyList_New(pysize);
+      std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >::const_iterator i = self->begin();
+      for (Py_ssize_t j = 0; j < pysize; ++i, ++j) {
+	PyList_SET_ITEM(keyList, j, swig::from(i->first));
+      }
+      SWIG_PYTHON_THREAD_END_BLOCK;
+      return keyList;
+    }
+SWIGINTERN PyObject *std_map_Sl_int_Sc_std_string_Sg__values(std::map< int,std::string > *self){
+      std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >::size_type size = self->size();
+      Py_ssize_t pysize = (size <= (std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >::size_type) INT_MAX) ? (Py_ssize_t) size : -1;
+      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+      if (pysize < 0) {
+	PyErr_SetString(PyExc_OverflowError, "map size not valid in python");
+	SWIG_PYTHON_THREAD_END_BLOCK;
+	return NULL;
+      }
+      PyObject* valList = PyList_New(pysize);
+      std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >::const_iterator i = self->begin();
+      for (Py_ssize_t j = 0; j < pysize; ++i, ++j) {
+	PyList_SET_ITEM(valList, j, swig::from(i->second));
+      }
+      SWIG_PYTHON_THREAD_END_BLOCK;
+      return valList;
+    }
+SWIGINTERN PyObject *std_map_Sl_int_Sc_std_string_Sg__items(std::map< int,std::string > *self){
+      std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >::size_type size = self->size();
+      Py_ssize_t pysize = (size <= (std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >::size_type) INT_MAX) ? (Py_ssize_t) size : -1;
+      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+      if (pysize < 0) {
+	PyErr_SetString(PyExc_OverflowError, "map size not valid in python");
+	SWIG_PYTHON_THREAD_END_BLOCK;
+	return NULL;
+      }    
+      PyObject* itemList = PyList_New(pysize);
+      std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >::const_iterator i = self->begin();
+      for (Py_ssize_t j = 0; j < pysize; ++i, ++j) {
+	PyList_SET_ITEM(itemList, j, swig::from(*i));
+      }
+      SWIG_PYTHON_THREAD_END_BLOCK;
+      return itemList;
+    }
+SWIGINTERN bool std_map_Sl_int_Sc_std_string_Sg____contains__(std::map< int,std::string > *self,std::map< int,std::string >::key_type const &key){
+      return self->find(key) != self->end();
+    }
+SWIGINTERN swig::SwigPyIterator *std_map_Sl_int_Sc_std_string_Sg__key_iterator(std::map< int,std::string > *self,PyObject **PYTHON_SELF){
+      return swig::make_output_key_iterator(self->begin(), self->begin(), self->end(), *PYTHON_SELF);
+    }
+SWIGINTERN swig::SwigPyIterator *std_map_Sl_int_Sc_std_string_Sg__value_iterator(std::map< int,std::string > *self,PyObject **PYTHON_SELF){
+      return swig::make_output_value_iterator(self->begin(), self->begin(), self->end(), *PYTHON_SELF);
+    }
+SWIGINTERN void std_map_Sl_int_Sc_std_string_Sg____setitem____SWIG_0(std::map< int,std::string > *self,std::map< int,std::string >::key_type const &key){
+      self->erase(key);
+    }
+SWIGINTERN void std_map_Sl_int_Sc_std_string_Sg____setitem____SWIG_1(std::map< int,std::string > *self,std::map< int,std::string >::key_type const &key,std::map< int,std::string >::mapped_type const &x){
+#ifdef __cpp_lib_map_try_emplace
+      (*self).insert_or_assign(key, x);
+#else
+      (*self)[key] = x;
+#endif
+    }
+SWIGINTERN PyObject *std_map_Sl_int_Sc_std_string_Sg__asdict(std::map< int,std::string > *self){
+      return swig::traits_from< std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > > >::asdict(*self);
+    }
+SWIGINTERN void std_map_Sl_int_Sc_std_string_Sg__erase__SWIG_1(std::map< int,std::string > *self,std::map< int,std::string >::iterator position){ self->erase(position); }
+SWIGINTERN void std_map_Sl_int_Sc_std_string_Sg__erase__SWIG_2(std::map< int,std::string > *self,std::map< int,std::string >::iterator first,std::map< int,std::string >::iterator last){ self->erase(first, last); }
+
+  #define SWIG_From_double   PyFloat_FromDouble 
 
 
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
@@ -4133,6 +6265,7 @@ SWIG_AsVal_int (PyObject * obj, int *val)
 #include "falcon_core/physics/device_structures/Impedance.hpp"
 #include "falcon_core/physics/device_structures/Impedances.hpp"
 #include "falcon_core/physics/device_structures/GateRelations.hpp"
+#include "falcon_core/generic/Song.hpp"
 
 
 
@@ -4289,82 +6422,6 @@ SWIGINTERN PyObject *_wrap_Song_to_json_stream(PyObject *self, PyObject *args) {
     }
   }
   resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Song_from_json_string(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  std::string *arg1 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  std::shared_ptr< falcon_core::generic::Song > result;
-  
-  (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Song_from_json_string" "', argument " "1"" of type '" "std::string const &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Song_from_json_string" "', argument " "1"" of type '" "std::string const &""'"); 
-  }
-  arg1 = reinterpret_cast< std::string * >(argp1);
-  {
-    try {
-      result = falcon_core::generic::Song::from_json_string((std::string const &)*arg1);
-    } catch (const Swig::DirectorException& e) {
-      // This catches exceptions thrown by director methods,
-      // allowing the original Python exception to be propagated.
-      SWIG_fail;
-    }
-  }
-  {
-    std::shared_ptr<  falcon_core::generic::Song > *smartresult = result ? new std::shared_ptr<  falcon_core::generic::Song >(result) : 0;
-    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__generic__Song_t, SWIG_POINTER_OWN);
-  }
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Song_from_json_stream(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  std::istream *arg1 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  std::shared_ptr< falcon_core::generic::Song > result;
-  
-  (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__istream,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Song_from_json_stream" "', argument " "1"" of type '" "std::istream &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Song_from_json_stream" "', argument " "1"" of type '" "std::istream &""'"); 
-  }
-  arg1 = reinterpret_cast< std::istream * >(argp1);
-  {
-    try {
-      result = falcon_core::generic::Song::from_json_stream(*arg1);
-    } catch (const Swig::DirectorException& e) {
-      // This catches exceptions thrown by director methods,
-      // allowing the original Python exception to be propagated.
-      SWIG_fail;
-    }
-  }
-  {
-    std::shared_ptr<  falcon_core::generic::Song > *smartresult = result ? new std::shared_ptr<  falcon_core::generic::Song >(result) : 0;
-    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__generic__Song_t, SWIG_POINTER_OWN);
-  }
   return resultobj;
 fail:
   return NULL;
@@ -4569,6 +6626,4027 @@ SWIGINTERN PyObject *Song_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *arg
   return SWIG_Python_InitShadowInstance(args);
 }
 
+SWIGINTERN PyObject *_wrap_delete_SwigPyIterator(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_SwigPyIterator" "', argument " "1"" of type '" "swig::SwigPyIterator *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator_value(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator_value" "', argument " "1"" of type '" "swig::SwigPyIterator const *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  {
+    try {
+      try {
+        result = (PyObject *)((swig::SwigPyIterator const *)arg1)->value();
+      } catch(swig::stop_iteration &_e) {
+        {
+          (void)_e;
+          SWIG_SetErrorObj(PyExc_StopIteration, SWIG_Py_Void());
+          SWIG_fail;
+        }
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator_incr__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  size_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  size_t val2 ;
+  int ecode2 = 0 ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator_incr" "', argument " "1"" of type '" "swig::SwigPyIterator *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  ecode2 = SWIG_AsVal_size_t(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SwigPyIterator_incr" "', argument " "2"" of type '" "size_t""'");
+  } 
+  arg2 = static_cast< size_t >(val2);
+  {
+    try {
+      try {
+        result = (swig::SwigPyIterator *)(arg1)->incr(SWIG_STD_MOVE(arg2));
+      } catch(swig::stop_iteration &_e) {
+        {
+          (void)_e;
+          SWIG_SetErrorObj(PyExc_StopIteration, SWIG_Py_Void());
+          SWIG_fail;
+        }
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator_incr__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  (void)self;
+  if ((nobjs < 1) || (nobjs > 1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator_incr" "', argument " "1"" of type '" "swig::SwigPyIterator *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  {
+    try {
+      try {
+        result = (swig::SwigPyIterator *)(arg1)->incr();
+      } catch(swig::stop_iteration &_e) {
+        {
+          (void)_e;
+          SWIG_SetErrorObj(PyExc_StopIteration, SWIG_Py_Void());
+          SWIG_fail;
+        }
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator_incr(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[3] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "SwigPyIterator_incr", 0, 2, argv))) SWIG_fail;
+  --argc;
+  if (argc == 1) {
+    int _v = 0;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__SwigPyIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_SwigPyIterator_incr__SWIG_1(self, argc, argv);
+    }
+  }
+  if (argc == 2) {
+    int _v = 0;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__SwigPyIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_size_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_SwigPyIterator_incr__SWIG_0(self, argc, argv);
+      }
+    }
+  }
+  
+fail:
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'SwigPyIterator_incr'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    swig::SwigPyIterator::incr(size_t)\n"
+    "    swig::SwigPyIterator::incr()\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator_decr__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  size_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  size_t val2 ;
+  int ecode2 = 0 ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator_decr" "', argument " "1"" of type '" "swig::SwigPyIterator *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  ecode2 = SWIG_AsVal_size_t(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SwigPyIterator_decr" "', argument " "2"" of type '" "size_t""'");
+  } 
+  arg2 = static_cast< size_t >(val2);
+  {
+    try {
+      try {
+        result = (swig::SwigPyIterator *)(arg1)->decr(SWIG_STD_MOVE(arg2));
+      } catch(swig::stop_iteration &_e) {
+        {
+          (void)_e;
+          SWIG_SetErrorObj(PyExc_StopIteration, SWIG_Py_Void());
+          SWIG_fail;
+        }
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator_decr__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  (void)self;
+  if ((nobjs < 1) || (nobjs > 1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator_decr" "', argument " "1"" of type '" "swig::SwigPyIterator *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  {
+    try {
+      try {
+        result = (swig::SwigPyIterator *)(arg1)->decr();
+      } catch(swig::stop_iteration &_e) {
+        {
+          (void)_e;
+          SWIG_SetErrorObj(PyExc_StopIteration, SWIG_Py_Void());
+          SWIG_fail;
+        }
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator_decr(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[3] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "SwigPyIterator_decr", 0, 2, argv))) SWIG_fail;
+  --argc;
+  if (argc == 1) {
+    int _v = 0;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__SwigPyIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_SwigPyIterator_decr__SWIG_1(self, argc, argv);
+    }
+  }
+  if (argc == 2) {
+    int _v = 0;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__SwigPyIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_size_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_SwigPyIterator_decr__SWIG_0(self, argc, argv);
+      }
+    }
+  }
+  
+fail:
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'SwigPyIterator_decr'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    swig::SwigPyIterator::decr(size_t)\n"
+    "    swig::SwigPyIterator::decr()\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator_distance(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  swig::SwigPyIterator *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  ptrdiff_t result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SwigPyIterator_distance", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator_distance" "', argument " "1"" of type '" "swig::SwigPyIterator const *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_swig__SwigPyIterator,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SwigPyIterator_distance" "', argument " "2"" of type '" "swig::SwigPyIterator const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SwigPyIterator_distance" "', argument " "2"" of type '" "swig::SwigPyIterator const &""'"); 
+  }
+  arg2 = reinterpret_cast< swig::SwigPyIterator * >(argp2);
+  {
+    try {
+      try {
+        result = ((swig::SwigPyIterator const *)arg1)->distance((swig::SwigPyIterator const &)*arg2);
+      } catch(std::invalid_argument &_e) {
+        SWIG_Python_Raise(SWIG_NewPointerObj((new std::invalid_argument(static_cast< const std::invalid_argument& >(_e))),SWIGTYPE_p_std__invalid_argument,SWIG_POINTER_OWN), "std::invalid_argument", SWIGTYPE_p_std__invalid_argument); SWIG_fail;
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_ptrdiff_t(static_cast< ptrdiff_t >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator_equal(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  swig::SwigPyIterator *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  bool result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SwigPyIterator_equal", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator_equal" "', argument " "1"" of type '" "swig::SwigPyIterator const *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_swig__SwigPyIterator,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SwigPyIterator_equal" "', argument " "2"" of type '" "swig::SwigPyIterator const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SwigPyIterator_equal" "', argument " "2"" of type '" "swig::SwigPyIterator const &""'"); 
+  }
+  arg2 = reinterpret_cast< swig::SwigPyIterator * >(argp2);
+  {
+    try {
+      try {
+        result = (bool)((swig::SwigPyIterator const *)arg1)->equal((swig::SwigPyIterator const &)*arg2);
+      } catch(std::invalid_argument &_e) {
+        SWIG_Python_Raise(SWIG_NewPointerObj((new std::invalid_argument(static_cast< const std::invalid_argument& >(_e))),SWIGTYPE_p_std__invalid_argument,SWIG_POINTER_OWN), "std::invalid_argument", SWIGTYPE_p_std__invalid_argument); SWIG_fail;
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator_copy(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator_copy" "', argument " "1"" of type '" "swig::SwigPyIterator const *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  {
+    try {
+      result = (swig::SwigPyIterator *)((swig::SwigPyIterator const *)arg1)->copy();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator_next(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator_next" "', argument " "1"" of type '" "swig::SwigPyIterator *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  {
+    try {
+      try {
+        result = (PyObject *)(arg1)->next();
+      } catch(swig::stop_iteration &_e) {
+        {
+          (void)_e;
+          SWIG_SetErrorObj(PyExc_StopIteration, SWIG_Py_Void());
+          SWIG_fail;
+        }
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator___next__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator___next__" "', argument " "1"" of type '" "swig::SwigPyIterator *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  {
+    try {
+      try {
+        result = (PyObject *)(arg1)->__next__();
+      } catch(swig::stop_iteration &_e) {
+        {
+          (void)_e;
+          SWIG_SetErrorObj(PyExc_StopIteration, SWIG_Py_Void());
+          SWIG_fail;
+        }
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator_previous(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator_previous" "', argument " "1"" of type '" "swig::SwigPyIterator *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  {
+    try {
+      try {
+        result = (PyObject *)(arg1)->previous();
+      } catch(swig::stop_iteration &_e) {
+        {
+          (void)_e;
+          SWIG_SetErrorObj(PyExc_StopIteration, SWIG_Py_Void());
+          SWIG_fail;
+        }
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator_advance(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  ptrdiff_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SwigPyIterator_advance", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator_advance" "', argument " "1"" of type '" "swig::SwigPyIterator *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SwigPyIterator_advance" "', argument " "2"" of type '" "ptrdiff_t""'");
+  } 
+  arg2 = static_cast< ptrdiff_t >(val2);
+  {
+    try {
+      try {
+        result = (swig::SwigPyIterator *)(arg1)->advance(SWIG_STD_MOVE(arg2));
+      } catch(swig::stop_iteration &_e) {
+        {
+          (void)_e;
+          SWIG_SetErrorObj(PyExc_StopIteration, SWIG_Py_Void());
+          SWIG_fail;
+        }
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator___eq__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  swig::SwigPyIterator *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  bool result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SwigPyIterator___eq__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator___eq__" "', argument " "1"" of type '" "swig::SwigPyIterator const *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_swig__SwigPyIterator,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SwigPyIterator___eq__" "', argument " "2"" of type '" "swig::SwigPyIterator const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SwigPyIterator___eq__" "', argument " "2"" of type '" "swig::SwigPyIterator const &""'"); 
+  }
+  arg2 = reinterpret_cast< swig::SwigPyIterator * >(argp2);
+  {
+    try {
+      result = (bool)((swig::SwigPyIterator const *)arg1)->operator ==((swig::SwigPyIterator const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator___ne__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  swig::SwigPyIterator *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  bool result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SwigPyIterator___ne__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator___ne__" "', argument " "1"" of type '" "swig::SwigPyIterator const *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_swig__SwigPyIterator,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SwigPyIterator___ne__" "', argument " "2"" of type '" "swig::SwigPyIterator const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SwigPyIterator___ne__" "', argument " "2"" of type '" "swig::SwigPyIterator const &""'"); 
+  }
+  arg2 = reinterpret_cast< swig::SwigPyIterator * >(argp2);
+  {
+    try {
+      result = (bool)((swig::SwigPyIterator const *)arg1)->operator !=((swig::SwigPyIterator const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator___iadd__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  ptrdiff_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SwigPyIterator___iadd__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator___iadd__" "', argument " "1"" of type '" "swig::SwigPyIterator *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SwigPyIterator___iadd__" "', argument " "2"" of type '" "ptrdiff_t""'");
+  } 
+  arg2 = static_cast< ptrdiff_t >(val2);
+  {
+    try {
+      try {
+        result = (swig::SwigPyIterator *) &(arg1)->operator +=(SWIG_STD_MOVE(arg2));
+      } catch(swig::stop_iteration &_e) {
+        {
+          (void)_e;
+          SWIG_SetErrorObj(PyExc_StopIteration, SWIG_Py_Void());
+          SWIG_fail;
+        }
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator___isub__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  ptrdiff_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SwigPyIterator___isub__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator___isub__" "', argument " "1"" of type '" "swig::SwigPyIterator *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SwigPyIterator___isub__" "', argument " "2"" of type '" "ptrdiff_t""'");
+  } 
+  arg2 = static_cast< ptrdiff_t >(val2);
+  {
+    try {
+      try {
+        result = (swig::SwigPyIterator *) &(arg1)->operator -=(SWIG_STD_MOVE(arg2));
+      } catch(swig::stop_iteration &_e) {
+        {
+          (void)_e;
+          SWIG_SetErrorObj(PyExc_StopIteration, SWIG_Py_Void());
+          SWIG_fail;
+        }
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator___add__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  ptrdiff_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SwigPyIterator___add__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator___add__" "', argument " "1"" of type '" "swig::SwigPyIterator const *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SwigPyIterator___add__" "', argument " "2"" of type '" "ptrdiff_t""'");
+  } 
+  arg2 = static_cast< ptrdiff_t >(val2);
+  {
+    try {
+      try {
+        result = (swig::SwigPyIterator *)((swig::SwigPyIterator const *)arg1)->operator +(SWIG_STD_MOVE(arg2));
+      } catch(swig::stop_iteration &_e) {
+        {
+          (void)_e;
+          SWIG_SetErrorObj(PyExc_StopIteration, SWIG_Py_Void());
+          SWIG_fail;
+        }
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator___sub____SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  ptrdiff_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  ptrdiff_t val2 ;
+  int ecode2 = 0 ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator___sub__" "', argument " "1"" of type '" "swig::SwigPyIterator const *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  ecode2 = SWIG_AsVal_ptrdiff_t(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SwigPyIterator___sub__" "', argument " "2"" of type '" "ptrdiff_t""'");
+  } 
+  arg2 = static_cast< ptrdiff_t >(val2);
+  {
+    try {
+      try {
+        result = (swig::SwigPyIterator *)((swig::SwigPyIterator const *)arg1)->operator -(SWIG_STD_MOVE(arg2));
+      } catch(swig::stop_iteration &_e) {
+        {
+          (void)_e;
+          SWIG_SetErrorObj(PyExc_StopIteration, SWIG_Py_Void());
+          SWIG_fail;
+        }
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator___sub____SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  swig::SwigPyIterator *arg1 = (swig::SwigPyIterator *) 0 ;
+  swig::SwigPyIterator *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  ptrdiff_t result;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_swig__SwigPyIterator, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SwigPyIterator___sub__" "', argument " "1"" of type '" "swig::SwigPyIterator const *""'"); 
+  }
+  arg1 = reinterpret_cast< swig::SwigPyIterator * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_swig__SwigPyIterator,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SwigPyIterator___sub__" "', argument " "2"" of type '" "swig::SwigPyIterator const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SwigPyIterator___sub__" "', argument " "2"" of type '" "swig::SwigPyIterator const &""'"); 
+  }
+  arg2 = reinterpret_cast< swig::SwigPyIterator * >(argp2);
+  {
+    try {
+      result = ((swig::SwigPyIterator const *)arg1)->operator -((swig::SwigPyIterator const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_ptrdiff_t(static_cast< ptrdiff_t >(result));
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_SwigPyIterator___sub__(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[3] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "SwigPyIterator___sub__", 0, 2, argv))) SWIG_fail;
+  --argc;
+  if (argc == 2) {
+    int _v = 0;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__SwigPyIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_NO_NULL | 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_SwigPyIterator___sub____SWIG_1(self, argc, argv);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v = 0;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_swig__SwigPyIterator, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_ptrdiff_t(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_SwigPyIterator___sub____SWIG_0(self, argc, argv);
+      }
+    }
+  }
+  
+fail:
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *SwigPyIterator_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_swig__SwigPyIterator, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_SymbolToPowerMap__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  std::less< std::string > *arg1 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::map< std::string,int > *result = 0 ;
+  
+  (void)self;
+  if ((nobjs < 1) || (nobjs > 1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__lessT_std__string_t,  0  | 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_SymbolToPowerMap" "', argument " "1"" of type '" "std::less< std::string > const &""'"); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_SymbolToPowerMap" "', argument " "1"" of type '" "std::less< std::string > const &""'"); 
+  }
+  arg1 = reinterpret_cast< std::less< std::string > * >(argp1);
+  {
+    try {
+      result = (std::map< std::string,int > *)new std::map< std::string,int >((std::less< std::string > const &)*arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__mapT_std__string_int_t, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_iterator(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  PyObject **arg2 = (PyObject **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  arg2 = &swig_obj[0];
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_iterator" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = (swig::SwigPyIterator *)std_map_Sl_std_string_Sc_int_Sg__iterator(arg1,arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap___nonzero__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  bool result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap___nonzero__" "', argument " "1"" of type '" "std::map< std::string,int > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = (bool)std_map_Sl_std_string_Sc_int_Sg____nonzero__((std::map< std::string,int > const *)arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap___bool__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  bool result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap___bool__" "', argument " "1"" of type '" "std::map< std::string,int > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = (bool)std_map_Sl_std_string_Sc_int_Sg____bool__((std::map< std::string,int > const *)arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap___len__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::map< std::string,int >::size_type result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap___len__" "', argument " "1"" of type '" "std::map< std::string,int > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = std_map_Sl_std_string_Sc_int_Sg____len__((std::map< std::string,int > const *)arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap___getitem__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  std::map< std::string,int >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  PyObject *swig_obj[2] ;
+  std::map< std::string,int >::mapped_type *result = 0 ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SymbolToPowerMap___getitem__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap___getitem__" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolToPowerMap___getitem__" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolToPowerMap___getitem__" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    try {
+      try {
+        result = (std::map< std::string,int >::mapped_type *) &std_map_Sl_std_string_Sc_int_Sg____getitem__(arg1,(std::string const &)*arg2);
+      } catch(std::out_of_range &_e) {
+        SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(*result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap___delitem__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  std::map< std::string,int >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  PyObject *swig_obj[2] ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SymbolToPowerMap___delitem__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap___delitem__" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolToPowerMap___delitem__" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolToPowerMap___delitem__" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    try {
+      try {
+        std_map_Sl_std_string_Sc_int_Sg____delitem__(arg1,(std::string const &)*arg2);
+      } catch(std::out_of_range &_e) {
+        SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_has_key(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  std::map< std::string,int >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  PyObject *swig_obj[2] ;
+  bool result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SymbolToPowerMap_has_key", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_has_key" "', argument " "1"" of type '" "std::map< std::string,int > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolToPowerMap_has_key" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolToPowerMap_has_key" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    try {
+      result = (bool)std_map_Sl_std_string_Sc_int_Sg__has_key((std::map< std::string,int > const *)arg1,(std::string const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_keys(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_keys" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = (PyObject *)std_map_Sl_std_string_Sc_int_Sg__keys(arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_values(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_values" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = (PyObject *)std_map_Sl_std_string_Sc_int_Sg__values(arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_items(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_items" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = (PyObject *)std_map_Sl_std_string_Sc_int_Sg__items(arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap___contains__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  std::map< std::string,int >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  PyObject *swig_obj[2] ;
+  bool result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SymbolToPowerMap___contains__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap___contains__" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolToPowerMap___contains__" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolToPowerMap___contains__" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    try {
+      result = (bool)std_map_Sl_std_string_Sc_int_Sg____contains__(arg1,(std::string const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_key_iterator(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  PyObject **arg2 = (PyObject **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  arg2 = &swig_obj[0];
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_key_iterator" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = (swig::SwigPyIterator *)std_map_Sl_std_string_Sc_int_Sg__key_iterator(arg1,arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_value_iterator(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  PyObject **arg2 = (PyObject **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  arg2 = &swig_obj[0];
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_value_iterator" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = (swig::SwigPyIterator *)std_map_Sl_std_string_Sc_int_Sg__value_iterator(arg1,arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap___setitem____SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  std::map< std::string,int >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap___setitem__" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolToPowerMap___setitem__" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolToPowerMap___setitem__" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    try {
+      std_map_Sl_std_string_Sc_int_Sg____setitem____SWIG_0(arg1,(std::string const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap___setitem____SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  std::map< std::string,int >::key_type *arg2 = 0 ;
+  std::map< std::string,int >::mapped_type *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  std::map< std::string,int >::mapped_type temp3 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  
+  (void)self;
+  if ((nobjs < 3) || (nobjs > 3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap___setitem__" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolToPowerMap___setitem__" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolToPowerMap___setitem__" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "SymbolToPowerMap___setitem__" "', argument " "3"" of type '" "std::map< std::string,int >::mapped_type""'");
+  } 
+  temp3 = static_cast< std::map< std::string,int >::mapped_type >(val3);
+  arg3 = &temp3;
+  {
+    try {
+      try {
+        std_map_Sl_std_string_Sc_int_Sg____setitem____SWIG_1(arg1,(std::string const &)*arg2,(int const &)*arg3);
+      } catch(std::out_of_range &_e) {
+        SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap___setitem__(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[4] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "SymbolToPowerMap___setitem__", 0, 3, argv))) SWIG_fail;
+  --argc;
+  if (argc == 2) {
+    int _v = 0;
+    int res = swig::asptr(argv[0], (std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_SymbolToPowerMap___setitem____SWIG_0(self, argc, argv);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v = 0;
+    int res = swig::asptr(argv[0], (std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        {
+          int res = SWIG_AsVal_int(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_SymbolToPowerMap___setitem____SWIG_1(self, argc, argv);
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'SymbolToPowerMap___setitem__'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    std::map< std::string,int >::__setitem__(std::map< std::string,int >::key_type const &)\n"
+    "    std::map< std::string,int >::__setitem__(std::map< std::string,int >::key_type const &,std::map< std::string,int >::mapped_type const &)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_asdict(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_asdict" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = (PyObject *)std_map_Sl_std_string_Sc_int_Sg__asdict(arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_SymbolToPowerMap__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **SWIGUNUSEDPARM(swig_obj)) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *result = 0 ;
+  
+  (void)self;
+  if ((nobjs < 0) || (nobjs > 0)) SWIG_fail;
+  {
+    try {
+      result = (std::map< std::string,int > *)new std::map< std::string,int >();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__mapT_std__string_int_t, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_SymbolToPowerMap__SWIG_2(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
+  std::map< std::string,int > *result = 0 ;
+  
+  (void)self;
+  if ((nobjs < 1) || (nobjs > 1)) SWIG_fail;
+  {
+    std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > *ptr = (std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > *)0;
+    res1 = swig::asptr(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_SymbolToPowerMap" "', argument " "1"" of type '" "std::map< std::string,int > const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_SymbolToPowerMap" "', argument " "1"" of type '" "std::map< std::string,int > const &""'"); 
+    }
+    arg1 = ptr;
+  }
+  {
+    try {
+      result = (std::map< std::string,int > *)new std::map< std::string,int >((std::map< std::string,int > const &)*arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__mapT_std__string_int_t, SWIG_POINTER_NEW |  0 );
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_SymbolToPowerMap(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[2] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "new_SymbolToPowerMap", 0, 1, argv))) SWIG_fail;
+  --argc;
+  if (argc == 0) {
+    return _wrap_new_SymbolToPowerMap__SWIG_1(self, argc, argv);
+  }
+  if (argc == 1) {
+    int _v = 0;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_std__lessT_std__string_t, SWIG_POINTER_NO_NULL | 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_SymbolToPowerMap__SWIG_0(self, argc, argv);
+    }
+  }
+  if (argc == 1) {
+    int _v = 0;
+    int res = swig::asptr(argv[0], (std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_SymbolToPowerMap__SWIG_2(self, argc, argv);
+    }
+  }
+  
+fail:
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'new_SymbolToPowerMap'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    std::map< std::string,int >::map(std::less< std::string > const &)\n"
+    "    std::map< std::string,int >::map()\n"
+    "    std::map< std::string,int >::map(std::map< std::string,int > const &)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_empty(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  bool result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_empty" "', argument " "1"" of type '" "std::map< std::string,int > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = (bool)((std::map< std::string,int > const *)arg1)->empty();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_size(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::map< std::string,int >::size_type result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_size" "', argument " "1"" of type '" "std::map< std::string,int > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = ((std::map< std::string,int > const *)arg1)->size();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_swap(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  std::map< std::string,int > *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SymbolToPowerMap_swap", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_swap" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__mapT_std__string_int_t,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolToPowerMap_swap" "', argument " "2"" of type '" "std::map< std::string,int > &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolToPowerMap_swap" "', argument " "2"" of type '" "std::map< std::string,int > &""'"); 
+  }
+  arg2 = reinterpret_cast< std::map< std::string,int > * >(argp2);
+  {
+    try {
+      (arg1)->swap(*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_begin(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::map< std::string,int >::iterator result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_begin" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = (arg1)->begin();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::map< std::string,int >::iterator & >(result)),
+    swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_end(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::map< std::string,int >::iterator result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_end" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = (arg1)->end();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::map< std::string,int >::iterator & >(result)),
+    swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_rbegin(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::map< std::string,int >::reverse_iterator result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_rbegin" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = (arg1)->rbegin();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::map< std::string,int >::reverse_iterator & >(result)),
+    swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_rend(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::map< std::string,int >::reverse_iterator result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_rend" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = (arg1)->rend();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::map< std::string,int >::reverse_iterator & >(result)),
+    swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_clear(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_clear" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      (arg1)->clear();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_get_allocator(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  SwigValueWrapper< std::allocator< std::pair< std::string const,int > > > result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_get_allocator" "', argument " "1"" of type '" "std::map< std::string,int > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      result = ((std::map< std::string,int > const *)arg1)->get_allocator();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj((new std::map< std::string,int >::allocator_type(result)), SWIGTYPE_p_std__allocatorT_std__pairT_std__string_const_int_t_t, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_erase__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  std::map< std::string,int >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  std::map< std::string,int >::size_type result;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_erase" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolToPowerMap_erase" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolToPowerMap_erase" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    try {
+      result = (arg1)->erase((std::map< std::string,int >::key_type const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_count(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  std::map< std::string,int >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  PyObject *swig_obj[2] ;
+  std::map< std::string,int >::size_type result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SymbolToPowerMap_count", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_count" "', argument " "1"" of type '" "std::map< std::string,int > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolToPowerMap_count" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolToPowerMap_count" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    try {
+      result = ((std::map< std::string,int > const *)arg1)->count((std::map< std::string,int >::key_type const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_erase__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  std::map< std::string,int >::iterator arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::SwigPyIterator *iter2 = 0 ;
+  int res2 ;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_erase" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], SWIG_as_voidptrptr(&iter2), swig::SwigPyIterator::descriptor(), 0);
+  if (!SWIG_IsOK(res2) || !iter2) {
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "SymbolToPowerMap_erase" "', argument " "2"" of type '" "std::map< std::string,int >::iterator""'");
+  } else {
+    swig::SwigPyIterator_T<std::map< std::string,int >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::map< std::string,int >::iterator > *>(iter2);
+    if (iter_t) {
+      arg2 = iter_t->get_current();
+    } else {
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "SymbolToPowerMap_erase" "', argument " "2"" of type '" "std::map< std::string,int >::iterator""'");
+    }
+  }
+  {
+    try {
+      std_map_Sl_std_string_Sc_int_Sg__erase__SWIG_1(arg1,SWIG_STD_MOVE(arg2));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_erase__SWIG_2(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  std::map< std::string,int >::iterator arg2 ;
+  std::map< std::string,int >::iterator arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::SwigPyIterator *iter2 = 0 ;
+  int res2 ;
+  swig::SwigPyIterator *iter3 = 0 ;
+  int res3 ;
+  
+  (void)self;
+  if ((nobjs < 3) || (nobjs > 3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_erase" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], SWIG_as_voidptrptr(&iter2), swig::SwigPyIterator::descriptor(), 0);
+  if (!SWIG_IsOK(res2) || !iter2) {
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "SymbolToPowerMap_erase" "', argument " "2"" of type '" "std::map< std::string,int >::iterator""'");
+  } else {
+    swig::SwigPyIterator_T<std::map< std::string,int >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::map< std::string,int >::iterator > *>(iter2);
+    if (iter_t) {
+      arg2 = iter_t->get_current();
+    } else {
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "SymbolToPowerMap_erase" "', argument " "2"" of type '" "std::map< std::string,int >::iterator""'");
+    }
+  }
+  res3 = SWIG_ConvertPtr(swig_obj[2], SWIG_as_voidptrptr(&iter3), swig::SwigPyIterator::descriptor(), 0);
+  if (!SWIG_IsOK(res3) || !iter3) {
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "SymbolToPowerMap_erase" "', argument " "3"" of type '" "std::map< std::string,int >::iterator""'");
+  } else {
+    swig::SwigPyIterator_T<std::map< std::string,int >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::map< std::string,int >::iterator > *>(iter3);
+    if (iter_t) {
+      arg3 = iter_t->get_current();
+    } else {
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "SymbolToPowerMap_erase" "', argument " "3"" of type '" "std::map< std::string,int >::iterator""'");
+    }
+  }
+  {
+    try {
+      std_map_Sl_std_string_Sc_int_Sg__erase__SWIG_2(arg1,SWIG_STD_MOVE(arg2),SWIG_STD_MOVE(arg3));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_erase(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[4] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "SymbolToPowerMap_erase", 0, 3, argv))) SWIG_fail;
+  --argc;
+  if (argc == 2) {
+    int _v = 0;
+    int res = swig::asptr(argv[0], (std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      swig::SwigPyIterator *iter = 0;
+      int res = SWIG_ConvertPtr(argv[1], SWIG_as_voidptrptr(&iter), swig::SwigPyIterator::descriptor(), 0);
+      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::map< std::string,int >::iterator > *>(iter) != 0));
+      if (_v) {
+        return _wrap_SymbolToPowerMap_erase__SWIG_1(self, argc, argv);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v = 0;
+    int res = swig::asptr(argv[0], (std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_SymbolToPowerMap_erase__SWIG_0(self, argc, argv);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v = 0;
+    int res = swig::asptr(argv[0], (std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      swig::SwigPyIterator *iter = 0;
+      int res = SWIG_ConvertPtr(argv[1], SWIG_as_voidptrptr(&iter), swig::SwigPyIterator::descriptor(), 0);
+      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::map< std::string,int >::iterator > *>(iter) != 0));
+      if (_v) {
+        swig::SwigPyIterator *iter = 0;
+        int res = SWIG_ConvertPtr(argv[2], SWIG_as_voidptrptr(&iter), swig::SwigPyIterator::descriptor(), 0);
+        _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::map< std::string,int >::iterator > *>(iter) != 0));
+        if (_v) {
+          return _wrap_SymbolToPowerMap_erase__SWIG_2(self, argc, argv);
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'SymbolToPowerMap_erase'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    std::map< std::string,int >::erase(std::map< std::string,int >::key_type const &)\n"
+    "    std::map< std::string,int >::erase(std::map< std::string,int >::iterator)\n"
+    "    std::map< std::string,int >::erase(std::map< std::string,int >::iterator,std::map< std::string,int >::iterator)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_find(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  std::map< std::string,int >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  PyObject *swig_obj[2] ;
+  std::map< std::string,int >::iterator result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SymbolToPowerMap_find", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_find" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolToPowerMap_find" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolToPowerMap_find" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    try {
+      result = (arg1)->find((std::map< std::string,int >::key_type const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::map< std::string,int >::iterator & >(result)),
+    swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_lower_bound(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  std::map< std::string,int >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  PyObject *swig_obj[2] ;
+  std::map< std::string,int >::iterator result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SymbolToPowerMap_lower_bound", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_lower_bound" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolToPowerMap_lower_bound" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolToPowerMap_lower_bound" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    try {
+      result = (arg1)->lower_bound((std::map< std::string,int >::key_type const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::map< std::string,int >::iterator & >(result)),
+    swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SymbolToPowerMap_upper_bound(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  std::map< std::string,int >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  PyObject *swig_obj[2] ;
+  std::map< std::string,int >::iterator result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "SymbolToPowerMap_upper_bound", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SymbolToPowerMap_upper_bound" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolToPowerMap_upper_bound" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolToPowerMap_upper_bound" "', argument " "2"" of type '" "std::map< std::string,int >::key_type const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    try {
+      result = (arg1)->upper_bound((std::map< std::string,int >::key_type const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::map< std::string,int >::iterator & >(result)),
+    swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_SymbolToPowerMap(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int > *arg1 = (std::map< std::string,int > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_std__string_int_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_SymbolToPowerMap" "', argument " "1"" of type '" "std::map< std::string,int > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< std::string,int > * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *SymbolToPowerMap_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_std__mapT_std__string_int_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *SymbolToPowerMap_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
+SWIGINTERN PyObject *_wrap_new_PowerToSymbolMap__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  std::less< int > *arg1 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::map< int,std::string > *result = 0 ;
+  
+  (void)self;
+  if ((nobjs < 1) || (nobjs > 1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__lessT_int_t,  0  | 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PowerToSymbolMap" "', argument " "1"" of type '" "std::less< int > const &""'"); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_PowerToSymbolMap" "', argument " "1"" of type '" "std::less< int > const &""'"); 
+  }
+  arg1 = reinterpret_cast< std::less< int > * >(argp1);
+  {
+    try {
+      result = (std::map< int,std::string > *)new std::map< int,std::string >((std::less< int > const &)*arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__mapT_int_std__string_t, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_iterator(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  PyObject **arg2 = (PyObject **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  arg2 = &swig_obj[0];
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_iterator" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = (swig::SwigPyIterator *)std_map_Sl_int_Sc_std_string_Sg__iterator(arg1,arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap___nonzero__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  bool result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap___nonzero__" "', argument " "1"" of type '" "std::map< int,std::string > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = (bool)std_map_Sl_int_Sc_std_string_Sg____nonzero__((std::map< int,std::string > const *)arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap___bool__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  bool result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap___bool__" "', argument " "1"" of type '" "std::map< int,std::string > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = (bool)std_map_Sl_int_Sc_std_string_Sg____bool__((std::map< int,std::string > const *)arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap___len__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::map< int,std::string >::size_type result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap___len__" "', argument " "1"" of type '" "std::map< int,std::string > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = std_map_Sl_int_Sc_std_string_Sg____len__((std::map< int,std::string > const *)arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap___getitem__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  std::map< int,std::string >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::map< int,std::string >::key_type temp2 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  std::map< int,std::string >::mapped_type *result = 0 ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "PowerToSymbolMap___getitem__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap___getitem__" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PowerToSymbolMap___getitem__" "', argument " "2"" of type '" "std::map< int,std::string >::key_type""'");
+  } 
+  temp2 = static_cast< std::map< int,std::string >::key_type >(val2);
+  arg2 = &temp2;
+  {
+    try {
+      try {
+        result = (std::map< int,std::string >::mapped_type *) &std_map_Sl_int_Sc_std_string_Sg____getitem__(arg1,(int const &)*arg2);
+      } catch(std::out_of_range &_e) {
+        SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_std_string(static_cast< std::string >(*result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap___delitem__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  std::map< int,std::string >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::map< int,std::string >::key_type temp2 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "PowerToSymbolMap___delitem__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap___delitem__" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PowerToSymbolMap___delitem__" "', argument " "2"" of type '" "std::map< int,std::string >::key_type""'");
+  } 
+  temp2 = static_cast< std::map< int,std::string >::key_type >(val2);
+  arg2 = &temp2;
+  {
+    try {
+      try {
+        std_map_Sl_int_Sc_std_string_Sg____delitem__(arg1,(int const &)*arg2);
+      } catch(std::out_of_range &_e) {
+        SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_has_key(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  std::map< int,std::string >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::map< int,std::string >::key_type temp2 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  bool result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "PowerToSymbolMap_has_key", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_has_key" "', argument " "1"" of type '" "std::map< int,std::string > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PowerToSymbolMap_has_key" "', argument " "2"" of type '" "std::map< int,std::string >::key_type""'");
+  } 
+  temp2 = static_cast< std::map< int,std::string >::key_type >(val2);
+  arg2 = &temp2;
+  {
+    try {
+      result = (bool)std_map_Sl_int_Sc_std_string_Sg__has_key((std::map< int,std::string > const *)arg1,(int const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_keys(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_keys" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = (PyObject *)std_map_Sl_int_Sc_std_string_Sg__keys(arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_values(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_values" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = (PyObject *)std_map_Sl_int_Sc_std_string_Sg__values(arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_items(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_items" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = (PyObject *)std_map_Sl_int_Sc_std_string_Sg__items(arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap___contains__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  std::map< int,std::string >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::map< int,std::string >::key_type temp2 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  bool result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "PowerToSymbolMap___contains__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap___contains__" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PowerToSymbolMap___contains__" "', argument " "2"" of type '" "std::map< int,std::string >::key_type""'");
+  } 
+  temp2 = static_cast< std::map< int,std::string >::key_type >(val2);
+  arg2 = &temp2;
+  {
+    try {
+      result = (bool)std_map_Sl_int_Sc_std_string_Sg____contains__(arg1,(int const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_key_iterator(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  PyObject **arg2 = (PyObject **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  arg2 = &swig_obj[0];
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_key_iterator" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = (swig::SwigPyIterator *)std_map_Sl_int_Sc_std_string_Sg__key_iterator(arg1,arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_value_iterator(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  PyObject **arg2 = (PyObject **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  swig::SwigPyIterator *result = 0 ;
+  
+  arg2 = &swig_obj[0];
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_value_iterator" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = (swig::SwigPyIterator *)std_map_Sl_int_Sc_std_string_Sg__value_iterator(arg1,arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap___setitem____SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  std::map< int,std::string >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::map< int,std::string >::key_type temp2 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap___setitem__" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PowerToSymbolMap___setitem__" "', argument " "2"" of type '" "std::map< int,std::string >::key_type""'");
+  } 
+  temp2 = static_cast< std::map< int,std::string >::key_type >(val2);
+  arg2 = &temp2;
+  {
+    try {
+      std_map_Sl_int_Sc_std_string_Sg____setitem____SWIG_0(arg1,(int const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap___setitem____SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  std::map< int,std::string >::key_type *arg2 = 0 ;
+  std::map< int,std::string >::mapped_type *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::map< int,std::string >::key_type temp2 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int res3 = SWIG_OLDOBJ ;
+  
+  (void)self;
+  if ((nobjs < 3) || (nobjs > 3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap___setitem__" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PowerToSymbolMap___setitem__" "', argument " "2"" of type '" "std::map< int,std::string >::key_type""'");
+  } 
+  temp2 = static_cast< std::map< int,std::string >::key_type >(val2);
+  arg2 = &temp2;
+  {
+    std::string *ptr = (std::string *)0;
+    res3 = SWIG_AsPtr_std_string(swig_obj[2], &ptr);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "PowerToSymbolMap___setitem__" "', argument " "3"" of type '" "std::map< int,std::string >::mapped_type const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "PowerToSymbolMap___setitem__" "', argument " "3"" of type '" "std::map< int,std::string >::mapped_type const &""'"); 
+    }
+    arg3 = ptr;
+  }
+  {
+    try {
+      try {
+        std_map_Sl_int_Sc_std_string_Sg____setitem____SWIG_1(arg1,(int const &)*arg2,(std::string const &)*arg3);
+      } catch(std::out_of_range &_e) {
+        SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
+      }
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap___setitem__(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[4] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "PowerToSymbolMap___setitem__", 0, 3, argv))) SWIG_fail;
+  --argc;
+  if (argc == 2) {
+    int _v = 0;
+    int res = swig::asptr(argv[0], (std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_PowerToSymbolMap___setitem____SWIG_0(self, argc, argv);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v = 0;
+    int res = swig::asptr(argv[0], (std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_PowerToSymbolMap___setitem____SWIG_1(self, argc, argv);
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'PowerToSymbolMap___setitem__'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    std::map< int,std::string >::__setitem__(std::map< int,std::string >::key_type const &)\n"
+    "    std::map< int,std::string >::__setitem__(std::map< int,std::string >::key_type const &,std::map< int,std::string >::mapped_type const &)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_asdict(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_asdict" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = (PyObject *)std_map_Sl_int_Sc_std_string_Sg__asdict(arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_PowerToSymbolMap__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **SWIGUNUSEDPARM(swig_obj)) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *result = 0 ;
+  
+  (void)self;
+  if ((nobjs < 0) || (nobjs > 0)) SWIG_fail;
+  {
+    try {
+      result = (std::map< int,std::string > *)new std::map< int,std::string >();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__mapT_int_std__string_t, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_PowerToSymbolMap__SWIG_2(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
+  std::map< int,std::string > *result = 0 ;
+  
+  (void)self;
+  if ((nobjs < 1) || (nobjs > 1)) SWIG_fail;
+  {
+    std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > > *ptr = (std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > > *)0;
+    res1 = swig::asptr(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PowerToSymbolMap" "', argument " "1"" of type '" "std::map< int,std::string > const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_PowerToSymbolMap" "', argument " "1"" of type '" "std::map< int,std::string > const &""'"); 
+    }
+    arg1 = ptr;
+  }
+  {
+    try {
+      result = (std::map< int,std::string > *)new std::map< int,std::string >((std::map< int,std::string > const &)*arg1);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__mapT_int_std__string_t, SWIG_POINTER_NEW |  0 );
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_PowerToSymbolMap(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[2] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "new_PowerToSymbolMap", 0, 1, argv))) SWIG_fail;
+  --argc;
+  if (argc == 0) {
+    return _wrap_new_PowerToSymbolMap__SWIG_1(self, argc, argv);
+  }
+  if (argc == 1) {
+    int _v = 0;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_std__lessT_int_t, SWIG_POINTER_NO_NULL | 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_PowerToSymbolMap__SWIG_0(self, argc, argv);
+    }
+  }
+  if (argc == 1) {
+    int _v = 0;
+    int res = swig::asptr(argv[0], (std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_PowerToSymbolMap__SWIG_2(self, argc, argv);
+    }
+  }
+  
+fail:
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'new_PowerToSymbolMap'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    std::map< int,std::string >::map(std::less< int > const &)\n"
+    "    std::map< int,std::string >::map()\n"
+    "    std::map< int,std::string >::map(std::map< int,std::string > const &)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_empty(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  bool result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_empty" "', argument " "1"" of type '" "std::map< int,std::string > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = (bool)((std::map< int,std::string > const *)arg1)->empty();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_size(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::map< int,std::string >::size_type result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_size" "', argument " "1"" of type '" "std::map< int,std::string > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = ((std::map< int,std::string > const *)arg1)->size();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_swap(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  std::map< int,std::string > *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "PowerToSymbolMap_swap", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_swap" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__mapT_int_std__string_t,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PowerToSymbolMap_swap" "', argument " "2"" of type '" "std::map< int,std::string > &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "PowerToSymbolMap_swap" "', argument " "2"" of type '" "std::map< int,std::string > &""'"); 
+  }
+  arg2 = reinterpret_cast< std::map< int,std::string > * >(argp2);
+  {
+    try {
+      (arg1)->swap(*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_begin(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::map< int,std::string >::iterator result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_begin" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = (arg1)->begin();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::map< int,std::string >::iterator & >(result)),
+    swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_end(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::map< int,std::string >::iterator result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_end" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = (arg1)->end();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::map< int,std::string >::iterator & >(result)),
+    swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_rbegin(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::map< int,std::string >::reverse_iterator result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_rbegin" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = (arg1)->rbegin();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::map< int,std::string >::reverse_iterator & >(result)),
+    swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_rend(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::map< int,std::string >::reverse_iterator result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_rend" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = (arg1)->rend();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::map< int,std::string >::reverse_iterator & >(result)),
+    swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_clear(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_clear" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      (arg1)->clear();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_get_allocator(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  SwigValueWrapper< std::allocator< std::pair< int const,std::string > > > result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_get_allocator" "', argument " "1"" of type '" "std::map< int,std::string > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      result = ((std::map< int,std::string > const *)arg1)->get_allocator();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj((new std::map< int,std::string >::allocator_type(result)), SWIGTYPE_p_std__allocatorT_std__pairT_int_const_std__string_t_t, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_erase__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  std::map< int,std::string >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::map< int,std::string >::key_type temp2 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  std::map< int,std::string >::size_type result;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_erase" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PowerToSymbolMap_erase" "', argument " "2"" of type '" "std::map< int,std::string >::key_type""'");
+  } 
+  temp2 = static_cast< std::map< int,std::string >::key_type >(val2);
+  arg2 = &temp2;
+  {
+    try {
+      result = (arg1)->erase((std::map< int,std::string >::key_type const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_count(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  std::map< int,std::string >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::map< int,std::string >::key_type temp2 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  std::map< int,std::string >::size_type result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "PowerToSymbolMap_count", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_count" "', argument " "1"" of type '" "std::map< int,std::string > const *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PowerToSymbolMap_count" "', argument " "2"" of type '" "std::map< int,std::string >::key_type""'");
+  } 
+  temp2 = static_cast< std::map< int,std::string >::key_type >(val2);
+  arg2 = &temp2;
+  {
+    try {
+      result = ((std::map< int,std::string > const *)arg1)->count((std::map< int,std::string >::key_type const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_size_t(static_cast< size_t >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_erase__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  std::map< int,std::string >::iterator arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::SwigPyIterator *iter2 = 0 ;
+  int res2 ;
+  
+  (void)self;
+  if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_erase" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], SWIG_as_voidptrptr(&iter2), swig::SwigPyIterator::descriptor(), 0);
+  if (!SWIG_IsOK(res2) || !iter2) {
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "PowerToSymbolMap_erase" "', argument " "2"" of type '" "std::map< int,std::string >::iterator""'");
+  } else {
+    swig::SwigPyIterator_T<std::map< int,std::string >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::map< int,std::string >::iterator > *>(iter2);
+    if (iter_t) {
+      arg2 = iter_t->get_current();
+    } else {
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "PowerToSymbolMap_erase" "', argument " "2"" of type '" "std::map< int,std::string >::iterator""'");
+    }
+  }
+  {
+    try {
+      std_map_Sl_int_Sc_std_string_Sg__erase__SWIG_1(arg1,SWIG_STD_MOVE(arg2));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_erase__SWIG_2(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  std::map< int,std::string >::iterator arg2 ;
+  std::map< int,std::string >::iterator arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  swig::SwigPyIterator *iter2 = 0 ;
+  int res2 ;
+  swig::SwigPyIterator *iter3 = 0 ;
+  int res3 ;
+  
+  (void)self;
+  if ((nobjs < 3) || (nobjs > 3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_erase" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], SWIG_as_voidptrptr(&iter2), swig::SwigPyIterator::descriptor(), 0);
+  if (!SWIG_IsOK(res2) || !iter2) {
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "PowerToSymbolMap_erase" "', argument " "2"" of type '" "std::map< int,std::string >::iterator""'");
+  } else {
+    swig::SwigPyIterator_T<std::map< int,std::string >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::map< int,std::string >::iterator > *>(iter2);
+    if (iter_t) {
+      arg2 = iter_t->get_current();
+    } else {
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "PowerToSymbolMap_erase" "', argument " "2"" of type '" "std::map< int,std::string >::iterator""'");
+    }
+  }
+  res3 = SWIG_ConvertPtr(swig_obj[2], SWIG_as_voidptrptr(&iter3), swig::SwigPyIterator::descriptor(), 0);
+  if (!SWIG_IsOK(res3) || !iter3) {
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "PowerToSymbolMap_erase" "', argument " "3"" of type '" "std::map< int,std::string >::iterator""'");
+  } else {
+    swig::SwigPyIterator_T<std::map< int,std::string >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::map< int,std::string >::iterator > *>(iter3);
+    if (iter_t) {
+      arg3 = iter_t->get_current();
+    } else {
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "PowerToSymbolMap_erase" "', argument " "3"" of type '" "std::map< int,std::string >::iterator""'");
+    }
+  }
+  {
+    try {
+      std_map_Sl_int_Sc_std_string_Sg__erase__SWIG_2(arg1,SWIG_STD_MOVE(arg2),SWIG_STD_MOVE(arg3));
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_erase(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[4] = {
+    0
+  };
+  
+  if (!(argc = SWIG_Python_UnpackTuple(args, "PowerToSymbolMap_erase", 0, 3, argv))) SWIG_fail;
+  --argc;
+  if (argc == 2) {
+    int _v = 0;
+    int res = swig::asptr(argv[0], (std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      swig::SwigPyIterator *iter = 0;
+      int res = SWIG_ConvertPtr(argv[1], SWIG_as_voidptrptr(&iter), swig::SwigPyIterator::descriptor(), 0);
+      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::map< int,std::string >::iterator > *>(iter) != 0));
+      if (_v) {
+        return _wrap_PowerToSymbolMap_erase__SWIG_1(self, argc, argv);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v = 0;
+    int res = swig::asptr(argv[0], (std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_PowerToSymbolMap_erase__SWIG_0(self, argc, argv);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v = 0;
+    int res = swig::asptr(argv[0], (std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > >**)(0));
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      swig::SwigPyIterator *iter = 0;
+      int res = SWIG_ConvertPtr(argv[1], SWIG_as_voidptrptr(&iter), swig::SwigPyIterator::descriptor(), 0);
+      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::map< int,std::string >::iterator > *>(iter) != 0));
+      if (_v) {
+        swig::SwigPyIterator *iter = 0;
+        int res = SWIG_ConvertPtr(argv[2], SWIG_as_voidptrptr(&iter), swig::SwigPyIterator::descriptor(), 0);
+        _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::map< int,std::string >::iterator > *>(iter) != 0));
+        if (_v) {
+          return _wrap_PowerToSymbolMap_erase__SWIG_2(self, argc, argv);
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'PowerToSymbolMap_erase'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    std::map< int,std::string >::erase(std::map< int,std::string >::key_type const &)\n"
+    "    std::map< int,std::string >::erase(std::map< int,std::string >::iterator)\n"
+    "    std::map< int,std::string >::erase(std::map< int,std::string >::iterator,std::map< int,std::string >::iterator)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_find(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  std::map< int,std::string >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::map< int,std::string >::key_type temp2 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  std::map< int,std::string >::iterator result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "PowerToSymbolMap_find", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_find" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PowerToSymbolMap_find" "', argument " "2"" of type '" "std::map< int,std::string >::key_type""'");
+  } 
+  temp2 = static_cast< std::map< int,std::string >::key_type >(val2);
+  arg2 = &temp2;
+  {
+    try {
+      result = (arg1)->find((std::map< int,std::string >::key_type const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::map< int,std::string >::iterator & >(result)),
+    swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_lower_bound(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  std::map< int,std::string >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::map< int,std::string >::key_type temp2 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  std::map< int,std::string >::iterator result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "PowerToSymbolMap_lower_bound", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_lower_bound" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PowerToSymbolMap_lower_bound" "', argument " "2"" of type '" "std::map< int,std::string >::key_type""'");
+  } 
+  temp2 = static_cast< std::map< int,std::string >::key_type >(val2);
+  arg2 = &temp2;
+  {
+    try {
+      result = (arg1)->lower_bound((std::map< int,std::string >::key_type const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::map< int,std::string >::iterator & >(result)),
+    swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PowerToSymbolMap_upper_bound(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  std::map< int,std::string >::key_type *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::map< int,std::string >::key_type temp2 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  std::map< int,std::string >::iterator result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "PowerToSymbolMap_upper_bound", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PowerToSymbolMap_upper_bound" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PowerToSymbolMap_upper_bound" "', argument " "2"" of type '" "std::map< int,std::string >::key_type""'");
+  } 
+  temp2 = static_cast< std::map< int,std::string >::key_type >(val2);
+  arg2 = &temp2;
+  {
+    try {
+      result = (arg1)->upper_bound((std::map< int,std::string >::key_type const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::map< int,std::string >::iterator & >(result)),
+    swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_PowerToSymbolMap(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string > *arg1 = (std::map< int,std::string > *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_std__mapT_int_std__string_t, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_PowerToSymbolMap" "', argument " "1"" of type '" "std::map< int,std::string > *""'"); 
+  }
+  arg1 = reinterpret_cast< std::map< int,std::string > * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *PowerToSymbolMap_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_std__mapT_int_std__string_t, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *PowerToSymbolMap_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
 SWIGINTERN PyObject *_wrap_new_Unit__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
   PyObject *resultobj = 0;
   falcon_core::physics::units::TotalDimensions arg1 ;
@@ -4581,8 +10659,6 @@ SWIGINTERN PyObject *_wrap_new_Unit__SWIG_0(PyObject *self, Py_ssize_t nobjs, Py
   int ecode2 = 0 ;
   double val3 ;
   int ecode3 = 0 ;
-  void *argp4 ;
-  int res4 = 0 ;
   falcon_core::physics::units::Unit *result = 0 ;
   
   (void)self;
@@ -4611,17 +10687,13 @@ SWIGINTERN PyObject *_wrap_new_Unit__SWIG_0(PyObject *self, Py_ssize_t nobjs, Py
   } 
   arg3 = static_cast< double >(val3);
   {
-    res4 = SWIG_ConvertPtr(swig_obj[3], &argp4, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "new_Unit" "', argument " "4"" of type '" "std::string""'"); 
-    }  
-    if (!argp4) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_Unit" "', argument " "4"" of type '" "std::string""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp4);
-      arg4 = *temp;
-      if (SWIG_IsNewObj(res4)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[3], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_Unit" "', argument " "4"" of type '" "std::string""'"); 
     }
+    arg4 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
     try {
@@ -4854,7 +10926,7 @@ SWIGINTERN PyObject *_wrap_new_Unit(PyObject *self, PyObject *args) {
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_std__string, SWIG_POINTER_NO_NULL | 0);
+          int res = SWIG_AsPtr_std_string(argv[3], (std::string**)(0));
           _v = SWIG_CheckState(res);
           if (_v) {
             return _wrap_new_Unit__SWIG_0(self, argc, argv);
@@ -4912,7 +10984,7 @@ SWIGINTERN PyObject *_wrap_Unit_prefix(PyObject *self, PyObject *args) {
       SWIG_fail;
     }
   }
-  resultobj = SWIG_NewPointerObj((new std::string(result)), SWIGTYPE_p_std__string, SWIG_POINTER_OWN |  0 );
+  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
   return resultobj;
 fail:
   return NULL;
@@ -5265,8 +11337,6 @@ SWIGINTERN PyObject *_wrap_Unit_with_prefix(PyObject *self, PyObject *args) {
   int res1 = 0 ;
   std::shared_ptr< falcon_core::physics::units::Unit const > tempshared1 ;
   std::shared_ptr< falcon_core::physics::units::Unit const > *smartarg1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   PyObject *swig_obj[2] ;
   std::shared_ptr< falcon_core::physics::units::Unit > result;
   
@@ -5288,17 +11358,13 @@ SWIGINTERN PyObject *_wrap_Unit_with_prefix(PyObject *self, PyObject *args) {
     }
   }
   {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Unit_with_prefix" "', argument " "2"" of type '" "std::string const""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Unit_with_prefix" "', argument " "2"" of type '" "std::string const""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp2);
-      arg2 = *temp;
-      if (SWIG_IsNewObj(res2)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "Unit_with_prefix" "', argument " "2"" of type '" "std::string const""'"); 
     }
+    arg2 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
     try {
@@ -5505,8 +11571,6 @@ SWIGINTERN PyObject *_wrap_get_unit_with_prefix(PyObject *self, PyObject *args) 
   std::string arg2 ;
   void *argp1 ;
   int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   PyObject *swig_obj[2] ;
   std::shared_ptr< falcon_core::physics::units::Unit > result;
   
@@ -5526,17 +11590,13 @@ SWIGINTERN PyObject *_wrap_get_unit_with_prefix(PyObject *self, PyObject *args) 
     }
   }
   {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "get_unit_with_prefix" "', argument " "2"" of type '" "std::string""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "get_unit_with_prefix" "', argument " "2"" of type '" "std::string""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp2);
-      arg2 = *temp;
-      if (SWIG_IsNewObj(res2)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "get_unit_with_prefix" "', argument " "2"" of type '" "std::string""'"); 
     }
+    arg2 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
     try {
@@ -6642,31 +12702,47 @@ SWIGINTERN PyObject *Swig_var_WattsPerMeterKelvin_get(void) {
 }
 
 
-SWIGINTERN int Swig_var_power_to_symbol_set(PyObject *) {
-  SWIG_Error(SWIG_AttributeError,"Variable power_to_symbol is read-only.");
-  return 1;
-}
-
-
-SWIGINTERN PyObject *Swig_var_power_to_symbol_get(void) {
-  PyObject *pyobj = 0;
+SWIGINTERN PyObject *_wrap_Prefix_symbol_to_power(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > *result = 0 ;
   
-  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::power_to_symbol), SWIGTYPE_p_std__mapT_int_std__string_t,  0 );
-  return pyobj;
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "Prefix_symbol_to_power", 0, 0, 0)) SWIG_fail;
+  {
+    try {
+      result = (std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > *) &falcon_core::physics::units::Prefix::get_symbol_to_power_map();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = swig::from(static_cast< std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > >(*result));
+  return resultobj;
+fail:
+  return NULL;
 }
 
 
-SWIGINTERN int Swig_var_symbol_to_power_set(PyObject *) {
-  SWIG_Error(SWIG_AttributeError,"Variable symbol_to_power is read-only.");
-  return 1;
-}
-
-
-SWIGINTERN PyObject *Swig_var_symbol_to_power_get(void) {
-  PyObject *pyobj = 0;
+SWIGINTERN PyObject *_wrap_Prefix_power_to_symbol(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > > *result = 0 ;
   
-  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::symbol_to_power), SWIGTYPE_p_std__mapT_std__string_int_t,  0 );
-  return pyobj;
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "Prefix_power_to_symbol", 0, 0, 0)) SWIG_fail;
+  {
+    try {
+      result = (std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > > *) &falcon_core::physics::units::Prefix::get_power_to_symbol_map();
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = swig::from(static_cast< std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > > >(*result));
+  return resultobj;
+fail:
+  return NULL;
 }
 
 
@@ -6695,7 +12771,7 @@ SWIGINTERN PyObject *_wrap_Prefix_get_symbol(PyObject *self, PyObject *args) {
       SWIG_fail;
     }
   }
-  resultobj = SWIG_NewPointerObj((new std::string(result)), SWIGTYPE_p_std__string, SWIG_POINTER_OWN |  0 );
+  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
   return resultobj;
 fail:
   return NULL;
@@ -6705,8 +12781,6 @@ fail:
 SWIGINTERN PyObject *_wrap_Prefix_get_value(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string arg1 ;
-  void *argp1 ;
-  int res1 = 0 ;
   PyObject *swig_obj[1] ;
   int result;
   
@@ -6714,17 +12788,13 @@ SWIGINTERN PyObject *_wrap_Prefix_get_value(PyObject *self, PyObject *args) {
   if (!args) SWIG_fail;
   swig_obj[0] = args;
   {
-    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Prefix_get_value" "', argument " "1"" of type '" "std::string""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Prefix_get_value" "', argument " "1"" of type '" "std::string""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "Prefix_get_value" "', argument " "1"" of type '" "std::string""'"); 
     }
+    arg1 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
     try {
@@ -6745,8 +12815,6 @@ fail:
 SWIGINTERN PyObject *_wrap_Prefix_is_valid(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string arg1 ;
-  void *argp1 ;
-  int res1 = 0 ;
   PyObject *swig_obj[1] ;
   bool result;
   
@@ -6754,17 +12822,13 @@ SWIGINTERN PyObject *_wrap_Prefix_is_valid(PyObject *self, PyObject *args) {
   if (!args) SWIG_fail;
   swig_obj[0] = args;
   {
-    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Prefix_is_valid" "', argument " "1"" of type '" "std::string""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Prefix_is_valid" "', argument " "1"" of type '" "std::string""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "Prefix_is_valid" "', argument " "1"" of type '" "std::string""'"); 
     }
+    arg1 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
     try {
@@ -6787,42 +12851,30 @@ SWIGINTERN PyObject *_wrap_Prefix_prefix_multiplication(PyObject *self, PyObject
   std::string arg1 ;
   std::string arg2 ;
   double arg3 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   double val3 ;
   int ecode3 = 0 ;
   PyObject *swig_obj[3] ;
-  std::pair< double,std::string > result;
+  SwigValueWrapper< std::pair< double,std::string > > result;
   
   (void)self;
   if (!SWIG_Python_UnpackTuple(args, "Prefix_prefix_multiplication", 3, 3, swig_obj)) SWIG_fail;
   {
-    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Prefix_prefix_multiplication" "', argument " "1"" of type '" "std::string""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Prefix_prefix_multiplication" "', argument " "1"" of type '" "std::string""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "Prefix_prefix_multiplication" "', argument " "1"" of type '" "std::string""'"); 
     }
+    arg1 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Prefix_prefix_multiplication" "', argument " "2"" of type '" "std::string""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Prefix_prefix_multiplication" "', argument " "2"" of type '" "std::string""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp2);
-      arg2 = *temp;
-      if (SWIG_IsNewObj(res2)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "Prefix_prefix_multiplication" "', argument " "2"" of type '" "std::string""'"); 
     }
+    arg2 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   ecode3 = SWIG_AsVal_double(swig_obj[2], &val3);
   if (!SWIG_IsOK(ecode3)) {
@@ -6947,7 +12999,7 @@ SWIGINTERN int Swig_var__DIMENSION_SYMBOLS_set(PyObject *) {
 SWIGINTERN PyObject *Swig_var__DIMENSION_SYMBOLS_get(void) {
   PyObject *pyobj = 0;
   
-  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::_DIMENSION_SYMBOLS), SWIGTYPE_p_std__mapT_std__string_std__string_t,  0 );
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::_DIMENSION_SYMBOLS), SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t,  0 );
   return pyobj;
 }
 
@@ -7075,7 +13127,7 @@ SWIGINTERN PyObject *_wrap_SymbolUnit_symbol(PyObject *self, PyObject *args) {
       SWIG_fail;
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__string, 0 |  0 );
+  resultobj = SWIG_From_std_string(static_cast< std::string >(*result));
   return resultobj;
 fail:
   return NULL;
@@ -7119,7 +13171,7 @@ SWIGINTERN PyObject *_wrap_SymbolUnit_name(PyObject *self, PyObject *args) {
       SWIG_fail;
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__string, 0 |  0 );
+  resultobj = SWIG_From_std_string(static_cast< std::string >(*result));
   return resultobj;
 fail:
   return NULL;
@@ -7519,8 +13571,6 @@ SWIGINTERN PyObject *_wrap_SymbolUnit_with_prefix(PyObject *self, PyObject *args
   int res1 = 0 ;
   std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared1 ;
   std::shared_ptr< falcon_core::physics::units::SymbolUnit const > *smartarg1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
   PyObject *swig_obj[2] ;
   std::shared_ptr< falcon_core::physics::units::SymbolUnit > result;
   
@@ -7542,17 +13592,13 @@ SWIGINTERN PyObject *_wrap_SymbolUnit_with_prefix(PyObject *self, PyObject *args
     }
   }
   {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SymbolUnit_with_prefix" "', argument " "2"" of type '" "std::string const""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "SymbolUnit_with_prefix" "', argument " "2"" of type '" "std::string const""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp2);
-      arg2 = *temp;
-      if (SWIG_IsNewObj(res2)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[1], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "SymbolUnit_with_prefix" "', argument " "2"" of type '" "std::string const""'"); 
     }
+    arg2 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
     try {
@@ -7792,8 +13838,6 @@ SWIGINTERN PyObject *SymbolUnit_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObjec
 SWIGINTERN PyObject *_wrap_new_BaseConnection(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string arg1 ;
-  void *argp1 ;
-  int res1 = 0 ;
   PyObject *swig_obj[1] ;
   falcon_core::physics::device_structures::BaseConnection *result = 0 ;
   
@@ -7801,17 +13845,13 @@ SWIGINTERN PyObject *_wrap_new_BaseConnection(PyObject *self, PyObject *args) {
   if (!args) SWIG_fail;
   swig_obj[0] = args;
   {
-    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_BaseConnection" "', argument " "1"" of type '" "std::string""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_BaseConnection" "', argument " "1"" of type '" "std::string""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_BaseConnection" "', argument " "1"" of type '" "std::string""'"); 
     }
+    arg1 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
     try {
@@ -7869,10 +13909,79 @@ SWIGINTERN PyObject *_wrap_BaseConnection_name(PyObject *self, PyObject *args) {
       SWIG_fail;
     }
   }
-  resultobj = SWIG_NewPointerObj((new std::string(result)), SWIGTYPE_p_std__string, SWIG_POINTER_OWN |  0 );
+  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
   return resultobj;
 fail:
   return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BaseConnection___lt__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::BaseConnection *arg1 = (falcon_core::physics::device_structures::BaseConnection *) 0 ;
+  falcon_core::physics::device_structures::BaseConnection *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::device_structures::BaseConnection const > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::device_structures::BaseConnection const > *smartarg1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  std::shared_ptr< falcon_core::physics::device_structures::BaseConnection const > tempshared2 ;
+  PyObject *swig_obj[2] ;
+  bool result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "BaseConnection___lt__", 2, 2, swig_obj)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t, 0 |  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BaseConnection___lt__" "', argument " "1"" of type '" "falcon_core::physics::device_structures::BaseConnection const *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared1 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::device_structures::BaseConnection > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::device_structures::BaseConnection > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::device_structures::BaseConnection * >(tempshared1.get());
+    } else {
+      smartarg1 = reinterpret_cast< std::shared_ptr< const falcon_core::physics::device_structures::BaseConnection > * >(argp1);
+      arg1 = const_cast< falcon_core::physics::device_structures::BaseConnection * >((smartarg1 ? smartarg1->get() : 0));
+    }
+  }
+  {
+    int newmem = 0;
+    res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t,  0 , &newmem);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "BaseConnection___lt__" "', argument " "2"" of type '" "falcon_core::physics::device_structures::BaseConnection const &""'");
+    }
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "BaseConnection___lt__" "', argument " "2"" of type '" "falcon_core::physics::device_structures::BaseConnection const &""'"); 
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      tempshared2 = *reinterpret_cast< std::shared_ptr< const falcon_core::physics::device_structures::BaseConnection > * >(argp2);
+      delete reinterpret_cast< std::shared_ptr< const falcon_core::physics::device_structures::BaseConnection > * >(argp2);
+      arg2 = const_cast< falcon_core::physics::device_structures::BaseConnection * >(tempshared2.get());
+    } else {
+      arg2 = const_cast< falcon_core::physics::device_structures::BaseConnection * >(reinterpret_cast< std::shared_ptr< const falcon_core::physics::device_structures::BaseConnection > * >(argp2)->get());
+    }
+  }
+  {
+    try {
+      result = (bool)((falcon_core::physics::device_structures::BaseConnection const *)arg1)->operator <((falcon_core::physics::device_structures::BaseConnection const &)*arg2);
+    } catch (const Swig::DirectorException& e) {
+      // This catches exceptions thrown by director methods,
+      // allowing the original Python exception to be propagated.
+      SWIG_fail;
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
 }
 
 
@@ -7933,8 +14042,6 @@ SWIGINTERN PyObject *BaseConnection_swiginit(PyObject *SWIGUNUSEDPARM(self), PyO
 SWIGINTERN PyObject *_wrap_new_Gate(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string arg1 ;
-  void *argp1 ;
-  int res1 = 0 ;
   PyObject *swig_obj[1] ;
   falcon_core::physics::device_structures::Gate *result = 0 ;
   
@@ -7942,17 +14049,13 @@ SWIGINTERN PyObject *_wrap_new_Gate(PyObject *self, PyObject *args) {
   if (!args) SWIG_fail;
   swig_obj[0] = args;
   {
-    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Gate" "', argument " "1"" of type '" "std::string""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_Gate" "', argument " "1"" of type '" "std::string""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_Gate" "', argument " "1"" of type '" "std::string""'"); 
     }
+    arg1 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
     try {
@@ -8030,8 +14133,6 @@ SWIGINTERN PyObject *Gate_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *arg
 SWIGINTERN PyObject *_wrap_new_DotGate(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string arg1 ;
-  void *argp1 ;
-  int res1 = 0 ;
   PyObject *swig_obj[1] ;
   falcon_core::physics::device_structures::DotGate *result = 0 ;
   
@@ -8039,17 +14140,13 @@ SWIGINTERN PyObject *_wrap_new_DotGate(PyObject *self, PyObject *args) {
   if (!args) SWIG_fail;
   swig_obj[0] = args;
   {
-    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_DotGate" "', argument " "1"" of type '" "std::string""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_DotGate" "', argument " "1"" of type '" "std::string""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_DotGate" "', argument " "1"" of type '" "std::string""'"); 
     }
+    arg1 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
     try {
@@ -8127,8 +14224,6 @@ SWIGINTERN PyObject *DotGate_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *
 SWIGINTERN PyObject *_wrap_new_Ohmic(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string arg1 ;
-  void *argp1 ;
-  int res1 = 0 ;
   PyObject *swig_obj[1] ;
   falcon_core::physics::device_structures::Ohmic *result = 0 ;
   
@@ -8136,17 +14231,13 @@ SWIGINTERN PyObject *_wrap_new_Ohmic(PyObject *self, PyObject *args) {
   if (!args) SWIG_fail;
   swig_obj[0] = args;
   {
-    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Ohmic" "', argument " "1"" of type '" "std::string""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_Ohmic" "', argument " "1"" of type '" "std::string""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_Ohmic" "', argument " "1"" of type '" "std::string""'"); 
     }
+    arg1 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
     try {
@@ -8224,8 +14315,6 @@ SWIGINTERN PyObject *Ohmic_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
 SWIGINTERN PyObject *_wrap_new_BarrierGate(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string arg1 ;
-  void *argp1 ;
-  int res1 = 0 ;
   PyObject *swig_obj[1] ;
   falcon_core::physics::device_structures::BarrierGate *result = 0 ;
   
@@ -8233,17 +14322,13 @@ SWIGINTERN PyObject *_wrap_new_BarrierGate(PyObject *self, PyObject *args) {
   if (!args) SWIG_fail;
   swig_obj[0] = args;
   {
-    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_BarrierGate" "', argument " "1"" of type '" "std::string""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_BarrierGate" "', argument " "1"" of type '" "std::string""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_BarrierGate" "', argument " "1"" of type '" "std::string""'"); 
     }
+    arg1 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
     try {
@@ -8321,8 +14406,6 @@ SWIGINTERN PyObject *BarrierGate_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObje
 SWIGINTERN PyObject *_wrap_new_PlungerGate(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string arg1 ;
-  void *argp1 ;
-  int res1 = 0 ;
   PyObject *swig_obj[1] ;
   falcon_core::physics::device_structures::PlungerGate *result = 0 ;
   
@@ -8330,17 +14413,13 @@ SWIGINTERN PyObject *_wrap_new_PlungerGate(PyObject *self, PyObject *args) {
   if (!args) SWIG_fail;
   swig_obj[0] = args;
   {
-    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PlungerGate" "', argument " "1"" of type '" "std::string""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_PlungerGate" "', argument " "1"" of type '" "std::string""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_PlungerGate" "', argument " "1"" of type '" "std::string""'"); 
     }
+    arg1 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
     try {
@@ -8418,8 +14497,6 @@ SWIGINTERN PyObject *PlungerGate_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObje
 SWIGINTERN PyObject *_wrap_new_ReservoirGate(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string arg1 ;
-  void *argp1 ;
-  int res1 = 0 ;
   PyObject *swig_obj[1] ;
   falcon_core::physics::device_structures::ReservoirGate *result = 0 ;
   
@@ -8427,17 +14504,13 @@ SWIGINTERN PyObject *_wrap_new_ReservoirGate(PyObject *self, PyObject *args) {
   if (!args) SWIG_fail;
   swig_obj[0] = args;
   {
-    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_ReservoirGate" "', argument " "1"" of type '" "std::string""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_ReservoirGate" "', argument " "1"" of type '" "std::string""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_ReservoirGate" "', argument " "1"" of type '" "std::string""'"); 
     }
+    arg1 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
     try {
@@ -8515,8 +14588,6 @@ SWIGINTERN PyObject *ReservoirGate_swiginit(PyObject *SWIGUNUSEDPARM(self), PyOb
 SWIGINTERN PyObject *_wrap_new_ScreeningGate(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string arg1 ;
-  void *argp1 ;
-  int res1 = 0 ;
   PyObject *swig_obj[1] ;
   falcon_core::physics::device_structures::ScreeningGate *result = 0 ;
   
@@ -8524,17 +14595,13 @@ SWIGINTERN PyObject *_wrap_new_ScreeningGate(PyObject *self, PyObject *args) {
   if (!args) SWIG_fail;
   swig_obj[0] = args;
   {
-    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_ScreeningGate" "', argument " "1"" of type '" "std::string""'"); 
-    }  
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_ScreeningGate" "', argument " "1"" of type '" "std::string""'");
-    } else {
-      std::string * temp = reinterpret_cast< std::string * >(argp1);
-      arg1 = *temp;
-      if (SWIG_IsNewObj(res1)) delete temp;
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_ScreeningGate" "', argument " "1"" of type '" "std::string""'"); 
     }
+    arg1 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
   }
   {
     try {
@@ -8856,14 +14923,96 @@ static PyMethodDef SwigMethods[] = {
 	 { "delete_Song", _wrap_delete_Song, METH_O, NULL},
 	 { "Song_to_json_string", _wrap_Song_to_json_string, METH_O, NULL},
 	 { "Song_to_json_stream", _wrap_Song_to_json_stream, METH_VARARGS, NULL},
-	 { "Song_from_json_string", _wrap_Song_from_json_string, METH_O, NULL},
-	 { "Song_from_json_stream", _wrap_Song_from_json_stream, METH_O, NULL},
 	 { "Song___eq__", _wrap_Song___eq__, METH_VARARGS, NULL},
 	 { "Song_repr", _wrap_Song_repr, METH_O, NULL},
 	 { "new_Song", _wrap_new_Song, METH_O, NULL},
 	 { "disown_Song", _wrap_disown_Song, METH_O, NULL},
 	 { "Song_swigregister", Song_swigregister, METH_O, NULL},
 	 { "Song_swiginit", Song_swiginit, METH_VARARGS, NULL},
+	 { "delete_SwigPyIterator", _wrap_delete_SwigPyIterator, METH_O, NULL},
+	 { "SwigPyIterator_value", _wrap_SwigPyIterator_value, METH_O, NULL},
+	 { "SwigPyIterator_incr", _wrap_SwigPyIterator_incr, METH_VARARGS, NULL},
+	 { "SwigPyIterator_decr", _wrap_SwigPyIterator_decr, METH_VARARGS, NULL},
+	 { "SwigPyIterator_distance", _wrap_SwigPyIterator_distance, METH_VARARGS, NULL},
+	 { "SwigPyIterator_equal", _wrap_SwigPyIterator_equal, METH_VARARGS, NULL},
+	 { "SwigPyIterator_copy", _wrap_SwigPyIterator_copy, METH_O, NULL},
+	 { "SwigPyIterator_next", _wrap_SwigPyIterator_next, METH_O, NULL},
+	 { "SwigPyIterator___next__", _wrap_SwigPyIterator___next__, METH_O, NULL},
+	 { "SwigPyIterator_previous", _wrap_SwigPyIterator_previous, METH_O, NULL},
+	 { "SwigPyIterator_advance", _wrap_SwigPyIterator_advance, METH_VARARGS, NULL},
+	 { "SwigPyIterator___eq__", _wrap_SwigPyIterator___eq__, METH_VARARGS, NULL},
+	 { "SwigPyIterator___ne__", _wrap_SwigPyIterator___ne__, METH_VARARGS, NULL},
+	 { "SwigPyIterator___iadd__", _wrap_SwigPyIterator___iadd__, METH_VARARGS, NULL},
+	 { "SwigPyIterator___isub__", _wrap_SwigPyIterator___isub__, METH_VARARGS, NULL},
+	 { "SwigPyIterator___add__", _wrap_SwigPyIterator___add__, METH_VARARGS, NULL},
+	 { "SwigPyIterator___sub__", _wrap_SwigPyIterator___sub__, METH_VARARGS, NULL},
+	 { "SwigPyIterator_swigregister", SwigPyIterator_swigregister, METH_O, NULL},
+	 { "SymbolToPowerMap_iterator", _wrap_SymbolToPowerMap_iterator, METH_O, NULL},
+	 { "SymbolToPowerMap___nonzero__", _wrap_SymbolToPowerMap___nonzero__, METH_O, NULL},
+	 { "SymbolToPowerMap___bool__", _wrap_SymbolToPowerMap___bool__, METH_O, NULL},
+	 { "SymbolToPowerMap___len__", _wrap_SymbolToPowerMap___len__, METH_O, NULL},
+	 { "SymbolToPowerMap___getitem__", _wrap_SymbolToPowerMap___getitem__, METH_VARARGS, NULL},
+	 { "SymbolToPowerMap___delitem__", _wrap_SymbolToPowerMap___delitem__, METH_VARARGS, NULL},
+	 { "SymbolToPowerMap_has_key", _wrap_SymbolToPowerMap_has_key, METH_VARARGS, NULL},
+	 { "SymbolToPowerMap_keys", _wrap_SymbolToPowerMap_keys, METH_O, NULL},
+	 { "SymbolToPowerMap_values", _wrap_SymbolToPowerMap_values, METH_O, NULL},
+	 { "SymbolToPowerMap_items", _wrap_SymbolToPowerMap_items, METH_O, NULL},
+	 { "SymbolToPowerMap___contains__", _wrap_SymbolToPowerMap___contains__, METH_VARARGS, NULL},
+	 { "SymbolToPowerMap_key_iterator", _wrap_SymbolToPowerMap_key_iterator, METH_O, NULL},
+	 { "SymbolToPowerMap_value_iterator", _wrap_SymbolToPowerMap_value_iterator, METH_O, NULL},
+	 { "SymbolToPowerMap___setitem__", _wrap_SymbolToPowerMap___setitem__, METH_VARARGS, NULL},
+	 { "SymbolToPowerMap_asdict", _wrap_SymbolToPowerMap_asdict, METH_O, NULL},
+	 { "new_SymbolToPowerMap", _wrap_new_SymbolToPowerMap, METH_VARARGS, NULL},
+	 { "SymbolToPowerMap_empty", _wrap_SymbolToPowerMap_empty, METH_O, NULL},
+	 { "SymbolToPowerMap_size", _wrap_SymbolToPowerMap_size, METH_O, NULL},
+	 { "SymbolToPowerMap_swap", _wrap_SymbolToPowerMap_swap, METH_VARARGS, NULL},
+	 { "SymbolToPowerMap_begin", _wrap_SymbolToPowerMap_begin, METH_O, NULL},
+	 { "SymbolToPowerMap_end", _wrap_SymbolToPowerMap_end, METH_O, NULL},
+	 { "SymbolToPowerMap_rbegin", _wrap_SymbolToPowerMap_rbegin, METH_O, NULL},
+	 { "SymbolToPowerMap_rend", _wrap_SymbolToPowerMap_rend, METH_O, NULL},
+	 { "SymbolToPowerMap_clear", _wrap_SymbolToPowerMap_clear, METH_O, NULL},
+	 { "SymbolToPowerMap_get_allocator", _wrap_SymbolToPowerMap_get_allocator, METH_O, NULL},
+	 { "SymbolToPowerMap_count", _wrap_SymbolToPowerMap_count, METH_VARARGS, NULL},
+	 { "SymbolToPowerMap_erase", _wrap_SymbolToPowerMap_erase, METH_VARARGS, NULL},
+	 { "SymbolToPowerMap_find", _wrap_SymbolToPowerMap_find, METH_VARARGS, NULL},
+	 { "SymbolToPowerMap_lower_bound", _wrap_SymbolToPowerMap_lower_bound, METH_VARARGS, NULL},
+	 { "SymbolToPowerMap_upper_bound", _wrap_SymbolToPowerMap_upper_bound, METH_VARARGS, NULL},
+	 { "delete_SymbolToPowerMap", _wrap_delete_SymbolToPowerMap, METH_O, NULL},
+	 { "SymbolToPowerMap_swigregister", SymbolToPowerMap_swigregister, METH_O, NULL},
+	 { "SymbolToPowerMap_swiginit", SymbolToPowerMap_swiginit, METH_VARARGS, NULL},
+	 { "PowerToSymbolMap_iterator", _wrap_PowerToSymbolMap_iterator, METH_O, NULL},
+	 { "PowerToSymbolMap___nonzero__", _wrap_PowerToSymbolMap___nonzero__, METH_O, NULL},
+	 { "PowerToSymbolMap___bool__", _wrap_PowerToSymbolMap___bool__, METH_O, NULL},
+	 { "PowerToSymbolMap___len__", _wrap_PowerToSymbolMap___len__, METH_O, NULL},
+	 { "PowerToSymbolMap___getitem__", _wrap_PowerToSymbolMap___getitem__, METH_VARARGS, NULL},
+	 { "PowerToSymbolMap___delitem__", _wrap_PowerToSymbolMap___delitem__, METH_VARARGS, NULL},
+	 { "PowerToSymbolMap_has_key", _wrap_PowerToSymbolMap_has_key, METH_VARARGS, NULL},
+	 { "PowerToSymbolMap_keys", _wrap_PowerToSymbolMap_keys, METH_O, NULL},
+	 { "PowerToSymbolMap_values", _wrap_PowerToSymbolMap_values, METH_O, NULL},
+	 { "PowerToSymbolMap_items", _wrap_PowerToSymbolMap_items, METH_O, NULL},
+	 { "PowerToSymbolMap___contains__", _wrap_PowerToSymbolMap___contains__, METH_VARARGS, NULL},
+	 { "PowerToSymbolMap_key_iterator", _wrap_PowerToSymbolMap_key_iterator, METH_O, NULL},
+	 { "PowerToSymbolMap_value_iterator", _wrap_PowerToSymbolMap_value_iterator, METH_O, NULL},
+	 { "PowerToSymbolMap___setitem__", _wrap_PowerToSymbolMap___setitem__, METH_VARARGS, NULL},
+	 { "PowerToSymbolMap_asdict", _wrap_PowerToSymbolMap_asdict, METH_O, NULL},
+	 { "new_PowerToSymbolMap", _wrap_new_PowerToSymbolMap, METH_VARARGS, NULL},
+	 { "PowerToSymbolMap_empty", _wrap_PowerToSymbolMap_empty, METH_O, NULL},
+	 { "PowerToSymbolMap_size", _wrap_PowerToSymbolMap_size, METH_O, NULL},
+	 { "PowerToSymbolMap_swap", _wrap_PowerToSymbolMap_swap, METH_VARARGS, NULL},
+	 { "PowerToSymbolMap_begin", _wrap_PowerToSymbolMap_begin, METH_O, NULL},
+	 { "PowerToSymbolMap_end", _wrap_PowerToSymbolMap_end, METH_O, NULL},
+	 { "PowerToSymbolMap_rbegin", _wrap_PowerToSymbolMap_rbegin, METH_O, NULL},
+	 { "PowerToSymbolMap_rend", _wrap_PowerToSymbolMap_rend, METH_O, NULL},
+	 { "PowerToSymbolMap_clear", _wrap_PowerToSymbolMap_clear, METH_O, NULL},
+	 { "PowerToSymbolMap_get_allocator", _wrap_PowerToSymbolMap_get_allocator, METH_O, NULL},
+	 { "PowerToSymbolMap_count", _wrap_PowerToSymbolMap_count, METH_VARARGS, NULL},
+	 { "PowerToSymbolMap_erase", _wrap_PowerToSymbolMap_erase, METH_VARARGS, NULL},
+	 { "PowerToSymbolMap_find", _wrap_PowerToSymbolMap_find, METH_VARARGS, NULL},
+	 { "PowerToSymbolMap_lower_bound", _wrap_PowerToSymbolMap_lower_bound, METH_VARARGS, NULL},
+	 { "PowerToSymbolMap_upper_bound", _wrap_PowerToSymbolMap_upper_bound, METH_VARARGS, NULL},
+	 { "delete_PowerToSymbolMap", _wrap_delete_PowerToSymbolMap, METH_O, NULL},
+	 { "PowerToSymbolMap_swigregister", PowerToSymbolMap_swigregister, METH_O, NULL},
+	 { "PowerToSymbolMap_swiginit", PowerToSymbolMap_swiginit, METH_VARARGS, NULL},
 	 { "new_Unit", _wrap_new_Unit, METH_VARARGS, NULL},
 	 { "Unit_prefix", _wrap_Unit_prefix, METH_O, NULL},
 	 { "Unit_dimensions", _wrap_Unit_dimensions, METH_O, NULL},
@@ -8886,6 +15035,8 @@ static PyMethodDef SwigMethods[] = {
 	 { "get_kilo", _wrap_get_kilo, METH_O, NULL},
 	 { "get_mega", _wrap_get_mega, METH_O, NULL},
 	 { "get_giga", _wrap_get_giga, METH_O, NULL},
+	 { "Prefix_symbol_to_power", _wrap_Prefix_symbol_to_power, METH_NOARGS, NULL},
+	 { "Prefix_power_to_symbol", _wrap_Prefix_power_to_symbol, METH_NOARGS, NULL},
 	 { "Prefix_get_symbol", _wrap_Prefix_get_symbol, METH_O, NULL},
 	 { "Prefix_get_value", _wrap_Prefix_get_value, METH_O, NULL},
 	 { "Prefix_is_valid", _wrap_Prefix_is_valid, METH_O, NULL},
@@ -8910,6 +15061,7 @@ static PyMethodDef SwigMethods[] = {
 	 { "SymbolUnit_swiginit", SymbolUnit_swiginit, METH_VARARGS, NULL},
 	 { "new_BaseConnection", _wrap_new_BaseConnection, METH_O, NULL},
 	 { "BaseConnection_name", _wrap_BaseConnection_name, METH_O, NULL},
+	 { "BaseConnection___lt__", _wrap_BaseConnection___lt__, METH_VARARGS, NULL},
 	 { "delete_BaseConnection", _wrap_delete_BaseConnection, METH_O, NULL},
 	 { "BaseConnection_swigregister", BaseConnection_swigregister, METH_O, NULL},
 	 { "BaseConnection_swiginit", BaseConnection_swiginit, METH_VARARGS, NULL},
@@ -9130,7 +15282,9 @@ static void *_p_std__shared_ptrT_falcon_core__physics__device_structures__Screen
     return (void *) new std::shared_ptr< falcon_core::physics::device_structures::Gate >(*(std::shared_ptr< falcon_core::physics::device_structures::ScreeningGate > *)x);
 }
 static swig_type_info _swigt__p_SymbolUnit = {"_p_SymbolUnit", "SymbolUnit *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_allocator_type = {"_p_allocator_type", "allocator_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_difference_type = {"_p_difference_type", "difference_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__generic__Song = {"_p_falcon_core__generic__Song", "falcon_core::generic::Song *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__physics__device_structures__BarrierGate = {"_p_falcon_core__physics__device_structures__BarrierGate", "falcon_core::physics::device_structures::BarrierGate *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__physics__device_structures__BaseConnection = {"_p_falcon_core__physics__device_structures__BaseConnection", "falcon_core::physics::device_structures::BaseConnection *", 0, 0, (void*)0, 0};
@@ -9144,10 +15298,18 @@ static swig_type_info _swigt__p_falcon_core__physics__device_structures__Screeni
 static swig_type_info _swigt__p_falcon_core__physics__units__Prefix = {"_p_falcon_core__physics__units__Prefix", "falcon_core::physics::units::Prefix *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__physics__units__SymbolUnit = {"_p_falcon_core__physics__units__SymbolUnit", "falcon_core::physics::units::SymbolUnit *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__physics__units__Unit = {"_p_falcon_core__physics__units__Unit", "falcon_core::physics::units::Unit *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__istream = {"_p_std__istream", "std::istream *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__mapT_int_std__string_t = {"_p_std__mapT_int_std__string_t", "std::map< int,std::string > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__mapT_std__string_int_t = {"_p_std__mapT_std__string_int_t", "falcon_core::physics::units::TotalDimensions *|std::map< std::string,int > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__mapT_std__string_std__string_t = {"_p_std__mapT_std__string_std__string_t", "std::map< std::string,std::string > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_key_type = {"_p_key_type", "key_type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_mapped_type = {"_p_mapped_type", "mapped_type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_PyObject = {"_p_p_PyObject", "PyObject **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_size_type = {"_p_size_type", "size_type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__allocatorT_std__pairT_int_const_std__string_t_t = {"_p_std__allocatorT_std__pairT_int_const_std__string_t_t", "std::map< int,std::string >::allocator_type *|std::allocator< std::pair< int const,std::string > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__allocatorT_std__pairT_std__string_const_int_t_t = {"_p_std__allocatorT_std__pairT_std__string_const_int_t_t", "std::map< std::string,int >::allocator_type *|std::allocator< std::pair< std::string const,int > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__invalid_argument = {"_p_std__invalid_argument", "std::invalid_argument *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__lessT_int_t = {"_p_std__lessT_int_t", "std::less< int > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__lessT_std__string_t = {"_p_std__lessT_std__string_t", "std::less< std::string > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__mapT_int_std__string_t = {"_p_std__mapT_int_std__string_t", "std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > > *|std::map< int,std::string > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__mapT_std__string_int_t = {"_p_std__mapT_std__string_int_t", "falcon_core::physics::units::TotalDimensions *|std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > *|std::map< std::string,int > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t = {"_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t", "std::map< std::string,std::string,std::less< std::string >,std::allocator< std::pair< std::string const,std::string > > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__ostream = {"_p_std__ostream", "std::ostream *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__pairT_double_std__string_t = {"_p_std__pairT_double_std__string_t", "std::pair< double,std::string > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__communications__Time_t = {"_p_std__shared_ptrT_falcon_core__communications__Time_t", "std::shared_ptr< falcon_core::communications::Time > *", 0, 0, (void*)0, 0};
@@ -9179,10 +15341,14 @@ static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__units__Un
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__units__Units_t = {"_p_std__shared_ptrT_falcon_core__physics__units__Units_t", "std::shared_ptr< falcon_core::physics::units::Units > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t = {"_p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t", "std::vector< std::tuple< falcon_core::physics::units::Unit,std::string,std::string > > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_swig__SwigPyIterator = {"_p_swig__SwigPyIterator", "swig::SwigPyIterator *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_value_type = {"_p_value_type", "value_type *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_SymbolUnit,
+  &_swigt__p_allocator_type,
   &_swigt__p_char,
+  &_swigt__p_difference_type,
   &_swigt__p_falcon_core__generic__Song,
   &_swigt__p_falcon_core__physics__device_structures__BarrierGate,
   &_swigt__p_falcon_core__physics__device_structures__BaseConnection,
@@ -9196,10 +15362,18 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_falcon_core__physics__units__Prefix,
   &_swigt__p_falcon_core__physics__units__SymbolUnit,
   &_swigt__p_falcon_core__physics__units__Unit,
-  &_swigt__p_std__istream,
+  &_swigt__p_key_type,
+  &_swigt__p_mapped_type,
+  &_swigt__p_p_PyObject,
+  &_swigt__p_size_type,
+  &_swigt__p_std__allocatorT_std__pairT_int_const_std__string_t_t,
+  &_swigt__p_std__allocatorT_std__pairT_std__string_const_int_t_t,
+  &_swigt__p_std__invalid_argument,
+  &_swigt__p_std__lessT_int_t,
+  &_swigt__p_std__lessT_std__string_t,
   &_swigt__p_std__mapT_int_std__string_t,
   &_swigt__p_std__mapT_std__string_int_t,
-  &_swigt__p_std__mapT_std__string_std__string_t,
+  &_swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t,
   &_swigt__p_std__ostream,
   &_swigt__p_std__pairT_double_std__string_t,
   &_swigt__p_std__shared_ptrT_falcon_core__communications__Time_t,
@@ -9231,10 +15405,14 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__shared_ptrT_falcon_core__physics__units__Units_t,
   &_swigt__p_std__string,
   &_swigt__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t,
+  &_swigt__p_swig__SwigPyIterator,
+  &_swigt__p_value_type,
 };
 
 static swig_cast_info _swigc__p_SymbolUnit[] = {  {&_swigt__p_SymbolUnit, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_allocator_type[] = {  {&_swigt__p_allocator_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_difference_type[] = {  {&_swigt__p_difference_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__generic__Song[] = {  {&_swigt__p_falcon_core__generic__Song, 0, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BarrierGate, _p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BaseConnection, _p_falcon_core__physics__device_structures__BaseConnectionTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__DotGate, _p_falcon_core__physics__device_structures__DotGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Gate, _p_falcon_core__physics__device_structures__GateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Impedance, _p_falcon_core__physics__device_structures__ImpedanceTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Ohmic, _p_falcon_core__physics__device_structures__OhmicTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__PlungerGate, _p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ReservoirGate, _p_falcon_core__physics__device_structures__ReservoirGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ScreeningGate, _p_falcon_core__physics__device_structures__ScreeningGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__units__SymbolUnit, _p_falcon_core__physics__units__SymbolUnitTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__units__Unit, _p_falcon_core__physics__units__UnitTo_p_falcon_core__generic__Song, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__physics__device_structures__BarrierGate[] = {  {&_swigt__p_falcon_core__physics__device_structures__BarrierGate, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__physics__device_structures__BaseConnection[] = {  {&_swigt__p_falcon_core__physics__device_structures__BaseConnection, 0, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BarrierGate, _p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__DotGate, _p_falcon_core__physics__device_structures__DotGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Gate, _p_falcon_core__physics__device_structures__GateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Ohmic, _p_falcon_core__physics__device_structures__OhmicTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__PlungerGate, _p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ReservoirGate, _p_falcon_core__physics__device_structures__ReservoirGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ScreeningGate, _p_falcon_core__physics__device_structures__ScreeningGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},{0, 0, 0, 0}};
@@ -9248,10 +15426,18 @@ static swig_cast_info _swigc__p_falcon_core__physics__device_structures__Screeni
 static swig_cast_info _swigc__p_falcon_core__physics__units__Prefix[] = {  {&_swigt__p_falcon_core__physics__units__Prefix, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__physics__units__SymbolUnit[] = {  {&_swigt__p_falcon_core__physics__units__SymbolUnit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__physics__units__Unit[] = {  {&_swigt__p_falcon_core__physics__units__Unit, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__istream[] = {  {&_swigt__p_std__istream, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_key_type[] = {  {&_swigt__p_key_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_mapped_type[] = {  {&_swigt__p_mapped_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p_PyObject[] = {  {&_swigt__p_p_PyObject, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_size_type[] = {  {&_swigt__p_size_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__allocatorT_std__pairT_int_const_std__string_t_t[] = {  {&_swigt__p_std__allocatorT_std__pairT_int_const_std__string_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__allocatorT_std__pairT_std__string_const_int_t_t[] = {  {&_swigt__p_std__allocatorT_std__pairT_std__string_const_int_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__invalid_argument[] = {  {&_swigt__p_std__invalid_argument, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__lessT_int_t[] = {  {&_swigt__p_std__lessT_int_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__lessT_std__string_t[] = {  {&_swigt__p_std__lessT_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_int_std__string_t[] = {  {&_swigt__p_std__mapT_int_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_int_t[] = {  {&_swigt__p_std__mapT_std__string_int_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__mapT_std__string_std__string_t[] = {  {&_swigt__p_std__mapT_std__string_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t[] = {  {&_swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__ostream[] = {  {&_swigt__p_std__ostream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__pairT_double_std__string_t[] = {  {&_swigt__p_std__pairT_double_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__communications__Time_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__communications__Time_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -9283,10 +15469,14 @@ static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__units__Un
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__units__Units_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__units__Units_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t[] = {  {&_swigt__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_swig__SwigPyIterator[] = {  {&_swigt__p_swig__SwigPyIterator, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_value_type[] = {  {&_swigt__p_value_type, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_SymbolUnit,
+  _swigc__p_allocator_type,
   _swigc__p_char,
+  _swigc__p_difference_type,
   _swigc__p_falcon_core__generic__Song,
   _swigc__p_falcon_core__physics__device_structures__BarrierGate,
   _swigc__p_falcon_core__physics__device_structures__BaseConnection,
@@ -9300,10 +15490,18 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_falcon_core__physics__units__Prefix,
   _swigc__p_falcon_core__physics__units__SymbolUnit,
   _swigc__p_falcon_core__physics__units__Unit,
-  _swigc__p_std__istream,
+  _swigc__p_key_type,
+  _swigc__p_mapped_type,
+  _swigc__p_p_PyObject,
+  _swigc__p_size_type,
+  _swigc__p_std__allocatorT_std__pairT_int_const_std__string_t_t,
+  _swigc__p_std__allocatorT_std__pairT_std__string_const_int_t_t,
+  _swigc__p_std__invalid_argument,
+  _swigc__p_std__lessT_int_t,
+  _swigc__p_std__lessT_std__string_t,
   _swigc__p_std__mapT_int_std__string_t,
   _swigc__p_std__mapT_std__string_int_t,
-  _swigc__p_std__mapT_std__string_std__string_t,
+  _swigc__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t,
   _swigc__p_std__ostream,
   _swigc__p_std__pairT_double_std__string_t,
   _swigc__p_std__shared_ptrT_falcon_core__communications__Time_t,
@@ -9335,6 +15533,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__shared_ptrT_falcon_core__physics__units__Units_t,
   _swigc__p_std__string,
   _swigc__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t,
+  _swigc__p_swig__SwigPyIterator,
+  _swigc__p_value_type,
 };
 
 
@@ -9868,8 +16068,6 @@ SWIG_init(void) {
   SWIG_addvarlink(globals, "AmperesPerMeter", Swig_var_AmperesPerMeter_get, Swig_var_AmperesPerMeter_set);
   SWIG_addvarlink(globals, "VoltsPerAmpere", Swig_var_VoltsPerAmpere_get, Swig_var_VoltsPerAmpere_set);
   SWIG_addvarlink(globals, "WattsPerMeterKelvin", Swig_var_WattsPerMeterKelvin_get, Swig_var_WattsPerMeterKelvin_set);
-  SWIG_addvarlink(globals, "power_to_symbol", Swig_var_power_to_symbol_get, Swig_var_power_to_symbol_set);
-  SWIG_addvarlink(globals, "symbol_to_power", Swig_var_symbol_to_power_get, Swig_var_symbol_to_power_set);
   SWIG_addvarlink(globals, "_UNIT_SYMBOLS", Swig_var__UNIT_SYMBOLS_get, Swig_var__UNIT_SYMBOLS_set);
   SWIG_addvarlink(globals, "_DIMENSION_SYMBOLS", Swig_var__DIMENSION_SYMBOLS_get, Swig_var__DIMENSION_SYMBOLS_set);
 #if PY_VERSION_HEX >= 0x03000000

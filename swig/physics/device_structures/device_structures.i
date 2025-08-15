@@ -20,6 +20,7 @@
 #include "falcon_core/physics/device_structures/Impedance.hpp"
 #include "falcon_core/physics/device_structures/Impedances.hpp"
 #include "falcon_core/physics/device_structures/GateRelations.hpp"
+#include "falcon_core/generic/Song.hpp"
 %}
 
 %shared_ptr(falcon_core::physics::device_structures::BaseConnection);
@@ -80,5 +81,15 @@
 %include "falcon_core/physics/device_structures/Impedance.hpp"
 %include "falcon_core/physics/device_structures/Impedances.hpp"
 %include "falcon_core/physics/device_structures/GateRelations.hpp"
+
+%add_song_deserializers(falcon_core::physics::device_structures::BaseConnection);
+%add_song_deserializers(falcon_core::physics::device_structures::Gate);
+%add_song_deserializers(falcon_core::physics::device_structures::DotGate);
+%add_song_deserializers(falcon_core::physics::device_structures::Ohmic);
+%add_song_deserializers(falcon_core::physics::device_structures::BarrierGate);
+%add_song_deserializers(falcon_core::physics::device_structures::PlungerGate);
+%add_song_deserializers(falcon_core::physics::device_structures::ReservoirGate);
+%add_song_deserializers(falcon_core::physics::device_structures::ScreeningGate);
+%add_song_deserializers(falcon_core::physics::device_structures::Impedance);
 
 

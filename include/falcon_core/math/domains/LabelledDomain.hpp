@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <cereal/types/memory.hpp>
 
 #include "falcon_core/math/domains/Domain.hpp"
 
@@ -17,6 +18,13 @@ class LabelledDomain : public Domain {
 
  private:
   std::shared_ptr<T> _label;
+
+  friend class cereal::access;
+  LabelledDomain() = default;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<Domain>(this), _label);
+  }
 };
 }  // namespace domains
 }  // namespace math

@@ -2,6 +2,8 @@
 
 #include <memory>
 #include <vector>
+#include <cereal/types/memory.hpp>
+#include <cereal/types/vector.hpp>
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/labelled_arrays/BaseLabelledArray.hpp"
@@ -25,6 +27,12 @@ class BaseLabelledArrays : public generic::Song {
 
  private:
   container_type _arrays;
+
+  friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this), _arrays);
+  }
 };
 }  // namespace labelled_arrays
 }  // namespace math

@@ -22,7 +22,18 @@ class Domain : public generic::Song {
  private:
   double _min;
   double _max;
+
+  friend class cereal::access;
+  Domain() : _min(0), _max(0) {}
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this), _min, _max);
+  }
 };
 }  // namespace domains
 }  // namespace math
 }  // namespace falcon_core
+
+CEREAL_REGISTER_TYPE(falcon_core::math::domains::Domain)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::math::domains::Domain)

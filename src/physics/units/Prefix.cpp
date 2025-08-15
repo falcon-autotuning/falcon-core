@@ -11,7 +11,56 @@ namespace falcon_core {
 namespace physics {
 namespace units {
 
+const std::map<std::string, int>& Prefix::get_symbol_to_power_map() {
+  static const std::map<std::string, int> symbol_to_power = {
+      {SI::YOCTO_SYMBOL, SI::YOCTO_EXPONENT},
+      {SI::ZEPTO_SYMBOL, SI::ZEPTO_EXPONENT},
+      {SI::ATTO_SYMBOL, SI::ATTO_EXPONENT},
+      {SI::FEMTO_SYMBOL, SI::FEMTO_EXPONENT},
+      {SI::PICO_SYMBOL, SI::PICO_EXPONENT},
+      {SI::NANO_SYMBOL, SI::NANO_EXPONENT},
+      {SI::MICRO_SYMBOL, SI::MICRO_EXPONENT},
+      {SI::MILLI_SYMBOL, SI::MILLI_EXPONENT},
+      {SI::CENTI_SYMBOL, SI::CENTI_EXPONENT},
+      {SI::UNIT_SYMBOL, SI::UNIT_EXPONENT},
+      {SI::HECTO_SYMBOL, SI::HECTO_EXPONENT},
+      {SI::KILO_SYMBOL, SI::KILO_EXPONENT},
+      {SI::MEGA_SYMBOL, SI::MEGA_EXPONENT},
+      {SI::GIGA_SYMBOL, SI::GIGA_EXPONENT},
+      {SI::TERA_SYMBOL, SI::TERA_EXPONENT},
+      {SI::PETA_SYMBOL, SI::PETA_EXPONENT},
+      {SI::EXA_SYMBOL, SI::EXA_EXPONENT},
+      {SI::ZETTA_SYMBOL, SI::ZETTA_EXPONENT},
+      {SI::YOTTA_SYMBOL, SI::YOTTA_EXPONENT}};
+  return symbol_to_power;
+}
+
+const std::map<int, std::string>& Prefix::get_power_to_symbol_map() {
+  static const std::map<int, std::string> power_to_symbol = {
+      {SI::YOCTO_EXPONENT, SI::YOCTO_SYMBOL},
+      {SI::ZEPTO_EXPONENT, SI::ZEPTO_SYMBOL},
+      {SI::ATTO_EXPONENT, SI::ATTO_SYMBOL},
+      {SI::FEMTO_EXPONENT, SI::FEMTO_SYMBOL},
+      {SI::PICO_EXPONENT, SI::PICO_SYMBOL},
+      {SI::NANO_EXPONENT, SI::NANO_SYMBOL},
+      {SI::MICRO_EXPONENT, SI::MICRO_SYMBOL},
+      {SI::MILLI_EXPONENT, SI::MILLI_SYMBOL},
+      {SI::CENTI_EXPONENT, SI::CENTI_SYMBOL},
+      {SI::UNIT_EXPONENT, SI::UNIT_SYMBOL},
+      {SI::HECTO_EXPONENT, SI::HECTO_SYMBOL},
+      {SI::KILO_EXPONENT, SI::KILO_SYMBOL},
+      {SI::MEGA_EXPONENT, SI::MEGA_SYMBOL},
+      {SI::GIGA_EXPONENT, SI::GIGA_SYMBOL},
+      {SI::TERA_EXPONENT, SI::TERA_SYMBOL},
+      {SI::PETA_EXPONENT, SI::PETA_SYMBOL},
+      {SI::EXA_EXPONENT, SI::EXA_SYMBOL},
+      {SI::ZETTA_EXPONENT, SI::ZETTA_SYMBOL},
+      {SI::YOTTA_EXPONENT, SI::YOTTA_SYMBOL}};
+  return power_to_symbol;
+}
+
 std::string Prefix::get_symbol(int prefix_value) {
+  const auto& power_to_symbol = get_power_to_symbol_map();
   if (power_to_symbol.find(prefix_value) == power_to_symbol.end()) {
     std::ostringstream oss;
     oss << "Prefix value " << prefix_value
@@ -22,6 +71,7 @@ std::string Prefix::get_symbol(int prefix_value) {
 }
 
 int Prefix::get_value(std::string prefix_symbol) {
+  const auto& symbol_to_power = get_symbol_to_power_map();
   if (symbol_to_power.find(prefix_symbol) == symbol_to_power.end()) {
     std::ostringstream oss;
     oss << "Symbol value " << prefix_symbol
@@ -51,7 +101,7 @@ std::pair<double, std::string> Prefix::prefix_multiplication(
   int best_exponent = 0;
   int min_diff      = std::abs(total_exponent);
 
-  for (const auto& pair : power_to_symbol) {
+  for (const auto& pair : get_power_to_symbol_map()) {
     if (std::abs(total_exponent - pair.first) < min_diff) {
       min_diff      = std::abs(total_exponent - pair.first);
       best_exponent = pair.first;
