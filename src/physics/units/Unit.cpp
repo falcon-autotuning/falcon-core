@@ -58,11 +58,10 @@ std::shared_ptr<Unit> Unit::operator/(const Unit &other) const {
   }
 
   // Create an inverse of `other` to calculate the new scale factor and offset
-  Unit inverse_other(
-      {},
-      1.0 / other.scale_factor(),
-      -other.offset() / other.scale_factor(),
-      Prefix::get_symbol(-Prefix::get_value(other.prefix())));
+  Unit inverse_other({},
+                     1.0 / other.scale_factor(),
+                     -other.offset() / other.scale_factor(),
+                     Prefix::get_symbol(-Prefix::get_value(other.prefix())));
 
   // Now multiply `this` by the `inverse_other` to get the final unit
   // properties
@@ -70,8 +69,8 @@ std::shared_ptr<Unit> Unit::operator/(const Unit &other) const {
                      scale_factor() * inverse_other.offset() +
                      offset() * inverse_other.scale_factor();
 
-  auto result =
-      Prefix::prefix_multiplication(prefix(), inverse_other.prefix(), new_scale);
+  auto result = Prefix::prefix_multiplication(
+      prefix(), inverse_other.prefix(), new_scale);
   double      &new_mult = result.first;
   std::string &prefix   = result.second;
 
@@ -119,3 +118,6 @@ double Unit::convert_value_to(const double value,
 bool Unit::is_compatible_with(const Unit other) const {
   return dimensions() == other.dimensions();
 }
+CEREAL_REGISTER_TYPE(falcon_core::physics::units::Unit)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::physics::units::Unit)
