@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
 #include "falcon_core/physics/device_structures/Gate.hpp"
 
 namespace falcon_core {
@@ -16,6 +17,11 @@ class DotGate : public Gate {
   void serialize(Archive &ar) {
     ar(cereal::base_class<Gate>(this));
   }
+
+ protected:
+  DotGate() = default;  // or initialize _name with a default value
+
+  friend class cereal::access;
 };
 }  // namespace device_structures
 }  // namespace physics

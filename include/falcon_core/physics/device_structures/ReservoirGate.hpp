@@ -15,6 +15,11 @@ class ReservoirGate : public Gate {
   void serialize(Archive &ar) {
     ar(cereal::base_class<Gate>(this));
   }
+
+ protected:
+  ReservoirGate() = default;  // or initialize _name with a default value
+
+  friend class cereal::access;
 };
 }  // namespace device_structures
 }  // namespace physics

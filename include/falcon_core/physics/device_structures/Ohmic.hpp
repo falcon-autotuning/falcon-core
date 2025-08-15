@@ -15,6 +15,11 @@ class Ohmic : public BaseConnection {
   void serialize(Archive &ar) {
     ar(cereal::base_class<BaseConnection>(this));
   }
+
+ protected:
+  Ohmic() = default;  // or initialize _name with a default value
+
+  friend class cereal::access;
 };
 }  // namespace device_structures
 }  // namespace physics

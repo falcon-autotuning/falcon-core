@@ -15,6 +15,10 @@ class BaseConnection : public generic::Song {
   void serialize(Archive &ar) {
     ar(cereal::base_class<Song>(this), _name);
   }
+
+ protected:
+  BaseConnection() : _name("") {}  // or initialize _name with a default value
+  friend class cereal::access;
 };
 }  // namespace device_structures
 }  // namespace physics

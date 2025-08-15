@@ -65,7 +65,7 @@ static const std::map<std::string, std::string> _DIMENSION_SYMBOLS = {
 };
 
 class SymbolUnit : public generic::Song {
-  Unit        _unit;
+  UnitSP      _unit;
   std::string _symbol;
   std::string _name;
   /*
@@ -95,12 +95,17 @@ class SymbolUnit : public generic::Song {
    * @brief Construct a SymbolUnit with a specific symbol and associated Unit.
    * @param unit The Unit object associated with this symbol.
    */
+  SymbolUnit(UnitSP unit);
+  /*
+   * @brief Construct a SymbolUnit with a specific symbol and associated Unit.
+   * @param unit The Unit object associated with this symbol.
+   */
   SymbolUnit(Unit unit);
   /*
    * @brief Get the symbol of the unit.
    * @return The symbol as a string.
    */
-  const UnitSP unit() const { return SP(Unit, _unit); }
+  const UnitSP unit() const { return _unit; }
   /*
    * @brief Get the name of the unit.
    * @return The name as a string.
@@ -162,8 +167,12 @@ class SymbolUnit : public generic::Song {
   std::string str() const { return _symbol; }
   template <class Archive>
   void serialize(Archive &ar) {
-    ar(cereal::base_class<Song>(this), _unit);
+    ar(cereal::base_class<Song>(this), *_unit);
   }
+
+ protected:
+  SymbolUnit() = default;  // or initialize _name with a default value
+  friend class cereal::access;
 };
 using SymbolUnitSP = std::shared_ptr<SymbolUnit>;
 }  // namespace units

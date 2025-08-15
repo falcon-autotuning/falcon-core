@@ -15,6 +15,11 @@ class PlungerGate : public DotGate {
   void serialize(Archive &ar) {
     ar(cereal::base_class<DotGate>(this));
   }
+
+ protected:
+  PlungerGate() = default;  // or initialize _name with a default value
+
+  friend class cereal::access;
 };
 }  // namespace device_structures
 }  // namespace physics

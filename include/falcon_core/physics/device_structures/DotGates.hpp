@@ -22,6 +22,10 @@ class DotGates : public Gates<T> {
   void serialize(Archive& ar) {
     ar(cereal::base_class<Gates<T>>(this));
   }
+
+ protected:
+  DotGates() = default;  // or initialize _name with a default value
+  friend class cereal::access;
 };
 
 }  // namespace device_structures

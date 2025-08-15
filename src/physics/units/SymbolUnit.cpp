@@ -8,43 +8,48 @@
 using namespace falcon_core;
 using namespace falcon_core::physics::units;
 
-SymbolUnit::SymbolUnit(Unit unit) : _unit(std::move(unit)) {
+SymbolUnit::SymbolUnit(Unit unit) : _unit(&unit) {
+  auto results = this->_find_matching_common_unit();
+  _symbol      = results.first;
+  _name        = results.second;
+}
+SymbolUnit::SymbolUnit(UnitSP unit) : _unit(unit) {
   auto results = this->_find_matching_common_unit();
   _symbol      = results.first;
   _name        = results.second;
 }
 
 SymbolUnitSP SymbolUnit::operator*(const SymbolUnitSP other) const {
-  return std::make_shared<SymbolUnit>(_unit * other->unit());
+  return std::make_shared<SymbolUnit>(*_unit * other->unit());
 }
 SymbolUnitSP SymbolUnit::operator*(const std::shared_ptr<Unit> other) const {
-  return std::make_shared<SymbolUnit>(_unit * other);
+  return std::make_shared<SymbolUnit>(*_unit * other);
 }
 SymbolUnitSP SymbolUnit::operator/(const SymbolUnitSP other) const {
-  return std::make_shared<SymbolUnit>(_unit / other->unit());
+  return std::make_shared<SymbolUnit>(*_unit / other->unit());
 }
 SymbolUnitSP SymbolUnit::operator/(const std::shared_ptr<Unit> other) const {
-  return std::make_shared<SymbolUnit>(_unit / other);
+  return std::make_shared<SymbolUnit>(*_unit / other);
 }
 SymbolUnitSP SymbolUnit::operator^(const int power) const {
-  return std::make_shared<SymbolUnit>(_unit ^ power);
+  return std::make_shared<SymbolUnit>(*_unit ^ power);
 }
 SymbolUnitSP SymbolUnit::with_prefix(const std::string prefix) const {
-  return std::make_shared<SymbolUnit>(_unit.with_prefix(prefix));
+  return std::make_shared<SymbolUnit>(_unit->with_prefix(prefix));
 }
 double SymbolUnit::convert_value_to(const double       value,
                                     const SymbolUnitSP target_unit) const {
-  return _unit.convert_value_to(value, target_unit->unit());
+  return _unit->convert_value_to(value, target_unit->unit());
 }
 bool SymbolUnit::is_compatible_with(const SymbolUnitSP other) const {
-  return _unit.is_compatible_with(other->unit());
+  return _unit->is_compatible_with(other->unit());
 }
 std::pair<std::string, std::string> SymbolUnit::_find_matching_common_unit()
     const {
   for (const auto &triplet : _UNIT_SYMBOLS) {
-    if (std::get<0>(triplet).dimensions() == _unit.dimensions()) {
-      return {_unit.prefix() + std::get<1>(triplet),
-              _unit.prefix() + std::get<2>(triplet)};
+    if (std::get<0>(triplet).dimensions() == _unit->dimensions()) {
+      return {_unit->prefix() + std::get<1>(triplet),
+              _unit->prefix() + std::get<2>(triplet)};
     }
   }
   // No exact match found, generate a custom symbol and name
@@ -52,8 +57,8 @@ std::pair<std::string, std::string> SymbolUnit::_find_matching_common_unit()
 }
 std::string SymbolUnit::_generate_symbol() const {
   // If dimensions are empty, return the appropriate SI unit symbol
-  if (_unit.dimensions().empty()) {
-    if (_unit.scale_factor() == 0.01) {
+  if (_unit->dimensions().empty()) {
+    if (_unit->scale_factor() == 0.01) {
       return SI::UNIT_SYMBOL_PERCENT;
     } else {
       return SI::UNIT_SYMBOL;  // Dimensionless
@@ -63,7 +68,7 @@ std::string SymbolUnit::_generate_symbol() const {
   std::map<std::string, int> numerator, denominator;
 
   // Separate numerator and denominator
-  for (const auto &dim : _unit.dimensions()) {
+  for (const auto &dim : _unit->dimensions()) {
     if (dim.second > 0) {
       numerator[dim.first] = dim.second;
     } else if (dim.second < 0) {
@@ -92,7 +97,7 @@ std::string SymbolUnit::_generate_symbol() const {
   }
 
   // Add prefix if present
-  std::string prefix = _unit.prefix();
+  std::string prefix = _unit->prefix();
 
   // Combine with proper formatting
   std::string numerator_str;
@@ -141,7 +146,7 @@ std::string SymbolUnit::_get_dimension_symbol(std::string dimension) const {
 std::string SymbolUnit::_generate_name() const {
   // Look for a predefined name based on dimensions
   for (const auto &triplet : _UNIT_SYMBOLS) {
-    if (std::get<0>(triplet).dimensions() == _unit.dimensions()) {
+    if (std::get<0>(triplet).dimensions() == _unit->dimensions()) {
       return std::get<1>(triplet);
     }
   }

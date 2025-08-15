@@ -85,20 +85,6 @@ class Song {
   std::string repr() const { return to_json_string(); }
 };
 
-template <typename T>
-std::shared_ptr<T> Song::from_json_stream(std::istream& is) {
-  cereal::JSONInputArchive archive(is);
-  std::shared_ptr<Song>    ptr;
-  archive(ptr);
-  return std::dynamic_pointer_cast<T>(ptr);
-}
-
-template <typename T>
-std::shared_ptr<T> Song::from_json_string(const std::string& json) {
-  std::istringstream iss(json);
-  return from_json_stream<T>(iss);
-}
-
 }  // namespace generic
 }  // namespace falcon_core
    //

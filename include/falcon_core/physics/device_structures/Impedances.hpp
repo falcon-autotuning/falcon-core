@@ -24,6 +24,10 @@ class Impedances : public std::vector<std::shared_ptr<T>>,
     ar(cereal::base_class<generic::Song>(this),
        cereal::base_class<std::vector<std::shared_ptr<Impedance>>>(this));
   }
+
+ protected:
+  Impedances() = default;  // or initialize _name with a default value
+  friend class cereal::access;
 };
 
 }  // namespace device_structures

@@ -10,10 +10,22 @@ std::string Song::to_json_string() const {
 }
 
 void Song::to_json_stream(std::ostream& os) const {
-  cereal::JSONOutputArchive archive(os);
-  // archive(*this);
+  cereal::JSONOutputArchive   archive(os);
   std::shared_ptr<const Song> ptr(this, [](const Song*) {});
   archive(ptr);
+}
+template <typename T>
+std::shared_ptr<T> Song::from_json_stream(std::istream& is) {
+  cereal::JSONInputArchive archive(is);
+  std::shared_ptr<Song>    ptr;
+  archive(ptr);
+  return std::dynamic_pointer_cast<T>(ptr);
+}
+
+template <typename T>
+std::shared_ptr<T> Song::from_json_string(const std::string& json) {
+  std::istringstream iss(json);
+  return from_json_stream<T>(iss);
 }
 
 bool Song::operator==(const Song& other) const {

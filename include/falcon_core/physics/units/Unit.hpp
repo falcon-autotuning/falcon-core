@@ -87,6 +87,10 @@ class Unit : public generic::Song {
        _prefix,
        _dimensions);
   }
+
+ protected:
+  Unit() = default;  // or initialize _name with a default value
+  friend class cereal::access;
 };
 using UnitSP = std::shared_ptr<Unit>;
 }  // namespace units

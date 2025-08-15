@@ -43,6 +43,10 @@ class Impedance : public generic::Song {
        _resistance,
        _capacitance);
   }
+
+ protected:
+  Impedance() = default;  // or initialize _name with a default value
+  friend class cereal::access;
 };
 }  // namespace device_structures
 }  // namespace physics

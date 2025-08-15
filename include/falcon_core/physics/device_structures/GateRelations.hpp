@@ -30,6 +30,10 @@ class GateRelations : public std::map<std::shared_ptr<K>, std::shared_ptr<V>>,
            std::map<std::shared_ptr<Gate>, std::shared_ptr<Gates<Gate>>>>(
            this));
   }
+
+ protected:
+  GateRelations() = default;  // or initialize _name with a default value
+  friend class cereal::access;
 };
 
 }  // namespace device_structures
