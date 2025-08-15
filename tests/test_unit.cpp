@@ -165,7 +165,7 @@ TEST(TestSymbolUnit, Comparison) {
 TEST(TestSymbolUnit, StringRepresentations) {
   SymbolUnit m = Meter;
 
-  ASSERT_EQ(static_cast<std::string>(m), SI::UNIT_SYMBOL_METER);
+  ASSERT_EQ(m.str(), SI::UNIT_SYMBOL_METER);
   std::string repr_str = m.repr();
   ASSERT_TRUE(repr_str.find("symbol='" + std::string(SI::UNIT_SYMBOL_METER) +
                             "'") != std::string::npos);

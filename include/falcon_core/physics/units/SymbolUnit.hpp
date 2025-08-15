@@ -134,13 +134,7 @@ class SymbolUnit : public generic::Song {
    */
   bool is_compatible_with(const SymbolUnitSP other) const;
 
-  // struct SymbolUnitLess {
-  //   bool operator()(const UnitSP &a,
-  //                   const UnitSP &b) const {
-  //     throw std::logic_error("SymbolUnitLess comparator should not be
-  //     used.");
-  //   }
-  // };
+  std::string str() const { return _symbol; }
 
  private:
   SymbolUnit() = default;       // for cereal access
