@@ -5,6 +5,7 @@
 #include "falcon_core/physics/units/Units.hpp"
 #include "falcon_core/physics/units/Prefix.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
+#include "falcon_core/generic/Song.hpp"
 %}
 
 %shared_ptr(falcon_core::physics::units::TotalDimensions);
@@ -125,5 +126,8 @@
 %include "falcon_core/physics/units/Units.hpp"
 %include "falcon_core/physics/units/Prefix.hpp"
 %include "falcon_core/physics/units/SymbolUnit.hpp"
+
+%add_song_deserializers(falcon_core::physics::units::Unit);
+%add_song_deserializers(falcon_core::physics::units::SymbolUnit);
 
 

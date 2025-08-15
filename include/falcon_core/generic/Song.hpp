@@ -8,6 +8,7 @@
 #include <cereal/types/unordered_map.hpp>
 #include <cereal/types/vector.hpp>
 #include <memory>
+#include <sstream>
 #include <string>
 
 namespace falcon_core {
@@ -82,6 +83,21 @@ class Song {
    */
   bool operator==(const Song& other) const;
 };
+
+template <typename T>
+std::shared_ptr<T> Song::from_json_stream(std::istream& is) {
+  cereal::JSONInputArchive archive(is);
+  std::shared_ptr<Song>    ptr;
+  archive(ptr);
+  return std::dynamic_pointer_cast<T>(ptr);
+}
+
+template <typename T>
+std::shared_ptr<T> Song::from_json_string(const std::string& json) {
+  std::istringstream iss(json);
+  return from_json_stream<T>(iss);
+}
+
 }  // namespace generic
 }  // namespace falcon_core
    //

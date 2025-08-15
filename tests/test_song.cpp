@@ -133,19 +133,16 @@ template <typename T>
 void test_serialization(const T& original) {
   // Test string methods
   std::string json_str = original.to_json_string();
-  auto        deserialized_song_ptr =
+  auto        deserialized_ptr =
       falcon_core::generic::Song::from_json_string<T>(json_str);
-  auto deserialized_ptr = std::dynamic_pointer_cast<T>(deserialized_song_ptr);
   ASSERT_NE(deserialized_ptr, nullptr);
   ASSERT_EQ(original, *deserialized_ptr);
 
   // Test stream methods
   std::stringstream ss;
   original.to_json_stream(ss);
-  auto deserialized_from_stream_ptr =
-      falcon_core::generic::Song::from_json_stream<T>(ss);
   auto deserialized_stream_ptr =
-      std::dynamic_pointer_cast<T>(deserialized_from_stream_ptr);
+      falcon_core::generic::Song::from_json_stream<T>(ss);
   ASSERT_NE(deserialized_stream_ptr, nullptr);
   ASSERT_EQ(original, *deserialized_stream_ptr);
 }
@@ -177,10 +174,8 @@ TEST(SongTest, DestroyerSerialization) {
 
   // Test string methods
   std::string json_str = original->to_json_string();
-  auto        deserialized_song_ptr =
+  auto        deserialized =
       falcon_core::generic::Song::from_json_string<TheDestroyerSong>(json_str);
-  auto deserialized =
-      std::dynamic_pointer_cast<TheDestroyerSong>(deserialized_song_ptr);
 
   // Manual checks for equivalence
   ASSERT_NE(deserialized, nullptr);
@@ -194,33 +189,11 @@ TEST(SongTest, DestroyerSerialization) {
   ASSERT_EQ(*(orig_it->first), *(des_it->first));
   ASSERT_EQ(*(orig_it->second), *(des_it->second));
 
-  // Test string methods
-  auto deserialized_destroyer_ptr =
-      TheDestroyerSong::from_json_string<TheDestroyerSong>(json_str);
-  auto deserialized_destroyer =
-      std::dynamic_pointer_cast<TheDestroyerSong>(deserialized_song_ptr);
-
-  // Manual checks for equivalence
-  ASSERT_NE(deserialized, nullptr);
-  ASSERT_EQ(original->_args, deserialized_destroyer->_args);
-  ASSERT_EQ(*(original->_stuff), *(deserialized_destroyer->_stuff));
-  ASSERT_EQ(original->_even_more.size(),
-            deserialized_destroyer->_even_more.size());
-  ASSERT_EQ(*(original->_even_more[0]),
-            *(deserialized_destroyer->_even_more[0]));
-  ASSERT_EQ(original->_value.size(), deserialized_destroyer->_value.size());
-  auto dorig_it = original->_value.begin();
-  auto ddes_it  = deserialized->_value.begin();
-  ASSERT_EQ(*(dorig_it->first), *(des_it->first));
-  ASSERT_EQ(*(dorig_it->second), *(des_it->second));
-
   // Test stream methods
   std::stringstream ss;
   original->to_json_stream(ss);
-  auto deserialized_from_stream_ptr =
-      TheDestroyerSong::from_json_stream<TheDestroyerSong>(ss);
   auto deserialized_stream =
-      std::dynamic_pointer_cast<TheDestroyerSong>(deserialized_from_stream_ptr);
+      falcon_core::generic::Song::from_json_stream<TheDestroyerSong>(ss);
 
   ASSERT_NE(deserialized_stream, nullptr);
   ASSERT_EQ(original->_args, deserialized_stream->_args);
@@ -229,8 +202,8 @@ TEST(SongTest, DestroyerSerialization) {
             deserialized_stream->_even_more.size());
   ASSERT_EQ(*(original->_even_more[0]), *(deserialized_stream->_even_more[0]));
   ASSERT_EQ(original->_value.size(), deserialized_stream->_value.size());
-  orig_it            = original->_value.begin();
-  auto des_stream_it = deserialized_stream->_value.begin();
-  ASSERT_EQ(*(orig_it->first), *(des_stream_it->first));
-  ASSERT_EQ(*(orig_it->second), *(des_stream_it->second));
+  auto stream_orig_it = original->_value.begin();
+  auto des_stream_it  = deserialized_stream->_value.begin();
+  ASSERT_EQ(*(stream_orig_it->first), *(des_stream_it->first));
+  ASSERT_EQ(*(stream_orig_it->second), *(des_stream_it->second));
 }
