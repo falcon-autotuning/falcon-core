@@ -79,15 +79,15 @@ std::shared_ptr<Unit> Unit::operator^(int power) const {
 }
 
 std::shared_ptr<Unit> Unit::with_prefix(const std::string prefix) const {
-  int current_prefix_value = Prefix::get_value(this->prefix());
   if (!Prefix::is_valid(prefix)) {
     throw std::invalid_argument("Invalid prefix: " + prefix);
   }
-  int    new_prefix_value = Prefix::get_value(prefix);
-  double new_scale_factor =
-      scale_factor() * pow(10, new_prefix_value - current_prefix_value);
+  int    current_prefix_value = Prefix::get_value(this->prefix());
+  int    new_prefix_value     = Prefix::get_value(prefix);
+  double scale_adjustment =
+      pow(10, (double)current_prefix_value - (double)new_prefix_value);
   return std::make_shared<Unit>(
-      dimensions(), new_scale_factor, offset(), prefix);
+      dimensions(), scale_factor() / scale_adjustment, offset(), prefix);
 }
 
 double Unit::convert_value_to(const double value,
