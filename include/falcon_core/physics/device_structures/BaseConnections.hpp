@@ -18,13 +18,13 @@ class BaseConnections : public std::vector<std::shared_ptr<T>>,
                 "T must be derived from BaseConnection");
 
  public:
-  using std::vector<std::shared_ptr<BaseConnection>>::vector;
+  using std::vector<std::shared_ptr<T>>::vector;
 
  private:
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this),
-       cereal::base_class<std::vector<std::shared_ptr<BaseConnection>>>(this));
+       cereal::base_class<std::vector<std::shared_ptr<T>>>(this));
   }
 
  protected:
