@@ -72,14 +72,6 @@ class Song(object):
     def to_json_stream(self, os):
         return _falcon_core.Song_to_json_stream(self, os)
 
-    @staticmethod
-    def from_json_string(json):
-        return _falcon_core.Song_from_json_string(json)
-
-    @staticmethod
-    def from_json_stream(_is):
-        return _falcon_core.Song_from_json_stream(_is)
-
     def __eq__(self, other):
         return _falcon_core.Song___eq__(self, other)
 
@@ -96,6 +88,280 @@ class Song(object):
 
 # Register Song in _falcon_core:
 _falcon_core.Song_swigregister(Song)
+class SwigPyIterator(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined - class is abstract")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _falcon_core.delete_SwigPyIterator
+
+    def value(self):
+        return _falcon_core.SwigPyIterator_value(self)
+
+    def incr(self, n=1):
+        return _falcon_core.SwigPyIterator_incr(self, n)
+
+    def decr(self, n=1):
+        return _falcon_core.SwigPyIterator_decr(self, n)
+
+    def distance(self, x):
+        return _falcon_core.SwigPyIterator_distance(self, x)
+
+    def equal(self, x):
+        return _falcon_core.SwigPyIterator_equal(self, x)
+
+    def copy(self):
+        return _falcon_core.SwigPyIterator_copy(self)
+
+    def next(self):
+        return _falcon_core.SwigPyIterator_next(self)
+
+    def __next__(self):
+        return _falcon_core.SwigPyIterator___next__(self)
+
+    def previous(self):
+        return _falcon_core.SwigPyIterator_previous(self)
+
+    def advance(self, n):
+        return _falcon_core.SwigPyIterator_advance(self, n)
+
+    def __eq__(self, x):
+        return _falcon_core.SwigPyIterator___eq__(self, x)
+
+    def __ne__(self, x):
+        return _falcon_core.SwigPyIterator___ne__(self, x)
+
+    def __iadd__(self, n):
+        return _falcon_core.SwigPyIterator___iadd__(self, n)
+
+    def __isub__(self, n):
+        return _falcon_core.SwigPyIterator___isub__(self, n)
+
+    def __add__(self, n):
+        return _falcon_core.SwigPyIterator___add__(self, n)
+
+    def __sub__(self, *args):
+        return _falcon_core.SwigPyIterator___sub__(self, *args)
+    def __iter__(self):
+        return self
+
+# Register SwigPyIterator in _falcon_core:
+_falcon_core.SwigPyIterator_swigregister(SwigPyIterator)
+class SymbolToPowerMap(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def iterator(self):
+        return _falcon_core.SymbolToPowerMap_iterator(self)
+    def __iter__(self):
+        return self.iterator()
+
+    def __nonzero__(self):
+        return _falcon_core.SymbolToPowerMap___nonzero__(self)
+
+    def __bool__(self):
+        return _falcon_core.SymbolToPowerMap___bool__(self)
+
+    def __len__(self):
+        return _falcon_core.SymbolToPowerMap___len__(self)
+    def __iter__(self):
+        return self.key_iterator()
+    def iterkeys(self):
+        return self.key_iterator()
+    def itervalues(self):
+        return self.value_iterator()
+    def iteritems(self):
+        return self.iterator()
+
+    def __getitem__(self, key):
+        return _falcon_core.SymbolToPowerMap___getitem__(self, key)
+
+    def __delitem__(self, key):
+        return _falcon_core.SymbolToPowerMap___delitem__(self, key)
+
+    def has_key(self, key):
+        return _falcon_core.SymbolToPowerMap_has_key(self, key)
+
+    def keys(self):
+        return _falcon_core.SymbolToPowerMap_keys(self)
+
+    def values(self):
+        return _falcon_core.SymbolToPowerMap_values(self)
+
+    def items(self):
+        return _falcon_core.SymbolToPowerMap_items(self)
+
+    def __contains__(self, key):
+        return _falcon_core.SymbolToPowerMap___contains__(self, key)
+
+    def key_iterator(self):
+        return _falcon_core.SymbolToPowerMap_key_iterator(self)
+
+    def value_iterator(self):
+        return _falcon_core.SymbolToPowerMap_value_iterator(self)
+
+    def __setitem__(self, *args):
+        return _falcon_core.SymbolToPowerMap___setitem__(self, *args)
+
+    def asdict(self):
+        return _falcon_core.SymbolToPowerMap_asdict(self)
+
+    def __init__(self, *args):
+        _falcon_core.SymbolToPowerMap_swiginit(self, _falcon_core.new_SymbolToPowerMap(*args))
+
+    def empty(self):
+        return _falcon_core.SymbolToPowerMap_empty(self)
+
+    def size(self):
+        return _falcon_core.SymbolToPowerMap_size(self)
+
+    def swap(self, v):
+        return _falcon_core.SymbolToPowerMap_swap(self, v)
+
+    def begin(self):
+        return _falcon_core.SymbolToPowerMap_begin(self)
+
+    def end(self):
+        return _falcon_core.SymbolToPowerMap_end(self)
+
+    def rbegin(self):
+        return _falcon_core.SymbolToPowerMap_rbegin(self)
+
+    def rend(self):
+        return _falcon_core.SymbolToPowerMap_rend(self)
+
+    def clear(self):
+        return _falcon_core.SymbolToPowerMap_clear(self)
+
+    def get_allocator(self):
+        return _falcon_core.SymbolToPowerMap_get_allocator(self)
+
+    def count(self, x):
+        return _falcon_core.SymbolToPowerMap_count(self, x)
+
+    def erase(self, *args):
+        return _falcon_core.SymbolToPowerMap_erase(self, *args)
+
+    def find(self, x):
+        return _falcon_core.SymbolToPowerMap_find(self, x)
+
+    def lower_bound(self, x):
+        return _falcon_core.SymbolToPowerMap_lower_bound(self, x)
+
+    def upper_bound(self, x):
+        return _falcon_core.SymbolToPowerMap_upper_bound(self, x)
+    __swig_destroy__ = _falcon_core.delete_SymbolToPowerMap
+
+# Register SymbolToPowerMap in _falcon_core:
+_falcon_core.SymbolToPowerMap_swigregister(SymbolToPowerMap)
+class PowerToSymbolMap(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def iterator(self):
+        return _falcon_core.PowerToSymbolMap_iterator(self)
+    def __iter__(self):
+        return self.iterator()
+
+    def __nonzero__(self):
+        return _falcon_core.PowerToSymbolMap___nonzero__(self)
+
+    def __bool__(self):
+        return _falcon_core.PowerToSymbolMap___bool__(self)
+
+    def __len__(self):
+        return _falcon_core.PowerToSymbolMap___len__(self)
+    def __iter__(self):
+        return self.key_iterator()
+    def iterkeys(self):
+        return self.key_iterator()
+    def itervalues(self):
+        return self.value_iterator()
+    def iteritems(self):
+        return self.iterator()
+
+    def __getitem__(self, key):
+        return _falcon_core.PowerToSymbolMap___getitem__(self, key)
+
+    def __delitem__(self, key):
+        return _falcon_core.PowerToSymbolMap___delitem__(self, key)
+
+    def has_key(self, key):
+        return _falcon_core.PowerToSymbolMap_has_key(self, key)
+
+    def keys(self):
+        return _falcon_core.PowerToSymbolMap_keys(self)
+
+    def values(self):
+        return _falcon_core.PowerToSymbolMap_values(self)
+
+    def items(self):
+        return _falcon_core.PowerToSymbolMap_items(self)
+
+    def __contains__(self, key):
+        return _falcon_core.PowerToSymbolMap___contains__(self, key)
+
+    def key_iterator(self):
+        return _falcon_core.PowerToSymbolMap_key_iterator(self)
+
+    def value_iterator(self):
+        return _falcon_core.PowerToSymbolMap_value_iterator(self)
+
+    def __setitem__(self, *args):
+        return _falcon_core.PowerToSymbolMap___setitem__(self, *args)
+
+    def asdict(self):
+        return _falcon_core.PowerToSymbolMap_asdict(self)
+
+    def __init__(self, *args):
+        _falcon_core.PowerToSymbolMap_swiginit(self, _falcon_core.new_PowerToSymbolMap(*args))
+
+    def empty(self):
+        return _falcon_core.PowerToSymbolMap_empty(self)
+
+    def size(self):
+        return _falcon_core.PowerToSymbolMap_size(self)
+
+    def swap(self, v):
+        return _falcon_core.PowerToSymbolMap_swap(self, v)
+
+    def begin(self):
+        return _falcon_core.PowerToSymbolMap_begin(self)
+
+    def end(self):
+        return _falcon_core.PowerToSymbolMap_end(self)
+
+    def rbegin(self):
+        return _falcon_core.PowerToSymbolMap_rbegin(self)
+
+    def rend(self):
+        return _falcon_core.PowerToSymbolMap_rend(self)
+
+    def clear(self):
+        return _falcon_core.PowerToSymbolMap_clear(self)
+
+    def get_allocator(self):
+        return _falcon_core.PowerToSymbolMap_get_allocator(self)
+
+    def count(self, x):
+        return _falcon_core.PowerToSymbolMap_count(self, x)
+
+    def erase(self, *args):
+        return _falcon_core.PowerToSymbolMap_erase(self, *args)
+
+    def find(self, x):
+        return _falcon_core.PowerToSymbolMap_find(self, x)
+
+    def lower_bound(self, x):
+        return _falcon_core.PowerToSymbolMap_lower_bound(self, x)
+
+    def upper_bound(self, x):
+        return _falcon_core.PowerToSymbolMap_upper_bound(self, x)
+    __swig_destroy__ = _falcon_core.delete_PowerToSymbolMap
+
+# Register PowerToSymbolMap in _falcon_core:
+_falcon_core.PowerToSymbolMap_swigregister(PowerToSymbolMap)
 class Unit(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
@@ -166,6 +432,14 @@ def get_giga(unit):
 class Prefix(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
+
+    @staticmethod
+    def symbol_to_power():
+        return _falcon_core.Prefix_symbol_to_power()
+
+    @staticmethod
+    def power_to_symbol():
+        return _falcon_core.Prefix_power_to_symbol()
 
     @staticmethod
     def get_symbol(prefix_value):
@@ -246,8 +520,6 @@ VoltsPerSecond = cvar.VoltsPerSecond
 AmperesPerMeter = cvar.AmperesPerMeter
 VoltsPerAmpere = cvar.VoltsPerAmpere
 WattsPerMeterKelvin = cvar.WattsPerMeterKelvin
-power_to_symbol = cvar.power_to_symbol
-symbol_to_power = cvar.symbol_to_power
 
 class SymbolUnit(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
@@ -301,6 +573,9 @@ class BaseConnection(Song):
 
     def name(self):
         return _falcon_core.BaseConnection_name(self)
+
+    def __lt__(self, other):
+        return _falcon_core.BaseConnection___lt__(self, other)
     __swig_destroy__ = _falcon_core.delete_BaseConnection
 
 # Register BaseConnection in _falcon_core:

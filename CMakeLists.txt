@@ -60,7 +60,7 @@ execute_process(
   OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 # --- C++ Library Target ---
-file(GLOB_RECURSE FALCON_CORE_SOURCES CONFIGURE_DEPENDS "src/*.cpp" "src/math/*.cpp")
+file(GLOB_RECURSE FALCON_CORE_SOURCES CONFIGURE_DEPENDS "src/*.cpp")
 add_library(falcon_core_cpp ${FALCON_CORE_SOURCES})
 target_include_directories(
   falcon_core_cpp

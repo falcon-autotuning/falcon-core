@@ -7,9 +7,9 @@
 %rename(Song, pyname="generic.Song") falcon_core::generic::Song;
 %feature("director") falcon_core::generic::Song;
 
-%template() falcon_core::generic::Song::from_json_string;
-%template() falcon_core::generic::Song::from_json_stream;
 %include "falcon_core/generic/Song.hpp"
+%ignore falcon_core::generic::Song::from_json_string;                                  
+%ignore falcon_core::generic::Song::from_json_stream;
 
 %define %add_song_deserializers(ClassName)
 %extend ClassName {
