@@ -16,18 +16,13 @@ class DotGates : public Gates<T> {
   static_assert(std::is_base_of<DotGate, T>::value,
                 "T must be derived from DotGate");
 
- public:
-  using Gates<T>::Gates;
-
- private:
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<Gates<T>>(this));
   }
 
- protected:
-  DotGates() = default;
-  friend class cereal::access;
+ public:
+  using Gates<T>::Gates;
 };
 
 }  // namespace device_structures

@@ -81,7 +81,8 @@ class Song {
    * @brief Equality operator.
    * Override in derived classes to compare member variables.
    */
-  bool operator==(const Song& other) const;
+  bool        operator==(const Song& other) const;
+  std::string repr() const { return to_json_string(); }
 };
 
 template <typename T>

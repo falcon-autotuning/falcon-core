@@ -17,19 +17,14 @@ class Impedances : public std::vector<std::shared_ptr<T>>,
   static_assert(std::is_base_of<Impedance, T>::value,
                 "T must be derived from Impedance");
 
- public:
-  using std::vector<std::shared_ptr<Impedance>>::vector;
-
- private:
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this),
        cereal::base_class<std::vector<std::shared_ptr<Impedance>>>(this));
   }
 
- protected:
-  Impedances() = default;
-  friend class cereal::access;
+ public:
+  using std::vector<std::shared_ptr<Impedance>>::vector;
 };
 
 }  // namespace device_structures

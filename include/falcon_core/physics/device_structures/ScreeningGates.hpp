@@ -16,18 +16,13 @@ class ScreeningGates : public Gates<T> {
   static_assert(std::is_base_of<ScreeningGate, T>::value,
                 "T must be derived from ScreeningGate");
 
- public:
-  using Gates<T>::Gates;
-
- private:
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<Gates<T>>(this));
   }
 
- protected:
-  ScreeningGates() = default;
-  friend class cereal::access;
+ public:
+  using Gates<T>::Gates;
 };
 
 }  // namespace device_structures

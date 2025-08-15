@@ -4,7 +4,6 @@
 #include <stdexcept>
 #include <string>
 
-#include "falcon_core/Constants.hpp"
 #include "falcon_core/physics/units/Prefix.hpp"
 #include "falcon_core/physics/units/TotalDimensions.hpp"
 using namespace falcon_core;
@@ -19,9 +18,9 @@ Unit::Unit(TotalDimensions dimensions,
       _offset(offset),
       _prefix(prefix) {}
 
-std::shared_ptr<Unit> Unit::operator*(const Unit &other) const {
+std::shared_ptr<Unit> Unit::operator*(const UnitSP other) const {
   TotalDimensions copy_dims = dimensions();
-  for (const auto &pair : other.dimensions()) {
+  for (const auto &pair : other->dimensions()) {
     if (copy_dims.count(pair.first)) {
       copy_dims[pair.first] += pair.second;
       if (copy_dims[pair.first] == 0) {
@@ -31,22 +30,22 @@ std::shared_ptr<Unit> Unit::operator*(const Unit &other) const {
       copy_dims[pair.first] = pair.second;
     }
   }
-  double new_scale = scale_factor() * other.scale_factor() +
-                     scale_factor() * other.offset() +
-                     offset() * other.scale_factor();
+  double new_scale = scale_factor() * other->scale_factor() +
+                     scale_factor() * other->offset() +
+                     offset() * other->scale_factor();
 
   auto result =
-      Prefix::prefix_multiplication(prefix(), other.prefix(), new_scale);
+      Prefix::prefix_multiplication(prefix(), other->prefix(), new_scale);
   double      &new_mult = result.first;
   std::string &prefix   = result.second;
 
   return std::make_shared<Unit>(
-      copy_dims, new_mult, offset() * other.offset(), prefix);
+      copy_dims, new_mult, offset() * other->offset(), prefix);
 }
 
-std::shared_ptr<Unit> Unit::operator/(const Unit &other) const {
+std::shared_ptr<Unit> Unit::operator/(const UnitSP other) const {
   TotalDimensions copy_dims = dimensions();
-  for (const auto &pair : other.dimensions()) {
+  for (const auto &pair : other->dimensions()) {
     if (copy_dims.count(pair.first)) {
       copy_dims[pair.first] -= pair.second;
       if (copy_dims[pair.first] == 0) {
@@ -59,9 +58,9 @@ std::shared_ptr<Unit> Unit::operator/(const Unit &other) const {
 
   // Create an inverse of `other` to calculate the new scale factor and offset
   Unit inverse_other({},
-                     1.0 / other.scale_factor(),
-                     -other.offset() / other.scale_factor(),
-                     Prefix::get_symbol(-Prefix::get_value(other.prefix())));
+                     1.0 / other->scale_factor(),
+                     -other->offset() / other->scale_factor(),
+                     Prefix::get_symbol(-Prefix::get_value(other->prefix())));
 
   // Now multiply `this` by the `inverse_other` to get the final unit
   // properties
@@ -103,20 +102,20 @@ std::shared_ptr<Unit> Unit::with_prefix(const std::string prefix) const {
 }
 
 double Unit::convert_value_to(const double value,
-                              const Unit   target_unit) const {
-  if (dimensions() != target_unit.dimensions()) {
+                              const UnitSP target_unit) const {
+  if (dimensions() != target_unit->dimensions()) {
     throw std::invalid_argument(
         "Cannot convert between units with different dimensions.");
   }
   // Convert from source unit to base SI unit
-  double base_value = value * scale_factor() + offset();
+  double base_value = (value + offset()) * scale_factor();
 
   // Convert from base SI unit to target unit
-  return (base_value - target_unit.offset()) / target_unit.scale_factor();
+  return (base_value - target_unit->offset()) / target_unit->scale_factor();
 }
 
-bool Unit::is_compatible_with(const Unit other) const {
-  return dimensions() == other.dimensions();
+bool Unit::is_compatible_with(const UnitSP other) const {
+  return dimensions() == other->dimensions();
 }
 CEREAL_REGISTER_TYPE(falcon_core::physics::units::Unit)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,

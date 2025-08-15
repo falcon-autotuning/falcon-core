@@ -5,9 +5,9 @@
 
 #include "falcon_core/Constants.hpp"
 #include "falcon_core/generic/Song.hpp"
+#include "falcon_core/macros.hpp"
 #include "falcon_core/physics/units/CommonUnits.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
-
 namespace falcon_core {
 namespace physics {
 namespace units {
@@ -65,17 +65,47 @@ static const std::map<std::string, std::string> _DIMENSION_SYMBOLS = {
 };
 
 class SymbolUnit : public generic::Song {
+  Unit        _unit;
+  std::string _symbol;
+  std::string _name;
+  /*
+   * @brief Find a matching common unit for the given unit.
+   * @return A pair containing the matching common unit's symbol and name.
+   */
+  std::pair<std::string, std::string> _find_matching_common_unit() const;
+  /*
+   * @brief Generate a symbol for the unit based on its dimensions.
+   * @return A string representing the generated symbol.
+   */
+  std::string _generate_symbol() const;
+  /*
+   * @brief Get the symbol for a given dimension.
+   * @param dimension The dimension to get the symbol for.
+   * @return A string representing the symbol for the dimension.
+   */
+  std::string _get_dimension_symbol(std::string dimension) const;
+  /*
+   * @brief Generate a name for the unit based on its dimensions.
+   * @return A string representing the generated name.
+   */
+  std::string _generate_name() const;
+
+  template <class Archive>
+  void serialize(Archive &ar) {
+    ar(cereal::base_class<Song>(this), _unit);
+  }
+
  public:
   /*
    * @brief Construct a SymbolUnit with a specific symbol and associated Unit.
    * @param unit The Unit object associated with this symbol.
    */
-  SymbolUnit(std::shared_ptr<Unit> unit);
+  SymbolUnit(Unit unit);
   /*
    * @brief Get the symbol of the unit.
    * @return The symbol as a string.
    */
-  const std::shared_ptr<Unit> unit() const { return _unit; }
+  const UnitSP unit() const { return SP(Unit, _unit); }
   /*
    * @brief Get the name of the unit.
    * @return The name as a string.
@@ -92,16 +122,18 @@ class SymbolUnit : public generic::Song {
    * @return A new SymbolUnit representing the product of this symbol unit and
    * the other.
    */
-  std::shared_ptr<SymbolUnit> operator*(const SymbolUnit &other) const;
-  std::shared_ptr<SymbolUnit> operator*(const Unit &other) const;
+  std::shared_ptr<SymbolUnit> operator*(
+      const std::shared_ptr<SymbolUnit> other) const;
+  std::shared_ptr<SymbolUnit> operator*(const UnitSP other) const;
   /*
    * @brief Divide this symbol unit by another symbol unit.
    * @param other The symbol unit to divide by.
    * @return A new SymbolUnit representing the division of this symbol unit by
    * the other.
    */
-  std::shared_ptr<SymbolUnit> operator/(const SymbolUnit &other) const;
-  std::shared_ptr<SymbolUnit> operator/(const Unit &other) const;
+  std::shared_ptr<SymbolUnit> operator/(
+      const std::shared_ptr<SymbolUnit> other) const;
+  std::shared_ptr<SymbolUnit> operator/(const UnitSP other) const;
   /*
    * @brief Raise the symbol unit to a power.
    * @param power The exponent to raise the symbol unit to.
@@ -132,48 +164,9 @@ class SymbolUnit : public generic::Song {
    */
   bool is_compatible_with(const std::shared_ptr<SymbolUnit> other) const;
 
-  // struct SymbolUnitLess {
-  //   bool operator()(const std::shared_ptr<Unit> &a,
-  //                   const std::shared_ptr<Unit> &b) const {
-  //     throw std::logic_error("SymbolUnitLess comparator should not be
-  //     used.");
-  //   }
-  // };
-
- private:
-  SymbolUnit() = default;       // for cereal access
-  friend class cereal::access;  // cereal can access protected/private
-  // members
-  template <class Archive>
-  void serialize(Archive &ar) {
-    ar(cereal::base_class<Song>(this), _unit, _symbol, _name);
-  }
-  std::shared_ptr<Unit> _unit;
-  std::string           _symbol;
-  std::string           _name;
-
-  /*
-   * @brief Find a matching common unit for the given unit.
-   * @return A pair containing the matching common unit's symbol and name.
-   */
-  std::pair<std::string, std::string> _find_matching_common_unit() const;
-  /*
-   * @brief Generate a symbol for the unit based on its dimensions.
-   * @return A string representing the generated symbol.
-   */
-  std::string _generate_symbol() const;
-  /*
-   * @brief Get the symbol for a given dimension.
-   * @param dimension The dimension to get the symbol for.
-   * @return A string representing the symbol for the dimension.
-   */
-  std::string _get_dimension_symbol(std::string dimension) const;
-  /*
-   * @brief Generate a name for the unit based on its dimensions.
-   * @return A string representing the generated name.
-   */
-  std::string _generate_name() const;
+  std::string str() const { return _symbol; }
 };
+using SymbolUnitSP = std::shared_ptr<SymbolUnit>;
 }  // namespace units
 }  // namespace physics
 }  // namespace falcon_core

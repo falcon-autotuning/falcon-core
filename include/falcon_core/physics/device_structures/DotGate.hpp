@@ -10,18 +10,13 @@ namespace device_structures {
  * @brief A dot gate on a quantum dot device.
  */
 class DotGate : public Gate {
- public:
-  DotGate(std::string name) : Gate(std::move(name)) {}
-
- private:
   template <class Archive>
   void serialize(Archive &ar) {
     ar(cereal::base_class<Gate>(this));
   }
 
- protected:
-  DotGate() = default;          // for cereal access
-  friend class cereal::access;  // cereal can access private members
+ public:
+  DotGate(std::string name) : Gate(std::move(name)) {}
 };
 }  // namespace device_structures
 }  // namespace physics
