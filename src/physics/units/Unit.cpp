@@ -103,5 +103,3 @@ double Unit::convert_value_to(const double value,
 bool Unit::is_compatible_with(const Unit other) const {
   return dimensions() == other.dimensions();
 }
-CEREAL_REGISTER_TYPE(Unit)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, Unit)
