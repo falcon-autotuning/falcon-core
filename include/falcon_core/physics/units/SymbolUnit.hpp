@@ -90,11 +90,6 @@ class SymbolUnit : public generic::Song {
    */
   std::string _generate_name() const;
 
-  template <class Archive>
-  void serialize(Archive &ar) {
-    ar(cereal::base_class<Song>(this), _unit);
-  }
-
  public:
   /*
    * @brief Construct a SymbolUnit with a specific symbol and associated Unit.
@@ -165,6 +160,10 @@ class SymbolUnit : public generic::Song {
   bool is_compatible_with(const std::shared_ptr<SymbolUnit> other) const;
 
   std::string str() const { return _symbol; }
+  template <class Archive>
+  void serialize(Archive &ar) {
+    ar(cereal::base_class<Song>(this), _unit);
+  }
 };
 using SymbolUnitSP = std::shared_ptr<SymbolUnit>;
 }  // namespace units

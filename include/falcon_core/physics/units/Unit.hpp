@@ -11,14 +11,6 @@ namespace physics {
 namespace units {
 
 class Unit : public generic::Song {
-  template <class Archive>
-  void serialize(Archive &ar) {
-    ar(cereal::base_class<Song>(this),
-       _scale_factor,
-       _offset,
-       _prefix,
-       _dimensions);
-  }
   double          _scale_factor;  // Scale factor relative to SI base units
   double          _offset;        // Offset form base unit (e.g. for Celsius)
   std::string     _prefix;        // The SI prefix symbol (e.g. "k" for kilo)
@@ -87,6 +79,14 @@ class Unit : public generic::Song {
    * otherwise.
    */
   bool is_compatible_with(const std::shared_ptr<Unit> other) const;
+  template <class Archive>
+  void serialize(Archive &ar) {
+    ar(cereal::base_class<Song>(this),
+       _scale_factor,
+       _offset,
+       _prefix,
+       _dimensions);
+  }
 };
 using UnitSP = std::shared_ptr<Unit>;
 }  // namespace units

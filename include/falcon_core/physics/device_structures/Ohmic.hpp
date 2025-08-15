@@ -9,13 +9,12 @@ namespace device_structures {
  * @brief An ohmic connection on a quantum dot device.
  */
 class Ohmic : public BaseConnection {
+ public:
+  Ohmic(std::string name) : BaseConnection(std::move(name)) {}
   template <class Archive>
   void serialize(Archive &ar) {
     ar(cereal::base_class<BaseConnection>(this));
   }
-
- public:
-  Ohmic(std::string name) : BaseConnection(std::move(name)) {}
 };
 }  // namespace device_structures
 }  // namespace physics

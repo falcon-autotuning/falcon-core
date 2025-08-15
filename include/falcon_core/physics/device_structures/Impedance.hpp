@@ -13,13 +13,6 @@ class Impedance : public generic::Song {
   std::shared_ptr<BaseConnection> _connection;
   double                          _resistance;
   double                          _capacitance;
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this),
-       _connection,
-       _resistance,
-       _capacitance);
-  }
 
  public:
   Impedance(std::shared_ptr<BaseConnection> connection,
@@ -43,6 +36,13 @@ class Impedance : public generic::Song {
    * @return The capacitance in farads
    */
   double capacitance() const { return _capacitance; }
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this),
+       _connection,
+       _resistance,
+       _capacitance);
+  }
 };
 }  // namespace device_structures
 }  // namespace physics
