@@ -4,6 +4,7 @@
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/domains/Domain.hpp"
+#include <cereal/types/memory.hpp>
 
 namespace falcon_core {
 namespace math {
@@ -25,7 +26,19 @@ class BaseDiscretizer : public generic::Song {
  private:
   double                           _delta;
   std::shared_ptr<domains::Domain> _delta_domain;
+
+  friend class cereal::access;
+  BaseDiscretizer() = default;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this), _delta, _delta_domain);
+  }
 };
 }  // namespace discretizers
 }  // namespace math
 }  // namespace falcon_core
+
+CEREAL_REGISTER_TYPE(falcon_core::math::discretizers::BaseDiscretizer)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::math::discretizers::BaseDiscretizer)

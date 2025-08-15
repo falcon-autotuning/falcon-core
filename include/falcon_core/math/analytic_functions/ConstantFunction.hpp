@@ -18,7 +18,19 @@ class ConstantFunction : public AnalyticFunction {
 
  private:
   double _value;
+
+  friend class cereal::access;
+  ConstantFunction() = default;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<AnalyticFunction>(this), _value);
+  }
 };
 }  // namespace analytic_functions
 }  // namespace math
 }  // namespace falcon_core
+
+CEREAL_REGISTER_TYPE(falcon_core::math::analytic_functions::ConstantFunction)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::math::analytic_functions::AnalyticFunction,
+    falcon_core::math::analytic_functions::ConstantFunction)

@@ -24,7 +24,19 @@ class LabelledControlArray1D
     }
     return *this->_array;
   }
+ private:
+  friend class cereal::access;
+  LabelledControlArray1D() = default;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<BaseLabelledArray<arrays::ControlArray1D, LabelType>>(this));
+  }
 };
 }  // namespace labelled_arrays
 }  // namespace math
 }  // namespace falcon_core
+
+CEREAL_REGISTER_TYPE(falcon_core::math::labelled_arrays::LabelledControlArray1D)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::math::labelled_arrays::LabelledControlArray1D)

@@ -60,7 +60,7 @@ execute_process(
   OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 # --- C++ Library Target ---
-file(GLOB_RECURSE FALCON_CORE_SOURCES CONFIGURE_DEPENDS "src/*.cpp")
+file(GLOB_RECURSE FALCON_CORE_SOURCES CONFIGURE_DEPENDS "src/*.cpp" "src/math/*.cpp")
 add_library(falcon_core_cpp ${FALCON_CORE_SOURCES})
 target_include_directories(
   falcon_core_cpp
@@ -103,7 +103,7 @@ target_link_libraries(${SWIG_MODULE_NAME} PRIVATE Python3::Python
 
 # --- C++ Tests ---
 enable_testing()
-add_executable(run_tests tests/test_common_unit.cpp tests/test_song.cpp # tests/test_math.cpp
+add_executable(run_tests tests/test_common_unit.cpp tests/test_song.cpp tests/test_math.cpp
 )
 target_link_libraries(run_tests GTest::gtest_main falcon_core_cpp)
 

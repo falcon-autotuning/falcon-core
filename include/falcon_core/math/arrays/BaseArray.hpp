@@ -3,6 +3,7 @@
 #include <Eigen/Dense>
 
 #include "falcon_core/generic/Song.hpp"
+#include <cereal/types/eigen.hpp>
 
 namespace falcon_core {
 namespace math {
@@ -23,6 +24,13 @@ class BaseArray : public generic::Song {
 
  protected:
   MatrixType _data;
+
+ private:
+  friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this), _data);
+  }
 };
 }  // namespace arrays
 }  // namespace math

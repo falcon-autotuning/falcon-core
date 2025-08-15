@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <cereal/types/memory.hpp>
 
 #include "falcon_core/generic/Song.hpp"
 
@@ -20,6 +21,14 @@ class BaseLabelledArray : public generic::Song {
  protected:
   std::shared_ptr<ArrayType> _array;
   std::shared_ptr<LabelType> _label;
+
+ private:
+  friend class cereal::access;
+  BaseLabelledArray() = default;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this), _array, _label);
+  }
 };
 }  // namespace labelled_arrays
 }  // namespace math

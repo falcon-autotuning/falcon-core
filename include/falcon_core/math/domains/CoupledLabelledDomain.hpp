@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <cereal/types/vector.hpp>
 
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 
@@ -26,6 +27,13 @@ class CoupledLabelledDomain : public LabelledDomain<T> {
 
  private:
   std::vector<std::shared_ptr<LabelledDomain<T>>> _coupled_domains;
+
+  friend class cereal::access;
+  CoupledLabelledDomain() = default;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<LabelledDomain<T>>(this), _coupled_domains);
+  }
 };
 }  // namespace domains
 }  // namespace math

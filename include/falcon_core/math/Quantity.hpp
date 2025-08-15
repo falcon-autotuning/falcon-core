@@ -73,17 +73,21 @@ class Quantity : public generic::Song {
   std::shared_ptr<Quantity> abs() const;
 
  private:
-  template <class Archive>
-  void serialize(Archive &ar) {
-    ar(cereal::base_class<Song>(this));
-  }
   double                                      _value;
   std::shared_ptr<physics::units::SymbolUnit> _unit;
 
- protected:
-  Quantity() = default;         // for cereal access
   friend class cereal::access;  // cereal can access private members
-};
+  template <class Archive>
+  void serialize(Archive &ar) {
+    ar(cereal::base_class<Song>(this), _value, _unit);
+  }
 
+ protected:
+  Quantity() = default;  // for cereal access
+};
 }  // namespace math
 }  // namespace falcon_core
+
+CEREAL_REGISTER_TYPE(falcon_core::math::Quantity)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::math::Quantity)
