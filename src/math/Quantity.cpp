@@ -21,7 +21,7 @@ std::shared_ptr<Quantity> Quantity::operator*(double other) const {
 std::shared_ptr<Quantity> Quantity::operator*(
     std::shared_ptr<Quantity> other) const {
   return std::make_shared<Quantity>(_value * other->value(),
-                                     _unit * other->unit());
+                                     *_unit * other->unit());
 }
 
 std::shared_ptr<Quantity> Quantity::operator/(int other) const {
@@ -33,7 +33,7 @@ std::shared_ptr<Quantity> Quantity::operator/(double other) const {
 std::shared_ptr<Quantity> Quantity::operator/(
     std::shared_ptr<Quantity> other) const {
   return std::make_shared<Quantity>(_value / other->value(),
-                                     _unit / other->unit());
+                                     *_unit / other->unit());
 }
 
 std::shared_ptr<Quantity> Quantity::operator^(int other) const {
