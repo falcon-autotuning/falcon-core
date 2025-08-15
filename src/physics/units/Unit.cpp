@@ -22,15 +22,13 @@ Unit::Unit(TotalDimensions dimensions,
 std::shared_ptr<Unit> Unit::operator*(const Unit &other) const {
   TotalDimensions copy_dims = dimensions();
   for (const auto &pair : other.dimensions()) {
-    const std::string &dim_ptr   = pair.first;
-    const int         &power_ptr = pair.second;
-    if (copy_dims.count(dim_ptr)) {
-      copy_dims[dim_ptr] += power_ptr;
-      if (copy_dims[dim_ptr] == 0) {
-        copy_dims.erase(dim_ptr);
+    if (copy_dims.count(pair.first)) {
+      copy_dims[pair.first] += pair.second;
+      if (copy_dims[pair.first] == 0) {
+        copy_dims.erase(pair.first);
       }
     } else {
-      copy_dims[dim_ptr] = power_ptr;
+      copy_dims[pair.first] = pair.second;
     }
   }
   double new_scale = scale_factor() * other.scale_factor() +

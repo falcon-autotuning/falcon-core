@@ -62,25 +62,31 @@ TEST(TestCommonUnits, DerivedUnits) {
   ASSERT_EQ(tesla.dimensions(), expected_tesla_dims);
 }
 
-TEST(TestCommonUnits, ConsistencyWithDefinitions) {
+TEST(TestCommonUnits, ConsistencyWithDefinitionJoule) {
   // Joule = Newton * Meter
   Unit                  joule = common_units::Joule;
   std::shared_ptr<Unit> newton_meter =
       common_units::Newton * common_units::Meter;
   ASSERT_EQ(joule.dimensions(), newton_meter->dimensions());
+}
 
+TEST(TestCommonUnits, ConsistencyWithDefinitionWatt) {
   // Watt = Joule / Second
   Unit                  watt = common_units::Watt;
   std::shared_ptr<Unit> joule_per_second =
       common_units::Joule / common_units::Second;
   ASSERT_EQ(watt.dimensions(), joule_per_second->dimensions());
+}
 
+TEST(TestCommonUnits, ConsistencyWithDefinitionVolt) {
   // Volt = Watt / Ampere
   Unit                  volt = common_units::Volt;
   std::shared_ptr<Unit> watt_per_ampere =
       common_units::Watt / common_units::Ampere;
   ASSERT_EQ(volt.dimensions(), watt_per_ampere->dimensions());
+}
 
+TEST(TestCommonUnits, ConsistencyWithDefinitionOhm) {
   // Ohm = Volt / Ampere
   Unit                  ohm = common_units::Ohm;
   std::shared_ptr<Unit> volt_per_ampere =
