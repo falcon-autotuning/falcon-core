@@ -20,6 +20,6 @@ namespace cereal
     Eigen::Index rows, cols;
     std::vector<_Scalar> data;
     ar( rows, cols, data );
-    m = Eigen::Map<const Eigen::Matrix<_Scalar, Eigen::Dynamic, Eigen::Dynamic>>(data.data(), rows, cols);
+    m = Eigen::Map<const Eigen::Matrix<_Scalar, Eigen::Dynamic, Eigen::Dynamic>, Eigen::Unaligned>(data.data(), rows, cols);
   }
 }
