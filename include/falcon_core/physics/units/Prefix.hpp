@@ -9,11 +9,18 @@ namespace falcon_core {
 namespace physics {
 namespace units {
 
-extern const std::map<int, std::string> power_to_symbol;
-extern const std::map<std::string, int> symbol_to_power;
-
 class Prefix {
  public:
+  /**
+   * @brief Get the symbol to power map.
+   * @return A constant reference to the symbol to power map.
+   */
+  static const std::map<std::string, int>& get_symbol_to_power_map();
+  /**
+   * @brief Get the power to symbol map.
+   * @return A constant reference to the power to symbol map.
+   */
+  static const std::map<int, std::string>& get_power_to_symbol_map();
   /*
    * @brief Get the symbol for a prefix value.
    * @param prefix_value The exponent value of the prefix.
