@@ -3,12 +3,12 @@
 #include <memory>
 #include <sstream>
 
+#include "falcon_core/macros.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
-
 using namespace falcon_core;
 using namespace falcon_core::physics::units;
 
-SymbolUnit::SymbolUnit(Unit unit) : _unit(std::make_shared<Unit>(unit)) {
+SymbolUnit::SymbolUnit(Unit unit) : _unit(SP(Unit, unit)) {
   auto results = this->_find_matching_common_unit();
   _symbol      = results.first;
   _name        = results.second;

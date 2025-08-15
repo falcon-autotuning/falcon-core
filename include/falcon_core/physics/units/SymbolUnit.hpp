@@ -5,7 +5,6 @@
 
 #include "falcon_core/Constants.hpp"
 #include "falcon_core/generic/Song.hpp"
-#include "falcon_core/macros.hpp"
 #include "falcon_core/physics/units/CommonUnits.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
 namespace falcon_core {
@@ -110,12 +109,12 @@ class SymbolUnit : public generic::Song {
    * @brief Get the name of the unit.
    * @return The name as a string.
    */
-  const std::string &symbol() const { return _symbol; }
+  const std::string symbol() const { return _symbol; }
   /*
    * @brief Get the name of the unit.
    * @return The name as a string.
    */
-  const std::string &name() const { return _name; }
+  const std::string name() const { return _name; }
   /*
    * @brief Multiply this symbol unit by another symbol unit.
    * @param other The symbol unit to multiply by.
