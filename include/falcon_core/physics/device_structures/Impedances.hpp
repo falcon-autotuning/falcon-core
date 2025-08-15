@@ -13,7 +13,7 @@ namespace device_structures {
  */
 template <typename T>
 class Impedances : public std::vector<std::shared_ptr<T>>,
-                   public falcon_core::generic::Song {
+                   public generic::Song {
   static_assert(std::is_base_of<Impedance, T>::value,
                 "T must be derived from Impedance");
 
