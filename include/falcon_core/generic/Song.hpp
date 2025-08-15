@@ -69,14 +69,22 @@ class Song {
    * @return std::shared_ptr<Song> (actually the derived type)
    */
   template <typename T>
-  static std::shared_ptr<T> from_json_string(const std::string& json);
+  static std::shared_ptr<T> from_json_string(const std::string& json) {
+    std::istringstream iss(json);
+    return from_json_stream<T>(iss);
+  }
 
   /**
    * @brief Deserialize an object from a JSON archive (input stream).
    * @return std::shared_ptr<Song> (actually the derived type)
    */
   template <typename T>
-  static std::shared_ptr<T> from_json_stream(std::istream& is);
+  static std::shared_ptr<T> from_json_stream(std::istream& is) {
+    cereal::JSONInputArchive archive(is);
+    std::shared_ptr<Song>    ptr;
+    archive(ptr);
+    return std::dynamic_pointer_cast<T>(ptr);
+  }
   /**
    * @brief Equality operator.
    * Override in derived classes to compare member variables.

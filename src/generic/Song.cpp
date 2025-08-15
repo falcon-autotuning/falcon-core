@@ -14,19 +14,6 @@ void Song::to_json_stream(std::ostream& os) const {
   std::shared_ptr<const Song> ptr(this, [](const Song*) {});
   archive(ptr);
 }
-template <typename T>
-std::shared_ptr<T> Song::from_json_stream(std::istream& is) {
-  cereal::JSONInputArchive archive(is);
-  std::shared_ptr<Song>    ptr;
-  archive(ptr);
-  return std::dynamic_pointer_cast<T>(ptr);
-}
-
-template <typename T>
-std::shared_ptr<T> Song::from_json_string(const std::string& json) {
-  std::istringstream iss(json);
-  return from_json_stream<T>(iss);
-}
 
 bool Song::operator==(const Song& other) const {
   return to_json_string() == other.to_json_string();
