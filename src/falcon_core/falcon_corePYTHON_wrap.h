@@ -13,4 +13,24 @@
 #include <string>
 
 
+class SwigDirector_Song : public falcon_core::generic::Song, public Swig::Director {
+
+public:
+    SwigDirector_Song(PyObject *self);
+    virtual ~SwigDirector_Song();
+
+/* Internal director utilities */
+public:
+    bool swig_get_inner(const char *swig_protected_method_name) const {
+      std::map<std::string, bool>::const_iterator iv = swig_inner.find(swig_protected_method_name);
+      return (iv != swig_inner.end() ? iv->second : false);
+    }
+    void swig_set_inner(const char *swig_protected_method_name, bool swig_val) const {
+      swig_inner[swig_protected_method_name] = swig_val;
+    }
+private:
+    mutable std::map<std::string, bool> swig_inner;
+};
+
+
 #endif
