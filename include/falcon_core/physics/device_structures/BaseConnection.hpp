@@ -10,6 +10,8 @@ class BaseConnection : public generic::Song {
   BaseConnection(std::string name) : _name(std::move(name)) {}
   std::string name() const { return _name; }
 
+  bool operator<(const BaseConnection& other) const { return _name < other._name; }
+
  private:
   template <class Archive>
   void serialize(Archive &ar) {
