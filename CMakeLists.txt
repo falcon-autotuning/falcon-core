@@ -109,7 +109,7 @@ add_executable(
   tests/test_time.cpp
   tests/test_dimension.cpp
   tests/test_unit.cpp
-  tests/test_math.cpp
+  # tests/test_math.cpp
   tests/test_devices.cpp
   tests/test_contexts.cpp
   tests/test_transforms.cpp

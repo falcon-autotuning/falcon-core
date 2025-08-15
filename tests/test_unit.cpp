@@ -7,12 +7,6 @@
 using namespace falcon_core;
 using namespace falcon_core::physics::units;
 
-// Test fixture for Unit tests
-class UnitTest : public ::testing::Test {
- protected:
-  TotalDimensions dim_len_  = {{SI::DIMENSION_LENGTH, 1}};
-  TotalDimensions dim_time_ = {{SI::DIMENSION_TIME, 1}};
-};
 /**
  * @brief test that the base SI units are correctly defined.
  */
