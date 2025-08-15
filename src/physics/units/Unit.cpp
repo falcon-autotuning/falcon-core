@@ -109,8 +109,11 @@ double Unit::convert_value_to(const double value,
     throw std::invalid_argument(
         "Cannot convert between units with different dimensions.");
   }
-  double base_value = (value - offset()) / scale_factor();
-  return (base_value / target_unit.scale_factor()) - target_unit.offset();
+  // Convert from source unit to base SI unit
+  double base_value = value * scale_factor() + offset();
+
+  // Convert from base SI unit to target unit
+  return (base_value - target_unit.offset()) / target_unit.scale_factor();
 }
 
 bool Unit::is_compatible_with(const Unit other) const {
