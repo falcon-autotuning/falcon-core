@@ -6,6 +6,8 @@
 #include "falcon_core/physics/units/Prefix.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 #include "falcon_core/generic/Song.hpp"
+
+using namespace falcon_core::physics::units;
 %}
 
 %shared_ptr(falcon_core::physics::units::TotalDimensions);
