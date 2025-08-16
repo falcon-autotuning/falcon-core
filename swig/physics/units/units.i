@@ -27,9 +27,9 @@ using namespace falcon_core::physics::units;
     falcon_core::physics::units::Prefix::get_power_to_symbol_map();
 
 // Rename classes and place them in the physics.units submodule
-%rename(Unit, pyname="physics.units.Unit") falcon_core::physics::units::Unit;
-%rename(SymbolUnit, pyname="physics.units.SymbolUnit") falcon_core::physics::units::SymbolUnit;
-%rename(Prefix, pyname="physics.units.Prefix") falcon_core::physics::units::Prefix;
+%rename(pyname="physics.units.Unit") falcon_core::physics::units::Unit;
+%rename(pyname="physics.units.SymbolUnit") falcon_core::physics::units::SymbolUnit;
+%rename(pyname="physics.units.Prefix") falcon_core::physics::units::Prefix;
 
 // Rename constants from Units.hpp and place them in the physics.units submodule
 %rename(Meter, pyname="physics.units.Meter") falcon_core::physics::units::Meter();
