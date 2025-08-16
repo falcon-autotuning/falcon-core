@@ -87,7 +87,7 @@ std::string SymbolUnit::_generate_symbol() const {
     if (pair.second == 1)
       denom_symbols.push_back(symbol);
     else
-      denom_symbols.push_back(symbol + "^" + std::to_string(pair.second));
+      denom_symbols.push_back(symbol + "^" + std::to_string(-pair.second));
   }
 
   // Add prefix if present

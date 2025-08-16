@@ -88,7 +88,7 @@ TEST(TestSymbolUnit, DerivedUnits) {
 
   ASSERT_EQ(m_per_s->symbol(),
             std::string(SI::UNIT_SYMBOL_METER) + "/" + SI::UNIT_SYMBOL_SECOND);
-  ASSERT_EQ(n_times_m->unit(), Joule().unit());
+  ASSERT_EQ(*n_times_m->unit(), *Joule().unit());
   ASSERT_EQ(n_times_m->symbol(), SI::UNIT_SYMBOL_JOULE);
 }
 
@@ -153,12 +153,13 @@ TEST(TestSymbolUnit, InvalidConversion) {
 
   EXPECT_THROW(m->convert_value_to(10.0, s), std::invalid_argument);
 }
-
 TEST(TestSymbolUnit, Comparison) {
   SymbolUnitSP m_per_s = Meter() / SPS(Second());
   SymbolUnitSP v       = SPS(SPU(Unit({{"LENGTH", 1}, {"TIME", -1}})));
 
-  ASSERT_EQ(m_per_s->unit(), v->unit());
+  SymbolUnit m_per_s_copy = *m_per_s;
+  SymbolUnit v_copy       = *v;
+  ASSERT_EQ(m_per_s_copy.unit()->repr(), v_copy.unit()->repr());
   // Symbol comparison may differ
 }
 
