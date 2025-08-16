@@ -5,72 +5,242 @@
 namespace falcon_core {
 namespace physics {
 namespace units {
-const SymbolUnit Meter{Unit(common_units::Meter)};
-const SymbolUnit Kilogram{Unit(common_units::Kilogram)};
-const SymbolUnit Second{Unit(common_units::Second)};
-const SymbolUnit Ampere{Unit(common_units::Ampere)};
-const SymbolUnit Kelvin{Unit(common_units::Kelvin)};
-const SymbolUnit Mole{Unit(common_units::Mole)};
-const SymbolUnit Candela{Unit(common_units::Candela)};
-const SymbolUnit Hertz{Unit(common_units::Hertz)};
-const SymbolUnit Newton{Unit(common_units::Newton)};
-const SymbolUnit Pascal{Unit(common_units::Pascal)};
-const SymbolUnit Joule{Unit(common_units::Joule)};
-const SymbolUnit Watt{Unit(common_units::Watt)};
-const SymbolUnit Coulomb{Unit(common_units::Coulomb)};
-const SymbolUnit Volt{Unit(common_units::Volt)};
-const SymbolUnit Farad{Unit(common_units::Farad)};
-const SymbolUnit Ohm{Unit(common_units::Ohm)};
-const SymbolUnit Siemens{Unit(common_units::Siemens)};
-const SymbolUnit Weber{Unit(common_units::Weber)};
-const SymbolUnit Tesla{Unit(common_units::Tesla)};
-const SymbolUnit Henry{Unit(common_units::Henry)};
-const SymbolUnit Minute{Unit(common_units::Minute)};
-const SymbolUnit Hour{Unit(common_units::Hour)};
-const SymbolUnit ElectronVolt{Unit(common_units::ElectronVolt)};
-const SymbolUnit Celsius{Unit(common_units::Celsius)};
-const SymbolUnit Fahrenheit{Unit(common_units::Fahrenheit)};
-const SymbolUnit Dimensionless{Unit(common_units::Dimensionless)};
-const SymbolUnit Percent{Unit(common_units::Percent)};
-const SymbolUnit Radian{Unit(common_units::Radian)};
-const SymbolUnit MilliMeter{*common_units::get_milli(common_units::Meter)};
-const SymbolUnit KiloMeter{*common_units::get_kilo(common_units::Meter)};
-const SymbolUnit MilliVolt{*common_units::get_milli(common_units::Volt)};
-const SymbolUnit KiloVolt{*common_units::get_kilo(common_units::Volt)};
-const SymbolUnit MilliAmpere{*common_units::get_milli(common_units::Ampere)};
-const SymbolUnit MicroAmpere{*common_units::get_micro(common_units::Ampere)};
-const SymbolUnit NanoAmpere{*common_units::get_nano(common_units::Ampere)};
-const SymbolUnit PicoAmpere{*common_units::get_pico(common_units::Ampere)};
-const SymbolUnit MilliSecond{*common_units::get_milli(common_units::Second)};
-const SymbolUnit MicroSecond{*common_units::get_micro(common_units::Second)};
-const SymbolUnit NanoSecond{*common_units::get_nano(common_units::Second)};
-const SymbolUnit PicoSecond{*common_units::get_pico(common_units::Second)};
-const SymbolUnit MilliOhm{*common_units::get_milli(common_units::Ohm)};
-const SymbolUnit KiloOhm{*common_units::get_kilo(common_units::Ohm)};
-const SymbolUnit MegaOhm{*common_units::get_mega(common_units::Ohm)};
-const SymbolUnit MilliHertz{*common_units::get_milli(common_units::Hertz)};
-const SymbolUnit KiloHertz{*common_units::get_kilo(common_units::Hertz)};
-const SymbolUnit MegaHertz{*common_units::get_mega(common_units::Hertz)};
-const SymbolUnit GigaHertz{*common_units::get_giga(common_units::Hertz)};
-const SymbolUnit MetersPerSecond{
-    *(common_units::Meter / SP(Unit, common_units::Second))};
-const SymbolUnit MetersPerSecondSquared{
-    *(common_units::Meter / (common_units::Second ^ 2))};
-const SymbolUnit NewtonMeter{
-    *(common_units::Newton * SP(Unit, common_units::Meter))};
-const SymbolUnit NewtonPerMeter{
-    *(common_units::Newton / SP(Unit, common_units::Meter))};
-const SymbolUnit VoltsPerMeter{
-    *(common_units::Volt / SP(Unit, common_units::Meter))};
-const SymbolUnit VoltsPerSecond{
-    *(common_units::Volt / SP(Unit, common_units::Second))};
-const SymbolUnit AmperesPerMeter{
-    *(common_units::Ampere / SP(Unit, common_units::Meter))};
-const SymbolUnit VoltsPerAmpere{
-    *(common_units::Volt / SP(Unit, common_units::Ampere))};
-const SymbolUnit WattsPerMeterKelvin{
-    *(common_units::Watt /
-      (common_units::Meter * SP(Unit, common_units::Kelvin)))};
+
+inline const SymbolUnit& Meter() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Meter))};
+  return unit;
+}
+inline const SymbolUnit& Kilogram() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Kilogram))};
+  return unit;
+}
+inline const SymbolUnit& Second() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Second))};
+  return unit;
+}
+inline const SymbolUnit& Ampere() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Ampere))};
+  return unit;
+}
+inline const SymbolUnit& Kelvin() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Kelvin))};
+  return unit;
+}
+inline const SymbolUnit& Mole() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Mole))};
+  return unit;
+}
+inline const SymbolUnit& Candela() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Candela))};
+  return unit;
+}
+inline const SymbolUnit& Hertz() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Hertz))};
+  return unit;
+}
+inline const SymbolUnit& Newton() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Newton))};
+  return unit;
+}
+inline const SymbolUnit& Pascal() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Pascal))};
+  return unit;
+}
+inline const SymbolUnit& Joule() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Joule))};
+  return unit;
+}
+inline const SymbolUnit& Watt() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Watt))};
+  return unit;
+}
+inline const SymbolUnit& Coulomb() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Coulomb))};
+  return unit;
+}
+inline const SymbolUnit& Volt() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Volt))};
+  return unit;
+}
+inline const SymbolUnit& Farad() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Farad))};
+  return unit;
+}
+inline const SymbolUnit& Ohm() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Ohm))};
+  return unit;
+}
+inline const SymbolUnit& Siemens() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Siemens))};
+  return unit;
+}
+inline const SymbolUnit& Weber() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Weber))};
+  return unit;
+}
+inline const SymbolUnit& Tesla() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Tesla))};
+  return unit;
+}
+inline const SymbolUnit& Henry() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Henry))};
+  return unit;
+}
+inline const SymbolUnit& Minute() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Minute))};
+  return unit;
+}
+inline const SymbolUnit& Hour() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Hour))};
+  return unit;
+}
+inline const SymbolUnit& ElectronVolt() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::ElectronVolt))};
+  return unit;
+}
+inline const SymbolUnit& Celsius() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Celsius))};
+  return unit;
+}
+inline const SymbolUnit& Fahrenheit() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Fahrenheit))};
+  return unit;
+}
+inline const SymbolUnit& Dimensionless() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Dimensionless))};
+  return unit;
+}
+inline const SymbolUnit& Percent() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Percent))};
+  return unit;
+}
+inline const SymbolUnit& Radian() {
+  static const SymbolUnit unit{SP(Unit, Unit(common_units::Radian))};
+  return unit;
+}
+inline const SymbolUnit& MilliMeter() {
+  static const SymbolUnit unit{common_units::get_milli(common_units::Meter)};
+  return unit;
+}
+inline const SymbolUnit& KiloMeter() {
+  static const SymbolUnit unit{common_units::get_kilo(common_units::Meter)};
+  return unit;
+}
+inline const SymbolUnit& MilliVolt() {
+  static const SymbolUnit unit{common_units::get_milli(common_units::Volt)};
+  return unit;
+}
+inline const SymbolUnit& KiloVolt() {
+  static const SymbolUnit unit{common_units::get_kilo(common_units::Volt)};
+  return unit;
+}
+inline const SymbolUnit& MilliAmpere() {
+  static const SymbolUnit unit{common_units::get_milli(common_units::Ampere)};
+  return unit;
+}
+inline const SymbolUnit& MicroAmpere() {
+  static const SymbolUnit unit{common_units::get_micro(common_units::Ampere)};
+  return unit;
+}
+inline const SymbolUnit& NanoAmpere() {
+  static const SymbolUnit unit{common_units::get_nano(common_units::Ampere)};
+  return unit;
+}
+inline const SymbolUnit& PicoAmpere() {
+  static const SymbolUnit unit{common_units::get_pico(common_units::Ampere)};
+  return unit;
+}
+inline const SymbolUnit& MilliSecond() {
+  static const SymbolUnit unit{common_units::get_milli(common_units::Second)};
+  return unit;
+}
+inline const SymbolUnit& MicroSecond() {
+  static const SymbolUnit unit{common_units::get_micro(common_units::Second)};
+  return unit;
+}
+inline const SymbolUnit& NanoSecond() {
+  static const SymbolUnit unit{common_units::get_nano(common_units::Second)};
+  return unit;
+}
+inline const SymbolUnit& PicoSecond() {
+  static const SymbolUnit unit{common_units::get_pico(common_units::Second)};
+  return unit;
+}
+inline const SymbolUnit& MilliOhm() {
+  static const SymbolUnit unit{common_units::get_milli(common_units::Ohm)};
+  return unit;
+}
+inline const SymbolUnit& KiloOhm() {
+  static const SymbolUnit unit{common_units::get_kilo(common_units::Ohm)};
+  return unit;
+}
+inline const SymbolUnit& MegaOhm() {
+  static const SymbolUnit unit{common_units::get_mega(common_units::Ohm)};
+  return unit;
+}
+inline const SymbolUnit& MilliHertz() {
+  static const SymbolUnit unit{common_units::get_milli(common_units::Hertz)};
+  return unit;
+}
+inline const SymbolUnit& KiloHertz() {
+  static const SymbolUnit unit{common_units::get_kilo(common_units::Hertz)};
+  return unit;
+}
+inline const SymbolUnit& MegaHertz() {
+  static const SymbolUnit unit{common_units::get_mega(common_units::Hertz)};
+  return unit;
+}
+inline const SymbolUnit& GigaHertz() {
+  static const SymbolUnit unit{common_units::get_giga(common_units::Hertz)};
+  return unit;
+}
+inline const SymbolUnit& MetersPerSecond() {
+  static const SymbolUnit unit{
+      (common_units::Meter / SP(Unit, common_units::Second))};
+  return unit;
+}
+inline const SymbolUnit& MetersPerSecondSquared() {
+  static const SymbolUnit unit{
+      (common_units::Meter / (common_units::Second ^ 2))};
+  return unit;
+}
+inline const SymbolUnit& NewtonMeter() {
+  static const SymbolUnit unit{
+      (common_units::Newton * SP(Unit, common_units::Meter))};
+  return unit;
+}
+inline const SymbolUnit& NewtonPerMeter() {
+  static const SymbolUnit unit{
+      (common_units::Newton / SP(Unit, common_units::Meter))};
+  return unit;
+}
+inline const SymbolUnit& VoltsPerMeter() {
+  static const SymbolUnit unit{
+      (common_units::Volt / SP(Unit, common_units::Meter))};
+  return unit;
+}
+inline const SymbolUnit& VoltsPerSecond() {
+  static const SymbolUnit unit{
+      (common_units::Volt / SP(Unit, common_units::Second))};
+  return unit;
+}
+inline const SymbolUnit& AmperesPerMeter() {
+  static const SymbolUnit unit{
+      (common_units::Ampere / SP(Unit, common_units::Meter))};
+  return unit;
+}
+inline const SymbolUnit& VoltsPerAmpere() {
+  static const SymbolUnit unit{
+      (common_units::Volt / SP(Unit, common_units::Ampere))};
+  return unit;
+}
+inline const SymbolUnit& WattsPerMeterKelvin() {
+  static const SymbolUnit unit{
+      (common_units::Watt /
+       (common_units::Meter * SP(Unit, common_units::Kelvin)))};
+  return unit;
+}
+
 }  // namespace units
 }  // namespace physics
 }  // namespace falcon_core

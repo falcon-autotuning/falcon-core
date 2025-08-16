@@ -528,8 +528,8 @@ class SymbolUnit(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
-    def __init__(self, *args):
-        _falcon_core.SymbolUnit_swiginit(self, _falcon_core.new_SymbolUnit(*args))
+    def __init__(self, unit):
+        _falcon_core.SymbolUnit_swiginit(self, _falcon_core.new_SymbolUnit(unit))
 
     def unit(self):
         return _falcon_core.SymbolUnit_unit(self)
@@ -567,9 +567,6 @@ class SymbolUnit(Song):
 
 # Register SymbolUnit in _falcon_core:
 _falcon_core.SymbolUnit_swigregister(SymbolUnit)
-_UNIT_SYMBOLS = cvar._UNIT_SYMBOLS
-_DIMENSION_SYMBOLS = cvar._DIMENSION_SYMBOLS
-
 class BaseConnection(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr

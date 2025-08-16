@@ -3739,42 +3739,40 @@ namespace Swig {
 #define SWIGTYPE_p_std__lessT_std__string_t swig_types[25]
 #define SWIGTYPE_p_std__mapT_int_std__string_t swig_types[26]
 #define SWIGTYPE_p_std__mapT_std__string_int_t swig_types[27]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[28]
-#define SWIGTYPE_p_std__ostream swig_types[29]
-#define SWIGTYPE_p_std__pairT_double_std__string_t swig_types[30]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__communications__Time_t swig_types[31]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__generic__Song_t swig_types[32]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGate_t swig_types[33]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGates_t swig_types[34]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t swig_types[35]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnections_t swig_types[36]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__DotGate_t swig_types[37]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__DotGates_t swig_types[38]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__GateRelations_t swig_types[39]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Gate_t swig_types[40]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Gates_t swig_types[41]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t swig_types[42]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedances_t swig_types[43]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Ohmic_t swig_types[44]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Ohmics_t swig_types[45]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__PlungerGate_t swig_types[46]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__PlungerGates_t swig_types[47]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ReservoirGate_t swig_types[48]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ReservoirGates_t swig_types[49]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ScreeningGate_t swig_types[50]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ScreeningGates_t swig_types[51]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__CommonUnits_t swig_types[52]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Prefix_t swig_types[53]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t swig_types[54]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t swig_types[55]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t swig_types[56]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Units_t swig_types[57]
-#define SWIGTYPE_p_std__string swig_types[58]
-#define SWIGTYPE_p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t swig_types[59]
-#define SWIGTYPE_p_swig__SwigPyIterator swig_types[60]
-#define SWIGTYPE_p_value_type swig_types[61]
-static swig_type_info *swig_types[63];
-static swig_module_info swig_module = {swig_types, 62, 0, 0, 0, 0};
+#define SWIGTYPE_p_std__ostream swig_types[28]
+#define SWIGTYPE_p_std__pairT_double_std__string_t swig_types[29]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__communications__Time_t swig_types[30]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__generic__Song_t swig_types[31]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGate_t swig_types[32]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGates_t swig_types[33]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t swig_types[34]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnections_t swig_types[35]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__DotGate_t swig_types[36]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__DotGates_t swig_types[37]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__GateRelations_t swig_types[38]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Gate_t swig_types[39]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Gates_t swig_types[40]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t swig_types[41]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedances_t swig_types[42]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Ohmic_t swig_types[43]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Ohmics_t swig_types[44]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__PlungerGate_t swig_types[45]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__PlungerGates_t swig_types[46]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ReservoirGate_t swig_types[47]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ReservoirGates_t swig_types[48]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ScreeningGate_t swig_types[49]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__ScreeningGates_t swig_types[50]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__CommonUnits_t swig_types[51]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Prefix_t swig_types[52]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t swig_types[53]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__TotalDimensions_t swig_types[54]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t swig_types[55]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Units_t swig_types[56]
+#define SWIGTYPE_p_std__string swig_types[57]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[58]
+#define SWIGTYPE_p_value_type swig_types[59]
+static swig_type_info *swig_types[61];
+static swig_module_info swig_module = {swig_types, 60, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -12950,43 +12948,17 @@ SWIGINTERN PyObject *Prefix_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *a
   return SWIG_Python_InitShadowInstance(args);
 }
 
-SWIGINTERN int Swig_var__UNIT_SYMBOLS_set(PyObject *) {
-  SWIG_Error(SWIG_AttributeError,"Variable _UNIT_SYMBOLS is read-only.");
-  return 1;
-}
-
-
-SWIGINTERN PyObject *Swig_var__UNIT_SYMBOLS_get(void) {
-  PyObject *pyobj = 0;
-  
-  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::_UNIT_SYMBOLS), SWIGTYPE_p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t,  0 );
-  return pyobj;
-}
-
-
-SWIGINTERN int Swig_var__DIMENSION_SYMBOLS_set(PyObject *) {
-  SWIG_Error(SWIG_AttributeError,"Variable _DIMENSION_SYMBOLS is read-only.");
-  return 1;
-}
-
-
-SWIGINTERN PyObject *Swig_var__DIMENSION_SYMBOLS_get(void) {
-  PyObject *pyobj = 0;
-  
-  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&falcon_core::physics::units::_DIMENSION_SYMBOLS), SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t,  0 );
-  return pyobj;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_SymbolUnit__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+SWIGINTERN PyObject *_wrap_new_SymbolUnit(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   falcon_core::physics::units::UnitSP arg1 ;
   void *argp1 ;
   int res1 = 0 ;
+  PyObject *swig_obj[1] ;
   falcon_core::physics::units::SymbolUnit *result = 0 ;
   
   (void)self;
-  if ((nobjs < 1) || (nobjs > 1)) SWIG_fail;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
   {
     int newmem = 0;
     res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
@@ -13012,81 +12984,6 @@ SWIGINTERN PyObject *_wrap_new_SymbolUnit__SWIG_0(PyObject *self, Py_ssize_t nob
   return resultobj;
 fail:
   return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_SymbolUnit__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
-  PyObject *resultobj = 0;
-  SwigValueWrapper< falcon_core::physics::units::Unit > arg1 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  falcon_core::physics::units::SymbolUnit *result = 0 ;
-  
-  (void)self;
-  if ((nobjs < 1) || (nobjs > 1)) SWIG_fail;
-  {
-    int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t,  0 , &newmem);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_SymbolUnit" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
-    }
-    if (!argp1) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_SymbolUnit" "', argument " "1"" of type '" "falcon_core::physics::units::Unit""'");
-    } else {
-      arg1 = *(reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1)->get());
-      if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< std::shared_ptr<  falcon_core::physics::units::Unit > * >(argp1);
-    }
-  }
-  {
-    try {
-      result = (falcon_core::physics::units::SymbolUnit *)new falcon_core::physics::units::SymbolUnit(SWIG_STD_MOVE(arg1));
-    } catch (const Swig::DirectorException& e) {
-      // This catches exceptions thrown by director methods,
-      // allowing the original Python exception to be propagated.
-      SWIG_fail;
-    }
-  }
-  {
-    std::shared_ptr<  falcon_core::physics::units::SymbolUnit > *smartresult = result ? new std::shared_ptr<  falcon_core::physics::units::SymbolUnit >(result SWIG_NO_NULL_DELETER_SWIG_POINTER_NEW) : 0;
-    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, SWIG_POINTER_NEW | SWIG_POINTER_OWN);
-  }
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_SymbolUnit(PyObject *self, PyObject *args) {
-  Py_ssize_t argc;
-  PyObject *argv[2] = {
-    0
-  };
-  
-  if (!(argc = SWIG_Python_UnpackTuple(args, "new_SymbolUnit", 0, 1, argv))) SWIG_fail;
-  --argc;
-  if (argc == 1) {
-    int _v = 0;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_SymbolUnit__SWIG_0(self, argc, argv);
-    }
-  }
-  if (argc == 1) {
-    int _v = 0;
-    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_new_SymbolUnit__SWIG_1(self, argc, argv);
-    }
-  }
-  
-fail:
-  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'new_SymbolUnit'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    falcon_core::physics::units::SymbolUnit::SymbolUnit(falcon_core::physics::units::UnitSP)\n"
-    "    falcon_core::physics::units::SymbolUnit::SymbolUnit(falcon_core::physics::units::Unit)\n");
-  return 0;
 }
 
 
@@ -13145,7 +13042,7 @@ SWIGINTERN PyObject *_wrap_SymbolUnit_symbol(PyObject *self, PyObject *args) {
   std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared1 ;
   std::shared_ptr< falcon_core::physics::units::SymbolUnit const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
-  std::string *result = 0 ;
+  std::string result;
   
   (void)self;
   if (!args) SWIG_fail;
@@ -13167,14 +13064,14 @@ SWIGINTERN PyObject *_wrap_SymbolUnit_symbol(PyObject *self, PyObject *args) {
   }
   {
     try {
-      result = (std::string *) &((falcon_core::physics::units::SymbolUnit const *)arg1)->symbol();
+      result = ((falcon_core::physics::units::SymbolUnit const *)arg1)->symbol();
     } catch (const Swig::DirectorException& e) {
       // This catches exceptions thrown by director methods,
       // allowing the original Python exception to be propagated.
       SWIG_fail;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(*result));
+  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
   return resultobj;
 fail:
   return NULL;
@@ -13189,7 +13086,7 @@ SWIGINTERN PyObject *_wrap_SymbolUnit_name(PyObject *self, PyObject *args) {
   std::shared_ptr< falcon_core::physics::units::SymbolUnit const > tempshared1 ;
   std::shared_ptr< falcon_core::physics::units::SymbolUnit const > *smartarg1 = 0 ;
   PyObject *swig_obj[1] ;
-  std::string *result = 0 ;
+  std::string result;
   
   (void)self;
   if (!args) SWIG_fail;
@@ -13211,14 +13108,14 @@ SWIGINTERN PyObject *_wrap_SymbolUnit_name(PyObject *self, PyObject *args) {
   }
   {
     try {
-      result = (std::string *) &((falcon_core::physics::units::SymbolUnit const *)arg1)->name();
+      result = ((falcon_core::physics::units::SymbolUnit const *)arg1)->name();
     } catch (const Swig::DirectorException& e) {
       // This catches exceptions thrown by director methods,
       // allowing the original Python exception to be propagated.
       SWIG_fail;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(*result));
+  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
   return resultobj;
 fail:
   return NULL;
@@ -15092,7 +14989,7 @@ static PyMethodDef SwigMethods[] = {
 	 { "delete_Prefix", _wrap_delete_Prefix, METH_O, NULL},
 	 { "Prefix_swigregister", Prefix_swigregister, METH_O, NULL},
 	 { "Prefix_swiginit", Prefix_swiginit, METH_VARARGS, NULL},
-	 { "new_SymbolUnit", _wrap_new_SymbolUnit, METH_VARARGS, NULL},
+	 { "new_SymbolUnit", _wrap_new_SymbolUnit, METH_O, NULL},
 	 { "SymbolUnit_unit", _wrap_SymbolUnit_unit, METH_O, NULL},
 	 { "SymbolUnit_symbol", _wrap_SymbolUnit_symbol, METH_O, NULL},
 	 { "SymbolUnit_name", _wrap_SymbolUnit_name, METH_O, NULL},
@@ -15356,7 +15253,6 @@ static swig_type_info _swigt__p_std__lessT_int_t = {"_p_std__lessT_int_t", "std:
 static swig_type_info _swigt__p_std__lessT_std__string_t = {"_p_std__lessT_std__string_t", "std::less< std::string > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_int_std__string_t = {"_p_std__mapT_int_std__string_t", "std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > > *|std::map< int,std::string > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_std__string_int_t = {"_p_std__mapT_std__string_int_t", "falcon_core::physics::units::TotalDimensions *|std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > *|std::map< std::string,int > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t = {"_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t", "std::map< std::string,std::string,std::less< std::string >,std::allocator< std::pair< std::string const,std::string > > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__ostream = {"_p_std__ostream", "std::ostream *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__pairT_double_std__string_t = {"_p_std__pairT_double_std__string_t", "std::pair< double,std::string > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__communications__Time_t = {"_p_std__shared_ptrT_falcon_core__communications__Time_t", "std::shared_ptr< falcon_core::communications::Time > *", 0, 0, (void*)0, 0};
@@ -15387,7 +15283,6 @@ static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__units__To
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__units__Unit_t = {"_p_std__shared_ptrT_falcon_core__physics__units__Unit_t", "falcon_core::physics::units::UnitSP *|std::shared_ptr< falcon_core::physics::units::Unit > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__units__Units_t = {"_p_std__shared_ptrT_falcon_core__physics__units__Units_t", "std::shared_ptr< falcon_core::physics::units::Units > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t = {"_p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t", "std::vector< std::tuple< falcon_core::physics::units::Unit,std::string,std::string > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_swig__SwigPyIterator = {"_p_swig__SwigPyIterator", "swig::SwigPyIterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_value_type = {"_p_value_type", "value_type *", 0, 0, (void*)0, 0};
 
@@ -15420,7 +15315,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__lessT_std__string_t,
   &_swigt__p_std__mapT_int_std__string_t,
   &_swigt__p_std__mapT_std__string_int_t,
-  &_swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t,
   &_swigt__p_std__ostream,
   &_swigt__p_std__pairT_double_std__string_t,
   &_swigt__p_std__shared_ptrT_falcon_core__communications__Time_t,
@@ -15451,7 +15345,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__shared_ptrT_falcon_core__physics__units__Unit_t,
   &_swigt__p_std__shared_ptrT_falcon_core__physics__units__Units_t,
   &_swigt__p_std__string,
-  &_swigt__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t,
   &_swigt__p_swig__SwigPyIterator,
   &_swigt__p_value_type,
 };
@@ -15484,7 +15377,6 @@ static swig_cast_info _swigc__p_std__lessT_int_t[] = {  {&_swigt__p_std__lessT_i
 static swig_cast_info _swigc__p_std__lessT_std__string_t[] = {  {&_swigt__p_std__lessT_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_int_std__string_t[] = {  {&_swigt__p_std__mapT_int_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_int_t[] = {  {&_swigt__p_std__mapT_std__string_int_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t[] = {  {&_swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__ostream[] = {  {&_swigt__p_std__ostream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__pairT_double_std__string_t[] = {  {&_swigt__p_std__pairT_double_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__communications__Time_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__communications__Time_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -15515,7 +15407,6 @@ static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__units__To
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__units__Unit_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__units__Units_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__units__Units_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t[] = {  {&_swigt__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_swig__SwigPyIterator[] = {  {&_swigt__p_swig__SwigPyIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_value_type[] = {  {&_swigt__p_value_type, 0, 0, 0},{0, 0, 0, 0}};
 
@@ -15548,7 +15439,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__lessT_std__string_t,
   _swigc__p_std__mapT_int_std__string_t,
   _swigc__p_std__mapT_std__string_int_t,
-  _swigc__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t,
   _swigc__p_std__ostream,
   _swigc__p_std__pairT_double_std__string_t,
   _swigc__p_std__shared_ptrT_falcon_core__communications__Time_t,
@@ -15579,7 +15469,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__shared_ptrT_falcon_core__physics__units__Unit_t,
   _swigc__p_std__shared_ptrT_falcon_core__physics__units__Units_t,
   _swigc__p_std__string,
-  _swigc__p_std__vectorT_std__tupleT_falcon_core__physics__units__Unit_std__string_std__string_t_t,
   _swigc__p_swig__SwigPyIterator,
   _swigc__p_value_type,
 };
@@ -16115,8 +16004,6 @@ SWIG_init(void) {
   SWIG_addvarlink(globals, "AmperesPerMeter", Swig_var_AmperesPerMeter_get, Swig_var_AmperesPerMeter_set);
   SWIG_addvarlink(globals, "VoltsPerAmpere", Swig_var_VoltsPerAmpere_get, Swig_var_VoltsPerAmpere_set);
   SWIG_addvarlink(globals, "WattsPerMeterKelvin", Swig_var_WattsPerMeterKelvin_get, Swig_var_WattsPerMeterKelvin_set);
-  SWIG_addvarlink(globals, "_UNIT_SYMBOLS", Swig_var__UNIT_SYMBOLS_get, Swig_var__UNIT_SYMBOLS_set);
-  SWIG_addvarlink(globals, "_DIMENSION_SYMBOLS", Swig_var__DIMENSION_SYMBOLS_get, Swig_var__DIMENSION_SYMBOLS_set);
 #if PY_VERSION_HEX >= 0x03000000
   return m;
 #else

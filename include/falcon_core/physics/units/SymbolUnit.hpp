@@ -5,17 +5,42 @@
 
 #include "falcon_core/Constants.hpp"
 #include "falcon_core/generic/Song.hpp"
+#include "falcon_core/macros.hpp"
 #include "falcon_core/physics/units/CommonUnits.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
 namespace falcon_core {
 namespace physics {
 namespace units {
 
-/*
- * @brief organizes the common units and their symbols and their names.
- */
-static const std::vector<std::tuple<Unit, std::string, std::string>>
-    _UNIT_SYMBOLS = {
+class SymbolUnit : public generic::Song {
+  UnitSP      _unit;
+  std::string _symbol;
+  std::string _name;
+  /*
+   * @brief Find a matching common unit for the given unit.
+   * @return A pair containing the matching common unit's symbol and name.
+   */
+  std::pair<std::string, std::string> _find_matching_common_unit() const;
+  /*
+   * @brief Generate a symbol for the unit based on its dimensions.
+   * @return A string representing the generated symbol.
+   */
+  std::string _generate_symbol() const;
+  /*
+   * @brief Get the symbol for a given dimension.
+   * @param dimension The dimension to get the symbol for.
+   * @return A string representing the symbol for the dimension.
+   */
+  std::string _get_dimension_symbol(std::string dimension) const;
+  /*
+   * @brief Generate a name for the unit based on its dimensions.
+   * @return A string representing the generated name.
+   */
+  std::string _generate_name() const;
+
+  static std::vector<std::tuple<Unit, std::string, std::string>>
+  get_unit_symbols() {
+    return std::vector<std::tuple<Unit, std::string, std::string>>{
         {common_units::Meter, SI::UNIT_SYMBOL_METER, SI::UNIT_NAME_METER},
         {common_units::Kilogram,
          SI::UNIT_SYMBOL_KILOGRAM,
@@ -52,42 +77,20 @@ static const std::vector<std::tuple<Unit, std::string, std::string>>
          SI::UNIT_NAME_DIMENSIONLESS},
         {common_units::Percent, SI::UNIT_SYMBOL_PERCENT, SI::UNIT_NAME_PERCENT},
         {common_units::Radian, SI::UNIT_SYMBOL_RADIAN, SI::UNIT_NAME_RADIAN},
-};
-static const std::map<std::string, std::string> _DIMENSION_SYMBOLS = {
-    {SI::DIMENSION_LENGTH, SI::UNIT_SYMBOL_METER},
-    {SI::DIMENSION_MASS, SI::UNIT_SYMBOL_KILOGRAM},
-    {SI::DIMENSION_TIME, SI::UNIT_SYMBOL_SECOND},
-    {SI::DIMENSION_CURRENT, SI::UNIT_SYMBOL_AMPERE},
-    {SI::DIMENSION_TEMPERATURE, SI::UNIT_SYMBOL_KELVIN},
-    {SI::DIMENSION_AMOUNT, SI::UNIT_SYMBOL_MOLE},
-    {SI::DIMENSION_LUMINOSITY, SI::UNIT_SYMBOL_CANDELA},
-};
+    };
+  }
 
-class SymbolUnit : public generic::Song {
-  UnitSP      _unit;
-  std::string _symbol;
-  std::string _name;
-  /*
-   * @brief Find a matching common unit for the given unit.
-   * @return A pair containing the matching common unit's symbol and name.
-   */
-  std::pair<std::string, std::string> _find_matching_common_unit() const;
-  /*
-   * @brief Generate a symbol for the unit based on its dimensions.
-   * @return A string representing the generated symbol.
-   */
-  std::string _generate_symbol() const;
-  /*
-   * @brief Get the symbol for a given dimension.
-   * @param dimension The dimension to get the symbol for.
-   * @return A string representing the symbol for the dimension.
-   */
-  std::string _get_dimension_symbol(std::string dimension) const;
-  /*
-   * @brief Generate a name for the unit based on its dimensions.
-   * @return A string representing the generated name.
-   */
-  std::string _generate_name() const;
+  static std::map<std::string, std::string> get_dimension_symbols() {
+    return {
+        {SI::DIMENSION_LENGTH, SI::UNIT_SYMBOL_METER},
+        {SI::DIMENSION_MASS, SI::UNIT_SYMBOL_KILOGRAM},
+        {SI::DIMENSION_TIME, SI::UNIT_SYMBOL_SECOND},
+        {SI::DIMENSION_CURRENT, SI::UNIT_SYMBOL_AMPERE},
+        {SI::DIMENSION_TEMPERATURE, SI::UNIT_SYMBOL_KELVIN},
+        {SI::DIMENSION_AMOUNT, SI::UNIT_SYMBOL_MOLE},
+        {SI::DIMENSION_LUMINOSITY, SI::UNIT_SYMBOL_CANDELA},
+    };
+  }
 
  public:
   /*
@@ -96,15 +99,13 @@ class SymbolUnit : public generic::Song {
    */
   SymbolUnit(UnitSP unit);
   /*
-   * @brief Construct a SymbolUnit with a specific symbol and associated Unit.
-   * @param unit The Unit object associated with this symbol.
-   */
-  SymbolUnit(Unit unit);
-  /*
    * @brief Get the symbol of the unit.
    * @return The symbol as a string.
    */
-  const UnitSP unit() const { return _unit; }
+  const UnitSP unit() const {
+    if (!_unit) throw std::runtime_error("_unit is null");
+    return _unit;
+  }
   /*
    * @brief Get the name of the unit.
    * @return The name as a string.
@@ -166,11 +167,12 @@ class SymbolUnit : public generic::Song {
   std::string str() const { return _symbol; }
   template <class Archive>
   void serialize(Archive &ar) {
-    ar(cereal::base_class<Song>(this), *_unit);
+    ar(cereal::base_class<Song>(this), *unit(), _symbol, _name);
   }
 
  protected:
-  SymbolUnit() = default;  // or initialize _name with a default value
+  Unit secret_unit = common_units::Meter;
+  SymbolUnit() : _unit(SP(Unit, secret_unit)), _symbol(""), _name("") {};
   friend class cereal::access;
 };
 using SymbolUnitSP = std::shared_ptr<SymbolUnit>;
