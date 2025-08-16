@@ -365,49 +365,49 @@ class PowerToSymbolMap(object):
 
 # Register PowerToSymbolMap in _falcon_core:
 _falcon_core.PowerToSymbolMap_swigregister(PowerToSymbolMap)
-class Unit(Song):
+class pyname(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, *args):
-        _falcon_core.Unit_swiginit(self, _falcon_core.new_Unit(*args))
+        _falcon_core.pyname_swiginit(self, _falcon_core.new_pyname(*args))
 
     def prefix(self):
-        return _falcon_core.Unit_prefix(self)
+        return _falcon_core.pyname_prefix(self)
 
     def dimensions(self):
-        return _falcon_core.Unit_dimensions(self)
+        return _falcon_core.pyname_dimensions(self)
 
     def scale_factor(self):
-        return _falcon_core.Unit_scale_factor(self)
+        return _falcon_core.pyname_scale_factor(self)
 
     def offset(self):
-        return _falcon_core.Unit_offset(self)
+        return _falcon_core.pyname_offset(self)
 
     def __mul__(self, other):
-        return _falcon_core.Unit___mul__(self, other)
+        return _falcon_core.pyname___mul__(self, other)
 
     def __truediv__(self, *args):
-        return _falcon_core.Unit___truediv__(self, *args)
+        return _falcon_core.pyname___truediv__(self, *args)
     __div__ = __truediv__
 
 
 
     def __xor__(self, power):
-        return _falcon_core.Unit___xor__(self, power)
+        return _falcon_core.pyname___xor__(self, power)
 
     def with_prefix(self, prefix):
-        return _falcon_core.Unit_with_prefix(self, prefix)
+        return _falcon_core.pyname_with_prefix(self, prefix)
 
     def convert_value_to(self, value, target_unit):
-        return _falcon_core.Unit_convert_value_to(self, value, target_unit)
+        return _falcon_core.pyname_convert_value_to(self, value, target_unit)
 
     def is_compatible_with(self, other):
-        return _falcon_core.Unit_is_compatible_with(self, other)
-    __swig_destroy__ = _falcon_core.delete_Unit
+        return _falcon_core.pyname_is_compatible_with(self, other)
+    __swig_destroy__ = _falcon_core.delete_pyname
 
-# Register Unit in _falcon_core:
-_falcon_core.Unit_swigregister(Unit)
+# Register pyname in _falcon_core:
+_falcon_core.pyname_swigregister(pyname)
 
 def get_unit_with_prefix(unit, prefix):
     return _falcon_core.get_unit_with_prefix(unit, prefix)
@@ -432,141 +432,6 @@ def get_mega(unit):
 
 def get_giga(unit):
     return _falcon_core.get_giga(unit)
-class Prefix(object):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
-
-    @staticmethod
-    def symbol_to_power():
-        return _falcon_core.Prefix_symbol_to_power()
-
-    @staticmethod
-    def power_to_symbol():
-        return _falcon_core.Prefix_power_to_symbol()
-
-    @staticmethod
-    def get_symbol(prefix_value):
-        return _falcon_core.Prefix_get_symbol(prefix_value)
-
-    @staticmethod
-    def get_value(prefix_symbol):
-        return _falcon_core.Prefix_get_value(prefix_symbol)
-
-    @staticmethod
-    def is_valid(prefix_symbol):
-        return _falcon_core.Prefix_is_valid(prefix_symbol)
-
-    @staticmethod
-    def prefix_multiplication(first_prefix, second_prefix, scale_factor):
-        return _falcon_core.Prefix_prefix_multiplication(first_prefix, second_prefix, scale_factor)
-
-    def __init__(self):
-        _falcon_core.Prefix_swiginit(self, _falcon_core.new_Prefix())
-    __swig_destroy__ = _falcon_core.delete_Prefix
-
-# Register Prefix in _falcon_core:
-_falcon_core.Prefix_swigregister(Prefix)
-cvar = _falcon_core.cvar
-Meter = cvar.Meter
-Kilogram = cvar.Kilogram
-Second = cvar.Second
-Ampere = cvar.Ampere
-Kelvin = cvar.Kelvin
-Mole = cvar.Mole
-Candela = cvar.Candela
-Hertz = cvar.Hertz
-Newton = cvar.Newton
-Pascal = cvar.Pascal
-Joule = cvar.Joule
-Watt = cvar.Watt
-Coulomb = cvar.Coulomb
-Volt = cvar.Volt
-Farad = cvar.Farad
-Ohm = cvar.Ohm
-Siemens = cvar.Siemens
-Weber = cvar.Weber
-Tesla = cvar.Tesla
-Henry = cvar.Henry
-Minute = cvar.Minute
-Hour = cvar.Hour
-ElectronVolt = cvar.ElectronVolt
-Celsius = cvar.Celsius
-Fahrenheit = cvar.Fahrenheit
-Dimensionless = cvar.Dimensionless
-Percent = cvar.Percent
-Radian = cvar.Radian
-MilliMeter = cvar.MilliMeter
-KiloMeter = cvar.KiloMeter
-MilliVolt = cvar.MilliVolt
-KiloVolt = cvar.KiloVolt
-MilliAmpere = cvar.MilliAmpere
-MicroAmpere = cvar.MicroAmpere
-NanoAmpere = cvar.NanoAmpere
-PicoAmpere = cvar.PicoAmpere
-MilliSecond = cvar.MilliSecond
-MicroSecond = cvar.MicroSecond
-NanoSecond = cvar.NanoSecond
-PicoSecond = cvar.PicoSecond
-MilliOhm = cvar.MilliOhm
-KiloOhm = cvar.KiloOhm
-MegaOhm = cvar.MegaOhm
-MilliHertz = cvar.MilliHertz
-KiloHertz = cvar.KiloHertz
-MegaHertz = cvar.MegaHertz
-GigaHertz = cvar.GigaHertz
-MetersPerSecond = cvar.MetersPerSecond
-MetersPerSecondSquared = cvar.MetersPerSecondSquared
-NewtonMeter = cvar.NewtonMeter
-NewtonPerMeter = cvar.NewtonPerMeter
-VoltsPerMeter = cvar.VoltsPerMeter
-VoltsPerSecond = cvar.VoltsPerSecond
-AmperesPerMeter = cvar.AmperesPerMeter
-VoltsPerAmpere = cvar.VoltsPerAmpere
-WattsPerMeterKelvin = cvar.WattsPerMeterKelvin
-
-class SymbolUnit(Song):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
-
-    def __init__(self, unit):
-        _falcon_core.SymbolUnit_swiginit(self, _falcon_core.new_SymbolUnit(unit))
-
-    def unit(self):
-        return _falcon_core.SymbolUnit_unit(self)
-
-    def symbol(self):
-        return _falcon_core.SymbolUnit_symbol(self)
-
-    def name(self):
-        return _falcon_core.SymbolUnit_name(self)
-
-    def __mul__(self, *args):
-        return _falcon_core.SymbolUnit___mul__(self, *args)
-
-    def __truediv__(self, *args):
-        return _falcon_core.SymbolUnit___truediv__(self, *args)
-    __div__ = __truediv__
-
-
-
-    def __xor__(self, power):
-        return _falcon_core.SymbolUnit___xor__(self, power)
-
-    def with_prefix(self, prefix):
-        return _falcon_core.SymbolUnit_with_prefix(self, prefix)
-
-    def convert_value_to(self, value, target_unit):
-        return _falcon_core.SymbolUnit_convert_value_to(self, value, target_unit)
-
-    def is_compatible_with(self, other):
-        return _falcon_core.SymbolUnit_is_compatible_with(self, other)
-
-    def str(self):
-        return _falcon_core.SymbolUnit_str(self)
-    __swig_destroy__ = _falcon_core.delete_SymbolUnit
-
-# Register SymbolUnit in _falcon_core:
-_falcon_core.SymbolUnit_swigregister(SymbolUnit)
 class BaseConnection(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
