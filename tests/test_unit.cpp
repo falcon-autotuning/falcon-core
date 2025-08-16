@@ -31,9 +31,9 @@ TEST(TestSymbolUnit, PrefixedUnits) {
             std::string(SI::KILO_SYMBOL) + std::string(SI::UNIT_SYMBOL_VOLT));
 }
 TEST(TestSymbolUnit, Operations) {
-  SymbolUnitSP m = SPS(Meter);
-  SymbolUnitSP s = SPS(Second);
-  SymbolUnitSP v = SPS(Volt);
+  SymbolUnitSP m = SPS(Meter());
+  SymbolUnitSP s = SPS(Second());
+  SymbolUnitSP v = SPS(Volt());
 
   // Multiplication
   SymbolUnitSP m_times_s = *m * s;
@@ -48,29 +48,29 @@ TEST(TestSymbolUnit, Operations) {
             std::string(SI::UNIT_SYMBOL_METER) + "/" + SI::UNIT_SYMBOL_SECOND);
 
   // More complex operations
-  SymbolUnitSP ohm       = SPS(Ohm);
+  SymbolUnitSP ohm       = SPS(Ohm());
   SymbolUnitSP v_div_ohm = *v / ohm;
   // Adjust this check to your actual dimensions representation
   // ASSERT_EQ(v_div_ohm.unit().dimensions(), ...);
 }
 
 TEST(TestSymbolUnit, EqualityAndCompatibility) {
-  SymbolUnitSP m1 = SPS(Meter);
-  SymbolUnitSP m2 = SPS(Meter);
-  SymbolUnitSP s  = SPS(Second);
+  SymbolUnitSP m1 = SPS(Meter());
+  SymbolUnitSP m2 = SPS(Meter());
+  SymbolUnitSP s  = SPS(Second());
 
   ASSERT_EQ(m1->unit(), m2->unit());
   ASSERT_NE(m1->unit(), s->unit());
 
-  SymbolUnitSP mm = SPS(MilliMeter);
+  SymbolUnitSP mm = SPS(MilliMeter());
   ASSERT_TRUE(m1->is_compatible_with(mm));
   ASSERT_FALSE(m1->is_compatible_with(s));
 }
 
 TEST(TestSymbolUnit, Conversion) {
-  SymbolUnitSP m  = SPS(Meter);
-  SymbolUnitSP mm = SPS(MilliMeter);
-  SymbolUnitSP km = SPS(KiloMeter);
+  SymbolUnitSP m  = SPS(Meter());
+  SymbolUnitSP mm = SPS(MilliMeter());
+  SymbolUnitSP km = SPS(KiloMeter());
 
   ASSERT_NEAR(m->convert_value_to(1.0, mm), 1000.0, 1e-9);
   ASSERT_NEAR(m->convert_value_to(1.0, km), 0.001, 1e-9);
@@ -93,8 +93,8 @@ TEST(TestSymbolUnit, DerivedUnits) {
 }
 
 TEST(TestSymbolUnit, DimensionlessUnits) {
-  SymbolUnitSP dimensionless = SPS(Dimensionless);
-  SymbolUnitSP percent       = SPS(Percent);
+  SymbolUnitSP dimensionless = SPS(Dimensionless());
+  SymbolUnitSP percent       = SPS(Percent());
 
   // Adjust these checks to your actual dimensions representation
   // ASSERT_TRUE(dimensionless.unit().dimensions().empty());
@@ -104,8 +104,8 @@ TEST(TestSymbolUnit, DimensionlessUnits) {
 }
 
 TEST(TestSymbolUnit, ComplexUnits) {
-  SymbolUnitSP m = SPS(Meter);
-  SymbolUnitSP s = SPS(Second);
+  SymbolUnitSP m = SPS(Meter());
+  SymbolUnitSP s = SPS(Second());
 
   SymbolUnitSP acceleration = *m / (*s ^ 2);
 
