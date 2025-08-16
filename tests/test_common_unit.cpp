@@ -131,10 +131,10 @@ TEST(TestCommonUnits, TemperatureUnits) {
   ASSERT_DOUBLE_EQ(celsius->offset(), 273.15);
 
   // Fahrenheit
-  Unit fahrenheit = common_units::Fahrenheit;
-  ASSERT_EQ(fahrenheit.dimensions(), temp_dim);
-  ASSERT_NEAR(fahrenheit.scale_factor(), 5.0 / 9.0, 1e-10);
-  ASSERT_NEAR(fahrenheit.offset(), 459.67, 1e-10);
+  UnitSP fahrenheit = SPU(common_units::Fahrenheit);
+  ASSERT_EQ(fahrenheit->dimensions(), temp_dim);
+  ASSERT_NEAR(fahrenheit->scale_factor(), 5.0 / 9.0, 1e-10);
+  ASSERT_NEAR(fahrenheit->offset(), 459.67, 1e-10);
 
   // Temperature conversion validation
   // 0°C = 273.15K
@@ -142,7 +142,7 @@ TEST(TestCommonUnits, TemperatureUnits) {
   // 0K = -273.15°C
   ASSERT_NEAR(kelvin->convert_value_to(0.0, celsius), -273.15, 1e-10);
   // 32°F = 0°C
-  ASSERT_NEAR(fahrenheit.convert_value_to(32.0, celsius), 0.0, 1e-10);
+  ASSERT_NEAR(fahrenheit->convert_value_to(32.0, celsius), 0.0, 1e-10);
 }
 
 // Dimensionless units
@@ -152,12 +152,12 @@ TEST(TestCommonUnits, DimensionlessUnits) {
   ASSERT_EQ(dimensionless->dimensions(), empty_dims);
   ASSERT_DOUBLE_EQ(dimensionless->scale_factor(), 1.0);
 
-  Unit percent = common_units::Percent;
-  ASSERT_EQ(percent.dimensions(), empty_dims);
-  ASSERT_DOUBLE_EQ(percent.scale_factor(), 0.01);
+  UnitSP percent = SPU(common_units::Percent);
+  ASSERT_EQ(percent->dimensions(), empty_dims);
+  ASSERT_DOUBLE_EQ(percent->scale_factor(), 0.01);
 
   // 100% = 1.0 dimensionless
-  ASSERT_DOUBLE_EQ(percent.convert_value_to(100.0, dimensionless), 1.0);
+  ASSERT_DOUBLE_EQ(percent->convert_value_to(100.0, dimensionless), 1.0);
 }
 
 // Get unit with prefix
