@@ -78,7 +78,8 @@ TEST(QuantityTest, Power) {
 
 TEST(QuantityTest, SerializationRoundTrip) {
   // Create a Quantity of 42 meters
-  auto q = std::make_shared<Quantity>(42.0, std::make_shared<SymbolUnit>(Meter()));
+  auto q =
+      std::make_shared<Quantity>(42.0, std::make_shared<SymbolUnit>(Meter()));
 
   // Serialize to JSON
   std::stringstream ss;
@@ -88,7 +89,8 @@ TEST(QuantityTest, SerializationRoundTrip) {
   }
 
   // Deserialize from JSON
-  auto q2 = std::make_shared<Quantity>();
+  auto q2 =
+      std::make_shared<Quantity>(0.0, std::make_shared<SymbolUnit>(Meter()));
   {
     cereal::JSONInputArchive iarchive(ss);
     iarchive(q2);
