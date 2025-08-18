@@ -27,5 +27,6 @@ TEST(ControlArray1DTest, Construction1D) {
 TEST(ControlArray1DTest, ThrowsOnNon1D) {
     Eigen::MatrixXd mat(2, 2);
     mat << 1.0, 2.0, 3.0, 4.0;
-    EXPECT_THROW(ControlArray1D arr(mat), std::invalid_argument);
+    // Use a lambda to avoid "most vexing parse" and ensure exception is thrown on construction
+    EXPECT_THROW({ ControlArray1D arr(mat); }, std::invalid_argument);
 }
