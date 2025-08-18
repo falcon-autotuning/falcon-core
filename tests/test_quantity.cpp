@@ -81,22 +81,13 @@ TEST(QuantityTest, SerializationRoundTrip) {
   auto q =
       std::make_shared<Quantity>(42.0, std::make_shared<SymbolUnit>(Meter()));
 
-  // Serialize to JSON
-  std::stringstream ss;
-  {
-    cereal::JSONOutputArchive oarchive(ss);
-    oarchive(q);
-  }
+  // Serialize to JSON using the class helper
+  std::string json = q->to_json_string();
+  std::cout << "Serialized JSON:\n" << json << std::endl;
 
-  // Print the serialized JSON
-  std::cout << "Serialized JSON:\n" << ss.str() << std::endl;
+  // Deserialize from JSON using the class helper
+  auto q2 = Quantity::from_json_string<Quantity>(json);
 
-  // Deserialize from JSON
-  std::shared_ptr<Quantity> q2;
-  {
-    cereal::JSONInputArchive iarchive(ss);
-    iarchive(q2);
-  }
   ASSERT_TRUE(q2->unit() != nullptr) << "Deserialized unit is null!";
   ASSERT_DOUBLE_EQ(q->value(), q2->value());
   ASSERT_EQ(q->unit()->symbol(), q2->unit()->symbol());
