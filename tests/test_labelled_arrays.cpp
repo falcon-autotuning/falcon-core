@@ -36,6 +36,29 @@ TEST(BaseLabelledArraysTest, ConstructionAndAccess) {
   EXPECT_DOUBLE_EQ(labelled_arrays.get_arrays()[1]->data()(0, 2), 6.0);
 }
 
+TEST(BaseLabelledArraysTest, SerializationRoundTrip) {
+  Eigen::MatrixXd mat1(1, 3);
+  mat1 << 1.0, 2.0, 3.0;
+  Eigen::MatrixXd mat2(1, 3);
+  mat2 << 4.0, 5.0, 6.0;
+  auto arr1 = std::make_shared<BaseArray<double>>(mat1);
+  auto arr2 = std::make_shared<BaseArray<double>>(mat2);
+
+  BaseLabelledArrays<BaseArray<double>> labelled_arrays;
+  labelled_arrays.append(arr1);
+  labelled_arrays.append(arr2);
+
+  // Serialize to JSON string
+  std::string json = labelled_arrays.to_json_string();
+
+  // Deserialize from JSON string
+  auto deserialized = falcon_core::generic::Song::from_json_string<BaseLabelledArrays<BaseArray<double>>>(json);
+
+  ASSERT_EQ(deserialized->get_arrays().size(), 2);
+  EXPECT_TRUE(deserialized->get_arrays()[0]->data().isApprox(mat1));
+  EXPECT_TRUE(deserialized->get_arrays()[1]->data().isApprox(mat2));
+}
+
 TEST(IsLabelled1DTest, GetStart) {
   Eigen::MatrixXd mat(1, 3);
   mat << 10.0, 20.0, 30.0;
