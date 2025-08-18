@@ -24,11 +24,12 @@ TEST(BaseLabelledArraysTest, ConstructionAndAccess) {
   mat1 << 1.0, 2.0, 3.0;
   Eigen::MatrixXd mat2(1, 3);
   mat2 << 4.0, 5.0, 6.0;
-  BaseArray<double> arr1(mat1);
-  BaseArray<double> arr2(mat2);
+  auto arr1 = std::make_shared<BaseArray<double>>(mat1);
+  auto arr2 = std::make_shared<BaseArray<double>>(mat2);
 
-  std::vector<BaseArray<double>>        arrays = {arr1, arr2};
-  BaseLabelledArrays<BaseArray<double>> labelled_arrays(arrays);
+  BaseLabelledArrays<BaseArray<double>> labelled_arrays;
+  labelled_arrays.append(arr1);
+  labelled_arrays.append(arr2);
 
   EXPECT_EQ(labelled_arrays.get_arrays().size(), 2);
   EXPECT_DOUBLE_EQ(labelled_arrays.get_arrays()[0]->data()(0, 1), 2.0);
