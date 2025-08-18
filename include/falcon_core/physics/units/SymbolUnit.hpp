@@ -167,8 +167,20 @@ class SymbolUnit : public generic::Song {
   std::string str() const { return _symbol; }
   template <class Archive>
   void serialize(Archive &ar) {
-    ar(cereal::base_class<Song>(this), *unit(), _symbol, _name);
+    ar(cereal::base_class<Song>(this), _unit, _symbol, _name);
   }
+  // template <class Archive>
+  // void serialize(Archive& ar) {
+  //   ar(cereal::base_class<Song>(this), _unit, _symbol, _name);
+  //   if (ar.isLoading()) {
+  //     if (!_unit) {
+  //       throw std::runtime_error("Deserialized SymbolUnit has null _unit");
+  //     }
+  //     auto results = this->_find_matching_common_unit();
+  //     _symbol      = results.first;
+  //     _name        = results.second;
+  //   }
+  // }
 
  protected:
   Unit secret_unit = common_units::Meter;
