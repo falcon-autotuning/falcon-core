@@ -71,3 +71,29 @@ TEST(QuantityTest, Power) {
   EXPECT_DOUBLE_EQ(squared->value(), 9.0);
   EXPECT_EQ(squared->unit()->symbol(), "m^2");
 }
+
+#include <cereal/archives/json.hpp>
+#include <cereal/types/memory.hpp>
+#include <sstream>
+
+TEST(QuantityTest, SerializationRoundTrip) {
+  // Create a Quantity of 42 meters
+  auto q = std::make_shared<Quantity>(42.0, std::make_shared<SymbolUnit>(Meter()));
+
+  // Serialize to JSON
+  std::stringstream ss;
+  {
+    cereal::JSONOutputArchive oarchive(ss);
+    oarchive(q);
+  }
+
+  // Deserialize from JSON
+  auto q2 = std::make_shared<Quantity>();
+  {
+    cereal::JSONInputArchive iarchive(ss);
+    iarchive(q2);
+  }
+
+  ASSERT_DOUBLE_EQ(q->value(), q2->value());
+  ASSERT_EQ(q->unit()->symbol(), q2->unit()->symbol());
+}
