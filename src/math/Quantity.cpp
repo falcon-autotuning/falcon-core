@@ -1,12 +1,10 @@
 #include "falcon_core/math/Quantity.hpp"
 
-#include <cmath>
-#include <stdexcept>
-#include <cereal/types/polymorphic.hpp>
-#include "falcon_core/generic/Song.hpp"
+using namespace falcon_core;
+using namespace falcon_core::math;
 
-CEREAL_REGISTER_TYPE(falcon_core::math::Quantity)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::Quantity)
+CEREAL_REGISTER_TYPE(Quantity)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, Quantity)
 
 namespace falcon_core {
 namespace math {

@@ -1,9 +1,10 @@
 #include "falcon_core/math/domains/Domain.hpp"
-#include <cereal/types/polymorphic.hpp>
-#include "falcon_core/generic/Song.hpp"
 
-CEREAL_REGISTER_TYPE(falcon_core::math::domains::Domain)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::domains::Domain)
+using namespace falcon_core;
+using namespace falcon_core::math::domains;
+
+CEREAL_REGISTER_TYPE(Domain)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, Domain)
 
 #include <functional>
 

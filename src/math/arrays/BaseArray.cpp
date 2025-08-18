@@ -1,9 +1,9 @@
 #include "falcon_core/math/arrays/BaseArray.hpp"
-#include <cereal/types/polymorphic.hpp>
-#include "falcon_core/generic/Song.hpp"
 
-// Register for float and double
-CEREAL_REGISTER_TYPE(falcon_core::math::arrays::BaseArray<float>)
-CEREAL_REGISTER_TYPE(falcon_core::math::arrays::BaseArray<double>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::arrays::BaseArray<float>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::arrays::BaseArray<double>)
+using namespace falcon_core;
+using namespace falcon_core::math::arrays;
+
+CEREAL_REGISTER_TYPE(BaseArray<float>)
+CEREAL_REGISTER_TYPE(BaseArray<double>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, BaseArray<float>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, BaseArray<double>)
