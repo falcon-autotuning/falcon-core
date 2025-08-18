@@ -163,9 +163,9 @@ TEST(TestSymbolUnit, Comparison) {
   // Symbol comparison may differ
 }
 
-#include <sstream>
 #include <cereal/archives/json.hpp>
 #include <cereal/types/memory.hpp>
+#include <sstream>
 
 TEST(TestSymbolUnit, SerializationRoundTrip) {
   SymbolUnit m = Meter();
@@ -178,7 +178,7 @@ TEST(TestSymbolUnit, SerializationRoundTrip) {
   }
 
   // Deserialize from JSON
-  SymbolUnit m2;
+  SymbolUnit m2 = Meter();
   {
     cereal::JSONInputArchive iarchive(ss);
     iarchive(m2);
