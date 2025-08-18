@@ -8,11 +8,5 @@
 using namespace falcon_core;
 using namespace falcon_core::math::labelled_arrays;
 
-// Register BaseLabelledArrays<BaseLabelledArray<BaseArray<double>, int>>
-CEREAL_REGISTER_TYPE(
-    BaseLabelledArrays<
-        BaseLabelledArray<falcon_core::math::arrays::BaseArray<double>, int>>)
-
-using BLA = BaseLabelledArrays<
-    BaseLabelledArray<falcon_core::math::arrays::BaseArray<double>, int>>;
-CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, BLA)
+CEREAL_REGISTER_TYPE((BaseLabelledArrays<BaseLabelledArray<falcon_core::math::arrays::BaseArray<double>, int>>))
+CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, (BaseLabelledArrays<BaseLabelledArray<falcon_core::math::arrays::BaseArray<double>, int>>))
