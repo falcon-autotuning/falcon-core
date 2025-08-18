@@ -3,6 +3,8 @@
 using namespace falcon_core;
 using namespace falcon_core::math;
 
+#include <cereal/types/polymorphic.hpp>
+
 CEREAL_REGISTER_TYPE(Point)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, Point)
 
