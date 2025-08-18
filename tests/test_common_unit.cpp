@@ -183,6 +183,33 @@ TEST(TestCommonUnits, GetUnitWithPrefix) {
   ASSERT_DOUBLE_EQ(MW->scale_factor(), 1e6);
 }
 
+#include <cereal/archives/json.hpp>
+#include <cereal/types/memory.hpp>
+#include <sstream>
+
+TEST(TestCommonUnits, SerializationRoundTrip) {
+  // Create a Unit (Meter)
+  UnitSP meter = std::make_shared<Unit>(common_units::Meter);
+
+  // Serialize to JSON
+  std::stringstream ss;
+  {
+    cereal::JSONOutputArchive oarchive(ss);
+    oarchive(meter);
+  }
+
+  // Deserialize from JSON
+  UnitSP meter2 = std::make_shared<Unit>();
+  {
+    cereal::JSONInputArchive iarchive(ss);
+    iarchive(meter2);
+  }
+
+  // Check that the dimensions and scale factor are preserved
+  ASSERT_EQ(meter->dimensions(), meter2->dimensions());
+  ASSERT_DOUBLE_EQ(meter->scale_factor(), meter2->scale_factor());
+}
+
 // Conversion between prefixed units
 TEST(TestCommonUnits, ConversionBetweenPrefixedUnits) {
   // 1 km to m
