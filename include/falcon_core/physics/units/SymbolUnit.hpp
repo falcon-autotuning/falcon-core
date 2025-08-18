@@ -172,7 +172,7 @@ class SymbolUnit : public generic::Song {
 
  protected:
   Unit secret_unit = common_units::Meter;
-  SymbolUnit() : _unit(SP(Unit, secret_unit)), _symbol(""), _name("") {};
+  SymbolUnit() : _unit(nullptr), _symbol(""), _name("") {};
   friend class cereal::access;
 };
 using SymbolUnitSP = std::shared_ptr<SymbolUnit>;

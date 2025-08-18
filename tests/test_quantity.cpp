@@ -94,7 +94,7 @@ TEST(QuantityTest, SerializationRoundTrip) {
     cereal::JSONInputArchive iarchive(ss);
     iarchive(q2);
   }
-
+  ASSERT_TRUE(q2->unit() != nullptr) << "Deserialized unit is null!";
   ASSERT_DOUBLE_EQ(q->value(), q2->value());
   ASSERT_EQ(q->unit()->symbol(), q2->unit()->symbol());
 }

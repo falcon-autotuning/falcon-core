@@ -1,7 +1,7 @@
 #pragma once
 
-#include <memory>
 #include <cereal/types/memory.hpp>
+#include <memory>
 
 #include "falcon_core/generic/Song.hpp"
 

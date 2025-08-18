@@ -1,11 +1,11 @@
 #pragma once
 
+#include <cereal/types/map.hpp>
+#include <cereal/types/memory.hpp>
+
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
-
-#include <cereal/types/map.hpp>
-#include <cereal/types/memory.hpp>
 
 namespace falcon_core {
 namespace math {
@@ -46,7 +46,3 @@ class Point
 };
 }  // namespace math
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(falcon_core::math::Point)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     falcon_core::math::Point)
