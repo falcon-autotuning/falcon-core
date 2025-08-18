@@ -89,8 +89,7 @@ TEST(QuantityTest, SerializationRoundTrip) {
   }
 
   // Deserialize from JSON
-  auto q2 =
-      std::make_shared<Quantity>(0.0, std::make_shared<SymbolUnit>(Meter()));
+  std::shared_ptr<Quantity> q2;
   {
     cereal::JSONInputArchive iarchive(ss);
     iarchive(q2);
