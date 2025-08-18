@@ -88,6 +88,9 @@ TEST(QuantityTest, SerializationRoundTrip) {
     oarchive(q);
   }
 
+  // Print the serialized JSON
+  std::cout << "Serialized JSON:\n" << ss.str() << std::endl;
+
   // Deserialize from JSON
   std::shared_ptr<Quantity> q2;
   {
