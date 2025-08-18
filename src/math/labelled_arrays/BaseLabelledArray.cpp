@@ -1,11 +1,7 @@
 #include "falcon_core/math/labelled_arrays/BaseLabelledArray.hpp"
+#include <cereal/types/polymorphic.hpp>
 
-#include "cereal/types/polymorphic.hpp"
-
-using namespace falcon_core;
-using namespace falcon_core::math::labelled_arrays;
-
-CEREAL_REGISTER_TYPE(BaseLabelledArray<float, int>)
-
-using BLA = BaseLabelledArray<float, int>;
-CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, BLA)
+// Register the actual type used in your test and arrays
+using BLA = falcon_core::math::labelled_arrays::BaseLabelledArray<falcon_core::math::arrays::BaseArray<double>, int>;
+CEREAL_REGISTER_TYPE(BLA)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, BLA)
