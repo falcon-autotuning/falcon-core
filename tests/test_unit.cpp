@@ -163,6 +163,31 @@ TEST(TestSymbolUnit, Comparison) {
   // Symbol comparison may differ
 }
 
+#include <sstream>
+#include <cereal/archives/json.hpp>
+#include <cereal/types/memory.hpp>
+
+TEST(TestSymbolUnit, SerializationRoundTrip) {
+  SymbolUnit m = Meter();
+
+  // Serialize to JSON
+  std::stringstream ss;
+  {
+    cereal::JSONOutputArchive oarchive(ss);
+    oarchive(m);
+  }
+
+  // Deserialize from JSON
+  SymbolUnit m2;
+  {
+    cereal::JSONInputArchive iarchive(ss);
+    iarchive(m2);
+  }
+
+  ASSERT_EQ(m.symbol(), m2.symbol());
+  ASSERT_EQ(m.name(), m2.name());
+}
+
 TEST(TestSymbolUnit, StringRepresentations) {
   SymbolUnit m = Meter();
 
