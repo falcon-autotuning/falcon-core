@@ -33,3 +33,6 @@ class BaseConnections : public std::vector<std::shared_ptr<T>>,
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
+
+CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::BaseConnections<falcon_core::physics::device_structures::BaseConnection>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::physics::device_structures::BaseConnections<falcon_core::physics::device_structures::BaseConnection>)

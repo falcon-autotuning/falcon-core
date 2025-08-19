@@ -30,3 +30,6 @@ class BarrierGates : public DotGates<T> {
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
+
+CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::BarrierGates<falcon_core::physics::device_structures::BarrierGate>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::physics::device_structures::DotGates<falcon_core::physics::device_structures::DotGate>, falcon_core::physics::device_structures::BarrierGates<falcon_core::physics::device_structures::BarrierGate>)

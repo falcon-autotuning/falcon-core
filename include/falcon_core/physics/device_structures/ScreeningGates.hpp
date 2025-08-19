@@ -31,3 +31,6 @@ class ScreeningGates : public Gates<T> {
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
+
+CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::ScreeningGates<falcon_core::physics::device_structures::ScreeningGate>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::physics::device_structures::Gates<falcon_core::physics::device_structures::Gate>, falcon_core::physics::device_structures::ScreeningGates<falcon_core::physics::device_structures::ScreeningGate>)
