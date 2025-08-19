@@ -39,3 +39,9 @@ class GateRelations : public std::map<std::shared_ptr<K>, std::shared_ptr<V>>,
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
+
+using GR = falcon_core::physics::device_structures::GateRelations<
+    falcon_core::physics::device_structures::Gate,
+    falcon_core::physics::device_structures::Gates<falcon_core::physics::device_structures::Gate>>;
+CEREAL_REGISTER_TYPE(GR)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, GR)

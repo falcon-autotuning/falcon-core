@@ -87,6 +87,3 @@ std::shared_ptr<Quantity> Quantity::abs() const {
 
 using namespace falcon_core;
 using namespace falcon_core::math;
-
-CEREAL_REGISTER_TYPE(Quantity)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, Quantity)

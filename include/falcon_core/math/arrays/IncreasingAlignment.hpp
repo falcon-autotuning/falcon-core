@@ -20,3 +20,8 @@ class IncreasingAlignment : public generic::Song {
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core
+
+using namespace falcon_core::math::arrays;
+CEREAL_REGISTER_TYPE(falcon_core::math::arrays::IncreasingAlignment)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song, falcon_core::math::arrays::IncreasingAlignment)

@@ -23,7 +23,7 @@ class Identity : public AnalyticFunction {
 }  // namespace math
 }  // namespace falcon_core
 
+using namespace falcon_core::math::analytic_functions;
 CEREAL_REGISTER_TYPE(falcon_core::math::analytic_functions::Identity)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::math::analytic_functions::AnalyticFunction,
-    falcon_core::math::analytic_functions::Identity)
+    falcon_core::generic::Song, falcon_core::math::analytic_functions::Identity)

@@ -7,13 +7,20 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # --- Dependencies ---
 include(FetchContent)
 function(cpp_tests)
-  # This function is used to set up C++ tests.
-  # It is called at the end of the CMakeLists.txt file.
+  # This function is used to set up C++ tests. It is called at the end of the
+  # CMakeLists.txt file.
   message(STATUS "Setting up C++ tests")
   enable_testing()
 
-  add_executable(run_tests tests/test_unit.cpp tests/test_common_unit.cpp
-                          tests/test_song.cpp)
+  add_executable(
+    run_tests
+    tests/test_unit.cpp
+    tests/test_common_unit.cpp
+    tests/test_song.cpp
+    tests/test_device_structures.cpp
+    tests/test_arrays.cpp
+    tests/test_labelled_arrays.cpp
+    tests/test_quantity.cpp)
 
   target_link_libraries(run_tests GTest::gtest_main falcon_core_cpp)
 
@@ -97,9 +104,13 @@ function(clean_directory_path DIRECTORY_PATH OUT_VAR)
     string(REGEX REPLACE "^/+" "" CLEANED_DIR "${CLEANED_DIR}")
     # Add trailing slash
     set(CLEANED_DIR "${CLEANED_DIR}/")
-    set(${OUT_VAR} "${CLEANED_DIR}" PARENT_SCOPE)
+    set(${OUT_VAR}
+        "${CLEANED_DIR}"
+        PARENT_SCOPE)
   else()
-    set(${OUT_VAR} "/" PARENT_SCOPE)
+    set(${OUT_VAR}
+        "/"
+        PARENT_SCOPE)
   endif()
 endfunction()
 
@@ -113,7 +124,9 @@ endfunction()
 function(remove_file_extension FILE_PATH OUT_VAR)
   # Removes the extension from FILE_PATH and stores the result in OUT_VAR.
   string(REGEX REPLACE "\\.[^.]*$" "" NO_EXT "${FILE_PATH}")
-  set(${OUT_VAR} "${NO_EXT}" PARENT_SCOPE)
+  set(${OUT_VAR}
+      "${NO_EXT}"
+      PARENT_SCOPE)
 endfunction()
 
 function(falcon_process_swig_module SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE DIRECTORY_PATH)
@@ -167,28 +180,23 @@ function(falcon_process_swig_module SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE DIR
   swig_add_library(
     ${SWIG_MODULE_NAME}
     LANGUAGE python
-    SOURCES ${BUILD_I_FILE}
-  )
+    SOURCES ${BUILD_I_FILE})
 
   set_target_properties(
     ${SWIG_MODULE_NAME}
-    PROPERTIES
-      LIBRARY_OUTPUT_DIRECTORY ${PYTHON_PACKAGE_DIR}
-      PREFIX "_"
-      SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE
-      LINKER_LANGUAGE CXX
-  )
+    PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PYTHON_PACKAGE_DIR}
+               PREFIX "_"
+               SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE
+               LINKER_LANGUAGE CXX)
 
   target_include_directories(
     ${SWIG_MODULE_NAME}
     PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include"
-            "${CMAKE_CURRENT_SOURCE_DIR}/build/swig"
-            ${Python3_INCLUDE_DIRS}
-            "${SWIG_LIB_DIR}/python"
-            ${NUMPY_INCLUDE_DIR}
-  )
+            "${CMAKE_CURRENT_SOURCE_DIR}/build/swig" ${Python3_INCLUDE_DIRS}
+            "${SWIG_LIB_DIR}/python" ${NUMPY_INCLUDE_DIR})
 
-  target_link_libraries(${SWIG_MODULE_NAME} PRIVATE Python3::Python falcon_core_cpp)
+  target_link_libraries(${SWIG_MODULE_NAME} PRIVATE Python3::Python
+                                                    falcon_core_cpp)
   message(STATUS "Finished processing ${SUBMODULE_NAME}")
 endfunction()
 
