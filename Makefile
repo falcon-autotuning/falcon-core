@@ -4,7 +4,7 @@
 
 # Variables
 BUILD_DIR := build
-OUT_PYTHON_DIR := src/falcon_core_gen
+OUT_PYTHON_DIR := src/falcon_core
 
 # Default target: build the project
 all: build

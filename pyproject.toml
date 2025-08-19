@@ -9,17 +9,13 @@ readme = "README.md"
 requires-python = ">=3.13"
 license = "MIT"
 classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Science/Research",
-    "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.13",
-    "Topic :: Scientific/Engineering",
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering",
 ]
-dependencies = [
-  "numpy>=2.0.0",
-  "scipy>=1.11.2",
-  "h5py==3.13.0",
-]
+dependencies = ["numpy>=2.0.0", "scipy>=1.11.2", "h5py==3.13.0"]
 dynamic = ["version"]
 
 [project.optional-dependencies]
@@ -28,7 +24,7 @@ test = ["pytest==8.2.1", "pytest-xdist==3.6.1"]
 [tool.setuptools_scm]
 version_scheme = "post-release"
 [tool.coverage.run]
-omit = ["src/falcon/__init__.py", "*/__init__.py"]
+omit = ["src/falcon_core/__init__.py", "*/__init__.py"]
 [tool.coverage.report]
 exclude_lines = ["pragma: no cover", "if type_checking:"]
 
@@ -56,7 +52,7 @@ filterwarnings = [
 
 [tool.setuptools]
 packages = ["falcon_core"]
-package-dir = {"" = "src"}
+package-dir = { "" = "src" }
 include-package-data = true
 
 [tool.setuptools.package-data]
