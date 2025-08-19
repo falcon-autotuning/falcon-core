@@ -12,8 +12,11 @@ function(cpp_tests)
   message(STATUS "Setting up C++ tests")
   enable_testing()
 
-  add_executable(run_tests tests/test_unit.cpp tests/test_common_unit.cpp
-                           tests/test_song.cpp)
+  add_executable(
+    run_tests
+    tests/test_unit.cpp tests/test_common_unit.cpp tests/test_song.cpp
+    tests/test_device_structures.cpp tests/test_arrays.cpp
+    tests/test_labelled_arrays.cpp)
 
   target_link_libraries(run_tests GTest::gtest_main falcon_core_cpp)
 

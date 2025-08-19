@@ -24,6 +24,9 @@ class ReservoirGate : public Gate {
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
-
+#ifndef SWIG
 CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::ReservoirGate)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::physics::device_structures::Gate, falcon_core::physics::device_structures::ReservoirGate)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::physics::device_structures::Gate,
+    falcon_core::physics::device_structures::ReservoirGate)
+#endif

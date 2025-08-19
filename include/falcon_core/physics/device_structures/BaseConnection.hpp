@@ -9,13 +9,13 @@ class BaseConnection : public generic::Song {
   std::string _name;
 
  public:
-   bool operator<(const BaseConnection& other) const {
-       return _name < other._name; // Compare based on name
-   }
+  bool operator<(const BaseConnection& other) const {
+    return _name < other._name;  // Compare based on name
+  }
   BaseConnection(std::string name) : _name(std::move(name)) {}
   std::string name() const { return _name; }
   template <class Archive>
-  void serialize(Archive &ar) {
+  void serialize(Archive& ar) {
     ar(cereal::base_class<Song>(this), _name);
   }
 
@@ -27,5 +27,9 @@ class BaseConnection : public generic::Song {
 }  // namespace physics
 }  // namespace falcon_core
 
+#ifndef SWIG
 CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::BaseConnection)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::physics::device_structures::BaseConnection)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::physics::device_structures::BaseConnection)
+#endif

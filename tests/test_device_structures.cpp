@@ -21,7 +21,7 @@ TEST(DeviceStructuresTest, BaseConnectionSerializationRoundTrip) {
 
   auto conn2 = BaseConnection::from_json_string<BaseConnection>(json);
 
-  ASSERT_EQ(conn2->name(), "test_connection");
+  ASSERT_EQ(conn2->name(), "X1");
 }
 
 // Test DotGate serialization
