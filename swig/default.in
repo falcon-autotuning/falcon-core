@@ -1,0 +1,8 @@
+%{
+#include "@HEADER_PATH@"
+%}
+
+%include "@HEADER_PATH@"
+%include "add_song_deserializers.i"
+%add_song_deserializers(@CPP_CLASS@);
+%module(package="@PACKAGE_TREE") @CLASS_NAME@

@@ -4,6 +4,7 @@
 
 # Variables
 BUILD_DIR := build
+OUT_PYTHON_DIR := src/falcon_core_gen
 
 # Default target: build the project
 all: build
@@ -13,6 +14,7 @@ all: build
 build:
 	@echo "--- Configuring and Building C++ Extension ---"
 	@mkdir -p $(BUILD_DIR)
+	@mkdir -p $(OUT_PYTHON_DIR)
 	@cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON . -S . -B $(BUILD_DIR)
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
 	@ninja -C $(BUILD_DIR)
@@ -32,7 +34,7 @@ test: build
 clean:
 	@echo "--- Cleaning build directory and compiled extension ---"
 	@rm -rf $(BUILD_DIR)
-	@rm -f src/falcon_core/_falcon_core*.so src/falcon_core/falcon_core.py
+	@rm -rf $(OUT_PYTHON_DIR)
 
 test-make-cpp:
 	@gcc
