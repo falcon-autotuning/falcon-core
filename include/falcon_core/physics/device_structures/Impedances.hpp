@@ -23,11 +23,11 @@ class Impedances : public generic::Song {
   Impedances() = default;
 
   // Forwarding methods
-  void push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }
+  void   push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }
   size_t size() const { return _items.size(); }
   std::shared_ptr<T> at(size_t idx) const { return _items.at(idx); }
   const std::vector<std::shared_ptr<T>>& items() const { return _items; }
-  std::vector<std::shared_ptr<T>>& items() { return _items; }
+  std::vector<std::shared_ptr<T>>&       items() { return _items; }
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -41,6 +41,8 @@ class Impedances : public generic::Song {
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
+using namespace falcon_core::physics::device_structures;
 
-CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Impedances<falcon_core::physics::device_structures::Impedance>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::physics::device_structures::Impedances<falcon_core::physics::device_structures::Impedance>)
+CEREAL_REGISTER_TYPE(Impedances<Impedance>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     Impedances<Impedance>)

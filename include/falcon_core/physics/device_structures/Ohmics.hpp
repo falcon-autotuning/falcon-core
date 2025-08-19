@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/BaseConnections.hpp"
 #include "falcon_core/physics/device_structures/Ohmic.hpp"
 namespace falcon_core {
@@ -23,11 +24,11 @@ class Ohmics : public falcon_core::generic::Song {
   Ohmics() = default;
 
   // Forwarding methods
-  void push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }
+  void   push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }
   size_t size() const { return _items.size(); }
   std::shared_ptr<T> at(size_t idx) const { return _items.at(idx); }
   const std::vector<std::shared_ptr<T>>& items() const { return _items; }
-  std::vector<std::shared_ptr<T>>& items() { return _items; }
+  std::vector<std::shared_ptr<T>>&       items() { return _items; }
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -42,5 +43,7 @@ class Ohmics : public falcon_core::generic::Song {
 }  // namespace physics
 }  // namespace falcon_core
 
-CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Ohmics<falcon_core::physics::device_structures::Ohmic>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::physics::device_structures::BaseConnections<falcon_core::physics::device_structures::BaseConnection>, falcon_core::physics::device_structures::Ohmics<falcon_core::physics::device_structures::Ohmic>)
+using namespace falcon_core::physics::device_structures;
+
+CEREAL_REGISTER_TYPE(Ohmics<Ohmic>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Ohmics<Ohmic>)

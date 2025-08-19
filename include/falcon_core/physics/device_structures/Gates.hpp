@@ -2,6 +2,7 @@
 
 #include <cereal/archives/json.hpp>
 
+#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/BaseConnections.hpp"
 #include "falcon_core/physics/device_structures/Gate.hpp"
 namespace falcon_core {
@@ -14,7 +15,7 @@ namespace device_structures {
  * Uses composition: contains a vector of shared_ptr<T>.
  */
 template <typename T>
-class Gates : public falcon_core::generic::Song {
+class Gates : public BaseConnections<T> {
   static_assert(std::is_base_of<Gate, T>::value, "T must be derived from Gate");
 
  private:
@@ -24,11 +25,11 @@ class Gates : public falcon_core::generic::Song {
   Gates() = default;
 
   // Forwarding methods
-  void push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }
+  void   push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }
   size_t size() const { return _items.size(); }
   std::shared_ptr<T> at(size_t idx) const { return _items.at(idx); }
   const std::vector<std::shared_ptr<T>>& items() const { return _items; }
-  std::vector<std::shared_ptr<T>>& items() { return _items; }
+  std::vector<std::shared_ptr<T>>&       items() { return _items; }
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -42,11 +43,6 @@ class Gates : public falcon_core::generic::Song {
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Gates<
-                     falcon_core::physics::device_structures::Gate>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::device_structures::BaseConnections<
-        falcon_core::physics::device_structures::BaseConnection>,
-    falcon_core::physics::device_structures::Gates<
-        falcon_core::physics::device_structures::Gate>)
+using namespace falcon_core::physics::device_structures;
+CEREAL_REGISTER_TYPE(Gates<Gate>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Gates<Gate>)
