@@ -24,6 +24,10 @@ class Ohmic : public BaseConnection {
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
+#ifndef SWIG
 
 CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Ohmic)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::physics::device_structures::BaseConnection, falcon_core::physics::device_structures::Ohmic)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::physics::device_structures::BaseConnection,
+    falcon_core::physics::device_structures::Ohmic)
+#endif

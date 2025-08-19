@@ -42,9 +42,11 @@ class ReservoirGates : public Gates<T> {
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
+#ifndef SWIG
 
 using namespace falcon_core::physics::device_structures;
 
 CEREAL_REGISTER_TYPE(ReservoirGates<ReservoirGate>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      ReservoirGates<ReservoirGate>)
+#endif

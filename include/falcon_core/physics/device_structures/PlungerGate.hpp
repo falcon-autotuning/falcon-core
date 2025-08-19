@@ -24,6 +24,10 @@ class PlungerGate : public DotGate {
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
+#ifndef SWIG
 
 CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::PlungerGate)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::physics::device_structures::DotGate, falcon_core::physics::device_structures::PlungerGate)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::physics::device_structures::DotGate,
+    falcon_core::physics::device_structures::PlungerGate)
+#endif

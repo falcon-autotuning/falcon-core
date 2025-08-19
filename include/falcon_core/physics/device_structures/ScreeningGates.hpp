@@ -42,9 +42,11 @@ class ScreeningGates : public Gates<T> {
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
+#ifndef SWIG
 
 using namespace falcon_core::physics::device_structures;
 
 CEREAL_REGISTER_TYPE(ScreeningGates<ScreeningGate>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      ScreeningGates<ScreeningGate>)
+#endif

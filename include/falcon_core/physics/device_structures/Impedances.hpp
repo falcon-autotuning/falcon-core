@@ -42,7 +42,9 @@ class Impedances : public generic::Song {
 }  // namespace physics
 }  // namespace falcon_core
 using namespace falcon_core::physics::device_structures;
+#ifndef SWIG
 
 CEREAL_REGISTER_TYPE(Impedances<Impedance>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      Impedances<Impedance>)
+#endif

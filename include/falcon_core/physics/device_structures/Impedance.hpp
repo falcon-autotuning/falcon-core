@@ -51,6 +51,10 @@ class Impedance : public generic::Song {
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
+#ifndef SWIG
 
 CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Impedance)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::physics::device_structures::Impedance)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::physics::device_structures::Impedance)
+#endif
