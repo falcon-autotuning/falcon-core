@@ -26,8 +26,8 @@ class BaseConnections : public std::vector<std::shared_ptr<T>>,
        cereal::base_class<std::vector<std::shared_ptr<T>>>(this));
   }
 
- protected:
   BaseConnections() = default;  // or initialize _name with a default value
+ protected:
   friend class cereal::access;
 };
 
@@ -37,6 +37,7 @@ class BaseConnections : public std::vector<std::shared_ptr<T>>,
 
 CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::BaseConnections<
                      falcon_core::physics::device_structures::BaseConnection>)
+
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
     falcon_core::physics::device_structures::BaseConnections<
