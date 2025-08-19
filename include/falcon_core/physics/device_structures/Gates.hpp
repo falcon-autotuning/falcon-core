@@ -11,21 +11,31 @@ namespace device_structures {
 /**
  * @brief A serializable vector of Gate pointers, also a Song.
  *
- * Supports all std::vector methods and cereal serialization.
+ * Uses composition: contains a vector of shared_ptr<T>.
  */
 template <typename T>
-class Gates : public BaseConnections<T> {
+class Gates : public falcon_core::generic::Song {
   static_assert(std::is_base_of<Gate, T>::value, "T must be derived from Gate");
 
+ private:
+  std::vector<std::shared_ptr<T>> _items;
+
  public:
-  using BaseConnections<T>::BaseConnections;
+  Gates() = default;
+
+  // Forwarding methods
+  void push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }
+  size_t size() const { return _items.size(); }
+  std::shared_ptr<T> at(size_t idx) const { return _items.at(idx); }
+  const std::vector<std::shared_ptr<T>>& items() const { return _items; }
+  std::vector<std::shared_ptr<T>>& items() { return _items; }
+
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseConnections<T>>(this));
+    ar(cereal::base_class<generic::Song>(this), _items);
   }
 
  protected:
-  Gates() = default;  // or initialize _name with a default value
   friend class cereal::access;
 };
 
