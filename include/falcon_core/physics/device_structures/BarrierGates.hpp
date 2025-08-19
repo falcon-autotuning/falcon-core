@@ -22,9 +22,8 @@ class BarrierGates : public DotGates<T> {
   void serialize(Archive& ar) {
     ar(cereal::base_class<DotGates<T>>(this));
   }
-
- protected:
   BarrierGates() = default;  // or initialize _name with a default value
+ protected:
   friend class cereal::access;
 };
 
