@@ -38,3 +38,7 @@ class CoupledLabelledDomain : public LabelledDomain<T> {
 }  // namespace domains
 }  // namespace math
 }  // namespace falcon_core
+
+using namespace falcon_core::math::domains;
+CEREAL_REGISTER_TYPE(falcon_core::math::domains::CoupledLabelledDomain<int>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::domains::CoupledLabelledDomain<int>)

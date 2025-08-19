@@ -30,6 +30,3 @@ std::shared_ptr<Point> Point::operator+(std::shared_ptr<Point> other) const {
 
 using namespace falcon_core;
 using namespace falcon_core::math;
-
-CEREAL_REGISTER_TYPE(Point)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, Point)

@@ -36,7 +36,6 @@ class LabelledControlArray1D
 }  // namespace math
 }  // namespace falcon_core
 
+using namespace falcon_core::math::labelled_arrays;
 CEREAL_REGISTER_TYPE(falcon_core::math::labelled_arrays::LabelledControlArray1D)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::math::labelled_arrays::LabelledControlArray1D)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::labelled_arrays::LabelledControlArray1D)

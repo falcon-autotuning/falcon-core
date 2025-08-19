@@ -33,3 +33,7 @@ class BaseLabelledArray : public generic::Song {
 }  // namespace labelled_arrays
 }  // namespace math
 }  // namespace falcon_core
+
+using namespace falcon_core::math::labelled_arrays;
+CEREAL_REGISTER_TYPE(falcon_core::math::labelled_arrays::BaseLabelledArray<falcon_core::math::arrays::BaseArray<double>, int>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::labelled_arrays::BaseLabelledArray<falcon_core::math::arrays::BaseArray<double>, int>)
