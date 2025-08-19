@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "falcon_core/generic/Song.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 
 namespace falcon_core {
 namespace instrument_interfaces {
@@ -28,3 +29,14 @@ class Ports : public generic::Song {
 }  // namespace names
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
+#ifndef SWIG
+CEREAL_REGISTER_TYPE(
+    falcon_core::instrument_interfaces::names::Ports<
+        falcon_core::instrument_interfaces::names::InstrumentPort<
+            falcon_core::physics::device_structures::BaseConnection>>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::instrument_interfaces::names::Ports<
+        falcon_core::instrument_interfaces::names::InstrumentPort<
+            falcon_core::physics::device_structures::BaseConnection>>)
+#endif

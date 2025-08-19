@@ -35,8 +35,10 @@ class BaseLabelledArray : public generic::Song {
 }  // namespace math
 }  // namespace falcon_core
 
+#ifndef SWIG
 using namespace falcon_core::math;
 using BLA = labelled_arrays::BaseLabelledArray<arrays::BaseArray<double>, int>;
 
 CEREAL_REGISTER_TYPE(BLA)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, BLA)
+#endif

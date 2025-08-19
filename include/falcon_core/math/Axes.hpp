@@ -2,7 +2,6 @@
 #include <cereal/types/memory.hpp>
 #include <cereal/types/vector.hpp>
 #include <memory>
-#include <stdexcept>
 #include <vector>
 
 #include "falcon_core/generic/Song.hpp"
@@ -24,8 +23,11 @@ class Axes : public generic::Song {
   std::shared_ptr<T>&       at(size_t idx) { return _items.at(idx); }
   const std::vector<std::shared_ptr<T>>& items() const { return _items; }
   std::vector<std::shared_ptr<T>>&       items() { return _items; }
+
+#ifndef SWIG
   const std::shared_ptr<T>& operator[](size_t idx) const { return _items[idx]; }
   std::shared_ptr<T>&       operator[](size_t idx) { return _items[idx]; }
+#endif
 
  private:
   std::vector<std::shared_ptr<T>> _items;
@@ -42,5 +44,7 @@ class Axes : public generic::Song {
 
 using namespace falcon_core::math;
 
+#ifndef SWIG
 CEREAL_REGISTER_TYPE(Axes<double>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Axes<double>)
+#endif

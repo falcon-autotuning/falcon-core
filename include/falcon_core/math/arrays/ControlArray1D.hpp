@@ -10,8 +10,6 @@ namespace arrays {
 
 class ControlArray1D : public ControlArray<double> {
  public:
-  using ControlArray<double>::ControlArray;
-
   ControlArray1D(const typename ControlArray<double>::MatrixType& data)
       : ControlArray<double>(data) {
     if (!this->is_1d()) {
@@ -32,7 +30,9 @@ class ControlArray1D : public ControlArray<double> {
 }  // namespace math
 }  // namespace falcon_core
 
+#ifndef SWIG
 using namespace falcon_core::math::arrays;
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray1D)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::math::arrays::ControlArray1D)
+#endif
