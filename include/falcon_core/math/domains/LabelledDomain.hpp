@@ -1,7 +1,7 @@
 #pragma once
 
-#include <memory>
 #include <cereal/types/memory.hpp>
+#include <memory>
 
 #include "falcon_core/math/domains/Domain.hpp"
 
@@ -32,4 +32,5 @@ class LabelledDomain : public Domain {
 
 using namespace falcon_core::math::domains;
 CEREAL_REGISTER_TYPE(falcon_core::math::domains::LabelledDomain<int>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::domains::LabelledDomain<int>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song, falcon_core::math::domains::LabelledDomain<int>)

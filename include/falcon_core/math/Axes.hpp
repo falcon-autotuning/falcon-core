@@ -1,9 +1,9 @@
 #pragma once
-#include <cereal/types/vector.hpp>
 #include <cereal/types/memory.hpp>
-#include <vector>
+#include <cereal/types/vector.hpp>
 #include <memory>
 #include <stdexcept>
+#include <vector>
 
 #include "falcon_core/generic/Song.hpp"
 
@@ -18,14 +18,14 @@ class Axes : public generic::Song {
 
   // Vector-like methods
   size_t size() const { return _items.size(); }
-  bool empty() const { return _items.empty(); }
-  void push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }
+  bool   empty() const { return _items.empty(); }
+  void   push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }
   const std::shared_ptr<T>& at(size_t idx) const { return _items.at(idx); }
-  std::shared_ptr<T>& at(size_t idx) { return _items.at(idx); }
+  std::shared_ptr<T>&       at(size_t idx) { return _items.at(idx); }
   const std::vector<std::shared_ptr<T>>& items() const { return _items; }
-  std::vector<std::shared_ptr<T>>& items() { return _items; }
+  std::vector<std::shared_ptr<T>>&       items() { return _items; }
   const std::shared_ptr<T>& operator[](size_t idx) const { return _items[idx]; }
-  std::shared_ptr<T>& operator[](size_t idx) { return _items[idx]; }
+  std::shared_ptr<T>&       operator[](size_t idx) { return _items[idx]; }
 
  private:
   std::vector<std::shared_ptr<T>> _items;
@@ -37,9 +37,10 @@ class Axes : public generic::Song {
   }
 };
 
-using namespace falcon_core::math;
-CEREAL_REGISTER_TYPE(Axes<double>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Axes<double>)
-
 }  // namespace math
 }  // namespace falcon_core
+
+using namespace falcon_core::math;
+
+CEREAL_REGISTER_TYPE(Axes<double>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Axes<double>)

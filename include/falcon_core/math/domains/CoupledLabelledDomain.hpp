@@ -1,7 +1,7 @@
 #pragma once
 
-#include <vector>
 #include <cereal/types/vector.hpp>
+#include <vector>
 
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 
@@ -41,4 +41,6 @@ class CoupledLabelledDomain : public LabelledDomain<T> {
 
 using namespace falcon_core::math::domains;
 CEREAL_REGISTER_TYPE(falcon_core::math::domains::CoupledLabelledDomain<int>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::domains::CoupledLabelledDomain<int>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::math::domains::CoupledLabelledDomain<int>)

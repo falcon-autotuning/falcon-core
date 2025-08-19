@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "falcon_core/generic/Song.hpp"
+#include "falcon_core/math/arrays/BaseArray.hpp"
 
 namespace falcon_core {
 namespace math {
@@ -34,6 +35,8 @@ class BaseLabelledArray : public generic::Song {
 }  // namespace math
 }  // namespace falcon_core
 
-using namespace falcon_core::math::labelled_arrays;
-CEREAL_REGISTER_TYPE(falcon_core::math::labelled_arrays::BaseLabelledArray<falcon_core::math::arrays::BaseArray<double>, int>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::labelled_arrays::BaseLabelledArray<falcon_core::math::arrays::BaseArray<double>, int>)
+using namespace falcon_core::math;
+using BLA = labelled_arrays::BaseLabelledArray<arrays::BaseArray<double>, int>;
+
+CEREAL_REGISTER_TYPE(BLA)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, BLA)

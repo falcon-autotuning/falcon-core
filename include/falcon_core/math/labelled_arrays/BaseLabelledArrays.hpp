@@ -1,9 +1,9 @@
 #pragma once
 
-#include <memory>
-#include <vector>
 #include <cereal/types/memory.hpp>
 #include <cereal/types/vector.hpp>
+#include <memory>
+#include <vector>
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/labelled_arrays/BaseLabelledArray.hpp"
@@ -30,7 +30,7 @@ class BaseLabelledArrays : public generic::Song {
 
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  void serialize(Archive &ar) {
     ar(cereal::base_class<generic::Song>(this), _arrays);
   }
 };
@@ -38,6 +38,9 @@ class BaseLabelledArrays : public generic::Song {
 }  // namespace math
 }  // namespace falcon_core
 
-using namespace falcon_core::math::labelled_arrays;
-CEREAL_REGISTER_TYPE(falcon_core::math::labelled_arrays::BaseLabelledArrays<falcon_core::math::labelled_arrays::BaseLabelledArray<falcon_core::math::arrays::BaseArray<double>, int>>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::labelled_arrays::BaseLabelledArrays<falcon_core::math::labelled_arrays::BaseLabelledArray<falcon_core::math::arrays::BaseArray<double>, int>>)
+using namespace falcon_core::math;
+using BLA  = labelled_arrays::BaseLabelledArray<arrays::BaseArray<double>, int>;
+using BLAs = falcon_core::math::labelled_arrays::BaseLabelledArrays<BLA>;
+
+CEREAL_REGISTER_TYPE(BLAs)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, BLAs)

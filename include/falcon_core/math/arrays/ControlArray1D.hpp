@@ -34,4 +34,5 @@ class ControlArray1D : public ControlArray<double> {
 
 using namespace falcon_core::math::arrays;
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray1D)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::arrays::ControlArray1D)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::math::arrays::ControlArray1D)
