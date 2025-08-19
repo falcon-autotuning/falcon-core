@@ -93,7 +93,7 @@ function(generate_swig_header_interface HEADER_LIST_VAR OUTPUT_FILE MODULE_NAME)
   file(APPEND "${OUTPUT_FILE}" "%include <std_wstring.i>\n")
   file(APPEND "${OUTPUT_FILE}" "%include <std_vector.i>\n")
   file(APPEND "${OUTPUT_FILE}" "%include <std_map.i>\n")
-  file(APPEND "${OUTPUT_FILE}" "%include <std_pair.i>\n")
+  # file(APPEND "${OUTPUT_FILE}" "%include <std_pair.i>\n")
   file(APPEND "${OUTPUT_FILE}" "%include <std_except.i>\n")
   file(APPEND "${OUTPUT_FILE}" "%include <std_shared_ptr.i>\n")
   file(APPEND "${OUTPUT_FILE}" "%include <std_unique_ptr.i>\n")
@@ -309,10 +309,10 @@ set(FALCON_HEADERS
   # falcon_core/instrument_interfaces/names/InstrumentPort.hpp
   # falcon_core/instrument_interfaces/names/Ports.hpp
   # falcon_core/math/Axes.hpp
-  std::map<falcon_core::physics::device_structures::BaseConnection,double>
+  # std::map<falcon_core::physics::device_structures::BaseConnection,double>
   # falcon_core/math/Point.hpp
   falcon_core/math/Quantity.hpp
-  falcon_core/math/Sign.hpp
+  # falcon_core/math/Sign.hpp
   falcon_core/math/arrays/BaseArray.hpp
   falcon_core::math::arrays::BaseArray<double>
   falcon_core/math/arrays/ControlArray.hpp

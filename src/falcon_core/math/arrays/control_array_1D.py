@@ -799,113 +799,6 @@ class Units(object):
 
 # Register Units in _falcon_core_control_array_1D:
 _falcon_core_control_array_1D.Units_swigregister(Units)
-class std__map_falcon_core__physics__device_structures__BaseConnection_double_(object):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
-
-    def iterator(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__iterator(self)
-    def __iter__(self):
-        return self.iterator()
-
-    def __nonzero__(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double____nonzero__(self)
-
-    def __bool__(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double____bool__(self)
-
-    def __len__(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double____len__(self)
-    def __iter__(self):
-        return self.key_iterator()
-    def iterkeys(self):
-        return self.key_iterator()
-    def itervalues(self):
-        return self.value_iterator()
-    def iteritems(self):
-        return self.iterator()
-
-    def __getitem__(self, key):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double____getitem__(self, key)
-
-    def __delitem__(self, key):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double____delitem__(self, key)
-
-    def has_key(self, key):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__has_key(self, key)
-
-    def keys(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__keys(self)
-
-    def values(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__values(self)
-
-    def items(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__items(self)
-
-    def __contains__(self, key):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double____contains__(self, key)
-
-    def key_iterator(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__key_iterator(self)
-
-    def value_iterator(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__value_iterator(self)
-
-    def __setitem__(self, *args):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double____setitem__(self, *args)
-
-    def asdict(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__asdict(self)
-
-    def __init__(self, *args):
-        _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__swiginit(self, _falcon_core_control_array_1D.new_std__map_falcon_core__physics__device_structures__BaseConnection_double_(*args))
-
-    def empty(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__empty(self)
-
-    def size(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__size(self)
-
-    def swap(self, v):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__swap(self, v)
-
-    def begin(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__begin(self)
-
-    def end(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__end(self)
-
-    def rbegin(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__rbegin(self)
-
-    def rend(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__rend(self)
-
-    def clear(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__clear(self)
-
-    def get_allocator(self):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__get_allocator(self)
-
-    def count(self, x):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__count(self, x)
-
-    def erase(self, *args):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__erase(self, *args)
-
-    def find(self, x):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__find(self, x)
-
-    def lower_bound(self, x):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__lower_bound(self, x)
-
-    def upper_bound(self, x):
-        return _falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__upper_bound(self, x)
-    __swig_destroy__ = _falcon_core_control_array_1D.delete_std__map_falcon_core__physics__device_structures__BaseConnection_double_
-
-# Register std__map_falcon_core__physics__device_structures__BaseConnection_double_ in _falcon_core_control_array_1D:
-_falcon_core_control_array_1D.std__map_falcon_core__physics__device_structures__BaseConnection_double__swigregister(std__map_falcon_core__physics__device_structures__BaseConnection_double_)
 class Quantity(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
@@ -949,8 +842,6 @@ class Quantity(Song):
 
 # Register Quantity in _falcon_core_control_array_1D:
 _falcon_core_control_array_1D.Quantity_swigregister(Quantity)
-Sign_POSITIVE = _falcon_core_control_array_1D.Sign_POSITIVE
-Sign_NEGATIVE = _falcon_core_control_array_1D.Sign_NEGATIVE
 class falcon_core__math__arrays__BaseArray_double_(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
@@ -995,14 +886,4 @@ class ControlArray1D(falcon_core__math__arrays__ControlArray_double_):
 
 # Register ControlArray1D in _falcon_core_control_array_1D:
 _falcon_core_control_array_1D.ControlArray1D_swigregister(ControlArray1D)
-class IncreasingAlignment(Song):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
-
-    def __init__(self):
-        _falcon_core_control_array_1D.IncreasingAlignment_swiginit(self, _falcon_core_control_array_1D.new_IncreasingAlignment())
-    __swig_destroy__ = _falcon_core_control_array_1D.delete_IncreasingAlignment
-
-# Register IncreasingAlignment in _falcon_core_control_array_1D:
-_falcon_core_control_array_1D.IncreasingAlignment_swigregister(IncreasingAlignment)
 
