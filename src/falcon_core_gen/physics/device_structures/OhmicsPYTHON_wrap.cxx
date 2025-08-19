@@ -11,7 +11,7 @@
 #define SWIGPYTHON
 #define SWIG_PYTHON_DIRECTOR_NO_VTABLE
 
-#define SWIG_name    "_falcon_core_gate"
+#define SWIG_name    "_falcon_core_ohmics"
 /* -----------------------------------------------------------------------------
  *  This section contains generic SWIG labels for method/variable
  *  declarations/attributes, and other compiler dependent labels.
@@ -3205,12 +3205,21 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_char swig_types[0]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__Gate swig_types[1]
-#define SWIGTYPE_p_std__istream swig_types[2]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Gate_t swig_types[3]
-#define SWIGTYPE_p_std__string swig_types[4]
-static swig_type_info *swig_types[6];
-static swig_module_info swig_module = {swig_types, 5, 0, 0, 0, 0};
+#define SWIGTYPE_p_falcon_core__generic__Song swig_types[1]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__BarrierGate swig_types[2]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__BaseConnection swig_types[3]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__DotGate swig_types[4]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__Gate swig_types[5]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__Impedance swig_types[6]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__Ohmic swig_types[7]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__PlungerGate swig_types[8]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__ReservoirGate swig_types[9]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__ScreeningGate swig_types[10]
+#define SWIGTYPE_p_std__ostream swig_types[11]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t swig_types[12]
+#define SWIGTYPE_p_std__string swig_types[13]
+static swig_type_info *swig_types[15];
+static swig_module_info swig_module = {swig_types, 14, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3222,13 +3231,13 @@ static swig_module_info swig_module = {swig_types, 5, 0, 0, 0, 0};
 #define SWIG_TypeQuery SWIG_Python_TypeQuery
 
 /*-----------------------------------------------
-              @(target):= _falcon_core_gate.so
+              @(target):= _falcon_core_ohmics.so
   ------------------------------------------------*/
 #if PY_VERSION_HEX >= 0x03000000
-#  define SWIG_init    PyInit__falcon_core_gate
+#  define SWIG_init    PyInit__falcon_core_ohmics
 
 #else
-#  define SWIG_init    init_falcon_core_gate
+#  define SWIG_init    init_falcon_core_ohmics
 
 #endif
 
@@ -3357,17 +3366,383 @@ namespace swig {
 }
 
 
+#include "falcon_core/generic/Song.hpp"
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
 #include "falcon_core/physics/device_structures/Gate.hpp"
+#include "falcon_core/physics/device_structures/DotGate.hpp"
+#include "falcon_core/physics/device_structures/BarrierGate.hpp"
+#include "falcon_core/physics/device_structures/ScreeningGate.hpp"
+#include "falcon_core/physics/device_structures/ReservoirGate.hpp"
+#include "falcon_core/physics/device_structures/PlungerGate.hpp"
+#include "falcon_core/physics/device_structures/Ohmic.hpp"
+#include "falcon_core/physics/device_structures/Impedance.hpp"
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
+#include "falcon_core/physics/device_structures/Gates.hpp"
+#include "falcon_core/physics/device_structures/DotGates.hpp"
+#include "falcon_core/physics/device_structures/BarrierGates.hpp"
+#include "falcon_core/physics/device_structures/ScreeningGates.hpp"
+#include "falcon_core/physics/device_structures/ReservoirGates.hpp"
+#include "falcon_core/physics/device_structures/PlungerGates.hpp"
+#include "falcon_core/physics/device_structures/Ohmics.hpp"
+#include "falcon_core/physics/device_structures/Impedances.hpp"
+#include "falcon_core/physics/device_structures/GateRelations.hpp"
 
-SWIGINTERN std::shared_ptr< falcon_core::physics::device_structures::Gate > falcon_core_physics_device_structures_Gate_from_json_string(std::string const &json){
-        return falcon_core::generic::Song::from_json_string<falcon_core::physics::device_structures::Gate>(json);
+
+SWIGINTERNINLINE PyObject*
+  SWIG_From_bool  (bool value)
+{
+  return PyBool_FromLong(value ? 1 : 0);
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_double (PyObject *obj, double *val)
+{
+  int res = SWIG_TypeError;
+  if (PyFloat_Check(obj)) {
+    if (val) *val = PyFloat_AsDouble(obj);
+    return SWIG_OK;
+#if PY_VERSION_HEX < 0x03000000
+  } else if (PyInt_Check(obj)) {
+    if (val) *val = (double) PyInt_AsLong(obj);
+    return SWIG_OK;
+#endif
+  } else if (PyLong_Check(obj)) {
+    double v = PyLong_AsDouble(obj);
+    if (!PyErr_Occurred()) {
+      if (val) *val = v;
+      return SWIG_OK;
+    } else {
+      PyErr_Clear();
     }
-SWIGINTERN std::shared_ptr< falcon_core::physics::device_structures::Gate > falcon_core_physics_device_structures_Gate_from_json_stream(std::istream &is){
-        return falcon_core::generic::Song::from_json_stream<falcon_core::physics::device_structures::Gate>(is);
+  }
+#ifdef SWIG_PYTHON_CAST_MODE
+  {
+    int dispatch = 0;
+    double d = PyFloat_AsDouble(obj);
+    if (!PyErr_Occurred()) {
+      if (val) *val = d;
+      return SWIG_AddCast(SWIG_OK);
+    } else {
+      PyErr_Clear();
     }
+    if (!dispatch) {
+      long v = PyLong_AsLong(obj);
+      if (!PyErr_Occurred()) {
+	if (val) *val = v;
+	return SWIG_AddCast(SWIG_AddCast(SWIG_OK));
+      } else {
+	PyErr_Clear();
+      }
+    }
+  }
+#endif
+  return res;
+}
+
+
+  #define SWIG_From_double   PyFloat_FromDouble 
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+SWIGINTERN PyObject *_wrap_delete_Song(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::generic::Song *arg1 = (falcon_core::generic::Song *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__generic__Song, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Song" "', argument " "1"" of type '" "falcon_core::generic::Song *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::generic::Song * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Song_to_json_string(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::generic::Song *arg1 = (falcon_core::generic::Song *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::string result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__generic__Song, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Song_to_json_string" "', argument " "1"" of type '" "falcon_core::generic::Song const *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::generic::Song * >(argp1);
+  result = ((falcon_core::generic::Song const *)arg1)->to_json_string();
+  resultobj = SWIG_NewPointerObj((new std::string(result)), SWIGTYPE_p_std__string, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Song_to_json_stream(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::generic::Song *arg1 = (falcon_core::generic::Song *) 0 ;
+  std::ostream *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "Song_to_json_stream", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__generic__Song, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Song_to_json_stream" "', argument " "1"" of type '" "falcon_core::generic::Song const *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::generic::Song * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__ostream,  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Song_to_json_stream" "', argument " "2"" of type '" "std::ostream &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Song_to_json_stream" "', argument " "2"" of type '" "std::ostream &""'"); 
+  }
+  arg2 = reinterpret_cast< std::ostream * >(argp2);
+  ((falcon_core::generic::Song const *)arg1)->to_json_stream(*arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Song___eq__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::generic::Song *arg1 = (falcon_core::generic::Song *) 0 ;
+  falcon_core::generic::Song *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  bool result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "Song___eq__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__generic__Song, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Song___eq__" "', argument " "1"" of type '" "falcon_core::generic::Song const *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::generic::Song * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_falcon_core__generic__Song,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Song___eq__" "', argument " "2"" of type '" "falcon_core::generic::Song const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Song___eq__" "', argument " "2"" of type '" "falcon_core::generic::Song const &""'"); 
+  }
+  arg2 = reinterpret_cast< falcon_core::generic::Song * >(argp2);
+  result = (bool)((falcon_core::generic::Song const *)arg1)->operator ==((falcon_core::generic::Song const &)*arg2);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_Song_repr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::generic::Song *arg1 = (falcon_core::generic::Song *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::string result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__generic__Song, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Song_repr" "', argument " "1"" of type '" "falcon_core::generic::Song const *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::generic::Song * >(argp1);
+  result = ((falcon_core::generic::Song const *)arg1)->repr();
+  resultobj = SWIG_NewPointerObj((new std::string(result)), SWIGTYPE_p_std__string, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_Song(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::generic::Song *result = 0 ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "new_Song", 0, 0, 0)) SWIG_fail;
+  result = (falcon_core::generic::Song *)new falcon_core::generic::Song();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__generic__Song, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Song_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__generic__Song, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *Song_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
+SWIGINTERN PyObject *_wrap_BaseConnection___lt__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::BaseConnection *arg1 = (falcon_core::physics::device_structures::BaseConnection *) 0 ;
+  falcon_core::physics::device_structures::BaseConnection *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  bool result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "BaseConnection___lt__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__BaseConnection, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BaseConnection___lt__" "', argument " "1"" of type '" "falcon_core::physics::device_structures::BaseConnection const *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::BaseConnection * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_falcon_core__physics__device_structures__BaseConnection,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "BaseConnection___lt__" "', argument " "2"" of type '" "falcon_core::physics::device_structures::BaseConnection const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "BaseConnection___lt__" "', argument " "2"" of type '" "falcon_core::physics::device_structures::BaseConnection const &""'"); 
+  }
+  arg2 = reinterpret_cast< falcon_core::physics::device_structures::BaseConnection * >(argp2);
+  result = (bool)((falcon_core::physics::device_structures::BaseConnection const *)arg1)->operator <((falcon_core::physics::device_structures::BaseConnection const &)*arg2);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_BaseConnection(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::string arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  falcon_core::physics::device_structures::BaseConnection *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_BaseConnection" "', argument " "1"" of type '" "std::string""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_BaseConnection" "', argument " "1"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp1);
+      arg1 = *temp;
+      if (SWIG_IsNewObj(res1)) delete temp;
+    }
+  }
+  result = (falcon_core::physics::device_structures::BaseConnection *)new falcon_core::physics::device_structures::BaseConnection(SWIG_STD_MOVE(arg1));
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__physics__device_structures__BaseConnection, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BaseConnection_name(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::BaseConnection *arg1 = (falcon_core::physics::device_structures::BaseConnection *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::string result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__BaseConnection, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BaseConnection_name" "', argument " "1"" of type '" "falcon_core::physics::device_structures::BaseConnection const *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::BaseConnection * >(argp1);
+  result = ((falcon_core::physics::device_structures::BaseConnection const *)arg1)->name();
+  resultobj = SWIG_NewPointerObj((new std::string(result)), SWIGTYPE_p_std__string, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_BaseConnection(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::BaseConnection *arg1 = (falcon_core::physics::device_structures::BaseConnection *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__BaseConnection, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_BaseConnection" "', argument " "1"" of type '" "falcon_core::physics::device_structures::BaseConnection *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::BaseConnection * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *BaseConnection_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__physics__device_structures__BaseConnection, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *BaseConnection_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
 SWIGINTERN PyObject *_wrap_new_Gate(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string arg1 ;
@@ -3394,60 +3769,6 @@ SWIGINTERN PyObject *_wrap_new_Gate(PyObject *self, PyObject *args) {
   }
   result = (falcon_core::physics::device_structures::Gate *)new falcon_core::physics::device_structures::Gate(SWIG_STD_MOVE(arg1));
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__physics__device_structures__Gate, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Gate_from_json_string(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  std::string *arg1 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  SwigValueWrapper< std::shared_ptr< falcon_core::physics::device_structures::Gate > > result;
-  
-  (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Gate_from_json_string" "', argument " "1"" of type '" "std::string const &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Gate_from_json_string" "', argument " "1"" of type '" "std::string const &""'"); 
-  }
-  arg1 = reinterpret_cast< std::string * >(argp1);
-  result = falcon_core_physics_device_structures_Gate_from_json_string((std::string const &)*arg1);
-  resultobj = SWIG_NewPointerObj((new std::shared_ptr< falcon_core::physics::device_structures::Gate >(result)), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Gate_t, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Gate_from_json_stream(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  std::istream *arg1 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  SwigValueWrapper< std::shared_ptr< falcon_core::physics::device_structures::Gate > > result;
-  
-  (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__istream,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Gate_from_json_stream" "', argument " "1"" of type '" "std::istream &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Gate_from_json_stream" "', argument " "1"" of type '" "std::istream &""'"); 
-  }
-  arg1 = reinterpret_cast< std::istream * >(argp1);
-  result = falcon_core_physics_device_structures_Gate_from_json_stream(*arg1);
-  resultobj = SWIG_NewPointerObj((new std::shared_ptr< falcon_core::physics::device_structures::Gate >(result)), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Gate_t, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -3488,44 +3809,741 @@ SWIGINTERN PyObject *Gate_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *arg
   return SWIG_Python_InitShadowInstance(args);
 }
 
+SWIGINTERN PyObject *_wrap_new_DotGate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::string arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  falcon_core::physics::device_structures::DotGate *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_DotGate" "', argument " "1"" of type '" "std::string""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_DotGate" "', argument " "1"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp1);
+      arg1 = *temp;
+      if (SWIG_IsNewObj(res1)) delete temp;
+    }
+  }
+  result = (falcon_core::physics::device_structures::DotGate *)new falcon_core::physics::device_structures::DotGate(SWIG_STD_MOVE(arg1));
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__physics__device_structures__DotGate, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_DotGate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::DotGate *arg1 = (falcon_core::physics::device_structures::DotGate *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__DotGate, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_DotGate" "', argument " "1"" of type '" "falcon_core::physics::device_structures::DotGate *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::DotGate * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *DotGate_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__physics__device_structures__DotGate, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *DotGate_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
+SWIGINTERN PyObject *_wrap_new_BarrierGate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::string arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  falcon_core::physics::device_structures::BarrierGate *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_BarrierGate" "', argument " "1"" of type '" "std::string""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_BarrierGate" "', argument " "1"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp1);
+      arg1 = *temp;
+      if (SWIG_IsNewObj(res1)) delete temp;
+    }
+  }
+  result = (falcon_core::physics::device_structures::BarrierGate *)new falcon_core::physics::device_structures::BarrierGate(SWIG_STD_MOVE(arg1));
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__physics__device_structures__BarrierGate, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_BarrierGate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::BarrierGate *arg1 = (falcon_core::physics::device_structures::BarrierGate *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__BarrierGate, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_BarrierGate" "', argument " "1"" of type '" "falcon_core::physics::device_structures::BarrierGate *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::BarrierGate * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *BarrierGate_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__physics__device_structures__BarrierGate, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *BarrierGate_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
+SWIGINTERN PyObject *_wrap_new_ScreeningGate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::string arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  falcon_core::physics::device_structures::ScreeningGate *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_ScreeningGate" "', argument " "1"" of type '" "std::string""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_ScreeningGate" "', argument " "1"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp1);
+      arg1 = *temp;
+      if (SWIG_IsNewObj(res1)) delete temp;
+    }
+  }
+  result = (falcon_core::physics::device_structures::ScreeningGate *)new falcon_core::physics::device_structures::ScreeningGate(SWIG_STD_MOVE(arg1));
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__physics__device_structures__ScreeningGate, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_ScreeningGate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::ScreeningGate *arg1 = (falcon_core::physics::device_structures::ScreeningGate *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__ScreeningGate, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_ScreeningGate" "', argument " "1"" of type '" "falcon_core::physics::device_structures::ScreeningGate *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::ScreeningGate * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *ScreeningGate_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__physics__device_structures__ScreeningGate, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *ScreeningGate_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
+SWIGINTERN PyObject *_wrap_new_ReservoirGate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::string arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  falcon_core::physics::device_structures::ReservoirGate *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_ReservoirGate" "', argument " "1"" of type '" "std::string""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_ReservoirGate" "', argument " "1"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp1);
+      arg1 = *temp;
+      if (SWIG_IsNewObj(res1)) delete temp;
+    }
+  }
+  result = (falcon_core::physics::device_structures::ReservoirGate *)new falcon_core::physics::device_structures::ReservoirGate(SWIG_STD_MOVE(arg1));
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__physics__device_structures__ReservoirGate, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_ReservoirGate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::ReservoirGate *arg1 = (falcon_core::physics::device_structures::ReservoirGate *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__ReservoirGate, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_ReservoirGate" "', argument " "1"" of type '" "falcon_core::physics::device_structures::ReservoirGate *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::ReservoirGate * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *ReservoirGate_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__physics__device_structures__ReservoirGate, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *ReservoirGate_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
+SWIGINTERN PyObject *_wrap_new_PlungerGate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::string arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  falcon_core::physics::device_structures::PlungerGate *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_PlungerGate" "', argument " "1"" of type '" "std::string""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_PlungerGate" "', argument " "1"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp1);
+      arg1 = *temp;
+      if (SWIG_IsNewObj(res1)) delete temp;
+    }
+  }
+  result = (falcon_core::physics::device_structures::PlungerGate *)new falcon_core::physics::device_structures::PlungerGate(SWIG_STD_MOVE(arg1));
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__physics__device_structures__PlungerGate, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_PlungerGate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::PlungerGate *arg1 = (falcon_core::physics::device_structures::PlungerGate *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__PlungerGate, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_PlungerGate" "', argument " "1"" of type '" "falcon_core::physics::device_structures::PlungerGate *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::PlungerGate * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *PlungerGate_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__physics__device_structures__PlungerGate, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *PlungerGate_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
+SWIGINTERN PyObject *_wrap_new_Ohmic(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::string arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  falcon_core::physics::device_structures::Ohmic *result = 0 ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Ohmic" "', argument " "1"" of type '" "std::string""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_Ohmic" "', argument " "1"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp1);
+      arg1 = *temp;
+      if (SWIG_IsNewObj(res1)) delete temp;
+    }
+  }
+  result = (falcon_core::physics::device_structures::Ohmic *)new falcon_core::physics::device_structures::Ohmic(SWIG_STD_MOVE(arg1));
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__physics__device_structures__Ohmic, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_Ohmic(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::Ohmic *arg1 = (falcon_core::physics::device_structures::Ohmic *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__Ohmic, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Ohmic" "', argument " "1"" of type '" "falcon_core::physics::device_structures::Ohmic *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::Ohmic * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Ohmic_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__physics__device_structures__Ohmic, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *Ohmic_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
+SWIGINTERN PyObject *_wrap_new_Impedance(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  SwigValueWrapper< std::shared_ptr< falcon_core::physics::device_structures::BaseConnection > > arg1 ;
+  double arg2 ;
+  double arg3 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[3] ;
+  falcon_core::physics::device_structures::Impedance *result = 0 ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "new_Impedance", 3, 3, swig_obj)) SWIG_fail;
+  {
+    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t,  0  | 0);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Impedance" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::BaseConnection >""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_Impedance" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::BaseConnection >""'");
+    } else {
+      std::shared_ptr< falcon_core::physics::device_structures::BaseConnection > * temp = reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::BaseConnection > * >(argp1);
+      arg1 = *temp;
+      if (SWIG_IsNewObj(res1)) delete temp;
+    }
+  }
+  ecode2 = SWIG_AsVal_double(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Impedance" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  ecode3 = SWIG_AsVal_double(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Impedance" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
+  result = (falcon_core::physics::device_structures::Impedance *)new falcon_core::physics::device_structures::Impedance(SWIG_STD_MOVE(arg1),arg2,arg3);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__physics__device_structures__Impedance, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Impedance_connection(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::Impedance *arg1 = (falcon_core::physics::device_structures::Impedance *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  SwigValueWrapper< std::shared_ptr< falcon_core::physics::device_structures::BaseConnection > > result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__Impedance, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Impedance_connection" "', argument " "1"" of type '" "falcon_core::physics::device_structures::Impedance const *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::Impedance * >(argp1);
+  result = ((falcon_core::physics::device_structures::Impedance const *)arg1)->connection();
+  resultobj = SWIG_NewPointerObj((new std::shared_ptr< falcon_core::physics::device_structures::BaseConnection >(result)), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Impedance_resistance(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::Impedance *arg1 = (falcon_core::physics::device_structures::Impedance *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  double result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__Impedance, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Impedance_resistance" "', argument " "1"" of type '" "falcon_core::physics::device_structures::Impedance const *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::Impedance * >(argp1);
+  result = (double)((falcon_core::physics::device_structures::Impedance const *)arg1)->resistance();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Impedance_capacitance(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::Impedance *arg1 = (falcon_core::physics::device_structures::Impedance *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  double result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__Impedance, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Impedance_capacitance" "', argument " "1"" of type '" "falcon_core::physics::device_structures::Impedance const *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::Impedance * >(argp1);
+  result = (double)((falcon_core::physics::device_structures::Impedance const *)arg1)->capacitance();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_Impedance(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::Impedance *arg1 = (falcon_core::physics::device_structures::Impedance *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__Impedance, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Impedance" "', argument " "1"" of type '" "falcon_core::physics::device_structures::Impedance *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::Impedance * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Impedance_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__physics__device_structures__Impedance, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *Impedance_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
 static PyMethodDef SwigMethods[] = {
+	 { "delete_Song", _wrap_delete_Song, METH_O, NULL},
+	 { "Song_to_json_string", _wrap_Song_to_json_string, METH_O, NULL},
+	 { "Song_to_json_stream", _wrap_Song_to_json_stream, METH_VARARGS, NULL},
+	 { "Song___eq__", _wrap_Song___eq__, METH_VARARGS, NULL},
+	 { "Song_repr", _wrap_Song_repr, METH_O, NULL},
+	 { "new_Song", _wrap_new_Song, METH_NOARGS, NULL},
+	 { "Song_swigregister", Song_swigregister, METH_O, NULL},
+	 { "Song_swiginit", Song_swiginit, METH_VARARGS, NULL},
+	 { "BaseConnection___lt__", _wrap_BaseConnection___lt__, METH_VARARGS, NULL},
+	 { "new_BaseConnection", _wrap_new_BaseConnection, METH_O, NULL},
+	 { "BaseConnection_name", _wrap_BaseConnection_name, METH_O, NULL},
+	 { "delete_BaseConnection", _wrap_delete_BaseConnection, METH_O, NULL},
+	 { "BaseConnection_swigregister", BaseConnection_swigregister, METH_O, NULL},
+	 { "BaseConnection_swiginit", BaseConnection_swiginit, METH_VARARGS, NULL},
 	 { "new_Gate", _wrap_new_Gate, METH_O, NULL},
-	 { "Gate_from_json_string", _wrap_Gate_from_json_string, METH_O, NULL},
-	 { "Gate_from_json_stream", _wrap_Gate_from_json_stream, METH_O, NULL},
 	 { "delete_Gate", _wrap_delete_Gate, METH_O, NULL},
 	 { "Gate_swigregister", Gate_swigregister, METH_O, NULL},
 	 { "Gate_swiginit", Gate_swiginit, METH_VARARGS, NULL},
+	 { "new_DotGate", _wrap_new_DotGate, METH_O, NULL},
+	 { "delete_DotGate", _wrap_delete_DotGate, METH_O, NULL},
+	 { "DotGate_swigregister", DotGate_swigregister, METH_O, NULL},
+	 { "DotGate_swiginit", DotGate_swiginit, METH_VARARGS, NULL},
+	 { "new_BarrierGate", _wrap_new_BarrierGate, METH_O, NULL},
+	 { "delete_BarrierGate", _wrap_delete_BarrierGate, METH_O, NULL},
+	 { "BarrierGate_swigregister", BarrierGate_swigregister, METH_O, NULL},
+	 { "BarrierGate_swiginit", BarrierGate_swiginit, METH_VARARGS, NULL},
+	 { "new_ScreeningGate", _wrap_new_ScreeningGate, METH_O, NULL},
+	 { "delete_ScreeningGate", _wrap_delete_ScreeningGate, METH_O, NULL},
+	 { "ScreeningGate_swigregister", ScreeningGate_swigregister, METH_O, NULL},
+	 { "ScreeningGate_swiginit", ScreeningGate_swiginit, METH_VARARGS, NULL},
+	 { "new_ReservoirGate", _wrap_new_ReservoirGate, METH_O, NULL},
+	 { "delete_ReservoirGate", _wrap_delete_ReservoirGate, METH_O, NULL},
+	 { "ReservoirGate_swigregister", ReservoirGate_swigregister, METH_O, NULL},
+	 { "ReservoirGate_swiginit", ReservoirGate_swiginit, METH_VARARGS, NULL},
+	 { "new_PlungerGate", _wrap_new_PlungerGate, METH_O, NULL},
+	 { "delete_PlungerGate", _wrap_delete_PlungerGate, METH_O, NULL},
+	 { "PlungerGate_swigregister", PlungerGate_swigregister, METH_O, NULL},
+	 { "PlungerGate_swiginit", PlungerGate_swiginit, METH_VARARGS, NULL},
+	 { "new_Ohmic", _wrap_new_Ohmic, METH_O, NULL},
+	 { "delete_Ohmic", _wrap_delete_Ohmic, METH_O, NULL},
+	 { "Ohmic_swigregister", Ohmic_swigregister, METH_O, NULL},
+	 { "Ohmic_swiginit", Ohmic_swiginit, METH_VARARGS, NULL},
+	 { "new_Impedance", _wrap_new_Impedance, METH_VARARGS, NULL},
+	 { "Impedance_connection", _wrap_Impedance_connection, METH_O, NULL},
+	 { "Impedance_resistance", _wrap_Impedance_resistance, METH_O, NULL},
+	 { "Impedance_capacitance", _wrap_Impedance_capacitance, METH_O, NULL},
+	 { "delete_Impedance", _wrap_delete_Impedance, METH_O, NULL},
+	 { "Impedance_swigregister", Impedance_swigregister, METH_O, NULL},
+	 { "Impedance_swiginit", Impedance_swiginit, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static void *_p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::generic::Song *) (falcon_core::physics::device_structures::BaseConnection *)(falcon_core::physics::device_structures::Gate *)(falcon_core::physics::device_structures::DotGate *) ((falcon_core::physics::device_structures::BarrierGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__BaseConnectionTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::generic::Song *)  ((falcon_core::physics::device_structures::BaseConnection *) x));
+}
+static void *_p_falcon_core__physics__device_structures__DotGateTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::generic::Song *) (falcon_core::physics::device_structures::BaseConnection *)(falcon_core::physics::device_structures::Gate *) ((falcon_core::physics::device_structures::DotGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__GateTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::generic::Song *) (falcon_core::physics::device_structures::BaseConnection *) ((falcon_core::physics::device_structures::Gate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__ImpedanceTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::generic::Song *)  ((falcon_core::physics::device_structures::Impedance *) x));
+}
+static void *_p_falcon_core__physics__device_structures__OhmicTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::generic::Song *) (falcon_core::physics::device_structures::BaseConnection *) ((falcon_core::physics::device_structures::Ohmic *) x));
+}
+static void *_p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::generic::Song *) (falcon_core::physics::device_structures::BaseConnection *)(falcon_core::physics::device_structures::Gate *)(falcon_core::physics::device_structures::DotGate *) ((falcon_core::physics::device_structures::PlungerGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__ReservoirGateTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::generic::Song *) (falcon_core::physics::device_structures::BaseConnection *)(falcon_core::physics::device_structures::Gate *) ((falcon_core::physics::device_structures::ReservoirGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__ScreeningGateTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::generic::Song *) (falcon_core::physics::device_structures::BaseConnection *)(falcon_core::physics::device_structures::Gate *) ((falcon_core::physics::device_structures::ScreeningGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__physics__device_structures__BaseConnection(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::physics::device_structures::BaseConnection *) (falcon_core::physics::device_structures::Gate *)(falcon_core::physics::device_structures::DotGate *) ((falcon_core::physics::device_structures::BarrierGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__DotGateTo_p_falcon_core__physics__device_structures__BaseConnection(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::physics::device_structures::BaseConnection *) (falcon_core::physics::device_structures::Gate *) ((falcon_core::physics::device_structures::DotGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__GateTo_p_falcon_core__physics__device_structures__BaseConnection(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::physics::device_structures::BaseConnection *)  ((falcon_core::physics::device_structures::Gate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__OhmicTo_p_falcon_core__physics__device_structures__BaseConnection(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::physics::device_structures::BaseConnection *)  ((falcon_core::physics::device_structures::Ohmic *) x));
+}
+static void *_p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__physics__device_structures__BaseConnection(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::physics::device_structures::BaseConnection *) (falcon_core::physics::device_structures::Gate *)(falcon_core::physics::device_structures::DotGate *) ((falcon_core::physics::device_structures::PlungerGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__ReservoirGateTo_p_falcon_core__physics__device_structures__BaseConnection(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::physics::device_structures::BaseConnection *) (falcon_core::physics::device_structures::Gate *) ((falcon_core::physics::device_structures::ReservoirGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__ScreeningGateTo_p_falcon_core__physics__device_structures__BaseConnection(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::physics::device_structures::BaseConnection *) (falcon_core::physics::device_structures::Gate *) ((falcon_core::physics::device_structures::ScreeningGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__physics__device_structures__DotGate(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::physics::device_structures::DotGate *)  ((falcon_core::physics::device_structures::BarrierGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__physics__device_structures__DotGate(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::physics::device_structures::DotGate *)  ((falcon_core::physics::device_structures::PlungerGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__physics__device_structures__Gate(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::physics::device_structures::Gate *) (falcon_core::physics::device_structures::DotGate *) ((falcon_core::physics::device_structures::BarrierGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__DotGateTo_p_falcon_core__physics__device_structures__Gate(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::physics::device_structures::Gate *)  ((falcon_core::physics::device_structures::DotGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__physics__device_structures__Gate(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::physics::device_structures::Gate *) (falcon_core::physics::device_structures::DotGate *) ((falcon_core::physics::device_structures::PlungerGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__ReservoirGateTo_p_falcon_core__physics__device_structures__Gate(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::physics::device_structures::Gate *)  ((falcon_core::physics::device_structures::ReservoirGate *) x));
+}
+static void *_p_falcon_core__physics__device_structures__ScreeningGateTo_p_falcon_core__physics__device_structures__Gate(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::physics::device_structures::Gate *)  ((falcon_core::physics::device_structures::ScreeningGate *) x));
+}
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__generic__Song = {"_p_falcon_core__generic__Song", "falcon_core::generic::Song *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__physics__device_structures__BarrierGate = {"_p_falcon_core__physics__device_structures__BarrierGate", "falcon_core::physics::device_structures::BarrierGate *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__physics__device_structures__BaseConnection = {"_p_falcon_core__physics__device_structures__BaseConnection", "falcon_core::physics::device_structures::BaseConnection *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__physics__device_structures__DotGate = {"_p_falcon_core__physics__device_structures__DotGate", "falcon_core::physics::device_structures::DotGate *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__physics__device_structures__Gate = {"_p_falcon_core__physics__device_structures__Gate", "falcon_core::physics::device_structures::Gate *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__istream = {"_p_std__istream", "std::istream *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__Gate_t = {"_p_std__shared_ptrT_falcon_core__physics__device_structures__Gate_t", "std::shared_ptr< falcon_core::physics::device_structures::Gate > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__physics__device_structures__Impedance = {"_p_falcon_core__physics__device_structures__Impedance", "falcon_core::physics::device_structures::Impedance *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__physics__device_structures__Ohmic = {"_p_falcon_core__physics__device_structures__Ohmic", "falcon_core::physics::device_structures::Ohmic *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__physics__device_structures__PlungerGate = {"_p_falcon_core__physics__device_structures__PlungerGate", "falcon_core::physics::device_structures::PlungerGate *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__physics__device_structures__ReservoirGate = {"_p_falcon_core__physics__device_structures__ReservoirGate", "falcon_core::physics::device_structures::ReservoirGate *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__physics__device_structures__ScreeningGate = {"_p_falcon_core__physics__device_structures__ScreeningGate", "falcon_core::physics::device_structures::ScreeningGate *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__ostream = {"_p_std__ostream", "std::ostream *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t = {"_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t", "std::shared_ptr< falcon_core::physics::device_structures::BaseConnection > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_char,
+  &_swigt__p_falcon_core__generic__Song,
+  &_swigt__p_falcon_core__physics__device_structures__BarrierGate,
+  &_swigt__p_falcon_core__physics__device_structures__BaseConnection,
+  &_swigt__p_falcon_core__physics__device_structures__DotGate,
   &_swigt__p_falcon_core__physics__device_structures__Gate,
-  &_swigt__p_std__istream,
-  &_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__Gate_t,
+  &_swigt__p_falcon_core__physics__device_structures__Impedance,
+  &_swigt__p_falcon_core__physics__device_structures__Ohmic,
+  &_swigt__p_falcon_core__physics__device_structures__PlungerGate,
+  &_swigt__p_falcon_core__physics__device_structures__ReservoirGate,
+  &_swigt__p_falcon_core__physics__device_structures__ScreeningGate,
+  &_swigt__p_std__ostream,
+  &_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t,
   &_swigt__p_std__string,
 };
 
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_falcon_core__physics__device_structures__Gate[] = {  {&_swigt__p_falcon_core__physics__device_structures__Gate, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__istream[] = {  {&_swigt__p_std__istream, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__Gate_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__Gate_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__generic__Song[] = {  {&_swigt__p_falcon_core__generic__Song, 0, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BarrierGate, _p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BaseConnection, _p_falcon_core__physics__device_structures__BaseConnectionTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__DotGate, _p_falcon_core__physics__device_structures__DotGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Gate, _p_falcon_core__physics__device_structures__GateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Impedance, _p_falcon_core__physics__device_structures__ImpedanceTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Ohmic, _p_falcon_core__physics__device_structures__OhmicTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__PlungerGate, _p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ReservoirGate, _p_falcon_core__physics__device_structures__ReservoirGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ScreeningGate, _p_falcon_core__physics__device_structures__ScreeningGateTo_p_falcon_core__generic__Song, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__physics__device_structures__BarrierGate[] = {  {&_swigt__p_falcon_core__physics__device_structures__BarrierGate, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__physics__device_structures__BaseConnection[] = {  {&_swigt__p_falcon_core__physics__device_structures__BaseConnection, 0, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BarrierGate, _p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__DotGate, _p_falcon_core__physics__device_structures__DotGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Gate, _p_falcon_core__physics__device_structures__GateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Ohmic, _p_falcon_core__physics__device_structures__OhmicTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__PlungerGate, _p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ReservoirGate, _p_falcon_core__physics__device_structures__ReservoirGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ScreeningGate, _p_falcon_core__physics__device_structures__ScreeningGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__physics__device_structures__DotGate[] = {  {&_swigt__p_falcon_core__physics__device_structures__DotGate, 0, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BarrierGate, _p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__physics__device_structures__DotGate, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__PlungerGate, _p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__physics__device_structures__DotGate, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__physics__device_structures__Gate[] = {  {&_swigt__p_falcon_core__physics__device_structures__Gate, 0, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BarrierGate, _p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__physics__device_structures__Gate, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__DotGate, _p_falcon_core__physics__device_structures__DotGateTo_p_falcon_core__physics__device_structures__Gate, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__PlungerGate, _p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__physics__device_structures__Gate, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ReservoirGate, _p_falcon_core__physics__device_structures__ReservoirGateTo_p_falcon_core__physics__device_structures__Gate, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ScreeningGate, _p_falcon_core__physics__device_structures__ScreeningGateTo_p_falcon_core__physics__device_structures__Gate, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__physics__device_structures__Impedance[] = {  {&_swigt__p_falcon_core__physics__device_structures__Impedance, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__physics__device_structures__Ohmic[] = {  {&_swigt__p_falcon_core__physics__device_structures__Ohmic, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__physics__device_structures__PlungerGate[] = {  {&_swigt__p_falcon_core__physics__device_structures__PlungerGate, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__physics__device_structures__ReservoirGate[] = {  {&_swigt__p_falcon_core__physics__device_structures__ReservoirGate, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__physics__device_structures__ScreeningGate[] = {  {&_swigt__p_falcon_core__physics__device_structures__ScreeningGate, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__ostream[] = {  {&_swigt__p_std__ostream, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_char,
+  _swigc__p_falcon_core__generic__Song,
+  _swigc__p_falcon_core__physics__device_structures__BarrierGate,
+  _swigc__p_falcon_core__physics__device_structures__BaseConnection,
+  _swigc__p_falcon_core__physics__device_structures__DotGate,
   _swigc__p_falcon_core__physics__device_structures__Gate,
-  _swigc__p_std__istream,
-  _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__Gate_t,
+  _swigc__p_falcon_core__physics__device_structures__Impedance,
+  _swigc__p_falcon_core__physics__device_structures__Ohmic,
+  _swigc__p_falcon_core__physics__device_structures__PlungerGate,
+  _swigc__p_falcon_core__physics__device_structures__ReservoirGate,
+  _swigc__p_falcon_core__physics__device_structures__ScreeningGate,
+  _swigc__p_std__ostream,
+  _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t,
   _swigc__p_std__string,
 };
 

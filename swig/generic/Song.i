@@ -9,5 +9,6 @@
 %ignore falcon_core::generic::Song::from_json_string;                                  
 %ignore falcon_core::generic::Song::from_json_stream;
 %include "add_song_deserializers.i"
+%add_song_deserializers(falcon_core::generic::Song);
 
 
