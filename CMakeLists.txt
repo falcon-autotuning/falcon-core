@@ -86,6 +86,15 @@ function(generate_swig_header_interface HEADER_LIST_VAR OUTPUT_FILE MODULE_NAME)
   endforeach()
   file(APPEND "${OUTPUT_FILE}" "%}\n\n")
 
+  # Include std types
+  file(APPEND "${OUTPUT_FILE}" "%include <std_string.i>}\n")
+  file(APPEND "${OUTPUT_FILE}" "%include <std_wstring.i>}\n")
+  file(APPEND "${OUTPUT_FILE}" "%include <std_vector.i>}\n")
+  file(APPEND "${OUTPUT_FILE}" "%include <std_map.i>}\n")
+  file(APPEND "${OUTPUT_FILE}" "%include <std_pair.i>}\n")
+  file(APPEND "${OUTPUT_FILE}" "%include <std_except.i>}\n")
+  file(APPEND "${OUTPUT_FILE}" "%include <std_shared_ptr.i>}\n")
+  file(APPEND "${OUTPUT_FILE}" "%include <std_unique_ptr.i>}\n")
   # Write the %include lines
   foreach(header ${headers})
     file(APPEND "${OUTPUT_FILE}" "%include \"${header}\"\n")
