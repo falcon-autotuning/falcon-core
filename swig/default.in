@@ -1,4 +1,4 @@
-%module(package="@PACKAGE_TREE") @CLASS_NAME@
+%module(package="@PACKAGE_TREE") @SUBMODULE_NAME@
 
 
 %include "falcon_core_all.i"

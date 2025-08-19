@@ -2,7 +2,7 @@
 #include "falcon_core/generic/Song.hpp"
 %}
 
-%module(package="falcon_core.generic") Song 
+%module(package="falcon_core.generic") song 
 %feature("director") falcon_core::generic::Song;
 %include "falcon_core/generic/Song.hpp"
 
