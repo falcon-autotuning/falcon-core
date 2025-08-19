@@ -28,61 +28,67 @@ function(cpp_tests)
   gtest_discover_tests(run_tests)
 endfunction()
 
-function(swig_modules)
+function(generate_swig_modules SWIG_MODULES_LIST)
   # This function is used to set up SWIG modules.
+  # SWIG_MODULES_LIST: A list of SWIG modules to process.
+  # Each entry in the list should contain the following fields: FIELD_NAMES
+  set(MODULE_LIST "${${SWIG_MODULES_LIST}}")  # Dereference to get the list
 
   set(SWIG_MODULE_NAME "falcon_core")
 
   # Set the output directory for Python package files
-  set(PYTHON_PACKAGE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/src/falcon_core_gen")
+  set(PYTHON_PACKAGE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/src/falcon_core")
   set(TEMPLATE_I_FILE "${CMAKE_CURRENT_SOURCE_DIR}/swig/default.in")
 
   # Set the swig modules for disccovery/generation
-  set(FIELD_NAMES SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE HEADER
-                  DIRECTORY_PATH)
-  set(SWIG_MODULES
-      song
-      Song
-      Song.i
-      Song.hpp
-      generic
-      base_connection
-      BaseConnection
-      BaseConnection.i
-      BaseConnection.hpp
-      physics/device_structures
-      gate
-      Gate
-      Gate.i
-      Gate.hpp
-      physics/device_structures
-      screening_gate
-      ScreeningGate
-      ScreeningGate.i
-      ScreeningGate.hpp
-      physics/device_structures
-      reservoir_gate
-      ReservoirGate
-      ReservoirGate.i
-      ReservoirGate.hpp
-      physics/device_structures)
-  file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/swig/add_song_deserializers.i"
-       DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/build/swig/")
+  set(FIELD_NAMES SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE DIRECTORY_PATH)
 
   list(LENGTH FIELD_NAMES NUM_COLUMNS)
-  list(LENGTH SWIG_MODULES num_entries)
+  list(LENGTH MODULE_LIST num_entries)
   math(EXPR num "${num_entries} / ${NUM_COLUMNS}")
   math(EXPR max "${num} - 1")
+  message(STATUS "Generating SWIG modules for ${num} entries")
   foreach(i RANGE 0 ${max})
     set(ROW_VALUES "")
     math(EXPR LAST_INDEX "${NUM_COLUMNS} - 1")
     foreach(j RANGE 0 ${LAST_INDEX})
       math(EXPR idx "${i} * ${NUM_COLUMNS} + ${j}")
-      list(GET SWIG_MODULES ${idx} value)
+      message(DEBUG "Processing index ${idx}")
+      list(GET MODULE_LIST ${idx} value)
       list(APPEND ROW_VALUES "${value}")
     endforeach()
     # Pass the 4 values directly
+    message(DEBUG "The values for the row ${i} are ${ROW_VALUES}")
     falcon_process_swig_module(${ROW_VALUES})
+  endforeach()
+endfunction()
+
+function(generate_song_deserializers OUT_DIR)
+  # This function generates the add_song_deserializers.i file.
+  file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/swig/add_song_deserializers.i" DESTINATION "${OUT_DIR}")
+endfunction()
+
+function(generate_swig_header_interface HEADER_LIST_VAR OUTPUT_FILE MODULE_NAME)
+  # HEADER_LIST_VAR: name of the variable holding the header list (e.g., falcon_headers)
+  # OUTPUT_FILE: path to write the .i file
+  # MODULE_NAME: SWIG module name
+
+  # Get the list from the variable name
+  set(headers "${${HEADER_LIST_VAR}}")
+
+  # Write the module declaration
+  file(WRITE "${OUTPUT_FILE}" "%module ${MODULE_NAME}\n\n")
+
+  # Write the %{ ... %} block
+  file(APPEND "${OUTPUT_FILE}" "%{\n")
+  foreach(header ${headers})
+    file(APPEND "${OUTPUT_FILE}" "#include \"${header}\"\n")
+  endforeach()
+  file(APPEND "${OUTPUT_FILE}" "%}\n\n")
+
+  # Write the %include lines
+  foreach(header ${headers})
+    file(APPEND "${OUTPUT_FILE}" "%include \"${header}\"\n")
   endforeach()
 endfunction()
 
@@ -123,21 +129,17 @@ function(remove_file_extension FILE_PATH OUT_VAR)
       PARENT_SCOPE)
 endfunction()
 
-function(falcon_process_swig_module SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE
-         HEADER DIRECTORY_PATH)
-  # This function processes a SWIG module for Python bindings. It generates the
-  # necessary files and sets up the target. SUBMODULE_NAME: Name of the
-  # submodule (e.g., "song", "base_connection"). CLASS_NAME: Name of the python
-  # class (e.g., "Song", "BaseConnection"). SWIG_INTERFACE: Name of the the SWIG
-  # interface file (e.g., "Song.i"). HEADER_PATH: Name of the header file (e.g.,
-  # "Song.hpp"). DIRECTORY_PATH: Path to the nested directory for all files
-  # (e.g., "physics/device_structures").
+function(falcon_process_swig_module SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE DIRECTORY_PATH)
+  # This function processes a SWIG module for Python bindings.
+  # It generates the necessary files and sets up the target.
+  # SUBMODULE_NAME: Name of the submodule (e.g., "song", "base_connection").
+  # CLASS_NAME: Name of the python class (e.g., "Song", "BaseConnection").
+  # SWIG_INTERFACE: Name of the the SWIG interface file (e.g., "Song.i").
+  # DIRECTORY_PATH: Path to the nested directory for all files (e.g., "physics/device_structures").
   assert_file_extension("${SWIG_INTERFACE}" "i")
-  assert_file_extension("${HEADER}" "hpp")
-  remove_file_extension("${HEADER}" HEADER_NO_EXT)
+  remove_file_extension("${SWIG_INTERFACE}" C_FILENAME_NO_EXT)
   clean_directory_path(${DIRECTORY_PATH} CLEANED_DIR)
-  set(SUBMODULE_PATH "${CLEANED_DIR}${SUBMODULE_NAME}")
-  set(PYTHON_PACKAGE_DIR "${PYTHON_PACKAGE_ROOT}/${SUBMODULE_PATH}")
+  set(PYTHON_PACKAGE_DIR "${PYTHON_PACKAGE_ROOT}/${DIRECTORY_PATH}")
   set(SWIG_MODULE_NAME "falcon_core_${SUBMODULE_NAME}")
 
   # SWIG interface file logic
@@ -151,16 +153,19 @@ function(falcon_process_swig_module SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE
     file(COPY "${SWIG_SOURCE}" DESTINATION "${BUILD_I_DIR}")
   else()
     message(STATUS "Autogenerating SWIG interface for ${SUBMODULE_NAME}")
-    set(HEADER_PATH_NO_EXT "falcon_core/${CLEANED_DIR}${HEADER_NO_EXT}")
-    string(REPLACE "/" "::" CPP_CLASS "${HEADER_PATH_NO_EXT}")
-    cmake_path(GET HEADER_PATH_NO_EXT PARENT_PATH PACKAGE_DIR)
+    set(FILE_PATH_NO_EXT "falcon_core/${CLEANED_DIR}${C_FILENAME_NO_EXT}")
+    string(REPLACE "/" "::" CPP_CLASS "falcon_core/${CLEANED_DIR}${C_FILENAME_NO_EXT}")
+    cmake_path(GET FILE_PATH_NO_EXT PARENT_PATH PACKAGE_DIR)
     string(REPLACE "/" "." PACKAGE_TREE "${PACKAGE_DIR}")
-    set(HEADER_PATH "${HEADER_PATH_NO_EXT}.hpp")
-    configure_file("${TEMPLATE_I_FILE}" "${BUILD_I_FILE}" @ONLY)
+    configure_file(
+      "${TEMPLATE_I_FILE}"
+      "${BUILD_I_FILE}"
+      @ONLY
+    )
   endif()
 
   # Create package directories and __init__.py files
-  string(REPLACE "/" ";" SUBMODULE_PATH_LIST "${SUBMODULE_PATH}")
+  string(REPLACE "/" ";" SUBMODULE_PATH_LIST "${CLEANED_DIR}")
   set(PACKAGE_PATH "${PYTHON_PACKAGE_ROOT}")
   file(WRITE "${PACKAGE_PATH}/__init__.py" "")
   foreach(PART ${SUBMODULE_PATH_LIST})
@@ -256,8 +261,54 @@ target_include_directories(
          $<INSTALL_INTERFACE:include> ${eigen_SOURCE_DIR}
          ${cereal_SOURCE_DIR}/include)
 
-swig_modules()
+set(FALCON_HEADERS
+  falcon_core/generic/Song.hpp
+  falcon_core/physics/device_structures/BaseConnection.hpp
+  falcon_core/physics/device_structures/Gate.hpp
+  falcon_core/physics/device_structures/DotGate.hpp
+  falcon_core/physics/device_structures/BarrierGate.hpp
+  falcon_core/physics/device_structures/ScreeningGate.hpp
+  falcon_core/physics/device_structures/ReservoirGate.hpp
+  falcon_core/physics/device_structures/PlungerGate.hpp
+  falcon_core/physics/device_structures/Ohmic.hpp
+  falcon_core/physics/device_structures/Impedance.hpp
+  falcon_core/physics/device_structures/BaseConnections.hpp
+  falcon_core/physics/device_structures/Gates.hpp
+  falcon_core/physics/device_structures/DotGates.hpp
+  falcon_core/physics/device_structures/BarrierGates.hpp
+  falcon_core/physics/device_structures/ScreeningGates.hpp
+  falcon_core/physics/device_structures/ReservoirGates.hpp
+  falcon_core/physics/device_structures/PlungerGates.hpp
+  falcon_core/physics/device_structures/Ohmics.hpp
+  falcon_core/physics/device_structures/Impedances.hpp
+  falcon_core/physics/device_structures/GateRelations.hpp
+)
+set(SWIG_MODULES
+    song Song Song.i generic
+    base_connection BaseConnection BaseConnection.i physics/device_structures
+    gate Gate Gate.i physics/device_structures
+    dotgate DotGate DotGate.i physics/device_structures
+    ohmic Ohmic Ohmic.i physics/device_structures
+    barrier_gate BarrierGate BarrierGate.i physics/device_structures
+    plunger_gate PlungerGate PlungerGate.i physics/device_structures
+    screening_gate ScreeningGate ScreeningGate.i physics/device_structures
+    reservoir_gate ReservoirGate ReservoirGate.i physics/device_structures
+    gates Gates Gates.i physics/device_structures
+    dot_gates DotGates DotGates.i physics/device_structures
+    ohmics Ohmics Ohmics.i physics/device_structures
+    barrier_gates BarrierGates BarrierGates.i physics/device_structures
+    plunger_gates PlungerGates PlungerGates.i physics/device_structures
+    reservoir_gates ReservoirGates ReservoirGates.i physics/device_structures
+    screening_gates ScreeningGates ScreeningGates.i physics/device_structures
+    impedance Impedance Impedance.i physics/device_structures
+    impedances Impedances Impedances.i physics/device_structures
+    gate_relations GateRelations GateRelations.i physics/device_structures
+  )
+generate_swig_header_interface(FALCON_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/swig/falcon_core_all.i" "falcon_core_all")
+generate_song_deserializers("${CMAKE_CURRENT_BINARY_DIR}/swig/")
+generate_swig_modules(SWIG_MODULES)
 cpp_tests()
+
 # --- Python Binding Tests ---
 add_test(NAME python_bindings_test
          COMMAND ${Python3_EXECUTABLE}

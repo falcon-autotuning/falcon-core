@@ -1,8 +1,6 @@
-%{
-#include "@HEADER_PATH@"
-%}
+%module(package="@PACKAGE_TREE") @CLASS_NAME@
 
-%include "@HEADER_PATH@"
+
+%include "falcon_core_all.i"
 %include "add_song_deserializers.i"
 %add_song_deserializers(@CPP_CLASS@);
-%module(package="@PACKAGE_TREE") @CLASS_NAME@

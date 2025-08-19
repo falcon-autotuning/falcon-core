@@ -11,7 +11,7 @@
 #define SWIGPYTHON
 #define SWIG_PYTHON_DIRECTOR_NO_VTABLE
 
-#define SWIG_name    "_falcon_core_song"
+#define SWIG_name    "_falcon_core_Song"
 /* -----------------------------------------------------------------------------
  *  This section contains generic SWIG labels for method/variable
  *  declarations/attributes, and other compiler dependent labels.
@@ -3221,13 +3221,13 @@ static swig_module_info swig_module = {swig_types, 4, 0, 0, 0, 0};
 #define SWIG_TypeQuery SWIG_Python_TypeQuery
 
 /*-----------------------------------------------
-              @(target):= _falcon_core_song.so
+              @(target):= _falcon_core_Song.so
   ------------------------------------------------*/
 #if PY_VERSION_HEX >= 0x03000000
-#  define SWIG_init    PyInit__falcon_core_song
+#  define SWIG_init    PyInit__falcon_core_Song
 
 #else
-#  define SWIG_init    init_falcon_core_song
+#  define SWIG_init    init_falcon_core_Song
 
 #endif
 
