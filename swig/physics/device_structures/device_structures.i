@@ -30,7 +30,6 @@
 %shared_ptr(falcon_core::physics::device_structures::BarrierGate);
 %shared_ptr(falcon_core::physics::device_structures::PlungerGate);
 %shared_ptr(falcon_core::physics::device_structures::ReservoirGate);
-%shared_ptr(falcon_core::physics::device_structures::ScreeningGate);
 %shared_ptr(falcon_core::physics::device_structures::BaseConnections);
 %shared_ptr(falcon_core::physics::device_structures::Gates);
 %shared_ptr(falcon_core::physics::device_structures::DotGates);
@@ -50,7 +49,6 @@
 %rename(BarrierGate, pyname="physics.device_structures.BarrierGate") falcon_core::physics::device_structures::BarrierGate;
 %rename(PlungerGate, pyname="physics.device_structures.PlungerGate") falcon_core::physics::device_structures::PlungerGate;
 %rename(ReservoirGate, pyname="physics.device_structures.ReservoirGate") falcon_core::physics::device_structures::ReservoirGate;
-%rename(ScreeningGate, pyname="physics.device_structures.ScreeningGate") falcon_core::physics::device_structures::ScreeningGate;
 %rename(Gates, pyname="physics.device_structures.Gates") falcon_core::physics::device_structures::Gates;
 %rename(DotGates, pyname="physics.device_structures.DotGates") falcon_core::physics::device_structures::DotGates;
 %rename(Ohmics, pyname="physics.device_structures.Ohmics") falcon_core::physics::device_structures::Ohmics;
@@ -89,7 +87,6 @@
 %add_song_deserializers(falcon_core::physics::device_structures::BarrierGate);
 %add_song_deserializers(falcon_core::physics::device_structures::PlungerGate);
 %add_song_deserializers(falcon_core::physics::device_structures::ReservoirGate);
-%add_song_deserializers(falcon_core::physics::device_structures::ScreeningGate);
 %add_song_deserializers(falcon_core::physics::device_structures::Impedance);
 
 
