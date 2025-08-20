@@ -1,6 +1,7 @@
 #pragma once
 
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/physics/device_structures/Ohmic.hpp"
 
 namespace falcon_core {
 namespace instrument_interfaces {
@@ -15,9 +16,9 @@ class Meter : public InstrumentPort<physics::device_structures::Ohmic> {
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<InstrumentPort<physics::device_structures::Ohmic>>(this));
-  }
+  };
 
- private:
+       private:
   friend class cereal::access;
 };
 
