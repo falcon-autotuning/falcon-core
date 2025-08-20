@@ -21,6 +21,17 @@ class Unit : public generic::Song {
        double          offset       = 0.0,
        std::string     prefix       = SI::UNIT_SYMBOL);
 
+  // Utility to clean dimensions: remove zero exponents
+  static void clean_dimensions(TotalDimensions& dims) {
+    for (auto it = dims.begin(); it != dims.end(); ) {
+      if (it->second == 0) {
+        it = dims.erase(it);
+      } else {
+        ++it;
+      }
+    }
+  }
+
   /**
    * @brief The prefix applied to this unit.
    */
@@ -43,19 +54,49 @@ class Unit : public generic::Song {
    * @param other The unit to multiply by.
    * @return A new Unit representing the product of this unit and the other.
    */
-  std::shared_ptr<Unit> operator*(const std::shared_ptr<Unit> other) const;
+  std::shared_ptr<Unit> operator*(const std::shared_ptr<Unit> other) const {
+    TotalDimensions result_dims = this->_dimensions;
+    for (const auto& [dim, exp] : other->_dimensions) {
+      result_dims[dim] += exp;
+    }
+    clean_dimensions(result_dims);
+    return std::make_shared<Unit>(result_dims,
+                                  this->_scale_factor * other->_scale_factor,
+                                  this->_offset + other->_offset,
+                                  this->_prefix);
+  }
   /*
    * @brief Divide this unit by another unit.
    * @param other The unit to divide by.
    * @return A new Unit representing the division of this unit by the other.
    */
-  std::shared_ptr<Unit> operator/(const std::shared_ptr<Unit> other) const;
+  std::shared_ptr<Unit> operator/(const std::shared_ptr<Unit> other) const {
+    TotalDimensions result_dims = this->_dimensions;
+    for (const auto& [dim, exp] : other->_dimensions) {
+      result_dims[dim] -= exp;
+    }
+    clean_dimensions(result_dims);
+    return std::make_shared<Unit>(result_dims,
+                                  this->_scale_factor / other->_scale_factor,
+                                  this->_offset - other->_offset,
+                                  this->_prefix);
+  }
   /*
    * @brief Raise the unit to a power.
    * @param power The exponent to raise the unit to.
    * @return A new Unit raised to the specified power.
    */
-  std::shared_ptr<Unit> operator^(const int power) const;
+  std::shared_ptr<Unit> operator^(const int power) const {
+    TotalDimensions result_dims = this->_dimensions;
+    for (auto& [dim, exp] : result_dims) {
+      exp *= power;
+    }
+    clean_dimensions(result_dims);
+    return std::make_shared<Unit>(result_dims,
+                                  std::pow(this->_scale_factor, power),
+                                  this->_offset * power,
+                                  this->_prefix);
+  }
   /*
    * @brief Apply a prefix to this unit.
    * @param prefix The prefix symbol to apply (e.g. "k" for kilo
@@ -95,4 +136,4 @@ class Unit : public generic::Song {
 using UnitSP = std::shared_ptr<Unit>;
 }  // namespace units
 }  // namespace physics
-};  // namespace falcon_core
+}  // namespace falcon_core
