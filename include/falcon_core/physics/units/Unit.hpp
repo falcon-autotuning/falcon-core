@@ -55,53 +55,19 @@ class Unit : public generic::Song {
    * @param other The unit to multiply by.
    * @return A new Unit representing the product of this unit and the other.
    */
-  std::shared_ptr<Unit> operator*(const std::shared_ptr<Unit> other) const {
-    TotalDimensions result_dims = this->_dimensions;
-    for (auto it = other->_dimensions.begin(); it != other->_dimensions.end(); ++it) {
-      const std::string& dim = it->first;
-      int exp = it->second;
-      result_dims[dim] += exp;
-    }
-    clean_dimensions(result_dims);
-    return std::make_shared<Unit>(result_dims,
-                                  this->_scale_factor * other->_scale_factor,
-                                  this->_offset + other->_offset,
-                                  this->_prefix);
-  }
+  std::shared_ptr<Unit> operator*(const std::shared_ptr<Unit> other) const;
   /*
    * @brief Divide this unit by another unit.
    * @param other The unit to divide by.
    * @return A new Unit representing the division of this unit by the other.
    */
-  std::shared_ptr<Unit> operator/(const std::shared_ptr<Unit> other) const {
-    TotalDimensions result_dims = this->_dimensions;
-    for (auto it = other->_dimensions.begin(); it != other->_dimensions.end(); ++it) {
-      const std::string& dim = it->first;
-      int exp = it->second;
-      result_dims[dim] -= exp;
-    }
-    clean_dimensions(result_dims);
-    return std::make_shared<Unit>(result_dims,
-                                  this->_scale_factor / other->_scale_factor,
-                                  this->_offset - other->_offset,
-                                  this->_prefix);
-  }
+  std::shared_ptr<Unit> operator/(const std::shared_ptr<Unit> other) const;
   /*
    * @brief Raise the unit to a power.
    * @param power The exponent to raise the unit to.
    * @return A new Unit raised to the specified power.
    */
-  std::shared_ptr<Unit> operator^(const int power) const {
-    TotalDimensions result_dims = this->_dimensions;
-    for (auto it = result_dims.begin(); it != result_dims.end(); ++it) {
-      it->second *= power;
-    }
-    clean_dimensions(result_dims);
-    return std::make_shared<Unit>(result_dims,
-                                  std::pow(this->_scale_factor, power),
-                                  this->_offset * power,
-                                  this->_prefix);
-  }
+  std::shared_ptr<Unit> operator^(const int power) const;
   /*
    * @brief Apply a prefix to this unit.
    * @param prefix The prefix symbol to apply (e.g. "k" for kilo
