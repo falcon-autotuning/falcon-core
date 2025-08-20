@@ -41,7 +41,7 @@ bool SymbolUnit::is_compatible_with(const SymbolUnitSP other) const {
 std::pair<std::string, std::string> SymbolUnit::_find_matching_common_unit()
     const {
   for (const auto &triplet : get_unit_symbols()) {
-    if (std::get<0>(triplet).dimensions() == unit()->dimensions()) {
+    if (std::get<0>(triplet)->dimensions() == unit()->dimensions()) {
       return {unit()->prefix() + std::get<1>(triplet),
               unit()->prefix() + std::get<2>(triplet)};
     }
@@ -141,7 +141,7 @@ std::string SymbolUnit::_get_dimension_symbol(std::string dimension) const {
 std::string SymbolUnit::_generate_name() const {
   // Look for a predefined name based on dimensions
   for (const auto &triplet : get_unit_symbols()) {
-    if (std::get<0>(triplet).dimensions() == unit()->dimensions()) {
+    if (std::get<0>(triplet)->dimensions() == unit()->dimensions()) {
       return std::get<1>(triplet);
     }
   }

@@ -9,13 +9,12 @@ namespace names {
 
 class Meter : public InstrumentPort<physics::device_structures::Ohmic> {
  public:
-  using InstrumentPort<physics::device_structures::Ohmic>::InstrumentPort;
-
   Meter() = default;
 
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<InstrumentPort<physics::device_structures::Ohmic>>(this));
+    ar(cereal::base_class<InstrumentPort<physics::device_structures::Ohmic>>(
+        this));
   };
 
  private:

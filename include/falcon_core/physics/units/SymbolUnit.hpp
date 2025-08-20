@@ -5,7 +5,6 @@
 
 #include "falcon_core/Constants.hpp"
 #include "falcon_core/generic/Song.hpp"
-#include "falcon_core/macros.hpp"
 #include "falcon_core/physics/units/CommonUnits.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
 namespace falcon_core {
@@ -38,45 +37,45 @@ class SymbolUnit : public generic::Song {
    */
   std::string _generate_name() const;
 
-  static std::vector<std::tuple<Unit, std::string, std::string>>
+  static std::vector<std::tuple<UnitSP, std::string, std::string>>
   get_unit_symbols() {
-    return std::vector<std::tuple<Unit, std::string, std::string>>{
-        {common_units::Meter, SI::UNIT_SYMBOL_METER, SI::UNIT_NAME_METER},
-        {common_units::Kilogram,
+    return std::vector<std::tuple<UnitSP, std::string, std::string>>{
+        {CommonUnits::Meter, SI::UNIT_SYMBOL_METER, SI::UNIT_NAME_METER},
+        {CommonUnits::Kilogram,
          SI::UNIT_SYMBOL_KILOGRAM,
          SI::UNIT_NAME_KILOGRAM},
-        {common_units::Second, SI::UNIT_SYMBOL_SECOND, SI::UNIT_NAME_SECOND},
-        {common_units::Ampere, SI::UNIT_SYMBOL_AMPERE, SI::UNIT_NAME_AMPERE},
-        {common_units::Kelvin, SI::UNIT_SYMBOL_KELVIN, SI::UNIT_NAME_KELVIN},
-        {common_units::Mole, SI::UNIT_SYMBOL_MOLE, SI::UNIT_NAME_MOLE},
-        {common_units::Candela, SI::UNIT_SYMBOL_CANDELA, SI::UNIT_NAME_CANDELA},
-        {common_units::Hertz, SI::UNIT_SYMBOL_HERTZ, SI::UNIT_NAME_HERTZ},
-        {common_units::Newton, SI::UNIT_SYMBOL_NEWTON, SI::UNIT_NAME_NEWTON},
-        {common_units::Pascal, SI::UNIT_SYMBOL_PASCAL, SI::UNIT_NAME_PASCAL},
-        {common_units::Joule, SI::UNIT_SYMBOL_JOULE, SI::UNIT_NAME_JOULE},
-        {common_units::Watt, SI::UNIT_SYMBOL_WATT, SI::UNIT_NAME_WATT},
-        {common_units::Coulomb, SI::UNIT_SYMBOL_COULOMB, SI::UNIT_NAME_COULOMB},
-        {common_units::Volt, SI::UNIT_SYMBOL_VOLT, SI::UNIT_NAME_VOLT},
-        {common_units::Farad, SI::UNIT_SYMBOL_FARAD, SI::UNIT_NAME_FARAD},
-        {common_units::Ohm, SI::UNIT_SYMBOL_OHM, SI::UNIT_NAME_OHM},
-        {common_units::Siemens, SI::UNIT_SYMBOL_SIEMENS, SI::UNIT_NAME_SIEMENS},
-        {common_units::Weber, SI::UNIT_SYMBOL_WEBER, SI::UNIT_NAME_WEBER},
-        {common_units::Tesla, SI::UNIT_SYMBOL_TESLA, SI::UNIT_NAME_TESLA},
-        {common_units::Henry, SI::UNIT_SYMBOL_HENRY, SI::UNIT_NAME_HENRY},
-        {common_units::Minute, SI::UNIT_SYMBOL_MINUTE, SI::UNIT_NAME_MINUTE},
-        {common_units::Hour, SI::UNIT_SYMBOL_HOUR, SI::UNIT_NAME_HOUR},
-        {common_units::ElectronVolt,
+        {CommonUnits::Second, SI::UNIT_SYMBOL_SECOND, SI::UNIT_NAME_SECOND},
+        {CommonUnits::Ampere, SI::UNIT_SYMBOL_AMPERE, SI::UNIT_NAME_AMPERE},
+        {CommonUnits::Kelvin, SI::UNIT_SYMBOL_KELVIN, SI::UNIT_NAME_KELVIN},
+        {CommonUnits::Mole, SI::UNIT_SYMBOL_MOLE, SI::UNIT_NAME_MOLE},
+        {CommonUnits::Candela, SI::UNIT_SYMBOL_CANDELA, SI::UNIT_NAME_CANDELA},
+        {CommonUnits::Hertz, SI::UNIT_SYMBOL_HERTZ, SI::UNIT_NAME_HERTZ},
+        {CommonUnits::Newton, SI::UNIT_SYMBOL_NEWTON, SI::UNIT_NAME_NEWTON},
+        {CommonUnits::Pascal, SI::UNIT_SYMBOL_PASCAL, SI::UNIT_NAME_PASCAL},
+        {CommonUnits::Joule, SI::UNIT_SYMBOL_JOULE, SI::UNIT_NAME_JOULE},
+        {CommonUnits::Watt, SI::UNIT_SYMBOL_WATT, SI::UNIT_NAME_WATT},
+        {CommonUnits::Coulomb, SI::UNIT_SYMBOL_COULOMB, SI::UNIT_NAME_COULOMB},
+        {CommonUnits::Volt, SI::UNIT_SYMBOL_VOLT, SI::UNIT_NAME_VOLT},
+        {CommonUnits::Farad, SI::UNIT_SYMBOL_FARAD, SI::UNIT_NAME_FARAD},
+        {CommonUnits::Ohm, SI::UNIT_SYMBOL_OHM, SI::UNIT_NAME_OHM},
+        {CommonUnits::Siemens, SI::UNIT_SYMBOL_SIEMENS, SI::UNIT_NAME_SIEMENS},
+        {CommonUnits::Weber, SI::UNIT_SYMBOL_WEBER, SI::UNIT_NAME_WEBER},
+        {CommonUnits::Tesla, SI::UNIT_SYMBOL_TESLA, SI::UNIT_NAME_TESLA},
+        {CommonUnits::Henry, SI::UNIT_SYMBOL_HENRY, SI::UNIT_NAME_HENRY},
+        {CommonUnits::Minute, SI::UNIT_SYMBOL_MINUTE, SI::UNIT_NAME_MINUTE},
+        {CommonUnits::Hour, SI::UNIT_SYMBOL_HOUR, SI::UNIT_NAME_HOUR},
+        {CommonUnits::ElectronVolt,
          SI::UNIT_SYMBOL_ELECTRON_VOLT,
          SI::UNIT_NAME_ELECTRON_VOLT},
-        {common_units::Celsius, SI::UNIT_SYMBOL_CELSIUS, SI::UNIT_NAME_CELSIUS},
-        {common_units::Fahrenheit,
+        {CommonUnits::Celsius, SI::UNIT_SYMBOL_CELSIUS, SI::UNIT_NAME_CELSIUS},
+        {CommonUnits::Fahrenheit,
          SI::UNIT_SYMBOL_FAHRENHEIT,
          SI::UNIT_NAME_FAHRENHEIT},
-        {common_units::Dimensionless,
+        {CommonUnits::Dimensionless,
          SI::UNIT_SYMBOL,
          SI::UNIT_NAME_DIMENSIONLESS},
-        {common_units::Percent, SI::UNIT_SYMBOL_PERCENT, SI::UNIT_NAME_PERCENT},
-        {common_units::Radian, SI::UNIT_SYMBOL_RADIAN, SI::UNIT_NAME_RADIAN},
+        {CommonUnits::Percent, SI::UNIT_SYMBOL_PERCENT, SI::UNIT_NAME_PERCENT},
+        {CommonUnits::Radian, SI::UNIT_SYMBOL_RADIAN, SI::UNIT_NAME_RADIAN},
     };
   }
 

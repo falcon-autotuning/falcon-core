@@ -2,7 +2,6 @@
 
 #include <memory>
 #include <string>
-#include <vector>
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/Instrument.hpp"
@@ -29,13 +28,13 @@ class InstrumentPort : public generic::Song {
 
   InstrumentPort() = default;
 
-  const std::string&        default_name() const { return _default_name; }
-  const std::shared_ptr<T>& pseudo_name() const { return _pseudo_name; }
-  const Instrument&         instrument_type() const { return _instrument_type; }
-  const std::shared_ptr<physics::units::SymbolUnit>& units() const {
+  const std::string        default_name() const { return _default_name; }
+  const std::shared_ptr<T> pseudo_name() const { return _pseudo_name; }
+  const Instrument         instrument_type() const { return _instrument_type; }
+  const std::shared_ptr<physics::units::SymbolUnit> units() const {
     return _units;
   }
-  const std::string& description() const { return _description; }
+  const std::string description() const { return _description; }
 
   template <class Archive>
   void serialize(Archive& ar) {

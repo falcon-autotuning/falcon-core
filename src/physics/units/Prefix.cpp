@@ -58,6 +58,15 @@ const std::map<int, std::string>& Prefix::get_power_to_symbol_map() {
       {SI::YOTTA_EXPONENT, SI::YOTTA_SYMBOL}};
   return power_to_symbol;
 }
+static std::string trim(const std::string& s) {
+  auto wsfront = std::find_if_not(s.begin(), s.end(), [](int c) {
+    return std::isspace(static_cast<unsigned char>(c));
+  });
+  auto wsback  = std::find_if_not(s.rbegin(), s.rend(), [](int c) {
+                  return std::isspace(static_cast<unsigned char>(c));
+                }).base();
+  return (wsback <= wsfront ? std::string() : std::string(wsfront, wsback));
+}
 
 std::string Prefix::get_symbol(int prefix_value) {
   const auto& power_to_symbol = get_power_to_symbol_map();
@@ -72,23 +81,18 @@ std::string Prefix::get_symbol(int prefix_value) {
 
 int Prefix::get_value(std::string prefix_symbol) {
   const auto& symbol_to_power = get_symbol_to_power_map();
+  prefix_symbol               = trim(prefix_symbol);
   if (symbol_to_power.find(prefix_symbol) == symbol_to_power.end()) {
     std::ostringstream oss;
     oss << "Symbol value " << prefix_symbol
-        << " not found in symbol_to_power mapping";
+        << " not found in symbol_to_power mapping: {";
+    for (const auto& kv : symbol_to_power) {
+      oss << kv.first << ": " << kv.second << ", ";
+    }
+    oss << "}";
     throw std::out_of_range(oss.str());
   }
   return symbol_to_power.at(prefix_symbol);
-}
-
-static std::string trim(const std::string& s) {
-  auto wsfront = std::find_if_not(s.begin(), s.end(), [](int c) {
-    return std::isspace(static_cast<unsigned char>(c));
-  });
-  auto wsback  = std::find_if_not(s.rbegin(), s.rend(), [](int c) {
-                  return std::isspace(static_cast<unsigned char>(c));
-                }).base();
-  return (wsback <= wsfront ? std::string() : std::string(wsfront, wsback));
 }
 
 bool Prefix::is_valid(std::string prefix_symbol) {

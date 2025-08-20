@@ -1,6 +1,5 @@
 #pragma once
 
-#include "falcon_core/macros.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
 namespace falcon_core {
