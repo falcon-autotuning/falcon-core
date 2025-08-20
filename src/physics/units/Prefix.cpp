@@ -81,7 +81,18 @@ int Prefix::get_value(std::string prefix_symbol) {
   return symbol_to_power.at(prefix_symbol);
 }
 
+static std::string trim(const std::string& s) {
+  auto wsfront = std::find_if_not(s.begin(), s.end(), [](int c) {
+    return std::isspace(static_cast<unsigned char>(c));
+  });
+  auto wsback  = std::find_if_not(s.rbegin(), s.rend(), [](int c) {
+                  return std::isspace(static_cast<unsigned char>(c));
+                }).base();
+  return (wsback <= wsfront ? std::string() : std::string(wsfront, wsback));
+}
+
 bool Prefix::is_valid(std::string prefix_symbol) {
+  prefix_symbol = trim(prefix_symbol);
   return std::find(std::begin(falcon_core::SI::ALL_PREFIXES),
                    std::end(falcon_core::SI::ALL_PREFIXES),
                    prefix_symbol) != std::end(falcon_core::SI::ALL_PREFIXES);
@@ -109,7 +120,7 @@ std::pair<double, std::string> Prefix::prefix_multiplication(
   }
 
   std::string new_symbol = Prefix::get_symbol(best_exponent);
-  double new_scale_factor =
+  double      new_scale_factor =
       scale_factor *
       std::pow(10.0, (first_power + second_power) - best_exponent);
 

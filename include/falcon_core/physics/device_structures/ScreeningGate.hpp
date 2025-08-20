@@ -21,6 +21,7 @@ class ScreeningGate : public Gate {
 
   friend class cereal::access;
 };
+using ScreeningGateSP = std::shared_ptr<ScreeningGate>;
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

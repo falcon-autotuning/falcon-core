@@ -8,17 +8,17 @@ using namespace falcon_core::physics::units;
 
 TEST(QuantityTest, Construction) {
   auto q1 = std::make_shared<Quantity>(
-      10.0, std::make_shared<SymbolUnit>(Units::Meter()));
+      10.0, std::make_shared<SymbolUnit>(Units::Meter));
   EXPECT_DOUBLE_EQ(q1->value(), 10.0);
   EXPECT_EQ(q1->unit()->symbol(), "m");
 }
 
 TEST(QuantityTest, Addition) {
   auto q1 = std::make_shared<Quantity>(
-      10.0, std::make_shared<SymbolUnit>(Units::Meter()));
+      10.0, std::make_shared<SymbolUnit>(Units::Meter));
   auto q2 = std::make_shared<Quantity>(
-      5.0, std::make_shared<SymbolUnit>(Units::Meter()));
-  auto q_cm = std::make_shared<Quantity>(50.0, Units::Meter().with_prefix("c"));
+      5.0, std::make_shared<SymbolUnit>(Units::Meter));
+  auto q_cm = std::make_shared<Quantity>(50.0, Units::Meter.with_prefix("c"));
 
   auto sum1 = *q1 + q2;
   EXPECT_DOUBLE_EQ(sum1->value(), 15.0);
@@ -31,9 +31,9 @@ TEST(QuantityTest, Addition) {
 
 TEST(QuantityTest, Subtraction) {
   auto q1 = std::make_shared<Quantity>(
-      10.0, std::make_shared<SymbolUnit>(Units::Meter()));
+      10.0, std::make_shared<SymbolUnit>(Units::Meter));
   auto q2 = std::make_shared<Quantity>(
-      5.0, std::make_shared<SymbolUnit>(Units::Meter()));
+      5.0, std::make_shared<SymbolUnit>(Units::Meter));
 
   auto diff = *q1 - q2;
   EXPECT_DOUBLE_EQ(diff->value(), 5.0);
@@ -41,9 +41,9 @@ TEST(QuantityTest, Subtraction) {
 
 TEST(QuantityTest, Multiplication) {
   auto q1 = std::make_shared<Quantity>(
-      10.0, std::make_shared<SymbolUnit>(Units::Meter()));
+      10.0, std::make_shared<SymbolUnit>(Units::Meter));
   auto q2 = std::make_shared<Quantity>(
-      5.0, std::make_shared<SymbolUnit>(Units::Second()));
+      5.0, std::make_shared<SymbolUnit>(Units::Second));
 
   auto product = *q1 * q2;
   EXPECT_DOUBLE_EQ(product->value(), 50.0);
@@ -54,9 +54,9 @@ TEST(QuantityTest, Multiplication) {
 
 TEST(QuantityTest, Division) {
   auto q1 = std::make_shared<Quantity>(
-      10.0, std::make_shared<SymbolUnit>(Units::Meter()));
+      10.0, std::make_shared<SymbolUnit>(Units::Meter));
   auto q2 = std::make_shared<Quantity>(
-      2.0, std::make_shared<SymbolUnit>(Units::Second()));
+      2.0, std::make_shared<SymbolUnit>(Units::Second));
 
   auto quotient = *q1 / q2;
   EXPECT_DOUBLE_EQ(quotient->value(), 5.0);
@@ -65,7 +65,7 @@ TEST(QuantityTest, Division) {
 
 TEST(QuantityTest, Power) {
   auto q1 = std::make_shared<Quantity>(
-      3.0, std::make_shared<SymbolUnit>(Units::Meter()));
+      3.0, std::make_shared<SymbolUnit>(Units::Meter));
 
   auto squared = *q1 ^ 2;
   EXPECT_DOUBLE_EQ(squared->value(), 9.0);
@@ -78,7 +78,7 @@ TEST(QuantityTest, Power) {
 TEST(QuantityTest, SerializationRoundTrip) {
   // Create a Quantity of 42 meters
   auto q = std::make_shared<Quantity>(
-      42.0, std::make_shared<SymbolUnit>(Units::Meter()));
+      42.0, std::make_shared<SymbolUnit>(Units::Meter));
 
   // Serialize to JSON using the class helper
   std::string json = q->to_json_string();

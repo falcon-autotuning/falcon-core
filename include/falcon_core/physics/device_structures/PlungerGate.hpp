@@ -21,6 +21,7 @@ class PlungerGate : public DotGate {
 
   friend class cereal::access;
 };
+using PlungerGateSP = std::shared_ptr<PlungerGate>;
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

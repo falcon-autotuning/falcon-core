@@ -90,8 +90,13 @@ std::shared_ptr<Unit> Unit::operator^(int power) const {
 }
 
 std::shared_ptr<Unit> Unit::with_prefix(const std::string prefix) const {
+  std::ostringstream oss;
+  std::copy(std::begin(falcon_core::SI::ALL_PREFIXES),
+            std::end(falcon_core::SI::ALL_PREFIXES),
+            std::ostream_iterator<std::string>(oss, ", "));
   if (!Prefix::is_valid(prefix)) {
-    throw std::invalid_argument("Invalid prefix: " + prefix);
+    throw std::invalid_argument("Invalid prefix: " + prefix +
+                                ". The valid prefixes are: " + oss.str());
   }
   int    current_prefix_value = Prefix::get_value(this->prefix());
   int    new_prefix_value     = Prefix::get_value(prefix);

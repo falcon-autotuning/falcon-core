@@ -21,6 +21,7 @@ class BarrierGate : public DotGate {
 
   friend class cereal::access;
 };
+using BarrierGateSP = std::shared_ptr<BarrierGate>;
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

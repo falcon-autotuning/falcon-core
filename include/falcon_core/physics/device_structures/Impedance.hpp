@@ -48,6 +48,7 @@ class Impedance : public generic::Song {
   Impedance() = default;  // or initialize _name with a default value
   friend class cereal::access;
 };
+using ImpedenceSP = std::shared_ptr<Impedance>;
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

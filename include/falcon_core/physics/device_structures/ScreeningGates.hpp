@@ -38,7 +38,10 @@ class ScreeningGates : public Gates<T> {
  protected:
   friend class cereal::access;
 };
-
+template <typename T>
+struct ScreeningGatesSP {
+  typedef std::shared_ptr<ScreeningGates<T>> type;
+};
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

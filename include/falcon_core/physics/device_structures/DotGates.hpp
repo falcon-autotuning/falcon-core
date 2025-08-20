@@ -39,7 +39,10 @@ class DotGates : public Gates<T> {
  protected:
   friend class cereal::access;
 };
-
+template <typename T>
+struct DotGatesSP {
+  typedef std::shared_ptr<DotGates<T>> type;
+};
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

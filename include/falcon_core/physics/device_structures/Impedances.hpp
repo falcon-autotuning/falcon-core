@@ -37,7 +37,10 @@ class Impedances : public generic::Song {
  protected:
   friend class cereal::access;
 };
-
+template <typename T>
+struct ImpedancesSP {
+  typedef std::shared_ptr<Impedances<T>> type;
+};
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

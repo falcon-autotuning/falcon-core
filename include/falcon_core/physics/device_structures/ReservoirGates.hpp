@@ -38,7 +38,10 @@ class ReservoirGates : public Gates<T> {
  protected:
   friend class cereal::access;
 };
-
+template <typename T>
+struct ReservoirGatesSP {
+  typedef std::shared_ptr<ReservoirGates<T>> type;
+};
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

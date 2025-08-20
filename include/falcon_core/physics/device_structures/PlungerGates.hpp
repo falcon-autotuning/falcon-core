@@ -38,7 +38,10 @@ class PlungerGates : public DotGates<T> {
  protected:
   friend class cereal::access;
 };
-
+template <typename T>
+struct PlungerGatesSP {
+  typedef std::shared_ptr<PlungerGates<T>> type;
+};
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

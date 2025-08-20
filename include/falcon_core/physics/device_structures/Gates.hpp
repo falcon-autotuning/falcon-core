@@ -39,7 +39,10 @@ class Gates : public BaseConnections<T> {
  protected:
   friend class cereal::access;
 };
-
+template <typename T>
+struct GatesSP {
+  typedef std::shared_ptr<Gates<T>> type;
+};
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

@@ -21,6 +21,7 @@ class Ohmic : public BaseConnection {
 
   friend class cereal::access;
 };
+using OhmicSP = std::shared_ptr<Ohmic>;
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

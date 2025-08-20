@@ -23,6 +23,7 @@ class BaseConnection : public generic::Song {
   BaseConnection() : _name("") {}  // or initialize _name with a default value
   friend class cereal::access;
 };
+using BaseConnectionSP = std::shared_ptr<BaseConnection>;
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

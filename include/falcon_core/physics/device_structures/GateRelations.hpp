@@ -35,7 +35,10 @@ class GateRelations : public std::map<std::shared_ptr<K>, std::shared_ptr<V>>,
   GateRelations() = default;  // or initialize _name with a default value
   friend class cereal::access;
 };
-
+template <typename K, typename V>
+struct GateRelationsSP {
+  typedef std::shared_ptr<GateRelations<K, V>> type;
+};
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

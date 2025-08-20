@@ -21,6 +21,7 @@ class ReservoirGate : public Gate {
 
   friend class cereal::access;
 };
+using ReservoirGateSP = std::shared_ptr<ReservoirGate>;
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

@@ -23,6 +23,7 @@ class DotGate : public Gate {
 
   friend class cereal::access;
 };
+using DotGateSP = std::shared_ptr<DotGate>;
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

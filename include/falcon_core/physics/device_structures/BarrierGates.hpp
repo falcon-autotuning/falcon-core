@@ -37,7 +37,10 @@ class BarrierGates : public DotGates<T> {
  protected:
   friend class cereal::access;
 };
-
+template <typename T>
+struct BarrierGatesSP {
+  typedef std::shared_ptr<BarrierGates<T>> type;
+};
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

@@ -9,9 +9,9 @@ using namespace falcon_core::physics::units;
 #define SPS(...) SP(SymbolUnit, __VA_ARGS__)
 #define SPU(...) SP(Unit, __VA_ARGS__)
 TEST(TestSymbolUnit, Initialization) {
-  SymbolUnit m = Units::Meter();
-  SymbolUnit s = Units::Second();
-  SymbolUnit v = Units::Volt();
+  SymbolUnit m = Units::Meter;
+  SymbolUnit s = Units::Second;
+  SymbolUnit v = Units::Volt;
 
   ASSERT_EQ(m.symbol(), SI::UNIT_SYMBOL_METER);
   ASSERT_EQ(m.name(), SI::UNIT_NAME_METER);
@@ -22,8 +22,8 @@ TEST(TestSymbolUnit, Initialization) {
 }
 
 TEST(TestSymbolUnit, PrefixedUnits) {
-  SymbolUnit mm = Units::MilliMeter();
-  SymbolUnit kV = Units::KiloVolt();
+  SymbolUnit mm = Units::MilliMeter;
+  SymbolUnit kV = Units::KiloVolt;
 
   ASSERT_EQ(mm.symbol(),
             std::string(SI::MILLI_SYMBOL) + std::string(SI::UNIT_SYMBOL_METER));
@@ -31,9 +31,9 @@ TEST(TestSymbolUnit, PrefixedUnits) {
             std::string(SI::KILO_SYMBOL) + std::string(SI::UNIT_SYMBOL_VOLT));
 }
 TEST(TestSymbolUnit, Operations) {
-  SymbolUnitSP m = SPS(Units::Meter());
-  SymbolUnitSP s = SPS(Units::Second());
-  SymbolUnitSP v = SPS(Units::Volt());
+  SymbolUnitSP m = SPS(Units::Meter);
+  SymbolUnitSP s = SPS(Units::Second);
+  SymbolUnitSP v = SPS(Units::Volt);
 
   // Multiplication
   SymbolUnitSP m_times_s = *m * s;
@@ -48,29 +48,29 @@ TEST(TestSymbolUnit, Operations) {
             std::string(SI::UNIT_SYMBOL_METER) + "/" + SI::UNIT_SYMBOL_SECOND);
 
   // More complex operations
-  SymbolUnitSP ohm       = SPS(Units::Ohm());
+  SymbolUnitSP ohm       = SPS(Units::Ohm);
   SymbolUnitSP v_div_ohm = *v / ohm;
   // Adjust this check to your actual dimensions representation
   // ASSERT_EQ(v_div_ohm.unit().dimensions(), ...);
 }
 
 TEST(TestSymbolUnit, EqualityAndCompatibility) {
-  SymbolUnitSP m1 = SPS(Units::Meter());
-  SymbolUnitSP m2 = SPS(Units::Meter());
-  SymbolUnitSP s  = SPS(Units::Second());
+  SymbolUnitSP m1 = SPS(Units::Meter);
+  SymbolUnitSP m2 = SPS(Units::Meter);
+  SymbolUnitSP s  = SPS(Units::Second);
 
   ASSERT_EQ(m1->unit(), m2->unit());
   ASSERT_NE(m1->unit(), s->unit());
 
-  SymbolUnitSP mm = SPS(Units::MilliMeter());
+  SymbolUnitSP mm = SPS(Units::MilliMeter);
   ASSERT_TRUE(m1->is_compatible_with(mm));
   ASSERT_FALSE(m1->is_compatible_with(s));
 }
 
 TEST(TestSymbolUnit, Conversion) {
-  SymbolUnitSP m  = SPS(Units::Meter());
-  SymbolUnitSP mm = SPS(Units::MilliMeter());
-  SymbolUnitSP km = SPS(Units::KiloMeter());
+  SymbolUnitSP m  = SPS(Units::Meter);
+  SymbolUnitSP mm = SPS(Units::MilliMeter);
+  SymbolUnitSP km = SPS(Units::KiloMeter);
 
   ASSERT_NEAR(m->convert_value_to(1.0, mm), 1000.0, 1e-9);
   ASSERT_NEAR(m->convert_value_to(1.0, km), 0.001, 1e-9);
@@ -79,22 +79,22 @@ TEST(TestSymbolUnit, Conversion) {
 }
 
 TEST(TestSymbolUnit, DerivedUnits) {
-  SymbolUnitSP m = SPS(Units::Meter());
-  SymbolUnitSP s = SPS(Units::Second());
-  SymbolUnitSP n = SPS(Units::Newton());
+  SymbolUnitSP m = SPS(Units::Meter);
+  SymbolUnitSP s = SPS(Units::Second);
+  SymbolUnitSP n = SPS(Units::Newton);
 
   SymbolUnitSP m_per_s   = *m / s;
   SymbolUnitSP n_times_m = *n * m;
 
   ASSERT_EQ(m_per_s->symbol(),
             std::string(SI::UNIT_SYMBOL_METER) + "/" + SI::UNIT_SYMBOL_SECOND);
-  ASSERT_EQ(*n_times_m->unit(), *Units::Joule().unit());
+  ASSERT_EQ(*n_times_m->unit(), *Units::Joule.unit());
   ASSERT_EQ(n_times_m->symbol(), SI::UNIT_SYMBOL_JOULE);
 }
 
 TEST(TestSymbolUnit, DimensionlessUnits) {
-  SymbolUnitSP dimensionless = SPS(Units::Dimensionless());
-  SymbolUnitSP percent       = SPS(Units::Percent());
+  SymbolUnitSP dimensionless = SPS(Units::Dimensionless);
+  SymbolUnitSP percent       = SPS(Units::Percent);
 
   // Adjust these checks to your actual dimensions representation
   // ASSERT_TRUE(dimensionless.unit().dimensions().empty());
@@ -104,8 +104,8 @@ TEST(TestSymbolUnit, DimensionlessUnits) {
 }
 
 TEST(TestSymbolUnit, ComplexUnits) {
-  SymbolUnitSP m = SPS(Units::Meter());
-  SymbolUnitSP s = SPS(Units::Second());
+  SymbolUnitSP m = SPS(Units::Meter);
+  SymbolUnitSP s = SPS(Units::Second);
 
   SymbolUnitSP acceleration = *m / (*s ^ 2);
 
@@ -139,7 +139,7 @@ TEST(TestSymbolUnit, SymbolGeneration) {
 }
 
 TEST(TestSymbolUnit, WithPrefix) {
-  SymbolUnit   m  = Units::Meter();
+  SymbolUnit   m  = Units::Meter;
   SymbolUnitSP km = m.with_prefix(SI::KILO_SYMBOL);
 
   ASSERT_EQ(km->symbol(), std::string(SI::KILO_SYMBOL) + SI::UNIT_SYMBOL_METER);
@@ -148,13 +148,13 @@ TEST(TestSymbolUnit, WithPrefix) {
 }
 
 TEST(TestSymbolUnit, InvalidConversion) {
-  SymbolUnitSP m = SPS(Units::Meter());
-  SymbolUnitSP s = SPS(Units::Second());
+  SymbolUnitSP m = SPS(Units::Meter);
+  SymbolUnitSP s = SPS(Units::Second);
 
   EXPECT_THROW(m->convert_value_to(10.0, s), std::invalid_argument);
 }
 TEST(TestSymbolUnit, Comparison) {
-  SymbolUnitSP m_per_s = Units::Meter() / SPS(Units::Second());
+  SymbolUnitSP m_per_s = Units::Meter / SPS(Units::Second);
   SymbolUnitSP v       = SPS(SPU(Unit({{"LENGTH", 1}, {"TIME", -1}})));
 
   SymbolUnit m_per_s_copy = *m_per_s;
@@ -168,7 +168,7 @@ TEST(TestSymbolUnit, Comparison) {
 #include <sstream>
 
 TEST(TestSymbolUnit, SerializationRoundTrip) {
-  SymbolUnit m = Units::Meter();
+  SymbolUnit m = Units::Meter;
 
   // Serialize to JSON
   std::stringstream ss;
@@ -178,7 +178,7 @@ TEST(TestSymbolUnit, SerializationRoundTrip) {
   }
 
   // Deserialize from JSON
-  SymbolUnit m2 = Units::Meter();
+  SymbolUnit m2 = Units::Meter;
   {
     cereal::JSONInputArchive iarchive(ss);
     iarchive(m2);
@@ -189,7 +189,7 @@ TEST(TestSymbolUnit, SerializationRoundTrip) {
 }
 
 TEST(TestSymbolUnit, StringRepresentations) {
-  SymbolUnit m = Units::Meter();
+  SymbolUnit m = Units::Meter;
 
   ASSERT_EQ(m.str(), SI::UNIT_SYMBOL_METER);
   std::string repr_str = m.repr();
@@ -201,7 +201,7 @@ TEST(TestSymbolUnit, StringRepresentations) {
 }
 
 TEST(TestSymbolUnit, PowerOperations) {
-  SymbolUnit m = Units::Meter();
+  SymbolUnit m = Units::Meter;
 
   SymbolUnitSP area = m ^ 2;
   ASSERT_EQ(area->unit()->dimensions().at("LENGTH"), 2);

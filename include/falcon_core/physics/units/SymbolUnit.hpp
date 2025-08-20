@@ -183,7 +183,6 @@ class SymbolUnit : public generic::Song {
   // }
 
  protected:
-  Unit secret_unit = common_units::Meter;
   SymbolUnit() : _unit(nullptr), _symbol(""), _name("") {};
   friend class cereal::access;
 };

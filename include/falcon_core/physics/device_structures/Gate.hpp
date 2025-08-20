@@ -21,6 +21,7 @@ class Gate : public BaseConnection {
 
   friend class cereal::access;
 };
+using GateSP = std::shared_ptr<Gate>;
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

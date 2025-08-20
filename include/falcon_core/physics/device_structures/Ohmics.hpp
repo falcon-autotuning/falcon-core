@@ -38,7 +38,10 @@ class Ohmics : public falcon_core::generic::Song {
  protected:
   friend class cereal::access;
 };
-
+template <typename T>
+struct OhmicsSP {
+  typedef std::shared_ptr<Ohmics<T>> type;
+};
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
