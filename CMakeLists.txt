@@ -209,8 +209,11 @@ function(falcon_process_swig_module SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE DIR
   target_include_directories(
     ${SWIG_MODULE_NAME}
     PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include"
-            "${CMAKE_CURRENT_SOURCE_DIR}/build/swig" ${Python3_INCLUDE_DIRS}
-            "${SWIG_LIB_DIR}/python" ${NUMPY_INCLUDE_DIR})
+            "${CMAKE_CURRENT_SOURCE_DIR}/build/swig"
+            ${Python3_INCLUDE_DIRS}
+            "${SWIG_LIB_DIR}/python"
+            ${NUMPY_INCLUDE_DIR}
+  )
 
   target_link_libraries(${SWIG_MODULE_NAME} PRIVATE Python3::Python
                                                     falcon_core_cpp)
@@ -275,7 +278,8 @@ add_library(falcon_core_cpp ${FALCON_CORE_SOURCES})
 target_include_directories(
   falcon_core_cpp
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-         $<INSTALL_INTERFACE:include> ${eigen_SOURCE_DIR}
+         $<INSTALL_INTERFACE:include>
+         ${eigen_SOURCE_DIR}
          ${cereal_SOURCE_DIR}/include)
 
 set(FALCON_HEADERS
@@ -308,11 +312,10 @@ set(FALCON_HEADERS
   falcon_core/physics/units/Units.hpp
   # falcon_core/instrument_interfaces/names/InstrumentPort.hpp
   # falcon_core/instrument_interfaces/names/Ports.hpp
-  # falcon_core/math/Axes.hpp
+  falcon_core/math/Axes.hpp
   # std::map<falcon_core::physics::device_structures::BaseConnection,double>
   # falcon_core/math/Point.hpp
   falcon_core/math/Quantity.hpp
-  # falcon_core/math/Sign.hpp
   falcon_core/math/arrays/BaseArray.hpp
   falcon_core::math::arrays::BaseArray<double>
   falcon_core/math/arrays/ControlArray.hpp
@@ -353,7 +356,7 @@ set(SWIG_MODULES
     units Units Units.i physics/units
     # instrument_port InstrumentPort InstrumentPort.i instrument_interfaces/names
     # ports Ports Ports.i instrument_interfaces/names
-    # axes Axes Axes.i math
+    axes Axes Axes.i math
     # point Point Point.i math
     quantity Quantity Quantity.i math
     base_array BaseArray BaseArray.i math/arrays

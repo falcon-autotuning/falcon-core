@@ -7,9 +7,9 @@
 from sys import version_info as _swig_python_version_info
 # Import the low-level C/C++ module
 if __package__ or "." in __name__:
-    from . import _falcon_core_gate_relations
+    from . import _falcon_core_axes
 else:
-    import _falcon_core_gate_relations
+    import _falcon_core_axes
 
 try:
     import builtins as __builtin__
@@ -64,100 +64,100 @@ class SwigPyIterator(object):
     def __init__(self, *args, **kwargs):
         raise AttributeError("No constructor defined - class is abstract")
     __repr__ = _swig_repr
-    __swig_destroy__ = _falcon_core_gate_relations.delete_SwigPyIterator
+    __swig_destroy__ = _falcon_core_axes.delete_SwigPyIterator
 
     def value(self):
-        return _falcon_core_gate_relations.SwigPyIterator_value(self)
+        return _falcon_core_axes.SwigPyIterator_value(self)
 
     def incr(self, n=1):
-        return _falcon_core_gate_relations.SwigPyIterator_incr(self, n)
+        return _falcon_core_axes.SwigPyIterator_incr(self, n)
 
     def decr(self, n=1):
-        return _falcon_core_gate_relations.SwigPyIterator_decr(self, n)
+        return _falcon_core_axes.SwigPyIterator_decr(self, n)
 
     def distance(self, x):
-        return _falcon_core_gate_relations.SwigPyIterator_distance(self, x)
+        return _falcon_core_axes.SwigPyIterator_distance(self, x)
 
     def equal(self, x):
-        return _falcon_core_gate_relations.SwigPyIterator_equal(self, x)
+        return _falcon_core_axes.SwigPyIterator_equal(self, x)
 
     def copy(self):
-        return _falcon_core_gate_relations.SwigPyIterator_copy(self)
+        return _falcon_core_axes.SwigPyIterator_copy(self)
 
     def next(self):
-        return _falcon_core_gate_relations.SwigPyIterator_next(self)
+        return _falcon_core_axes.SwigPyIterator_next(self)
 
     def __next__(self):
-        return _falcon_core_gate_relations.SwigPyIterator___next__(self)
+        return _falcon_core_axes.SwigPyIterator___next__(self)
 
     def previous(self):
-        return _falcon_core_gate_relations.SwigPyIterator_previous(self)
+        return _falcon_core_axes.SwigPyIterator_previous(self)
 
     def advance(self, n):
-        return _falcon_core_gate_relations.SwigPyIterator_advance(self, n)
+        return _falcon_core_axes.SwigPyIterator_advance(self, n)
 
     def __eq__(self, x):
-        return _falcon_core_gate_relations.SwigPyIterator___eq__(self, x)
+        return _falcon_core_axes.SwigPyIterator___eq__(self, x)
 
     def __ne__(self, x):
-        return _falcon_core_gate_relations.SwigPyIterator___ne__(self, x)
+        return _falcon_core_axes.SwigPyIterator___ne__(self, x)
 
     def __iadd__(self, n):
-        return _falcon_core_gate_relations.SwigPyIterator___iadd__(self, n)
+        return _falcon_core_axes.SwigPyIterator___iadd__(self, n)
 
     def __isub__(self, n):
-        return _falcon_core_gate_relations.SwigPyIterator___isub__(self, n)
+        return _falcon_core_axes.SwigPyIterator___isub__(self, n)
 
     def __add__(self, n):
-        return _falcon_core_gate_relations.SwigPyIterator___add__(self, n)
+        return _falcon_core_axes.SwigPyIterator___add__(self, n)
 
     def __sub__(self, *args):
-        return _falcon_core_gate_relations.SwigPyIterator___sub__(self, *args)
+        return _falcon_core_axes.SwigPyIterator___sub__(self, *args)
     def __iter__(self):
         return self
 
-# Register SwigPyIterator in _falcon_core_gate_relations:
-_falcon_core_gate_relations.SwigPyIterator_swigregister(SwigPyIterator)
-SHARED_PTR_DISOWN = _falcon_core_gate_relations.SHARED_PTR_DISOWN
+# Register SwigPyIterator in _falcon_core_axes:
+_falcon_core_axes.SwigPyIterator_swigregister(SwigPyIterator)
+SHARED_PTR_DISOWN = _falcon_core_axes.SHARED_PTR_DISOWN
 class Song(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    __swig_destroy__ = _falcon_core_gate_relations.delete_Song
+    __swig_destroy__ = _falcon_core_axes.delete_Song
 
     def to_json_string(self):
-        return _falcon_core_gate_relations.Song_to_json_string(self)
+        return _falcon_core_axes.Song_to_json_string(self)
 
     def to_json_stream(self, os):
-        return _falcon_core_gate_relations.Song_to_json_stream(self, os)
+        return _falcon_core_axes.Song_to_json_stream(self, os)
 
     def __eq__(self, other):
-        return _falcon_core_gate_relations.Song___eq__(self, other)
+        return _falcon_core_axes.Song___eq__(self, other)
 
     def repr(self):
-        return _falcon_core_gate_relations.Song_repr(self)
+        return _falcon_core_axes.Song_repr(self)
 
     def __init__(self):
-        _falcon_core_gate_relations.Song_swiginit(self, _falcon_core_gate_relations.new_Song())
+        _falcon_core_axes.Song_swiginit(self, _falcon_core_axes.new_Song())
 
-# Register Song in _falcon_core_gate_relations:
-_falcon_core_gate_relations.Song_swigregister(Song)
+# Register Song in _falcon_core_axes:
+_falcon_core_axes.Song_swigregister(Song)
 class BaseConnection(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __lt__(self, other):
-        return _falcon_core_gate_relations.BaseConnection___lt__(self, other)
+        return _falcon_core_axes.BaseConnection___lt__(self, other)
 
     def __init__(self, name):
-        _falcon_core_gate_relations.BaseConnection_swiginit(self, _falcon_core_gate_relations.new_BaseConnection(name))
+        _falcon_core_axes.BaseConnection_swiginit(self, _falcon_core_axes.new_BaseConnection(name))
 
     def name(self):
-        return _falcon_core_gate_relations.BaseConnection_name(self)
-    __swig_destroy__ = _falcon_core_gate_relations.delete_BaseConnection
+        return _falcon_core_axes.BaseConnection_name(self)
+    __swig_destroy__ = _falcon_core_axes.delete_BaseConnection
 
-# Register BaseConnection in _falcon_core_gate_relations:
-_falcon_core_gate_relations.BaseConnection_swigregister(BaseConnection)
-cvar = _falcon_core_gate_relations.cvar
+# Register BaseConnection in _falcon_core_axes:
+_falcon_core_axes.BaseConnection_swigregister(BaseConnection)
+cvar = _falcon_core_axes.cvar
 PI = cvar.PI
 ELECTRON_CHARGE = cvar.ELECTRON_CHARGE
 CELSIUS_OFFSET = cvar.CELSIUS_OFFSET
@@ -308,234 +308,234 @@ class Gate(BaseConnection):
     __repr__ = _swig_repr
 
     def __init__(self, name):
-        _falcon_core_gate_relations.Gate_swiginit(self, _falcon_core_gate_relations.new_Gate(name))
-    __swig_destroy__ = _falcon_core_gate_relations.delete_Gate
+        _falcon_core_axes.Gate_swiginit(self, _falcon_core_axes.new_Gate(name))
+    __swig_destroy__ = _falcon_core_axes.delete_Gate
 
-# Register Gate in _falcon_core_gate_relations:
-_falcon_core_gate_relations.Gate_swigregister(Gate)
+# Register Gate in _falcon_core_axes:
+_falcon_core_axes.Gate_swigregister(Gate)
 class DotGate(Gate):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, name):
-        _falcon_core_gate_relations.DotGate_swiginit(self, _falcon_core_gate_relations.new_DotGate(name))
-    __swig_destroy__ = _falcon_core_gate_relations.delete_DotGate
+        _falcon_core_axes.DotGate_swiginit(self, _falcon_core_axes.new_DotGate(name))
+    __swig_destroy__ = _falcon_core_axes.delete_DotGate
 
-# Register DotGate in _falcon_core_gate_relations:
-_falcon_core_gate_relations.DotGate_swigregister(DotGate)
+# Register DotGate in _falcon_core_axes:
+_falcon_core_axes.DotGate_swigregister(DotGate)
 class BarrierGate(DotGate):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, name):
-        _falcon_core_gate_relations.BarrierGate_swiginit(self, _falcon_core_gate_relations.new_BarrierGate(name))
-    __swig_destroy__ = _falcon_core_gate_relations.delete_BarrierGate
+        _falcon_core_axes.BarrierGate_swiginit(self, _falcon_core_axes.new_BarrierGate(name))
+    __swig_destroy__ = _falcon_core_axes.delete_BarrierGate
 
-# Register BarrierGate in _falcon_core_gate_relations:
-_falcon_core_gate_relations.BarrierGate_swigregister(BarrierGate)
+# Register BarrierGate in _falcon_core_axes:
+_falcon_core_axes.BarrierGate_swigregister(BarrierGate)
 class ScreeningGate(Gate):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, name):
-        _falcon_core_gate_relations.ScreeningGate_swiginit(self, _falcon_core_gate_relations.new_ScreeningGate(name))
-    __swig_destroy__ = _falcon_core_gate_relations.delete_ScreeningGate
+        _falcon_core_axes.ScreeningGate_swiginit(self, _falcon_core_axes.new_ScreeningGate(name))
+    __swig_destroy__ = _falcon_core_axes.delete_ScreeningGate
 
-# Register ScreeningGate in _falcon_core_gate_relations:
-_falcon_core_gate_relations.ScreeningGate_swigregister(ScreeningGate)
+# Register ScreeningGate in _falcon_core_axes:
+_falcon_core_axes.ScreeningGate_swigregister(ScreeningGate)
 class ReservoirGate(Gate):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, name):
-        _falcon_core_gate_relations.ReservoirGate_swiginit(self, _falcon_core_gate_relations.new_ReservoirGate(name))
-    __swig_destroy__ = _falcon_core_gate_relations.delete_ReservoirGate
+        _falcon_core_axes.ReservoirGate_swiginit(self, _falcon_core_axes.new_ReservoirGate(name))
+    __swig_destroy__ = _falcon_core_axes.delete_ReservoirGate
 
-# Register ReservoirGate in _falcon_core_gate_relations:
-_falcon_core_gate_relations.ReservoirGate_swigregister(ReservoirGate)
+# Register ReservoirGate in _falcon_core_axes:
+_falcon_core_axes.ReservoirGate_swigregister(ReservoirGate)
 class PlungerGate(DotGate):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, name):
-        _falcon_core_gate_relations.PlungerGate_swiginit(self, _falcon_core_gate_relations.new_PlungerGate(name))
-    __swig_destroy__ = _falcon_core_gate_relations.delete_PlungerGate
+        _falcon_core_axes.PlungerGate_swiginit(self, _falcon_core_axes.new_PlungerGate(name))
+    __swig_destroy__ = _falcon_core_axes.delete_PlungerGate
 
-# Register PlungerGate in _falcon_core_gate_relations:
-_falcon_core_gate_relations.PlungerGate_swigregister(PlungerGate)
+# Register PlungerGate in _falcon_core_axes:
+_falcon_core_axes.PlungerGate_swigregister(PlungerGate)
 class Ohmic(BaseConnection):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, name):
-        _falcon_core_gate_relations.Ohmic_swiginit(self, _falcon_core_gate_relations.new_Ohmic(name))
-    __swig_destroy__ = _falcon_core_gate_relations.delete_Ohmic
+        _falcon_core_axes.Ohmic_swiginit(self, _falcon_core_axes.new_Ohmic(name))
+    __swig_destroy__ = _falcon_core_axes.delete_Ohmic
 
-# Register Ohmic in _falcon_core_gate_relations:
-_falcon_core_gate_relations.Ohmic_swigregister(Ohmic)
+# Register Ohmic in _falcon_core_axes:
+_falcon_core_axes.Ohmic_swigregister(Ohmic)
 class Impedance(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, connection, resistance, capacitance):
-        _falcon_core_gate_relations.Impedance_swiginit(self, _falcon_core_gate_relations.new_Impedance(connection, resistance, capacitance))
+        _falcon_core_axes.Impedance_swiginit(self, _falcon_core_axes.new_Impedance(connection, resistance, capacitance))
 
     def connection(self):
-        return _falcon_core_gate_relations.Impedance_connection(self)
+        return _falcon_core_axes.Impedance_connection(self)
 
     def resistance(self):
-        return _falcon_core_gate_relations.Impedance_resistance(self)
+        return _falcon_core_axes.Impedance_resistance(self)
 
     def capacitance(self):
-        return _falcon_core_gate_relations.Impedance_capacitance(self)
-    __swig_destroy__ = _falcon_core_gate_relations.delete_Impedance
+        return _falcon_core_axes.Impedance_capacitance(self)
+    __swig_destroy__ = _falcon_core_axes.delete_Impedance
 
-# Register Impedance in _falcon_core_gate_relations:
-_falcon_core_gate_relations.Impedance_swigregister(Impedance)
+# Register Impedance in _falcon_core_axes:
+_falcon_core_axes.Impedance_swigregister(Impedance)
 class Prefix(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     @staticmethod
     def get_symbol_to_power_map():
-        return _falcon_core_gate_relations.Prefix_get_symbol_to_power_map()
+        return _falcon_core_axes.Prefix_get_symbol_to_power_map()
 
     @staticmethod
     def get_power_to_symbol_map():
-        return _falcon_core_gate_relations.Prefix_get_power_to_symbol_map()
+        return _falcon_core_axes.Prefix_get_power_to_symbol_map()
 
     @staticmethod
     def get_symbol(prefix_value):
-        return _falcon_core_gate_relations.Prefix_get_symbol(prefix_value)
+        return _falcon_core_axes.Prefix_get_symbol(prefix_value)
 
     @staticmethod
     def get_value(prefix_symbol):
-        return _falcon_core_gate_relations.Prefix_get_value(prefix_symbol)
+        return _falcon_core_axes.Prefix_get_value(prefix_symbol)
 
     @staticmethod
     def is_valid(prefix_symbol):
-        return _falcon_core_gate_relations.Prefix_is_valid(prefix_symbol)
+        return _falcon_core_axes.Prefix_is_valid(prefix_symbol)
 
     @staticmethod
     def prefix_multiplication(first_prefix, second_prefix, scale_factor):
-        return _falcon_core_gate_relations.Prefix_prefix_multiplication(first_prefix, second_prefix, scale_factor)
+        return _falcon_core_axes.Prefix_prefix_multiplication(first_prefix, second_prefix, scale_factor)
 
     def __init__(self):
-        _falcon_core_gate_relations.Prefix_swiginit(self, _falcon_core_gate_relations.new_Prefix())
-    __swig_destroy__ = _falcon_core_gate_relations.delete_Prefix
+        _falcon_core_axes.Prefix_swiginit(self, _falcon_core_axes.new_Prefix())
+    __swig_destroy__ = _falcon_core_axes.delete_Prefix
 
-# Register Prefix in _falcon_core_gate_relations:
-_falcon_core_gate_relations.Prefix_swigregister(Prefix)
+# Register Prefix in _falcon_core_axes:
+_falcon_core_axes.Prefix_swigregister(Prefix)
 class Unit(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, *args):
-        _falcon_core_gate_relations.Unit_swiginit(self, _falcon_core_gate_relations.new_Unit(*args))
+        _falcon_core_axes.Unit_swiginit(self, _falcon_core_axes.new_Unit(*args))
 
     def prefix(self):
-        return _falcon_core_gate_relations.Unit_prefix(self)
+        return _falcon_core_axes.Unit_prefix(self)
 
     def dimensions(self):
-        return _falcon_core_gate_relations.Unit_dimensions(self)
+        return _falcon_core_axes.Unit_dimensions(self)
 
     def scale_factor(self):
-        return _falcon_core_gate_relations.Unit_scale_factor(self)
+        return _falcon_core_axes.Unit_scale_factor(self)
 
     def offset(self):
-        return _falcon_core_gate_relations.Unit_offset(self)
+        return _falcon_core_axes.Unit_offset(self)
 
     def __mul__(self, other):
-        return _falcon_core_gate_relations.Unit___mul__(self, other)
+        return _falcon_core_axes.Unit___mul__(self, other)
 
     def __truediv__(self, *args):
-        return _falcon_core_gate_relations.Unit___truediv__(self, *args)
+        return _falcon_core_axes.Unit___truediv__(self, *args)
     __div__ = __truediv__
 
 
 
     def __xor__(self, power):
-        return _falcon_core_gate_relations.Unit___xor__(self, power)
+        return _falcon_core_axes.Unit___xor__(self, power)
 
     def with_prefix(self, prefix):
-        return _falcon_core_gate_relations.Unit_with_prefix(self, prefix)
+        return _falcon_core_axes.Unit_with_prefix(self, prefix)
 
     def convert_value_to(self, value, target_unit):
-        return _falcon_core_gate_relations.Unit_convert_value_to(self, value, target_unit)
+        return _falcon_core_axes.Unit_convert_value_to(self, value, target_unit)
 
     def is_compatible_with(self, other):
-        return _falcon_core_gate_relations.Unit_is_compatible_with(self, other)
-    __swig_destroy__ = _falcon_core_gate_relations.delete_Unit
+        return _falcon_core_axes.Unit_is_compatible_with(self, other)
+    __swig_destroy__ = _falcon_core_axes.delete_Unit
 
-# Register Unit in _falcon_core_gate_relations:
-_falcon_core_gate_relations.Unit_swigregister(Unit)
+# Register Unit in _falcon_core_axes:
+_falcon_core_axes.Unit_swigregister(Unit)
 
 def get_unit_with_prefix(unit, prefix):
-    return _falcon_core_gate_relations.get_unit_with_prefix(unit, prefix)
+    return _falcon_core_axes.get_unit_with_prefix(unit, prefix)
 
 def get_milli(unit):
-    return _falcon_core_gate_relations.get_milli(unit)
+    return _falcon_core_axes.get_milli(unit)
 
 def get_micro(unit):
-    return _falcon_core_gate_relations.get_micro(unit)
+    return _falcon_core_axes.get_micro(unit)
 
 def get_nano(unit):
-    return _falcon_core_gate_relations.get_nano(unit)
+    return _falcon_core_axes.get_nano(unit)
 
 def get_pico(unit):
-    return _falcon_core_gate_relations.get_pico(unit)
+    return _falcon_core_axes.get_pico(unit)
 
 def get_kilo(unit):
-    return _falcon_core_gate_relations.get_kilo(unit)
+    return _falcon_core_axes.get_kilo(unit)
 
 def get_mega(unit):
-    return _falcon_core_gate_relations.get_mega(unit)
+    return _falcon_core_axes.get_mega(unit)
 
 def get_giga(unit):
-    return _falcon_core_gate_relations.get_giga(unit)
+    return _falcon_core_axes.get_giga(unit)
 class SymbolUnit(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, unit):
-        _falcon_core_gate_relations.SymbolUnit_swiginit(self, _falcon_core_gate_relations.new_SymbolUnit(unit))
+        _falcon_core_axes.SymbolUnit_swiginit(self, _falcon_core_axes.new_SymbolUnit(unit))
 
     def unit(self):
-        return _falcon_core_gate_relations.SymbolUnit_unit(self)
+        return _falcon_core_axes.SymbolUnit_unit(self)
 
     def symbol(self):
-        return _falcon_core_gate_relations.SymbolUnit_symbol(self)
+        return _falcon_core_axes.SymbolUnit_symbol(self)
 
     def name(self):
-        return _falcon_core_gate_relations.SymbolUnit_name(self)
+        return _falcon_core_axes.SymbolUnit_name(self)
 
     def __mul__(self, *args):
-        return _falcon_core_gate_relations.SymbolUnit___mul__(self, *args)
+        return _falcon_core_axes.SymbolUnit___mul__(self, *args)
 
     def __truediv__(self, *args):
-        return _falcon_core_gate_relations.SymbolUnit___truediv__(self, *args)
+        return _falcon_core_axes.SymbolUnit___truediv__(self, *args)
     __div__ = __truediv__
 
 
 
     def __xor__(self, power):
-        return _falcon_core_gate_relations.SymbolUnit___xor__(self, power)
+        return _falcon_core_axes.SymbolUnit___xor__(self, power)
 
     def with_prefix(self, prefix):
-        return _falcon_core_gate_relations.SymbolUnit_with_prefix(self, prefix)
+        return _falcon_core_axes.SymbolUnit_with_prefix(self, prefix)
 
     def convert_value_to(self, value, target_unit):
-        return _falcon_core_gate_relations.SymbolUnit_convert_value_to(self, value, target_unit)
+        return _falcon_core_axes.SymbolUnit_convert_value_to(self, value, target_unit)
 
     def is_compatible_with(self, other):
-        return _falcon_core_gate_relations.SymbolUnit_is_compatible_with(self, other)
+        return _falcon_core_axes.SymbolUnit_is_compatible_with(self, other)
 
     def str(self):
-        return _falcon_core_gate_relations.SymbolUnit_str(self)
-    __swig_destroy__ = _falcon_core_gate_relations.delete_SymbolUnit
+        return _falcon_core_axes.SymbolUnit_str(self)
+    __swig_destroy__ = _falcon_core_axes.delete_SymbolUnit
 
-# Register SymbolUnit in _falcon_core_gate_relations:
-_falcon_core_gate_relations.SymbolUnit_swigregister(SymbolUnit)
+# Register SymbolUnit in _falcon_core_axes:
+_falcon_core_axes.SymbolUnit_swigregister(SymbolUnit)
 Meter = cvar.Meter
 Kilogram = cvar.Kilogram
 Second = cvar.Second
@@ -571,321 +571,321 @@ class Units(object):
 
     @staticmethod
     def Meter():
-        return _falcon_core_gate_relations.Units_Meter()
+        return _falcon_core_axes.Units_Meter()
 
     @staticmethod
     def Kilogram():
-        return _falcon_core_gate_relations.Units_Kilogram()
+        return _falcon_core_axes.Units_Kilogram()
 
     @staticmethod
     def Second():
-        return _falcon_core_gate_relations.Units_Second()
+        return _falcon_core_axes.Units_Second()
 
     @staticmethod
     def Ampere():
-        return _falcon_core_gate_relations.Units_Ampere()
+        return _falcon_core_axes.Units_Ampere()
 
     @staticmethod
     def Kelvin():
-        return _falcon_core_gate_relations.Units_Kelvin()
+        return _falcon_core_axes.Units_Kelvin()
 
     @staticmethod
     def Mole():
-        return _falcon_core_gate_relations.Units_Mole()
+        return _falcon_core_axes.Units_Mole()
 
     @staticmethod
     def Candela():
-        return _falcon_core_gate_relations.Units_Candela()
+        return _falcon_core_axes.Units_Candela()
 
     @staticmethod
     def Hertz():
-        return _falcon_core_gate_relations.Units_Hertz()
+        return _falcon_core_axes.Units_Hertz()
 
     @staticmethod
     def Newton():
-        return _falcon_core_gate_relations.Units_Newton()
+        return _falcon_core_axes.Units_Newton()
 
     @staticmethod
     def Pascal():
-        return _falcon_core_gate_relations.Units_Pascal()
+        return _falcon_core_axes.Units_Pascal()
 
     @staticmethod
     def Joule():
-        return _falcon_core_gate_relations.Units_Joule()
+        return _falcon_core_axes.Units_Joule()
 
     @staticmethod
     def Watt():
-        return _falcon_core_gate_relations.Units_Watt()
+        return _falcon_core_axes.Units_Watt()
 
     @staticmethod
     def Coulomb():
-        return _falcon_core_gate_relations.Units_Coulomb()
+        return _falcon_core_axes.Units_Coulomb()
 
     @staticmethod
     def Volt():
-        return _falcon_core_gate_relations.Units_Volt()
+        return _falcon_core_axes.Units_Volt()
 
     @staticmethod
     def Farad():
-        return _falcon_core_gate_relations.Units_Farad()
+        return _falcon_core_axes.Units_Farad()
 
     @staticmethod
     def Ohm():
-        return _falcon_core_gate_relations.Units_Ohm()
+        return _falcon_core_axes.Units_Ohm()
 
     @staticmethod
     def Siemens():
-        return _falcon_core_gate_relations.Units_Siemens()
+        return _falcon_core_axes.Units_Siemens()
 
     @staticmethod
     def Weber():
-        return _falcon_core_gate_relations.Units_Weber()
+        return _falcon_core_axes.Units_Weber()
 
     @staticmethod
     def Tesla():
-        return _falcon_core_gate_relations.Units_Tesla()
+        return _falcon_core_axes.Units_Tesla()
 
     @staticmethod
     def Henry():
-        return _falcon_core_gate_relations.Units_Henry()
+        return _falcon_core_axes.Units_Henry()
 
     @staticmethod
     def Minute():
-        return _falcon_core_gate_relations.Units_Minute()
+        return _falcon_core_axes.Units_Minute()
 
     @staticmethod
     def Hour():
-        return _falcon_core_gate_relations.Units_Hour()
+        return _falcon_core_axes.Units_Hour()
 
     @staticmethod
     def ElectronVolt():
-        return _falcon_core_gate_relations.Units_ElectronVolt()
+        return _falcon_core_axes.Units_ElectronVolt()
 
     @staticmethod
     def Celsius():
-        return _falcon_core_gate_relations.Units_Celsius()
+        return _falcon_core_axes.Units_Celsius()
 
     @staticmethod
     def Fahrenheit():
-        return _falcon_core_gate_relations.Units_Fahrenheit()
+        return _falcon_core_axes.Units_Fahrenheit()
 
     @staticmethod
     def Dimensionless():
-        return _falcon_core_gate_relations.Units_Dimensionless()
+        return _falcon_core_axes.Units_Dimensionless()
 
     @staticmethod
     def Percent():
-        return _falcon_core_gate_relations.Units_Percent()
+        return _falcon_core_axes.Units_Percent()
 
     @staticmethod
     def Radian():
-        return _falcon_core_gate_relations.Units_Radian()
+        return _falcon_core_axes.Units_Radian()
 
     @staticmethod
     def MilliMeter():
-        return _falcon_core_gate_relations.Units_MilliMeter()
+        return _falcon_core_axes.Units_MilliMeter()
 
     @staticmethod
     def KiloMeter():
-        return _falcon_core_gate_relations.Units_KiloMeter()
+        return _falcon_core_axes.Units_KiloMeter()
 
     @staticmethod
     def MilliVolt():
-        return _falcon_core_gate_relations.Units_MilliVolt()
+        return _falcon_core_axes.Units_MilliVolt()
 
     @staticmethod
     def KiloVolt():
-        return _falcon_core_gate_relations.Units_KiloVolt()
+        return _falcon_core_axes.Units_KiloVolt()
 
     @staticmethod
     def MilliAmpere():
-        return _falcon_core_gate_relations.Units_MilliAmpere()
+        return _falcon_core_axes.Units_MilliAmpere()
 
     @staticmethod
     def MicroAmpere():
-        return _falcon_core_gate_relations.Units_MicroAmpere()
+        return _falcon_core_axes.Units_MicroAmpere()
 
     @staticmethod
     def NanoAmpere():
-        return _falcon_core_gate_relations.Units_NanoAmpere()
+        return _falcon_core_axes.Units_NanoAmpere()
 
     @staticmethod
     def PicoAmpere():
-        return _falcon_core_gate_relations.Units_PicoAmpere()
+        return _falcon_core_axes.Units_PicoAmpere()
 
     @staticmethod
     def MilliSecond():
-        return _falcon_core_gate_relations.Units_MilliSecond()
+        return _falcon_core_axes.Units_MilliSecond()
 
     @staticmethod
     def MicroSecond():
-        return _falcon_core_gate_relations.Units_MicroSecond()
+        return _falcon_core_axes.Units_MicroSecond()
 
     @staticmethod
     def NanoSecond():
-        return _falcon_core_gate_relations.Units_NanoSecond()
+        return _falcon_core_axes.Units_NanoSecond()
 
     @staticmethod
     def PicoSecond():
-        return _falcon_core_gate_relations.Units_PicoSecond()
+        return _falcon_core_axes.Units_PicoSecond()
 
     @staticmethod
     def MilliOhm():
-        return _falcon_core_gate_relations.Units_MilliOhm()
+        return _falcon_core_axes.Units_MilliOhm()
 
     @staticmethod
     def KiloOhm():
-        return _falcon_core_gate_relations.Units_KiloOhm()
+        return _falcon_core_axes.Units_KiloOhm()
 
     @staticmethod
     def MegaOhm():
-        return _falcon_core_gate_relations.Units_MegaOhm()
+        return _falcon_core_axes.Units_MegaOhm()
 
     @staticmethod
     def MilliHertz():
-        return _falcon_core_gate_relations.Units_MilliHertz()
+        return _falcon_core_axes.Units_MilliHertz()
 
     @staticmethod
     def KiloHertz():
-        return _falcon_core_gate_relations.Units_KiloHertz()
+        return _falcon_core_axes.Units_KiloHertz()
 
     @staticmethod
     def MegaHertz():
-        return _falcon_core_gate_relations.Units_MegaHertz()
+        return _falcon_core_axes.Units_MegaHertz()
 
     @staticmethod
     def GigaHertz():
-        return _falcon_core_gate_relations.Units_GigaHertz()
+        return _falcon_core_axes.Units_GigaHertz()
 
     @staticmethod
     def MetersPerSecond():
-        return _falcon_core_gate_relations.Units_MetersPerSecond()
+        return _falcon_core_axes.Units_MetersPerSecond()
 
     @staticmethod
     def MetersPerSecondSquared():
-        return _falcon_core_gate_relations.Units_MetersPerSecondSquared()
+        return _falcon_core_axes.Units_MetersPerSecondSquared()
 
     @staticmethod
     def NewtonMeter():
-        return _falcon_core_gate_relations.Units_NewtonMeter()
+        return _falcon_core_axes.Units_NewtonMeter()
 
     @staticmethod
     def NewtonPerMeter():
-        return _falcon_core_gate_relations.Units_NewtonPerMeter()
+        return _falcon_core_axes.Units_NewtonPerMeter()
 
     @staticmethod
     def VoltsPerMeter():
-        return _falcon_core_gate_relations.Units_VoltsPerMeter()
+        return _falcon_core_axes.Units_VoltsPerMeter()
 
     @staticmethod
     def VoltsPerSecond():
-        return _falcon_core_gate_relations.Units_VoltsPerSecond()
+        return _falcon_core_axes.Units_VoltsPerSecond()
 
     @staticmethod
     def AmperesPerMeter():
-        return _falcon_core_gate_relations.Units_AmperesPerMeter()
+        return _falcon_core_axes.Units_AmperesPerMeter()
 
     @staticmethod
     def VoltsPerAmpere():
-        return _falcon_core_gate_relations.Units_VoltsPerAmpere()
+        return _falcon_core_axes.Units_VoltsPerAmpere()
 
     @staticmethod
     def WattsPerMeterKelvin():
-        return _falcon_core_gate_relations.Units_WattsPerMeterKelvin()
+        return _falcon_core_axes.Units_WattsPerMeterKelvin()
 
     def __init__(self):
-        _falcon_core_gate_relations.Units_swiginit(self, _falcon_core_gate_relations.new_Units())
-    __swig_destroy__ = _falcon_core_gate_relations.delete_Units
+        _falcon_core_axes.Units_swiginit(self, _falcon_core_axes.new_Units())
+    __swig_destroy__ = _falcon_core_axes.delete_Units
 
-# Register Units in _falcon_core_gate_relations:
-_falcon_core_gate_relations.Units_swigregister(Units)
+# Register Units in _falcon_core_axes:
+_falcon_core_axes.Units_swigregister(Units)
 class Quantity(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, value, unit):
-        _falcon_core_gate_relations.Quantity_swiginit(self, _falcon_core_gate_relations.new_Quantity(value, unit))
+        _falcon_core_axes.Quantity_swiginit(self, _falcon_core_axes.new_Quantity(value, unit))
 
     def value(self):
-        return _falcon_core_gate_relations.Quantity_value(self)
+        return _falcon_core_axes.Quantity_value(self)
 
     def unit(self):
-        return _falcon_core_gate_relations.Quantity_unit(self)
+        return _falcon_core_axes.Quantity_unit(self)
 
     def convert_to(self, target_unit):
-        return _falcon_core_gate_relations.Quantity_convert_to(self, target_unit)
+        return _falcon_core_axes.Quantity_convert_to(self, target_unit)
 
     def __mul__(self, *args):
-        return _falcon_core_gate_relations.Quantity___mul__(self, *args)
+        return _falcon_core_axes.Quantity___mul__(self, *args)
 
     def __truediv__(self, *args):
-        return _falcon_core_gate_relations.Quantity___truediv__(self, *args)
+        return _falcon_core_axes.Quantity___truediv__(self, *args)
     __div__ = __truediv__
 
 
 
     def __xor__(self, other):
-        return _falcon_core_gate_relations.Quantity___xor__(self, other)
+        return _falcon_core_axes.Quantity___xor__(self, other)
 
     def __add__(self, *args):
-        return _falcon_core_gate_relations.Quantity___add__(self, *args)
+        return _falcon_core_axes.Quantity___add__(self, *args)
 
     def __neg__(self):
-        return _falcon_core_gate_relations.Quantity___neg__(self)
+        return _falcon_core_axes.Quantity___neg__(self)
 
     def __sub__(self, *args):
-        return _falcon_core_gate_relations.Quantity___sub__(self, *args)
+        return _falcon_core_axes.Quantity___sub__(self, *args)
 
     def abs(self):
-        return _falcon_core_gate_relations.Quantity_abs(self)
-    __swig_destroy__ = _falcon_core_gate_relations.delete_Quantity
+        return _falcon_core_axes.Quantity_abs(self)
+    __swig_destroy__ = _falcon_core_axes.delete_Quantity
 
-# Register Quantity in _falcon_core_gate_relations:
-_falcon_core_gate_relations.Quantity_swigregister(Quantity)
+# Register Quantity in _falcon_core_axes:
+_falcon_core_axes.Quantity_swigregister(Quantity)
 class falcon_core__math__arrays__BaseArray_double_(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, *args):
-        _falcon_core_gate_relations.falcon_core__math__arrays__BaseArray_double__swiginit(self, _falcon_core_gate_relations.new_falcon_core__math__arrays__BaseArray_double_(*args))
+        _falcon_core_axes.falcon_core__math__arrays__BaseArray_double__swiginit(self, _falcon_core_axes.new_falcon_core__math__arrays__BaseArray_double_(*args))
 
     def data(self, *args):
-        return _falcon_core_gate_relations.falcon_core__math__arrays__BaseArray_double__data(self, *args)
+        return _falcon_core_axes.falcon_core__math__arrays__BaseArray_double__data(self, *args)
 
     def is_1d(self):
-        return _falcon_core_gate_relations.falcon_core__math__arrays__BaseArray_double__is_1d(self)
-    __swig_destroy__ = _falcon_core_gate_relations.delete_falcon_core__math__arrays__BaseArray_double_
+        return _falcon_core_axes.falcon_core__math__arrays__BaseArray_double__is_1d(self)
+    __swig_destroy__ = _falcon_core_axes.delete_falcon_core__math__arrays__BaseArray_double_
 
-# Register falcon_core__math__arrays__BaseArray_double_ in _falcon_core_gate_relations:
-_falcon_core_gate_relations.falcon_core__math__arrays__BaseArray_double__swigregister(falcon_core__math__arrays__BaseArray_double_)
+# Register falcon_core__math__arrays__BaseArray_double_ in _falcon_core_axes:
+_falcon_core_axes.falcon_core__math__arrays__BaseArray_double__swigregister(falcon_core__math__arrays__BaseArray_double_)
 class falcon_core__math__arrays__ControlArray_double_(falcon_core__math__arrays__BaseArray_double_):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, *args):
-        _falcon_core_gate_relations.falcon_core__math__arrays__ControlArray_double__swiginit(self, _falcon_core_gate_relations.new_falcon_core__math__arrays__ControlArray_double_(*args))
-    __swig_destroy__ = _falcon_core_gate_relations.delete_falcon_core__math__arrays__ControlArray_double_
+        _falcon_core_axes.falcon_core__math__arrays__ControlArray_double__swiginit(self, _falcon_core_axes.new_falcon_core__math__arrays__ControlArray_double_(*args))
+    __swig_destroy__ = _falcon_core_axes.delete_falcon_core__math__arrays__ControlArray_double_
 
-# Register falcon_core__math__arrays__ControlArray_double_ in _falcon_core_gate_relations:
-_falcon_core_gate_relations.falcon_core__math__arrays__ControlArray_double__swigregister(falcon_core__math__arrays__ControlArray_double_)
+# Register falcon_core__math__arrays__ControlArray_double_ in _falcon_core_axes:
+_falcon_core_axes.falcon_core__math__arrays__ControlArray_double__swigregister(falcon_core__math__arrays__ControlArray_double_)
 class ControlArray1D(falcon_core__math__arrays__ControlArray_double_):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, data):
-        _falcon_core_gate_relations.ControlArray1D_swiginit(self, _falcon_core_gate_relations.new_ControlArray1D(data))
-    __swig_destroy__ = _falcon_core_gate_relations.delete_ControlArray1D
+        _falcon_core_axes.ControlArray1D_swiginit(self, _falcon_core_axes.new_ControlArray1D(data))
+    __swig_destroy__ = _falcon_core_axes.delete_ControlArray1D
 
-# Register ControlArray1D in _falcon_core_gate_relations:
-_falcon_core_gate_relations.ControlArray1D_swigregister(ControlArray1D)
+# Register ControlArray1D in _falcon_core_axes:
+_falcon_core_axes.ControlArray1D_swigregister(ControlArray1D)
 class IncreasingAlignment(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self):
-        _falcon_core_gate_relations.IncreasingAlignment_swiginit(self, _falcon_core_gate_relations.new_IncreasingAlignment())
-    __swig_destroy__ = _falcon_core_gate_relations.delete_IncreasingAlignment
+        _falcon_core_axes.IncreasingAlignment_swiginit(self, _falcon_core_axes.new_IncreasingAlignment())
+    __swig_destroy__ = _falcon_core_axes.delete_IncreasingAlignment
 
-# Register IncreasingAlignment in _falcon_core_gate_relations:
-_falcon_core_gate_relations.IncreasingAlignment_swigregister(IncreasingAlignment)
+# Register IncreasingAlignment in _falcon_core_axes:
+_falcon_core_axes.IncreasingAlignment_swigregister(IncreasingAlignment)
 

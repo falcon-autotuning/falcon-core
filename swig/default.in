@@ -3,4 +3,5 @@
 
 %include "falcon_core_all.i"
 %include "add_song_deserializers.i"
+%shared_ptr(SUBMODULE_NAME)
 %add_song_deserializers(@CPP_CLASS@);

@@ -1,0 +1,48 @@
+#pragma once
+
+#include <Eigen/Dense>
+#include <cereal/types/eigen.hpp>
+
+#include "falcon_core/generic/Song.hpp"
+
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace core {
+
+class Adjacency : public generic::Song {
+  using MatrixType = Eigen::Matrix<int, Eigen::Dynamic, Eigen::Dynamic>;
+  std::vector<device_structures::Gate> _indexes;
+  MatrixType                           _matrix;
+
+ public:
+  Adjacency(const MatrixType                                   &matrix,
+            const std::vector<physics::device_structures::Gate> indexes)
+      : _matrix(matrix), _indexes(indexes) {}
+  // ***
+  // * @brief Returns the matrix containing the device layout adjacency
+  // **/
+  MatrixType matrix() const { return _matrix; }
+  // ***
+  // # @brief Returns the indexes of the gates in the order for the adjacency
+  // matrix
+  // **/
+  std::vector<device_structures::Gate> indexes() const { return _indexes; }
+
+ private:
+  friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive &ar) {
+    ar(cereal::base_class<generic::Song>(this), _matrix, _indexes);
+  }
+};
+}  // namespace core
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
+#ifndef SWIG
+using namespace falcon_core::physics::config::core;
+CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::Adjacency)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song, falcon_core::physics::config::core::Adjacency)
+#endif

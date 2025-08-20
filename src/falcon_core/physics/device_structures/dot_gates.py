@@ -842,4 +842,50 @@ class Quantity(Song):
 
 # Register Quantity in _falcon_core_dot_gates:
 _falcon_core_dot_gates.Quantity_swigregister(Quantity)
+class falcon_core__math__arrays__BaseArray_double_(Song):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self, *args):
+        _falcon_core_dot_gates.falcon_core__math__arrays__BaseArray_double__swiginit(self, _falcon_core_dot_gates.new_falcon_core__math__arrays__BaseArray_double_(*args))
+
+    def data(self, *args):
+        return _falcon_core_dot_gates.falcon_core__math__arrays__BaseArray_double__data(self, *args)
+
+    def is_1d(self):
+        return _falcon_core_dot_gates.falcon_core__math__arrays__BaseArray_double__is_1d(self)
+    __swig_destroy__ = _falcon_core_dot_gates.delete_falcon_core__math__arrays__BaseArray_double_
+
+# Register falcon_core__math__arrays__BaseArray_double_ in _falcon_core_dot_gates:
+_falcon_core_dot_gates.falcon_core__math__arrays__BaseArray_double__swigregister(falcon_core__math__arrays__BaseArray_double_)
+class falcon_core__math__arrays__ControlArray_double_(falcon_core__math__arrays__BaseArray_double_):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self, *args):
+        _falcon_core_dot_gates.falcon_core__math__arrays__ControlArray_double__swiginit(self, _falcon_core_dot_gates.new_falcon_core__math__arrays__ControlArray_double_(*args))
+    __swig_destroy__ = _falcon_core_dot_gates.delete_falcon_core__math__arrays__ControlArray_double_
+
+# Register falcon_core__math__arrays__ControlArray_double_ in _falcon_core_dot_gates:
+_falcon_core_dot_gates.falcon_core__math__arrays__ControlArray_double__swigregister(falcon_core__math__arrays__ControlArray_double_)
+class ControlArray1D(falcon_core__math__arrays__ControlArray_double_):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self, data):
+        _falcon_core_dot_gates.ControlArray1D_swiginit(self, _falcon_core_dot_gates.new_ControlArray1D(data))
+    __swig_destroy__ = _falcon_core_dot_gates.delete_ControlArray1D
+
+# Register ControlArray1D in _falcon_core_dot_gates:
+_falcon_core_dot_gates.ControlArray1D_swigregister(ControlArray1D)
+class IncreasingAlignment(Song):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self):
+        _falcon_core_dot_gates.IncreasingAlignment_swiginit(self, _falcon_core_dot_gates.new_IncreasingAlignment())
+    __swig_destroy__ = _falcon_core_dot_gates.delete_IncreasingAlignment
+
+# Register IncreasingAlignment in _falcon_core_dot_gates:
+_falcon_core_dot_gates.IncreasingAlignment_swigregister(IncreasingAlignment)
 

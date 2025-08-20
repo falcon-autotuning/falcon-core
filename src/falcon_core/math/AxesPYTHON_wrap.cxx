@@ -11,7 +11,7 @@
 #define SWIGPYTHON
 #define SWIG_PYTHON_DIRECTOR_NO_VTABLE
 
-#define SWIG_name    "_falcon_core_barrier_gate"
+#define SWIG_name    "_falcon_core_axes"
 /* -----------------------------------------------------------------------------
  *  This section contains generic SWIG labels for method/variable
  *  declarations/attributes, and other compiler dependent labels.
@@ -3230,22 +3230,20 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_falcon_core__physics__units__Unit swig_types[20]
 #define SWIGTYPE_p_falcon_core__physics__units__Units swig_types[21]
 #define SWIGTYPE_p_std__invalid_argument swig_types[22]
-#define SWIGTYPE_p_std__istream swig_types[23]
-#define SWIGTYPE_p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t swig_types[24]
-#define SWIGTYPE_p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t swig_types[25]
-#define SWIGTYPE_p_std__ostream swig_types[26]
-#define SWIGTYPE_p_std__pairT_double_std__string_t swig_types[27]
-#define SWIGTYPE_p_std__shared_ptrT_SUBMODULE_NAME_t swig_types[28]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__math__Quantity_t swig_types[29]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGate_t swig_types[30]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t swig_types[31]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t swig_types[32]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t swig_types[33]
-#define SWIGTYPE_p_std__string swig_types[34]
-#define SWIGTYPE_p_swig__SwigPyIterator swig_types[35]
-#define SWIGTYPE_p_wchar_t swig_types[36]
-static swig_type_info *swig_types[38];
-static swig_module_info swig_module = {swig_types, 37, 0, 0, 0, 0};
+#define SWIGTYPE_p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t swig_types[23]
+#define SWIGTYPE_p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t swig_types[24]
+#define SWIGTYPE_p_std__ostream swig_types[25]
+#define SWIGTYPE_p_std__pairT_double_std__string_t swig_types[26]
+#define SWIGTYPE_p_std__shared_ptrT_SUBMODULE_NAME_t swig_types[27]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__math__Quantity_t swig_types[28]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t swig_types[29]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t swig_types[30]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t swig_types[31]
+#define SWIGTYPE_p_std__string swig_types[32]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[33]
+#define SWIGTYPE_p_wchar_t swig_types[34]
+static swig_type_info *swig_types[36];
+static swig_module_info swig_module = {swig_types, 35, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3257,13 +3255,13 @@ static swig_module_info swig_module = {swig_types, 37, 0, 0, 0, 0};
 #define SWIG_TypeQuery SWIG_Python_TypeQuery
 
 /*-----------------------------------------------
-              @(target):= _falcon_core_barrier_gate.so
+              @(target):= _falcon_core_axes.so
   ------------------------------------------------*/
 #if PY_VERSION_HEX >= 0x03000000
-#  define SWIG_init    PyInit__falcon_core_barrier_gate
+#  define SWIG_init    PyInit__falcon_core_axes
 
 #else
-#  define SWIG_init    init_falcon_core_barrier_gate
+#  define SWIG_init    init_falcon_core_axes
 
 #endif
 
@@ -4127,12 +4125,6 @@ SWIG_AsPtr_std_string (PyObject * obj, std::string **val)
   return SWIG_ERROR;
 }
 
-SWIGINTERN std::shared_ptr< falcon_core::physics::device_structures::BarrierGate > falcon_core_physics_device_structures_BarrierGate_from_json_string(std::string const &json){
-        return falcon_core::generic::Song::from_json_string<falcon_core::physics::device_structures::BarrierGate>(json);
-    }
-SWIGINTERN std::shared_ptr< falcon_core::physics::device_structures::BarrierGate > falcon_core_physics_device_structures_BarrierGate_from_json_stream(std::istream &is){
-        return falcon_core::generic::Song::from_json_stream<falcon_core::physics::device_structures::BarrierGate>(is);
-    }
 
 SWIGINTERN int
 SWIG_AsVal_int (PyObject * obj, int *val)
@@ -7440,64 +7432,6 @@ SWIGINTERN PyObject *_wrap_new_BarrierGate(PyObject *self, PyObject *args) {
   }
   result = (falcon_core::physics::device_structures::BarrierGate *)new falcon_core::physics::device_structures::BarrierGate(SWIG_STD_MOVE(arg1));
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__physics__device_structures__BarrierGate, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_BarrierGate_from_json_string(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  std::string *arg1 = 0 ;
-  int res1 = SWIG_OLDOBJ ;
-  PyObject *swig_obj[1] ;
-  SwigValueWrapper< std::shared_ptr< falcon_core::physics::device_structures::BarrierGate > > result;
-  
-  (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  {
-    std::string *ptr = (std::string *)0;
-    res1 = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BarrierGate_from_json_string" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "BarrierGate_from_json_string" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    arg1 = ptr;
-  }
-  result = falcon_core_physics_device_structures_BarrierGate_from_json_string((std::string const &)*arg1);
-  resultobj = SWIG_NewPointerObj((new std::shared_ptr< falcon_core::physics::device_structures::BarrierGate >(result)), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGate_t, SWIG_POINTER_OWN |  0 );
-  if (SWIG_IsNewObj(res1)) delete arg1;
-  return resultobj;
-fail:
-  if (SWIG_IsNewObj(res1)) delete arg1;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_BarrierGate_from_json_stream(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  std::istream *arg1 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  SwigValueWrapper< std::shared_ptr< falcon_core::physics::device_structures::BarrierGate > > result;
-  
-  (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__istream,  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BarrierGate_from_json_stream" "', argument " "1"" of type '" "std::istream &""'"); 
-  }
-  if (!argp1) {
-    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "BarrierGate_from_json_stream" "', argument " "1"" of type '" "std::istream &""'"); 
-  }
-  arg1 = reinterpret_cast< std::istream * >(argp1);
-  result = falcon_core_physics_device_structures_BarrierGate_from_json_stream(*arg1);
-  resultobj = SWIG_NewPointerObj((new std::shared_ptr< falcon_core::physics::device_structures::BarrierGate >(result)), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGate_t, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -12240,8 +12174,6 @@ static PyMethodDef SwigMethods[] = {
 	 { "DotGate_swigregister", DotGate_swigregister, METH_O, NULL},
 	 { "DotGate_swiginit", DotGate_swiginit, METH_VARARGS, NULL},
 	 { "new_BarrierGate", _wrap_new_BarrierGate, METH_O, NULL},
-	 { "BarrierGate_from_json_string", _wrap_BarrierGate_from_json_string, METH_O, NULL},
-	 { "BarrierGate_from_json_stream", _wrap_BarrierGate_from_json_stream, METH_O, NULL},
 	 { "delete_BarrierGate", _wrap_delete_BarrierGate, METH_O, NULL},
 	 { "BarrierGate_swigregister", BarrierGate_swigregister, METH_O, NULL},
 	 { "BarrierGate_swiginit", BarrierGate_swiginit, METH_VARARGS, NULL},
@@ -12534,14 +12466,12 @@ static swig_type_info _swigt__p_falcon_core__physics__units__SymbolUnit = {"_p_f
 static swig_type_info _swigt__p_falcon_core__physics__units__Unit = {"_p_falcon_core__physics__units__Unit", "falcon_core::physics::units::Unit *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__physics__units__Units = {"_p_falcon_core__physics__units__Units", "falcon_core::physics::units::Units *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__invalid_argument = {"_p_std__invalid_argument", "std::invalid_argument *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__istream = {"_p_std__istream", "std::istream *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t = {"_p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t", "std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t = {"_p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t", "falcon_core::physics::units::TotalDimensions *|std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__ostream = {"_p_std__ostream", "std::ostream *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__pairT_double_std__string_t = {"_p_std__pairT_double_std__string_t", "std::pair< double,std::string > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_SUBMODULE_NAME_t = {"_p_std__shared_ptrT_SUBMODULE_NAME_t", "std::shared_ptr< SUBMODULE_NAME > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__math__Quantity_t = {"_p_std__shared_ptrT_falcon_core__math__Quantity_t", "std::shared_ptr< falcon_core::math::Quantity > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGate_t = {"_p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGate_t", "std::shared_ptr< falcon_core::physics::device_structures::BarrierGate > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t = {"_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t", "std::shared_ptr< falcon_core::physics::device_structures::BaseConnection > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t = {"_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t", "falcon_core::physics::units::SymbolUnitSP *|std::shared_ptr< falcon_core::physics::units::SymbolUnit > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__units__Unit_t = {"_p_std__shared_ptrT_falcon_core__physics__units__Unit_t", "falcon_core::physics::units::UnitSP *|std::shared_ptr< falcon_core::physics::units::Unit > *", 0, 0, (void*)0, 0};
@@ -12573,14 +12503,12 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_falcon_core__physics__units__Unit,
   &_swigt__p_falcon_core__physics__units__Units,
   &_swigt__p_std__invalid_argument,
-  &_swigt__p_std__istream,
   &_swigt__p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t,
   &_swigt__p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t,
   &_swigt__p_std__ostream,
   &_swigt__p_std__pairT_double_std__string_t,
   &_swigt__p_std__shared_ptrT_SUBMODULE_NAME_t,
   &_swigt__p_std__shared_ptrT_falcon_core__math__Quantity_t,
-  &_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGate_t,
   &_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t,
   &_swigt__p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t,
   &_swigt__p_std__shared_ptrT_falcon_core__physics__units__Unit_t,
@@ -12612,14 +12540,12 @@ static swig_cast_info _swigc__p_falcon_core__physics__units__SymbolUnit[] = {  {
 static swig_cast_info _swigc__p_falcon_core__physics__units__Unit[] = {  {&_swigt__p_falcon_core__physics__units__Unit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__physics__units__Units[] = {  {&_swigt__p_falcon_core__physics__units__Units, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__invalid_argument[] = {  {&_swigt__p_std__invalid_argument, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__istream[] = {  {&_swigt__p_std__istream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t[] = {  {&_swigt__p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t[] = {  {&_swigt__p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__ostream[] = {  {&_swigt__p_std__ostream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__pairT_double_std__string_t[] = {  {&_swigt__p_std__pairT_double_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_SUBMODULE_NAME_t[] = {  {&_swigt__p_std__shared_ptrT_SUBMODULE_NAME_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__math__Quantity_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__math__Quantity_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGate_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGate_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__units__Unit_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__units__Unit_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -12651,14 +12577,12 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_falcon_core__physics__units__Unit,
   _swigc__p_falcon_core__physics__units__Units,
   _swigc__p_std__invalid_argument,
-  _swigc__p_std__istream,
   _swigc__p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t,
   _swigc__p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t,
   _swigc__p_std__ostream,
   _swigc__p_std__pairT_double_std__string_t,
   _swigc__p_std__shared_ptrT_SUBMODULE_NAME_t,
   _swigc__p_std__shared_ptrT_falcon_core__math__Quantity_t,
-  _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__BarrierGate_t,
   _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t,
   _swigc__p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t,
   _swigc__p_std__shared_ptrT_falcon_core__physics__units__Unit_t,
