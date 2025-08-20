@@ -9,7 +9,10 @@ namespace arrays {
 template <typename T>
 class ControlArray : public BaseArray<T> {
  public:
-  using BaseArray<T>::BaseArray;
+  ControlArray() : BaseArray<T>() {}
+  ControlArray(const ControlArray& other) : BaseArray<T>(other) {}
+  ControlArray(const typename BaseArray<T>::MatrixType& data)
+      : BaseArray<T>(data) {}
 
  private:
   friend class cereal::access;
@@ -22,6 +25,7 @@ class ControlArray : public BaseArray<T> {
 }  // namespace math
 }  // namespace falcon_core
 
+#ifndef SWIG
 using namespace falcon_core::math::arrays;
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray<float>)
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray<double>)
@@ -31,3 +35,4 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::math::arrays::BaseArray<double>,
     falcon_core::math::arrays::ControlArray<double>)
+#endif

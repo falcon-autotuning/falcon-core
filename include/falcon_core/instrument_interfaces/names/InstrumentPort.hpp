@@ -6,6 +6,7 @@
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/Instrument.hpp"
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
 namespace falcon_core {
@@ -19,6 +20,11 @@ class Meter;
 // InstrumentPort: base class for all instrument ports
 template <typename T>
 class InstrumentPort : public generic::Song {
+  std::string        _default_name;
+  std::shared_ptr<T> _pseudo_name;
+  Instrument         _instrument_type;
+  std::string        _description;
+
  public:
   InstrumentPort(std::string                                 default_name,
                  std::shared_ptr<T>                          pseudo_name,
@@ -30,6 +36,14 @@ class InstrumentPort : public generic::Song {
         _instrument_type(std::move(instrument_type)),
         _units(std::move(units)),
         _description(std::move(description)) {}
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<Song>(this),
+       _default_name,
+       _pseudo_name,
+       _instrument_type,
+       _description);
+  }
 
   InstrumentPort() = default;
 
@@ -53,6 +67,11 @@ class InstrumentPort : public generic::Song {
   Instrument                                  _instrument_type;
   std::shared_ptr<physics::units::SymbolUnit> _units;
   std::string                                 _description;
+
+ protected:
+  InstrumentPort() = default;  // or initialize _name with a default value
+
+  friend class cereal::access;
 };
 
 // Type aliases for Knob and Meter
@@ -63,5 +82,11 @@ using Meter = InstrumentPort<physics::units::Ohmic>;
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
 
-// No CEREAL_REGISTER_TYPE for InstrumentPort because it is a template.
-// No CEREAL_REGISTER_TYPE for Knob/Meter because they are type aliases.
+#ifndef SWIG
+CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::InstrumentPort<
+                     falcon_core::physics::device_structures::BaseConnection>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::instrument_interfaces::names::InstrumentPort<
+        falcon_core::physics::device_structures::BaseConnection>)
+#endif
