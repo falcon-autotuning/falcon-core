@@ -10,7 +10,6 @@ namespace names {
 // Knobs: collection of Knob ports
 class Knobs : public Ports<Knob> {
  public:
-  using Ports<Knob>::Ports;
   Knobs() = default;
 
   template <class Archive>

@@ -10,7 +10,6 @@ namespace names {
 // Meters: collection of Meter ports
 class Meters : public Ports<Meter> {
  public:
-  using Ports<Meter>::Ports;
   Meters() = default;
 
   template <class Archive>
