@@ -8,6 +8,8 @@
 namespace falcon_core {
 namespace instrument_interfaces {
 namespace names {
+
+// Generic collection of instrument ports
 template <typename T>
 class Ports : public generic::Song {
  public:
@@ -16,15 +18,22 @@ class Ports : public generic::Song {
 
   Ports() = default;
 
-  void append(const std::shared_ptr<value_type> &port) {
+  void append(const std::shared_ptr<value_type>& port) {
     _ports.push_back(port);
   }
 
-  const container_type &get_ports() const { return _ports; }
+  const container_type& get_ports() const { return _ports; }
+
+  // cereal serialization
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(_ports);
+  }
 
  private:
   container_type _ports;
 };
+
 }  // namespace names
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
