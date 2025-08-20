@@ -3211,39 +3211,42 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_MatrixType swig_types[1]
 #define SWIGTYPE_p_char swig_types[2]
 #define SWIGTYPE_p_falcon_core__generic__Song swig_types[3]
-#define SWIGTYPE_p_falcon_core__math__Quantity swig_types[4]
-#define SWIGTYPE_p_falcon_core__math__arrays__BaseArrayT_double_t swig_types[5]
-#define SWIGTYPE_p_falcon_core__math__arrays__ControlArray1D swig_types[6]
-#define SWIGTYPE_p_falcon_core__math__arrays__ControlArrayT_double_t swig_types[7]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__BarrierGate swig_types[8]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__BaseConnection swig_types[9]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__DotGate swig_types[10]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__Gate swig_types[11]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__Impedance swig_types[12]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__Ohmic swig_types[13]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__PlungerGate swig_types[14]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__ReservoirGate swig_types[15]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__ScreeningGate swig_types[16]
-#define SWIGTYPE_p_falcon_core__physics__units__Prefix swig_types[17]
-#define SWIGTYPE_p_falcon_core__physics__units__SymbolUnit swig_types[18]
-#define SWIGTYPE_p_falcon_core__physics__units__Unit swig_types[19]
-#define SWIGTYPE_p_falcon_core__physics__units__Units swig_types[20]
-#define SWIGTYPE_p_std__invalid_argument swig_types[21]
-#define SWIGTYPE_p_std__istream swig_types[22]
-#define SWIGTYPE_p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t swig_types[23]
-#define SWIGTYPE_p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t swig_types[24]
-#define SWIGTYPE_p_std__ostream swig_types[25]
-#define SWIGTYPE_p_std__pairT_double_std__string_t swig_types[26]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__math__Quantity_t swig_types[27]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__math__arrays__ControlArray1D_t swig_types[28]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t swig_types[29]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t swig_types[30]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t swig_types[31]
-#define SWIGTYPE_p_std__string swig_types[32]
-#define SWIGTYPE_p_swig__SwigPyIterator swig_types[33]
-#define SWIGTYPE_p_wchar_t swig_types[34]
-static swig_type_info *swig_types[36];
-static swig_module_info swig_module = {swig_types, 35, 0, 0, 0, 0};
+#define SWIGTYPE_p_falcon_core__instrument_interfaces__names__Knob swig_types[4]
+#define SWIGTYPE_p_falcon_core__instrument_interfaces__names__Meter swig_types[5]
+#define SWIGTYPE_p_falcon_core__math__Quantity swig_types[6]
+#define SWIGTYPE_p_falcon_core__math__arrays__BaseArrayT_double_t swig_types[7]
+#define SWIGTYPE_p_falcon_core__math__arrays__ControlArray1D swig_types[8]
+#define SWIGTYPE_p_falcon_core__math__arrays__ControlArrayT_double_t swig_types[9]
+#define SWIGTYPE_p_falcon_core__math__arrays__IncreasingAlignment swig_types[10]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__BarrierGate swig_types[11]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__BaseConnection swig_types[12]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__DotGate swig_types[13]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__Gate swig_types[14]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__Impedance swig_types[15]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__Ohmic swig_types[16]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__PlungerGate swig_types[17]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__ReservoirGate swig_types[18]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__ScreeningGate swig_types[19]
+#define SWIGTYPE_p_falcon_core__physics__units__Prefix swig_types[20]
+#define SWIGTYPE_p_falcon_core__physics__units__SymbolUnit swig_types[21]
+#define SWIGTYPE_p_falcon_core__physics__units__Unit swig_types[22]
+#define SWIGTYPE_p_falcon_core__physics__units__Units swig_types[23]
+#define SWIGTYPE_p_std__invalid_argument swig_types[24]
+#define SWIGTYPE_p_std__istream swig_types[25]
+#define SWIGTYPE_p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t swig_types[26]
+#define SWIGTYPE_p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t swig_types[27]
+#define SWIGTYPE_p_std__ostream swig_types[28]
+#define SWIGTYPE_p_std__pairT_double_std__string_t swig_types[29]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__math__Quantity_t swig_types[30]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__math__arrays__ControlArray1D_t swig_types[31]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t swig_types[32]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t swig_types[33]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t swig_types[34]
+#define SWIGTYPE_p_std__string swig_types[35]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[36]
+#define SWIGTYPE_p_wchar_t swig_types[37]
+static swig_type_info *swig_types[39];
+static swig_module_info swig_module = {swig_types, 38, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3417,10 +3420,14 @@ namespace swig {
 #include "falcon_core/physics/units/CommonUnits.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 #include "falcon_core/physics/units/Units.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/instrument_interfaces/names/Ports.hpp"
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/math/arrays/BaseArray.hpp"
 #include "falcon_core/math/arrays/ControlArray.hpp"
 #include "falcon_core/math/arrays/ControlArray1D.hpp"
+#include "falcon_core/math/arrays/IncreasingAlignment.hpp"
+#include "falcon_core/math/arrays/MeasuredArray.hpp"
 
 
 #include <string>
@@ -12145,6 +12152,54 @@ SWIGINTERN PyObject *ControlArray1D_swiginit(PyObject *SWIGUNUSEDPARM(self), PyO
   return SWIG_Python_InitShadowInstance(args);
 }
 
+SWIGINTERN PyObject *_wrap_new_IncreasingAlignment(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::math::arrays::IncreasingAlignment *result = 0 ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "new_IncreasingAlignment", 0, 0, 0)) SWIG_fail;
+  result = (falcon_core::math::arrays::IncreasingAlignment *)new falcon_core::math::arrays::IncreasingAlignment();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__math__arrays__IncreasingAlignment, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_IncreasingAlignment(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::math::arrays::IncreasingAlignment *arg1 = (falcon_core::math::arrays::IncreasingAlignment *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__math__arrays__IncreasingAlignment, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_IncreasingAlignment" "', argument " "1"" of type '" "falcon_core::math::arrays::IncreasingAlignment *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::math::arrays::IncreasingAlignment * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *IncreasingAlignment_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__math__arrays__IncreasingAlignment, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *IncreasingAlignment_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
 static PyMethodDef SwigMethods[] = {
 	 { "delete_SwigPyIterator", _wrap_delete_SwigPyIterator, METH_O, NULL},
 	 { "SwigPyIterator_value", _wrap_SwigPyIterator_value, METH_O, NULL},
@@ -12349,6 +12404,10 @@ static PyMethodDef SwigMethods[] = {
 	 { "delete_ControlArray1D", _wrap_delete_ControlArray1D, METH_O, NULL},
 	 { "ControlArray1D_swigregister", ControlArray1D_swigregister, METH_O, NULL},
 	 { "ControlArray1D_swiginit", ControlArray1D_swiginit, METH_VARARGS, NULL},
+	 { "new_IncreasingAlignment", _wrap_new_IncreasingAlignment, METH_NOARGS, NULL},
+	 { "delete_IncreasingAlignment", _wrap_delete_IncreasingAlignment, METH_O, NULL},
+	 { "IncreasingAlignment_swigregister", IncreasingAlignment_swigregister, METH_O, NULL},
+	 { "IncreasingAlignment_swiginit", IncreasingAlignment_swiginit, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -12366,6 +12425,9 @@ static void *_p_falcon_core__math__arrays__ControlArray1DTo_p_falcon_core__gener
 }
 static void *_p_falcon_core__math__arrays__ControlArrayT_double_tTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((falcon_core::generic::Song *) (falcon_core::math::arrays::BaseArray< double > *) ((falcon_core::math::arrays::ControlArray< double > *) x));
+}
+static void *_p_falcon_core__math__arrays__IncreasingAlignmentTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((falcon_core::generic::Song *)  ((falcon_core::math::arrays::IncreasingAlignment *) x));
 }
 static void *_p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((falcon_core::generic::Song *) (falcon_core::physics::device_structures::BaseConnection *)(falcon_core::physics::device_structures::Gate *)(falcon_core::physics::device_structures::DotGate *) ((falcon_core::physics::device_structures::BarrierGate *) x));
@@ -12455,10 +12517,13 @@ static swig_type_info _swigt__p_Eigen__MatrixT_double_Eigen__Dynamic_Eigen__Dyna
 static swig_type_info _swigt__p_MatrixType = {"_p_MatrixType", "MatrixType *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__generic__Song = {"_p_falcon_core__generic__Song", "falcon_core::generic::Song *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__instrument_interfaces__names__Knob = {"_p_falcon_core__instrument_interfaces__names__Knob", "falcon_core::instrument_interfaces::names::Knob *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__instrument_interfaces__names__Meter = {"_p_falcon_core__instrument_interfaces__names__Meter", "falcon_core::instrument_interfaces::names::Meter *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__math__Quantity = {"_p_falcon_core__math__Quantity", "falcon_core::math::Quantity *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__math__arrays__BaseArrayT_double_t = {"_p_falcon_core__math__arrays__BaseArrayT_double_t", "falcon_core::math::arrays::BaseArray< double > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__math__arrays__ControlArray1D = {"_p_falcon_core__math__arrays__ControlArray1D", "falcon_core::math::arrays::ControlArray1D *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__math__arrays__ControlArrayT_double_t = {"_p_falcon_core__math__arrays__ControlArrayT_double_t", "falcon_core::math::arrays::ControlArray< double > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__math__arrays__IncreasingAlignment = {"_p_falcon_core__math__arrays__IncreasingAlignment", "falcon_core::math::arrays::IncreasingAlignment *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__physics__device_structures__BarrierGate = {"_p_falcon_core__physics__device_structures__BarrierGate", "falcon_core::physics::device_structures::BarrierGate *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__physics__device_structures__BaseConnection = {"_p_falcon_core__physics__device_structures__BaseConnection", "falcon_core::physics::device_structures::BaseConnection *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__physics__device_structures__DotGate = {"_p_falcon_core__physics__device_structures__DotGate", "falcon_core::physics::device_structures::DotGate *", 0, 0, (void*)0, 0};
@@ -12492,10 +12557,13 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_MatrixType,
   &_swigt__p_char,
   &_swigt__p_falcon_core__generic__Song,
+  &_swigt__p_falcon_core__instrument_interfaces__names__Knob,
+  &_swigt__p_falcon_core__instrument_interfaces__names__Meter,
   &_swigt__p_falcon_core__math__Quantity,
   &_swigt__p_falcon_core__math__arrays__BaseArrayT_double_t,
   &_swigt__p_falcon_core__math__arrays__ControlArray1D,
   &_swigt__p_falcon_core__math__arrays__ControlArrayT_double_t,
+  &_swigt__p_falcon_core__math__arrays__IncreasingAlignment,
   &_swigt__p_falcon_core__physics__device_structures__BarrierGate,
   &_swigt__p_falcon_core__physics__device_structures__BaseConnection,
   &_swigt__p_falcon_core__physics__device_structures__DotGate,
@@ -12528,11 +12596,14 @@ static swig_type_info *swig_type_initial[] = {
 static swig_cast_info _swigc__p_Eigen__MatrixT_double_Eigen__Dynamic_Eigen__Dynamic_t[] = {  {&_swigt__p_Eigen__MatrixT_double_Eigen__Dynamic_Eigen__Dynamic_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MatrixType[] = {  {&_swigt__p_MatrixType, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_falcon_core__generic__Song[] = {  {&_swigt__p_falcon_core__generic__Song, 0, 0, 0},  {&_swigt__p_falcon_core__math__Quantity, _p_falcon_core__math__QuantityTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__math__arrays__BaseArrayT_double_t, _p_falcon_core__math__arrays__BaseArrayT_double_tTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__math__arrays__ControlArray1D, _p_falcon_core__math__arrays__ControlArray1DTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__math__arrays__ControlArrayT_double_t, _p_falcon_core__math__arrays__ControlArrayT_double_tTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BarrierGate, _p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BaseConnection, _p_falcon_core__physics__device_structures__BaseConnectionTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__DotGate, _p_falcon_core__physics__device_structures__DotGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Gate, _p_falcon_core__physics__device_structures__GateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Impedance, _p_falcon_core__physics__device_structures__ImpedanceTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Ohmic, _p_falcon_core__physics__device_structures__OhmicTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__PlungerGate, _p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ReservoirGate, _p_falcon_core__physics__device_structures__ReservoirGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ScreeningGate, _p_falcon_core__physics__device_structures__ScreeningGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__units__SymbolUnit, _p_falcon_core__physics__units__SymbolUnitTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__units__Unit, _p_falcon_core__physics__units__UnitTo_p_falcon_core__generic__Song, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__generic__Song[] = {  {&_swigt__p_falcon_core__generic__Song, 0, 0, 0},  {&_swigt__p_falcon_core__math__Quantity, _p_falcon_core__math__QuantityTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__math__arrays__BaseArrayT_double_t, _p_falcon_core__math__arrays__BaseArrayT_double_tTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__math__arrays__ControlArray1D, _p_falcon_core__math__arrays__ControlArray1DTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__math__arrays__ControlArrayT_double_t, _p_falcon_core__math__arrays__ControlArrayT_double_tTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__math__arrays__IncreasingAlignment, _p_falcon_core__math__arrays__IncreasingAlignmentTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BarrierGate, _p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BaseConnection, _p_falcon_core__physics__device_structures__BaseConnectionTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__DotGate, _p_falcon_core__physics__device_structures__DotGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Gate, _p_falcon_core__physics__device_structures__GateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Impedance, _p_falcon_core__physics__device_structures__ImpedanceTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Ohmic, _p_falcon_core__physics__device_structures__OhmicTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__PlungerGate, _p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ReservoirGate, _p_falcon_core__physics__device_structures__ReservoirGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ScreeningGate, _p_falcon_core__physics__device_structures__ScreeningGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__units__SymbolUnit, _p_falcon_core__physics__units__SymbolUnitTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__units__Unit, _p_falcon_core__physics__units__UnitTo_p_falcon_core__generic__Song, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__instrument_interfaces__names__Knob[] = {  {&_swigt__p_falcon_core__instrument_interfaces__names__Knob, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__instrument_interfaces__names__Meter[] = {  {&_swigt__p_falcon_core__instrument_interfaces__names__Meter, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__math__Quantity[] = {  {&_swigt__p_falcon_core__math__Quantity, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__math__arrays__BaseArrayT_double_t[] = {  {&_swigt__p_falcon_core__math__arrays__BaseArrayT_double_t, 0, 0, 0},  {&_swigt__p_falcon_core__math__arrays__ControlArray1D, _p_falcon_core__math__arrays__ControlArray1DTo_p_falcon_core__math__arrays__BaseArrayT_double_t, 0, 0},  {&_swigt__p_falcon_core__math__arrays__ControlArrayT_double_t, _p_falcon_core__math__arrays__ControlArrayT_double_tTo_p_falcon_core__math__arrays__BaseArrayT_double_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__math__arrays__ControlArray1D[] = {  {&_swigt__p_falcon_core__math__arrays__ControlArray1D, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__math__arrays__ControlArrayT_double_t[] = {  {&_swigt__p_falcon_core__math__arrays__ControlArrayT_double_t, 0, 0, 0},  {&_swigt__p_falcon_core__math__arrays__ControlArray1D, _p_falcon_core__math__arrays__ControlArray1DTo_p_falcon_core__math__arrays__ControlArrayT_double_t, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__math__arrays__IncreasingAlignment[] = {  {&_swigt__p_falcon_core__math__arrays__IncreasingAlignment, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__physics__device_structures__BarrierGate[] = {  {&_swigt__p_falcon_core__physics__device_structures__BarrierGate, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__physics__device_structures__BaseConnection[] = {  {&_swigt__p_falcon_core__physics__device_structures__BaseConnection, 0, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BarrierGate, _p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__DotGate, _p_falcon_core__physics__device_structures__DotGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Gate, _p_falcon_core__physics__device_structures__GateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Ohmic, _p_falcon_core__physics__device_structures__OhmicTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__PlungerGate, _p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ReservoirGate, _p_falcon_core__physics__device_structures__ReservoirGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ScreeningGate, _p_falcon_core__physics__device_structures__ScreeningGateTo_p_falcon_core__physics__device_structures__BaseConnection, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__physics__device_structures__DotGate[] = {  {&_swigt__p_falcon_core__physics__device_structures__DotGate, 0, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BarrierGate, _p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__physics__device_structures__DotGate, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__PlungerGate, _p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__physics__device_structures__DotGate, 0, 0},{0, 0, 0, 0}};
@@ -12566,10 +12637,13 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_MatrixType,
   _swigc__p_char,
   _swigc__p_falcon_core__generic__Song,
+  _swigc__p_falcon_core__instrument_interfaces__names__Knob,
+  _swigc__p_falcon_core__instrument_interfaces__names__Meter,
   _swigc__p_falcon_core__math__Quantity,
   _swigc__p_falcon_core__math__arrays__BaseArrayT_double_t,
   _swigc__p_falcon_core__math__arrays__ControlArray1D,
   _swigc__p_falcon_core__math__arrays__ControlArrayT_double_t,
+  _swigc__p_falcon_core__math__arrays__IncreasingAlignment,
   _swigc__p_falcon_core__physics__device_structures__BarrierGate,
   _swigc__p_falcon_core__physics__device_structures__BaseConnection,
   _swigc__p_falcon_core__physics__device_structures__DotGate,

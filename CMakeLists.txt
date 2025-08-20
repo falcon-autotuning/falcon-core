@@ -20,7 +20,8 @@ function(cpp_tests)
     tests/test_device_structures.cpp
     tests/test_arrays.cpp
     tests/test_labelled_arrays.cpp
-    tests/test_quantity.cpp)
+    tests/test_quantity.cpp
+    tests/test_instrument_interfaces_names.cpp)
 
   target_link_libraries(run_tests GTest::gtest_main falcon_core_cpp)
 
@@ -29,10 +30,10 @@ function(cpp_tests)
 endfunction()
 
 function(generate_swig_modules SWIG_MODULES_LIST)
-  # This function is used to set up SWIG modules.
-  # SWIG_MODULES_LIST: A list of SWIG modules to process.
-  # Each entry in the list should contain the following fields: FIELD_NAMES
-  set(MODULE_LIST "${${SWIG_MODULES_LIST}}")  # Dereference to get the list
+  # This function is used to set up SWIG modules. SWIG_MODULES_LIST: A list of
+  # SWIG modules to process. Each entry in the list should contain the following
+  # fields: FIELD_NAMES
+  set(MODULE_LIST "${${SWIG_MODULES_LIST}}") # Dereference to get the list
 
   set(SWIG_MODULE_NAME "falcon_core")
 
@@ -65,13 +66,14 @@ endfunction()
 
 function(generate_song_deserializers OUT_DIR)
   # This function generates the add_song_deserializers.i file.
-  file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/swig/add_song_deserializers.i" DESTINATION "${OUT_DIR}")
+  file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/swig/add_song_deserializers.i"
+       DESTINATION "${OUT_DIR}")
 endfunction()
 
 function(generate_swig_header_interface HEADER_LIST_VAR OUTPUT_FILE MODULE_NAME)
-  # HEADER_LIST_VAR: name of the variable holding the header list (e.g., falcon_headers)
-  # OUTPUT_FILE: path to write the .i file
-  # MODULE_NAME: SWIG module name
+  # HEADER_LIST_VAR: name of the variable holding the header list (e.g.,
+  # falcon_headers) OUTPUT_FILE: path to write the .i file MODULE_NAME: SWIG
+  # module name
 
   # Get the list from the variable name
   set(headers "${${HEADER_LIST_VAR}}")
@@ -146,13 +148,14 @@ function(remove_file_extension FILE_PATH OUT_VAR)
       PARENT_SCOPE)
 endfunction()
 
-function(falcon_process_swig_module SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE DIRECTORY_PATH)
-  # This function processes a SWIG module for Python bindings.
-  # It generates the necessary files and sets up the target.
-  # SUBMODULE_NAME: Name of the submodule (e.g., "song", "base_connection").
-  # CLASS_NAME: Name of the python class (e.g., "Song", "BaseConnection").
-  # SWIG_INTERFACE: Name of the the SWIG interface file (e.g., "Song.i").
-  # DIRECTORY_PATH: Path to the nested directory for all files (e.g., "physics/device_structures").
+function(falcon_process_swig_module SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE
+         DIRECTORY_PATH)
+  # This function processes a SWIG module for Python bindings. It generates the
+  # necessary files and sets up the target. SUBMODULE_NAME: Name of the
+  # submodule (e.g., "song", "base_connection"). CLASS_NAME: Name of the python
+  # class (e.g., "Song", "BaseConnection"). SWIG_INTERFACE: Name of the the SWIG
+  # interface file (e.g., "Song.i"). DIRECTORY_PATH: Path to the nested
+  # directory for all files (e.g., "physics/device_structures").
   assert_file_extension("${SWIG_INTERFACE}" "i")
   remove_file_extension("${SWIG_INTERFACE}" C_FILENAME_NO_EXT)
   clean_directory_path(${DIRECTORY_PATH} CLEANED_DIR)
@@ -171,14 +174,11 @@ function(falcon_process_swig_module SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE DIR
   else()
     message(STATUS "Autogenerating SWIG interface for ${SUBMODULE_NAME}")
     set(FILE_PATH_NO_EXT "falcon_core/${CLEANED_DIR}${C_FILENAME_NO_EXT}")
-    string(REPLACE "/" "::" CPP_CLASS "falcon_core/${CLEANED_DIR}${C_FILENAME_NO_EXT}")
+    string(REPLACE "/" "::" CPP_CLASS
+                   "falcon_core/${CLEANED_DIR}${C_FILENAME_NO_EXT}")
     cmake_path(GET FILE_PATH_NO_EXT PARENT_PATH PACKAGE_DIR)
     string(REPLACE "/" "." PACKAGE_TREE "${PACKAGE_DIR}")
-    configure_file(
-      "${TEMPLATE_I_FILE}"
-      "${BUILD_I_FILE}"
-      @ONLY
-    )
+    configure_file("${TEMPLATE_I_FILE}" "${BUILD_I_FILE}" @ONLY)
   endif()
 
   # Create package directories and __init__.py files
@@ -279,94 +279,183 @@ target_include_directories(
          ${cereal_SOURCE_DIR}/include)
 
 set(FALCON_HEADERS
-  falcon_core/generic/Song.hpp
-  falcon_core/Constants.hpp
-  falcon_core/physics/device_structures/BaseConnection.hpp
-  falcon_core/physics/device_structures/Gate.hpp
-  falcon_core/physics/device_structures/DotGate.hpp
-  falcon_core/physics/device_structures/BarrierGate.hpp
-  falcon_core/physics/device_structures/ScreeningGate.hpp
-  falcon_core/physics/device_structures/ReservoirGate.hpp
-  falcon_core/physics/device_structures/PlungerGate.hpp
-  falcon_core/physics/device_structures/Ohmic.hpp
-  falcon_core/physics/device_structures/Impedance.hpp
-  falcon_core/physics/device_structures/BaseConnections.hpp
-  falcon_core/physics/device_structures/Gates.hpp
-  falcon_core/physics/device_structures/DotGates.hpp
-  falcon_core/physics/device_structures/BarrierGates.hpp
-  falcon_core/physics/device_structures/ScreeningGates.hpp
-  falcon_core/physics/device_structures/ReservoirGates.hpp
-  falcon_core/physics/device_structures/PlungerGates.hpp
-  falcon_core/physics/device_structures/Ohmics.hpp
-  falcon_core/physics/device_structures/Impedances.hpp
-  falcon_core/physics/device_structures/GateRelations.hpp
-  falcon_core/physics/units/TotalDimensions.hpp
-  falcon_core/physics/units/Prefix.hpp
-  falcon_core/physics/units/Unit.hpp
-  falcon_core/physics/units/CommonUnits.hpp
-  falcon_core/physics/units/SymbolUnit.hpp
-  falcon_core/physics/units/Units.hpp
-  # falcon_core/instrument_interfaces/names/InstrumentPort.hpp
-  # falcon_core/instrument_interfaces/names/Ports.hpp
-  # falcon_core/math/Axes.hpp
-  # std::map<falcon_core::physics::device_structures::BaseConnection,double>
-  # falcon_core/math/Point.hpp
-  falcon_core/math/Quantity.hpp
-  # falcon_core/math/Sign.hpp
-  falcon_core/math/arrays/BaseArray.hpp
-  falcon_core::math::arrays::BaseArray<double>
-  falcon_core/math/arrays/ControlArray.hpp
-  falcon_core::math::arrays::ControlArray<double>
-  falcon_core/math/arrays/ControlArray1D.hpp
-  falcon_core/math/arrays/IncreasingAlignment.hpp
-  falcon_core/math/arrays/MeasuredArray.hpp
-  # falcon_core/math/labelled_arrays/BaseLabelledArray.hpp
-  # falcon_core/math/labelled_arrays/BaseLabelledArrays.hpp
-  # falcon_core/math/labelled_arrays/IsLabelled1D.hpp
-  # falcon_core::math::labelled_arrays::BaseLabelledArray<falcon_core::math::arrays::ControlArray1D,falcon_core::instrument_interfaces::names::InstrumentPort<falcon_core::physics::device_structures::Gate>>
-  # falcon_core::math::labelled_arrays::IsLabelled1D<falcon_core::math::labelled_arrays::LabelledControlArray1D>
-  # falcon_core/math/labelled_arrays/LabelledControlArray1D.hpp
+    falcon_core/generic/Song.hpp
+    falcon_core/Constants.hpp
+    falcon_core/physics/device_structures/BaseConnection.hpp
+    falcon_core/physics/device_structures/Gate.hpp
+    falcon_core/physics/device_structures/DotGate.hpp
+    falcon_core/physics/device_structures/BarrierGate.hpp
+    falcon_core/physics/device_structures/ScreeningGate.hpp
+    falcon_core/physics/device_structures/ReservoirGate.hpp
+    falcon_core/physics/device_structures/PlungerGate.hpp
+    falcon_core/physics/device_structures/Ohmic.hpp
+    falcon_core/physics/device_structures/Impedance.hpp
+    falcon_core/physics/device_structures/BaseConnections.hpp
+    falcon_core/physics/device_structures/Gates.hpp
+    falcon_core/physics/device_structures/DotGates.hpp
+    falcon_core/physics/device_structures/BarrierGates.hpp
+    falcon_core/physics/device_structures/ScreeningGates.hpp
+    falcon_core/physics/device_structures/ReservoirGates.hpp
+    falcon_core/physics/device_structures/PlungerGates.hpp
+    falcon_core/physics/device_structures/Ohmics.hpp
+    falcon_core/physics/device_structures/Impedances.hpp
+    falcon_core/physics/device_structures/GateRelations.hpp
+    falcon_core/physics/units/TotalDimensions.hpp
+    falcon_core/physics/units/Prefix.hpp
+    falcon_core/physics/units/Unit.hpp
+    falcon_core/physics/units/CommonUnits.hpp
+    falcon_core/physics/units/SymbolUnit.hpp
+    falcon_core/physics/units/Units.hpp
+    falcon_core/instrument_interfaces/names/InstrumentPort.hpp
+    falcon_core/instrument_interfaces/names/Ports.hpp
+    # falcon_core/math/Axes.hpp
+    # std::map<falcon_core::physics::device_structures::BaseConnection,double>
+    # falcon_core/math/Point.hpp
+    falcon_core/math/Quantity.hpp
+    # falcon_core/math/Sign.hpp
+    falcon_core/math/arrays/BaseArray.hpp
+    falcon_core::math::arrays::BaseArray<double>
+    falcon_core/math/arrays/ControlArray.hpp
+    falcon_core::math::arrays::ControlArray<double>
+    falcon_core/math/arrays/ControlArray1D.hpp
+    falcon_core/math/arrays/IncreasingAlignment.hpp
+    falcon_core/math/arrays/MeasuredArray.hpp
+    # falcon_core/math/labelled_arrays/BaseLabelledArray.hpp
+    # falcon_core/math/labelled_arrays/BaseLabelledArrays.hpp
+    # falcon_core/math/labelled_arrays/IsLabelled1D.hpp
+    # falcon_core::math::labelled_arrays::BaseLabelledArray<falcon_core::math::arrays::ControlArray1D,falcon_core::instrument_interfaces::names::InstrumentPort<falcon_core::physics::device_structures::Gate>>
+    # falcon_core::math::labelled_arrays::IsLabelled1D<falcon_core::math::labelled_arrays::LabelledControlArray1D>
+    # falcon_core/math/labelled_arrays/LabelledControlArray1D.hpp
 )
 set(SWIG_MODULES
-    song Song Song.i generic
-    base_connection BaseConnection BaseConnection.i physics/device_structures
-    gate Gate Gate.i physics/device_structures
-    dotgate DotGate DotGate.i physics/device_structures
-    ohmic Ohmic Ohmic.i physics/device_structures
-    barrier_gate BarrierGate BarrierGate.i physics/device_structures
-    plunger_gate PlungerGate PlungerGate.i physics/device_structures
-    screening_gate ScreeningGate ScreeningGate.i physics/device_structures
-    reservoir_gate ReservoirGate ReservoirGate.i physics/device_structures
-    gates Gates Gates.i physics/device_structures
-    dot_gates DotGates DotGates.i physics/device_structures
-    ohmics Ohmics Ohmics.i physics/device_structures
-    barrier_gates BarrierGates BarrierGates.i physics/device_structures
-    plunger_gates PlungerGates PlungerGates.i physics/device_structures
-    reservoir_gates ReservoirGates ReservoirGates.i physics/device_structures
-    screening_gates ScreeningGates ScreeningGates.i physics/device_structures
-    impedance Impedance Impedance.i physics/device_structures
-    impedances Impedances Impedances.i physics/device_structures
-    gate_relations GateRelations GateRelations.i physics/device_structures
-    prefix Prefix Prefix.i physics/units
-    unit Unit Unit.i physics/units
-    symbol_unit SymbolUnit SymbolUnit.i physics/units
-    units Units Units.i physics/units
-    # instrument_port InstrumentPort InstrumentPort.i instrument_interfaces/names
-    # ports Ports Ports.i instrument_interfaces/names
-    # axes Axes Axes.i math
-    # point Point Point.i math
-    quantity Quantity Quantity.i math
-    base_array BaseArray BaseArray.i math/arrays
-    control_array ControlArray ControlArray.i math/arrays
-    control_array_1D ControlArray1D ControlArray1D.i math/arrays
-    increasing_alignment IncreasingAlignment IncreasingAlignment.i math/arrays
-    measured_array MeasuredArray MeasuredArray.i math/arrays
-    # base_labelled_array BaseLabelledArray BaseLabelledArray.i math/labelled_arrays
-    # base_labelled_arrays BaseLabelledArrays BaseLabelledArrays.i math/labelled_arrays
-    # is_labelled_1D IsLabelled1D IsLabelled1D.i math/labelled_arrays
-    # labelled_control_array_1D LabelledControlArray1D LabelledControlArray1D.i math/labelled_arrays
-  )
-generate_swig_header_interface(FALCON_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/swig/falcon_core_all.i" "falcon_core_all")
+    song
+    Song
+    Song.i
+    generic
+    base_connection
+    BaseConnection
+    BaseConnection.i
+    physics/device_structures
+    gate
+    Gate
+    Gate.i
+    physics/device_structures
+    dotgate
+    DotGate
+    DotGate.i
+    physics/device_structures
+    ohmic
+    Ohmic
+    Ohmic.i
+    physics/device_structures
+    barrier_gate
+    BarrierGate
+    BarrierGate.i
+    physics/device_structures
+    plunger_gate
+    PlungerGate
+    PlungerGate.i
+    physics/device_structures
+    screening_gate
+    ScreeningGate
+    ScreeningGate.i
+    physics/device_structures
+    reservoir_gate
+    ReservoirGate
+    ReservoirGate.i
+    physics/device_structures
+    gates
+    Gates
+    Gates.i
+    physics/device_structures
+    dot_gates
+    DotGates
+    DotGates.i
+    physics/device_structures
+    ohmics
+    Ohmics
+    Ohmics.i
+    physics/device_structures
+    barrier_gates
+    BarrierGates
+    BarrierGates.i
+    physics/device_structures
+    plunger_gates
+    PlungerGates
+    PlungerGates.i
+    physics/device_structures
+    reservoir_gates
+    ReservoirGates
+    ReservoirGates.i
+    physics/device_structures
+    screening_gates
+    ScreeningGates
+    ScreeningGates.i
+    physics/device_structures
+    impedance
+    Impedance
+    Impedance.i
+    physics/device_structures
+    impedances
+    Impedances
+    Impedances.i
+    physics/device_structures
+    gate_relations
+    GateRelations
+    GateRelations.i
+    physics/device_structures
+    prefix
+    Prefix
+    Prefix.i
+    physics/units
+    unit
+    Unit
+    Unit.i
+    physics/units
+    symbol_unit
+    SymbolUnit
+    SymbolUnit.i
+    physics/units
+    units
+    Units
+    Units.i
+    physics/units
+    # instrument_port InstrumentPort InstrumentPort.i
+    # instrument_interfaces/names ports Ports Ports.i
+    # instrument_interfaces/names axes Axes Axes.i math point Point Point.i math
+    quantity
+    Quantity
+    Quantity.i
+    math
+    base_array
+    BaseArray
+    BaseArray.i
+    math/arrays
+    control_array
+    ControlArray
+    ControlArray.i
+    math/arrays
+    control_array_1D
+    ControlArray1D
+    ControlArray1D.i
+    math/arrays
+    increasing_alignment
+    IncreasingAlignment
+    IncreasingAlignment.i
+    math/arrays
+    measured_array
+    MeasuredArray
+    MeasuredArray.i
+    math/arrays
+    # base_labelled_array BaseLabelledArray BaseLabelledArray.i
+    # math/labelled_arrays base_labelled_arrays BaseLabelledArrays
+    # BaseLabelledArrays.i math/labelled_arrays is_labelled_1D IsLabelled1D
+    # IsLabelled1D.i math/labelled_arrays labelled_control_array_1D
+    # LabelledControlArray1D LabelledControlArray1D.i math/labelled_arrays
+)
+generate_swig_header_interface(
+  FALCON_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/swig/falcon_core_all.i"
+  "falcon_core_all")
 generate_song_deserializers("${CMAKE_CURRENT_BINARY_DIR}/swig/")
 generate_swig_modules(SWIG_MODULES)
 cpp_tests()

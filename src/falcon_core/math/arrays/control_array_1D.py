@@ -886,4 +886,14 @@ class ControlArray1D(falcon_core__math__arrays__ControlArray_double_):
 
 # Register ControlArray1D in _falcon_core_control_array_1D:
 _falcon_core_control_array_1D.ControlArray1D_swigregister(ControlArray1D)
+class IncreasingAlignment(Song):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self):
+        _falcon_core_control_array_1D.IncreasingAlignment_swiginit(self, _falcon_core_control_array_1D.new_IncreasingAlignment())
+    __swig_destroy__ = _falcon_core_control_array_1D.delete_IncreasingAlignment
+
+# Register IncreasingAlignment in _falcon_core_control_array_1D:
+_falcon_core_control_array_1D.IncreasingAlignment_swigregister(IncreasingAlignment)
 
