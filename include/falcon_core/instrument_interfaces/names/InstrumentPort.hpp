@@ -60,3 +60,6 @@ using Meter = InstrumentPort<physics::units::Ohmic>;
 }  // namespace names
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
+
+// No CEREAL_REGISTER_TYPE for InstrumentPort because it is a template.
+// No CEREAL_REGISTER_TYPE for Knob/Meter because they are type aliases.

@@ -37,3 +37,5 @@ class Ports : public generic::Song {
 }  // namespace names
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
+
+// No CEREAL_REGISTER_TYPE for Ports because it is a template.

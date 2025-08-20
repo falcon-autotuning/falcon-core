@@ -12,3 +12,5 @@ using Meter = InstrumentPort<physics::units::Ohmic>;
 }  // namespace names
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
+
+// No CEREAL_REGISTER_TYPE for Meter because it is a type alias.

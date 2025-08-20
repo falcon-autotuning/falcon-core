@@ -12,3 +12,5 @@ using Knob = InstrumentPort<physics::device_structures::UsefulGate>;
 }  // namespace names
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
+
+// No CEREAL_REGISTER_TYPE for Knob because it is a type alias.
