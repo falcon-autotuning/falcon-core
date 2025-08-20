@@ -2,7 +2,6 @@
 
 #include <memory>
 #include <vector>
-
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 
@@ -19,34 +18,32 @@ class Ports : public generic::Song {
 
   Ports() = default;
 
-  void append(const std::shared_ptr<value_type>& port) {
+  void push_back(const std::shared_ptr<value_type>& port) {
     _ports.push_back(port);
   }
 
-  const container_type& get_ports() const { return _ports; }
+  size_t size() const { return _ports.size(); }
+  std::shared_ptr<value_type> at(size_t idx) const { return _ports.at(idx); }
+  const container_type& items() const { return _ports; }
+  container_type& items() { return _ports; }
 
-  // cereal serialization
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(_ports);
+    ar(cereal::base_class<generic::Song>(this), _ports);
   }
 
  private:
   container_type _ports;
+
+  friend class cereal::access;
 };
 
 }  // namespace names
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
 
-// #ifndef SWIG
-// CEREAL_REGISTER_TYPE(
-//     falcon_core::instrument_interfaces::names::Ports<
-//         falcon_core::instrument_interfaces::names::InstrumentPort<
-//             falcon_core::physics::device_structures::BaseConnection>>)
-// CEREAL_REGISTER_POLYMORPHIC_RELATION(
-//     falcon_core::generic::Song,
-//     falcon_core::instrument_interfaces::names::Ports<
-//         falcon_core::instrument_interfaces::names::InstrumentPort<
-//             falcon_core::physics::device_structures::BaseConnection>>)
-// #endif
+#ifndef SWIG
+// Example registration for Ports<Knob> and Ports<Meter> if needed
+// CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>)
+// CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>)
+#endif
