@@ -159,7 +159,7 @@ TEST(TestSymbolUnit, Comparison) {
 
   SymbolUnit m_per_s_copy = *m_per_s;
   SymbolUnit v_copy       = *v;
-  ASSERT_EQ(m_per_s_copy.unit()->repr(), v_copy.unit()->repr());
+  ASSERT_EQ(*m_per_s_copy.unit(), *v_copy.unit());
   // Symbol comparison may differ
 }
 
