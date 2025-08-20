@@ -5,6 +5,9 @@ __pycache__/
 # .pyenv file
 .python-version
 
+# build python package
+/src/falcon_core/*
+
 # ipython extras
 .ipynb_checkpoints/
 

@@ -23,8 +23,15 @@ class PortTransforms : public generic::Song {
 
   const container_type &get_transforms() const { return _transforms; }
 
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this), _transforms);
+  }
+
  private:
   container_type _transforms;
+
+  friend class cereal::access;
 };
 }  // namespace port_transforms
 }  // namespace instrument_interfaces
