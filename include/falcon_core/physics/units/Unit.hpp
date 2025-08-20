@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cmath>
 #include <memory>
 
 #include "falcon_core/Constants.hpp"
@@ -23,7 +24,7 @@ class Unit : public generic::Song {
 
   // Utility to clean dimensions: remove zero exponents
   static void clean_dimensions(TotalDimensions& dims) {
-    for (auto it = dims.begin(); it != dims.end(); ) {
+    for (auto it = dims.begin(); it != dims.end();) {
       if (it->second == 0) {
         it = dims.erase(it);
       } else {
@@ -121,7 +122,7 @@ class Unit : public generic::Song {
    */
   bool is_compatible_with(const std::shared_ptr<Unit> other) const;
   template <class Archive>
-  void serialize(Archive &ar) {
+  void serialize(Archive& ar) {
     ar(cereal::base_class<Song>(this),
        _scale_factor,
        _offset,
