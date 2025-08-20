@@ -193,11 +193,9 @@ TEST(TestSymbolUnit, StringRepresentations) {
 
   ASSERT_EQ(m.str(), SI::UNIT_SYMBOL_METER);
   std::string repr_str = m.repr();
-  ASSERT_TRUE(repr_str.find("symbol='" + std::string(SI::UNIT_SYMBOL_METER) +
-                            "'") != std::string::npos);
-  ASSERT_TRUE(repr_str.find("name='" + std::string(SI::UNIT_NAME_METER) +
-                            "'") != std::string::npos);
-  ASSERT_TRUE(repr_str.find("unit=") != std::string::npos);
+  ASSERT_TRUE(repr_str.find("\"symbol\": \"m\"") != std::string::npos);
+  ASSERT_TRUE(repr_str.find("\"name\": \"meter\"") != std::string::npos);
+  ASSERT_TRUE(repr_str.find("unit") != std::string::npos);
 }
 
 TEST(TestSymbolUnit, PowerOperations) {
