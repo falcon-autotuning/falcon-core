@@ -1,7 +1,7 @@
 #pragma once
 
-#include "falcon_core/instrument_interfaces/names/Ports.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/instrument_interfaces/names/Ports.hpp"
 
 namespace falcon_core {
 namespace instrument_interfaces {

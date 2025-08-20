@@ -20,11 +20,11 @@ class Meter;
 template <typename T>
 class InstrumentPort : public generic::Song {
  public:
-  InstrumentPort(std::string        default_name,
-                 std::shared_ptr<T> pseudo_name,
-                 Instrument         instrument_type,
+  InstrumentPort(std::string                                 default_name,
+                 std::shared_ptr<T>                          pseudo_name,
+                 Instrument                                  instrument_type,
                  std::shared_ptr<physics::units::SymbolUnit> units,
-                 std::string        description)
+                 std::string                                 description)
       : _default_name(std::move(default_name)),
         _pseudo_name(std::move(pseudo_name)),
         _instrument_type(std::move(instrument_type)),
@@ -36,8 +36,10 @@ class InstrumentPort : public generic::Song {
   const std::string&        default_name() const { return _default_name; }
   const std::shared_ptr<T>& pseudo_name() const { return _pseudo_name; }
   const Instrument&         instrument_type() const { return _instrument_type; }
-  const std::shared_ptr<physics::units::SymbolUnit>& units() const { return _units; }
-  const std::string&        description() const { return _description; }
+  const std::shared_ptr<physics::units::SymbolUnit>& units() const {
+    return _units;
+  }
+  const std::string& description() const { return _description; }
 
   // cereal serialization
   template <class Archive>
@@ -46,11 +48,11 @@ class InstrumentPort : public generic::Song {
   }
 
  private:
-  std::string        _default_name;
-  std::shared_ptr<T> _pseudo_name;
-  Instrument         _instrument_type;
+  std::string                                 _default_name;
+  std::shared_ptr<T>                          _pseudo_name;
+  Instrument                                  _instrument_type;
   std::shared_ptr<physics::units::SymbolUnit> _units;
-  std::string        _description;
+  std::string                                 _description;
 };
 
 // Type aliases for Knob and Meter
