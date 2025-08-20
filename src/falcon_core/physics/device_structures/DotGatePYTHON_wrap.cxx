@@ -3211,6 +3211,43 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_MatrixType swig_types[1]
 #define SWIGTYPE_p_char swig_types[2]
 #define SWIGTYPE_p_falcon_core__generic__Song swig_types[3]
+<<<<<<< HEAD
+#define SWIGTYPE_p_falcon_core__math__Quantity swig_types[4]
+#define SWIGTYPE_p_falcon_core__math__arrays__BaseArrayT_double_t swig_types[5]
+#define SWIGTYPE_p_falcon_core__math__arrays__ControlArray1D swig_types[6]
+#define SWIGTYPE_p_falcon_core__math__arrays__ControlArrayT_double_t swig_types[7]
+#define SWIGTYPE_p_falcon_core__math__arrays__IncreasingAlignment swig_types[8]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__BarrierGate swig_types[9]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__BaseConnection swig_types[10]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__DotGate swig_types[11]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__Gate swig_types[12]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__Impedance swig_types[13]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__Ohmic swig_types[14]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__PlungerGate swig_types[15]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__ReservoirGate swig_types[16]
+#define SWIGTYPE_p_falcon_core__physics__device_structures__ScreeningGate swig_types[17]
+#define SWIGTYPE_p_falcon_core__physics__units__Prefix swig_types[18]
+#define SWIGTYPE_p_falcon_core__physics__units__SymbolUnit swig_types[19]
+#define SWIGTYPE_p_falcon_core__physics__units__Unit swig_types[20]
+#define SWIGTYPE_p_falcon_core__physics__units__Units swig_types[21]
+#define SWIGTYPE_p_std__invalid_argument swig_types[22]
+#define SWIGTYPE_p_std__istream swig_types[23]
+#define SWIGTYPE_p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t swig_types[24]
+#define SWIGTYPE_p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t swig_types[25]
+#define SWIGTYPE_p_std__ostream swig_types[26]
+#define SWIGTYPE_p_std__pairT_double_std__string_t swig_types[27]
+#define SWIGTYPE_p_std__shared_ptrT_SUBMODULE_NAME_t swig_types[28]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__math__Quantity_t swig_types[29]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t swig_types[30]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__DotGate_t swig_types[31]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__SymbolUnit_t swig_types[32]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__units__Unit_t swig_types[33]
+#define SWIGTYPE_p_std__string swig_types[34]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[35]
+#define SWIGTYPE_p_wchar_t swig_types[36]
+static swig_type_info *swig_types[38];
+static swig_module_info swig_module = {swig_types, 37, 0, 0, 0, 0};
+=======
 #define SWIGTYPE_p_falcon_core__instrument_interfaces__names__Knob swig_types[4]
 #define SWIGTYPE_p_falcon_core__instrument_interfaces__names__Meter swig_types[5]
 #define SWIGTYPE_p_falcon_core__math__Quantity swig_types[6]
@@ -3247,6 +3284,7 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_wchar_t swig_types[37]
 static swig_type_info *swig_types[39];
 static swig_module_info swig_module = {swig_types, 38, 0, 0, 0, 0};
+>>>>>>> 606102380ab0114064792b5be28afbf69e584acb
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3420,8 +3458,12 @@ namespace swig {
 #include "falcon_core/physics/units/CommonUnits.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 #include "falcon_core/physics/units/Units.hpp"
+<<<<<<< HEAD
+#include "falcon_core/math/Axes.hpp"
+=======
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
+>>>>>>> 606102380ab0114064792b5be28afbf69e584acb
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/math/arrays/BaseArray.hpp"
 #include "falcon_core/math/arrays/ControlArray.hpp"
@@ -12543,6 +12585,7 @@ static swig_type_info _swigt__p_std__mapT_int_std__string_std__lessT_int_t_std__
 static swig_type_info _swigt__p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t = {"_p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t", "falcon_core::physics::units::TotalDimensions *|std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__ostream = {"_p_std__ostream", "std::ostream *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__pairT_double_std__string_t = {"_p_std__pairT_double_std__string_t", "std::pair< double,std::string > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_SUBMODULE_NAME_t = {"_p_std__shared_ptrT_SUBMODULE_NAME_t", "std::shared_ptr< SUBMODULE_NAME > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__math__Quantity_t = {"_p_std__shared_ptrT_falcon_core__math__Quantity_t", "std::shared_ptr< falcon_core::math::Quantity > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t = {"_p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t", "std::shared_ptr< falcon_core::physics::device_structures::BaseConnection > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__DotGate_t = {"_p_std__shared_ptrT_falcon_core__physics__device_structures__DotGate_t", "std::shared_ptr< falcon_core::physics::device_structures::DotGate > *", 0, 0, (void*)0, 0};
@@ -12583,6 +12626,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t,
   &_swigt__p_std__ostream,
   &_swigt__p_std__pairT_double_std__string_t,
+  &_swigt__p_std__shared_ptrT_SUBMODULE_NAME_t,
   &_swigt__p_std__shared_ptrT_falcon_core__math__Quantity_t,
   &_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t,
   &_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__DotGate_t,
@@ -12597,8 +12641,11 @@ static swig_cast_info _swigc__p_Eigen__MatrixT_double_Eigen__Dynamic_Eigen__Dyna
 static swig_cast_info _swigc__p_MatrixType[] = {  {&_swigt__p_MatrixType, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__generic__Song[] = {  {&_swigt__p_falcon_core__generic__Song, 0, 0, 0},  {&_swigt__p_falcon_core__math__Quantity, _p_falcon_core__math__QuantityTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__math__arrays__BaseArrayT_double_t, _p_falcon_core__math__arrays__BaseArrayT_double_tTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__math__arrays__ControlArray1D, _p_falcon_core__math__arrays__ControlArray1DTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__math__arrays__ControlArrayT_double_t, _p_falcon_core__math__arrays__ControlArrayT_double_tTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__math__arrays__IncreasingAlignment, _p_falcon_core__math__arrays__IncreasingAlignmentTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BarrierGate, _p_falcon_core__physics__device_structures__BarrierGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__BaseConnection, _p_falcon_core__physics__device_structures__BaseConnectionTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__DotGate, _p_falcon_core__physics__device_structures__DotGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Gate, _p_falcon_core__physics__device_structures__GateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Impedance, _p_falcon_core__physics__device_structures__ImpedanceTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Ohmic, _p_falcon_core__physics__device_structures__OhmicTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__PlungerGate, _p_falcon_core__physics__device_structures__PlungerGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ReservoirGate, _p_falcon_core__physics__device_structures__ReservoirGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__ScreeningGate, _p_falcon_core__physics__device_structures__ScreeningGateTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__units__SymbolUnit, _p_falcon_core__physics__units__SymbolUnitTo_p_falcon_core__generic__Song, 0, 0},  {&_swigt__p_falcon_core__physics__units__Unit, _p_falcon_core__physics__units__UnitTo_p_falcon_core__generic__Song, 0, 0},{0, 0, 0, 0}};
+<<<<<<< HEAD
+=======
 static swig_cast_info _swigc__p_falcon_core__instrument_interfaces__names__Knob[] = {  {&_swigt__p_falcon_core__instrument_interfaces__names__Knob, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__instrument_interfaces__names__Meter[] = {  {&_swigt__p_falcon_core__instrument_interfaces__names__Meter, 0, 0, 0},{0, 0, 0, 0}};
+>>>>>>> 606102380ab0114064792b5be28afbf69e584acb
 static swig_cast_info _swigc__p_falcon_core__math__Quantity[] = {  {&_swigt__p_falcon_core__math__Quantity, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__math__arrays__BaseArrayT_double_t[] = {  {&_swigt__p_falcon_core__math__arrays__BaseArrayT_double_t, 0, 0, 0},  {&_swigt__p_falcon_core__math__arrays__ControlArray1D, _p_falcon_core__math__arrays__ControlArray1DTo_p_falcon_core__math__arrays__BaseArrayT_double_t, 0, 0},  {&_swigt__p_falcon_core__math__arrays__ControlArrayT_double_t, _p_falcon_core__math__arrays__ControlArrayT_double_tTo_p_falcon_core__math__arrays__BaseArrayT_double_t, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__math__arrays__ControlArray1D[] = {  {&_swigt__p_falcon_core__math__arrays__ControlArray1D, 0, 0, 0},{0, 0, 0, 0}};
@@ -12623,6 +12670,7 @@ static swig_cast_info _swigc__p_std__mapT_int_std__string_std__lessT_int_t_std__
 static swig_cast_info _swigc__p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t[] = {  {&_swigt__p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__ostream[] = {  {&_swigt__p_std__ostream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__pairT_double_std__string_t[] = {  {&_swigt__p_std__pairT_double_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_SUBMODULE_NAME_t[] = {  {&_swigt__p_std__shared_ptrT_SUBMODULE_NAME_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__math__Quantity_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__math__Quantity_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__DotGate_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__DotGate_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -12663,6 +12711,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t,
   _swigc__p_std__ostream,
   _swigc__p_std__pairT_double_std__string_t,
+  _swigc__p_std__shared_ptrT_SUBMODULE_NAME_t,
   _swigc__p_std__shared_ptrT_falcon_core__math__Quantity_t,
   _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__BaseConnection_t,
   _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__DotGate_t,

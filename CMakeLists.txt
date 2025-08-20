@@ -21,7 +21,8 @@ function(cpp_tests)
     tests/test_arrays.cpp
     tests/test_labelled_arrays.cpp
     tests/test_quantity.cpp
-    tests/test_instrument_interfaces_names.cpp)
+    tests/test_instrument_interfaces_names.cpp
+    tests/test_config.cpp)
 
   target_link_libraries(run_tests GTest::gtest_main falcon_core_cpp)
 
@@ -209,8 +210,11 @@ function(falcon_process_swig_module SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE
   target_include_directories(
     ${SWIG_MODULE_NAME}
     PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include"
-            "${CMAKE_CURRENT_SOURCE_DIR}/build/swig" ${Python3_INCLUDE_DIRS}
-            "${SWIG_LIB_DIR}/python" ${NUMPY_INCLUDE_DIR})
+            "${CMAKE_CURRENT_SOURCE_DIR}/build/swig"
+            ${Python3_INCLUDE_DIRS}
+            "${SWIG_LIB_DIR}/python"
+            ${NUMPY_INCLUDE_DIR}
+  )
 
   target_link_libraries(${SWIG_MODULE_NAME} PRIVATE Python3::Python
                                                     falcon_core_cpp)
@@ -275,7 +279,8 @@ add_library(falcon_core_cpp ${FALCON_CORE_SOURCES})
 target_include_directories(
   falcon_core_cpp
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-         $<INSTALL_INTERFACE:include> ${eigen_SOURCE_DIR}
+         $<INSTALL_INTERFACE:include>
+         ${eigen_SOURCE_DIR}
          ${cereal_SOURCE_DIR}/include)
 
 set(FALCON_HEADERS

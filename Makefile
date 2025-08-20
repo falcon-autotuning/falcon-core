@@ -15,7 +15,7 @@ build:
 	@echo "--- Configuring and Building C++ Extension ---"
 	@mkdir -p $(BUILD_DIR)
 	@mkdir -p $(OUT_PYTHON_DIR)
-	@cmake -G Ninja -DCMAKE_MESSAGE_LOG_LEVEL=DEBUG -DCMAKE_EXPORT_COMPILE_COMMANDS=ON . -S . -B $(BUILD_DIR)
+	@cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON . -S . -B $(BUILD_DIR)
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
 	@ninja -C $(BUILD_DIR)
 	@echo "--- Build complete. Python extension is now in src/falcon_core/ ---"
