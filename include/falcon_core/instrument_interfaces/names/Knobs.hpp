@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/instrument_interfaces/names/Knob.hpp"
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
 
 namespace falcon_core {
@@ -10,7 +10,15 @@ namespace names {
 // Knobs: collection of Knob ports
 class Knobs : public Ports<Knob> {
  public:
-  using Ports<Knob>::Ports;
+  Knobs() = default;
+
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<Ports<Knob>>(this));
+  }
+
+ private:
+  friend class cereal::access;
 };
 
 }  // namespace names

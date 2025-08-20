@@ -18,7 +18,7 @@ class Meter : public InstrumentPort<physics::device_structures::Ohmic> {
     ar(cereal::base_class<InstrumentPort<physics::device_structures::Ohmic>>(this));
   };
 
-       private:
+ private:
   friend class cereal::access;
 };
 
