@@ -1,16 +1,2 @@
 #pragma once
-
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace names {
-
-// Meter: type alias for InstrumentPort<Ohmic>
-using Meter = InstrumentPort<physics::units::Ohmic>;
-
-}  // namespace names
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
-
-// No CEREAL_REGISTER_TYPE for Meter because it is a type alias.
+// Deprecated: Meter type alias is now defined in InstrumentPort.hpp

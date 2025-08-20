@@ -12,7 +12,7 @@ namespace port_transforms {
 class PortTransform : public generic::Song {
  public:
   PortTransform(
-      std::shared_ptr<math::analytic_function::AnalyticFunction> function)
+      std::shared_ptr<math::analytic_functions::AnalyticFunction> function)
       : _function(std::move(function)) {}
 
   double apply(double value) const {
@@ -21,7 +21,7 @@ class PortTransform : public generic::Song {
   }
 
  private:
-  std::shared_ptr<math::analytic_function::AnalyticFunction> _function;
+  std::shared_ptr<math::analytic_functions::AnalyticFunction> _function;
 };
 }  // namespace port_transforms
 }  // namespace instrument_interfaces
