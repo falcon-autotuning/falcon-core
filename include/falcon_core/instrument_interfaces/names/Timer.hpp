@@ -1,9 +1,8 @@
 #pragma once
 
 #include "falcon_core/instrument_interfaces/names/Knob.hpp"
-// You may need to adjust the following includes to match your codebase
 #include "falcon_core/physics/units/SymbolUnit.hpp"
-#include "falcon_core/instrument_interfaces/Instrument.hpp"
+#include "falcon_core/Constants.hpp"
 
 namespace falcon_core {
 namespace instrument_interfaces {
@@ -13,9 +12,9 @@ class Timer : public Knob {
  public:
   Timer()
       : Knob(
-            "CLOCK", // default_name
+            falcon_core::INSTRUMENT_TYPES::CLOCK, // default_name
             nullptr, // pseudo_name
-            Instrument::CLOCK, // instrument_type
+            falcon_core::INSTRUMENT_TYPES::CLOCK, // instrument_type
             std::make_shared<physics::units::SymbolUnit>(physics::units::SymbolUnit::SECOND),
             "Clock"
         ) {}
