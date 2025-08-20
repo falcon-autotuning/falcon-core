@@ -16,3 +16,10 @@ class Meters : public Ports<Meter> {
 }  // namespace names
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
+
+#ifndef SWIG
+CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::Meters)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::instrument_interfaces::names::Meters)
+#endif
