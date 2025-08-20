@@ -1,6 +1,7 @@
 #pragma once
 
 #include "falcon_core/generic/Song.hpp"
+#include "falcon_core/physics/device_structures/Gate.hpp"
 
 namespace falcon_core {
 namespace physics {
@@ -23,3 +24,8 @@ class HasLeftNeighbor : public generic::Song {
   void serialize(Archive& ar) {
     ar(cereal::base_class<HasLeftNeighbor>(this), _left_neighbor);
   }
+};
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
