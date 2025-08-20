@@ -57,7 +57,9 @@ class Unit : public generic::Song {
    */
   std::shared_ptr<Unit> operator*(const std::shared_ptr<Unit> other) const {
     TotalDimensions result_dims = this->_dimensions;
-    for (const auto& [dim, exp] : other->_dimensions) {
+    for (auto it = other->_dimensions.begin(); it != other->_dimensions.end(); ++it) {
+      const std::string& dim = it->first;
+      int exp = it->second;
       result_dims[dim] += exp;
     }
     clean_dimensions(result_dims);
@@ -73,7 +75,9 @@ class Unit : public generic::Song {
    */
   std::shared_ptr<Unit> operator/(const std::shared_ptr<Unit> other) const {
     TotalDimensions result_dims = this->_dimensions;
-    for (const auto& [dim, exp] : other->_dimensions) {
+    for (auto it = other->_dimensions.begin(); it != other->_dimensions.end(); ++it) {
+      const std::string& dim = it->first;
+      int exp = it->second;
       result_dims[dim] -= exp;
     }
     clean_dimensions(result_dims);
@@ -89,8 +93,8 @@ class Unit : public generic::Song {
    */
   std::shared_ptr<Unit> operator^(const int power) const {
     TotalDimensions result_dims = this->_dimensions;
-    for (auto& [dim, exp] : result_dims) {
-      exp *= power;
+    for (auto it = result_dims.begin(); it != result_dims.end(); ++it) {
+      it->second *= power;
     }
     clean_dimensions(result_dims);
     return std::make_shared<Unit>(result_dims,
