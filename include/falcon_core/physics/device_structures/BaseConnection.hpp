@@ -5,7 +5,7 @@
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
-class BaseConnection : public generic::Song {
+class BaseConnection : public virtual generic::Song {
   std::string _name;
 
  public:

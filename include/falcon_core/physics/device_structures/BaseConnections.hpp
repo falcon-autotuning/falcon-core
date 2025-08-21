@@ -13,7 +13,7 @@ namespace device_structures {
  * Uses composition: contains a vector of shared_ptr<T>.
  */
 template <typename T>
-class BaseConnections : public falcon_core::generic::Song {
+class BaseConnections : public virtual falcon_core::generic::Song {
   static_assert(std::is_base_of<BaseConnection, T>::value,
                 "T must be derived from BaseConnection");
 
