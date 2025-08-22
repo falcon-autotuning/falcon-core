@@ -68,6 +68,17 @@ GateGeometryArray1D::GateGeometryArray1D(
     auto right_neighbor = dot_gates[i + 1];
     append_central_gate(left_neighbor, selected_gate, right_neighbor);
   }
+
+  // Build the gate name map
+  for (const auto& screening_gate : *_screening_gates) {
+    _gate_name_map[screening_gate->name()] = screening_gate;
+  }
+  _gate_name_map[left_reservoir()->name()]  = left_reservoir();
+  _gate_name_map[right_reservoir()->name()] = right_reservoir();
+  auto all_dot                              = all_dot_gates();
+  for (const auto& dot_gate : *all_dot) {
+    _gate_name_map[dot_gate->name()] = dot_gate;
+  }
 }
 BaseConnectionSP GateGeometryArray1D::begin() const {
   return SP(BaseConnection, _lineararray->begin());
@@ -118,27 +129,47 @@ GateGeometryArray1D::all_dot_gates() const {
   return std::make_shared<DotGates<AllDotGateWithNeighbors>>(all_dot_gates);
 }
 GatesSP<Gate> GateGeometryArray1D::query_neighbors(const GateSP& gate) const {
-  std::string name = gate->name();
-  // Compose the list to search
-  Gates<Gate> search_list;
-
-  for (const auto& screening_gate : *screening_gates()) {
-    search_list.push_back(screening_gate);
+  auto it = _gate_name_map.find(gate->name());
+  if (it == _gate_name_map.end()) {
+    throw std::invalid_argument("Gate " + gate->name() +
+                                " not found in geometry.");
   }
-  Gates<Gate> search_list =
-      std::dynamic_pointer_cast<Gates<Gate>>(_screening_gates);
-  search_list.push_back(_left_reservoir);
-  search_list.push_back(_right_reservoir);
-  auto all_dot = all_dot_gates();
-  search_list.insert(search_list.end(), all_dot.begin(), all_dot.end());
+  auto gate_geometry = it->second;
 
-  for (const auto& gate_geometry : search_list) {
-    if (name != gate_geometry->name()) continue;
-    // Implement the logic for each case as in Python
-    // (You may need to use dynamic_pointer_cast to check types)
-    // ... (implement as needed) ...
+  Gates<Gate> result;
+
+  // If gate_geometry is in screening_gates
+  for (const auto& sg : *screening_gates()) {
+    if (sg->name() == gate_geometry->name()) {
+      result.push_back(left_barrier()->left_neighbor());
+      for (const auto& g : raw_central_gates()) {
+        result.push_back(g);
+      }
+      result.push_back(right_barrier()->right_neighbor());
+      return std::make_shared<Gates<Gate>>(result);
+    }
   }
-  throw std::invalid_argument("Gate " + name + " not found in geometry.");
+  if (gate_geometry->name() == left_reservoir()->name()) {
+    result.push_back(left_reservoir()->right_neighbor());
+    for (const auto& sg : *screening_gates()) {
+      result.push_back(sg);
+    }
+    return std::make_shared<Gates<Gate>>(result);
+  } else if (gate_geometry->name() == right_reservoir()->name()) {
+    result.push_back(right_reservoir()->left_neighbor());
+    for (const auto& sg : *screening_gates()) {
+      result.push_back(sg);
+    }
+    return std::make_shared<Gates<Gate>>(result);
+  }
+  auto gate_geom =
+      std::dynamic_pointer_cast<AllDotGateWithNeighbors>(gate_geometry);
+  result.push_back(gate_geom->left_neighbor());
+  result.push_back(gate_geom->right_neighbor());
+  for (const auto& sg : *screening_gates()) {
+    result.push_back(sg);
+  }
+  return std::make_shared<Gates<Gate>>(result);
 }
 LeftReservoirWithImplantedOhmicSP GateGeometryArray1D::left_reservoir() const {
   std::string   name  = ((*lineararray())[1])->name();
@@ -183,5 +214,6 @@ OhmicsSP GateGeometryArray1D::ohmics() const {
   OhmicSP left_ohmic  = std::dynamic_pointer_cast<Ohmic>((*lineararray())[0]);
   OhmicSP right_ohmic = std::dynamic_pointer_cast<Ohmic>(
       (*lineararray())[lineararray()->size() - 1]);
-  return std::make_shared<Ohmics>({left_ohmic, right_ohmic});
+  Ohmics tmp{left_ohmic, right_ohmic};
+  return std::make_shared<Ohmics>(tmp);
 }

@@ -23,7 +23,7 @@ class BaseConnections : public virtual falcon_core::generic::Song {
 
  public:
   /**
-   * @brief BaseConnections can be constructed in 4 different ways:
+   * @brief BaseConnections can be constructed in 5 different ways:
    *
    * - Default constructor: creates an empty BaseConnections container.
    *   @code
@@ -52,12 +52,20 @@ class BaseConnections : public virtual falcon_core::generic::Song {
    *   std::vector<BaseConnectionsP> v = ...;
    *   BaseConnections o(v);
    *   @endcode
+   * - Initializer list constructor: creates a BaseConnections container
+   *from an initializer list of shared pointers.
+   *   @param init Initializer list of shared_ptr<T> to copy.
+   *   @code
+   *   BaseConnections o{ptr1, ptr2, ptr3};
+   *   @endcode
    */
   BaseConnections() = default;
   BaseConnections(size_t count) : _items(count) {}
   BaseConnections(size_t count, const std::shared_ptr<T>& value)
       : _items(count, value) {}
   BaseConnections(const std::vector<std::shared_ptr<T>>& vec) : _items(vec) {}
+  BaseConnections(std::initializer_list<std::shared_ptr<T>> init)
+      : _items(init) {}
 
   // Forwarding methods
   void   push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }

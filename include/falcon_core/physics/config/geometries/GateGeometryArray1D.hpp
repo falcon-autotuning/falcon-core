@@ -23,10 +23,11 @@ namespace geometries {
 class GateGeometryArray1D : public generic::Song {
   using DotGateWithNeighbors = GateWithNeighbors<DotGate, DotGate, DotGate>;
   using CentralDotGates      = DotGates<DotGateWithNeighbors>;
-  CentralDotGates                   _central_dot_gates;
-  DotGates<DotGate>                 _raw_central_gates;
-  ScreeningGatesSP                  _screening_gates;
-  BaseConnectionsSP<BaseConnection> _lineararray;
+  CentralDotGates                         _central_dot_gates;
+  DotGates<DotGate>                       _raw_central_gates;
+  ScreeningGatesSP                        _screening_gates;
+  BaseConnectionsSP<BaseConnection>       _lineararray;
+  std::unordered_map<std::string, GateSP> _gate_name_map;
 
  public:
   /**
@@ -106,6 +107,16 @@ class GateGeometryArray1D : public generic::Song {
    * @return The screening gates in the geometry.
    */
   ScreeningGatesSP screening_gates() const { return _screening_gates; }
+  /**
+   * @brief Gets the central gates without localities.
+   * @return The central gates without localities.
+   */
+  DotGates<DotGate> raw_central_gates() const { return _raw_central_gates; }
+  /**
+   * @brief Gets the central gates with localities.
+   * @return The central gates with localities.
+   */
+  CentralDotGates central_dot_gates() const { return _central_dot_gates; }
   /**
    * @brief Gets the ohmics attached the the quantum dot geometry.
    * @return The ohmics attached to the quantum dot geometry.
