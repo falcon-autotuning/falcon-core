@@ -8,7 +8,7 @@ namespace spaces {
 
 class Cartesian2DSpace : public CartesianSpace {
  public:
-  Cartesian2DSpace(const std::vector<double>& deltas,
+  Cartesian2DSpace(const std::vector<double>&       deltas,
                    std::shared_ptr<domains::Domain> domain)
       : CartesianSpace(deltas, domain) {
     if (deltas.size() != 2) {

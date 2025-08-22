@@ -1,8 +1,9 @@
 #pragma once
 
 #include <cereal/types/vector.hpp>
-#include <vector>
 #include <memory>
+#include <vector>
+
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 
 namespace falcon_core {
@@ -13,7 +14,7 @@ template <typename T>
 class BaseCoupledLabelledDomain : public generic::Song {
  public:
   using LabelledDomainT = LabelledDomain<T>;
-  using DomainPtr = std::shared_ptr<LabelledDomainT>;
+  using DomainPtr       = std::shared_ptr<LabelledDomainT>;
 
   BaseCoupledLabelledDomain(const std::vector<DomainPtr>& domains)
       : _domains(domains) {}
@@ -37,10 +38,14 @@ class BaseCoupledLabelledDomain : public generic::Song {
     throw std::runtime_error("No domain found matching label");
   }
 
-  typename std::vector<DomainPtr>::const_iterator begin() const { return _domains.begin(); }
-  typename std::vector<DomainPtr>::const_iterator end() const { return _domains.end(); }
+  typename std::vector<DomainPtr>::const_iterator begin() const {
+    return _domains.begin();
+  }
+  typename std::vector<DomainPtr>::const_iterator end() const {
+    return _domains.end();
+  }
 
-protected:
+ protected:
   std::vector<DomainPtr> _domains;
 
   friend class cereal::access;
@@ -55,10 +60,11 @@ protected:
 }  // namespace math
 }  // namespace falcon_core
 
+#ifndef SWIG
 using namespace falcon_core::math::domains;
 
-#ifndef SWIG
 CEREAL_REGISTER_TYPE(falcon_core::math::domains::BaseCoupledLabelledDomain<int>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song, falcon_core::math::domains::BaseCoupledLabelledDomain<int>)
+    falcon_core::generic::Song,
+    falcon_core::math::domains::BaseCoupledLabelledDomain<int>)
 #endif
