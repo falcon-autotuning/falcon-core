@@ -8,6 +8,9 @@ namespace discretizers {
 
 class CartesianDiscretizer : public BaseDiscretizer {
  public:
+  CartesianDiscretizer(double delta)
+      : BaseDiscretizer(delta, std::make_shared<domains::Domain>(-1.0, 1.0)) {}
+
   using BaseDiscretizer::BaseDiscretizer;
 
  private:
