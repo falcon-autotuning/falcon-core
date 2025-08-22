@@ -27,7 +27,7 @@ class BaseDiscreteSpace : public generic::Song {
   // Ported get_projection method (simplified, does not handle all Python edge cases)
   // projection: Axes of Knobs to project onto
   // Returns: Axes of projected values (dummy implementation, replace with real logic)
-  std::shared_ptr<Axes<double>> get_projection(const std::shared_ptr<Axes<typename domains::Knob>>& projection) const {
+  std::shared_ptr<Axes<double>> get_projection(const std::shared_ptr<Axes<falcon_core::instrument_interfaces::names::Knob>>& projection) const {
     // For demonstration, just return an Axes<double> with dummy values
     std::vector<std::shared_ptr<double>> projected;
     for (size_t i = 0; i < projection->size(); ++i) {

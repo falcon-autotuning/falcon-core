@@ -172,8 +172,8 @@ TEST(DiscreteSpacesTest, ComplexProjectionFunctionality) {
     auto unit_space = std::make_shared<UnitSpace>(*axes_discretizers, domain);
 
     // 2. Create Knobs and CoupledKnobDomains
-    auto knob1 = std::make_shared<Knob>("x0", nullptr, "clock", "desc", nullptr);
-    auto knob2 = std::make_shared<Knob>("x1", nullptr, "clock", "desc", nullptr);
+    auto knob1 = std::make_shared<Knob>("x0", nullptr, "clock", nullptr, "desc");
+    auto knob2 = std::make_shared<Knob>("x1", nullptr, "clock", nullptr, "desc");
     std::vector<std::shared_ptr<Knob>> knob_vec{knob1, knob2};
     auto axes_knobs = std::make_shared<Axes<Knob>>(knob_vec);
 
