@@ -20,7 +20,7 @@ class CoupledLabelledDomain : public BaseCoupledLabelledDomain<T> {
   CoupledLabelledDomain(const std::vector<DomainPtr>& domains)
       : BaseCoupledLabelledDomain<T>(domains) {}
 
- private:
+ public:
   friend class cereal::access;
   CoupledLabelledDomain() = default;
   template <class Archive>
