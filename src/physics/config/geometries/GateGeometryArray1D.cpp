@@ -79,35 +79,37 @@ GateGeometryArray1D::GateGeometryArray1D(
   }
 }
 BaseConnectionSP GateGeometryArray1D::begin() const {
-  return SP(BaseConnection, _lineararray->begin());
+  return _lineararray->at(0);
 }
 BaseConnectionSP GateGeometryArray1D::end() const {
-  return SP(BaseConnection, _lineararray->end());
+  return _lineararray->at(_lineararray->size() - 1);
 }
 void GateGeometryArray1D::append_central_gate(const DotGateSP& left_neighbor,
                                               const DotGateSP& selected_gate,
                                               const DotGateSP& right_neighbor) {
   if (auto barrier = std::dynamic_pointer_cast<BarrierGate>(selected_gate)) {
-    if (!std::dynamic_pointer_cast<PlungerGate>(left_neighbor) ||
-        !std::dynamic_pointer_cast<PlungerGate>(right_neighbor)) {
+    auto left_plunger = std::dynamic_pointer_cast<PlungerGate>(left_neighbor);
+    auto right_plunger = std::dynamic_pointer_cast<PlungerGate>(right_neighbor);
+    if (!left_plunger || !right_plunger) {
       throw std::invalid_argument(
           "Expected PlungerGate bounding selected BarrierGate.");
     }
     _central_dot_gates.push_back(std::static_pointer_cast<
                                  BaseDotGateWithNeighbors>(
         std::make_shared<BarrierGateWithNeighbors<PlungerGate, PlungerGate>>(
-            barrier->name(), left_neighbor, right_neighbor)));
+            barrier->name(), left_plunger, right_plunger)));
   } else if (auto plunger =
                  std::dynamic_pointer_cast<PlungerGate>(selected_gate)) {
-    if (!std::dynamic_pointer_cast<BarrierGate>(left_neighbor) ||
-        !std::dynamic_pointer_cast<BarrierGate>(right_neighbor)) {
+    auto left_barrier = std::dynamic_pointer_cast<BarrierGate>(left_neighbor);
+    auto right_barrier = std::dynamic_pointer_cast<BarrierGate>(right_neighbor);
+    if (!left_barrier || !right_barrier) {
       throw std::invalid_argument(
           "Expected BarrierGate bounding selected PlungerGate.");
     }
     _central_dot_gates.push_back(
         std::static_pointer_cast<BaseDotGateWithNeighbors>(
             std::make_shared<PlungerGateWithNeighbors>(
-                plunger->name(), left_neighbor, right_neighbor)));
+                plunger->name(), left_barrier, right_barrier)));
   } else {
     throw std::invalid_argument(
         "Expected either a PlungerGate or BarrierGate.");

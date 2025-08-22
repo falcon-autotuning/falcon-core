@@ -22,7 +22,7 @@ class DotGates : public Gates<T> {
   using Gates<T>::Gates;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this));
+    ar(cereal::base_class<Gates<T>>(this));
   }
 
  protected:

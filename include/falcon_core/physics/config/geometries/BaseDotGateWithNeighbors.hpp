@@ -9,7 +9,7 @@ namespace config {
 namespace geometries {
 
 // Non-template base for polymorphism
-class BaseDotGateWithNeighbors : public device_structures::DotGate {
+class BaseDotGateWithNeighbors : public virtual device_structures::DotGate {
  public:
   using Ptr = std::shared_ptr<BaseDotGateWithNeighbors>;
   BaseDotGateWithNeighbors(std::string name)

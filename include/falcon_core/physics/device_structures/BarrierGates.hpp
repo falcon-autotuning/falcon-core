@@ -27,5 +27,5 @@ using BarrierGatesSP = std::shared_ptr<BarrierGates>;
 #ifndef SWIG
 using namespace falcon_core::physics::device_structures;
 CEREAL_REGISTER_TYPE(BarrierGates)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, BarrierGates)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(DotGates<BarrierGate>, BarrierGates)
 #endif

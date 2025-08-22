@@ -22,7 +22,7 @@ class Gates : public BaseConnections<T> {
   using BaseConnections<T>::BaseConnections;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseConnections<Gate>>(this));
+    ar(cereal::base_class<BaseConnections<T>>(this));
   }
 
  protected:

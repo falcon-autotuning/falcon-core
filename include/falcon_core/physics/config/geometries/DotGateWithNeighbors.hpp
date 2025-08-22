@@ -13,6 +13,7 @@ namespace geometries {
 // Template implementation
 template <typename LeftNeighbor, typename BaseGate, typename RightNeighbor>
 class DotGateWithNeighbors : public BaseDotGateWithNeighbors,
+                             public virtual BaseGate,
                              public HasLeftNeighbor<LeftNeighbor>,
                              public HasRightNeighbor<RightNeighbor> {
   static_assert(std::is_base_of<device_structures::Gate, RightNeighbor>::value,
@@ -62,7 +63,7 @@ using BaseDotGateWithNeighborsSP = std::shared_ptr<BaseDotGateWithNeighbors>;
 using namespace falcon_core;
 using namespace falcon_core::physics::config::geometries;
 using namespace falcon_core::physics::device_structures;
-using GWN = DotGateWithNeighbors<Gate, Gate, Gate>;
+using GWN = DotGateWithNeighbors<Gate, DotGate, Gate>;
 CEREAL_REGISTER_TYPE(GWN)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(BaseDotGateWithNeighbors, GWN)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(HasLeftNeighbor<Gate>, GWN)
