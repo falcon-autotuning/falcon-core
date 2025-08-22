@@ -17,7 +17,7 @@ class BaseCartesianDiscreteSpace : public BaseDiscreteSpace {
                              std::shared_ptr<AxesType> axes)
       : BaseDiscreteSpace(space, axes) {}
 
-  const SpacePtr& space() const {
+  SpacePtr space() const {
     return std::static_pointer_cast<spaces::CartesianSpace>(BaseDiscreteSpace::space());
   }
 
