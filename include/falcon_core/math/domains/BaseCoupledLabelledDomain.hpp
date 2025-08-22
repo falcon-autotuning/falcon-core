@@ -40,7 +40,7 @@ class BaseCoupledLabelledDomain : public generic::Song {
   typename std::vector<DomainPtr>::const_iterator begin() const { return _domains.begin(); }
   typename std::vector<DomainPtr>::const_iterator end() const { return _domains.end(); }
 
- private:
+protected:
   std::vector<DomainPtr> _domains;
 
   friend class cereal::access;
