@@ -117,7 +117,7 @@ TEST(BaseCoupledLabelledDomainTest, SerializationRoundTrip) {
   EXPECT_EQ(bcld2->labels()[1]->name, "y");
 }
 
-TEST(CoupledLabelledDomainTest, BasicFunctionalityAndSerialization) {
+TEST(CoupledLabelledDomainTest, BasicFunctionality) {
   auto label1 = std::make_shared<DummyLabel>("first", 100);
   auto label2 = std::make_shared<DummyLabel>("second", 200);
   auto d1 = std::make_shared<LabelledDomain<DummyLabel>>(10.0, 20.0, label1);
@@ -127,13 +127,25 @@ TEST(CoupledLabelledDomainTest, BasicFunctionalityAndSerialization) {
 
   EXPECT_EQ(cld->domains().size(), 2);
   EXPECT_EQ(cld->labels()[0]->name, "first");
+  EXPECT_EQ(cld->labels()[0]->id, 100);
+  EXPECT_EQ(cld->labels()[1]->name, "second");
   EXPECT_EQ(cld->labels()[1]->id, 200);
+}
+
+TEST(CoupledLabelledDomainTest, SerializationRoundTrip) {
+  auto label1 = std::make_shared<DummyLabel>("first", 100);
+  auto label2 = std::make_shared<DummyLabel>("second", 200);
+  auto d1 = std::make_shared<LabelledDomain<DummyLabel>>(10.0, 20.0, label1);
+  auto d2 = std::make_shared<LabelledDomain<DummyLabel>>(20.0, 30.0, label2);
+  std::vector<std::shared_ptr<LabelledDomain<DummyLabel>>> domains{d1, d2};
+  auto cld = std::make_shared<CoupledLabelledDomain<DummyLabel>>(domains);
 
   std::string json = cld->to_json_string();
-  auto        cld2 = CoupledLabelledDomain<DummyLabel>::from_json_string<
-             CoupledLabelledDomain<DummyLabel>>(json);
+  auto cld2 = CoupledLabelledDomain<DummyLabel>::from_json_string<CoupledLabelledDomain<DummyLabel>>(json);
   ASSERT_NE(cld2, nullptr);
   EXPECT_EQ(cld2->domains().size(), 2);
+  EXPECT_EQ(cld2->labels()[0]->name, "first");
   EXPECT_EQ(cld2->labels()[0]->id, 100);
   EXPECT_EQ(cld2->labels()[1]->name, "second");
+  EXPECT_EQ(cld2->labels()[1]->id, 200);
 }
