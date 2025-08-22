@@ -1,5 +1,3 @@
-#pragma once
-
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D.hpp"
 
 #include <memory>
@@ -95,9 +93,9 @@ void GateGeometryArray1D::append_central_gate(const DotGateSP& left_neighbor,
       throw std::invalid_argument(
           "Expected PlungerGate bounding selected BarrierGate.");
     }
-    _central_dot_gates.push_back(std::static_pointer_cast<DotGateWithNeighbors>(
-        std::make_shared<
-            BarrierGateWithNeighbors<PlungerGateSP, PlungerGateSP>>(
+    _central_dot_gates.push_back(std::static_pointer_cast<
+                                 BaseDotGateWithNeighbors>(
+        std::make_shared<BarrierGateWithNeighbors<PlungerGate, PlungerGate>>(
             barrier->name(), left_neighbor, right_neighbor)));
   } else if (auto plunger =
                  std::dynamic_pointer_cast<PlungerGate>(selected_gate)) {
@@ -106,27 +104,27 @@ void GateGeometryArray1D::append_central_gate(const DotGateSP& left_neighbor,
       throw std::invalid_argument(
           "Expected BarrierGate bounding selected PlungerGate.");
     }
-    _central_dot_gates.push_back(std::static_pointer_cast<DotGateWithNeighbors>(
-        std::make_shared<PlungerGateWithNeighbors>(
-            plunger->name(), left_neighbor, right_neighbor)));
+    _central_dot_gates.push_back(
+        std::static_pointer_cast<BaseDotGateWithNeighbors>(
+            std::make_shared<PlungerGateWithNeighbors>(
+                plunger->name(), left_neighbor, right_neighbor)));
   } else {
     throw std::invalid_argument(
         "Expected either a PlungerGate or BarrierGate.");
   }
 }
-using AllDotGateWithNeighbors = GateWithNeighbors<Gate, DotGate, Gate>;
-std::shared_ptr<DotGates<AllDotGateWithNeighbors>>
+std::shared_ptr<DotGates<BaseDotGateWithNeighbors>>
 GateGeometryArray1D::all_dot_gates() const {
-  DotGates<AllDotGateWithNeighbors> all_dot_gates;
+  DotGates<BaseDotGateWithNeighbors> all_dot_gates;
   all_dot_gates.push_back(
-      std::static_pointer_cast<AllDotGateWithNeighbors>(left_barrier()));
+      std::static_pointer_cast<BaseDotGateWithNeighbors>(left_barrier()));
   for (const auto& gate : _central_dot_gates) {
     all_dot_gates.push_back(
-        std::static_pointer_cast<AllDotGateWithNeighbors>(gate));
+        std::static_pointer_cast<BaseDotGateWithNeighbors>(gate));
   }
   all_dot_gates.push_back(
-      std::static_pointer_cast<AllDotGateWithNeighbors>(right_barrier()));
-  return std::make_shared<DotGates<AllDotGateWithNeighbors>>(all_dot_gates);
+      std::static_pointer_cast<BaseDotGateWithNeighbors>(right_barrier()));
+  return std::make_shared<DotGates<BaseDotGateWithNeighbors>>(all_dot_gates);
 }
 GatesSP<Gate> GateGeometryArray1D::query_neighbors(const GateSP& gate) const {
   auto it = _gate_name_map.find(gate->name());
@@ -163,7 +161,7 @@ GatesSP<Gate> GateGeometryArray1D::query_neighbors(const GateSP& gate) const {
     return std::make_shared<Gates<Gate>>(result);
   }
   auto gate_geom =
-      std::dynamic_pointer_cast<AllDotGateWithNeighbors>(gate_geometry);
+      std::dynamic_pointer_cast<BaseDotGateWithNeighbors>(gate_geometry);
   result.push_back(gate_geom->left_neighbor());
   result.push_back(gate_geom->right_neighbor());
   for (const auto& sg : *screening_gates()) {

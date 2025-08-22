@@ -11,18 +11,19 @@
 #include "falcon_core/physics/device_structures/PlungerGate.hpp"
 #include "falcon_core/physics/device_structures/ReservoirGate.hpp"
 #include "falcon_core/physics/device_structures/ScreeningGates.hpp"
+
 namespace falcon_core {
 namespace physics {
 namespace config {
 namespace geometries {
+
 /**
  * @brief A 1D array of quantum dots with left and right reservoirs, barrier
  *gates, plunger gates, ohmics, and screening gates. This contains the geometry
  *of the 1D array.
  */
 class GateGeometryArray1D : public generic::Song {
-  using DotGateWithNeighbors = GateWithNeighbors<DotGate, DotGate, DotGate>;
-  using CentralDotGates      = DotGates<DotGateWithNeighbors>;
+  using CentralDotGates = DotGates<BaseDotGateWithNeighbors>;
   CentralDotGates                         _central_dot_gates;
   DotGates<DotGate>                       _raw_central_gates;
   ScreeningGatesSP                        _screening_gates;
@@ -53,9 +54,7 @@ class GateGeometryArray1D : public generic::Song {
 
   /**
    * @brief Appends a central gate to the geometry.
-   * @param left_neighbor The left neighbor of the gate.
-   * @param selected_gate The gate to append.
-   * @param right_neighbor The right neighbor of the gate.
+   * @param gate The gate to append.
    */
   void append_central_gate(const DotGateSP& left_neighbor,
                            const DotGateSP& selected_gate,
@@ -65,8 +64,7 @@ class GateGeometryArray1D : public generic::Song {
    * @brief Gets all of the dot gates in the geometry
    * @return A collection of all dot gates in the array with localities.
    */
-  std::shared_ptr<DotGates<GateWithNeighbors<Gate, DotGate, Gate>>>
-  all_dot_gates() const;
+  std::shared_ptr<DotGates<BaseDotGateWithNeighbors>> all_dot_gates() const;
 
   /**
    * @brief Queries the neighbors of a gate
@@ -123,6 +121,7 @@ class GateGeometryArray1D : public generic::Song {
    */
   OhmicsSP ohmics() const;
 };
+
 }  // namespace geometries
 }  // namespace config
 }  // namespace physics
