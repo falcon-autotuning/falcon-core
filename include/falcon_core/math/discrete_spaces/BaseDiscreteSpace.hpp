@@ -3,6 +3,7 @@
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/Axes.hpp"
 #include "falcon_core/math/spaces/UnitSpace.hpp"
+#include "falcon_core/math/domains/CoupledKnobDomain.hpp"
 
 namespace falcon_core {
 namespace math {

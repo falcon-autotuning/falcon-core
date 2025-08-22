@@ -1,6 +1,7 @@
 #pragma once
 #include "falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp"
 #include "falcon_core/math/spaces/CartesianSpace.hpp"
+#include "falcon_core/math/domains/CoupledKnobDomain.hpp"
 
 namespace falcon_core {
 namespace math {
