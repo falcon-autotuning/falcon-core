@@ -30,7 +30,7 @@ class HasLeftNeighbor : public virtual generic::Song {
 
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<HasLeftNeighbor>(this), _left_neighbor);
+    ar(cereal::base_class<generic::Song>(this), _left_neighbor);
   }
 
  protected:

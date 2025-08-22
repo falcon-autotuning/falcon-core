@@ -10,6 +10,7 @@ namespace device_structures {
  */
 class ScreeningGate : public Gate {
  public:
+  using Gate::Gate;
   ScreeningGate(std::string name) : Gate(std::move(name)) {}
   template <class Archive>
   void serialize(Archive &ar) {
@@ -18,7 +19,6 @@ class ScreeningGate : public Gate {
 
  protected:
   ScreeningGate() = default;  // or initialize _name with a default value
-
   friend class cereal::access;
 };
 using ScreeningGateSP = std::shared_ptr<ScreeningGate>;
@@ -26,8 +26,7 @@ using ScreeningGateSP = std::shared_ptr<ScreeningGate>;
 }  // namespace physics
 }  // namespace falcon_core
 #ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::ScreeningGate)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::device_structures::Gate,
-    falcon_core::physics::device_structures::ScreeningGate)
+using namespace falcon_core::physics::device_structures;
+CEREAL_REGISTER_TYPE(ScreeningGate)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(Gate, ScreeningGate)
 #endif

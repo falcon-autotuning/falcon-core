@@ -8,9 +8,9 @@ namespace device_structures {
 /*
  * @brief A plunger gate on a quantum dot device.
  */
-class PlungerGate : public DotGate {
+class PlungerGate : public virtual DotGate {
  public:
-  PlungerGate(std::string name) : DotGate(std::move(name)) {}
+  using DotGate::DotGate;
   template <class Archive>
   void serialize(Archive &ar) {
     ar(cereal::base_class<DotGate>(this));
@@ -26,9 +26,7 @@ using PlungerGateSP = std::shared_ptr<PlungerGate>;
 }  // namespace physics
 }  // namespace falcon_core
 #ifndef SWIG
-
-CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::PlungerGate)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::device_structures::DotGate,
-    falcon_core::physics::device_structures::PlungerGate)
+using namespace falcon_core::physics::device_structures;
+CEREAL_REGISTER_TYPE(PlungerGate)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(DotGate, PlungerGate)
 #endif

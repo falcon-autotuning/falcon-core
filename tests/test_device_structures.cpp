@@ -2,7 +2,6 @@
 
 #include <cereal/archives/json.hpp>
 #include <cereal/types/memory.hpp>
-#include <sstream>
 
 #include "falcon_core/physics/device_structures/BarrierGate.hpp"
 #include "falcon_core/physics/device_structures/BarrierGates.hpp"
@@ -66,16 +65,14 @@ TEST(DeviceStructuresTest, DotGatesSerializationRoundTrip) {
 
 // Test BarrierGates serialization
 TEST(DeviceStructuresTest, BarrierGatesSerializationRoundTrip) {
-  auto gates = std::make_shared<BarrierGates<BarrierGate>>();
+  auto gates = std::make_shared<BarrierGates>();
   gates->push_back(std::make_shared<BarrierGate>("B1"));
   gates->push_back(std::make_shared<BarrierGate>("B2"));
 
   std::string json = gates->to_json_string();
   std::cout << "Serialized BarrierGates JSON:\n" << json << std::endl;
 
-  auto gates2 =
-      BarrierGates<BarrierGate>::from_json_string<BarrierGates<BarrierGate>>(
-          json);
+  auto gates2 = BarrierGates::from_json_string<BarrierGates>(json);
 
   ASSERT_EQ(gates2->size(), 2);
 }
@@ -89,7 +86,8 @@ TEST(DeviceStructuresTest, BaseConnectionsSerializationRoundTrip) {
   std::string json = connections->to_json_string();
   std::cout << "Serialized BaseConnections JSON:\n" << json << std::endl;
 
-  auto connections2 = BaseConnections<BaseConnection>::from_json_string<BaseConnections<BaseConnection>>(json);
+  auto connections2 = BaseConnections<BaseConnection>::from_json_string<
+      BaseConnections<BaseConnection>>(json);
 
   ASSERT_EQ(connections2->size(), 2);
   ASSERT_EQ(connections2->at(0)->name(), "C1");

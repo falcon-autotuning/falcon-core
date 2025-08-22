@@ -10,7 +10,7 @@ namespace device_structures {
  */
 class Ohmic : public BaseConnection {
  public:
-  Ohmic(std::string name) : BaseConnection(std::move(name)) {}
+  using BaseConnection::BaseConnection;
   template <class Archive>
   void serialize(Archive &ar) {
     ar(cereal::base_class<BaseConnection>(this));
@@ -18,7 +18,6 @@ class Ohmic : public BaseConnection {
 
  protected:
   Ohmic() = default;  // or initialize _name with a default value
-
   friend class cereal::access;
 };
 using OhmicSP = std::shared_ptr<Ohmic>;
@@ -26,9 +25,7 @@ using OhmicSP = std::shared_ptr<Ohmic>;
 }  // namespace physics
 }  // namespace falcon_core
 #ifndef SWIG
-
-CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Ohmic)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::device_structures::BaseConnection,
-    falcon_core::physics::device_structures::Ohmic)
+using namespace falcon_core::physics::device_structures;
+CEREAL_REGISTER_TYPE(Ohmic)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(BaseConnection, Ohmic)
 #endif

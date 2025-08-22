@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/HasLeftNeighbor.hpp"
 #include "falcon_core/physics/config/geometries/HasRightNeighbor.hpp"
 #include "falcon_core/physics/device_structures/BarrierGate.hpp"
@@ -12,29 +13,22 @@ namespace geometries {
  * @brief A special plunger gate with two neighbor barrier gates.
  */
 class PlungerGateWithNeighbors
-    : public device_structures::PlungerGate,
-      public HasLeftNeighbor<device_structures::BarrierGate>,
-      public HasRightNeighbor<device_structures::BarrierGate> {
+    : public DotGateWithNeighbors<BarrierGate, PlungerGate, BarrierGate> {
  public:
-  PlungerGateWithNeighbors(std::string                      name,
-                           device_structures::BarrierGateSP right_neighbor,
-                           device_structures::BarrierGateSP left_neighbor)
-      : device_structures::PlungerGate(name),
-        HasLeftNeighbor<device_structures::BarrierGate>(left_neighbor),
-        HasRightNeighbor<device_structures::BarrierGate>(right_neighbor) {}
+  using DotGateWithNeighbors<BarrierGate, PlungerGate, BarrierGate>::
+      DotGateWithNeighbors;
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<PlungerGate>(this),
-       cereal::base_class<HasLeftNeighbor<device_structures::BarrierGate>>(
-           this),
-       cereal::base_class<HasRightNeighbor<device_structures::BarrierGate>>(
-           this));
+       cereal::base_class<HasLeftNeighbor<BarrierGate>>(this),
+       cereal::base_class<HasRightNeighbor<BarrierGate>>(this));
   }
 
  protected:
   PlungerGateWithNeighbors() = default;
   friend class cereal::access;
 };
+using PlungerGateWithNeighborsSP = std::shared_ptr<PlungerGateWithNeighbors>;
 }  // namespace geometries
 }  // namespace config
 }  // namespace physics

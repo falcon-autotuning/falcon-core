@@ -122,8 +122,8 @@ class SymbolUnit : public generic::Song {
    * the other.
    */
   std::shared_ptr<SymbolUnit> operator*(
-      const std::shared_ptr<SymbolUnit> other) const;
-  std::shared_ptr<SymbolUnit> operator*(const UnitSP other) const;
+      const std::shared_ptr<SymbolUnit>& other) const;
+  std::shared_ptr<SymbolUnit> operator*(const UnitSP& other) const;
   /*
    * @brief Divide this symbol unit by another symbol unit.
    * @param other The symbol unit to divide by.
@@ -131,8 +131,8 @@ class SymbolUnit : public generic::Song {
    * the other.
    */
   std::shared_ptr<SymbolUnit> operator/(
-      const std::shared_ptr<SymbolUnit> other) const;
-  std::shared_ptr<SymbolUnit> operator/(const UnitSP other) const;
+      const std::shared_ptr<SymbolUnit>& other) const;
+  std::shared_ptr<SymbolUnit> operator/(const UnitSP& other) const;
   /*
    * @brief Raise the symbol unit to a power.
    * @param power The exponent to raise the symbol unit to.
@@ -153,19 +153,19 @@ class SymbolUnit : public generic::Song {
    * @return The converted value in the target symbol unit.
    * @throws std::invalid_argument if the units are not compatible.
    */
-  double convert_value_to(const double                      value,
-                          const std::shared_ptr<SymbolUnit> target_unit) const;
+  double convert_value_to(const double                       value,
+                          const std::shared_ptr<SymbolUnit>& target_unit) const;
   /*
    * @brief Check if this symbol unit is compatible with another symbol unit.
    * @param other The symbol unit to check compatibility with.
    * @return True if the symbol units are compatible (same dimensions), false
    * otherwise.
    */
-  bool is_compatible_with(const std::shared_ptr<SymbolUnit> other) const;
+  bool is_compatible_with(const std::shared_ptr<SymbolUnit>& other) const;
 
   std::string str() const { return _symbol; }
   template <class Archive>
-  void serialize(Archive &ar) {
+  void serialize(Archive& ar) {
     ar(cereal::base_class<Song>(this), _unit, _symbol, _name);
   }
   // template <class Archive>

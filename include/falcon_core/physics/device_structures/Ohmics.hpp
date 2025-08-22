@@ -8,47 +8,25 @@ namespace physics {
 namespace device_structures {
 
 /**
- * @brief A serializable vector of Ohmic pointers, also a Song.
- *
- * Uses composition: contains a vector of shared_ptr<T>.
+ * @brief A collection of Ohmic contacts to a quantum dot device.
  */
-template <typename T>
-class Ohmics : public falcon_core::generic::Song {
-  static_assert(std::is_base_of<Ohmic, T>::value,
-                "T must be derived from Ohmic");
-
- private:
-  std::vector<std::shared_ptr<T>> _items;
-
+class Ohmics : public BaseConnections<Ohmic> {
  public:
-  Ohmics() = default;
-
-  // Forwarding methods
-  void   push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }
-  size_t size() const { return _items.size(); }
-  std::shared_ptr<T> at(size_t idx) const { return _items.at(idx); }
-  const std::vector<std::shared_ptr<T>>& items() const { return _items; }
-  std::vector<std::shared_ptr<T>>&       items() { return _items; }
-
+  using BaseConnections<Ohmic>::BaseConnections;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _items);
+    ar(cereal::base_class<BaseConnections<Ohmic>>(this));
   }
 
  protected:
   friend class cereal::access;
 };
-template <typename T>
-struct OhmicsSP {
-  typedef std::shared_ptr<Ohmics<T>> type;
-};
+using OhmicsSP = std::shared_ptr<Ohmics>;
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
 #ifndef SWIG
-
 using namespace falcon_core::physics::device_structures;
-
-CEREAL_REGISTER_TYPE(Ohmics<Ohmic>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Ohmics<Ohmic>)
+CEREAL_REGISTER_TYPE(Ohmics)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Ohmics)
 #endif

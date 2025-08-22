@@ -59,28 +59,28 @@ const UnitSP CommonUnits::Percent =
     SPU(Unit(DIMENSIONS_DIMENSIONLESS, 0.01, 0.0, UNIT_SYMBOL));
 const UnitSP CommonUnits::Radian =
     SPU(Unit(DIMENSIONS_DIMENSIONLESS, 1.0, 0.0, UNIT_SYMBOL));
-const UnitSP CommonUnits::get_unit_with_prefix(const UnitSP      unit,
+const UnitSP CommonUnits::get_unit_with_prefix(const UnitSP&     unit,
                                                const std::string prefix) {
   return unit->with_prefix(prefix);
 }
-const UnitSP CommonUnits::get_milli(UnitSP unit) {
+const UnitSP CommonUnits::get_milli(const UnitSP& unit) {
   return unit->with_prefix(MILLI_SYMBOL);
 }
-const UnitSP CommonUnits::get_micro(const UnitSP unit) {
+const UnitSP CommonUnits::get_micro(const UnitSP& unit) {
   return unit->with_prefix(MICRO_SYMBOL);
 }
-const UnitSP CommonUnits::get_nano(const UnitSP unit) {
+const UnitSP CommonUnits::get_nano(const UnitSP& unit) {
   return unit->with_prefix(NANO_SYMBOL);
 }
-const UnitSP CommonUnits::get_pico(const UnitSP unit) {
+const UnitSP CommonUnits::get_pico(const UnitSP& unit) {
   return unit->with_prefix(PICO_SYMBOL);
 }
-const UnitSP CommonUnits::get_kilo(const UnitSP unit) {
+const UnitSP CommonUnits::get_kilo(const UnitSP& unit) {
   return unit->with_prefix(KILO_SYMBOL);
 }
-const UnitSP CommonUnits::get_mega(const UnitSP unit) {
+const UnitSP CommonUnits::get_mega(const UnitSP& unit) {
   return unit->with_prefix(MEGA_SYMBOL);
 }
-const UnitSP CommonUnits::get_giga(const UnitSP unit) {
+const UnitSP CommonUnits::get_giga(const UnitSP& unit) {
   return unit->with_prefix(GIGA_SYMBOL);
 }

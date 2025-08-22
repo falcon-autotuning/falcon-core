@@ -13,16 +13,16 @@ SymbolUnit::SymbolUnit(UnitSP unit) : _unit(unit) {
   _name        = results.second;
 }
 
-SymbolUnitSP SymbolUnit::operator*(const SymbolUnitSP other) const {
+SymbolUnitSP SymbolUnit::operator*(const SymbolUnitSP& other) const {
   return std::make_shared<SymbolUnit>(*unit() * other->unit());
 }
-SymbolUnitSP SymbolUnit::operator*(const std::shared_ptr<Unit> other) const {
+SymbolUnitSP SymbolUnit::operator*(const std::shared_ptr<Unit>& other) const {
   return std::make_shared<SymbolUnit>(*unit() * other);
 }
-SymbolUnitSP SymbolUnit::operator/(const SymbolUnitSP other) const {
+SymbolUnitSP SymbolUnit::operator/(const SymbolUnitSP& other) const {
   return std::make_shared<SymbolUnit>(*unit() / other->unit());
 }
-SymbolUnitSP SymbolUnit::operator/(const std::shared_ptr<Unit> other) const {
+SymbolUnitSP SymbolUnit::operator/(const std::shared_ptr<Unit>& other) const {
   return std::make_shared<SymbolUnit>(*unit() / other);
 }
 SymbolUnitSP SymbolUnit::operator^(const int power) const {
@@ -31,16 +31,16 @@ SymbolUnitSP SymbolUnit::operator^(const int power) const {
 SymbolUnitSP SymbolUnit::with_prefix(const std::string prefix) const {
   return std::make_shared<SymbolUnit>(unit()->with_prefix(prefix));
 }
-double SymbolUnit::convert_value_to(const double       value,
-                                    const SymbolUnitSP target_unit) const {
+double SymbolUnit::convert_value_to(const double        value,
+                                    const SymbolUnitSP& target_unit) const {
   return unit()->convert_value_to(value, target_unit->unit());
 }
-bool SymbolUnit::is_compatible_with(const SymbolUnitSP other) const {
+bool SymbolUnit::is_compatible_with(const SymbolUnitSP& other) const {
   return unit()->is_compatible_with(other->unit());
 }
 std::pair<std::string, std::string> SymbolUnit::_find_matching_common_unit()
     const {
-  for (const auto &triplet : get_unit_symbols()) {
+  for (const auto& triplet : get_unit_symbols()) {
     if (std::get<0>(triplet)->dimensions() == unit()->dimensions()) {
       return {unit()->prefix() + std::get<1>(triplet),
               unit()->prefix() + std::get<2>(triplet)};
@@ -62,7 +62,7 @@ std::string SymbolUnit::_generate_symbol() const {
   std::map<std::string, int> numerator, denominator;
 
   // Separate numerator and denominator
-  for (const auto &dim : unit()->dimensions()) {
+  for (const auto& dim : unit()->dimensions()) {
     if (dim.second > 0) {
       numerator[dim.first] = dim.second;
     } else if (dim.second < 0) {
@@ -72,7 +72,7 @@ std::string SymbolUnit::_generate_symbol() const {
 
   // Build numerator string
   std::vector<std::string> num_symbols;
-  for (const auto &pair : numerator) {
+  for (const auto& pair : numerator) {
     std::string symbol = _get_dimension_symbol(pair.first);
     if (pair.second == 1)
       num_symbols.push_back(symbol);
@@ -82,7 +82,7 @@ std::string SymbolUnit::_generate_symbol() const {
 
   // Build denominator string
   std::vector<std::string> denom_symbols;
-  for (const auto &pair : denominator) {
+  for (const auto& pair : denominator) {
     std::string symbol = _get_dimension_symbol(pair.first);
     if (pair.second == 1)
       denom_symbols.push_back(symbol);
@@ -140,7 +140,7 @@ std::string SymbolUnit::_get_dimension_symbol(std::string dimension) const {
 }
 std::string SymbolUnit::_generate_name() const {
   // Look for a predefined name based on dimensions
-  for (const auto &triplet : get_unit_symbols()) {
+  for (const auto& triplet : get_unit_symbols()) {
     if (std::get<0>(triplet)->dimensions() == unit()->dimensions()) {
       return std::get<1>(triplet);
     }
