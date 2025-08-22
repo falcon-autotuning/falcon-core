@@ -10,7 +10,7 @@ namespace device_structures {
  */
 class Gate : public BaseConnection {
  public:
-  Gate(std::string name) : BaseConnection(std::move(name)) {}
+  using BaseConnection::BaseConnection;
   template <class Archive>
   void serialize(Archive &ar) {
     ar(cereal::base_class<BaseConnection>(this));
@@ -18,7 +18,6 @@ class Gate : public BaseConnection {
 
  protected:
   Gate() = default;  // or initialize _name with a default value
-
   friend class cereal::access;
 };
 using GateSP = std::shared_ptr<Gate>;

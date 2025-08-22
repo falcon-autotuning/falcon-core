@@ -12,7 +12,7 @@ namespace device_structures {
  */
 class DotGate : public Gate {
  public:
-  DotGate(std::string name) : Gate(std::move(name)) {}
+  using Gate::Gate;
   template <class Archive>
   void serialize(Archive &ar) {
     ar(cereal::base_class<Gate>(this));
@@ -20,7 +20,6 @@ class DotGate : public Gate {
 
  protected:
   DotGate() = default;  // or initialize _name with a default value
-
   friend class cereal::access;
 };
 using DotGateSP = std::shared_ptr<DotGate>;

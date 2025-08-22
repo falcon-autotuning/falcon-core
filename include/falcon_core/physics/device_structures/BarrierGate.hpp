@@ -10,7 +10,7 @@ namespace device_structures {
  */
 class BarrierGate : public DotGate {
  public:
-  BarrierGate(std::string name) : DotGate(std::move(name)) {}
+  using DotGate::DotGate;
   template <class Archive>
   void serialize(Archive &ar) {
     ar(cereal::base_class<DotGate>(this));
@@ -18,7 +18,6 @@ class BarrierGate : public DotGate {
 
  protected:
   BarrierGate() = default;  // or initialize _name with a default value
-
   friend class cereal::access;
 };
 using BarrierGateSP = std::shared_ptr<BarrierGate>;
@@ -26,8 +25,7 @@ using BarrierGateSP = std::shared_ptr<BarrierGate>;
 }  // namespace physics
 }  // namespace falcon_core
 #ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::BarrierGate)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::device_structures::DotGate,
-    falcon_core::physics::device_structures::BarrierGate)
+using namespace falcon_core::physics::device_structures;
+CEREAL_REGISTER_TYPE(BarrierGate)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(DotGate, BarrierGate)
 #endif

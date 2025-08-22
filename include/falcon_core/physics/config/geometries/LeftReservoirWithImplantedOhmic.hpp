@@ -37,6 +37,8 @@ class LeftReservoirWithImplantedOhmic
   LeftReservoirWithImplantedOhmic() = default;
   friend class cereal::access;
 };
+using LeftReservoirWithImplantedOhmicSP =
+    std::shared_ptr<LeftReservoirWithImplantedOhmic>;
 }  // namespace geometries
 }  // namespace config
 }  // namespace physics

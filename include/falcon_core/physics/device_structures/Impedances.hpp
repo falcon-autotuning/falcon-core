@@ -7,27 +7,20 @@ namespace physics {
 namespace device_structures {
 
 /**
- * @brief A serializable vector of Impedance pointers, also a Song.
- *
- * Uses composition: contains a vector of shared_ptr<T>.
+ * @brief A collection of Impedance measurements on a quantum dot sample.
  */
-template <typename T>
 class Impedances : public generic::Song {
-  static_assert(std::is_base_of<Impedance, T>::value,
-                "T must be derived from Impedance");
-
- private:
-  std::vector<std::shared_ptr<T>> _items;
+  std::vector<ImpedanceSP> _items;
 
  public:
   Impedances() = default;
 
   // Forwarding methods
-  void   push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }
-  size_t size() const { return _items.size(); }
-  std::shared_ptr<T> at(size_t idx) const { return _items.at(idx); }
-  const std::vector<std::shared_ptr<T>>& items() const { return _items; }
-  std::vector<std::shared_ptr<T>>&       items() { return _items; }
+  void        push_back(const ImpedanceSP& item) { _items.push_back(item); }
+  size_t      size() const { return _items.size(); }
+  ImpedanceSP at(size_t idx) const { return _items.at(idx); }
+  const std::vector<ImpedanceSP>& items() const { return _items; }
+  std::vector<ImpedanceSP>&       items() { return _items; }
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -37,17 +30,12 @@ class Impedances : public generic::Song {
  protected:
   friend class cereal::access;
 };
-template <typename T>
-struct ImpedancesSP {
-  typedef std::shared_ptr<Impedances<T>> type;
-};
+using ImpedancesSP = std::shared_ptr<Impedances>;
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
-using namespace falcon_core::physics::device_structures;
 #ifndef SWIG
-
-CEREAL_REGISTER_TYPE(Impedances<Impedance>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     Impedances<Impedance>)
+using namespace falcon_core::physics::device_structures;
+CEREAL_REGISTER_TYPE(Impedances)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Impedances)
 #endif

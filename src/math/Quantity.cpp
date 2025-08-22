@@ -84,6 +84,3 @@ std::shared_ptr<Quantity> Quantity::abs() const {
 
 }  // namespace math
 }  // namespace falcon_core
-
-using namespace falcon_core;
-using namespace falcon_core::math;

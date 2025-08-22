@@ -43,13 +43,13 @@ class Unit : public generic::Song {
    * @param other The unit to multiply by.
    * @return A new Unit representing the product of this unit and the other.
    */
-  std::shared_ptr<Unit> operator*(const std::shared_ptr<Unit> other) const;
+  std::shared_ptr<Unit> operator*(const std::shared_ptr<Unit>& other) const;
   /*
    * @brief Divide this unit by another unit.
    * @param other The unit to divide by.
    * @return A new Unit representing the division of this unit by the other.
    */
-  std::shared_ptr<Unit> operator/(const std::shared_ptr<Unit> other) const;
+  std::shared_ptr<Unit> operator/(const std::shared_ptr<Unit>& other) const;
   /*
    * @brief Raise the unit to a power.
    * @param power The exponent to raise the unit to.
@@ -70,17 +70,17 @@ class Unit : public generic::Song {
    * @return The converted value in the target unit.
    * @throws std::invalid_argument if the units are not compatible.
    */
-  double convert_value_to(const double                value,
-                          const std::shared_ptr<Unit> target_unit) const;
+  double convert_value_to(const double                 value,
+                          const std::shared_ptr<Unit>& target_unit) const;
   /*
    * @brief Check if this unit is compatible with another unit.
    * @param other The unit to check compatibility with.
    * @return True if the units are compatible (same dimensions), false
    * otherwise.
    */
-  bool is_compatible_with(const std::shared_ptr<Unit> other) const;
+  bool is_compatible_with(const std::shared_ptr<Unit>& other) const;
   template <class Archive>
-  void serialize(Archive &ar) {
+  void serialize(Archive& ar) {
     ar(cereal::base_class<Song>(this),
        _scale_factor,
        _offset,

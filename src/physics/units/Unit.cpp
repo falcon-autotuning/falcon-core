@@ -18,7 +18,7 @@ Unit::Unit(TotalDimensions dimensions,
       _offset(offset),
       _prefix(prefix) {}
 
-std::shared_ptr<Unit> Unit::operator*(const UnitSP other) const {
+std::shared_ptr<Unit> Unit::operator*(const UnitSP &other) const {
   TotalDimensions copy_dims = dimensions();
   for (const auto &pair : other->dimensions()) {
     if (copy_dims.count(pair.first)) {
@@ -43,7 +43,7 @@ std::shared_ptr<Unit> Unit::operator*(const UnitSP other) const {
       copy_dims, new_mult, offset() * other->offset(), prefix);
 }
 
-std::shared_ptr<Unit> Unit::operator/(const UnitSP other) const {
+std::shared_ptr<Unit> Unit::operator/(const UnitSP &other) const {
   TotalDimensions copy_dims = dimensions();
   for (const auto &pair : other->dimensions()) {
     if (copy_dims.count(pair.first)) {
@@ -90,11 +90,11 @@ std::shared_ptr<Unit> Unit::operator^(int power) const {
 }
 
 std::shared_ptr<Unit> Unit::with_prefix(const std::string prefix) const {
-  std::ostringstream oss;
-  std::copy(std::begin(falcon_core::SI::ALL_PREFIXES),
-            std::end(falcon_core::SI::ALL_PREFIXES),
-            std::ostream_iterator<std::string>(oss, ", "));
   if (!Prefix::is_valid(prefix)) {
+    std::ostringstream oss;
+    std::copy(std::begin(falcon_core::SI::ALL_PREFIXES),
+              std::end(falcon_core::SI::ALL_PREFIXES),
+              std::ostream_iterator<std::string>(oss, ", "));
     throw std::invalid_argument("Invalid prefix: " + prefix +
                                 ". The valid prefixes are: " + oss.str());
   }
@@ -106,8 +106,8 @@ std::shared_ptr<Unit> Unit::with_prefix(const std::string prefix) const {
       dimensions(), scale_factor() / scale_adjustment, offset(), prefix);
 }
 
-double Unit::convert_value_to(const double value,
-                              const UnitSP target_unit) const {
+double Unit::convert_value_to(const double  value,
+                              const UnitSP &target_unit) const {
   if (dimensions() != target_unit->dimensions()) {
     throw std::invalid_argument(
         "Cannot convert between units with different dimensions.");
@@ -119,7 +119,7 @@ double Unit::convert_value_to(const double value,
   return (base_value - target_unit->offset()) / target_unit->scale_factor();
 }
 
-bool Unit::is_compatible_with(const UnitSP other) const {
+bool Unit::is_compatible_with(const UnitSP &other) const {
   return dimensions() == other->dimensions();
 }
 CEREAL_REGISTER_TYPE(falcon_core::physics::units::Unit)

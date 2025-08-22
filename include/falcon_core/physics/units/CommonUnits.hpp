@@ -41,50 +41,50 @@ struct CommonUnits {
    * @param prefix The prefix to apply.
    * @return A shared pointer to the new unit with the specified prefix.
    */
-  static const UnitSP get_unit_with_prefix(const UnitSP      unit,
+  static const UnitSP get_unit_with_prefix(const UnitSP&     unit,
                                            const std::string prefix);
   /*
    * @brief Get the milli- version of a unit.
    * @param unit The base unit to convert to milli-.
    * @return A shared pointer to the new unit with the milli- prefix.
    */
-  static const UnitSP get_milli(const UnitSP unit);
+  static const UnitSP get_milli(const UnitSP& unit);
   /*
    * @brief Get the micro- version of a unit.
    * @param unit The base unit to convert to micro-.
    * @return A shared pointer to the new unit with the micro- prefix.
    */
-  static const UnitSP get_micro(const UnitSP unit);
+  static const UnitSP get_micro(const UnitSP& unit);
   /*
    * @brief Get the nano- version of a unit.
    * @param unit The base unit to convert to nano-.
    * @return A shared pointer to the new unit with the nano- prefix.
    */
-  static const UnitSP get_nano(const UnitSP unit);
+  static const UnitSP get_nano(const UnitSP& unit);
   /*
    * @brief Get the pico- version of a unit.
    * @param unit The base unit to convert to pico-.
    * @return A shared pointer to the new unit with the pico- prefix.
    */
-  static const UnitSP get_pico(const UnitSP unit);
+  static const UnitSP get_pico(const UnitSP& unit);
   /*
    * @brief Get the kilo- version of a unit.
    * @param unit The base unit to convert to kilo-.
    * @return A shared pointer to the new unit with the kilo- prefix.
    */
-  static const UnitSP get_kilo(const UnitSP unit);
+  static const UnitSP get_kilo(const UnitSP& unit);
   /*
    * @brief Get the mega- version of a unit.
    * @param unit The base unit to convert to mega-.
    * @return A shared pointer to the new unit with the mega- prefix.
    */
-  static const UnitSP get_mega(const UnitSP unit);
+  static const UnitSP get_mega(const UnitSP& unit);
   /*
    * @brief Get the giga- version of a unit.
    * @param unit The base unit to convert to giga-.
    * @return A shared pointer to the new unit with the giga- prefix.
    */
-  static const UnitSP get_giga(const UnitSP unit);
+  static const UnitSP get_giga(const UnitSP& unit);
 };
 }  // namespace units
 }  // namespace physics
