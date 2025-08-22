@@ -1,7 +1,7 @@
 #pragma once
 
 #include "falcon_core/physics/config/geometries/BarrierGateWithNeighbors.hpp"
-#include "falcon_core/physics/config/geometries/GateWithNeighbors.hpp"
+#include "falcon_core/physics/config/geometries/BaseDotGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic.hpp"
 #include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"

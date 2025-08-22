@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/physics/config/geometries/GateWithNeighbors.hpp"
+#include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/HasLeftNeighbor.hpp"
 #include "falcon_core/physics/config/geometries/HasRightNeighbor.hpp"
 #include "falcon_core/physics/device_structures/BarrierGate.hpp"
@@ -13,10 +13,10 @@ namespace geometries {
  * @brief A special plunger gate with two neighbor barrier gates.
  */
 class PlungerGateWithNeighbors
-    : public GateWithNeighbors<BarrierGate, PlungerGate, BarrierGate> {
+    : public DotGateWithNeighbors<BarrierGate, PlungerGate, BarrierGate> {
  public:
-  using GateWithNeighbors<BarrierGate, PlungerGate, BarrierGate>::
-      GateWithNeighbors;
+  using DotGateWithNeighbors<BarrierGate, PlungerGate, BarrierGate>::
+      DotGateWithNeighbors;
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<PlungerGate>(this),

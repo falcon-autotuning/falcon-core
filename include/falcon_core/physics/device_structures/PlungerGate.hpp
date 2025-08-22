@@ -8,7 +8,7 @@ namespace device_structures {
 /*
  * @brief A plunger gate on a quantum dot device.
  */
-class PlungerGate : public DotGate {
+class PlungerGate : public virtual DotGate {
  public:
   using DotGate::DotGate;
   template <class Archive>

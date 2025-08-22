@@ -8,7 +8,7 @@ namespace device_structures {
 /*
  * @brief A barrier gate on a quantum dot device.
  */
-class BarrierGate : public DotGate {
+class BarrierGate : public virtual DotGate {
  public:
   using DotGate::DotGate;
   template <class Archive>

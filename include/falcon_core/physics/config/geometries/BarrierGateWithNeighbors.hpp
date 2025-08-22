@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/physics/config/geometries/GateWithNeighbors.hpp"
+#include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/HasLeftNeighbor.hpp"
 #include "falcon_core/physics/config/geometries/HasRightNeighbor.hpp"
 #include "falcon_core/physics/device_structures/BarrierGate.hpp"
@@ -15,7 +15,7 @@ namespace geometries {
  */
 template <typename LeftNeighbor, typename RightNeighbor>
 class BarrierGateWithNeighbors
-    : public GateWithNeighbors<LeftNeighbor, BarrierGate, RightNeighbor> {
+    : public DotGateWithNeighbors<LeftNeighbor, BarrierGate, RightNeighbor> {
   static_assert(std::is_same<RightNeighbor, ReservoirGate>::value ||
                     std::is_same<RightNeighbor, PlungerGate>::value,
                 "RightNeighbor must be device_structures::ReservoirGate or "
@@ -26,8 +26,8 @@ class BarrierGateWithNeighbors
                 "device_structures::PlungerGate.");
 
  public:
-  using GateWithNeighbors<LeftNeighbor, BarrierGate, RightNeighbor>::
-      GateWithNeighbors;
+  using DotGateWithNeighbors<LeftNeighbor, BarrierGate, RightNeighbor>::
+      DotGateWithNeighbors;
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<BarrierGate>(this),
