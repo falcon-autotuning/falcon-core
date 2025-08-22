@@ -154,3 +154,44 @@ TEST(DiscreteSpacesTest, CartesianDiscreteSpace2DSerializationRoundTrip) {
     ASSERT_NE(ds2, nullptr);
     EXPECT_EQ(ds2->axes()->size(), 2);
 }
+
+// Complex, realistic projection test (mirroring Python test_get_projection_runs)
+TEST(DiscreteSpacesTest, ComplexProjectionFunctionality) {
+    using namespace falcon_core::math::discretizers;
+    using namespace falcon_core::math::spaces;
+    using namespace falcon_core::math::domains;
+    using namespace falcon_core::math::discrete_spaces;
+    using namespace falcon_core::instrument_interfaces::names;
+
+    // 1. Create 2D UnitSpace with discretizers
+    auto d1 = std::make_shared<CartesianDiscretizer>(0.1);
+    auto d2 = std::make_shared<CartesianDiscretizer>(0.1);
+    std::vector<std::shared_ptr<BaseDiscretizer>> discretizers{d1, d2};
+    auto axes_discretizers = std::make_shared<Axes<BaseDiscretizer>>(discretizers);
+    auto domain = std::make_shared<Domain>(0.0, 1.0);
+    auto unit_space = std::make_shared<UnitSpace>(*axes_discretizers, domain);
+
+    // 2. Create Knobs and CoupledKnobDomains
+    auto knob1 = std::make_shared<Knob>("x0", nullptr, "clock", "desc", nullptr);
+    auto knob2 = std::make_shared<Knob>("x1", nullptr, "clock", "desc", nullptr);
+    std::vector<std::shared_ptr<Knob>> knob_vec{knob1, knob2};
+    auto axes_knobs = std::make_shared<Axes<Knob>>(knob_vec);
+
+    // 3. Create CoupledKnobDomains for each Knob
+    using LabelledDomainKnob = falcon_core::math::domains::LabelledDomain<Knob>;
+    auto kd1 = std::make_shared<CoupledKnobDomain>(0.0, 1.0, knob1, std::vector<std::shared_ptr<LabelledDomainKnob>>{});
+    auto kd2 = std::make_shared<CoupledKnobDomain>(0.0, 1.0, knob2, std::vector<std::shared_ptr<LabelledDomainKnob>>{});
+    std::vector<std::shared_ptr<CoupledKnobDomain>> coupled_domains{kd1, kd2};
+    auto axes_coupled = std::make_shared<Axes<CoupledKnobDomain>>(coupled_domains);
+
+    // 4. Construct BaseDiscreteSpace
+    auto bds = std::make_shared<BaseDiscreteSpace>(unit_space, axes_coupled);
+
+    // 5. Project onto a set of Knobs
+    auto result = bds->get_projection(axes_knobs);
+
+    // 6. Check result
+    ASSERT_EQ(result->size(), 2);
+    EXPECT_EQ(bds->axes()->size(), 2);
+    EXPECT_EQ(bds->space(), unit_space);
+}
