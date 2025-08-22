@@ -40,6 +40,12 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
     falcon_core::math::domains::BaseCoupledLabelledDomain<DummyLabel>)
 
+CEREAL_REGISTER_TYPE(
+    falcon_core::math::domains::CoupledLabelledDomain<DummyLabel>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::math::domains::CoupledLabelledDomain<DummyLabel>)
+
 #endif
 
 using namespace falcon_core::math::domains;
@@ -141,7 +147,8 @@ TEST(CoupledLabelledDomainTest, SerializationRoundTrip) {
   auto cld = std::make_shared<CoupledLabelledDomain<DummyLabel>>(domains);
 
   std::string json = cld->to_json_string();
-  auto cld2 = CoupledLabelledDomain<DummyLabel>::from_json_string<CoupledLabelledDomain<DummyLabel>>(json);
+  auto        cld2 = CoupledLabelledDomain<DummyLabel>::from_json_string<
+             CoupledLabelledDomain<DummyLabel>>(json);
   ASSERT_NE(cld2, nullptr);
   EXPECT_EQ(cld2->domains().size(), 2);
   EXPECT_EQ(cld2->labels()[0]->name, "first");
