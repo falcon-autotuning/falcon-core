@@ -20,10 +20,16 @@ using namespace falcon_core::math::discrete_spaces;
 using namespace falcon_core::math::domains;
 using namespace falcon_core::math::spaces;
 
+#include "falcon_core/instrument_interfaces/names/Knob.hpp"
+#include "falcon_core/math/domains/LabelledDomain.hpp"
+
 // Helper to create a dummy CoupledKnobDomain
 std::shared_ptr<CoupledKnobDomain> make_knob_domain(double min, double max) {
-    // You may need to adjust the constructor arguments for your actual CoupledKnobDomain
-    return std::make_shared<CoupledKnobDomain>(min, max, nullptr, nullptr);
+    using Knob = falcon_core::instrument_interfaces::names::Knob;
+    using LabelledDomainKnob = falcon_core::math::domains::LabelledDomain<Knob>;
+    return std::make_shared<CoupledKnobDomain>(
+        min, max, nullptr, std::vector<std::shared_ptr<LabelledDomainKnob>>{}
+    );
 }
 
 TEST(DiscreteSpacesTest, BaseDiscreteSpaceBasicFunctionality) {
