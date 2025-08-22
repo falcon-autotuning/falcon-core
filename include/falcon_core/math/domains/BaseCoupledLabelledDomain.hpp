@@ -37,8 +37,8 @@ class BaseCoupledLabelledDomain : public generic::Song {
     throw std::runtime_error("No domain found matching label");
   }
 
-  auto begin() const { return _domains.begin(); }
-  auto end() const { return _domains.end(); }
+  typename std::vector<DomainPtr>::const_iterator begin() const { return _domains.begin(); }
+  typename std::vector<DomainPtr>::const_iterator end() const { return _domains.end(); }
 
  private:
   std::vector<DomainPtr> _domains;

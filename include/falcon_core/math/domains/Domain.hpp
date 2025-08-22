@@ -19,7 +19,7 @@ class Domain : public generic::Song {
   double max() const { return _max; }
   double range() const { return _max - _min; }
 
- private:
+protected:
   double _min;
   double _max;
 
