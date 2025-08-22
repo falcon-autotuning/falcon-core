@@ -1,6 +1,4 @@
 #include <gtest/gtest.h>
-#include <cereal/archives/json.hpp>
-#include <sstream>
 #include <memory>
 #include <vector>
 #include <string>
@@ -39,20 +37,13 @@ TEST(DomainTest, BasicFunctionality) {
     EXPECT_DOUBLE_EQ(d.range(), 4.0);
 }
 
-TEST(DomainTest, Serialization) {
-    Domain d(2.0, 7.0);
-    std::stringstream ss;
-    {
-        cereal::JSONOutputArchive oarchive(ss);
-        oarchive(d);
-    }
-    Domain d2;
-    {
-        cereal::JSONInputArchive iarchive(ss);
-        iarchive(d2);
-    }
-    EXPECT_DOUBLE_EQ(d2.min(), 2.0);
-    EXPECT_DOUBLE_EQ(d2.max(), 7.0);
+TEST(DomainTest, SerializationRoundTrip) {
+    auto d = std::make_shared<Domain>(2.0, 7.0);
+    std::string json = d->to_json_string();
+    auto d2 = Domain::from_json_string<Domain>(json);
+    ASSERT_NE(d2, nullptr);
+    EXPECT_DOUBLE_EQ(d2->min(), 2.0);
+    EXPECT_DOUBLE_EQ(d2->max(), 7.0);
 }
 
 TEST(LabelledDomainTest, BasicFunctionality) {
@@ -64,23 +55,16 @@ TEST(LabelledDomainTest, BasicFunctionality) {
     EXPECT_DOUBLE_EQ(ld.max(), 10.0);
 }
 
-TEST(LabelledDomainTest, Serialization) {
+TEST(LabelledDomainTest, SerializationRoundTrip) {
     auto label = std::make_shared<DummyLabel>("bar", 99);
-    LabelledDomain<DummyLabel> ld(1.0, 2.0, label);
-    std::stringstream ss;
-    {
-        cereal::JSONOutputArchive oarchive(ss);
-        oarchive(ld);
-    }
-    LabelledDomain<DummyLabel> ld2;
-    {
-        cereal::JSONInputArchive iarchive(ss);
-        iarchive(ld2);
-    }
-    EXPECT_EQ(ld2.label()->name, "bar");
-    EXPECT_EQ(ld2.label()->id, 99);
-    EXPECT_DOUBLE_EQ(ld2.min(), 1.0);
-    EXPECT_DOUBLE_EQ(ld2.max(), 2.0);
+    auto ld = std::make_shared<LabelledDomain<DummyLabel>>(1.0, 2.0, label);
+    std::string json = ld->to_json_string();
+    auto ld2 = LabelledDomain<DummyLabel>::from_json_string<LabelledDomain<DummyLabel>>(json);
+    ASSERT_NE(ld2, nullptr);
+    EXPECT_EQ(ld2->label()->name, "bar");
+    EXPECT_EQ(ld2->label()->id, 99);
+    EXPECT_DOUBLE_EQ(ld2->min(), 1.0);
+    EXPECT_DOUBLE_EQ(ld2->max(), 2.0);
 }
 
 TEST(BaseCoupledLabelledDomainTest, BasicFunctionality) {
@@ -100,27 +84,20 @@ TEST(BaseCoupledLabelledDomainTest, BasicFunctionality) {
     EXPECT_EQ(found->label()->name, "b");
 }
 
-TEST(BaseCoupledLabelledDomainTest, Serialization) {
+TEST(BaseCoupledLabelledDomainTest, SerializationRoundTrip) {
     auto label1 = std::make_shared<DummyLabel>("x", 10);
     auto label2 = std::make_shared<DummyLabel>("y", 20);
     auto d1 = std::make_shared<LabelledDomain<DummyLabel>>(5.0, 6.0, label1);
     auto d2 = std::make_shared<LabelledDomain<DummyLabel>>(6.0, 7.0, label2);
     std::vector<std::shared_ptr<LabelledDomain<DummyLabel>>> domains{d1, d2};
-    BaseCoupledLabelledDomain<DummyLabel> bcld(domains);
+    auto bcld = std::make_shared<BaseCoupledLabelledDomain<DummyLabel>>(domains);
 
-    std::stringstream ss;
-    {
-        cereal::JSONOutputArchive oarchive(ss);
-        oarchive(bcld);
-    }
-    BaseCoupledLabelledDomain<DummyLabel> bcld2;
-    {
-        cereal::JSONInputArchive iarchive(ss);
-        iarchive(bcld2);
-    }
-    EXPECT_EQ(bcld2.domains().size(), 2);
-    EXPECT_EQ(bcld2.labels()[0]->id, 10);
-    EXPECT_EQ(bcld2.labels()[1]->name, "y");
+    std::string json = bcld->to_json_string();
+    auto bcld2 = BaseCoupledLabelledDomain<DummyLabel>::from_json_string<BaseCoupledLabelledDomain<DummyLabel>>(json);
+    ASSERT_NE(bcld2, nullptr);
+    EXPECT_EQ(bcld2->domains().size(), 2);
+    EXPECT_EQ(bcld2->labels()[0]->id, 10);
+    EXPECT_EQ(bcld2->labels()[1]->name, "y");
 }
 
 TEST(CoupledLabelledDomainTest, BasicFunctionalityAndSerialization) {
@@ -129,23 +106,16 @@ TEST(CoupledLabelledDomainTest, BasicFunctionalityAndSerialization) {
     auto d1 = std::make_shared<LabelledDomain<DummyLabel>>(10.0, 20.0, label1);
     auto d2 = std::make_shared<LabelledDomain<DummyLabel>>(20.0, 30.0, label2);
     std::vector<std::shared_ptr<LabelledDomain<DummyLabel>>> domains{d1, d2};
-    CoupledLabelledDomain<DummyLabel> cld(domains);
+    auto cld = std::make_shared<CoupledLabelledDomain<DummyLabel>>(domains);
 
-    EXPECT_EQ(cld.domains().size(), 2);
-    EXPECT_EQ(cld.labels()[0]->name, "first");
-    EXPECT_EQ(cld.labels()[1]->id, 200);
+    EXPECT_EQ(cld->domains().size(), 2);
+    EXPECT_EQ(cld->labels()[0]->name, "first");
+    EXPECT_EQ(cld->labels()[1]->id, 200);
 
-    std::stringstream ss;
-    {
-        cereal::JSONOutputArchive oarchive(ss);
-        oarchive(cld);
-    }
-    CoupledLabelledDomain<DummyLabel> cld2;
-    {
-        cereal::JSONInputArchive iarchive(ss);
-        iarchive(cld2);
-    }
-    EXPECT_EQ(cld2.domains().size(), 2);
-    EXPECT_EQ(cld2.labels()[0]->id, 100);
-    EXPECT_EQ(cld2.labels()[1]->name, "second");
+    std::string json = cld->to_json_string();
+    auto cld2 = CoupledLabelledDomain<DummyLabel>::from_json_string<CoupledLabelledDomain<DummyLabel>>(json);
+    ASSERT_NE(cld2, nullptr);
+    EXPECT_EQ(cld2->domains().size(), 2);
+    EXPECT_EQ(cld2->labels()[0]->id, 100);
+    EXPECT_EQ(cld2->labels()[1]->name, "second");
 }
