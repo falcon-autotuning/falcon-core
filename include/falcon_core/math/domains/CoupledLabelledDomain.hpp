@@ -1,8 +1,10 @@
 #pragma once
 
 #include <cereal/types/vector.hpp>
+#include <memory>
 #include <vector>
 
+#include "falcon_core/math/domains/BaseCoupledLabelledDomain.hpp"
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 
 namespace falcon_core {
@@ -10,37 +12,30 @@ namespace math {
 namespace domains {
 
 template <typename T>
-class CoupledLabelledDomain : public LabelledDomain<T> {
+class CoupledLabelledDomain : public BaseCoupledLabelledDomain<T> {
  public:
-  CoupledLabelledDomain(
-      double                                          min_val,
-      double                                          max_val,
-      std::shared_ptr<T>                              label,
-      std::vector<std::shared_ptr<LabelledDomain<T>>> coupled_domains)
-      : LabelledDomain<T>(min_val, max_val, label),
-        _coupled_domains(std::move(coupled_domains)) {}
+  using LabelledDomainT = LabelledDomain<T>;
+  using DomainPtr       = std::shared_ptr<LabelledDomainT>;
 
-  const std::vector<std::shared_ptr<LabelledDomain<T>>>& coupled_domains()
-      const {
-    return _coupled_domains;
-  }
+  CoupledLabelledDomain(const std::vector<DomainPtr>& domains)
+      : BaseCoupledLabelledDomain<T>(domains) {}
 
  private:
-  std::vector<std::shared_ptr<LabelledDomain<T>>> _coupled_domains;
-
   friend class cereal::access;
   CoupledLabelledDomain() = default;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<LabelledDomain<T>>(this), _coupled_domains);
+    ar(cereal::base_class<BaseCoupledLabelledDomain<T>>(this));
   }
 };
+
 }  // namespace domains
 }  // namespace math
 }  // namespace falcon_core
-
+#ifndef SWIG
 using namespace falcon_core::math::domains;
 CEREAL_REGISTER_TYPE(falcon_core::math::domains::CoupledLabelledDomain<int>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
     falcon_core::math::domains::CoupledLabelledDomain<int>)
+#endif

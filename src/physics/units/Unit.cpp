@@ -18,75 +18,46 @@ Unit::Unit(TotalDimensions dimensions,
       _offset(offset),
       _prefix(prefix) {}
 
-std::shared_ptr<Unit> Unit::operator*(const UnitSP &other) const {
-  TotalDimensions copy_dims = dimensions();
-  for (const auto &pair : other->dimensions()) {
-    if (copy_dims.count(pair.first)) {
-      copy_dims[pair.first] += pair.second;
-      if (copy_dims[pair.first] == 0) {
-        copy_dims.erase(pair.first);
-      }
-    } else {
-      copy_dims[pair.first] = pair.second;
-    }
+UnitSP Unit::operator*(const UnitSP &other) const {
+  TotalDimensions result_dims = this->_dimensions;
+  for (auto it = other->_dimensions.begin(); it != other->_dimensions.end();
+       ++it) {
+    const std::string &dim = it->first;
+    int                exp = it->second;
+    result_dims[dim] += exp;
   }
-  double new_scale = scale_factor() * other->scale_factor() +
-                     scale_factor() * other->offset() +
-                     offset() * other->scale_factor();
-
-  auto result =
-      Prefix::prefix_multiplication(prefix(), other->prefix(), new_scale);
-  double      &new_mult = result.first;
-  std::string &prefix   = result.second;
-
-  return std::make_shared<Unit>(
-      copy_dims, new_mult, offset() * other->offset(), prefix);
+  Unit::clean_dimensions(result_dims);
+  return std::make_shared<Unit>(result_dims,
+                                this->_scale_factor * other->_scale_factor,
+                                this->_offset + other->_offset,
+                                this->_prefix);
 }
 
-std::shared_ptr<Unit> Unit::operator/(const UnitSP &other) const {
-  TotalDimensions copy_dims = dimensions();
-  for (const auto &pair : other->dimensions()) {
-    if (copy_dims.count(pair.first)) {
-      copy_dims[pair.first] -= pair.second;
-      if (copy_dims[pair.first] == 0) {
-        copy_dims.erase(pair.first);
-      }
-    } else {
-      copy_dims[pair.first] = -pair.second;
-    }
+UnitSP Unit::operator/(const UnitSP &other) const {
+  TotalDimensions result_dims = this->_dimensions;
+  for (auto it = other->_dimensions.begin(); it != other->_dimensions.end();
+       ++it) {
+    const std::string &dim = it->first;
+    int                exp = it->second;
+    result_dims[dim] -= exp;
   }
-
-  // Create an inverse of `other` to calculate the new scale factor and offset
-  Unit inverse_other({},
-                     1.0 / other->scale_factor(),
-                     -other->offset() / other->scale_factor(),
-                     Prefix::get_symbol(-Prefix::get_value(other->prefix())));
-
-  // Now multiply `this` by the `inverse_other` to get the final unit
-  // properties
-  double new_scale = scale_factor() * inverse_other.scale_factor() +
-                     scale_factor() * inverse_other.offset() +
-                     offset() * inverse_other.scale_factor();
-
-  auto result = Prefix::prefix_multiplication(
-      prefix(), inverse_other.prefix(), new_scale);
-  double      &new_mult = result.first;
-  std::string &prefix   = result.second;
-
-  return std::make_shared<Unit>(
-      copy_dims, new_mult, offset() * inverse_other.offset(), prefix);
+  Unit::clean_dimensions(result_dims);
+  return std::make_shared<Unit>(result_dims,
+                                this->_scale_factor / other->_scale_factor,
+                                this->_offset - other->_offset,
+                                this->_prefix);
 }
 
-std::shared_ptr<Unit> Unit::operator^(int power) const {
-  TotalDimensions new_dims;
-  for (const auto &pair : dimensions()) {
-    const std::string &dim_ptr   = pair.first;
-    const int         &power_ptr = pair.second;
-    new_dims[dim_ptr]            = power_ptr * power;
+std::shared_ptr<Unit> Unit::operator^(const int power) const {
+  TotalDimensions result_dims = this->_dimensions;
+  for (auto it = result_dims.begin(); it != result_dims.end(); ++it) {
+    it->second *= power;
   }
-  double new_scale = std::pow(scale_factor(), power);
-  // Assuming _prefix and _offset can be copied directly
-  return std::make_shared<Unit>(new_dims, new_scale, offset(), prefix());
+  Unit::clean_dimensions(result_dims);
+  return std::make_shared<Unit>(result_dims,
+                                std::pow(this->_scale_factor, power),
+                                this->_offset * power,
+                                this->_prefix);
 }
 
 std::shared_ptr<Unit> Unit::with_prefix(const std::string prefix) const {

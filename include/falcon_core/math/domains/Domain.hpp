@@ -19,7 +19,7 @@ class Domain : public generic::Song {
   double max() const { return _max; }
   double range() const { return _max - _min; }
 
- private:
+ protected:
   double _min;
   double _max;
 
@@ -33,8 +33,10 @@ class Domain : public generic::Song {
 }  // namespace domains
 }  // namespace math
 }  // namespace falcon_core
+#ifndef SWIG
 
 using namespace falcon_core::math::domains;
 CEREAL_REGISTER_TYPE(falcon_core::math::domains::Domain)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::math::domains::Domain)
+#endif

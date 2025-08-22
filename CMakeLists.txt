@@ -22,7 +22,11 @@ function(cpp_tests)
     tests/test_labelled_arrays.cpp
     tests/test_quantity.cpp
     tests/test_instrument_interfaces_names.cpp
-    tests/test_config.cpp)
+    tests/test_config.cpp
+    tests/test_domains.cpp
+    tests/test_discretizers.cpp
+    tests/test_spaces.cpp
+  )
 
   target_link_libraries(run_tests GTest::gtest_main falcon_core_cpp)
 

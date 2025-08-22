@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cmath>
 #include <memory>
 
 #include "falcon_core/Constants.hpp"
@@ -20,6 +21,17 @@ class Unit : public generic::Song {
        double          scale_factor = 1.0,
        double          offset       = 0.0,
        std::string     prefix       = SI::UNIT_SYMBOL);
+
+  // Utility to clean dimensions: remove zero exponents
+  static void clean_dimensions(TotalDimensions& dims) {
+    for (auto it = dims.begin(); it != dims.end();) {
+      if (it->second == 0) {
+        it = dims.erase(it);
+      } else {
+        ++it;
+      }
+    }
+  }
 
   /**
    * @brief The prefix applied to this unit.
@@ -95,4 +107,4 @@ class Unit : public generic::Song {
 using UnitSP = std::shared_ptr<Unit>;
 }  // namespace units
 }  // namespace physics
-};  // namespace falcon_core
+}  // namespace falcon_core

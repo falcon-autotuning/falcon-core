@@ -8,6 +8,7 @@ namespace names {
 
 class Knob : public InstrumentPort<physics::device_structures::Gate> {
  public:
+  using InstrumentPort<physics::device_structures::Gate>::InstrumentPort;
   Knob() = default;
 
   template <class Archive>

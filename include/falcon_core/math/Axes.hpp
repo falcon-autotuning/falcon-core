@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "falcon_core/generic/Song.hpp"
+#include "falcon_core/math/discretizers/BaseDiscretizer.hpp"
 
 namespace falcon_core {
 namespace math {
@@ -47,4 +48,8 @@ using namespace falcon_core::math;
 #ifndef SWIG
 CEREAL_REGISTER_TYPE(Axes<double>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Axes<double>)
+CEREAL_REGISTER_TYPE(Axes<falcon_core::math::discretizers::BaseDiscretizer>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    Axes<falcon_core::math::discretizers::BaseDiscretizer>)
 #endif

@@ -9,6 +9,7 @@ namespace names {
 
 class Meter : public InstrumentPort<physics::device_structures::Ohmic> {
  public:
+  using InstrumentPort<physics::device_structures::Ohmic>::InstrumentPort;
   Meter() = default;
 
   template <class Archive>
