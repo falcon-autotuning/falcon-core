@@ -23,7 +23,7 @@ class BaseDiscretizer : public generic::Song {
     return _delta_domain;
   }
 
- private:
+protected:
   double                           _delta;
   std::shared_ptr<domains::Domain> _delta_domain;
 
