@@ -8,8 +8,14 @@ namespace names {
 
 class Knob : public InstrumentPort<physics::device_structures::Gate> {
  public:
-  using InstrumentPort<physics::device_structures::Gate>::InstrumentPort;
   Knob() = default;
+  Knob(std::string                                       default_name,
+       std::shared_ptr<physics::device_structures::Gate> pseudo_name,
+       Instrument                                        instrument_type,
+       std::shared_ptr<physics::units::SymbolUnit>       units,
+       std::string                                       description)
+      : InstrumentPort<physics::device_structures::Gate>(
+            default_name, pseudo_name, instrument_type, units, description) {}
 
   template <class Archive>
   void serialize(Archive& ar) {

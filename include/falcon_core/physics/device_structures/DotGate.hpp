@@ -12,7 +12,7 @@ namespace device_structures {
  */
 class DotGate : public Gate {
  public:
-  using Gate::Gate;
+  DotGate(std::string name) : Gate(std::move(name)) {}
   template <class Archive>
   void serialize(Archive &ar) {
     ar(cereal::base_class<Gate>(this));

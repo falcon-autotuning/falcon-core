@@ -10,7 +10,7 @@ namespace device_structures {
  */
 class ReservoirGate : public Gate {
  public:
-  using Gate::Gate;
+  ReservoirGate(std::string name) : Gate(std::move(name)) {}
   template <class Archive>
   void serialize(Archive &ar) {
     ar(cereal::base_class<Gate>(this));

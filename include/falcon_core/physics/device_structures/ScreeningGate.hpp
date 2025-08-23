@@ -10,7 +10,6 @@ namespace device_structures {
  */
 class ScreeningGate : public Gate {
  public:
-  using Gate::Gate;
   ScreeningGate(std::string name) : Gate(std::move(name)) {}
   template <class Archive>
   void serialize(Archive &ar) {

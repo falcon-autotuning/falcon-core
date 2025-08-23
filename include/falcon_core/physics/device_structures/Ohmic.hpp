@@ -10,7 +10,7 @@ namespace device_structures {
  */
 class Ohmic : public BaseConnection {
  public:
-  using BaseConnection::BaseConnection;
+  Ohmic(std::string name) : BaseConnection(std::move(name)) {}
   template <class Archive>
   void serialize(Archive &ar) {
     ar(cereal::base_class<BaseConnection>(this));

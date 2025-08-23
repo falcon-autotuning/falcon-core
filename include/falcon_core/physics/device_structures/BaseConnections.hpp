@@ -64,8 +64,6 @@ class BaseConnections : public virtual falcon_core::generic::Song {
   BaseConnections(size_t count, const std::shared_ptr<T>& value)
       : _items(count, value) {}
   BaseConnections(const std::vector<std::shared_ptr<T>>& vec) : _items(vec) {}
-  BaseConnections(std::initializer_list<std::shared_ptr<T>> init)
-      : _items(init) {}
 
   // Forwarding methods
   void   push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }
@@ -74,10 +72,8 @@ class BaseConnections : public virtual falcon_core::generic::Song {
   const std::shared_ptr<T> operator[](const size_t idx) const {
     return _items[idx];
   }
-  const std::shared_ptr<std::vector<std::shared_ptr<T>>>& items() const {
-    return _items;
-  }
-  std::shared_ptr<std::vector<std::shared_ptr<T>>>&  items() { return _items; }
+  const std::vector<std::shared_ptr<T>> items() const { return _items; }
+  std::vector<std::shared_ptr<T>>       items() { return _items; }
   typename std::vector<std::shared_ptr<T>>::iterator begin() {
     return _items.begin();
   }

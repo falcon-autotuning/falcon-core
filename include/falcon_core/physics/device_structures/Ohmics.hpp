@@ -12,7 +12,11 @@ namespace device_structures {
  */
 class Ohmics : public BaseConnections<Ohmic> {
  public:
-  using BaseConnections<Ohmic>::BaseConnections;
+  Ohmics() = default;
+  Ohmics(size_t count) : BaseConnections<Ohmic>(count) {}
+  Ohmics(size_t count, const OhmicSP& value)
+      : BaseConnections<Ohmic>(count, value) {}
+  Ohmics(const std::vector<OhmicSP>& vec) : BaseConnections<Ohmic>(vec) {}
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<BaseConnections<Ohmic>>(this));

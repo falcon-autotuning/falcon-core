@@ -38,7 +38,7 @@ function(generate_swig_modules SWIG_MODULES_LIST)
   # This function is used to set up SWIG modules. SWIG_MODULES_LIST: A list of
   # SWIG modules to process. Each entry in the list should contain the following
   # fields: FIELD_NAMES
-  set(MODULE_LIST "${${SWIG_MODULES_LIST}}") # Dereference to get the list
+  set(MODULE_LIST ${${SWIG_MODULES_LIST}}) # Dereference to get the list
 
   set(SWIG_MODULE_NAME "falcon_core")
 
@@ -49,22 +49,12 @@ function(generate_swig_modules SWIG_MODULES_LIST)
   # Set the swig modules for disccovery/generation
   set(FIELD_NAMES SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE DIRECTORY_PATH)
 
-  list(LENGTH FIELD_NAMES NUM_COLUMNS)
   list(LENGTH MODULE_LIST num_entries)
-  math(EXPR num "${num_entries} / ${NUM_COLUMNS}")
-  math(EXPR max "${num} - 1")
-  message(STATUS "Generating SWIG modules for ${num} entries")
-  foreach(i RANGE 0 ${max})
-    set(ROW_VALUES "")
-    math(EXPR LAST_INDEX "${NUM_COLUMNS} - 1")
-    foreach(j RANGE 0 ${LAST_INDEX})
-      math(EXPR idx "${i} * ${NUM_COLUMNS} + ${j}")
-      message(DEBUG "Processing index ${idx}")
-      list(GET MODULE_LIST ${idx} value)
-      list(APPEND ROW_VALUES "${value}")
-    endforeach()
+  message(STATUS "Generating SWIG modules for ${num_entries} entries")
+  foreach(module_string IN LISTS MODULE_LIST)
+    string(REPLACE "," ";" ROW_VALUES "${module_string}")
     # Pass the 4 values directly
-    message(DEBUG "The values for the row ${i} are ${ROW_VALUES}")
+    message(STATUS "The values for the row are ${ROW_VALUES}")
     falcon_process_swig_module(${ROW_VALUES})
   endforeach()
 endfunction()
@@ -296,12 +286,23 @@ set(FALCON_HEADERS
     falcon_core/physics/device_structures/Ohmic.hpp
     falcon_core/physics/device_structures/Impedance.hpp
     falcon_core/physics/device_structures/BaseConnections.hpp
+    falcon_core::physics::device_structures::BaseConnections<falcon_core::physics::device_structures::BarrierGate>
+    falcon_core::physics::device_structures::BaseConnections<falcon_core::physics::device_structures::PlungerGate>
+    falcon_core::physics::device_structures::BaseConnections<falcon_core::physics::device_structures::ScreeningGate>
+    falcon_core::physics::device_structures::BaseConnections<falcon_core::physics::device_structures::ReservoirGate>
     falcon_core/physics/device_structures/Gates.hpp
+    falcon_core::physics::device_structures::Gates<falcon_core::physics::device_structures::BarrierGate>
+    falcon_core::physics::device_structures::Gates<falcon_core::physics::device_structures::PlungerGate>
+    falcon_core::physics::device_structures::Gates<falcon_core::physics::device_structures::ScreeningGate>
+    falcon_core::physics::device_structures::Gates<falcon_core::physics::device_structures::ReservoirGate>
     falcon_core/physics/device_structures/DotGates.hpp
+    falcon_core::physics::device_structures::DotGates<falcon_core::physics::device_structures::BarrierGate>
     falcon_core/physics/device_structures/BarrierGates.hpp
     falcon_core/physics/device_structures/ScreeningGates.hpp
     falcon_core/physics/device_structures/ReservoirGates.hpp
+    falcon_core::physics::device_structures::DotGates<falcon_core::physics::device_structures::PlungerGate>
     falcon_core/physics/device_structures/PlungerGates.hpp
+    falcon_core::physics::device_structures::BaseConnections<falcon_core::physics::device_structures::Ohmic>
     falcon_core/physics/device_structures/Ohmics.hpp
     falcon_core/physics/device_structures/Impedances.hpp
     falcon_core/physics/device_structures/GateRelations.hpp
@@ -344,152 +345,41 @@ set(FALCON_HEADERS
     # falcon_core/math/labelled_arrays/LabelledControlArray1D.hpp
 )
 set(SWIG_MODULES
-    song
-    Song
-    Song.i
-    generic
-    base_connection
-    BaseConnection
-    BaseConnection.i
-    physics/device_structures
-    gate
-    Gate
-    Gate.i
-    physics/device_structures
-    dotgate
-    DotGate
-    DotGate.i
-    physics/device_structures
-    ohmic
-    Ohmic
-    Ohmic.i
-    physics/device_structures
-    barrier_gate
-    BarrierGate
-    BarrierGate.i
-    physics/device_structures
-    plunger_gate
-    PlungerGate
-    PlungerGate.i
-    physics/device_structures
-    screening_gate
-    ScreeningGate
-    ScreeningGate.i
-    physics/device_structures
-    reservoir_gate
-    ReservoirGate
-    ReservoirGate.i
-    physics/device_structures
-    gates
-    Gates
-    Gates.i
-    physics/device_structures
-    dot_gates
-    DotGates
-    DotGates.i
-    physics/device_structures
-    ohmics
-    Ohmics
-    Ohmics.i
-    physics/device_structures
-    barrier_gates
-    BarrierGates
-    BarrierGates.i
-    physics/device_structures
-    plunger_gates
-    PlungerGates
-    PlungerGates.i
-    physics/device_structures
-    reservoir_gates
-    ReservoirGates
-    ReservoirGates.i
-    physics/device_structures
-    screening_gates
-    ScreeningGates
-    ScreeningGates.i
-    physics/device_structures
-    impedance
-    Impedance
-    Impedance.i
-    physics/device_structures
-    impedances
-    Impedances
-    Impedances.i
-    physics/device_structures
-    gate_relations
-    GateRelations
-    GateRelations.i
-    physics/device_structures
-    prefix
-    Prefix
-    Prefix.i
-    physics/units
-    unit
-    Unit
-    Unit.i
-    physics/units
-    symbol_unit
-    SymbolUnit
-    SymbolUnit.i
-    physics/units
-    units
-    Units
-    Units.i
-    physics/units
-    instrument_port
-    InstrumentPort
-    InstrumentPort.i
-    instrument_interfaces/names
-    knob
-    Knob
-    Knob.i
-    instrument_interfaces/names
-    meter
-    Meter
-    Meter.i
-    instrument_interfaces/names
-    ports
-    Ports
-    Ports.i
-    instrument_interfaces/names
-    knobs
-    Knobs
-    Knobs.i
-    instrument_interfaces/names
-    meters
-    Meters
-    Meters.i
-    instrument_interfaces/names
-    # instrument_interfaces/names axes Axes Axes.i math point Point Point.i math
-    quantity
-    Quantity
-    Quantity.i
-    math
-    base_array
-    BaseArray
-    BaseArray.i
-    math/arrays
-    control_array
-    ControlArray
-    ControlArray.i
-    math/arrays
-    control_array_1D
-    ControlArray1D
-    ControlArray1D.i
-    math/arrays
-    increasing_alignment
-    IncreasingAlignment
-    IncreasingAlignment.i
-    math/arrays
-    measured_array
-    MeasuredArray
-    MeasuredArray.i
-    math/arrays
-    # base_labelled_array BaseLabelledArray BaseLabelledArray.i
-    # math/labelled_arrays base_labelled_arrays BaseLabelledArrays
-    # BaseLabelledArrays.i math/labelled_arrays is_labelled_1D IsLabelled1D
-    # IsLabelled1D.i math/labelled_arrays labelled_control_array_1D
-    # LabelledControlArray1D LabelledControlArray1D.i math/labelled_arrays
+    song,Song,Song.i,generic
+    base_connection,BaseConnection,BaseConnection.i,physics/device_structures
+    gate,Gate,Gate.i,physics/device_structures
+    dotgate,DotGate,DotGate.i,physics/device_structures
+    ohmic,Ohmic,Ohmic.i,physics/device_structures
+    barrier_gate,BarrierGate,BarrierGate.i,physics/device_structures
+    plunger_gate,PlungerGate,PlungerGate.i,physics/device_structures
+    screening_gate,ScreeningGate,ScreeningGate.i,physics/device_structures
+    reservoir_gate,ReservoirGate,ReservoirGate.i,physics/device_structures
+    gates,Gates,Gates.i,physics/device_structures
+    dot_gates,DotGates,DotGates.i,physics/device_structures
+    ohmics,Ohmics,Ohmics.i,physics/device_structures
+    barrier_gates,BarrierGates,BarrierGates.i,physics/device_structures
+    plunger_gates,PlungerGates,PlungerGates.i,physics/device_structures
+    reservoir_gates,ReservoirGates,ReservoirGates.i,physics/device_structures
+    screening_gates,ScreeningGates,ScreeningGates.i,physics/device_structures
+    impedance,Impedance,Impedance.i,physics/device_structures
+    impedances,Impedances,Impedances.i,physics/device_structures
+    gate_relations,GateRelations,GateRelations.i,physics/device_structures
+    prefix,Prefix,Prefix.i,physics/units
+    unit,Unit,Unit.i,physics/units
+    symbol_unit,SymbolUnit,SymbolUnit.i,physics/units
+    units,Units,Units.i,physics/units
+    instrument_port,InstrumentPort,InstrumentPort.i,instrument_interfaces/names
+    knob,Knob,Knob.i,instrument_interfaces/names
+    meter,Meter,Meter.i,instrument_interfaces/names
+    ports,Ports,Ports.i,instrument_interfaces/names
+    knobs,Knobs,Knobs.i,instrument_interfaces/names
+    meters,Meters,Meters.i,instrument_interfaces/names
+    quantity,Quantity,Quantity.i,math
+    base_array,BaseArray,BaseArray.i,math/arrays
+    control_array,ControlArray,ControlArray.i,math/arrays
+    control_array_1D,ControlArray1D,ControlArray1D.i,math/arrays
+    increasing_alignment,IncreasingAlignment,IncreasingAlignment.i,math/arrays
+    measured_array,MeasuredArray,MeasuredArray.i,math/arrays
 )
 generate_swig_header_interface(
   FALCON_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/swig/falcon_core_all.i"

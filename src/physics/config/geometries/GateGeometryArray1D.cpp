@@ -88,7 +88,7 @@ void GateGeometryArray1D::append_central_gate(const DotGateSP& left_neighbor,
                                               const DotGateSP& selected_gate,
                                               const DotGateSP& right_neighbor) {
   if (auto barrier = std::dynamic_pointer_cast<BarrierGate>(selected_gate)) {
-    auto left_plunger = std::dynamic_pointer_cast<PlungerGate>(left_neighbor);
+    auto left_plunger  = std::dynamic_pointer_cast<PlungerGate>(left_neighbor);
     auto right_plunger = std::dynamic_pointer_cast<PlungerGate>(right_neighbor);
     if (!left_plunger || !right_plunger) {
       throw std::invalid_argument(
@@ -100,7 +100,7 @@ void GateGeometryArray1D::append_central_gate(const DotGateSP& left_neighbor,
             barrier->name(), left_plunger, right_plunger)));
   } else if (auto plunger =
                  std::dynamic_pointer_cast<PlungerGate>(selected_gate)) {
-    auto left_barrier = std::dynamic_pointer_cast<BarrierGate>(left_neighbor);
+    auto left_barrier  = std::dynamic_pointer_cast<BarrierGate>(left_neighbor);
     auto right_barrier = std::dynamic_pointer_cast<BarrierGate>(right_neighbor);
     if (!left_barrier || !right_barrier) {
       throw std::invalid_argument(
@@ -214,6 +214,6 @@ OhmicsSP GateGeometryArray1D::ohmics() const {
   OhmicSP left_ohmic  = std::dynamic_pointer_cast<Ohmic>((*lineararray())[0]);
   OhmicSP right_ohmic = std::dynamic_pointer_cast<Ohmic>(
       (*lineararray())[lineararray()->size() - 1]);
-  Ohmics tmp{left_ohmic, right_ohmic};
+  std::vector<OhmicSP> tmp({left_ohmic, right_ohmic});
   return std::make_shared<Ohmics>(tmp);
 }

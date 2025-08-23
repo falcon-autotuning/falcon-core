@@ -19,7 +19,11 @@ class DotGates : public Gates<T> {
                 "T must be derived from DotGate");
 
  public:
-  using Gates<T>::Gates;
+  DotGates() = default;
+  DotGates(size_t count) : Gates<T>(count) {}
+  DotGates(size_t count, const std::shared_ptr<T>& value)
+      : Gates<T>(count, value) {}
+  DotGates(const std::vector<std::shared_ptr<T>>& vec) : Gates<T>(vec) {}
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<Gates<T>>(this));

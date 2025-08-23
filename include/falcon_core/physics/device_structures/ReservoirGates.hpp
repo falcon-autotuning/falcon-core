@@ -14,7 +14,12 @@ namespace device_structures {
  */
 class ReservoirGates : public Gates<ReservoirGate> {
  public:
-  using Gates<ReservoirGate>::Gates;
+  ReservoirGates() = default;
+  ReservoirGates(size_t count) : Gates<ReservoirGate>(count) {}
+  ReservoirGates(size_t count, const ReservoirGateSP& value)
+      : Gates<ReservoirGate>(count, value) {}
+  ReservoirGates(const std::vector<ReservoirGateSP>& vec)
+      : Gates<ReservoirGate>(vec) {}
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<Gates<ReservoirGate>>(this));

@@ -11,7 +11,12 @@ namespace device_structures {
  */
 class BarrierGates : public DotGates<BarrierGate> {
  public:
-  using DotGates<BarrierGate>::DotGates;
+  BarrierGates() = default;
+  BarrierGates(size_t count) : DotGates<BarrierGate>(count) {}
+  BarrierGates(size_t count, const BarrierGateSP& value)
+      : DotGates<BarrierGate>(count, value) {}
+  BarrierGates(const std::vector<BarrierGateSP>& vec)
+      : DotGates<BarrierGate>(vec) {}
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<DotGates<BarrierGate>>(this));
