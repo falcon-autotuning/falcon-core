@@ -20,7 +20,13 @@ class CoupledLabelledDomain : public BaseCoupledLabelledDomain<T> {
   CoupledLabelledDomain(const std::vector<DomainPtr>& domains)
       : BaseCoupledLabelledDomain<T>(domains) {}
 
- private:
+  CoupledLabelledDomain(double min_val, double max_val, std::shared_ptr<T> label, const std::vector<DomainPtr>& coupled_domains)
+      : BaseCoupledLabelledDomain<T>(coupled_domains) {
+    // Optionally, you could add a LabelledDomain for this label:
+    // this->_domains.push_back(std::make_shared<LabelledDomainT>(min_val, max_val, label));
+  }
+
+ public:
   friend class cereal::access;
   CoupledLabelledDomain() = default;
   template <class Archive>
