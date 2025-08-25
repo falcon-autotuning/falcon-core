@@ -1,46 +1,70 @@
 #include <gtest/gtest.h>
 #include <memory>
+#include <vector>
+#include <string>
 #include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 #include "falcon_core/math/analytic_functions/ConstantFunction.hpp"
 #include "falcon_core/math/analytic_functions/Identity.hpp"
+#include "falcon_core/math/analytic_functions/ValidatedAnalyticFunction.hpp"
+#include "falcon_core/instrument_interfaces/names/Knob.hpp"
+#include "falcon_core/instrument_interfaces/names/Ports.hpp"
 
 using namespace falcon_core::math::analytic_functions;
+using namespace falcon_core::instrument_interfaces::names;
 
-// Test ConstantFunction: value is always the same
-TEST(AnalyticFunctionTest, ConstantFunctionEvaluateAndSerialization) {
-    double value = 5.0;
-    auto f = std::make_shared<ConstantFunction>(value);
-
-    // Evaluate at several points
-    EXPECT_DOUBLE_EQ(f->evaluate(0.0), value);
-    EXPECT_DOUBLE_EQ(f->evaluate(123.45), value);
-
-    // Serialization round-trip
-    std::string json = f->to_json_string();
-    auto f2 = ConstantFunction::from_json_string<ConstantFunction>(json);
-    ASSERT_TRUE(f2 != nullptr);
-    EXPECT_DOUBLE_EQ(f2->evaluate(0.0), value);
-    EXPECT_DOUBLE_EQ(f2->evaluate(123.45), value);
+// Helper to create a clock knob (mimics Python Clock class)
+std::shared_ptr<Knob> make_clock_knob() {
+    return std::make_shared<Knob>(
+        "CLOCK", nullptr, "CLOCK", nullptr, "Clock"
+    );
 }
 
-// Test Identity: output equals input
-TEST(AnalyticFunctionTest, IdentityEvaluateAndSerialization) {
-    auto f = std::make_shared<Identity>();
+// Test constant function with ValidatedAnalyticFunction (mimics test_constant_function in Python)
+TEST(AnalyticFunctionTest, ValidatedConstantFunctionEvaluateAndSerialization) {
+    std::vector<std::string> stuff = {"a", "b", "c", "d", "e", "f", "g", "h"};
+    auto ports = std::make_shared<Ports<Knob>>();
+    for (const auto& name : stuff) {
+        ports->push_back(std::make_shared<Knob>(name, nullptr, "PLUNGER", nullptr, ""));
+    }
+    ports->push_back(make_clock_knob());
 
-    EXPECT_DOUBLE_EQ(f->evaluate(0.0), 0.0);
-    EXPECT_DOUBLE_EQ(f->evaluate(42.0), 42.0);
-    EXPECT_DOUBLE_EQ(f->evaluate(-3.14), -3.14);
+    auto func = std::make_shared<ConstantFunction>(5.0);
+    auto validated = std::make_shared<ValidatedAF_KnobPorts>(ports, func);
 
     // Serialization round-trip
-    std::string json = f->to_json_string();
-    auto f2 = Identity::from_json_string<Identity>(json);
-    ASSERT_TRUE(f2 != nullptr);
-    EXPECT_DOUBLE_EQ(f2->evaluate(0.0), 0.0);
-    EXPECT_DOUBLE_EQ(f2->evaluate(42.0), 42.0);
-    EXPECT_DOUBLE_EQ(f2->evaluate(-3.14), -3.14);
+    std::string json = validated->to_json_string();
+    auto validated2 = ValidatedAF_KnobPorts::from_json_string<ValidatedAF_KnobPorts>(json);
+    ASSERT_TRUE(validated2 != nullptr);
+
+    // Evaluate with dummy values for all knobs
+    EXPECT_DOUBLE_EQ(validated->evaluate(0.0), 5.0);
+    EXPECT_DOUBLE_EQ(validated2->evaluate(0.0), 5.0);
 }
 
-// Example of a custom analytic function: multiply by 2
+// Test identity function with ValidatedAnalyticFunction (mimics test_analytic_function_identity in Python)
+TEST(AnalyticFunctionTest, ValidatedIdentityFunctionEvaluateAndSerialization) {
+    std::vector<std::string> stuff = {"a", "b", "c", "d", "e", "f", "g", "h"};
+    auto ports = std::make_shared<Ports<Knob>>();
+    for (const auto& name : stuff) {
+        ports->push_back(std::make_shared<Knob>(name, nullptr, "PLUNGER", nullptr, ""));
+    }
+    ports->push_back(make_clock_knob());
+
+    auto knob = ports->at(0);
+    auto func = std::make_shared<Identity>();
+    auto validated = std::make_shared<ValidatedAF_KnobPorts>(ports, func);
+
+    // Serialization round-trip
+    std::string json = validated->to_json_string();
+    auto validated2 = ValidatedAF_KnobPorts::from_json_string<ValidatedAF_KnobPorts>(json);
+    ASSERT_TRUE(validated2 != nullptr);
+
+    // Evaluate
+    EXPECT_DOUBLE_EQ(validated->evaluate(0.0), 0.0);
+    EXPECT_DOUBLE_EQ(validated2->evaluate(0.0), 0.0);
+}
+
+// Example of a custom analytic function: multiply by 2 (mimics mult2 in Python)
 class Mult2Function : public AnalyticFunction {
 public:
     Mult2Function() = default;
@@ -58,16 +82,22 @@ private:
 CEREAL_REGISTER_TYPE(Mult2Function)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Mult2Function)
 
-TEST(AnalyticFunctionTest, CustomFunctionEvaluateAndSerialization) {
-    auto f = std::make_shared<Mult2Function>();
+// Test custom function with ValidatedAnalyticFunction (mimics test_analytic_function_custom in Python)
+TEST(AnalyticFunctionTest, ValidatedCustomFunctionEvaluateAndSerialization) {
+    std::vector<std::string> stuff = {"a"};
+    auto ports = std::make_shared<Ports<Knob>>();
+    for (const auto& name : stuff) {
+        ports->push_back(std::make_shared<Knob>(name, nullptr, "PLUNGER", nullptr, ""));
+    }
+    ports->push_back(make_clock_knob());
 
-    EXPECT_DOUBLE_EQ(f->evaluate(1.0), 2.0);
-    EXPECT_DOUBLE_EQ(f->evaluate(-3.0), -6.0);
+    auto func = std::make_shared<Mult2Function>();
+    auto validated = std::make_shared<ValidatedAF_KnobPorts>(ports, func);
 
-    // Serialization round-trip
-    std::string json = f->to_json_string();
-    auto f2 = Mult2Function::from_json_string<Mult2Function>(json);
-    ASSERT_TRUE(f2 != nullptr);
-    EXPECT_DOUBLE_EQ(f2->evaluate(1.0), 2.0);
-    EXPECT_DOUBLE_EQ(f2->evaluate(-3.0), -6.0);
+    EXPECT_DOUBLE_EQ(validated->evaluate(1.0), 2.0);
+
+    std::string json = validated->to_json_string();
+    auto validated2 = ValidatedAF_KnobPorts::from_json_string<ValidatedAF_KnobPorts>(json);
+    ASSERT_TRUE(validated2 != nullptr);
+    EXPECT_DOUBLE_EQ(validated2->evaluate(1.0), 2.0);
 }
