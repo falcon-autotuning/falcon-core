@@ -18,12 +18,15 @@ void Song::to_json_stream(std::ostream& os) const {
 bool Song::operator==(const Song& other) const {
   return to_json_string() == other.to_json_string();
 }
+
+// Hash specialization for Song
 namespace std {
 template <>
-struct hash<Song> {
+struct hash<falcon_core::generic::Song> {
   std::size_t operator()(const falcon_core::generic::Song& s) const {
     return std::hash<std::string>()(s.to_json_string());
-  };
+  }
 };
 }  // namespace std
+
 CEREAL_REGISTER_TYPE(Song)
