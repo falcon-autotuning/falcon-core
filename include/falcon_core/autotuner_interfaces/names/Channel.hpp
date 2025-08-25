@@ -13,12 +13,17 @@ class Channel : public generic::Song {
   /**
    * @brief Constructs a channel with the given name.
    */
+ public:
   Channel(std::string name) : _name(name) {};
   std::string name() const { return _name; }
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this), _name);
   }
+
+ protected:
+  Channel() : _name("") {};
+  friend class cereal::access;
 };
 using ChannelSP = std::shared_ptr<Channel>;
 }  // namespace names

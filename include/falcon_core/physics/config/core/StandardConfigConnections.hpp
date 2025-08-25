@@ -11,6 +11,7 @@
 
 namespace falcon_core {
 namespace physics {
+namespace config {
 namespace core {
 /**
  * @brief Base config functionality for core config classes.
@@ -21,6 +22,8 @@ class StandardConfigConnections : public generic::Song {
   PlungerGatesSP   _plunger_gates;
   BarrierGatesSP   _barrier_gates;
   OhmicsSP         _ohmics;
+
+ public:
   /**
    * @brief Constructs the differet gate types holders.
    * @param screening_gates The screening gates.
@@ -205,12 +208,32 @@ class StandardConfigConnections : public generic::Song {
   /**
    * @brief If this ohmic is a member of this group or not.
    */
-  bool has_ohmic(Ohmic ohmic) const;
+  bool has_ohmic(OhmicSP ohmic) const;
   /**
    * @brief If this gate is a member of this group or not.
    */
-  bool has_gate(Gate gate) const;
+  bool has_gate(GateSP gate) const;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this),
+       _screening_gates,
+       _reservoir_gates,
+       _plunger_gates,
+       _barrier_gates,
+       _ohmics);
+  }
+
+ protected:
+  friend class cereal::access;
 };
+using StandardConfigConnectionsSP = std::shared_ptr<StandardConfigConnections>;
 }  // namespace core
+}  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
+#ifndef SWIG
+using namespace falcon_core::physics::config::core;
+CEREAL_REGISTER_TYPE(StandardConfigConnections)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     StandardConfigConnections)
+#endif

@@ -91,6 +91,11 @@ class BaseConnections : public virtual falcon_core::generic::Song {
               typename std::vector<std::shared_ptr<T>>::const_iterator last) {
     _items.insert(pos, first, last);
   }
+  BaseConnections<T> operator+(const BaseConnections<T>& other) const {
+    std::vector<std::shared_ptr<T>> combined = _items;
+    combined.insert(combined.end(), other._items.begin(), other._items.end());
+    return BaseConnections<T>(combined);
+  }
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -106,10 +111,8 @@ using BaseConnectionsSP = std::shared_ptr<BaseConnections<T>>;
 }  // namespace physics
 }  // namespace falcon_core
 #ifndef SWIG
-
 CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::BaseConnections<
                      falcon_core::physics::device_structures::BaseConnection>)
-
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
     falcon_core::physics::device_structures::BaseConnections<
