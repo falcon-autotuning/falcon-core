@@ -1,16 +1,17 @@
 #pragma once
 
+#include <algorithm>
+#include <cereal/types/memory.hpp>
 #include <memory>
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <cereal/types/memory.hpp>
+
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 
 // You may need to include the correct Ports header for your use case
-// #include "falcon_core/instrument_interfaces/names/Ports.hpp"
+#include "falcon_core/instrument_interfaces/names/Ports.hpp"
 
 namespace falcon_core {
 namespace math {
@@ -28,13 +29,11 @@ class ValidatedAnalyticFunction : public generic::Song {
   }
 
   // Accessors
-  const PortsPtr& ports() const { return _ports; }
+  const PortsPtr&    ports() const { return _ports; }
   const FunctionPtr& function() const { return _function; }
 
   // Call operator: forwards to the underlying function
-  double evaluate(double x) const {
-    return _function->evaluate(x);
-  }
+  double evaluate(double x) const { return _function->evaluate(x); }
 
   // You may want to add a more general call operator for multiple arguments
 
@@ -52,13 +51,15 @@ class ValidatedAnalyticFunction : public generic::Song {
     bool has_clock = false;
     for (const auto& port : _ports->items()) {
       // Replace with your actual clock port check
-      if (port->instrument_type() == "CLOCK" || port->default_name() == "clock") {
+      if (port->instrument_type() == "CLOCK" ||
+          port->default_name() == "clock") {
         has_clock = true;
         break;
       }
     }
     if (!has_clock) {
-      throw std::runtime_error("ValidatedAnalyticFunction requires a clock port.");
+      throw std::runtime_error(
+          "ValidatedAnalyticFunction requires a clock port.");
     }
   }
 
@@ -75,6 +76,8 @@ class ValidatedAnalyticFunction : public generic::Song {
 }  // namespace falcon_core
 
 // Example registration for a specific Ports type:
-// using ValidatedAF_KnobPorts = falcon_core::math::analytic_functions::ValidatedAnalyticFunction<falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>>;
+// using ValidatedAF_KnobPorts =
+// falcon_core::math::analytic_functions::ValidatedAnalyticFunction<falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>>;
 // CEREAL_REGISTER_TYPE(ValidatedAF_KnobPorts)
-// CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ValidatedAF_KnobPorts)
+// CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+// ValidatedAF_KnobPorts)
