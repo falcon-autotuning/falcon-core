@@ -102,8 +102,8 @@ class Point : public generic::Song {
   }
 
   // Iteration support
-  auto begin() const { return _coords.begin(); }
-  auto end() const { return _coords.end(); }
+  std::map<physics::device_structures::BaseConnection, double>::const_iterator begin() const { return _coords.begin(); }
+  std::map<physics::device_structures::BaseConnection, double>::const_iterator end() const { return _coords.end(); }
 
  private:
   std::map<physics::device_structures::BaseConnection, double> _coords;
