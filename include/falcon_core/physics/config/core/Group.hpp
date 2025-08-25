@@ -93,7 +93,7 @@ class Group : public StandardConfigConnections {
                                   std::make_shared<PlungerGates>(),
                                   std::make_shared<BarrierGates>(),
                                   std::make_shared<Ohmics>()),
-        _name(std::make_shared<Channel>()),
+        _name(std::make_shared<Channel>("")),
         _num_dots(0),
         _order(std::make_shared<GateGeometryArray1D>(
             std::make_shared<BaseConnections<BaseConnection>>(),
