@@ -10,7 +10,7 @@ namespace device_structures {
  */
 class BarrierGate : public virtual DotGate {
  public:
-  using DotGate::DotGate;
+  BarrierGate(std::string name) : DotGate(std::move(name)) {}
   template <class Archive>
   void serialize(Archive &ar) {
     ar(cereal::base_class<DotGate>(this));

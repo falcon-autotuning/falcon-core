@@ -9,8 +9,14 @@ namespace names {
 
 class Meter : public InstrumentPort<physics::device_structures::Ohmic> {
  public:
-  using InstrumentPort<physics::device_structures::Ohmic>::InstrumentPort;
   Meter() = default;
+  Meter(std::string                                        default_name,
+        std::shared_ptr<physics::device_structures::Ohmic> pseudo_name,
+        Instrument                                         instrument_type,
+        std::shared_ptr<physics::units::SymbolUnit>        units,
+        std::string                                        description)
+      : InstrumentPort<physics::device_structures::Ohmic>(
+            default_name, pseudo_name, instrument_type, units, description) {}
 
   template <class Archive>
   void serialize(Archive& ar) {

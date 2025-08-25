@@ -120,9 +120,19 @@ class GateGeometryArray1D : public generic::Song {
    * @return The ohmics attached to the quantum dot geometry.
    */
   OhmicsSP ohmics() const;
-};
 
+ protected:
+  GateGeometryArray1D() = default;
+  friend class cereal::access;
+};
+using GateGeometryArray1DSP = std::shared_ptr<GateGeometryArray1D>;
 }  // namespace geometries
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
+#ifndef SWIG
+using namespace falcon_core::physics::config::geometries;
+CEREAL_REGISTER_TYPE(GateGeometryArray1D)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     GateGeometryArray1D)
+#endif

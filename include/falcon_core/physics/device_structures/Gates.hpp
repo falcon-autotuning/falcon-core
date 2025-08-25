@@ -19,7 +19,11 @@ class Gates : public BaseConnections<T> {
   static_assert(std::is_base_of<Gate, T>::value, "T must be derived from Gate");
 
  public:
-  using BaseConnections<T>::BaseConnections;
+  Gates() = default;
+  Gates(size_t count) : BaseConnections<T>(count) {}
+  Gates(size_t count, const std::shared_ptr<T>& value)
+      : BaseConnections<T>(count, value) {}
+  Gates(const std::vector<std::shared_ptr<T>>& vec) : BaseConnections<T>(vec) {}
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<BaseConnections<T>>(this));
