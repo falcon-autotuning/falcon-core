@@ -41,11 +41,10 @@ class Adjacency : public generic::Song {
   }
 
  protected:
-  Adjacency()
-      : _indexes(std::vector<device_structures::Gate>(
-            {device_structures::Gate("")})) {};
+  Adjacency() = default;
   friend class cereal::access;
 };
+using AdjacencySP = std::shared_ptr<Adjacency>;
 }  // namespace core
 }  // namespace config
 }  // namespace physics
