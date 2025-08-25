@@ -7,18 +7,21 @@
 #include "falcon_core/math/Vector.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
+#include "falcon_core/physics/units/Units.hpp"
 
 using namespace falcon_core::math;
 using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::physics::units;
 
 TEST(VectorTest, SerializationRoundTrip) {
-  auto           unit = std::make_shared<SymbolUnit>(Units::Volt);
-  auto           conn1 = std::make_shared<BaseConnection>("A");
-  auto           conn2 = std::make_shared<BaseConnection>("B");
+  auto unit  = std::make_shared<SymbolUnit>(Units::Volt);
+  auto conn1 = std::make_shared<BaseConnection>("A");
+  auto conn2 = std::make_shared<BaseConnection>("B");
 
-  std::map<std::shared_ptr<BaseConnection>, double> end{{conn1, 1.0}, {conn2, 2.0}};
-  std::map<std::shared_ptr<BaseConnection>, double> start{{conn1, 0.0}, {conn2, 1.0}};
+  std::map<std::shared_ptr<BaseConnection>, double> end{{conn1, 1.0},
+                                                        {conn2, 2.0}};
+  std::map<std::shared_ptr<BaseConnection>, double> start{{conn1, 0.0},
+                                                          {conn2, 1.0}};
 
   auto vec = std::make_shared<Vector>(end, start, unit);
 
@@ -42,14 +45,18 @@ TEST(VectorTest, SerializationRoundTrip) {
 }
 
 TEST(VectorTest, ArithmeticOperators) {
-  auto           unit = std::make_shared<SymbolUnit>(Units::Volt);
-  auto           conn1 = std::make_shared<BaseConnection>("A");
-  auto           conn2 = std::make_shared<BaseConnection>("B");
+  auto unit  = std::make_shared<SymbolUnit>(Units::Volt);
+  auto conn1 = std::make_shared<BaseConnection>("A");
+  auto conn2 = std::make_shared<BaseConnection>("B");
 
-  std::map<std::shared_ptr<BaseConnection>, double> end1{{conn1, 1.0}, {conn2, 2.0}};
-  std::map<std::shared_ptr<BaseConnection>, double> start1{{conn1, 0.0}, {conn2, 1.0}};
-  std::map<std::shared_ptr<BaseConnection>, double> end2{{conn1, 3.0}, {conn2, 4.0}};
-  std::map<std::shared_ptr<BaseConnection>, double> start2{{conn1, 1.0}, {conn2, 2.0}};
+  std::map<std::shared_ptr<BaseConnection>, double> end1{{conn1, 1.0},
+                                                         {conn2, 2.0}};
+  std::map<std::shared_ptr<BaseConnection>, double> start1{{conn1, 0.0},
+                                                           {conn2, 1.0}};
+  std::map<std::shared_ptr<BaseConnection>, double> end2{{conn1, 3.0},
+                                                         {conn2, 4.0}};
+  std::map<std::shared_ptr<BaseConnection>, double> start2{{conn1, 1.0},
+                                                           {conn2, 2.0}};
 
   auto v1 = std::make_shared<Vector>(end1, start1, unit);
   auto v2 = std::make_shared<Vector>(end2, start2, unit);
@@ -86,12 +93,14 @@ TEST(VectorTest, ArithmeticOperators) {
 }
 
 TEST(VectorTest, MagnitudeAndIndexing) {
-  auto           unit = std::make_shared<SymbolUnit>(Units::Volt);
-  auto           conn1 = std::make_shared<BaseConnection>("A");
-  auto           conn2 = std::make_shared<BaseConnection>("B");
+  auto unit  = std::make_shared<SymbolUnit>(Units::Volt);
+  auto conn1 = std::make_shared<BaseConnection>("A");
+  auto conn2 = std::make_shared<BaseConnection>("B");
 
-  std::map<std::shared_ptr<BaseConnection>, double> end{{conn1, 3.0}, {conn2, 4.0}};
-  std::map<std::shared_ptr<BaseConnection>, double> start{{conn1, 0.0}, {conn2, 0.0}};
+  std::map<std::shared_ptr<BaseConnection>, double> end{{conn1, 3.0},
+                                                        {conn2, 4.0}};
+  std::map<std::shared_ptr<BaseConnection>, double> start{{conn1, 0.0},
+                                                          {conn2, 0.0}};
 
   auto vec = std::make_shared<Vector>(end, start, unit);
 
@@ -107,9 +116,9 @@ TEST(VectorTest, MagnitudeAndIndexing) {
 }
 
 TEST(VectorTest, UnitConversion) {
-  auto           unit1 = std::make_shared<SymbolUnit>(Units::Volt);
-  auto           unit2 = std::make_shared<SymbolUnit>(Units::Meter);
-  auto           conn1 = std::make_shared<BaseConnection>("A");
+  auto unit1 = std::make_shared<SymbolUnit>(Units::Volt);
+  auto unit2 = std::make_shared<SymbolUnit>(Units::Meter);
+  auto conn1 = std::make_shared<BaseConnection>("A");
 
   std::map<std::shared_ptr<BaseConnection>, double> end{{conn1, 1.0}};
   std::map<std::shared_ptr<BaseConnection>, double> start{{conn1, 0.0}};
