@@ -27,6 +27,7 @@ function(cpp_tests)
     tests/test_discretizers.cpp
     tests/test_spaces.cpp
     tests/test_discrete_spaces.cpp
+    tests/test_vector.cpp
   )
 
   target_link_libraries(run_tests GTest::gtest_main falcon_core_cpp)
