@@ -1,8 +1,8 @@
 #pragma once
 
-#include <cereal/types/map.hpp>
+#include <cereal/types/unordered_map.hpp>
 #include <cereal/types/memory.hpp>
-#include <map>
+#include <unordered_map>
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
@@ -102,11 +102,15 @@ class Point : public generic::Song {
   }
 
   // Iteration support
-  std::map<std::shared_ptr<physics::device_structures::BaseConnection>, double>::const_iterator begin() const { return _coords.begin(); }
-  std::map<std::shared_ptr<physics::device_structures::BaseConnection>, double>::const_iterator end() const { return _coords.end(); }
+  auto begin() const { return _coords.begin(); }
+  auto end() const { return _coords.end(); }
 
  private:
-  std::map<std::shared_ptr<physics::device_structures::BaseConnection>, double> _coords;
+  std::unordered_map<
+      std::shared_ptr<physics::device_structures::BaseConnection>,
+      double,
+      generic::SongPtrHash,
+      generic::SongPtrEqual> _coords;
   UnitPtr _unit;
 
   friend class cereal::access;  // cereal can access private members

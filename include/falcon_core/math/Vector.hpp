@@ -4,6 +4,7 @@
 #include <memory>
 #include <stdexcept>
 #include <vector>
+#include <unordered_set>
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/Point.hpp"
@@ -59,7 +60,7 @@ class Vector : public generic::Song {
   // Accessors
   const PointPtr&                end() const { return _end; }
   const PointPtr&                start() const { return _start; }
-  const std::vector<ConnectionPtr>& connections() const { return _connections; }
+  const std::unordered_set<ConnectionPtr, generic::SongPtrHash, generic::SongPtrEqual>& connections() const { return _connections; }
   UnitPtr                        unit() const { return _unit; }
 
   // Indexing
@@ -129,18 +130,16 @@ class Vector : public generic::Song {
  private:
   PointPtr                _end;
   PointPtr                _start;
-  std::vector<ConnectionPtr> _connections;
+  std::unordered_set<ConnectionPtr, generic::SongPtrHash, generic::SongPtrEqual> _connections;
   UnitPtr                 _unit;
 
   void update_connections() {
-    std::vector<ConnectionPtr> conns;
+    std::unordered_set<ConnectionPtr, generic::SongPtrHash, generic::SongPtrEqual> conns;
     for (const auto& kv : *_end) {
-      conns.push_back(kv.first);
+      conns.insert(kv.first);
     }
     for (const auto& kv : *_start) {
-      if (std::find(conns.begin(), conns.end(), kv.first) == conns.end()) {
-        conns.push_back(kv.first);
-      }
+      conns.insert(kv.first);
     }
     _connections = conns;
   }
@@ -154,4 +153,5 @@ using namespace falcon_core::math;
 CEREAL_REGISTER_TYPE(falcon_core::math::Vector)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::math::Vector)
+#include <cereal/types/unordered_set.hpp>
 #endif
