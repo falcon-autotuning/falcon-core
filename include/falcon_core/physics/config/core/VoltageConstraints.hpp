@@ -47,6 +47,7 @@ class VoltageConstraints : public generic::Song {
   VoltageConstraints() = default;
   friend class cereal::access;
 };
+using VoltageConstraintsSP = std::shared_ptr<VoltageConstraints>;
 }  // namespace core
 }  // namespace config
 }  // namespace physics

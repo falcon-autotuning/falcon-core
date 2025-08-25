@@ -97,7 +97,6 @@ class Channels : public virtual falcon_core::generic::Song {
  protected:
   friend class cereal::access;
 };
-template <typename T>
 using ChannelsSP = std::shared_ptr<Channels>;
 }  // namespace names
 }  // namespace autotuner_interfaces
