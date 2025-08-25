@@ -10,37 +10,32 @@
 
 namespace falcon_core {
 namespace math {
-class Point
-    : public std::map<physics::device_structures::BaseConnection, double>,
-      public generic::Song {
+class Point : public generic::Song {
  public:
-  using BaseMap = std::map<physics::device_structures::BaseConnection, double>;
   using UnitPtr = std::shared_ptr<physics::units::SymbolUnit>;
 
-  // Inherit all std::map constructors
-  using BaseMap::BaseMap;
-
-  // Add constructors that take a unit
+  // Constructors
+  Point(UnitPtr unit) : _coords(), _unit(unit) {}
   template <typename... Args>
   Point(UnitPtr unit, Args&&... args)
-      : BaseMap(std::forward<Args>(args)...), _unit(unit) {}
+      : _coords(std::forward<Args>(args)...), _unit(unit) {}
 
   // Unit accessor
   UnitPtr unit() const { return _unit; }
 
   // Example operator+
   std::shared_ptr<Point> operator+(const Point& other) const {
-    // Union of all connections
-    std::shared_ptr<Point> result = std::make_shared<Point>();
-    result->_unit                 = this->_unit;
-    for (const auto& kv : *this) {
-      (*result)[kv.first] = kv.second;
+    std::shared_ptr<Point> result = std::make_shared<Point>(_unit);
+    // Copy this point's values
+    for (const auto& kv : _coords) {
+      result->_coords[kv.first] = kv.second;
     }
-    for (const auto& kv : other) {
-      if (result->find(kv.first) != result->end()) {
-        (*result)[kv.first] += kv.second;
+    // Add other point's values
+    for (const auto& kv : other._coords) {
+      if (result->_coords.find(kv.first) != result->_coords.end()) {
+        result->_coords[kv.first] += kv.second;
       } else {
-        (*result)[kv.first] = kv.second;
+        result->_coords[kv.first] = kv.second;
       }
     }
     return result;
@@ -48,16 +43,15 @@ class Point
 
   // Operator- for Point
   std::shared_ptr<Point> operator-(const Point& other) const {
-    std::shared_ptr<Point> result = std::make_shared<Point>();
-    result->_unit                 = this->_unit;
-    for (const auto& kv : *this) {
-      (*result)[kv.first] = kv.second;
+    std::shared_ptr<Point> result = std::make_shared<Point>(_unit);
+    for (const auto& kv : _coords) {
+      result->_coords[kv.first] = kv.second;
     }
-    for (const auto& kv : other) {
-      if (result->find(kv.first) != result->end()) {
-        (*result)[kv.first] -= kv.second;
+    for (const auto& kv : other._coords) {
+      if (result->_coords.find(kv.first) != result->_coords.end()) {
+        result->_coords[kv.first] -= kv.second;
       } else {
-        (*result)[kv.first] = -kv.second;
+        result->_coords[kv.first] = -kv.second;
       }
     }
     return result;
@@ -65,30 +59,27 @@ class Point
 
   // Scalar multiplication
   std::shared_ptr<Point> operator*(double scalar) const {
-    std::shared_ptr<Point> result = std::make_shared<Point>();
-    result->_unit                 = this->_unit;
-    for (const auto& kv : *this) {
-      (*result)[kv.first] = kv.second * scalar;
+    std::shared_ptr<Point> result = std::make_shared<Point>(_unit);
+    for (const auto& kv : _coords) {
+      result->_coords[kv.first] = kv.second * scalar;
     }
     return result;
   }
 
   // Scalar division
   std::shared_ptr<Point> operator/(double scalar) const {
-    std::shared_ptr<Point> result = std::make_shared<Point>();
-    result->_unit                 = this->_unit;
-    for (const auto& kv : *this) {
-      (*result)[kv.first] = kv.second / scalar;
+    std::shared_ptr<Point> result = std::make_shared<Point>(_unit);
+    for (const auto& kv : _coords) {
+      result->_coords[kv.first] = kv.second / scalar;
     }
     return result;
   }
 
   // Negation
   std::shared_ptr<Point> operator-() const {
-    std::shared_ptr<Point> result = std::make_shared<Point>();
-    result->_unit                 = this->_unit;
-    for (const auto& kv : *this) {
-      (*result)[kv.first] = -kv.second;
+    std::shared_ptr<Point> result = std::make_shared<Point>(_unit);
+    for (const auto& kv : _coords) {
+      result->_coords[kv.first] = -kv.second;
     }
     return result;
   }
@@ -98,26 +89,31 @@ class Point
   // Set coordinate
   void set(const physics::device_structures::BaseConnection& conn,
            double                                            value) {
-    (*this)[conn] = value;
+    _coords[conn] = value;
   }
 
   // Get coordinate
   double get(const physics::device_structures::BaseConnection& conn) const {
-    auto it = this->find(conn);
-    if (it != this->end()) {
+    auto it = _coords.find(conn);
+    if (it != _coords.end()) {
       return it->second;
     }
     return 0.0;
   }
 
+  // Iteration support
+  auto begin() const { return _coords.begin(); }
+  auto end() const { return _coords.end(); }
+
  private:
+  std::map<physics::device_structures::BaseConnection, double> _coords;
   UnitPtr _unit;
 
   friend class cereal::access;  // cereal can access private members
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this),
-       cereal::base_class<BaseMap>(this),
+       _coords,
        _unit);
   }
 

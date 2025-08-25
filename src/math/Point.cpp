@@ -9,17 +9,17 @@ std::shared_ptr<Point> Point::operator+(std::shared_ptr<Point> other) const {
   }
   auto result = std::make_shared<Point>(_unit);
   // Copy this point's values
-  for (const auto& pair : *this) {
-    (*result)[pair.first] = pair.second;
+  for (const auto& pair : _coords) {
+    result->_coords[pair.first] = pair.second;
   }
   // Add other point's values
-  for (const auto& pair : *other) {
+  for (const auto& pair : other->_coords) {
     double other_val_converted =
         other->unit()->convert_value_to(pair.second, _unit);
-    if (result->count(pair.first)) {
-      (*result)[pair.first] += other_val_converted;
+    if (result->_coords.count(pair.first)) {
+      result->_coords[pair.first] += other_val_converted;
     } else {
-      (*result)[pair.first] = other_val_converted;
+      result->_coords[pair.first] = other_val_converted;
     }
   }
   return result;
