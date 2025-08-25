@@ -32,11 +32,11 @@ class StandardConfigConnections : public generic::Song {
    * @param barrier_gates The barrier gates.
    * @param ohmics The ohmic contacts.
    */
-  StandardConfigConnections(ScreeningGatesSP screening_gates,
-                            ReservoirGatesSP reservoir_gates,
-                            PlungerGatesSP   plunger_gates,
-                            BarrierGatesSP   barrier_gates,
-                            OhmicsSP         ohmics)
+  StandardConfigConnections(const ScreeningGatesSP& screening_gates,
+                            const ReservoirGatesSP& reservoir_gates,
+                            const PlungerGatesSP&   plunger_gates,
+                            const BarrierGatesSP&   barrier_gates,
+                            const OhmicsSP&         ohmics)
       : _screening_gates(screening_gates),
         _reservoir_gates(reservoir_gates),
         _plunger_gates(plunger_gates),
@@ -75,7 +75,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the plural form of the connection type. This corresponds to the
    * conn_type
    */
-  OhmicsSP get_connections(OhmicSP conn_type) const;
+  OhmicsSP get_connections(const OhmicSP& conn_type) const;
   /**
    * @brief Gets the connections of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -84,7 +84,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the plural form of the connection type. This corresponds to the
    * conn_type
    */
-  BarrierGatesSP get_connections(BarrierGateSP conn_type) const;
+  BarrierGatesSP get_connections(const BarrierGateSP& conn_type) const;
   /**
    * @brief Gets the connections of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -93,7 +93,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the plural form of the connection type. This corresponds to the
    * conn_type
    */
-  PlungerGatesSP get_connections(PlungerGateSP conn_type) const;
+  PlungerGatesSP get_connections(const PlungerGateSP& conn_type) const;
   /**
    * @brief Gets the connections of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -102,7 +102,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the plural form of the connection type. This corresponds to the
    * conn_type
    */
-  ReservoirGatesSP get_connections(ReservoirGateSP conn_type) const;
+  ReservoirGatesSP get_connections(const ReservoirGateSP& conn_type) const;
   /**
    * @brief Gets the connections of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -111,7 +111,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the plural form of the connection type. This corresponds to the
    * conn_type
    */
-  ScreeningGatesSP get_connections(ScreeningGateSP conn_type) const;
+  ScreeningGatesSP get_connections(const ScreeningGateSP& conn_type) const;
   /**
    * @brief Gets the connections of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -120,7 +120,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the plural form of the connection type. This corresponds to the
    * conn_type
    */
-  DotGatesSP<DotGate> get_connections(DotGateSP conn_type) const;
+  DotGatesSP<DotGate> get_connections(const DotGateSP& conn_type) const;
   /**
    * @brief Gets the connections of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -129,7 +129,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the plural form of the connection type. This corresponds to the
    * conn_type
    */
-  GatesSP<Gate> get_connections(GateSP conn_type) const;
+  GatesSP<Gate> get_connections(const GateSP& conn_type) const;
   /**
    * @brief Gets the first connection of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -138,7 +138,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the first of the connection type found. This corresponds to the
    * conn_type
    */
-  OhmicSP get_connection(OhmicSP conn_type) const;
+  OhmicSP get_connection(const OhmicSP& conn_type) const;
   /**
    * @brief Gets the first connection of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -147,7 +147,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the first of the connection type found. This corresponds to the
    * conn_type
    */
-  BarrierGateSP get_connection(BarrierGateSP conn_type) const;
+  BarrierGateSP get_connection(const BarrierGateSP& conn_type) const;
   /**
    * @brief Gets the first connection of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -156,7 +156,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the first of the connection type found. This corresponds to the
    * conn_type
    */
-  PlungerGateSP get_connection(PlungerGateSP conn_type) const;
+  PlungerGateSP get_connection(const PlungerGateSP& conn_type) const;
   /**
    * @brief Gets the first connection of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -165,7 +165,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the first of the connection type found. This corresponds to the
    * conn_type
    */
-  ReservoirGateSP get_connection(ReservoirGateSP conn_type) const;
+  ReservoirGateSP get_connection(const ReservoirGateSP& conn_type) const;
   /**
    * @brief Gets the first connection of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -174,7 +174,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the first of the connection type found. This corresponds to the
    * conn_type
    */
-  ScreeningGateSP get_connection(ScreeningGateSP conn_type) const;
+  ScreeningGateSP get_connection(const ScreeningGateSP& conn_type) const;
   /**
    * @brief Gets the first connection of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -183,7 +183,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the first of the connection type found. This corresponds to the
    * conn_type
    */
-  DotGateSP get_connection(DotGateSP conn_type) const;
+  DotGateSP get_connection(const DotGateSP& conn_type) const;
   /**
    * @brief Gets the first connection of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -192,7 +192,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the first of the connection type found. This corresponds to the
    * conn_type
    */
-  GateSP get_connection(GateSP conn_type) const;
+  GateSP get_connection(const GateSP& conn_type) const;
   /**
    * @brief Gets all of the gates for this collection from the config.
    */
@@ -208,11 +208,11 @@ class StandardConfigConnections : public generic::Song {
   /**
    * @brief If this ohmic is a member of this group or not.
    */
-  bool has_ohmic(OhmicSP ohmic) const;
+  bool has_ohmic(const OhmicSP& ohmic) const;
   /**
    * @brief If this gate is a member of this group or not.
    */
-  bool has_gate(GateSP gate) const;
+  bool has_gate(const GateSP& gate) const;
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this),
@@ -224,6 +224,7 @@ class StandardConfigConnections : public generic::Song {
   }
 
  protected:
+  StandardConfigConnections() = default;
   friend class cereal::access;
 };
 using StandardConfigConnectionsSP = std::shared_ptr<StandardConfigConnections>;

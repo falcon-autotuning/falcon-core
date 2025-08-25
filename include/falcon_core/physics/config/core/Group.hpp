@@ -28,13 +28,13 @@ class Group : public StandardConfigConnections {
    * @param barrier_gates The barrier gates in the group.
    * @param order The order of the gates in the group.
    */
-  Group(ChannelSP                         name,
-        int                               num_dots,
-        ScreeningGatesSP                  screening_gates,
-        ReservoirGatesSP                  reservoir_gates,
-        PlungerGatesSP                    plunger_gates,
-        BarrierGatesSP                    barrier_gates,
-        BaseConnectionsSP<BaseConnection> order);
+  Group(const ChannelSP&                         name,
+        const int&                               num_dots,
+        const ScreeningGatesSP&                  screening_gates,
+        const ReservoirGatesSP&                  reservoir_gates,
+        const PlungerGatesSP&                    plunger_gates,
+        const BarrierGatesSP&                    barrier_gates,
+        const BaseConnectionsSP<BaseConnection>& order);
   // : StandardConfigConnections(screening_gates,
   //                             reservoir_gates,
   //                             plunger_gates,
@@ -64,7 +64,7 @@ class Group : public StandardConfigConnections {
    * @param channel The channel to validate.
    * @returns true if the channel is present.
    */
-  bool has_channel(ChannelSP channel) const;
+  bool has_channel(const ChannelSP& channel) const;
   /**
    * @brief Checks if this channel could be a charge sensor.
    * @returns true if the channel has a single dot.
@@ -76,9 +76,9 @@ class Group : public StandardConfigConnections {
    * @returns The gates associated with this channel. If the channel is not
    * correct then empty gates are returned.
    */
-  GatesSP<Gate> get_all_channel_gates(Channel channel) const;
+  GatesSP<Gate> get_all_channel_gates(const Channel& channel) const;
   template <class Archive>
-  void serialize(Archive &ar) {
+  void serialize(Archive& ar) {
     ar(cereal::base_class<StandardConfigConnections>(this),
        _name,
        _num_dots,

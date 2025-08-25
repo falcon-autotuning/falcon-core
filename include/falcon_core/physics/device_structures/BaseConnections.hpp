@@ -91,11 +91,6 @@ class BaseConnections : public virtual falcon_core::generic::Song {
               typename std::vector<std::shared_ptr<T>>::const_iterator last) {
     _items.insert(pos, first, last);
   }
-  BaseConnections<T> operator+(const BaseConnections<T>& other) const {
-    std::vector<std::shared_ptr<T>> combined = _items;
-    combined.insert(combined.end(), other._items.begin(), other._items.end());
-    return BaseConnections<T>(combined);
-  }
 
   template <class Archive>
   void serialize(Archive& ar) {

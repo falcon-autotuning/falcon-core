@@ -6,60 +6,70 @@
 
 using namespace falcon_core::physics::config::core;
 
-OhmicsSP StandardConfigConnections::get_connections(OhmicSP conn_type) const {
+OhmicsSP StandardConfigConnections::get_connections(
+    const OhmicSP& conn_type) const {
   return _ohmics;
 }
 BarrierGatesSP StandardConfigConnections::get_connections(
-    BarrierGateSP conn_type) const {
+    const BarrierGateSP& conn_type) const {
   return _barrier_gates;
 }
 PlungerGatesSP StandardConfigConnections::get_connections(
-    PlungerGateSP conn_type) const {
+    const PlungerGateSP& conn_type) const {
   return _plunger_gates;
 }
 ReservoirGatesSP StandardConfigConnections::get_connections(
-    ReservoirGateSP conn_type) const {
+    const ReservoirGateSP& conn_type) const {
   return _reservoir_gates;
 }
 ScreeningGatesSP StandardConfigConnections::get_connections(
-    ScreeningGateSP conn_type) const {
+    const ScreeningGateSP& conn_type) const {
   return _screening_gates;
 }
 DotGatesSP<DotGate> StandardConfigConnections::get_connections(
-    DotGateSP conn_type) const {
+    const DotGateSP& conn_type) const {
   auto plunger = std::dynamic_pointer_cast<DotGates<DotGate>>(_plunger_gates);
   auto barrier = std::dynamic_pointer_cast<DotGates<DotGate>>(_barrier_gates);
-  return std::make_shared<DotGates<DotGate>>(*plunger + *barrier);
+  DotGates<DotGate> combination;
+  combination.insert(combination.end(), barrier->begin(), barrier->end());
+  combination.insert(combination.end(), plunger->begin(), plunger->end());
+  return std::make_shared<DotGates<DotGate>>(combination);
 }
 GatesSP<Gate> StandardConfigConnections::get_connections(
-    GateSP conn_type) const {
+    const GateSP& conn_type) const {
   auto plunger   = std::dynamic_pointer_cast<Gates<Gate>>(_plunger_gates);
   auto barrier   = std::dynamic_pointer_cast<Gates<Gate>>(_barrier_gates);
   auto reservoir = std::dynamic_pointer_cast<Gates<Gate>>(_reservoir_gates);
   auto screening = std::dynamic_pointer_cast<Gates<Gate>>(_screening_gates);
-  return std::make_shared<Gates<Gate>>(*plunger + *barrier + *reservoir +
-                                       *screening);
+  Gates<Gate> combination;
+  combination.insert(combination.end(), barrier->begin(), barrier->end());
+  combination.insert(combination.end(), plunger->begin(), plunger->end());
+  combination.insert(combination.end(), reservoir->begin(), reservoir->end());
+  combination.insert(combination.end(), screening->begin(), screening->end());
+  return std::make_shared<Gates<Gate>>(combination);
 }
-OhmicSP StandardConfigConnections::get_connection(OhmicSP conn_type) const {
+OhmicSP StandardConfigConnections::get_connection(
+    const OhmicSP& conn_type) const {
   return _ohmics->at(0);
 }
 BarrierGateSP StandardConfigConnections::get_connection(
-    BarrierGateSP conn_type) const {
+    const BarrierGateSP& conn_type) const {
   return _barrier_gates->at(0);
 }
 PlungerGateSP StandardConfigConnections::get_connection(
-    PlungerGateSP conn_type) const {
+    const PlungerGateSP& conn_type) const {
   return _plunger_gates->at(0);
 }
 ReservoirGateSP StandardConfigConnections::get_connection(
-    ReservoirGateSP conn_type) const {
+    const ReservoirGateSP& conn_type) const {
   return _reservoir_gates->at(0);
 }
 ScreeningGateSP StandardConfigConnections::get_connection(
-    ScreeningGateSP conn_type) const {
+    const ScreeningGateSP& conn_type) const {
   return _screening_gates->at(0);
 }
-DotGateSP StandardConfigConnections::get_connection(DotGateSP conn_type) const {
+DotGateSP StandardConfigConnections::get_connection(
+    const DotGateSP& conn_type) const {
   auto plunger = std::dynamic_pointer_cast<DotGates<DotGate>>(_plunger_gates);
   auto barrier = std::dynamic_pointer_cast<DotGates<DotGate>>(_barrier_gates);
   if (plunger->size() > 0) {
@@ -70,7 +80,8 @@ DotGateSP StandardConfigConnections::get_connection(DotGateSP conn_type) const {
     return nullptr;
   }
 }
-GateSP StandardConfigConnections::get_connection(GateSP conn_type) const {
+GateSP StandardConfigConnections::get_connection(
+    const GateSP& conn_type) const {
   auto plunger   = std::dynamic_pointer_cast<Gates<Gate>>(_plunger_gates);
   auto barrier   = std::dynamic_pointer_cast<Gates<Gate>>(_barrier_gates);
   auto reservoir = std::dynamic_pointer_cast<Gates<Gate>>(_reservoir_gates);
@@ -92,8 +103,12 @@ GatesSP<Gate> StandardConfigConnections::get_all_gates() const {
   auto barrier   = std::dynamic_pointer_cast<Gates<Gate>>(_barrier_gates);
   auto reservoir = std::dynamic_pointer_cast<Gates<Gate>>(_reservoir_gates);
   auto screening = std::dynamic_pointer_cast<Gates<Gate>>(_screening_gates);
-  return std::make_shared<Gates<Gate>>(*plunger + *barrier + *reservoir +
-                                       *screening);
+  Gates<Gate> combination;
+  combination.insert(combination.end(), barrier->begin(), barrier->end());
+  combination.insert(combination.end(), plunger->begin(), plunger->end());
+  combination.insert(combination.end(), reservoir->begin(), reservoir->end());
+  combination.insert(combination.end(), screening->begin(), screening->end());
+  return std::make_shared<Gates<Gate>>(combination);
 }
 OhmicsSP StandardConfigConnections::get_all_ohmics() const { return _ohmics; }
 BaseConnectionsSP<BaseConnection>
@@ -108,10 +123,15 @@ StandardConfigConnections::get_all_connections() const {
       _reservoir_gates);
   auto screening = std::dynamic_pointer_cast<BaseConnections<BaseConnection>>(
       _screening_gates);
-  return std::make_shared<BaseConnections<BaseConnection>>(
-      *ohmic + *plunger + *barrier + *reservoir + *screening);
+  BaseConnections<BaseConnection> combination;
+  combination.insert(combination.end(), barrier->begin(), barrier->end());
+  combination.insert(combination.end(), plunger->begin(), plunger->end());
+  combination.insert(combination.end(), reservoir->begin(), reservoir->end());
+  combination.insert(combination.end(), screening->begin(), screening->end());
+  combination.insert(combination.end(), ohmic->begin(), ohmic->end());
+  return std::make_shared<BaseConnections<BaseConnection>>(combination);
 }
-bool StandardConfigConnections::has_ohmic(OhmicSP ohmic) const {
+bool StandardConfigConnections::has_ohmic(const OhmicSP& ohmic) const {
   for (auto& o : *_ohmics) {
     if (*o == *ohmic) {
       return true;
@@ -119,7 +139,7 @@ bool StandardConfigConnections::has_ohmic(OhmicSP ohmic) const {
   }
   return false;
 }
-bool StandardConfigConnections::has_gate(GateSP gate) const {
+bool StandardConfigConnections::has_gate(const GateSP& gate) const {
   for (auto& g : *get_all_gates()) {
     if (*g == *gate) {
       return true;
