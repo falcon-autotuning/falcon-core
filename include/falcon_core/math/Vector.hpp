@@ -122,6 +122,9 @@ class Vector : public generic::Song {
        _unit);
   }
 
+ public:
+  Vector() = default;  // for cereal/c++ containers
+
  private:
   PointPtr                _end;
   PointPtr                _start;

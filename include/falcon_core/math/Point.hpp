@@ -121,7 +121,7 @@ class Point
        _unit);
   }
 
- protected:
+ public:
   Point() = default;  // for cereal access
 };
 }  // namespace math
