@@ -75,9 +75,7 @@ class ValidatedAnalyticFunction : public generic::Song {
 }  // namespace math
 }  // namespace falcon_core
 
-// Example registration for a specific Ports type:
-// using ValidatedAF_KnobPorts =
-// falcon_core::math::analytic_functions::ValidatedAnalyticFunction<falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>>;
-// CEREAL_REGISTER_TYPE(ValidatedAF_KnobPorts)
-// CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-// ValidatedAF_KnobPorts)
+using ValidatedAF_KnobPorts = falcon_core::math::analytic_functions::ValidatedAnalyticFunction<
+    falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>>;
+CEREAL_REGISTER_TYPE(ValidatedAF_KnobPorts)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ValidatedAF_KnobPorts)
