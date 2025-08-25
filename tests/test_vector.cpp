@@ -37,10 +37,10 @@ TEST(VectorTest, SerializationRoundTrip) {
     iarchive(vec2);
   }
 
-  ASSERT_EQ(vec2->end()->get(*conn1), 1.0);
-  ASSERT_EQ(vec2->end()->get(*conn2), 2.0);
-  ASSERT_EQ(vec2->start()->get(*conn1), 0.0);
-  ASSERT_EQ(vec2->start()->get(*conn2), 1.0);
+  ASSERT_EQ(vec2->end()->get(conn1), 1.0);
+  ASSERT_EQ(vec2->end()->get(conn2), 2.0);
+  ASSERT_EQ(vec2->start()->get(conn1), 0.0);
+  ASSERT_EQ(vec2->start()->get(conn2), 1.0);
   ASSERT_EQ(vec2->unit(), unit);  // pointer equality
 }
 
@@ -62,34 +62,34 @@ TEST(VectorTest, ArithmeticOperators) {
   auto v2 = std::make_shared<Vector>(end2, start2, unit);
 
   auto v_add = *v1 + *v2;
-  EXPECT_DOUBLE_EQ(v_add->end()->get(*conn1), 4.0);
-  EXPECT_DOUBLE_EQ(v_add->end()->get(*conn2), 6.0);
-  EXPECT_DOUBLE_EQ(v_add->start()->get(*conn1), 1.0);
-  EXPECT_DOUBLE_EQ(v_add->start()->get(*conn2), 3.0);
+  EXPECT_DOUBLE_EQ(v_add->end()->get(conn1), 4.0);
+  EXPECT_DOUBLE_EQ(v_add->end()->get(conn2), 6.0);
+  EXPECT_DOUBLE_EQ(v_add->start()->get(conn1), 1.0);
+  EXPECT_DOUBLE_EQ(v_add->start()->get(conn2), 3.0);
 
   auto v_sub = *v1 - *v2;
-  EXPECT_DOUBLE_EQ(v_sub->end()->get(*conn1), -2.0);
-  EXPECT_DOUBLE_EQ(v_sub->end()->get(*conn2), -2.0);
-  EXPECT_DOUBLE_EQ(v_sub->start()->get(*conn1), -1.0);
-  EXPECT_DOUBLE_EQ(v_sub->start()->get(*conn2), -1.0);
+  EXPECT_DOUBLE_EQ(v_sub->end()->get(conn1), -2.0);
+  EXPECT_DOUBLE_EQ(v_sub->end()->get(conn2), -2.0);
+  EXPECT_DOUBLE_EQ(v_sub->start()->get(conn1), -1.0);
+  EXPECT_DOUBLE_EQ(v_sub->start()->get(conn2), -1.0);
 
   auto v_mul = *v1 * 2.0;
-  EXPECT_DOUBLE_EQ(v_mul->end()->get(*conn1), 2.0);
-  EXPECT_DOUBLE_EQ(v_mul->end()->get(*conn2), 4.0);
-  EXPECT_DOUBLE_EQ(v_mul->start()->get(*conn1), 0.0);
-  EXPECT_DOUBLE_EQ(v_mul->start()->get(*conn2), 2.0);
+  EXPECT_DOUBLE_EQ(v_mul->end()->get(conn1), 2.0);
+  EXPECT_DOUBLE_EQ(v_mul->end()->get(conn2), 4.0);
+  EXPECT_DOUBLE_EQ(v_mul->start()->get(conn1), 0.0);
+  EXPECT_DOUBLE_EQ(v_mul->start()->get(conn2), 2.0);
 
   auto v_div = *v1 / 2.0;
-  EXPECT_DOUBLE_EQ(v_div->end()->get(*conn1), 0.5);
-  EXPECT_DOUBLE_EQ(v_div->end()->get(*conn2), 1.0);
-  EXPECT_DOUBLE_EQ(v_div->start()->get(*conn1), 0.0);
-  EXPECT_DOUBLE_EQ(v_div->start()->get(*conn2), 0.5);
+  EXPECT_DOUBLE_EQ(v_div->end()->get(conn1), 0.5);
+  EXPECT_DOUBLE_EQ(v_div->end()->get(conn2), 1.0);
+  EXPECT_DOUBLE_EQ(v_div->start()->get(conn1), 0.0);
+  EXPECT_DOUBLE_EQ(v_div->start()->get(conn2), 0.5);
 
   auto v_neg = -(*v1);
-  EXPECT_DOUBLE_EQ(v_neg->end()->get(*conn1), -1.0);
-  EXPECT_DOUBLE_EQ(v_neg->end()->get(*conn2), -2.0);
-  EXPECT_DOUBLE_EQ(v_neg->start()->get(*conn1), -0.0);
-  EXPECT_DOUBLE_EQ(v_neg->start()->get(*conn2), -1.0);
+  EXPECT_DOUBLE_EQ(v_neg->end()->get(conn1), -1.0);
+  EXPECT_DOUBLE_EQ(v_neg->end()->get(conn2), -2.0);
+  EXPECT_DOUBLE_EQ(v_neg->start()->get(conn1), -0.0);
+  EXPECT_DOUBLE_EQ(v_neg->start()->get(conn2), -1.0);
 }
 
 TEST(VectorTest, MagnitudeAndIndexing) {
@@ -106,11 +106,11 @@ TEST(VectorTest, MagnitudeAndIndexing) {
 
   EXPECT_DOUBLE_EQ(vec->magnitude(), 5.0);
 
-  auto pair = (*vec)[*conn1];
+  auto pair = (*vec)[conn1];
   EXPECT_DOUBLE_EQ(pair.first, 3.0);
   EXPECT_DOUBLE_EQ(pair.second, 0.0);
 
-  pair = (*vec)[*conn2];
+  pair = (*vec)[conn2];
   EXPECT_DOUBLE_EQ(pair.first, 4.0);
   EXPECT_DOUBLE_EQ(pair.second, 0.0);
 }
