@@ -13,7 +13,7 @@ using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::physics::units;
 
 TEST(VectorTest, SerializationRoundTrip) {
-  auto           unit = CommonUnits::Volt;
+  auto           unit = std::make_shared<SymbolUnit>(Units::Volt);
   BaseConnection conn1("A");
   BaseConnection conn2("B");
 
@@ -42,7 +42,7 @@ TEST(VectorTest, SerializationRoundTrip) {
 }
 
 TEST(VectorTest, ArithmeticOperators) {
-  auto           unit = CommonUnits::Volt;
+  auto           unit = std::make_shared<SymbolUnit>(Units::Volt);
   BaseConnection conn1("A");
   BaseConnection conn2("B");
 
@@ -86,7 +86,7 @@ TEST(VectorTest, ArithmeticOperators) {
 }
 
 TEST(VectorTest, MagnitudeAndIndexing) {
-  auto           unit = std::make_shared<SymbolUnit>();
+  auto           unit = std::make_shared<SymbolUnit>(Units::Volt);
   BaseConnection conn1("A");
   BaseConnection conn2("B");
 
@@ -107,8 +107,8 @@ TEST(VectorTest, MagnitudeAndIndexing) {
 }
 
 TEST(VectorTest, UnitConversion) {
-  auto           unit1 = CommonUnits::Volt;
-  auto           unit2 = CommonUnits::Meter;
+  auto           unit1 = std::make_shared<SymbolUnit>(Units::Volt);
+  auto           unit2 = std::make_shared<SymbolUnit>(Units::Meter);
   BaseConnection conn1("A");
 
   std::map<BaseConnection, double> end{{conn1, 1.0}};
