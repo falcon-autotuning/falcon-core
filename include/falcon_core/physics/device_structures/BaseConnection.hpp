@@ -13,6 +13,7 @@ class BaseConnection : public virtual generic::Song {
     return _name < other._name;  // Compare based on name
   }
   BaseConnection(std::string name) : _name(std::move(name)) {}
+  BaseConnection() : _name("") {}
   std::string name() const { return _name; }
   template <class Archive>
   void serialize(Archive& ar) {
@@ -20,7 +21,6 @@ class BaseConnection : public virtual generic::Song {
   }
 
  protected:
-  BaseConnection() : _name("") {}  // or initialize _name with a default value
   friend class cereal::access;
 };
 using BaseConnectionSP = std::shared_ptr<BaseConnection>;

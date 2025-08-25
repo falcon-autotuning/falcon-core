@@ -20,22 +20,31 @@ class Adjacency : public generic::Song {
   Adjacency(const MatrixType                                   &matrix,
             const std::vector<physics::device_structures::Gate> indexes)
       : _matrix(matrix), _indexes(indexes) {}
-  // ***
-  // * @brief Returns the matrix containing the device layout adjacency
-  // **/
+  /**
+   * @brief Returns the matrix containing the device layout adjacency
+   */
   MatrixType matrix() const { return _matrix; }
-  // ***
-  // # @brief Returns the indexes of the gates in the order for the adjacency
-  // matrix
-  // **/
+  /**
+   # @brief Returns the indexes of the gates in the order for the adjacency
+   matrix
+  */
   std::vector<device_structures::Gate> indexes() const { return _indexes; }
+  int                                  size() const { return _indexes.size(); }
 
- private:
-  friend class cereal::access;
+  /**
+   * @brief Returns the pairs of indexes where the adjacency matrix is true (1)
+   */
+  std::vector<std::pair<int, int>> get_true_pairs() const;
   template <class Archive>
   void serialize(Archive &ar) {
     ar(cereal::base_class<generic::Song>(this), _matrix, _indexes);
   }
+
+ protected:
+  Adjacency()
+      : _indexes(std::vector<device_structures::Gate>(
+            {device_structures::Gate("")})) {};
+  friend class cereal::access;
 };
 }  // namespace core
 }  // namespace config
