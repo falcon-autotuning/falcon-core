@@ -15,9 +15,10 @@ namespace math {
 
 class Vector : public generic::Song {
  public:
-  using PointPtr   = std::shared_ptr<Point>;
-  using Connection = physics::device_structures::BaseConnection;
-  using UnitPtr    = std::shared_ptr<physics::units::SymbolUnit>;
+  using PointPtr     = std::shared_ptr<Point>;
+  using Connection   = physics::device_structures::BaseConnection;
+  using ConnectionPtr = std::shared_ptr<physics::device_structures::BaseConnection>;
+  using UnitPtr      = std::shared_ptr<physics::units::SymbolUnit>;
 
   // Constructors
   Vector(PointPtr end, PointPtr start)
@@ -30,7 +31,7 @@ class Vector : public generic::Song {
         _unit(end->unit()) {
     update_connections();
   }
-  Vector(const std::map<Connection, double>& end, UnitPtr unit)
+  Vector(const std::map<ConnectionPtr, double>& end, UnitPtr unit)
       : _end(std::make_shared<Point>(unit)),
         _start(std::make_shared<Point>(unit)),
         _unit(unit) {
@@ -40,9 +41,9 @@ class Vector : public generic::Song {
     }
     update_connections();
   }
-  Vector(const std::map<Connection, double>& end,
-         const std::map<Connection, double>& start,
-         UnitPtr                             unit)
+  Vector(const std::map<ConnectionPtr, double>& end,
+         const std::map<ConnectionPtr, double>& start,
+         UnitPtr unit)
       : _end(std::make_shared<Point>(unit)),
         _start(std::make_shared<Point>(unit)),
         _unit(unit) {
@@ -58,11 +59,11 @@ class Vector : public generic::Song {
   // Accessors
   const PointPtr&                end() const { return _end; }
   const PointPtr&                start() const { return _start; }
-  const std::vector<Connection>& connections() const { return _connections; }
+  const std::vector<ConnectionPtr>& connections() const { return _connections; }
   UnitPtr                        unit() const { return _unit; }
 
   // Indexing
-  std::pair<double, double> operator[](const Connection& conn) const {
+  std::pair<double, double> operator[](const ConnectionPtr& conn) const {
     double end_val   = _end->get(conn);
     double start_val = _start->get(conn);
     return std::make_pair(end_val, start_val);
@@ -128,11 +129,11 @@ class Vector : public generic::Song {
  private:
   PointPtr                _end;
   PointPtr                _start;
-  std::vector<Connection> _connections;
+  std::vector<ConnectionPtr> _connections;
   UnitPtr                 _unit;
 
   void update_connections() {
-    std::vector<Connection> conns;
+    std::vector<ConnectionPtr> conns;
     for (const auto& kv : *_end) {
       conns.push_back(kv.first);
     }

@@ -87,13 +87,13 @@ class Point : public generic::Song {
   void set_unit(UnitPtr unit) { _unit = unit; }
 
   // Set coordinate
-  void set(const physics::device_structures::BaseConnection& conn,
-           double                                            value) {
+  void set(const std::shared_ptr<physics::device_structures::BaseConnection>& conn,
+           double value) {
     _coords[conn] = value;
   }
 
   // Get coordinate
-  double get(const physics::device_structures::BaseConnection& conn) const {
+  double get(const std::shared_ptr<physics::device_structures::BaseConnection>& conn) const {
     auto it = _coords.find(conn);
     if (it != _coords.end()) {
       return it->second;
@@ -102,11 +102,11 @@ class Point : public generic::Song {
   }
 
   // Iteration support
-  std::map<physics::device_structures::BaseConnection, double>::const_iterator begin() const { return _coords.begin(); }
-  std::map<physics::device_structures::BaseConnection, double>::const_iterator end() const { return _coords.end(); }
+  std::map<std::shared_ptr<physics::device_structures::BaseConnection>, double>::const_iterator begin() const { return _coords.begin(); }
+  std::map<std::shared_ptr<physics::device_structures::BaseConnection>, double>::const_iterator end() const { return _coords.end(); }
 
  private:
-  std::map<physics::device_structures::BaseConnection, double> _coords;
+  std::map<std::shared_ptr<physics::device_structures::BaseConnection>, double> _coords;
   UnitPtr _unit;
 
   friend class cereal::access;  // cereal can access private members
