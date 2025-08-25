@@ -121,7 +121,7 @@ class GateGeometryArray1D : public generic::Song {
    */
   OhmicsSP ohmics() const;
 };
-
+using GateGeometryArray1DSP = std::shared_ptr<GateGeometryArray1D>;
 }  // namespace geometries
 }  // namespace config
 }  // namespace physics

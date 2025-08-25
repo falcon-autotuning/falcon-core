@@ -4,6 +4,7 @@
 #include <cereal/types/eigen.hpp>
 
 #include "falcon_core/generic/Song.hpp"
+#include "falcon_core/physics/device_structures/Gate.hpp"
 
 namespace falcon_core {
 namespace physics {
@@ -42,7 +43,6 @@ class Adjacency : public generic::Song {
 }  // namespace falcon_core
 #ifndef SWIG
 using namespace falcon_core::physics::config::core;
-CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::Adjacency)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song, falcon_core::physics::config::core::Adjacency)
+CEREAL_REGISTER_TYPE(Adjacency)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Adjacency)
 #endif

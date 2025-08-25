@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
 
+#include "falcon_core/physics/config/core/Group.hpp"
+#include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 #include "falcon_core/physics/config/geometries/BarrierGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D.hpp"
