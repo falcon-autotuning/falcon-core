@@ -133,3 +133,9 @@ CEREAL_REGISTER_TYPE(falcon_core::math::Point)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::math::Point)
 #endif
+
+// Tell cereal to use only member serialize for Point
+namespace cereal {
+  template <class Archive>
+  struct specialize<Archive, falcon_core::math::Point, cereal::specialization::member_serialize> {};
+}
