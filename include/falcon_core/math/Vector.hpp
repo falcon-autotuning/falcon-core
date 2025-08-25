@@ -1,9 +1,10 @@
 #pragma once
 
-#include <vector>
-#include <memory>
 #include <algorithm>
+#include <memory>
 #include <stdexcept>
+#include <vector>
+
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/Point.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
@@ -14,9 +15,9 @@ namespace math {
 
 class Vector : public generic::Song {
  public:
-  using PointPtr = std::shared_ptr<Point>;
+  using PointPtr   = std::shared_ptr<Point>;
   using Connection = physics::device_structures::BaseConnection;
-  using UnitPtr = std::shared_ptr<physics::units::SymbolUnit>;
+  using UnitPtr    = std::shared_ptr<physics::units::SymbolUnit>;
 
   // Constructors
   Vector(PointPtr end, PointPtr start)
@@ -24,11 +25,15 @@ class Vector : public generic::Song {
     update_connections();
   }
   Vector(PointPtr end)
-      : _end(end), _start(std::make_shared<Point>(end->unit())), _unit(end->unit()) {
+      : _end(end),
+        _start(std::make_shared<Point>(end->unit())),
+        _unit(end->unit()) {
     update_connections();
   }
   Vector(const std::map<Connection, double>& end, UnitPtr unit)
-      : _end(std::make_shared<Point>(unit)), _start(std::make_shared<Point>(unit)), _unit(unit) {
+      : _end(std::make_shared<Point>(unit)),
+        _start(std::make_shared<Point>(unit)),
+        _unit(unit) {
     for (const auto& kv : end) {
       _end->set(kv.first, kv.second);
       _start->set(kv.first, 0.0);
@@ -37,8 +42,10 @@ class Vector : public generic::Song {
   }
   Vector(const std::map<Connection, double>& end,
          const std::map<Connection, double>& start,
-         UnitPtr unit)
-      : _end(std::make_shared<Point>(unit)), _start(std::make_shared<Point>(unit)), _unit(unit) {
+         UnitPtr                             unit)
+      : _end(std::make_shared<Point>(unit)),
+        _start(std::make_shared<Point>(unit)),
+        _unit(unit) {
     for (const auto& kv : end) {
       _end->set(kv.first, kv.second);
     }
@@ -49,14 +56,14 @@ class Vector : public generic::Song {
   }
 
   // Accessors
-  const PointPtr& end() const { return _end; }
-  const PointPtr& start() const { return _start; }
+  const PointPtr&                end() const { return _end; }
+  const PointPtr&                start() const { return _start; }
   const std::vector<Connection>& connections() const { return _connections; }
-  UnitPtr unit() const { return _unit; }
+  UnitPtr                        unit() const { return _unit; }
 
   // Indexing
   std::pair<double, double> operator[](const Connection& conn) const {
-    double end_val = _end->get(conn);
+    double end_val   = _end->get(conn);
     double start_val = _start->get(conn);
     return std::make_pair(end_val, start_val);
   }
@@ -64,27 +71,27 @@ class Vector : public generic::Song {
   // Arithmetic
   std::shared_ptr<Vector> operator+(const Vector& other) const {
     auto new_start = _start->operator+(*other._start);
-    auto new_end = _end->operator+(*other._end);
+    auto new_end   = _end->operator+(*other._end);
     return std::make_shared<Vector>(new_end, new_start);
   }
   std::shared_ptr<Vector> operator-(const Vector& other) const {
     auto new_start = _start->operator-(*other._start);
-    auto new_end = _end->operator-(*other._end);
+    auto new_end   = _end->operator-(*other._end);
     return std::make_shared<Vector>(new_end, new_start);
   }
   std::shared_ptr<Vector> operator*(double scalar) const {
     auto new_start = _start->operator*(scalar);
-    auto new_end = _end->operator*(scalar);
+    auto new_end   = _end->operator*(scalar);
     return std::make_shared<Vector>(new_end, new_start);
   }
   std::shared_ptr<Vector> operator/(double scalar) const {
     auto new_start = _start->operator/(scalar);
-    auto new_end = _end->operator/(scalar);
+    auto new_end   = _end->operator/(scalar);
     return std::make_shared<Vector>(new_end, new_start);
   }
   std::shared_ptr<Vector> operator-() const {
     auto new_start = _start->operator-();
-    auto new_end = _end->operator-();
+    auto new_end   = _end->operator-();
     return std::make_shared<Vector>(new_end, new_start);
   }
 
@@ -108,14 +115,18 @@ class Vector : public generic::Song {
   // Serialization
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _end, _start, _connections, _unit);
+    ar(cereal::base_class<generic::Song>(this),
+       _end,
+       _start,
+       _connections,
+       _unit);
   }
 
  private:
-  PointPtr _end;
-  PointPtr _start;
+  PointPtr                _end;
+  PointPtr                _start;
   std::vector<Connection> _connections;
-  UnitPtr _unit;
+  UnitPtr                 _unit;
 
   void update_connections() {
     std::vector<Connection> conns;
@@ -131,11 +142,12 @@ class Vector : public generic::Song {
   }
 };
 
-} // namespace math
-} // namespace falcon_core
+}  // namespace math
+}  // namespace falcon_core
 
 #ifndef SWIG
 using namespace falcon_core::math;
 CEREAL_REGISTER_TYPE(falcon_core::math::Vector)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::Vector)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::math::Vector)
 #endif

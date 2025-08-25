@@ -32,7 +32,7 @@ class Point
   std::shared_ptr<Point> operator+(const Point& other) const {
     // Union of all connections
     std::shared_ptr<Point> result = std::make_shared<Point>();
-    result->_unit = this->_unit;
+    result->_unit                 = this->_unit;
     for (const auto& kv : *this) {
       (*result)[kv.first] = kv.second;
     }
@@ -49,7 +49,7 @@ class Point
   // Operator- for Point
   std::shared_ptr<Point> operator-(const Point& other) const {
     std::shared_ptr<Point> result = std::make_shared<Point>();
-    result->_unit = this->_unit;
+    result->_unit                 = this->_unit;
     for (const auto& kv : *this) {
       (*result)[kv.first] = kv.second;
     }
@@ -66,7 +66,7 @@ class Point
   // Scalar multiplication
   std::shared_ptr<Point> operator*(double scalar) const {
     std::shared_ptr<Point> result = std::make_shared<Point>();
-    result->_unit = this->_unit;
+    result->_unit                 = this->_unit;
     for (const auto& kv : *this) {
       (*result)[kv.first] = kv.second * scalar;
     }
@@ -76,7 +76,7 @@ class Point
   // Scalar division
   std::shared_ptr<Point> operator/(double scalar) const {
     std::shared_ptr<Point> result = std::make_shared<Point>();
-    result->_unit = this->_unit;
+    result->_unit                 = this->_unit;
     for (const auto& kv : *this) {
       (*result)[kv.first] = kv.second / scalar;
     }
@@ -86,19 +86,18 @@ class Point
   // Negation
   std::shared_ptr<Point> operator-() const {
     std::shared_ptr<Point> result = std::make_shared<Point>();
-    result->_unit = this->_unit;
+    result->_unit                 = this->_unit;
     for (const auto& kv : *this) {
       (*result)[kv.first] = -kv.second;
     }
     return result;
   }
 
-  // Unit accessor
-  UnitPtr unit() const { return _unit; }
   void set_unit(UnitPtr unit) { _unit = unit; }
 
   // Set coordinate
-  void set(const physics::device_structures::BaseConnection& conn, double value) {
+  void set(const physics::device_structures::BaseConnection& conn,
+           double                                            value) {
     (*this)[conn] = value;
   }
 
