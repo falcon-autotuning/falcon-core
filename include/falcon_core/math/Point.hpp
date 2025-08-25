@@ -102,8 +102,16 @@ class Point : public generic::Song {
   }
 
   // Iteration support
-  auto begin() const { return _coords.begin(); }
-  auto end() const { return _coords.end(); }
+  std::unordered_map<
+      std::shared_ptr<physics::device_structures::BaseConnection>,
+      double,
+      generic::SongPtrHash,
+      generic::SongPtrEqual>::const_iterator begin() const { return _coords.begin(); }
+  std::unordered_map<
+      std::shared_ptr<physics::device_structures::BaseConnection>,
+      double,
+      generic::SongPtrHash,
+      generic::SongPtrEqual>::const_iterator end() const { return _coords.end(); }
 
  private:
   std::unordered_map<
