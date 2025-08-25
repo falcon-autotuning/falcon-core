@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "falcon_core/generic/Song.hpp"
+#include "falcon_core/instrument_interfaces/names/Knob.hpp"
 #include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 
 // You may need to include the correct Ports header for your use case
@@ -75,7 +76,12 @@ class ValidatedAnalyticFunction : public generic::Song {
 }  // namespace math
 }  // namespace falcon_core
 
-using ValidatedAF_KnobPorts = falcon_core::math::analytic_functions::ValidatedAnalyticFunction<
-    falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>>;
+#ifndef SWIG
+using ValidatedAF_KnobPorts =
+    falcon_core::math::analytic_functions::ValidatedAnalyticFunction<
+        falcon_core::instrument_interfaces::names::Ports<
+            falcon_core::instrument_interfaces::names::Knob>>;
 CEREAL_REGISTER_TYPE(ValidatedAF_KnobPorts)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ValidatedAF_KnobPorts)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     ValidatedAF_KnobPorts)
+#endif  // !SWIG
