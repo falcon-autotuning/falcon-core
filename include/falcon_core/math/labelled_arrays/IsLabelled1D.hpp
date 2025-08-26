@@ -1,3 +1,8 @@
+/**
+ * @file IsLabelled1D.hpp
+ * @brief Mixin for 1D labelled arrays.
+ */
+
 #pragma once
 
 #include "falcon_core/math/arrays/BaseArray.hpp"
@@ -11,11 +16,13 @@ namespace math
 namespace labelled_arrays
 {
 
-// This is a mixin-like template class.
-// The Derived class is expected to have a `get_array()` method.
+/// @brief Mixin for 1D labelled arrays.
+/// @tparam Derived The derived class type (must provide get_array()).
 template <class Derived> class IsLabelled1D
 {
 public:
+  /// @brief Get the starting value of the 1D array.
+  /// @throws std::runtime_error if array is not 1D.
   double
   get_start () const
   {
