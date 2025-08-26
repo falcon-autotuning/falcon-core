@@ -1,3 +1,8 @@
+/**
+ * @file CartesianSpace.hpp
+ * @brief Defines the CartesianSpace class for FalconCore.
+ */
+
 #pragma once
 
 #include "falcon_core/math/spaces/UnitSpace.hpp"
@@ -7,12 +12,25 @@ namespace falcon_core {
 namespace math {
 namespace spaces {
 
+/**
+ * @brief Represents a Cartesian space with discretization.
+ */
 class CartesianSpace : public UnitSpace {
  public:
+  /**
+   * @brief Construct a CartesianSpace.
+   * @param deltas Vector of discretization steps.
+   * @param domain Shared pointer to the domain.
+   */
   CartesianSpace(const std::vector<double>& deltas,
                  std::shared_ptr<domains::Domain> domain)
       : UnitSpace(make_axes(deltas), domain) {}
 
+  /**
+   * @brief Create axes from discretization steps.
+   * @param deltas Vector of discretization steps.
+   * @return Axes of CartesianDiscretizer.
+   */
   static Axes<discretizers::BaseDiscretizer>
   make_axes(const std::vector<double>& deltas) {
     std::vector<std::shared_ptr<discretizers::BaseDiscretizer>> axes;
@@ -24,7 +42,14 @@ class CartesianSpace : public UnitSpace {
 
  protected:
   friend class cereal::access;
+  /**
+   * @brief Default constructor for cereal access.
+   */
   CartesianSpace() = default;
+  /**
+   * @brief Serialization method for cereal.
+   * @param ar Archive object.
+   */
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<UnitSpace>(this));
