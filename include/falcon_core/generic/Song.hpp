@@ -1,5 +1,8 @@
 #pragma once
 
+extern "C" {
+#include "blake3.h"
+}
 #include <cereal/archives/json.hpp>
 #include <cereal/types/map.hpp>
 #include <cereal/types/memory.hpp>
@@ -96,15 +99,15 @@ class Song {
 
 // Hash functor for shared_ptr<Song>
 struct SongPtrHash {
-    std::size_t operator()(const std::shared_ptr<Song>& song) const {
-        return std::hash<std::string>()(song->to_json_string());
-    }
+  std::size_t operator()(const std::shared_ptr<Song>& song) const {
+    return std::hash<std::string>()(song->to_json_string());
+  }
 };
 struct SongPtrEqual {
-    bool operator()(const std::shared_ptr<Song>& a,
-                    const std::shared_ptr<Song>& b) const {
-        return a->to_json_string() == b->to_json_string();
-    }
+  bool operator()(const std::shared_ptr<Song>& a,
+                  const std::shared_ptr<Song>& b) const {
+    return a->to_json_string() == b->to_json_string();
+  }
 };
 
 }  // namespace generic

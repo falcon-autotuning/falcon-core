@@ -244,6 +244,19 @@ set(EIGEN_BUILD_TESTING
 FetchContent_MakeAvailable(eigen)
 set_property(DIRECTORY ${eigen_SOURCE_DIR} PROPERTY EXCLUDE_FROM_ALL TRUE)
 
+#blake3 for hashing
+FetchContent_Declare(
+  blake3
+  GIT_REPOSITORY https://github.com/BLAKE3-team/BLAKE3.git
+  GIT_TAG        1.5.0 # or latest stable tag
+)
+
+FetchContent_MakeAvailable(blake3)
+
+add_library(blake3_c STATIC
+    ${blake3_SOURCE_DIR}/c/blake3.c
+)
+target_include_directories(blake3_c PUBLIC ${blake3_SOURCE_DIR}/c)
 # --- SWIG and Python ---
 find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
@@ -274,8 +287,10 @@ target_include_directories(
   falcon_core_cpp
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
          $<INSTALL_INTERFACE:include> ${eigen_SOURCE_DIR}
-         ${cereal_SOURCE_DIR}/include)
+         ${cereal_SOURCE_DIR}/include
+          ${blake3_SOURCE_DIR}/c)
 
+target_link_libraries(falcon_core_cpp PRIVATE blake3_c)
 set(FALCON_HEADERS
     falcon_core/generic/Song.hpp
     falcon_core/Constants.hpp
