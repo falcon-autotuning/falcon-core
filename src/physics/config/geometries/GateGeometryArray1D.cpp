@@ -78,12 +78,6 @@ GateGeometryArray1D::GateGeometryArray1D(
     _gate_name_map[dot_gate->name()] = dot_gate;
   }
 }
-BaseConnectionSP GateGeometryArray1D::begin() const {
-  return _lineararray->at(0);
-}
-BaseConnectionSP GateGeometryArray1D::end() const {
-  return _lineararray->at(_lineararray->size() - 1);
-}
 void GateGeometryArray1D::append_central_gate(const DotGateSP& left_neighbor,
                                               const DotGateSP& selected_gate,
                                               const DotGateSP& right_neighbor) {

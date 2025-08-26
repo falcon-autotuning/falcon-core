@@ -61,6 +61,8 @@ class Channels : public virtual falcon_core::generic::Song {
   void push_back(const std::shared_ptr<Channel>& item) {
     _values.push_back(item);
   }
+  void                     clear() { _values.clear(); }
+  void                     reserve(size_t n) { _values.reserve(n); }
   size_t                   size() const { return _values.size(); }
   std::shared_ptr<Channel> at(const size_t idx) const {
     return _values.at(idx);

@@ -76,7 +76,7 @@ class Group : public StandardConfigConnections {
    * @returns The gates associated with this channel. If the channel is not
    * correct then empty gates are returned.
    */
-  GatesSP<Gate> get_all_channel_gates(const Channel& channel) const;
+  GatesSP<Gate> get_all_channel_gates(const ChannelSP& channel) const;
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<StandardConfigConnections>(this),

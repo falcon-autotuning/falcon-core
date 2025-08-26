@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "falcon_core/physics/config/geometries/BarrierGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/BaseDotGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic.hpp"
@@ -41,16 +43,13 @@ class GateGeometryArray1D : public generic::Song {
    */
   GateGeometryArray1D(BaseConnectionsSP<BaseConnection> lineararray,
                       ScreeningGatesSP                  screening_gates);
-  /**
-   * @brief Gets the leftmost gate in the linear array.
-   * @return The leftmost gate.
-   */
-  BaseConnectionSP begin() const;
-  /**
-   * @brief Gets the rightmost gate in the linear array.
-   * @return The rightmost gate.
-   */
-  BaseConnectionSP end() const;
+  using iterator = typename BaseConnections<BaseConnection>::iterator;
+  using const_iterator =
+      typename BaseConnections<BaseConnection>::const_iterator;
+  iterator       begin() { return _lineararray->begin(); }
+  iterator       end() { return _lineararray->end(); }
+  const_iterator begin() const { return _lineararray->begin(); }
+  const_iterator end() const { return _lineararray->end(); }
 
   /**
    * @brief Appends a central gate to the geometry.

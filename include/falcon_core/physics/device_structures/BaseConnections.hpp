@@ -91,6 +91,9 @@ class BaseConnections : public virtual falcon_core::generic::Song {
               typename std::vector<std::shared_ptr<T>>::const_iterator last) {
     _items.insert(pos, first, last);
   }
+  using iterator = typename std::vector<std::shared_ptr<T>>::iterator;
+  using const_iterator =
+      typename std::vector<std::shared_ptr<T>>::const_iterator;
 
   template <class Archive>
   void serialize(Archive& ar) {

@@ -18,6 +18,9 @@ void Song::to_json_stream(std::ostream& os) const {
 bool Song::operator==(const Song& other) const {
   return to_json_string() == other.to_json_string();
 }
+bool Song::operator!=(const Song& other) const {
+  return to_json_string() != other.to_json_string();
+}
 
 // Hash specialization for Song
 namespace std {

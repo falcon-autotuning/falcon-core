@@ -1,13 +1,9 @@
 #pragma once
-#include <blake3.h>
 
 #include <algorithm>
-#include <array>
-#include <cstdint>
 #include <iterator>
+#include <memory>
 #include <stdexcept>
-#include <string>
-#include <type_traits>
 #include <utility>
 #include <vector>
 
@@ -15,119 +11,94 @@
 
 namespace falcon_core {
 namespace generic {
-
-using Blake3Hash = std::array<uint8_t, 32>;
-
-struct Blake3HashEqual {
-  bool operator()(const Blake3Hash& a, const Blake3Hash& b) const {
-    return a == b;
-  }
-};
-
-class Blake3MapKey {
- public:
-  Blake3Hash hash;
-
-  Blake3MapKey() = default;
-  explicit Blake3MapKey(const std::string& data) {
-    blake3_hasher hasher;
-    blake3_hasher_init(&hasher);
-    blake3_hasher_update(&hasher, data.data(), data.size());
-    blake3_hasher_finalize(&hasher, hash.data(), 32);
-  }
-  bool operator==(const Blake3MapKey& other) const {
-    return hash == other.hash;
-  }
-  bool operator!=(const Blake3MapKey& other) const { return !(*this == other); }
-};
-
-struct Blake3MapKeyHasher {
-  std::size_t operator()(const Blake3MapKey& key) const {
-    std::size_t result = 0;
-    for (size_t i = 0; i < sizeof(std::size_t); ++i) {
-      result = (result << 8) | key.hash[i];
-    }
-    return result;
-  }
-};
-
 template <typename Key, typename ValueType>
 class Map {
  public:
-  using key_type         = Key;
-  using mapped_type      = ValueType;
-  using storage_key_type = Blake3MapKey;
-  using value_type       = std::pair<const storage_key_type, mapped_type>;
-  using container_type   = std::vector<value_type>;
-  using iterator         = typename container_type::iterator;
-  using const_iterator   = typename container_type::const_iterator;
+  using key_type    = Key;
+  using mapped_type = ValueType;
+  using value_type =
+      std::pair<std::shared_ptr<key_type>, std::shared_ptr<mapped_type>>;
+  using container_type = std::vector<value_type>;
+  using iterator       = typename container_type::iterator;
+  using const_iterator = typename container_type::const_iterator;
 
   Map() = default;
-  Map(std::initializer_list<std::pair<const Key, ValueType>> init) {
+  template <typename K, typename V>
+  Map(std::initializer_list<std::pair<K, V>> init) {
     for (const auto& kv : init) {
-      insert_or_assign(kv.first, kv.second);
+      insert_or_assign(std::make_shared<Key>(kv.first),
+                       std::make_shared<ValueType>(kv.second));
     }
   }
   // Insert or assign
-  void insert_or_assign(const key_type& key, const mapped_type& value) {
-    storage_key_type skey = make_key(key);
-    auto             it   = find_storage(skey);
+  void insert_or_assign(const std::shared_ptr<key_type>&    key,
+                        const std::shared_ptr<mapped_type>& value) {
+    auto it = find_storage(key);
     if (it != _items.end()) {
       it->second = value;
     } else {
-      _items.emplace_back(skey, value);
+      _items.emplace_back(key, value);
+      _key_ptrs.push_back(key);
+      _value_ptrs.push_back(value);
     }
   }
 
   // Insert
-  std::pair<iterator, bool> insert(const key_type&    key,
-                                   const mapped_type& value) {
-    storage_key_type skey = make_key(key);
-    auto             it   = find_storage(skey);
+  std::pair<iterator, bool> insert(const std::shared_ptr<key_type>&    key,
+                                   const std::shared_ptr<mapped_type>& value) {
+    auto it = find_storage(key);
     if (it != _items.end()) {
       return {it, false};
     }
-    _items.emplace_back(skey, value);
+    _items.emplace_back(key, value);
+    _key_ptrs.push_back(key);
+    _value_ptrs.push_back(value);
     return {std::prev(_items.end()), true};
   }
 
   // Find
-  iterator find(const key_type& key) {
-    storage_key_type skey = make_key(key);
-    return find_storage(skey);
+  iterator find(const std::shared_ptr<key_type>& key) {
+    return find_storage(key);
   }
-  const_iterator find(const key_type& key) const {
-    storage_key_type skey = make_key(key);
-    return find_storage(skey);
+  const_iterator find(const std::shared_ptr<key_type>& key) const {
+    return find_storage(key);
   }
 
   // at
-  mapped_type& at(const key_type& key) {
+  std::shared_ptr<mapped_type> at(const std::shared_ptr<key_type>& key) {
     auto it = find(key);
     if (it == _items.end()) throw std::out_of_range("Key not found");
-    return it->second;
+    return *(it->second);
   }
-  const mapped_type& at(const key_type& key) const {
+  const std::shared_ptr<mapped_type> at(
+      const std::shared_ptr<key_type>& key) const {
     auto it = find(key);
     if (it == _items.end()) throw std::out_of_range("Key not found");
-    return it->second;
+    return *(it->second);
   }
 
   // operator[]
-  mapped_type& operator[](const key_type& key) {
+  mapped_type& operator[](const std::shared_ptr<key_type>& key) {
     auto it = find(key);
     if (it == _items.end()) {
-      storage_key_type skey = make_key(key);
-      _items.emplace_back(skey, mapped_type{});
-      return _items.back().second;
+      auto value = std::make_shared<mapped_type>();
+      _items.emplace_back(key, value);
+      _key_ptrs.push_back(key);
+      _value_ptrs.push_back(value);
+      return *value;
     }
-    return it->second;
+    return *(it->second);
   }
 
   // erase
-  void erase(const key_type& key) {
+  void erase(const std::shared_ptr<key_type>& key) {
     auto it = find(key);
-    if (it != _items.end()) _items.erase(it);
+    if (it != _items.end()) {
+      auto idx = it - _items.begin();
+      _items.erase(it);
+      _key_ptrs.erase(_key_ptrs.begin() + idx);
+      _value_ptrs.erase(_value_ptrs.begin() + idx);
+    }
   }
 
   // size
@@ -137,7 +108,11 @@ class Map {
   bool empty() const { return _items.empty(); }
 
   // clear
-  void clear() { _items.clear(); }
+  void clear() {
+    _items.clear();
+    _key_ptrs.clear();
+    _value_ptrs.clear();
+  }
 
   // iterators
   iterator       begin() { return _items.begin(); }
@@ -148,40 +123,37 @@ class Map {
   const_iterator cend() const { return _items.cend(); }
 
   // contains
-  bool contains(const key_type& key) const { return find(key) != _items.end(); }
+  bool contains(const std::shared_ptr<key_type>& key) const {
+    return find(key) != _items.end();
+  }
+
+  // Get all key shared_ptrs
+  const std::vector<std::shared_ptr<key_type>>& keys() const {
+    return _key_ptrs;
+  }
+  // Get all value shared_ptrs
+  const std::vector<std::shared_ptr<mapped_type>>& values() const {
+    return _value_ptrs;
+  }
+
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<Song>(this), _items);
   }
 
  private:
-  container_type _items;
+  container_type                            _items;
+  std::vector<std::shared_ptr<key_type>>    _key_ptrs;
+  std::vector<std::shared_ptr<mapped_type>> _value_ptrs;
 
-  // Helper: convert key to string for hashing
-  template <typename T = Key>
-  static std::string key_to_string(const T& key) {
-    if (std::is_base_of<Song, T>::value) {
-      return key.to_json_string();
-    } else if (std::is_convertible<T, std::string>::value) {
-      return static_cast<std::string>(key);
-    } else {
-      static_assert(sizeof(T) == 0,
-                    "Key type must be Song or convertible to std::string");
-    }
-  }
-
-  storage_key_type make_key(const key_type& key) const {
-    return storage_key_type(key_to_string(key));
-  }
-
-  iterator find_storage(const storage_key_type& skey) {
+  iterator find_storage(const std::shared_ptr<key_type>& key) {
     return std::find_if(_items.begin(), _items.end(), [&](const value_type& v) {
-      return v.first == skey;
+      return *(v.first) == *key;
     });
   }
-  const_iterator find_storage(const storage_key_type& skey) const {
+  const_iterator find_storage(const std::shared_ptr<key_type>& key) const {
     return std::find_if(_items.begin(), _items.end(), [&](const value_type& v) {
-      return v.first == skey;
+      return *(v.first) == *key;
     });
   }
 

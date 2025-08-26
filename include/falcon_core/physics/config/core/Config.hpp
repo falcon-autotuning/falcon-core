@@ -17,11 +17,11 @@ namespace core {
  * @brief The imported config file for falcon use.
  */
 class Config : public StandardConfigConnections {
-  int                              _num_unique_channels;
-  ImpedancesSP                     _wiring_DC;
-  ChannelsSP                       _channels;
-  VoltageConstraintsSP             _voltage_constraints;
-  generic::MapSP<GnameSP, GroupSP> _groups;
+  int                          _num_unique_channels;
+  ImpedancesSP                 _wiring_DC;
+  ChannelsSP                   _channels;
+  VoltageConstraintsSP         _voltage_constraints;
+  generic::MapSP<Gname, Group> _groups;
 
  public:
   /**
@@ -57,7 +57,7 @@ class Config : public StandardConfigConnections {
   /**
    * @brief Return the DC wiring impedances for the physical layout.
    */
-  generic::MapSP<GnameSP, GroupSP> groups() const { return _groups; }
+  generic::MapSP<Gname, Group> groups() const { return _groups; }
   /**
    * @brief Returns the wiring impedances of the config.
    */
