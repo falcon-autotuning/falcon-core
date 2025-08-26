@@ -1,3 +1,8 @@
+/**
+ * @file CoupledKnobDomain.hpp
+ * @brief Defines the CoupledKnobDomain class for FalconCore.
+ */
+
 #pragma once
 
 #include "falcon_core/instrument_interfaces/names/Knob.hpp"
@@ -7,10 +12,20 @@ namespace falcon_core {
 namespace math {
 namespace domains {
 
+/**
+ * @brief Coupled domain for Knob objects.
+ */
 class CoupledKnobDomain
     : public CoupledLabelledDomain<instrument_interfaces::names::Knob> {
  public:
   using Knob = instrument_interfaces::names::Knob;
+  /**
+   * @brief Construct a coupled knob domain.
+   * @param min_val Minimum value.
+   * @param max_val Maximum value.
+   * @param label Shared pointer to knob label.
+   * @param coupled_domains Vector of coupled knob domains.
+   */
   CoupledKnobDomain(
       double                                             min_val,
       double                                             max_val,
@@ -21,6 +36,9 @@ class CoupledKnobDomain
  private:
   friend class cereal::access;
   CoupledKnobDomain() = default;
+  /**
+   * @brief Serialization method for cereal.
+   */
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<CoupledLabelledDomain<Knob>>(this));
