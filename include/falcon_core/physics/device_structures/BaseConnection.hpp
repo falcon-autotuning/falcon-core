@@ -29,8 +29,7 @@ using BaseConnectionSP = std::shared_ptr<BaseConnection>;
 }  // namespace falcon_core
 
 #ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::BaseConnection)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::physics::device_structures::BaseConnection)
+using namespace falcon_core::physics::device_structures;
+CEREAL_REGISTER_TYPE(BaseConnection)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, BaseConnection)
 #endif

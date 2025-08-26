@@ -2,6 +2,7 @@
 
 #include "falcon_core/autotuner_interfaces/names/Channels.hpp"
 #include "falcon_core/autotuner_interfaces/names/Gname.hpp"
+#include "falcon_core/generic/Map.hpp"
 #include "falcon_core/physics/config/core/Group.hpp"
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 #include "falcon_core/physics/config/core/VoltageConstraints.hpp"
@@ -16,11 +17,11 @@ namespace core {
  * @brief The imported config file for falcon use.
  */
 class Config : public StandardConfigConnections {
-  int                        _num_unique_channels;
-  ImpedancesSP               _wiring_DC;
-  ChannelsSP                 _channels;
-  VoltageConstraintsSP       _voltage_constraints;
-  std::map<GnameSP, GroupSP> _groups;
+  int                              _num_unique_channels;
+  ImpedancesSP                     _wiring_DC;
+  ChannelsSP                       _channels;
+  VoltageConstraintsSP             _voltage_constraints;
+  generic::MapSP<GnameSP, GroupSP> _groups;
 
  public:
   /**
@@ -34,19 +35,19 @@ class Config : public StandardConfigConnections {
    * @param wiring_DC The DC wiring impedances.
    * @param constriants The voltage constraints configuration.
    */
-  Config(const ScreeningGatesSP&          screening_gates,
-         const PlungerGates&              plunger_gates,
-         const Ohmics&                    ohmics,
-         const BarrierGates&              barrier_gates,
-         const ReservoirGates&            reservoir_gates,
-         const std::map<GnameSP, GroupSP> groups,
-         const ImpedancesSP&              wiring_DC,
-         const VoltageConstraintsSP&      constriants);
+  Config(const ScreeningGatesSP&            screening_gates,
+         const PlungerGatesSP&              plunger_gates,
+         const OhmicsSP&                    ohmics,
+         const BarrierGatesSP&              barrier_gates,
+         const ReservoirGatesSP&            reservoir_gates,
+         const generic::MapSP<Gname, Group> groups,
+         const ImpedancesSP&                wiring_DC,
+         const VoltageConstraintsSP&        constriants);
   /**
    * @brief Returns the number of unique channels associated with the current
    * sample.
    */
-  int num_unique_channels() const;
+  int num_unique_channels() const { return _num_unique_channels; }
   /**
    * @brief Return the voltage constraints for the physical layout.
    */
@@ -56,7 +57,7 @@ class Config : public StandardConfigConnections {
   /**
    * @brief Return the DC wiring impedances for the physical layout.
    */
-  std::map<GnameSP, GroupSP> groups() const { return _groups; }
+  generic::MapSP<GnameSP, GroupSP> groups() const { return _groups; }
   /**
    * @brief Returns the wiring impedances of the config.
    */
@@ -339,7 +340,7 @@ class Config : public StandardConfigConnections {
    * @return A map from ChannelSP to BarrierGatesSP containing the type of gate
    * we want.
    */
-  std::map<ChannelSP, BarrierGatesSP> get_gate_dict(
+  generic::MapSP<Channel, BarrierGates> get_gate_dict(
       const BarrierGateSP& type) const;
   /**
    * @brief Returns gates of a certain gatetype indexed by channel.
@@ -347,7 +348,7 @@ class Config : public StandardConfigConnections {
    * @return A map from ChannelSP to PlungerGatesSP containing the type of gate
    * we want.
    */
-  std::map<ChannelSP, PlungerGatesSP> get_gate_dict(
+  generic::MapSP<Channel, PlungerGates> get_gate_dict(
       const PlungerGateSP& type) const;
   /**
    * @brief Returns gates of a certain gatetype indexed by channel.
@@ -355,7 +356,7 @@ class Config : public StandardConfigConnections {
    * @return A map from ChannelSP to ReservoirGatesSP containing the type of
    * gate we want.
    */
-  std::map<ChannelSP, ReservoirGatesSP> get_gate_dict(
+  generic::MapSP<Channel, ReservoirGates> get_gate_dict(
       const ReservoirGateSP& type) const;
   /**
    * @brief Returns gates of a certain gatetype indexed by channel.
@@ -363,7 +364,7 @@ class Config : public StandardConfigConnections {
    * @return A map from ChannelSP to ScreeningGatesSP containing the type of
    * gate we want.
    */
-  std::map<ChannelSP, ScreeningGatesSP> get_gate_dict(
+  generic::MapSP<Channel, ScreeningGates> get_gate_dict(
       const ScreeningGateSP& type) const;
   /**
    * @brief Returns gates of a certain gatetype indexed by channel.
@@ -371,7 +372,7 @@ class Config : public StandardConfigConnections {
    * @return A map from ChannelSP to DotGatesSP containing the type of gate we
    * want.
    */
-  std::map<ChannelSP, DotGatesSP<DotGate>> get_gate_dict(
+  generic::MapSP<Channel, DotGates<DotGate>> get_gate_dict(
       const DotGateSP& type) const;
   /**
    * @brief Returns gates of a certain gatetype indexed by channel.
@@ -379,7 +380,7 @@ class Config : public StandardConfigConnections {
    * @return A map from ChannelSP to GatesSP<Gate> containing the type of gate
    * we want.
    */
-  std::map<ChannelSP, GatesSP<Gate>> get_gate_dict(const GateSP& type) const;
+  generic::MapSP<Channel, Gates<Gate>> get_gate_dict(const GateSP& type) const;
   /**
    * @brief Task to find isolated gates stored in the config.
    * @param type String corresponding to the gatetype pulled from the config.
@@ -575,7 +576,7 @@ class Config : public StandardConfigConnections {
    * @return A map from ChannelSP to BarrierGatesSP containing the type of gate
    * we want indexed by channel.
    */
-  std::map<ChannelSP, BarrierGatesSP> get_isolated_gates_by_type(
+  generic::MapSP<Channel, BarrierGates> get_isolated_gates_by_type(
       const BarrierGateSP& type) const;
   /**
    * @brief Returns gates of a certain gatetype indexed by channel which are
@@ -584,7 +585,7 @@ class Config : public StandardConfigConnections {
    * @return A map from ChannelSP to PlungerGatesSP containing the type of gate
    * we want indexed by channel.
    */
-  std::map<ChannelSP, PlungerGatesSP> get_isolated_gates_by_type(
+  generic::MapSP<Channel, PlungerGates> get_isolated_gates_by_type(
       const PlungerGateSP& type) const;
   /**
    * @brief Returns gates of a certain gatetype indexed by channel which are
@@ -593,7 +594,7 @@ class Config : public StandardConfigConnections {
    * @return A map from ChannelSP to ReservoirGatesSP containing the type of
    * gate we want indexed by channel.
    */
-  std::map<ChannelSP, ReservoirGatesSP> get_isolated_gates_by_type(
+  generic::MapSP<Channel, ReservoirGates> get_isolated_gates_by_type(
       const ReservoirGateSP& type) const;
   /**
    * @brief Returns gates of a certain gatetype indexed by channel which are
@@ -602,7 +603,7 @@ class Config : public StandardConfigConnections {
    * @return A map from ChannelSP to ScreeningGatesSP containing the type of
    * gate we want indexed by channel.
    */
-  std::map<ChannelSP, ScreeningGatesSP> get_isolated_gates_by_type(
+  generic::MapSP<Channel, ScreeningGates> get_isolated_gates_by_type(
       const ScreeningGateSP& type) const;
   /**
    * @brief Returns gates of a certain gatetype indexed by channel which are
@@ -611,7 +612,7 @@ class Config : public StandardConfigConnections {
    * @return A map from ChannelSP to DotGatesSP containing the type of gate we
    * want indexed by channel.
    */
-  std::map<ChannelSP, DotGatesSP<DotGate>> get_isolated_gates_by_type(
+  generic::MapSP<Channel, DotGates<DotGate>> get_isolated_gates_by_type(
       const DotGateSP& type) const;
   /**
    * @brief Returns gates of a certain gatetype indexed by channel which are
@@ -620,7 +621,7 @@ class Config : public StandardConfigConnections {
    * @return A map from ChannelSP to GatesSP<Gate> containing the type of gate
    * we want indexed by channel.
    */
-  std::map<ChannelSP, GatesSP<Gate>> get_isolated_gates_by_type(
+  generic::MapSP<Channel, Gates<Gate>> get_isolated_gates_by_type(
       const GateSP& type) const;
 
   /**

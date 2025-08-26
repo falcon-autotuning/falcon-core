@@ -1,11 +1,22 @@
 #pragma once
 
+#include "falcon_core/physics/device_structures/BarrierGate.hpp"
 #include "falcon_core/physics/device_structures/Impedance.hpp"
+#include "falcon_core/physics/device_structures/Ohmic.hpp"
+#include "falcon_core/physics/device_structures/PlungerGate.hpp"
+#include "falcon_core/physics/device_structures/ReservoirGate.hpp"
+#include "falcon_core/physics/device_structures/ScreeningGate.hpp"
 
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
 
+const std::unordered_map<Gate, std::string> CONNECTION_TO_ATTRIBUTE_NAME{
+    {BarrierGate(""), "barrier_gates"},
+    {PlungerGate(""), "plunger_gates"},
+    {ReservoirGate(""), "reservoir_gates"},
+    {ScreeningGate(""), "screening_gates"},
+    {Ohmic(""), "ohmics"}};
 /**
  * @brief A collection of Impedance measurements on a quantum dot sample.
  */
@@ -18,9 +29,16 @@ class Impedances : public generic::Song {
   // Forwarding methods
   void        push_back(const ImpedanceSP& item) { _items.push_back(item); }
   size_t      size() const { return _items.size(); }
+  bool        empty() const { return _items.empty(); }
   ImpedanceSP at(size_t idx) const { return _items.at(idx); }
-  const std::vector<ImpedanceSP>& items() const { return _items; }
-  std::vector<ImpedanceSP>&       items() { return _items; }
+  const std::vector<ImpedanceSP>&          items() const { return _items; }
+  std::vector<ImpedanceSP>&                items() { return _items; }
+  std::vector<ImpedanceSP>::const_iterator begin() const {
+    return _items.begin();
+  }
+  std::vector<ImpedanceSP>::iterator       begin() { return _items.begin(); }
+  std::vector<ImpedanceSP>::const_iterator end() const { return _items.end(); }
+  std::vector<ImpedanceSP>::iterator       end() { return _items.end(); }
 
   template <class Archive>
   void serialize(Archive& ar) {
