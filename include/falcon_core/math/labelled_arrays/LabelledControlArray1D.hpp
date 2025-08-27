@@ -1,3 +1,8 @@
+/**
+ * @file LabelledControlArray1D.hpp
+ * @brief Defines the LabelledControlArray1D class for FalconCore.
+ */
+
 #pragma once
 
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
@@ -9,29 +14,36 @@ namespace falcon_core {
 namespace math {
 namespace labelled_arrays {
 
+/// @brief 1D control array with instrument port label.
 class LabelledControlArray1D
     : public BaseLabelledArray<arrays::ControlArray1D,
                                instrument_interfaces::names::InstrumentPort<
                                    physics::device_structures::Gate>>,
       public IsLabelled1D<LabelledControlArray1D> {
  public:
+  /// @brief Construct from array and label.
   LabelledControlArray1D(
       std::shared_ptr<arrays::ControlArray1D> array,
       std::shared_ptr<instrument_interfaces::names::InstrumentPort<
           physics::device_structures::Gate>>  label)
       : BaseLabelledArray<arrays::ControlArray1D, LabelType>(array, label) {}
+  /// @brief Get the underlying array.
+  /// @throws std::runtime_error if array is null.
   const arrays::ControlArray1D& get_array() const {
     if (!this->_array) {
       throw std::runtime_error("Array is null");
     }
     return *this->_array;
   }
+  /// @brief Type alias for label type.
   using LabelType = instrument_interfaces::names::InstrumentPort<
       physics::device_structures::Gate>;
 
  private:
   friend class cereal::access;
+  /// @brief Default constructor for serialization.
   LabelledControlArray1D() = default;
+  /// @brief Serialization method for cereal.
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<BaseLabelledArray<arrays::ControlArray1D, LabelType>>(

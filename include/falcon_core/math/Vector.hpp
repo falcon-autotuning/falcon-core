@@ -1,3 +1,8 @@
+/**
+ * @file Vector.hpp
+ * @brief Defines the Vector class for FalconCore.
+ */
+
 #pragma once
 
 #include <memory>
@@ -11,6 +16,15 @@
 namespace falcon_core {
 namespace math {
 
+/**
+ * @brief Represents a vector in a multi-dimensional space, defined by start and
+ * end points.
+ *
+ * @details
+ * Vector supports arithmetic operations, magnitude calculation, and unit
+ * conversion. Each vector is defined by two points and a set of device
+ * connections.
+ */
 class Vector : public generic::Song {
   PointSP                           _end;
   PointSP                           _start;
@@ -18,17 +32,30 @@ class Vector : public generic::Song {
   SymbolUnitSP                      _unit;
 
  public:
-  // Constructors
+  /**
+   * @brief Construct a vector from start and end points.
+   * @param end End point.
+   * @param start Start point.
+   */
   Vector(PointSP end, PointSP start)
       : _end(end), _start(start), _unit(end->unit()) {
     update_connections();
   }
+  /**
+   * @brief Construct a vector from an end point (start is origin).
+   * @param end End point.
+   */
   Vector(PointSP end)
       : _end(end),
         _start(std::make_shared<Point>(end->unit())),
         _unit(end->unit()) {
     update_connections();
   }
+  /**
+   * @brief Construct a vector from a map of end coordinates and unit.
+   * @param end Map of connection to value for end point.
+   * @param unit Unit of the vector.
+   */
   Vector(const generic::Map<BaseConnection, double>& end, SymbolUnitSP unit)
       : _end(std::make_shared<Point>(unit)),
         _start(std::make_shared<Point>(unit)),
@@ -39,6 +66,12 @@ class Vector : public generic::Song {
     }
     update_connections();
   }
+  /**
+   * @brief Construct a vector from maps of start and end coordinates and unit.
+   * @param end Map of connection to value for end point.
+   * @param start Map of connection to value for start point.
+   * @param unit Unit of the vector.
+   */
   Vector(const generic::Map<BaseConnection, double>& end,
          const generic::Map<BaseConnection, double>& start,
          SymbolUnitSP                                unit)
@@ -54,9 +87,20 @@ class Vector : public generic::Song {
     update_connections();
   }
 
-  // Accessors
-  const PointSP&                          end() const { return _end; }
-  const PointSP&                          start() const { return _start; }
+  /**
+   * @brief Get the end point.
+   * @return Shared pointer to end point.
+   */
+  const PointSP& end() const { return _end; }
+  /**
+   * @brief Get the start point.
+   * @return Shared pointer to start point.
+   */
+  const PointSP& start() const { return _start; }
+  /**
+   * @brief Get the set of connections.
+   * @return Collection of connection pointers.
+   */
   const BaseConnectionsSP<BaseConnection> connections() const {
     return _connections;
   }
@@ -69,34 +113,64 @@ class Vector : public generic::Song {
     return std::make_pair(end_val, start_val);
   }
 
-  // Arithmetic
+  /**
+   * @brief Add two vectors.
+   * @param other The other vector.
+   * @return Shared pointer to the result.
+   */
   std::shared_ptr<Vector> operator+(const Vector& other) const {
     auto new_start = _start->operator+(*other._start);
     auto new_end   = _end->operator+(*other._end);
     return std::make_shared<Vector>(new_end, new_start);
   }
+
+  /**
+   * @brief Subtract two vectors.
+   * @param other The other vector.
+   * @return Shared pointer to the result.
+   */
   std::shared_ptr<Vector> operator-(const Vector& other) const {
     auto new_start = _start->operator-(*other._start);
     auto new_end   = _end->operator-(*other._end);
     return std::make_shared<Vector>(new_end, new_start);
   }
+
+  /**
+   * @brief Multiply vector by a scalar.
+   * @param scalar Scalar value.
+   * @return Shared pointer to the result.
+   */
   std::shared_ptr<Vector> operator*(double scalar) const {
     auto new_start = _start->operator*(scalar);
     auto new_end   = _end->operator*(scalar);
     return std::make_shared<Vector>(new_end, new_start);
   }
+
+  /**
+   * @brief Divide vector by a scalar.
+   * @param scalar Scalar value.
+   * @return Shared pointer to the result.
+   */
   std::shared_ptr<Vector> operator/(double scalar) const {
     auto new_start = _start->operator/(scalar);
     auto new_end   = _end->operator/(scalar);
     return std::make_shared<Vector>(new_end, new_start);
   }
+
+  /**
+   * @brief Negate the vector.
+   * @return Shared pointer to the result.
+   */
   std::shared_ptr<Vector> operator-() const {
     auto new_start = _start->operator-();
     auto new_end   = _end->operator-();
     return std::make_shared<Vector>(new_end, new_start);
   }
 
-  // Magnitude
+  /**
+   * @brief Calculate the magnitude of the vector.
+   * @return Magnitude as double.
+   */
   double magnitude() const {
     double sum = 0.0;
     for (const auto& conn : *_connections) {
@@ -106,14 +180,20 @@ class Vector : public generic::Song {
     return std::sqrt(sum);
   }
 
-  // Unit conversion
+  /**
+   * @brief Convert the vector to a different unit.
+   * @param target_unit Shared pointer to the target unit.
+   */
   void convert_to(SymbolUnitSP target_unit) {
     _end->set_unit(target_unit);
     _start->set_unit(target_unit);
     _unit = target_unit;
   }
 
-  // Serialization
+  /**
+   * @brief Serialization method for cereal.
+   * @param ar Archive object.
+   */
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this),
@@ -124,7 +204,10 @@ class Vector : public generic::Song {
   }
 
  public:
-  Vector() = default;  // for cereal/c++ containers
+  /**
+   * @brief Default constructor for cereal/c++ containers.
+   */
+  Vector() = default;
 
  private:
   void update_connections() {

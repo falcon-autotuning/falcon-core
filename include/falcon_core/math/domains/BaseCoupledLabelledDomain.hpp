@@ -1,26 +1,46 @@
+/**
+ * @file BaseCoupledLabelledDomain.hpp
+ * @brief Defines the BaseCoupledLabelledDomain template for FalconCore.
+ */
+
 #pragma once
 
 #include <cereal/types/vector.hpp>
 #include <memory>
 #include <vector>
-
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 
 namespace falcon_core {
 namespace math {
 namespace domains {
 
+/**
+ * @brief Container for a set of coupled labelled domains.
+ * @tparam T Type of the label.
+ */
 template <typename T>
 class BaseCoupledLabelledDomain : public generic::Song {
  public:
   using LabelledDomainT = LabelledDomain<T>;
   using DomainPtr       = std::shared_ptr<LabelledDomainT>;
 
+  /**
+   * @brief Construct from a vector of labelled domains.
+   * @param domains Vector of shared pointers to labelled domains.
+   */
   BaseCoupledLabelledDomain(const std::vector<DomainPtr>& domains)
       : _domains(domains) {}
 
+  /**
+   * @brief Get all domains.
+   * @return Vector of shared pointers to labelled domains.
+   */
   const std::vector<DomainPtr>& domains() const { return _domains; }
 
+  /**
+   * @brief Get all labels.
+   * @return Vector of shared pointers to labels.
+   */
   std::vector<std::shared_ptr<T>> labels() const {
     std::vector<std::shared_ptr<T>> result;
     for (const auto& domain : _domains) {
@@ -29,6 +49,12 @@ class BaseCoupledLabelledDomain : public generic::Song {
     return result;
   }
 
+  /**
+   * @brief Get domain by label.
+   * @param search Shared pointer to label to search for.
+   * @return Shared pointer to the matching domain.
+   * @throws std::runtime_error if not found.
+   */
   DomainPtr get_domain(const std::shared_ptr<T>& search) const {
     for (const auto& domain : _domains) {
       if (domain->label() == search) {
@@ -50,6 +76,9 @@ class BaseCoupledLabelledDomain : public generic::Song {
 
   friend class cereal::access;
   BaseCoupledLabelledDomain() = default;
+  /**
+   * @brief Serialization method for cereal.
+   */
   template <class Archive>
   void serialize(Archive& ar) {
     ar(_domains);

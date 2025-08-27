@@ -1,9 +1,13 @@
+/**
+ * @file CoupledLabelledDomain.hpp
+ * @brief Defines the CoupledLabelledDomain template for FalconCore.
+ */
+
 #pragma once
 
 #include <cereal/types/vector.hpp>
 #include <memory>
 #include <vector>
-
 #include "falcon_core/math/domains/BaseCoupledLabelledDomain.hpp"
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 
@@ -11,15 +15,30 @@ namespace falcon_core {
 namespace math {
 namespace domains {
 
+/**
+ * @brief Domain with a label and a set of coupled domains.
+ * @tparam T Type of the label.
+ */
 template <typename T>
 class CoupledLabelledDomain : public BaseCoupledLabelledDomain<T> {
  public:
   using LabelledDomainT = LabelledDomain<T>;
   using DomainPtr       = std::shared_ptr<LabelledDomainT>;
 
+  /**
+   * @brief Construct from a vector of coupled domains.
+   * @param domains Vector of shared pointers to labelled domains.
+   */
   CoupledLabelledDomain(const std::vector<DomainPtr>& domains)
       : BaseCoupledLabelledDomain<T>(domains) {}
 
+  /**
+   * @brief Construct with min/max, label, and coupled domains.
+   * @param min_val Minimum value.
+   * @param max_val Maximum value.
+   * @param label Shared pointer to label.
+   * @param coupled_domains Vector of coupled domains.
+   */
   CoupledLabelledDomain(double min_val, double max_val, std::shared_ptr<T> label, const std::vector<DomainPtr>& coupled_domains)
       : BaseCoupledLabelledDomain<T>(coupled_domains) {
     // Optionally, you could add a LabelledDomain for this label:
@@ -29,6 +48,9 @@ class CoupledLabelledDomain : public BaseCoupledLabelledDomain<T> {
  public:
   friend class cereal::access;
   CoupledLabelledDomain() = default;
+  /**
+   * @brief Serialization method for cereal.
+   */
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<BaseCoupledLabelledDomain<T>>(this));

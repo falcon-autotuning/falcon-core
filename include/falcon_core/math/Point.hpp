@@ -1,3 +1,8 @@
+/**
+ * @file Point.hpp
+ * @brief Defines the Point class for FalconCore.
+ */
+
 #pragma once
 
 #include <cereal/types/memory.hpp>
@@ -11,6 +16,14 @@
 
 namespace falcon_core {
 namespace math {
+/**
+ * @brief Represents a point in a multi-dimensional space, indexed by
+ * connections.
+ *
+ * @details
+ * Each Point stores a mapping from device connections to coordinate values,
+ * along with a unit. Supports arithmetic operations and iteration.
+ */
 class Point : public generic::Map<BaseConnection, double, Point> {
   using UnitPtr = std::shared_ptr<physics::units::SymbolUnit>;
   UnitPtr _unit;
@@ -22,16 +35,31 @@ class Point : public generic::Map<BaseConnection, double, Point> {
   }
 
  public:
-  // Constructors
+  /**
+   * @brief Construct a Point with a unit.
+   * @param unit The unit for the point.
+   */
   Point(UnitPtr unit) : _unit(unit) {}
+  /**
+   * @brief Construct a Point from connection coordinate pairs.
+   * @param unit The unit for the point.
+   * @param initializer_list The list of pairs.
+   */
   Point(std::initializer_list<std::pair<BaseConnectionSP, double>> init,
         UnitPtr                                                    unit)
       : _unit(unit), Map<BaseConnection, double, Point>(init) {}
 
-  // Unit accessor
+  /**
+   * @brief Get the unit of the point.
+   * @return Shared pointer to the unit.
+   */
   UnitPtr unit() const { return _unit; }
 
-  // Example operator+
+  /**
+   * @brief Add two points.
+   * @param other The other point.
+   * @return Shared pointer to the result.
+   */
   std::shared_ptr<Point> operator+(const Point& other) const {
     std::shared_ptr<Point> result = clone();
     // Add other point's values
@@ -46,7 +74,11 @@ class Point : public generic::Map<BaseConnection, double, Point> {
     return result;
   }
 
-  // Operator- for Point
+  /**
+   * @brief Subtract two points.
+   * @param other The other point.
+   * @return Shared pointer to the result.
+   */
   std::shared_ptr<Point> operator-(const Point& other) const {
     std::shared_ptr<Point> result = clone();
     for (const auto& kv : other.items()) {
@@ -60,7 +92,11 @@ class Point : public generic::Map<BaseConnection, double, Point> {
     return result;
   }
 
-  // Scalar multiplication
+  /**
+   * @brief Multiply point coordinates by a scalar.
+   * @param scalar The scalar value.
+   * @return Shared pointer to the result.
+   */
   std::shared_ptr<Point> operator*(double scalar) const {
     std::shared_ptr<Point> result = clone();
     for (double value : result->values()) {
@@ -69,7 +105,11 @@ class Point : public generic::Map<BaseConnection, double, Point> {
     return result;
   }
 
-  // Scalar division
+  /**
+   * @brief Divide point coordinates by a scalar.
+   * @param scalar The scalar value.
+   * @return Shared pointer to the result.
+   */
   std::shared_ptr<Point> operator/(double scalar) const {
     std::shared_ptr<Point> result = clone();
     for (double value : result->values()) {
@@ -78,7 +118,10 @@ class Point : public generic::Map<BaseConnection, double, Point> {
     return result;
   }
 
-  // Negation
+  /**
+   * @brief Negate the point coordinates.
+   * @return Shared pointer to the result.
+   */
   std::shared_ptr<Point> operator-() const {
     std::shared_ptr<Point> result = clone();
     for (double value : result->values()) {
@@ -87,6 +130,10 @@ class Point : public generic::Map<BaseConnection, double, Point> {
     return result;
   }
 
+  /**
+   * @brief Set the unit of the point.
+   * @param unit Shared pointer to the new unit.
+   */
   void set_unit(UnitPtr unit) { _unit = unit; }
 
  protected:
