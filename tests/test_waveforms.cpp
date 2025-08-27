@@ -23,7 +23,9 @@ TEST(WaveformTest, BasicConstructionAndAccess) {
 
   auto domain = std::make_shared<Domain>(0.0, 1.0);
   // Use a 1D CartesianDiscreteSpace for valid construction
-  auto space  = std::make_shared<CartesianDiscreteSpace1D>(10, domain);
+  auto cartesian_space = std::make_shared<falcon_core::math::spaces::Cartesian1DSpace>(10.0, domain);
+  auto axes = std::make_shared<falcon_core::math::Axes<falcon_core::math::domains::CoupledKnobDomain>>();
+  auto space  = std::make_shared<CartesianDiscreteSpace1D>(cartesian_space, axes);
 
   auto identity_transform = std::make_shared<IdentityTransform>();
   auto constant_transform = std::make_shared<ConstantTransform>(3.14);
@@ -42,7 +44,9 @@ TEST(WaveformTest, SerializationRoundTrip) {
 
   auto domain = std::make_shared<Domain>(-5.0, 5.0);
   // Use a 1D CartesianDiscreteSpace for valid construction
-  auto space  = std::make_shared<CartesianDiscreteSpace1D>(10, domain);
+  auto cartesian_space = std::make_shared<falcon_core::math::spaces::Cartesian1DSpace>(10.0, domain);
+  auto axes = std::make_shared<falcon_core::math::Axes<falcon_core::math::domains::CoupledKnobDomain>>();
+  auto space  = std::make_shared<CartesianDiscreteSpace1D>(cartesian_space, axes);
 
   auto identity_transform = std::make_shared<IdentityTransform>();
   auto constant_transform = std::make_shared<ConstantTransform>(42.0);
