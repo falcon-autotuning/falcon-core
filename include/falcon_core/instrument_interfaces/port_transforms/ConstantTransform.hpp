@@ -23,6 +23,11 @@ class ConstantTransform : public PortTransform {
             std::make_shared<math::analytic_functions::ConstantFunction>(
                 value)) {}
 
+  /**
+   * @brief Default constructor for serialization.
+   */
+  ConstantTransform() : PortTransform() {}
+
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<PortTransform>(this));

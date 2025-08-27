@@ -23,6 +23,11 @@ class PortTransform : public generic::Song {
       : _function(std::move(function)) {}
 
   /**
+   * @brief Default constructor for serialization.
+   */
+  PortTransform() : _function(nullptr) {}
+
+  /**
    * @brief Apply the transform to a value.
    * @param value The input value.
    * @return The transformed value.
