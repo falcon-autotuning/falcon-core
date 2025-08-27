@@ -29,7 +29,7 @@ class GateGeometryArray1D : public generic::Song {
   CentralDotGates                         _central_dot_gates;
   DotGates<DotGate>                       _raw_central_gates;
   ScreeningGatesSP                        _screening_gates;
-  BaseConnectionsSP<BaseConnection>       _lineararray;
+  BaseConnectionsSP                       _lineararray;
   std::unordered_map<std::string, GateSP> _gate_name_map;
 
  public:
@@ -41,8 +41,8 @@ class GateGeometryArray1D : public generic::Song {
    * @throws std::invalid_argument if the input does not conform to the expected
    * structure.
    */
-  GateGeometryArray1D(BaseConnectionsSP<BaseConnection> lineararray,
-                      ScreeningGatesSP                  screening_gates);
+  GateGeometryArray1D(BaseConnectionsSP lineararray,
+                      ScreeningGatesSP  screening_gates);
   using iterator = typename BaseConnections<BaseConnection>::iterator;
   using const_iterator =
       typename BaseConnections<BaseConnection>::const_iterator;
@@ -98,7 +98,7 @@ class GateGeometryArray1D : public generic::Song {
    * @brief Gets the linear array of connections.
    * @return The linear array of connections.
    */
-  BaseConnectionsSP<BaseConnection> lineararray() const { return _lineararray; }
+  BaseConnectionsSP lineararray() const { return _lineararray; }
   /**
    * @brief Gets the screening gates in the geometry.
    * @return The screening gates in the geometry.

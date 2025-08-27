@@ -3,6 +3,7 @@
 #include <cereal/archives/json.hpp>
 #include <memory>
 
+#include "falcon_core/generic/List.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 namespace falcon_core {
 namespace physics {
@@ -14,12 +15,9 @@ namespace device_structures {
  * Uses composition: contains a vector of shared_ptr<T>.
  */
 template <typename T>
-class BaseConnections : public virtual falcon_core::generic::Song {
+class BaseConnections : public virtual falcon_core::generic::List<T> {
   static_assert(std::is_base_of<BaseConnection, T>::value,
                 "T must be derived from BaseConnection");
-
- private:
-  std::vector<std::shared_ptr<T>> _items;
 
  public:
   /**
@@ -60,59 +58,30 @@ class BaseConnections : public virtual falcon_core::generic::Song {
    *   @endcode
    */
   BaseConnections() = default;
-  BaseConnections(size_t count) : _items(count) {}
+  BaseConnections(size_t count) : generic::List<T>(count) {}
   BaseConnections(size_t count, const std::shared_ptr<T>& value)
-      : _items(count, value) {}
-  BaseConnections(const std::vector<std::shared_ptr<T>>& vec) : _items(vec) {}
-
-  // Forwarding methods
-  void   push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }
-  size_t size() const { return _items.size(); }
-  std::shared_ptr<T>       at(const size_t idx) const { return _items.at(idx); }
-  const std::shared_ptr<T> operator[](const size_t idx) const {
-    return _items[idx];
-  }
-  const std::vector<std::shared_ptr<T>> items() const { return _items; }
-  std::vector<std::shared_ptr<T>>       items() { return _items; }
-  typename std::vector<std::shared_ptr<T>>::iterator begin() {
-    return _items.begin();
-  }
-  typename std::vector<std::shared_ptr<T>>::iterator end() {
-    return _items.end();
-  }
-  typename std::vector<std::shared_ptr<T>>::const_iterator begin() const {
-    return _items.begin();
-  }
-  typename std::vector<std::shared_ptr<T>>::const_iterator end() const {
-    return _items.end();
-  }
-  void insert(typename std::vector<std::shared_ptr<T>>::iterator       pos,
-              typename std::vector<std::shared_ptr<T>>::const_iterator first,
-              typename std::vector<std::shared_ptr<T>>::const_iterator last) {
-    _items.insert(pos, first, last);
-  }
-  using iterator = typename std::vector<std::shared_ptr<T>>::iterator;
-  using const_iterator =
-      typename std::vector<std::shared_ptr<T>>::const_iterator;
+      : falcon_core::generic::List<T>(count, value) {}
+  BaseConnections(const std::vector<std::shared_ptr<T>>& vec)
+      : generic::List<T>(vec) {}
 
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _items);
+    ar(cereal::base_class<generic::List<T>>(this));
   }
 
  protected:
   friend class cereal::access;
 };
-template <typename T>
-using BaseConnectionsSP = std::shared_ptr<BaseConnections<T>>;
+using BaseConnectionsSP = std::shared_ptr<BaseConnections<BaseConnection>>;
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
 #ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::BaseConnections<
-                     falcon_core::physics::device_structures::BaseConnection>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::physics::device_structures::BaseConnections<
-        falcon_core::physics::device_structures::BaseConnection>)
+using namespace falcon_core::physics::device_structures;
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<BaseConnection>)
+CEREAL_REGISTER_TYPE(BaseConnections<BaseConnection>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::generic::List<BaseConnection>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     BaseConnections<BaseConnection>)
 #endif

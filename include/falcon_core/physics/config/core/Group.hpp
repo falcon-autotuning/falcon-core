@@ -28,13 +28,13 @@ class Group : public StandardConfigConnections {
    * @param barrier_gates The barrier gates in the group.
    * @param order The order of the gates in the group.
    */
-  Group(const ChannelSP&                         name,
-        const int&                               num_dots,
-        const ScreeningGatesSP&                  screening_gates,
-        const ReservoirGatesSP&                  reservoir_gates,
-        const PlungerGatesSP&                    plunger_gates,
-        const BarrierGatesSP&                    barrier_gates,
-        const BaseConnectionsSP<BaseConnection>& order);
+  Group(const ChannelSP&         name,
+        const int&               num_dots,
+        const ScreeningGatesSP&  screening_gates,
+        const ReservoirGatesSP&  reservoir_gates,
+        const PlungerGatesSP&    plunger_gates,
+        const BarrierGatesSP&    barrier_gates,
+        const BaseConnectionsSP& order);
   // : StandardConfigConnections(screening_gates,
   //                             reservoir_gates,
   //                             plunger_gates,

@@ -10,9 +10,8 @@
 #include "falcon_core/physics/device_structures/PlungerGate.hpp"
 using namespace falcon_core::physics::config::geometries;
 
-GateGeometryArray1D::GateGeometryArray1D(
-    BaseConnectionsSP<BaseConnection> lineararray,
-    ScreeningGatesSP                  screening_gates)
+GateGeometryArray1D::GateGeometryArray1D(BaseConnectionsSP lineararray,
+                                         ScreeningGatesSP  screening_gates)
     : _lineararray(lineararray), _screening_gates(screening_gates) {
   if (screening_gates->size() != 2) {
     throw std::invalid_argument("Expected two screening gates.");

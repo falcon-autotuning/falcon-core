@@ -111,8 +111,7 @@ GatesSP<Gate> StandardConfigConnections::get_all_gates() const {
   return std::make_shared<Gates<Gate>>(combination);
 }
 OhmicsSP StandardConfigConnections::get_all_ohmics() const { return _ohmics; }
-BaseConnectionsSP<BaseConnection>
-StandardConfigConnections::get_all_connections() const {
+BaseConnectionsSP StandardConfigConnections::get_all_connections() const {
   auto ohmic =
       std::dynamic_pointer_cast<BaseConnections<BaseConnection>>(_ohmics);
   auto plunger = std::dynamic_pointer_cast<BaseConnections<BaseConnection>>(

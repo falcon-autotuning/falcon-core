@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/generic/List.hpp"
 #include "falcon_core/physics/device_structures/Impedance.hpp"
 namespace falcon_core {
 namespace physics {
@@ -7,29 +8,17 @@ namespace device_structures {
 /**
  * @brief A collection of Impedance measurements on a quantum dot sample.
  */
-class Impedances : public generic::Song {
-  std::vector<ImpedanceSP> _items;
-
+class Impedances : public generic::List<Impedance> {
  public:
   Impedances() = default;
-
-  // Forwarding methods
-  void        push_back(const ImpedanceSP& item) { _items.push_back(item); }
-  size_t      size() const { return _items.size(); }
-  bool        empty() const { return _items.empty(); }
-  ImpedanceSP at(size_t idx) const { return _items.at(idx); }
-  const std::vector<ImpedanceSP>&          items() const { return _items; }
-  std::vector<ImpedanceSP>&                items() { return _items; }
-  std::vector<ImpedanceSP>::const_iterator begin() const {
-    return _items.begin();
-  }
-  std::vector<ImpedanceSP>::iterator       begin() { return _items.begin(); }
-  std::vector<ImpedanceSP>::const_iterator end() const { return _items.end(); }
-  std::vector<ImpedanceSP>::iterator       end() { return _items.end(); }
+  Impedances(size_t count) : List<Impedance>(count) {}
+  Impedances(size_t count, const ImpedanceSP& value)
+      : List<Impedance>(count, value) {}
+  Impedances(const std::vector<ImpedanceSP>& vec) : List<Impedance>(vec) {}
 
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _items);
+    ar(cereal::base_class<generic::List<Impedance>>(this));
   }
 
  protected:
@@ -41,6 +30,9 @@ using ImpedancesSP = std::shared_ptr<Impedances>;
 }  // namespace falcon_core
 #ifndef SWIG
 using namespace falcon_core::physics::device_structures;
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<Impedance>)
 CEREAL_REGISTER_TYPE(Impedances)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::generic::List<Impedance>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Impedances)
 #endif

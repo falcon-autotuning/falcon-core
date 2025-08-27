@@ -1,23 +1,12 @@
 #pragma once
 
 #include <algorithm>
-#include <iterator>
-#include <memory>
-#include <stdexcept>
-#include <utility>
-#include <vector>
 
+#include "falcon_core/generic/IsPrimitive.hpp"
 #include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core {
 namespace generic {
-// Helper that decides if a type is primitve or not
-template <typename T>
-struct is_primitive
-    : std::integral_constant<
-          bool,
-          std::is_arithmetic<T>::value || std::is_same<T, std::string>::value ||
-              std::is_same<T, char>::value || std::is_same<T, bool>::value> {};
 
 template <typename Key, typename Value, typename Derived = void>
 class Map : public generic::Song {
@@ -50,7 +39,7 @@ class Map : public generic::Song {
 
  public:
   Map() = default;
-  Map(std::initializer_list<ContainerItem> init) {
+  Map(const Container& init) {
     for (const auto& kv : init) {
       insert_or_assign(kv.first, kv.second);
     }

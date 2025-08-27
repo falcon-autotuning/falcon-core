@@ -204,7 +204,7 @@ class StandardConfigConnections : public generic::Song {
   /**
    * @brief Gets all of the connections for this collection from the config.
    */
-  BaseConnectionsSP<BaseConnection> get_all_connections() const;
+  BaseConnectionsSP get_all_connections() const;
   /**
    * @brief If this ohmic is a member of this group or not.
    */

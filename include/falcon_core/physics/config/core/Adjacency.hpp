@@ -5,6 +5,7 @@
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/Gate.hpp"
+#include "falcon_core/physics/device_structures/Gates.hpp"
 
 namespace falcon_core {
 namespace physics {
@@ -13,12 +14,13 @@ namespace core {
 
 class Adjacency : public generic::Song {
   using MatrixType = Eigen::Matrix<int, Eigen::Dynamic, Eigen::Dynamic>;
-  std::vector<device_structures::Gate> _indexes;
-  MatrixType                           _matrix;
+  using Indexes =
+      physics::device_structures::GatesSP<physics::device_structures::Gate>;
+  Indexes    _indexes;
+  MatrixType _matrix;
 
  public:
-  Adjacency(const MatrixType                                   &matrix,
-            const std::vector<physics::device_structures::Gate> indexes)
+  Adjacency(const MatrixType &matrix, const Indexes indexes)
       : _matrix(matrix), _indexes(indexes) {}
   /**
    * @brief Returns the matrix containing the device layout adjacency
@@ -28,8 +30,8 @@ class Adjacency : public generic::Song {
    # @brief Returns the indexes of the gates in the order for the adjacency
    matrix
   */
-  std::vector<device_structures::Gate> indexes() const { return _indexes; }
-  int                                  size() const { return _indexes.size(); }
+  Indexes indexes() const { return _indexes; }
+  int     size() const { return (*_indexes).size(); }
 
   /**
    * @brief Returns the pairs of indexes where the adjacency matrix is true (1)

@@ -20,8 +20,12 @@ TEST(VectorTest, SerializationRoundTrip) {
   auto conn1 = std::make_shared<BaseConnection>("A");
   auto conn2 = std::make_shared<BaseConnection>("B");
 
-  Map<BaseConnection, double> end{{conn1, 1.0}, {conn2, 2.0}};
-  Map<BaseConnection, double> start{{conn1, 0.0}, {conn2, 1.0}};
+  Map<BaseConnection, double> end(
+      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+          {conn1, 1.0}, {conn2, 2.0}});
+  Map<BaseConnection, double> start(
+      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+          {conn1, 0.0}, {conn2, 1.0}});
 
   auto vec = std::make_shared<Vector>(end, start, unit);
 
@@ -49,10 +53,18 @@ TEST(VectorTest, ArithmeticOperators) {
   auto conn1 = std::make_shared<BaseConnection>("A");
   auto conn2 = std::make_shared<BaseConnection>("B");
 
-  Map<BaseConnection, double> end1{{conn1, 1.0}, {conn2, 2.0}};
-  Map<BaseConnection, double> start1{{conn1, 0.0}, {conn2, 1.0}};
-  Map<BaseConnection, double> end2{{conn1, 3.0}, {conn2, 4.0}};
-  Map<BaseConnection, double> start2{{conn1, 1.0}, {conn2, 2.0}};
+  Map<BaseConnection, double> end1(
+      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+          {conn1, 1.0}, {conn2, 2.0}});
+  Map<BaseConnection, double> start1(
+      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+          {conn1, 0.0}, {conn2, 1.0}});
+  Map<BaseConnection, double> end2(
+      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+          {conn1, 3.0}, {conn2, 4.0}});
+  Map<BaseConnection, double> start2(
+      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+          {conn1, 1.0}, {conn2, 2.0}});
 
   auto v1 = std::make_shared<Vector>(end1, start1, unit);
   auto v2 = std::make_shared<Vector>(end2, start2, unit);
@@ -93,8 +105,12 @@ TEST(VectorTest, MagnitudeAndIndexing) {
   auto conn1 = std::make_shared<BaseConnection>("A");
   auto conn2 = std::make_shared<BaseConnection>("B");
 
-  Map<BaseConnection, double> end{{conn1, 3.0}, {conn2, 4.0}};
-  Map<BaseConnection, double> start{{conn1, 0.0}, {conn2, 0.0}};
+  Map<BaseConnection, double> end(
+      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+          {conn1, 3.0}, {conn2, 4.0}});
+  Map<BaseConnection, double> start(
+      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+          {conn1, 0.0}, {conn2, 0.0}});
 
   auto vec = std::make_shared<Vector>(end, start, unit);
 
@@ -114,8 +130,12 @@ TEST(VectorTest, UnitConversion) {
   auto unit2 = std::make_shared<SymbolUnit>(Units::Meter);
   auto conn1 = std::make_shared<BaseConnection>("A");
 
-  Map<BaseConnection, double> end{{conn1, 1.0}};
-  Map<BaseConnection, double> start{{conn1, 0.0}};
+  Map<BaseConnection, double> end(
+      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+          {conn1, 1.0}});
+  Map<BaseConnection, double> start(
+      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+          {conn1, 0.0}});
 
   auto vec = std::make_shared<Vector>(end, start, unit1);
   vec->convert_to(unit2);

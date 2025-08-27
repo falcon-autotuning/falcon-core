@@ -26,10 +26,10 @@ namespace math {
  * connections.
  */
 class Vector : public generic::Song {
-  PointSP                           _end;
-  PointSP                           _start;
-  BaseConnectionsSP<BaseConnection> _connections;
-  SymbolUnitSP                      _unit;
+  PointSP           _end;
+  PointSP           _start;
+  BaseConnectionsSP _connections;
+  SymbolUnitSP      _unit;
 
  public:
   /**
@@ -101,10 +101,8 @@ class Vector : public generic::Song {
    * @brief Get the set of connections.
    * @return Collection of connection pointers.
    */
-  const BaseConnectionsSP<BaseConnection> connections() const {
-    return _connections;
-  }
-  SymbolUnitSP unit() const { return _unit; }
+  const BaseConnectionsSP connections() const { return _connections; }
+  SymbolUnitSP            unit() const { return _unit; }
 
   // Indexing
   std::pair<double, double> operator[](const BaseConnectionSP& conn) const {
