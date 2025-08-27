@@ -189,3 +189,8 @@ using SymbolUnitSP = std::shared_ptr<SymbolUnit>;
 }  // namespace units
 }  // namespace physics
 }  // namespace falcon_core
+#ifndef SWIG
+using namespace falcon_core::physics::units;
+CEREAL_REGISTER_TYPE(SymbolUnit)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, SymbolUnit)
+#endif

@@ -336,7 +336,8 @@ ChannelsSP Config::return_channels_from_gate(const GateSP& gate) const {
       channels.insert(group->name());
     }
   }
-  return std::make_shared<Channels>(channels);
+  return std::make_shared<Channels>(
+      std::vector<ChannelSP>(channels.begin(), channels.end()));
 }
 
 ChannelSP Config::return_channel_from_gate(const GateSP& gate) const {
@@ -629,69 +630,54 @@ MapSPT get_isolated_gates_by_type_impl(const ChannelsSP& channels,
   return out;
 }
 
-// BarrierGate
 generic::MapSP<Channel, BarrierGates> Config::get_isolated_gates_by_type(
     const BarrierGateSP& type) const {
-  return get_isolated_gates_by_type_impl<BarrierGatesSP,
-                                         generic::MapSP<Channel, BarrierGates>>(
+  return get_isolated_gates_by_type_impl(
       get_current_channels(), get_gate_dict(type), get_isolated_gates(type));
 }
 
-// PlungerGate
 generic::MapSP<Channel, PlungerGates> Config::get_isolated_gates_by_type(
     const PlungerGateSP& type) const {
-  return get_isolated_gates_by_type_impl<PlungerGatesSP,
-                                         generic::MapSP<Channel, PlungerGates>>(
+  return get_isolated_gates_by_type_impl(
       get_current_channels(), get_gate_dict(type), get_isolated_gates(type));
 }
 
-// ReservoirGate
 generic::MapSP<Channel, ReservoirGates> Config::get_isolated_gates_by_type(
     const ReservoirGateSP& type) const {
-  return get_isolated_gates_by_type_impl<
-      ReservoirGatesSP,
-      generic::MapSP<Channel, ReservoirGates>>(
+  return get_isolated_gates_by_type_impl(
       get_current_channels(), get_gate_dict(type), get_isolated_gates(type));
 }
 
-// ScreeningGate
 generic::MapSP<Channel, ScreeningGates> Config::get_isolated_gates_by_type(
     const ScreeningGateSP& type) const {
-  return get_isolated_gates_by_type_impl<
-      ScreeningGatesSP,
-      generic::MapSP<Channel, ScreeningGates>>(
+  return get_isolated_gates_by_type_impl(
       get_current_channels(), get_gate_dict(type), get_isolated_gates(type));
 }
 
-// DotGate
 generic::MapSP<Channel, DotGates<DotGate>> Config::get_isolated_gates_by_type(
     const DotGateSP& type) const {
-  return get_isolated_gates_by_type_impl<
-      DotGatesSP<DotGate>,
-      generic::MapSP<Channel, DotGates<DotGate>>>(
+  return get_isolated_gates_by_type_impl(
       get_current_channels(), get_gate_dict(type), get_isolated_gates(type));
 }
 
-// Gate
 generic::MapSP<Channel, Gates<Gate>> Config::get_isolated_gates_by_type(
     const GateSP& type) const {
-  return get_isolated_gates_by_type_impl<GatesSP<Gate>,
-                                         generic::MapSP<Channel, Gates<Gate>>>(
+  return get_isolated_gates_by_type_impl(
       get_current_channels(), get_gate_dict(type), get_isolated_gates(type));
 }
 GateRelationsSP Config::generate_gate_relations() const {
-  std::unordered_map<GateSP, std::vector<GateSP>> out;
-  auto                                            all_gates  = get_all_gates();
-  auto                                            all_groups = get_all_groups();
-  for (const auto& gate : *all_gates) {
-    std::vector<GateSP> neighbors;
-    for (const auto& group : all_groups) {
+  GateRelations        out;
+  GatesSP<Gate>        all_gates  = get_all_gates();
+  std::vector<GroupSP> all_groups = get_all_groups();
+  for (const GateSP& gate : *all_gates) {
+    GatesSP<Gate> neighbors;
+    for (const GroupSP& group : all_groups) {
       if (!group->has_gate(gate)) continue;
-      auto group_neighbors = group->order()->query_neighbors(gate);
-      neighbors.insert(
-          neighbors.end(), group_neighbors->begin(), group_neighbors->end());
+      GatesSP<Gate> group_neighbors = group->order()->query_neighbors(gate);
+      neighbors->insert(
+          neighbors->end(), group_neighbors->begin(), group_neighbors->end());
     }
-    out[gate] = std::move(neighbors);
+    out[gate] = *neighbors;
   }
   return std::make_shared<GateRelations>(out);
 }

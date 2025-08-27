@@ -14,7 +14,7 @@ class Gname : public NameBase {
   /**
    * @brief Collect the gname as a string.
    */
-  std::string gname() const { this->name(); }
+  std::string gname() const { return name(); }
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<NameBase>(this));

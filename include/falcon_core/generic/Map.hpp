@@ -11,28 +11,51 @@
 
 namespace falcon_core {
 namespace generic {
-template <typename Key, typename ValueType>
-class Map {
+template <typename Key, typename ValueType, typename Derived = void>
+class Map : public generic::Song {
  public:
-  using key_type    = Key;
-  using mapped_type = ValueType;
-  using value_type =
-      std::pair<std::shared_ptr<key_type>, std::shared_ptr<mapped_type>>;
-  using container_type = std::vector<value_type>;
+  using StoredKey   = std::shared_ptr<Key>;
+  using StoredValue = typename std::conditional<
+      std::is_arithmetic<ValueType>::value ||
+          std::is_same<ValueType, std::string>::value ||
+          std::is_same<ValueType, char>::value ||
+          std::is_same<ValueType, bool>::value,
+      ValueType,
+      std::shared_ptr<ValueType>>::type;
+  using value          = std::pair<StoredKey, StoredValue>;
+  using container_type = std::vector<value>;
   using iterator       = typename container_type::iterator;
   using const_iterator = typename container_type::const_iterator;
 
   Map() = default;
-  template <typename K, typename V>
-  Map(std::initializer_list<std::pair<K, V>> init) {
+  // For primitive ValueType
+  template <
+      typename T = ValueType,
+      typename std::enable_if<
+          std::is_arithmetic<T>::value || std::is_same<T, std::string>::value ||
+              std::is_same<T, char>::value || std::is_same<T, bool>::value,
+          int>::type = 0>
+  Map(std::initializer_list<std::pair<StoredKey, ValueType>> init) {
     for (const auto& kv : init) {
-      insert_or_assign(std::make_shared<Key>(kv.first),
-                       std::make_shared<ValueType>(kv.second));
+      insert_or_assign(kv.first, kv.second);
+    }
+  }
+
+  // For non-primitive ValueType
+  template <typename T                         = ValueType,
+            typename std::enable_if<!(std::is_arithmetic<T>::value ||
+                                      std::is_same<T, std::string>::value ||
+                                      std::is_same<T, char>::value ||
+                                      std::is_same<T, bool>::value),
+                                    int>::type = 0>
+  Map(std::initializer_list<std::pair<StoredKey, std::shared_ptr<ValueType>>>
+          init) {
+    for (const auto& kv : init) {
+      insert_or_assign(kv.first, kv.second);
     }
   }
   // Insert or assign
-  void insert_or_assign(const std::shared_ptr<key_type>&    key,
-                        const std::shared_ptr<mapped_type>& value) {
+  void insert_or_assign(const StoredKey& key, const StoredValue& value) {
     auto it = find_storage(key);
     if (it != _items.end()) {
       it->second = value;
@@ -42,10 +65,27 @@ class Map {
       _value_ptrs.push_back(value);
     }
   }
+  template <typename V = ValueType>
+  typename std::enable_if<
+      std::is_arithmetic<V>::value || std::is_same<V, std::string>::value ||
+          std::is_same<V, char>::value || std::is_same<V, bool>::value,
+      V>::type
+  make_stored_value(const V& v) {
+    return v;
+  }
+
+  template <typename V = ValueType>
+  typename std::enable_if<
+      !(std::is_arithmetic<V>::value || std::is_same<V, std::string>::value ||
+        std::is_same<V, char>::value || std::is_same<V, bool>::value),
+      std::shared_ptr<V>>::type
+  make_stored_value(const V& v) {
+    return std::make_shared<V>(v);
+  }
 
   // Insert
-  std::pair<iterator, bool> insert(const std::shared_ptr<key_type>&    key,
-                                   const std::shared_ptr<mapped_type>& value) {
+  std::pair<iterator, bool> insert(const StoredKey&   key,
+                                   const StoredValue& value) {
     auto it = find_storage(key);
     if (it != _items.end()) {
       return {it, false};
@@ -57,41 +97,58 @@ class Map {
   }
 
   // Find
-  iterator find(const std::shared_ptr<key_type>& key) {
-    return find_storage(key);
-  }
-  const_iterator find(const std::shared_ptr<key_type>& key) const {
-    return find_storage(key);
-  }
+  iterator       find(const StoredKey& key) { return find_storage(key); }
+  const_iterator find(const StoredKey& key) const { return find_storage(key); }
 
   // at
-  std::shared_ptr<mapped_type> at(const std::shared_ptr<key_type>& key) {
-    auto it = find(key);
+  StoredValue at(const StoredKey& key) {
+    iterator it = find(key);
     if (it == _items.end()) throw std::out_of_range("Key not found");
-    return *(it->second);
+    return it->second;
   }
-  const std::shared_ptr<mapped_type> at(
-      const std::shared_ptr<key_type>& key) const {
-    auto it = find(key);
+  const StoredValue at(const StoredKey& key) const {
+    iterator it = find(key);
     if (it == _items.end()) throw std::out_of_range("Key not found");
     return *(it->second);
   }
 
-  // operator[]
-  mapped_type& operator[](const std::shared_ptr<key_type>& key) {
+  // For primitive types
+  template <typename K = Key, typename V = ValueType>
+  typename std::enable_if<
+      std::is_arithmetic<V>::value || std::is_same<V, std::string>::value ||
+          std::is_same<V, char>::value || std::is_same<V, bool>::value,
+      V&>::type
+  operator[](const std::shared_ptr<K>& key) {
     auto it = find(key);
     if (it == _items.end()) {
-      auto value = std::make_shared<mapped_type>();
-      _items.emplace_back(key, value);
+      _items.emplace_back(key, V());
       _key_ptrs.push_back(key);
-      _value_ptrs.push_back(value);
-      return *value;
+      _value_ptrs.push_back(V());
+      return _items.back().second;
+    }
+    return it->second;
+  }
+
+  // For non-primitive types
+  template <typename K = Key, typename V = ValueType>
+  typename std::enable_if<
+      !(std::is_arithmetic<V>::value || std::is_same<V, std::string>::value ||
+        std::is_same<V, char>::value || std::is_same<V, bool>::value),
+      V&>::type
+  operator[](const std::shared_ptr<K>& key) {
+    auto it = find(key);
+    if (it == _items.end()) {
+      auto ptr = std::make_shared<V>();
+      _items.emplace_back(key, ptr);
+      _key_ptrs.push_back(key);
+      _value_ptrs.push_back(ptr);
+      return *(_items.back().second);
     }
     return *(it->second);
   }
 
   // erase
-  void erase(const std::shared_ptr<key_type>& key) {
+  void erase(const StoredKey& key) {
     auto it = find(key);
     if (it != _items.end()) {
       auto idx = it - _items.begin();
@@ -123,17 +180,39 @@ class Map {
   const_iterator cend() const { return _items.cend(); }
 
   // contains
-  bool contains(const std::shared_ptr<key_type>& key) const {
+  bool contains(const StoredKey& key) const {
     return find(key) != _items.end();
   }
 
   // Get all key shared_ptrs
-  const std::vector<std::shared_ptr<key_type>>& keys() const {
-    return _key_ptrs;
-  }
+  const std::vector<StoredKey>& keys() const { return _key_ptrs; }
+  const container_type          items() const { return _items; }
   // Get all value shared_ptrs
-  const std::vector<std::shared_ptr<mapped_type>>& values() const {
-    return _value_ptrs;
+  const std::vector<StoredValue>& values() const { return _value_ptrs; }
+  // SFINAE: If Derived is void, clone returns Map
+  template <typename D = Derived>
+  typename std::enable_if<std::is_same<D, void>::value,
+                          std::shared_ptr<Map>>::type
+  clone() const {
+    auto result = std::make_shared<Map>(*this);
+    result->clear();
+    for (const auto& kv : _items) {
+      result->insert_or_assign(kv.first, kv.second);
+    }
+    return result;
+  }
+
+  // SFINAE: If Derived is not void, clone returns Derived
+  template <typename D = Derived>
+  typename std::enable_if<!std::is_same<D, void>::value,
+                          std::shared_ptr<Derived>>::type
+  clone() const {
+    auto result = std::make_shared<Derived>(static_cast<const Derived&>(*this));
+    result->clear();
+    for (const auto& kv : _items) {
+      result->insert_or_assign(kv.first, kv.second);
+    }
+    return result;
   }
 
   template <class Archive>
@@ -142,19 +221,34 @@ class Map {
   }
 
  private:
-  container_type                            _items;
-  std::vector<std::shared_ptr<key_type>>    _key_ptrs;
-  std::vector<std::shared_ptr<mapped_type>> _value_ptrs;
+  container_type           _items;
+  std::vector<StoredKey>   _key_ptrs;
+  std::vector<StoredValue> _value_ptrs;
 
-  iterator find_storage(const std::shared_ptr<key_type>& key) {
-    return std::find_if(_items.begin(), _items.end(), [&](const value_type& v) {
+  iterator find_storage(const StoredKey& key) {
+    return std::find_if(_items.begin(), _items.end(), [&](const value& v) {
       return *(v.first) == *key;
     });
   }
-  const_iterator find_storage(const std::shared_ptr<key_type>& key) const {
-    return std::find_if(_items.begin(), _items.end(), [&](const value_type& v) {
+  const_iterator find_storage(const StoredKey& key) const {
+    return std::find_if(_items.begin(), _items.end(), [&](const value& v) {
       return *(v.first) == *key;
     });
+  }
+  template <typename T = ValueType>
+  typename std::enable_if<
+      std::is_arithmetic<T>::value || std::is_same<T, std::string>::value ||
+      std::is_same<T, char>::value || std::is_same<T, bool>::value>::type
+  insert_item(std::shared_ptr<Derived>& result, const ValueType& kv) const {
+    result->insert_or_assign(kv.first, kv.second);
+  }
+
+  template <typename T = ValueType>
+  typename std::enable_if<
+      !(std::is_arithmetic<T>::value || std::is_same<T, std::string>::value ||
+        std::is_same<T, char>::value || std::is_same<T, bool>::value)>::type
+  insert_item(std::shared_ptr<Derived>& result, const ValueType& kv) const {
+    result->insert_or_assign(kv.first, std::make_shared<ValueType>(*kv.second));
   }
 
  protected:

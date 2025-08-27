@@ -1,12 +1,6 @@
 #pragma once
 
-#include "falcon_core/generic/Map.hpp"
-#include "falcon_core/physics/device_structures/BarrierGate.hpp"
 #include "falcon_core/physics/device_structures/Impedance.hpp"
-#include "falcon_core/physics/device_structures/Ohmic.hpp"
-#include "falcon_core/physics/device_structures/PlungerGate.hpp"
-#include "falcon_core/physics/device_structures/ReservoirGate.hpp"
-#include "falcon_core/physics/device_structures/ScreeningGate.hpp"
 namespace falcon_core {
 namespace physics {
 namespace device_structures {

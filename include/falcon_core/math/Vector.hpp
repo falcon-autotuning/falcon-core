@@ -1,72 +1,71 @@
 #pragma once
 
-#include <algorithm>
 #include <memory>
-#include <stdexcept>
-#include <vector>
-#include <unordered_set>
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/Point.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
 namespace falcon_core {
 namespace math {
 
 class Vector : public generic::Song {
- public:
-  using PointPtr     = std::shared_ptr<Point>;
-  using Connection   = physics::device_structures::BaseConnection;
-  using ConnectionPtr = std::shared_ptr<physics::device_structures::BaseConnection>;
-  using UnitPtr      = std::shared_ptr<physics::units::SymbolUnit>;
+  PointSP                           _end;
+  PointSP                           _start;
+  BaseConnectionsSP<BaseConnection> _connections;
+  SymbolUnitSP                      _unit;
 
+ public:
   // Constructors
-  Vector(PointPtr end, PointPtr start)
+  Vector(PointSP end, PointSP start)
       : _end(end), _start(start), _unit(end->unit()) {
     update_connections();
   }
-  Vector(PointPtr end)
+  Vector(PointSP end)
       : _end(end),
         _start(std::make_shared<Point>(end->unit())),
         _unit(end->unit()) {
     update_connections();
   }
-  Vector(const std::map<ConnectionPtr, double>& end, UnitPtr unit)
+  Vector(const generic::Map<BaseConnection, double>& end, SymbolUnitSP unit)
       : _end(std::make_shared<Point>(unit)),
         _start(std::make_shared<Point>(unit)),
         _unit(unit) {
     for (const auto& kv : end) {
-      _end->set(kv.first, kv.second);
-      _start->set(kv.first, 0.0);
+      (*_end)[kv.first]   = kv.second;
+      (*_start)[kv.first] = 0.0;
     }
     update_connections();
   }
-  Vector(const std::map<ConnectionPtr, double>& end,
-         const std::map<ConnectionPtr, double>& start,
-         UnitPtr unit)
+  Vector(const generic::Map<BaseConnection, double>& end,
+         const generic::Map<BaseConnection, double>& start,
+         SymbolUnitSP                                unit)
       : _end(std::make_shared<Point>(unit)),
         _start(std::make_shared<Point>(unit)),
         _unit(unit) {
     for (const auto& kv : end) {
-      _end->set(kv.first, kv.second);
+      (*_end)[kv.first] = kv.second;
     }
     for (const auto& kv : start) {
-      _start->set(kv.first, kv.second);
+      (*_start)[kv.first] = kv.second;
     }
     update_connections();
   }
 
   // Accessors
-  const PointPtr&                end() const { return _end; }
-  const PointPtr&                start() const { return _start; }
-  const std::unordered_set<ConnectionPtr, generic::SongPtrHash, generic::SongPtrEqual>& connections() const { return _connections; }
-  UnitPtr                        unit() const { return _unit; }
+  const PointSP&                          end() const { return _end; }
+  const PointSP&                          start() const { return _start; }
+  const BaseConnectionsSP<BaseConnection> connections() const {
+    return _connections;
+  }
+  SymbolUnitSP unit() const { return _unit; }
 
   // Indexing
-  std::pair<double, double> operator[](const ConnectionPtr& conn) const {
-    double end_val   = _end->get(conn);
-    double start_val = _start->get(conn);
+  std::pair<double, double> operator[](const BaseConnectionSP& conn) const {
+    double end_val   = (*_end)[conn];
+    double start_val = (*_start)[conn];
     return std::make_pair(end_val, start_val);
   }
 
@@ -100,15 +99,15 @@ class Vector : public generic::Song {
   // Magnitude
   double magnitude() const {
     double sum = 0.0;
-    for (const auto& conn : _connections) {
-      double diff = _end->get(conn) - _start->get(conn);
+    for (const auto& conn : *_connections) {
+      double diff = (*end())[conn] - (*start())[conn];
       sum += diff * diff;
     }
     return std::sqrt(sum);
   }
 
   // Unit conversion
-  void convert_to(UnitPtr target_unit) {
+  void convert_to(SymbolUnitSP target_unit) {
     _end->set_unit(target_unit);
     _start->set_unit(target_unit);
     _unit = target_unit;
@@ -128,20 +127,16 @@ class Vector : public generic::Song {
   Vector() = default;  // for cereal/c++ containers
 
  private:
-  PointPtr                _end;
-  PointPtr                _start;
-  std::unordered_set<ConnectionPtr, generic::SongPtrHash, generic::SongPtrEqual> _connections;
-  UnitPtr                 _unit;
-
   void update_connections() {
-    std::unordered_set<ConnectionPtr, generic::SongPtrHash, generic::SongPtrEqual> conns;
-    for (const auto& kv : *_end) {
-      conns.insert(kv.first);
+    std::set<BaseConnectionSP> result;
+    for (const auto& ptr : _end->keys()) {
+      if (ptr) result.insert(ptr);
     }
-    for (const auto& kv : *_start) {
-      conns.insert(kv.first);
+    for (const auto& ptr : _start->keys()) {
+      if (ptr) result.insert(ptr);
     }
-    _connections = conns;
+    _connections = std::make_shared<BaseConnections<BaseConnection>>(
+        std::vector<BaseConnectionSP>(result.begin(), result.end()));
   }
 };
 
@@ -153,5 +148,4 @@ using namespace falcon_core::math;
 CEREAL_REGISTER_TYPE(falcon_core::math::Vector)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::math::Vector)
-#include <cereal/types/unordered_set.hpp>
 #endif

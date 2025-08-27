@@ -148,5 +148,3 @@ std::string SymbolUnit::_generate_name() const {
   // Otherwise, use the symbol as the name
   return _generate_symbol();
 }
-CEREAL_REGISTER_TYPE(SymbolUnit)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, SymbolUnit)

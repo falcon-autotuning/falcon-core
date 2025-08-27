@@ -650,6 +650,10 @@ using ConfigSP = std::shared_ptr<Config>;
 }  // namespace falcon_core
 #ifndef SWIG
 using namespace falcon_core::physics::config::core;
+using namespace falcon_core::generic;
+using MapGG = Map<Gname, Group>;
+CEREAL_REGISTER_TYPE(MapGG)
 CEREAL_REGISTER_TYPE(Config)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(StandardConfigConnections, Config)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(Song, MapGG)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(Song, Config)
 #endif
