@@ -42,7 +42,7 @@ class CartesianWaveform2D
       std::shared_ptr<falcon_core::math::domains::Domain> domain =
           std::make_shared<falcon_core::math::domains::Domain>(0, 1)) {
     auto space =
-        space_type::from_divisions(divisions, axes, domain, increasing);
+        space_type::from_divisions(divisions, axes, domain);
     return std::make_shared<CartesianWaveform2D>(space, transforms);
   }
 
