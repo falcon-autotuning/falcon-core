@@ -61,7 +61,7 @@ class BaseConnections
   BaseConnections() = default;
   BaseConnections(size_t count) : generic::List<Conn, Derived>(count) {}
   BaseConnections(size_t count, const std::shared_ptr<Conn>& value)
-      : falcon_core::generic::List<Conn, Derived>(count, value) {}
+      : generic::List<Conn, Derived>(count, value) {}
   BaseConnections(const std::vector<std::shared_ptr<Conn>>& vec)
       : generic::List<Conn, Derived>(vec) {}
 
