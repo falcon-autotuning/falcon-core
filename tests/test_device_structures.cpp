@@ -63,6 +63,43 @@ TEST(DeviceStructuresTest, DotGatesSerializationRoundTrip) {
   ASSERT_EQ(gates2->size(), 2);
 }
 
+// Test construction from vector for plural device structure types
+TEST(DeviceStructuresPluralTest, ConstructFromVector_BaseConnections) {
+    auto conn1 = std::make_shared<BaseConnection>("C1");
+    auto conn2 = std::make_shared<BaseConnection>("C2");
+    std::vector<std::shared_ptr<BaseConnection>> vec{conn1, conn2};
+
+    auto connections = std::make_shared<BaseConnections<BaseConnection>>(vec);
+
+    ASSERT_EQ(connections->size(), 2);
+    ASSERT_EQ(connections->at(0)->name(), "C1");
+    ASSERT_EQ(connections->at(1)->name(), "C2");
+}
+
+TEST(DeviceStructuresPluralTest, ConstructFromVector_BarrierGates) {
+    auto gate1 = std::make_shared<BarrierGate>("B1");
+    auto gate2 = std::make_shared<BarrierGate>("B2");
+    std::vector<std::shared_ptr<BarrierGate>> vec{gate1, gate2};
+
+    auto gates = std::make_shared<BarrierGates>(vec);
+
+    ASSERT_EQ(gates->size(), 2);
+    ASSERT_EQ(gates->at(0)->name(), "B1");
+    ASSERT_EQ(gates->at(1)->name(), "B2");
+}
+
+TEST(DeviceStructuresPluralTest, ConstructFromVector_DotGates) {
+    auto dot1 = std::make_shared<DotGate>("D1");
+    auto dot2 = std::make_shared<DotGate>("D2");
+    std::vector<std::shared_ptr<DotGate>> vec{dot1, dot2};
+
+    auto dots = std::make_shared<DotGates<DotGate>>(vec);
+
+    ASSERT_EQ(dots->size(), 2);
+    ASSERT_EQ(dots->at(0)->name(), "D1");
+    ASSERT_EQ(dots->at(1)->name(), "D2");
+}
+
 // Test BarrierGates serialization
 TEST(DeviceStructuresTest, BarrierGatesSerializationRoundTrip) {
   auto gates = std::make_shared<BarrierGates>();
