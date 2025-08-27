@@ -41,8 +41,7 @@ class CartesianWaveform1D
           {},
       std::shared_ptr<falcon_core::math::domains::Domain> domain =
           std::make_shared<falcon_core::math::domains::Domain>(0, 1)) {
-    auto space =
-        space_type::from_division(division, shared_domain, domain);
+    auto space = space_type::from_division(division, shared_domain, domain);
     return std::make_shared<CartesianWaveform1D>(space, transforms);
   }
 
