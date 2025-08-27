@@ -39,6 +39,9 @@ class PortTransform : public generic::Song {
 
  private:
   std::shared_ptr<math::analytic_functions::AnalyticFunction> _function;
+
+ protected:
+  friend class cereal::access;
 };
 
 }  // namespace port_transforms
@@ -46,6 +49,9 @@ class PortTransform : public generic::Song {
 }  // namespace falcon_core
 
 #ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::port_transforms::PortTransform)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::instrument_interfaces::port_transforms::PortTransform)
+CEREAL_REGISTER_TYPE(
+    falcon_core::instrument_interfaces::port_transforms::PortTransform)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::instrument_interfaces::port_transforms::PortTransform)
 #endif

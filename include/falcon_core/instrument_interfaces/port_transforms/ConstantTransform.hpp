@@ -27,6 +27,9 @@ class ConstantTransform : public PortTransform {
   void serialize(Archive& ar) {
     ar(cereal::base_class<PortTransform>(this));
   }
+
+ protected:
+  friend class cereal::access;
 };
 
 }  // namespace port_transforms
@@ -34,6 +37,9 @@ class ConstantTransform : public PortTransform {
 }  // namespace falcon_core
 
 #ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::port_transforms::ConstantTransform)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::instrument_interfaces::port_transforms::ConstantTransform)
+CEREAL_REGISTER_TYPE(
+    falcon_core::instrument_interfaces::port_transforms::ConstantTransform)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::instrument_interfaces::port_transforms::ConstantTransform)
 #endif
