@@ -27,6 +27,14 @@ namespace math {
 template <typename T>
 class Axes : public generic::Song {
  public:
+  using StoredType = typename std::conditional<
+      std::is_arithmetic<T>::value ||
+      std::is_same<T, std::string>::value ||
+      std::is_same<T, char>::value ||
+      std::is_same<T, bool>::value,
+      T,
+      std::shared_ptr<T>>::type;
+
   /**
    * @brief Default constructor.
    */
@@ -34,9 +42,9 @@ class Axes : public generic::Song {
 
   /**
    * @brief Construct Axes from a vector of items.
-   * @param items Vector of shared pointers to axis objects.
+   * @param items Vector of axis objects.
    */
-  explicit Axes(const std::vector<std::shared_ptr<T>>& items) : _items(items) {}
+  explicit Axes(const std::vector<StoredType>& items) : _items(items) {}
 
   // Vector-like methods
 
@@ -54,54 +62,54 @@ class Axes : public generic::Song {
 
   /**
    * @brief Add an axis to the container.
-   * @param item Shared pointer to axis object.
+   * @param item Axis object.
    */
-  void push_back(const std::shared_ptr<T>& item) { _items.push_back(item); }
+  void push_back(const StoredType& item) { _items.push_back(item); }
 
   /**
    * @brief Access axis at index (const).
    * @param idx Index.
-   * @return Shared pointer to axis object.
+   * @return Axis object.
    */
-  const std::shared_ptr<T>& at(size_t idx) const { return _items.at(idx); }
+  const StoredType& at(size_t idx) const { return _items.at(idx); }
 
   /**
    * @brief Access axis at index (mutable).
    * @param idx Index.
-   * @return Shared pointer to axis object.
+   * @return Axis object.
    */
-  std::shared_ptr<T>& at(size_t idx) { return _items.at(idx); }
+  StoredType& at(size_t idx) { return _items.at(idx); }
 
   /**
    * @brief Get all axis items (const).
-   * @return Vector of shared pointers to axis objects.
+   * @return Vector of axis objects.
    */
-  const std::vector<std::shared_ptr<T>>& items() const { return _items; }
+  const std::vector<StoredType>& items() const { return _items; }
 
   /**
    * @brief Get all axis items (mutable).
-   * @return Vector of shared pointers to axis objects.
+   * @return Vector of axis objects.
    */
-  std::vector<std::shared_ptr<T>>& items() { return _items; }
+  std::vector<StoredType>& items() { return _items; }
 
 #ifndef SWIG
   /**
    * @brief Indexing operator (const).
    * @param idx Index.
-   * @return Shared pointer to axis object.
+   * @return Axis object.
    */
-  const std::shared_ptr<T>& operator[](size_t idx) const { return _items[idx]; }
+  const StoredType& operator[](size_t idx) const { return _items[idx]; }
 
   /**
    * @brief Indexing operator (mutable).
    * @param idx Index.
-   * @return Shared pointer to axis object.
+   * @return Axis object.
    */
-  std::shared_ptr<T>& operator[](size_t idx) { return _items[idx]; }
+  StoredType& operator[](size_t idx) { return _items[idx]; }
 #endif
 
  private:
-  std::vector<std::shared_ptr<T>> _items; ///< Container for axis objects.
+  std::vector<StoredType> _items; ///< Container for axis objects.
 
   friend class cereal::access;
   /**
