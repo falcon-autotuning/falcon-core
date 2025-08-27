@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "falcon_core/math/spaces/UnitSpace.hpp"
 #include "falcon_core/math/discretizers/CartesianDiscretizer.hpp"
 #include "falcon_core/math/discretizers/PolarDiscretizer.hpp"
+#include "falcon_core/math/spaces/UnitSpace.hpp"
 
 namespace falcon_core {
 namespace math {
@@ -33,8 +33,8 @@ class RaySpace : public UnitSpace {
    * @param dtheta Angular discretization step.
    * @return Axes of BaseDiscretizer.
    */
-  static Axes<discretizers::BaseDiscretizer>
-  make_axes(double dr, double dtheta) {
+  static Axes<discretizers::BaseDiscretizer> make_axes(double dr,
+                                                       double dtheta) {
     std::vector<std::shared_ptr<discretizers::BaseDiscretizer>> axes;
     axes.push_back(std::make_shared<discretizers::CartesianDiscretizer>(dr));
     axes.push_back(std::make_shared<discretizers::PolarDiscretizer>(dtheta));
@@ -63,6 +63,6 @@ class RaySpace : public UnitSpace {
 
 #ifndef SWIG
 CEREAL_REGISTER_TYPE(falcon_core::math::spaces::RaySpace)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song, falcon_core::math::spaces::RaySpace)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::math::spaces::RaySpace)
 #endif

@@ -51,6 +51,9 @@ class PortTransforms : public generic::Song {
 }  // namespace falcon_core
 
 #ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::port_transforms::PortTransforms)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::instrument_interfaces::port_transforms::PortTransforms)
+CEREAL_REGISTER_TYPE(
+    falcon_core::instrument_interfaces::port_transforms::PortTransforms)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::instrument_interfaces::port_transforms::PortTransforms)
 #endif

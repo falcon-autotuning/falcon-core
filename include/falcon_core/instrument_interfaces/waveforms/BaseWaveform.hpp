@@ -2,11 +2,14 @@
 
 #include <memory>
 #include <vector>
+
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransforms.hpp"
+#include "falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp"
 
 /**
- * @brief Base class for a measurement waveform, consisting of a measurement domain and any time-dependent phenomena.
+ * @brief Base class for a measurement waveform, consisting of a measurement
+ * domain and any time-dependent phenomena.
  * @tparam T The discrete space type.
  */
 namespace falcon_core {
@@ -24,7 +27,8 @@ class BaseWaveform : public port_transforms::PortTransforms {
    * @param transforms The port transforms.
    */
   BaseWaveform(std::shared_ptr<space_type> space,
-               std::vector<std::shared_ptr<port_transforms::PortTransform>> transforms = {})
+               std::vector<std::shared_ptr<port_transforms::PortTransform>>
+                   transforms = {})
       : port_transforms::PortTransforms(), _space(std::move(space)) {
     for (auto& t : transforms) this->append(t);
     confirm_knobs_match();
@@ -68,8 +72,11 @@ class BaseWaveform : public port_transforms::PortTransforms {
 
 #ifndef SWIG
 // Example registration for a specific space type; add more as needed.
-CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::waveforms::BaseWaveform<falcon_core::math::discrete_spaces::BaseDiscreteSpace>)
+CEREAL_REGISTER_TYPE(
+    falcon_core::instrument_interfaces::waveforms::BaseWaveform<
+        falcon_core::math::discrete_spaces::BaseDiscreteSpace>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
-    falcon_core::instrument_interfaces::waveforms::BaseWaveform<falcon_core::math::discrete_spaces::BaseDiscreteSpace>)
+    falcon_core::instrument_interfaces::waveforms::BaseWaveform<
+        falcon_core::math::discrete_spaces::BaseDiscreteSpace>)
 #endif

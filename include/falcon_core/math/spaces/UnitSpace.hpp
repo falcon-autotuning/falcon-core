@@ -41,7 +41,7 @@ class UnitSpace : public generic::Song {
    * @brief Get the axes.
    * @return Reference to the axes.
    */
-  const AxesType&  axes() const { return _axes; }
+  const AxesType& axes() const { return _axes; }
 
   /**
    * @brief Get the domain.
@@ -50,8 +50,8 @@ class UnitSpace : public generic::Song {
   const DomainPtr& domain() const { return _domain; }
 
  protected:
-  AxesType  _axes;   ///< Discretization axes.
-  DomainPtr _domain; ///< Domain of the space.
+  AxesType  _axes;    ///< Discretization axes.
+  DomainPtr _domain;  ///< Domain of the space.
 
   friend class cereal::access;
   /**

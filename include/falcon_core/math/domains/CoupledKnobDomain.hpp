@@ -33,9 +33,11 @@ class CoupledKnobDomain
       std::vector<std::shared_ptr<LabelledDomain<Knob>>> coupled_domains)
       : CoupledLabelledDomain<Knob>(min_val, max_val, label, coupled_domains) {}
 
+  CoupledKnobDomain() = default;
+
  private:
   friend class cereal::access;
-  CoupledKnobDomain() = default;
+
   /**
    * @brief Serialization method for cereal.
    */

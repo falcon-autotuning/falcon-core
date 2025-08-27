@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "falcon_core/math/spaces/UnitSpace.hpp"
 #include "falcon_core/math/discretizers/CartesianDiscretizer.hpp"
+#include "falcon_core/math/spaces/UnitSpace.hpp"
 
 namespace falcon_core {
 namespace math {
@@ -22,7 +22,7 @@ class CartesianSpace : public UnitSpace {
    * @param deltas Vector of discretization steps.
    * @param domain Shared pointer to the domain.
    */
-  CartesianSpace(const std::vector<double>& deltas,
+  CartesianSpace(const std::vector<double>&       deltas,
                  std::shared_ptr<domains::Domain> domain)
       : UnitSpace(make_axes(deltas), domain) {}
 
@@ -31,11 +31,12 @@ class CartesianSpace : public UnitSpace {
    * @param deltas Vector of discretization steps.
    * @return Axes of CartesianDiscretizer.
    */
-  static Axes<discretizers::BaseDiscretizer>
-  make_axes(const std::vector<double>& deltas) {
+  static Axes<discretizers::BaseDiscretizer> make_axes(
+      const std::vector<double>& deltas) {
     std::vector<std::shared_ptr<discretizers::BaseDiscretizer>> axes;
     for (double delta : deltas) {
-      axes.push_back(std::make_shared<discretizers::CartesianDiscretizer>(delta));
+      axes.push_back(
+          std::make_shared<discretizers::CartesianDiscretizer>(delta));
     }
     return Axes<discretizers::BaseDiscretizer>(axes);
   }
@@ -62,6 +63,6 @@ class CartesianSpace : public UnitSpace {
 
 #ifndef SWIG
 CEREAL_REGISTER_TYPE(falcon_core::math::spaces::CartesianSpace)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song, falcon_core::math::spaces::CartesianSpace)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::math::spaces::CartesianSpace)
 #endif

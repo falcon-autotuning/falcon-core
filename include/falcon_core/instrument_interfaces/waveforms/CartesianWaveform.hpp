@@ -31,7 +31,7 @@ class CartesianWaveform
    * @brief Create a CartesianWaveform from raw divisions.
    */
   static std::shared_ptr<CartesianWaveform> from_divisions(
-      std::shared_ptr<falcon_core::math::Axes<int>>             divisions,
+      std::shared_ptr<falcon_core::math::Axes<int>>       divisions,
       std::shared_ptr<falcon_core::math::Axes<
           falcon_core::math::domains::CoupledKnobDomain>> axes,
       std::shared_ptr<falcon_core::math::Axes<std::map<std::string, bool>>>

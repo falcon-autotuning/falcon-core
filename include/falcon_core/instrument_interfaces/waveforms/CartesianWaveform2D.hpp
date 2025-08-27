@@ -32,7 +32,7 @@ class CartesianWaveform2D
    * @brief Create a CartesianWaveform2D from raw divisions.
    */
   static std::shared_ptr<CartesianWaveform2D> from_divisions(
-      std::shared_ptr<falcon_core::math::Axes<int>>             divisions,
+      std::shared_ptr<falcon_core::math::Axes<int>>       divisions,
       std::shared_ptr<falcon_core::math::Axes<
           falcon_core::math::domains::CoupledKnobDomain>> axes,
       std::shared_ptr<falcon_core::math::Axes<std::map<std::string, bool>>>
@@ -41,8 +41,7 @@ class CartesianWaveform2D
           {},
       std::shared_ptr<falcon_core::math::domains::Domain> domain =
           std::make_shared<falcon_core::math::domains::Domain>(0, 1)) {
-    auto space =
-        space_type::from_divisions(divisions->items(), axes, domain);
+    auto space = space_type::from_divisions(divisions->items(), axes, domain);
     return std::make_shared<CartesianWaveform2D>(space, transforms);
   }
 
