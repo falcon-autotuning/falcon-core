@@ -32,12 +32,10 @@ class PortTransform : public generic::Song {
     return _function->evaluate(value);
   }
 
-#ifndef SWIG
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this), _function);
   }
-#endif
 
  private:
   std::shared_ptr<math::analytic_functions::AnalyticFunction> _function;
@@ -46,3 +44,8 @@ class PortTransform : public generic::Song {
 }  // namespace port_transforms
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
+
+#ifndef SWIG
+CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::port_transforms::PortTransform)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::instrument_interfaces::port_transforms::PortTransform)
+#endif
