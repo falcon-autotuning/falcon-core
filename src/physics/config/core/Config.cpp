@@ -1,5 +1,7 @@
 #include "falcon_core/physics/config/core/Config.hpp"
 
+#include <memory>
+
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D.hpp"
 #include "falcon_core/physics/device_structures/Impedance.hpp"
@@ -195,94 +197,91 @@ GnameSP Config::get_gname(const ChannelSP& channel) const {
   return nullptr;
 }
 
-BarrierGatesSP Config::get_group_gates(const GnameSP&       gname,
-                                       const BarrierGateSP& type) const {
-  if (!has_gname(gname)) return nullptr;
-  GroupSP group = select_group(gname);
+template <typename GateSPT, typename GatesSPT>
+GatesSPT get_group_gates_impl(const Config*  config,
+                              const GnameSP& gname,
+                              const GateSPT& type) {
+  if (!config->has_gname(gname)) return nullptr;
+  GroupSP group = config->select_group(gname);
   if (group) return group->get_connections(type);
   return nullptr;
+}
+
+BarrierGatesSP Config::get_group_gates(const GnameSP&       gname,
+                                       const BarrierGateSP& type) const {
+  return get_group_gates_impl<BarrierGateSP, BarrierGatesSP>(this, gname, type);
 }
 
 PlungerGatesSP Config::get_group_gates(const GnameSP&       gname,
                                        const PlungerGateSP& type) const {
-  if (!has_gname(gname)) return nullptr;
-  GroupSP group = select_group(gname);
-  if (group) return group->get_connections(type);
-  return nullptr;
+  return get_group_gates_impl<PlungerGateSP, PlungerGatesSP>(this, gname, type);
 }
 
 ReservoirGatesSP Config::get_group_gates(const GnameSP&         gname,
                                          const ReservoirGateSP& type) const {
-  if (!has_gname(gname)) return nullptr;
-  GroupSP group = select_group(gname);
-  if (group) return group->get_connections(type);
-  return nullptr;
+  return get_group_gates_impl<ReservoirGateSP, ReservoirGatesSP>(
+      this, gname, type);
 }
 
 ScreeningGatesSP Config::get_group_gates(const GnameSP&         gname,
                                          const ScreeningGateSP& type) const {
-  if (!has_gname(gname)) return nullptr;
-  GroupSP group = select_group(gname);
-  if (group) return group->get_connections(type);
-  return nullptr;
+  return get_group_gates_impl<ScreeningGateSP, ScreeningGatesSP>(
+      this, gname, type);
 }
 
 DotGatesSP<DotGate> Config::get_group_gates(const GnameSP&   gname,
                                             const DotGateSP& type) const {
-  if (!has_gname(gname)) return nullptr;
-  GroupSP group = select_group(gname);
-  if (group) return group->get_connections(type);
-  return nullptr;
+  return get_group_gates_impl<DotGateSP, DotGatesSP<DotGate>>(
+      this, gname, type);
 }
 
 GatesSP<Gate> Config::get_group_gates(const GnameSP& gname,
                                       const GateSP&  type) const {
-  if (!has_gname(gname)) return nullptr;
-  GroupSP group = select_group(gname);
-  if (group) return group->get_connections(type);
-  return nullptr;
+  return get_group_gates_impl<GateSP, GatesSP<Gate>>(this, gname, type);
+}
+
+template <typename GateSPT, typename GatesSPT>
+GatesSPT get_channel_gates_impl(const Config*    config,
+                                const ChannelSP& channel,
+                                const GateSPT&   type) {
+  GnameSP gname = config->get_gname(channel);
+  if (!gname) return nullptr;
+  return config->get_group_gates(gname, type);
 }
 
 BarrierGatesSP Config::get_channel_gates(const ChannelSP&     channel,
                                          const BarrierGateSP& type) const {
-  GnameSP gname = get_gname(channel);
-  if (!gname) return nullptr;
-  return get_group_gates(gname, type);
+  return get_channel_gates_impl<BarrierGateSP, BarrierGatesSP>(
+      this, channel, type);
 }
 
 PlungerGatesSP Config::get_channel_gates(const ChannelSP&     channel,
                                          const PlungerGateSP& type) const {
-  GnameSP gname = get_gname(channel);
-  if (!gname) return nullptr;
-  return get_group_gates(gname, type);
+  return get_channel_gates_impl<PlungerGateSP, PlungerGatesSP>(
+      this, channel, type);
 }
 
 ReservoirGatesSP Config::get_channel_gates(const ChannelSP&       channel,
                                            const ReservoirGateSP& type) const {
-  GnameSP gname = get_gname(channel);
-  if (!gname) return nullptr;
-  return get_group_gates(gname, type);
+  return get_channel_gates_impl<ReservoirGateSP, ReservoirGatesSP>(
+      this, channel, type);
 }
 
 ScreeningGatesSP Config::get_channel_gates(const ChannelSP&       channel,
                                            const ScreeningGateSP& type) const {
-  GnameSP gname = get_gname(channel);
-  if (!gname) return nullptr;
-  return get_group_gates(gname, type);
+  return get_channel_gates_impl<ScreeningGateSP, ScreeningGatesSP>(
+      this, channel, type);
 }
 
 DotGatesSP<DotGate> Config::get_channel_gates(const ChannelSP& channel,
                                               const DotGateSP& type) const {
-  GnameSP gname = get_gname(channel);
-  if (!gname) return nullptr;
-  return get_group_gates(gname, type);
+  return get_channel_gates_impl<DotGateSP, DotGatesSP<DotGate>>(
+      this, channel, type);
 }
 
 GatesSP<Gate> Config::get_channel_gates(const ChannelSP& channel,
                                         const GateSP&    type) const {
-  GnameSP gname = get_gname(channel);
-  if (!gname) return nullptr;
-  return get_group_gates(gname, type);
+  return get_channel_gates_impl<GateSP, GatesSP<Gate>>(this, channel, type);
 }
 
 GatesSP<Gate> Config::get_all_channel_gates(const ChannelSP& channel) const {
@@ -314,18 +313,22 @@ GatesSP<Gate> Config::get_channel_order_no_ohmics(
   if (!order) return nullptr;
   GatesSP<Gate> typed_order;
   for (const auto& gate : *order) {
-    // Assume dynamic_cast for type checking, or use a type enum if available
-    if (/* gate is Ohmic or ScreeningGate */) continue;
-    // Only add DotGate or ReservoirGate
-    // If you have type info, check here
-    typed_order->push_back(gate);
+    DotGateSP dotgate = std::dynamic_pointer_cast<DotGate>(gate);
+    if (dotgate) {
+      typed_order->push_back(dotgate);
+    }
+    ReservoirGateSP reservoir_gate =
+        std::dynamic_pointer_cast<ReservoirGate>(gate);
+    if (reservoir_gate) {
+      typed_order->push_back(reservoir_gate);
+    }
   }
   return typed_order;
 }
 
 int Config::get_num_unique_channels() const { return num_unique_channels(); }
 
-ChannelsSP Config::return_channels_from_gate(const Gate& gate) const {
+ChannelsSP Config::return_channels_from_gate(const GateSP& gate) const {
   if (!has_gate(gate)) return nullptr;
   std::set<ChannelSP> channels;
   for (const GroupSP& group : get_all_groups()) {
@@ -333,12 +336,11 @@ ChannelsSP Config::return_channels_from_gate(const Gate& gate) const {
       channels.insert(group->name());
     }
   }
-  return std::make_shared<std::vector<ChannelSP>>(channels.begin(),
-                                                  channels.end());
+  return std::make_shared<Channels>(channels);
 }
 
-ChannelSP Config::return_channel_from_gate(const Gate& gate) const {
-  auto channels = return_channels_from_gate(gate);
+ChannelSP Config::return_channel_from_gate(const GateSP& gate) const {
+  ChannelsSP channels = return_channels_from_gate(gate);
   if (!channels || channels->empty()) return nullptr;
   return channels->at(0);
 }
@@ -352,4 +354,344 @@ bool Config::ohmic_in_channel(const OhmicSP&   ohmic,
     }
   }
   return false;
+}
+
+std::pair<GateSP, GateSP> Config::get_dot_channel_neighbors(
+    const DotGateSP& dotgate) const {
+  ChannelSP channel = return_channel_from_gate(dotgate);
+  if (!channel) return {nullptr, nullptr};
+  GnameSP gname = get_gname(channel);
+  if (!gname) return {nullptr, nullptr};
+  GroupSP group = select_group(gname);
+  if (!group) return {nullptr, nullptr};
+
+  auto all_dot_gates = group->order()->all_dot_gates();
+  for (const auto& connection : *all_dot_gates) {
+    if (dotgate->name() == connection->name()) {
+      auto left_neighbor  = connection->left_neighbor();
+      auto right_neighbor = connection->right_neighbor();
+      return {left_neighbor, right_neighbor};
+    }
+  }
+  return {nullptr, nullptr};
+}
+
+generic::MapSP<Channel, BarrierGates> Config::get_gate_dict(
+    const BarrierGateSP& type) const {
+  auto out = std::make_shared<generic::Map<Channel, BarrierGates>>();
+  for (const GroupSP& group : get_all_groups()) {
+    auto gates = group->get_connections(type);
+    out->insert(group->name(), gates);
+  }
+  return out;
+}
+
+generic::MapSP<Channel, PlungerGates> Config::get_gate_dict(
+    const PlungerGateSP& type) const {
+  auto out = std::make_shared<generic::Map<Channel, PlungerGates>>();
+  for (const GroupSP& group : get_all_groups()) {
+    auto gates = group->get_connections(type);
+    out->insert(group->name(), gates);
+  }
+  return out;
+}
+
+generic::MapSP<Channel, ReservoirGates> Config::get_gate_dict(
+    const ReservoirGateSP& type) const {
+  auto out = std::make_shared<generic::Map<Channel, ReservoirGates>>();
+  for (const GroupSP& group : get_all_groups()) {
+    auto gates = group->get_connections(type);
+    out->insert(group->name(), gates);
+  }
+  return out;
+}
+
+generic::MapSP<Channel, ScreeningGates> Config::get_gate_dict(
+    const ScreeningGateSP& type) const {
+  auto out = std::make_shared<generic::Map<Channel, ScreeningGates>>();
+  for (const GroupSP& group : get_all_groups()) {
+    auto gates = group->get_connections(type);
+    out->insert(group->name(), gates);
+  }
+  return out;
+}
+
+generic::MapSP<Channel, DotGates<DotGate>> Config::get_gate_dict(
+    const DotGateSP& type) const {
+  auto out = std::make_shared<generic::Map<Channel, DotGates<DotGate>>>();
+  for (const GroupSP& group : get_all_groups()) {
+    auto gates = group->get_connections(type);
+    out->insert(group->name(), gates);
+  }
+  return out;
+}
+
+generic::MapSP<Channel, Gates<Gate>> Config::get_gate_dict(
+    const GateSP& type) const {
+  auto out = std::make_shared<generic::Map<Channel, Gates<Gate>>>();
+  for (const GroupSP& group : get_all_groups()) {
+    auto gates = group->get_connections(type);
+    out->insert(group->name(), gates);
+  }
+  return out;
+}
+template <typename GateSPT, typename GatesSPT>
+GatesSPT get_isolated_gates_impl(const std::vector<GroupSP>& groups,
+                                 const GateSPT&              type) {
+  std::vector<GateSPT> gates;
+  for (const auto& group : groups) {
+    auto connection = group->get_connection(type);
+    if (connection) gates.push_back(connection);
+  }
+  if (gates.empty()) {
+    throw std::runtime_error("No gates found in the config for the given type");
+  }
+  std::unordered_map<std::string, int> gate_count;
+  for (const auto& gate : gates) {
+    gate_count[gate->name()]++;
+  }
+  auto isolated = std::make_shared<typename GatesSPT::element_type>();
+  for (const auto& gate : gates) {
+    if (gate_count[gate->name()] == 1) {
+      isolated->push_back(gate);
+    }
+  }
+  return isolated;
+}
+BarrierGatesSP Config::get_isolated_gates(const BarrierGateSP& type) const {
+  return get_isolated_gates_impl<BarrierGateSP, BarrierGatesSP>(
+      get_all_groups(), type);
+}
+
+PlungerGatesSP Config::get_isolated_gates(const PlungerGateSP& type) const {
+  return get_isolated_gates_impl<PlungerGateSP, PlungerGatesSP>(
+      get_all_groups(), type);
+}
+ReservoirGatesSP Config::get_isolated_gates(const ReservoirGateSP& type) const {
+  return get_isolated_gates_impl<ReservoirGateSP, ReservoirGatesSP>(
+      get_all_groups(), type);
+}
+ScreeningGatesSP Config::get_isolated_gates(const ScreeningGateSP& type) const {
+  return get_isolated_gates_impl<ScreeningGateSP, ScreeningGatesSP>(
+      get_all_groups(), type);
+}
+DotGatesSP<DotGate> Config::get_isolated_gates(const DotGateSP& type) const {
+  return get_isolated_gates_impl<DotGateSP, DotGatesSP<DotGate>>(
+      get_all_groups(), type);
+}
+GatesSP<Gate> Config::get_isolated_gates(const GateSP& type) const {
+  return get_isolated_gates_impl<GateSP, GatesSP<Gate>>(get_all_groups(), type);
+}
+
+template <typename GateSPT, typename GatesSPT>
+GatesSPT get_shared_gates_impl(const std::vector<GroupSP>& groups,
+                               const GateSPT&              type) {
+  std::vector<GateSPT> gates;
+  for (const auto& group : groups) {
+    auto connection = group->get_connection(type);
+    if (connection) gates.push_back(connection);
+  }
+  if (gates.empty()) {
+    throw std::runtime_error("No gates found in the config for the given type");
+  }
+  std::unordered_map<std::string, int>     gate_count;
+  std::unordered_map<std::string, GateSPT> gate_map;
+  for (const auto& gate : gates) {
+    gate_count[gate->name()]++;
+    gate_map[gate->name()] = gate;
+  }
+  std::vector<std::pair<std::string, int>> shared;
+  for (const auto& it : gate_count) {
+    if (it.second > 1) {
+      shared.emplace_back(it.first, it.second);
+    }
+  }
+  std::sort(
+      shared.begin(),
+      shared.end(),
+      [](const std::pair<std::string, int>& a,
+         const std::pair<std::string, int>& b) { return a.second > b.second; });
+  auto result = std::make_shared<typename GatesSPT::element_type>();
+  for (const auto& it : shared) {
+    result->push_back(gate_map[it.first]);
+  }
+  return result;
+}
+BarrierGatesSP Config::get_shared_gates(const BarrierGateSP& type) const {
+  return get_shared_gates_impl<BarrierGateSP, BarrierGatesSP>(get_all_groups(),
+                                                              type);
+}
+
+PlungerGatesSP Config::get_shared_gates(const PlungerGateSP& type) const {
+  return get_shared_gates_impl<PlungerGateSP, PlungerGatesSP>(get_all_groups(),
+                                                              type);
+}
+ReservoirGatesSP Config::get_shared_gates(const ReservoirGateSP& type) const {
+  return get_shared_gates_impl<ReservoirGateSP, ReservoirGatesSP>(
+      get_all_groups(), type);
+}
+ScreeningGatesSP Config::get_shared_gates(const ScreeningGateSP& type) const {
+  return get_shared_gates_impl<ScreeningGateSP, ScreeningGatesSP>(
+      get_all_groups(), type);
+}
+DotGatesSP<DotGate> Config::get_shared_gates(const DotGateSP& type) const {
+  return get_shared_gates_impl<DotGateSP, DotGatesSP<DotGate>>(get_all_groups(),
+                                                               type);
+}
+GatesSP<Gate> Config::get_shared_gates(const GateSP& type) const {
+  return get_shared_gates_impl<GateSP, GatesSP<Gate>>(get_all_groups(), type);
+}
+template <typename GateSPT, typename GatesSPT>
+GatesSPT get_isolated_channel_gates_impl(const GatesSPT& isolated_gates,
+                                         const GatesSPT& channel_gates) {
+  if (!channel_gates)
+    return std::make_shared<typename GatesSPT::element_type>();
+  auto result = std::make_shared<typename GatesSPT::element_type>();
+  std::unordered_set<std::string> isolated_names;
+  for (const auto& gate : *isolated_gates) {
+    isolated_names.insert(gate->name());
+  }
+  for (const auto& gate : *channel_gates) {
+    if (isolated_names.count(gate->name())) {
+      result->push_back(gate);
+    }
+  }
+  return result;
+}
+
+// BarrierGate
+BarrierGatesSP Config::get_isolated_channel_gates(
+    const BarrierGateSP& type, const ChannelSP& channel) const {
+  return get_isolated_channel_gates_impl<BarrierGateSP, BarrierGatesSP>(
+      get_isolated_gates(type), get_channel_gates(channel, type));
+}
+
+// PlungerGate
+PlungerGatesSP Config::get_isolated_channel_gates(
+    const PlungerGateSP& type, const ChannelSP& channel) const {
+  return get_isolated_channel_gates_impl<PlungerGateSP, PlungerGatesSP>(
+      get_isolated_gates(type), get_channel_gates(channel, type));
+}
+
+// ReservoirGate
+ReservoirGatesSP Config::get_isolated_channel_gates(
+    const ReservoirGateSP& type, const ChannelSP& channel) const {
+  return get_isolated_channel_gates_impl<ReservoirGateSP, ReservoirGatesSP>(
+      get_isolated_gates(type), get_channel_gates(channel, type));
+}
+
+// ScreeningGate
+ScreeningGatesSP Config::get_isolated_channel_gates(
+    const ScreeningGateSP& type, const ChannelSP& channel) const {
+  return get_isolated_channel_gates_impl<ScreeningGateSP, ScreeningGatesSP>(
+      get_isolated_gates(type), get_channel_gates(channel, type));
+}
+
+// DotGate
+DotGatesSP<DotGate> Config::get_isolated_channel_gates(
+    const DotGateSP& type, const ChannelSP& channel) const {
+  return get_isolated_channel_gates_impl<DotGateSP, DotGatesSP<DotGate>>(
+      get_isolated_gates(type), get_channel_gates(channel, type));
+}
+
+// Gate
+GatesSP<Gate> Config::get_isolated_channel_gates(
+    const GateSP& type, const ChannelSP& channel) const {
+  return get_isolated_channel_gates_impl<GateSP, GatesSP<Gate>>(
+      get_isolated_gates(type), get_channel_gates(channel, type));
+}
+
+template <typename GatesSPT, typename MapSPT>
+MapSPT get_isolated_gates_by_type_impl(const ChannelsSP& channels,
+                                       const MapSPT&     gate_dict,
+                                       const GatesSPT&   unshared_gates) {
+  auto out = std::make_shared<typename MapSPT::element_type>();
+  std::unordered_set<std::string> unshared_names;
+  for (const auto& gate : *unshared_gates) {
+    unshared_names.insert(gate->name());
+  }
+  for (const auto& channel : *channels) {
+    auto gates_it = gate_dict->find(channel);
+    if (gates_it != gate_dict->end()) {
+      const auto& gates        = gates_it->second;
+      bool        all_unshared = true;
+      for (const auto& gate : *gates) {
+        if (!unshared_names.count(gate->name())) {
+          all_unshared = false;
+          break;
+        }
+      }
+      if (all_unshared) {
+        out->insert(channel, gates);
+      }
+    }
+  }
+  return out;
+}
+
+// BarrierGate
+generic::MapSP<Channel, BarrierGates> Config::get_isolated_gates_by_type(
+    const BarrierGateSP& type) const {
+  return get_isolated_gates_by_type_impl<BarrierGatesSP,
+                                         generic::MapSP<Channel, BarrierGates>>(
+      get_current_channels(), get_gate_dict(type), get_isolated_gates(type));
+}
+
+// PlungerGate
+generic::MapSP<Channel, PlungerGates> Config::get_isolated_gates_by_type(
+    const PlungerGateSP& type) const {
+  return get_isolated_gates_by_type_impl<PlungerGatesSP,
+                                         generic::MapSP<Channel, PlungerGates>>(
+      get_current_channels(), get_gate_dict(type), get_isolated_gates(type));
+}
+
+// ReservoirGate
+generic::MapSP<Channel, ReservoirGates> Config::get_isolated_gates_by_type(
+    const ReservoirGateSP& type) const {
+  return get_isolated_gates_by_type_impl<
+      ReservoirGatesSP,
+      generic::MapSP<Channel, ReservoirGates>>(
+      get_current_channels(), get_gate_dict(type), get_isolated_gates(type));
+}
+
+// ScreeningGate
+generic::MapSP<Channel, ScreeningGates> Config::get_isolated_gates_by_type(
+    const ScreeningGateSP& type) const {
+  return get_isolated_gates_by_type_impl<
+      ScreeningGatesSP,
+      generic::MapSP<Channel, ScreeningGates>>(
+      get_current_channels(), get_gate_dict(type), get_isolated_gates(type));
+}
+
+// DotGate
+generic::MapSP<Channel, DotGates<DotGate>> Config::get_isolated_gates_by_type(
+    const DotGateSP& type) const {
+  return get_isolated_gates_by_type_impl<
+      DotGatesSP<DotGate>,
+      generic::MapSP<Channel, DotGates<DotGate>>>(
+      get_current_channels(), get_gate_dict(type), get_isolated_gates(type));
+}
+
+// Gate
+generic::MapSP<Channel, Gates<Gate>> Config::get_isolated_gates_by_type(
+    const GateSP& type) const {
+  return get_isolated_gates_by_type_impl<GatesSP<Gate>,
+                                         generic::MapSP<Channel, Gates<Gate>>>(
+      get_current_channels(), get_gate_dict(type), get_isolated_gates(type));
+}
+GateRelationsSP Config::generate_gate_relations() const {
+  std::unordered_map<GateSP, std::vector<GateSP>> out;
+  auto                                            all_gates  = get_all_gates();
+  auto                                            all_groups = get_all_groups();
+  for (const auto& gate : *all_gates) {
+    std::vector<GateSP> neighbors;
+    for (const auto& group : all_groups) {
+      if (!group->has_gate(gate)) continue;
+      auto group_neighbors = group->order()->query_neighbors(gate);
+      neighbors.insert(
+          neighbors.end(), group_neighbors->begin(), group_neighbors->end());
+    }
+    out[gate] = std::move(neighbors);
+  }
+  return std::make_shared<GateRelations>(out);
 }

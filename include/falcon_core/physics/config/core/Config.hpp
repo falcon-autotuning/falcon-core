@@ -312,14 +312,14 @@ class Config : public StandardConfigConnections {
    * @returns All of the channels associated with a gate. Otherwise a nullptr if
    * no match is found.
    */
-  ChannelsSP return_channels_from_gate(const Gate& gate) const;
+  ChannelsSP return_channels_from_gate(const GateSP& gate) const;
   /**
    * @brief Returns the channel a given gate belongs to. If the gate is in
    * multiple channels, if will return the first channel if finds.
    * @param gate The gate to find the channel for.
    * @returns The channel the gate belongs to. A nullptr if no match is found.
    */
-  ChannelSP return_channel_from_gate(const Gate& gate) const;
+  ChannelSP return_channel_from_gate(const GateSP& gate) const;
   /**
    * @brief Checks if the ohmic is connected to a channel.
    * @param ohmic The ohmic to diagnose.

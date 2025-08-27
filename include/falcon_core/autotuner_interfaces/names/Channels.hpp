@@ -64,6 +64,7 @@ class Channels : public virtual falcon_core::generic::Song {
   void                     clear() { _values.clear(); }
   void                     reserve(size_t n) { _values.reserve(n); }
   size_t                   size() const { return _values.size(); }
+  bool                     empty() const { return _values.empty(); }
   std::shared_ptr<Channel> at(const size_t idx) const {
     return _values.at(idx);
   }
