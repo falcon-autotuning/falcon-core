@@ -33,12 +33,10 @@ class CartesianWaveform1D
    * @brief Create a CartesianWaveform1D from raw division.
    */
   static std::shared_ptr<CartesianWaveform1D> from_division(
-      int                                                 division,
-      std::shared_ptr<falcon_core::math::domains::Domain> shared_domain,
-      std::shared_ptr<falcon_core::math::Axes<std::map<std::string, bool>>>
-                                                                   increasing,
-      std::vector<std::shared_ptr<port_transforms::PortTransform>> transforms =
-          {},
+      int division,
+      std::shared_ptr<falcon_core::math::domains::CoupledKnobDomain> shared_domain,
+      std::shared_ptr<falcon_core::math::Axes<std::map<std::string, bool>>> increasing,
+      std::vector<std::shared_ptr<port_transforms::PortTransform>> transforms = {},
       std::shared_ptr<falcon_core::math::domains::Domain> domain =
           std::make_shared<falcon_core::math::domains::Domain>(0, 1)) {
     auto space = space_type::from_division(division, shared_domain, domain);
