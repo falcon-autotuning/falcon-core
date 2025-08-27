@@ -4,7 +4,6 @@
 #include <cereal/types/eigen.hpp>
 
 #include "falcon_core/generic/Song.hpp"
-#include "falcon_core/physics/device_structures/Gate.hpp"
 #include "falcon_core/physics/device_structures/Gates.hpp"
 
 namespace falcon_core {

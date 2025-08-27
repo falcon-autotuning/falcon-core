@@ -116,7 +116,7 @@ class ConfigTestFixture : public ::testing::Test {
                 falcon_core::physics::config::core::VoltageConstraints>(
                 std::make_shared<falcon_core::physics::config::core::Adjacency>(
                     Eigen::MatrixXi::Identity(9, 9),
-                    std::make_shared<Gates<Gate>>(std::vector<GateSP>({
+                    std::make_shared<Gates<Gate>>(std::vector<GateSP>{
                         std::make_shared<ScreeningGate>("SG1"),
                         std::make_shared<ScreeningGate>("SG2"),
                         std::make_shared<PlungerGate>("P1"),
@@ -126,7 +126,7 @@ class ConfigTestFixture : public ::testing::Test {
                         std::make_shared<BarrierGate>("B3"),
                         std::make_shared<ReservoirGate>("R1"),
                         std::make_shared<ReservoirGate>("R2"),
-                    }))),
+                    })),
                 1.0,
                 std::make_pair(-1.0, 1.0))) {}
 
