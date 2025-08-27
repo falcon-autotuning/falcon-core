@@ -677,7 +677,7 @@ GateRelationsSP Config::generate_gate_relations() const {
       neighbors->insert(
           neighbors->end(), group_neighbors->begin(), group_neighbors->end());
     }
-    out[gate] = *neighbors;
+    out[gate] = neighbors;
   }
   return std::make_shared<GateRelations>(out);
 }
