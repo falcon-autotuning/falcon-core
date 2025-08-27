@@ -2,22 +2,23 @@
 
 #include <memory>
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
-#include "falcon_core/math/analytic_functions/Identity.hpp"
+#include "falcon_core/math/analytic_functions/ConstantFunction.hpp"
 
 /**
- * @brief A transform that applies the identity function to the data.
+ * @brief A transform that applies a constant function to the data.
  */
 namespace falcon_core {
 namespace instrument_interfaces {
 namespace port_transforms {
 
-class IdentityTransform : public PortTransform {
+class ConstantTransform : public PortTransform {
  public:
   /**
-   * @brief Construct an IdentityTransform.
+   * @brief Construct a ConstantTransform.
+   * @param value The constant value to apply.
    */
-  IdentityTransform()
-      : PortTransform(std::make_shared<math::analytic_functions::Identity>()) {}
+  ConstantTransform(double value)
+      : PortTransform(std::make_shared<math::analytic_functions::ConstantFunction>(value)) {}
 
 #ifndef SWIG
   template <class Archive>
