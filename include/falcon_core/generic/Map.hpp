@@ -11,50 +11,51 @@
 
 namespace falcon_core {
 namespace generic {
-template <typename Key, typename ValueType, typename Derived = void>
-class Map : public generic::Song {
- public:
-  using StoredKey   = std::shared_ptr<Key>;
-  using StoredValue = typename std::conditional<
-      std::is_arithmetic<ValueType>::value ||
-          std::is_same<ValueType, std::string>::value ||
-          std::is_same<ValueType, char>::value ||
-          std::is_same<ValueType, bool>::value,
-      ValueType,
-      std::shared_ptr<ValueType>>::type;
-  using value          = std::pair<StoredKey, StoredValue>;
-  using container_type = std::vector<value>;
-  using iterator       = typename container_type::iterator;
-  using const_iterator = typename container_type::const_iterator;
-
-  Map() = default;
-  // For primitive ValueType
-  template <
-      typename T = ValueType,
-      typename std::enable_if<
+// Helper that decides if a type is primitve or not
+template <typename T>
+struct is_primitive
+    : std::integral_constant<
+          bool,
           std::is_arithmetic<T>::value || std::is_same<T, std::string>::value ||
-              std::is_same<T, char>::value || std::is_same<T, bool>::value,
-          int>::type = 0>
-  Map(std::initializer_list<std::pair<StoredKey, ValueType>> init) {
+              std::is_same<T, char>::value || std::is_same<T, bool>::value> {};
+
+template <typename Key, typename Value, typename Derived = void>
+class Map : public generic::Song {
+  static_assert(!std::is_pointer<Key>::value,
+                "Key template argument must not be a pointer type");
+  static_assert(!std::is_pointer<Value>::value,
+                "ValueType template argument must not be a pointer type");
+  using StoredKey = typename std::
+      conditional<is_primitive<Key>::value, Key, std::shared_ptr<Key>>::type;
+  using StoredValue    = typename std::conditional<is_primitive<Value>::value,
+                                                   Value,
+                                                   std::shared_ptr<Value>>::type;
+  using ContainerItem  = std::pair<StoredKey, StoredValue>;
+  using Container      = std::vector<ContainerItem>;
+  using iterator       = typename Container::iterator;
+  using const_iterator = typename Container::const_iterator;
+  Container                _items;
+  std::vector<StoredKey>   _key_ptrs;
+  std::vector<StoredValue> _value_ptrs;
+  iterator                 find_storage(const StoredKey& key) {
+    return std::find_if(_items.begin(),
+                        _items.end(),
+                        [&](const ContainerItem& v) { return v.first == key; });
+  }
+  const_iterator find_storage(const StoredKey& key) const {
+    return std::find_if(_items.begin(),
+                        _items.end(),
+                        [&](const ContainerItem& v) { return v.first == key; });
+  }
+
+ public:
+  Map() = default;
+  Map(std::initializer_list<ContainerItem> init) {
     for (const auto& kv : init) {
       insert_or_assign(kv.first, kv.second);
     }
   }
 
-  // For non-primitive ValueType
-  template <typename T                         = ValueType,
-            typename std::enable_if<!(std::is_arithmetic<T>::value ||
-                                      std::is_same<T, std::string>::value ||
-                                      std::is_same<T, char>::value ||
-                                      std::is_same<T, bool>::value),
-                                    int>::type = 0>
-  Map(std::initializer_list<std::pair<StoredKey, std::shared_ptr<ValueType>>>
-          init) {
-    for (const auto& kv : init) {
-      insert_or_assign(kv.first, kv.second);
-    }
-  }
-  // Insert or assign
   void insert_or_assign(const StoredKey& key, const StoredValue& value) {
     auto it = find_storage(key);
     if (it != _items.end()) {
@@ -65,25 +66,7 @@ class Map : public generic::Song {
       _value_ptrs.push_back(value);
     }
   }
-  template <typename V = ValueType>
-  typename std::enable_if<
-      std::is_arithmetic<V>::value || std::is_same<V, std::string>::value ||
-          std::is_same<V, char>::value || std::is_same<V, bool>::value,
-      V>::type
-  make_stored_value(const V& v) {
-    return v;
-  }
 
-  template <typename V = ValueType>
-  typename std::enable_if<
-      !(std::is_arithmetic<V>::value || std::is_same<V, std::string>::value ||
-        std::is_same<V, char>::value || std::is_same<V, bool>::value),
-      std::shared_ptr<V>>::type
-  make_stored_value(const V& v) {
-    return std::make_shared<V>(v);
-  }
-
-  // Insert
   std::pair<iterator, bool> insert(const StoredKey&   key,
                                    const StoredValue& value) {
     auto it = find_storage(key);
@@ -109,42 +92,18 @@ class Map : public generic::Song {
   const StoredValue at(const StoredKey& key) const {
     iterator it = find(key);
     if (it == _items.end()) throw std::out_of_range("Key not found");
-    return *(it->second);
-  }
-
-  // For primitive types
-  template <typename K = Key, typename V = ValueType>
-  typename std::enable_if<
-      std::is_arithmetic<V>::value || std::is_same<V, std::string>::value ||
-          std::is_same<V, char>::value || std::is_same<V, bool>::value,
-      V&>::type
-  operator[](const std::shared_ptr<K>& key) {
-    auto it = find(key);
-    if (it == _items.end()) {
-      _items.emplace_back(key, V());
-      _key_ptrs.push_back(key);
-      _value_ptrs.push_back(V());
-      return _items.back().second;
-    }
     return it->second;
   }
 
-  // For non-primitive types
-  template <typename K = Key, typename V = ValueType>
-  typename std::enable_if<
-      !(std::is_arithmetic<V>::value || std::is_same<V, std::string>::value ||
-        std::is_same<V, char>::value || std::is_same<V, bool>::value),
-      V&>::type
-  operator[](const std::shared_ptr<K>& key) {
+  StoredValue& operator[](const StoredKey& key) {
     auto it = find(key);
-    if (it == _items.end()) {
-      auto ptr = std::make_shared<V>();
-      _items.emplace_back(key, ptr);
-      _key_ptrs.push_back(key);
-      _value_ptrs.push_back(ptr);
-      return *(_items.back().second);
+    if (it != _items.end()) {
+      return it->second;
     }
-    return *(it->second);
+    _items.emplace_back(key, StoredValue());
+    _key_ptrs.push_back(key);
+    _value_ptrs.push_back(StoredValue());
+    return _items.back().second;
   }
 
   // erase
@@ -186,7 +145,7 @@ class Map : public generic::Song {
 
   // Get all key shared_ptrs
   const std::vector<StoredKey>& keys() const { return _key_ptrs; }
-  const container_type          items() const { return _items; }
+  const Container               items() const { return _items; }
   // Get all value shared_ptrs
   const std::vector<StoredValue>& values() const { return _value_ptrs; }
   // SFINAE: If Derived is void, clone returns Map
@@ -220,41 +179,10 @@ class Map : public generic::Song {
     ar(cereal::base_class<Song>(this), _items);
   }
 
- private:
-  container_type           _items;
-  std::vector<StoredKey>   _key_ptrs;
-  std::vector<StoredValue> _value_ptrs;
-
-  iterator find_storage(const StoredKey& key) {
-    return std::find_if(_items.begin(), _items.end(), [&](const value& v) {
-      return *(v.first) == *key;
-    });
-  }
-  const_iterator find_storage(const StoredKey& key) const {
-    return std::find_if(_items.begin(), _items.end(), [&](const value& v) {
-      return *(v.first) == *key;
-    });
-  }
-  template <typename T = ValueType>
-  typename std::enable_if<
-      std::is_arithmetic<T>::value || std::is_same<T, std::string>::value ||
-      std::is_same<T, char>::value || std::is_same<T, bool>::value>::type
-  insert_item(std::shared_ptr<Derived>& result, const ValueType& kv) const {
-    result->insert_or_assign(kv.first, kv.second);
-  }
-
-  template <typename T = ValueType>
-  typename std::enable_if<
-      !(std::is_arithmetic<T>::value || std::is_same<T, std::string>::value ||
-        std::is_same<T, char>::value || std::is_same<T, bool>::value)>::type
-  insert_item(std::shared_ptr<Derived>& result, const ValueType& kv) const {
-    result->insert_or_assign(kv.first, std::make_shared<ValueType>(*kv.second));
-  }
-
  protected:
   friend class cereal::access;
 };
-template <typename Key, typename ValueType>
-using MapSP = std::shared_ptr<Map<Key, ValueType>>;
+template <typename Key, typename Value>
+using MapSP = std::shared_ptr<Map<Key, Value>>;
 }  // namespace generic
 }  // namespace falcon_core
