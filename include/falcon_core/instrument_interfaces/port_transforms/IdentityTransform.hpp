@@ -20,11 +20,6 @@ class IdentityTransform : public PortTransform {
   IdentityTransform()
       : PortTransform(std::make_shared<math::analytic_functions::Identity>()) {}
 
-  /**
-   * @brief Default constructor for serialization.
-   */
-  IdentityTransform() : PortTransform() {}
-
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<PortTransform>(this));
