@@ -22,7 +22,8 @@ TEST(WaveformTest, BasicConstructionAndAccess) {
   using namespace falcon_core::instrument_interfaces::port_transforms;
 
   auto domain = std::make_shared<Domain>(0.0, 1.0);
-  auto space  = std::make_shared<BaseDiscreteSpace>(domain);
+  // Use a 1D CartesianDiscreteSpace for valid construction
+  auto space  = std::make_shared<CartesianDiscreteSpace1D>(10, domain);
 
   auto identity_transform = std::make_shared<IdentityTransform>();
   auto constant_transform = std::make_shared<ConstantTransform>(3.14);
@@ -40,7 +41,8 @@ TEST(WaveformTest, SerializationRoundTrip) {
   using namespace falcon_core::instrument_interfaces::port_transforms;
 
   auto domain = std::make_shared<Domain>(-5.0, 5.0);
-  auto space  = std::make_shared<BaseDiscreteSpace>(domain);
+  // Use a 1D CartesianDiscreteSpace for valid construction
+  auto space  = std::make_shared<CartesianDiscreteSpace1D>(10, domain);
 
   auto identity_transform = std::make_shared<IdentityTransform>();
   auto constant_transform = std::make_shared<ConstantTransform>(42.0);

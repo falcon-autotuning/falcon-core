@@ -46,6 +46,16 @@ class Axes : public generic::Song {
    */
   explicit Axes(const std::vector<StoredType>& items) : _items(items) {}
 
+  // Additional constructor for Axes<double> to accept std::vector<std::shared_ptr<double>>
+  template <typename U = T>
+  Axes(const std::vector<std::shared_ptr<double>>& items,
+       typename std::enable_if<std::is_same<U, double>::value>::type* = 0) {
+    _items.reserve(items.size());
+    for (const auto& ptr : items) {
+      _items.push_back(*ptr);
+    }
+  }
+
   // Vector-like methods
 
   /**
