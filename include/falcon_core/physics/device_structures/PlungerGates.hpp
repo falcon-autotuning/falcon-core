@@ -10,17 +10,17 @@ namespace device_structures {
 /**
  * @brief A collection of PlungerGates.
  */
-class PlungerGates : public DotGates<PlungerGate> {
+class PlungerGates : public DotGates<PlungerGate, PlungerGates> {
  public:
   PlungerGates() = default;
-  PlungerGates(size_t count) : DotGates<PlungerGate>(count) {}
+  PlungerGates(size_t count) : DotGates<PlungerGate, PlungerGates>(count) {}
   PlungerGates(size_t count, const PlungerGateSP& value)
-      : DotGates<PlungerGate>(count, value) {}
+      : DotGates<PlungerGate, PlungerGates>(count, value) {}
   PlungerGates(const std::vector<PlungerGateSP>& vec)
-      : DotGates<PlungerGate>(vec) {}
+      : DotGates<PlungerGate, PlungerGates>(vec) {}
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<DotGates<PlungerGate>>(this));
+    ar(cereal::base_class<DotGates<PlungerGate, PlungerGates>>(this));
   }
 
  protected:

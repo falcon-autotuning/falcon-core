@@ -9,17 +9,17 @@ namespace device_structures {
 /**
  * @brief A collection of BarrierGates.
  */
-class BarrierGates : public DotGates<BarrierGate> {
+class BarrierGates : public DotGates<BarrierGate, BarrierGates> {
  public:
   BarrierGates() = default;
-  BarrierGates(size_t count) : DotGates<BarrierGate>(count) {}
+  BarrierGates(size_t count) : DotGates<BarrierGate, BarrierGates>(count) {}
   BarrierGates(size_t count, const BarrierGateSP& value)
-      : DotGates<BarrierGate>(count, value) {}
+      : DotGates<BarrierGate, BarrierGates>(count, value) {}
   BarrierGates(const std::vector<BarrierGateSP>& vec)
-      : DotGates<BarrierGate>(vec) {}
+      : DotGates<BarrierGate, BarrierGates>(vec) {}
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<DotGates<BarrierGate>>(this));
+    ar(cereal::base_class<DotGates<BarrierGate, BarrierGates>>(this));
   }
 
  protected:

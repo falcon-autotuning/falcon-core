@@ -14,10 +14,11 @@ namespace device_structures {
  *
  * Uses composition: contains a vector of shared_ptr<T>.
  */
-template <typename T>
-class BaseConnections : public virtual falcon_core::generic::List<T> {
-  static_assert(std::is_base_of<BaseConnection, T>::value,
-                "T must be derived from BaseConnection");
+template <typename Conn, typename Derived = void>
+class BaseConnections
+    : public virtual falcon_core::generic::List<Conn, Derived> {
+  static_assert(std::is_base_of<BaseConnection, Conn>::value,
+                "Conn must be derived from BaseConnection");
 
  public:
   /**
@@ -58,15 +59,15 @@ class BaseConnections : public virtual falcon_core::generic::List<T> {
    *   @endcode
    */
   BaseConnections() = default;
-  BaseConnections(size_t count) : generic::List<T>(count) {}
-  BaseConnections(size_t count, const std::shared_ptr<T>& value)
-      : falcon_core::generic::List<T>(count, value) {}
-  BaseConnections(const std::vector<std::shared_ptr<T>>& vec)
-      : generic::List<T>(vec) {}
+  BaseConnections(size_t count) : generic::List<Conn, Derived>(count) {}
+  BaseConnections(size_t count, const std::shared_ptr<Conn>& value)
+      : falcon_core::generic::List<Conn, Derived>(count, value) {}
+  BaseConnections(const std::vector<std::shared_ptr<Conn>>& vec)
+      : generic::List<Conn, Derived>(vec) {}
 
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::List<T>>(this));
+    ar(cereal::base_class<generic::List<Conn, Derived>>(this));
   }
 
  protected:

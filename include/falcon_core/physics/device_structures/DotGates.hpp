@@ -13,27 +13,27 @@ namespace device_structures {
  *
  * Uses composition: contains a vector of shared_ptr<T>.
  */
-template <typename T>
-class DotGates : public Gates<T> {
+template <typename T, typename Derived = void>
+class DotGates : public Gates<T, Derived> {
   static_assert(std::is_base_of<DotGate, T>::value,
                 "T must be derived from DotGate");
 
  public:
   DotGates() = default;
-  DotGates(size_t count) : Gates<T>(count) {}
+  DotGates(size_t count) : Gates<T, Derived>(count) {}
   DotGates(size_t count, const std::shared_ptr<T>& value)
-      : Gates<T>(count, value) {}
-  DotGates(const std::vector<std::shared_ptr<T>>& vec) : Gates<T>(vec) {}
+      : Gates<T, Derived>(count, value) {}
+  DotGates(const std::vector<std::shared_ptr<T>>& vec)
+      : Gates<T, Derived>(vec) {}
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<Gates<T>>(this));
+    ar(cereal::base_class<Gates<T, Derived>>(this));
   }
 
  protected:
   friend class cereal::access;
 };
-template <typename T>
-using DotGatesSP = std::shared_ptr<DotGates<T>>;
+using DotGatesSP = std::shared_ptr<DotGates<DotGate>>;
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

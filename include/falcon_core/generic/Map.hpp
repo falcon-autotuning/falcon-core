@@ -9,7 +9,7 @@ namespace falcon_core {
 namespace generic {
 
 template <typename Key, typename Value, typename Derived = void>
-class Map : public generic::Song {
+class Map : public virtual generic::Song {
   static_assert(!std::is_pointer<Key>::value,
                 "Key template argument must not be a pointer type");
   static_assert(!std::is_pointer<Value>::value,

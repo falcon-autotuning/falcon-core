@@ -14,8 +14,7 @@ namespace core {
 
 class Adjacency : public generic::Song {
   using MatrixType = Eigen::Matrix<int, Eigen::Dynamic, Eigen::Dynamic>;
-  using Indexes =
-      physics::device_structures::GatesSP<physics::device_structures::Gate>;
+  using Indexes    = physics::device_structures::GatesSP;
   Indexes    _indexes;
   MatrixType _matrix;
 
@@ -31,7 +30,7 @@ class Adjacency : public generic::Song {
    matrix
   */
   Indexes indexes() const { return _indexes; }
-  int     size() const { return (*_indexes).size(); }
+  int     size() const { return _indexes->size(); }
 
   /**
    * @brief Returns the pairs of indexes where the adjacency matrix is true (1)

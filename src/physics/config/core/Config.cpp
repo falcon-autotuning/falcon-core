@@ -229,15 +229,14 @@ ScreeningGatesSP Config::get_group_gates(const GnameSP&         gname,
       this, gname, type);
 }
 
-DotGatesSP<DotGate> Config::get_group_gates(const GnameSP&   gname,
-                                            const DotGateSP& type) const {
-  return get_group_gates_impl<DotGateSP, DotGatesSP<DotGate>>(
-      this, gname, type);
+DotGatesSP Config::get_group_gates(const GnameSP&   gname,
+                                   const DotGateSP& type) const {
+  return get_group_gates_impl<DotGateSP, DotGatesSP>(this, gname, type);
 }
 
-GatesSP<Gate> Config::get_group_gates(const GnameSP& gname,
-                                      const GateSP&  type) const {
-  return get_group_gates_impl<GateSP, GatesSP<Gate>>(this, gname, type);
+GatesSP Config::get_group_gates(const GnameSP& gname,
+                                const GateSP&  type) const {
+  return get_group_gates_impl<GateSP, GatesSP>(this, gname, type);
 }
 
 template <typename GateSPT, typename GatesSPT>
@@ -273,18 +272,17 @@ ScreeningGatesSP Config::get_channel_gates(const ChannelSP&       channel,
       this, channel, type);
 }
 
-DotGatesSP<DotGate> Config::get_channel_gates(const ChannelSP& channel,
-                                              const DotGateSP& type) const {
-  return get_channel_gates_impl<DotGateSP, DotGatesSP<DotGate>>(
-      this, channel, type);
+DotGatesSP Config::get_channel_gates(const ChannelSP& channel,
+                                     const DotGateSP& type) const {
+  return get_channel_gates_impl<DotGateSP, DotGatesSP>(this, channel, type);
 }
 
-GatesSP<Gate> Config::get_channel_gates(const ChannelSP& channel,
-                                        const GateSP&    type) const {
-  return get_channel_gates_impl<GateSP, GatesSP<Gate>>(this, channel, type);
+GatesSP Config::get_channel_gates(const ChannelSP& channel,
+                                  const GateSP&    type) const {
+  return get_channel_gates_impl<GateSP, GatesSP>(this, channel, type);
 }
 
-GatesSP<Gate> Config::get_all_channel_gates(const ChannelSP& channel) const {
+GatesSP Config::get_all_channel_gates(const ChannelSP& channel) const {
   if (!has_channel(channel)) return nullptr;
   for (const GroupSP& group : get_all_groups()) {
     auto gates = group->get_all_channel_gates(channel);
@@ -303,15 +301,14 @@ OhmicsSP Config::get_channel_ohmics(const ChannelSP& channel) const {
   return nullptr;
 }
 
-GatesSP<Gate> Config::get_channel_order_no_ohmics(
-    const ChannelSP& channel) const {
+GatesSP Config::get_channel_order_no_ohmics(const ChannelSP& channel) const {
   GnameSP gname = get_gname(channel);
   if (!gname) return nullptr;
   GroupSP group = select_group(gname);
   if (!group) return nullptr;
   GateGeometryArray1DSP order = group->order();
   if (!order) return nullptr;
-  GatesSP<Gate> typed_order;
+  GatesSP typed_order;
   for (const auto& gate : *order) {
     DotGateSP dotgate = std::dynamic_pointer_cast<DotGate>(gate);
     if (dotgate) {
@@ -476,12 +473,11 @@ ScreeningGatesSP Config::get_isolated_gates(const ScreeningGateSP& type) const {
   return get_isolated_gates_impl<ScreeningGateSP, ScreeningGatesSP>(
       get_all_groups(), type);
 }
-DotGatesSP<DotGate> Config::get_isolated_gates(const DotGateSP& type) const {
-  return get_isolated_gates_impl<DotGateSP, DotGatesSP<DotGate>>(
-      get_all_groups(), type);
+DotGatesSP Config::get_isolated_gates(const DotGateSP& type) const {
+  return get_isolated_gates_impl<DotGateSP, DotGatesSP>(get_all_groups(), type);
 }
-GatesSP<Gate> Config::get_isolated_gates(const GateSP& type) const {
-  return get_isolated_gates_impl<GateSP, GatesSP<Gate>>(get_all_groups(), type);
+GatesSP Config::get_isolated_gates(const GateSP& type) const {
+  return get_isolated_gates_impl<GateSP, GatesSP>(get_all_groups(), type);
 }
 
 template <typename GateSPT, typename GatesSPT>
@@ -535,12 +531,11 @@ ScreeningGatesSP Config::get_shared_gates(const ScreeningGateSP& type) const {
   return get_shared_gates_impl<ScreeningGateSP, ScreeningGatesSP>(
       get_all_groups(), type);
 }
-DotGatesSP<DotGate> Config::get_shared_gates(const DotGateSP& type) const {
-  return get_shared_gates_impl<DotGateSP, DotGatesSP<DotGate>>(get_all_groups(),
-                                                               type);
+DotGatesSP Config::get_shared_gates(const DotGateSP& type) const {
+  return get_shared_gates_impl<DotGateSP, DotGatesSP>(get_all_groups(), type);
 }
-GatesSP<Gate> Config::get_shared_gates(const GateSP& type) const {
-  return get_shared_gates_impl<GateSP, GatesSP<Gate>>(get_all_groups(), type);
+GatesSP Config::get_shared_gates(const GateSP& type) const {
+  return get_shared_gates_impl<GateSP, GatesSP>(get_all_groups(), type);
 }
 template <typename GateSPT, typename GatesSPT>
 GatesSPT get_isolated_channel_gates_impl(const GatesSPT& isolated_gates,
@@ -589,16 +584,16 @@ ScreeningGatesSP Config::get_isolated_channel_gates(
 }
 
 // DotGate
-DotGatesSP<DotGate> Config::get_isolated_channel_gates(
-    const DotGateSP& type, const ChannelSP& channel) const {
-  return get_isolated_channel_gates_impl<DotGateSP, DotGatesSP<DotGate>>(
+DotGatesSP Config::get_isolated_channel_gates(const DotGateSP& type,
+                                              const ChannelSP& channel) const {
+  return get_isolated_channel_gates_impl<DotGateSP, DotGatesSP>(
       get_isolated_gates(type), get_channel_gates(channel, type));
 }
 
 // Gate
-GatesSP<Gate> Config::get_isolated_channel_gates(
-    const GateSP& type, const ChannelSP& channel) const {
-  return get_isolated_channel_gates_impl<GateSP, GatesSP<Gate>>(
+GatesSP Config::get_isolated_channel_gates(const GateSP&    type,
+                                           const ChannelSP& channel) const {
+  return get_isolated_channel_gates_impl<GateSP, GatesSP>(
       get_isolated_gates(type), get_channel_gates(channel, type));
 }
 
@@ -667,13 +662,13 @@ generic::MapSP<Channel, Gates<Gate>> Config::get_isolated_gates_by_type(
 }
 GateRelationsSP Config::generate_gate_relations() const {
   GateRelations        out;
-  GatesSP<Gate>        all_gates  = get_all_gates();
+  GatesSP              all_gates  = get_all_gates();
   std::vector<GroupSP> all_groups = get_all_groups();
   for (const GateSP& gate : *all_gates) {
-    GatesSP<Gate> neighbors;
+    GatesSP neighbors;
     for (const GroupSP& group : all_groups) {
       if (!group->has_gate(gate)) continue;
-      GatesSP<Gate> group_neighbors = group->order()->query_neighbors(gate);
+      GatesSP group_neighbors = group->order()->query_neighbors(gate);
       neighbors->insert(
           neighbors->end(), group_neighbors->begin(), group_neighbors->end());
     }

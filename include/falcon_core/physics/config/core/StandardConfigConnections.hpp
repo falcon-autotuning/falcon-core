@@ -120,7 +120,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the plural form of the connection type. This corresponds to the
    * conn_type
    */
-  DotGatesSP<DotGate> get_connections(const DotGateSP& conn_type) const;
+  DotGatesSP get_connections(const DotGateSP& conn_type) const;
   /**
    * @brief Gets the connections of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -129,7 +129,7 @@ class StandardConfigConnections : public generic::Song {
    * @returns the plural form of the connection type. This corresponds to the
    * conn_type
    */
-  GatesSP<Gate> get_connections(const GateSP& conn_type) const;
+  GatesSP get_connections(const GateSP& conn_type) const;
   /**
    * @brief Gets the first connection of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -196,7 +196,7 @@ class StandardConfigConnections : public generic::Song {
   /**
    * @brief Gets all of the gates for this collection from the config.
    */
-  GatesSP<Gate> get_all_gates() const;
+  GatesSP get_all_gates() const;
   /**
    * @brief Gets all of the ohmics for this collection from the config.
    */

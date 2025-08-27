@@ -19,8 +19,8 @@ Group::Group(const ChannelSP&         name,
 bool Group::has_channel(const ChannelSP& channel) const {
   return *this->_name == *channel;
 }
-bool          Group::is_charge_sensor() const { return this->_num_dots == 1; }
-GatesSP<Gate> Group::get_all_channel_gates(const ChannelSP& channel) const {
+bool    Group::is_charge_sensor() const { return this->_num_dots == 1; }
+GatesSP Group::get_all_channel_gates(const ChannelSP& channel) const {
   if (has_channel(channel)) {
     return get_all_gates();
   }

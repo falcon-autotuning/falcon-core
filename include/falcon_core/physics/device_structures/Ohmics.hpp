@@ -10,16 +10,17 @@ namespace device_structures {
 /**
  * @brief A collection of Ohmic contacts to a quantum dot device.
  */
-class Ohmics : public BaseConnections<Ohmic> {
+class Ohmics : public BaseConnections<Ohmic, Ohmics> {
  public:
   Ohmics() = default;
-  Ohmics(size_t count) : BaseConnections<Ohmic>(count) {}
+  Ohmics(size_t count) : BaseConnections<Ohmic, Ohmics>(count) {}
   Ohmics(size_t count, const OhmicSP& value)
-      : BaseConnections<Ohmic>(count, value) {}
-  Ohmics(const std::vector<OhmicSP>& vec) : BaseConnections<Ohmic>(vec) {}
+      : BaseConnections<Ohmic, Ohmics>(count, value) {}
+  Ohmics(const std::vector<OhmicSP>& vec)
+      : BaseConnections<Ohmic, Ohmics>(vec) {}
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseConnections<Ohmic>>(this));
+    ar(cereal::base_class<BaseConnections<Ohmic, Ohmics>>(this));
   }
 
  protected:

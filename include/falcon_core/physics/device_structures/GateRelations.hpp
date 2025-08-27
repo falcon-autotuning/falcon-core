@@ -13,14 +13,15 @@ namespace device_structures {
 /**
  * @brief Holds the relations between gates and their neighbors.
  */
-class GateRelations : public generic::Map<Gate, Gates<Gate>> {
+class GateRelations : public generic::Map<Gate, Gates<Gate>, GateRelations> {
  public:
   GateRelations() = default;
-  GateRelations(std::initializer_list<std::pair<GateSP, GatesSP<Gate>>> init)
-      : generic::Map<Gate, Gates<Gate>>(init) {};
+  GateRelations(std::initializer_list<std::pair<GateSP, GatesSP>> init)
+      : generic::Map<Gate, Gates<Gate>, GateRelations>(init) {};
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Map<Gate, Gates<Gate>>>(this));
+    ar(cereal::base_class<generic::Map<Gate, Gates<Gate>, GateRelations>>(
+        this));
   }
 
  protected:

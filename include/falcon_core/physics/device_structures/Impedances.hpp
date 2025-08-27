@@ -8,17 +8,18 @@ namespace device_structures {
 /**
  * @brief A collection of Impedance measurements on a quantum dot sample.
  */
-class Impedances : public generic::List<Impedance> {
+class Impedances : public generic::List<Impedance, Impedances> {
  public:
   Impedances() = default;
-  Impedances(size_t count) : List<Impedance>(count) {}
+  Impedances(size_t count) : List<Impedance, Impedances>(count) {}
   Impedances(size_t count, const ImpedanceSP& value)
-      : List<Impedance>(count, value) {}
-  Impedances(const std::vector<ImpedanceSP>& vec) : List<Impedance>(vec) {}
+      : List<Impedance, Impedances>(count, value) {}
+  Impedances(const std::vector<ImpedanceSP>& vec)
+      : List<Impedance, Impedances>(vec) {}
 
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::List<Impedance>>(this));
+    ar(cereal::base_class<generic::List<Impedance, Impedances>>(this));
   }
 
  protected:

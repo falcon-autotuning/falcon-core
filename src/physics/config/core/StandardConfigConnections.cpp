@@ -26,7 +26,7 @@ ScreeningGatesSP StandardConfigConnections::get_connections(
     const ScreeningGateSP& conn_type) const {
   return _screening_gates;
 }
-DotGatesSP<DotGate> StandardConfigConnections::get_connections(
+DotGatesSP StandardConfigConnections::get_connections(
     const DotGateSP& conn_type) const {
   auto plunger = std::dynamic_pointer_cast<DotGates<DotGate>>(_plunger_gates);
   auto barrier = std::dynamic_pointer_cast<DotGates<DotGate>>(_barrier_gates);
@@ -35,7 +35,7 @@ DotGatesSP<DotGate> StandardConfigConnections::get_connections(
   combination.insert(combination.end(), plunger->begin(), plunger->end());
   return std::make_shared<DotGates<DotGate>>(combination);
 }
-GatesSP<Gate> StandardConfigConnections::get_connections(
+GatesSP StandardConfigConnections::get_connections(
     const GateSP& conn_type) const {
   auto plunger   = std::dynamic_pointer_cast<Gates<Gate>>(_plunger_gates);
   auto barrier   = std::dynamic_pointer_cast<Gates<Gate>>(_barrier_gates);
@@ -98,7 +98,7 @@ GateSP StandardConfigConnections::get_connection(
     return nullptr;
   }
 }
-GatesSP<Gate> StandardConfigConnections::get_all_gates() const {
+GatesSP StandardConfigConnections::get_all_gates() const {
   auto plunger   = std::dynamic_pointer_cast<Gates<Gate>>(_plunger_gates);
   auto barrier   = std::dynamic_pointer_cast<Gates<Gate>>(_barrier_gates);
   auto reservoir = std::dynamic_pointer_cast<Gates<Gate>>(_reservoir_gates);

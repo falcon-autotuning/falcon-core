@@ -44,7 +44,7 @@ GateGeometryArray1D::GateGeometryArray1D(BaseConnectionsSP lineararray,
     }
     dot_gates.push_back(dot_gate);
   }
-  _raw_central_gates = DotGates<DotGate>(dot_gates);
+  _raw_central_gates = std::make_shared<DotGates<DotGate>>(dot_gates);
 
   if (!std::dynamic_pointer_cast<BarrierGate>(dot_gates.front()) ||
       !std::dynamic_pointer_cast<BarrierGate>(dot_gates.back())) {
@@ -121,7 +121,7 @@ GateGeometryArray1D::all_dot_gates() const {
       std::static_pointer_cast<BaseDotGateWithNeighbors>(right_barrier()));
   return std::make_shared<DotGates<BaseDotGateWithNeighbors>>(all_dot_gates);
 }
-GatesSP<Gate> GateGeometryArray1D::query_neighbors(const GateSP& gate) const {
+GatesSP GateGeometryArray1D::query_neighbors(const GateSP& gate) const {
   auto it = _gate_name_map.find(gate->name());
   if (it == _gate_name_map.end()) {
     throw std::invalid_argument("Gate " + gate->name() +
@@ -135,7 +135,7 @@ GatesSP<Gate> GateGeometryArray1D::query_neighbors(const GateSP& gate) const {
   for (const auto& sg : *screening_gates()) {
     if (sg->name() == gate_geometry->name()) {
       result.push_back(left_barrier()->left_neighbor());
-      for (const auto& g : raw_central_gates()) {
+      for (const auto& g : *raw_central_gates()) {
         result.push_back(g);
       }
       result.push_back(right_barrier()->right_neighbor());

@@ -12,17 +12,17 @@ namespace device_structures {
  *
  * Uses composition: contains a vector of shared_ptr<T>.
  */
-class ReservoirGates : public Gates<ReservoirGate> {
+class ReservoirGates : public Gates<ReservoirGate, ReservoirGates> {
  public:
   ReservoirGates() = default;
-  ReservoirGates(size_t count) : Gates<ReservoirGate>(count) {}
+  ReservoirGates(size_t count) : Gates<ReservoirGate, ReservoirGates>(count) {}
   ReservoirGates(size_t count, const ReservoirGateSP& value)
-      : Gates<ReservoirGate>(count, value) {}
+      : Gates<ReservoirGate, ReservoirGates>(count, value) {}
   ReservoirGates(const std::vector<ReservoirGateSP>& vec)
-      : Gates<ReservoirGate>(vec) {}
+      : Gates<ReservoirGate, ReservoirGates>(vec) {}
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<Gates<ReservoirGate>>(this));
+    ar(cereal::base_class<Gates<ReservoirGate, ReservoirGates>>(this));
   }
 
  protected:

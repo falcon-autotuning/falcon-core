@@ -27,7 +27,7 @@ namespace geometries {
 class GateGeometryArray1D : public generic::Song {
   using CentralDotGates = DotGates<BaseDotGateWithNeighbors>;
   CentralDotGates                         _central_dot_gates;
-  DotGates<DotGate>                       _raw_central_gates;
+  DotGatesSP                              _raw_central_gates;
   ScreeningGatesSP                        _screening_gates;
   BaseConnectionsSP                       _lineararray;
   std::unordered_map<std::string, GateSP> _gate_name_map;
@@ -70,7 +70,7 @@ class GateGeometryArray1D : public generic::Song {
    * @param gate The gate to query neighbors for
    * @return The collection of neighboring gates
    */
-  GatesSP<Gate> query_neighbors(const GateSP& gate) const;
+  GatesSP query_neighbors(const GateSP& gate) const;
 
   /**
    * @brief Gets the left reservoir with implanted ohmic contact.
@@ -108,7 +108,7 @@ class GateGeometryArray1D : public generic::Song {
    * @brief Gets the central gates without localities.
    * @return The central gates without localities.
    */
-  DotGates<DotGate> raw_central_gates() const { return _raw_central_gates; }
+  DotGatesSP raw_central_gates() const { return _raw_central_gates; }
   /**
    * @brief Gets the central gates with localities.
    * @return The central gates with localities.

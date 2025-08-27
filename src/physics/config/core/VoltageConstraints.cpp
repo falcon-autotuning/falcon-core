@@ -21,10 +21,17 @@ VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
   MatrixType pairMatrix = MatrixType::Zero(2 * pairs.size(), W);
   // Creates pairs of constraint equations for every set of connected gates
   for (int i = 0; i < pairs.size(); i++) {
-    pairMatrix(2 * i, pairs[i].first)      = 1;
-    pairMatrix(2 * i, pairs[i].second)     = -1;
-    pairMatrix(2 * i + 1, pairs[i].first)  = -1;
-    pairMatrix(2 * i + 1, pairs[i].second) = 1;
+    int a = pairs[i].first;
+    int b = pairs[i].second;
+    if (a < 0 || a >= W || b < 0 || b >= W) {
+      std::cerr << "Invalid pair index: (" << a << ", " << b << "), W=" << W
+                << std::endl;
+      continue;  // or throw/assert
+    }
+    pairMatrix(2 * i, a)     = 1;
+    pairMatrix(2 * i, b)     = -1;
+    pairMatrix(2 * i + 1, a) = -1;
+    pairMatrix(2 * i + 1, b) = 1;
   }
   matrix << Imatrix, invImatrix, pairMatrix;
 

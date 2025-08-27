@@ -207,8 +207,7 @@ class Config : public StandardConfigConnections {
    * @returns All of the gates of a gatetype assocated with the selected group.
    * Otherwise a nullptr if no match is found.
    */
-  DotGatesSP<DotGate> get_group_gates(const GnameSP&   gname,
-                                      const DotGateSP& type) const;
+  DotGatesSP get_group_gates(const GnameSP& gname, const DotGateSP& type) const;
   /**
    * @brief Gets all of the gates of a gatetype assocated with the selected
    * group from the config.
@@ -217,7 +216,7 @@ class Config : public StandardConfigConnections {
    * @returns All of the gates of a gatetype assocated with the selected group.
    * Otherwise a nullptr if no match is found.
    */
-  GatesSP<Gate> get_group_gates(const GnameSP& gname, const GateSP& type) const;
+  GatesSP get_group_gates(const GnameSP& gname, const GateSP& type) const;
   /**
    * @brief Gets all fo the gates of a gatetype assocated with the selected
    * current channel from the config.
@@ -266,8 +265,8 @@ class Config : public StandardConfigConnections {
    * @returns All of the gates of a gatetype assocated with the selected
    * channel. Otherwise a nullptr if no match is found.
    */
-  DotGatesSP<DotGate> get_channel_gates(const ChannelSP& channel,
-                                        const DotGateSP& type) const;
+  DotGatesSP get_channel_gates(const ChannelSP& channel,
+                               const DotGateSP& type) const;
   /**
    * @brief Gets all fo the gates of a gatetype assocated with the selected
    * current channel from the config.
@@ -276,8 +275,7 @@ class Config : public StandardConfigConnections {
    * @returns All of the gates of a gatetype assocated with the selected
    * channel. Otherwise a nullptr if no match is found.
    */
-  GatesSP<Gate> get_channel_gates(const ChannelSP& channel,
-                                  const GateSP&    type) const;
+  GatesSP get_channel_gates(const ChannelSP& channel, const GateSP& type) const;
   /**
    * @brief Gets all of the gates assocated with the selected current channel
    * from the config.
@@ -285,7 +283,7 @@ class Config : public StandardConfigConnections {
    * @returns All of the gates assocated with the selected channel. Otherwise a
    * nullptr if no match is found.
    */
-  GatesSP<Gate> get_all_channel_gates(const ChannelSP& channel) const;
+  GatesSP get_all_channel_gates(const ChannelSP& channel) const;
   /**
    * @brief Gets all of the ohmics assocated with the selected current channel.
    * @param channel The channel to find the ohmics for.
@@ -300,7 +298,7 @@ class Config : public StandardConfigConnections {
    * @returns All of the gates in the order at the selected channel. Otherwise a
    * nullptr
    */
-  GatesSP<Gate> get_channel_order_no_ohmics(const ChannelSP& channel) const;
+  GatesSP get_channel_order_no_ohmics(const ChannelSP& channel) const;
   /**
    * @brief Returns the number of unique channels associated with the current
    * sample.
@@ -412,13 +410,13 @@ class Config : public StandardConfigConnections {
    * @param type String corresponding to the gatetype pulled from the config.
    * @return DotGatesSP set of all gates that are unshared of the gatetype.
    */
-  DotGatesSP<DotGate> get_isolated_gates(const DotGateSP& type) const;
+  DotGatesSP get_isolated_gates(const DotGateSP& type) const;
   /**
    * @brief Task to find isolated gates stored in the config.
    * @param type String corresponding to the gatetype pulled from the config.
    * @return GatesSP<Gate> set of all gates that are unshared of the gatetype.
    */
-  GatesSP<Gate> get_isolated_gates(const GateSP& type) const;
+  GatesSP get_isolated_gates(const GateSP& type) const;
   /**
    * @brief Task to find shared gates stored in the config.
    * @param type String corresponding to the gatetype pulled from the config.
@@ -453,14 +451,14 @@ class Config : public StandardConfigConnections {
    * @return DotGatesSP organized from most shared to least shared gate of the
    * gatetype.
    */
-  DotGatesSP<DotGate> get_shared_gates(const DotGateSP& type) const;
+  DotGatesSP get_shared_gates(const DotGateSP& type) const;
   /**
    * @brief Task to find shared gates stored in the config.
    * @param type String corresponding to the gatetype pulled from the config.
    * @return GatesSP<Gate> organized from most shared to least shared gate of
    * the gatetype.
    */
-  GatesSP<Gate> get_shared_gates(const GateSP& type) const;
+  GatesSP get_shared_gates(const GateSP& type) const;
   /**
    * @brief Finds the shared gates of the gatetype in the selected channel.
    * @param type The particular gatetype of interest.
@@ -504,8 +502,8 @@ class Config : public StandardConfigConnections {
    * @return DotGatesSP list of all gates of the gateytpe that are shared in the
    * selected channel.
    */
-  DotGatesSP<DotGate> get_shared_channel_gates(const DotGateSP& type,
-                                               const ChannelSP& channel) const;
+  DotGatesSP get_shared_channel_gates(const DotGateSP& type,
+                                      const ChannelSP& channel) const;
   /**
    * @brief Finds the shared gates of the gatetype in the selected channel.
    * @param type The particular gatetype of interest.
@@ -513,8 +511,8 @@ class Config : public StandardConfigConnections {
    * @return GatesSP<Gate> list of all gates of the gateytpe that are shared in
    * the selected channel.
    */
-  GatesSP<Gate> get_shared_channel_gates(const GateSP&    type,
-                                         const ChannelSP& channel) const;
+  GatesSP get_shared_channel_gates(const GateSP&    type,
+                                   const ChannelSP& channel) const;
   /**
    * @brief Finds the isolated gates of the gatetype in the selected channel.
    * @param type The particular gatetype of interest.
@@ -558,8 +556,8 @@ class Config : public StandardConfigConnections {
    * @return DotGatesSP list of all gates of the gatetype that are isolated in
    * the selected channel.
    */
-  DotGatesSP<DotGate> get_isolated_channel_gates(
-      const DotGateSP& type, const ChannelSP& channel) const;
+  DotGatesSP get_isolated_channel_gates(const DotGateSP& type,
+                                        const ChannelSP& channel) const;
   /**
    * @brief Finds the isolated gates of the gatetype in the selected channel.
    * @param type The particular gatetype of interest.
@@ -567,8 +565,8 @@ class Config : public StandardConfigConnections {
    * @return GatesSP<Gate> list of all gates of the gatetype that are isolated
    * in the selected channel.
    */
-  GatesSP<Gate> get_isolated_channel_gates(const GateSP&    type,
-                                           const ChannelSP& channel) const;
+  GatesSP get_isolated_channel_gates(const GateSP&    type,
+                                     const ChannelSP& channel) const;
   /**
    * @brief Returns gates of a certain gatetype indexed by channel which are
    * unshared.

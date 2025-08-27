@@ -10,17 +10,17 @@ namespace device_structures {
 /**
  * @brief A collection of ScreeningGates.
  */
-class ScreeningGates : public Gates<ScreeningGate> {
+class ScreeningGates : public Gates<ScreeningGate, ScreeningGates> {
  public:
   ScreeningGates() = default;
-  ScreeningGates(size_t count) : Gates<ScreeningGate>(count) {}
+  ScreeningGates(size_t count) : Gates<ScreeningGate, ScreeningGates>(count) {}
   ScreeningGates(size_t count, const ScreeningGateSP& value)
-      : Gates<ScreeningGate>(count, value) {}
+      : Gates<ScreeningGate, ScreeningGates>(count, value) {}
   ScreeningGates(const std::vector<ScreeningGateSP>& vec)
-      : Gates<ScreeningGate>(vec) {}
+      : Gates<ScreeningGate, ScreeningGates>(vec) {}
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<Gates<ScreeningGate>>(this));
+    ar(cereal::base_class<Gates<ScreeningGate, ScreeningGates>>(this));
   }
 
  protected:
