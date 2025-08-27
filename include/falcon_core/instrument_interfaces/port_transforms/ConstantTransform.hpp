@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/math/analytic_functions/ConstantFunction.hpp"
 
@@ -18,7 +19,9 @@ class ConstantTransform : public PortTransform {
    * @param value The constant value to apply.
    */
   ConstantTransform(double value)
-      : PortTransform(std::make_shared<math::analytic_functions::ConstantFunction>(value)) {}
+      : PortTransform(
+            std::make_shared<math::analytic_functions::ConstantFunction>(
+                value)) {}
 
 #ifndef SWIG
   template <class Archive>

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 
@@ -17,7 +18,8 @@ class PortTransform : public generic::Song {
    * @brief Construct a PortTransform with an analytic function.
    * @param function The analytic function to apply.
    */
-  PortTransform(std::shared_ptr<math::analytic_functions::AnalyticFunction> function)
+  PortTransform(
+      std::shared_ptr<math::analytic_functions::AnalyticFunction> function)
       : _function(std::move(function)) {}
 
   /**

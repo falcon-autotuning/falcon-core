@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <vector>
+
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 
@@ -38,7 +39,7 @@ class PortTransforms : public generic::Song {
 
 #ifndef SWIG
   template <class Archive>
-  void serialize(Archive& ar) {
+  void serialize(Archive &ar) {
     ar(cereal::base_class<generic::Song>(this), _transforms);
   }
 #endif
