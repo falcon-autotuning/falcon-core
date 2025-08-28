@@ -8,7 +8,8 @@ template <typename T>
 ControlArray<T>::ControlArray() : BaseArray<T>() {}
 
 template <typename T>
-ControlArray<T>::ControlArray(const ControlArray& other) : BaseArray<T>(other) {}
+ControlArray<T>::ControlArray(const ControlArray& other)
+    : BaseArray<T>(other) {}
 
 template <typename T>
 ControlArray<T>::ControlArray(const typename BaseArray<T>::MatrixType& data)
@@ -24,7 +25,9 @@ void ControlArray<T>::serialize(Archive& ar) {
 template class ControlArray<float>;
 template class ControlArray<double>;
 
-}}} // namespace
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray<float>)
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray<double>)

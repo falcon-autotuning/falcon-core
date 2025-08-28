@@ -13,7 +13,9 @@ void MeasuredArray<T>::serialize(Archive& ar) {
 // Explicit instantiation for double
 template class MeasuredArray<double>;
 
-}}} // namespace
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::MeasuredArray<double>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

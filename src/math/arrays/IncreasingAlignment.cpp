@@ -11,7 +11,9 @@ void IncreasingAlignment::serialize(Archive& ar) {
   ar(cereal::base_class<generic::Song>(this));
 }
 
-}}} // namespace
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::IncreasingAlignment)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

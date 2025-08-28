@@ -4,7 +4,8 @@ namespace falcon_core {
 namespace math {
 namespace arrays {
 
-ControlArray1D::ControlArray1D(const typename ControlArray<double>::MatrixType& data)
+ControlArray1D::ControlArray1D(
+    const typename ControlArray<double>::MatrixType& data)
     : ControlArray<double>(data) {
   if (!this->is_1d()) {
     throw std::invalid_argument(
@@ -19,7 +20,9 @@ void ControlArray1D::serialize(Archive& ar) {
   ar(cereal::base_class<ControlArray<double>>(this));
 }
 
-}}} // namespace
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray1D)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
