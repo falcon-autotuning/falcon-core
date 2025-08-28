@@ -1,14 +1,12 @@
 #include "falcon_core/physics/units/Unit.hpp"
 
 #include <cmath>
-#include <stdexcept>
-#include <string>
 
 #include "falcon_core/physics/units/Prefix.hpp"
 #include "falcon_core/physics/units/TotalDimensions.hpp"
-using namespace falcon_core;
-using namespace falcon_core::physics::units;
-
+namespace falcon_core {
+namespace physics {
+namespace units {
 Unit::Unit(TotalDimensions dimensions,
            double          scale_factor,
            double          offset,
@@ -32,6 +30,32 @@ UnitSP Unit::operator*(const UnitSP &other) const {
                                 this->_offset + other->_offset,
                                 this->_prefix);
 }
+void clean_dimensions(TotalDimensions &dims) {
+  for (auto it = dims.begin(); it != dims.end();) {
+    if (it->second == 0) {
+      it = dims.erase(it);
+    } else {
+      ++it;
+    }
+  }
+}
+
+/**
+ * @brief The prefix applied to this unit.
+ */
+std::string Unit::prefix() const { return this->_prefix; }
+/**
+ * @brief Dimensions of this unit.
+ */
+TotalDimensions Unit::dimensions() const { return this->_dimensions; }
+/**
+ * @brief Scale factor relatice to SI base units.
+ */
+double Unit::scale_factor() const { return this->_scale_factor; }
+/**
+ * @brief Offset from base unit.
+ */
+double Unit::offset() const { return this->_offset; }
 
 UnitSP Unit::operator/(const UnitSP &other) const {
   TotalDimensions result_dims = this->_dimensions;
@@ -93,6 +117,17 @@ double Unit::convert_value_to(const double  value,
 bool Unit::is_compatible_with(const UnitSP &other) const {
   return dimensions() == other->dimensions();
 }
+template <class Archive>
+void Unit::serialize(Archive &ar) {
+  ar(cereal::base_class<Song>(this),
+     _scale_factor,
+     _offset,
+     _prefix,
+     _dimensions);
+}
+}  // namespace units
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::physics::units::Unit)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::physics::units::Unit)
