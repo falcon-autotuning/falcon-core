@@ -11,11 +11,5 @@ void ScreeningGate::serialize(Archive &ar) {
   ar(cereal::base_class<Gate>(this));
 }
 
-// Explicit instantiation for cereal
-template void ScreeningGate::serialize<cereal::JSONOutputArchive>(
-    cereal::JSONOutputArchive &);
-template void ScreeningGate::serialize<cereal::JSONInputArchive>(
-    cereal::JSONInputArchive &);
-
 CEREAL_REGISTER_TYPE(ScreeningGate)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(Gate, ScreeningGate)

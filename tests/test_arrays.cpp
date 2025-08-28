@@ -1,10 +1,9 @@
 #include <gtest/gtest.h>
 
-#include <Eigen/Dense>
-
 #include "falcon_core/math/arrays/BaseArray.hpp"
 #include "falcon_core/math/arrays/ControlArray1D.hpp"
 
+namespace tests {
 using namespace falcon_core::math::arrays;
 
 TEST(BaseArrayTest, ConstructionAndAccess) {
@@ -33,10 +32,6 @@ TEST(ControlArray1DTest, ThrowsOnNon1D) {
   // construction
   EXPECT_THROW({ ControlArray1D arr(mat); }, std::invalid_argument);
 }
-
-#include <cereal/archives/json.hpp>
-#include <cereal/types/memory.hpp>
-#include <sstream>
 
 TEST(BaseArrayTest, SerializationRoundTrip) {
   Eigen::MatrixXd mat(2, 2);
@@ -72,3 +67,4 @@ TEST(ControlArray1DTest, SerializationRoundTrip) {
   EXPECT_EQ(arr1d2->data().cols(), 3);
   EXPECT_DOUBLE_EQ(arr1d2->data()(0, 2), 3.0);
 }
+}  // namespace tests

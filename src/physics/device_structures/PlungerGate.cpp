@@ -11,11 +11,5 @@ void PlungerGate::serialize(Archive &ar) {
   ar(cereal::base_class<DotGate>(this));
 }
 
-// Explicit instantiation for cereal
-template void PlungerGate::serialize<cereal::JSONOutputArchive>(
-    cereal::JSONOutputArchive &);
-template void PlungerGate::serialize<cereal::JSONInputArchive>(
-    cereal::JSONInputArchive &);
-
 CEREAL_REGISTER_TYPE(PlungerGate)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(DotGate, PlungerGate)
