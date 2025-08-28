@@ -36,37 +36,32 @@ class StandardConfigConnections : public generic::Song {
                             const ReservoirGatesSP& reservoir_gates,
                             const PlungerGatesSP&   plunger_gates,
                             const BarrierGatesSP&   barrier_gates,
-                            const OhmicsSP&         ohmics)
-      : _screening_gates(screening_gates),
-        _reservoir_gates(reservoir_gates),
-        _plunger_gates(plunger_gates),
-        _barrier_gates(barrier_gates),
-        _ohmics(ohmics) {}
+                            const OhmicsSP&         ohmics);
   /**
    * @brief The screening gates from the config.
    * @return The screening gates.
    */
-  ScreeningGatesSP screening_gates() const { return _screening_gates; }
+  ScreeningGatesSP screening_gates() const;
   /**
    * @brief The reservoir gates from the config.
    * @return The reservoir gates.
    */
-  ReservoirGatesSP reservoir_gates() const { return _reservoir_gates; }
+  ReservoirGatesSP reservoir_gates() const;
   /**
    * @brief The plunger gates from the config.
    * @return The plunger gates.
    */
-  PlungerGatesSP plunger_gates() const { return _plunger_gates; }
+  PlungerGatesSP plunger_gates() const;
   /**
    * @brief The barrier gates from the config.
    * @return The barrier gates.
    */
-  BarrierGatesSP barrier_gates() const { return _barrier_gates; }
+  BarrierGatesSP barrier_gates() const;
   /**
    * @brief The ohmics from the config.
    * @return The ohmics gates.
    */
-  OhmicsSP ohmics() const { return _ohmics; }
+  OhmicsSP ohmics() const;
   /**
    * @brief Gets the connections of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -214,17 +209,10 @@ class StandardConfigConnections : public generic::Song {
    */
   bool has_gate(const GateSP& gate) const;
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this),
-       _screening_gates,
-       _reservoir_gates,
-       _plunger_gates,
-       _barrier_gates,
-       _ohmics);
-  }
+  void serialize(Archive& ar);
 
  protected:
-  StandardConfigConnections() = default;
+  StandardConfigConnections();
   friend class cereal::access;
 };
 using StandardConfigConnectionsSP = std::shared_ptr<StandardConfigConnections>;
@@ -232,9 +220,3 @@ using StandardConfigConnectionsSP = std::shared_ptr<StandardConfigConnections>;
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-#ifndef SWIG
-using namespace falcon_core::physics::config::core;
-CEREAL_REGISTER_TYPE(StandardConfigConnections)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     StandardConfigConnections)
-#endif

@@ -3,7 +3,6 @@
 #include "falcon_core/autotuner_interfaces/names/Channel.hpp"
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D.hpp"
-#include "falcon_core/physics/device_structures/BaseConnections.hpp"
 namespace falcon_core {
 namespace physics {
 namespace config {
@@ -35,30 +34,22 @@ class Group : public StandardConfigConnections {
         const PlungerGatesSP&    plunger_gates,
         const BarrierGatesSP&    barrier_gates,
         const BaseConnectionsSP& order);
-  // : StandardConfigConnections(screening_gates,
-  //                             reservoir_gates,
-  //                             plunger_gates,
-  //                             barrier_gates,
-  //                             std::make_shared<Ohmics>()),
-  //   _name(name),
-  //   _num_dots(num_dots),
-  //   _order(std::make_shared<GateGeometryArray1D>(order, screening_gates)) {}
   /**
    * @brief collect the ohmics pertaining to this group.
    */
-  OhmicsSP ohmics() const { return _ohmics; }
+  OhmicsSP ohmics() const;
   /**
    * @brief collect the name of this group.
    */
-  ChannelSP name() const { return _name; }
+  ChannelSP name() const;
   /**
    * @brief collect the number of dots in this group.
    */
-  int num_dots() const { return _num_dots; }
+  int num_dots() const;
   /**
    * @brief collect the order of the gates in this group.
    */
-  GateGeometryArray1DSP order() const { return _order; }
+  GateGeometryArray1DSP order() const;
   /**
    * @brief Validates if this channel is present.
    * @param channel The channel to validate.
@@ -78,27 +69,10 @@ class Group : public StandardConfigConnections {
    */
   GatesSP get_all_channel_gates(const ChannelSP& channel) const;
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<StandardConfigConnections>(this),
-       _name,
-       _num_dots,
-       _order,
-       _ohmics);
-  }
+  void serialize(Archive& ar);
 
  protected:
-  Group()
-      : StandardConfigConnections(std::make_shared<ScreeningGates>(),
-                                  std::make_shared<ReservoirGates>(),
-                                  std::make_shared<PlungerGates>(),
-                                  std::make_shared<BarrierGates>(),
-                                  std::make_shared<Ohmics>()),
-        _name(std::make_shared<Channel>("")),
-        _num_dots(0),
-        _order(std::make_shared<GateGeometryArray1D>(
-            std::make_shared<BaseConnections<BaseConnection>>(),
-            std::make_shared<ScreeningGates>())),
-        _ohmics(std::make_shared<Ohmics>()) {};
+  Group();
   friend class cereal::access;
 };
 using GroupSP = std::shared_ptr<Group>;
@@ -106,8 +80,3 @@ using GroupSP = std::shared_ptr<Group>;
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-#ifndef SWIG
-using namespace falcon_core::physics::config::core;
-CEREAL_REGISTER_TYPE(Group)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(StandardConfigConnections, Group)
-#endif

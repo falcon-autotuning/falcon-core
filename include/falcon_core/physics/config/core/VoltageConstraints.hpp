@@ -25,26 +25,24 @@ class VoltageConstraints : public generic::Song {
   /**
    * @brief The constraint matrix.
    */
-  const MatrixType& matrix() const { return _matrix; }
+  const MatrixType& matrix() const;
   /**
    * @brief The constraint matrix.
    */
-  MatrixType& matrix() { return _matrix; }
+  MatrixType& matrix();
   /**
    * @brief The adjacency matrix used to understand the device layout.
    */
-  AdjacencySP adjacency() const { return _adjacency; }
+  AdjacencySP adjacency() const;
   /**
    * @brief The (min,max) safe voltage limits for each constraint.
    */
-  std::pair<float, float> limits() const { return _limits; }
+  std::pair<float, float> limits() const;
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _matrix, _adjacency, _limits);
-  }
+  void serialize(Archive& ar);
 
  protected:
-  VoltageConstraints() = default;
+  VoltageConstraints();
   friend class cereal::access;
 };
 using VoltageConstraintsSP = std::shared_ptr<VoltageConstraints>;
@@ -52,9 +50,3 @@ using VoltageConstraintsSP = std::shared_ptr<VoltageConstraints>;
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-#ifndef SWIG
-using namespace falcon_core::physics::config::core;
-CEREAL_REGISTER_TYPE(VoltageConstraints)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     VoltageConstraints)
-#endif

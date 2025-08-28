@@ -18,30 +18,27 @@ class Adjacency : public generic::Song {
   MatrixType _matrix;
 
  public:
-  Adjacency(const MatrixType &matrix, const Indexes indexes)
-      : _matrix(matrix), _indexes(indexes) {}
+  Adjacency(const MatrixType &matrix, const Indexes indexes);
   /**
    * @brief Returns the matrix containing the device layout adjacency
    */
-  MatrixType matrix() const { return _matrix; }
+  MatrixType matrix() const;
   /**
    # @brief Returns the indexes of the gates in the order for the adjacency
    matrix
   */
-  Indexes indexes() const { return _indexes; }
-  int     size() const { return _indexes->size(); }
+  Indexes indexes() const;
+  int     size() const;
 
   /**
    * @brief Returns the pairs of indexes where the adjacency matrix is true (1)
    */
   std::vector<std::pair<int, int>> get_true_pairs() const;
   template <class Archive>
-  void serialize(Archive &ar) {
-    ar(cereal::base_class<generic::Song>(this), _matrix, _indexes);
-  }
+  void serialize(Archive &ar);
 
  protected:
-  Adjacency() = default;
+  Adjacency();
   friend class cereal::access;
 };
 using AdjacencySP = std::shared_ptr<Adjacency>;
@@ -49,8 +46,3 @@ using AdjacencySP = std::shared_ptr<Adjacency>;
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-#ifndef SWIG
-using namespace falcon_core::physics::config::core;
-CEREAL_REGISTER_TYPE(Adjacency)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Adjacency)
-#endif

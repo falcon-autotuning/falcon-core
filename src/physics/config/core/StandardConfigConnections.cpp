@@ -4,8 +4,35 @@
 
 #include "falcon_core/physics/device_structures/BarrierGate.hpp"
 
-using namespace falcon_core::physics::config::core;
-
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace core {
+StandardConfigConnections::StandardConfigConnections() = default;
+StandardConfigConnections::StandardConfigConnections(
+    const ScreeningGatesSP& screening_gates,
+    const ReservoirGatesSP& reservoir_gates,
+    const PlungerGatesSP&   plunger_gates,
+    const BarrierGatesSP&   barrier_gates,
+    const OhmicsSP&         ohmics)
+    : _screening_gates(screening_gates),
+      _reservoir_gates(reservoir_gates),
+      _plunger_gates(plunger_gates),
+      _barrier_gates(barrier_gates),
+      _ohmics(ohmics) {}
+ScreeningGatesSP StandardConfigConnections::screening_gates() const {
+  return _screening_gates;
+}
+ReservoirGatesSP StandardConfigConnections::reservoir_gates() const {
+  return _reservoir_gates;
+}
+PlungerGatesSP StandardConfigConnections::plunger_gates() const {
+  return _plunger_gates;
+}
+BarrierGatesSP StandardConfigConnections::barrier_gates() const {
+  return _barrier_gates;
+}
+OhmicsSP StandardConfigConnections::ohmics() const { return _ohmics; }
 OhmicsSP StandardConfigConnections::get_connections(
     const OhmicSP& conn_type) const {
   return _ohmics;
@@ -146,3 +173,21 @@ bool StandardConfigConnections::has_gate(const GateSP& gate) const {
   }
   return false;
 }
+template <class Archive>
+void StandardConfigConnections::serialize(Archive& ar) {
+  ar(cereal::base_class<generic::Song>(this),
+     _screening_gates,
+     _reservoir_gates,
+     _plunger_gates,
+     _barrier_gates,
+     _ohmics);
+}
+}  // namespace core
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
+CEREAL_REGISTER_TYPE(
+    falcon_core::physics::config::core::StandardConfigConnections)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::physics::config::core::StandardConfigConnections)
