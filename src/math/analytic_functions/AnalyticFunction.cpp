@@ -15,7 +15,9 @@ void AnalyticFunction::serialize(Archive& ar) {
   ar(cereal::base_class<generic::Song>(this), _name);
 }
 
-}}} // namespace
+}  // namespace analytic_functions
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::analytic_functions::AnalyticFunction)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
