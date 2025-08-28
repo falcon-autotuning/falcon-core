@@ -10,6 +10,7 @@
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 #include "falcon_core/physics/units/Units.hpp"
 
+namespace tests {
 using namespace falcon_core::math;
 using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::physics::units;
@@ -144,3 +145,4 @@ TEST(VectorTest, UnitConversion) {
   ASSERT_EQ(vec->end()->unit(), unit2);
   ASSERT_EQ(vec->start()->unit(), unit2);
 }
+}  // namespace tests

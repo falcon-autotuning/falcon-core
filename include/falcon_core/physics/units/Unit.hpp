@@ -1,8 +1,5 @@
 #pragma once
 
-#include <cmath>
-#include <memory>
-
 #include "falcon_core/Constants.hpp"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/units/TotalDimensions.hpp"
@@ -23,32 +20,24 @@ class Unit : public generic::Song {
        std::string     prefix       = SI::UNIT_SYMBOL);
 
   // Utility to clean dimensions: remove zero exponents
-  static void clean_dimensions(TotalDimensions& dims) {
-    for (auto it = dims.begin(); it != dims.end();) {
-      if (it->second == 0) {
-        it = dims.erase(it);
-      } else {
-        ++it;
-      }
-    }
-  }
+  static void clean_dimensions(TotalDimensions& dims);
 
   /**
    * @brief The prefix applied to this unit.
    */
-  std::string prefix() const { return this->_prefix; }
+  std::string prefix() const;
   /**
    * @brief Dimensions of this unit.
    */
-  TotalDimensions dimensions() const { return this->_dimensions; }
+  TotalDimensions dimensions() const;
   /**
    * @brief Scale factor relatice to SI base units.
    */
-  double scale_factor() const { return this->_scale_factor; }
+  double scale_factor() const;
   /**
    * @brief Offset from base unit.
    */
-  double offset() const { return this->_offset; }
+  double offset() const;
 
   /*
    * @brief Multiply this unit by another unit.
@@ -92,13 +81,7 @@ class Unit : public generic::Song {
    */
   bool is_compatible_with(const std::shared_ptr<Unit>& other) const;
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<Song>(this),
-       _scale_factor,
-       _offset,
-       _prefix,
-       _dimensions);
-  }
+  void serialize(Archive& ar);
 
  protected:
   Unit() = default;  // or initialize _name with a default value
