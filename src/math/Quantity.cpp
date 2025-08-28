@@ -2,9 +2,16 @@
 
 #include <cereal/types/polymorphic.hpp>
 #include <cmath>
+#include <stdexcept>
 
 namespace falcon_core {
 namespace math {
+
+Quantity::Quantity(double value, std::shared_ptr<physics::units::SymbolUnit> unit)
+    : _value(value), _unit(std::move(unit)) {}
+
+double Quantity::value() const { return _value; }
+std::shared_ptr<physics::units::SymbolUnit> Quantity::unit() { return _unit; }
 
 void Quantity::convert_to(
     std::shared_ptr<physics::units::SymbolUnit> target_unit) {
@@ -81,6 +88,18 @@ std::shared_ptr<Quantity> Quantity::operator-(
 std::shared_ptr<Quantity> Quantity::abs() const {
   return std::make_shared<Quantity>(std::abs(_value), _unit);
 }
+
+Quantity::Quantity() = default;
+
+template <class Archive>
+void Quantity::serialize(Archive &ar) {
+  ar(cereal::base_class<Song>(this), _value, _unit);
+}
+
+// Cereal registration
+CEREAL_REGISTER_TYPE(falcon_core::math::Quantity)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::math::Quantity)
 
 }  // namespace math
 }  // namespace falcon_core
