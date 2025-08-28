@@ -11,11 +11,5 @@ void ReservoirGate::serialize(Archive &ar) {
   ar(cereal::base_class<Gate>(this));
 }
 
-// Explicit instantiation for cereal
-template void ReservoirGate::serialize<cereal::JSONOutputArchive>(
-    cereal::JSONOutputArchive &);
-template void ReservoirGate::serialize<cereal::JSONInputArchive>(
-    cereal::JSONInputArchive &);
-
 CEREAL_REGISTER_TYPE(ReservoirGate)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(Gate, ReservoirGate)
