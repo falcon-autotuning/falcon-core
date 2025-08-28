@@ -9,8 +9,8 @@
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/names/Knob.hpp"
-#include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
+#include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 
 /**
  * @file ValidatedAnalyticFunction.hpp
@@ -70,8 +70,8 @@ class ValidatedAnalyticFunction : public generic::Song {
   // You may want to add a more general call operator for multiple arguments
 
  private:
-  PortsPtr    _ports;    ///< Ports container.
-  FunctionPtr _function; ///< Analytic function.
+  PortsPtr    _ports;     ///< Ports container.
+  FunctionPtr _function;  ///< Analytic function.
 
   /**
    * @brief Validate that the function signature matches the ports.

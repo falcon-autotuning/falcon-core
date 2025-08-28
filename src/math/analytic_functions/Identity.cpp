@@ -13,7 +13,9 @@ void Identity::serialize(Archive& ar) {
   ar(cereal::base_class<AnalyticFunction>(this));
 }
 
-}}} // namespace
+}  // namespace analytic_functions
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::analytic_functions::Identity)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

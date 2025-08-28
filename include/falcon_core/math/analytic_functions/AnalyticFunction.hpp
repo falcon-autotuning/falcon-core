@@ -20,7 +20,7 @@ class AnalyticFunction : public generic::Song {
   virtual double evaluate(double x) const = 0;
 
   std::string name() const;
-  void set_name(const std::string& name);
+  void        set_name(const std::string& name);
 
  protected:
   std::string _name;
