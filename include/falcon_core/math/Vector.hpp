@@ -26,23 +26,24 @@ namespace math {
  * connections.
  */
 class Vector : public generic::Song {
-  PointSP           _end;
-  PointSP           _start;
-  BaseConnectionsSP _connections;
-  SymbolUnitSP      _unit;
+  PointSP                      _end;
+  PointSP                      _start;
+  BaseConnectionsSP            _connections;
+  physics::units::SymbolUnitSP _unit;
 
  public:
   Vector(PointSP end, PointSP start);
   Vector(PointSP end);
-  Vector(const generic::Map<BaseConnection, double>& end, SymbolUnitSP unit);
+  Vector(const generic::Map<BaseConnection, double>& end,
+         falcon_core::physics::units::SymbolUnitSP   unit);
   Vector(const generic::Map<BaseConnection, double>& end,
          const generic::Map<BaseConnection, double>& start,
-         SymbolUnitSP unit);
+         falcon_core::physics::units::SymbolUnitSP   unit);
 
-  const PointSP& end() const;
-  const PointSP& start() const;
-  const BaseConnectionsSP connections() const;
-  SymbolUnitSP unit() const;
+  const PointSP&                            end() const;
+  const PointSP&                            start() const;
+  const BaseConnectionsSP                   connections() const;
+  falcon_core::physics::units::SymbolUnitSP unit() const;
 
   std::pair<double, double> operator[](const BaseConnectionSP& conn) const;
 
@@ -53,7 +54,7 @@ class Vector : public generic::Song {
   std::shared_ptr<Vector> operator-() const;
 
   double magnitude() const;
-  void convert_to(SymbolUnitSP target_unit);
+  void   convert_to(falcon_core::physics::units::SymbolUnitSP target_unit);
 
   template <class Archive>
   void serialize(Archive& ar);

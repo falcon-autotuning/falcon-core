@@ -9,7 +9,11 @@
 #include "falcon_core/physics/device_structures/ScreeningGates.hpp"
 
 using namespace falcon_core::physics::config::core;
-
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace core {
+Config::Config() = default;
 Config::Config(const ScreeningGatesSP&            screening_gates,
                const PlungerGatesSP&              plunger_gates,
                const OhmicsSP&                    ohmics,
@@ -95,6 +99,13 @@ void Config::check_group_consistency() const {
   }
 }
 
+int Config::num_unique_channels() const { return _num_unique_channels; }
+VoltageConstraintsSP Config::voltage_constraints() const {
+  return _voltage_constraints;
+}
+generic::MapSP<Gname, Group> Config::groups() const { return _groups; }
+ImpedancesSP                 Config::wiring_DC() const { return _wiring_DC; }
+ChannelsSP                   Config::channels() const { return _channels; }
 ImpedanceSP Config::get_impedance(const BaseConnection& connection) const {
   if (!wiring_DC()) return nullptr;
   for (const ImpedanceSP& imp : *wiring_DC()) {
@@ -676,3 +687,22 @@ GateRelationsSP Config::generate_gate_relations() const {
   }
   return std::make_shared<GateRelations>(out);
 }
+template <class Archive>
+void Config::serialize(Archive& ar) {
+  ar(cereal::base_class<StandardConfigConnections>(this),
+     _num_unique_channels,
+     _wiring_DC,
+     _channels,
+     _voltage_constraints,
+     _groups);
+}
+}  // namespace core
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
+using MapGG = Map<Gname, Group>;
+CEREAL_REGISTER_TYPE(MapGG)
+CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::Config)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MapGG)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::physics::config::core::Config)

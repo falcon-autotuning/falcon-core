@@ -140,7 +140,9 @@ TEST_F(ConfigTestFixture, JsonRoundTrip) {
   ASSERT_FALSE(json_str.empty());
 
   // Deserialize from JSON
-  auto deserialized_config = *Config::from_json_string<Config>(json_str);
+  auto deserialized_config =
+      *falcon_core::physics::config::core::Config::from_json_string<
+          falcon_core::physics::config::core::Config>(json_str);
 
   // Verify basic properties are preserved
   ASSERT_EQ(deserialized_config.num_unique_channels(),
