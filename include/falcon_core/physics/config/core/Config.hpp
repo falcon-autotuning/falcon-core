@@ -8,7 +8,6 @@
 #include "falcon_core/physics/config/core/VoltageConstraints.hpp"
 #include "falcon_core/physics/device_structures/GateRelations.hpp"
 #include "falcon_core/physics/device_structures/Impedances.hpp"
-#include "falcon_core/physics/device_structures/ScreeningGates.hpp"
 namespace falcon_core {
 namespace physics {
 namespace config {
@@ -47,25 +46,23 @@ class Config : public StandardConfigConnections {
    * @brief Returns the number of unique channels associated with the current
    * sample.
    */
-  int num_unique_channels() const { return _num_unique_channels; }
+  int num_unique_channels() const;
   /**
    * @brief Return the voltage constraints for the physical layout.
    */
-  VoltageConstraintsSP voltage_constraints() const {
-    return _voltage_constraints;
-  }
+  VoltageConstraintsSP voltage_constraints() const;
   /**
    * @brief Return the DC wiring impedances for the physical layout.
    */
-  generic::MapSP<Gname, Group> groups() const { return _groups; }
+  generic::MapSP<Gname, Group> groups() const;
   /**
    * @brief Returns the wiring impedances of the config.
    */
-  ImpedancesSP wiring_DC() const { return _wiring_DC; }
+  ImpedancesSP wiring_DC() const;
   /**
    * @brief Returns the channels of the config.
    */
-  ChannelsSP channels() const { return _channels; }
+  ChannelsSP channels() const;
   /**
    * @brief Check that all impedances are consistent.
    *
@@ -628,17 +625,10 @@ class Config : public StandardConfigConnections {
    */
   GateRelationsSP generate_gate_relations() const;
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<StandardConfigConnections>(this),
-       _num_unique_channels,
-       _wiring_DC,
-       _channels,
-       _voltage_constraints,
-       _groups);
-  }
+  void serialize(Archive& ar);
 
  protected:
-  Config() = default;
+  Config();
   friend class cereal::access;
 };
 using ConfigSP = std::shared_ptr<Config>;
@@ -646,12 +636,3 @@ using ConfigSP = std::shared_ptr<Config>;
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-#ifndef SWIG
-using namespace falcon_core::physics::config::core;
-using namespace falcon_core::generic;
-using MapGG = Map<Gname, Group>;
-CEREAL_REGISTER_TYPE(MapGG)
-CEREAL_REGISTER_TYPE(Config)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(Song, MapGG)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(Song, Config)
-#endif
