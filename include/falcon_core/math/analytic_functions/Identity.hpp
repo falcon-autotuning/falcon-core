@@ -16,34 +16,14 @@ namespace analytic_functions {
  */
 class Identity : public AnalyticFunction {
  public:
-  /**
-   * @brief Default constructor.
-   */
-  Identity() = default;
-
-  /**
-   * @brief Evaluate the function (returns the input value).
-   * @param x Input value.
-   * @return The input value.
-   */
-  double evaluate(double x) const override { return x; }
+  Identity();
+  double evaluate(double x) const override;
 
  private:
   friend class cereal::access;
-  /**
-   * @brief Serialization method for cereal.
-   * @param ar Archive object.
-   */
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<AnalyticFunction>(this));
-  }
+  void serialize(Archive& ar);
 };
 }  // namespace analytic_functions
 }  // namespace math
 }  // namespace falcon_core
-
-using namespace falcon_core::math::analytic_functions;
-CEREAL_REGISTER_TYPE(falcon_core::math::analytic_functions::Identity)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song, falcon_core::math::analytic_functions::Identity)

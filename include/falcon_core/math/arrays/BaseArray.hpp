@@ -19,40 +19,24 @@ namespace arrays {
 template <typename T>
 class BaseArray : public generic::Song {
  public:
-  /// @brief Type alias for the underlying Eigen matrix.
   using MatrixType = Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>;
 
-  /// @brief Construct from Eigen matrix data.
-  BaseArray(const MatrixType &data) : _data(data) {}
-  /// @brief Default constructor.
-  BaseArray() = default;
+  BaseArray(const MatrixType &data);
+  BaseArray();
 
-  /// @brief Get the underlying data (const).
-  const MatrixType &data() const { return _data; }
-  /// @brief Get the underlying data (mutable).
-  MatrixType       &data() { return _data; }
+  const MatrixType &data() const;
+  MatrixType       &data();
 
-  /// @brief Check if the array is 1-dimensional.
-  bool is_1d() const { return _data.rows() == 1 || _data.cols() == 1; }
+  bool is_1d() const;
 
  protected:
   MatrixType _data;
 
  private:
   friend class cereal::access;
-  /// @brief Serialization method for cereal.
   template <class Archive>
-  void serialize(Archive &ar) {
-    ar(cereal::base_class<generic::Song>(this), _data);
-  }
+  void serialize(Archive &ar);
 };
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core
-
-#ifndef SWIG
-using namespace falcon_core::math::arrays;
-CEREAL_REGISTER_TYPE(falcon_core::math::arrays::BaseArray<double>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song, falcon_core::math::arrays::BaseArray<double>)
-#endif

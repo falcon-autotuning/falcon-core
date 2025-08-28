@@ -21,15 +21,11 @@ namespace labelled_arrays {
 template <typename ArrayType, typename LabelType>
 class BaseLabelledArray : public generic::Song {
  public:
-  /// @brief Construct from array and label.
   BaseLabelledArray(std::shared_ptr<ArrayType> array,
-                    std::shared_ptr<LabelType> label)
-      : _array(std::move(array)), _label(std::move(label)) {}
+                    std::shared_ptr<LabelType> label);
 
-  /// @brief Get the array.
-  const std::shared_ptr<ArrayType>& array() const { return _array; }
-  /// @brief Get the label.
-  const std::shared_ptr<LabelType>& label() const { return _label; }
+  const std::shared_ptr<ArrayType>& array() const;
+  const std::shared_ptr<LabelType>& label() const;
 
  protected:
   std::shared_ptr<ArrayType> _array;
@@ -37,21 +33,10 @@ class BaseLabelledArray : public generic::Song {
 
  private:
   friend class cereal::access;
-  BaseLabelledArray() = default;
-  /// @brief Serialization method for cereal.
+  BaseLabelledArray();
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _array, _label);
-  }
+  void serialize(Archive& ar);
 };
 }  // namespace labelled_arrays
 }  // namespace math
 }  // namespace falcon_core
-
-#ifndef SWIG
-using namespace falcon_core::math;
-using BLA = labelled_arrays::BaseLabelledArray<arrays::BaseArray<double>, int>;
-
-CEREAL_REGISTER_TYPE(BLA)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, BLA)
-#endif
