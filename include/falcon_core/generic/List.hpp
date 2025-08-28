@@ -5,7 +5,7 @@
 namespace falcon_core {
 namespace generic {
 template <typename Value, typename Derived = void>
-class List : public virtual generic::Song {
+class List : public generic::Song {
   static_assert(!std::is_pointer<Value>::value,
                 "Value template argument must not be a pointer type");
   using StoredValue = typename std::conditional<is_primitive<Value>::value,
@@ -90,7 +90,9 @@ class List : public virtual generic::Song {
   clone() const {
     auto result = std::make_shared<Derived>(static_cast<const Derived&>(*this));
     result->clear();
-    result->_items = _items;
+    for (const auto& kv : _items) {
+      result->insert_or_assign(kv.first, kv.second);
+    }
     return result;
   }
   template <class Archive>
