@@ -29,43 +29,19 @@ class UnitSpace : public generic::Song {
   using AxesType       = Axes<discretizers::BaseDiscretizer>;
   using DomainPtr      = std::shared_ptr<domains::Domain>;
 
-  /**
-   * @brief Construct a UnitSpace.
-   * @param axes The axes for discretization.
-   * @param domain The domain of the space.
-   */
-  UnitSpace(const AxesType& axes, DomainPtr domain)
-      : _axes(axes), _domain(domain) {}
+  UnitSpace(const AxesType& axes, DomainPtr domain);
 
-  /**
-   * @brief Get the axes.
-   * @return Reference to the axes.
-   */
-  const AxesType& axes() const { return _axes; }
-
-  /**
-   * @brief Get the domain.
-   * @return Reference to the domain pointer.
-   */
-  const DomainPtr& domain() const { return _domain; }
+  const AxesType& axes() const;
+  const DomainPtr& domain() const;
 
  protected:
-  AxesType  _axes;    ///< Discretization axes.
-  DomainPtr _domain;  ///< Domain of the space.
+  AxesType  _axes;
+  DomainPtr _domain;
 
   friend class cereal::access;
-  /**
-   * @brief Default constructor for cereal access.
-   */
-  UnitSpace() = default;
-  /**
-   * @brief Serialization method for cereal.
-   * @param ar Archive object.
-   */
+  UnitSpace();
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _axes, _domain);
-  }
+  void serialize(Archive& ar);
 };
 
 }  // namespace spaces

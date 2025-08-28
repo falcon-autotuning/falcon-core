@@ -17,44 +17,17 @@ namespace spaces {
  */
 class CartesianSpace : public UnitSpace {
  public:
-  /**
-   * @brief Construct a CartesianSpace.
-   * @param deltas Vector of discretization steps.
-   * @param domain Shared pointer to the domain.
-   */
-  CartesianSpace(const std::vector<double>&       deltas,
-                 std::shared_ptr<domains::Domain> domain)
-      : UnitSpace(make_axes(deltas), domain) {}
+  CartesianSpace(const std::vector<double>& deltas,
+                 std::shared_ptr<domains::Domain> domain);
 
-  /**
-   * @brief Create axes from discretization steps.
-   * @param deltas Vector of discretization steps.
-   * @return Axes of CartesianDiscretizer.
-   */
   static Axes<discretizers::BaseDiscretizer> make_axes(
-      const std::vector<double>& deltas) {
-    std::vector<std::shared_ptr<discretizers::BaseDiscretizer>> axes;
-    for (double delta : deltas) {
-      axes.push_back(
-          std::make_shared<discretizers::CartesianDiscretizer>(delta));
-    }
-    return Axes<discretizers::BaseDiscretizer>(axes);
-  }
+      const std::vector<double>& deltas);
 
  protected:
   friend class cereal::access;
-  /**
-   * @brief Default constructor for cereal access.
-   */
-  CartesianSpace() = default;
-  /**
-   * @brief Serialization method for cereal.
-   * @param ar Archive object.
-   */
+  CartesianSpace();
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<UnitSpace>(this));
-  }
+  void serialize(Archive& ar);
 };
 
 }  // namespace spaces
