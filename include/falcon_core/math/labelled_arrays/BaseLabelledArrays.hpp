@@ -27,26 +27,17 @@ class BaseLabelledArrays : public generic::Song {
   /// @brief Type alias for container type.
   using container_type = std::vector<std::shared_ptr<value_type>>;
 
-  /// @brief Default constructor.
-  BaseLabelledArrays() = default;
+  BaseLabelledArrays();
 
-  /// @brief Append a labelled array.
-  void append(const std::shared_ptr<value_type> &labelled_array) {
-    _arrays.push_back(labelled_array);
-  }
-
-  /// @brief Get all labelled arrays.
-  const container_type &get_arrays() const { return _arrays; }
+  void append(const std::shared_ptr<value_type> &labelled_array);
+  const container_type &get_arrays() const;
 
  private:
   container_type _arrays;
 
   friend class cereal::access;
-  /// @brief Serialization method for cereal.
   template <class Archive>
-  void serialize(Archive &ar) {
-    ar(cereal::base_class<generic::Song>(this), _arrays);
-  }
+  void serialize(Archive &ar);
 };
 }  // namespace labelled_arrays
 }  // namespace math
