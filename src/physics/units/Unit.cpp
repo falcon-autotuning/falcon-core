@@ -30,7 +30,7 @@ UnitSP Unit::operator*(const UnitSP &other) const {
                                 this->_offset + other->_offset,
                                 this->_prefix);
 }
-void clean_dimensions(TotalDimensions &dims) {
+void Unit::clean_dimensions(TotalDimensions &dims) {
   for (auto it = dims.begin(); it != dims.end();) {
     if (it->second == 0) {
       it = dims.erase(it);
