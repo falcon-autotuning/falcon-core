@@ -37,39 +37,39 @@ extern const int ZETTA_EXPONENT;
 extern const int YOTTA_EXPONENT;
 
 // SI prefix symbols
-extern const char* YOCTO_SYMBOL;
-extern const char* ZEPTO_SYMBOL;
-extern const char* ATTO_SYMBOL;
-extern const char* FEMTO_SYMBOL;
-extern const char* PICO_SYMBOL;
-extern const char* NANO_SYMBOL;
-extern const char* MICRO_SYMBOL;
-extern const char* MILLI_SYMBOL;
-extern const char* CENTI_SYMBOL;
-extern const char* UNIT_SYMBOL;
-extern const char* HECTO_SYMBOL;
-extern const char* KILO_SYMBOL;
-extern const char* MEGA_SYMBOL;
-extern const char* GIGA_SYMBOL;
-extern const char* TERA_SYMBOL;
-extern const char* PETA_SYMBOL;
-extern const char* EXA_SYMBOL;
-extern const char* ZETTA_SYMBOL;
-extern const char* YOTTA_SYMBOL;
+extern const char* const YOCTO_SYMBOL;
+extern const char* const ZEPTO_SYMBOL;
+extern const char* const ATTO_SYMBOL;
+extern const char* const FEMTO_SYMBOL;
+extern const char* const PICO_SYMBOL;
+extern const char* const NANO_SYMBOL;
+extern const char* const MICRO_SYMBOL;
+extern const char* const MILLI_SYMBOL;
+extern const char* const CENTI_SYMBOL;
+extern const char* const UNIT_SYMBOL;
+extern const char* const HECTO_SYMBOL;
+extern const char* const KILO_SYMBOL;
+extern const char* const MEGA_SYMBOL;
+extern const char* const GIGA_SYMBOL;
+extern const char* const TERA_SYMBOL;
+extern const char* const PETA_SYMBOL;
+extern const char* const EXA_SYMBOL;
+extern const char* const ZETTA_SYMBOL;
+extern const char* const YOTTA_SYMBOL;
 
-extern const char* ALL_PREFIXES[19];
+extern const char* const ALL_PREFIXES[19];
 
 // Physical dimension constants
-extern const char* DIMENSION_LENGTH;
-extern const char* DIMENSION_MASS;
-extern const char* DIMENSION_TIME;
-extern const char* DIMENSION_CURRENT;
-extern const char* DIMENSION_TEMPERATURE;
-extern const char* DIMENSION_AMOUNT;
-extern const char* DIMENSION_LUMINOSITY;
+extern const char* const DIMENSION_LENGTH;
+extern const char* const DIMENSION_MASS;
+extern const char* const DIMENSION_TIME;
+extern const char* const DIMENSION_CURRENT;
+extern const char* const DIMENSION_TEMPERATURE;
+extern const char* const DIMENSION_AMOUNT;
+extern const char* const DIMENSION_LUMINOSITY;
 
 // Set of all valid dimensions
-extern const char* ALL_DIMENSIONS[7];
+extern const char* const ALL_DIMENSIONS[7];
 
 // The following (maps and std::string objects) cannot be extern const char*:
 extern const std::map<std::string, int> DIMENSIONS_DIMENSIONLESS;
@@ -95,63 +95,63 @@ extern const std::map<std::string, int> DIMENSIONS_TESLA;
 extern const std::map<std::string, int> DIMENSIONS_HENRY;
 
 // Unit symbols
-extern const char* UNIT_SYMBOL_METER;
-extern const char* UNIT_SYMBOL_KILOGRAM;
-extern const char* UNIT_SYMBOL_SECOND;
-extern const char* UNIT_SYMBOL_AMPERE;
-extern const char* UNIT_SYMBOL_KELVIN;
-extern const char* UNIT_SYMBOL_MOLE;
-extern const char* UNIT_SYMBOL_CANDELA;
-extern const char* UNIT_SYMBOL_HERTZ;
-extern const char* UNIT_SYMBOL_NEWTON;
-extern const char* UNIT_SYMBOL_PASCAL;
-extern const char* UNIT_SYMBOL_JOULE;
-extern const char* UNIT_SYMBOL_WATT;
-extern const char* UNIT_SYMBOL_COULOMB;
-extern const char* UNIT_SYMBOL_VOLT;
-extern const char* UNIT_SYMBOL_FARAD;
-extern const char* UNIT_SYMBOL_OHM;
-extern const char* UNIT_SYMBOL_SIEMENS;
-extern const char* UNIT_SYMBOL_WEBER;
-extern const char* UNIT_SYMBOL_TESLA;
-extern const char* UNIT_SYMBOL_HENRY;
-extern const char* UNIT_SYMBOL_MINUTE;
-extern const char* UNIT_SYMBOL_HOUR;
-extern const char* UNIT_SYMBOL_ELECTRON_VOLT;
-extern const char* UNIT_SYMBOL_CELSIUS;
-extern const char* UNIT_SYMBOL_FAHRENHEIT;
-extern const char* UNIT_SYMBOL_PERCENT;
-extern const char* UNIT_SYMBOL_RADIAN;
+extern const char* const UNIT_SYMBOL_METER;
+extern const char* const UNIT_SYMBOL_KILOGRAM;
+extern const char* const UNIT_SYMBOL_SECOND;
+extern const char* const UNIT_SYMBOL_AMPERE;
+extern const char* const UNIT_SYMBOL_KELVIN;
+extern const char* const UNIT_SYMBOL_MOLE;
+extern const char* const UNIT_SYMBOL_CANDELA;
+extern const char* const UNIT_SYMBOL_HERTZ;
+extern const char* const UNIT_SYMBOL_NEWTON;
+extern const char* const UNIT_SYMBOL_PASCAL;
+extern const char* const UNIT_SYMBOL_JOULE;
+extern const char* const UNIT_SYMBOL_WATT;
+extern const char* const UNIT_SYMBOL_COULOMB;
+extern const char* const UNIT_SYMBOL_VOLT;
+extern const char* const UNIT_SYMBOL_FARAD;
+extern const char* const UNIT_SYMBOL_OHM;
+extern const char* const UNIT_SYMBOL_SIEMENS;
+extern const char* const UNIT_SYMBOL_WEBER;
+extern const char* const UNIT_SYMBOL_TESLA;
+extern const char* const UNIT_SYMBOL_HENRY;
+extern const char* const UNIT_SYMBOL_MINUTE;
+extern const char* const UNIT_SYMBOL_HOUR;
+extern const char* const UNIT_SYMBOL_ELECTRON_VOLT;
+extern const char* const UNIT_SYMBOL_CELSIUS;
+extern const char* const UNIT_SYMBOL_FAHRENHEIT;
+extern const char* const UNIT_SYMBOL_PERCENT;
+extern const char* const UNIT_SYMBOL_RADIAN;
 
 // Unit names
-extern const char* UNIT_NAME_METER;
-extern const char* UNIT_NAME_KILOGRAM;
-extern const char* UNIT_NAME_SECOND;
-extern const char* UNIT_NAME_AMPERE;
-extern const char* UNIT_NAME_KELVIN;
-extern const char* UNIT_NAME_MOLE;
-extern const char* UNIT_NAME_CANDELA;
-extern const char* UNIT_NAME_HERTZ;
-extern const char* UNIT_NAME_NEWTON;
-extern const char* UNIT_NAME_PASCAL;
-extern const char* UNIT_NAME_JOULE;
-extern const char* UNIT_NAME_WATT;
-extern const char* UNIT_NAME_COULOMB;
-extern const char* UNIT_NAME_VOLT;
-extern const char* UNIT_NAME_FARAD;
-extern const char* UNIT_NAME_OHM;
-extern const char* UNIT_NAME_SIEMENS;
-extern const char* UNIT_NAME_WEBER;
-extern const char* UNIT_NAME_TESLA;
-extern const char* UNIT_NAME_HENRY;
-extern const char* UNIT_NAME_MINUTE;
-extern const char* UNIT_NAME_HOUR;
-extern const char* UNIT_NAME_ELECTRON_VOLT;
-extern const char* UNIT_NAME_CELSIUS;
-extern const char* UNIT_NAME_FAHRENHEIT;
-extern const char* UNIT_NAME_DIMENSIONLESS;
-extern const char* UNIT_NAME_PERCENT;
-extern const char* UNIT_NAME_RADIAN;
+extern const char* const UNIT_NAME_METER;
+extern const char* const UNIT_NAME_KILOGRAM;
+extern const char* const UNIT_NAME_SECOND;
+extern const char* const UNIT_NAME_AMPERE;
+extern const char* const UNIT_NAME_KELVIN;
+extern const char* const UNIT_NAME_MOLE;
+extern const char* const UNIT_NAME_CANDELA;
+extern const char* const UNIT_NAME_HERTZ;
+extern const char* const UNIT_NAME_NEWTON;
+extern const char* const UNIT_NAME_PASCAL;
+extern const char* const UNIT_NAME_JOULE;
+extern const char* const UNIT_NAME_WATT;
+extern const char* const UNIT_NAME_COULOMB;
+extern const char* const UNIT_NAME_VOLT;
+extern const char* const UNIT_NAME_FARAD;
+extern const char* const UNIT_NAME_OHM;
+extern const char* const UNIT_NAME_SIEMENS;
+extern const char* const UNIT_NAME_WEBER;
+extern const char* const UNIT_NAME_TESLA;
+extern const char* const UNIT_NAME_HENRY;
+extern const char* const UNIT_NAME_MINUTE;
+extern const char* const UNIT_NAME_HOUR;
+extern const char* const UNIT_NAME_ELECTRON_VOLT;
+extern const char* const UNIT_NAME_CELSIUS;
+extern const char* const UNIT_NAME_FAHRENHEIT;
+extern const char* const UNIT_NAME_DIMENSIONLESS;
+extern const char* const UNIT_NAME_PERCENT;
+extern const char* const UNIT_NAME_RADIAN;
 }  // namespace SI
 
 /**
@@ -159,20 +159,20 @@ extern const char* UNIT_NAME_RADIAN;
  * @brief Different Instrument types supported by falcon software.
  */
 namespace INSTRUMENT_TYPES {
-extern const char* DC_VOLTAGE_SOURCE;
-extern const char* AMNMETER;
-extern const char* MAGNET;
-extern const char* LOCKIN;
-extern const char* VOLTAGE_SOURCE;
-extern const char* CURRENT_SOURCE;
-extern const char* HF_VOLTAGE_SOURCE;
-extern const char* DC_CURRENT_SOURCE;
-extern const char* HF_CURRENT_SOURCE;
-extern const char* THERMOMETER;
-extern const char* VOLTMETER;
-extern const char* FPGA;
-extern const char* CLOCK;
-extern const char* DISCRETE;
+extern const char* const DC_VOLTAGE_SOURCE;
+extern const char* const AMNMETER;
+extern const char* const MAGNET;
+extern const char* const LOCKIN;
+extern const char* const VOLTAGE_SOURCE;
+extern const char* const CURRENT_SOURCE;
+extern const char* const HF_VOLTAGE_SOURCE;
+extern const char* const DC_CURRENT_SOURCE;
+extern const char* const HF_CURRENT_SOURCE;
+extern const char* const THERMOMETER;
+extern const char* const VOLTMETER;
+extern const char* const FPGA;
+extern const char* const CLOCK;
+extern const char* const DISCRETE;
 }  // namespace INSTRUMENT_TYPES
 
 }  // namespace falcon_core

@@ -34,63 +34,63 @@ const int ZETTA_EXPONENT = 21;
 const int YOTTA_EXPONENT = 24;
 
 // SI prefix symbols
-const char* YOCTO_SYMBOL = "y";
-const char* ZEPTO_SYMBOL = "z";
-const char* ATTO_SYMBOL  = "a";
-const char* FEMTO_SYMBOL = "f";
-const char* PICO_SYMBOL  = "p";
-const char* NANO_SYMBOL  = "n";
-const char* MICRO_SYMBOL = "μ";
-const char* MILLI_SYMBOL = "m";
-const char* CENTI_SYMBOL = "c";
-const char* UNIT_SYMBOL  = "";  // No prefix
-const char* HECTO_SYMBOL = "h";
-const char* KILO_SYMBOL  = "k";
-const char* MEGA_SYMBOL  = "M";
-const char* GIGA_SYMBOL  = "G";
-const char* TERA_SYMBOL  = "T";
-const char* PETA_SYMBOL  = "P";
-const char* EXA_SYMBOL   = "E";
-const char* ZETTA_SYMBOL = "Z";
-const char* YOTTA_SYMBOL = "Y";
+const char* const YOCTO_SYMBOL = "y";
+const char* const ZEPTO_SYMBOL = "z";
+const char* const ATTO_SYMBOL  = "a";
+const char* const FEMTO_SYMBOL = "f";
+const char* const PICO_SYMBOL  = "p";
+const char* const NANO_SYMBOL  = "n";
+const char* const MICRO_SYMBOL = "μ";
+const char* const MILLI_SYMBOL = "m";
+const char* const CENTI_SYMBOL = "c";
+const char* const UNIT_SYMBOL  = "";  // No prefix
+const char* const HECTO_SYMBOL = "h";
+const char* const KILO_SYMBOL  = "k";
+const char* const MEGA_SYMBOL  = "M";
+const char* const GIGA_SYMBOL  = "G";
+const char* const TERA_SYMBOL  = "T";
+const char* const PETA_SYMBOL  = "P";
+const char* const EXA_SYMBOL   = "E";
+const char* const ZETTA_SYMBOL = "Z";
+const char* const YOTTA_SYMBOL = "Y";
 
-const char* ALL_PREFIXES[] = {YOCTO_SYMBOL,
-                              ZEPTO_SYMBOL,
-                              ATTO_SYMBOL,
-                              FEMTO_SYMBOL,
-                              PICO_SYMBOL,
-                              NANO_SYMBOL,
-                              MICRO_SYMBOL,
-                              MILLI_SYMBOL,
-                              CENTI_SYMBOL,
-                              UNIT_SYMBOL,
-                              HECTO_SYMBOL,
-                              KILO_SYMBOL,
-                              MEGA_SYMBOL,
-                              GIGA_SYMBOL,
-                              TERA_SYMBOL,
-                              PETA_SYMBOL,
-                              EXA_SYMBOL,
-                              ZETTA_SYMBOL,
-                              YOTTA_SYMBOL};
+const char* const ALL_PREFIXES[] = {YOCTO_SYMBOL,
+                                    ZEPTO_SYMBOL,
+                                    ATTO_SYMBOL,
+                                    FEMTO_SYMBOL,
+                                    PICO_SYMBOL,
+                                    NANO_SYMBOL,
+                                    MICRO_SYMBOL,
+                                    MILLI_SYMBOL,
+                                    CENTI_SYMBOL,
+                                    UNIT_SYMBOL,
+                                    HECTO_SYMBOL,
+                                    KILO_SYMBOL,
+                                    MEGA_SYMBOL,
+                                    GIGA_SYMBOL,
+                                    TERA_SYMBOL,
+                                    PETA_SYMBOL,
+                                    EXA_SYMBOL,
+                                    ZETTA_SYMBOL,
+                                    YOTTA_SYMBOL};
 
 // Physical dimension constants
-const char* DIMENSION_LENGTH      = "LENGTH";
-const char* DIMENSION_MASS        = "MASS";
-const char* DIMENSION_TIME        = "TIME";
-const char* DIMENSION_CURRENT     = "CURRENT";
-const char* DIMENSION_TEMPERATURE = "TEMPERATURE";
-const char* DIMENSION_AMOUNT      = "AMOUNT";
-const char* DIMENSION_LUMINOSITY  = "LUMINOSITY";
+const char* const DIMENSION_LENGTH      = "LENGTH";
+const char* const DIMENSION_MASS        = "MASS";
+const char* const DIMENSION_TIME        = "TIME";
+const char* const DIMENSION_CURRENT     = "CURRENT";
+const char* const DIMENSION_TEMPERATURE = "TEMPERATURE";
+const char* const DIMENSION_AMOUNT      = "AMOUNT";
+const char* const DIMENSION_LUMINOSITY  = "LUMINOSITY";
 
 // Set of all valid dimensions
-const char* ALL_DIMENSIONS[] = {DIMENSION_LENGTH,
-                                DIMENSION_MASS,
-                                DIMENSION_TIME,
-                                DIMENSION_CURRENT,
-                                DIMENSION_TEMPERATURE,
-                                DIMENSION_AMOUNT,
-                                DIMENSION_LUMINOSITY};
+const char* const ALL_DIMENSIONS[] = {DIMENSION_LENGTH,
+                                      DIMENSION_MASS,
+                                      DIMENSION_TIME,
+                                      DIMENSION_CURRENT,
+                                      DIMENSION_TEMPERATURE,
+                                      DIMENSION_AMOUNT,
+                                      DIMENSION_LUMINOSITY};
 
 // The following (maps and std::string objects) cannot be  const char*:
 const std::map<std::string, int> DIMENSIONS_DIMENSIONLESS = {};
@@ -142,63 +142,63 @@ const std::map<std::string, int> DIMENSIONS_HENRY = {{DIMENSION_MASS, 1},
                                                      {DIMENSION_CURRENT, -2}};
 
 // Unit symbols
-const char* UNIT_SYMBOL_METER         = "m";
-const char* UNIT_SYMBOL_KILOGRAM      = "kg";
-const char* UNIT_SYMBOL_SECOND        = "s";
-const char* UNIT_SYMBOL_AMPERE        = "A";
-const char* UNIT_SYMBOL_KELVIN        = "K";
-const char* UNIT_SYMBOL_MOLE          = "mol";
-const char* UNIT_SYMBOL_CANDELA       = "cd";
-const char* UNIT_SYMBOL_HERTZ         = "Hz";
-const char* UNIT_SYMBOL_NEWTON        = "N";
-const char* UNIT_SYMBOL_PASCAL        = "Pa";
-const char* UNIT_SYMBOL_JOULE         = "J";
-const char* UNIT_SYMBOL_WATT          = "W";
-const char* UNIT_SYMBOL_COULOMB       = "C";
-const char* UNIT_SYMBOL_VOLT          = "V";
-const char* UNIT_SYMBOL_FARAD         = "F";
-const char* UNIT_SYMBOL_OHM           = "Ω";
-const char* UNIT_SYMBOL_SIEMENS       = "S";
-const char* UNIT_SYMBOL_WEBER         = "Wb";
-const char* UNIT_SYMBOL_TESLA         = "T";
-const char* UNIT_SYMBOL_HENRY         = "H";
-const char* UNIT_SYMBOL_MINUTE        = "min";
-const char* UNIT_SYMBOL_HOUR          = "h";
-const char* UNIT_SYMBOL_ELECTRON_VOLT = "eV";
-const char* UNIT_SYMBOL_CELSIUS       = "°C";
-const char* UNIT_SYMBOL_FAHRENHEIT    = "°F";
-const char* UNIT_SYMBOL_PERCENT       = "%";
-const char* UNIT_SYMBOL_RADIAN        = "rad";
+const char* const UNIT_SYMBOL_METER         = "m";
+const char* const UNIT_SYMBOL_KILOGRAM      = "kg";
+const char* const UNIT_SYMBOL_SECOND        = "s";
+const char* const UNIT_SYMBOL_AMPERE        = "A";
+const char* const UNIT_SYMBOL_KELVIN        = "K";
+const char* const UNIT_SYMBOL_MOLE          = "mol";
+const char* const UNIT_SYMBOL_CANDELA       = "cd";
+const char* const UNIT_SYMBOL_HERTZ         = "Hz";
+const char* const UNIT_SYMBOL_NEWTON        = "N";
+const char* const UNIT_SYMBOL_PASCAL        = "Pa";
+const char* const UNIT_SYMBOL_JOULE         = "J";
+const char* const UNIT_SYMBOL_WATT          = "W";
+const char* const UNIT_SYMBOL_COULOMB       = "C";
+const char* const UNIT_SYMBOL_VOLT          = "V";
+const char* const UNIT_SYMBOL_FARAD         = "F";
+const char* const UNIT_SYMBOL_OHM           = "Ω";
+const char* const UNIT_SYMBOL_SIEMENS       = "S";
+const char* const UNIT_SYMBOL_WEBER         = "Wb";
+const char* const UNIT_SYMBOL_TESLA         = "T";
+const char* const UNIT_SYMBOL_HENRY         = "H";
+const char* const UNIT_SYMBOL_MINUTE        = "min";
+const char* const UNIT_SYMBOL_HOUR          = "h";
+const char* const UNIT_SYMBOL_ELECTRON_VOLT = "eV";
+const char* const UNIT_SYMBOL_CELSIUS       = "°C";
+const char* const UNIT_SYMBOL_FAHRENHEIT    = "°F";
+const char* const UNIT_SYMBOL_PERCENT       = "%";
+const char* const UNIT_SYMBOL_RADIAN        = "rad";
 
 // Unit names
-const char* UNIT_NAME_METER         = "meter";
-const char* UNIT_NAME_KILOGRAM      = "kilogram";
-const char* UNIT_NAME_SECOND        = "second";
-const char* UNIT_NAME_AMPERE        = "ampere";
-const char* UNIT_NAME_KELVIN        = "kelvin";
-const char* UNIT_NAME_MOLE          = "mole";
-const char* UNIT_NAME_CANDELA       = "candela";
-const char* UNIT_NAME_HERTZ         = "hertz";
-const char* UNIT_NAME_NEWTON        = "newton";
-const char* UNIT_NAME_PASCAL        = "pascal";
-const char* UNIT_NAME_JOULE         = "joule";
-const char* UNIT_NAME_WATT          = "watt";
-const char* UNIT_NAME_COULOMB       = "coulomb";
-const char* UNIT_NAME_VOLT          = "volt";
-const char* UNIT_NAME_FARAD         = "farad";
-const char* UNIT_NAME_OHM           = "ohm";
-const char* UNIT_NAME_SIEMENS       = "siemens";
-const char* UNIT_NAME_WEBER         = "weber";
-const char* UNIT_NAME_TESLA         = "tesla";
-const char* UNIT_NAME_HENRY         = "henry";
-const char* UNIT_NAME_MINUTE        = "minute";
-const char* UNIT_NAME_HOUR          = "hour";
-const char* UNIT_NAME_ELECTRON_VOLT = "electron-volt";
-const char* UNIT_NAME_CELSIUS       = "celsius";
-const char* UNIT_NAME_FAHRENHEIT    = "fahrenheit";
-const char* UNIT_NAME_DIMENSIONLESS = "dimensionless";
-const char* UNIT_NAME_PERCENT       = "percent";
-const char* UNIT_NAME_RADIAN        = "radian";
+const char* const UNIT_NAME_METER         = "meter";
+const char* const UNIT_NAME_KILOGRAM      = "kilogram";
+const char* const UNIT_NAME_SECOND        = "second";
+const char* const UNIT_NAME_AMPERE        = "ampere";
+const char* const UNIT_NAME_KELVIN        = "kelvin";
+const char* const UNIT_NAME_MOLE          = "mole";
+const char* const UNIT_NAME_CANDELA       = "candela";
+const char* const UNIT_NAME_HERTZ         = "hertz";
+const char* const UNIT_NAME_NEWTON        = "newton";
+const char* const UNIT_NAME_PASCAL        = "pascal";
+const char* const UNIT_NAME_JOULE         = "joule";
+const char* const UNIT_NAME_WATT          = "watt";
+const char* const UNIT_NAME_COULOMB       = "coulomb";
+const char* const UNIT_NAME_VOLT          = "volt";
+const char* const UNIT_NAME_FARAD         = "farad";
+const char* const UNIT_NAME_OHM           = "ohm";
+const char* const UNIT_NAME_SIEMENS       = "siemens";
+const char* const UNIT_NAME_WEBER         = "weber";
+const char* const UNIT_NAME_TESLA         = "tesla";
+const char* const UNIT_NAME_HENRY         = "henry";
+const char* const UNIT_NAME_MINUTE        = "minute";
+const char* const UNIT_NAME_HOUR          = "hour";
+const char* const UNIT_NAME_ELECTRON_VOLT = "electron-volt";
+const char* const UNIT_NAME_CELSIUS       = "celsius";
+const char* const UNIT_NAME_FAHRENHEIT    = "fahrenheit";
+const char* const UNIT_NAME_DIMENSIONLESS = "dimensionless";
+const char* const UNIT_NAME_PERCENT       = "percent";
+const char* const UNIT_NAME_RADIAN        = "radian";
 }  // namespace SI
 
 /**
@@ -206,20 +206,20 @@ const char* UNIT_NAME_RADIAN        = "radian";
  * @brief Different Instrument types supported by falcon software.
  */
 namespace INSTRUMENT_TYPES {
-const char* DC_VOLTAGE_SOURCE = "dc_voltage_source";
-const char* AMNMETER          = "amnmeter";
-const char* MAGNET            = "magnet";
-const char* LOCKIN            = "lockin";
-const char* VOLTAGE_SOURCE    = "voltage_source";
-const char* CURRENT_SOURCE    = "current_source";
-const char* HF_VOLTAGE_SOURCE = "hf_voltage_source";
-const char* DC_CURRENT_SOURCE = "dc_current_source";
-const char* HF_CURRENT_SOURCE = "hf_current_source";
-const char* THERMOMETER       = "thermometer";
-const char* VOLTMETER         = "voltmeter";
-const char* FPGA              = "fpga";
-const char* CLOCK             = "clock";
-const char* DISCRETE          = "discrete";
+const char* const DC_VOLTAGE_SOURCE = "dc_voltage_source";
+const char* const AMNMETER          = "amnmeter";
+const char* const MAGNET            = "magnet";
+const char* const LOCKIN            = "lockin";
+const char* const VOLTAGE_SOURCE    = "voltage_source";
+const char* const CURRENT_SOURCE    = "current_source";
+const char* const HF_VOLTAGE_SOURCE = "hf_voltage_source";
+const char* const DC_CURRENT_SOURCE = "dc_current_source";
+const char* const HF_CURRENT_SOURCE = "hf_current_source";
+const char* const THERMOMETER       = "thermometer";
+const char* const VOLTMETER         = "voltmeter";
+const char* const FPGA              = "fpga";
+const char* const CLOCK             = "clock";
+const char* const DISCRETE          = "discrete";
 }  // namespace INSTRUMENT_TYPES
 
 }  // namespace falcon_core

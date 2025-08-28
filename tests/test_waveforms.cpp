@@ -14,18 +14,21 @@
 #include <memory>
 #include <string>
 #include <vector>
-
+namespace tests {
+using namespace falcon_core::instrument_interfaces::waveforms;
+using namespace falcon_core::math::domains;
+using namespace falcon_core::math::discrete_spaces;
+using namespace falcon_core::instrument_interfaces::port_transforms;
 TEST(WaveformTest, BasicConstructionAndAccess) {
-  using namespace falcon_core::instrument_interfaces::waveforms;
-  using namespace falcon_core::math::discrete_spaces;
-  using namespace falcon_core::math::domains;
-  using namespace falcon_core::instrument_interfaces::port_transforms;
-
   auto domain = std::make_shared<Domain>(0.0, 1.0);
   // Use a 1D CartesianDiscreteSpace for valid construction
-  auto cartesian_space = std::make_shared<falcon_core::math::spaces::Cartesian1DSpace>(10.0, domain);
-  auto axes = std::make_shared<falcon_core::math::Axes<falcon_core::math::domains::CoupledKnobDomain>>();
-  auto space  = std::make_shared<CartesianDiscreteSpace1D>(cartesian_space, axes);
+  auto cartesian_space =
+      std::make_shared<falcon_core::math::spaces::Cartesian1DSpace>(10.0,
+                                                                    domain);
+  auto axes = std::make_shared<
+      falcon_core::math::Axes<falcon_core::math::domains::CoupledKnobDomain>>();
+  auto space =
+      std::make_shared<CartesianDiscreteSpace1D>(cartesian_space, axes);
 
   auto identity_transform = std::make_shared<IdentityTransform>();
   auto constant_transform = std::make_shared<ConstantTransform>(3.14);
@@ -37,16 +40,15 @@ TEST(WaveformTest, BasicConstructionAndAccess) {
 }
 
 TEST(WaveformTest, SerializationRoundTrip) {
-  using namespace falcon_core::instrument_interfaces::waveforms;
-  using namespace falcon_core::math::discrete_spaces;
-  using namespace falcon_core::math::domains;
-  using namespace falcon_core::instrument_interfaces::port_transforms;
-
   auto domain = std::make_shared<Domain>(-5.0, 5.0);
   // Use a 1D CartesianDiscreteSpace for valid construction
-  auto cartesian_space = std::make_shared<falcon_core::math::spaces::Cartesian1DSpace>(10.0, domain);
-  auto axes = std::make_shared<falcon_core::math::Axes<falcon_core::math::domains::CoupledKnobDomain>>();
-  auto space  = std::make_shared<CartesianDiscreteSpace1D>(cartesian_space, axes);
+  auto cartesian_space =
+      std::make_shared<falcon_core::math::spaces::Cartesian1DSpace>(10.0,
+                                                                    domain);
+  auto axes = std::make_shared<
+      falcon_core::math::Axes<falcon_core::math::domains::CoupledKnobDomain>>();
+  auto space =
+      std::make_shared<CartesianDiscreteSpace1D>(cartesian_space, axes);
 
   auto identity_transform = std::make_shared<IdentityTransform>();
   auto constant_transform = std::make_shared<ConstantTransform>(42.0);
@@ -64,11 +66,6 @@ TEST(WaveformTest, SerializationRoundTrip) {
 }
 
 TEST(CartesianWaveformTest, NDConstructionAndSerialization) {
-  using namespace falcon_core::instrument_interfaces::waveforms;
-  using namespace falcon_core::math::discrete_spaces;
-  using namespace falcon_core::math::domains;
-  using namespace falcon_core::instrument_interfaces::port_transforms;
-
   auto domain = std::make_shared<Domain>(0.0, 10.0);
 
   // ND: 3 axes
@@ -100,11 +97,6 @@ TEST(CartesianWaveformTest, NDConstructionAndSerialization) {
 }
 
 TEST(CartesianWaveform1DTest, ConstructionAndSerialization) {
-  using namespace falcon_core::instrument_interfaces::waveforms;
-  using namespace falcon_core::math::domains;
-  using namespace falcon_core::math::discrete_spaces;
-  using namespace falcon_core::instrument_interfaces::port_transforms;
-
   auto domain = std::make_shared<Domain>(-1.0, 1.0);
   auto shared_domain =
       std::make_shared<falcon_core::math::domains::CoupledKnobDomain>();
@@ -127,11 +119,6 @@ TEST(CartesianWaveform1DTest, ConstructionAndSerialization) {
 }
 
 TEST(CartesianWaveform2DTest, ConstructionAndSerialization) {
-  using namespace falcon_core::instrument_interfaces::waveforms;
-  using namespace falcon_core::math::domains;
-  using namespace falcon_core::math::discrete_spaces;
-  using namespace falcon_core::instrument_interfaces::port_transforms;
-
   auto domain = std::make_shared<Domain>(-2.0, 2.0);
   auto divisions =
       std::make_shared<falcon_core::math::Axes<int>>(std::vector<int>{5, 5});
@@ -154,3 +141,4 @@ TEST(CartesianWaveform2DTest, ConstructionAndSerialization) {
       falcon_core::generic::Song::from_json_string<CartesianWaveform2D>(json);
   ASSERT_EQ(recreated->get_transforms().size(), 1);
 }
+}  // namespace tests

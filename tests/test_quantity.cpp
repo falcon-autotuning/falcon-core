@@ -2,7 +2,7 @@
 
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/physics/units/Units.hpp"
-
+namespace tests {
 using namespace falcon_core::math;
 using namespace falcon_core::physics::units;
 
@@ -91,3 +91,4 @@ TEST(QuantityTest, SerializationRoundTrip) {
   ASSERT_DOUBLE_EQ(q->value(), q2->value());
   ASSERT_EQ(q->unit()->symbol(), q2->unit()->symbol());
 }
+}  // namespace tests

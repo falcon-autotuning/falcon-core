@@ -1,16 +1,10 @@
 #include <gtest/gtest.h>
 
-#include <cereal/archives/json.hpp>
-#include <cereal/types/memory.hpp>
-#include <cereal/types/string.hpp>
-#include <cereal/types/unordered_map.hpp>
-#include <cereal/types/vector.hpp>
 #include <Eigen/Dense>
 #include <cereal/types/eigen.hpp>
-#include <sstream>
 
 #include "falcon_core/generic/Song.hpp"
-
+namespace tests {
 // --- Helper Classes for Testing ---
 
 // Mirrors python `strjson`
@@ -135,22 +129,26 @@ class EigenSong : public falcon_core::generic::Song {
     ar(cereal::base_class<falcon_core::generic::Song>(this), _value);
   }
 };
+}  // namespace tests
 
 // --- Cereal Type Registration ---
-CEREAL_REGISTER_TYPE(StrSong)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, StrSong)
-CEREAL_REGISTER_TYPE(ListSong)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ListSong)
-CEREAL_REGISTER_TYPE(ComplexSong)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ComplexSong)
-CEREAL_REGISTER_TYPE(TheDestroyerSong)
+CEREAL_REGISTER_TYPE(tests::StrSong)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, tests::StrSong)
+CEREAL_REGISTER_TYPE(tests::ListSong)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     TheDestroyerSong)
-CEREAL_REGISTER_TYPE(EigenSong)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, EigenSong)
+                                     tests::ListSong)
+CEREAL_REGISTER_TYPE(tests::ComplexSong)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     tests::ComplexSong)
+CEREAL_REGISTER_TYPE(tests::TheDestroyerSong)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     tests::TheDestroyerSong)
+CEREAL_REGISTER_TYPE(tests::EigenSong)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     tests::EigenSong)
 
 // --- Test Fixture ---
-
+namespace tests {
 template <typename T>
 void test_serialization(const T& original) {
   // Test string methods
@@ -178,8 +176,7 @@ TEST(SongTest, SimpleSerialization) {
 
 TEST(SongTest, EigenSerialization) {
   Eigen::MatrixXd mat(2, 2);
-  mat << 1.1, 2.2,
-         3.3, 4.4;
+  mat << 1.1, 2.2, 3.3, 4.4;
   test_serialization(EigenSong(mat));
 }
 
@@ -236,3 +233,4 @@ TEST(SongTest, DestroyerSerialization) {
   ASSERT_EQ(*(stream_orig_it->first), *(des_stream_it->first));
   ASSERT_EQ(*(stream_orig_it->second), *(des_stream_it->second));
 }
+}  // namespace tests

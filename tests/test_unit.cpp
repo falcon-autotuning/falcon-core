@@ -4,6 +4,7 @@
 #include "falcon_core/macros.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 #include "falcon_core/physics/units/Units.hpp"
+namespace tests {
 using namespace falcon_core;
 using namespace falcon_core::physics::units;
 #define SPS(...) SP(SymbolUnit, __VA_ARGS__)
@@ -209,3 +210,4 @@ TEST(TestSymbolUnit, PowerOperations) {
   ASSERT_EQ(volume->unit()->dimensions().at("LENGTH"), 3);
   ASSERT_TRUE(volume->symbol().find("m^3") != std::string::npos);
 }
+}  // namespace tests
