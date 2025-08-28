@@ -1,12 +1,8 @@
 #include <gtest/gtest.h>
 
-#include <Eigen/Dense>
-
-#include "falcon_core/math/arrays/BaseArray.hpp"
-#include "falcon_core/math/labelled_arrays/BaseLabelledArray.hpp"
 #include "falcon_core/math/labelled_arrays/BaseLabelledArrays.hpp"
 #include "falcon_core/math/labelled_arrays/IsLabelled1D.hpp"
-
+namespace tests {
 using namespace falcon_core::math::labelled_arrays;
 using namespace falcon_core::math::arrays;
 
@@ -95,3 +91,4 @@ TEST(IsLabelled1DTest, ThrowsOnNon1D) {
   DummyLabelled1D labelled(arr);
   EXPECT_THROW({ labelled.get_start(); }, std::runtime_error);
 }
+}  // namespace tests

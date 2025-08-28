@@ -1,12 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <memory>
-#include <string>
-#include <vector>
-
 #include "falcon_core/instrument_interfaces/names/Knob.hpp"
-#include "falcon_core/instrument_interfaces/names/Ports.hpp"
-#include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 #include "falcon_core/math/analytic_functions/ConstantFunction.hpp"
 #include "falcon_core/math/analytic_functions/Identity.hpp"
 #include "falcon_core/math/analytic_functions/ValidatedAnalyticFunction.hpp"

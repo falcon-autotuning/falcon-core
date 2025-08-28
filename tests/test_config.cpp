@@ -1,29 +1,7 @@
 #include <gtest/gtest.h>
 
-#include <Eigen/Dense>
-#include <algorithm>
-#include <string>
-
-#include "falcon_core/autotuner_interfaces/names/Channel.hpp"
-#include "falcon_core/autotuner_interfaces/names/Gname.hpp"
-#include "falcon_core/generic/Map.hpp"
-#include "falcon_core/physics/config/core/Adjacency.hpp"
 #include "falcon_core/physics/config/core/Config.hpp"
-#include "falcon_core/physics/config/core/Group.hpp"
-#include "falcon_core/physics/config/core/VoltageConstraints.hpp"
-#include "falcon_core/physics/device_structures/BarrierGate.hpp"
-#include "falcon_core/physics/device_structures/BarrierGates.hpp"
-#include "falcon_core/physics/device_structures/BaseConnections.hpp"
-#include "falcon_core/physics/device_structures/Impedance.hpp"
-#include "falcon_core/physics/device_structures/Impedances.hpp"
-#include "falcon_core/physics/device_structures/Ohmic.hpp"
-#include "falcon_core/physics/device_structures/Ohmics.hpp"
-#include "falcon_core/physics/device_structures/PlungerGate.hpp"
-#include "falcon_core/physics/device_structures/PlungerGates.hpp"
-#include "falcon_core/physics/device_structures/ReservoirGate.hpp"
-#include "falcon_core/physics/device_structures/ReservoirGates.hpp"
-#include "falcon_core/physics/device_structures/ScreeningGate.hpp"
-#include "falcon_core/physics/device_structures/ScreeningGates.hpp"
+namespace tests {
 using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::autotuner_interfaces::names;
 class ConfigTestFixture : public ::testing::Test {
@@ -287,3 +265,4 @@ TEST_F(ConfigTestFixture, BasicQueries) {
     original_config.get_impedance(*conn);
   }
 }
+}  // namespace tests

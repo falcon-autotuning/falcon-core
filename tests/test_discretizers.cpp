@@ -1,18 +1,14 @@
 #include <gtest/gtest.h>
-#include <memory>
-#include <string>
 
-#include "falcon_core/math/discretizers/BaseDiscretizer.hpp"
 #include "falcon_core/math/discretizers/CartesianDiscretizer.hpp"
 #include "falcon_core/math/discretizers/PolarDiscretizer.hpp"
-#include "falcon_core/math/domains/Domain.hpp"
-
+namespace tests {
 using namespace falcon_core::math::discretizers;
 using namespace falcon_core::math::domains;
 
 // Test BaseDiscretizer basic functionality
 TEST(DiscretizerTest, BaseDiscretizerBasicFunctionality) {
-  auto domain = std::make_shared<Domain>(-1.0, 1.0);
+  auto            domain = std::make_shared<Domain>(-1.0, 1.0);
   BaseDiscretizer d(0.5, domain);
 
   EXPECT_DOUBLE_EQ(d.delta(), 0.5);
@@ -26,10 +22,10 @@ TEST(DiscretizerTest, BaseDiscretizerBasicFunctionality) {
 // Test BaseDiscretizer serialization
 TEST(DiscretizerTest, BaseDiscretizerSerializationRoundTrip) {
   auto domain = std::make_shared<Domain>(-1.0, 1.0);
-  auto d = std::make_shared<BaseDiscretizer>(0.5, domain);
+  auto d      = std::make_shared<BaseDiscretizer>(0.5, domain);
 
   std::string json = d->to_json_string();
-  auto d2 = BaseDiscretizer::from_json_string<BaseDiscretizer>(json);
+  auto        d2   = BaseDiscretizer::from_json_string<BaseDiscretizer>(json);
 
   ASSERT_NE(d2, nullptr);
   EXPECT_DOUBLE_EQ(d2->delta(), 0.5);
@@ -71,10 +67,11 @@ TEST(DiscretizerTest, PolarDiscretizerSerializationRoundTrip) {
   auto d = std::make_shared<PolarDiscretizer>(0.2);
 
   std::string json = d->to_json_string();
-  auto d2 = PolarDiscretizer::from_json_string<PolarDiscretizer>(json);
+  auto        d2   = PolarDiscretizer::from_json_string<PolarDiscretizer>(json);
 
   ASSERT_NE(d2, nullptr);
   EXPECT_DOUBLE_EQ(d2->delta(), 0.2);
   EXPECT_DOUBLE_EQ(d2->delta_domain()->min(), -2.0 * falcon_core::PI);
   EXPECT_DOUBLE_EQ(d2->delta_domain()->max(), 2.0 * falcon_core::PI);
 }
+}  // namespace tests

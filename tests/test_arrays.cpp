@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 
-#include "falcon_core/math/arrays/BaseArray.hpp"
 #include "falcon_core/math/arrays/ControlArray1D.hpp"
 
 namespace tests {

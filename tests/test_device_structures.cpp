@@ -1,14 +1,7 @@
 #include <gtest/gtest.h>
 
-#include <cereal/archives/json.hpp>
-#include <cereal/types/memory.hpp>
-
-#include "falcon_core/physics/device_structures/BarrierGate.hpp"
 #include "falcon_core/physics/device_structures/BarrierGates.hpp"
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
-#include "falcon_core/physics/device_structures/DotGate.hpp"
-#include "falcon_core/physics/device_structures/DotGates.hpp"
-
+namespace tests {
 using namespace falcon_core::physics::device_structures;
 
 // Test BaseConnection serialization
@@ -142,3 +135,4 @@ TEST(DeviceStructuresTest, BaseConnectionsSerializationRoundTrip) {
   ASSERT_EQ(connections2->at(0)->name(), "C1");
   ASSERT_EQ(connections2->at(1)->name(), "C2");
 }
+}  // namespace tests

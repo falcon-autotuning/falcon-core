@@ -1,28 +1,13 @@
 #include <gtest/gtest.h>
 
-#include <memory>
-#include <string>
-
-#include "falcon_core/math/Axes.hpp"
-#include "falcon_core/math/discrete_spaces/BaseCartesianDiscreteSpace.hpp"
-#include "falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp"
 #include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace.hpp"
 #include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace1D.hpp"
 #include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace2D.hpp"
 #include "falcon_core/math/discrete_spaces/DiscreteSpace.hpp"
-#include "falcon_core/math/domains/CoupledKnobDomain.hpp"
-#include "falcon_core/math/domains/Domain.hpp"
-#include "falcon_core/math/spaces/Cartesian1DSpace.hpp"
-#include "falcon_core/math/spaces/Cartesian2DSpace.hpp"
-#include "falcon_core/math/spaces/CartesianSpace.hpp"
-#include "falcon_core/math/spaces/UnitSpace.hpp"
-
+namespace tests {
 using namespace falcon_core::math::discrete_spaces;
 using namespace falcon_core::math::domains;
 using namespace falcon_core::math::spaces;
-
-#include "falcon_core/instrument_interfaces/names/Knob.hpp"
-#include "falcon_core/math/domains/LabelledDomain.hpp"
 
 // Helper to create a dummy CoupledKnobDomain
 std::shared_ptr<CoupledKnobDomain> make_knob_domain(double min, double max) {
@@ -225,3 +210,4 @@ TEST(DiscreteSpacesTest, ComplexProjectionFunctionality) {
   EXPECT_EQ(bds->axes()->size(), 2);
   EXPECT_EQ(bds->space(), unit_space);
 }
+}  // namespace tests

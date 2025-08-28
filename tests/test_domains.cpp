@@ -1,15 +1,8 @@
 #include <gtest/gtest.h>
 
-#include <memory>
-#include <string>
-#include <vector>
-
-#include "falcon_core/math/domains/BaseCoupledLabelledDomain.hpp"
-#include "falcon_core/math/domains/BaseLabelledDomain.hpp"
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
-#include "falcon_core/math/domains/Domain.hpp"
-#include "falcon_core/math/domains/LabelledDomain.hpp"
-
+namespace tests {
+using namespace falcon_core::math::domains;
 // Dummy label type for testing
 struct DummyLabel : public falcon_core::generic::Song {
   std::string name;
@@ -25,30 +18,29 @@ struct DummyLabel : public falcon_core::generic::Song {
     ar(cereal::base_class<falcon_core::generic::Song>(this), name, id);
   }
 };
-
-#ifndef SWIG
-CEREAL_REGISTER_TYPE(DummyLabel)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, DummyLabel)
-CEREAL_REGISTER_TYPE(falcon_core::math::domains::LabelledDomain<DummyLabel>)
+}  // namespace tests
+CEREAL_REGISTER_TYPE(tests::DummyLabel)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     tests::DummyLabel)
+CEREAL_REGISTER_TYPE(
+    falcon_core::math::domains::LabelledDomain<tests::DummyLabel>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
-    falcon_core::math::domains::LabelledDomain<DummyLabel>)
+    falcon_core::math::domains::LabelledDomain<tests::DummyLabel>)
 
 CEREAL_REGISTER_TYPE(
-    falcon_core::math::domains::BaseCoupledLabelledDomain<DummyLabel>)
+    falcon_core::math::domains::BaseCoupledLabelledDomain<tests::DummyLabel>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
-    falcon_core::math::domains::BaseCoupledLabelledDomain<DummyLabel>)
+    falcon_core::math::domains::BaseCoupledLabelledDomain<tests::DummyLabel>)
 
 CEREAL_REGISTER_TYPE(
-    falcon_core::math::domains::CoupledLabelledDomain<DummyLabel>)
+    falcon_core::math::domains::CoupledLabelledDomain<tests::DummyLabel>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
-    falcon_core::math::domains::CoupledLabelledDomain<DummyLabel>)
+    falcon_core::math::domains::CoupledLabelledDomain<tests::DummyLabel>)
 
-#endif
-
-using namespace falcon_core::math::domains;
+namespace tests {
 
 TEST(DomainTest, BasicFunctionality) {
   Domain d(1.0, 5.0);
@@ -156,3 +148,4 @@ TEST(CoupledLabelledDomainTest, SerializationRoundTrip) {
   EXPECT_EQ(cld2->labels()[1]->name, "second");
   EXPECT_EQ(cld2->labels()[1]->id, 200);
 }
+}  // namespace tests

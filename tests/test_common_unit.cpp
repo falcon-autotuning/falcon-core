@@ -1,9 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "falcon_core/Constants.hpp"
 #include "falcon_core/physics/units/CommonUnits.hpp"
-#include "falcon_core/physics/units/TotalDimensions.hpp"
-#include "falcon_core/physics/units/Unit.hpp"
+namespace tests {
 using namespace falcon_core;
 using namespace falcon_core::physics::units;
 /**
@@ -199,3 +197,4 @@ TEST(TestCommonUnits, ConversionBetweenPrefixedUnits) {
   double kW_in_MW = MW->convert_value_to(1.0, kW);
   ASSERT_DOUBLE_EQ(kW_in_MW, 1000.0);
 }
+}  // namespace tests
