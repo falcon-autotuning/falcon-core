@@ -24,9 +24,8 @@ class LabelledControlArray1D
   using LabelType = instrument_interfaces::names::InstrumentPort<
       physics::device_structures::Gate>;
 
-  LabelledControlArray1D(
-      std::shared_ptr<arrays::ControlArray1D> array,
-      std::shared_ptr<LabelType> label);
+  LabelledControlArray1D(std::shared_ptr<arrays::ControlArray1D> array,
+                         std::shared_ptr<LabelType>              label);
 
   const arrays::ControlArray1D& get_array() const;
 
@@ -39,11 +38,3 @@ class LabelledControlArray1D
 }  // namespace labelled_arrays
 }  // namespace math
 }  // namespace falcon_core
-
-#ifndef SWIG
-using namespace falcon_core::math::labelled_arrays;
-CEREAL_REGISTER_TYPE(falcon_core::math::labelled_arrays::LabelledControlArray1D)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::math::labelled_arrays::LabelledControlArray1D)
-#endif

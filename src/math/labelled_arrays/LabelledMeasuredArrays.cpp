@@ -11,7 +11,9 @@ void LabelledMeasuredArrays::serialize(Archive& ar) {
   ar(cereal::base_class<BaseLabelledArrays<LabelledMeasuredArray1D>>(this));
 }
 
-}}} // namespace
+}  // namespace labelled_arrays
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::labelled_arrays::LabelledMeasuredArrays)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

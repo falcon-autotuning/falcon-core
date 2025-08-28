@@ -6,10 +6,8 @@ namespace labelled_arrays {
 
 LabelledControlArray1D::LabelledControlArray1D(
     std::shared_ptr<arrays::ControlArray1D> array,
-    std::shared_ptr<LabelType> label)
+    std::shared_ptr<LabelType>              label)
     : BaseLabelledArray<arrays::ControlArray1D, LabelType>(array, label) {}
-
-LabelledControlArray1D::LabelledControlArray1D() = default;
 
 const arrays::ControlArray1D& LabelledControlArray1D::get_array() const {
   if (!this->_array) {
@@ -20,10 +18,13 @@ const arrays::ControlArray1D& LabelledControlArray1D::get_array() const {
 
 template <class Archive>
 void LabelledControlArray1D::serialize(Archive& ar) {
-  ar(cereal::base_class<BaseLabelledArray<arrays::ControlArray1D, LabelType>>(this));
+  ar(cereal::base_class<BaseLabelledArray<arrays::ControlArray1D, LabelType>>(
+      this));
 }
 
-}}} // namespace
+}  // namespace labelled_arrays
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::labelled_arrays::LabelledControlArray1D)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

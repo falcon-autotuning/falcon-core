@@ -12,7 +12,7 @@ class LabelledMeasuredArray
     : public BaseLabelledArray<arrays::MeasuredArray<double>, LabelType> {
  public:
   LabelledMeasuredArray(std::shared_ptr<arrays::MeasuredArray<double>> array,
-                        std::shared_ptr<LabelType> label);
+                        std::shared_ptr<LabelType>                     label);
 
  private:
   friend class cereal::access;

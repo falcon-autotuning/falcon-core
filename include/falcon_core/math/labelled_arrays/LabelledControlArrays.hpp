@@ -1,7 +1,7 @@
 #pragma once
 
-#include "falcon_core/math/labelled_arrays/LabelledControlArray1D.hpp"
 #include "falcon_core/math/labelled_arrays/BaseLabelledArrays.hpp"
+#include "falcon_core/math/labelled_arrays/LabelledControlArray1D.hpp"
 
 namespace falcon_core {
 namespace math {

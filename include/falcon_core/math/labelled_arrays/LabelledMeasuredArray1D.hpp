@@ -1,9 +1,9 @@
 #pragma once
 
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/arrays/MeasuredArray.hpp"
 #include "falcon_core/math/labelled_arrays/BaseLabelledArray.hpp"
 #include "falcon_core/math/labelled_arrays/IsLabelled1D.hpp"
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/physics/device_structures/Gate.hpp"
 
 namespace falcon_core {
@@ -19,9 +19,8 @@ class LabelledMeasuredArray1D
   using LabelType = instrument_interfaces::names::InstrumentPort<
       physics::device_structures::Gate>;
 
-  LabelledMeasuredArray1D(
-      std::shared_ptr<arrays::MeasuredArray<double>> array,
-      std::shared_ptr<LabelType> label);
+  LabelledMeasuredArray1D(std::shared_ptr<arrays::MeasuredArray<double>> array,
+                          std::shared_ptr<LabelType>                     label);
 
   const arrays::MeasuredArray<double>& get_array() const;
 

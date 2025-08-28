@@ -23,7 +23,7 @@ template <typename T>
 class BaseLabelledArrays : public generic::Song {
  public:
   /// @brief Type alias for value type.
-  using value_type     = T;
+  using value_type = T;
   /// @brief Type alias for container type.
   using container_type = std::vector<std::shared_ptr<value_type>>;
 
@@ -42,12 +42,3 @@ class BaseLabelledArrays : public generic::Song {
 }  // namespace labelled_arrays
 }  // namespace math
 }  // namespace falcon_core
-
-#ifndef SWIG
-using namespace falcon_core::math;
-using BLA  = labelled_arrays::BaseLabelledArray<arrays::BaseArray<double>, int>;
-using BLAs = falcon_core::math::labelled_arrays::BaseLabelledArrays<BLA>;
-
-CEREAL_REGISTER_TYPE(BLAs)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, BLAs)
-#endif
