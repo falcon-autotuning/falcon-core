@@ -16,7 +16,7 @@ namespace spaces {
  */
 class Cartesian2DSpace : public CartesianSpace {
  public:
-  Cartesian2DSpace(const std::vector<double>& deltas,
+  Cartesian2DSpace(const std::vector<double>&       deltas,
                    std::shared_ptr<domains::Domain> domain);
 
  protected:
@@ -29,9 +29,3 @@ class Cartesian2DSpace : public CartesianSpace {
 }  // namespace spaces
 }  // namespace math
 }  // namespace falcon_core
-
-#ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::math::spaces::Cartesian2DSpace)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song, falcon_core::math::spaces::Cartesian2DSpace)
-#endif

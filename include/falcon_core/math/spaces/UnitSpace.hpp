@@ -31,7 +31,7 @@ class UnitSpace : public generic::Song {
 
   UnitSpace(const AxesType& axes, DomainPtr domain);
 
-  const AxesType& axes() const;
+  const AxesType&  axes() const;
   const DomainPtr& domain() const;
 
  protected:
@@ -47,9 +47,3 @@ class UnitSpace : public generic::Song {
 }  // namespace spaces
 }  // namespace math
 }  // namespace falcon_core
-
-#ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::math::spaces::UnitSpace)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     falcon_core::math::spaces::UnitSpace)
-#endif

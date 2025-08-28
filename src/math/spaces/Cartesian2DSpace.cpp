@@ -18,7 +18,6 @@ template <class Archive>
 void Cartesian2DSpace::serialize(Archive& ar) {
   ar(cereal::base_class<CartesianSpace>(this));
 }
-
 }}} // namespace
 
 CEREAL_REGISTER_TYPE(falcon_core::math::spaces::Cartesian2DSpace)
