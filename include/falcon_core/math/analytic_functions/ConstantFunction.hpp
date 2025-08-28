@@ -19,39 +19,15 @@ namespace analytic_functions {
  */
 class ConstantFunction : public AnalyticFunction {
  public:
-  /**
-   * @brief Construct a constant function.
-   * @param value The constant value to return.
-   */
-  ConstantFunction(double value) : _value(value) {}
-
-  /**
-   * @brief Evaluate the function (returns the constant value).
-   * @param x Input value (ignored).
-   * @return The constant value.
-   */
-  double evaluate(double x) const override {
-    // x is ignored for a constant function
-    (void)x;
-    return _value;
-  }
+  ConstantFunction(double value);
+  double evaluate(double x) const override;
 
  private:
-  double _value; ///< The constant value.
-
+  double _value;
+  ConstantFunction();
   friend class cereal::access;
-  /**
-   * @brief Default constructor for serialization.
-   */
-  ConstantFunction() = default;
-  /**
-   * @brief Serialization method for cereal.
-   * @param ar Archive object.
-   */
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<AnalyticFunction>(this), _value);
-  }
+  void serialize(Archive& ar);
 };
 }  // namespace analytic_functions
 }  // namespace math
