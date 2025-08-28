@@ -5,27 +5,19 @@
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
-/*
- * @brief An ohmic connection on a quantum dot device.
- */
-class Ohmic : public BaseConnection {
+
+class Ohmic : public virtual BaseConnection {
  public:
-  Ohmic(std::string name) : BaseConnection(std::move(name)) {}
+  Ohmic(std::string name);
   template <class Archive>
-  void serialize(Archive &ar) {
-    ar(cereal::base_class<BaseConnection>(this));
-  }
+  void serialize(Archive &ar);
 
  protected:
-  Ohmic() = default;  // or initialize _name with a default value
+  Ohmic();
   friend class cereal::access;
 };
 using OhmicSP = std::shared_ptr<Ohmic>;
+
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
-#ifndef SWIG
-using namespace falcon_core::physics::device_structures;
-CEREAL_REGISTER_TYPE(Ohmic)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(BaseConnection, Ohmic)
-#endif

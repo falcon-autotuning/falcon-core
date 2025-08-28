@@ -8,8 +8,11 @@
 #include "falcon_core/physics/device_structures/BarrierGate.hpp"
 #include "falcon_core/physics/device_structures/DotGates.hpp"
 #include "falcon_core/physics/device_structures/PlungerGate.hpp"
-using namespace falcon_core::physics::config::geometries;
-
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace geometries {
+GateGeometryArray1D::GateGeometryArray1D() = default;
 GateGeometryArray1D::GateGeometryArray1D(BaseConnectionsSP lineararray,
                                          ScreeningGatesSP  screening_gates)
     : _lineararray(lineararray), _screening_gates(screening_gates) {
@@ -76,6 +79,31 @@ GateGeometryArray1D::GateGeometryArray1D(BaseConnectionsSP lineararray,
   for (const auto& dot_gate : *all_dot) {
     _gate_name_map[dot_gate->name()] = dot_gate;
   }
+}
+GateGeometryArray1D::iterator GateGeometryArray1D::begin() {
+  return _lineararray->begin();
+}
+GateGeometryArray1D::iterator GateGeometryArray1D::end() {
+  return _lineararray->end();
+}
+GateGeometryArray1D::const_iterator GateGeometryArray1D::begin() const {
+  return _lineararray->begin();
+}
+GateGeometryArray1D::const_iterator GateGeometryArray1D::end() const {
+  return _lineararray->end();
+}
+BaseConnectionsSP GateGeometryArray1D::lineararray() const {
+  return _lineararray;
+}
+ScreeningGatesSP GateGeometryArray1D::screening_gates() const {
+  return _screening_gates;
+}
+DotGatesSP GateGeometryArray1D::raw_central_gates() const {
+  return _raw_central_gates;
+}
+GateGeometryArray1D::CentralDotGates GateGeometryArray1D::central_dot_gates()
+    const {
+  return _central_dot_gates;
 }
 void GateGeometryArray1D::append_central_gate(const DotGateSP& left_neighbor,
                                               const DotGateSP& selected_gate,
@@ -210,3 +238,10 @@ OhmicsSP GateGeometryArray1D::ohmics() const {
   std::vector<OhmicSP> tmp({left_ohmic, right_ohmic});
   return std::make_shared<Ohmics>(tmp);
 }
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
+CEREAL_REGISTER_TYPE(GateGeometryArray1D)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     GateGeometryArray1D)

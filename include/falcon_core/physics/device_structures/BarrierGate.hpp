@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/physics/device_structures/DotGate.hpp"  // Only needed if you define functions inline
+#include "falcon_core/physics/device_structures/DotGate.hpp"
 
 namespace falcon_core {
 namespace physics {

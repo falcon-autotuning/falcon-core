@@ -1,39 +1,30 @@
 #pragma once
 
-#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/Gates.hpp"
 #include "falcon_core/physics/device_structures/ReservoirGate.hpp"
+
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
 
 /**
- * @brief A serializable vector of ReservoirGate pointers, also a Song.
- *
- * Uses composition: contains a vector of shared_ptr<T>.
+ * @brief A collection of ReservoirGates.
  */
 class ReservoirGates : public Gates<ReservoirGate, ReservoirGates> {
  public:
-  ReservoirGates() = default;
-  ReservoirGates(size_t count) : Gates<ReservoirGate, ReservoirGates>(count) {}
-  ReservoirGates(size_t count, const ReservoirGateSP& value)
-      : Gates<ReservoirGate, ReservoirGates>(count, value) {}
-  ReservoirGates(const std::vector<ReservoirGateSP>& vec)
-      : Gates<ReservoirGate, ReservoirGates>(vec) {}
+  ReservoirGates();
+  explicit ReservoirGates(size_t count);
+  ReservoirGates(size_t count, const ReservoirGateSP& value);
+  ReservoirGates(const std::vector<ReservoirGateSP>& vec);
+
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<Gates<ReservoirGate, ReservoirGates>>(this));
-  }
+  void serialize(Archive& ar);
 
  protected:
   friend class cereal::access;
 };
 using ReservoirGatesSP = std::shared_ptr<ReservoirGates>;
+
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
-#ifndef SWIG
-using namespace falcon_core::physics::device_structures;
-CEREAL_REGISTER_TYPE(ReservoirGates)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ReservoirGates)
-#endif

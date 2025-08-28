@@ -12,14 +12,13 @@ namespace geometries {
 class BaseDotGateWithNeighbors : public virtual device_structures::DotGate {
  public:
   using Ptr = std::shared_ptr<BaseDotGateWithNeighbors>;
-  BaseDotGateWithNeighbors(std::string name)
-      : device_structures::DotGate(std::move(name)) {}
+  BaseDotGateWithNeighbors(std::string name);
   virtual ~BaseDotGateWithNeighbors() = default;
   virtual std::shared_ptr<device_structures::Gate> left_neighbor() const  = 0;
   virtual std::shared_ptr<device_structures::Gate> right_neighbor() const = 0;
 
  protected:
-  BaseDotGateWithNeighbors() = default;
+  BaseDotGateWithNeighbors();
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
@@ -32,10 +31,3 @@ using BaseDotGateWithNeighborsSP = std::shared_ptr<BaseDotGateWithNeighbors>;
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-#ifndef SWIG
-using namespace falcon_core;
-using namespace falcon_core::physics::config::geometries;
-using namespace falcon_core::physics::device_structures;
-CEREAL_REGISTER_TYPE(BaseDotGateWithNeighbors)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(Gate, BaseDotGateWithNeighbors)
-#endif

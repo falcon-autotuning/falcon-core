@@ -3,7 +3,6 @@
 #include "falcon_core/physics/config/geometries/HasImplantedOhmic.hpp"
 #include "falcon_core/physics/config/geometries/HasLeftNeighbor.hpp"
 #include "falcon_core/physics/device_structures/BarrierGate.hpp"
-#include "falcon_core/physics/device_structures/Ohmic.hpp"
 #include "falcon_core/physics/device_structures/ReservoirGate.hpp"
 
 namespace falcon_core {
@@ -22,19 +21,12 @@ class RightReservoirWithImplantedOhmic
   RightReservoirWithImplantedOhmic(
       std::string                      name,
       device_structures::BarrierGateSP right_neighbor,
-      device_structures::OhmicSP       ohmic)
-      : device_structures::ReservoirGate(name),
-        HasLeftNeighbor(right_neighbor),
-        HasImplantedOhmic(ohmic) {}
+      OhmicSP                          ohmic);
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<ReservoirGate>(this),
-       cereal::base_class<HasImplantedOhmic>(this),
-       cereal::base_class<HasLeftNeighbor>(this));
-  }
+  void serialize(Archive& ar);
 
  protected:
-  RightReservoirWithImplantedOhmic() = default;
+  RightReservoirWithImplantedOhmic();
   friend class cereal::access;
 };
 using RightReservoirWithImplantedOhmicSP =
@@ -43,15 +35,3 @@ using RightReservoirWithImplantedOhmicSP =
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-#ifndef SWIG
-using namespace falcon_core::physics::config::geometries;
-CEREAL_REGISTER_TYPE(RightReservoirWithImplantedOhmic)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::device_structures::ReservoirGate,
-    RightReservoirWithImplantedOhmic)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(HasImplantedOhmic,
-                                     RightReservoirWithImplantedOhmic)
-using HLNBG =
-    HasLeftNeighbor<falcon_core::physics::device_structures::BarrierGate>;
-CEREAL_REGISTER_POLYMORPHIC_RELATION(HLNBG, RightReservoirWithImplantedOhmic)
-#endif

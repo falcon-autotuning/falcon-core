@@ -33,6 +33,9 @@ class GateGeometryArray1D : public generic::Song {
   std::unordered_map<std::string, GateSP> _gate_name_map;
 
  public:
+  using iterator = typename BaseConnections<BaseConnection>::iterator;
+  using const_iterator =
+      typename BaseConnections<BaseConnection>::const_iterator;
   /**
    * @brief Starts the geometry of the gates.
    * @param lineararray A linear array of gates and ohmics in the order left to
@@ -43,13 +46,10 @@ class GateGeometryArray1D : public generic::Song {
    */
   GateGeometryArray1D(BaseConnectionsSP lineararray,
                       ScreeningGatesSP  screening_gates);
-  using iterator = typename BaseConnections<BaseConnection>::iterator;
-  using const_iterator =
-      typename BaseConnections<BaseConnection>::const_iterator;
-  iterator       begin() { return _lineararray->begin(); }
-  iterator       end() { return _lineararray->end(); }
-  const_iterator begin() const { return _lineararray->begin(); }
-  const_iterator end() const { return _lineararray->end(); }
+  iterator       begin();
+  iterator       end();
+  const_iterator begin() const;
+  const_iterator end() const;
 
   /**
    * @brief Appends a central gate to the geometry.
@@ -98,22 +98,22 @@ class GateGeometryArray1D : public generic::Song {
    * @brief Gets the linear array of connections.
    * @return The linear array of connections.
    */
-  BaseConnectionsSP lineararray() const { return _lineararray; }
+  BaseConnectionsSP lineararray() const;
   /**
    * @brief Gets the screening gates in the geometry.
    * @return The screening gates in the geometry.
    */
-  ScreeningGatesSP screening_gates() const { return _screening_gates; }
+  ScreeningGatesSP screening_gates() const;
   /**
    * @brief Gets the central gates without localities.
    * @return The central gates without localities.
    */
-  DotGatesSP raw_central_gates() const { return _raw_central_gates; }
+  DotGatesSP raw_central_gates() const;
   /**
    * @brief Gets the central gates with localities.
    * @return The central gates with localities.
    */
-  CentralDotGates central_dot_gates() const { return _central_dot_gates; }
+  CentralDotGates central_dot_gates() const;
   /**
    * @brief Gets the ohmics attached the the quantum dot geometry.
    * @return The ohmics attached to the quantum dot geometry.
@@ -121,7 +121,7 @@ class GateGeometryArray1D : public generic::Song {
   OhmicsSP ohmics() const;
 
  protected:
-  GateGeometryArray1D() = default;
+  GateGeometryArray1D();
   friend class cereal::access;
 };
 using GateGeometryArray1DSP = std::shared_ptr<GateGeometryArray1D>;
@@ -129,9 +129,3 @@ using GateGeometryArray1DSP = std::shared_ptr<GateGeometryArray1D>;
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-#ifndef SWIG
-using namespace falcon_core::physics::config::geometries;
-CEREAL_REGISTER_TYPE(GateGeometryArray1D)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     GateGeometryArray1D)
-#endif

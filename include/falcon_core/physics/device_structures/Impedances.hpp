@@ -2,38 +2,29 @@
 
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/physics/device_structures/Impedance.hpp"
+
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
+
 /**
- * @brief A collection of Impedance measurements on a quantum dot sample.
+ * @brief A collection of Impedances.
  */
 class Impedances : public generic::List<Impedance, Impedances> {
  public:
-  Impedances() = default;
-  Impedances(size_t count) : List<Impedance, Impedances>(count) {}
-  Impedances(size_t count, const ImpedanceSP& value)
-      : List<Impedance, Impedances>(count, value) {}
-  Impedances(const std::vector<ImpedanceSP>& vec)
-      : List<Impedance, Impedances>(vec) {}
+  Impedances();
+  explicit Impedances(size_t count);
+  Impedances(size_t count, const ImpedanceSP& value);
+  Impedances(const std::vector<ImpedanceSP>& vec);
 
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::List<Impedance, Impedances>>(this));
-  }
+  void serialize(Archive& ar);
 
  protected:
   friend class cereal::access;
 };
 using ImpedancesSP = std::shared_ptr<Impedances>;
+
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
-#ifndef SWIG
-using namespace falcon_core::physics::device_structures;
-CEREAL_REGISTER_TYPE(falcon_core::generic::List<Impedance>)
-CEREAL_REGISTER_TYPE(Impedances)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     falcon_core::generic::List<Impedance>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Impedances)
-#endif
