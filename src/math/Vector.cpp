@@ -20,7 +20,7 @@ Vector::Vector(PointSP end)
 }
 
 Vector::Vector(const generic::Map<BaseConnection, double>& end,
-               SymbolUnitSP                                unit)
+               falcon_core::physics::units::SymbolUnitSP   unit)
     : _end(std::make_shared<Point>(unit)),
       _start(std::make_shared<Point>(unit)),
       _unit(unit) {
@@ -33,7 +33,7 @@ Vector::Vector(const generic::Map<BaseConnection, double>& end,
 
 Vector::Vector(const generic::Map<BaseConnection, double>& end,
                const generic::Map<BaseConnection, double>& start,
-               SymbolUnitSP                                unit)
+               falcon_core::physics::units::SymbolUnitSP   unit)
     : _end(std::make_shared<Point>(unit)),
       _start(std::make_shared<Point>(unit)),
       _unit(unit) {
@@ -49,7 +49,7 @@ Vector::Vector(const generic::Map<BaseConnection, double>& end,
 const PointSP&          Vector::end() const { return _end; }
 const PointSP&          Vector::start() const { return _start; }
 const BaseConnectionsSP Vector::connections() const { return _connections; }
-SymbolUnitSP            Vector::unit() const { return _unit; }
+falcon_core::physics::units::SymbolUnitSP Vector::unit() const { return _unit; }
 
 std::pair<double, double> Vector::operator[](
     const BaseConnectionSP& conn) const {
@@ -97,7 +97,7 @@ double Vector::magnitude() const {
   return std::sqrt(sum);
 }
 
-void Vector::convert_to(SymbolUnitSP target_unit) {
+void Vector::convert_to(falcon_core::physics::units::SymbolUnitSP target_unit) {
   _end->set_unit(target_unit);
   _start->set_unit(target_unit);
   _unit = target_unit;
