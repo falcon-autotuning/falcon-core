@@ -16,16 +16,12 @@ namespace arrays {
 template <typename T>
 class MeasuredArray : public BaseArray<T> {
  public:
-  /// @brief Inherit constructors from BaseArray.
   using BaseArray<T>::BaseArray;
 
  private:
   friend class cereal::access;
-  /// @brief Serialization method for cereal.
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseArray<T>>(this));
-  }
+  void serialize(Archive& ar);
 };
 }  // namespace arrays
 }  // namespace math
