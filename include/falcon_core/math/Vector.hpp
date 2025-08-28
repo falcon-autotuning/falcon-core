@@ -26,10 +26,10 @@ namespace math {
  * connections.
  */
 class Vector : public generic::Song {
-  PointSP           _end;
-  PointSP           _start;
-  BaseConnectionsSP _connections;
-  SymbolUnitSP      _unit;
+  PointSP                      _end;
+  PointSP                      _start;
+  BaseConnectionsSP            _connections;
+  physics::units::SymbolUnitSP _unit;
 
  public:
   /**
@@ -56,7 +56,8 @@ class Vector : public generic::Song {
    * @param end Map of connection to value for end point.
    * @param unit Unit of the vector.
    */
-  Vector(const generic::Map<BaseConnection, double>& end, SymbolUnitSP unit)
+  Vector(const generic::Map<BaseConnection, double>& end,
+         physics::units::SymbolUnitSP                unit)
       : _end(std::make_shared<Point>(unit)),
         _start(std::make_shared<Point>(unit)),
         _unit(unit) {
@@ -74,7 +75,7 @@ class Vector : public generic::Song {
    */
   Vector(const generic::Map<BaseConnection, double>& end,
          const generic::Map<BaseConnection, double>& start,
-         SymbolUnitSP                                unit)
+         physics::units::SymbolUnitSP                unit)
       : _end(std::make_shared<Point>(unit)),
         _start(std::make_shared<Point>(unit)),
         _unit(unit) {
@@ -101,8 +102,8 @@ class Vector : public generic::Song {
    * @brief Get the set of connections.
    * @return Collection of connection pointers.
    */
-  const BaseConnectionsSP connections() const { return _connections; }
-  SymbolUnitSP            unit() const { return _unit; }
+  const BaseConnectionsSP      connections() const { return _connections; }
+  physics::units::SymbolUnitSP unit() const { return _unit; }
 
   // Indexing
   std::pair<double, double> operator[](const BaseConnectionSP& conn) const {
@@ -182,7 +183,7 @@ class Vector : public generic::Song {
    * @brief Convert the vector to a different unit.
    * @param target_unit Shared pointer to the target unit.
    */
-  void convert_to(SymbolUnitSP target_unit) {
+  void convert_to(physics::units::SymbolUnitSP target_unit) {
     _end->set_unit(target_unit);
     _start->set_unit(target_unit);
     _unit = target_unit;
