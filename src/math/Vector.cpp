@@ -1,7 +1,8 @@
 #include "falcon_core/math/Vector.hpp"
+
 #include <cmath>
-#include <set>
 #include <memory>
+#include <set>
 
 namespace falcon_core {
 namespace math {
@@ -18,7 +19,8 @@ Vector::Vector(PointSP end)
   update_connections();
 }
 
-Vector::Vector(const generic::Map<BaseConnection, double>& end, SymbolUnitSP unit)
+Vector::Vector(const generic::Map<BaseConnection, double>& end,
+               SymbolUnitSP                                unit)
     : _end(std::make_shared<Point>(unit)),
       _start(std::make_shared<Point>(unit)),
       _unit(unit) {
@@ -31,7 +33,7 @@ Vector::Vector(const generic::Map<BaseConnection, double>& end, SymbolUnitSP uni
 
 Vector::Vector(const generic::Map<BaseConnection, double>& end,
                const generic::Map<BaseConnection, double>& start,
-               SymbolUnitSP unit)
+               SymbolUnitSP                                unit)
     : _end(std::make_shared<Point>(unit)),
       _start(std::make_shared<Point>(unit)),
       _unit(unit) {
@@ -44,12 +46,13 @@ Vector::Vector(const generic::Map<BaseConnection, double>& end,
   update_connections();
 }
 
-const PointSP& Vector::end() const { return _end; }
-const PointSP& Vector::start() const { return _start; }
+const PointSP&          Vector::end() const { return _end; }
+const PointSP&          Vector::start() const { return _start; }
 const BaseConnectionsSP Vector::connections() const { return _connections; }
-SymbolUnitSP Vector::unit() const { return _unit; }
+SymbolUnitSP            Vector::unit() const { return _unit; }
 
-std::pair<double, double> Vector::operator[](const BaseConnectionSP& conn) const {
+std::pair<double, double> Vector::operator[](
+    const BaseConnectionSP& conn) const {
   double end_val   = (*_end)[conn];
   double start_val = (*_start)[conn];
   return std::make_pair(end_val, start_val);
@@ -123,11 +126,9 @@ void Vector::serialize(Archive& ar) {
      _unit);
 }
 
-// Cereal registration
-#include <cereal/types/polymorphic.hpp>
+}  // namespace math
+}  // namespace falcon_core
+
 CEREAL_REGISTER_TYPE(falcon_core::math::Vector)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::math::Vector)
-
-}  // namespace math
-}  // namespace falcon_core

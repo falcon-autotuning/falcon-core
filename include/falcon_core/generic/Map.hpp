@@ -135,6 +135,8 @@ class Map : public virtual generic::Song {
   // Get all key shared_ptrs
   const std::vector<StoredKey>& keys() const { return _key_ptrs; }
   const Container               items() const { return _items; }
+  Container                     items() { return _items; }
+
   // Get all value shared_ptrs
   const std::vector<StoredValue>& values() const { return _value_ptrs; }
   // SFINAE: If Derived is void, clone returns Map

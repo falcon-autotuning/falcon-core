@@ -7,7 +7,8 @@
 namespace falcon_core {
 namespace math {
 
-Quantity::Quantity(double value, std::shared_ptr<physics::units::SymbolUnit> unit)
+Quantity::Quantity(double                                      value,
+                   std::shared_ptr<physics::units::SymbolUnit> unit)
     : _value(value), _unit(std::move(unit)) {}
 
 double Quantity::value() const { return _value; }
@@ -96,10 +97,10 @@ void Quantity::serialize(Archive &ar) {
   ar(cereal::base_class<Song>(this), _value, _unit);
 }
 
+}  // namespace math
+}  // namespace falcon_core
+
 // Cereal registration
 CEREAL_REGISTER_TYPE(falcon_core::math::Quantity)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::math::Quantity)
-
-}  // namespace math
-}  // namespace falcon_core

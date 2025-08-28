@@ -1,4 +1,5 @@
 #include "falcon_core/math/Point.hpp"
+
 #include <memory>
 #include <stdexcept>
 
@@ -8,7 +9,7 @@ namespace math {
 Point::Point(UnitPtr unit) : _unit(unit) {}
 
 Point::Point(std::initializer_list<std::pair<BaseConnectionSP, double>> init,
-             UnitPtr unit)
+             UnitPtr                                                    unit)
     : _unit(unit), Map<BaseConnection, double, Point>(init) {}
 
 Point::Point() = default;
@@ -74,13 +75,15 @@ void Point::serialize(Archive& ar) {
 }
 
 // Cereal registration
-#include <cereal/types/polymorphic.hpp>
-using MapP = falcon_core::generic::Map<falcon_core::physics::device_structures::BaseConnection, double>;
+
+}  // namespace math
+}  // namespace falcon_core
+//
+#include "falcon_core/generic/Map.hpp"
+using MapP = falcon_core::generic::
+    Map<falcon_core::physics::device_structures::BaseConnection, double>;
 CEREAL_REGISTER_TYPE(MapP)
 CEREAL_REGISTER_TYPE(falcon_core::math::Point)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MapP)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::math::Point)
-
-}  // namespace math
-}  // namespace falcon_core
