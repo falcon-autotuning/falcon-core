@@ -1,8 +1,5 @@
 #pragma once
 
-#include <cereal/archives/json.hpp>
-
-#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/BaseConnections.hpp"
 #include "falcon_core/physics/device_structures/Gate.hpp"
 namespace falcon_core {
@@ -25,6 +22,12 @@ class Gates : public BaseConnections<T, Derived> {
       : BaseConnections<T, Derived>(count, value) {}
   Gates(const std::vector<std::shared_ptr<T>>& vec)
       : BaseConnections<T, Derived>(vec) {}
+
+  template <
+      typename U,
+      typename = typename std::enable_if<std::is_base_of<T, U>::value>::type>
+  Gates(const std::vector<std::shared_ptr<U>>& vec)
+      : BaseConnections<T, Derived>(vec) {}
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<BaseConnections<T, Derived>>(this));
@@ -39,8 +42,11 @@ using GatesSP = std::shared_ptr<Gates<Gate>>;
 }  // namespace falcon_core
 
 #ifndef SWIG
-
-using namespace falcon_core::physics::device_structures;
-CEREAL_REGISTER_TYPE(Gates<Gate>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Gates<Gate>)
+CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Gates<
+                     falcon_core::physics::device_structures::Gate>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::physics::device_structures::BaseConnections<
+        falcon_core::physics::device_structures::Gate>,
+    falcon_core::physics::device_structures::Gates<
+        falcon_core::physics::device_structures::Gate>)
 #endif

@@ -14,4 +14,5 @@ BaseDotGateWithNeighbors::BaseDotGateWithNeighbors(std::string name)
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::geometries::BaseDotGateWithNeighbors)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    Gate, falcon_core::physics::config::geometries::BaseDotGateWithNeighbors)
+    falcon_core::physics::device_structures::Gate,
+    falcon_core::physics::config::geometries::BaseDotGateWithNeighbors)

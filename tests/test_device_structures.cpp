@@ -74,7 +74,9 @@ TEST(DeviceStructuresPluralTest, ConstructFromVector_Gates) {
   auto                               dot2 = std::make_shared<Gate>("D2");
   std::vector<std::shared_ptr<Gate>> vec{dot1, dot2};
 
-  auto dots = std::make_shared<Gates<Gate>>(vec);
+  auto        dots = std::make_shared<Gates<Gate>>(vec);
+  std::string json = dots->to_json_string();
+  std::cout << "Serialized DotGates JSON:\n" << json << std::endl;
 
   ASSERT_EQ(dots->size(), 2);
   ASSERT_EQ(dots->at(0)->name(), "D1");

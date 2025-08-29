@@ -10,7 +10,6 @@
 #include <memory>
 
 #include "falcon_core/generic/Map.hpp"
-#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
@@ -24,7 +23,9 @@ namespace math {
  * Each Point stores a mapping from device connections to coordinate values,
  * along with a unit. Supports arithmetic operations and iteration.
  */
-class Point : public generic::Map<BaseConnection, double, Point> {
+class Point : public generic::Map<physics::device_structures::BaseConnection,
+                                  double,
+                                  Point> {
   using UnitPtr = std::shared_ptr<physics::units::SymbolUnit>;
   UnitPtr _unit;
 
@@ -33,8 +34,10 @@ class Point : public generic::Map<BaseConnection, double, Point> {
 
  public:
   Point(UnitPtr unit);
-  Point(std::initializer_list<std::pair<BaseConnectionSP, double>> init,
-        UnitPtr unit);
+  Point(
+      std::initializer_list<
+          std::pair<physics::device_structures::BaseConnectionSP, double>> init,
+      UnitPtr unit);
 
   UnitPtr unit() const;
 

@@ -10,14 +10,14 @@ namespace geometries {
  * @brief A gate with an ohmic below it.
  */
 class HasImplantedOhmic : public generic::Song {
-  OhmicSP _ohmic;
+  device_structures::OhmicSP _ohmic;
 
  public:
-  HasImplantedOhmic(OhmicSP ohmic);
+  HasImplantedOhmic(device_structures::OhmicSP ohmic);
   /**
    * @brief Returns the ohmic below the gate.
    */
-  OhmicSP ohmic() const;
+  device_structures::OhmicSP ohmic() const;
   template <class Archive>
   void serialize(Archive& ar);
 

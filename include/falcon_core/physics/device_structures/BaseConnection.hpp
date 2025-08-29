@@ -12,7 +12,7 @@ class BaseConnection : public virtual generic::Song {
   bool operator<(const BaseConnection& other) const {
     return _name < other._name;  // Compare based on name
   }
-  BaseConnection(std::string name) : _name(std::move(name)) {}
+  BaseConnection(std::string name) : _name(name) {}
   BaseConnection() : _name("") {}
   std::string name() const { return _name; }
   template <class Archive>
@@ -29,7 +29,8 @@ using BaseConnectionSP = std::shared_ptr<BaseConnection>;
 }  // namespace falcon_core
 
 #ifndef SWIG
-using namespace falcon_core::physics::device_structures;
-CEREAL_REGISTER_TYPE(BaseConnection)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, BaseConnection)
+CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::BaseConnection)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::physics::device_structures::BaseConnection)
 #endif

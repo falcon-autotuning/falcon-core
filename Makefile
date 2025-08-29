@@ -15,7 +15,7 @@ build:
 	@echo "--- Configuring and Building C++ Extension ---"
 	@mkdir -p $(BUILD_DIR)
 	@mkdir -p $(OUT_PYTHON_DIR)
-	@cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON -DCMAKE_CXX_FLAGS="-O0" . -S . -B $(BUILD_DIR)
+	@cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON -DCMAKE_CXX_FLAGS="-g -O0" . -S . -B $(BUILD_DIR)
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
 	@ninja -C $(BUILD_DIR) -d stats
 	@echo "--- Build complete. Python extension is now in src/falcon_core/ ---"

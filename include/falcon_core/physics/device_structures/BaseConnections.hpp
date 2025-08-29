@@ -19,6 +19,16 @@ class BaseConnections
     : public virtual falcon_core::generic::List<Conn, Derived> {
   static_assert(std::is_base_of<BaseConnection, Conn>::value,
                 "Conn must be derived from BaseConnection");
+  template <typename U>
+  static std::vector<std::shared_ptr<Conn>> cast_vector(
+      const std::vector<std::shared_ptr<U>>& vec) {
+    std::vector<std::shared_ptr<Conn>> result;
+    result.reserve(vec.size());
+    for (const auto& item : vec) {
+      result.push_back(std::dynamic_pointer_cast<Conn>(item));
+    }
+    return result;
+  }
 
  public:
   /**
@@ -62,8 +72,11 @@ class BaseConnections
   BaseConnections(size_t count) : generic::List<Conn, Derived>(count) {}
   BaseConnections(size_t count, const std::shared_ptr<Conn>& value)
       : generic::List<Conn, Derived>(count, value) {}
-  BaseConnections(const std::vector<std::shared_ptr<Conn>>& vec)
-      : generic::List<Conn, Derived>(vec) {}
+  template <
+      typename U,
+      typename = typename std::enable_if<std::is_base_of<U, Conn>::value>::type>
+  BaseConnections(const std::vector<std::shared_ptr<U>>& vec)
+      : generic::List<Conn, Derived>(cast_vector(vec)) {}
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -79,10 +92,7 @@ using BaseConnectionsSP = std::shared_ptr<BaseConnections<BaseConnection>>;
 }  // namespace falcon_core
 #ifndef SWIG
 using namespace falcon_core::physics::device_structures;
-CEREAL_REGISTER_TYPE(falcon_core::generic::List<BaseConnection>)
 CEREAL_REGISTER_TYPE(BaseConnections<BaseConnection>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     falcon_core::generic::List<BaseConnection>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::List<BaseConnection>,
                                      BaseConnections<BaseConnection>)
 #endif

@@ -21,7 +21,7 @@ class RightReservoirWithImplantedOhmic
   RightReservoirWithImplantedOhmic(
       std::string                      name,
       device_structures::BarrierGateSP right_neighbor,
-      OhmicSP                          ohmic);
+      device_structures::OhmicSP       ohmic);
   template <class Archive>
   void serialize(Archive& ar);
 

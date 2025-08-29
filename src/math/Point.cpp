@@ -8,9 +8,12 @@ namespace math {
 
 Point::Point(UnitPtr unit) : _unit(unit) {}
 
-Point::Point(std::initializer_list<std::pair<BaseConnectionSP, double>> init,
-             UnitPtr                                                    unit)
-    : _unit(unit), Map<BaseConnection, double, Point>(init) {}
+Point::Point(
+    std::initializer_list<
+        std::pair<physics::device_structures::BaseConnectionSP, double>> init,
+    UnitPtr                                                              unit)
+    : _unit(unit),
+      Map<physics::device_structures::BaseConnection, double, Point>(init) {}
 
 Point::Point() = default;
 
@@ -70,7 +73,9 @@ void Point::set_unit(UnitPtr unit) { _unit = unit; }
 
 template <class Archive>
 void Point::serialize(Archive& ar) {
-  ar(cereal::base_class<generic::Map<BaseConnection, double, Point>>(this),
+  ar(cereal::base_class<generic::Map<physics::device_structures::BaseConnection,
+                                     double,
+                                     Point>>(this),
      _unit);
 }
 

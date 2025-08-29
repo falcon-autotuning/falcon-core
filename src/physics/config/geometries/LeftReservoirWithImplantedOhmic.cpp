@@ -6,7 +6,9 @@ namespace config {
 namespace geometries {
 LeftReservoirWithImplantedOhmic::LeftReservoirWithImplantedOhmic() = default;
 LeftReservoirWithImplantedOhmic::LeftReservoirWithImplantedOhmic(
-    std::string name, BarrierGateSP right_neighbor, OhmicSP ohmic)
+    std::string                      name,
+    device_structures::BarrierGateSP right_neighbor,
+    device_structures::OhmicSP       ohmic)
     : ReservoirGate(name),
       HasRightNeighbor(right_neighbor),
       HasImplantedOhmic(ohmic) {}
@@ -21,9 +23,11 @@ void LeftReservoirWithImplantedOhmic::serialize(Archive& ar) {
 }  // namespace physics
 }  // namespace falcon_core
 CEREAL_REGISTER_TYPE(LeftReservoirWithImplantedOhmic)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(ReservoirGate,
-                                     LeftReservoirWithImplantedOhmic)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::physics::device_structures::ReservoirGate,
+    LeftReservoirWithImplantedOhmic)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(HasImplantedOhmic,
                                      LeftReservoirWithImplantedOhmic)
-using HRNBG = HasRightNeighbor<BarrierGate>;
+using HRNBG =
+    HasRightNeighbor<falcon_core::physics::device_structures::BarrierGate>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(HRNBG, LeftReservoirWithImplantedOhmic)
