@@ -21,41 +21,13 @@ namespace discretizers {
  */
 class PolarDiscretizer : public BaseDiscretizer {
  public:
-  /**
-   * @brief Construct a PolarDiscretizer.
-   * @param delta Angular step size.
-   */
-  PolarDiscretizer(double delta)
-      : BaseDiscretizer(
-            delta,
-            std::make_shared<domains::Domain>(
-                -2.0 * falcon_core::PI, 2.0 * falcon_core::PI)) {}
+  PolarDiscretizer(double delta);
+  PolarDiscretizer();
 
- private:
-  friend class cereal::access;
-  /**
-   * @brief Default constructor for cereal.
-   */
-  PolarDiscretizer() = default;
-  /**
-   * @brief Serialization method for cereal.
-   * @param ar Archive object.
-   */
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseDiscretizer>(this));
-  }
+  void serialize(Archive& ar);
 };
 
 }  // namespace discretizers
 }  // namespace math
 }  // namespace falcon_core
-
-using namespace falcon_core::math::discretizers;
-
-#ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::math::discretizers::PolarDiscretizer)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::math::discretizers::PolarDiscretizer)
-#endif

@@ -23,65 +23,21 @@ namespace discretizers {
  */
 class BaseDiscretizer : public generic::Song {
  public:
-  /**
-   * @brief Construct a discretizer.
-   * @param delta Step size.
-   * @param delta_domain Domain for the step size.
-   */
-  BaseDiscretizer(double delta, std::shared_ptr<domains::Domain> delta_domain)
-      : _delta(delta), _delta_domain(std::move(delta_domain)) {}
-
-  /**
-   * @brief Virtual destructor.
-   */
-  virtual ~BaseDiscretizer() = default;
-
-  /**
-   * @brief Get the step size.
-   * @return Step size as double.
-   */
-  double delta() const { return _delta; }
-
-  /**
-   * @brief Set the step size.
-   * @param delta New step size.
-   */
-  void   set_delta(double delta) { _delta = delta; }
-
-  /**
-   * @brief Get the domain for the step size.
-   * @return Shared pointer to domain.
-   */
-  const std::shared_ptr<domains::Domain>& delta_domain() const {
-    return _delta_domain;
-  }
+  BaseDiscretizer(double delta, std::shared_ptr<domains::Domain> delta_domain);
+  virtual ~BaseDiscretizer();
+  double delta() const;
+  void set_delta(double delta);
+  const std::shared_ptr<domains::Domain>& delta_domain() const;
 
 protected:
   double                           _delta;        ///< Step size.
   std::shared_ptr<domains::Domain> _delta_domain; ///< Domain for step size.
 
   friend class cereal::access;
-  /**
-   * @brief Default constructor for cereal.
-   */
-  BaseDiscretizer() = default;
-  /**
-   * @brief Serialization method for cereal.
-   * @param ar Archive object.
-   */
+  BaseDiscretizer();
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _delta, _delta_domain);
-  }
+  void serialize(Archive& ar);
 };
 }  // namespace discretizers
 }  // namespace math
 }  // namespace falcon_core
-
-#ifndef SWIG
-using namespace falcon_core::math::discretizers;
-CEREAL_REGISTER_TYPE(falcon_core::math::discretizers::BaseDiscretizer)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::math::discretizers::BaseDiscretizer)
-#endif

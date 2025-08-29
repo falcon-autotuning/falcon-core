@@ -37,8 +37,10 @@ class BaseLabelledDomain : public Domain {
  private:
   std::shared_ptr<T> _label;
 
-  friend class cereal::access;
+ protected:
   BaseLabelledDomain() = default;
+
+  friend class cereal::access;
   /**
    * @brief Serialization method for cereal.
    */

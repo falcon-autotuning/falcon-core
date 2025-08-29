@@ -10,12 +10,10 @@ namespace names {
 // Knobs: collection of Knob ports
 class Knobs : public Ports<Knob> {
  public:
-  Knobs() = default;
+  Knobs();
 
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<Ports<Knob>>(this));
-  }
+  void serialize(Archive& ar);
 
  private:
   friend class cereal::access;
@@ -24,10 +22,3 @@ class Knobs : public Ports<Knob> {
 }  // namespace names
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
-
-#ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::Knobs)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::instrument_interfaces::names::Knobs)
-#endif
