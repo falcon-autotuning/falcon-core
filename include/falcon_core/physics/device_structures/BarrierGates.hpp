@@ -1,8 +1,6 @@
 #pragma once
 
-#include "falcon_core/physics/device_structures/BarrierGate.hpp"
-#include "falcon_core/physics/device_structures/DotGates.hpp"
-
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
@@ -10,15 +8,29 @@ namespace device_structures {
 /**
  * @brief A collection of BarrierGates.
  */
-class BarrierGates : public DotGates<BarrierGate, BarrierGates> {
+class BarrierGates : public BaseConnections {
  public:
+  /**
+   * @brief Default constructor: creates an empty BarrierGates container.
+   */
   BarrierGates();
-  explicit BarrierGates(size_t count);
-  BarrierGates(size_t count, const BarrierGateSP& value);
+  /**
+   * @brief Construct a BarrierGates container with a given size.
+   * @param count Number of elements.
+   */
+  BarrierGates(size_t count);
+  /**
+   * @brief Construct a BarrierGates container with a given size, and value.
+   * @param count Number of elements.
+   * @param value Value to copy.
+   */
+  BarrierGates(size_t count, const BaseConnectionSP& value);
+  /**
+   * @brief Construct a BarrierGates container from an existing vector of
+   * values.
+   * @param vec Vector of values to copy.
+   */
   BarrierGates(const std::vector<BarrierGateSP>& vec);
-
-  template <class Archive>
-  void serialize(Archive& ar);
 
  protected:
   friend class cereal::access;

@@ -1,8 +1,6 @@
 #pragma once
 
-#include "falcon_core/physics/device_structures/Gates.hpp"
-#include "falcon_core/physics/device_structures/ScreeningGate.hpp"
-
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
@@ -10,15 +8,29 @@ namespace device_structures {
 /**
  * @brief A collection of ScreeningGates.
  */
-class ScreeningGates : public Gates<ScreeningGate, ScreeningGates> {
+class ScreeningGates : public BaseConnections {
  public:
+  /**
+   * @brief Default constructor: creates an empty ScreeningGates container.
+   */
   ScreeningGates();
-  explicit ScreeningGates(size_t count);
-  ScreeningGates(size_t count, const ScreeningGateSP& value);
+  /**
+   * @brief Construct a ScreeningGates container with a given size.
+   * @param count Number of elements.
+   */
+  ScreeningGates(size_t count);
+  /**
+   * @brief Construct a ScreeningGates container with a given size, and value.
+   * @param count Number of elements.
+   * @param value Value to copy.
+   */
+  ScreeningGates(size_t count, const BaseConnectionSP& value);
+  /**
+   * @brief Construct a ScreeningGates container from an existing vector of
+   * values.
+   * @param vec Vector of values to copy.
+   */
   ScreeningGates(const std::vector<ScreeningGateSP>& vec);
-
-  template <class Archive>
-  void serialize(Archive& ar);
 
  protected:
   friend class cereal::access;

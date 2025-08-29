@@ -1,23 +1,23 @@
 #include "falcon_core/physics/device_structures/ScreeningGates.hpp"
-using namespace falcon_core::physics::device_structures;
+
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
+namespace falcon_core {
+namespace physics {
+namespace device_structures {
 
 ScreeningGates::ScreeningGates() = default;
 
-ScreeningGates::ScreeningGates(size_t count)
-    : Gates<ScreeningGate, ScreeningGates>(count) {}
+ScreeningGates::ScreeningGates(size_t count) : BaseConnections(count) {}
 
-ScreeningGates::ScreeningGates(size_t count, const ScreeningGateSP& value)
-    : Gates<ScreeningGate, ScreeningGates>(count, value) {}
+ScreeningGates::ScreeningGates(size_t count, const BaseConnectionSP& value)
+    : BaseConnections(count, value) {}
 
 ScreeningGates::ScreeningGates(const std::vector<ScreeningGateSP>& vec)
-    : Gates<ScreeningGate, ScreeningGates>(vec) {}
-
-// Explicit template instantiation for serialize
-template <class Archive>
-void ScreeningGates::serialize(Archive& ar) {
-  ar(cereal::base_class<Gates<ScreeningGate, ScreeningGates>>(this));
-}
-
-CEREAL_REGISTER_TYPE(ScreeningGates)
-using GSS = Gates<ScreeningGate, ScreeningGates>;
-CEREAL_REGISTER_POLYMORPHIC_RELATION(GSS, ScreeningGates)
+    : BaseConnections(vec) {}
+}  // namespace device_structures
+}  // namespace physics
+}  // namespace falcon_core
+CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::ScreeningGates)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::physics::device_structures::BaseConnections,
+    falcon_core::physics::device_structures::ScreeningGates)
