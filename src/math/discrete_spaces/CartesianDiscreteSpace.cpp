@@ -5,6 +5,12 @@ namespace falcon_core {
 namespace math {
 namespace discrete_spaces {
 
+CartesianDiscreteSpace::CartesianDiscreteSpace() = default;
+
+CartesianDiscreteSpace::CartesianDiscreteSpace(std::shared_ptr<spaces::CartesianSpace> space,
+                                               std::shared_ptr<Axes<domains::CoupledKnobDomain>> axes)
+    : BaseCartesianDiscreteSpace(space, axes) {}
+
 std::shared_ptr<CartesianDiscreteSpace> CartesianDiscreteSpace::from_divisions(
     const std::vector<int>& divisions,
     std::shared_ptr<Axes<domains::CoupledKnobDomain>> axes,
@@ -16,6 +22,14 @@ std::shared_ptr<CartesianDiscreteSpace> CartesianDiscreteSpace::from_divisions(
     return std::make_shared<CartesianDiscreteSpace>(space, axes);
 }
 
+template <class Archive>
+void CartesianDiscreteSpace::serialize(Archive& ar) {
+    ar(cereal::base_class<BaseCartesianDiscreteSpace>(this));
+}
+
 } // namespace discrete_spaces
 } // namespace math
 } // namespace falcon_core
+
+CEREAL_REGISTER_TYPE(falcon_core::math::discrete_spaces::CartesianDiscreteSpace)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::math::discrete_spaces::BaseCartesianDiscreteSpace, falcon_core::math::discrete_spaces::CartesianDiscreteSpace)

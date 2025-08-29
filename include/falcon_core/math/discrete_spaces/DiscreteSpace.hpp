@@ -10,26 +10,18 @@ class DiscreteSpace : public BaseDiscreteSpace {
  public:
   using BaseDiscreteSpace::BaseDiscreteSpace; // Inherit constructors
 
-  DiscreteSpace() = default;
+  DiscreteSpace();
   DiscreteSpace(std::shared_ptr<spaces::UnitSpace> space,
-                std::shared_ptr<Axes<domains::CoupledKnobDomain>> axes)
-      : BaseDiscreteSpace(space, axes) {}
+                std::shared_ptr<Axes<domains::CoupledKnobDomain>> axes);
 
   // Additional methods as needed
 
  private:
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseDiscreteSpace>(this));
-  }
+  void serialize(Archive& ar);
 };
 
 }  // namespace discrete_spaces
 }  // namespace math
 }  // namespace falcon_core
-
-#ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::math::discrete_spaces::DiscreteSpace)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::math::discrete_spaces::BaseDiscreteSpace, falcon_core::math::discrete_spaces::DiscreteSpace)
-#endif
