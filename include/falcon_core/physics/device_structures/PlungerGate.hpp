@@ -1,16 +1,14 @@
 #pragma once
 
-#include "falcon_core/physics/device_structures/DotGate.hpp"  // Only needed if you define functions inline
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
 
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
 
-class PlungerGate : public virtual DotGate {
+class PlungerGate : public BaseConnection {
  public:
   PlungerGate(std::string name);
-  template <class Archive>
-  void serialize(Archive &ar);
 
  protected:
   PlungerGate();

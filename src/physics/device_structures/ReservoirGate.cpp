@@ -1,15 +1,12 @@
 #include "falcon_core/physics/device_structures/ReservoirGate.hpp"
 
-#include "falcon_core/physics/device_structures/Gate.hpp"
 using namespace falcon_core::physics::device_structures;
-
-ReservoirGate::ReservoirGate(std::string name) : Gate(std::move(name)) {}
+namespace falcon_core {
+namespace physics {
+namespace device_structures {
+ReservoirGate::ReservoirGate(std::string name)
+    : BaseConnection(name, DeviceFeature::ReservoirGate) {}
 ReservoirGate::ReservoirGate() = default;
-
-template <class Archive>
-void ReservoirGate::serialize(Archive &ar) {
-  ar(cereal::base_class<Gate>(this));
-}
-
-CEREAL_REGISTER_TYPE(ReservoirGate)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(Gate, ReservoirGate)
+}  // namespace device_structures
+}  // namespace physics
+}  // namespace falcon_core
