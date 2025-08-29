@@ -11,7 +11,7 @@ const std::shared_ptr<KnobDomain::Knob>& KnobDomain::knob() const {
   return this->label();
 }
 
-KnobDomain::KnobDomain() = default;
+KnobDomain::KnobDomain() : BaseLabelledDomain<Knob>() {}
 
 template <class Archive>
 void KnobDomain::serialize(Archive& ar) {
