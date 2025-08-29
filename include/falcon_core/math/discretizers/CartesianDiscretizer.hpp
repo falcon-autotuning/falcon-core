@@ -19,39 +19,12 @@ namespace discretizers {
  */
 class CartesianDiscretizer : public BaseDiscretizer {
  public:
-  /**
-   * @brief Construct a CartesianDiscretizer.
-   * @param delta Step size.
-   */
-  CartesianDiscretizer(double delta)
-      : BaseDiscretizer(delta, std::make_shared<domains::Domain>(-1.0, 1.0)) {}
+  CartesianDiscretizer(double delta);
+  CartesianDiscretizer();
 
-  using BaseDiscretizer::BaseDiscretizer;
-
- private:
-  friend class cereal::access;
-  /**
-   * @brief Default constructor for cereal.
-   */
-  CartesianDiscretizer() = default;
-  /**
-   * @brief Serialization method for cereal.
-   * @param ar Archive object.
-   */
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseDiscretizer>(this));
-  }
+  void serialize(Archive& ar);
 };
 }  // namespace discretizers
 }  // namespace math
 }  // namespace falcon_core
-
-using namespace falcon_core::math::discretizers;
-
-#ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::math::discretizers::CartesianDiscretizer)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::math::discretizers::CartesianDiscretizer)
-#endif
