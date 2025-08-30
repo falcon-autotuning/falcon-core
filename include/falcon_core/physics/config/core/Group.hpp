@@ -13,7 +13,7 @@ namespace core {
 class Group : public StandardConfigConnections {
   autotuner_interfaces::names::ChannelSP _name;
   int                                    _num_dots;
-  GateGeometryArray1DSP                  _order;
+  geometries::GateGeometryArray1DSP      _order;
   device_structures::OhmicsSP            _ohmics;
 
  public:
@@ -49,7 +49,7 @@ class Group : public StandardConfigConnections {
   /**
    * @brief collect the order of the gates in this group.
    */
-  GateGeometryArray1DSP order() const;
+  geometries::GateGeometryArray1DSP order() const;
   /**
    * @brief Validates if this channel is present.
    * @param channel The channel to validate.

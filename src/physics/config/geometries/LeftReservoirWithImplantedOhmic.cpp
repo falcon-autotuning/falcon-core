@@ -24,7 +24,3 @@ void LeftReservoirWithImplantedOhmic::serialize(Archive& ar) {
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(LeftReservoirWithImplantedOhmic)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::device_structures::ReservoirGate,
-    LeftReservoirWithImplantedOhmic)

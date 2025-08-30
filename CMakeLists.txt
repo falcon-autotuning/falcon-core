@@ -13,9 +13,7 @@ function(cpp_tests)
   enable_testing()
 
   if(FALCON_CORE_TESTS)
-    # Use only the specified test files (semicolon-separated)
-    string(REPLACE ";" " " TEST_LIST "${FALCON_CORE_TESTS}")
-    set(RUN_TESTS_SOURCES ${TEST_LIST})
+    set(RUN_TESTS_SOURCES ${FALCON_CORE_TESTS})
   else()
     # Default: include all test files
     set(RUN_TESTS_SOURCES

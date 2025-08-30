@@ -240,6 +240,8 @@ device_structures::OhmicsSP GateGeometryArray1D::ohmics() const {
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(GateGeometryArray1D)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     GateGeometryArray1D)
+CEREAL_REGISTER_TYPE(
+    falcon_core::physics::config::geometries::GateGeometryArray1D)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::physics::config::geometries::GateGeometryArray1D)

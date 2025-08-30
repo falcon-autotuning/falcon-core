@@ -17,20 +17,15 @@ class HasRightNeighbor : public virtual generic::Song {
   device_structures::BaseConnectionSP _right_neighbor;
 
  public:
-  HasRightNeighbor(device_structures::BaseConnectionSP right_neighbor)
-      : _right_neighbor(right_neighbor) {}
+  HasRightNeighbor(device_structures::BaseConnectionSP right_neighbor);
 
   /**
    * @brief Returns the right neighbor of the gate.
    */
-  device_structures::BaseConnectionSP right_neighbor() const {
-    return _right_neighbor;
-  }
+  device_structures::BaseConnectionSP right_neighbor() const;
 
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _right_neighbor);
-  }
+  void serialize(Archive& ar);
 
  protected:
   HasRightNeighbor();
@@ -41,10 +36,3 @@ using HasRightNeighborSP = std::shared_ptr<HasRightNeighbor>;
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-
-#ifndef SWIG
-using namespace falcon_core::physics::config::geometries;
-CEREAL_REGISTER_TYPE(HasRightNeighbor)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     HasRightNeighbor)
-#endif

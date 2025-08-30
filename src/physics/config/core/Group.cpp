@@ -21,12 +21,13 @@ Group::Group(const ChannelSP&                            name,
                                 std::make_shared<device_structures::Ohmics>()),
       _name(name),
       _num_dots(num_dots),
-      _order(std::make_shared<GateGeometryArray1D>(order, screening_gates)) {}
-device_structures::OhmicsSP Group::ohmics() const { return _ohmics; }
-ChannelSP                   Group::name() const { return _name; }
-int                         Group::num_dots() const { return _num_dots; }
-GateGeometryArray1DSP       Group::order() const { return _order; }
-bool                        Group::has_channel(const ChannelSP& channel) const {
+      _order(std::make_shared<geometries::GateGeometryArray1D>(
+          order, screening_gates)) {}
+device_structures::OhmicsSP       Group::ohmics() const { return _ohmics; }
+ChannelSP                         Group::name() const { return _name; }
+int                               Group::num_dots() const { return _num_dots; }
+geometries::GateGeometryArray1DSP Group::order() const { return _order; }
+bool Group::has_channel(const ChannelSP& channel) const {
   return *this->_name == *channel;
 }
 bool Group::is_charge_sensor() const { return this->_num_dots == 1; }

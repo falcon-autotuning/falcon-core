@@ -322,7 +322,7 @@ device_structures::BaseConnectionsSP Config::get_channel_order_no_ohmics(
   if (!gname) return nullptr;
   GroupSP group = select_group(gname);
   if (!group) return nullptr;
-  GateGeometryArray1DSP order = group->order();
+  geometries::GateGeometryArray1DSP order = group->order();
   if (!order) return nullptr;
   device_structures::BaseConnectionsSP typed_order;
   for (const auto& gate : *order) {

@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
 
+#include <memory>
+
 #include "falcon_core/physics/config/core/Config.hpp"
 namespace tests {
 using namespace falcon_core::physics::device_structures;
@@ -54,7 +56,7 @@ class ConfigTestFixture : public ::testing::Test {
                                  std::make_shared<BarrierGate>("B1"),
                                  std::make_shared<BarrierGate>("B2"),
                                  std::make_shared<BarrierGate>("B3")}),
-                         std::make_shared<BaseConnections<BaseConnection>>(
+                         std::make_shared<BaseConnections>(
                              std::vector<std::shared_ptr<BaseConnection>>{
                                  std::make_shared<Ohmic>("O1"),
                                  std::make_shared<ReservoirGate>("R1"),
@@ -94,17 +96,18 @@ class ConfigTestFixture : public ::testing::Test {
                 falcon_core::physics::config::core::VoltageConstraints>(
                 std::make_shared<falcon_core::physics::config::core::Adjacency>(
                     Eigen::MatrixXi::Identity(9, 9),
-                    std::make_shared<Gates<Gate>>(std::vector<GateSP>{
-                        std::make_shared<ScreeningGate>("SG1"),
-                        std::make_shared<ScreeningGate>("SG2"),
-                        std::make_shared<PlungerGate>("P1"),
-                        std::make_shared<PlungerGate>("P2"),
-                        std::make_shared<BarrierGate>("B1"),
-                        std::make_shared<BarrierGate>("B2"),
-                        std::make_shared<BarrierGate>("B3"),
-                        std::make_shared<ReservoirGate>("R1"),
-                        std::make_shared<ReservoirGate>("R2"),
-                    })),
+                    std::make_shared<BaseConnections>(
+                        std::vector<BaseConnectionSP>{
+                            std::make_shared<ScreeningGate>("SG1"),
+                            std::make_shared<ScreeningGate>("SG2"),
+                            std::make_shared<PlungerGate>("P1"),
+                            std::make_shared<PlungerGate>("P2"),
+                            std::make_shared<BarrierGate>("B1"),
+                            std::make_shared<BarrierGate>("B2"),
+                            std::make_shared<BarrierGate>("B3"),
+                            std::make_shared<ReservoirGate>("R1"),
+                            std::make_shared<ReservoirGate>("R2"),
+                        })),
                 1.0,
                 std::make_pair(-1.0, 1.0))) {}
 
@@ -212,48 +215,41 @@ TEST_F(ConfigTestFixture, BasicQueries) {
 
   // Test ohmic_in_charge_sensor (should not throw, may be false)
   for (const auto& o : *original_config.ohmics()) {
-    original_config.ohmic_in_charge_sensor(o);
+    original_config.ohmic_in_charge_sensor(std::dynamic_pointer_cast<Ohmic>(o));
   }
 
   // Test get_associated_ohmic (should not throw, may be nullptr)
   for (const auto& r : *original_config.reservoir_gates()) {
-    original_config.get_associated_ohmic(r);
+    original_config.get_associated_ohmic(
+        std::dynamic_pointer_cast<ReservoirGate>(r));
   }
 
   // Test get_gname and get_channel_gates
   for (const auto& ch : *channels) {
     auto gn = original_config.get_gname(ch);
     if (gn) {
-      auto bg = original_config.get_channel_gates(
-          ch, std::make_shared<BarrierGate>("B1"));
-      auto pg = original_config.get_channel_gates(
-          ch, std::make_shared<PlungerGate>("P1"));
-      auto rg = original_config.get_channel_gates(
-          ch, std::make_shared<ReservoirGate>("R1"));
-      auto sg = original_config.get_channel_gates(
-          ch, std::make_shared<ScreeningGate>("SG1"));
+      auto bg = original_config.get_channel_barrier_gates(ch);
+      auto pg = original_config.get_channel_plunger_gates(ch);
+      auto rg = original_config.get_channel_reservoir_gates(ch);
+      auto sg = original_config.get_channel_screening_gates(ch);
       // Just check that these calls do not throw and return something (may be
       // nullptr)
     }
   }
 
   // Test get_isolated_gates and get_shared_gates
-  auto isolated_barriers =
-      original_config.get_isolated_gates(std::make_shared<BarrierGate>("B1"));
-  auto shared_barriers =
-      original_config.get_shared_gates(std::make_shared<BarrierGate>("B1"));
+  auto isolated_barriers = original_config.get_isolated_barrier_gates();
+  auto shared_barriers   = original_config.get_shared_barrier_gates();
   // Should not throw, may be empty
 
   // Test get_isolated_channel_gates
   for (const auto& ch : *channels) {
-    auto iso = original_config.get_isolated_channel_gates(
-        std::make_shared<BarrierGate>("B1"), ch);
+    auto iso = original_config.get_isolated_channel_gates(ch);
     // Should not throw, may be empty
   }
 
   // Test get_isolated_gates_by_type
-  auto iso_map = original_config.get_isolated_gates_by_type(
-      std::make_shared<BarrierGate>("B1"));
+  auto iso_map = original_config.get_isolated_gates_by_channel();
   // Should not throw, may be empty
 
   // Test generate_gate_relations
