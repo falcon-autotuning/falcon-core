@@ -1,15 +1,16 @@
 #include "falcon_core/physics/device_structures/BarrierGate.hpp"
 
-#include "falcon_core/physics/device_structures/DotGate.hpp"
 using namespace falcon_core::physics::device_structures;
-
-BarrierGate::BarrierGate(std::string name) : DotGate(std::move(name)) {}
+namespace falcon_core {
+namespace physics {
+namespace device_structures {
+BarrierGate::BarrierGate(std::string name)
+    : BaseConnection(name, DeviceFeature::BarrierGate) {}
 BarrierGate::BarrierGate() = default;
-
-template <class Archive>
-void BarrierGate::serialize(Archive &ar) {
-  ar(cereal::base_class<DotGate>(this));
-}
-
-CEREAL_REGISTER_TYPE(BarrierGate)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(DotGate, BarrierGate)
+}  // namespace device_structures
+}  // namespace physics
+}  // namespace falcon_core
+CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::BarrierGate)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::physics::device_structures::BaseConnection,
+    falcon_core::physics::device_structures::BarrierGate)

@@ -9,8 +9,6 @@ namespace device_structures {
 class Ohmic : public virtual BaseConnection {
  public:
   Ohmic(std::string name);
-  template <class Archive>
-  void serialize(Archive &ar);
 
  protected:
   Ohmic();

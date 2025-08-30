@@ -1,23 +1,23 @@
 #include "falcon_core/physics/device_structures/ReservoirGates.hpp"
-using namespace falcon_core::physics::device_structures;
+
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
+namespace falcon_core {
+namespace physics {
+namespace device_structures {
 
 ReservoirGates::ReservoirGates() = default;
 
-ReservoirGates::ReservoirGates(size_t count)
-    : Gates<ReservoirGate, ReservoirGates>(count) {}
+ReservoirGates::ReservoirGates(size_t count) : BaseConnections(count) {}
 
-ReservoirGates::ReservoirGates(size_t count, const ReservoirGateSP& value)
-    : Gates<ReservoirGate, ReservoirGates>(count, value) {}
+ReservoirGates::ReservoirGates(size_t count, const BaseConnectionSP& value)
+    : BaseConnections(count, value) {}
 
 ReservoirGates::ReservoirGates(const std::vector<ReservoirGateSP>& vec)
-    : Gates<ReservoirGate, ReservoirGates>(vec) {}
-
-// Explicit template instantiation for serialize
-template <class Archive>
-void ReservoirGates::serialize(Archive& ar) {
-  ar(cereal::base_class<Gates<ReservoirGate, ReservoirGates>>(this));
-}
-
-CEREAL_REGISTER_TYPE(ReservoirGates)
-using GRR = Gates<ReservoirGate, ReservoirGates>;
-CEREAL_REGISTER_POLYMORPHIC_RELATION(GRR, ReservoirGates)
+    : BaseConnections(vec) {}
+}  // namespace device_structures
+}  // namespace physics
+}  // namespace falcon_core
+CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::ReservoirGates)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::physics::device_structures::BaseConnections,
+    falcon_core::physics::device_structures::ReservoirGates)

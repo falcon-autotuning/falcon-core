@@ -12,8 +12,13 @@ function(cpp_tests)
   message(STATUS "Setting up C++ tests")
   enable_testing()
 
-  add_executable(
-    run_tests
+  if(FALCON_CORE_TESTS)
+    # Use only the specified test files (semicolon-separated)
+    string(REPLACE ";" " " TEST_LIST "${FALCON_CORE_TESTS}")
+    set(RUN_TESTS_SOURCES ${TEST_LIST})
+  else()
+    # Default: include all test files
+    set(RUN_TESTS_SOURCES
     tests/test_unit.cpp
     tests/test_common_unit.cpp
     tests/test_song.cpp
@@ -32,6 +37,9 @@ function(cpp_tests)
     tests/test_port_transforms.cpp
     tests/test_waveforms.cpp
   )
+  endif()
+
+  add_executable(run_tests ${RUN_TESTS_SOURCES})
 
   target_link_libraries(run_tests GTest::gtest_main falcon_core_cpp)
 
@@ -283,7 +291,19 @@ execute_process(
   OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 # --- C++ Library Target ---
-file(GLOB_RECURSE FALCON_CORE_SOURCES CONFIGURE_DEPENDS "src/*.cpp")
+if(FALCON_CORE_DIRS)
+  set(FALCON_CORE_SOURCES "")
+  foreach(dir_or_file ${FALCON_CORE_DIRS})
+    if(IS_DIRECTORY ${dir_or_file})
+      file(GLOB_RECURSE DIR_SOURCES CONFIGURE_DEPENDS "${dir_or_file}/*.cpp")
+      list(APPEND FALCON_CORE_SOURCES ${DIR_SOURCES})
+    elseif(EXISTS ${dir_or_file})
+      list(APPEND FALCON_CORE_SOURCES ${dir_or_file})
+    endif()
+  endforeach()
+else()
+  file(GLOB_RECURSE FALCON_CORE_SOURCES CONFIGURE_DEPENDS "src/*.cpp")
+endif()
 add_library(falcon_core_cpp ${FALCON_CORE_SOURCES})
 target_include_directories(
   falcon_core_cpp
@@ -293,7 +313,8 @@ target_include_directories(
           ${blake3_SOURCE_DIR}/c)
 
 target_link_libraries(falcon_core_cpp PRIVATE blake3_c)
-set(FALCON_HEADERS
+if(NOT FALCON_CORE_DIRS)
+  set(FALCON_HEADERS
     falcon_core/generic/Song.hpp
     falcon_core/Constants.hpp
     falcon_core/physics/device_structures/BaseConnection.hpp
@@ -364,7 +385,7 @@ set(FALCON_HEADERS
     # falcon_core::math::labelled_arrays::IsLabelled1D<falcon_core::math::labelled_arrays::LabelledControlArray1D>
     # falcon_core/math/labelled_arrays/LabelledControlArray1D.hpp
 )
-set(SWIG_MODULES
+  set(SWIG_MODULES
     song,Song,Song.i,generic
     base_connection,BaseConnection,BaseConnection.i,physics/device_structures
     gate,Gate,Gate.i,physics/device_structures
@@ -401,16 +422,17 @@ set(SWIG_MODULES
     increasing_alignment,IncreasingAlignment,IncreasingAlignment.i,math/arrays
     measured_array,MeasuredArray,MeasuredArray.i,math/arrays
 )
-generate_swig_header_interface(
+  generate_swig_header_interface(
   FALCON_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/swig/falcon_core_all.i"
   "falcon_core_all")
-generate_song_deserializers("${CMAKE_CURRENT_BINARY_DIR}/swig/")
-generate_swig_modules(SWIG_MODULES)
-cpp_tests()
-
-# --- Python Binding Tests ---
-add_test(NAME python_bindings_test
+  generate_song_deserializers("${CMAKE_CURRENT_BINARY_DIR}/swig/")
+  generate_swig_modules(SWIG_MODULES)
+  # --- Python Binding Tests ---
+  add_test(NAME python_bindings_test
          COMMAND ${Python3_EXECUTABLE}
                  ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_bindings.py)
-set_tests_properties(python_bindings_test
+  set_tests_properties(python_bindings_test
                      PROPERTIES WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+endif()
+cpp_tests()
+

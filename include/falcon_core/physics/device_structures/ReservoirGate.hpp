@@ -1,16 +1,14 @@
 #pragma once
 
-#include "falcon_core/physics/device_structures/Gate.hpp"
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
 
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
 
-class ReservoirGate : public virtual Gate {
+class ReservoirGate : public BaseConnection {
  public:
   ReservoirGate(std::string name);
-  template <class Archive>
-  void serialize(Archive &ar);
 
  protected:
   ReservoirGate();

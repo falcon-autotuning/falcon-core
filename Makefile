@@ -1,6 +1,6 @@
 # Makefile to simplify the CMake build process for falcon-core
 
-.PHONY: all build install test clean
+.PHONY: all build build-part install test clean
 
 # Variables
 BUILD_DIR := build
@@ -19,6 +19,18 @@ build:
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
 	@ninja -C $(BUILD_DIR) -d stats
 	@echo "--- Build complete. Python extension is now in src/falcon_core/ ---"
+
+# Build only selected sources and tests
+# Example:
+# make build-part DIRS="src/physics;src/utils" TESTS="tests/test_unit.cpp;tests/test_song.cpp"
+build-part:
+	@echo "--- Configuring and Building Selected Parts: $(DIRS), Tests: $(TESTS) ---"
+	@mkdir -p $(BUILD_DIR)
+	@mkdir -p $(OUT_PYTHON_DIR)
+	@cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON -DCMAKE_CXX_FLAGS="-g -O0" -DFALCON_CORE_DIRS="$(DIRS)" -DFALCON_CORE_TESTS="$(TESTS)" . -S . -B $(BUILD_DIR)
+	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
+	@ninja -C $(BUILD_DIR) -d stats
+	@echo "--- Partial build complete. Python extension is now in src/falcon_core/ ---"
 
 # Install the Python package using pip
 install:

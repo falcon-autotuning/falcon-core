@@ -1,23 +1,18 @@
 #pragma once
 
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
-#include "falcon_core/physics/device_structures/BarrierGate.hpp"
-#include "falcon_core/physics/device_structures/PlungerGate.hpp"
 namespace falcon_core {
 namespace physics {
 namespace config {
 namespace geometries {
 /*
- * @brief A special plunger gate with two neighbor barrier gates.
+ * @brief A special barrier with two neighbor gates.
  */
-class PlungerGateWithNeighbors
-    : public DotGateWithNeighbors<BarrierGate, PlungerGate, BarrierGate> {
+class PlungerGateWithNeighbors : public DotGateWithNeighbors {
  public:
-  PlungerGateWithNeighbors(std::string   name,
-                           BarrierGateSP left_neighbor,
-                           BarrierGateSP right_neighbor);
-  template <class Archive>
-  void serialize(Archive& ar);
+  PlungerGateWithNeighbors(std::string                         name,
+                           device_structures::BaseConnectionSP left_neighbor,
+                           device_structures::BaseConnectionSP right_neighbor);
 
  protected:
   PlungerGateWithNeighbors();
