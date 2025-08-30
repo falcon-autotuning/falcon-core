@@ -4,7 +4,7 @@
 #include <cereal/types/eigen.hpp>
 
 #include "falcon_core/generic/Song.hpp"
-#include "falcon_core/physics/device_structures/Gates.hpp"
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
 
 namespace falcon_core {
 namespace physics {
@@ -13,7 +13,7 @@ namespace core {
 
 class Adjacency : public generic::Song {
   using MatrixType = Eigen::Matrix<int, Eigen::Dynamic, Eigen::Dynamic>;
-  using Indexes    = physics::device_structures::GatesSP;
+  using Indexes    = physics::device_structures::BaseConnectionsSP;
   Indexes    _indexes;
   MatrixType _matrix;
 

@@ -6,8 +6,10 @@
 #include "falcon_core/physics/config/core/Group.hpp"
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 #include "falcon_core/physics/config/core/VoltageConstraints.hpp"
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
 #include "falcon_core/physics/device_structures/GateRelations.hpp"
 #include "falcon_core/physics/device_structures/Impedances.hpp"
+#include "falcon_core/physics/device_structures/PlungerGates.hpp"
 namespace falcon_core {
 namespace physics {
 namespace config {
@@ -16,11 +18,11 @@ namespace core {
  * @brief The imported config file for falcon use.
  */
 class Config : public StandardConfigConnections {
-  int                          _num_unique_channels;
-  ImpedancesSP                 _wiring_DC;
-  ChannelsSP                   _channels;
-  VoltageConstraintsSP         _voltage_constraints;
-  generic::MapSP<Gname, Group> _groups;
+  int                             _num_unique_channels;
+  device_structures::ImpedancesSP _wiring_DC;
+  ChannelsSP                      _channels;
+  VoltageConstraintsSP            _voltage_constraints;
+  generic::MapSP<Gname, Group>    _groups;
 
  public:
   /**
@@ -34,14 +36,14 @@ class Config : public StandardConfigConnections {
    * @param wiring_DC The DC wiring impedances.
    * @param constriants The voltage constraints configuration.
    */
-  Config(const ScreeningGatesSP&            screening_gates,
-         const PlungerGatesSP&              plunger_gates,
-         const OhmicsSP&                    ohmics,
-         const BarrierGatesSP&              barrier_gates,
-         const ReservoirGatesSP&            reservoir_gates,
-         const generic::MapSP<Gname, Group> groups,
-         const ImpedancesSP&                wiring_DC,
-         const VoltageConstraintsSP&        constriants);
+  Config(const device_structures::ScreeningGatesSP& screening_gates,
+         const device_structures::PlungerGatesSP&   plunger_gates,
+         const device_structures::OhmicsSP&         ohmics,
+         const device_structures::BarrierGatesSP&   barrier_gates,
+         const device_structures::ReservoirGatesSP& reservoir_gates,
+         const generic::MapSP<Gname, Group>         groups,
+         const device_structures::ImpedancesSP&     wiring_DC,
+         const VoltageConstraintsSP&                constriants);
   /**
    * @brief Returns the number of unique channels associated with the current
    * sample.
@@ -58,7 +60,7 @@ class Config : public StandardConfigConnections {
   /**
    * @brief Returns the wiring impedances of the config.
    */
-  ImpedancesSP wiring_DC() const;
+  device_structures::ImpedancesSP wiring_DC() const;
   /**
    * @brief Returns the channels of the config.
    */
@@ -83,7 +85,8 @@ class Config : public StandardConfigConnections {
    * @returns The impedance matching the connection in teh dcwiring. A nullptr
    * if no match is found.
    */
-  ImpedanceSP get_impedance(const BaseConnection& connection) const;
+  device_structures::ImpedanceSP get_impedance(
+      const device_structures::BaseConnection& connection) const;
   /**
    * @brief Returns all of the group names.
    */
@@ -134,7 +137,7 @@ class Config : public StandardConfigConnections {
    * @param ohmic The ohmic to check
    * @returns true if the ohmic is inside a charge sensor channel
    */
-  bool ohmic_in_charge_sensor(const OhmicSP& ohmic) const;
+  bool ohmic_in_charge_sensor(const device_structures::OhmicSP& ohmic) const;
   /**
    * @brief Every reservoir gate has an associated ohmic.
    *
@@ -143,7 +146,8 @@ class Config : public StandardConfigConnections {
    * @returns The ohmic associated with the reservoir gate. A nullptr if no
    * match
    */
-  OhmicSP get_associated_ohmic(const ReservoirGateSP& reservoir_gate) const;
+  device_structures::OhmicSP get_associated_ohmic(
+      const device_structures::ReservoirGateSP& reservoir_gate) const;
   /**
    * @brief Gets all of the current channels from the config.
    * @returns All of the current channels from the config.
@@ -157,137 +161,121 @@ class Config : public StandardConfigConnections {
    */
   GnameSP get_gname(const ChannelSP& channel) const;
   /**
-   * @brief Gets all of the gates of a gatetype assocated with the selected
+   * @brief Gets all of the barrier gates assocated with the selected
    * group from the config.
    * @param gname The group name to find the gates for.
-   * @param type The gate type to find the gates for.
    * @returns All of the gates of a gatetype assocated with the selected group.
    * Otherwise a nullptr if no match is found.
    */
-  BarrierGatesSP get_group_gates(const GnameSP&       gname,
-                                 const BarrierGateSP& type) const;
+  device_structures::BarrierGatesSP get_group_barrier_gates(
+      const GnameSP& gname) const;
   /**
-   * @brief Gets all of the gates of a gatetype assocated with the selected
+   * @brief Gets all of the plunger gates assocated with the selected
    * group from the config.
    * @param gname The group name to find the gates for.
-   * @param type The gate type to find the gates for.
    * @returns All of the gates of a gatetype assocated with the selected group.
    * Otherwise a nullptr if no match is found.
    */
-  PlungerGatesSP get_group_gates(const GnameSP&       gname,
-                                 const PlungerGateSP& type) const;
+  device_structures::PlungerGatesSP get_group_plunger_gates(
+      const GnameSP& gname) const;
   /**
-   * @brief Gets all of the gates of a gatetype assocated with the selected
+   * @brief Gets all of the reservoir gates assocated with the selected
    * group from the config.
    * @param gname The group name to find the gates for.
-   * @param type The gate type to find the gates for.
    * @returns All of the gates of a gatetype assocated with the selected group.
    * Otherwise a nullptr if no match is found.
    */
-  ReservoirGatesSP get_group_gates(const GnameSP&         gname,
-                                   const ReservoirGateSP& type) const;
+  device_structures::ReservoirGatesSP get_group_reservoir_gates(
+      const GnameSP& gname) const;
   /**
-   * @brief Gets all of the gates of a gatetype assocated with the selected
+   * @brief Gets all of the screening gates assocated with the selected
    * group from the config.
    * @param gname The group name to find the gates for.
-   * @param type The gate type to find the gates for.
    * @returns All of the gates of a gatetype assocated with the selected group.
    * Otherwise a nullptr if no match is found.
    */
-  ScreeningGatesSP get_group_gates(const GnameSP&         gname,
-                                   const ScreeningGateSP& type) const;
+  device_structures::ScreeningGatesSP get_group_screening_gates(
+      const GnameSP& gname) const;
   /**
-   * @brief Gets all of the gates of a gatetype assocated with the selected
+   * @brief Gets all of the dot gates assocated with the selected
    * group from the config.
    * @param gname The group name to find the gates for.
-   * @param type The gate type to find the gates for.
    * @returns All of the gates of a gatetype assocated with the selected group.
    * Otherwise a nullptr if no match is found.
    */
-  DotGatesSP get_group_gates(const GnameSP& gname, const DotGateSP& type) const;
+  device_structures::BaseConnectionsSP get_group_dot_gates(
+      const GnameSP& gname) const;
   /**
-   * @brief Gets all of the gates of a gatetype assocated with the selected
+   * @brief Gets all of the gates assocated with the selected
    * group from the config.
    * @param gname The group name to find the gates for.
-   * @param type The gate type to find the gates for.
    * @returns All of the gates of a gatetype assocated with the selected group.
    * Otherwise a nullptr if no match is found.
    */
-  GatesSP get_group_gates(const GnameSP& gname, const GateSP& type) const;
+  device_structures::BaseConnectionsSP get_group_gates(
+      const GnameSP& gname) const;
   /**
-   * @brief Gets all fo the gates of a gatetype assocated with the selected
+   * @brief Gets all of the barrier gates assocated with the selected
+   * current channel from the config.
+   * @param channel The channel to find the gates for.
+   * @returns All of the gates of a gatetype assocated with the selected
+   * channel. Otherwise a nullptr if no match is found.
+   */
+  device_structures::BarrierGatesSP get_channel_barrier_gates(
+      const ChannelSP& channel) const;
+  /**
+   * @brief Gets all of the plunger gates assocated with the selected
+   * current channel from the config.
+   * @param channel The channel to find the gates for.
+   * @returns All of the gates of a gatetype assocated with the selected
+   * channel. Otherwise a nullptr if no match is found.
+   */
+  device_structures::PlungerGatesSP get_channel_plunger_gates(
+      const ChannelSP& channel) const;
+  /**
+   * @brief Gets all of the reservoir gates assocated with the selected
+   * current channel from the config.
+   * @param channel The channel to find the gates for.
+   * channel. Otherwise a nullptr if no match is found.
+   */
+  device_structures::ReservoirGatesSP get_channel_reservoir_gates(
+      const ChannelSP& channel) const;
+  /**
+   * @brief Gets all of the screening gates assocated with the selected
+   * current channel from the config.
+   * @param channel The channel to find the gates for.
+   * @returns All of the gates of a gatetype assocated with the selected
+   * channel. Otherwise a nullptr if no match is found.
+   */
+  device_structures::ScreeningGatesSP get_channel_screening_gates(
+      const ChannelSP& channel) const;
+  /**
+   * @brief Gets all of the dot gates assocated with the selected
+   * current channel from the config.
+   * @param channel The channel to find the gates for.
+   * @returns All of the gates of a gatetype assocated with the selected
+   * channel. Otherwise a nullptr if no match is found.
+   */
+  device_structures::BaseConnectionsSP get_channel_dot_gates(
+      const ChannelSP& channel) const;
+  /**
+   * @brief Gets all of the gates assocated with the selected
    * current channel from the config.
    * @param channel The channel to find the gates for.
    * @param type The gate type to find the gates for.
    * @returns All of the gates of a gatetype assocated with the selected
    * channel. Otherwise a nullptr if no match is found.
    */
-  BarrierGatesSP get_channel_gates(const ChannelSP&     channel,
-                                   const BarrierGateSP& type) const;
-  /**
-   * @brief Gets all fo the gates of a gatetype assocated with the selected
-   * current channel from the config.
-   * @param channel The channel to find the gates for.
-   * @param type The gate type to find the gates for.
-   * @returns All of the gates of a gatetype assocated with the selected
-   * channel. Otherwise a nullptr if no match is found.
-   */
-  PlungerGatesSP get_channel_gates(const ChannelSP&     channel,
-                                   const PlungerGateSP& type) const;
-  /**
-   * @brief Gets all fo the gates of a gatetype assocated with the selected
-   * current channel from the config.
-   * @param channel The channel to find the gates for.
-   * @param type The gate type to find the gates for.
-   * @returns All of the gates of a gatetype assocated with the selected
-   * channel. Otherwise a nullptr if no match is found.
-   */
-  ReservoirGatesSP get_channel_gates(const ChannelSP&       channel,
-                                     const ReservoirGateSP& type) const;
-  /**
-   * @brief Gets all fo the gates of a gatetype assocated with the selected
-   * current channel from the config.
-   * @param channel The channel to find the gates for.
-   * @param type The gate type to find the gates for.
-   * @returns All of the gates of a gatetype assocated with the selected
-   * channel. Otherwise a nullptr if no match is found.
-   */
-  ScreeningGatesSP get_channel_gates(const ChannelSP&       channel,
-                                     const ScreeningGateSP& type) const;
-  /**
-   * @brief Gets all fo the gates of a gatetype assocated with the selected
-   * current channel from the config.
-   * @param channel The channel to find the gates for.
-   * @param type The gate type to find the gates for.
-   * @returns All of the gates of a gatetype assocated with the selected
-   * channel. Otherwise a nullptr if no match is found.
-   */
-  DotGatesSP get_channel_gates(const ChannelSP& channel,
-                               const DotGateSP& type) const;
-  /**
-   * @brief Gets all fo the gates of a gatetype assocated with the selected
-   * current channel from the config.
-   * @param channel The channel to find the gates for.
-   * @param type The gate type to find the gates for.
-   * @returns All of the gates of a gatetype assocated with the selected
-   * channel. Otherwise a nullptr if no match is found.
-   */
-  GatesSP get_channel_gates(const ChannelSP& channel, const GateSP& type) const;
-  /**
-   * @brief Gets all of the gates assocated with the selected current channel
-   * from the config.
-   * @param channel The channel to find the gates for.
-   * @returns All of the gates assocated with the selected channel. Otherwise a
-   * nullptr if no match is found.
-   */
-  GatesSP get_all_channel_gates(const ChannelSP& channel) const;
+  device_structures::BaseConnectionsSP get_channel_gates(
+      const ChannelSP& channel) const;
   /**
    * @brief Gets all of the ohmics assocated with the selected current channel.
    * @param channel The channel to find the ohmics for.
    * @returns All of the ohmics assocated with the selected channel. Otherwise a
    * nullptr if no match is found.
    */
-  OhmicsSP get_channel_ohmics(const ChannelSP& channel) const;
+  device_structures::OhmicsSP get_channel_ohmics(
+      const ChannelSP& channel) const;
   /**
    * @brief Gets all of the gates in the order at the selected channel from the
    * config with no ohmics.
@@ -295,7 +283,8 @@ class Config : public StandardConfigConnections {
    * @returns All of the gates in the order at the selected channel. Otherwise a
    * nullptr
    */
-  GatesSP get_channel_order_no_ohmics(const ChannelSP& channel) const;
+  device_structures::BaseConnectionsSP get_channel_order_no_ohmics(
+      const ChannelSP& channel) const;
   /**
    * @brief Returns the number of unique channels associated with the current
    * sample.
@@ -307,323 +296,249 @@ class Config : public StandardConfigConnections {
    * @returns All of the channels associated with a gate. Otherwise a nullptr if
    * no match is found.
    */
-  ChannelsSP return_channels_from_gate(const GateSP& gate) const;
+  ChannelsSP return_channels_from_gate(
+      const device_structures::BaseConnectionSP& gate) const;
   /**
    * @brief Returns the channel a given gate belongs to. If the gate is in
    * multiple channels, if will return the first channel if finds.
    * @param gate The gate to find the channel for.
    * @returns The channel the gate belongs to. A nullptr if no match is found.
    */
-  ChannelSP return_channel_from_gate(const GateSP& gate) const;
+  ChannelSP return_channel_from_gate(
+      const device_structures::BaseConnectionSP& gate) const;
   /**
    * @brief Checks if the ohmic is connected to a channel.
    * @param ohmic The ohmic to diagnose.
    * @param channel The channel to check the ohmic against.
    * @returns true if the ohmic is connected to the channel, false otherwise.
    */
-  bool ohmic_in_channel(const OhmicSP& ohmic, const ChannelSP&) const;
+  bool ohmic_in_channel(const device_structures::OhmicSP& ohmic,
+                        const ChannelSP&) const;
   /**
    * @brief Gets the nearby neighbors of the selected gate in the dot channel.
    * @param dotgate The gate of interest (must be in dot channel)
    * @return A pair of GateSP (left, right) if found, nullptr otherwise.
    */
-  std::pair<GateSP, GateSP> get_dot_channel_neighbors(
-      const DotGateSP& dotgate) const;
+  std::pair<device_structures::BaseConnectionSP,
+            device_structures::BaseConnectionSP>
+  get_dot_channel_neighbors(
+      const device_structures::BaseConnectionSP& dotgate) const;
   /**
-   * @brief Returns gates of a certain gatetype indexed by channel.
-   * @param type The gate type we want.
-   * @return A map from ChannelSP to BarrierGatesSP containing the type of gate
-   * we want.
+   * @brief Returns barrier gates indexed by channel.
    */
-  generic::MapSP<Channel, BarrierGates> get_gate_dict(
-      const BarrierGateSP& type) const;
+  generic::MapSP<Channel, device_structures::BarrierGates>
+  get_barrier_gate_dict() const;
   /**
-   * @brief Returns gates of a certain gatetype indexed by channel.
-   * @param type The gate type we want.
-   * @return A map from ChannelSP to PlungerGatesSP containing the type of gate
-   * we want.
+   * @brief Returns plunger gates indexed by channel.
    */
-  generic::MapSP<Channel, PlungerGates> get_gate_dict(
-      const PlungerGateSP& type) const;
+  generic::MapSP<Channel, device_structures::PlungerGates>
+  get_plunger_gate_dict() const;
   /**
-   * @brief Returns gates of a certain gatetype indexed by channel.
-   * @param type The gate type we want.
-   * @return A map from ChannelSP to ReservoirGatesSP containing the type of
-   * gate we want.
+   * @brief Returns reservoir gates indexed by channel.
    */
-  generic::MapSP<Channel, ReservoirGates> get_gate_dict(
-      const ReservoirGateSP& type) const;
+  generic::MapSP<Channel, device_structures::ReservoirGates>
+  get_reservoir_gate_dict() const;
   /**
-   * @brief Returns gates of a certain gatetype indexed by channel.
-   * @param type The gate type we want.
-   * @return A map from ChannelSP to ScreeningGatesSP containing the type of
-   * gate we want.
+   * @brief Returns screening gates indexed by channel.
    */
-  generic::MapSP<Channel, ScreeningGates> get_gate_dict(
-      const ScreeningGateSP& type) const;
+  generic::MapSP<Channel, device_structures::ScreeningGates>
+  get_screening_gate_dict() const;
   /**
-   * @brief Returns gates of a certain gatetype indexed by channel.
-   * @param type The gate type we want.
-   * @return A map from ChannelSP to DotGatesSP containing the type of gate we
-   * want.
+   * @brief Returns dot gates indexed by channel.
    */
-  generic::MapSP<Channel, DotGates<DotGate>> get_gate_dict(
-      const DotGateSP& type) const;
+  generic::MapSP<Channel, device_structures::BaseConnections>
+  get_dot_gate_dict() const;
   /**
-   * @brief Returns gates of a certain gatetype indexed by channel.
-   * @param type The gate type we want.
-   * @return A map from ChannelSP to GatesSP<Gate> containing the type of gate
-   * we want.
+   * @brief Returns gates indexed by channel.
    */
-  generic::MapSP<Channel, Gates<Gate>> get_gate_dict(const GateSP& type) const;
+  generic::MapSP<Channel, device_structures::BaseConnections> get_gate_dict()
+      const;
+  /**
+   * @brief Task to find isolated barrier gates stored in the config.
+   */
+  device_structures::BarrierGatesSP get_isolated_barrier_gates() const;
+  /**
+   * @brief Task to find isolated plunger gates stored in the config.
+   */
+  device_structures::PlungerGatesSP get_isolated_plunger_gates() const;
+  /**
+   * @brief Task to find isolated reservoir gates stored in the config.
+   */
+  device_structures::ReservoirGatesSP get_isolated_reservoir_gates() const;
+  /**
+   * @brief Task to find isolated screening gates stored in the config.
+   */
+  device_structures::ScreeningGatesSP get_isolated_screening_gates() const;
+  /**
+   * @brief Task to find isolated dot gates stored in the config.
+   */
+  device_structures::BaseConnectionsSP get_isolated_dot_gates() const;
   /**
    * @brief Task to find isolated gates stored in the config.
-   * @param type String corresponding to the gatetype pulled from the config.
-   * @return BarrierGatesSP set of all gates that are unshared of the gatetype.
    */
-  BarrierGatesSP get_isolated_gates(const BarrierGateSP& type) const;
+  device_structures::BaseConnectionsSP get_isolated_gates() const;
   /**
-   * @brief Task to find isolated gates stored in the config.
-   * @param type String corresponding to the gatetype pulled from the config.
-   * @return PlungerGatesSP set of all gates that are unshared of the gatetype.
+   * @brief Task to find shared barrier gates stored in the config.
    */
-  PlungerGatesSP get_isolated_gates(const PlungerGateSP& type) const;
+  device_structures::BarrierGatesSP get_shared_barrier_gates() const;
   /**
-   * @brief Task to find isolated gates stored in the config.
-   * @param type String corresponding to the gatetype pulled from the config.
-   * @return ReservoirGatesSP set of all gates that are unshared of the
-   * gatetype.
+   * @brief Task to find shared plunger gates stored in the config.
    */
-  ReservoirGatesSP get_isolated_gates(const ReservoirGateSP& type) const;
+  device_structures::PlungerGatesSP get_shared_plunger_gates() const;
   /**
-   * @brief Task to find isolated gates stored in the config.
-   * @param type String corresponding to the gatetype pulled from the config.
-   * @return ScreeningGatesSP set of all gates that are unshared of the
-   * gatetype.
+   * @brief Task to find shared reservoir gates stored in the config.
    */
-  ScreeningGatesSP get_isolated_gates(const ScreeningGateSP& type) const;
+  device_structures::ReservoirGatesSP get_shared_reservoir_gates() const;
   /**
-   * @brief Task to find isolated gates stored in the config.
-   * @param type String corresponding to the gatetype pulled from the config.
-   * @return DotGatesSP set of all gates that are unshared of the gatetype.
+   * @brief Task to find shared screening gates stored in the config.
    */
-  DotGatesSP get_isolated_gates(const DotGateSP& type) const;
+  device_structures::ScreeningGatesSP get_shared_screening_gates() const;
   /**
-   * @brief Task to find isolated gates stored in the config.
-   * @param type String corresponding to the gatetype pulled from the config.
-   * @return GatesSP<Gate> set of all gates that are unshared of the gatetype.
+   * @brief Task to find shared dot gates stored in the config.
    */
-  GatesSP get_isolated_gates(const GateSP& type) const;
+  device_structures::BaseConnectionsSP get_shared_dot_gates() const;
   /**
    * @brief Task to find shared gates stored in the config.
-   * @param type String corresponding to the gatetype pulled from the config.
-   * @return BarrierGatesSP organized from most shared to least shared gate of
-   * the gatetype.
    */
-  BarrierGatesSP get_shared_gates(const BarrierGateSP& type) const;
+  device_structures::BaseConnectionsSP get_shared_gates() const;
   /**
-   * @brief Task to find shared gates stored in the config.
-   * @param type String corresponding to the gatetype pulled from the config.
-   * @return PlungerGatesSP organized from most shared to least shared gate of
-   * the gatetype.
-   */
-  PlungerGatesSP get_shared_gates(const PlungerGateSP& type) const;
-  /**
-   * @brief Task to find shared gates stored in the config.
-   * @param type String corresponding to the gatetype pulled from the config.
-   * @return ReservoirGatesSP organized from most shared to least shared gate of
-   * the gatetype.
-   */
-  ReservoirGatesSP get_shared_gates(const ReservoirGateSP& type) const;
-  /**
-   * @brief Task to find shared gates stored in the config.
-   * @param type String corresponding to the gatetype pulled from the config.
-   * @return ScreeningGatesSP organized from most shared to least shared gate of
-   * the gatetype.
-   */
-  ScreeningGatesSP get_shared_gates(const ScreeningGateSP& type) const;
-  /**
-   * @brief Task to find shared gates stored in the config.
-   * @param type String corresponding to the gatetype pulled from the config.
-   * @return DotGatesSP organized from most shared to least shared gate of the
-   * gatetype.
-   */
-  DotGatesSP get_shared_gates(const DotGateSP& type) const;
-  /**
-   * @brief Task to find shared gates stored in the config.
-   * @param type String corresponding to the gatetype pulled from the config.
-   * @return GatesSP<Gate> organized from most shared to least shared gate of
-   * the gatetype.
-   */
-  GatesSP get_shared_gates(const GateSP& type) const;
-  /**
-   * @brief Finds the shared gates of the gatetype in the selected channel.
-   * @param type The particular gatetype of interest.
+   * @brief Finds the shared barrier gates in the selected channel.
    * @param channel The channel of the device of interest.
    * @return BarrierGatesSP list of all gates of the gateytpe that are shared in
    * the selected channel.
    */
-  BarrierGatesSP get_shared_channel_gates(const BarrierGateSP& type,
-                                          const ChannelSP&     channel) const;
+  device_structures::BarrierGatesSP get_shared_channel_barrier_gates(
+      const ChannelSP& channel) const;
   /**
-   * @brief Finds the shared gates of the gatetype in the selected channel.
-   * @param type The particular gatetype of interest.
+   * @brief Finds the shared plunger gates in the selected
+   * channel.
    * @param channel The channel of the device of interest.
    * @return PlungerGatesSP list of all gates of the gateytpe that are shared in
    * the selected channel.
    */
-  PlungerGatesSP get_shared_channel_gates(const PlungerGateSP& type,
-                                          const ChannelSP&     channel) const;
+  device_structures::PlungerGatesSP get_shared_channel_plunger_gates(
+      const ChannelSP& channel) const;
   /**
-   * @brief Finds the shared gates of the gatetype in the selected channel.
-   * @param type The particular gatetype of interest.
+   * @brief Finds the shared reservoir gates in the selected channel.
    * @param channel The channel of the device of interest.
    * @return ReservoirGatesSP list of all gates of the gateytpe that are shared
    * in the selected channel.
    */
-  ReservoirGatesSP get_shared_channel_gates(const ReservoirGateSP& type,
-                                            const ChannelSP& channel) const;
+  device_structures::ReservoirGatesSP get_shared_channel_reservoir_gates(
+      const ChannelSP& channel) const;
   /**
-   * @brief Finds the shared gates of the gatetype in the selected channel.
-   * @param type The particular gatetype of interest.
+   * @brief Finds the shared screening gates in the selected channel.
    * @param channel The channel of the device of interest.
    * @return ScreeningGatesSP list of all gates of the gateytpe that are shared
    * in the selected channel.
    */
-  ScreeningGatesSP get_shared_channel_gates(const ScreeningGateSP& type,
-                                            const ChannelSP& channel) const;
+  device_structures::ScreeningGatesSP get_shared_channel_screening_gates(
+      const ChannelSP& channel) const;
   /**
-   * @brief Finds the shared gates of the gatetype in the selected channel.
-   * @param type The particular gatetype of interest.
+   * @brief Finds the shared dot gates of the gatetype in the selected channel.
    * @param channel The channel of the device of interest.
    * @return DotGatesSP list of all gates of the gateytpe that are shared in the
    * selected channel.
    */
-  DotGatesSP get_shared_channel_gates(const DotGateSP& type,
-                                      const ChannelSP& channel) const;
+  device_structures::BaseConnectionsSP get_shared_channel_dot_gates(
+      const ChannelSP& channel) const;
   /**
-   * @brief Finds the shared gates of the gatetype in the selected channel.
-   * @param type The particular gatetype of interest.
+   * @brief Finds the shared gates in the selected channel.
    * @param channel The channel of the device of interest.
    * @return GatesSP<Gate> list of all gates of the gateytpe that are shared in
    * the selected channel.
    */
-  GatesSP get_shared_channel_gates(const GateSP&    type,
-                                   const ChannelSP& channel) const;
+  device_structures::BaseConnectionsSP get_shared_channel_gates(
+      const ChannelSP& channel) const;
   /**
-   * @brief Finds the isolated gates of the gatetype in the selected channel.
-   * @param type The particular gatetype of interest.
+   * @brief Finds the isolated barrier gates in the selected channel.
    * @param channel The channel of the device of interest.
    * @return BarrierGatesSP list of all gates of the gatetype that are isolated
    * in the selected channel.
    */
-  BarrierGatesSP get_isolated_channel_gates(const BarrierGateSP& type,
-                                            const ChannelSP&     channel) const;
+  device_structures::BarrierGatesSP get_isolated_channel_barrier_gates(
+      const ChannelSP& channel) const;
   /**
-   * @brief Finds the isolated gates of the gatetype in the selected channel.
-   * @param type The particular gatetype of interest.
+   * @brief Finds the isolated plunger gates in the selected channel.
    * @param channel The channel of the device of interest.
    * @return PlungerGatesSP list of all gates of the gatetype that are isolated
    * in the selected channel.
    */
-  PlungerGatesSP get_isolated_channel_gates(const PlungerGateSP& type,
-                                            const ChannelSP&     channel) const;
+  device_structures::PlungerGatesSP get_isolated_channel_plunger_gates(
+      const ChannelSP& channel) const;
   /**
-   * @brief Finds the isolated gates of the gatetype in the selected channel.
-   * @param type The particular gatetype of interest.
+   * @brief Finds the isolated reservoir gates in the selected channel.
    * @param channel The channel of the device of interest.
    * @return ReservoirGatesSP list of all gates of the gatetype that are
    * isolated in the selected channel.
    */
-  ReservoirGatesSP get_isolated_channel_gates(const ReservoirGateSP& type,
-                                              const ChannelSP& channel) const;
+  device_structures::ReservoirGatesSP get_isolated_channel_reservoir_gates(
+      const ChannelSP& channel) const;
   /**
-   * @brief Finds the isolated gates of the gatetype in the selected channel.
-   * @param type The particular gatetype of interest.
+   * @brief Finds the isolated screening gates in the selected channel.
    * @param channel The channel of the device of interest.
    * @return ScreeningGatesSP list of all gates of the gatetype that are
    * isolated in the selected channel.
    */
-  ScreeningGatesSP get_isolated_channel_gates(const ScreeningGateSP& type,
-                                              const ChannelSP& channel) const;
+  device_structures::ScreeningGatesSP get_isolated_channel_screening_gates(
+      const ChannelSP& channel) const;
   /**
-   * @brief Finds the isolated gates of the gatetype in the selected channel.
-   * @param type The particular gatetype of interest.
+   * @brief Finds the isolated dot gates in the selected channel.
    * @param channel The channel of the device of interest.
    * @return DotGatesSP list of all gates of the gatetype that are isolated in
    * the selected channel.
    */
-  DotGatesSP get_isolated_channel_gates(const DotGateSP& type,
-                                        const ChannelSP& channel) const;
+  device_structures::BaseConnectionsSP get_isolated_channel_dot_gates(
+      const ChannelSP& channel) const;
   /**
-   * @brief Finds the isolated gates of the gatetype in the selected channel.
-   * @param type The particular gatetype of interest.
+   * @brief Finds the isolated gates in the selected channel.
    * @param channel The channel of the device of interest.
    * @return GatesSP<Gate> list of all gates of the gatetype that are isolated
    * in the selected channel.
    */
-  GatesSP get_isolated_channel_gates(const GateSP&    type,
-                                     const ChannelSP& channel) const;
+  device_structures::BaseConnectionsSP get_isolated_channel_gates(
+      const ChannelSP& channel) const;
   /**
-   * @brief Returns gates of a certain gatetype indexed by channel which are
+   * @brief Returns barrier gates indexed by channel which are
    * unshared.
-   * @param type The type of gate we want.
-   * @return A map from ChannelSP to BarrierGatesSP containing the type of gate
-   * we want indexed by channel.
    */
-  generic::MapSP<Channel, BarrierGates> get_isolated_gates_by_type(
-      const BarrierGateSP& type) const;
+  generic::MapSP<Channel, device_structures::BarrierGates>
+  get_isolated_barrier_gates_by_channel() const;
   /**
-   * @brief Returns gates of a certain gatetype indexed by channel which are
+   * @brief Returns plunger gates indexed by channel which are
    * unshared.
-   * @param type The type of gate we want.
-   * @return A map from ChannelSP to PlungerGatesSP containing the type of gate
-   * we want indexed by channel.
    */
-  generic::MapSP<Channel, PlungerGates> get_isolated_gates_by_type(
-      const PlungerGateSP& type) const;
+  generic::MapSP<Channel, device_structures::PlungerGates>
+  get_isolated_plunger_gates_by_channel() const;
   /**
-   * @brief Returns gates of a certain gatetype indexed by channel which are
+   * @brief Returns reservoir gates indexed by channel which are
    * unshared.
-   * @param type The type of gate we want.
-   * @return A map from ChannelSP to ReservoirGatesSP containing the type of
-   * gate we want indexed by channel.
    */
-  generic::MapSP<Channel, ReservoirGates> get_isolated_gates_by_type(
-      const ReservoirGateSP& type) const;
+  generic::MapSP<Channel, device_structures::ReservoirGates>
+  get_isolated_reservoir_gates_by_channel() const;
   /**
-   * @brief Returns gates of a certain gatetype indexed by channel which are
+   * @brief Returns screening gates indexed by channel which are
    * unshared.
-   * @param type The type of gate we want.
-   * @return A map from ChannelSP to ScreeningGatesSP containing the type of
-   * gate we want indexed by channel.
    */
-  generic::MapSP<Channel, ScreeningGates> get_isolated_gates_by_type(
-      const ScreeningGateSP& type) const;
+  generic::MapSP<Channel, device_structures::ScreeningGates>
+  get_isolated_screening_gates_by_channel() const;
   /**
-   * @brief Returns gates of a certain gatetype indexed by channel which are
+   * @brief Returns dot gates indexed by channel which are
    * unshared.
-   * @param type The type of gate we want.
-   * @return A map from ChannelSP to DotGatesSP containing the type of gate we
-   * want indexed by channel.
    */
-  generic::MapSP<Channel, DotGates<DotGate>> get_isolated_gates_by_type(
-      const DotGateSP& type) const;
+  generic::MapSP<Channel, device_structures::BaseConnections>
+  get_isolated_dot_gates_by_channel() const;
   /**
-   * @brief Returns gates of a certain gatetype indexed by channel which are
+   * @brief Returns gates indexed by channel which are
    * unshared.
-   * @param type The type of gate we want.
-   * @return A map from ChannelSP to GatesSP<Gate> containing the type of gate
-   * we want indexed by channel.
    */
-  generic::MapSP<Channel, Gates<Gate>> get_isolated_gates_by_type(
-      const GateSP& type) const;
+  generic::MapSP<Channel, device_structures::BaseConnections>
+  get_isolated_gates_by_channel() const;
 
   /**
    * @brief Returns the gate relations in the config.
-   * @return GateRelationsSP representing the gate relations.
    */
-  GateRelationsSP generate_gate_relations() const;
+  device_structures::GateRelationsSP generate_gate_relations() const;
   template <class Archive>
   void serialize(Archive& ar);
 

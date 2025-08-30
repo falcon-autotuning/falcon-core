@@ -2,8 +2,8 @@
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/BarrierGates.hpp"
-#include "falcon_core/physics/device_structures/DotGates.hpp"
-#include "falcon_core/physics/device_structures/Gates.hpp"
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
 #include "falcon_core/physics/device_structures/Ohmics.hpp"
 #include "falcon_core/physics/device_structures/PlungerGates.hpp"
 #include "falcon_core/physics/device_structures/ReservoirGates.hpp"
@@ -17,11 +17,11 @@ namespace core {
  * @brief Base config functionality for core config classes.
  */
 class StandardConfigConnections : public generic::Song {
-  ScreeningGatesSP _screening_gates;
-  ReservoirGatesSP _reservoir_gates;
-  PlungerGatesSP   _plunger_gates;
-  BarrierGatesSP   _barrier_gates;
-  OhmicsSP         _ohmics;
+  device_structures::ScreeningGatesSP _screening_gates;
+  device_structures::ReservoirGatesSP _reservoir_gates;
+  device_structures::PlungerGatesSP   _plunger_gates;
+  device_structures::BarrierGatesSP   _barrier_gates;
+  device_structures::OhmicsSP         _ohmics;
 
  public:
   /**
@@ -32,36 +32,37 @@ class StandardConfigConnections : public generic::Song {
    * @param barrier_gates The barrier gates.
    * @param ohmics The ohmic contacts.
    */
-  StandardConfigConnections(const ScreeningGatesSP& screening_gates,
-                            const ReservoirGatesSP& reservoir_gates,
-                            const PlungerGatesSP&   plunger_gates,
-                            const BarrierGatesSP&   barrier_gates,
-                            const OhmicsSP&         ohmics);
+  StandardConfigConnections(
+      const device_structures::ScreeningGatesSP& screening_gates,
+      const device_structures::ReservoirGatesSP& reservoir_gates,
+      const device_structures::PlungerGatesSP&   plunger_gates,
+      const device_structures::BarrierGatesSP&   barrier_gates,
+      const device_structures::OhmicsSP&         ohmics);
   /**
    * @brief The screening gates from the config.
    * @return The screening gates.
    */
-  ScreeningGatesSP screening_gates() const;
+  device_structures::ScreeningGatesSP screening_gates() const;
   /**
    * @brief The reservoir gates from the config.
    * @return The reservoir gates.
    */
-  ReservoirGatesSP reservoir_gates() const;
+  device_structures::ReservoirGatesSP reservoir_gates() const;
   /**
    * @brief The plunger gates from the config.
    * @return The plunger gates.
    */
-  PlungerGatesSP plunger_gates() const;
+  device_structures::PlungerGatesSP plunger_gates() const;
   /**
    * @brief The barrier gates from the config.
    * @return The barrier gates.
    */
-  BarrierGatesSP barrier_gates() const;
+  device_structures::BarrierGatesSP barrier_gates() const;
   /**
    * @brief The ohmics from the config.
    * @return The ohmics gates.
    */
-  OhmicsSP ohmics() const;
+  device_structures::OhmicsSP ohmics() const;
   /**
    * @brief Gets the connections of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -70,144 +71,55 @@ class StandardConfigConnections : public generic::Song {
    * @returns the plural form of the connection type. This corresponds to the
    * conn_type
    */
-  OhmicsSP get_connections(const OhmicSP& conn_type) const;
+  device_structures::BaseConnectionsSP dot_gates() const;
   /**
-   * @brief Gets the connections of type as supplied.
-   * @param conn_type The type of connection to get. The types of supported
-   * connections are: Ohmic, BarrierGate, PlungerGate, ReservoirGate,
-   * ScreeningGate, DotGate, Gate. and Ohmic
-   * @returns the plural form of the connection type. This corresponds to the
-   * conn_type
+   * @brief Gets the first ohmic connection.
    */
-  BarrierGatesSP get_connections(const BarrierGateSP& conn_type) const;
+  device_structures::OhmicSP get_ohmic() const;
   /**
-   * @brief Gets the connections of type as supplied.
-   * @param conn_type The type of connection to get. The types of supported
-   * connections are: Ohmic, BarrierGate, PlungerGate, ReservoirGate,
-   * ScreeningGate, DotGate, Gate. and Ohmic
-   * @returns the plural form of the connection type. This corresponds to the
-   * conn_type
+   * @brief Gets the first barrier gate connection.
    */
-  PlungerGatesSP get_connections(const PlungerGateSP& conn_type) const;
+  device_structures::BarrierGateSP get_barrier_gate() const;
   /**
-   * @brief Gets the connections of type as supplied.
-   * @param conn_type The type of connection to get. The types of supported
-   * connections are: Ohmic, BarrierGate, PlungerGate, ReservoirGate,
-   * ScreeningGate, DotGate, Gate. and Ohmic
-   * @returns the plural form of the connection type. This corresponds to the
-   * conn_type
+   * @brief Gets the first plunger gate connection.
    */
-  ReservoirGatesSP get_connections(const ReservoirGateSP& conn_type) const;
+  device_structures::PlungerGateSP get_plunger_gate() const;
   /**
-   * @brief Gets the connections of type as supplied.
-   * @param conn_type The type of connection to get. The types of supported
-   * connections are: Ohmic, BarrierGate, PlungerGate, ReservoirGate,
-   * ScreeningGate, DotGate, Gate. and Ohmic
-   * @returns the plural form of the connection type. This corresponds to the
-   * conn_type
+   * @brief Gets the first reservoir gate connection..
    */
-  ScreeningGatesSP get_connections(const ScreeningGateSP& conn_type) const;
+  device_structures::ReservoirGateSP get_reservoir_gate() const;
   /**
-   * @brief Gets the connections of type as supplied.
-   * @param conn_type The type of connection to get. The types of supported
-   * connections are: Ohmic, BarrierGate, PlungerGate, ReservoirGate,
-   * ScreeningGate, DotGate, Gate. and Ohmic
-   * @returns the plural form of the connection type. This corresponds to the
-   * conn_type
+   * @brief Gets the first screening gate connection.
    */
-  DotGatesSP get_connections(const DotGateSP& conn_type) const;
+  device_structures::ScreeningGateSP get_screening_gate() const;
   /**
-   * @brief Gets the connections of type as supplied.
-   * @param conn_type The type of connection to get. The types of supported
-   * connections are: Ohmic, BarrierGate, PlungerGate, ReservoirGate,
-   * ScreeningGate, DotGate, Gate. and Ohmic
-   * @returns the plural form of the connection type. This corresponds to the
-   * conn_type
+   * @brief Gets the first dot gate connection.
    */
-  GatesSP get_connections(const GateSP& conn_type) const;
+  device_structures::BaseConnectionSP get_dot_gate() const;
   /**
-   * @brief Gets the first connection of type as supplied.
-   * @param conn_type The type of connection to get. The types of supported
-   * connections are: Ohmic, BarrierGate, PlungerGate, ReservoirGate,
-   * ScreeningGate, DotGate, Gate. and Ohmic
-   * @returns the first of the connection type found. This corresponds to the
-   * conn_type
+   * @brief Gets the first gate connection.
    */
-  OhmicSP get_connection(const OhmicSP& conn_type) const;
-  /**
-   * @brief Gets the first connection of type as supplied.
-   * @param conn_type The type of connection to get. The types of supported
-   * connections are: Ohmic, BarrierGate, PlungerGate, ReservoirGate,
-   * ScreeningGate, DotGate, Gate. and Ohmic
-   * @returns the first of the connection type found. This corresponds to the
-   * conn_type
-   */
-  BarrierGateSP get_connection(const BarrierGateSP& conn_type) const;
-  /**
-   * @brief Gets the first connection of type as supplied.
-   * @param conn_type The type of connection to get. The types of supported
-   * connections are: Ohmic, BarrierGate, PlungerGate, ReservoirGate,
-   * ScreeningGate, DotGate, Gate. and Ohmic
-   * @returns the first of the connection type found. This corresponds to the
-   * conn_type
-   */
-  PlungerGateSP get_connection(const PlungerGateSP& conn_type) const;
-  /**
-   * @brief Gets the first connection of type as supplied.
-   * @param conn_type The type of connection to get. The types of supported
-   * connections are: Ohmic, BarrierGate, PlungerGate, ReservoirGate,
-   * ScreeningGate, DotGate, Gate. and Ohmic
-   * @returns the first of the connection type found. This corresponds to the
-   * conn_type
-   */
-  ReservoirGateSP get_connection(const ReservoirGateSP& conn_type) const;
-  /**
-   * @brief Gets the first connection of type as supplied.
-   * @param conn_type The type of connection to get. The types of supported
-   * connections are: Ohmic, BarrierGate, PlungerGate, ReservoirGate,
-   * ScreeningGate, DotGate, Gate. and Ohmic
-   * @returns the first of the connection type found. This corresponds to the
-   * conn_type
-   */
-  ScreeningGateSP get_connection(const ScreeningGateSP& conn_type) const;
-  /**
-   * @brief Gets the first connection of type as supplied.
-   * @param conn_type The type of connection to get. The types of supported
-   * connections are: Ohmic, BarrierGate, PlungerGate, ReservoirGate,
-   * ScreeningGate, DotGate, Gate. and Ohmic
-   * @returns the first of the connection type found. This corresponds to the
-   * conn_type
-   */
-  DotGateSP get_connection(const DotGateSP& conn_type) const;
-  /**
-   * @brief Gets the first connection of type as supplied.
-   * @param conn_type The type of connection to get. The types of supported
-   * connections are: Ohmic, BarrierGate, PlungerGate, ReservoirGate,
-   * ScreeningGate, DotGate, Gate. and Ohmic
-   * @returns the first of the connection type found. This corresponds to the
-   * conn_type
-   */
-  GateSP get_connection(const GateSP& conn_type) const;
+  device_structures::BaseConnectionSP get_gate() const;
   /**
    * @brief Gets all of the gates for this collection from the config.
    */
-  GatesSP get_all_gates() const;
+  device_structures::BaseConnectionsSP get_all_gates() const;
   /**
    * @brief Gets all of the ohmics for this collection from the config.
    */
-  OhmicsSP get_all_ohmics() const;
+  device_structures::OhmicsSP get_all_ohmics() const;
   /**
    * @brief Gets all of the connections for this collection from the config.
    */
-  BaseConnectionsSP get_all_connections() const;
+  device_structures::BaseConnectionsSP get_all_connections() const;
   /**
    * @brief If this ohmic is a member of this group or not.
    */
-  bool has_ohmic(const OhmicSP& ohmic) const;
+  bool has_ohmic(const device_structures::OhmicSP& ohmic) const;
   /**
    * @brief If this gate is a member of this group or not.
    */
-  bool has_gate(const GateSP& gate) const;
+  bool has_gate(const device_structures::BaseConnectionSP& gate) const;
   template <class Archive>
   void serialize(Archive& ar);
 

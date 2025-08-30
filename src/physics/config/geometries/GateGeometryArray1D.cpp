@@ -3,18 +3,18 @@
 #include <memory>
 
 #include "falcon_core/macros.hpp"
+#include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic.hpp"
 #include "falcon_core/physics/config/geometries/PlungerGateWithNeighbors.hpp"
-#include "falcon_core/physics/device_structures/BarrierGate.hpp"
-#include "falcon_core/physics/device_structures/DotGates.hpp"
-#include "falcon_core/physics/device_structures/PlungerGate.hpp"
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
 namespace falcon_core {
 namespace physics {
 namespace config {
 namespace geometries {
 GateGeometryArray1D::GateGeometryArray1D() = default;
-GateGeometryArray1D::GateGeometryArray1D(BaseConnectionsSP lineararray,
-                                         ScreeningGatesSP  screening_gates)
+GateGeometryArray1D::GateGeometryArray1D(
+    device_structures::BaseConnectionsSP lineararray,
+    device_structures::ScreeningGatesSP  screening_gates)
     : _lineararray(lineararray), _screening_gates(screening_gates) {
   if (screening_gates->size() != 2) {
     throw std::invalid_argument("Expected two screening gates.");
@@ -24,39 +24,36 @@ GateGeometryArray1D::GateGeometryArray1D(BaseConnectionsSP lineararray,
         "Expected an odd number of elements in the linear array. Got " +
         std::to_string(lineararray->size()) + " elements.");
   }
-  if (!std::dynamic_pointer_cast<Ohmic>((*lineararray)[0]) ||
-      !std::dynamic_pointer_cast<Ohmic>(
-          (*lineararray)[lineararray->size() - 1])) {
+  if (!((*lineararray)[0]->is_ohmic()) ||
+      !((*lineararray)[lineararray->size() - 1]->is_ohmic())) {
     throw std::invalid_argument(
         "Expected Ohmic at the ends of the linear array.");
   }
-  if (!std::dynamic_pointer_cast<ReservoirGate>((*lineararray)[1]) ||
-      !std::dynamic_pointer_cast<ReservoirGate>(
-          (*lineararray)[lineararray->size() - 2])) {
+  if (!((*lineararray)[1]->is_reservoir_gate()) ||
+      !((*lineararray)[lineararray->size() - 2]->is_reservoir_gate())) {
     throw std::invalid_argument(
         "Expected Reservoir Gates bounding the central dot gates.");
   }
 
   // Extract dot gates
-  std::vector<DotGateSP> dot_gates;
+  std::vector<device_structures::BaseConnectionSP> dot_gates;
   for (size_t i = 2; i < lineararray->size() - 2; ++i) {
-    auto dot_gate = std::dynamic_pointer_cast<DotGate>((*lineararray)[i]);
-    if (!dot_gate) {
+    device_structures::BaseConnectionSP dot_gate = (*lineararray)[i];
+    if (!(dot_gate->is_dot_gate())) {
       throw std::invalid_argument(
           "Expected DotGates in the middle of the linear array.");
     }
     dot_gates.push_back(dot_gate);
   }
-  _raw_central_gates = std::make_shared<DotGates<DotGate>>(dot_gates);
+  _raw_central_gates = device_structures::BaseConnections(dot_gates);
 
-  if (!std::dynamic_pointer_cast<BarrierGate>(dot_gates.front()) ||
-      !std::dynamic_pointer_cast<BarrierGate>(dot_gates.back())) {
+  if (!(dot_gates.front()->is_barrier_gate()) ||
+      !(dot_gates.back()->is_barrier_gate())) {
     throw std::invalid_argument(
         "Expected Barrier Gates bounding the exterior reservoir gates.");
   }
-  if (!std::dynamic_pointer_cast<PlungerGate>(dot_gates[1]) ||
-      !std::dynamic_pointer_cast<PlungerGate>(
-          dot_gates[dot_gates.size() - 2])) {
+  if (!(dot_gates[1]->is_plunger_gate()) ||
+      !(dot_gates[dot_gates.size() - 2]->is_plunger_gate())) {
     throw std::invalid_argument(
         "Expected Plunger Gates at the correct positions.");
   }
@@ -92,64 +89,57 @@ GateGeometryArray1D::const_iterator GateGeometryArray1D::begin() const {
 GateGeometryArray1D::const_iterator GateGeometryArray1D::end() const {
   return _lineararray->end();
 }
-BaseConnectionsSP GateGeometryArray1D::lineararray() const {
+device_structures::BaseConnectionsSP GateGeometryArray1D::lineararray() const {
   return _lineararray;
 }
-ScreeningGatesSP GateGeometryArray1D::screening_gates() const {
+device_structures::ScreeningGatesSP GateGeometryArray1D::screening_gates()
+    const {
   return _screening_gates;
 }
-DotGatesSP GateGeometryArray1D::raw_central_gates() const {
-  return _raw_central_gates;
-}
-GateGeometryArray1D::CentralDotGates GateGeometryArray1D::central_dot_gates()
+device_structures::BaseConnectionsSP GateGeometryArray1D::raw_central_gates()
     const {
+  return std::make_shared<device_structures::BaseConnections>(
+      _raw_central_gates);
+}
+DotGatesWithNeighborsSP GateGeometryArray1D::central_dot_gates() const {
   return _central_dot_gates;
 }
-void GateGeometryArray1D::append_central_gate(const DotGateSP& left_neighbor,
-                                              const DotGateSP& selected_gate,
-                                              const DotGateSP& right_neighbor) {
-  if (auto barrier = std::dynamic_pointer_cast<BarrierGate>(selected_gate)) {
-    auto left_plunger  = std::dynamic_pointer_cast<PlungerGate>(left_neighbor);
-    auto right_plunger = std::dynamic_pointer_cast<PlungerGate>(right_neighbor);
-    if (!left_plunger || !right_plunger) {
+void GateGeometryArray1D::append_central_gate(
+    const device_structures::BaseConnectionSP& left_neighbor,
+    const device_structures::BaseConnectionSP& selected_gate,
+    const device_structures::BaseConnectionSP& right_neighbor) {
+  if (selected_gate->is_barrier_gate()) {
+    if (!(left_neighbor->is_plunger_gate()) ||
+        !(right_neighbor->is_plunger_gate())) {
       throw std::invalid_argument(
           "Expected PlungerGate bounding selected BarrierGate.");
     }
-    _central_dot_gates.push_back(std::static_pointer_cast<
-                                 BaseDotGateWithNeighbors>(
-        std::make_shared<BarrierGateWithNeighbors<PlungerGate, PlungerGate>>(
-            barrier->name(), left_plunger, right_plunger)));
-  } else if (auto plunger =
-                 std::dynamic_pointer_cast<PlungerGate>(selected_gate)) {
-    auto left_barrier  = std::dynamic_pointer_cast<BarrierGate>(left_neighbor);
-    auto right_barrier = std::dynamic_pointer_cast<BarrierGate>(right_neighbor);
-    if (!left_barrier || !right_barrier) {
+  } else if (selected_gate->is_plunger_gate()) {
+    if (!(left_neighbor->is_barrier_gate()) ||
+        !(right_neighbor->is_barrier_gate())) {
       throw std::invalid_argument(
           "Expected BarrierGate bounding selected PlungerGate.");
     }
-    _central_dot_gates.push_back(
-        std::static_pointer_cast<BaseDotGateWithNeighbors>(
-            std::make_shared<PlungerGateWithNeighbors>(
-                plunger->name(), left_barrier, right_barrier)));
   } else {
     throw std::invalid_argument(
         "Expected either a PlungerGate or BarrierGate.");
   }
+
+  _central_dot_gates->push_back(std::static_pointer_cast<DotGateWithNeighbors>(
+      std::make_shared<PlungerGateWithNeighbors>(
+          selected_gate->name(), left_neighbor, right_neighbor)));
 }
-std::shared_ptr<DotGates<BaseDotGateWithNeighbors>>
-GateGeometryArray1D::all_dot_gates() const {
-  DotGates<BaseDotGateWithNeighbors> all_dot_gates;
-  all_dot_gates.push_back(
-      std::static_pointer_cast<BaseDotGateWithNeighbors>(left_barrier()));
-  for (const auto& gate : _central_dot_gates) {
-    all_dot_gates.push_back(
-        std::static_pointer_cast<BaseDotGateWithNeighbors>(gate));
+DotGatesWithNeighborsSP GateGeometryArray1D::all_dot_gates() const {
+  DotGatesWithNeighbors all_dot_gates;
+  all_dot_gates.push_back(left_barrier());
+  for (const auto& gate : *_central_dot_gates) {
+    all_dot_gates.push_back(gate);
   }
-  all_dot_gates.push_back(
-      std::static_pointer_cast<BaseDotGateWithNeighbors>(right_barrier()));
-  return std::make_shared<DotGates<BaseDotGateWithNeighbors>>(all_dot_gates);
+  all_dot_gates.push_back(right_barrier());
+  return std::make_shared<DotGatesWithNeighbors>(all_dot_gates);
 }
-GatesSP GateGeometryArray1D::query_neighbors(const GateSP& gate) const {
+device_structures::BaseConnectionsSP GateGeometryArray1D::query_neighbors(
+    const device_structures::BaseConnectionSP& gate) const {
   auto it = _gate_name_map.find(gate->name());
   if (it == _gate_name_map.end()) {
     throw std::invalid_argument("Gate " + gate->name() +
@@ -157,7 +147,7 @@ GatesSP GateGeometryArray1D::query_neighbors(const GateSP& gate) const {
   }
   auto gate_geometry = it->second;
 
-  Gates<Gate> result;
+  device_structures::BaseConnections result;
 
   // If gate_geometry is in screening_gates
   for (const auto& sg : *screening_gates()) {
@@ -167,7 +157,7 @@ GatesSP GateGeometryArray1D::query_neighbors(const GateSP& gate) const {
         result.push_back(g);
       }
       result.push_back(right_barrier()->right_neighbor());
-      return std::make_shared<Gates<Gate>>(result);
+      return std::make_shared<device_structures::BaseConnections>(result);
     }
   }
   if (gate_geometry->name() == left_reservoir()->name()) {
@@ -175,68 +165,76 @@ GatesSP GateGeometryArray1D::query_neighbors(const GateSP& gate) const {
     for (const auto& sg : *screening_gates()) {
       result.push_back(sg);
     }
-    return std::make_shared<Gates<Gate>>(result);
+    return std::make_shared<device_structures::BaseConnections>(result);
   } else if (gate_geometry->name() == right_reservoir()->name()) {
     result.push_back(right_reservoir()->left_neighbor());
     for (const auto& sg : *screening_gates()) {
       result.push_back(sg);
     }
-    return std::make_shared<Gates<Gate>>(result);
+    return std::make_shared<device_structures::BaseConnections>(result);
   }
   auto gate_geom =
-      std::dynamic_pointer_cast<BaseDotGateWithNeighbors>(gate_geometry);
+      std::dynamic_pointer_cast<DotGateWithNeighbors>(gate_geometry);
   result.push_back(gate_geom->left_neighbor());
   result.push_back(gate_geom->right_neighbor());
   for (const auto& sg : *screening_gates()) {
     result.push_back(sg);
   }
-  return std::make_shared<Gates<Gate>>(result);
+  return std::make_shared<device_structures::BaseConnections>(result);
 }
 LeftReservoirWithImplantedOhmicSP GateGeometryArray1D::left_reservoir() const {
-  std::string   name  = ((*lineararray())[1])->name();
-  OhmicSP       ohmic = std::dynamic_pointer_cast<Ohmic>((*lineararray())[0]);
-  BarrierGateSP barrier_gate =
-      std::dynamic_pointer_cast<BarrierGate>((*lineararray())[2]);
+  std::string                name = ((*lineararray())[1])->name();
+  device_structures::OhmicSP ohmic =
+      std::dynamic_pointer_cast<device_structures::Ohmic>((*lineararray())[0]);
+  device_structures::BarrierGateSP barrier_gate =
+      std::dynamic_pointer_cast<device_structures::BarrierGate>(
+          (*lineararray())[2]);
   LeftReservoirWithImplantedOhmic left_reservoir =
       LeftReservoirWithImplantedOhmic(name, barrier_gate, ohmic);
   return SP(LeftReservoirWithImplantedOhmic, left_reservoir);
 }
 RightReservoirWithImplantedOhmicSP GateGeometryArray1D::right_reservoir()
     const {
-  std::string name  = (*lineararray())[lineararray()->size() - 2]->name();
-  OhmicSP     ohmic = std::dynamic_pointer_cast<Ohmic>(
-      (*lineararray())[lineararray()->size() - 1]);
-  BarrierGateSP barrier_gate = std::dynamic_pointer_cast<BarrierGate>(
-      (*lineararray())[lineararray()->size() - 3]);
+  std::string name = (*lineararray())[lineararray()->size() - 2]->name();
+  device_structures::OhmicSP ohmic =
+      std::dynamic_pointer_cast<device_structures::Ohmic>(
+          (*lineararray())[lineararray()->size() - 1]);
+  device_structures::BarrierGateSP barrier_gate =
+      std::dynamic_pointer_cast<device_structures::BarrierGate>(
+          (*lineararray())[lineararray()->size() - 3]);
   return std::make_shared<RightReservoirWithImplantedOhmic>(
       name, barrier_gate, ohmic);
 }
-BarrierGateWithNeighborsSP<ReservoirGate, PlungerGate>
-GateGeometryArray1D::left_barrier() const {
-  std::string     name = ((*lineararray())[2])->name();
-  ReservoirGateSP reservoir_gate =
-      std::dynamic_pointer_cast<ReservoirGate>((*lineararray())[1]);
-  PlungerGateSP plunger_gate =
-      std::dynamic_pointer_cast<PlungerGate>((*lineararray())[3]);
-  return std::make_shared<BarrierGateWithNeighbors<ReservoirGate, PlungerGate>>(
+BarrierGateWithNeighborsSP GateGeometryArray1D::left_barrier() const {
+  std::string                        name = ((*lineararray())[2])->name();
+  device_structures::ReservoirGateSP reservoir_gate =
+      std::dynamic_pointer_cast<device_structures::ReservoirGate>(
+          (*lineararray())[1]);
+  device_structures::PlungerGateSP plunger_gate =
+      std::dynamic_pointer_cast<device_structures::PlungerGate>(
+          (*lineararray())[3]);
+  return std::make_shared<BarrierGateWithNeighbors>(
       name, reservoir_gate, plunger_gate);
 }
-BarrierGateWithNeighborsSP<PlungerGate, ReservoirGate>
-GateGeometryArray1D::right_barrier() const {
-  std::string     name = ((*lineararray())[lineararray()->size() - 3])->name();
-  ReservoirGateSP reservoir_gate = std::dynamic_pointer_cast<ReservoirGate>(
-      (*lineararray())[lineararray()->size() - 2]);
-  PlungerGateSP plunger_gate = std::dynamic_pointer_cast<PlungerGate>(
-      (*lineararray())[lineararray()->size() - 4]);
-  return std::make_shared<BarrierGateWithNeighbors<PlungerGate, ReservoirGate>>(
+BarrierGateWithNeighborsSP GateGeometryArray1D::right_barrier() const {
+  std::string name = ((*lineararray())[lineararray()->size() - 3])->name();
+  device_structures::ReservoirGateSP reservoir_gate =
+      std::dynamic_pointer_cast<device_structures::ReservoirGate>(
+          (*lineararray())[lineararray()->size() - 2]);
+  device_structures::PlungerGateSP plunger_gate =
+      std::dynamic_pointer_cast<device_structures::PlungerGate>(
+          (*lineararray())[lineararray()->size() - 4]);
+  return std::make_shared<BarrierGateWithNeighbors>(
       name, plunger_gate, reservoir_gate);
 }
-OhmicsSP GateGeometryArray1D::ohmics() const {
-  OhmicSP left_ohmic  = std::dynamic_pointer_cast<Ohmic>((*lineararray())[0]);
-  OhmicSP right_ohmic = std::dynamic_pointer_cast<Ohmic>(
-      (*lineararray())[lineararray()->size() - 1]);
-  std::vector<OhmicSP> tmp({left_ohmic, right_ohmic});
-  return std::make_shared<Ohmics>(tmp);
+device_structures::OhmicsSP GateGeometryArray1D::ohmics() const {
+  device_structures::OhmicSP left_ohmic =
+      std::dynamic_pointer_cast<device_structures::Ohmic>((*lineararray())[0]);
+  device_structures::OhmicSP right_ohmic =
+      std::dynamic_pointer_cast<device_structures::Ohmic>(
+          (*lineararray())[lineararray()->size() - 1]);
+  std::vector<device_structures::OhmicSP> tmp({left_ohmic, right_ohmic});
+  return std::make_shared<device_structures::Ohmics>(tmp);
 }
 }  // namespace geometries
 }  // namespace config

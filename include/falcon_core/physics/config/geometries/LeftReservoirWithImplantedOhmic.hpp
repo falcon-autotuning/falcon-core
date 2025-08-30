@@ -13,10 +13,9 @@ namespace geometries {
  * @brief A special reservoir geometry that has an implanted ohmic contact and
  *the rest of the channel extending to the right.
  **/
-class LeftReservoirWithImplantedOhmic
-    : public device_structures::ReservoirGate,
-      public HasImplantedOhmic,
-      public HasRightNeighbor<device_structures::BarrierGate> {
+class LeftReservoirWithImplantedOhmic : public device_structures::ReservoirGate,
+                                        public HasImplantedOhmic,
+                                        public HasRightNeighbor {
  public:
   LeftReservoirWithImplantedOhmic(
       std::string                      name,

@@ -14,7 +14,7 @@ class Group : public StandardConfigConnections {
   autotuner_interfaces::names::ChannelSP _name;
   int                                    _num_dots;
   GateGeometryArray1DSP                  _order;
-  OhmicsSP                               _ohmics;
+  device_structures::OhmicsSP            _ohmics;
 
  public:
   /**
@@ -27,17 +27,17 @@ class Group : public StandardConfigConnections {
    * @param barrier_gates The barrier gates in the group.
    * @param order The order of the gates in the group.
    */
-  Group(const ChannelSP&         name,
-        const int&               num_dots,
-        const ScreeningGatesSP&  screening_gates,
-        const ReservoirGatesSP&  reservoir_gates,
-        const PlungerGatesSP&    plunger_gates,
-        const BarrierGatesSP&    barrier_gates,
-        const BaseConnectionsSP& order);
+  Group(const ChannelSP&                            name,
+        const int&                                  num_dots,
+        const device_structures::ScreeningGatesSP&  screening_gates,
+        const device_structures::ReservoirGatesSP&  reservoir_gates,
+        const device_structures::PlungerGatesSP&    plunger_gates,
+        const device_structures::BarrierGatesSP&    barrier_gates,
+        const device_structures::BaseConnectionsSP& order);
   /**
    * @brief collect the ohmics pertaining to this group.
    */
-  OhmicsSP ohmics() const;
+  device_structures::OhmicsSP ohmics() const;
   /**
    * @brief collect the name of this group.
    */
@@ -67,7 +67,8 @@ class Group : public StandardConfigConnections {
    * @returns The gates associated with this channel. If the channel is not
    * correct then empty gates are returned.
    */
-  GatesSP get_all_channel_gates(const ChannelSP& channel) const;
+  device_structures::BaseConnectionsSP get_all_channel_gates(
+      const ChannelSP& channel) const;
   template <class Archive>
   void serialize(Archive& ar);
 

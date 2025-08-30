@@ -16,7 +16,7 @@ namespace geometries {
 class RightReservoirWithImplantedOhmic
     : public device_structures::ReservoirGate,
       public HasImplantedOhmic,
-      public HasLeftNeighbor<device_structures::BarrierGate> {
+      public HasLeftNeighbor {
  public:
   RightReservoirWithImplantedOhmic(
       std::string                      name,
