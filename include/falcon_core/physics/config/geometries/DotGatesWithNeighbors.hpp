@@ -85,20 +85,6 @@ class DotGatesWithNeighbors
    */
   DotGatesWithNeighbors(const std::vector<DotGateWithNeighborsSP>& vec);
   /**
-   * @brief Construct a DotGatesWithNeighbors container from an existing vector
-   * of values.
-   * @param vec Vector of values to copy.
-   */
-  DotGatesWithNeighbors(
-      const std::vector<device_structures::PlungerGateSP>& vec);
-  /**
-   * @brief Construct a DotGatesWithNeighbors container from an existing vector
-   * of values.
-   * @param vec Vector of values to copy.
-   */
-  DotGatesWithNeighbors(
-      const std::vector<device_structures::BarrierGateSP>& vec);
-  /**
    *  @brief Check if all connections are plunger gates.
    */
   bool is_plunger_gates() const;

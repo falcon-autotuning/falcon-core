@@ -17,25 +17,6 @@ DotGatesWithNeighbors::DotGatesWithNeighbors(
 DotGatesWithNeighbors::DotGatesWithNeighbors(
     const std::vector<DotGateWithNeighborsSP>& vec)
     : generic::List<DotGateWithNeighbors, DotGatesWithNeighbors>(vec) {}
-DotGatesWithNeighbors::DotGatesWithNeighbors(
-    const std::vector<device_structures::BarrierGateSP>& vec)
-    : generic::List<DotGateWithNeighbors, DotGatesWithNeighbors>([&vec] {
-        std::vector<DotGateWithNeighborsSP> base_vec;
-        base_vec.reserve(vec.size());
-        for (auto& g : vec)
-          base_vec.push_back(std::static_pointer_cast<DotGateWithNeighbors>(g));
-        return base_vec;
-      }()) {}
-
-DotGatesWithNeighbors::DotGatesWithNeighbors(
-    const std::vector<device_structures::PlungerGateSP>& vec)
-    : generic::List<DotGateWithNeighbors, DotGatesWithNeighbors>([&vec] {
-        std::vector<DotGateWithNeighborsSP> base_vec;
-        base_vec.reserve(vec.size());
-        for (auto& g : vec)
-          base_vec.push_back(std::static_pointer_cast<DotGateWithNeighbors>(g));
-        return base_vec;
-      }()) {}
 
 bool DotGatesWithNeighbors::is_plunger_gates() const {
   return std::all_of(

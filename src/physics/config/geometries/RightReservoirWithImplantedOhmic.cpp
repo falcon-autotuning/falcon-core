@@ -27,8 +27,3 @@ CEREAL_REGISTER_TYPE(RightReservoirWithImplantedOhmic)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::physics::device_structures::ReservoirGate,
     RightReservoirWithImplantedOhmic)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(HasImplantedOhmic,
-                                     RightReservoirWithImplantedOhmic)
-using HLNBG =
-    HasLeftNeighbor<falcon_core::physics::device_structures::BarrierGate>;
-CEREAL_REGISTER_POLYMORPHIC_RELATION(HLNBG, RightReservoirWithImplantedOhmic)
