@@ -18,29 +18,13 @@ class PortTransforms : public generic::Song {
   using value_type     = PortTransform;
   using container_type = std::vector<std::shared_ptr<value_type>>;
 
-  /**
-   * @brief Default constructor.
-   */
-  PortTransforms() = default;
+  PortTransforms();
 
-  /**
-   * @brief Append a PortTransform.
-   * @param transform The PortTransform to add.
-   */
-  void append(const std::shared_ptr<value_type> &transform) {
-    _transforms.push_back(transform);
-  }
-
-  /**
-   * @brief Get all transforms.
-   * @return The container of transforms.
-   */
-  const container_type &get_transforms() const { return _transforms; }
+  void append(const std::shared_ptr<value_type> &transform);
+  const container_type &get_transforms() const;
 
   template <class Archive>
-  void serialize(Archive &ar) {
-    ar(cereal::base_class<generic::Song>(this), _transforms);
-  }
+  void serialize(Archive &ar);
 
  private:
   container_type _transforms;
@@ -49,11 +33,3 @@ class PortTransforms : public generic::Song {
 }  // namespace port_transforms
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
-
-#ifndef SWIG
-CEREAL_REGISTER_TYPE(
-    falcon_core::instrument_interfaces::port_transforms::PortTransforms)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::instrument_interfaces::port_transforms::PortTransforms)
-#endif
