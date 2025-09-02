@@ -32,6 +32,8 @@ BarrierGateWithNeighbors::BarrierGateWithNeighbors(
         right_neighbor->type());
   }
 }
+
+BarrierGateWithNeighbors::BarrierGateWithNeighbors() = default;
 }  // namespace geometries
 }  // namespace config
 }  // namespace physics

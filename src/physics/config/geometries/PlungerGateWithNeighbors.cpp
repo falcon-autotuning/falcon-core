@@ -22,6 +22,8 @@ PlungerGateWithNeighbors::PlungerGateWithNeighbors(
         left_neighbor->type());
   }
 }
+
+PlungerGateWithNeighbors::PlungerGateWithNeighbors() = default;
 }  // namespace geometries
 }  // namespace config
 }  // namespace physics

@@ -7,6 +7,16 @@ BaseConnection::BaseConnection() : _name("") {}
 BaseConnection::BaseConnection(std::string name, DeviceFeature type)
     : _name(name), _type(type) {}
 std::string BaseConnection::name() const { return _name; }
+std::string BaseConnection::type() const {
+  switch (_type) {
+    case DeviceFeature::BarrierGate:   return "BarrierGate";
+    case DeviceFeature::PlungerGate:   return "PlungerGate";
+    case DeviceFeature::ReservoirGate: return "ReservoirGate";
+    case DeviceFeature::ScreeningGate: return "ScreeningGate";
+    case DeviceFeature::Ohmic:         return "Ohmic";
+    default:                           return "Unknown";
+  }
+}
 bool        BaseConnection::is_dot_gate() const {
   return is_barrier_gate() || is_plunger_gate();
 }
