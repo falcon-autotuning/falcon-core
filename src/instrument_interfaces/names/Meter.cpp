@@ -6,11 +6,11 @@ namespace names {
 
 Meter::Meter() = default;
 
-Meter::Meter(std::string default_name,
+Meter::Meter(std::string                                        default_name,
              std::shared_ptr<physics::device_structures::Ohmic> pseudo_name,
-             Instrument instrument_type,
-             std::shared_ptr<physics::units::SymbolUnit> units,
-             std::string description)
+             Instrument                                         instrument_type,
+             std::shared_ptr<physics::units::SymbolUnit>        units,
+             std::string                                        description)
     : InstrumentPort<physics::device_structures::Ohmic>(
           std::move(default_name),
           std::move(pseudo_name),
@@ -20,7 +20,8 @@ Meter::Meter(std::string default_name,
 
 template <class Archive>
 void Meter::serialize(Archive& ar) {
-  ar(cereal::base_class<InstrumentPort<physics::device_structures::Ohmic>>(this));
+  ar(cereal::base_class<InstrumentPort<physics::device_structures::Ohmic>>(
+      this));
 }
 
 }  // namespace names

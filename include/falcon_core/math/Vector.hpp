@@ -26,26 +26,30 @@ namespace math {
  * connections.
  */
 class Vector : public generic::Song {
-  PointSP                      _end;
-  PointSP                      _start;
-  BaseConnectionsSP            _connections;
-  physics::units::SymbolUnitSP _unit;
+  PointSP                                       _end;
+  PointSP                                       _start;
+  physics::device_structures::BaseConnectionsSP _connections;
+  physics::units::SymbolUnitSP                  _unit;
 
  public:
   Vector(PointSP end, PointSP start);
   Vector(PointSP end);
-  Vector(const generic::Map<BaseConnection, double>& end,
-         falcon_core::physics::units::SymbolUnitSP   unit);
-  Vector(const generic::Map<BaseConnection, double>& end,
-         const generic::Map<BaseConnection, double>& start,
-         falcon_core::physics::units::SymbolUnitSP   unit);
+  Vector(const generic::Map<physics::device_structures::BaseConnection, double>&
+                                                   end,
+         falcon_core::physics::units::SymbolUnitSP unit);
+  Vector(const generic::Map<physics::device_structures::BaseConnection, double>&
+             end,
+         const generic::Map<physics::device_structures::BaseConnection, double>&
+                                                   start,
+         falcon_core::physics::units::SymbolUnitSP unit);
 
-  const PointSP&                            end() const;
-  const PointSP&                            start() const;
-  const BaseConnectionsSP                   connections() const;
-  falcon_core::physics::units::SymbolUnitSP unit() const;
+  const PointSP&                                      end() const;
+  const PointSP&                                      start() const;
+  const physics::device_structures::BaseConnectionsSP connections() const;
+  falcon_core::physics::units::SymbolUnitSP           unit() const;
 
-  std::pair<double, double> operator[](const BaseConnectionSP& conn) const;
+  std::pair<double, double> operator[](
+      const physics::device_structures::BaseConnectionSP& conn) const;
 
   std::shared_ptr<Vector> operator+(const Vector& other) const;
   std::shared_ptr<Vector> operator-(const Vector& other) const;

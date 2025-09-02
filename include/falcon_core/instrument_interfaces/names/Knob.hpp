@@ -1,20 +1,20 @@
 #pragma once
 
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/physics/device_structures/Gate.hpp"
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
 
 namespace falcon_core {
 namespace instrument_interfaces {
 namespace names {
 
-class Knob : public InstrumentPort<physics::device_structures::Gate> {
+class Knob : public InstrumentPort<physics::device_structures::BaseConnection> {
  public:
   Knob();
-  Knob(std::string                                       default_name,
-       std::shared_ptr<physics::device_structures::Gate> pseudo_name,
-       Instrument                                        instrument_type,
-       std::shared_ptr<physics::units::SymbolUnit>       units,
-       std::string                                       description);
+  Knob(std::string                                                 default_name,
+       std::shared_ptr<physics::device_structures::BaseConnection> pseudo_name,
+       Instrument                                  instrument_type,
+       std::shared_ptr<physics::units::SymbolUnit> units,
+       std::string                                 description);
 
   template <class Archive>
   void serialize(Archive& ar);

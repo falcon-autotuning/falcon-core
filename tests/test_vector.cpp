@@ -17,9 +17,11 @@ using namespace falcon_core::physics::units;
 using namespace falcon_core::generic;
 
 TEST(VectorTest, SerializationRoundTrip) {
-  auto unit  = std::make_shared<SymbolUnit>(Units::Volt);
-  auto conn1 = std::make_shared<BaseConnection>("A");
-  auto conn2 = std::make_shared<BaseConnection>("B");
+  auto unit = std::make_shared<SymbolUnit>(Units::Volt);
+  auto conn1 =
+      std::make_shared<BaseConnection>("A", DeviceFeature::BarrierGate);
+  auto conn2 =
+      std::make_shared<BaseConnection>("B", DeviceFeature::BarrierGate);
 
   Map<BaseConnection, double> end(
       std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
@@ -50,9 +52,11 @@ TEST(VectorTest, SerializationRoundTrip) {
 }
 
 TEST(VectorTest, ArithmeticOperators) {
-  auto unit  = std::make_shared<SymbolUnit>(Units::Volt);
-  auto conn1 = std::make_shared<BaseConnection>("A");
-  auto conn2 = std::make_shared<BaseConnection>("B");
+  auto unit = std::make_shared<SymbolUnit>(Units::Volt);
+  auto conn1 =
+      std::make_shared<BaseConnection>("A", DeviceFeature::BarrierGate);
+  auto conn2 =
+      std::make_shared<BaseConnection>("B", DeviceFeature::BarrierGate);
 
   Map<BaseConnection, double> end1(
       std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
@@ -102,9 +106,11 @@ TEST(VectorTest, ArithmeticOperators) {
 }
 
 TEST(VectorTest, MagnitudeAndIndexing) {
-  auto unit  = std::make_shared<SymbolUnit>(Units::Volt);
-  auto conn1 = std::make_shared<BaseConnection>("A");
-  auto conn2 = std::make_shared<BaseConnection>("B");
+  auto unit = std::make_shared<SymbolUnit>(Units::Volt);
+  auto conn1 =
+      std::make_shared<BaseConnection>("A", DeviceFeature::BarrierGate);
+  auto conn2 =
+      std::make_shared<BaseConnection>("B", DeviceFeature::BarrierGate);
 
   Map<BaseConnection, double> end(
       std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
@@ -129,7 +135,8 @@ TEST(VectorTest, MagnitudeAndIndexing) {
 TEST(VectorTest, UnitConversion) {
   auto unit1 = std::make_shared<SymbolUnit>(Units::Volt);
   auto unit2 = std::make_shared<SymbolUnit>(Units::Meter);
-  auto conn1 = std::make_shared<BaseConnection>("A");
+  auto conn1 =
+      std::make_shared<BaseConnection>("A", DeviceFeature::BarrierGate);
 
   Map<BaseConnection, double> end(
       std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{

@@ -1,5 +1,6 @@
 #include "falcon_core/instrument_interfaces/names/ExecutionClock.hpp"
 
+#include "falcon_core/physics/units/CommonUnits.hpp"
 namespace falcon_core {
 namespace instrument_interfaces {
 namespace names {

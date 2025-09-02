@@ -9,7 +9,7 @@
 #include "falcon_core/math/arrays/ControlArray1D.hpp"
 #include "falcon_core/math/labelled_arrays/BaseLabelledArray.hpp"
 #include "falcon_core/math/labelled_arrays/IsLabelled1D.hpp"
-#include "falcon_core/physics/device_structures/Gate.hpp"
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
 namespace falcon_core {
 namespace math {
 namespace labelled_arrays {
@@ -18,11 +18,11 @@ namespace labelled_arrays {
 class LabelledControlArray1D
     : public BaseLabelledArray<arrays::ControlArray1D,
                                instrument_interfaces::names::InstrumentPort<
-                                   physics::device_structures::Gate>>,
+                                   physics::device_structures::BaseConnection>>,
       public IsLabelled1D<LabelledControlArray1D> {
  public:
   using LabelType = instrument_interfaces::names::InstrumentPort<
-      physics::device_structures::Gate>;
+      physics::device_structures::BaseConnection>;
 
   LabelledControlArray1D(std::shared_ptr<arrays::ControlArray1D> array,
                          std::shared_ptr<LabelType>              label);

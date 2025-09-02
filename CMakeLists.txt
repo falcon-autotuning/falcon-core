@@ -316,8 +316,6 @@ if(NOT FALCON_CORE_DIRS)
     falcon_core/generic/Song.hpp
     falcon_core/Constants.hpp
     falcon_core/physics/device_structures/BaseConnection.hpp
-    falcon_core/physics/device_structures/Gate.hpp
-    falcon_core/physics/device_structures/DotGate.hpp
     falcon_core/physics/device_structures/BarrierGate.hpp
     falcon_core/physics/device_structures/ScreeningGate.hpp
     falcon_core/physics/device_structures/ReservoirGate.hpp
@@ -325,23 +323,10 @@ if(NOT FALCON_CORE_DIRS)
     falcon_core/physics/device_structures/Ohmic.hpp
     falcon_core/physics/device_structures/Impedance.hpp
     falcon_core/physics/device_structures/BaseConnections.hpp
-    falcon_core::physics::device_structures::BaseConnections<falcon_core::physics::device_structures::BarrierGate>
-    falcon_core::physics::device_structures::BaseConnections<falcon_core::physics::device_structures::PlungerGate>
-    falcon_core::physics::device_structures::BaseConnections<falcon_core::physics::device_structures::ScreeningGate>
-    falcon_core::physics::device_structures::BaseConnections<falcon_core::physics::device_structures::ReservoirGate>
-    falcon_core/physics/device_structures/Gates.hpp
-    falcon_core::physics::device_structures::Gates<falcon_core::physics::device_structures::BarrierGate>
-    falcon_core::physics::device_structures::Gates<falcon_core::physics::device_structures::PlungerGate>
-    falcon_core::physics::device_structures::Gates<falcon_core::physics::device_structures::ScreeningGate>
-    falcon_core::physics::device_structures::Gates<falcon_core::physics::device_structures::ReservoirGate>
-    falcon_core/physics/device_structures/DotGates.hpp
-    falcon_core::physics::device_structures::DotGates<falcon_core::physics::device_structures::BarrierGate>
     falcon_core/physics/device_structures/BarrierGates.hpp
     falcon_core/physics/device_structures/ScreeningGates.hpp
     falcon_core/physics/device_structures/ReservoirGates.hpp
-    falcon_core::physics::device_structures::DotGates<falcon_core::physics::device_structures::PlungerGate>
     falcon_core/physics/device_structures/PlungerGates.hpp
-    falcon_core::physics::device_structures::BaseConnections<falcon_core::physics::device_structures::Ohmic>
     falcon_core/physics/device_structures/Ohmics.hpp
     falcon_core/physics/device_structures/Impedances.hpp
     falcon_core/physics/device_structures/GateRelations.hpp
@@ -355,7 +340,7 @@ if(NOT FALCON_CORE_DIRS)
     # falcon_core::instrument_interfaces::names::InstrumentPort
     # falcon_core::instrument_interfaces::names::Ports
     falcon_core/instrument_interfaces/names/InstrumentPort.hpp
-    falcon_core::instrument_interfaces::names::InstrumentPort<falcon_core::physics::device_structures::Gate>
+    falcon_core::instrument_interfaces::names::InstrumentPort<falcon_core::physics::device_structures::BaseConnection>
     falcon_core::instrument_interfaces::names::InstrumentPort<falcon_core::physics::device_structures::Ohmic>
     falcon_core/instrument_interfaces/names/Ports.hpp
     falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>
@@ -386,15 +371,11 @@ if(NOT FALCON_CORE_DIRS)
   set(SWIG_MODULES
     song,Song,Song.i,generic
     base_connection,BaseConnection,BaseConnection.i,physics/device_structures
-    gate,Gate,Gate.i,physics/device_structures
-    dotgate,DotGate,DotGate.i,physics/device_structures
     ohmic,Ohmic,Ohmic.i,physics/device_structures
     barrier_gate,BarrierGate,BarrierGate.i,physics/device_structures
     plunger_gate,PlungerGate,PlungerGate.i,physics/device_structures
     screening_gate,ScreeningGate,ScreeningGate.i,physics/device_structures
     reservoir_gate,ReservoirGate,ReservoirGate.i,physics/device_structures
-    gates,Gates,Gates.i,physics/device_structures
-    dot_gates,DotGates,DotGates.i,physics/device_structures
     ohmics,Ohmics,Ohmics.i,physics/device_structures
     barrier_gates,BarrierGates,BarrierGates.i,physics/device_structures
     plunger_gates,PlungerGates,PlungerGates.i,physics/device_structures

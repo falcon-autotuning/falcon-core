@@ -1,7 +1,7 @@
 #include "falcon_core/math/labelled_arrays/LabelledMeasuredArray.hpp"
 
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/physics/device_structures/Gate.hpp"
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
 
 namespace falcon_core {
 namespace math {
@@ -27,7 +27,7 @@ void LabelledMeasuredArray<LabelType>::serialize(Archive& ar) {
 
 // Explicit instantiation for Gate label
 using GateLabel = falcon_core::instrument_interfaces::names::InstrumentPort<
-    falcon_core::physics::device_structures::Gate>;
+    falcon_core::physics::device_structures::BaseConnection>;
 template class falcon_core::math::labelled_arrays::LabelledMeasuredArray<
     GateLabel>;
 template void
@@ -36,11 +36,12 @@ falcon_core::math::labelled_arrays::LabelledMeasuredArray<GateLabel>::serialize<
 template void falcon_core::math::labelled_arrays::LabelledMeasuredArray<
     GateLabel>::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive&);
 
-CEREAL_REGISTER_TYPE(falcon_core::math::labelled_arrays::LabelledMeasuredArray<
-                     falcon_core::instrument_interfaces::names::InstrumentPort<
-                         falcon_core::physics::device_structures::Gate>>)
+CEREAL_REGISTER_TYPE(
+    falcon_core::math::labelled_arrays::LabelledMeasuredArray<
+        falcon_core::instrument_interfaces::names::InstrumentPort<
+            falcon_core::physics::device_structures::BaseConnection>>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
     falcon_core::math::labelled_arrays::LabelledMeasuredArray<
         falcon_core::instrument_interfaces::names::InstrumentPort<
-            falcon_core::physics::device_structures::Gate>>)
+            falcon_core::physics::device_structures::BaseConnection>>)

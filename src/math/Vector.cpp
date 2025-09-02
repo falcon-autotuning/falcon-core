@@ -4,6 +4,8 @@
 #include <memory>
 #include <set>
 
+#include "falcon_core/physics/device_structures/BaseConnections.hpp"
+
 namespace falcon_core {
 namespace math {
 
@@ -19,8 +21,9 @@ Vector::Vector(PointSP end)
   update_connections();
 }
 
-Vector::Vector(const generic::Map<BaseConnection, double>& end,
-               falcon_core::physics::units::SymbolUnitSP   unit)
+Vector::Vector(
+    const generic::Map<physics::device_structures::BaseConnection, double>& end,
+    falcon_core::physics::units::SymbolUnitSP unit)
     : _end(std::make_shared<Point>(unit)),
       _start(std::make_shared<Point>(unit)),
       _unit(unit) {
@@ -31,9 +34,11 @@ Vector::Vector(const generic::Map<BaseConnection, double>& end,
   update_connections();
 }
 
-Vector::Vector(const generic::Map<BaseConnection, double>& end,
-               const generic::Map<BaseConnection, double>& start,
-               falcon_core::physics::units::SymbolUnitSP   unit)
+Vector::Vector(
+    const generic::Map<physics::device_structures::BaseConnection, double>& end,
+    const generic::Map<physics::device_structures::BaseConnection, double>&
+                                              start,
+    falcon_core::physics::units::SymbolUnitSP unit)
     : _end(std::make_shared<Point>(unit)),
       _start(std::make_shared<Point>(unit)),
       _unit(unit) {
@@ -46,13 +51,16 @@ Vector::Vector(const generic::Map<BaseConnection, double>& end,
   update_connections();
 }
 
-const PointSP&          Vector::end() const { return _end; }
-const PointSP&          Vector::start() const { return _start; }
-const BaseConnectionsSP Vector::connections() const { return _connections; }
+const PointSP& Vector::end() const { return _end; }
+const PointSP& Vector::start() const { return _start; }
+const physics::device_structures::BaseConnectionsSP Vector::connections()
+    const {
+  return _connections;
+}
 falcon_core::physics::units::SymbolUnitSP Vector::unit() const { return _unit; }
 
 std::pair<double, double> Vector::operator[](
-    const BaseConnectionSP& conn) const {
+    const physics::device_structures::BaseConnectionSP& conn) const {
   double end_val   = (*_end)[conn];
   double start_val = (*_start)[conn];
   return std::make_pair(end_val, start_val);
@@ -106,15 +114,16 @@ void Vector::convert_to(falcon_core::physics::units::SymbolUnitSP target_unit) {
 Vector::Vector() = default;
 
 void Vector::update_connections() {
-  std::set<BaseConnectionSP> result;
+  std::set<physics::device_structures::BaseConnectionSP> result;
   for (const auto& ptr : _end->keys()) {
     if (ptr) result.insert(ptr);
   }
   for (const auto& ptr : _start->keys()) {
     if (ptr) result.insert(ptr);
   }
-  _connections = std::make_shared<BaseConnections<BaseConnection>>(
-      std::vector<BaseConnectionSP>(result.begin(), result.end()));
+  _connections = std::make_shared<physics::device_structures::BaseConnections>(
+      std::vector<physics::device_structures::BaseConnectionSP>(result.begin(),
+                                                                result.end()));
 }
 
 template <class Archive>
