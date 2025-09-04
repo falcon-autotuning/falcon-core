@@ -20,7 +20,8 @@ void DeviceVoltageStates::add_state(const std::shared_ptr<value_type>& state) {
 std::shared_ptr<DeviceVoltageStates::value_type> DeviceVoltageStates::find_state(
     const std::shared_ptr<physics::device_structures::BaseConnection>& connection) const {
   for (const auto& state : _states) {
-    if (state->connection() == connection) {
+    if (state->connection()->name() == connection->name() &&
+        state->connection()->type() == connection->type()) {
       return state;
     }
   }
