@@ -10,7 +10,7 @@ namespace falcon_core {
 namespace communications {
 namespace voltage_states {
 
-class DeviceVoltageState : public math::Quantity, public generic::Song {
+class DeviceVoltageState : public math::Quantity {
  public:
   DeviceVoltageState(
       std::shared_ptr<physics::device_structures::BaseConnection> connection,

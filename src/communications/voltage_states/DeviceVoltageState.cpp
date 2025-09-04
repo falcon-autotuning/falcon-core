@@ -23,7 +23,6 @@ double DeviceVoltageState::voltage() const {
 template <class Archive>
 void DeviceVoltageState::serialize(Archive& ar) {
   ar(cereal::base_class<math::Quantity>(this),
-     cereal::base_class<generic::Song>(this),
      _connection);
 }
 

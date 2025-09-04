@@ -14,7 +14,7 @@ const DeviceVoltageStates::container_type& DeviceVoltageStates::states() const {
 }
 
 void DeviceVoltageStates::add_state(const std::shared_ptr<value_type>& state) {
-  _states.append(state);
+  _states.push_back(state);
 }
 
 std::shared_ptr<DeviceVoltageStates::value_type> DeviceVoltageStates::find_state(

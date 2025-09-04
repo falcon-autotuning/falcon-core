@@ -14,9 +14,8 @@ using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::physics::units;
 
 void test_DeviceVoltageStates_basic() {
-  // Create a SymbolUnit (assume constructor takes a string for symbol and name
-  // for test)
-  auto unit = std::make_shared<SymbolUnit>();
+  // Create a SymbolUnit for volt
+  auto unit = std::make_shared<SymbolUnit>(CommonUnits::Volt);
   // Create a BaseConnection
   auto conn =
       std::make_shared<BaseConnection>("gate1", DeviceFeature::BarrierGate);
@@ -40,7 +39,7 @@ void test_DeviceVoltageStates_basic() {
 }
 
 void test_DeviceVoltageStates_SerializationRoundTrip() {
-  auto unit = std::make_shared<SymbolUnit>();
+  auto unit = std::make_shared<SymbolUnit>(CommonUnits::Volt);
   auto conn =
       std::make_shared<BaseConnection>("gate2", DeviceFeature::PlungerGate);
   auto dvs = std::make_shared<DeviceVoltageState>(conn, 4.56, unit);
