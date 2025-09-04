@@ -5,6 +5,7 @@
 #include <falcon_core/generic/List.hpp>
 #include <falcon_core/math/Quantity.hpp>
 #include <falcon_core/physics/device_structures/BaseConnection.hpp>
+#include <falcon_core/physics/units/CommonUnits.hpp>
 #include <falcon_core/physics/units/SymbolUnit.hpp>
 #include <iostream>
 #include <sstream>
