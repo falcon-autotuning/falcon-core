@@ -11,9 +11,13 @@ namespace messages {
 class VoltageStatesResponse : public BaseMessage {
  public:
   VoltageStatesResponse();
-  VoltageStatesResponse(const std::string& message, const std::shared_ptr<communications::voltage_states::DeviceVoltageStates>& states);
+  VoltageStatesResponse(
+      const std::string& message,
+      const std::shared_ptr<
+          communications::voltage_states::DeviceVoltageStates>& states);
 
-  const std::shared_ptr<communications::voltage_states::DeviceVoltageStates>& states() const;
+  const std::shared_ptr<communications::voltage_states::DeviceVoltageStates>&
+  states() const;
 
  private:
   std::shared_ptr<communications::voltage_states::DeviceVoltageStates> _states;

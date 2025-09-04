@@ -11,9 +11,12 @@ namespace messages {
 class MeasurementResponse : public BaseMessage {
  public:
   MeasurementResponse();
-  MeasurementResponse(const std::shared_ptr<math::labelled_arrays::LabelledMeasuredArrays>& arrays);
+  MeasurementResponse(
+      const std::shared_ptr<math::labelled_arrays::LabelledMeasuredArrays>&
+          arrays);
 
-  const std::shared_ptr<math::labelled_arrays::LabelledMeasuredArrays>& arrays() const;
+  const std::shared_ptr<math::labelled_arrays::LabelledMeasuredArrays>& arrays()
+      const;
 
  private:
   std::shared_ptr<math::labelled_arrays::LabelledMeasuredArrays> _arrays;

@@ -34,6 +34,8 @@ function(cpp_tests)
     tests/test_analytic_function.cpp
     tests/test_port_transforms.cpp
     tests/test_waveforms.cpp
+    tests/test_device_voltage_states.cpp
+    tests/test_messages.cpp
   )
   endif()
 
