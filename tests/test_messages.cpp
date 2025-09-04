@@ -14,6 +14,7 @@
 #include <falcon_core/instrument_interfaces/names/Meter.hpp>
 #include <falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp>
 #include <falcon_core/instrument_interfaces/waveforms/BaseWaveform.hpp>
+#include <falcon_core/instrument_interfaces/waveforms/Waveform.hpp>
 #include <falcon_core/instrument_interfaces/waveforms/CartesianWaveform1D.hpp>
 #include <falcon_core/math/domains/KnobDomain.hpp>
 #include <falcon_core/math/labelled_arrays/LabelledMeasuredArrays.hpp>
@@ -79,7 +80,8 @@ TEST(MessagesTest, MeasurementRequestConstructionAndSerialization) {
   auto meters = std::make_shared<Meters>();
   meters->push_back(meter);
   auto waveform = std::make_shared<falcon_core::instrument_interfaces::waveforms::Waveform>();
-  std::vector<std::shared_ptr<waveform_type>> waveforms{waveform};
+  std::vector<std::shared_ptr<waveform_type>> waveforms;
+  waveforms.push_back(waveform);
   std::map<std::shared_ptr<Meter>, std::shared_ptr<PortTransform>> meter_transforms;
   meter_transforms[meter] = std::make_shared<PortTransform>();
   auto time_domain = std::make_shared<KnobDomain>(0.0, 1.0, nullptr);
