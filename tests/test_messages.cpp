@@ -72,13 +72,13 @@ TEST(MessagesTest, MeasurementRequestConstructionAndSerialization) {
   auto meter = std::make_shared<Meter>(
       "meter1",                // default_name
       nullptr,                 // pseudo_name
-      Instrument::UNKNOWN,     // instrument_type (or a valid enum value)
+      "UNKNOWN",               // instrument_type as string
       nullptr,                 // units
       ""                      // description
   );
   auto meters = std::make_shared<Meters>();
   meters->push_back(meter);
-  auto waveform = std::make_shared<CartesianWaveform1D>();
+  auto waveform = std::make_shared<Waveform>();
   std::vector<std::shared_ptr<waveform_type>> waveforms{waveform};
   std::map<std::shared_ptr<Meter>, std::shared_ptr<PortTransform>> meter_transforms;
   meter_transforms[meter] = std::make_shared<PortTransform>();
