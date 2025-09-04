@@ -1,78 +1,52 @@
-#include <cassert>
-#include <cereal/archives/json.hpp>
+#include <gtest/gtest.h>
 #include <falcon_core/communications/voltage_states/DeviceVoltageState.hpp>
 #include <falcon_core/communications/voltage_states/DeviceVoltageStates.hpp>
-#include <falcon_core/generic/List.hpp>
-#include <falcon_core/math/Quantity.hpp>
 #include <falcon_core/physics/device_structures/BaseConnection.hpp>
 #include <falcon_core/physics/units/CommonUnits.hpp>
 #include <falcon_core/physics/units/SymbolUnit.hpp>
-#include <iostream>
-#include <sstream>
+#include <memory>
+#include <string>
 
+namespace tests {
 using namespace falcon_core::communications::voltage_states;
 using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::physics::units;
 
-void test_DeviceVoltageStates_basic() {
-  // Create a SymbolUnit for volt
+// Basic construction and access test
+TEST(DeviceVoltageStatesTest, BasicConstructionAndAccess) {
   auto unit = std::make_shared<SymbolUnit>(CommonUnits::Volt);
-  // Create a BaseConnection
-  auto conn =
-      std::make_shared<BaseConnection>("gate1", DeviceFeature::BarrierGate);
-
-  // Create a DeviceVoltageState
+  auto conn = std::make_shared<BaseConnection>("gate1", DeviceFeature::BarrierGate);
   auto dvs = std::make_shared<DeviceVoltageState>(conn, 1.23, unit);
 
-  // Test getters
-  assert(dvs->connection()->name() == "gate1");
-  assert(dvs->voltage() == 1.23);
+  ASSERT_EQ(dvs->connection()->name(), "gate1");
+  ASSERT_EQ(dvs->voltage(), 1.23);
 
-  // Create DeviceVoltageStates and add state
   DeviceVoltageStates states;
   states.add_state(dvs);
 
-  // Test states() and find_state()
-  assert(states.states().size() == 1);
+  ASSERT_EQ(states.states().size(), 1);
   auto found = states.find_state(conn);
-  assert(found != nullptr);
-  assert(found->voltage() == 1.23);
+  ASSERT_TRUE(found != nullptr);
+  ASSERT_EQ(found->voltage(), 1.23);
 }
 
-void test_DeviceVoltageStates_SerializationRoundTrip() {
+// Serialization round-trip test
+TEST(DeviceVoltageStatesTest, SerializationRoundTrip) {
   auto unit = std::make_shared<SymbolUnit>(CommonUnits::Volt);
-  auto conn =
-      std::make_shared<BaseConnection>("gate2", DeviceFeature::PlungerGate);
+  auto conn = std::make_shared<BaseConnection>("gate2", DeviceFeature::PlungerGate);
   auto dvs = std::make_shared<DeviceVoltageState>(conn, 4.56, unit);
 
-  DeviceVoltageStates states;
-  states.add_state(dvs);
+  auto states = std::make_shared<DeviceVoltageStates>();
+  states->add_state(dvs);
 
-  // Serialize to JSON
-  std::stringstream ss;
-  {
-    cereal::JSONOutputArchive oarchive(ss);
-    oarchive(states);
-  }
+  std::string json = states->to_json_string();
+  auto loaded = DeviceVoltageStates::from_json_string<DeviceVoltageStates>(json);
 
-  // Deserialize from JSON
-  DeviceVoltageStates loaded;
-  {
-    cereal::JSONInputArchive iarchive(ss);
-    iarchive(loaded);
-  }
-
-  // Check round-trip
-  assert(loaded.states().size() == 1);
-  auto found = loaded.find_state(conn);
-  assert(found != nullptr);
-  assert(found->voltage() == 4.56);
-  assert(found->connection()->name() == "gate2");
+  ASSERT_EQ(loaded->states().size(), 1);
+  auto found = loaded->find_state(conn);
+  ASSERT_TRUE(found != nullptr);
+  ASSERT_EQ(found->voltage(), 4.56);
+  ASSERT_EQ(found->connection()->name(), "gate2");
 }
 
-int main() {
-  test_DeviceVoltageStates_basic();
-  test_DeviceVoltageStates_SerializationRoundTrip();
-  std::cout << "DeviceVoltageStates tests passed.\n";
-  return 0;
-}
+} // namespace tests
