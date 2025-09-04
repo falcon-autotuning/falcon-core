@@ -64,12 +64,14 @@ TEST(MessagesTest, StandardResponseConstructionAndSerialization) {
 
 // MeasurementRequest test
 TEST(MessagesTest, MeasurementRequestConstructionAndSerialization) {
+  using waveform_type = falcon_core::instrument_interfaces::waveforms::BaseWaveform<
+      falcon_core::math::discrete_spaces::BaseDiscreteSpace>;
   auto unit = std::make_shared<SymbolUnit>(CommonUnits::Volt);
   auto conn = std::make_shared<BaseConnection>("gate1", DeviceFeature::BarrierGate);
   auto meter = std::make_shared<Meter>("meter1");
   auto meters = std::make_shared<Meters>(std::vector<std::shared_ptr<Meter>>{meter});
-  auto waveform = std::make_shared<BaseWaveform>();
-  std::vector<std::shared_ptr<BaseWaveform>> waveforms{waveform};
+  auto waveform = std::make_shared<CartesianWaveform1D>();
+  std::vector<std::shared_ptr<waveform_type>> waveforms{waveform};
   std::map<std::shared_ptr<Meter>, std::shared_ptr<PortTransform>> meter_transforms;
   meter_transforms[meter] = std::make_shared<PortTransform>();
   auto time_domain = std::make_shared<KnobDomain>(0.0, 1.0, nullptr);

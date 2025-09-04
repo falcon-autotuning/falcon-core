@@ -4,12 +4,15 @@ namespace falcon_core {
 namespace communications {
 namespace messages {
 
+using waveform_type = falcon_core::instrument_interfaces::waveforms::BaseWaveform<
+    falcon_core::math::discrete_spaces::BaseDiscreteSpace>;
+
 MeasurementRequest::MeasurementRequest() = default;
 
 MeasurementRequest::MeasurementRequest(
     const std::string& message,
     const std::string& measurement_name,
-    const std::vector<std::shared_ptr<instrument_interfaces::waveforms::BaseWaveform>>& waveforms,
+    const std::vector<std::shared_ptr<waveform_type>>& waveforms,
     const std::shared_ptr<instrument_interfaces::names::Meters>& getters,
     const std::map<std::shared_ptr<instrument_interfaces::names::Meter>, std::shared_ptr<instrument_interfaces::port_transforms::PortTransform>>& meter_transforms,
     const std::shared_ptr<math::domains::KnobDomain>& time_domain)
@@ -22,7 +25,7 @@ MeasurementRequest::MeasurementRequest(
 
 const std::string& MeasurementRequest::measurement_name() const { return _measurement_name; }
 const std::shared_ptr<instrument_interfaces::names::Meters>& MeasurementRequest::getters() const { return _getters; }
-const std::vector<std::shared_ptr<instrument_interfaces::waveforms::BaseWaveform>>& MeasurementRequest::waveforms() const { return _waveforms; }
+const std::vector<std::shared_ptr<waveform_type>>& MeasurementRequest::waveforms() const { return _waveforms; }
 const std::map<std::shared_ptr<instrument_interfaces::names::Meter>, std::shared_ptr<instrument_interfaces::port_transforms::PortTransform>>& MeasurementRequest::meter_transforms() const { return _meter_transforms; }
 const std::shared_ptr<math::domains::KnobDomain>& MeasurementRequest::time_domain() const { return _time_domain; }
 
