@@ -14,6 +14,7 @@
 #include <falcon_core/instrument_interfaces/names/Meter.hpp>
 #include <falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp>
 #include <falcon_core/instrument_interfaces/waveforms/BaseWaveform.hpp>
+#include <falcon_core/instrument_interfaces/waveforms/CartesianWaveform1D.hpp>
 #include <falcon_core/math/domains/KnobDomain.hpp>
 #include <falcon_core/math/labelled_arrays/LabelledMeasuredArrays.hpp>
 #include <memory>
@@ -68,8 +69,15 @@ TEST(MessagesTest, MeasurementRequestConstructionAndSerialization) {
       falcon_core::math::discrete_spaces::BaseDiscreteSpace>;
   auto unit = std::make_shared<SymbolUnit>(CommonUnits::Volt);
   auto conn = std::make_shared<BaseConnection>("gate1", DeviceFeature::BarrierGate);
-  auto meter = std::make_shared<Meter>("meter1");
-  auto meters = std::make_shared<Meters>(std::vector<std::shared_ptr<Meter>>{meter});
+  auto meter = std::make_shared<Meter>(
+      "meter1",                // default_name
+      nullptr,                 // pseudo_name
+      Instrument::UNKNOWN,     // instrument_type (or a valid enum value)
+      nullptr,                 // units
+      ""                      // description
+  );
+  auto meters = std::make_shared<Meters>();
+  meters->push_back(meter);
   auto waveform = std::make_shared<CartesianWaveform1D>();
   std::vector<std::shared_ptr<waveform_type>> waveforms{waveform};
   std::map<std::shared_ptr<Meter>, std::shared_ptr<PortTransform>> meter_transforms;
