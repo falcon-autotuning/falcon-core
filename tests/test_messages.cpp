@@ -78,7 +78,7 @@ TEST(MessagesTest, MeasurementRequestConstructionAndSerialization) {
   );
   auto meters = std::make_shared<Meters>();
   meters->push_back(meter);
-  auto waveform = std::make_shared<Waveform>();
+  auto waveform = std::make_shared<falcon_core::instrument_interfaces::waveforms::Waveform>();
   std::vector<std::shared_ptr<waveform_type>> waveforms{waveform};
   std::map<std::shared_ptr<Meter>, std::shared_ptr<PortTransform>> meter_transforms;
   meter_transforms[meter] = std::make_shared<PortTransform>();
