@@ -13,6 +13,12 @@ class InterpretationContainer
     : public generic::Map<InterpretationContext, Value> {
   physics::units::SymbolUnitSP _unit;
 
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Map<InterpretationContext, Value>>(this),
+       _unit);
+  }
+
  public:
   InterpretationContainer() = default;
   /**
@@ -34,10 +40,148 @@ class InterpretationContainer
   /**
    * @brief Returns the unit that all contexts in this constainer must have.
    */
-  physics::units::SymbolUnitSP unit() const;
+  physics::units::SymbolUnitSP unit() const { return _unit; }
+  /**
+   * @brief Select contexts that involve a specific connection.
+   * @param connection The connection to search for.
+   * @returns A list of contexts that involve the specified connection in either
+   * independant or dependant variables.
+   */
+  generic::ListSP<InterpretationContext> select_by_connection(
+      physics::device_structures::BaseConnectionSP connection) const {
+    auto results = std::make_shared<generic::List<InterpretationContext>>();
+    for (const auto& context : this->items()) {
+      // Check independent variables
+      for (size_t i = 0; i < context->dimension(); ++i) {
+        auto indep_var = context->get_independent_variable(i);
+        if (indep_var->connection() == connection) {
+          results->push_back(context);
+          goto next_context;
+        }
+      }
+      // Check dependent variables
+      for (const auto& dep_var : context->dependent_variables()) {
+        if (dep_var->connection() == connection) {
+          results->push_back(context);
+          break;
+        }
+      }
+    next_context:;
+    }
+    return results;
+  }
 
- private:
-  container_type _container;
+  /**
+   * @brief Select contexts that involve all of the specified connections.
+   * @param connections List of connections to search for.
+   * @returns A list of contexts that involve all specified connections.
+   */
+  generic::ListSP<InterpretationContext> select_by_connections(
+      const std::vector<physics::device_structures::BaseConnectionSP>&
+          connections) const {
+    auto matching_contexts =
+        std::set<InterpretationContextSP>(this->begin(), this->end());
+    for (const auto& connection : connections) {
+      auto contexts_with_connection = std::set<InterpretationContextSP>(
+          select_by_connection(connection)->items().begin(),
+          select_by_connection(connection)->items().end());
+      // Keep only contexts that match all connections so far
+      std::set<InterpretationContextSP> intersection;
+      std::set_intersection(matching_contexts.begin(),
+                            matching_contexts.end(),
+                            contexts_with_connection.begin(),
+                            contexts_with_connection.end(),
+                            std::inserter(intersection, intersection.begin()));
+      matching_contexts = std::move(intersection);
+      if (matching_contexts.empty()) {
+        return std::make_shared<generic::List<InterpretationContext>>();
+      }
+    }
+    return std::make_shared<generic::List<InterpretationContext>>(
+        std::vector<InterpretationContextSP>(matching_contexts.begin(),
+                                             matching_contexts.end()));
+  }
+  generic::ListSP<InterpretationContext> select_by_independent_connection(
+      physics::device_structures::BaseConnection connection) {
+    for (const auto& context : this->items()) {
+      for (int i = 0; i < context->dimension(); ++i) {
+        auto indep_var = context->get_independent_variable(i);
+        if (indep_var->connection() == connection) {
+          return std::make_shared<generic::List<InterpretationContext>>(
+              std::vector<InterpretationContextSP>{context});
+        }
+      }
+    }
+  }
+  generic::ListSP<InterpretationContext> select_by_dependent_connection(
+      physics::device_structures::BaseConnection connection) {
+    for (const auto& context : this->items()) {
+      for (const auto& dep_var : context->dependent_variables()) {
+        if (dep_var->connection() == connection) {
+          return std::make_shared<generic::List<InterpretationContext>>(
+              std::vector<InterpretationContextSP>{context});
+        }
+      }
+    }
+  }
+  generic::ListSP<InterpretationContext> select_contexts(
+      generic::ListSP<physics::device_structures::BaseConnection>
+          independent_connections,
+      generic::ListSP<physics::device_structures::BaseConnection>
+          dependent_connections) {
+    // Start with all contexts
+    std::set<InterpretationContext*> matching_contexts;
+    for (auto& kv : this->items()) {
+      matching_contexts.insert(kv.first);
+    }
+
+    // Process independent connections
+    if (independent_connections && !independent_connections->empty()) {
+      for (auto& connection : *independent_connections) {
+        std::set<InterpretationContext*> contexts =
+            select_by_independent_connection(connection);
+        std::set<InterpretationContext*> intersection;
+        std::set_intersection(
+            matching_contexts.begin(),
+            matching_contexts.end(),
+            contexts.begin(),
+            contexts.end(),
+            std::inserter(intersection, intersection.begin()));
+        matching_contexts = std::move(intersection);
+
+        // Early exit if no matches
+        if (matching_contexts.empty()) {
+          return generic::ListSP<InterpretationContext>();
+        }
+      }
+    }
+
+    // Process dependent connections
+    if (dependent_connections && !dependent_connections->empty()) {
+      for (auto& connection : *dependent_connections) {
+        std::set<InterpretationContext*> contexts =
+            select_by_dependent_connection(connection);
+        std::set<InterpretationContext*> intersection;
+        std::set_intersection(
+            matching_contexts.begin(),
+            matching_contexts.end(),
+            contexts.begin(),
+            contexts.end(),
+            std::inserter(intersection, intersection.begin()));
+        matching_contexts = std::move(intersection);
+
+        // Early exit if no matches
+        if (matching_contexts.empty()) {
+          return generic::ListSP<InterpretationContext>();
+        }
+      }
+    }
+
+    // Convert set to ListSP
+    auto result = std::make_shared<generic::List<InterpretationContext>>(
+        matching_contexts.begin(), matching_contexts.end());
+    return result;
+  }
 };
 }  // namespace interpretations
 }  // namespace autotuner_interfaces
