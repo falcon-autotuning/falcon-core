@@ -1,8 +1,7 @@
 #pragma once
 
-#include <memory>
-
-#include "falcon_core/generic/Song.hpp"
+#include "falcon_core/autotuner_interfaces/contexts/BaseContext.hpp"
+#include "falcon_core/instrument_interfaces/Instrument.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
@@ -10,20 +9,32 @@ namespace falcon_core {
 namespace autotuner_interfaces {
 namespace contexts {
 
-class MeasurementContext : public generic::Song {
+class MeasurementContext : public BaseContext {
+  physics::units::SymbolUnitSP _unit;
+
+  template <class Archive>
+  void serialize(Archive& ar);
+
+ protected:
+  friend class cereal::access;
+  MeasurementContext();
+
  public:
-  MeasurementContext(
-      std::shared_ptr<physics::device_structures::BaseConnection> connection,
-      std::shared_ptr<physics::units::SymbolUnit>                 unit);
+  /**
+   * @brief Constructs the measurement context.
+   * @param connection The device connection.
+   * @param instrument_type The type of instrument.
+   */
+  MeasurementContext(physics::device_structures::BaseConnectionSP connection,
+                     instrument_interfaces::Instrument instrument_type);
 
-  const std::shared_ptr<physics::device_structures::BaseConnection>                                                    &
-  connection() const;
-  const std::shared_ptr<physics::units::SymbolUnit> &unit() const;
-
- private:
-  std::shared_ptr<physics::device_structures::BaseConnection> _connection;
-  std::shared_ptr<physics::units::SymbolUnit>                 _unit;
+  /**
+   * @brief Constructs a MeasururementContext from an AcquisitionContext.
+   * @param acquisition_context The acquisition context.
+   */
+  MeasurementContext(BaseContextSP acquisition_context);
 };
+using MeasurementContextSP = std::shared_ptr<MeasurementContext>;
 }  // namespace contexts
 }  // namespace autotuner_interfaces
 }  // namespace falcon_core

@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 
+#include "falcon_core/math/labelled_arrays/BaseLabelledArray.hpp"
 #include "falcon_core/math/labelled_arrays/BaseLabelledArrays.hpp"
 #include "falcon_core/math/labelled_arrays/IsLabelled1D.hpp"
 namespace tests {

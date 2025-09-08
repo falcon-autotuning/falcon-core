@@ -11,7 +11,6 @@
 #include <vector>
 
 #include "falcon_core/generic/Song.hpp"
-#include "falcon_core/math/labelled_arrays/BaseLabelledArray.hpp"
 
 namespace falcon_core {
 namespace math {
@@ -37,7 +36,9 @@ class BaseLabelledArrays : public generic::Song {
 
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive &ar);
+  void serialize(Archive &ar) {
+    ar(cereal::base_class<generic::Song>(this), _arrays);
+  }
 };
 }  // namespace labelled_arrays
 }  // namespace math

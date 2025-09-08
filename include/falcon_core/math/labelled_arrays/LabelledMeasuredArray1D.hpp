@@ -28,7 +28,10 @@ class LabelledMeasuredArray1D
   friend class cereal::access;
   LabelledMeasuredArray1D();
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<
+        BaseLabelledArray<arrays::MeasuredArray<double>, LabelType>>(this));
+  }
 };
 
 }  // namespace labelled_arrays

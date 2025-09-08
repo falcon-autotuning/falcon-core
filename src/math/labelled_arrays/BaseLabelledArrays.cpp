@@ -1,5 +1,8 @@
 #include "falcon_core/math/labelled_arrays/BaseLabelledArrays.hpp"
 
+#include "falcon_core/math/arrays/BaseArray.hpp"
+#include "falcon_core/math/labelled_arrays/BaseLabelledArray.hpp"
+
 namespace falcon_core {
 namespace math {
 namespace labelled_arrays {
@@ -17,12 +20,6 @@ template <typename T>
 const typename BaseLabelledArrays<T>::container_type &
 BaseLabelledArrays<T>::get_arrays() const {
   return _arrays;
-}
-
-template <typename T>
-template <class Archive>
-void BaseLabelledArrays<T>::serialize(Archive &ar) {
-  ar(cereal::base_class<generic::Song>(this), _arrays);
 }
 
 }  // namespace labelled_arrays

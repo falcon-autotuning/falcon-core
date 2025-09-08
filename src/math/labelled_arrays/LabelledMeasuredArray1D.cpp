@@ -4,6 +4,7 @@ namespace falcon_core {
 namespace math {
 namespace labelled_arrays {
 
+LabelledMeasuredArray1D::LabelledMeasuredArray1D() {}
 LabelledMeasuredArray1D::LabelledMeasuredArray1D(
     std::shared_ptr<arrays::MeasuredArray<double>> array,
     std::shared_ptr<LabelType>                     label)
@@ -15,12 +16,6 @@ const arrays::MeasuredArray<double>& LabelledMeasuredArray1D::get_array()
     throw std::runtime_error("Array is null");
   }
   return *this->_array;
-}
-
-template <class Archive>
-void LabelledMeasuredArray1D::serialize(Archive& ar) {
-  ar(cereal::base_class<
-      BaseLabelledArray<arrays::MeasuredArray<double>, LabelType>>(this));
 }
 
 }  // namespace labelled_arrays

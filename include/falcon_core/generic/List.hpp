@@ -62,13 +62,13 @@ class List : public generic::Song {
   size_t      size() const { return _items.size(); }
   bool        empty() const { return _items.empty(); }
   StoredValue at(const size_t idx) const { return _items.at(idx); }
-  const StoredValue operator[](const size_t idx) const { return _items[idx]; }
-  const Container&  items() const { return _items; }
-  Container&        items() { return _items; }
-  iterator          begin() { return _items.begin(); }
-  iterator          end() { return _items.end(); }
-  const_iterator    begin() const { return _items.begin(); }
-  const_iterator    end() const { return _items.end(); }
+  StoredValue operator[](const size_t idx) const { return _items[idx]; }
+  const Container& items() const { return _items; }
+  Container&       items() { return _items; }
+  iterator         begin() { return _items.begin(); }
+  iterator         end() { return _items.end(); }
+  const_iterator   begin() const { return _items.begin(); }
+  const_iterator   end() const { return _items.end(); }
   void insert(iterator pos, const_iterator first, const_iterator last) {
     _items.insert(pos, first, last);
   }

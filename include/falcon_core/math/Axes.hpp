@@ -19,8 +19,8 @@ namespace math {
  * @brief Container for a collection of axis objects.
  *
  * @details
- * Axes is a vector-like container for axis objects, such as discretizers or numeric axes.
- * Provides standard vector access methods.
+ * Axes is a vector-like container for axis objects, such as discretizers or
+ * numeric axes. Provides standard vector access methods.
  *
  * @tparam T The type of axis object (e.g., double, BaseDiscretizer).
  */
@@ -28,10 +28,8 @@ template <typename T>
 class Axes : public generic::Song {
  public:
   using StoredType = typename std::conditional<
-      std::is_arithmetic<T>::value ||
-      std::is_same<T, std::string>::value ||
-      std::is_same<T, char>::value ||
-      std::is_same<T, bool>::value,
+      std::is_arithmetic<T>::value || std::is_same<T, std::string>::value ||
+          std::is_same<T, char>::value || std::is_same<T, bool>::value,
       T,
       std::shared_ptr<T>>::type;
 
@@ -46,10 +44,12 @@ class Axes : public generic::Song {
    */
   explicit Axes(const std::vector<StoredType>& items) : _items(items) {}
 
-  // Additional constructor for Axes<double> to accept std::vector<std::shared_ptr<double>>
+  // Additional constructor for Axes<double> to accept
+  // std::vector<std::shared_ptr<double>>
   template <typename U = T>
   Axes(const std::vector<std::shared_ptr<double>>& items,
-       typename std::enable_if<std::is_same<U, double>::value>::type* = nullptr) {
+       typename std::enable_if<std::is_same<U, double>::value>::type* =
+           nullptr) {
     _items.reserve(items.size());
     for (const auto& ptr : items) {
       _items.push_back(*ptr);
@@ -119,7 +119,7 @@ class Axes : public generic::Song {
 #endif
 
  private:
-  std::vector<StoredType> _items; ///< Container for axis objects.
+  std::vector<StoredType> _items;  ///< Container for axis objects.
 
   friend class cereal::access;
   /**
@@ -131,7 +131,8 @@ class Axes : public generic::Song {
     ar(cereal::base_class<generic::Song>(this), _items);
   }
 };
-
+template <typename V>
+using AxesSP = std::shared_ptr<Axes<V>>;
 }  // namespace math
 }  // namespace falcon_core
 
