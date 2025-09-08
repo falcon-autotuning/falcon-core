@@ -7,7 +7,7 @@ namespace falcon_core {
 namespace instrument_interfaces {
 namespace names {
 
-class Meter : public InstrumentPort<physics::device_structures::Ohmic> {
+class Meter : public InstrumentPort {
  public:
   Meter();
   Meter(std::string                                        default_name,

@@ -37,8 +37,8 @@ class BaseLabelledArray : public generic::Song {
       : _array(array), _label(label) {}
   BaseLabelledArray(
       std::shared_ptr<ArrayType> array,
-      std::shared_ptr <
-          falcon_core::instrument_interfaces::names::InstrumentPort label)
+      std::shared_ptr<falcon_core::instrument_interfaces::names::InstrumentPort>
+          label)
       : _array(array),
         _label(std::make_shared<
                autotuner_interfaces::contexts::AcquisitionContext>(label)) {}

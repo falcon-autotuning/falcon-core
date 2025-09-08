@@ -7,7 +7,7 @@ namespace falcon_core {
 namespace instrument_interfaces {
 namespace names {
 
-class Knob : public InstrumentPort<physics::device_structures::BaseConnection> {
+class Knob : public InstrumentPort {
  public:
   Knob();
   Knob(std::string                                                 default_name,

@@ -19,7 +19,7 @@ class DummyLabelled1D : public IsLabelled1D<DummyLabelled1D> {
 
 using ArrayType          = BaseArray<double>;
 using LabelType          = int;
-using LabelledArrayType  = BaseLabelledArray<ArrayType, LabelType>;
+using LabelledArrayType  = BaseLabelledArray<ArrayType>;
 using LabelledArraysType = BaseLabelledArrays<LabelledArrayType>;
 
 TEST(BaseLabelledArraysTest, ConstructionAndAccess) {

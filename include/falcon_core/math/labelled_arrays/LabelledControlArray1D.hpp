@@ -15,11 +15,8 @@ namespace math {
 namespace labelled_arrays {
 
 /// @brief 1D control array with instrument port label.
-class LabelledControlArray1D
-    : public BaseLabelledArray<arrays::ControlArray1D,
-                               instrument_interfaces::names::InstrumentPort<
-                                   physics::device_structures::BaseConnection>>,
-      public IsLabelled1D<LabelledControlArray1D> {
+class LabelledControlArray1D : public BaseLabelledArray<arrays::ControlArray1D>,
+                               public IsLabelled1D<LabelledControlArray1D> {
  public:
   using LabelType = instrument_interfaces::names::InstrumentPort<
       physics::device_structures::BaseConnection>;
