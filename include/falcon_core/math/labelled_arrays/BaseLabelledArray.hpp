@@ -8,6 +8,7 @@
 #include <cereal/types/memory.hpp>
 #include <memory>
 
+#include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 
@@ -17,11 +18,10 @@ namespace labelled_arrays {
 
 /// @brief Associates an array with a label.
 /// @tparam ArrayType Type of the array.
-/// @tparam LabelType Type of the label.
-template <typename ArrayType, typename LabelType>
+template <typename ArrayType>
 class BaseLabelledArray : public generic::Song {
-  std::shared_ptr<ArrayType> _array;
-  std::shared_ptr<LabelType> _label;
+  std::shared_ptr<ArrayType>                                          _array;
+  std::shared_ptr<autotuner_interfaces::contexts::AcquisitionContext> _label;
 
   friend class cereal::access;
   template <class Archive>
@@ -31,14 +31,17 @@ class BaseLabelledArray : public generic::Song {
 
  public:
   BaseLabelledArray() = default;
-  BaseLabelledArray(std::shared_ptr<ArrayType> array,
-                    std::shared_ptr<LabelType> label)
+  BaseLabelledArray(
+      std::shared_ptr<ArrayType>                                          array,
+      std::shared_ptr<autotuner_interfaces::contexts::AcquisitionContext> label)
       : _array(array), _label(label) {}
   BaseLabelledArray(
       std::shared_ptr<ArrayType> array,
       std::shared_ptr <
           falcon_core::instrument_interfaces::names::InstrumentPort label)
-      : _array(array), _label(std::make_shared<LabelType>(label)) {}
+      : _array(array),
+        _label(std::make_shared<
+               autotuner_interfaces::contexts::AcquisitionContext>(label)) {}
 
   /**
    * @brief Return the array.
@@ -47,7 +50,9 @@ class BaseLabelledArray : public generic::Song {
   /**
    * @brief Return the label.
    */
-  const std::shared_ptr<LabelType>& label() const { return _label; }
+  const autotuner_interfaces::contexts::AcquisitionContextSP& label() const {
+    return _label;
+  }
 };
 }  // namespace labelled_arrays
 }  // namespace math

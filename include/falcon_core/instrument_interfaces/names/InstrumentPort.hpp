@@ -14,7 +14,6 @@ namespace falcon_core {
 namespace instrument_interfaces {
 namespace names {
 
-template <typename T>
 class InstrumentPort : public generic::Song {
  public:
   /**
@@ -26,91 +25,59 @@ class InstrumentPort : public generic::Song {
    * @description A description of the port.
    */
   InstrumentPort(
-      std::string        default_name,
-      std::shared_ptr<T> pseudo_name     = nullptr,
-      Instrument         instrument_type = INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE,
+      std::string                                                 default_name,
+      std::shared_ptr<physics::device_structures::BaseConnection> pseudo_name =
+          nullptr,
+      Instrument instrument_type = INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE,
       std::shared_ptr<physics::units::SymbolUnit> units =
           std::make_shared<physics::units::SymbolUnit>(
               physics::units::Units::Volt),
-      std::string description = "")
-      : _default_name(std::move(default_name)),
-        _pseudo_name(std::move(pseudo_name)),
-        _instrument_type(std::move(instrument_type)),
-        _units(std::move(units)),
-        _description(std::move(description)) {}
+      std::string description = "");
 
-  InstrumentPort() = default;
   /**
    * @brief Rreturn the default name of the port.
    */
-  const std::string default_name() const { return _default_name; }
+  const std::string default_name() const;
   /**
    * @brief Return the pseudo name of the port.
    * @throws std::runtime_error if the pseudo name is not set.
    */
-  const std::shared_ptr<T> pseudo_name() const {
-    if (!_pseudo_name) {
-      throw std::runtime_error("The pseudo_name of the port is not set");
-    }
-    return _pseudo_name;
-  }
+  const std::shared_ptr<physics::device_structures::BaseConnection>
+  pseudo_name() const;
   /**
    * @brief Returns the type of the instrument that the port is connected to.
    */
-  const Instrument instrument_type() const { return _instrument_type; }
+  const Instrument instrument_type() const;
   /**
    * @brief Returns the untis of the port.
    */
-  const std::shared_ptr<physics::units::SymbolUnit> units() const {
-    return _units;
-  }
+  const std::shared_ptr<physics::units::SymbolUnit> units() const;
   /**
    * @brief Returns the description of the port.
    */
-  const std::string description() const { return _description; }
+  const std::string description() const;
   /**
    * @brief Returns the psuedo name if it exists, otherwise the instrument type
    * as a string.
    */
-  const std::string instrument_facing_name() const {
-    if (_pseudo_name) {
-      return pseudo_name()->name();
-    } else {
-      return instrument_type();
-    }
-  }
+  const std::string instrument_facing_name() const;
 
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this),
-       _default_name,
-       _pseudo_name,
-       _instrument_type,
-       _units,
-       _description);
-  }
+  void serialize(Archive& ar);
 
  private:
-  std::string                                 _default_name;
-  std::shared_ptr<T>                          _pseudo_name;
-  Instrument                                  _instrument_type;
-  std::shared_ptr<physics::units::SymbolUnit> _units;
-  std::string                                 _description;
+  std::string                                                 _default_name;
+  std::shared_ptr<physics::device_structures::BaseConnection> _pseudo_name;
+  Instrument                                                  _instrument_type;
+  std::shared_ptr<physics::units::SymbolUnit>                 _units;
+  std::string                                                 _description;
 
+ protected:
   friend class cereal::access;
+  InstrumentPort();
 };
 
-using InstrumentPortSP =
-    std::shared_ptr<InstrumentPort<physics::device_structures::BaseConnection>>;
+using InstrumentPortSP = std::shared_ptr<InstrumentPort>;
 }  // namespace names
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
-
-#ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::InstrumentPort<
-                     falcon_core::physics::device_structures::BaseConnection>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::instrument_interfaces::names::InstrumentPort<
-        falcon_core::physics::device_structures::BaseConnection>)
-#endif
