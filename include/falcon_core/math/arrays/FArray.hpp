@@ -14,8 +14,8 @@ namespace arrays {
 template <typename T>
 class FArray : public generic::Song {
  public:
-  using value_type = T;
   using array_type = xt::xarray<T>;
+  using value_type = T;
 
   FArray() = default;
   FArray(const array_type& arr) : _data(arr) {}
@@ -34,7 +34,7 @@ class FArray : public generic::Song {
   }
 
   // Forwarding shape, size, dimension
-  auto shape() const { return _data.shape(); }
+  auto shape() const -> decltype(_data.shape()) { return _data.shape(); }
   auto size() const { return _data.size(); }
   auto dimension() const { return _data.dimension(); }
   auto data() { return _data.data(); }
@@ -89,12 +89,15 @@ class FArray : public generic::Song {
   // Serialization
   template <class Archive>
   void serialize(Archive& ar) {
-    std::vector<size_t> shape(_data.shape().begin(), _data.shape().end());
-    ar(cereal::base_class<generic::Song>(this), shape, _data.storage());
+    ar(cereal::base_class<generic::Song>(this));
     if (Archive::is_loading::value) {
-      _data         = array_type::from_shape(shape);
-      auto& storage = _data.storage();
-      ar(storage);
+      std::vector<size_t> shape;
+      ar(shape);
+      _data.reshape(shape);
+      ar(_data.storage());
+    } else {
+      std::vector<size_t> shape(_data.shape().begin(), _data.shape().end());
+      ar(shape, _data.storage());
     }
   }
 
