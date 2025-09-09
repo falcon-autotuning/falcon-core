@@ -17,14 +17,30 @@ template <typename T>
 class MeasuredArray : public BaseArray<T> {
  public:
   using BaseArray<T>::BaseArray;
+  using BaseArray<T>::xtensor;
+  using BaseArray<T>::operator==;
+  using BaseArray<T>::operator!=;
+  using BaseArray<T>::operator+=;
+  using BaseArray<T>::operator-=;
+  using BaseArray<T>::operator*=;
+  using BaseArray<T>::operator/=;
+  using BaseArray<T>::shape;
+  using BaseArray<T>::size;
+  using BaseArray<T>::dimension;
+  using BaseArray<T>::data;
+  using BaseArray<T>::begin;
+  using BaseArray<T>::end;
+  using BaseArray<T>::cbegin;
+  using BaseArray<T>::cend;
+  using BaseArray<T>::view;
+  using BaseArray<T>::operator();
 
- private:
-  friend class cereal::access;
-  template <class Archive>
-  void serialize(Archive& ar);
+  // Add any measured-specific methods if needed
 };
+
 template <typename T>
 using MeasuredArraySP = std::shared_ptr<MeasuredArray<T>>;
+
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core

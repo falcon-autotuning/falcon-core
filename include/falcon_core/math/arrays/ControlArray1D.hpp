@@ -16,13 +16,19 @@ namespace arrays {
 /// @brief 1D control array, enforces 1D shape at construction.
 class ControlArray1D : public ControlArray<double> {
  public:
-  ControlArray1D(const typename ControlArray<double>::MatrixType& data);
+  ControlArray1D(const xt::xarray<double>& data) : ControlArray<double>(data) {
+    if (this->xtensor().dimension() != 1) {
+      throw std::invalid_argument("ControlArray1D must be 1-dimensional.");
+    }
+  }
+  ControlArray1D() = default;
 
  private:
   friend class cereal::access;
-  ControlArray1D();
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<ControlArray<double>>(this));
+  }
 };
 }  // namespace arrays
 }  // namespace math
