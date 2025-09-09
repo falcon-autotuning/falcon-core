@@ -40,3 +40,7 @@ class ControlArray : public BaseArray<T> {
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core
+
+// Cereal registration for ControlArray<double>
+CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray<double>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::math::arrays::BaseArray<double>, falcon_core::math::arrays::ControlArray<double>)

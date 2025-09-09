@@ -34,3 +34,7 @@ class MeasuredArray1D : public MeasuredArray<double> {
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core
+
+// Cereal registration for MeasuredArray1D
+CEREAL_REGISTER_TYPE(falcon_core::math::arrays::MeasuredArray1D)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::math::arrays::MeasuredArray<double>, falcon_core::math::arrays::MeasuredArray1D)

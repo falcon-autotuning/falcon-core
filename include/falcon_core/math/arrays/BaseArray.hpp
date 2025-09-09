@@ -42,3 +42,7 @@ using BaseArraySP = std::shared_ptr<BaseArray<T>>;
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core
+
+// Cereal registration for BaseArray<double>
+CEREAL_REGISTER_TYPE(falcon_core::math::arrays::BaseArray<double>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::arrays::BaseArray<double>)
