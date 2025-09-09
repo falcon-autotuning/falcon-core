@@ -6,7 +6,6 @@
 #pragma once
 
 #include <Eigen/Dense>
-#include <Eigen/Tensor>
 #include <cereal/types/eigen.hpp>
 
 #include "falcon_core/generic/List.hpp"
@@ -18,10 +17,10 @@ namespace arrays {
 
 /// @brief Base class for array-like objects using Eigen matrices.
 /// @tparam T Element type (e.g., double, float).
-template <typename numeric, typename dimensions>
+template <typename numeric>
 class BaseArray : public generic::Song {
  public:
-  using ArrayType = Eigen::Tensor<numeric, dimensions>;
+  using MatrixType = Eigen::Matrix<numeric, Eigen::Dynamic, Eigen::Dynamic>;
 
   /**
    * @brief Initializes an array object.
@@ -152,7 +151,7 @@ class BaseArray : public generic::Song {
   /**
    * @brief Returns the max of the array.
    */
-  T max() const { return this->data().array().maxCoeff(); }
+  numeric max() const { return this->data().array().maxCoeff(); }
   /**
    * @brief Returns the maximum of the two arrays stacked.
    */
@@ -180,7 +179,6 @@ class BaseArray : public generic::Song {
    * @returns True if any of the data is greater than the value, False
    * otherwise.
    */
-  bool operator>(double value) const { return }
 
  protected:
   MatrixType _data;
