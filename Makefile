@@ -59,11 +59,11 @@ docker-make:
 	docker-compose run --rm falcon-core make
 docker-build-cpp:
 	# Run the build in a named container
-	docker-compose run --name falcon-core-build-tmp falcon-core make build ; \
+	docker-compose run --name falcon-core-build-tmp falcon-core make build || true; \
 	# Ensure build directory exists before copying
 	mkdir -p build ; \
 	# Copy the build directory from the container to the host
-	docker cp falcon-core-build-tmp:/app/build ./build || true ; \
+	docker cp falcon-core-build-tmp:/app/workspace/build ./build || true ; \
 	# Remove the container
 	docker rm -f falcon-core-build-tmp || true ; \
 	# Fix permissions on the build directory
