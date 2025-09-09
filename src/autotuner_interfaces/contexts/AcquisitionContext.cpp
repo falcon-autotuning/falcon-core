@@ -4,7 +4,7 @@ namespace falcon_core {
 namespace autotuner_interfaces {
 namespace contexts {
 
-AcquisitionContext::AcquisitionContext() = default;
+AcquisitionContext::AcquisitionContext() : BaseContext(), _units(nullptr) {}
 
 AcquisitionContext::AcquisitionContext(
     physics::device_structures::BaseConnectionSP connection,
@@ -14,7 +14,7 @@ AcquisitionContext::AcquisitionContext(
 
 AcquisitionContext::AcquisitionContext(
     instrument_interfaces::names::InstrumentPortSP port)
-    : BaseContext(port) {}
+    : BaseContext(port), _units(nullptr) {}
 
 AcquisitionContext::AcquisitionContext(BaseContextSP measurement_context,
                                        physics::units::SymbolUnitSP unit)
@@ -68,3 +68,17 @@ CEREAL_REGISTER_TYPE(
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::autotuner_interfaces::contexts::BaseContext,
     falcon_core::autotuner_interfaces::contexts::AcquisitionContext)
+#include "falcon_core/autotuner_interfaces/contexts/BaseContext.hpp"
+
+namespace falcon_core {
+namespace autotuner_interfaces {
+namespace contexts {
+
+// Define BaseContext::connection() if not already defined
+physics::device_structures::BaseConnectionSP BaseContext::connection() const {
+  return _connection;
+}
+
+}  // namespace contexts
+}  // namespace autotuner_interfaces
+}  // namespace falcon_core

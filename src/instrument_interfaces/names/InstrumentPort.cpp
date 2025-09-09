@@ -18,7 +18,13 @@ InstrumentPort::InstrumentPort(
       _units(std::move(units)),
       _description(std::move(description)) {}
 
-InstrumentPort::InstrumentPort() = default;
+InstrumentPort::InstrumentPort()
+    : _default_name(""),
+      _pseudo_name(nullptr),
+      _instrument_type(falcon_core::instrument_interfaces::INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE),
+      _units(std::make_shared<physics::units::SymbolUnit>(physics::units::Units::Volt)),
+      _description("") {}
+
 const std::string InstrumentPort::default_name() const { return _default_name; }
 const std::shared_ptr<physics::device_structures::BaseConnection>
 InstrumentPort::pseudo_name() const {
@@ -53,6 +59,12 @@ void InstrumentPort::serialize(Archive& ar) {
      _description);
 }
 
+// Explicit template instantiations for cereal
+template void InstrumentPort::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive& ar);
+template void InstrumentPort::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive& ar);
+template void InstrumentPort::serialize<cereal::BinaryOutputArchive>(cereal::BinaryOutputArchive& ar);
+template void InstrumentPort::serialize<cereal::BinaryInputArchive>(cereal::BinaryInputArchive& ar);
+
 }  // namespace names
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
@@ -61,3 +73,10 @@ CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::InstrumentPort)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
     falcon_core::instrument_interfaces::names::InstrumentPort)
+
+// Define static member for INSTRUMENT_TYPES
+namespace falcon_core {
+namespace instrument_interfaces {
+const std::string INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE = "DC_VOLTAGE_SOURCE";
+}  // namespace instrument_interfaces
+}  // namespace falcon_core
