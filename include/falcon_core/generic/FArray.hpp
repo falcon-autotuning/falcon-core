@@ -4,6 +4,7 @@
 #include <cereal/types/vector.hpp>
 #include <xtensor/containers/xarray.hpp>
 #include <xtensor/io/xio.hpp>
+#include <xtensor/xview.hpp>
 
 #include "falcon_core/generic/Song.hpp"
 
@@ -36,28 +37,26 @@ class FArray : public generic::Song {
 
   // Forwarding element access
   template <typename... Args>
-  auto operator()(Args&&... args)
-      -> decltype(_data(std::forward<Args>(args)...)) {
+  decltype(auto) operator()(Args&&... args) {
     return _data(std::forward<Args>(args)...);
   }
   template <typename... Args>
-  auto operator()(Args&&... args) const
-      -> decltype(_data(std::forward<Args>(args)...)) {
+  decltype(auto) operator()(Args&&... args) const {
     return _data(std::forward<Args>(args)...);
   }
 
   // Forwarding shape, size, dimension
-  auto shape() const -> decltype(_data.shape()) { return _data.shape(); }
-  auto size() const { return _data.size(); }
-  auto dimension() const { return _data.dimension(); }
-  auto data() { return _data.data(); }
-  auto data() const { return _data.data(); }
+  [[nodiscard]] auto shape() const noexcept -> const auto& { return _data.shape(); }
+  [[nodiscard]] auto size() const noexcept { return _data.size(); }
+  [[nodiscard]] auto dimension() const noexcept { return _data.dimension(); }
+  [[nodiscard]] auto data() noexcept { return _data.data(); }
+  [[nodiscard]] auto data() const noexcept { return _data.data(); }
 
   // Iterators
-  auto begin() { return _data.begin(); }
-  auto end() { return _data.end(); }
-  auto cbegin() const { return _data.cbegin(); }
-  auto cend() const { return _data.cend(); }
+  auto begin() noexcept { return _data.begin(); }
+  auto end() noexcept { return _data.end(); }
+  auto cbegin() const noexcept { return _data.cbegin(); }
+  auto cend() const noexcept { return _data.cend(); }
 
   // Arithmetic operators
   FArray& operator+=(const FArray& other) {
@@ -79,11 +78,11 @@ class FArray : public generic::Song {
 
   // Slicing/view
   template <typename... Args>
-  auto view(Args&&... args) {
+  decltype(auto) view(Args&&... args) {
     return xt::view(_data, std::forward<Args>(args)...);
   }
   template <typename... Args>
-  auto view(Args&&... args) const {
+  decltype(auto) view(Args&&... args) const {
     return xt::view(_data, std::forward<Args>(args)...);
   }
 
@@ -106,7 +105,7 @@ class FArray : public generic::Song {
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this));
-    if (Archive::is_loading::value) {
+    if constexpr (Archive::is_loading::value) {
       std::vector<size_t> shape;
       ar(shape);
       _data.reshape(shape);
@@ -118,8 +117,8 @@ class FArray : public generic::Song {
   }
 
   // Access to underlying xtensor
-  array_type&       xtensor() { return _data; }
-  const array_type& xtensor() const { return _data; }
+  array_type&       xtensor() noexcept { return _data; }
+  const array_type& xtensor() const noexcept { return _data; }
 
  private:
   array_type _data;
