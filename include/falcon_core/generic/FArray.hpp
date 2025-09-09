@@ -5,6 +5,7 @@
 #include <xtensor/containers/xarray.hpp>
 #include <xtensor/io/xio.hpp>
 #include <xtensor/views/xview.hpp>
+#include <cereal/types/xtensor.hpp>
 
 #include "falcon_core/generic/Song.hpp"
 #define XTENSOR_ENABLE_CEREAL
