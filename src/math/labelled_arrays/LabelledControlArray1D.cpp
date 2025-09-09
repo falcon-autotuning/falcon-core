@@ -7,19 +7,18 @@ namespace labelled_arrays {
 LabelledControlArray1D::LabelledControlArray1D(
     std::shared_ptr<arrays::ControlArray1D> array,
     std::shared_ptr<LabelType>              label)
-    : BaseLabelledArray<arrays::ControlArray1D, LabelType>(array, label) {}
+    : BaseLabelledArray(array, label) {}
 
 const arrays::ControlArray1D& LabelledControlArray1D::get_array() const {
-  if (!this->_array) {
+  if (!this->array()) {
     throw std::runtime_error("Array is null");
   }
-  return *this->_array;
+  return *this->array();
 }
 
 template <class Archive>
 void LabelledControlArray1D::serialize(Archive& ar) {
-  ar(cereal::base_class<BaseLabelledArray<arrays::ControlArray1D, LabelType>>(
-      this));
+  ar(cereal::base_class<BaseLabelledArray>(this));
 }
 
 }  // namespace labelled_arrays
