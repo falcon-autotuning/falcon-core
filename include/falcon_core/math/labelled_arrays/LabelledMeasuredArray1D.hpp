@@ -16,7 +16,7 @@ class LabelledMeasuredArray1D
   using LabelType = instrument_interfaces::names::InstrumentPort;
 
   LabelledMeasuredArray1D(std::shared_ptr<arrays::MeasuredArray1D> array,
-                          std::shared_ptr<LabelType> label)
+                          std::shared_ptr<LabelType>               label)
       : BaseLabelledArray<arrays::MeasuredArray1D>(array, label) {}
 
   const arrays::MeasuredArray1D& get_array() const {
