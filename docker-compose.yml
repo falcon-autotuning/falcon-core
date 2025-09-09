@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  falcon-core:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: falcon-core-dev
+    # volumes:
+    #   - .:/workspace
+    # working_dir: /home/workspace
+    tty: true
+    environment:
+      - CC=clang
+      - CXX=clang++
+      - CMAKE_C_COMPILER_LAUNCHER=ccache
+      - CMAKE_CXX_COMPILER_LAUNCHER=ccache
+    # Default command is a shell, but you can override it with docker-compose run
+    command: /bin/sh
