@@ -2,8 +2,8 @@
 
 #include <cereal/types/memory.hpp>
 #include <cereal/types/vector.hpp>
-#include <xtensor/xarray.hpp>
-#include <xtensor/xio.hpp>
+#include <xtensor/containers/xarray.hpp>
+#include <xtensor/io/xio.hpp>
 
 #include "falcon_core/generic/Song.hpp"
 
@@ -22,15 +22,16 @@ class FArray : public generic::Song {
   FArray(array_type&& arr) : _data(std::move(arr)) {}
 
   // Construct from shape (vector)
-  // Always use std::vector<size_t> for shapes to avoid mixed-type issues with xtensor.
+  // Always use std::vector<size_t> for shapes to avoid mixed-type issues with
+  // xtensor.
   explicit FArray(const std::vector<size_t>& shape) : _data(shape) {}
 
   // Static factories for zeros/empty
   static FArray zeros(const std::vector<size_t>& shape) {
-      return FArray(xt::zeros<T>(shape));
+    return FArray(xt::zeros<T>(shape));
   }
   static FArray empty(const std::vector<size_t>& shape) {
-      return FArray(xt::empty<T>(shape));
+    return FArray(xt::empty<T>(shape));
   }
 
   // Forwarding element access
@@ -86,7 +87,8 @@ class FArray : public generic::Song {
     return xt::view(_data, std::forward<Args>(args)...);
   }
 
-  // Note: Do NOT provide initializer_list-based shape constructors to avoid mixed-type issues.
+  // Note: Do NOT provide initializer_list-based shape constructors to avoid
+  // mixed-type issues.
 
   // Assignment and conversion
   FArray& operator=(const array_type& arr) {

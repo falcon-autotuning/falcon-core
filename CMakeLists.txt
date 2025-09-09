@@ -254,6 +254,20 @@ set(EIGEN_BUILD_TESTING
 FetchContent_MakeAvailable(eigen)
 set_property(DIRECTORY ${eigen_SOURCE_DIR} PROPERTY EXCLUDE_FROM_ALL TRUE)
 
+# xtensor
+FetchContent_Declare(
+            xtl
+            GIT_REPOSITORY https://github.com/xtensor-stack/xtl.git
+            GIT_TAG        0.8.0 # Or a specific tag/commit
+        )
+FetchContent_MakeAvailable(xtl)
+
+FetchContent_Declare(
+            xtensor
+            GIT_REPOSITORY https://github.com/xtensor-stack/xtensor.git
+            GIT_TAG        0.27.0 # Or a specific tag/commit
+        )
+FetchContent_MakeAvailable(xtensor)
 # boost filesystem support
 find_package(Boost REQUIRED COMPONENTS filesystem system)
 include_directories(${Boost_INCLUDE_DIRS})
@@ -297,13 +311,16 @@ else()
 endif()
 add_library(falcon_core_cpp ${FALCON_CORE_SOURCES})
 target_include_directories(
-  falcon_core_cpp
-  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-         $<INSTALL_INTERFACE:include> ${eigen_SOURCE_DIR}
-         ${cereal_SOURCE_DIR}/include)
+     falcon_core_cpp
+     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+            $<INSTALL_INTERFACE:include>
+            ${eigen_SOURCE_DIR}
+            ${cereal_SOURCE_DIR}/include
+            ${xtensor_SOURCE_DIR}/include
+            ${xtl_SOURCE_DIR}/include
+   )
 
-target_link_libraries(falcon_core_cpp PRIVATE Boost::filesystem Boost::system)
-
+target_link_libraries(falcon_core_cpp PRIVATE Boost::filesystem Boost::system xtl xtensor)
 if(NOT FALCON_CORE_DIRS)
   set(FALCON_HEADERS
     falcon_core/generic/Song.hpp
