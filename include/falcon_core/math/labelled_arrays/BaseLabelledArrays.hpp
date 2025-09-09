@@ -31,6 +31,22 @@ class BaseLabelledArrays : public generic::Song {
   void append(const std::shared_ptr<value_type> &labelled_array);
   const container_type &get_arrays() const;
 
+  // --- Template method definitions moved to header for linker safety ---
+};
+
+template <typename T>
+BaseLabelledArrays<T>::BaseLabelledArrays() = default;
+
+template <typename T>
+void BaseLabelledArrays<T>::append(const std::shared_ptr<value_type> &labelled_array) {
+  _arrays.push_back(labelled_array);
+}
+
+template <typename T>
+const typename BaseLabelledArrays<T>::container_type &BaseLabelledArrays<T>::get_arrays() const {
+  return _arrays;
+}
+
  private:
   container_type _arrays;
 
