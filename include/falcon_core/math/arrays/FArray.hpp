@@ -21,6 +21,18 @@ class FArray : public generic::Song {
   FArray(const array_type& arr) : _data(arr) {}
   FArray(array_type&& arr) : _data(std::move(arr)) {}
 
+  // Construct from shape (vector)
+  // Always use std::vector<size_t> for shapes to avoid mixed-type issues with xtensor.
+  explicit FArray(const std::vector<size_t>& shape) : _data(shape) {}
+
+  // Static factories for zeros/empty
+  static FArray zeros(const std::vector<size_t>& shape) {
+      return FArray(xt::zeros<T>(shape));
+  }
+  static FArray empty(const std::vector<size_t>& shape) {
+      return FArray(xt::empty<T>(shape));
+  }
+
   // Forwarding element access
   template <typename... Args>
   auto operator()(Args&&... args)
@@ -73,6 +85,8 @@ class FArray : public generic::Song {
   auto view(Args&&... args) const {
     return xt::view(_data, std::forward<Args>(args)...);
   }
+
+  // Note: Do NOT provide initializer_list-based shape constructors to avoid mixed-type issues.
 
   // Assignment and conversion
   FArray& operator=(const array_type& arr) {
