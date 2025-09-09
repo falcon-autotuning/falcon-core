@@ -4,7 +4,7 @@
 #include <cereal/types/vector.hpp>
 #include <xtensor/containers/xarray.hpp>
 #include <xtensor/io/xio.hpp>
-#include <xtensor/xview.hpp>
+#include <xtensor/views/xview.hpp>
 
 #include "falcon_core/generic/Song.hpp"
 
@@ -15,9 +15,9 @@ namespace arrays {
 template <typename T>
 class FArray : public generic::Song {
  public:
-  using array_type = xt::xarray<T>;
-  using value_type = T;
-  using reference = T&;
+  using array_type      = xt::xarray<T>;
+  using value_type      = T;
+  using reference       = T&;
   using const_reference = const T&;
 
   FArray() = default;
@@ -25,9 +25,9 @@ class FArray : public generic::Song {
   FArray(array_type&& arr) noexcept : _data(std::move(arr)) {}
   explicit FArray(const std::vector<size_t>& shape) : _data(shape) {}
 
-  FArray(const FArray&) = default;
-  FArray(FArray&&) noexcept = default;
-  FArray& operator=(const FArray&) = default;
+  FArray(const FArray&)                = default;
+  FArray(FArray&&) noexcept            = default;
+  FArray& operator=(const FArray&)     = default;
   FArray& operator=(FArray&&) noexcept = default;
 
   static FArray zeros(const std::vector<size_t>& shape) {
@@ -47,7 +47,7 @@ class FArray : public generic::Song {
   }
 
   [[nodiscard]] const auto& shape() const noexcept { return _data.shape(); }
-  [[nodiscard]] auto size() const noexcept { return _data.size(); }
+  [[nodiscard]] auto        size() const noexcept { return _data.size(); }
   [[nodiscard]] auto dimension() const noexcept { return _data.dimension(); }
   [[nodiscard]] auto data() noexcept { return _data.data(); }
   [[nodiscard]] auto data() const noexcept { return _data.data(); }
