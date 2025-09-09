@@ -18,8 +18,7 @@ namespace labelled_arrays {
 class LabelledControlArray1D : public BaseLabelledArray<arrays::ControlArray1D>,
                                public IsLabelled1D<LabelledControlArray1D> {
  public:
-  using LabelType = instrument_interfaces::names::InstrumentPort<
-      physics::device_structures::BaseConnection>;
+  using LabelType = instrument_interfaces::names::InstrumentPort;
 
   LabelledControlArray1D(std::shared_ptr<arrays::ControlArray1D> array,
                          std::shared_ptr<LabelType>              label);
