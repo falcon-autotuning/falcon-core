@@ -35,17 +35,21 @@ class BaseLabelledArrays : public generic::Song {
 };
 
 template <typename T>
-BaseLabelledArrays<T>::BaseLabelledArrays() = default;
+class BaseLabelledArrays : public generic::Song {
+ public:
+  /// @brief Type alias for value type.
+  using value_type = T;
+  /// @brief Type alias for container type.
+  using container_type = std::vector<std::shared_ptr<value_type>>;
 
-template <typename T>
-void BaseLabelledArrays<T>::append(const std::shared_ptr<value_type> &labelled_array) {
-  _arrays.push_back(labelled_array);
-}
+  BaseLabelledArrays() = default;
 
-template <typename T>
-const typename BaseLabelledArrays<T>::container_type &BaseLabelledArrays<T>::get_arrays() const {
-  return _arrays;
-}
+  void append(const std::shared_ptr<value_type> &labelled_array) {
+    _arrays.push_back(labelled_array);
+  }
+  const container_type &get_arrays() const {
+    return _arrays;
+  }
 
  private:
   container_type _arrays;
