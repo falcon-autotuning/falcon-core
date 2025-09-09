@@ -8,14 +8,13 @@ LabelledMeasuredArray1D::LabelledMeasuredArray1D() {}
 LabelledMeasuredArray1D::LabelledMeasuredArray1D(
     std::shared_ptr<arrays::MeasuredArray<double>> array,
     std::shared_ptr<LabelType>                     label)
-    : BaseLabelledArray<arrays::MeasuredArray<double>, LabelType>(array,
-                                                                  label) {}
+    : BaseLabelledArray<arrays::MeasuredArray<double>>(array, label) {}
 const arrays::MeasuredArray<double>& LabelledMeasuredArray1D::get_array()
     const {
-  if (!this->_array) {
+  if (!this->array()) {
     throw std::runtime_error("Array is null");
   }
-  return *this->_array;
+  return *this->array();
 }
 
 }  // namespace labelled_arrays

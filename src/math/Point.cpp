@@ -1,7 +1,6 @@
 #include "falcon_core/math/Point.hpp"
 
 #include <memory>
-#include <stdexcept>
 
 namespace falcon_core {
 namespace math {
