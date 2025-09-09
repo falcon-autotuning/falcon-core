@@ -1,9 +1,8 @@
 #pragma once
-#include "falcon_core/physics/config/core/Config.hpp"
+#include <yaml-cpp/yaml.h>
 
-namespace falcon_core {
-namespace physics {
-namespace config {
+#include "falcon_core/physics/config/core/Config.hpp"
+namespace falcon_core::physics::config {
 /**
  * @brief A utility class for manipulating and extracting information from
  * device configurations.
@@ -16,17 +15,13 @@ class ConfigManipulations {
    * @param config A mapping containing configuration details.
    * @return A Config object populated with the provided details.
    */
-  core::ConfigSP unpack_device_config(
-      const generic::MapSP<std::string, auto>& config) const;
+  core::ConfigSP unpack_device_config(const YAML::Node& config) const;
   /**
    * @brief given the available gates loaded from the config, lets generate the
    * adjacency matrix for this device.
    */
   core::AdjacencySP _extract_adjacency(
-      const generic::MapSP<
-          std::string,
-          generic::Map<std::string, generic::Map<std::string, std::string>>>&
-                                                                map,
+      const YAML::Node&                                         map,
       const generic::ListSP<device_structures::BaseConnection>& total_gates)
       const;
   /**
@@ -34,7 +29,7 @@ class ConfigManipulations {
    * constraints.
    */
   core::VoltageConstraintsSP _extract_voltage_constraints(
-      const generic::MapSP<std::string, auto>&                  map,
+      const YAML::Node&                                         map,
       const generic::ListSP<device_structures::BaseConnection>& total_gates)
       const;
   /**
@@ -46,10 +41,8 @@ class ConfigManipulations {
    * @throws std::runtime_error if the dcwiring extraction fails.
    */
   device_structures::ImpedancesSP _extract_dcwiring(
-      const generic::MapSP<
-          std::string,
-          generic::Map<std::string, generic::Map<std::string, double>>> dict,
-      const device_structures::OhmicsSP&                                ohmics,
+      const YAML::Node&                        map,
+      const device_structures::OhmicsSP&       ohmics,
       const core::StandardConfigConnectionsSP& connections) const;
   /**
    * @brief Extract the barrier gates from the compressed ";" delimited string
@@ -77,8 +70,8 @@ class ConfigManipulations {
    * are ";" delimtted strings of gates.
    * @returns a collection of standard connections.
    */
-  core::StandardConfigConnectionsSP _extract_standard_connections(
-      const generic::MapSP<std::string, std::string>& config) const;
+  core::StandardConfigConnectionsSP _extract_standard_config_connections(
+      const YAML::Node& config) const;
   /**
    * @brief Extract the ohmics from the compressed ";" delimited string
    */
@@ -89,6 +82,4 @@ class ConfigManipulations {
   device_structures::BaseConnectionsSP _extract_order(
       const std::string raw) const;
 };
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config
