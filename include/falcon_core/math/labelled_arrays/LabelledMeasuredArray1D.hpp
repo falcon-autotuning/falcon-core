@@ -10,23 +10,28 @@ namespace math {
 namespace labelled_arrays {
 
 class LabelledMeasuredArray1D
-    : public BaseLabelledArray<arrays::MeasuredArray<double>>,
+    : public BaseLabelledArray<arrays::MeasuredArray1D>,
       public IsLabelled1D<LabelledMeasuredArray1D> {
  public:
   using LabelType = instrument_interfaces::names::InstrumentPort;
 
-  LabelledMeasuredArray1D(std::shared_ptr<arrays::MeasuredArray<double>> array,
-                          std::shared_ptr<LabelType>                     label);
+  LabelledMeasuredArray1D(std::shared_ptr<arrays::MeasuredArray1D> array,
+                          std::shared_ptr<LabelType> label)
+      : BaseLabelledArray<arrays::MeasuredArray1D>(array, label) {}
 
-  const arrays::MeasuredArray<double>& get_array() const;
+  const arrays::MeasuredArray1D& get_array() const {
+    if (!this->_array) {
+      throw std::runtime_error("Array is null");
+    }
+    return *(this->_array);
+  }
 
  private:
   friend class cereal::access;
-  LabelledMeasuredArray1D();
+  LabelledMeasuredArray1D() = default;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseLabelledArray<arrays::MeasuredArray<double>>>(
-        this));
+    ar(cereal::base_class<BaseLabelledArray<arrays::MeasuredArray1D>>(this));
   }
 };
 
