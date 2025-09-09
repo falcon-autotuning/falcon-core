@@ -50,3 +50,18 @@ clean:
 
 test-make-cpp:
 	@gcc
+
+docker-build:
+	docker-compose build
+docker-shell:
+	docker-compose run --rm falcon-core
+docker-make:
+	docker-compose run --rm falcon-core make
+docker-build-cpp:
+	docker-compose run --rm falcon-core make build
+docker-test:
+	docker-compose run --rm falcon-core make test
+docker-clean:
+	docker-compose run --rm falcon-core make clean
+docker-install:
+	docker-compose run --rm falcon-core make install

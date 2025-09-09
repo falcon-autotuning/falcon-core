@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 project(FalconCore LANGUAGES CXX C)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # --- Dependencies ---
@@ -237,22 +237,18 @@ FetchContent_Populate(cereal)
 FetchContent_Declare(
   googletest
   GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG release-1.12.1)
+  GIT_TAG v1.17.0)
 FetchContent_MakeAvailable(googletest)
 
-# eigen
-FetchContent_Declare(
-  eigen
-  GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
-  GIT_TAG 3.4.0)
-# Eigen is header-only, so we don't need to build its tests. This prevents its
-# test configuration from running, which cleans up CMake output and ensures our
-# project's C++ standard is used.
-set(EIGEN_BUILD_TESTING
-    OFF
-    CACHE BOOL "Disable Eigen tests" FORCE)
-FetchContent_MakeAvailable(eigen)
-set_property(DIRECTORY ${eigen_SOURCE_DIR} PROPERTY EXCLUDE_FROM_ALL TRUE)
+
+
+find_package(xtl REQUIRED)
+find_package(xsimd REQUIRED)
+find_package(xtensor REQUIRED)
+# set_property(DIRECTORY ${eigen_SOURCE_DIR} PROPERTY EXCLUDE_FROM_ALL TRUE)
+# find_package(xtensor REQUIRED)
+
+
 
 # boost filesystem support
 find_package(Boost REQUIRED COMPONENTS filesystem system)
@@ -299,7 +295,7 @@ add_library(falcon_core_cpp ${FALCON_CORE_SOURCES})
 target_include_directories(
   falcon_core_cpp
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-         $<INSTALL_INTERFACE:include> ${eigen_SOURCE_DIR}
+         $<INSTALL_INTERFACE:include> ${xtl_SOURCE_DIR}/include ${xtensor_INCLUDE_DIRS} ${xsimd_INCLUDE_DIRS}
          ${cereal_SOURCE_DIR}/include)
 
 target_link_libraries(falcon_core_cpp PRIVATE Boost::filesystem Boost::system)
