@@ -46,7 +46,9 @@ class FArray : public generic::Song {
   }
 
   // Forwarding shape, size, dimension
-  [[nodiscard]] auto shape() const noexcept -> const auto& { return _data.shape(); }
+  [[nodiscard]] auto shape() const noexcept -> const auto& {
+    return _data.shape();
+  }
   [[nodiscard]] auto size() const noexcept { return _data.size(); }
   [[nodiscard]] auto dimension() const noexcept { return _data.dimension(); }
   [[nodiscard]] auto data() noexcept { return _data.data(); }
