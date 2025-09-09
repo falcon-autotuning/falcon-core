@@ -11,17 +11,15 @@ Meter::Meter(std::string                                        default_name,
              Instrument                                         instrument_type,
              std::shared_ptr<physics::units::SymbolUnit>        units,
              std::string                                        description)
-    : InstrumentPort<physics::device_structures::Ohmic>(
-          std::move(default_name),
-          std::move(pseudo_name),
-          std::move(instrument_type),
-          std::move(units),
-          std::move(description)) {}
+    : InstrumentPort(std::move(default_name),
+                     std::move(pseudo_name),
+                     std::move(instrument_type),
+                     std::move(units),
+                     std::move(description)) {}
 
 template <class Archive>
 void Meter::serialize(Archive& ar) {
-  ar(cereal::base_class<InstrumentPort<physics::device_structures::Ohmic>>(
-      this));
+  ar(cereal::base_class<InstrumentPort>(this));
 }
 
 }  // namespace names
