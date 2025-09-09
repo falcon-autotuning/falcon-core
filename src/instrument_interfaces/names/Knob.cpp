@@ -14,17 +14,15 @@ Knob::Knob(
     Instrument                                                  instrument_type,
     std::shared_ptr<physics::units::SymbolUnit>                 units,
     std::string                                                 description)
-    : InstrumentPort<physics::device_structures::BaseConnection>(
-          std::move(default_name),
-          std::move(pseudo_name),
-          std::move(instrument_type),
-          std::move(units),
-          std::move(description)) {}
+    : InstrumentPort(std::move(default_name),
+                     std::move(pseudo_name),
+                     std::move(instrument_type),
+                     std::move(units),
+                     std::move(description)) {}
 
 template <class Archive>
 void Knob::serialize(Archive& ar) {
-  ar(cereal::base_class<
-      InstrumentPort<physics::device_structures::BaseConnection>>(this));
+  ar(cereal::base_class<InstrumentPort>(this));
 }
 
 }  // namespace names
