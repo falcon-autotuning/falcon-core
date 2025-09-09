@@ -1,16 +1,17 @@
 #include <gtest/gtest.h>
-#include <xtensor/xarray.hpp>
-#include <xtensor/xio.hpp>
 
-#include "falcon_core/math/arrays/ControlArray1D.hpp"
+#include <xtensor/containers/xarray.hpp>
+#include <xtensor/io/xio.hpp>
+
 #include "falcon_core/math/arrays/BaseArray.hpp"
+#include "falcon_core/math/arrays/ControlArray1D.hpp"
 
 namespace tests {
 using namespace falcon_core::math::arrays;
 
 TEST(BaseArrayTest, ConstructionAndAccess) {
   xt::xarray<double> arr_data = {{1.0, 2.0}, {3.0, 4.0}};
-  BaseArray<double> arr(arr_data);
+  BaseArray<double>  arr(arr_data);
   EXPECT_EQ(arr.shape()[0], 2);
   EXPECT_EQ(arr.shape()[1], 2);
   EXPECT_DOUBLE_EQ(arr(0, 0), 1.0);
@@ -19,7 +20,7 @@ TEST(BaseArrayTest, ConstructionAndAccess) {
 
 TEST(ControlArray1DTest, Construction1D) {
   xt::xarray<double> vec = {1.0, 2.0, 3.0};
-  ControlArray1D arr1d(vec);
+  ControlArray1D     arr1d(vec);
   EXPECT_EQ(arr1d.shape()[0], 3);
   EXPECT_EQ(arr1d.dimension(), 1);
   EXPECT_DOUBLE_EQ(arr1d(2), 3.0);
@@ -32,7 +33,7 @@ TEST(ControlArray1DTest, ThrowsOnNon1D) {
 
 TEST(BaseArrayTest, SerializationRoundTrip) {
   xt::xarray<double> arr_data = {{1.0, 2.0}, {3.0, 4.0}};
-  BaseArray<double> arr(arr_data);
+  BaseArray<double>  arr(arr_data);
 
   // Serialize to JSON using the class helper
   std::string json = arr.to_json_string();
@@ -48,8 +49,8 @@ TEST(BaseArrayTest, SerializationRoundTrip) {
 }
 
 TEST(ControlArray1DTest, SerializationRoundTrip) {
-  xt::xarray<double> vec = {1.0, 2.0, 3.0};
-  auto arr1d = std::make_shared<ControlArray1D>(vec);
+  xt::xarray<double> vec   = {1.0, 2.0, 3.0};
+  auto               arr1d = std::make_shared<ControlArray1D>(vec);
 
   // Serialize to JSON using the class helper
   std::string json = arr1d->to_json_string();
