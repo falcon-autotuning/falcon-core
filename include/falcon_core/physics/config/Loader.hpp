@@ -1,12 +1,12 @@
 #pragma once
 #include <boost/filesystem.hpp>
 
-#include "falcon_core/generic/Song.hpp"
+#include "falcon_core/physics/config/ConfigManipulations.hpp"
 #include "falcon_core/physics/config/core/Config.hpp"
 namespace falcon_core {
 namespace physics {
 namespace config {
-class Loader : public generic::Song {
+class Loader : public ConfigManipulations {
   boost::filesystem::path _config_path;
   core::Config            _config;
 

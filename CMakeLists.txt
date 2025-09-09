@@ -258,16 +258,31 @@ set_property(DIRECTORY ${eigen_SOURCE_DIR} PROPERTY EXCLUDE_FROM_ALL TRUE)
 FetchContent_Declare(
             xtl
             GIT_REPOSITORY https://github.com/xtensor-stack/xtl.git
-            GIT_TAG        0.8.0 # Or a specific tag/commit
+            GIT_TAG        0.8.0
         )
 FetchContent_MakeAvailable(xtl)
 
 FetchContent_Declare(
             xtensor
             GIT_REPOSITORY https://github.com/xtensor-stack/xtensor.git
-            GIT_TAG        0.27.0 # Or a specific tag/commit
+            GIT_TAG        0.27.0
         )
 FetchContent_MakeAvailable(xtensor)
+
+FetchContent_Declare(
+            xsimd
+            GIT_REPOSITORY https://github.com/xtensor-stack/xsimd.git
+            GIT_TAG        13.2.0
+        )
+FetchContent_MakeAvailable(xsimd)
+
+#yaml
+FetchContent_Declare(
+  yaml-cpp
+  GIT_REPOSITORY https://github.com/jbeder/yaml-cpp.git
+  GIT_TAG        master
+)
+FetchContent_MakeAvailable(yaml-cpp)
 # boost filesystem support
 find_package(Boost REQUIRED COMPONENTS filesystem system)
 include_directories(${Boost_INCLUDE_DIRS})
@@ -318,9 +333,10 @@ target_include_directories(
             ${cereal_SOURCE_DIR}/include
             ${xtensor_SOURCE_DIR}/include
             ${xtl_SOURCE_DIR}/include
+            ${xsimd_SOURCE_DIR}/include
    )
 
-target_link_libraries(falcon_core_cpp PRIVATE Boost::filesystem Boost::system xtl xtensor)
+target_link_libraries(falcon_core_cpp PRIVATE Boost::filesystem Boost::system xtl xtensor xsimd yaml-cpp)
 if(NOT FALCON_CORE_DIRS)
   set(FALCON_HEADERS
     falcon_core/generic/Song.hpp
