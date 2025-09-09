@@ -49,6 +49,21 @@ class AcquisitionContext : public BaseContext {
    * @brief Returns the units of the context.
    */
   physics::units::SymbolUnitSP units() const;
+
+  /**
+   * @brief Returns the InstrumentPort associated with this context, if any.
+   */
+  instrument_interfaces::names::InstrumentPortSP port() const {
+    // If this context was constructed from an InstrumentPort, return it.
+    // Otherwise, return nullptr.
+    // You may need to adjust this if you store the port differently.
+    // This assumes you have a member _port or can reconstruct it from _label.
+    // For now, try to get it from the connection if possible.
+    // If you have a _port member, just: return _port;
+    // Otherwise, try to dynamic_pointer_cast:
+    auto port = std::dynamic_pointer_cast<instrument_interfaces::names::InstrumentPort>(this->connection());
+    return port;
+  }
   /**
    * @brief Divide the units. The context on the top keeps all other details.
    * @param other: The unit to divide by.
