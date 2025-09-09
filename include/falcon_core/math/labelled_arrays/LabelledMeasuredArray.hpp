@@ -18,17 +18,15 @@ class LabelledMeasuredArray
    * @param label The AcquisitionContext label.
    */
   LabelledMeasuredArray(
-      std::shared_ptr<arrays::MeasuredArray<double>> array,
-      std::shared_ptr<autotuner_interfaces::contexts::AcquisitionContext>
-          label);
+      arrays::MeasuredArraySP<double>                      array,
+      autotuner_interfaces::contexts::AcquisitionContextSP label);
   /**
    * @brief Create a labelled array from a raw array.
    * @param array The measured data.
    * @param The AquisitionContext label.
    */
-  LabelledMeasuredArray(
-      MatrixType                                                    array,
-      std::shared_ptr<instrument_interfaces::names::InstrumentPort> label);
+  LabelledMeasuredArray(MatrixType                                     array,
+                        instrument_interfaces::names::InstrumentPortSP label);
 
  private:
   friend class cereal::access;

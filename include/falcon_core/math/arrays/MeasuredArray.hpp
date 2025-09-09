@@ -23,6 +23,8 @@ class MeasuredArray : public BaseArray<T> {
   template <class Archive>
   void serialize(Archive& ar);
 };
+template <typename T>
+using MeasuredArraySP = std::shared_ptr<MeasuredArray<T>>;
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core

@@ -1,47 +1,34 @@
 #include "falcon_core/math/labelled_arrays/LabelledMeasuredArray.hpp"
 
+#include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
 
 namespace falcon_core {
 namespace math {
 namespace labelled_arrays {
+LabelledMeasuredArray::LabelledMeasuredArray() = default;
+LabelledMeasuredArray::LabelledMeasuredArray(
+    arrays::MeasuredArraySP<double>                      array,
+    autotuner_interfaces::contexts::AcquisitionContextSP label)
+    : BaseLabelledArray<arrays::MeasuredArray<double>>(array, label) {}
+LabelledMeasuredArray::LabelledMeasuredArray(
+    MatrixType array, instrument_interfaces::names::InstrumentPortSP label)
+    : BaseLabelledArray<arrays::MeasuredArray<double>>(
+          std::make_shared<arrays::MeasuredArray<double>>(array),
+          std::make_shared<autotuner_interfaces::contexts::AcquisitionContext>(
+              label)) {}
 
-template <typename LabelType>
-LabelledMeasuredArray<LabelType>::LabelledMeasuredArray(
-    std::shared_ptr<arrays::MeasuredArray<double>> array,
-    std::shared_ptr<LabelType>                     label)
-    : BaseLabelledArray<arrays::MeasuredArray<double>, LabelType>(array,
-                                                                  label) {}
-
-template <typename LabelType>
 template <class Archive>
-void LabelledMeasuredArray<LabelType>::serialize(Archive& ar) {
-  ar(cereal::base_class<
-      BaseLabelledArray<arrays::MeasuredArray<double>, LabelType>>(this));
+void LabelledMeasuredArray::serialize(Archive& ar) {
+  ar(cereal::base_class<BaseLabelledArray<arrays::MeasuredArray<double>>>(
+      this));
 }
-
+using LabelledMeasuredArraySP = std::shared_ptr<LabelledMeasuredArray>;
 }  // namespace labelled_arrays
 }  // namespace math
 }  // namespace falcon_core
 
-// Explicit instantiation for Gate label
-using GateLabel = falcon_core::instrument_interfaces::names::InstrumentPort<
-    falcon_core::physics::device_structures::BaseConnection>;
-template class falcon_core::math::labelled_arrays::LabelledMeasuredArray<
-    GateLabel>;
-template void
-falcon_core::math::labelled_arrays::LabelledMeasuredArray<GateLabel>::serialize<
-    cereal::JSONOutputArchive>(cereal::JSONOutputArchive&);
-template void falcon_core::math::labelled_arrays::LabelledMeasuredArray<
-    GateLabel>::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive&);
-
-CEREAL_REGISTER_TYPE(
-    falcon_core::math::labelled_arrays::LabelledMeasuredArray<
-        falcon_core::instrument_interfaces::names::InstrumentPort<
-            falcon_core::physics::device_structures::BaseConnection>>)
+CEREAL_REGISTER_TYPE(falcon_core::math::labelled_arrays::LabelledMeasuredArray)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
-    falcon_core::math::labelled_arrays::LabelledMeasuredArray<
-        falcon_core::instrument_interfaces::names::InstrumentPort<
-            falcon_core::physics::device_structures::BaseConnection>>)
+    falcon_core::math::labelled_arrays::LabelledMeasuredArray)
