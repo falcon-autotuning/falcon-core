@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "falcon_core/math/arrays/MeasuredArray.hpp"
 #include <stdexcept>
-#include <xtensor/xarray.hpp>
+
+#include "falcon_core/math/arrays/MeasuredArray.hpp"
 
 namespace falcon_core {
 namespace math {
@@ -15,7 +15,8 @@ namespace arrays {
 
 class MeasuredArray1D : public MeasuredArray<double> {
  public:
-  MeasuredArray1D(const xt::xarray<double>& data) : MeasuredArray<double>(data) {
+  MeasuredArray1D(const xt::xarray<double>& data)
+      : MeasuredArray<double>(data) {
     if (this->xtensor().dimension() != 1) {
       throw std::invalid_argument("MeasuredArray1D must be 1-dimensional.");
     }
