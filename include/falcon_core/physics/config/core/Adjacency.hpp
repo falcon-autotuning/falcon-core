@@ -1,9 +1,6 @@
 #pragma once
 
-#include <Eigen/Dense>
-#include <cereal/types/eigen.hpp>
-
-#include "falcon_core/generic/Song.hpp"
+#include "falcon_core/generic/FArray.hpp"
 #include "falcon_core/physics/device_structures/BaseConnections.hpp"
 
 namespace falcon_core {
@@ -11,18 +8,12 @@ namespace physics {
 namespace config {
 namespace core {
 
-class Adjacency : public generic::Song {
-  using MatrixType = Eigen::Matrix<int, Eigen::Dynamic, Eigen::Dynamic>;
-  using Indexes    = physics::device_structures::BaseConnectionsSP;
-  Indexes    _indexes;
-  MatrixType _matrix;
+class Adjacency : public generic::FArray<int> {
+  using Indexes = physics::device_structures::BaseConnectionsSP;
+  Indexes _indexes;
 
  public:
-  Adjacency(const MatrixType &matrix, const Indexes indexes);
-  /**
-   * @brief Returns the matrix containing the device layout adjacency
-   */
-  MatrixType matrix() const;
+  Adjacency(const xt::xarray<int> &matrix, const Indexes indexes);
   /**
    # @brief Returns the indexes of the gates in the order for the adjacency
    matrix

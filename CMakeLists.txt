@@ -337,7 +337,8 @@ target_include_directories(
             ${xsimd_SOURCE_DIR}/include
    )
 
-target_link_libraries(falcon_core_cpp PRIVATE Boost::filesystem Boost::system xtl xtensor xsimd yaml-cpp)
+target_link_libraries(falcon_core_cpp PRIVATE Boost::filesystem Boost::system xtl xtensor xsimd yaml-cpp::yaml-cpp)
+target_link_libraries(falcon_core_cpp PUBLIC yaml-cpp::yaml-cpp)
 if(NOT FALCON_CORE_DIRS)
   set(FALCON_HEADERS
     falcon_core/generic/Song.hpp

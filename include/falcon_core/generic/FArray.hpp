@@ -2,18 +2,16 @@
 
 #include <cereal/types/memory.hpp>
 #include <cereal/types/vector.hpp>
+#include <cereal/types/xtensor.hpp>
 #include <xtensor/containers/xarray.hpp>
 #include <xtensor/io/xio.hpp>
 #include <xtensor/views/xview.hpp>
-#include <cereal/types/xtensor.hpp>
 
 #include "falcon_core/generic/Song.hpp"
 #define XTENSOR_ENABLE_CEREAL
 #include <cereal/archives/binary.hpp>
 
-namespace falcon_core {
-namespace math {
-namespace arrays {
+namespace falcon_core::generic {
 
 template <typename T>
 class FArray : public generic::Song {
@@ -68,6 +66,26 @@ class FArray : public generic::Song {
     _data -= other._data;
     return *this;
   }
+  FArray& operator*(const double other) {
+    _data *= other;
+    return *this;
+  }
+  FArray& operator*(const int other) {
+    _data *= other;
+    return *this;
+  }
+  FArray& operator*(const FArray& other) {
+    _data *= other._data;
+    return *this;
+  }
+  FArray& operator*=(const double other) {
+    _data *= other;
+    return *this;
+  }
+  FArray& operator*=(const int other) {
+    _data *= other;
+    return *this;
+  }
   FArray& operator*=(const FArray& other) {
     _data *= other._data;
     return *this;
@@ -110,6 +128,4 @@ class FArray : public generic::Song {
   array_type _data;
 };
 
-}  // namespace arrays
-}  // namespace math
-}  // namespace falcon_core
+}  // namespace falcon_core::generic

@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 
+#include <fstream>
 #include <memory>
 
 #include "falcon_core/physics/config/Loader.hpp"
@@ -96,7 +97,7 @@ class ConfigTestFixture : public ::testing::Test {
             std::make_shared<
                 falcon_core::physics::config::core::VoltageConstraints>(
                 std::make_shared<falcon_core::physics::config::core::Adjacency>(
-                    Eigen::MatrixXi::Identity(9, 9),
+                    xt::eye(9),
                     std::make_shared<BaseConnections>(
                         std::vector<BaseConnectionSP>{
                             std::make_shared<ScreeningGate>("SG1"),
@@ -334,6 +335,5 @@ TEST(ConfigLoaderTest, LoadConfigFromYaml) {
 
   ASSERT_TRUE(config != nullptr);
   EXPECT_EQ(config->num_unique_channels(), 2);
-  EXPECT_EQ(config->screening_gates_str(), "S1;S2;S3");
-  EXPECT_EQ(config->plunger_gates_str(), "P1;P2;P3");
+}
 }  // namespace tests

@@ -13,8 +13,7 @@ namespace core {
  * for each constraint.
  */
 class VoltageConstraints : public generic::Song {
-  using MatrixType = Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>;
-  MatrixType              _matrix;
+  generic::FArray<double> _matrix;
   AdjacencySP             _adjacency;
   std::pair<float, float> _limits;
 
@@ -25,11 +24,11 @@ class VoltageConstraints : public generic::Song {
   /**
    * @brief The constraint matrix.
    */
-  const MatrixType& matrix() const;
+  const generic::FArray<double>& matrix() const;
   /**
    * @brief The constraint matrix.
    */
-  MatrixType& matrix();
+  generic::FArray<double>& matrix();
   /**
    * @brief The adjacency matrix used to understand the device layout.
    */

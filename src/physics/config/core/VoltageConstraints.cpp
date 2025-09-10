@@ -14,14 +14,15 @@ VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
   // The second n rows are for the negative identity comparison for each gate.
   // The next rows are for the pairs of connected gates, one row for each pair.
   // Since each can be positive or negative
-  int        H = 2 * adjacency->size() + 2 * pairs.size();
-  int        W = adjacency->size();
-  MatrixType matrix(H, W);
-  MatrixType Imatrix =
-      Eigen::MatrixXd::Identity(adjacency->size(), adjacency->size());
-  MatrixType invImatrix =
-      -1 * Eigen::MatrixXd::Identity(adjacency->size(), adjacency->size());
-  MatrixType pairMatrix = MatrixType::Zero(2 * pairs.size(), W);
+  size_t                  H      = 2 * adjacency->size() + 2 * pairs.size();
+  size_t                  W      = adjacency->size();
+  generic::FArray<double> matrix = generic::FArray<double>::zeros({H, W});
+  generic::FArray<double> Imatrix =
+      generic::FArray<double>(xt::eye(adjacency->size()));
+  generic::FArray<double> invImatrix =
+      generic::FArray<double>(-xt::eye(adjacency->size()));
+  generic::FArray<double> pairMatrix =
+      generic::FArray<double>::zeros({2 * pairs.size(), W});
   // Creates pairs of constraint equations for every set of connected gates
   for (int i = 0; i < pairs.size(); i++) {
     int a = pairs[i].first;
@@ -36,22 +37,23 @@ VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
     pairMatrix(2 * i + 1, a) = -1;
     pairMatrix(2 * i + 1, b) = 1;
   }
-  matrix << Imatrix, invImatrix, pairMatrix;
+  matrix = generic::FArray<double>(xt::vstack(xt::xtuple(
+      Imatrix.xtensor(), invImatrix.xtensor(), pairMatrix.xtensor())));
 
-  MatrixType limits(H, 1);
+  generic::FArray<double> limits = generic::FArray<double>::zeros({H, 1});
   std::fill(
       limits.data(), limits.data() + 2 * adjacency->size(), bounds.second);
   std::fill(limits.data() + 2 * adjacency->size(),
             limits.data() + 2 * adjacency->size() + pairs.size(),
             max_safe_diff);
 }
-const VoltageConstraints::MatrixType& VoltageConstraints::matrix() const {
+const generic::FArray<double>& VoltageConstraints::matrix() const {
   return _matrix;
 }
 /**
  * @brief The constraint matrix.
  */
-VoltageConstraints::MatrixType& VoltageConstraints::matrix() { return _matrix; }
+generic::FArray<double>& VoltageConstraints::matrix() { return _matrix; }
 /**
  * @brief The adjacency matrix used to understand the device layout.
  */

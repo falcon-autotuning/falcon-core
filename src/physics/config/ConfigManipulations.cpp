@@ -41,7 +41,7 @@ core::ConfigSP ConfigManipulations::unpack_device_config(
   auto ohmics    = _extract_ohmics(config["Ohmics"].as<std::string>());
   auto wiring_DC = _extract_dcwiring(config, ohmics, connections);
 
-  generic::List<device_structures::BaseConnection> total_gates;
+  device_structures::BaseConnections total_gates;
   total_gates.insert(total_gates.end(),
                      connections->screening_gates()->begin(),
                      connections->screening_gates()->end());
@@ -57,27 +57,26 @@ core::ConfigSP ConfigManipulations::unpack_device_config(
 
   auto constraints = _extract_voltage_constraints(
       config,
-      std::make_shared<generic::List<device_structures::BaseConnection>>(
-          total_gates));
+      std::make_shared<device_structures::BaseConnections>(total_gates));
 
-  return std::make_shared<core::Config>(ohmics,
-                                        wiring_DC,
-                                        groups,
-                                        connections->screening_gates(),
-                                        connections->reservoir_gates(),
-                                        connections->plunger_gates(),
-                                        connections->barrier_gates(),
-                                        constraints);
+  return std::make_shared<core::Config>(
+      connections->screening_gates(),
+      connections->plunger_gates(),
+      ohmics,
+      connections->barrier_gates(),
+      connections->reservoir_gates(),
+      std::make_shared<generic::Map<Gname, core::Group>>(groups),
+      wiring_DC,
+      constraints);
 }
 
 core::AdjacencySP ConfigManipulations::_extract_adjacency(
-    const YAML::Node&                                         map,
-    const generic::ListSP<device_structures::BaseConnection>& total_gates)
-    const {
-  size_t                         num_gates = total_gates->size();
-  std::vector<std::vector<bool>> adjacency(num_gates,
-                                           std::vector<bool>(num_gates, false));
-  std::vector<std::string>       total_gate_names;
+    const YAML::Node&                           map,
+    const device_structures::BaseConnectionsSP& total_gates) const {
+  size_t               num_gates = total_gates->size();
+  generic::FArray<int> adjacency =
+      generic::FArray<int>::zeros({num_gates, num_gates});
+  std::vector<std::string> total_gate_names;
   for (const auto& gate : *total_gates)
     total_gate_names.push_back(gate->name());
 
@@ -93,18 +92,17 @@ core::AdjacencySP ConfigManipulations::_extract_adjacency(
       if (std::find(gate_names.begin(),
                     gate_names.end(),
                     total_gate_names[j]) != gate_names.end()) {
-        adjacency[i][j] = true;
-        adjacency[j][i] = true;
+        adjacency(i, j) = 1;
+        adjacency(j, i) = 1;
       }
     }
   }
-  return std::make_shared<core::Adjacency>(adjacency, total_gates);
+  return std::make_shared<core::Adjacency>(adjacency.xtensor(), total_gates);
 }
 
 core::VoltageConstraintsSP ConfigManipulations::_extract_voltage_constraints(
-    const YAML::Node&                                         map,
-    const generic::ListSP<device_structures::BaseConnection>& total_gates)
-    const {
+    const YAML::Node&                           map,
+    const device_structures::BaseConnectionsSP& total_gates) const {
   auto adjacency = _extract_adjacency(map, total_gates);
   if (!map["max_safe_diff"])
     throw std::runtime_error("Expected max_safe_diff in config");

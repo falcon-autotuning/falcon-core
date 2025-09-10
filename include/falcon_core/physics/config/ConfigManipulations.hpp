@@ -22,17 +22,15 @@ class ConfigManipulations {
    * adjacency matrix for this device.
    */
   core::AdjacencySP _extract_adjacency(
-      const YAML::Node&                                         map,
-      const generic::ListSP<device_structures::BaseConnection>& total_gates)
-      const;
+      const YAML::Node&                           map,
+      const device_structures::BaseConnectionsSP& total_gates) const;
   /**
    * @brief Given the available gates and the config lets produce a voltage
    * constraints.
    */
   core::VoltageConstraintsSP _extract_voltage_constraints(
-      const YAML::Node&                                         map,
-      const generic::ListSP<device_structures::BaseConnection>& total_gates)
-      const;
+      const YAML::Node&                           map,
+      const device_structures::BaseConnectionsSP& total_gates) const;
   /**
    * @brief Extracts a dcwiring from a config dictionary.
    * @param dict A mapping containing dcwiring details.
