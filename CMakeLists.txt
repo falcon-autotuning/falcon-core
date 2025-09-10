@@ -36,6 +36,7 @@ function(cpp_tests)
     tests/test_waveforms.cpp
     tests/test_device_voltage_states.cpp
     tests/test_messages.cpp
+    tests/test_farray.cpp
   )
   endif()
 

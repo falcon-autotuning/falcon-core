@@ -5,8 +5,11 @@
 #include <xtensor/containers/xarray.hpp>
 #include <xtensor/io/xio.hpp>
 #include <xtensor/views/xview.hpp>
+#include <cereal/types/xtensor.hpp>
 
 #include "falcon_core/generic/Song.hpp"
+#define XTENSOR_ENABLE_CEREAL
+#include <cereal/archives/binary.hpp>
 
 namespace falcon_core {
 namespace math {
@@ -97,15 +100,7 @@ class FArray : public generic::Song {
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this));
-    if constexpr (Archive::is_loading::value) {
-      std::vector<size_t> shape;
-      ar(shape);
-      _data.reshape(shape);
-      ar(_data.storage());
-    } else {
-      std::vector<size_t> shape(_data.shape().begin(), _data.shape().end());
-      ar(shape, _data.storage());
-    }
+    ar(_data);
   }
 
   array_type&       xtensor() noexcept { return _data; }

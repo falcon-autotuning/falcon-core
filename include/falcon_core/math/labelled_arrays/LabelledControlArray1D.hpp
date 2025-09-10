@@ -27,7 +27,7 @@ class LabelledControlArray1D : public BaseLabelledArray<arrays::ControlArray1D>,
 
  private:
   friend class cereal::access;
-  LabelledControlArray1D();
+  LabelledControlArray1D() = default;
   template <class Archive>
   void serialize(Archive& ar);
 };

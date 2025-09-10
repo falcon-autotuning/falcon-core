@@ -1,5 +1,7 @@
 #include "falcon_core/math/labelled_arrays/LabelledControlArray1D.hpp"
 
+#include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
+
 namespace falcon_core {
 namespace math {
 namespace labelled_arrays {
@@ -20,6 +22,12 @@ template <class Archive>
 void LabelledControlArray1D::serialize(Archive& ar) {
   ar(cereal::base_class<BaseLabelledArray<arrays::ControlArray1D>>(this));
 }
+
+// Explicit template instantiations for cereal
+template void LabelledControlArray1D::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive& ar);
+template void LabelledControlArray1D::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive& ar);
+template void LabelledControlArray1D::serialize<cereal::BinaryOutputArchive>(cereal::BinaryOutputArchive& ar);
+template void LabelledControlArray1D::serialize<cereal::BinaryInputArchive>(cereal::BinaryInputArchive& ar);
 
 }  // namespace labelled_arrays
 }  // namespace math

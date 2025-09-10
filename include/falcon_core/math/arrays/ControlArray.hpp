@@ -16,15 +16,31 @@ namespace arrays {
 template <typename T>
 class ControlArray : public BaseArray<T> {
  public:
-  ControlArray();
-  ControlArray(const ControlArray& other);
-  ControlArray(const typename BaseArray<T>::MatrixType& data);
+  using BaseArray<T>::BaseArray;
+  using BaseArray<T>::xtensor;
+  using BaseArray<T>::operator==;
+  using BaseArray<T>::operator!=;
+  using BaseArray<T>::operator+=;
+  using BaseArray<T>::operator-=;
+  using BaseArray<T>::operator*=;
+  using BaseArray<T>::operator/=;
+  using BaseArray<T>::shape;
+  using BaseArray<T>::size;
+  using BaseArray<T>::dimension;
+  using BaseArray<T>::data;
+  using BaseArray<T>::begin;
+  using BaseArray<T>::end;
+  using BaseArray<T>::cbegin;
+  using BaseArray<T>::cend;
+  using BaseArray<T>::view;
+  using BaseArray<T>::operator();
 
- private:
-  friend class cereal::access;
-  template <class Archive>
-  void serialize(Archive& ar);
+  // Add any control-specific methods if needed
 };
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core
+
+// Cereal registration for ControlArray<double>
+CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray<double>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::math::arrays::BaseArray<double>, falcon_core::math::arrays::ControlArray<double>)

@@ -18,6 +18,7 @@ namespace labelled_arrays {
 
 /// @brief Container for multiple labelled arrays.
 /// @tparam T Type of labelled array.
+
 template <typename T>
 class BaseLabelledArrays : public generic::Song {
  public:
@@ -26,10 +27,14 @@ class BaseLabelledArrays : public generic::Song {
   /// @brief Type alias for container type.
   using container_type = std::vector<std::shared_ptr<value_type>>;
 
-  BaseLabelledArrays();
+  BaseLabelledArrays() = default;
 
-  void append(const std::shared_ptr<value_type> &labelled_array);
-  const container_type &get_arrays() const;
+  void append(const std::shared_ptr<value_type> &labelled_array) {
+    _arrays.push_back(labelled_array);
+  }
+  const container_type &get_arrays() const {
+    return _arrays;
+  }
 
  private:
   container_type _arrays;
