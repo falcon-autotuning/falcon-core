@@ -18,6 +18,7 @@ std::vector<std::string> split_on_semicolon(const std::string& s) {
   }
   return result;
 }
+ConfigManipulations::ConfigManipulations() = default;
 core::ConfigSP ConfigManipulations::unpack_device_config(
     const YAML::Node& config) const {
   generic::Map<Gname, core::Group>  groups;

@@ -36,8 +36,3 @@ using NameBaseSP = std::shared_ptr<NameBase>;
 }  // namespace names
 }  // namespace autotuner_interfaces
 }  // namespace falcon_core
-#ifndef SWIG
-using namespace falcon_core::autotuner_interfaces::names;
-CEREAL_REGISTER_TYPE(NameBase)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, NameBase)
-#endif

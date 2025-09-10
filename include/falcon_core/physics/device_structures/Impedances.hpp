@@ -18,7 +18,9 @@ class Impedances : public generic::List<Impedance, Impedances> {
   Impedances(const std::vector<ImpedanceSP>& vec);
 
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<List<Impedance, Impedances>>(this));
+  }
 
  protected:
   friend class cereal::access;

@@ -32,7 +32,12 @@ class Impedance : public generic::Song {
    */
   double capacitance() const;
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this),
+       _connection,
+       _resistance,
+       _capacitance);
+  }
 
  protected:
   Impedance();

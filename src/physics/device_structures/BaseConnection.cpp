@@ -9,15 +9,21 @@ BaseConnection::BaseConnection(std::string name, DeviceFeature type)
 std::string BaseConnection::name() const { return _name; }
 std::string BaseConnection::type() const {
   switch (_type) {
-    case DeviceFeature::BarrierGate:   return "BarrierGate";
-    case DeviceFeature::PlungerGate:   return "PlungerGate";
-    case DeviceFeature::ReservoirGate: return "ReservoirGate";
-    case DeviceFeature::ScreeningGate: return "ScreeningGate";
-    case DeviceFeature::Ohmic:         return "Ohmic";
-    default:                           return "Unknown";
+    case DeviceFeature::BarrierGate:
+      return "BarrierGate";
+    case DeviceFeature::PlungerGate:
+      return "PlungerGate";
+    case DeviceFeature::ReservoirGate:
+      return "ReservoirGate";
+    case DeviceFeature::ScreeningGate:
+      return "ScreeningGate";
+    case DeviceFeature::Ohmic:
+      return "Ohmic";
+    default:
+      return "Unknown";
   }
 }
-bool        BaseConnection::is_dot_gate() const {
+bool BaseConnection::is_dot_gate() const {
   return is_barrier_gate() || is_plunger_gate();
 }
 bool BaseConnection::is_barrier_gate() const {
@@ -36,10 +42,6 @@ bool BaseConnection::is_ohmic() const { return _type == DeviceFeature::Ohmic; }
 bool BaseConnection::is_gate() const { return !is_ohmic(); }
 bool BaseConnection::operator<(const BaseConnection& other) const {
   return _name < other._name;  // Compare based on name
-}
-template <class Archive>
-void BaseConnection::serialize(Archive& ar) {
-  ar(cereal::base_class<falcon_core::generic::Song>(this), _name, _type);
 }
 }  // namespace device_structures
 }  // namespace physics

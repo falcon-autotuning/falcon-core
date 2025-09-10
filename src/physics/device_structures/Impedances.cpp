@@ -1,6 +1,6 @@
 #include "falcon_core/physics/device_structures/Impedances.hpp"
 
-using namespace falcon_core::physics::device_structures;
+namespace falcon_core::physics::device_structures {
 
 Impedances::Impedances() = default;
 
@@ -11,13 +11,10 @@ Impedances::Impedances(size_t count, const ImpedanceSP& value)
 
 Impedances::Impedances(const std::vector<ImpedanceSP>& vec)
     : List<Impedance, Impedances>(vec) {}
-
-// Explicit template instantiation for serialize
-template <class Archive>
-void Impedances::serialize(Archive& ar) {
-  ar(cereal::base_class<List<Impedance, Impedances>>(this));
-}
-
-CEREAL_REGISTER_TYPE(Impedances)
-using LII = falcon_core::generic::List<Impedance, Impedances>;
-CEREAL_REGISTER_POLYMORPHIC_RELATION(LII, Impedances)
+}  // namespace falcon_core::physics::device_structures
+CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Impedances)
+using LII = falcon_core::generic::List<
+    falcon_core::physics::device_structures::Impedance,
+    falcon_core::physics::device_structures::Impedances>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    LII, falcon_core::physics::device_structures::Impedances)

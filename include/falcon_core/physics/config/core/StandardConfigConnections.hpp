@@ -138,7 +138,14 @@ class StandardConfigConnections : public generic::Song {
    */
   bool has_screening_gate(const device_structures::ScreeningGateSP& gate) const;
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this),
+       _screening_gates,
+       _reservoir_gates,
+       _plunger_gates,
+       _barrier_gates,
+       _ohmics);
+  }
 
  protected:
   StandardConfigConnections();

@@ -174,15 +174,6 @@ bool StandardConfigConnections::has_screening_gate(
   }
   return false;
 }
-template <class Archive>
-void StandardConfigConnections::serialize(Archive& ar) {
-  ar(cereal::base_class<generic::Song>(this),
-     _screening_gates,
-     _reservoir_gates,
-     _plunger_gates,
-     _barrier_gates,
-     _ohmics);
-}
 }  // namespace falcon_core::physics::config::core
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::core::StandardConfigConnections)
