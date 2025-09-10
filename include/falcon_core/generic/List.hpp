@@ -69,6 +69,9 @@ class List : public generic::Song {
   iterator         end() { return _items.end(); }
   const_iterator   begin() const { return _items.begin(); }
   const_iterator   end() const { return _items.end(); }
+  bool             contains(const StoredValue& value) const {
+    return std::find(_items.begin(), _items.end(), value) != _items.end();
+  }
   void insert(iterator pos, const_iterator first, const_iterator last) {
     _items.insert(pos, first, last);
   }
