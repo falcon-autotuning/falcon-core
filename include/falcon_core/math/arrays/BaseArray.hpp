@@ -5,44 +5,23 @@
 
 #pragma once
 
+#include <memory>
+
 #include "falcon_core/generic/FArray.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace arrays {
+namespace falcon_core::math::arrays {
 
 template <typename T>
-class BaseArray : public FArray<T> {
+class BaseArray : public generic::FArray<T> {
  public:
-  using FArray<T>::FArray;
-  using FArray<T>::xtensor;
-  using FArray<T>::operator==;
-  using FArray<T>::operator!=;
-  using FArray<T>::operator+=;
-  using FArray<T>::operator-=;
-  using FArray<T>::operator*=;
-  using FArray<T>::operator/=;
-  using FArray<T>::shape;
-  using FArray<T>::size;
-  using FArray<T>::dimension;
-  using FArray<T>::data;
-  using FArray<T>::begin;
-  using FArray<T>::end;
-  using FArray<T>::cbegin;
-  using FArray<T>::cend;
-  using FArray<T>::view;
-  using FArray<T>::operator();
-
-  // Add any additional methods for compatibility if needed
+  BaseArray() = default;
+  BaseArray(const xt::xarray<T>& arr) : generic::FArray<T>(arr) {}
+  BaseArray(xt::xarray<T>&& arr) noexcept : generic::FArray<T>(arr) {}
+  explicit BaseArray(const std::vector<size_t>& shape)
+      : generic::FArray<T>(shape) {}
 };
 
 template <typename T>
 using BaseArraySP = std::shared_ptr<BaseArray<T>>;
 
-}  // namespace arrays
-}  // namespace math
-}  // namespace falcon_core
-
-// Cereal registration for BaseArray<double>
-CEREAL_REGISTER_TYPE(falcon_core::math::arrays::BaseArray<double>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::arrays::BaseArray<double>)
+}  // namespace falcon_core::math::arrays
