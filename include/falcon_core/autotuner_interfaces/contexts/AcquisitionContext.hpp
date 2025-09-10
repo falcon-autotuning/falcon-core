@@ -1,5 +1,7 @@
 #pragma once
+#include <cereal/archives/binary.hpp>
 
+#include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon_core/autotuner_interfaces/contexts/BaseContext.hpp"
 #include "falcon_core/instrument_interfaces/Instrument.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
@@ -61,7 +63,9 @@ class AcquisitionContext : public BaseContext {
     // For now, try to get it from the connection if possible.
     // If you have a _port member, just: return _port;
     // Otherwise, try to dynamic_pointer_cast:
-    auto port = std::dynamic_pointer_cast<instrument_interfaces::names::InstrumentPort>(this->connection());
+    auto port =
+        std::dynamic_pointer_cast<instrument_interfaces::names::InstrumentPort>(
+            this->connection());
     return port;
   }
   /**

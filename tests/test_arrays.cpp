@@ -21,8 +21,8 @@ TEST(BaseArrayTest, ConstructionAndAccess) {
 TEST(BaseArrayTest, BasicOperations) {
   xt::xarray<double> arr1_data = {{1.0, 2.0}, {3.0, 4.0}};
   xt::xarray<double> arr2_data = {{5.0, 6.0}, {7.0, 8.0}};
-  BaseArray<double> arr1(arr1_data);
-  BaseArray<double> arr2(arr2_data);
+  BaseArray<double>  arr1(arr1_data);
+  BaseArray<double>  arr2(arr2_data);
 
   // Test operator+=
   BaseArray<double> arr_sum = arr1;
@@ -53,7 +53,7 @@ TEST(BaseArrayTest, BasicOperations) {
   arr_div /= arr1;
   EXPECT_DOUBLE_EQ(arr_div(0, 0), 5.0);
   EXPECT_DOUBLE_EQ(arr_div(0, 1), 3.0);
-  EXPECT_DOUBLE_EQ(arr_div(1, 0), 7.0/3.0);
+  EXPECT_DOUBLE_EQ(arr_div(1, 0), 7.0 / 3.0);
   EXPECT_DOUBLE_EQ(arr_div(1, 1), 2.0);
 
   // Test comparison
@@ -66,8 +66,8 @@ TEST(BaseArrayTest, BasicOperations) {
 TEST(ControlArray1DTest, BasicOperations) {
   xt::xarray<double> v1 = {1.0, 2.0, 3.0};
   xt::xarray<double> v2 = {4.0, 5.0, 6.0};
-  ControlArray1D arr1d1(v1);
-  ControlArray1D arr1d2(v2);
+  ControlArray1D     arr1d1(v1);
+  ControlArray1D     arr1d2(v2);
 
   // Test operator+=
   ControlArray1D sum = arr1d1;

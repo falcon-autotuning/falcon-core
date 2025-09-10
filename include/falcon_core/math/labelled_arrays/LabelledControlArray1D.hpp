@@ -21,23 +21,15 @@ class LabelledControlArray1D : public BaseLabelledArray<arrays::ControlArray1D>,
   using LabelType = instrument_interfaces::names::InstrumentPort;
 
   LabelledControlArray1D(std::shared_ptr<arrays::ControlArray1D> array,
-                         std::shared_ptr<LabelType> label)
-      : BaseLabelledArray<arrays::ControlArray1D>(array, label) {}
+                         std::shared_ptr<LabelType>              label);
 
-  const arrays::ControlArray1D& get_array() const {
-    if (!this->_array) {
-      throw std::runtime_error("Array is null");
-    }
-    return *(this->_array);
-  }
+  const arrays::ControlArray1D& get_array() const;
 
  private:
   friend class cereal::access;
   LabelledControlArray1D() = default;
   template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseLabelledArray<arrays::ControlArray1D>>(this));
-  }
+  void serialize(Archive& ar);
 };
 }  // namespace labelled_arrays
 }  // namespace math

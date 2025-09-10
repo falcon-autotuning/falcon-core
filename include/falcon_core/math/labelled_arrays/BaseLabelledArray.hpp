@@ -21,7 +21,7 @@ namespace labelled_arrays {
 template <typename ArrayType>
 class BaseLabelledArray : public generic::Song {
  protected:
-  std::shared_ptr<ArrayType> _array;
+  std::shared_ptr<ArrayType>                           _array;
   autotuner_interfaces::contexts::AcquisitionContextSP _label;
 
   friend class cereal::access;
@@ -32,11 +32,11 @@ class BaseLabelledArray : public generic::Song {
 
  public:
   BaseLabelledArray() = default;
-  BaseLabelledArray(std::shared_ptr<ArrayType> array,
+  BaseLabelledArray(std::shared_ptr<ArrayType>                           array,
                     autotuner_interfaces::contexts::AcquisitionContextSP label)
       : _array(array), _label(label) {}
   BaseLabelledArray(
-      std::shared_ptr<ArrayType> array,
+      std::shared_ptr<ArrayType>                                  array,
       falcon_core::instrument_interfaces::names::InstrumentPortSP label)
       : _array(array),
         _label(std::make_shared<
@@ -55,7 +55,8 @@ class BaseLabelledArray : public generic::Song {
   }
   const physics::units::SymbolUnit units() const { return label()->units(); }
 
-  bool operator==(const std::shared_ptr<BaseLabelledArray<ArrayType>>& other) const {
+  bool operator==(
+      const std::shared_ptr<BaseLabelledArray<ArrayType>>& other) const {
     return (_array && other->_array && (*_array == *(other->_array))) &&
            label() == other->label();
   }
