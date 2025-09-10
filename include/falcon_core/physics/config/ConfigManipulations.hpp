@@ -2,6 +2,7 @@
 #include <yaml-cpp/yaml.h>
 
 #include "falcon_core/physics/config/core/Config.hpp"
+#include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 namespace falcon_core::physics::config {
 /**
  * @brief A utility class for manipulating and extracting information from
@@ -80,6 +81,7 @@ class ConfigManipulations {
    * @brief Extracts the order from the compressed ";" delimited string
    */
   device_structures::BaseConnectionsSP _extract_order(
-      const std::string raw) const;
+      const std::string                        raw,
+      const core::StandardConfigConnectionsSP& connections) const;
 };
 }  // namespace falcon_core::physics::config

@@ -6,10 +6,7 @@
 #include "falcon_core/physics/device_structures/BaseConnections.hpp"
 #include "falcon_core/physics/device_structures/Ohmic.hpp"
 
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace core {
+namespace falcon_core::physics::config::core {
 StandardConfigConnections::StandardConfigConnections() = default;
 StandardConfigConnections::StandardConfigConnections(
     const device_structures::ScreeningGatesSP& screening_gates,
@@ -141,6 +138,42 @@ bool StandardConfigConnections::has_gate(
   }
   return false;
 }
+bool StandardConfigConnections::has_barrier_gate(
+    const device_structures::BarrierGateSP& gate) const {
+  for (device_structures::BaseConnectionSP& g : *barrier_gates()) {
+    if (*g == *gate) {
+      return true;
+    }
+  }
+  return false;
+}
+bool StandardConfigConnections::has_plunger_gate(
+    const device_structures::PlungerGateSP& gate) const {
+  for (device_structures::BaseConnectionSP& g : *plunger_gates()) {
+    if (*g == *gate) {
+      return true;
+    }
+  }
+  return false;
+}
+bool StandardConfigConnections::has_reservoir_gate(
+    const device_structures::ReservoirGateSP& gate) const {
+  for (device_structures::BaseConnectionSP& g : *reservoir_gates()) {
+    if (*g == *gate) {
+      return true;
+    }
+  }
+  return false;
+}
+bool StandardConfigConnections::has_screening_gate(
+    const device_structures::ScreeningGateSP& gate) const {
+  for (device_structures::BaseConnectionSP& g : *screening_gates()) {
+    if (*g == *gate) {
+      return true;
+    }
+  }
+  return false;
+}
 template <class Archive>
 void StandardConfigConnections::serialize(Archive& ar) {
   ar(cereal::base_class<generic::Song>(this),
@@ -150,10 +183,7 @@ void StandardConfigConnections::serialize(Archive& ar) {
      _barrier_gates,
      _ohmics);
 }
-}  // namespace core
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::core
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::core::StandardConfigConnections)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
