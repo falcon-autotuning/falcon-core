@@ -56,7 +56,10 @@ namespace device_structures {
 class BaseConnections
     : public falcon_core::generic::List<BaseConnection, BaseConnections> {
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::List<BaseConnection, BaseConnections>>(
+        this));
+  }
 
  public:
   /**

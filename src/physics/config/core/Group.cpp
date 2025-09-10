@@ -38,14 +38,6 @@ device_structures::BaseConnectionsSP Group::get_all_channel_gates(
   }
   return nullptr;
 }
-template <class Archive>
-void Group::serialize(Archive& ar) {
-  ar(cereal::base_class<StandardConfigConnections>(this),
-     _name,
-     _num_dots,
-     _order,
-     _ohmics);
-}
 }  // namespace core
 }  // namespace config
 }  // namespace physics

@@ -16,15 +16,21 @@ namespace arrays {
 template <typename T>
 class MeasuredArray : public BaseArray<T> {
  public:
-  using BaseArray<T>::BaseArray;
+  MeasuredArray() : BaseArray<T>() {}
+  MeasuredArray(const xt::xarray<T>& arr) : BaseArray<T>(arr) {}
+  MeasuredArray(xt::xarray<T>&& arr) noexcept : BaseArray<T>(arr) {}
 
- private:
+ protected:
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<BaseArray<T>>(this));
+  }
 };
+
 template <typename T>
 using MeasuredArraySP = std::shared_ptr<MeasuredArray<T>>;
+
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core

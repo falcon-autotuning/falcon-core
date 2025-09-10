@@ -70,7 +70,13 @@ class Group : public StandardConfigConnections {
   device_structures::BaseConnectionsSP get_all_channel_gates(
       const ChannelSP& channel) const;
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<StandardConfigConnections>(this),
+       _name,
+       _num_dots,
+       _order,
+       _ohmics);
+  }
 
  protected:
   Group();

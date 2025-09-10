@@ -100,11 +100,6 @@ bool BaseConnections::is_screening_gates() const {
       });
 }
 
-template <class Archive>
-void BaseConnections::serialize(Archive& ar) {
-  ar(cereal::base_class<generic::List<BaseConnection, BaseConnections>>(this));
-}
-
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

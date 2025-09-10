@@ -5,22 +5,34 @@
 
 #pragma once
 
+#include <memory>
+
 #include "falcon_core/generic/Song.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace arrays {
+namespace falcon_core::math::arrays {
 
-/// @brief Marker class for increasing alignment of arrays.
+/**
+ * @brief A three state system.
+ * The three states are 1, -1, and 0.
+ * 0 implies no trend in the domain.
+ */
 class IncreasingAlignment : public generic::Song {
- public:
-  IncreasingAlignment();
+  int _alignment;
 
- private:
+ protected:
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<falcon_core::generic::Song>(this), _alignment);
+  }
+
+ public:
+  IncreasingAlignment();
+  IncreasingAlignment(const bool alignment);
+  /**
+   * @brief Return the alignment of the domain.
+   */
+  int alignment() const;
 };
-}  // namespace arrays
-}  // namespace math
-}  // namespace falcon_core
+using IncreasingAlignmentSP = std::shared_ptr<IncreasingAlignment>;
+}  // namespace falcon_core::math::arrays

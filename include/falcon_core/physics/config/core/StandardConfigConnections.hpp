@@ -5,6 +5,7 @@
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 #include "falcon_core/physics/device_structures/BaseConnections.hpp"
 #include "falcon_core/physics/device_structures/Ohmics.hpp"
+#include "falcon_core/physics/device_structures/PlungerGate.hpp"
 #include "falcon_core/physics/device_structures/PlungerGates.hpp"
 #include "falcon_core/physics/device_structures/ReservoirGates.hpp"
 #include "falcon_core/physics/device_structures/ScreeningGates.hpp"
@@ -120,8 +121,31 @@ class StandardConfigConnections : public generic::Song {
    * @brief If this gate is a member of this group or not.
    */
   bool has_gate(const device_structures::BaseConnectionSP& gate) const;
+  /**
+   * @brief If this gate is a barriergate of this group or not.
+   */
+  bool has_barrier_gate(const device_structures::BarrierGateSP& gate) const;
+  /**
+   * @brief If this gate is a plungergate of this group or not.
+   */
+  bool has_plunger_gate(const device_structures::PlungerGateSP& gate) const;
+  /**
+   * @brief If this gate is a reservoirgate of this group or not.
+   */
+  bool has_reservoir_gate(const device_structures::ReservoirGateSP& gate) const;
+  /**
+   * @brief If this gate is a screeninggate of this group or not.
+   */
+  bool has_screening_gate(const device_structures::ScreeningGateSP& gate) const;
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this),
+       _screening_gates,
+       _reservoir_gates,
+       _plunger_gates,
+       _barrier_gates,
+       _ohmics);
+  }
 
  protected:
   StandardConfigConnections();

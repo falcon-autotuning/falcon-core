@@ -68,3 +68,12 @@ struct Units {
 }  // namespace units
 }  // namespace physics
 }  // namespace falcon_core
+
+// Provide definition for Units::Volt
+namespace falcon_core {
+namespace physics {
+namespace units {
+// inline const SymbolUnit Units::Volt = SymbolUnit();
+}  // namespace units
+}  // namespace physics
+}  // namespace falcon_core

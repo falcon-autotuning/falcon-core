@@ -16,7 +16,9 @@ class BaseConnection : public virtual generic::Song {
   std::string   _name;
   DeviceFeature _type;
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<falcon_core::generic::Song>(this), _name, _type);
+  }
 
  public:
   bool operator<(const BaseConnection& other) const;

@@ -36,6 +36,7 @@ function(cpp_tests)
     tests/test_waveforms.cpp
     tests/test_device_voltage_states.cpp
     tests/test_messages.cpp
+    tests/test_farray.cpp
   )
   endif()
 
@@ -250,6 +251,42 @@ find_package(xtensor REQUIRED)
 
 
 
+# xtensor
+FetchContent_Declare(
+            xtl
+            GIT_REPOSITORY https://github.com/xtensor-stack/xtl.git
+            GIT_TAG        0.8.0
+        )
+FetchContent_MakeAvailable(xtl)
+
+FetchContent_Declare(
+            xtensor
+            GIT_REPOSITORY https://github.com/xtensor-stack/xtensor.git
+            GIT_TAG        0.27.0
+        )
+FetchContent_MakeAvailable(xtensor)
+
+FetchContent_Declare(
+            xsimd
+            GIT_REPOSITORY https://github.com/xtensor-stack/xsimd.git
+            GIT_TAG        13.2.0
+        )
+FetchContent_MakeAvailable(xsimd)
+
+FetchContent_Declare(
+            xtensor-blas
+            GIT_REPOSITORY https://github.com/xtensor-stack/xtensor-blas.git
+            GIT_TAG        0.23.0
+        )
+FetchContent_MakeAvailable(xtensor-blas)
+
+#yaml
+FetchContent_Declare(
+  yaml-cpp
+  GIT_REPOSITORY https://github.com/jbeder/yaml-cpp.git
+  GIT_TAG        master
+)
+FetchContent_MakeAvailable(yaml-cpp)
 # boost filesystem support
 find_package(Boost REQUIRED COMPONENTS filesystem system)
 include_directories(${Boost_INCLUDE_DIRS})
@@ -293,13 +330,19 @@ else()
 endif()
 add_library(falcon_core_cpp ${FALCON_CORE_SOURCES})
 target_include_directories(
-  falcon_core_cpp
-  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-         $<INSTALL_INTERFACE:include> ${xtl_SOURCE_DIR}/include ${xtensor_INCLUDE_DIRS} ${xsimd_INCLUDE_DIRS}
-         ${cereal_SOURCE_DIR}/include)
+     falcon_core_cpp
+     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+            $<INSTALL_INTERFACE:include>
+            ${eigen_SOURCE_DIR}
+            ${cereal_SOURCE_DIR}/include
+            ${xtensor_SOURCE_DIR}/include
+            ${xtl_SOURCE_DIR}/include
+            ${xsimd_SOURCE_DIR}/include
+            ${xtensor-blas_SOURCE_DIR}/include
+   )
 
-target_link_libraries(falcon_core_cpp PRIVATE Boost::filesystem Boost::system)
-
+target_link_libraries(falcon_core_cpp PRIVATE Boost::filesystem Boost::system xtl xtensor xsimd xtensor-blas yaml-cpp::yaml-cpp)
+target_link_libraries(falcon_core_cpp PUBLIC yaml-cpp::yaml-cpp)
 if(NOT FALCON_CORE_DIRS)
   set(FALCON_HEADERS
     falcon_core/generic/Song.hpp
@@ -327,8 +370,6 @@ if(NOT FALCON_CORE_DIRS)
     falcon_core/physics/units/Units.hpp
     falcon_core/instrument_interfaces/Instrument.hpp
     falcon_core/instrument_interfaces/names/InstrumentPort.hpp
-    falcon_core::instrument_interfaces::names::InstrumentPort<falcon_core::physics::device_structures::BaseConnection>
-    falcon_core::instrument_interfaces::names::InstrumentPort<falcon_core::physics::device_structures::Ohmic>
     falcon_core/instrument_interfaces/names/Ports.hpp
     falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>
     falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Meter>

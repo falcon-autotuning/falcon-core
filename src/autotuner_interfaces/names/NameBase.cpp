@@ -1,6 +1,6 @@
 #include "falcon_core/autotuner_interfaces/names/NameBase.hpp"
 
-using namespace falcon_core::autotuner_interfaces::names;
+namespace falcon_core::autotuner_interfaces::names {
 
 NameBase::NameBase(std::string name) : _name(name) {
   _num = std::stoi(name.substr(_index_string.length()));
@@ -15,3 +15,8 @@ NameBaseSP NameBase::operator+(const NameBase& other) const {
 NameBaseSP NameBase::operator-(const NameBase& other) const {
   return std::make_shared<NameBase>(this->num() - other.num());
 }
+}  // namespace falcon_core::autotuner_interfaces::names
+CEREAL_REGISTER_TYPE(falcon_core::autotuner_interfaces::names::NameBase)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::autotuner_interfaces::names::NameBase)

@@ -30,7 +30,7 @@ build-part:
 	@cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON -DCMAKE_CXX_FLAGS="-g -O0" -DFALCON_CORE_DIRS="$(DIRS)" -DFALCON_CORE_TESTS="$(TESTS)" . -S . -B $(BUILD_DIR)
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
 	@ninja -C $(BUILD_DIR) -d stats
-	@echo "--- Partial build complete. Python extension is now in src/falcon_core/ ---"
+	@echo "--- Partial build complete." 
 
 # Install the Python package using pip
 install:
