@@ -1,19 +1,12 @@
 #include "falcon_core/math/arrays/IncreasingAlignment.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace arrays {
+namespace falcon_core::math::arrays {
 
-IncreasingAlignment::IncreasingAlignment() = default;
-
-template <class Archive>
-void IncreasingAlignment::serialize(Archive& ar) {
-  ar(cereal::base_class<generic::Song>(this));
-}
-
-}  // namespace arrays
-}  // namespace math
-}  // namespace falcon_core
+IncreasingAlignment::IncreasingAlignment() : _alignment(0) {}
+IncreasingAlignment::IncreasingAlignment(const bool alignment)
+    : _alignment(alignment ? 1 : -1) {}
+int IncreasingAlignment::alignment() const { return _alignment; }
+}  // namespace falcon_core::math::arrays
 
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::IncreasingAlignment)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

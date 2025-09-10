@@ -8,6 +8,7 @@
 #include <xtensor/io/xio.hpp>
 #include <xtensor/views/xview.hpp>
 
+#include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Song.hpp"
 #define XTENSOR_ENABLE_CEREAL
 #include <cereal/archives/binary.hpp>
@@ -27,10 +28,10 @@ class FArray : public generic::Song {
   FArray(array_type&& arr) noexcept : _data(std::move(arr)) {}
   explicit FArray(const std::vector<size_t>& shape) : _data(shape) {}
 
-  FArray(const FArray&)               = default;
-  FArray(FArray&&) noexcept           = default;
-  FArray operator=(const FArray&)     = default;
-  FArray operator=(FArray&&) noexcept = default;
+  FArray(const FArray&)                   = default;
+  FArray(FArray&&) noexcept               = default;
+  FArray<T>& operator=(const FArray&)     = default;
+  FArray<T>& operator=(FArray&&) noexcept = default;
 
   static std::shared_ptr<FArray<T>> zeros(const std::vector<size_t>& shape) {
     return std::make_shared<FArray<T>>(xt::zeros<T>(shape));
@@ -61,7 +62,7 @@ class FArray : public generic::Song {
 
   FArray<T>& operator+=(const FArray<T>& other) {
     _data += other._data;
-    return this;
+    return *this;
   }
   FArray<T>& operator+=(const double other) {
     auto ones = xt::ones_like(_data) * other;
@@ -91,9 +92,9 @@ class FArray : public generic::Song {
     result._data += other._data;
     return std::make_shared<FArray<T>>(result);
   }
-  FArray<T>& operator-=(const std::shared_ptr<FArray<T>>& other) {
+  FArray<T>& operator-=(const FArray<T>& other) {
     _data -= other._data;
-    return this;
+    return *this;
   }
   FArray<T>& operator-=(const double other) {
     auto ones = xt::ones_like(_data) * other;
@@ -107,14 +108,16 @@ class FArray : public generic::Song {
   }
   std::shared_ptr<FArray<T>> operator-() const {
     FArray result(*this);
-    return -1 * result;
+    return std::make_shared<FArray<T>>(-1 * result);
   }
-  std::shared_ptr<FArray<T>> operator-() { return -1 * (*this); }
+  std::shared_ptr<FArray<T>> operator-() {
+    return std::make_shared<FArray<T>>(-1 * (*this));
+  }
   std::shared_ptr<FArray<T>> operator-(
       const std::shared_ptr<FArray<T>>& other) const {
     FArray result(*this);
     result._data -= other._data;
-    return result;
+    return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator-(const double other) const {
     FArray result(*this);
@@ -136,69 +139,75 @@ class FArray : public generic::Song {
     _data *= other;
     return *this;
   }
-  FArray<T>& operator*=(const std::shared_ptr<FArray<T>>& other) {
+  FArray<T>& operator*=(const FArray<T>& other) {
     _data *= other._data;
     return *this;
   }
   std::shared_ptr<FArray<T>> operator*(const double other) const {
     FArray result(*this);
     result._data *= other;
-    return result;
+    return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator*(const int other) const {
     FArray result(*this);
     result._data *= other;
-    return result;
+    return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator*(
       const std::shared_ptr<FArray<T>>& other) const {
     FArray result(*this);
     result._data *= other._data;
-    return result;
+    return std::make_shared<FArray<T>>(result);
   }
-  FArray<T>& operator/=(const std::shared_ptr<FArray<T>>& other) {
+  FArray<T>& operator/=(const double other) {
+    _data /= other;
+    return *this;
+  }
+  FArray<T>& operator/=(const int other) {
+    _data /= other;
+    return *this;
+  }
+  FArray<T>& operator/=(const FArray<T>& other) {
     _data /= other._data;
     return *this;
   }
   std::shared_ptr<FArray<T>> operator/(const double other) const {
     FArray result(*this);
     result._data /= other;
-    return result;
+    return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator/(const int other) const {
     FArray result(*this);
     result._data /= other;
-    return result;
+    return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator/(
       const std::shared_ptr<FArray<T>>& other) const {
     FArray result(*this);
     result._data /= other._data;
-    return result;
+    return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator^(const double other) const {
     FArray result(*this);
     result._data.power(other);
-    return result;
+    return std::make_shared<FArray<T>>(result);
   }
   FArray<T>& operator^(const double other) {
     this->_data.power(other);
-    return this;
+    return *this;
   }
   std::shared_ptr<FArray<T>> abs() const {
-    FArray result(*this);
-    result._data.abs();
-    return result;
+    FArray<T> result(*this);
+    result._data = xt::abs(result._data);
+    return std::make_shared<FArray<T>>(result);
   }
-  T                          min() const { return xt::amin(this->data()); }
+  T                          min() const { return xt::amin(_data)(); }
   std::shared_ptr<FArray<T>> min(const std::shared_ptr<FArray<T>> other) const {
-    return std::make_shared<FArray<T>>(
-        xt::minimum(this->data(), other->data()));
+    return std::make_shared<FArray<T>>(xt::minimum(_data, other->_data));
   }
-  T                          max() const { return xt::amax(this->data()); }
+  T                          max() const { return xt::amax(_data)(); }
   std::shared_ptr<FArray<T>> max(const std::shared_ptr<FArray<T>> other) const {
-    return std::make_shared<FArray<T>>(
-        xt::maximum(this->data(), other->data()));
+    return std::make_shared<FArray<T>>(xt::maximum(_data, other->_data));
   }
 
   template <typename... Args>
@@ -213,17 +222,13 @@ class FArray : public generic::Song {
   // Assignment and conversion
   FArray<T>& operator=(const array_type& arr) {
     _data = arr;
-    return this;
+    return *this;
   }
   operator array_type&() { return _data; }
   operator const array_type&() const { return _data; }
 
-  bool operator==(const std::shared_ptr<FArray<T>>& other) const {
-    return _data == other._data;
-  }
-  bool operator!=(const std::shared_ptr<FArray<T>>& other) const {
-    return !(*this == other);
-  }
+  bool operator==(const FArray<T>& other) const { return _data == other._data; }
+  bool operator!=(const FArray<T>& other) const { return !(*this == other); }
   /**
    * @brief Check if any of the data is greater than the value.
    * @param value The value to compare to.
@@ -264,12 +269,15 @@ class FArray : public generic::Song {
    * @param value The value to search for.
    * @return Indices where the value matches.
    */
-  std::vector<std::vector<size_t>> where(const T& value) const {
-    auto                             mask = xt::equal(_data, value);
-    std::vector<std::vector<size_t>> indices;
+  ListSP<List<size_t>> where(const T& value) const {
+    auto mask    = xt::equal(_data, value);
+    auto indices = std::make_shared<List<List<size_t>>>();
     for (size_t i = 0; i < _data.size(); ++i) {
       if (mask.flat(i)) {
-        indices.push_back(xt::unravel_index(i, _data.shape()));
+        auto idx      = xt::unravel_index(i, _data.shape());
+        auto idx_list = std::make_shared<List<size_t>>();
+        for (auto v : idx) idx_list->push_back(static_cast<size_t>(v));
+        indices->push_back(idx_list);
       }
     }
     return indices;
@@ -294,12 +302,11 @@ class FArray : public generic::Song {
    *
    * @return A vector of FArray gradients (one for each axis).
    */
-  std::vector<std::shared_ptr<FArray<T>>> gradient() const {
-    std::vector<std::shared_ptr<FArray<T>>> grads;
-    auto                                    shape = _data.shape();
-    size_t                                  ndim  = _data.dimension();
+  ListSP<FArray<T>> gradient() const {
+    auto   grads = std::make_shared<List<FArray<T>>>();
+    size_t ndim  = _data.dimension();
     for (size_t axis = 0; axis < ndim; ++axis) {
-      grads.push_back(gradient(axis));
+      grads->push_back(gradient(axis));
     }
     return grads;
   }
@@ -323,35 +330,37 @@ class FArray : public generic::Song {
     xt::xindex idx(shape.size(), 0);
     auto       total = _data.size();
     for (size_t flat = 0; flat < total; ++flat) {
-      idx = xt::unravel_index(flat, shape);
+      auto unravel = xt::unravel_index(flat, shape);
+      idx.clear();
+      for (auto v : unravel) idx.push_back(static_cast<unsigned long>(v));
 
       xt::xindex idx_prev = idx;
       xt::xindex idx_next = idx;
 
       if (idx[axis] == 0) {
         idx_next[axis]  = 1;
-        grad.flat(flat) = _data.element(idx_next) - _data.element(idx);
+        grad.flat(flat) = _data[idx_next] - _data[idx];
       } else if (idx[axis] == shape[axis] - 1) {
         idx_prev[axis]  = shape[axis] - 2;
-        grad.flat(flat) = _data.element(idx) - _data.element(idx_prev);
+        grad.flat(flat) = _data[idx] - _data[idx_prev];
       } else {
-        idx_prev[axis] = idx[axis] - 1;
-        idx_next[axis] = idx[axis] + 1;
-        grad.flat(flat) =
-            (_data.element(idx_next) - _data.element(idx_prev)) / 2;
+        idx_prev[axis]  = idx[axis] - 1;
+        idx_next[axis]  = idx[axis] + 1;
+        grad.flat(flat) = (_data[idx_next] - _data[idx_prev]) / 2;
       }
     }
     return std::make_shared<FArray<T>>(grad);
   }
 
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this));
-    ar(_data);
-  }
-
   array_type&       xtensor() noexcept { return _data; }
   const array_type& xtensor() const noexcept { return _data; }
+
+ protected:
+  friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this), _data);
+  }
 
  private:
   array_type _data;

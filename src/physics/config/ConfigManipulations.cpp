@@ -76,7 +76,7 @@ core::AdjacencySP ConfigManipulations::_extract_adjacency(
     const device_structures::BaseConnectionsSP& total_gates) const {
   size_t               num_gates = total_gates->size();
   generic::FArray<int> adjacency =
-      generic::FArray<int>::zeros({num_gates, num_gates});
+      *generic::FArray<int>::zeros({num_gates, num_gates});
   std::vector<std::string> total_gate_names;
   for (const auto& gate : *total_gates)
     total_gate_names.push_back(gate->name());

@@ -374,8 +374,6 @@ if(NOT FALCON_CORE_DIRS)
     falcon_core/physics/units/Units.hpp
     falcon_core/instrument_interfaces/Instrument.hpp
     falcon_core/instrument_interfaces/names/InstrumentPort.hpp
-    falcon_core::instrument_interfaces::names::InstrumentPort<falcon_core::physics::device_structures::BaseConnection>
-    falcon_core::instrument_interfaces::names::InstrumentPort<falcon_core::physics::device_structures::Ohmic>
     falcon_core/instrument_interfaces/names/Ports.hpp
     falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>
     falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Meter>

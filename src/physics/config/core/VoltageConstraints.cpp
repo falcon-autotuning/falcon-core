@@ -16,13 +16,13 @@ VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
   // Since each can be positive or negative
   size_t                  H      = 2 * adjacency->size() + 2 * pairs.size();
   size_t                  W      = adjacency->size();
-  generic::FArray<double> matrix = generic::FArray<double>::zeros({H, W});
+  generic::FArray<double> matrix = *generic::FArray<double>::zeros({H, W});
   generic::FArray<double> Imatrix =
       generic::FArray<double>(xt::eye(adjacency->size()));
   generic::FArray<double> invImatrix =
       generic::FArray<double>(-xt::eye(adjacency->size()));
   generic::FArray<double> pairMatrix =
-      generic::FArray<double>::zeros({2 * pairs.size(), W});
+      *generic::FArray<double>::zeros({2 * pairs.size(), W});
   // Creates pairs of constraint equations for every set of connected gates
   for (int i = 0; i < pairs.size(); i++) {
     int a = pairs[i].first;
@@ -40,7 +40,7 @@ VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
   matrix = generic::FArray<double>(xt::vstack(xt::xtuple(
       Imatrix.xtensor(), invImatrix.xtensor(), pairMatrix.xtensor())));
 
-  generic::FArray<double> limits = generic::FArray<double>::zeros({H, 1});
+  generic::FArray<double> limits = *generic::FArray<double>::zeros({H, 1});
   std::fill(
       limits.data(), limits.data() + 2 * adjacency->size(), bounds.second);
   std::fill(limits.data() + 2 * adjacency->size(),
