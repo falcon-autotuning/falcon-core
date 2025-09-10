@@ -1,8 +1,5 @@
 #include <gtest/gtest.h>
 
-#include <Eigen/Dense>
-#include <cereal/types/eigen.hpp>
-
 #include "falcon_core/generic/Song.hpp"
 namespace tests {
 // --- Helper Classes for Testing ---
@@ -112,23 +109,6 @@ class TheDestroyerSong : public falcon_core::generic::Song {
   }
 };
 
-// For testing Eigen matrix serialization
-class EigenSong : public falcon_core::generic::Song {
- public:
-  Eigen::MatrixXd _value;
-
-  EigenSong() = default;
-  EigenSong(const Eigen::MatrixXd& value) : _value(value) {}
-
-  bool operator==(const EigenSong& other) const {
-    return _value.isApprox(other._value);
-  }
-
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<falcon_core::generic::Song>(this), _value);
-  }
-};
 }  // namespace tests
 
 // --- Cereal Type Registration ---
@@ -143,9 +123,6 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
 CEREAL_REGISTER_TYPE(tests::TheDestroyerSong)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      tests::TheDestroyerSong)
-CEREAL_REGISTER_TYPE(tests::EigenSong)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     tests::EigenSong)
 
 // --- Test Fixture ---
 namespace tests {
@@ -172,12 +149,6 @@ void test_serialization(const T& original) {
 TEST(SongTest, SimpleSerialization) {
   test_serialization(StrSong("hello"));
   test_serialization(ListSong({"hello", "world"}));
-}
-
-TEST(SongTest, EigenSerialization) {
-  Eigen::MatrixXd mat(2, 2);
-  mat << 1.1, 2.2, 3.3, 4.4;
-  test_serialization(EigenSong(mat));
 }
 
 TEST(SongTest, ComplexSerialization) {

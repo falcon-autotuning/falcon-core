@@ -1,40 +1,33 @@
 /**
  * @file MeasuredArray1D.hpp
- * @brief Defines the MeasuredArray1D class for FalconCore.
+ * @brief An array of 1D measured data.
  */
 
 #pragma once
 
-#include <stdexcept>
-
+#include "falcon_core/math/arrays/Is1D.hpp"
 #include "falcon_core/math/arrays/MeasuredArray.hpp"
+namespace falcon_core::math::arrays {
 
-namespace falcon_core {
-namespace math {
-namespace arrays {
-
-class MeasuredArray1D : public MeasuredArray<double> {
+class MeasuredArray1D : public MeasuredArray, Is1D<MeasuredArray> {
  public:
-  MeasuredArray1D(const xt::xarray<double>& data)
-      : MeasuredArray<double>(data) {
-    if (this->xtensor().dimension() != 1) {
-      throw std::invalid_argument("MeasuredArray1D must be 1-dimensional.");
-    }
-  }
-  MeasuredArray1D() = default;
+  MeasuredArray1D();
+  MeasuredArray1D(const xt::xarray<double>& arr);
+  MeasuredArray1D(xt::xarray<double>&& arr) noexcept;
+  /**
+   * @brief Smooth the data using a simple moving average with the specified
+   * window size.
+   * @param window_size The size of the moving average window. Must be a
+   * positive odd
+   */
+  void smooth(const size_t window_size);
 
  private:
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<MeasuredArray<double>>(this));
+    ar(cereal::base_class<MeasuredArray>(this));
   }
 };
-
-}  // namespace arrays
-}  // namespace math
-}  // namespace falcon_core
-
-// Cereal registration for MeasuredArray1D
-CEREAL_REGISTER_TYPE(falcon_core::math::arrays::MeasuredArray1D)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::math::arrays::MeasuredArray<double>, falcon_core::math::arrays::MeasuredArray1D)
+using MeasuredArray1DSP = std::shared_ptr<MeasuredArray1D>;
+}  // namespace falcon_core::math::arrays

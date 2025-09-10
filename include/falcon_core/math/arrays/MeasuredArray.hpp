@@ -11,25 +11,24 @@ namespace falcon_core {
 namespace math {
 namespace arrays {
 
-/// @brief Array type for measured data, derived from BaseArray.
-/// @tparam T Element type.
-template <typename T>
-class MeasuredArray : public BaseArray<T> {
+/**
+ * @brief Array type for measured data, derived from BaseArray.
+ */
+class MeasuredArray : public BaseArray<double> {
  public:
-  MeasuredArray() : BaseArray<T>() {}
-  MeasuredArray(const xt::xarray<T>& arr) : BaseArray<T>(arr) {}
-  MeasuredArray(xt::xarray<T>&& arr) noexcept : BaseArray<T>(arr) {}
+  MeasuredArray();
+  MeasuredArray(const xt::xarray<double>& arr);
+  MeasuredArray(xt::xarray<double>&& arr) noexcept;
 
  protected:
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseArray<T>>(this));
+    ar(cereal::base_class<BaseArray<double>>(this));
   }
 };
 
-template <typename T>
-using MeasuredArraySP = std::shared_ptr<MeasuredArray<T>>;
+using MeasuredArraySP = std::shared_ptr<MeasuredArray>;
 
 }  // namespace arrays
 }  // namespace math

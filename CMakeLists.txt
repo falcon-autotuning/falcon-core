@@ -64,11 +64,11 @@ function(generate_swig_modules SWIG_MODULES_LIST)
   set(FIELD_NAMES SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE DIRECTORY_PATH)
 
   list(LENGTH MODULE_LIST num_entries)
-  message(STATUS "Generating SWIG modules for ${num_entries} entries")
+  message(DEBUG "Generating SWIG modules for ${num_entries} entries")
   foreach(module_string IN LISTS MODULE_LIST)
     string(REPLACE "," ";" ROW_VALUES "${module_string}")
     # Pass the 4 values directly
-    message(STATUS "The values for the row are ${ROW_VALUES}")
+    message(DEBUG "The values for the row are ${ROW_VALUES}")
     falcon_process_swig_module(${ROW_VALUES})
   endforeach()
 endfunction()
@@ -240,16 +240,6 @@ FetchContent_Declare(
   GIT_REPOSITORY https://github.com/google/googletest.git
   GIT_TAG v1.17.0)
 FetchContent_MakeAvailable(googletest)
-
-
-
-find_package(xtl REQUIRED)
-find_package(xsimd REQUIRED)
-find_package(xtensor REQUIRED)
-# set_property(DIRECTORY ${eigen_SOURCE_DIR} PROPERTY EXCLUDE_FROM_ALL TRUE)
-# find_package(xtensor REQUIRED)
-
-
 
 # xtensor
 FetchContent_Declare(

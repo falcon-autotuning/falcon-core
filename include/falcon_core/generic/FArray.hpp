@@ -55,10 +55,10 @@ class FArray : public generic::Song {
   [[nodiscard]] auto data() noexcept { return _data.data(); }
   [[nodiscard]] auto data() const noexcept { return _data.data(); }
 
-  auto begin() noexcept { return _data.begin(); }
-  auto end() noexcept { return _data.end(); }
-  auto cbegin() const noexcept { return _data.cbegin(); }
-  auto cend() const noexcept { return _data.cend(); }
+  size_t begin() noexcept { return _data.begin(); }
+  size_t end() noexcept { return _data.end(); }
+  size_t cbegin() const noexcept { return _data.cbegin(); }
+  size_t cend() const noexcept { return _data.cend(); }
 
   FArray<T>& operator+=(const FArray<T>& other) {
     _data += other._data;
