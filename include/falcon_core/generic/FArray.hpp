@@ -62,21 +62,19 @@ class FArray : public generic::Song {
     _data += other._data;
     return *this;
   }
+  FArray operator+(const FArray& other) const {
+    FArray result(*this);
+    result._data += other._data;
+    return result;
+  }
   FArray& operator-=(const FArray& other) {
     _data -= other._data;
     return *this;
   }
-  FArray& operator*(const double other) {
-    _data *= other;
-    return *this;
-  }
-  FArray& operator*(const int other) {
-    _data *= other;
-    return *this;
-  }
-  FArray& operator*(const FArray& other) {
-    _data *= other._data;
-    return *this;
+  FArray operator-(const FArray& other) const {
+    FArray result(*this);
+    result._data -= other._data;
+    return result;
   }
   FArray& operator*=(const double other) {
     _data *= other;
@@ -90,9 +88,39 @@ class FArray : public generic::Song {
     _data *= other._data;
     return *this;
   }
+  FArray operator*(const double other) const {
+    FArray result(*this);
+    result._data *= other;
+    return result;
+  }
+  FArray operator*(const int other) const {
+    FArray result(*this);
+    result._data *= other;
+    return result;
+  }
+  FArray operator*(const FArray& other) const {
+    FArray result(*this);
+    result._data *= other._data;
+    return result;
+  }
   FArray& operator/=(const FArray& other) {
     _data /= other._data;
     return *this;
+  }
+  FArray operator/(const double other) const {
+    FArray result(*this);
+    result._data /= other;
+    return result;
+  }
+  FArray operator/(const int other) const {
+    FArray result(*this);
+    result._data /= other;
+    return result;
+  }
+  FArray operator/(const FArray& other) const {
+    FArray result(*this);
+    result._data /= other._data;
+    return result;
   }
 
   template <typename... Args>
