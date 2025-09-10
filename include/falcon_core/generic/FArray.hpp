@@ -3,6 +3,7 @@
 #include <cereal/types/memory.hpp>
 #include <cereal/types/vector.hpp>
 #include <cereal/types/xtensor.hpp>
+#include <xtensor-blas/xblas.hpp>
 #include <xtensor/containers/xarray.hpp>
 #include <xtensor/io/xio.hpp>
 #include <xtensor/views/xview.hpp>
@@ -26,16 +27,16 @@ class FArray : public generic::Song {
   FArray(array_type&& arr) noexcept : _data(std::move(arr)) {}
   explicit FArray(const std::vector<size_t>& shape) : _data(shape) {}
 
-  FArray(const FArray&)                = default;
-  FArray(FArray&&) noexcept            = default;
-  FArray& operator=(const FArray&)     = default;
-  FArray& operator=(FArray&&) noexcept = default;
+  FArray(const FArray&)               = default;
+  FArray(FArray&&) noexcept           = default;
+  FArray operator=(const FArray&)     = default;
+  FArray operator=(FArray&&) noexcept = default;
 
-  static FArray zeros(const std::vector<size_t>& shape) {
-    return FArray(xt::zeros<T>(shape));
+  static std::shared_ptr<FArray<T>> zeros(const std::vector<size_t>& shape) {
+    return std::make_shared<FArray<T>>(xt::zeros<T>(shape));
   }
-  static FArray empty(const std::vector<size_t>& shape) {
-    return FArray(xt::empty<T>(shape));
+  static std::shared_ptr<FArray<T>> empty(const std::vector<size_t>& shape) {
+    return std::make_shared<FArray<T>>(xt::empty<T>(shape));
   }
 
   template <typename... Args>
@@ -58,69 +59,146 @@ class FArray : public generic::Song {
   auto cbegin() const noexcept { return _data.cbegin(); }
   auto cend() const noexcept { return _data.cend(); }
 
-  FArray& operator+=(const FArray& other) {
+  FArray<T>& operator+=(const FArray<T>& other) {
     _data += other._data;
+    return this;
+  }
+  FArray<T>& operator+=(const double other) {
+    auto ones = xt::ones_like(_data) * other;
+    _data += ones;
     return *this;
   }
-  FArray operator+(const FArray& other) const {
+  FArray<T>& operator+=(const int other) {
+    auto ones = xt::ones_like(_data) * other;
+    _data += ones;
+    return *this;
+  }
+  std::shared_ptr<FArray<T>> operator+(const double other) const {
+    FArray result(*this);
+    auto   ones = xt::ones_like(result._data) * other;
+    result._data += ones;
+    return std::make_shared<FArray<T>>(result);
+  }
+  std::shared_ptr<FArray<T>> operator+(const int other) const {
+    FArray result(*this);
+    auto   ones = xt::ones_like(result._data) * other;
+    result._data += ones;
+    return std::make_shared<FArray<T>>(result);
+  }
+  std::shared_ptr<FArray<T>> operator+(
+      const std::shared_ptr<FArray<T>>& other) const {
     FArray result(*this);
     result._data += other._data;
-    return result;
+    return std::make_shared<FArray<T>>(result);
   }
-  FArray& operator-=(const FArray& other) {
+  FArray<T>& operator-=(const std::shared_ptr<FArray<T>>& other) {
     _data -= other._data;
+    return this;
+  }
+  FArray<T>& operator-=(const double other) {
+    auto ones = xt::ones_like(_data) * other;
+    _data -= ones;
     return *this;
   }
-  FArray operator-(const FArray& other) const {
+  FArray<T>& operator-=(const int other) {
+    auto ones = xt::ones_like(_data) * other;
+    _data -= ones;
+    return *this;
+  }
+  std::shared_ptr<FArray<T>> operator-() const {
+    FArray result(*this);
+    return -1 * result;
+  }
+  std::shared_ptr<FArray<T>> operator-() { return -1 * (*this); }
+  std::shared_ptr<FArray<T>> operator-(
+      const std::shared_ptr<FArray<T>>& other) const {
     FArray result(*this);
     result._data -= other._data;
     return result;
   }
-  FArray& operator*=(const double other) {
+  std::shared_ptr<FArray<T>> operator-(const double other) const {
+    FArray result(*this);
+    auto   ones = xt::ones_like(result._data) * other;
+    result._data -= ones;
+    return std::make_shared<FArray<T>>(result);
+  }
+  std::shared_ptr<FArray<T>> operator-(const int other) const {
+    FArray result(*this);
+    auto   ones = xt::ones_like(result._data) * other;
+    result._data -= ones;
+    return std::make_shared<FArray<T>>(result);
+  }
+  FArray<T>& operator*=(const double other) {
     _data *= other;
     return *this;
   }
-  FArray& operator*=(const int other) {
+  FArray<T>& operator*=(const int other) {
     _data *= other;
     return *this;
   }
-  FArray& operator*=(const FArray& other) {
+  FArray<T>& operator*=(const std::shared_ptr<FArray<T>>& other) {
     _data *= other._data;
     return *this;
   }
-  FArray operator*(const double other) const {
+  std::shared_ptr<FArray<T>> operator*(const double other) const {
     FArray result(*this);
     result._data *= other;
     return result;
   }
-  FArray operator*(const int other) const {
+  std::shared_ptr<FArray<T>> operator*(const int other) const {
     FArray result(*this);
     result._data *= other;
     return result;
   }
-  FArray operator*(const FArray& other) const {
+  std::shared_ptr<FArray<T>> operator*(
+      const std::shared_ptr<FArray<T>>& other) const {
     FArray result(*this);
     result._data *= other._data;
     return result;
   }
-  FArray& operator/=(const FArray& other) {
+  FArray<T>& operator/=(const std::shared_ptr<FArray<T>>& other) {
     _data /= other._data;
     return *this;
   }
-  FArray operator/(const double other) const {
+  std::shared_ptr<FArray<T>> operator/(const double other) const {
     FArray result(*this);
     result._data /= other;
     return result;
   }
-  FArray operator/(const int other) const {
+  std::shared_ptr<FArray<T>> operator/(const int other) const {
     FArray result(*this);
     result._data /= other;
     return result;
   }
-  FArray operator/(const FArray& other) const {
+  std::shared_ptr<FArray<T>> operator/(
+      const std::shared_ptr<FArray<T>>& other) const {
     FArray result(*this);
     result._data /= other._data;
     return result;
+  }
+  std::shared_ptr<FArray<T>> operator^(const double other) const {
+    FArray result(*this);
+    result._data.power(other);
+    return result;
+  }
+  FArray<T>& operator^(const double other) {
+    this->_data.power(other);
+    return this;
+  }
+  std::shared_ptr<FArray<T>> abs() const {
+    FArray result(*this);
+    result._data.abs();
+    return result;
+  }
+  T                          min() const { return xt::amin(this->data()); }
+  std::shared_ptr<FArray<T>> min(const std::shared_ptr<FArray<T>> other) const {
+    return std::make_shared<FArray<T>>(
+        xt::minimum(this->data(), other->data()));
+  }
+  T                          max() const { return xt::amax(this->data()); }
+  std::shared_ptr<FArray<T>> max(const std::shared_ptr<FArray<T>> other) const {
+    return std::make_shared<FArray<T>>(
+        xt::maximum(this->data(), other->data()));
   }
 
   template <typename... Args>
@@ -133,15 +211,138 @@ class FArray : public generic::Song {
   }
 
   // Assignment and conversion
-  FArray& operator=(const array_type& arr) {
+  FArray<T>& operator=(const array_type& arr) {
     _data = arr;
-    return *this;
+    return this;
   }
   operator array_type&() { return _data; }
   operator const array_type&() const { return _data; }
 
-  bool operator==(const FArray& other) const { return _data == other._data; }
-  bool operator!=(const FArray& other) const { return !(*this == other); }
+  bool operator==(const std::shared_ptr<FArray<T>>& other) const {
+    return _data == other._data;
+  }
+  bool operator!=(const std::shared_ptr<FArray<T>>& other) const {
+    return !(*this == other);
+  }
+  /**
+   * @brief Check if any of the data is greater than the value.
+   * @param value The value to compare to.
+   * @return True if any of the data is greater than the value, False otherwise.
+   */
+  bool operator>(const T& value) const { return xt::any(_data > value); }
+
+  /**
+   * @brief Check if any of the data is less than the value.
+   * @param value The value to compare to.
+   * @return True if any of the data is less than the value, False otherwise.
+   */
+  bool operator<(const T& value) const { return xt::any(_data < value); }
+
+  /**
+   * @brief Remove the offset from the data.
+   * @param offset The offset to remove.
+   */
+  void remove_offset(const T& offset) { _data -= offset; }
+
+  /**
+   * @brief Return the sum of the data.
+   * @return The sum of the data.
+   */
+  T sum() const { return xt::sum(_data)(); }
+
+  /**
+   * @brief Return a new Array with the given shape.
+   * @param shape The new shape.
+   * @return A reshaped FArray.
+   */
+  std::shared_ptr<FArray<T>> reshape(const std::vector<size_t>& shape) const {
+    return std::make_shared<FArray<T>>(xt::reshape_view(_data, shape));
+  }
+
+  /**
+   * @brief Return the indices of the data where the value is.
+   * @param value The value to search for.
+   * @return Indices where the value matches.
+   */
+  std::vector<std::vector<size_t>> where(const T& value) const {
+    auto                             mask = xt::equal(_data, value);
+    std::vector<std::vector<size_t>> indices;
+    for (size_t i = 0; i < _data.size(); ++i) {
+      if (mask.flat(i)) {
+        indices.push_back(xt::unravel_index(i, _data.shape()));
+      }
+    }
+    return indices;
+  }
+
+  /**
+   * @brief Flip the data along the given axis.
+   * @param axis The axis to flip.
+   * @return A flipped FArray.
+   */
+  std::shared_ptr<FArray<T>> flip(size_t axis) const {
+    return std::make_shared<FArray<T>>(xt::flip(_data, axis));
+  }
+
+  /**
+   * @brief Return the gradient of the data along all axes.
+   *
+   * Computes the gradient for each axis of the array using finite differences:
+   * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+   * - For boundary points, uses forward (first element) or backward (last
+   * element) difference.
+   *
+   * @return A vector of FArray gradients (one for each axis).
+   */
+  std::vector<std::shared_ptr<FArray<T>>> gradient() const {
+    std::vector<std::shared_ptr<FArray<T>>> grads;
+    auto                                    shape = _data.shape();
+    size_t                                  ndim  = _data.dimension();
+    for (size_t axis = 0; axis < ndim; ++axis) {
+      grads.push_back(gradient(axis));
+    }
+    return grads;
+  }
+
+  /**
+   * @brief Return the gradient of the data along a given axis.
+   *
+   * Computes the gradient along the specified axis using finite differences:
+   * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+   * - For boundary points, uses forward (first element) or backward (last
+   * element) difference.
+   *
+   * @param axis The axis to compute the gradient.
+   * @return The gradient FArray.
+   */
+  std::shared_ptr<FArray<T>> gradient(size_t axis) const {
+    auto          shape = _data.shape();
+    xt::xarray<T> grad  = xt::zeros<T>(shape);
+
+    // Iterate over all indices, compute finite difference along axis
+    xt::xindex idx(shape.size(), 0);
+    auto       total = _data.size();
+    for (size_t flat = 0; flat < total; ++flat) {
+      idx = xt::unravel_index(flat, shape);
+
+      xt::xindex idx_prev = idx;
+      xt::xindex idx_next = idx;
+
+      if (idx[axis] == 0) {
+        idx_next[axis]  = 1;
+        grad.flat(flat) = _data.element(idx_next) - _data.element(idx);
+      } else if (idx[axis] == shape[axis] - 1) {
+        idx_prev[axis]  = shape[axis] - 2;
+        grad.flat(flat) = _data.element(idx) - _data.element(idx_prev);
+      } else {
+        idx_prev[axis] = idx[axis] - 1;
+        idx_next[axis] = idx[axis] + 1;
+        grad.flat(flat) =
+            (_data.element(idx_next) - _data.element(idx_prev)) / 2;
+      }
+    }
+    return std::make_shared<FArray<T>>(grad);
+  }
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -155,5 +356,7 @@ class FArray : public generic::Song {
  private:
   array_type _data;
 };
+template <typename T>
+using FArraySP = std::shared_ptr<FArray<T>>;
 
 }  // namespace falcon_core::generic

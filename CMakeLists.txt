@@ -277,6 +277,13 @@ FetchContent_Declare(
         )
 FetchContent_MakeAvailable(xsimd)
 
+FetchContent_Declare(
+            xtensor-blas
+            GIT_REPOSITORY https://github.com/xtensor-stack/xtensor-blas.git
+            GIT_TAG        0.23.0
+        )
+FetchContent_MakeAvailable(xtensor-blas)
+
 #yaml
 FetchContent_Declare(
   yaml-cpp
@@ -335,9 +342,10 @@ target_include_directories(
             ${xtensor_SOURCE_DIR}/include
             ${xtl_SOURCE_DIR}/include
             ${xsimd_SOURCE_DIR}/include
+            ${xtensor-blas_SOURCE_DIR}/include
    )
 
-target_link_libraries(falcon_core_cpp PRIVATE Boost::filesystem Boost::system xtl xtensor xsimd yaml-cpp::yaml-cpp)
+target_link_libraries(falcon_core_cpp PRIVATE Boost::filesystem Boost::system xtl xtensor xsimd xtensor-blas yaml-cpp::yaml-cpp)
 target_link_libraries(falcon_core_cpp PUBLIC yaml-cpp::yaml-cpp)
 if(NOT FALCON_CORE_DIRS)
   set(FALCON_HEADERS

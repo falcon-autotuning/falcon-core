@@ -19,6 +19,20 @@ class BaseArray : public generic::FArray<T> {
   BaseArray(xt::xarray<T>&& arr) noexcept : generic::FArray<T>(arr) {}
   explicit BaseArray(const std::vector<size_t>& shape)
       : generic::FArray<T>(shape) {}
+  double get_sum_of_squares() const { return (*(this ^ 2)).data().sum(); }
+  double get_sum_of_squares(const int other) const {
+    return ((*(this->data() - other) ^ 2)).data().sum();
+  }
+  double get_sum_of_squares(const double other) const {
+    return ((*(this->data() - other) ^ 2)).data().sum();
+  }
+  double get_sum_of_squares(
+      const std::shared_ptr<generic::FArray<T>>& other) const {
+    return ((*(this->data() - other->data()) ^ 2)).data().sum();
+  }
+  double get_sum_of_squares(const std::shared_ptr<BaseArray<T>>& other) const {
+    return ((*(this->data() - other->data()) ^ 2)).data().sum();
+  }
 };
 
 template <typename T>
