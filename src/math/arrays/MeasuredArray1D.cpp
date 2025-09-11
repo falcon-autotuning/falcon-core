@@ -1,7 +1,5 @@
 #include "falcon_core/math/arrays/MeasuredArray1D.hpp"
 
-#include "falcon_core/math/arrays/MeasuredArray.hpp"
-
 namespace falcon_core::math::arrays {
 
 MeasuredArray1D::MeasuredArray1D() : MeasuredArray() {}

@@ -5,8 +5,6 @@
 
 #pragma once
 
-#include <stdexcept>
-
 #include "falcon_core/math/arrays/ControlArray.hpp"
 #include "falcon_core/math/arrays/Is1D.hpp"
 namespace falcon_core::math::arrays {
