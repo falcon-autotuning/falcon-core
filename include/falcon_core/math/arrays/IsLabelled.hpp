@@ -84,27 +84,29 @@ class IsLabelled : public virtual generic::IFArray<T> {
   /**
    * @brief Get the sum of squares of the data.
    */
-  double get_sum_of_squares() const { return *this->get_sum_of_squares(); }
-  bool   operator>(const double value) const { return **this > value; }
-  bool   operator<(const double value) const { return **this < value; }
+  double get_sum_of_squares() const { return this->get_sum_of_squares(); }
+  bool   operator>(const double value) const { return this > value; }
+  bool   operator<(const double value) const { return this < value; }
   /**
    * @brief Remove an offset from the data.
    * @param offset The offset to remove.
    */
-  void remove_offset(const double offset) { *this->remove_offset(offset); }
+  void remove_offset(const double offset) {
+    generic::IFArray<T>::remove_offset(offset);
+  }
   /**
    * @brief Flip the data along the given axis.
    * @param axis The axis to flip.
    * @return A flipped IsLabelled.
    */
   std::shared_ptr<IsLabelled<T>> flip(size_t axis) const {
-    return this->flip(axis);
+    return std::make_shared<IsLabelled<T>>(generic::IFArray<T>::flip(axis));
   }
   /**
    * @brief Return the gradient of the data along all axes.
    */
   generic::ListSP<std::shared_ptr<IsLabelled<T>>> gradient() const {
-    auto grads = this->gradient();
+    auto grads = generic::IFArray<T>::gradient();
     auto list =
         std::make_shared<generic::List<std::shared_ptr<IsLabelled<T>>>>();
     for (const auto& grad : *grads) {
@@ -119,7 +121,7 @@ class IsLabelled : public virtual generic::IFArray<T> {
    * @return The gradient IsLabelled.
    */
   std::shared_ptr<IsLabelled<T>> gradient(size_t axis) const {
-    auto grad = this->gradient(axis);
+    auto grad = generic::IFArray<T>::gradient(axis);
     return std::make_shared<IsLabelled<T>>(std::make_shared<T>(*grad),
                                            this->label());
   }
