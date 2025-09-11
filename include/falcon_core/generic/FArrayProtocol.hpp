@@ -19,12 +19,6 @@ class IFArray {
 
   virtual ~IFArray() = default;
 
-  // Construction
-  virtual std::shared_ptr<IFArray<T>> zeros(
-      const std::vector<size_t>& shape) = 0;
-  virtual std::shared_ptr<IFArray<T>> empty(
-      const std::vector<size_t>& shape) = 0;
-
   // Element access
   virtual reference       operator()(size_t i)       = 0;
   virtual const_reference operator()(size_t i) const = 0;
