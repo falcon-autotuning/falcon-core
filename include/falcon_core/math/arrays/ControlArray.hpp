@@ -37,108 +37,81 @@ class ControlArray : public generic::FArray<double>, public IsControl<double> {
     return std::make_shared<ControlArray>(xt::empty<double>(shape));
   }
   // Arithmetic operators
-  std::shared_ptr<ControlArray> operator+(const double other) const {
-    return std::make_shared<ControlArray>(
-        generic::FArray<double>::operator+(other));
-  }
+  std::shared_ptr<ControlArray> operator+(const double other) const;
 
-  std::shared_ptr<ControlArray> operator+(const int other) const {
-    return std::make_shared<ControlArray>(
-        generic::FArray<double>::operator+(other));
-  }
+  std::shared_ptr<ControlArray> operator+(const int other) const;
 
   std::shared_ptr<ControlArray> operator+(
-      const std::shared_ptr<ControlArray>& other) const {
-    return std::make_shared<ControlArray>(
-        generic::FArray<double>::operator+(other));
-  }
+      const std::shared_ptr<ControlArray>& other) const;
 
-  std::shared_ptr<ControlArray> operator-(const double other) const {
-    return std::make_shared<ControlArray>(
-        generic::FArray<double>::operator-(other));
-  }
+  std::shared_ptr<ControlArray> operator-(const double other) const;
 
-  std::shared_ptr<ControlArray> operator-(const int other) const {
-    return std::make_shared<ControlArray>(
-        generic::FArray<double>::operator-(other));
-  }
+  std::shared_ptr<ControlArray> operator-(const int other) const;
 
   std::shared_ptr<ControlArray> operator-(
-      const std::shared_ptr<ControlArray>& other) const {
-    return std::make_shared<ControlArray>(
-        generic::FArray<double>::operator-(other));
-  }
+      const std::shared_ptr<ControlArray>& other) const;
 
-  std::shared_ptr<ControlArray> operator-() const {
-    return std::make_shared<ControlArray>(generic::FArray<double>::operator-());
-  }
+  std::shared_ptr<ControlArray> operator-() const;
 
-  std::shared_ptr<ControlArray> operator*(const double other) const {
-    return std::make_shared<ControlArray>(
-        generic::FArray<double>::operator*(other));
-  }
+  std::shared_ptr<ControlArray> operator*(const double other) const;
 
-  std::shared_ptr<ControlArray> operator*(const int other) const {
-    return std::make_shared<ControlArray>(
-        generic::FArray<double>::operator*(other));
-  }
+  std::shared_ptr<ControlArray> operator*(const int other) const;
 
   std::shared_ptr<ControlArray> operator*(
-      const std::shared_ptr<ControlArray>& other) const {
-    return std::make_shared<ControlArray>(
-        generic::FArray<double>::operator*(other));
-  }
+      const std::shared_ptr<ControlArray>& other) const;
 
-  std::shared_ptr<ControlArray> operator/(const double other) const {
-    return std::make_shared<ControlArray>(
-        generic::FArray<double>::operator/(other));
-  }
+  std::shared_ptr<ControlArray> operator/(const double other) const;
 
-  std::shared_ptr<ControlArray> operator/(const int other) const {
-    return std::make_shared<ControlArray>(
-        generic::FArray<double>::operator/(other));
-  }
+  std::shared_ptr<ControlArray> operator/(const int other) const;
 
   std::shared_ptr<ControlArray> operator/(
-      const std::shared_ptr<ControlArray>& other) const {
-    return std::make_shared<ControlArray>(
-        generic::FArray<double>::operator/(other));
-  }
+      const std::shared_ptr<ControlArray>& other) const;
 
-  std::shared_ptr<ControlArray> operator^(const double other) const {
-    return std::make_shared<ControlArray>(
-        generic::FArray<double>::operator^(other));
-  }
+  std::shared_ptr<ControlArray> operator^(const double other) const;
 
-  std::shared_ptr<ControlArray> abs() const {
-    return std::make_shared<ControlArray>(generic::FArray<double>::abs());
-  }
+  std::shared_ptr<ControlArray> abs() const;
 
   std::shared_ptr<ControlArray> min(
-      const std::shared_ptr<ControlArray>& other) const {
-    return std::make_shared<ControlArray>(generic::FArray<double>::min());
-  }
+      const std::shared_ptr<ControlArray>& other) const;
 
   std::shared_ptr<ControlArray> max(
-      const std::shared_ptr<ControlArray>& other) const {
-    return std::make_shared<ControlArray>(generic::FArray<double>::max());
-  }
+      const std::shared_ptr<ControlArray>& other) const;
 
-  std::shared_ptr<ControlArray> reshape(
-      const std::vector<size_t>& shape) const {
-    return std::make_shared<ControlArray>(
-        generic::FArray<double>::reshape(shape));
-  }
-
-  std::shared_ptr<ControlArray> flip(size_t axis) const {
-    return std::make_shared<ControlArray>(generic::FArray<double>::flip(axis));
-  }
-  generic::FArraySP<double> gradient(size_t axis) const {
-    return generic::FArray<double>::gradient(axis);
-  }
-  generic::ListSP<generic::FArray<double>> gradient() const {
-    return generic::FArray<double>::gradient();
-  }
+  /**
+   * @brief Return a new Array with the given shape.
+   * @param shape The new shape.
+   * @return A reshaped ControlArray.
+   */
+  std::shared_ptr<ControlArray> reshape(const std::vector<size_t>& shape) const;
+  /**
+   * @brief Flip the data along the given axis.
+   * @param axis The axis to flip.
+   * @return A flipped ControlArray.
+   */
+  std::shared_ptr<ControlArray> flip(size_t axis) const;
+  /**
+   * @brief Return the gradient of the data along a given axis.
+   *
+   * Computes the gradient along the specified axis using finite differences:
+   * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+   * - For boundary points, uses forward (first element) or backward (last
+   * element) difference.
+   *
+   * @param axis The axis to compute the gradient.
+   * @return The gradient FArray.
+   */
+  generic::FArraySP<double> gradient(size_t axis) const;
+  /**
+   * @brief Return the gradient of the data along all axes.
+   *
+   * Computes the gradient for each axis of the array using finite differences:
+   * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+   * - For boundary points, uses forward (first element) or backward (last
+   * element) difference.
+   *
+   * @return A vector of FArray gradients (one for each axis).
+   */
+  generic::ListSP<generic::FArray<double>> gradient() const;
 };
 using ControlArraySP = std::shared_ptr<ControlArray>;
 }  // namespace falcon_core::math::arrays
