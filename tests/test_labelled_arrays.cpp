@@ -30,12 +30,14 @@ TEST(BaseLabelledArraysTest, ConstructionAndAccess) {
       std::make_shared<falcon_core::physics::device_structures::PlungerGate>(
           "P1"),
       falcon_core::instrument_interfaces::InstrumentTypes::VOLTAGE_SOURCE,
-      falcon_core::physics::units::Units::Volt);
+      std::make_shared<falcon_core::physics::units::SymbolUnit>(
+          falcon_core::physics::units::Units::Volt));
   auto label2 = std::make_shared<LabelType>(
       std::make_shared<falcon_core::physics::device_structures::PlungerGate>(
           "P2"),
       falcon_core::instrument_interfaces::InstrumentTypes::VOLTAGE_SOURCE,
-      falcon_core::physics::units::Units::Volt);
+      std::make_shared<falcon_core::physics::units::SymbolUnit>(
+          falcon_core::physics::units::Units::Volt));
   auto labelled1 = std::make_shared<LabelledControlArray1D>(arr1, label1);
   auto labelled2 = std::make_shared<LabelledControlArray1D>(arr2, label2);
 
@@ -61,12 +63,14 @@ TEST(BaseLabelledArraysTest, SerializationRoundTrip) {
       std::make_shared<falcon_core::physics::device_structures::PlungerGate>(
           "P1"),
       falcon_core::instrument_interfaces::InstrumentTypes::VOLTAGE_SOURCE,
-      falcon_core::physics::units::Units::Volt);
+      std::make_shared<falcon_core::physics::units::SymbolUnit>(
+          falcon_core::physics::units::Units::Volt));
   auto label2 = std::make_shared<LabelType>(
       std::make_shared<falcon_core::physics::device_structures::PlungerGate>(
           "P2"),
       falcon_core::instrument_interfaces::InstrumentTypes::VOLTAGE_SOURCE,
-      falcon_core::physics::units::Units::Volt);
+      std::make_shared<falcon_core::physics::units::SymbolUnit>(
+          falcon_core::physics::units::Units::Volt));
   auto labelled1 = std::make_shared<LabelledControlArray1D>(arr1, label1);
   auto labelled2 = std::make_shared<LabelledControlArray1D>(arr2, label2);
 
@@ -97,7 +101,8 @@ TEST(IsLabelled1DTest, GetStart) {
       std::make_shared<falcon_core::physics::device_structures::PlungerGate>(
           "P1"),
       falcon_core::instrument_interfaces::InstrumentTypes::VOLTAGE_SOURCE,
-      falcon_core::physics::units::Units::Volt);
+      std::make_shared<falcon_core::physics::units::SymbolUnit>(
+          falcon_core::physics::units::Units::Volt));
   LabelledControlArray1D labelled(arr, label);
 
   EXPECT_DOUBLE_EQ(labelled.get_start(), 10.0);
@@ -110,7 +115,8 @@ TEST(IsLabelled1DTest, ThrowsOnNon1D) {
       std::make_shared<falcon_core::physics::device_structures::PlungerGate>(
           "P1"),
       falcon_core::instrument_interfaces::InstrumentTypes::VOLTAGE_SOURCE,
-      falcon_core::physics::units::Units::Volt);
+      std::make_shared<falcon_core::physics::units::SymbolUnit>(
+          falcon_core::physics::units::Units::Volt));
   // get_start should throw since arr is not 1D
   LabelledControlArray1D labelled(arr, label);
   EXPECT_THROW({ labelled.get_start(); }, std::runtime_error);
