@@ -49,9 +49,7 @@ class BaseLabelledArrays : public generic::List<BaseLabelledArray<T>> {
       if (seen.contains(label)) {
         throw std::runtime_error("Array labels are not unique.");
       }
-      seen.push_back(
-          std::make_shared<autotuner_interfaces::contexts::AcquisitionContext>(
-              label));
+      seen.push_back(label);
     }
   }
 

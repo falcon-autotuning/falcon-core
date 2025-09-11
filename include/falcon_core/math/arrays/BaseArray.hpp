@@ -14,7 +14,8 @@ namespace falcon_core::math::arrays {
 template <typename T>
 class BaseArray : public generic::FArray<T> {
  public:
-  BaseArray() = default;
+  using value_type = T;
+  BaseArray()      = default;
   BaseArray(const xt::xarray<T>& arr) : generic::FArray<T>(arr) {}
   BaseArray(xt::xarray<T>&& arr) noexcept : generic::FArray<T>(arr) {}
   explicit BaseArray(const std::vector<size_t>& shape)

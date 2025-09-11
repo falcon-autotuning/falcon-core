@@ -1,5 +1,7 @@
 #pragma once
 
+#include <algorithm>
+
 #include "falcon_core/generic/IsPrimitive.hpp"
 #include "falcon_core/generic/Song.hpp"
 namespace falcon_core {
@@ -70,7 +72,10 @@ class List : public generic::Song {
   const_iterator   begin() const { return _items.begin(); }
   const_iterator   end() const { return _items.end(); }
   bool             contains(const StoredValue& value) const {
-    return std::find(_items.begin(), _items.end(), value) != _items.end();
+    return std::any_of(
+        _items.begin(), _items.end(), [&value](const StoredValue& item) {
+          return item && value ? *item == *value : item == value;
+        });
   }
   void insert(iterator pos, const_iterator first, const_iterator last) {
     _items.insert(pos, first, last);

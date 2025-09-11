@@ -8,6 +8,7 @@
 #include <xtensor/io/xio.hpp>
 #include <xtensor/views/xview.hpp>
 
+#include "falcon_core/generic/FArrayProtocol.hpp"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Song.hpp"
 #define XTENSOR_ENABLE_CEREAL
@@ -16,7 +17,7 @@
 namespace falcon_core::generic {
 
 template <typename T>
-class FArray : public generic::Song {
+class FArray : public generic::Song, public IFArray<T> {
  public:
   using array_type      = xt::xarray<T>;
   using value_type      = T;
@@ -49,11 +50,13 @@ class FArray : public generic::Song {
     return _data(std::forward<Args>(args)...);
   }
 
-  [[nodiscard]] const auto& shape() const noexcept { return _data.shape(); }
-  [[nodiscard]] auto        size() const noexcept { return _data.size(); }
-  [[nodiscard]] auto dimension() const noexcept { return _data.dimension(); }
-  [[nodiscard]] auto data() noexcept { return _data.data(); }
-  [[nodiscard]] auto data() const noexcept { return _data.data(); }
+  [[nodiscard]] const xt::dynamic_shape<size_t>& shape() const noexcept {
+    return _data.shape();
+  }
+  [[nodiscard]] size_t size() const noexcept { return _data.size(); }
+  [[nodiscard]] size_t dimension() const noexcept { return _data.dimension(); }
+  [[nodiscard]] T*     data() noexcept { return _data.data(); }
+  [[nodiscard]] const T* data() const noexcept { return _data.data(); }
 
   size_t begin() noexcept { return _data.begin(); }
   size_t end() noexcept { return _data.end(); }

@@ -16,6 +16,7 @@ namespace arrays {
  */
 class MeasuredArray : public BaseArray<double> {
  public:
+  using value_type = double;
   MeasuredArray();
   MeasuredArray(const xt::xarray<double>& arr);
   MeasuredArray(xt::xarray<double>&& arr) noexcept;

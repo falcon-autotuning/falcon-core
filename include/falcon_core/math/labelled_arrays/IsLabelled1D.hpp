@@ -11,27 +11,18 @@ namespace falcon_core::math::labelled_arrays {
  * The class that inherits from this must provide:
  * - array() method returning an array that implements Is1D mixin
  */
-template <typename Derived>
+template <typename Parent>
 class IsLabelled1D {
  public:
-  using ArrayType = typename Derived::array_type;
-
-  /**
-   * @brief This method must be implemented by classes that inherit from
-   * IsLabelled1D.
-   * @throws std::runtime_error if not implemented.
-   */
-  const ArrayType& array() const {
-    throw std::runtime_error(
-        "Classes inheriting from IsLabelled1D must implement array() method");
-  }
+  using ArrayType = typename Parent::array_type;
 
   /**
    * @brief Get the array cast to Is1D type.
    * This avoids repetitive casting in all methods.
    */
-  const arrays::Is1D<ArrayType>& _1d_array() const {
-    return static_cast<const arrays::Is1D<ArrayType>&>(array());
+  const arrays::Is1D<arrays::BaseArray<ArrayType>>& _1d_array() const {
+    return static_cast<const arrays::Is1D<arrays::BaseArray<ArrayType>>&>(
+        *array());
   }
 
   /**
