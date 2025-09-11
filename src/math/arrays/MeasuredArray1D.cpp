@@ -1,26 +1,164 @@
 #include "falcon_core/math/arrays/MeasuredArray1D.hpp"
 
-namespace falcon_core::math::arrays {
+#include "falcon_core/generic/FArray.hpp"
+#include "falcon_core/math/arrays/MeasuredArray.hpp"
 
+namespace falcon_core::math::arrays {
 MeasuredArray1D::MeasuredArray1D() : MeasuredArray() {}
 MeasuredArray1D::MeasuredArray1D(const xt::xarray<double>& arr)
     : MeasuredArray(arr) {}
+MeasuredArray1D::MeasuredArray1D(const FArray<double>& arr)
+    : MeasuredArray(arr) {}
+MeasuredArray1D::MeasuredArray1D(const MeasuredArray& arr)
+    : MeasuredArray(arr) {}
 MeasuredArray1D::MeasuredArray1D(xt::xarray<double>&& arr) noexcept
     : MeasuredArray(arr) {}
-void MeasuredArray1D::smooth(size_t window_size) {
-  auto&              arr    = this->xtensor();
-  size_t             n      = arr.size();
-  xt::xarray<double> result = xt::zeros<double>({n});
-  for (size_t i = 0; i < n; ++i) {
-    size_t start = (i < window_size / 2) ? 0 : i - window_size / 2;
-    size_t end   = std::min(n, i + window_size / 2 + 1);
-    result(i)    = xt::mean(xt::view(arr, xt::range(start, end)))();
-  }
-  arr = result;
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator+(
+    const double other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator+(other));
 }
 
-}  // namespace falcon_core::math::arrays
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator+(
+    const int other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator+(other));
+}
 
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator+(
+    const std::shared_ptr<MeasuredArray1D>& other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator+(other));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator+(
+    const std::shared_ptr<FArray<double>>& other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator+(other));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator-(
+    const double other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator-(other));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator-(
+    const int other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator-(other));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator-(
+    const std::shared_ptr<MeasuredArray1D>& other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator-(other));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator-(
+    const std::shared_ptr<FArray<double>>& other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator-(other));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator-() const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator-());
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator*(
+    const double other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator*(other));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator*(
+    const int other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator*(other));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator*(
+    const std::shared_ptr<MeasuredArray1D>& other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator*(other));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator*(
+    const std::shared_ptr<FArray<double>>& other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator*(other));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator/(
+    const double other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator/(other));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator/(
+    const int other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator/(other));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator/(
+    const std::shared_ptr<MeasuredArray1D>& other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator/(other));
+}
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator/(
+    const std::shared_ptr<FArray<double>>& other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator/(other));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::operator^(
+    const double other) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::operator^(other));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::abs() const {
+  return std::make_shared<MeasuredArray1D>(generic::FArray<double>::abs());
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::min(
+    const std::shared_ptr<MeasuredArray1D>& other) const {
+  return std::make_shared<MeasuredArray1D>(generic::FArray<double>::min());
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::min(
+    const std::shared_ptr<FArray<double>>& other) const {
+  return std::make_shared<MeasuredArray1D>(generic::FArray<double>::min());
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::max(
+    const std::shared_ptr<MeasuredArray1D>& other) const {
+  return std::make_shared<MeasuredArray1D>(generic::FArray<double>::max());
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::max(
+    const std::shared_ptr<FArray<double>>& other) const {
+  return std::make_shared<MeasuredArray1D>(generic::FArray<double>::max());
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::reshape(
+    const std::vector<size_t>& shape) const {
+  return std::make_shared<MeasuredArray1D>(
+      generic::FArray<double>::reshape(shape));
+}
+
+std::shared_ptr<MeasuredArray1D> MeasuredArray1D::flip(size_t axis) const {
+  return std::make_shared<MeasuredArray1D>(generic::FArray<double>::flip(axis));
+}
+generic::FArraySP<double> MeasuredArray1D::gradient(size_t axis) const {
+  return generic::FArray<double>::gradient(axis);
+}
+generic::ListSP<generic::FArray<double>> MeasuredArray1D::gradient() const {
+  return generic::FArray<double>::gradient();
+}
+}  // namespace falcon_core::math::arrays
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::MeasuredArray1D)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::math::arrays::MeasuredArray,
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::FArray<double>,
                                      falcon_core::math::arrays::MeasuredArray1D)
