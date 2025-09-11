@@ -9,6 +9,8 @@ class IsControl : public virtual generic::IFArray<T> {
   IncreasingAlignmentSP _alignment;
 
  public:
+  virtual generic::FArraySP<T>                gradient(size_t axis) const = 0;
+  virtual generic::ListSP<generic::FArray<T>> gradient() const            = 0;
   /**
    * @brief Return the principle dimension of the array.
    */

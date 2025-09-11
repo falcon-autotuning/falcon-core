@@ -1,4 +1,5 @@
 #pragma once
+#include "falcon_core/generic/FArray.hpp"
 #include "falcon_core/generic/FArrayProtocol.hpp"
 namespace falcon_core::math::arrays {
 template <typename T>

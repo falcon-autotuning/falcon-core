@@ -17,7 +17,7 @@
 namespace falcon_core::generic {
 
 template <typename T>
-class FArray : public generic::Song, public IFArray<T> {
+class FArray : public generic::Song, public virtual IFArray<T> {
  public:
   using array_type      = xt::xarray<T>;
   using value_type      = T;
@@ -49,19 +49,24 @@ class FArray : public generic::Song, public IFArray<T> {
   decltype(auto) operator()(Args&&... args) const {
     return _data(std::forward<Args>(args)...);
   }
+  reference       operator()(size_t i) override { return _data(i); }
+  const_reference operator()(size_t i) const override { return _data(i); }
 
-  [[nodiscard]] const xt::dynamic_shape<size_t>& shape() const noexcept {
+  [[nodiscard]] const xt::dynamic_shape<size_t>& shape()
+      const noexcept override {
     return _data.shape();
   }
-  [[nodiscard]] size_t size() const noexcept { return _data.size(); }
-  [[nodiscard]] size_t dimension() const noexcept { return _data.dimension(); }
-  [[nodiscard]] T*     data() noexcept { return _data.data(); }
-  [[nodiscard]] const T* data() const noexcept { return _data.data(); }
+  [[nodiscard]] size_t size() const noexcept override { return _data.size(); }
+  [[nodiscard]] size_t dimension() const noexcept override {
+    return _data.dimension();
+  }
+  [[nodiscard]] T*       data() noexcept override { return _data.data(); }
+  [[nodiscard]] const T* data() const noexcept override { return _data.data(); }
 
-  size_t begin() noexcept { return _data.begin(); }
-  size_t end() noexcept { return _data.end(); }
-  size_t cbegin() const noexcept { return _data.cbegin(); }
-  size_t cend() const noexcept { return _data.cend(); }
+  size_t begin() noexcept override { return _data.begin(); }
+  size_t end() noexcept override { return _data.end(); }
+  size_t cbegin() const noexcept override { return _data.cbegin(); }
+  size_t cend() const noexcept override { return _data.cend(); }
 
   FArray<T>& operator+=(const FArray<T>& other) {
     _data += other._data;
@@ -204,11 +209,11 @@ class FArray : public generic::Song, public IFArray<T> {
     result._data = xt::abs(result._data);
     return std::make_shared<FArray<T>>(result);
   }
-  T                          min() const { return xt::amin(_data)(); }
+  T                          min() const override { return xt::amin(_data)(); }
   std::shared_ptr<FArray<T>> min(const std::shared_ptr<FArray<T>> other) const {
     return std::make_shared<FArray<T>>(xt::minimum(_data, other->_data));
   }
-  T                          max() const { return xt::amax(_data)(); }
+  T                          max() const override { return xt::amax(_data)(); }
   std::shared_ptr<FArray<T>> max(const std::shared_ptr<FArray<T>> other) const {
     return std::make_shared<FArray<T>>(xt::maximum(_data, other->_data));
   }
@@ -227,8 +232,8 @@ class FArray : public generic::Song, public IFArray<T> {
     _data = arr;
     return *this;
   }
-  operator array_type&() { return _data; }
-  operator const array_type&() const { return _data; }
+  operator array_type&() override { return _data; }
+  operator const array_type&() const override { return _data; }
 
   bool operator==(const FArray<T>& other) const { return _data == other._data; }
   bool operator!=(const FArray<T>& other) const { return !(*this == other); }
@@ -237,26 +242,30 @@ class FArray : public generic::Song, public IFArray<T> {
    * @param value The value to compare to.
    * @return True if any of the data is greater than the value, False otherwise.
    */
-  bool operator>(const T& value) const { return xt::any(_data > value); }
+  bool operator>(const T& value) const override {
+    return xt::any(_data > value);
+  }
 
   /**
    * @brief Check if any of the data is less than the value.
    * @param value The value to compare to.
    * @return True if any of the data is less than the value, False otherwise.
    */
-  bool operator<(const T& value) const { return xt::any(_data < value); }
+  bool operator<(const T& value) const override {
+    return xt::any(_data < value);
+  }
 
   /**
    * @brief Remove the offset from the data.
    * @param offset The offset to remove.
    */
-  void remove_offset(const T& offset) { _data -= offset; }
+  void remove_offset(const T& offset) override { _data -= offset; }
 
   /**
    * @brief Return the sum of the data.
    * @return The sum of the data.
    */
-  T sum() const { return xt::sum(_data)(); }
+  T sum() const override { return xt::sum(_data)(); }
 
   /**
    * @brief Return a new Array with the given shape.
@@ -272,7 +281,7 @@ class FArray : public generic::Song, public IFArray<T> {
    * @param value The value to search for.
    * @return Indices where the value matches.
    */
-  ListSP<List<size_t>> where(const T& value) const {
+  ListSP<List<size_t>> where(const T& value) const override {
     auto mask    = xt::equal(_data, value);
     auto indices = std::make_shared<List<List<size_t>>>();
     for (size_t i = 0; i < _data.size(); ++i) {
@@ -355,8 +364,20 @@ class FArray : public generic::Song, public IFArray<T> {
     return std::make_shared<FArray<T>>(grad);
   }
 
-  array_type&       xtensor() noexcept { return _data; }
-  const array_type& xtensor() const noexcept { return _data; }
+  array_type&       xtensor() noexcept override { return _data; }
+  const array_type& xtensor() const noexcept override { return _data; }
+
+  double get_sum_of_squares() const { return (*(this ^ 2)).data().sum(); }
+  double get_sum_of_squares(const int other) const {
+    return ((*(this->data() - other) ^ 2)).data().sum();
+  }
+  double get_sum_of_squares(const double other) const {
+    return ((*(this->data() - other) ^ 2)).data().sum();
+  }
+  double get_sum_of_squares(
+      const std::shared_ptr<generic::FArray<T>>& other) const {
+    return ((*(this->data() - other->data()) ^ 2)).data().sum();
+  }
 
  protected:
   friend class cereal::access;
