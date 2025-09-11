@@ -44,12 +44,18 @@ class ControlArray : public generic::FArray<double>, public IsControl<double> {
   std::shared_ptr<ControlArray> operator+(
       const std::shared_ptr<ControlArray>& other) const;
 
+  std::shared_ptr<ControlArray> operator+(
+      const std::shared_ptr<FArray>& other) const;
+
   std::shared_ptr<ControlArray> operator-(const double other) const;
 
   std::shared_ptr<ControlArray> operator-(const int other) const;
 
   std::shared_ptr<ControlArray> operator-(
       const std::shared_ptr<ControlArray>& other) const;
+
+  std::shared_ptr<ControlArray> operator-(
+      const std::shared_ptr<FArray<double>>& other) const;
 
   std::shared_ptr<ControlArray> operator-() const;
 
@@ -60,12 +66,18 @@ class ControlArray : public generic::FArray<double>, public IsControl<double> {
   std::shared_ptr<ControlArray> operator*(
       const std::shared_ptr<ControlArray>& other) const;
 
+  std::shared_ptr<ControlArray> operator*(
+      const std::shared_ptr<FArray<double>>& other) const;
+
   std::shared_ptr<ControlArray> operator/(const double other) const;
 
   std::shared_ptr<ControlArray> operator/(const int other) const;
 
   std::shared_ptr<ControlArray> operator/(
       const std::shared_ptr<ControlArray>& other) const;
+
+  std::shared_ptr<ControlArray> operator/(
+      const std::shared_ptr<FArray<double>>& other) const;
 
   std::shared_ptr<ControlArray> operator^(const double other) const;
 
@@ -74,8 +86,14 @@ class ControlArray : public generic::FArray<double>, public IsControl<double> {
   std::shared_ptr<ControlArray> min(
       const std::shared_ptr<ControlArray>& other) const;
 
+  std::shared_ptr<ControlArray> min(
+      const std::shared_ptr<FArray<double>>& other) const;
+
   std::shared_ptr<ControlArray> max(
       const std::shared_ptr<ControlArray>& other) const;
+
+  std::shared_ptr<ControlArray> max(
+      const std::shared_ptr<FArray<double>>& other) const;
 
   /**
    * @brief Return a new Array with the given shape.

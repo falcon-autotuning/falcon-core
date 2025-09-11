@@ -36,6 +36,12 @@ std::shared_ptr<ControlArray> ControlArray::operator+(
       generic::FArray<double>::operator+(other));
 }
 
+std::shared_ptr<ControlArray> ControlArray::operator+(
+    const std::shared_ptr<FArray<double>>& other) const {
+  return std::make_shared<ControlArray>(
+      generic::FArray<double>::operator+(other));
+}
+
 std::shared_ptr<ControlArray> ControlArray::operator-(
     const double other) const {
   return std::make_shared<ControlArray>(
@@ -49,6 +55,12 @@ std::shared_ptr<ControlArray> ControlArray::operator-(const int other) const {
 
 std::shared_ptr<ControlArray> ControlArray::operator-(
     const std::shared_ptr<ControlArray>& other) const {
+  return std::make_shared<ControlArray>(
+      generic::FArray<double>::operator-(other));
+}
+
+std::shared_ptr<ControlArray> ControlArray::operator-(
+    const std::shared_ptr<FArray<double>>& other) const {
   return std::make_shared<ControlArray>(
       generic::FArray<double>::operator-(other));
 }
@@ -74,6 +86,12 @@ std::shared_ptr<ControlArray> ControlArray::operator*(
       generic::FArray<double>::operator*(other));
 }
 
+std::shared_ptr<ControlArray> ControlArray::operator*(
+    const std::shared_ptr<FArray<double>>& other) const {
+  return std::make_shared<ControlArray>(
+      generic::FArray<double>::operator*(other));
+}
+
 std::shared_ptr<ControlArray> ControlArray::operator/(
     const double other) const {
   return std::make_shared<ControlArray>(
@@ -87,6 +105,11 @@ std::shared_ptr<ControlArray> ControlArray::operator/(const int other) const {
 
 std::shared_ptr<ControlArray> ControlArray::operator/(
     const std::shared_ptr<ControlArray>& other) const {
+  return std::make_shared<ControlArray>(
+      generic::FArray<double>::operator/(other));
+}
+std::shared_ptr<ControlArray> ControlArray::operator/(
+    const std::shared_ptr<FArray<double>>& other) const {
   return std::make_shared<ControlArray>(
       generic::FArray<double>::operator/(other));
 }
@@ -106,8 +129,18 @@ std::shared_ptr<ControlArray> ControlArray::min(
   return std::make_shared<ControlArray>(generic::FArray<double>::min());
 }
 
+std::shared_ptr<ControlArray> ControlArray::min(
+    const std::shared_ptr<FArray<double>>& other) const {
+  return std::make_shared<ControlArray>(generic::FArray<double>::min());
+}
+
 std::shared_ptr<ControlArray> ControlArray::max(
     const std::shared_ptr<ControlArray>& other) const {
+  return std::make_shared<ControlArray>(generic::FArray<double>::max());
+}
+
+std::shared_ptr<ControlArray> ControlArray::max(
+    const std::shared_ptr<FArray<double>>& other) const {
   return std::make_shared<ControlArray>(generic::FArray<double>::max());
 }
 
