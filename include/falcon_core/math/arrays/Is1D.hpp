@@ -50,7 +50,7 @@ class Is1D : public virtual generic::IFArray<T> {
    */
   double get_mean() const {
     auto& arr = this->data();
-    return std::accumulate(arr.begin(), arr.end(), 0.0) / arr.size();
+    return xt::accumulate(arr.begin(), arr.end(), 0.0) / arr.size();
   }
 
   /**

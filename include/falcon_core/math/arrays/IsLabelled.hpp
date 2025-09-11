@@ -104,7 +104,7 @@ class IsLabelled : public virtual generic::IFArray<T> {
    * @brief Return the gradient of the data along all axes.
    */
   generic::ListSP<std::shared_ptr<IsLabelled<T>>> gradient() const {
-    auto grads = _array->gradient();
+    auto grads = this->gradient();
     auto list =
         std::make_shared<generic::List<std::shared_ptr<IsLabelled<T>>>>();
     for (const auto& grad : *grads) {
@@ -119,8 +119,9 @@ class IsLabelled : public virtual generic::IFArray<T> {
    * @return The gradient IsLabelled.
    */
   std::shared_ptr<IsLabelled<T>> gradient(size_t axis) const {
-    auto grad = _array->gradient(axis);
+    auto grad = this->gradient(axis);
     return std::make_shared<IsLabelled<T>>(std::make_shared<T>(*grad),
                                            this->label());
   }
 };
+}  // namespace falcon_core::math::arrays
