@@ -1,39 +1,29 @@
 #include "falcon_core/math/labelled_arrays/LabelledControlArray1D.hpp"
 
-#include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
-
-namespace falcon_core {
-namespace math {
-namespace labelled_arrays {
+namespace falcon_core::math::labelled_arrays {
 
 LabelledControlArray1D::LabelledControlArray1D(
-    std::shared_ptr<arrays::ControlArray1D> array,
-    std::shared_ptr<LabelType>              label)
-    : BaseLabelledArray<arrays::ControlArray1D>(array, label) {}
-
-const arrays::ControlArray1D& LabelledControlArray1D::get_array() const {
-  if (!this->array()) {
-    throw std::runtime_error("Array is null");
-  }
-  return *this->array();
+    arrays::ControlArraySP                               array,
+    autotuner_interfaces::contexts::AcquisitionContextSP label)
+    : LabelledControlArray(array, label) {}
+LabelledControlArray1D::LabelledControlArray1D(
+    arrays::ControlArray1DSP                             array,
+    autotuner_interfaces::contexts::AcquisitionContextSP label)
+    : LabelledControlArray(
+          std::dynamic_pointer_cast<arrays::ControlArray>(array), label) {}
+LabelledControlArray1D::LabelledControlArray1D(
+    arrays::BaseArraySP<double>                          array,
+    autotuner_interfaces::contexts::AcquisitionContextSP label)
+    : LabelledControlArray(array, label) {}
+arrays::ControlArray1DSP LabelledControlArray1D::array() const {
+  return std::dynamic_pointer_cast<arrays::ControlArray1D>(
+      LabelledControlArray::array());
 }
 
-template <class Archive>
-void LabelledControlArray1D::serialize(Archive& ar) {
-  ar(cereal::base_class<BaseLabelledArray<arrays::ControlArray1D>>(this));
-}
+}  // namespace falcon_core::math::labelled_arrays
 
-// Explicit template instantiations for cereal
-template void LabelledControlArray1D::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive& ar);
-template void LabelledControlArray1D::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive& ar);
-template void LabelledControlArray1D::serialize<cereal::BinaryOutputArchive>(cereal::BinaryOutputArchive& ar);
-template void LabelledControlArray1D::serialize<cereal::BinaryInputArchive>(cereal::BinaryInputArchive& ar);
-
-}  // namespace labelled_arrays
-}  // namespace math
-}  // namespace falcon_core
-
+// Cereal registration for LabelledControlArray1D
 CEREAL_REGISTER_TYPE(falcon_core::math::labelled_arrays::LabelledControlArray1D)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
+    falcon_core::math::labelled_arrays::LabelledControlArray,
     falcon_core::math::labelled_arrays::LabelledControlArray1D)

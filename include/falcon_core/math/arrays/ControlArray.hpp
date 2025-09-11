@@ -52,4 +52,5 @@ class ControlArray : public BaseArray<double> {
    */
   IncreasingAlignmentSP _determine_alignments();
 };
+using ControlArraySP = std::shared_ptr<ControlArray>;
 }  // namespace falcon_core::math::arrays

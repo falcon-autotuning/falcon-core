@@ -1,47 +1,33 @@
 #pragma once
 
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/arrays/MeasuredArray1D.hpp"
-#include "falcon_core/math/labelled_arrays/BaseLabelledArray.hpp"
 #include "falcon_core/math/labelled_arrays/IsLabelled1D.hpp"
+#include "falcon_core/math/labelled_arrays/LabelledMeasuredArray.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace labelled_arrays {
+namespace falcon_core::math::labelled_arrays {
 
-class LabelledMeasuredArray1D
-    : public BaseLabelledArray<arrays::MeasuredArray1D>,
-      public IsLabelled1D<LabelledMeasuredArray1D> {
+class LabelledMeasuredArray1D : public LabelledMeasuredArray,
+                                public IsLabelled1D<LabelledMeasuredArray> {
  public:
-  using LabelType = instrument_interfaces::names::InstrumentPort;
+  LabelledMeasuredArray1D(
+      arrays::MeasuredArraySP                              array,
+      autotuner_interfaces::contexts::AcquisitionContextSP label);
+  LabelledMeasuredArray1D(
+      arrays::MeasuredArray1DSP                            array,
+      autotuner_interfaces::contexts::AcquisitionContextSP label);
+  LabelledMeasuredArray1D(
+      arrays::BaseArraySP<array_type>                      array,
+      autotuner_interfaces::contexts::AcquisitionContextSP label);
+  arrays::MeasuredArray1DSP array() const;
+  void                      smooth(const size_t window_size);
 
-  LabelledMeasuredArray1D(std::shared_ptr<arrays::MeasuredArray1D> array,
-                          std::shared_ptr<LabelType>               label)
-      : BaseLabelledArray<arrays::MeasuredArray1D>(array, label) {}
-
-  const arrays::MeasuredArray1D& get_array() const {
-    if (!this->_array) {
-      throw std::runtime_error("Array is null");
-    }
-    return *(this->_array);
-  }
-
- private:
+ protected:
   friend class cereal::access;
   LabelledMeasuredArray1D() = default;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseLabelledArray<arrays::MeasuredArray1D>>(this));
+    ar(cereal::base_class<LabelledMeasuredArray>(this));
   }
 };
 
-}  // namespace labelled_arrays
-}  // namespace math
-}  // namespace falcon_core
-
-// Cereal registration for LabelledMeasuredArray1D
-CEREAL_REGISTER_TYPE(
-    falcon_core::math::labelled_arrays::LabelledMeasuredArray1D)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::math::labelled_arrays::LabelledMeasuredArray1D)
+}  // namespace falcon_core::math::labelled_arrays

@@ -5,41 +5,37 @@
 
 #pragma once
 
-#include <cereal/types/memory.hpp>
-#include <memory>
-
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon_core/generic/List.hpp"
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/math/arrays/BaseArray.hpp"
 namespace falcon_core::math::labelled_arrays {
 
 /// @brief Associates an array with a label.
 /// @tparam ArrayType datatype of the array.
 template <typename ArrayType>
 class BaseLabelledArray : public generic::Song {
- protected:
-  std::shared_ptr<ArrayType>                           _array;
+  arrays::BaseArraySP<ArrayType>                       _array;
   autotuner_interfaces::contexts::AcquisitionContextSP _label;
 
+ protected:
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(_array, _label);
+    ar(cereal::base_class<generic::Song>(this), _array, _label);
   }
 
  public:
+  using array_type    = ArrayType;
   BaseLabelledArray() = default;
-  BaseLabelledArray(std::shared_ptr<ArrayType>                           array,
+  BaseLabelledArray(arrays::BaseArraySP<ArrayType>                       array,
                     autotuner_interfaces::contexts::AcquisitionContextSP label)
       : _array(array), _label(label) {}
-  BaseLabelledArray(
-      std::shared_ptr<ArrayType>                                  array,
-      falcon_core::instrument_interfaces::names::InstrumentPortSP label)
-      : _array(array),
-        _label(std::make_shared<
-               autotuner_interfaces::contexts::AcquisitionContext>(label)) {}
+  BaseLabelledArray(const xt::xarray<ArrayType>&                         array,
+                    autotuner_interfaces::contexts::AcquisitionContextSP label)
+      : _array(std::make_shared<arrays::BaseArray<ArrayType>>(array)),
+        _label(label) {}
 
-  const std::shared_ptr<ArrayType>& array() const { return _array; }
+  const arrays::BaseArraySP<ArrayType> array() const { return _array; }
 
   const autotuner_interfaces::contexts::AcquisitionContextSP& label() const {
     return _label;
@@ -196,4 +192,6 @@ class BaseLabelledArray : public generic::Song {
         std::make_shared<ArrayType>(*grad), this->label());
   }
 };
+template <typename ArrayType>
+using BaseLabelledArraySP = std::shared_ptr<BaseLabelledArray<ArrayType>>;
 }  // namespace falcon_core::math::labelled_arrays

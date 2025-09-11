@@ -5,46 +5,63 @@
 
 #pragma once
 
-#include <cereal/types/memory.hpp>
-#include <cereal/types/vector.hpp>
-#include <memory>
-#include <vector>
+#include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
+#include "falcon_core/math/labelled_arrays/BaseLabelledArray.hpp"
 
-#include "falcon_core/generic/Song.hpp"
+namespace falcon_core::math::labelled_arrays {
 
-namespace falcon_core {
-namespace math {
-namespace labelled_arrays {
-
-/// @brief Container for multiple labelled arrays.
-/// @tparam T Type of labelled array.
-
+/**
+ * @brief Container for multiple labelled arrays.
+ * @param T Type of labelled array.
+ */
 template <typename T>
-class BaseLabelledArrays : public generic::Song {
+class BaseLabelledArrays : public generic::List<BaseLabelledArray<T>> {
  public:
-  /// @brief Type alias for value type.
-  using value_type = T;
-  /// @brief Type alias for container type.
-  using container_type = std::vector<std::shared_ptr<value_type>>;
-
   BaseLabelledArrays() = default;
-
-  void append(const std::shared_ptr<value_type> &labelled_array) {
-    _arrays.push_back(labelled_array);
+  BaseLabelledArrays(const std::vector<BaseLabelledArraySP<T>>& items)
+      : generic::List<BaseLabelledArray<T>>(items) {
+    check_array_labels();
   }
-  const container_type &get_arrays() const {
-    return _arrays;
+  /**
+   * @brief Returns the internal vector of labelled arrays.
+   */
+  std::vector<BaseLabelledArraySP<T>>& arrays() { return this->items(); }
+  /**
+   * @brief Returns the labels of all labelled arrays.
+   */
+  generic::ListSP<autotuner_interfaces::contexts::AcquisitionContext> labels()
+      const {
+    auto list = std::make_shared<
+        generic::List<autotuner_interfaces::contexts::AcquisitionContext>>();
+    for (const auto& item : this->items()) {
+      list->push_back(item->label());
+    }
+    return list;
+  }
+  /**
+   * @brief Checks that all array labels are unique.
+   * @throws std::runtime_error if any labels are not unique.
+   */
+  void check_array_labels() const {
+    generic::List<autotuner_interfaces::contexts::AcquisitionContext> seen;
+    for (autotuner_interfaces::contexts::AcquisitionContext& label :
+         *labels()) {
+      if (seen.contains(
+              std::make_shared<
+                  autotuner_interfaces::contexts::AcquisitionContext>(label))) {
+        throw std::runtime_error("Array labels are not unique.");
+      }
+      seen.push_back(
+          std::make_shared<autotuner_interfaces::contexts::AcquisitionContext>(
+              label));
+    }
   }
 
  private:
-  container_type _arrays;
-
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive &ar) {
-    ar(cereal::base_class<generic::Song>(this), _arrays);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::List<BaseLabelledArray<T>>>(this));
   }
 };
-}  // namespace labelled_arrays
-}  // namespace math
-}  // namespace falcon_core
+}  // namespace falcon_core::math::labelled_arrays

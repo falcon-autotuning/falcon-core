@@ -33,6 +33,13 @@ class BaseArray : public generic::FArray<T> {
   double get_sum_of_squares(const std::shared_ptr<BaseArray<T>>& other) const {
     return ((*(this->data() - other->data()) ^ 2)).data().sum();
   }
+
+ protected:
+  friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::FArray<T>>(this));
+  }
 };
 
 template <typename T>

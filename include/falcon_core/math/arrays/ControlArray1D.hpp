@@ -23,4 +23,5 @@ class ControlArray1D : public ControlArray, Is1D<ControlArray> {
     ar(cereal::base_class<ControlArray>(this));
   }
 };
+using ControlArray1DSP = std::shared_ptr<ControlArray1D>;
 }  // namespace falcon_core::math::arrays

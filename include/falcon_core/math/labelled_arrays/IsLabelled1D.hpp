@@ -1,33 +1,96 @@
-/**
- * @file IsLabelled1D.hpp
- * @brief Mixin for 1D labelled arrays.
- */
-
 #pragma once
 
-#include <stdexcept>
+#include "falcon_core/math/arrays/Is1D.hpp"
 
-#include "falcon_core/math/arrays/BaseArray.hpp"
+namespace falcon_core::math::labelled_arrays {
 
-namespace falcon_core {
-namespace math {
-namespace labelled_arrays {
-
-/// @brief Mixin for 1D labelled arrays.
-/// @tparam Derived The derived class type (must provide get_array()).
-template <class Derived>
+/**
+ * @brief A mixin that provides 1D-specific functionality to labelled array
+ * classes.
+ *
+ * The class that inherits from this must provide:
+ * - array() method returning an array that implements Is1D mixin
+ */
+template <typename Derived>
 class IsLabelled1D {
  public:
-  /// @brief Get the starting value of the 1D array.
-  /// @throws std::runtime_error if array is not 1D.
-  double get_start() const {
-    const auto &array = static_cast<const Derived *>(this)->get_array();
-    if (array.dimension() != 1) {
-      throw std::runtime_error("Array is not 1D");
-    }
-    return array.data()[0];
+  using ArrayType = typename Derived::array_type;
+
+  /**
+   * @brief This method must be implemented by classes that inherit from
+   * IsLabelled1D.
+   * @throws std::runtime_error if not implemented.
+   */
+  const ArrayType& array() const {
+    throw std::runtime_error(
+        "Classes inheriting from IsLabelled1D must implement array() method");
   }
+
+  /**
+   * @brief Get the array cast to Is1D type.
+   * This avoids repetitive casting in all methods.
+   */
+  const arrays::Is1D<ArrayType>& _1d_array() const {
+    return static_cast<const arrays::Is1D<ArrayType>&>(array());
+  }
+
+  /**
+   * @brief Get the first element of the 1D array.
+   */
+  ArrayType get_start() const { return _1d_array().get_start(); }
+
+  /**
+   * @brief Get the last element of the 1D array.
+   */
+  ArrayType get_end() const { return _1d_array().get_end(); }
+
+  /**
+   * @brief Get the minimum value in the 1D array.
+   */
+  ArrayType get_min() const { return _1d_array().get_min(); }
+
+  /**
+   * @brief Get the maximum value in the 1D array.
+   */
+  ArrayType get_max() const { return _1d_array().get_max(); }
+
+  /**
+   * @brief Check if the array is decreasing.
+   */
+  bool is_decreasing() const { return _1d_array().is_decreasing(); }
+
+  /**
+   * @brief Check if the array is increasing.
+   */
+  bool is_increasing() const { return _1d_array().is_increasing(); }
+
+  /**
+   * @brief Get the distance between the first and last element.
+   */
+  ArrayType get_distance() const { return _1d_array().get_distance(); }
+
+  /**
+   * @brief Get the standard deviation of the 1D array.
+   */
+  double get_std() const { return _1d_array().get_std(); }
+
+  /**
+   * @brief Get the mean of the 1D array.
+   */
+  double get_mean() const { return _1d_array().get_mean(); }
+
+  /**
+   * @brief Get the index of the closest element to the given value.
+   * @param value The value to find the closest index to.
+   */
+  size_t get_closest_index(ArrayType value) const {
+    return _1d_array().get_closest_index(value);
+  }
+
+  /**
+   * @brief Reverse the 1D array.
+   */
+  void reverse() { _1d_array().reverse(); }
 };
-}  // namespace labelled_arrays
-}  // namespace math
-}  // namespace falcon_core
+
+}  // namespace falcon_core::math::labelled_arrays
