@@ -5,6 +5,7 @@
 namespace falcon_core::math::arrays {
 template <typename T>
 class IsControl : public virtual generic::IFArray<T> {
+ protected:
   int                   _principle_dimension;
   IncreasingAlignmentSP _alignment;
 
