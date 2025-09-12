@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 

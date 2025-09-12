@@ -2,7 +2,6 @@
 
 #include <falcon_core/communications/messages/BaseMessage.hpp>
 #include <falcon_core/communications/voltage_states/DeviceVoltageStates.hpp>
-#include <memory>
 
 namespace falcon_core {
 namespace communications {

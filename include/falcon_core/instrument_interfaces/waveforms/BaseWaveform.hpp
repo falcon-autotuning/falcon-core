@@ -1,8 +1,5 @@
 #pragma once
 
-#include <memory>
-#include <vector>
-
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransforms.hpp"
 #include "falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp"

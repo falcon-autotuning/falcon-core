@@ -5,9 +5,6 @@
 
 #pragma once
 
-#include <memory>
-#include <vector>
-
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/Axes.hpp"
 #include "falcon_core/math/discretizers/BaseDiscretizer.hpp"

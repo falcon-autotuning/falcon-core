@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include "falcon_core/instrument_interfaces/waveforms/BaseWaveform.hpp"
 #include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace.hpp"
 

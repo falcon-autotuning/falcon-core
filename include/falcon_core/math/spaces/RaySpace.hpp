@@ -5,8 +5,6 @@
 
 #pragma once
 
-#include "falcon_core/math/discretizers/CartesianDiscretizer.hpp"
-#include "falcon_core/math/discretizers/PolarDiscretizer.hpp"
 #include "falcon_core/math/spaces/UnitSpace.hpp"
 
 namespace falcon_core {

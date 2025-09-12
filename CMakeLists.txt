@@ -277,6 +277,32 @@ FetchContent_Declare(
   GIT_TAG        master
 )
 FetchContent_MakeAvailable(yaml-cpp)
+
+#hdf5
+include(ExternalProject)
+
+# Set up HDF5 paths that match ExternalProject's structure
+set(HDF5_PREFIX ${CMAKE_BINARY_DIR}/hdf5-prefix)
+set(HDF5_INSTALL_DIR ${HDF5_PREFIX}/install)
+set(HDF5_INCLUDE_DIR ${HDF5_INSTALL_DIR}/include)
+set(HDF5_LIB_DIR ${HDF5_INSTALL_DIR}/lib)
+
+ExternalProject_Add(
+  hdf5
+  GIT_REPOSITORY https://github.com/HDFGroup/hdf5.git
+  GIT_TAG hdf5_1.14.6
+  PREFIX ${HDF5_PREFIX}
+  CONFIGURE_COMMAND <SOURCE_DIR>/configure --enable-cxx --prefix=${HDF5_INSTALL_DIR}
+  BUILD_COMMAND make -j${CMAKE_BUILD_PARALLEL_LEVEL}
+  INSTALL_COMMAND make install
+  UPDATE_COMMAND ""
+  LOG_DOWNLOAD ON
+  LOG_CONFIGURE ON
+  LOG_BUILD ON
+  LOG_INSTALL ON
+  BUILD_BYPRODUCTS ${HDF5_LIB_DIR}/libhdf5.a ${HDF5_LIB_DIR}/libhdf5_cpp.a
+)
+
 # boost filesystem support
 find_package(Boost REQUIRED COMPONENTS filesystem system)
 include_directories(${Boost_INCLUDE_DIRS})
@@ -318,7 +344,31 @@ if(FALCON_CORE_DIRS)
 else()
   file(GLOB_RECURSE FALCON_CORE_SOURCES CONFIGURE_DEPENDS "src/*.cpp")
 endif()
+
 add_library(falcon_core_cpp ${FALCON_CORE_SOURCES})
+
+# Create the include directory early to avoid CMake errors
+file(MAKE_DIRECTORY ${HDF5_INCLUDE_DIR})
+
+# Create imported targets for HDF5 libraries
+add_library(HDF5::hdf5 STATIC IMPORTED)
+set_target_properties(HDF5::hdf5 PROPERTIES
+    IMPORTED_LOCATION ${HDF5_LIB_DIR}/libhdf5.a
+    INTERFACE_INCLUDE_DIRECTORIES ${HDF5_INCLUDE_DIR}
+)
+add_dependencies(HDF5::hdf5 hdf5)
+
+add_library(HDF5::hdf5_cpp STATIC IMPORTED)
+set_target_properties(HDF5::hdf5_cpp PROPERTIES
+    IMPORTED_LOCATION ${HDF5_LIB_DIR}/libhdf5_cpp.a
+    INTERFACE_INCLUDE_DIRECTORIES ${HDF5_INCLUDE_DIR}
+    INTERFACE_LINK_LIBRARIES HDF5::hdf5
+)
+add_dependencies(HDF5::hdf5_cpp hdf5)
+
+# Add dependencies and link libraries
+add_dependencies(falcon_core_cpp hdf5)
+
 target_include_directories(
      falcon_core_cpp
      PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -331,7 +381,18 @@ target_include_directories(
             ${xtensor-blas_SOURCE_DIR}/include
    )
 
-target_link_libraries(falcon_core_cpp PRIVATE Boost::filesystem Boost::system xtl xtensor xsimd xtensor-blas yaml-cpp::yaml-cpp)
+target_link_libraries(falcon_core_cpp
+    PRIVATE
+    Boost::filesystem
+    Boost::system
+    xtl
+    xtensor
+    xsimd
+    xtensor-blas
+    yaml-cpp::yaml-cpp
+    HDF5::hdf5_cpp
+)
+
 target_link_libraries(falcon_core_cpp PUBLIC yaml-cpp::yaml-cpp)
 if(NOT FALCON_CORE_DIRS)
   set(FALCON_HEADERS

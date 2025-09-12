@@ -1,9 +1,6 @@
 #pragma once
 
-#include <memory>
-
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
-#include "falcon_core/math/analytic_functions/Identity.hpp"
 
 /**
  * @brief A transform that applies the identity function to the data.

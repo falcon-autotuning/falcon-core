@@ -1,7 +1,6 @@
 #pragma once
 
 #include <falcon_core/communications/messages/BaseMessage.hpp>
-#include <string>
 
 namespace falcon_core {
 namespace communications {

@@ -1,8 +1,5 @@
 #pragma once
 
-#include <memory>
-#include <vector>
-
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 
@@ -20,7 +17,7 @@ class PortTransforms : public generic::Song {
 
   PortTransforms();
 
-  void append(const std::shared_ptr<value_type> &transform);
+  void                  append(const std::shared_ptr<value_type> &transform);
   const container_type &get_transforms() const;
 
   template <class Archive>

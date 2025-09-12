@@ -4,8 +4,6 @@
 #include <cereal/types/memory.hpp>
 #include <memory>
 #include <stdexcept>
-#include <string>
-#include <vector>
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/names/Knob.hpp"
