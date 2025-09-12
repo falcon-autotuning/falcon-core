@@ -1,5 +1,7 @@
 #include "falcon_core/math/spaces/UnitSpace.hpp"
 
+#include <cereal/archives/binary.hpp>
+
 namespace falcon_core {
 namespace math {
 namespace spaces {
@@ -16,7 +18,15 @@ template <class Archive>
 void UnitSpace::serialize(Archive& ar) {
   ar(cereal::base_class<generic::Song>(this), _axes, _domain);
 }
-
+// Explicit instantiations for Cereal archives
+template void UnitSpace::serialize<cereal::BinaryInputArchive>(
+    cereal::BinaryInputArchive&);
+template void UnitSpace::serialize<cereal::BinaryOutputArchive>(
+    cereal::BinaryOutputArchive&);
+template void UnitSpace::serialize<cereal::JSONInputArchive>(
+    cereal::JSONInputArchive&);
+template void UnitSpace::serialize<cereal::JSONOutputArchive>(
+    cereal::JSONOutputArchive&);
 }  // namespace spaces
 }  // namespace math
 }  // namespace falcon_core

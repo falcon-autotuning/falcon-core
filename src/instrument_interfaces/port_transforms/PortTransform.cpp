@@ -1,4 +1,7 @@
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
+
+#include <cereal/archives/binary.hpp>
+
 #include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 
 namespace falcon_core {
@@ -12,15 +15,23 @@ PortTransform::PortTransform(
 PortTransform::PortTransform() : _function(nullptr) {}
 
 double PortTransform::apply(double value) const {
-    if (!_function) return value;
-    return _function->evaluate(value);
+  if (!_function) return value;
+  return _function->evaluate(value);
 }
 
 template <class Archive>
 void PortTransform::serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _function);
+  ar(cereal::base_class<generic::Song>(this), _function);
 }
-
+// Explicit instantiations for Cereal archives
+template void PortTransform::serialize<cereal::BinaryInputArchive>(
+    cereal::BinaryInputArchive&);
+template void PortTransform::serialize<cereal::BinaryOutputArchive>(
+    cereal::BinaryOutputArchive&);
+template void PortTransform::serialize<cereal::JSONInputArchive>(
+    cereal::JSONInputArchive&);
+template void PortTransform::serialize<cereal::JSONOutputArchive>(
+    cereal::JSONOutputArchive&);
 }  // namespace port_transforms
 }  // namespace instrument_interfaces
 }  // namespace falcon_core

@@ -1,5 +1,7 @@
 #include "falcon_core/math/domains/Domain.hpp"
 
+#include <cereal/archives/binary.hpp>
+
 namespace falcon_core {
 namespace math {
 namespace domains {
@@ -20,7 +22,15 @@ template <class Archive>
 void Domain::serialize(Archive& ar) {
   ar(cereal::base_class<generic::Song>(this), _min, _max);
 }
-
+// Explicit instantiations for Cereal archives
+template void Domain::serialize<cereal::BinaryInputArchive>(
+    cereal::BinaryInputArchive&);
+template void Domain::serialize<cereal::BinaryOutputArchive>(
+    cereal::BinaryOutputArchive&);
+template void Domain::serialize<cereal::JSONInputArchive>(
+    cereal::JSONInputArchive&);
+template void Domain::serialize<cereal::JSONOutputArchive>(
+    cereal::JSONOutputArchive&);
 }  // namespace domains
 }  // namespace math
 }  // namespace falcon_core
