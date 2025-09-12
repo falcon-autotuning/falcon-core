@@ -12,11 +12,12 @@ ControlArray1D::ControlArray1D(const xt::xarray<double>& arr)
   _principle_dimension = 0;
   _alignment           = _determine_alignments();
 }
-ControlArray1D::ControlArray1D(const FArray<double>& arr) : ControlArray(arr) {
+ControlArray1D::ControlArray1D(const generic::FArraySP<double>& arr)
+    : ControlArray(arr) {
   _principle_dimension = 0;
   _alignment           = _determine_alignments();
 }
-ControlArray1D::ControlArray1D(const ControlArray& arr) : ControlArray(arr) {
+ControlArray1D::ControlArray1D(const ControlArraySP& arr) : ControlArray(arr) {
   _principle_dimension = 0;
   _alignment           = _determine_alignments();
 }

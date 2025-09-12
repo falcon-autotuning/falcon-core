@@ -16,8 +16,8 @@ class MeasuredArray1D : public MeasuredArray, Is1D<double> {
  public:
   using value_type = double;
   MeasuredArray1D();
-  MeasuredArray1D(const FArray<double>& arr);
-  MeasuredArray1D(const MeasuredArray& arr);
+  MeasuredArray1D(const generic::FArraySP<double>& arr);
+  MeasuredArray1D(const MeasuredArraySP& arr);
   MeasuredArray1D(const xt::xarray<double>& arr);
   MeasuredArray1D(xt::xarray<double>&& arr) noexcept;
   MeasuredArray1D(const MeasuredArray1D&)                = default;

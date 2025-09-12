@@ -23,8 +23,8 @@ class ControlArray1D : public ControlArray, Is1D<ControlArray> {
  public:
   ControlArray1D();
   ControlArray1D(const xt::xarray<double>& arr);
-  ControlArray1D(const FArray<double>& arr);
-  ControlArray1D(const ControlArray& arr);
+  ControlArray1D(const generic::FArraySP<double>& arr);
+  ControlArray1D(const ControlArraySP& arr);
   ControlArray1D(xt::xarray<double>&& arr) noexcept;
   ControlArray1D(const ControlArray1D&)                = default;
   ControlArray1D(ControlArray1D&&) noexcept            = default;

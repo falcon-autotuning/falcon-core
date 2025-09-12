@@ -10,7 +10,8 @@ ControlArray::ControlArray(const xt::xarray<double>& arr)
   _principle_dimension = 0;
   _alignment           = _determine_alignments();
 }
-ControlArray::ControlArray(const FArray<double>& arr) : FArray<double>(arr) {
+ControlArray::ControlArray(const generic::FArraySP<double>& arr)
+    : FArray<double>(*arr) {
   _principle_dimension = 0;
   _alignment           = _determine_alignments();
 }

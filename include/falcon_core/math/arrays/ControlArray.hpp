@@ -24,7 +24,7 @@ class ControlArray : public generic::FArray<double>, public IsControl<double> {
  public:
   ControlArray();
   ControlArray(const xt::xarray<double>& arr);
-  ControlArray(const FArray<double>& arr);
+  ControlArray(const generic::FArraySP<double>& arr);
   ControlArray(xt::xarray<double>&& arr) noexcept;
   ControlArray(const ControlArray&)                = default;
   ControlArray(ControlArray&&) noexcept            = default;

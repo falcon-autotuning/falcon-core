@@ -15,7 +15,7 @@ class MeasuredArray : public generic::FArray<double> {
  public:
   using value_type = double;
   MeasuredArray();
-  MeasuredArray(const FArray<double>& arr);
+  MeasuredArray(const generic::FArraySP<double>& arr);
   MeasuredArray(const xt::xarray<double>& arr);
   MeasuredArray(xt::xarray<double>&& arr) noexcept;
   MeasuredArray(const MeasuredArray&)                = default;

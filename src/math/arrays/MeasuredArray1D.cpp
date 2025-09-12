@@ -7,9 +7,9 @@ namespace falcon_core::math::arrays {
 MeasuredArray1D::MeasuredArray1D() : MeasuredArray() {}
 MeasuredArray1D::MeasuredArray1D(const xt::xarray<double>& arr)
     : MeasuredArray(arr) {}
-MeasuredArray1D::MeasuredArray1D(const FArray<double>& arr)
+MeasuredArray1D::MeasuredArray1D(const generic::FArraySP<double>& arr)
     : MeasuredArray(arr) {}
-MeasuredArray1D::MeasuredArray1D(const MeasuredArray& arr)
+MeasuredArray1D::MeasuredArray1D(const MeasuredArraySP& arr)
     : MeasuredArray(arr) {}
 MeasuredArray1D::MeasuredArray1D(xt::xarray<double>&& arr) noexcept
     : MeasuredArray(arr) {}
