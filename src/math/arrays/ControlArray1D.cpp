@@ -5,7 +5,7 @@
 namespace falcon_core::math::arrays {
 ControlArray1D::ControlArray1D() : ControlArray() {
   _principle_dimension = 0;
-  _alignment           = _determine_alignments();
+  _alignment = std::make_shared<IncreasingAlignment>(IncreasingAlignment(true));
 }
 ControlArray1D::ControlArray1D(const xt::xarray<double>& arr)
     : ControlArray(arr) {

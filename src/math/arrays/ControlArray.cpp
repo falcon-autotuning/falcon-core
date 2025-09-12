@@ -1,9 +1,12 @@
 #include "falcon_core/math/arrays/ControlArray.hpp"
 
+#include <memory>
+
+#include "falcon_core/math/arrays/IncreasingAlignment.hpp"
 namespace falcon_core::math::arrays {
 ControlArray::ControlArray() : FArray<double>() {
   _principle_dimension = 0;
-  _alignment           = _determine_alignments();
+  _alignment = std::make_shared<IncreasingAlignment>(IncreasingAlignment(true));
 }
 ControlArray::ControlArray(const xt::xarray<double>& arr)
     : FArray<double>(arr) {
