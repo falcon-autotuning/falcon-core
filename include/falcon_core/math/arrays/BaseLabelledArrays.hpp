@@ -6,26 +6,31 @@
 #pragma once
 
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
-#include "falcon_core/math/labelled_arrays/BaseLabelledArray.hpp"
-
-namespace falcon_core::math::labelled_arrays {
+#include "falcon_core/generic/FArray.hpp"
+#include "falcon_core/math/arrays/IsLabelled.hpp"
+namespace falcon_core::math::arrays {
 
 /**
  * @brief Container for multiple labelled arrays.
  * @param T Type of labelled array.
  */
-template <typename T>
-class BaseLabelledArrays : public generic::List<BaseLabelledArray<T>> {
+template <typename ArrayType>
+class BaseLabelledArrays : public generic::List<ArrayType> {
+  static_assert(std::is_base_of_v<generic::FArray<double>, ArrayType>,
+                "T must inherit from FArray");
+  static_assert(std::is_base_of_v<IsLabelled<double>, ArrayType>,
+                "T must inherit from IsLabelled");
+
  public:
   BaseLabelledArrays() = default;
-  BaseLabelledArrays(const std::vector<BaseLabelledArraySP<T>>& items)
-      : generic::List<BaseLabelledArray<T>>(items) {
+  BaseLabelledArrays(const std::vector<std::shared_ptr<ArrayType>>& items)
+      : generic::List<std::shared_ptr<ArrayType>>(items) {
     check_array_labels();
   }
   /**
    * @brief Returns the internal vector of labelled arrays.
    */
-  std::vector<BaseLabelledArraySP<T>>& arrays() { return this->items(); }
+  std::vector<std::shared_ptr<ArrayType>>& arrays() { return this->items(); }
   /**
    * @brief Returns the labels of all labelled arrays.
    */
@@ -57,7 +62,7 @@ class BaseLabelledArrays : public generic::List<BaseLabelledArray<T>> {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::List<BaseLabelledArray<T>>>(this));
+    ar(cereal::base_class<generic::List<ArrayType>>(this));
   }
 };
-}  // namespace falcon_core::math::labelled_arrays
+}  // namespace falcon_core::math::arrays
