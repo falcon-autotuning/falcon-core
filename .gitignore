@@ -74,7 +74,6 @@ target/
 *.data
 *.dat
 *.hdf5
-*.json
 *.env.ssh
 *.env.gh
 

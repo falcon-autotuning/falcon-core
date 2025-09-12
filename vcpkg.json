@@ -1,0 +1,20 @@
+{
+  "name": "falcon-core",
+  "version": "1.0.0",
+  "dependencies": [
+    "boost-filesystem",
+    "boost-system",
+    "hdf5",
+    {
+      "name": "hdf5",
+      "features": ["cpp"]
+    },
+    "gtest",
+    "yaml-cpp",
+    "xtensor",
+    "xtensor-blas",
+    "xtl",
+    "xsimd",
+    "cereal"
+  ]
+}

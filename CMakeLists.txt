@@ -3,9 +3,19 @@ project(FalconCore LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-# --- Dependencies ---
-include(FetchContent)
+set(CMAKE_Position_INDEPENDENT_CODE ON)
+
+# --- Dependencies via vcpkg ---
+find_package(cereal CONFIG REQUIRED)
+find_package(GTest CONFIG REQUIRED)
+find_package(xtl CONFIG REQUIRED)
+find_package(xtensor CONFIG REQUIRED)
+find_package(xsimd CONFIG REQUIRED)
+find_package(xtensor-blas CONFIG REQUIRED)
+find_package(yaml-cpp CONFIG REQUIRED)
+find_package(hdf5 CONFIG REQUIRED)
+find_package(Boost REQUIRED COMPONENTS filesystem system)
+
 function(cpp_tests)
   # This function is used to set up C++ tests. It is called at the end of the
   # CMakeLists.txt file.
@@ -223,89 +233,8 @@ function(falcon_process_swig_module SUBMODULE_NAME CLASS_NAME SWIG_INTERFACE
 
   target_link_libraries(${SWIG_MODULE_NAME} PRIVATE Python3::Python
                                                     falcon_core_cpp)
-  message(STATUS "Finished processing ${SUBMODULE_NAME}")
+  message(STATUS "Finished processing ${SWIG_MODULE_NAME}")
 endfunction()
-
-# cereal
-FetchContent_Declare(
-  cereal
-  GIT_REPOSITORY https://github.com/USCiLab/cereal.git
-  GIT_TAG v1.3.2 # or latest release
-)
-FetchContent_Populate(cereal)
-
-# GoogleTest
-FetchContent_Declare(
-  googletest
-  GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG v1.17.0)
-FetchContent_MakeAvailable(googletest)
-
-# xtensor
-FetchContent_Declare(
-            xtl
-            GIT_REPOSITORY https://github.com/xtensor-stack/xtl.git
-            GIT_TAG        0.8.0
-        )
-FetchContent_MakeAvailable(xtl)
-
-FetchContent_Declare(
-            xtensor
-            GIT_REPOSITORY https://github.com/xtensor-stack/xtensor.git
-            GIT_TAG        0.27.0
-        )
-FetchContent_MakeAvailable(xtensor)
-
-FetchContent_Declare(
-            xsimd
-            GIT_REPOSITORY https://github.com/xtensor-stack/xsimd.git
-            GIT_TAG        13.2.0
-        )
-FetchContent_MakeAvailable(xsimd)
-
-FetchContent_Declare(
-            xtensor-blas
-            GIT_REPOSITORY https://github.com/xtensor-stack/xtensor-blas.git
-            GIT_TAG        0.23.0
-        )
-FetchContent_MakeAvailable(xtensor-blas)
-
-#yaml
-FetchContent_Declare(
-  yaml-cpp
-  GIT_REPOSITORY https://github.com/jbeder/yaml-cpp.git
-  GIT_TAG        master
-)
-FetchContent_MakeAvailable(yaml-cpp)
-
-#hdf5
-include(ExternalProject)
-
-# Set up HDF5 paths that match ExternalProject's structure
-set(HDF5_PREFIX ${CMAKE_BINARY_DIR}/hdf5-prefix)
-set(HDF5_INSTALL_DIR ${HDF5_PREFIX}/install)
-set(HDF5_INCLUDE_DIR ${HDF5_INSTALL_DIR}/include)
-set(HDF5_LIB_DIR ${HDF5_INSTALL_DIR}/lib)
-
-ExternalProject_Add(
-  hdf5
-  GIT_REPOSITORY https://github.com/HDFGroup/hdf5.git
-  GIT_TAG hdf5_1.14.6
-  PREFIX ${HDF5_PREFIX}
-  CONFIGURE_COMMAND <SOURCE_DIR>/configure --enable-cxx --prefix=${HDF5_INSTALL_DIR}
-  BUILD_COMMAND make -j${CMAKE_BUILD_PARALLEL_LEVEL}
-  INSTALL_COMMAND make install
-  UPDATE_COMMAND ""
-  LOG_DOWNLOAD ON
-  LOG_CONFIGURE ON
-  LOG_BUILD ON
-  LOG_INSTALL ON
-  BUILD_BYPRODUCTS ${HDF5_LIB_DIR}/libhdf5.a ${HDF5_LIB_DIR}/libhdf5_cpp.a
-)
-
-# boost filesystem support
-find_package(Boost REQUIRED COMPONENTS filesystem system)
-include_directories(${Boost_INCLUDE_DIRS})
 
 # --- SWIG and Python ---
 find_package(SWIG REQUIRED)
@@ -347,38 +276,10 @@ endif()
 
 add_library(falcon_core_cpp ${FALCON_CORE_SOURCES})
 
-# Create the include directory early to avoid CMake errors
-file(MAKE_DIRECTORY ${HDF5_INCLUDE_DIR})
-
-# Create imported targets for HDF5 libraries
-add_library(HDF5::hdf5 STATIC IMPORTED)
-set_target_properties(HDF5::hdf5 PROPERTIES
-    IMPORTED_LOCATION ${HDF5_LIB_DIR}/libhdf5.a
-    INTERFACE_INCLUDE_DIRECTORIES ${HDF5_INCLUDE_DIR}
-)
-add_dependencies(HDF5::hdf5 hdf5)
-
-add_library(HDF5::hdf5_cpp STATIC IMPORTED)
-set_target_properties(HDF5::hdf5_cpp PROPERTIES
-    IMPORTED_LOCATION ${HDF5_LIB_DIR}/libhdf5_cpp.a
-    INTERFACE_INCLUDE_DIRECTORIES ${HDF5_INCLUDE_DIR}
-    INTERFACE_LINK_LIBRARIES HDF5::hdf5
-)
-add_dependencies(HDF5::hdf5_cpp hdf5)
-
-# Add dependencies and link libraries
-add_dependencies(falcon_core_cpp hdf5)
-
 target_include_directories(
      falcon_core_cpp
      PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
             $<INSTALL_INTERFACE:include>
-            ${eigen_SOURCE_DIR}
-            ${cereal_SOURCE_DIR}/include
-            ${xtensor_SOURCE_DIR}/include
-            ${xtl_SOURCE_DIR}/include
-            ${xsimd_SOURCE_DIR}/include
-            ${xtensor-blas_SOURCE_DIR}/include
    )
 
 target_link_libraries(falcon_core_cpp
@@ -389,11 +290,14 @@ target_link_libraries(falcon_core_cpp
     xtensor
     xsimd
     xtensor-blas
-    yaml-cpp::yaml-cpp
-    HDF5::hdf5_cpp
+    yaml-cpp:yaml-cpp
+    hdf5::hdf5-static
+    hdf5::hdf5_cpp-static
+    cereal::cereal
 )
 
-target_link_libraries(falcon_core_cpp PUBLIC yaml-cpp::yaml-cpp)
+target_link_libraries(falcon_core_cpp PUBLIC yaml-cpp)
+
 if(NOT FALCON_CORE_DIRS)
   set(FALCON_HEADERS
     falcon_core/generic/Song.hpp
@@ -493,4 +397,3 @@ if(NOT FALCON_CORE_DIRS)
                      PROPERTIES WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 endif()
 cpp_tests()
-
