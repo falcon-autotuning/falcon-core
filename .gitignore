@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 
+# ignore vcpkg since it is large
+/vcpkg*
+
 # .pyenv file
 .python-version
 
