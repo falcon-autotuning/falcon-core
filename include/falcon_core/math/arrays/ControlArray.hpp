@@ -118,7 +118,7 @@ class ControlArray : public generic::FArray<double>, public IsControl<double> {
    * @param axis The axis to compute the gradient.
    * @return The gradient FArray.
    */
-  generic::FArraySP<double> gradient(size_t axis) const;
+  generic::FArraySP<double> gradient(size_t axis) const override;
   /**
    * @brief Return the gradient of the data along all axes.
    *
@@ -129,7 +129,7 @@ class ControlArray : public generic::FArray<double>, public IsControl<double> {
    *
    * @return A vector of FArray gradients (one for each axis).
    */
-  generic::ListSP<generic::FArray<double>> gradient() const;
+  generic::ListSP<generic::FArray<double>> gradient() const override;
 };
 using ControlArraySP = std::shared_ptr<ControlArray>;
 }  // namespace falcon_core::math::arrays
