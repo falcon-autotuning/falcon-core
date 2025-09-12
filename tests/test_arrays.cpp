@@ -17,35 +17,35 @@ TEST(ControlArray1DTest, BasicOperations) {
   // Test operator+=
   ControlArray1D sum = arr1d1;
   sum += arr1d2;
-  EXPECT_DOUBLE_EQ(sum[0], 5.0);
-  EXPECT_DOUBLE_EQ(sum[1], 7.0);
-  EXPECT_DOUBLE_EQ(sum[2], 9.0);
+  EXPECT_DOUBLE_EQ(sum(0), 5.0);
+  EXPECT_DOUBLE_EQ(sum(1), 7.0);
+  EXPECT_DOUBLE_EQ(sum(2), 9.0);
 
   // Test operator-=
   ControlArray1D diff = arr1d1;
   diff -= arr1d2;
-  EXPECT_DOUBLE_EQ(diff[0], -3.0);
-  EXPECT_DOUBLE_EQ(diff[1], -3.0);
-  EXPECT_DOUBLE_EQ(diff[2], -3.0);
+  EXPECT_DOUBLE_EQ(diff(0), -3.0);
+  EXPECT_DOUBLE_EQ(diff(1), -3.0);
+  EXPECT_DOUBLE_EQ(diff(2), -3.0);
 
   // Test operator*=
   ControlArray1D prod = arr1d1;
   prod *= arr1d2;
-  EXPECT_DOUBLE_EQ(prod[0], 4.0);
-  EXPECT_DOUBLE_EQ(prod[1], 10.0);
-  EXPECT_DOUBLE_EQ(prod[2], 18.0);
+  EXPECT_DOUBLE_EQ(prod(0), 4.0);
+  EXPECT_DOUBLE_EQ(prod(1), 10.0);
+  EXPECT_DOUBLE_EQ(prod(2), 18.0);
 
   // Test operator/=
   ControlArray1D div = arr1d2;
   div /= arr1d1;
-  EXPECT_DOUBLE_EQ(div[0], 4.0);
-  EXPECT_DOUBLE_EQ(div[1], 2.5);
-  EXPECT_DOUBLE_EQ(div[2], 2.0);
+  EXPECT_DOUBLE_EQ(div(0), 4.0);
+  EXPECT_DOUBLE_EQ(div(1), 2.5);
+  EXPECT_DOUBLE_EQ(div(2), 2.0);
 
   // Test comparison
   ControlArray1D arr3 = arr1d1;
   EXPECT_TRUE(arr1d1 == arr3);
-  arr3[0] = 42.0;
+  arr3(0) = 42.0;
   EXPECT_FALSE(arr1d1 == arr3);
 }
 
@@ -54,7 +54,7 @@ TEST(ControlArray1DTest, Construction1D) {
   ControlArray1D     arr1d(vec);
   EXPECT_EQ(arr1d.shape()[0], 3);
   EXPECT_EQ(arr1d.dimension(), 1);
-  EXPECT_DOUBLE_EQ(arr1d[2], 3.0);
+  EXPECT_DOUBLE_EQ(arr1d(2), 3.0);
 }
 
 TEST(ControlArray1DTest, ThrowsOnNon1D) {
@@ -75,6 +75,6 @@ TEST(ControlArray1DTest, SerializationRoundTrip) {
 
   EXPECT_EQ(arr1d2->shape()[0], 3);
   EXPECT_EQ(arr1d2->dimension(), 1);
-  EXPECT_DOUBLE_EQ((*arr1d2)[2], 3.0);
+  EXPECT_DOUBLE_EQ((*arr1d2)(2), 3.0);
 }
 }  // namespace tests
