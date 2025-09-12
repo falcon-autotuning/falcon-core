@@ -5,20 +5,16 @@
 
 #pragma once
 
-#include <cereal/types/memory.hpp>
-#include <memory>
-#include "falcon_core/math/domains/Domain.hpp"
+#include "falcon_core/math/domains/BaseLabelledDomain.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace domains {
+namespace falcon_core::math::domains {
 
 /**
  * @brief Domain with an associated label.
  * @tparam T Type of the label.
  */
 template <typename T>
-class LabelledDomain : public Domain {
+class LabelledDomain : public BaseLabelledDomain<T> {
  public:
   /**
    * @brief Construct a labelled domain.
@@ -26,35 +22,34 @@ class LabelledDomain : public Domain {
    * @param max_val Maximum value of the domain.
    * @param label Shared pointer to the label.
    */
-  LabelledDomain(double min_val, double max_val, std::shared_ptr<T> label)
-      : Domain(min_val, max_val), _label(std::move(label)) {}
-
+  LabelledDomain(const double              min_val,
+                 const double              max_val,
+                 const std::shared_ptr<T>& label,
+                 const bool                lesser_bound_contained  = true,
+                 const bool                greater_bound_contained = true)
+      : BaseLabelledDomain<T>(min_val,
+                              max_val,
+                              label,
+                              lesser_bound_contained,
+                              greater_bound_contained) {}
   /**
-   * @brief Get the label.
-   * @return Shared pointer to the label.
+   * @brief Construct a labelled domain.
+   * @param bounds Minimum, Maximum pair of the domain.
+   * @param label Shared pointer to the label.
    */
-  const std::shared_ptr<T>& label() const { return _label; }
+  LabelledDomain(const std::pair<double, double> bounds,
+                 const std::shared_ptr<T>&       label,
+                 const bool                      lesser_bound_contained  = true,
+                 const bool                      greater_bound_contained = true)
+      : BaseLabelledDomain<T>(
+            bounds, label, lesser_bound_contained, greater_bound_contained) {}
 
  private:
-  std::shared_ptr<T> _label;
-
   friend class cereal::access;
   LabelledDomain() = default;
-  /**
-   * @brief Serialization method for cereal.
-   */
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<Domain>(this), _label);
+    ar(cereal::base_class<BaseLabelledDomain<T>>(this));
   }
 };
-}  // namespace domains
-}  // namespace math
-}  // namespace falcon_core
-#ifndef SWIG
-
-using namespace falcon_core::math::domains;
-CEREAL_REGISTER_TYPE(falcon_core::math::domains::LabelledDomain<int>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song, falcon_core::math::domains::LabelledDomain<int>)
-#endif
+}  // namespace falcon_core::math::domains

@@ -22,7 +22,7 @@ class Knob : public InstrumentPort {
  private:
   friend class cereal::access;
 };
-
+using KnobSP = std::shared_ptr<Knob>;
 }  // namespace names
 }  // namespace instrument_interfaces
 }  // namespace falcon_core

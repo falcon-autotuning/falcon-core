@@ -147,5 +147,5 @@ class Domain : public generic::Song {
        _greater_bound_contained);
   }
 };
-
+using DomainSP = std::shared_ptr<Domain>;
 }  // namespace falcon_core::math::domains
