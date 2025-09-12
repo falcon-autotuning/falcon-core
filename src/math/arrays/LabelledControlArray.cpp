@@ -8,12 +8,16 @@ LabelledControlArray::LabelledControlArray() : ControlArray() {
 LabelledControlArray::LabelledControlArray(
     const arrays::ControlArraySP&                               array,
     const autotuner_interfaces::contexts::AcquisitionContextSP& label)
-    : ControlArray(*array), _label(label) {
+    : ControlArray(*array) {
+  _label               = label;
   _principle_dimension = 0;
   _alignment           = _determine_alignments();
 }
-LabelledControlArray::LabelledControlArray(const ControlArraySP&& arr) noexcept
-    : ControlArray(*arr) {
+LabelledControlArray::LabelledControlArray(
+    const generic::FArraySP<double>&                            array,
+    const autotuner_interfaces::contexts::AcquisitionContextSP& label)
+    : ControlArray(*array) {
+  _label               = label;
   _principle_dimension = 0;
   _alignment           = _determine_alignments();
 }

@@ -4,6 +4,7 @@
 namespace falcon_core::math::arrays {
 template <typename T>
 class IsLabelled : public virtual generic::IFArray<T> {
+ protected:
   autotuner_interfaces::contexts::AcquisitionContextSP _label;
 
  public:
