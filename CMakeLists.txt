@@ -245,13 +245,13 @@ find_package(
   REQUIRED)
 
 # Find NumPy include directory
-execute_process(
-  COMMAND ${Python3_EXECUTABLE} -c "import numpy; print(numpy.get_include())"
-  OUTPUT_VARIABLE NUMPY_INCLUDE_DIR
-  OUTPUT_STRIP_TRAILING_WHITESPACE)
-if(NOT NUMPY_INCLUDE_DIR)
-  message(FATAL_ERROR "NumPy include directory not found. Is NumPy installed?")
-endif()
+# execute_process(
+#   COMMAND ${Python3_EXECUTABLE} -c "import numpy; print(numpy.get_include())"
+#   OUTPUT_VARIABLE NUMPY_INCLUDE_DIR
+#   OUTPUT_STRIP_TRAILING_WHITESPACE)
+# if(NOT NUMPY_INCLUDE_DIR)
+#   message(FATAL_ERROR "NumPy include directory not found. Is NumPy installed?")
+# endif()
 
 # Get SWIG's library directory for standard .i files
 execute_process(

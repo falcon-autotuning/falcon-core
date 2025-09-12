@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 
 # ignore vcpkg since it is large
+/vcpkg
+/vcpkg_installed
 /vcpkg*
 
 # .pyenv file
