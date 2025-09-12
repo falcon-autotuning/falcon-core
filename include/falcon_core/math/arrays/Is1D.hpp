@@ -23,12 +23,12 @@ class Is1D : public virtual generic::IFArray<T> {
    * @brief Get the first element of the 1D array.
    * @returns The first element of the 1D array.
    */
-  T get_start() const { return this->at(0); }
+  T get_start() const { return (*this)(0); }
   /**
    * @brief Get the last element of the 1D array.
    * @returns The last element of the 1D array.
    */
-  T get_end() const { return this->at(this->size() - 1); }
+  T get_end() const { return (*this)(this->size() - 1); }
   /**
    * @brief Check if the array is decreasing.
    * @returns True if the array is decreasing, False otherwise.

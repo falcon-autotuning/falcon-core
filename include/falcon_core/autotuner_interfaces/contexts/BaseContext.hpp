@@ -4,9 +4,7 @@
 #include "falcon_core/instrument_interfaces/Instrument.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
-namespace falcon_core {
-namespace autotuner_interfaces {
-namespace contexts {
+namespace falcon_core::autotuner_interfaces::contexts {
 class BaseContext : public generic::Song {
   physics::device_structures::BaseConnectionSP _connection;
   instrument_interfaces::Instrument            _instrument_type;
@@ -38,12 +36,8 @@ class BaseContext : public generic::Song {
   BaseContext();
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<falcon_core::generic::Song>(this),
-       _connection,
-       _instrument_type);
+    ar(cereal::base_class<generic::Song>(this), _connection, _instrument_type);
   }
 };
 using BaseContextSP = std::shared_ptr<BaseContext>;
-}  // namespace contexts
-}  // namespace autotuner_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::autotuner_interfaces::contexts

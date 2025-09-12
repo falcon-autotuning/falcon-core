@@ -5,10 +5,11 @@ namespace falcon_core::math::arrays {
 template <typename T>
 class IsLabelled : public virtual generic::IFArray<T> {
  protected:
+  friend class cereal::access;
   autotuner_interfaces::contexts::AcquisitionContextSP _label;
 
  public:
-  const autotuner_interfaces::contexts::AcquisitionContextSP& label() const {
+  autotuner_interfaces::contexts::AcquisitionContextSP label() const {
     return _label;
   }
   const physics::device_structures::BaseConnectionSP connection() const {

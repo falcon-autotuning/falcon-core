@@ -1,15 +1,9 @@
 #pragma once
-#include <cereal/archives/binary.hpp>
 
 #include "falcon_core/autotuner_interfaces/contexts/BaseContext.hpp"
-#include "falcon_core/instrument_interfaces/Instrument.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
-#include "falcon_core/physics/units/SymbolUnit.hpp"
 
-namespace falcon_core {
-namespace autotuner_interfaces {
-namespace contexts {
+namespace falcon_core::autotuner_interfaces::contexts {
 
 // This is a simplified placeholder for AcquisitionContext.
 // A full implementation would depend on MeasurementContext.
@@ -93,6 +87,4 @@ class AcquisitionContext : public BaseContext {
   bool match_instrument_type(instrument_interfaces::Instrument other) const;
 };
 using AcquisitionContextSP = std::shared_ptr<AcquisitionContext>;
-}  // namespace contexts
-}  // namespace autotuner_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::autotuner_interfaces::contexts

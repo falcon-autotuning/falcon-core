@@ -5,10 +5,12 @@ namespace communications {
 namespace messages {
 
 MeasurementResponse::MeasurementResponse() = default;
-MeasurementResponse::MeasurementResponse(const std::shared_ptr<math::labelled_arrays::LabelledMeasuredArrays>& arrays)
+MeasurementResponse::MeasurementResponse(
+    const std::shared_ptr<math::arrays::LabelledMeasuredArrays>& arrays)
     : _arrays(arrays) {}
 
-const std::shared_ptr<math::labelled_arrays::LabelledMeasuredArrays>& MeasurementResponse::arrays() const {
+const std::shared_ptr<math::arrays::LabelledMeasuredArrays>&
+MeasurementResponse::arrays() const {
   return _arrays;
 }
 
@@ -17,8 +19,10 @@ void MeasurementResponse::serialize(Archive& ar) {
   ar(cereal::base_class<BaseMessage>(this), _arrays);
 }
 
-template void MeasurementResponse::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive& ar);
-template void MeasurementResponse::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive& ar);
+template void MeasurementResponse::serialize<cereal::JSONOutputArchive>(
+    cereal::JSONOutputArchive& ar);
+template void MeasurementResponse::serialize<cereal::JSONInputArchive>(
+    cereal::JSONInputArchive& ar);
 
 }  // namespace messages
 }  // namespace communications

@@ -4,10 +4,6 @@
 #include <xtensor/io/xio.hpp>
 
 #include "falcon_core/instrument_interfaces/InstrumentTypes.hpp"
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/math/arrays/BaseLabelledArrays.hpp"
-#include "falcon_core/math/arrays/Is1D.hpp"
-#include "falcon_core/math/arrays/IsLabelled.hpp"
 #include "falcon_core/math/arrays/LabelledControlArray1D.hpp"
 #include "falcon_core/math/arrays/LabelledControlArrays.hpp"
 #include "falcon_core/physics/device_structures/PlungerGate.hpp"
