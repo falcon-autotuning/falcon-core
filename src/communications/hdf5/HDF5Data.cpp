@@ -21,14 +21,12 @@ HDF5Data::HDF5Data(const AxesSP<int>&                            shape,
 
   // Domains
   for (size_t i = 0; i < shape->size(); ++i) {
-    std::map<std::string, std::map<std::string, double>> labels;
+    generic::Map<std::string, std::map<std::string, double>> labels;
     for (const auto& domain : (*domain_labels)[i]->domains()) {
-      std::string label_key = domain->label()->_pseudo_name
-                                  ? domain->label()->_pseudo_name->name()
-                                  : domain->label()->instrument_type();
+      std::string label_key = domain->label()->instrument_facing_name();
       labels[label_key]     = {
           {"unit", domain->label()->units()->symbol()},
-          {"start", static_cast<double>(domain->domain.bounds[0])},
+          {"start", static_cast<double>(domain->bounds()[0])},
           {"stop", static_cast<double>(domain->domain.bounds[1])}};
     }
     std::ostringstream data_stream;
@@ -37,8 +35,9 @@ HDF5Data::HDF5Data(const AxesSP<int>&                            shape,
       if (j > 0) data_stream << ",";
       data_stream << arr[j];
     }
-    _domains["dim" + std::to_string(i)] = {{"labels", labels},
-                                           {"data", data_stream.str()}};
+    _domains->insert("dim" + std::to_string(i),
+                     generic::Map({generic::Map({"labels", labels}),
+                                   generic::Map({"data", data_stream.str()})}));
   }
 
   // Ranges
