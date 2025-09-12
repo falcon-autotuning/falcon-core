@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdexcept>
+
 #include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core {

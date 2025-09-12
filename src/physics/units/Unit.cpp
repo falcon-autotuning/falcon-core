@@ -1,5 +1,6 @@
 #include "falcon_core/physics/units/Unit.hpp"
 
+#include <cereal/archives/binary.hpp>
 #include <cmath>
 
 #include "falcon_core/physics/units/Prefix.hpp"
@@ -125,6 +126,17 @@ void Unit::serialize(Archive &ar) {
      _prefix,
      _dimensions);
 }
+
+// Explicit instantiations for Cereal archives
+template void Unit::serialize<cereal::BinaryInputArchive>(
+    cereal::BinaryInputArchive &);
+template void Unit::serialize<cereal::BinaryOutputArchive>(
+    cereal::BinaryOutputArchive &);
+template void Unit::serialize<cereal::JSONInputArchive>(
+    cereal::JSONInputArchive &);
+template void Unit::serialize<cereal::JSONOutputArchive>(
+    cereal::JSONOutputArchive &);
+
 }  // namespace units
 }  // namespace physics
 }  // namespace falcon_core
