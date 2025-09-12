@@ -54,7 +54,7 @@ class MeasurementRequest : public BaseMessage {
   template <class Archive>
   void serialize(Archive& ar);
 };
-
+using MeasurementRequestSP = std::shared_ptr<MeasurementRequest>;
 }  // namespace messages
 }  // namespace communications
 }  // namespace falcon_core

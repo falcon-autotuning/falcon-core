@@ -13,7 +13,7 @@ find_package(xtensor CONFIG REQUIRED)
 find_package(xsimd CONFIG REQUIRED)
 find_package(yaml-cpp CONFIG REQUIRED)
 find_package(hdf5 CONFIG REQUIRED)
-find_package(Boost REQUIRED COMPONENTS filesystem system)
+find_package(Boost REQUIRED COMPONENTS filesystem system uuid)
 
 function(cpp_tests)
   # This function is used to set up C++ tests. It is called at the end of the
@@ -285,6 +285,7 @@ target_link_libraries(falcon_core_cpp
     PRIVATE
     Boost::filesystem
     Boost::system
+    Boost::uuid
     xtl
     xtensor
     xsimd

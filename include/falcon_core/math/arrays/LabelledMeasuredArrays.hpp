@@ -17,5 +17,5 @@ class LabelledMeasuredArrays
     ar(cereal::base_class<BaseLabelledArrays<LabelledMeasuredArray>>(this));
   }
 };
-
+using LabelledMeasuredArraysSP = std::shared_ptr<LabelledMeasuredArrays>;
 }  // namespace falcon_core::math::arrays

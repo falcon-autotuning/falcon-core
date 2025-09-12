@@ -23,7 +23,7 @@ class MeasurementResponse : public BaseMessage {
   template <class Archive>
   void serialize(Archive& ar);
 };
-
+using MeasurementResponseSP = std::shared_ptr<MeasurementResponse>;
 }  // namespace messages
 }  // namespace communications
 }  // namespace falcon_core
