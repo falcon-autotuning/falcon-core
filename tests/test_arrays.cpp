@@ -65,7 +65,6 @@ TEST(ControlArray1DTest, ThrowsOnNon1D) {
 TEST(ControlArray1DTest, SerializationRoundTrip) {
   xt::xarray<double> vec   = {1.0, 2.0, 3.0};
   auto               arr1d = std::make_shared<ControlArray1D>(vec);
-
   // Serialize to JSON using the class helper
   std::string json = arr1d->to_json_string();
   std::cout << "Serialized JSON:\n" << json << std::endl;
