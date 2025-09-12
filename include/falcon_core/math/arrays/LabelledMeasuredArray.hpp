@@ -37,14 +37,6 @@ class LabelledMeasuredArray : public MeasuredArray, IsLabelled<double> {
   LabelledMeasuredArray(LabelledMeasuredArray&&) noexcept            = default;
   LabelledMeasuredArray& operator=(const LabelledMeasuredArray&)     = default;
   LabelledMeasuredArray& operator=(LabelledMeasuredArray&&) noexcept = default;
-  static std::shared_ptr<LabelledMeasuredArray> zeros(
-      const std::vector<size_t>& shape) {
-    return std::make_shared<LabelledMeasuredArray>(xt::zeros<double>(shape));
-  }
-  static std::shared_ptr<LabelledMeasuredArray> empty(
-      const std::vector<size_t>& shape) {
-    return std::make_shared<LabelledMeasuredArray>(xt::empty<double>(shape));
-  }
   // Arithmetic operators
   std::shared_ptr<LabelledMeasuredArray> operator+(const double other) const;
 
