@@ -3,7 +3,6 @@
 #include <cereal/types/memory.hpp>
 #include <cereal/types/vector.hpp>
 #include <cereal/types/xtensor.hpp>
-#include <xtensor-blas/xblas.hpp>
 #include <xtensor/containers/xarray.hpp>
 #include <xtensor/io/xio.hpp>
 #include <xtensor/views/xview.hpp>
@@ -122,11 +121,9 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   }
   std::shared_ptr<FArray<T>> operator-() const {
     FArray<T> result(*this);
-    return std::make_shared<FArray<T>>(-1 * result);
+    return result * -1;
   }
-  std::shared_ptr<FArray<T>> operator-() {
-    return std::make_shared<FArray<T>>(-1 * (*this));
-  }
+  std::shared_ptr<FArray<T>> operator-() { return (*this) * -1; }
   std::shared_ptr<FArray<T>> operator-(
       const std::shared_ptr<FArray<T>>& other) const {
     FArray<T> result(*this);
@@ -170,7 +167,7 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   std::shared_ptr<FArray<T>> operator*(
       const std::shared_ptr<FArray<T>>& other) const {
     FArray<T> result(*this);
-    result._data *= other._data;
+    result._data *= other->_data;
     return std::make_shared<FArray<T>>(result);
   }
   FArray<T>& operator/=(const double other) {
@@ -203,11 +200,11 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   }
   std::shared_ptr<FArray<T>> operator^(const double other) const {
     FArray<T> result(*this);
-    result._data.power(other);
+    xt::pow(result._data, other);
     return std::make_shared<FArray<T>>(result);
   }
   FArray<T>& operator^(const double other) {
-    this->_data.power(other);
+    xt::pow(this->_data.pow, other);
     return *this;
   }
   std::shared_ptr<FArray<T>> abs() const {

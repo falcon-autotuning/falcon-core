@@ -1,15 +1,13 @@
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 
-namespace falcon_core {
-namespace autotuner_interfaces {
-namespace contexts {
+namespace falcon_core::autotuner_interfaces::contexts {
 
 AcquisitionContext::AcquisitionContext() : BaseContext(), _units(nullptr) {}
 
 AcquisitionContext::AcquisitionContext(
     physics::device_structures::BaseConnectionSP connection,
-    instrument_interfaces::Instrument instrument_type,
-    physics::units::SymbolUnitSP units)
+    instrument_interfaces::Instrument            instrument_type,
+    physics::units::SymbolUnitSP                 units)
     : BaseContext(connection, instrument_type), _units(units) {}
 
 AcquisitionContext::AcquisitionContext(
@@ -48,37 +46,10 @@ bool AcquisitionContext::match_instrument_type(
   return instrument_type() == other;
 }
 
-template <class Archive>
-void AcquisitionContext::serialize(Archive& ar) {
-  ar(cereal::base_class<BaseContext>(this), _units);
-}
-
-// Explicit template instantiations for cereal
-template void AcquisitionContext::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive& ar);
-template void AcquisitionContext::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive& ar);
-template void AcquisitionContext::serialize<cereal::BinaryOutputArchive>(cereal::BinaryOutputArchive& ar);
-template void AcquisitionContext::serialize<cereal::BinaryInputArchive>(cereal::BinaryInputArchive& ar);
-
-}  // namespace contexts
-}  // namespace autotuner_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::autotuner_interfaces::contexts
 
 CEREAL_REGISTER_TYPE(
     falcon_core::autotuner_interfaces::contexts::AcquisitionContext)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::autotuner_interfaces::contexts::BaseContext,
     falcon_core::autotuner_interfaces::contexts::AcquisitionContext)
-#include "falcon_core/autotuner_interfaces/contexts/BaseContext.hpp"
-
-namespace falcon_core {
-namespace autotuner_interfaces {
-namespace contexts {
-
-// Define BaseContext::connection() if not already defined
-physics::device_structures::BaseConnectionSP BaseContext::connection() const {
-  return _connection;
-}
-
-}  // namespace contexts
-}  // namespace autotuner_interfaces
-}  // namespace falcon_core

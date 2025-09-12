@@ -10,7 +10,7 @@
 namespace falcon_core::math::arrays {
 
 /// @brief 1D control array, enforces 1D shape at construction.
-class ControlArray1D : public ControlArray, Is1D<ControlArray> {
+class ControlArray1D : public ControlArray, public Is1D<double> {
  protected:
   friend class cereal::access;
   template <class Archive>

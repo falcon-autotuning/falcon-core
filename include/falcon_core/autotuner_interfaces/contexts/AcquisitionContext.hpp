@@ -1,7 +1,6 @@
 #pragma once
 #include <cereal/archives/binary.hpp>
 
-#include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon_core/autotuner_interfaces/contexts/BaseContext.hpp"
 #include "falcon_core/instrument_interfaces/Instrument.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
@@ -17,12 +16,13 @@ namespace contexts {
 class AcquisitionContext : public BaseContext {
   physics::units::SymbolUnitSP _units;
 
-  template <class Archive>
-  void serialize(Archive& ar);
-
  protected:
   friend class cereal::access;
   AcquisitionContext();
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<BaseContext>(this), _units);
+  }
 
  public:
   /**

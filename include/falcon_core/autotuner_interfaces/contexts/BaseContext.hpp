@@ -11,9 +11,6 @@ class BaseContext : public generic::Song {
   physics::device_structures::BaseConnectionSP _connection;
   instrument_interfaces::Instrument            _instrument_type;
 
-  template <class Archive>
-  void serialize(Archive& ar);
-
  public:
   /**
    * @brief Initialize a BaseContext with a connection and instrument type.
@@ -39,6 +36,12 @@ class BaseContext : public generic::Song {
  protected:
   friend class cereal::access;
   BaseContext();
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<falcon_core::generic::Song>(this),
+       _connection,
+       _instrument_type);
+  }
 };
 using BaseContextSP = std::shared_ptr<BaseContext>;
 }  // namespace contexts

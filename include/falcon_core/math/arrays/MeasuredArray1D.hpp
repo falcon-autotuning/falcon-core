@@ -12,7 +12,7 @@ namespace falcon_core::math::arrays {
 /**
  * @brief Array type for measured data, derived from BaseArray.
  */
-class MeasuredArray1D : public MeasuredArray, Is1D<double> {
+class MeasuredArray1D : public MeasuredArray, public Is1D<double> {
  public:
   using value_type = double;
   MeasuredArray1D();

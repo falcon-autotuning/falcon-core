@@ -24,7 +24,7 @@ class BaseLabelledArrays : public generic::List<ArrayType> {
  public:
   BaseLabelledArrays() = default;
   BaseLabelledArrays(const std::vector<std::shared_ptr<ArrayType>>& items)
-      : generic::List<std::shared_ptr<ArrayType>>(items) {
+      : generic::List<ArrayType>(items) {
     check_array_labels();
   }
   /**
