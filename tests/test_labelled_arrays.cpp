@@ -5,14 +5,15 @@
 
 #include "falcon_core/instrument_interfaces/InstrumentTypes.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/math/labelled_arrays/BaseLabelledArrays.hpp"
-#include "falcon_core/math/labelled_arrays/IsLabelled1D.hpp"
-#include "falcon_core/math/labelled_arrays/LabelledControlArray1D.hpp"
-#include "falcon_core/math/labelled_arrays/LabelledControlArrays.hpp"
+#include "falcon_core/math/arrays/BaseLabelledArrays.hpp"
+#include "falcon_core/math/arrays/Is1D.hpp"
+#include "falcon_core/math/arrays/IsLabelled.hpp"
+#include "falcon_core/math/arrays/LabelledControlArray1D.hpp"
+#include "falcon_core/math/arrays/LabelledControlArrays.hpp"
 #include "falcon_core/physics/device_structures/PlungerGate.hpp"
 #include "falcon_core/physics/units/Units.hpp"
 namespace tests {
-using namespace falcon_core::math::labelled_arrays;
+
 using namespace falcon_core::math::arrays;
 
 using ArrayType = ControlArray1D;
@@ -46,10 +47,8 @@ TEST(BaseLabelledArraysTest, ConstructionAndAccess) {
   labelled_arrays.push_back(labelled2);
 
   EXPECT_EQ(labelled_arrays.items().size(), 2);
-  EXPECT_TRUE(
-      xt::allclose(labelled_arrays.items()[0]->array()->xtensor(), arr1_data));
-  EXPECT_TRUE(
-      xt::allclose(labelled_arrays.items()[1]->array()->xtensor(), arr2_data));
+  EXPECT_TRUE(xt::allclose(labelled_arrays.items()[0]->xtensor(), arr1_data));
+  EXPECT_TRUE(xt::allclose(labelled_arrays.items()[1]->xtensor(), arr2_data));
   EXPECT_EQ(labelled_arrays.items()[0]->label()->port()->default_name(), "P1");
   EXPECT_EQ(labelled_arrays.items()[1]->label()->port()->default_name(), "P2");
 }
@@ -86,10 +85,8 @@ TEST(BaseLabelledArraysTest, SerializationRoundTrip) {
       falcon_core::generic::Song::from_json_string<LabelledArraysType>(json);
 
   ASSERT_EQ(deserialized->items().size(), 2);
-  EXPECT_TRUE(
-      xt::allclose(deserialized->items()[0]->array()->xtensor(), arr1_data));
-  EXPECT_TRUE(
-      xt::allclose(deserialized->items()[1]->array()->xtensor(), arr2_data));
+  EXPECT_TRUE(xt::allclose(deserialized->items()[0]->xtensor(), arr1_data));
+  EXPECT_TRUE(xt::allclose(deserialized->items()[1]->xtensor(), arr2_data));
   EXPECT_EQ(deserialized->items()[0]->label()->port()->default_name(), "P1");
   EXPECT_EQ(deserialized->items()[1]->label()->port()->default_name(), "P2");
 }
