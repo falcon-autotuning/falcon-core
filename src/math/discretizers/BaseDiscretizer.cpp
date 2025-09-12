@@ -2,15 +2,11 @@
 
 #include <cereal/archives/binary.hpp>
 
-namespace falcon_core {
-namespace math {
-namespace discretizers {
+namespace falcon_core::math::discretizers {
 
-BaseDiscretizer::BaseDiscretizer(double                           delta,
-                                 std::shared_ptr<domains::Domain> delta_domain)
+BaseDiscretizer::BaseDiscretizer(
+    const double &delta, const std::shared_ptr<domains::Domain> &delta_domain)
     : _delta(delta), _delta_domain(std::move(delta_domain)) {}
-
-BaseDiscretizer::~BaseDiscretizer() = default;
 
 double BaseDiscretizer::delta() const { return _delta; }
 void   BaseDiscretizer::set_delta(double delta) { _delta = delta; }
@@ -20,24 +16,7 @@ const std::shared_ptr<domains::Domain> &BaseDiscretizer::delta_domain() const {
 
 BaseDiscretizer::BaseDiscretizer() = default;
 
-template <class Archive>
-void BaseDiscretizer::serialize(Archive &ar) {
-  ar(cereal::base_class<generic::Song>(this), _delta, _delta_domain);
-}
-
-// Explicit instantiations for Cereal archives
-template void BaseDiscretizer::serialize<cereal::BinaryInputArchive>(
-    cereal::BinaryInputArchive &);
-template void BaseDiscretizer::serialize<cereal::BinaryOutputArchive>(
-    cereal::BinaryOutputArchive &);
-template void BaseDiscretizer::serialize<cereal::JSONInputArchive>(
-    cereal::JSONInputArchive &);
-template void BaseDiscretizer::serialize<cereal::JSONOutputArchive>(
-    cereal::JSONOutputArchive &);
-
-}  // namespace discretizers
-}  // namespace math
-}  // namespace falcon_core
+}  // namespace falcon_core::math::discretizers
 
 CEREAL_REGISTER_TYPE(falcon_core::math::discretizers::BaseDiscretizer)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

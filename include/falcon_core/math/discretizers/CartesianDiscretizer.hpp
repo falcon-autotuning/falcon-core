@@ -7,9 +7,7 @@
 
 #include "falcon_core/math/discretizers/BaseDiscretizer.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace discretizers {
+namespace falcon_core::math::discretizers {
 
 /**
  * @brief Discretizer for Cartesian axes.
@@ -20,11 +18,13 @@ namespace discretizers {
 class CartesianDiscretizer : public BaseDiscretizer {
  public:
   CartesianDiscretizer(double delta);
-  CartesianDiscretizer();
 
+ private:
+  friend class cereal::access;
+  CartesianDiscretizer();
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<BaseDiscretizer>(this));
+  }
 };
-}  // namespace discretizers
-}  // namespace math
-}  // namespace falcon_core
+}  // namespace falcon_core::math::discretizers

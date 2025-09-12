@@ -6,12 +6,8 @@
 #pragma once
 
 #include "falcon_core/math/discretizers/BaseDiscretizer.hpp"
-#include "falcon_core/Constants.hpp"
-#include "falcon_core/math/domains/Domain.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace discretizers {
+namespace falcon_core::math::discretizers {
 
 /**
  * @brief Discretizer for polar axes (angles).
@@ -22,12 +18,13 @@ namespace discretizers {
 class PolarDiscretizer : public BaseDiscretizer {
  public:
   PolarDiscretizer(double delta);
+
+ private:
+  friend class cereal::access;
   PolarDiscretizer();
-
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<BaseDiscretizer>(this));
+  }
 };
-
-}  // namespace discretizers
-}  // namespace math
-}  // namespace falcon_core
+}  // namespace falcon_core::math::discretizers
