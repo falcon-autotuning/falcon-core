@@ -15,9 +15,8 @@ class ControlArray1D : public ControlArray, public Is1D<double> {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<ControlArray>(this),
-       principle_dimension(),
-       alignment());
+    ar(cereal::base_class<FArray<double>>(this));
+    this->serialize_control_properties(ar);
   }
 
  public:
