@@ -302,6 +302,8 @@ if(NOT FALCON_CORE_DIRS)
     falcon_core/generic/Song.hpp
     falcon_core/generic/FArray.hpp
     falcon_core::generic::FArray<double>
+    falcon_core/generic/List.hpp
+    falcon_core/generic/Map.hpp
     falcon_core/Constants.hpp
     falcon_core/physics/device_structures/BaseConnection.hpp
     falcon_core/physics/device_structures/BarrierGate.hpp
@@ -352,6 +354,8 @@ if(NOT FALCON_CORE_DIRS)
   set(SWIG_MODULES
     song,Song,Song.i,generic
     farray,FArray,FArray.i,generic
+    list,List,List.i,generic
+    map,Map,Map.i,generic
     base_connection,BaseConnection,BaseConnection.i,physics/device_structures
     ohmic,Ohmic,Ohmic.i,physics/device_structures
     barrier_gate,BarrierGate,BarrierGate.i,physics/device_structures
