@@ -43,14 +43,6 @@ class LabelledControlArray1D : public LabelledControlArray,
   LabelledControlArray1D& operator=(const LabelledControlArray1D&) = default;
   LabelledControlArray1D& operator=(LabelledControlArray1D&&) noexcept =
       default;
-  static std::shared_ptr<LabelledControlArray1D> zeros(
-      const std::vector<size_t>& shape) {
-    return std::make_shared<LabelledControlArray1D>(xt::zeros<double>(shape));
-  }
-  static std::shared_ptr<LabelledControlArray1D> empty(
-      const std::vector<size_t>& shape) {
-    return std::make_shared<LabelledControlArray1D>(xt::empty<double>(shape));
-  }
   // Arithmetic operators
   std::shared_ptr<LabelledControlArray1D> operator+(const double other) const;
 

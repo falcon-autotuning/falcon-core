@@ -43,14 +43,6 @@ class LabelledMeasuredArray1D : public LabelledMeasuredArray,
   LabelledMeasuredArray1D& operator=(const LabelledMeasuredArray1D&) = default;
   LabelledMeasuredArray1D& operator=(LabelledMeasuredArray1D&&) noexcept =
       default;
-  static std::shared_ptr<LabelledMeasuredArray1D> zeros(
-      const std::vector<size_t>& shape) {
-    return std::make_shared<LabelledMeasuredArray1D>(xt::zeros<double>(shape));
-  }
-  static std::shared_ptr<LabelledMeasuredArray1D> empty(
-      const std::vector<size_t>& shape) {
-    return std::make_shared<LabelledMeasuredArray1D>(xt::empty<double>(shape));
-  }
   // Arithmetic operators
   std::shared_ptr<LabelledMeasuredArray1D> operator+(const double other) const;
 
