@@ -5,45 +5,39 @@
 
 #pragma once
 
-#include <cereal/types/vector.hpp>
-#include <memory>
-#include <vector>
-#include "falcon_core/math/domains/LabelledDomain.hpp"
+#include "falcon_core/generic/List.hpp"
+#include "falcon_core/math/domains/BaseLabelledDomain.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace domains {
+namespace falcon_core::math::domains {
 
 /**
- * @brief Container for a set of coupled labelled domains.
- * @tparam T Type of the label.
+ * @brief A collection of coupled domains to be attached together.
  */
-template <typename T>
-class BaseCoupledLabelledDomain : public generic::Song {
+template <typename Label>
+class BaseCoupledLabelledDomain
+    : public generic::List<BaseLabelledDomain<Label>> {
  public:
-  using LabelledDomainT = LabelledDomain<T>;
-  using DomainPtr       = std::shared_ptr<LabelledDomainT>;
-
+  BaseCoupledLabelledDomain() = default;
   /**
    * @brief Construct from a vector of labelled domains.
    * @param domains Vector of shared pointers to labelled domains.
    */
-  BaseCoupledLabelledDomain(const std::vector<DomainPtr>& domains)
-      : _domains(domains) {}
-
+  BaseCoupledLabelledDomain(
+      const std::vector<BaseLabelledDomainSP<Label>>& init)
+      : generic::List<BaseLabelledDomainSP<Label>>(init) {}
   /**
    * @brief Get all domains.
-   * @return Vector of shared pointers to labelled domains.
    */
-  const std::vector<DomainPtr>& domains() const { return _domains; }
-
+  const std::vector<BaseLabelledDomainSP<Label>>& domains() const {
+    return this->items();
+  }
   /**
    * @brief Get all labels.
    * @return Vector of shared pointers to labels.
    */
-  std::vector<std::shared_ptr<T>> labels() const {
-    std::vector<std::shared_ptr<T>> result;
-    for (const auto& domain : _domains) {
+  generic::List<Label> labels() const {
+    generic::List<Label> result;
+    for (const auto& domain : domains()) {
       result.push_back(domain->label());
     }
     return result;
@@ -55,45 +49,24 @@ class BaseCoupledLabelledDomain : public generic::Song {
    * @return Shared pointer to the matching domain.
    * @throws std::runtime_error if not found.
    */
-  DomainPtr get_domain(const std::shared_ptr<T>& search) const {
-    for (const auto& domain : _domains) {
-      if (domain->label() == search) {
+  BaseLabelledDomainSP<Label> get_domain(
+      const std::shared_ptr<Label>& search) const {
+    for (const auto& domain : domains()) {
+      if (*(domain->label()) == *search) {
         return domain;
       }
     }
     throw std::runtime_error("No domain found matching label");
   }
 
-  typename std::vector<DomainPtr>::const_iterator begin() const {
-    return _domains.begin();
-  }
-  typename std::vector<DomainPtr>::const_iterator end() const {
-    return _domains.end();
-  }
-
  protected:
-  std::vector<DomainPtr> _domains;
-
   friend class cereal::access;
-  BaseCoupledLabelledDomain() = default;
-  /**
-   * @brief Serialization method for cereal.
-   */
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(_domains);
+    ar(cereal::base_class<generic::List<BaseLabelledDomain<Label>>>(this));
   }
 };
-
-}  // namespace domains
-}  // namespace math
-}  // namespace falcon_core
-
-#ifndef SWIG
-using namespace falcon_core::math::domains;
-
-CEREAL_REGISTER_TYPE(falcon_core::math::domains::BaseCoupledLabelledDomain<int>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::math::domains::BaseCoupledLabelledDomain<int>)
-#endif
+template <typename T>
+using BaseCoupledLabelledDomainSP =
+    std::shared_ptr<BaseCoupledLabelledDomain<T>>;
+}  // namespace falcon_core::math::domains

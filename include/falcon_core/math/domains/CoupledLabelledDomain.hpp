@@ -5,65 +5,30 @@
 
 #pragma once
 
-#include <cereal/types/vector.hpp>
-#include <memory>
-#include <vector>
 #include "falcon_core/math/domains/BaseCoupledLabelledDomain.hpp"
-#include "falcon_core/math/domains/LabelledDomain.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace domains {
+namespace falcon_core::math::domains {
 
 /**
  * @brief Domain with a label and a set of coupled domains.
- * @tparam T Type of the label.
  */
-template <typename T>
-class CoupledLabelledDomain : public BaseCoupledLabelledDomain<T> {
+template <typename Label>
+class CoupledLabelledDomain : public BaseCoupledLabelledDomain<Label> {
  public:
-  using LabelledDomainT = LabelledDomain<T>;
-  using DomainPtr       = std::shared_ptr<LabelledDomainT>;
-
+  CoupledLabelledDomain() = default;
   /**
-   * @brief Construct from a vector of coupled domains.
+   * @brief Construct from a vector of labelled domains.
    * @param domains Vector of shared pointers to labelled domains.
    */
-  CoupledLabelledDomain(const std::vector<DomainPtr>& domains)
-      : BaseCoupledLabelledDomain<T>(domains) {}
-
-  /**
-   * @brief Construct with min/max, label, and coupled domains.
-   * @param min_val Minimum value.
-   * @param max_val Maximum value.
-   * @param label Shared pointer to label.
-   * @param coupled_domains Vector of coupled domains.
-   */
-  CoupledLabelledDomain(double min_val, double max_val, std::shared_ptr<T> label, const std::vector<DomainPtr>& coupled_domains)
-      : BaseCoupledLabelledDomain<T>(coupled_domains) {
-    // Optionally, you could add a LabelledDomain for this label:
-    // this->_domains.push_back(std::make_shared<LabelledDomainT>(min_val, max_val, label));
-  }
+  CoupledLabelledDomain(const std::vector<BaseLabelledDomainSP<Label>>& init)
+      : BaseLabelledDomain<Label>(init) {}
 
  public:
   friend class cereal::access;
-  CoupledLabelledDomain() = default;
-  /**
-   * @brief Serialization method for cereal.
-   */
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseCoupledLabelledDomain<T>>(this));
+    ar(cereal::base_class<BaseCoupledLabelledDomain<Label>>(this));
   }
 };
 
-}  // namespace domains
-}  // namespace math
-}  // namespace falcon_core
-#ifndef SWIG
-using namespace falcon_core::math::domains;
-CEREAL_REGISTER_TYPE(falcon_core::math::domains::CoupledLabelledDomain<int>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::math::domains::CoupledLabelledDomain<int>)
-#endif
+}  // namespace falcon_core::math::domains

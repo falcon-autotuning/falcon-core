@@ -77,5 +77,6 @@ class BaseLabelledDomain : public Domain {
     ar(cereal::base_class<Domain>(this), _label);
   }
 };
-
+template <typename T>
+using BaseLabelledDomainSP = std::shared_ptr<BaseLabelledDomain<T>>;
 }  // namespace falcon_core::math::domains
