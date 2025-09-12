@@ -1,25 +1,18 @@
 #include "falcon_core/math/arrays/LabelledControlArray.hpp"
 
 namespace falcon_core::math::arrays {
-LabelledControlArray::LabelledControlArray() : ControlArray() {
-  _principle_dimension = 0;
-  _alignment           = _determine_alignments();
-}
+LabelledControlArray::LabelledControlArray() : ControlArray() {}
 LabelledControlArray::LabelledControlArray(
     const arrays::ControlArraySP&                               array,
     const autotuner_interfaces::contexts::AcquisitionContextSP& label)
     : ControlArray(*array) {
-  _label               = label;
-  _principle_dimension = 0;
-  _alignment           = _determine_alignments();
+  _label = label;
 }
 LabelledControlArray::LabelledControlArray(
     const generic::FArraySP<double>&                            array,
     const autotuner_interfaces::contexts::AcquisitionContextSP& label)
     : ControlArray(*array) {
-  _label               = label;
-  _principle_dimension = 0;
-  _alignment           = _determine_alignments();
+  _label = label;
 }
 std::shared_ptr<LabelledControlArray> LabelledControlArray::operator+(
     const double other) const {

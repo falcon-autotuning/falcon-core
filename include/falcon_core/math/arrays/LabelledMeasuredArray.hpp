@@ -146,7 +146,7 @@ class LabelledMeasuredArray : public MeasuredArray, IsLabelled<double> {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<FArray>(this), label());
+    ar(cereal::base_class<MeasuredArray>(this), label());
   }
 };
 using LabelledMeasuredArraySP = std::shared_ptr<LabelledMeasuredArray>;

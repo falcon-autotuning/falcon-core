@@ -146,7 +146,7 @@ class LabelledControlArray : public ControlArray, IsLabelled<double> {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<FArray>(this), label());
+    ar(cereal::base_class<ControlArray>(this), label());
   }
 };
 using LabelledControlArraySP = std::shared_ptr<LabelledControlArray>;

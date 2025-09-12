@@ -127,6 +127,13 @@ class MeasuredArray1D : public MeasuredArray, Is1D<double> {
    * @return A vector of FArray gradients (one for each axis).
    */
   generic::ListSP<generic::FArray<double>> gradient() const;
+
+ protected:
+  friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<MeasuredArray>(this));
+  }
 };
 using MeasuredArray1DSP = std::shared_ptr<MeasuredArray1D>;
 }  // namespace falcon_core::math::arrays
