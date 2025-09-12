@@ -300,6 +300,8 @@ target_link_libraries(falcon_core_cpp PUBLIC yaml-cpp::yaml-cpp)
 if(NOT FALCON_CORE_DIRS)
   set(FALCON_HEADERS
     falcon_core/generic/Song.hpp
+    falcon_core/generic/FArray.hpp
+    falcon_core::generic::FArray<double>
     falcon_core/Constants.hpp
     falcon_core/physics/device_structures/BaseConnection.hpp
     falcon_core/physics/device_structures/BarrierGate.hpp
@@ -336,10 +338,7 @@ if(NOT FALCON_CORE_DIRS)
     # falcon_core/math/Point.hpp
     falcon_core/math/Quantity.hpp
     # falcon_core/math/Sign.hpp
-    falcon_core/math/arrays/BaseArray.hpp
-    falcon_core::math::arrays::BaseArray<double>
     falcon_core/math/arrays/ControlArray.hpp
-    falcon_core::math::arrays::ControlArray<double>
     falcon_core/math/arrays/ControlArray1D.hpp
     falcon_core/math/arrays/IncreasingAlignment.hpp
     falcon_core/math/arrays/MeasuredArray.hpp
@@ -352,6 +351,7 @@ if(NOT FALCON_CORE_DIRS)
 )
   set(SWIG_MODULES
     song,Song,Song.i,generic
+    farray,FArray,FArray.i,generic
     base_connection,BaseConnection,BaseConnection.i,physics/device_structures
     ohmic,Ohmic,Ohmic.i,physics/device_structures
     barrier_gate,BarrierGate,BarrierGate.i,physics/device_structures
@@ -377,7 +377,6 @@ if(NOT FALCON_CORE_DIRS)
     knobs,Knobs,Knobs.i,instrument_interfaces/names
     meters,Meters,Meters.i,instrument_interfaces/names
     quantity,Quantity,Quantity.i,math
-    base_array,BaseArray,BaseArray.i,math/arrays
     control_array,ControlArray,ControlArray.i,math/arrays
     control_array_1D,ControlArray1D,ControlArray1D.i,math/arrays
     increasing_alignment,IncreasingAlignment,IncreasingAlignment.i,math/arrays

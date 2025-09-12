@@ -41,15 +41,15 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   }
 
   template <typename... Args>
-  decltype(auto) operator()(Args&&... args) {
+  decltype(auto) operator[](Args&&... args) {
     return _data(std::forward<Args>(args)...);
   }
   template <typename... Args>
-  decltype(auto) operator()(Args&&... args) const {
+  decltype(auto) operator[](Args&&... args) const {
     return _data(std::forward<Args>(args)...);
   }
-  reference       operator()(size_t i) override { return _data(i); }
-  const_reference operator()(size_t i) const override { return _data(i); }
+  reference       operator[](size_t i) override { return _data(i); }
+  const_reference operator[](size_t i) const override { return _data(i); }
 
   [[nodiscard]] const xt::dynamic_shape<size_t>& shape()
       const noexcept override {

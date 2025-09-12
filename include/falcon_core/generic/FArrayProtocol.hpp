@@ -16,8 +16,8 @@ class IFArray {
   virtual ~IFArray() = default;
 
   // Element access
-  virtual reference       operator()(size_t i)       = 0;
-  virtual const_reference operator()(size_t i) const = 0;
+  virtual reference       operator[](size_t i)       = 0;
+  virtual const_reference operator[](size_t i) const = 0;
 
   // Properties
   virtual const xt::dynamic_shape<size_t>& shape() const noexcept     = 0;
