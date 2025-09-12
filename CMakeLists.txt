@@ -296,7 +296,7 @@ target_link_libraries(falcon_core_cpp
     cereal::cereal
 )
 
-target_link_libraries(falcon_core_cpp PUBLIC yaml-cpp)
+target_link_libraries(falcon_core_cpp PUBLIC yaml-cpp::yaml-cpp)
 
 if(NOT FALCON_CORE_DIRS)
   set(FALCON_HEADERS

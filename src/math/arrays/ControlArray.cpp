@@ -127,22 +127,22 @@ std::shared_ptr<ControlArray> ControlArray::abs() const {
 
 std::shared_ptr<ControlArray> ControlArray::min(
     const std::shared_ptr<ControlArray>& other) const {
-  return std::make_shared<ControlArray>(generic::FArray<double>::min());
+  return std::make_shared<ControlArray>(generic::FArray<double>::min(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::min(
     const std::shared_ptr<FArray<double>>& other) const {
-  return std::make_shared<ControlArray>(generic::FArray<double>::min());
+  return std::make_shared<ControlArray>(generic::FArray<double>::min(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::max(
     const std::shared_ptr<ControlArray>& other) const {
-  return std::make_shared<ControlArray>(generic::FArray<double>::max());
+  return std::make_shared<ControlArray>(generic::FArray<double>::max(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::max(
     const std::shared_ptr<FArray<double>>& other) const {
-  return std::make_shared<ControlArray>(generic::FArray<double>::max());
+  return std::make_shared<ControlArray>(generic::FArray<double>::max(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::reshape(

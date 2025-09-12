@@ -13,7 +13,7 @@ namespace falcon_core::math::arrays {
 /**
  * @brief An array with a context label attached.
  */
-class LabelledMeasuredArray : public MeasuredArray, IsLabelled<double> {
+class LabelledMeasuredArray : public MeasuredArray, public IsLabelled<double> {
  public:
   /**
    * @brief Construct a new Labelled Measured Array object.

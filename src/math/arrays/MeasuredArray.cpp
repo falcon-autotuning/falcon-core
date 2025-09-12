@@ -115,22 +115,22 @@ std::shared_ptr<MeasuredArray> MeasuredArray::abs() const {
 
 std::shared_ptr<MeasuredArray> MeasuredArray::min(
     const std::shared_ptr<MeasuredArray>& other) const {
-  return std::make_shared<MeasuredArray>(generic::FArray<double>::min());
+  return std::make_shared<MeasuredArray>(generic::FArray<double>::min(other));
 }
 
 std::shared_ptr<MeasuredArray> MeasuredArray::min(
     const std::shared_ptr<FArray<double>>& other) const {
-  return std::make_shared<MeasuredArray>(generic::FArray<double>::min());
+  return std::make_shared<MeasuredArray>(generic::FArray<double>::min(other));
 }
 
 std::shared_ptr<MeasuredArray> MeasuredArray::max(
     const std::shared_ptr<MeasuredArray>& other) const {
-  return std::make_shared<MeasuredArray>(generic::FArray<double>::max());
+  return std::make_shared<MeasuredArray>(generic::FArray<double>::max(other));
 }
 
 std::shared_ptr<MeasuredArray> MeasuredArray::max(
     const std::shared_ptr<FArray<double>>& other) const {
-  return std::make_shared<MeasuredArray>(generic::FArray<double>::max());
+  return std::make_shared<MeasuredArray>(generic::FArray<double>::max(other));
 }
 
 std::shared_ptr<MeasuredArray> MeasuredArray::reshape(

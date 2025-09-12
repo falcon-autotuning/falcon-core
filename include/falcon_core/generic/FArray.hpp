@@ -89,21 +89,21 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     return *this;
   }
   std::shared_ptr<FArray<T>> operator+(const double other) const {
-    FArray result(*this);
-    auto   ones = xt::ones_like(result._data) * other;
+    FArray<T> result(*this);
+    auto      ones = xt::ones_like(result._data) * other;
     result._data += ones;
     return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator+(const int other) const {
-    FArray result(*this);
-    auto   ones = xt::ones_like(result._data) * other;
+    FArray<T> result(*this);
+    auto      ones = xt::ones_like(result._data) * other;
     result._data += ones;
     return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator+(
       const std::shared_ptr<FArray<T>>& other) const {
-    FArray result(*this);
-    result._data += other._data;
+    FArray<T> result(*this);
+    result._data += other->_data;
     return std::make_shared<FArray<T>>(result);
   }
   FArray<T>& operator-=(const FArray<T>& other) {
@@ -121,7 +121,7 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     return *this;
   }
   std::shared_ptr<FArray<T>> operator-() const {
-    FArray result(*this);
+    FArray<T> result(*this);
     return std::make_shared<FArray<T>>(-1 * result);
   }
   std::shared_ptr<FArray<T>> operator-() {
@@ -129,19 +129,19 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   }
   std::shared_ptr<FArray<T>> operator-(
       const std::shared_ptr<FArray<T>>& other) const {
-    FArray result(*this);
-    result._data -= other._data;
+    FArray<T> result(*this);
+    result._data -= other->_data;
     return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator-(const double other) const {
-    FArray result(*this);
-    auto   ones = xt::ones_like(result._data) * other;
+    FArray<T> result(*this);
+    auto      ones = xt::ones_like(result._data) * other;
     result._data -= ones;
     return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator-(const int other) const {
-    FArray result(*this);
-    auto   ones = xt::ones_like(result._data) * other;
+    FArray<T> result(*this);
+    auto      ones = xt::ones_like(result._data) * other;
     result._data -= ones;
     return std::make_shared<FArray<T>>(result);
   }
@@ -158,18 +158,18 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     return *this;
   }
   std::shared_ptr<FArray<T>> operator*(const double other) const {
-    FArray result(*this);
+    FArray<T> result(*this);
     result._data *= other;
     return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator*(const int other) const {
-    FArray result(*this);
+    FArray<T> result(*this);
     result._data *= other;
     return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator*(
       const std::shared_ptr<FArray<T>>& other) const {
-    FArray result(*this);
+    FArray<T> result(*this);
     result._data *= other._data;
     return std::make_shared<FArray<T>>(result);
   }
@@ -186,23 +186,23 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     return *this;
   }
   std::shared_ptr<FArray<T>> operator/(const double other) const {
-    FArray result(*this);
+    FArray<T> result(*this);
     result._data /= other;
     return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator/(const int other) const {
-    FArray result(*this);
+    FArray<T> result(*this);
     result._data /= other;
     return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator/(
       const std::shared_ptr<FArray<T>>& other) const {
-    FArray result(*this);
-    result._data /= other._data;
+    FArray<T> result(*this);
+    result._data /= other->_data;
     return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<T>> operator^(const double other) const {
-    FArray result(*this);
+    FArray<T> result(*this);
     result._data.power(other);
     return std::make_shared<FArray<T>>(result);
   }
@@ -373,16 +373,16 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   array_type&       xtensor() noexcept override { return _data; }
   const array_type& xtensor() const noexcept override { return _data; }
 
-  double get_sum_of_squares() const { return (*(this ^ 2)).data().sum(); }
+  double get_sum_of_squares() const { return (*(this ^ 2))._data.sum(); }
   double get_sum_of_squares(const int other) const {
-    return ((*(this->data() - other) ^ 2)).data().sum();
+    return ((*(this->_data - other) ^ 2))._data.sum();
   }
   double get_sum_of_squares(const double other) const {
-    return ((*(this->data() - other) ^ 2)).data().sum();
+    return ((*(this->_data - other) ^ 2))._data.sum();
   }
   double get_sum_of_squares(
       const std::shared_ptr<generic::FArray<T>>& other) const {
-    return ((*(this->data() - other->data()) ^ 2)).data().sum();
+    return ((*(this->_data - other->_data) ^ 2))._data.sum();
   }
 
  protected:
