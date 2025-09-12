@@ -19,7 +19,6 @@ class Adjacency : public generic::FArray<int> {
    matrix
   */
   Indexes indexes() const;
-  int     size() const;
 
   /**
    * @brief Returns the pairs of indexes where the adjacency matrix is true (1)

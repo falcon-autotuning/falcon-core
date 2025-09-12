@@ -1,5 +1,8 @@
 #include "falcon_core/math/spaces/RaySpace.hpp"
 
+#include "falcon_core/math/discretizers/CartesianDiscretizer.hpp"
+#include "falcon_core/math/discretizers/PolarDiscretizer.hpp"
+
 namespace falcon_core {
 namespace math {
 namespace spaces {

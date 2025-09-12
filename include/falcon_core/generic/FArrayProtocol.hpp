@@ -27,10 +27,10 @@ class IFArray {
   virtual const T*                         data() const noexcept      = 0;
 
   // Iterators
-  virtual size_t begin() noexcept        = 0;
-  virtual size_t end() noexcept          = 0;
-  virtual size_t cbegin() const noexcept = 0;
-  virtual size_t cend() const noexcept   = 0;
+  virtual array_type::iterator       begin() noexcept        = 0;
+  virtual array_type::iterator       end() noexcept          = 0;
+  virtual array_type::const_iterator cbegin() const noexcept = 0;
+  virtual array_type::const_iterator cend() const noexcept   = 0;
 
   // Math
   virtual T min() const = 0;

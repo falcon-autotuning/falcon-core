@@ -63,10 +63,16 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   [[nodiscard]] T*       data() noexcept override { return _data.data(); }
   [[nodiscard]] const T* data() const noexcept override { return _data.data(); }
 
-  size_t begin() noexcept override { return _data.begin(); }
-  size_t end() noexcept override { return _data.end(); }
-  size_t cbegin() const noexcept override { return _data.cbegin(); }
-  size_t cend() const noexcept override { return _data.cend(); }
+  typename array_type::iterator begin() noexcept override {
+    return _data.begin();
+  }
+  typename array_type::iterator end() noexcept override { return _data.end(); }
+  typename array_type::const_iterator cbegin() const noexcept override {
+    return _data.cbegin();
+  }
+  typename array_type::const_iterator cend() const noexcept override {
+    return _data.cend();
+  }
 
   FArray<T>& operator+=(const FArray<T>& other) {
     _data += other._data;
