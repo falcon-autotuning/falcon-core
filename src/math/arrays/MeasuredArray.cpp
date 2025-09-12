@@ -4,7 +4,8 @@ namespace falcon_core::math::arrays {
 MeasuredArray::MeasuredArray() : FArray<double>() {}
 MeasuredArray::MeasuredArray(const xt::xarray<double>& arr)
     : FArray<double>(arr) {}
-MeasuredArray::MeasuredArray(const FArray<double>& arr) : FArray<double>(arr) {}
+MeasuredArray::MeasuredArray(const generic::FArraySP<double>& arr)
+    : FArray<double>(*arr) {}
 MeasuredArray::MeasuredArray(xt::xarray<double>&& arr) noexcept
     : FArray<double>(arr) {}
 std::shared_ptr<MeasuredArray> MeasuredArray::operator+(
