@@ -1,9 +1,7 @@
 #include "falcon_core/instrument_interfaces/names/ExecutionClock.hpp"
 
 #include "falcon_core/physics/units/CommonUnits.hpp"
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace names {
+namespace falcon_core::instrument_interfaces::names {
 
 ExecutionClock::ExecutionClock()
     : Meter(falcon_core::INSTRUMENT_TYPES::CLOCK,  // default_name
@@ -13,14 +11,7 @@ ExecutionClock::ExecutionClock()
                 physics::units::CommonUnits::Second),
             "Execution clock") {}
 
-template <class Archive>
-void ExecutionClock::serialize(Archive& ar) {
-  ar(cereal::base_class<Meter>(this));
-}
-
-}  // namespace names
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::instrument_interfaces::names
 
 CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::ExecutionClock)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

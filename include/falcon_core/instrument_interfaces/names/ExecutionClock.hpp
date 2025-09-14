@@ -2,21 +2,18 @@
 
 #include "falcon_core/instrument_interfaces/names/Meter.hpp"
 
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace names {
+namespace falcon_core::instrument_interfaces::names {
 
 class ExecutionClock : public Meter {
  public:
   ExecutionClock();
 
-  template <class Archive>
-  void serialize(Archive& ar);
-
- private:
+ protected:
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<Meter>(this));
+  }
 };
 
-}  // namespace names
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::instrument_interfaces::names

@@ -1,19 +1,11 @@
 #include "falcon_core/instrument_interfaces/names/Meters.hpp"
 
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace names {
+namespace falcon_core::instrument_interfaces::names {
 
 Meters::Meters() = default;
+Meters::Meters(const std::vector<MeterSP>& knobs) : Ports<Meter>(knobs) {}
 
-template <class Archive>
-void Meters::serialize(Archive& ar) {
-  ar(cereal::base_class<Ports<Meter>>(this));
-}
-
-}  // namespace names
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::instrument_interfaces::names
 
 CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::Meters)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

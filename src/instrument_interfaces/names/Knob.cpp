@@ -2,9 +2,7 @@
 
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace names {
+namespace falcon_core::instrument_interfaces::names {
 
 Knob::Knob() = default;
 
@@ -20,14 +18,7 @@ Knob::Knob(
                      std::move(units),
                      std::move(description)) {}
 
-template <class Archive>
-void Knob::serialize(Archive& ar) {
-  ar(cereal::base_class<InstrumentPort>(this));
-}
-
-}  // namespace names
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::instrument_interfaces::names
 
 CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::Knob)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

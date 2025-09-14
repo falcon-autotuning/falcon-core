@@ -3,22 +3,23 @@
 #include "falcon_core/instrument_interfaces/names/Meter.hpp"
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
 
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace names {
+namespace falcon_core::instrument_interfaces::names {
 
 // Meters: collection of Meter ports
 class Meters : public Ports<Meter> {
  public:
   Meters();
+  /**
+   * @brief Initialize meters from a collection of Meter ports.
+   */
+  Meters(const std::vector<MeterSP>& knobs);
 
-  template <class Archive>
-  void serialize(Archive& ar);
-
- private:
+ protected:
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<Ports<Meter>>(this));
+  }
 };
 
-}  // namespace names
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::instrument_interfaces::names

@@ -1,8 +1,6 @@
 #include "falcon_core/instrument_interfaces/names/Meter.hpp"
 
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace names {
+namespace falcon_core::instrument_interfaces::names {
 
 Meter::Meter() = default;
 
@@ -17,14 +15,7 @@ Meter::Meter(std::string                                        default_name,
                      std::move(units),
                      std::move(description)) {}
 
-template <class Archive>
-void Meter::serialize(Archive& ar) {
-  ar(cereal::base_class<InstrumentPort>(this));
-}
-
-}  // namespace names
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::instrument_interfaces::names
 
 CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::Meter)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

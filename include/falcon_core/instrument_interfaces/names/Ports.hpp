@@ -1,50 +1,120 @@
 #pragma once
 
-#include <memory>
-#include <vector>
+#include "falcon_core/generic/List.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
 
-#include "falcon_core/generic/Song.hpp"
-
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace names {
+namespace falcon_core::instrument_interfaces::names {
 
 // Generic collection of instrument ports
-template <typename T>
-class Ports : public generic::Song {
+template <typename Port>
+class Ports : public generic::List<Port> {
+  static_assert(std::is_base_of<InstrumentPort, Port>::value,
+                "Port must be derived from InstrumentPort");
+
  public:
-  using value_type     = T;
-  using container_type = std::vector<std::shared_ptr<value_type>>;
-
   Ports() = default;
-
-  void push_back(const std::shared_ptr<value_type>& port) {
-    _ports.push_back(port);
+  /**
+   * @brief Initialize ports from a collection of port.
+   */
+  Ports(const std::vector<std::shared_ptr<Port>> ports)
+      : generic::List<Port>(ports) {}
+  /**
+   * @brief return the collection of ports.
+   */
+  generic::ListSP<std::shared_ptr<Port>> ports() const {
+    return std::make_shared<generic::List<std::shared_ptr<Port>>>(
+        this->items());
+  }
+  /**
+   * @brief Return the default names of the ports.
+   */
+  generic::ListSP<std::string> get_default_names() const {
+    generic::ListSP<std::string> result;
+    for (const auto& port : this->items()) {
+      result->push_back(port->default_name());
+    }
+    return result;
+  }
+  /**
+   * @brief Return the pseudo names of the ports.
+   * @throws std::runtime_error if any port does not have a pseudo name.
+   */
+  generic::ListSP<physics::device_structures::BaseConnectionSP>
+  get_pseudo_names() const {
+    generic::ListSP<physics::device_structures::BaseConnectionSP> result;
+    for (const auto& port : this->items()) {
+      if (!port->pseudo_name()) {
+        throw std::runtime_error("Port does not have a pseudo name");
+      }
+      result->push_back(port->pseudo_name());
+    }
+    return result;
+  }
+  /**
+   * @brief Return the raw string names of the ports.
+   */
+  generic::ListSP<std::string> _get_raw_names() const {
+    generic::ListSP<std::string> result;
+    for (const physics::device_structures::BaseConnectionSP& port :
+         *get_pseudo_names()) {
+      result->push_back(port->name());
+    }
+    return result;
+  }
+  /**
+   * @brief Gets a llist of names to satisfy an instrument interface.
+   */
+  generic::ListSP<std::string> _get_instrument_facing_names(
+      const Instrument instrument) const {
+    generic::ListSP<std::string> result;
+    for (const std::shared_ptr<Port>& port : this->items()) {
+      result->push_back(port->instrument_facing_name());
+    }
+    return result;
+  }
+  /**
+   * @brief Check if any port has the given pseudo name.
+   * @param name The pseudo name to check for.
+   * @return The port with the given name
+   * @throws std::runtime_error if no port has the given name.
+   */
+  std::shared_ptr<Port> _get_psuedoname_matching_port(
+      const physics::device_structures::BaseConnectionSP& name) const {
+    for (const std::shared_ptr<Port>& port : this->items()) {
+      if (port->pseudo_name() && *(port->pseudo_name()) == *name) {
+        return port;
+      }
+    }
+    std::ostringstream oss;
+    oss << "No port found matching pseudo name: " << name->name();
+    throw std::runtime_error(oss.str());
+  }
+  /**
+   * @brief Check if any port has the given instrument type.
+   * @param type The instrument type to check for.
+   * @return The port with the given instrument type.
+   * @throws std::runtime_error if no port has the given type.
+   */
+  std::shared_ptr<Port> _get_instrument_type_matching_port(
+      const Instrument& type) const {
+    for (const std::shared_ptr<Port>& port : this->items()) {
+      if (port->instrument_type() == type) {
+        return port;
+      }
+    }
+    std::ostringstream oss;
+    oss << "No port found matching instrument type: " << type;
+    throw std::runtime_error(oss.str());
   }
 
-  size_t                      size() const { return _ports.size(); }
-  std::shared_ptr<value_type> at(size_t idx) const { return _ports.at(idx); }
-  const container_type&       items() const { return _ports; }
-  container_type&             items() { return _ports; }
-
+ protected:
+  friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _ports);
+    ar(cereal::base_class<generic::List<Port>>(this));
   }
-
- private:
-  container_type _ports;
-
-  friend class cereal::access;
 };
-
-}  // namespace names
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
-
-#ifndef SWIG
-// Example registration for Ports<Knob> and Ports<Meter> if needed
-// CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>)
-// CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-// falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>)
-#endif
+template <typename T>
+using PortsSP = std::shared_ptr<Ports<T>>;
+}  // namespace falcon_core::instrument_interfaces::names

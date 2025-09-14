@@ -1,18 +1,11 @@
 #pragma once
-#include <cereal/archives/binary.hpp>
-#include <memory>
-#include <string>
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/Instrument.hpp"
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
-#include "falcon_core/physics/units/SymbolUnit.hpp"
 #include "falcon_core/physics/units/Units.hpp"
 
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace names {
+namespace falcon_core::instrument_interfaces::names {
 
 class InstrumentPort : public generic::Song {
  public:
@@ -78,6 +71,4 @@ class InstrumentPort : public generic::Song {
 };
 
 using InstrumentPortSP = std::shared_ptr<InstrumentPort>;
-}  // namespace names
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::instrument_interfaces::names

@@ -2,21 +2,18 @@
 
 #include "falcon_core/instrument_interfaces/names/Knob.hpp"
 
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace names {
+namespace falcon_core::instrument_interfaces::names {
 
 class Timer : public Knob {
  public:
   Timer();
 
-  template <class Archive>
-  void serialize(Archive& ar);
-
- private:
+ protected:
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<Knob>(this));
+  }
 };
 
-}  // namespace names
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::instrument_interfaces::names
