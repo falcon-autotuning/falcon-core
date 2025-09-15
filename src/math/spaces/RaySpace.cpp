@@ -3,33 +3,22 @@
 #include "falcon_core/math/discretizers/CartesianDiscretizer.hpp"
 #include "falcon_core/math/discretizers/PolarDiscretizer.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace spaces {
+namespace falcon_core::math::spaces {
 
-RaySpace::RaySpace(double                           dr,
-                   double                           dtheta,
-                   std::shared_ptr<domains::Domain> domain)
+RaySpace::RaySpace(double dr, double dtheta, domains::DomainSP domain)
     : UnitSpace(make_axes(dr, dtheta), domain) {}
 
-Axes<discretizers::BaseDiscretizer> RaySpace::make_axes(double dr,
-                                                        double dtheta) {
+AxesSP<discretizers::BaseDiscretizer> RaySpace::make_axes(double dr,
+                                                          double dtheta) {
   std::vector<std::shared_ptr<discretizers::BaseDiscretizer>> axes;
   axes.push_back(std::make_shared<discretizers::CartesianDiscretizer>(dr));
   axes.push_back(std::make_shared<discretizers::PolarDiscretizer>(dtheta));
-  return Axes<discretizers::BaseDiscretizer>(axes);
+  return std::make_shared<Axes<discretizers::BaseDiscretizer>>(axes);
 }
 
 RaySpace::RaySpace() = default;
 
-template <class Archive>
-void RaySpace::serialize(Archive& ar) {
-  ar(cereal::base_class<UnitSpace>(this));
-}
-
-}  // namespace spaces
-}  // namespace math
-}  // namespace falcon_core
+}  // namespace falcon_core::math::spaces
 
 CEREAL_REGISTER_TYPE(falcon_core::math::spaces::RaySpace)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
