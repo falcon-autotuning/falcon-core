@@ -1,15 +1,15 @@
 #pragma once
 
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
+#include "falcon_core/math/analytic_functions/ValidatedAnalyticFunction.hpp"
 
 /**
  * @file ConstantFunction.hpp
  * @brief Defines a constant analytic function.
  */
 
-namespace falcon_core {
-namespace math {
-namespace analytic_functions {
+namespace falcon_core::math::analytic_functions {
 
 /**
  * @brief Analytic function that always returns a constant value.
@@ -18,17 +18,35 @@ namespace analytic_functions {
  * Ignores its input and returns the value provided at construction.
  */
 class ConstantFunction : public AnalyticFunction {
+  double _value;
+
  public:
   ConstantFunction(double value);
-  double evaluate(double x) const override;
+  double scale() const;
 
- private:
-  double _value;
+ protected:
   ConstantFunction();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    return ar(cereal::base_class<AnalyticFunction>(this), _value);
+  }
 };
-}  // namespace analytic_functions
-}  // namespace math
-}  // namespace falcon_core
+/**
+ * #@brief A type of function that does nothing to the underlying discrete data.
+ */
+class Constant : public ValidatedAnalyticFunction {
+ public:
+  Constant(const instrument_interfaces::names::PortsSP<
+               instrument_interfaces::names::InstrumentPort>& ports,
+           double                                             value);
+
+ protected:
+  Constant();
+  friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    return ar(cereal::base_class<ValidatedAnalyticFunction>(this));
+  }
+};
+}  // namespace falcon_core::math::analytic_functions

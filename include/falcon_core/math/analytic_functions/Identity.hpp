@@ -1,29 +1,56 @@
 #pragma once
 
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
-
+#include "falcon_core/math/analytic_functions/ValidatedAnalyticFunction.hpp"
 /**
  * @file Identity.hpp
- * @brief Defines the identity analytic function.
+ * @brief A special type of AnalyticFunction that does nothing to the
+ * underlaying discrete data.
  */
 
-namespace falcon_core {
-namespace math {
-namespace analytic_functions {
+namespace falcon_core::math::analytic_functions {
 
 /**
  * @brief Analytic function that returns its input unchanged.
  */
-class Identity : public AnalyticFunction {
- public:
-  Identity();
-  double evaluate(double x) const override;
+class IdentityFunction : public AnalyticFunction {
+  instrument_interfaces::names::InstrumentPortSP _port;
 
- private:
+ public:
+  /**
+   * @brief Initialize an IdentityFunction with the given port.
+   * @param port The instrument port associated with this identity function.
+   */
+  IdentityFunction(const instrument_interfaces::names::InstrumentPortSP& port);
+  double _function(const generic::MapSP<std::string, double>& data) const;
+
+ protected:
+  IdentityFunction();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    return ar(cereal::base_class<AnalyticFunction>(this), _port);
+  }
 };
-}  // namespace analytic_functions
-}  // namespace math
-}  // namespace falcon_core
+
+/**
+ * @brief A type of function that does nothing to the underlaying discrete data.
+ */
+class Identity : public ValidatedAnalyticFunction {
+ public:
+  Identity(const instrument_interfaces::names::PortsSP<
+               instrument_interfaces::names::InstrumentPort>&    ports,
+           const instrument_interfaces::names::InstrumentPortSP& port);
+
+ protected:
+  Identity();
+  friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    return ar(cereal::base_class<ValidatedAnalyticFunction>(this));
+  }
+};
+using IdentitySP         = std::shared_ptr<Identity>;
+using IdentityFunctionSP = std::shared_ptr<IdentityFunction>;
+}  // namespace falcon_core::math::analytic_functions

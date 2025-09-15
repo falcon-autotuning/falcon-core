@@ -65,8 +65,7 @@ class Ports : public generic::List<Port> {
   /**
    * @brief Gets a llist of names to satisfy an instrument interface.
    */
-  generic::ListSP<std::string> _get_instrument_facing_names(
-      const Instrument instrument) const {
+  generic::ListSP<std::string> _get_instrument_facing_names() const {
     generic::ListSP<std::string> result;
     for (const std::shared_ptr<Port>& port : this->items()) {
       result->push_back(port->instrument_facing_name());

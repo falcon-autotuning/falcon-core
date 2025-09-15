@@ -3,6 +3,7 @@
 namespace falcon_core::instrument_interfaces::names {
 
 Meters::Meters() = default;
+
 Meters::Meters(const std::vector<MeterSP>& knobs) : Ports<Meter>(knobs) {}
 
 }  // namespace falcon_core::instrument_interfaces::names

@@ -1,8 +1,6 @@
 #pragma once
 
-#include "falcon_core/Constants.hpp"
-#include "falcon_core/generic/Song.hpp"
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/instrument_interfaces/InstrumentTypes.hpp"
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
 #include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 /**
@@ -29,12 +27,7 @@ class ValidatedAnalyticFunction : public generic::Song {
    * @brief Validate that the function signature matches the ports.
    * @throws std::runtime_error if validation fails.
    */
-  void validate_function_signature() const {
-    if (!(_ports->contains(INSTRUMENT_TYPES::CLOCK))) {
-      throw std::runtime_error(
-          "ValidatedAnalyticFunction requires a clock port.");
-    }
-  }
+  void validate_function_signature(const AnalyticFunctionSP& function) const;
 
  public:
   /**
@@ -43,18 +36,32 @@ class ValidatedAnalyticFunction : public generic::Song {
    * @param function The analytic function.
    * @throws std::runtime_error if validation fails.
    */
-  ValidatedAnalyticFunction(PortsSP<T> ports, AnalyticFunctionSP function)
-      : _ports(std::move(ports)), _function(std::move(function)) {
-    validate_function_signature();
-  }
+  ValidatedAnalyticFunction(
+      instrument_interfaces::names::PortsSP<
+          instrument_interfaces::names::InstrumentPort> ports,
+      AnalyticFunctionSP                                function);
   /**
    * @brief Get the ports.
    */
-  const PortsSP<T>& ports() const { return _ports; }
+  const instrument_interfaces::names::PortsSP<
+      instrument_interfaces::names::InstrumentPort>&
+  ports() const;
   /**
    * @brief Get the analytic function.
    */
-  const AnalyticFunctionSP& function() const { return _function; }
+  const AnalyticFunctionSP& function() const;
+  void                      set_function(AnalyticFunctionSP function);
+  /**
+   * @brief Return the input variables of the function.
+   */
+  generic::ListSP<std::string> input_variables() const;
+  /**
+   * @brief Validate that the port is in the domain.
+   * @param port The port to check.
+   * @return True if the port is in the domain, false otherwise.
+   */
+  bool validate_port(
+      const instrument_interfaces::names::InstrumentPortSP& port) const;
 
  protected:
   friend class cereal::access;
@@ -65,6 +72,5 @@ class ValidatedAnalyticFunction : public generic::Song {
   }
 };
 template <typename T>
-using ValidatedAnalyticFunctionSP =
-    std::shared_ptr<ValidatedAnalyticFunction<T>>;
+using ValidatedAnalyticFunctionSP = std::shared_ptr<ValidatedAnalyticFunction>;
 }  // namespace falcon_core::math::analytic_functions

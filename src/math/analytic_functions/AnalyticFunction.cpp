@@ -6,10 +6,11 @@ AnalyticFunction::AnalyticFunction() = default;
 AnalyticFunction::AnalyticFunction(
     const generic::MapSP<InstrumentFacingName, VariableName>& items)
     : generic::Map<InstrumentFacingName, VariableName>(*items) {}
-std::map<InstrumentFacingName, VariableName> AnalyticFunction::mapping() const {
-  std::map<InstrumentFacingName, VariableName> result;
+generic::MapSP<InstrumentFacingName, VariableName> AnalyticFunction::mapping()
+    const {
+  generic::MapSP<InstrumentFacingName, VariableName> result;
   for (const auto& pair : this->items()) {
-    result[pair.first] = pair.second;
+    result->insert(pair.first, pair.second);
   }
   return result;
 }

@@ -31,7 +31,7 @@ class AnalyticFunction
   /**
    * @brief Return a mapping of the function's arguments to their names.
    */
-  std::map<InstrumentFacingName, VariableName> mapping() const;
+  generic::MapSP<InstrumentFacingName, VariableName> mapping() const;
   /**
    * @brief The core function that needs to be implemented by the user.
    * @param args A mapping of the function's arguments to their values.
