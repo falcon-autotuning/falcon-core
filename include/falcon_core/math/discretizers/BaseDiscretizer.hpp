@@ -20,8 +20,9 @@ namespace falcon_core::math::discretizers {
  * Discretizers define how a domain is divided into discrete steps.
  */
 class BaseDiscretizer : public generic::Song {
-  double                           _delta;         ///< Step size.
-  std::shared_ptr<domains::Domain> _delta_domain;  ///< Domain for step size.
+  double            _delta;
+  domains::DomainSP _delta_domain;
+
  public:
   /**
    * @brief Construct a BaseDiscretizer. The delta must be within the
@@ -33,7 +34,7 @@ class BaseDiscretizer : public generic::Song {
                   const std::shared_ptr<domains::Domain>& delta_domain);
   double                                  delta() const;
   void                                    set_delta(double delta);
-  const std::shared_ptr<domains::Domain>& delta_domain() const;
+  const std::shared_ptr<domains::Domain>& domain() const;
 
  protected:
   friend class cereal::access;
@@ -43,4 +44,5 @@ class BaseDiscretizer : public generic::Song {
     ar(cereal::base_class<generic::Song>(this), _delta, _delta_domain);
   }
 };
+using BaseDiscretizerSP = std::shared_ptr<BaseDiscretizer>;
 }  // namespace falcon_core::math::discretizers

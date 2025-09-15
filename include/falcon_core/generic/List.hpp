@@ -10,10 +10,14 @@ template <typename Value, typename Derived = void>
 class List : public generic::Song {
   static_assert(!std::is_pointer<Value>::value,
                 "Value template argument must not be a pointer type");
+
+ protected:
   using StoredValue = typename std::conditional<is_primitive<Value>::value,
                                                 Value,
                                                 std::shared_ptr<Value>>::type;
   using Container   = std::vector<StoredValue>;
+
+ private:
   Container _items;
 
  public:

@@ -10,7 +10,7 @@ BaseDiscretizer::BaseDiscretizer(
 
 double BaseDiscretizer::delta() const { return _delta; }
 void   BaseDiscretizer::set_delta(double delta) { _delta = delta; }
-const std::shared_ptr<domains::Domain> &BaseDiscretizer::delta_domain() const {
+const std::shared_ptr<domains::Domain> &BaseDiscretizer::domain() const {
   return _delta_domain;
 }
 
