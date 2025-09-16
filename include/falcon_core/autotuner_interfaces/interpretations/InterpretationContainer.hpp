@@ -4,15 +4,15 @@
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Map.hpp"
 
-namespace falcon_core {
-namespace autotuner_interfaces {
-namespace interpretations {
+namespace falcon_core::autotuner_interfaces::interpretations {
 
 template <typename Value>
 class InterpretationContainer
     : public generic::Map<InterpretationContext, Value> {
   physics::units::SymbolUnitSP _unit;
 
+ protected:
+  friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Map<InterpretationContext, Value>>(this),
@@ -26,8 +26,9 @@ class InterpretationContainer
    * @param contexts The list of contexts.
    * @throws std::invalid_argument if contexts have different units.
    */
-  InterpretationContainer(generic::List<InterpretationContext> contexts) {
-    for (const auto& context : contexts) {
+  InterpretationContainer(
+      const generic::ListSP<InterpretationContext>& contexts) {
+    for (const auto& context : *contexts) {
       if (!this->_unit) {
         this->_unit = context->unit();
       } else if (*this->_unit != *context->unit()) {
@@ -40,15 +41,15 @@ class InterpretationContainer
   /**
    * @brief Returns the unit that all contexts in this constainer must have.
    */
-  physics::units::SymbolUnitSP unit() const { return _unit; }
+  const physics::units::SymbolUnitSP unit() const { return _unit; }
   /**
    * @brief Select contexts that involve a specific connection.
    * @param connection The connection to search for.
    * @returns A list of contexts that involve the specified connection in either
    * independant or dependant variables.
    */
-  generic::ListSP<InterpretationContext> select_by_connection(
-      physics::device_structures::BaseConnectionSP connection) const {
+  const generic::ListSP<InterpretationContext> select_by_connection(
+      const physics::device_structures::BaseConnectionSP& connection) const {
     auto results = std::make_shared<generic::List<InterpretationContext>>();
     for (const auto& context : this->items()) {
       // Check independent variables
@@ -76,7 +77,7 @@ class InterpretationContainer
    * @param connections List of connections to search for.
    * @returns A list of contexts that involve all specified connections.
    */
-  generic::ListSP<InterpretationContext> select_by_connections(
+  const generic::ListSP<InterpretationContext> select_by_connections(
       const std::vector<physics::device_structures::BaseConnectionSP>&
           connections) const {
     auto matching_contexts =
@@ -101,33 +102,33 @@ class InterpretationContainer
         std::vector<InterpretationContextSP>(matching_contexts.begin(),
                                              matching_contexts.end()));
   }
-  generic::ListSP<InterpretationContext> select_by_independent_connection(
-      physics::device_structures::BaseConnection connection) {
+  const generic::ListSP<InterpretationContext> select_by_independent_connection(
+      const physics::device_structures::BaseConnectionSP& connection) {
     for (const auto& context : this->items()) {
       for (int i = 0; i < context->dimension(); ++i) {
         auto indep_var = context->get_independent_variable(i);
-        if (indep_var->connection() == connection) {
+        if (*indep_var->connection() == *connection) {
           return std::make_shared<generic::List<InterpretationContext>>(
               std::vector<InterpretationContextSP>{context});
         }
       }
     }
   }
-  generic::ListSP<InterpretationContext> select_by_dependent_connection(
-      physics::device_structures::BaseConnection connection) {
+  const generic::ListSP<InterpretationContext> select_by_dependent_connection(
+      const physics::device_structures::BaseConnectionSP& connection) {
     for (const auto& context : this->items()) {
       for (const auto& dep_var : context->dependent_variables()) {
-        if (dep_var->connection() == connection) {
+        if (*dep_var->connection() == *connection) {
           return std::make_shared<generic::List<InterpretationContext>>(
               std::vector<InterpretationContextSP>{context});
         }
       }
     }
   }
-  generic::ListSP<InterpretationContext> select_contexts(
-      generic::ListSP<physics::device_structures::BaseConnection>
+  const generic::ListSP<InterpretationContext> select_contexts(
+      const generic::ListSP<physics::device_structures::BaseConnection>&
           independent_connections,
-      generic::ListSP<physics::device_structures::BaseConnection>
+      const generic::ListSP<physics::device_structures::BaseConnection>&
           dependent_connections) {
     // Start with all contexts
     std::set<InterpretationContext*> matching_contexts;
@@ -183,6 +184,4 @@ class InterpretationContainer
     return result;
   }
 };
-}  // namespace interpretations
-}  // namespace autotuner_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::autotuner_interfaces::interpretations

@@ -3,16 +3,18 @@
 namespace falcon_core::autotuner_interfaces::contexts {
 BaseContext::BaseContext() = default;
 BaseContext::BaseContext(
-    std::shared_ptr<physics::device_structures::BaseConnection> connection,
-    instrument_interfaces::Instrument                           instrument_type)
+    const physics::device_structures::BaseConnectionSP& connection,
+    const instrument_interfaces::Instrument&            instrument_type)
     : _connection(connection), _instrument_type(instrument_type) {}
-BaseContext::BaseContext(instrument_interfaces::names::InstrumentPortSP port)
+BaseContext::BaseContext(
+    const instrument_interfaces::names::InstrumentPortSP& port)
     : _connection(port->pseudo_name()),
       _instrument_type(port->instrument_type()) {}
-physics::device_structures::BaseConnectionSP BaseContext::connection() const {
+const physics::device_structures::BaseConnectionSP BaseContext::connection()
+    const {
   return _connection;
 }
-instrument_interfaces::Instrument BaseContext::instrument_type() const {
+const instrument_interfaces::Instrument BaseContext::instrument_type() const {
   return _instrument_type;
 }
 }  // namespace falcon_core::autotuner_interfaces::contexts

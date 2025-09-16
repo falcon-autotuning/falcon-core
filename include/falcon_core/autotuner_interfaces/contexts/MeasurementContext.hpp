@@ -5,19 +5,18 @@
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
-namespace falcon_core {
-namespace autotuner_interfaces {
-namespace contexts {
+namespace falcon_core::autotuner_interfaces::contexts {
 
-class MeasurementContext : public BaseContext {
+class MeasurementContext : public contexts::BaseContext {
   physics::units::SymbolUnitSP _unit;
-
-  template <class Archive>
-  void serialize(Archive& ar);
 
  protected:
   friend class cereal::access;
   MeasurementContext();
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<contexts::BaseContext>(this));
+  }
 
  public:
   /**
@@ -25,16 +24,15 @@ class MeasurementContext : public BaseContext {
    * @param connection The device connection.
    * @param instrument_type The type of instrument.
    */
-  MeasurementContext(physics::device_structures::BaseConnectionSP connection,
-                     instrument_interfaces::Instrument instrument_type);
+  MeasurementContext(
+      const physics::device_structures::BaseConnectionSP& connection,
+      const instrument_interfaces::Instrument&            instrument_type);
 
   /**
    * @brief Constructs a MeasururementContext from an AcquisitionContext.
    * @param acquisition_context The acquisition context.
    */
-  MeasurementContext(BaseContextSP acquisition_context);
+  MeasurementContext(const contexts::BaseContextSP& acquisition_context);
 };
 using MeasurementContextSP = std::shared_ptr<MeasurementContext>;
-}  // namespace contexts
-}  // namespace autotuner_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::autotuner_interfaces::contexts

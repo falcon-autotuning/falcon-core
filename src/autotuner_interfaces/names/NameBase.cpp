@@ -2,12 +2,14 @@
 
 namespace falcon_core::autotuner_interfaces::names {
 
-NameBase::NameBase(std::string name) : _name(name) {
+NameBase::NameBase(const std::string& name) : _name(name) {
   _num = std::stoi(name.substr(_index_string.length()));
 }
-NameBase::NameBase(int num) : _num(num) {
+NameBase::NameBase(const int& num) : _num(num) {
   _name = _index_string + std::to_string(num);
 }
+std::string NameBase::name() const { return _name; }
+int         NameBase::num() const { return _num; }
 
 NameBaseSP NameBase::operator+(const NameBase& other) const {
   return std::make_shared<NameBase>(this->num() + other.num());

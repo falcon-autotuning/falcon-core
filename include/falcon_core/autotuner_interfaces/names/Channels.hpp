@@ -1,18 +1,13 @@
 #pragma once
 
-#include <cereal/archives/json.hpp>
-
 #include "falcon_core/autotuner_interfaces/names/Channel.hpp"
-namespace falcon_core {
-namespace autotuner_interfaces {
-namespace names {
+#include "falcon_core/generic/List.hpp"
+namespace falcon_core::autotuner_interfaces::names {
 
 /**
  * @brief A collection of channels..
  */
-class Channels : public virtual falcon_core::generic::Song {
-  std::vector<std::shared_ptr<Channel>> _values;
-
+class Channels : public generic::List<Channel> {
  public:
   /**
    * @brief Channels can be constructed in 5 different ways:
@@ -51,61 +46,15 @@ class Channels : public virtual falcon_core::generic::Song {
    *   Channels o{ptr1, ptr2, ptr3};
    *   @endcode
    */
-  Channels() = default;
-  Channels(size_t count) : _values(count) {}
-  Channels(size_t count, const std::shared_ptr<Channel>& value)
-      : _values(count, value) {}
-  Channels(const std::vector<std::shared_ptr<Channel>>& vec) : _values(vec) {}
-
-  // Forwarding methods
-  void push_back(const std::shared_ptr<Channel>& item) {
-    _values.push_back(item);
-  }
-  void                     clear() { _values.clear(); }
-  void                     reserve(size_t n) { _values.reserve(n); }
-  size_t                   size() const { return _values.size(); }
-  bool                     empty() const { return _values.empty(); }
-  std::shared_ptr<Channel> at(const size_t idx) const {
-    return _values.at(idx);
-  }
-  const std::shared_ptr<Channel> operator[](const size_t idx) const {
-    return _values[idx];
-  }
-  const std::vector<std::shared_ptr<Channel>> items() const { return _values; }
-  std::vector<std::shared_ptr<Channel>>       items() { return _values; }
-  typename std::vector<std::shared_ptr<Channel>>::iterator begin() {
-    return _values.begin();
-  }
-  typename std::vector<std::shared_ptr<Channel>>::iterator end() {
-    return _values.end();
-  }
-  typename std::vector<std::shared_ptr<Channel>>::const_iterator begin() const {
-    return _values.begin();
-  }
-  typename std::vector<std::shared_ptr<Channel>>::const_iterator end() const {
-    return _values.end();
-  }
-  void insert(
-      typename std::vector<std::shared_ptr<Channel>>::iterator       pos,
-      typename std::vector<std::shared_ptr<Channel>>::const_iterator first,
-      typename std::vector<std::shared_ptr<Channel>>::const_iterator last) {
-    _values.insert(pos, first, last);
-  }
-
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _values);
-  }
+  Channels();
+  Channels(const std::vector<std::shared_ptr<Channel>>& vec);
 
  protected:
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::List<Channel>>(this));
+  }
 };
 using ChannelsSP = std::shared_ptr<Channels>;
-}  // namespace names
-}  // namespace autotuner_interfaces
-}  // namespace falcon_core
-#ifndef SWIG
-using namespace falcon_core::autotuner_interfaces::names;
-CEREAL_REGISTER_TYPE(Channels)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Channels)
-#endif
+}  // namespace falcon_core::autotuner_interfaces::names

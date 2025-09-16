@@ -5,43 +5,43 @@ namespace falcon_core::autotuner_interfaces::contexts {
 AcquisitionContext::AcquisitionContext() : BaseContext(), _units(nullptr) {}
 
 AcquisitionContext::AcquisitionContext(
-    physics::device_structures::BaseConnectionSP connection,
-    instrument_interfaces::Instrument            instrument_type,
-    physics::units::SymbolUnitSP                 units)
+    const physics::device_structures::BaseConnectionSP& connection,
+    const instrument_interfaces::Instrument&            instrument_type,
+    const physics::units::SymbolUnitSP&                 units)
     : BaseContext(connection, instrument_type), _units(units) {}
 
 AcquisitionContext::AcquisitionContext(
-    instrument_interfaces::names::InstrumentPortSP port)
+    const instrument_interfaces::names::InstrumentPortSP& port)
     : BaseContext(port), _units(nullptr) {}
 
-AcquisitionContext::AcquisitionContext(BaseContextSP measurement_context,
-                                       physics::units::SymbolUnitSP unit)
+AcquisitionContext::AcquisitionContext(const BaseContextSP& measurement_context,
+                                       const physics::units::SymbolUnitSP& unit)
     : BaseContext(measurement_context->connection(),
                   measurement_context->instrument_type()),
       _units(unit) {}
 
-physics::units::SymbolUnitSP AcquisitionContext::units() const {
+const physics::units::SymbolUnitSP AcquisitionContext::units() const {
   return _units;
 }
 
-AcquisitionContextSP AcquisitionContext::operator/(
+const AcquisitionContextSP AcquisitionContext::operator/(
     const physics::units::SymbolUnitSP& other) const {
   return std::make_shared<AcquisitionContext>(
       connection(), instrument_type(), *units() / other);
 }
 
-AcquisitionContextSP AcquisitionContext::operator/(
+const AcquisitionContextSP AcquisitionContext::operator/(
     const std::shared_ptr<AcquisitionContext>& other) const {
   return std::make_shared<AcquisitionContext>(
       connection(), instrument_type(), *units() / other->units());
 }
 
-bool AcquisitionContext::match_connection(
+const bool AcquisitionContext::match_connection(
     physics::device_structures::BaseConnectionSP other) const {
   return connection() == other;
 }
 
-bool AcquisitionContext::match_instrument_type(
+const bool AcquisitionContext::match_instrument_type(
     instrument_interfaces::Instrument other) const {
   return instrument_type() == other;
 }

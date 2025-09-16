@@ -15,21 +15,21 @@ class BaseContext : public generic::Song {
    * @param connection The device connection.
    * @param instrument_type The type of instrument.
    */
-  BaseContext(physics::device_structures::BaseConnectionSP connection,
-              instrument_interfaces::Instrument            instrument_type);
+  BaseContext(const physics::device_structures::BaseConnectionSP& connection,
+              const instrument_interfaces::Instrument& instrument_type);
   /**
    * @brief Initialize a BaseContext with an InstrumentPort.
    * @param port The instrument port.
    */
-  BaseContext(instrument_interfaces::names::InstrumentPortSP port);
+  BaseContext(const instrument_interfaces::names::InstrumentPortSP& port);
   /**
    * @brief Return the connection.
    */
-  physics::device_structures::BaseConnectionSP connection() const;
+  const physics::device_structures::BaseConnectionSP connection() const;
   /**
    * @brief Return the instrument type.
    */
-  instrument_interfaces::Instrument instrument_type() const;
+  const instrument_interfaces::Instrument instrument_type() const;
 
  protected:
   friend class cereal::access;

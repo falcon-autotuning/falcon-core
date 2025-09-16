@@ -2,37 +2,33 @@
 
 #include "falcon_core/generic/Song.hpp"
 
-namespace falcon_core {
-namespace autotuner_interfaces {
-namespace names {
+namespace falcon_core::autotuner_interfaces::names {
 class NameBase : public generic::Song {
   std::string _name;
   int         _num;
   std::string _index_string = "";
 
  public:
-  NameBase(std::string name);
-  NameBase(int num);
+  NameBase(const std::string& name);
+  NameBase(const int& num);
   /**
    * @brief The string form of the name.
    */
-  std::string name() const { return _name; }
+  std::string name() const;
   /**
    * @brief The numeric form of the name.
    */
-  int                       num() const { return _num; }
+  int                       num() const;
   std::shared_ptr<NameBase> operator+(const NameBase& other) const;
   std::shared_ptr<NameBase> operator-(const NameBase& other) const;
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<Song>(this), _name);
-  }
 
  protected:
   NameBase() = default;
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<Song>(this), _name);
+  }
 };
 using NameBaseSP = std::shared_ptr<NameBase>;
-}  // namespace names
-}  // namespace autotuner_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::autotuner_interfaces::names

@@ -2,31 +2,29 @@
 
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
-namespace falcon_core {
-namespace autotuner_interfaces {
-namespace interpretations {
+namespace falcon_core::autotuner_interfaces::interpretations {
 InterpretationContext::InterpretationContext() = default;
 InterpretationContext::InterpretationContext(
-    math::AxesSP<autotuner_interfaces::contexts::MeasurementContext>
+    const math::AxesSP<autotuner_interfaces::contexts::MeasurementContext>&
         independent_variables,
-    generic::ListSP<autotuner_interfaces::contexts::MeasurementContext>
-                                 dependent_variables,
-    physics::units::SymbolUnitSP unit)
+    const generic::ListSP<autotuner_interfaces::contexts::MeasurementContext>&
+                                        dependent_variables,
+    const physics::units::SymbolUnitSP& unit)
     : _independent_variables(independent_variables),
       _dependent_variables(dependent_variables),
       _unit(unit) {}
-math::AxesSP<autotuner_interfaces::contexts::MeasurementContext>
+const math::AxesSP<autotuner_interfaces::contexts::MeasurementContext>
 InterpretationContext::independent_variables() const {
   return _independent_variables;
 }
-generic::ListSP<autotuner_interfaces::contexts::MeasurementContext>
+const generic::ListSP<autotuner_interfaces::contexts::MeasurementContext>
 InterpretationContext::dependent_variables() const {
   return _dependent_variables;
 }
-physics::units::SymbolUnitSP InterpretationContext::unit() const {
+const physics::units::SymbolUnitSP InterpretationContext::unit() const {
   return _unit;
 }
-int InterpretationContext::dimension() const {
+const int InterpretationContext::dimension() const {
   return _independent_variables->size();
 }
 void InterpretationContext::add_dependent_variable(
@@ -56,16 +54,7 @@ const InterpretationContextSP InterpretationContext::with_unit(
   return std::make_shared<InterpretationContext>(
       _independent_variables, _dependent_variables, unit);
 }
-template <class Archive>
-void InterpretationContext::serialize(Archive& ar) {
-  ar(cereal::base_class<generic::Song>(this),
-     _independent_variables,
-     _dependent_variables,
-     _unit);
-}
-}  // namespace interpretations
-}  // namespace autotuner_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::autotuner_interfaces::interpretations
 CEREAL_REGISTER_TYPE(
     falcon_core::autotuner_interfaces::interpretations::InterpretationContext)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

@@ -1,14 +1,10 @@
 #pragma once
 
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp"
-#include "falcon_core/generic/List.hpp"
-#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/Axes.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
-namespace falcon_core {
-namespace autotuner_interfaces {
-namespace interpretations {
+namespace falcon_core::autotuner_interfaces::interpretations {
 
 /**
  * @brief A context that describes measurement variables.
@@ -24,9 +20,6 @@ class InterpretationContext : public generic::Song {
                                _dependent_variables;
   physics::units::SymbolUnitSP _unit;
 
-  template <class Archive>
-  void serialize(Archive& ar);
-
  public:
   /**
    * @brief Creates the InterpretationContext.
@@ -35,30 +28,30 @@ class InterpretationContext : public generic::Song {
    * @param unit The unit for interpreting the values.
    */
   InterpretationContext(
-      math::AxesSP<autotuner_interfaces::contexts::MeasurementContext>
+      const math::AxesSP<autotuner_interfaces::contexts::MeasurementContext>&
           independent_variables,
-      generic::ListSP<autotuner_interfaces::contexts::MeasurementContext>
-                                   depedant_variables,
-      physics::units::SymbolUnitSP unit);
+      const generic::ListSP<autotuner_interfaces::contexts::MeasurementContext>&
+                                          dependent_variables,
+      const physics::units::SymbolUnitSP& unit);
   /**
    * @brief Return the independent variables (sweep parameters).
    */
-  math::AxesSP<autotuner_interfaces::contexts::MeasurementContext>
+  const math::AxesSP<autotuner_interfaces::contexts::MeasurementContext>
   independent_variables() const;
   /**
    * @brief Return the dependent variables (measured parameters).
    */
-  generic::ListSP<autotuner_interfaces::contexts::MeasurementContext>
+  const generic::ListSP<autotuner_interfaces::contexts::MeasurementContext>
   dependent_variables() const;
   /**
    * @brief Return the unit for interpreting the values.
    */
-  physics::units::SymbolUnitSP unit() const;
+  const physics::units::SymbolUnitSP unit() const;
   /**
    * @brief Return the dimensionality of the measurement (number of independent
    * variables).
    */
-  int dimension() const;
+  const int dimension() const;
   /**
    * @brief Add a dependant variable to the measurement context.
    * @param variable The dependent variable to add.
@@ -94,8 +87,13 @@ class InterpretationContext : public generic::Song {
  protected:
   friend class cereal::access;
   InterpretationContext();
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this),
+       _independent_variables,
+       _dependent_variables,
+       _unit);
+  }
 };
 using InterpretationContextSP = std::shared_ptr<InterpretationContext>;
-}  // namespace interpretations
-}  // namespace autotuner_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::autotuner_interfaces::interpretations
