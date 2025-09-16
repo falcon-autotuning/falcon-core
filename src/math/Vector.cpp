@@ -1,9 +1,5 @@
 #include "falcon_core/math/Vector.hpp"
 
-#include <cmath>
-#include <memory>
-#include <set>
-
 #include "falcon_core/physics/device_structures/BaseConnections.hpp"
 
 namespace falcon_core {
@@ -124,15 +120,6 @@ void Vector::update_connections() {
   _connections = std::make_shared<physics::device_structures::BaseConnections>(
       std::vector<physics::device_structures::BaseConnectionSP>(result.begin(),
                                                                 result.end()));
-}
-
-template <class Archive>
-void Vector::serialize(Archive& ar) {
-  ar(cereal::base_class<generic::Song>(this),
-     _end,
-     _start,
-     _connections,
-     _unit);
 }
 
 }  // namespace math

@@ -4,9 +4,7 @@
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Song.hpp"
 
-namespace falcon_core {
-namespace communications {
-namespace voltage_states {
+namespace falcon_core::communications::voltage_states {
 
 class DeviceVoltageStates : public generic::Song {
  public:
@@ -29,7 +27,5 @@ class DeviceVoltageStates : public generic::Song {
   template <class Archive>
   void serialize(Archive& ar);
 };
-
-}  // namespace voltage_states
-}  // namespace communications
-}  // namespace falcon_core
+using DeviceVoltageStatesSP = std::shared_ptr<DeviceVoltageStates>;
+}  // namespace falcon_core::communications::voltage_states

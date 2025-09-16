@@ -5,11 +5,9 @@
 
 #pragma once
 
-#include "falcon_core/generic/Song.hpp"
-#include "falcon_core/physics/units/SymbolUnit.hpp"
+#include "falcon_core/physics/units/Units.hpp"
 
-namespace falcon_core {
-namespace math {
+namespace falcon_core::math {
 
 /**
  * @brief Represents a physical quantity with a value and unit.
@@ -18,46 +16,79 @@ namespace math {
  * Supports arithmetic operations and unit conversion.
  */
 class Quantity : public generic::Song {
+  double                       _value;
+  physics::units::SymbolUnitSP _unit;
+
  public:
-  Quantity(double value, std::shared_ptr<physics::units::SymbolUnit> unit);
+  /**
+   * @brief Initialize a Quantity, which is a float with a unit.
+   * @param value the value of the quantity.
+   * @param unit the unit of the quantity.
+   */
+  Quantity(double                       value,
+           physics::units::SymbolUnitSP unit =
+               std::make_shared<physics::units::SymbolUnit>(
+                   physics::units::Units::Volt));
 
+  /**
+   * @brief Return the value of the quantity.
+   */
   double value() const;
-  std::shared_ptr<physics::units::SymbolUnit> unit();
+  /**
+   * @brief Return the unit of the quantity.
+   */
+  physics::units::SymbolUnitSP unit();
+  /**
+   * @brief Convert the quantity to a different unit.
+   * @param target_unit the raget unit to convert to.
+   */
+  void convert_to(physics::units::SymbolUnitSP target_unit);
 
-  void convert_to(std::shared_ptr<physics::units::SymbolUnit> target_unit);
+  std::shared_ptr<Quantity> operator*(const int& other) const;
+  std::shared_ptr<Quantity> operator*(const double& other) const;
+  std::shared_ptr<Quantity> operator*(
+      const std::shared_ptr<Quantity>& other) const;
+  Quantity& operator*=(const int& other);
+  Quantity& operator*=(const double& other);
+  Quantity& operator*=(const std::shared_ptr<Quantity>& other);
 
-  std::shared_ptr<Quantity> operator*(int other) const;
-  std::shared_ptr<Quantity> operator*(double other) const;
-  std::shared_ptr<Quantity> operator*(std::shared_ptr<Quantity> other) const;
+  std::shared_ptr<Quantity> operator/(const int& other) const;
+  std::shared_ptr<Quantity> operator/(const double& other) const;
+  std::shared_ptr<Quantity> operator/(
+      const std::shared_ptr<Quantity>& other) const;
+  Quantity& operator/=(const int& other);
+  Quantity& operator/=(const double& other);
+  Quantity& operator/=(const std::shared_ptr<Quantity>& other);
 
-  std::shared_ptr<Quantity> operator/(int other) const;
-  std::shared_ptr<Quantity> operator/(double other) const;
-  std::shared_ptr<Quantity> operator/(std::shared_ptr<Quantity> other) const;
+  std::shared_ptr<Quantity> operator^(const int& other) const;
 
-  std::shared_ptr<Quantity> operator^(int other) const;
-
-  std::shared_ptr<Quantity> operator+(int other) const;
-  std::shared_ptr<Quantity> operator+(double other) const;
-  std::shared_ptr<Quantity> operator+(std::shared_ptr<Quantity> other) const;
+  std::shared_ptr<Quantity> operator+(const int& other) const;
+  std::shared_ptr<Quantity> operator+(const double& other) const;
+  std::shared_ptr<Quantity> operator+(
+      const std::shared_ptr<Quantity>& other) const;
+  Quantity& operator+=(const int& other);
+  Quantity& operator+=(const double& other);
+  Quantity& operator+=(const std::shared_ptr<Quantity>& other);
 
   std::shared_ptr<Quantity> operator-() const;
 
-  std::shared_ptr<Quantity> operator-(int other) const;
-  std::shared_ptr<Quantity> operator-(double other) const;
-  std::shared_ptr<Quantity> operator-(std::shared_ptr<Quantity> other) const;
+  std::shared_ptr<Quantity> operator-(const int& other) const;
+  std::shared_ptr<Quantity> operator-(const double& other) const;
+  std::shared_ptr<Quantity> operator-(
+      const std::shared_ptr<Quantity>& other) const;
+  Quantity& operator-=(const int& other);
+  Quantity& operator-=(const double& other);
+  Quantity& operator-=(const std::shared_ptr<Quantity>& other);
 
   std::shared_ptr<Quantity> abs() const;
 
- private:
-  double                                      _value; ///< Value of the quantity.
-  std::shared_ptr<physics::units::SymbolUnit> _unit;  ///< Unit of the quantity.
-
-  friend class cereal::access;  // cereal can access private members
-  template <class Archive>
-  void serialize(Archive &ar);
-
  protected:
+  friend class cereal::access;
   Quantity();
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<Song>(this), _value, _unit);
+  }
 };
-}  // namespace math
-}  // namespace falcon_core
+using QuantitySP = std::shared_ptr<Quantity>;
+}  // namespace falcon_core::math

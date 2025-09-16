@@ -1,61 +1,79 @@
 #include "falcon_core/math/Quantity.hpp"
 
-#include <cereal/types/polymorphic.hpp>
 #include <cmath>
-#include <stdexcept>
 
-namespace falcon_core {
-namespace math {
+namespace falcon_core::math {
 
-Quantity::Quantity(double                                      value,
-                   std::shared_ptr<physics::units::SymbolUnit> unit)
+Quantity::Quantity(double value, physics::units::SymbolUnitSP unit)
     : _value(value), _unit(std::move(unit)) {}
 
-double Quantity::value() const { return _value; }
-std::shared_ptr<physics::units::SymbolUnit> Quantity::unit() { return _unit; }
+double                       Quantity::value() const { return _value; }
+physics::units::SymbolUnitSP Quantity::unit() { return _unit; }
 
-void Quantity::convert_to(
-    std::shared_ptr<physics::units::SymbolUnit> target_unit) {
+void Quantity::convert_to(physics::units::SymbolUnitSP target_unit) {
   _value = _unit->convert_value_to(_value, target_unit);
   _unit  = target_unit;
 }
 
-std::shared_ptr<Quantity> Quantity::operator*(int other) const {
+QuantitySP Quantity::operator*(const int& other) const {
   return std::make_shared<Quantity>(_value * other, _unit);
 }
-std::shared_ptr<Quantity> Quantity::operator*(double other) const {
+QuantitySP Quantity::operator*(const double& other) const {
   return std::make_shared<Quantity>(_value * other, _unit);
 }
-std::shared_ptr<Quantity> Quantity::operator*(
-    std::shared_ptr<Quantity> other) const {
+QuantitySP Quantity::operator*(const QuantitySP& other) const {
   return std::make_shared<Quantity>(_value * other->value(),
                                     *_unit * other->unit());
 }
+Quantity& Quantity::operator*=(const int& other) {
+  _value *= other;
+  return *this;
+}
+Quantity& Quantity::operator*=(const double& other) {
+  _value *= other;
+  return *this;
+}
+Quantity& Quantity::operator*=(const QuantitySP& other) {
+  convert_to(other->unit());
+  _value *= other->value();
+  return *this;
+}
 
-std::shared_ptr<Quantity> Quantity::operator/(int other) const {
+QuantitySP Quantity::operator/(const int& other) const {
   return std::make_shared<Quantity>(_value / other, _unit);
 }
-std::shared_ptr<Quantity> Quantity::operator/(double other) const {
+QuantitySP Quantity::operator/(const double& other) const {
   return std::make_shared<Quantity>(_value / other, _unit);
 }
-std::shared_ptr<Quantity> Quantity::operator/(
-    std::shared_ptr<Quantity> other) const {
+QuantitySP Quantity::operator/(const QuantitySP& other) const {
   return std::make_shared<Quantity>(_value / other->value(),
                                     *_unit / other->unit());
 }
+Quantity& Quantity::operator/=(const int& other) {
+  _value /= other;
+  return *this;
+}
+Quantity& Quantity::operator/=(const double& other) {
+  _value /= other;
+  return *this;
+}
+Quantity& Quantity::operator/=(const QuantitySP& other) {
+  convert_to(other->unit());
+  _value /= other->value();
+  return *this;
+}
 
-std::shared_ptr<Quantity> Quantity::operator^(int other) const {
+QuantitySP Quantity::operator^(const int& other) const {
   return std::make_shared<Quantity>(std::pow(_value, other), *_unit ^ other);
 }
 
-std::shared_ptr<Quantity> Quantity::operator+(int other) const {
+QuantitySP Quantity::operator+(const int& other) const {
   throw std::runtime_error("Cannot add a scalar to a quantity with units.");
 }
-std::shared_ptr<Quantity> Quantity::operator+(double other) const {
+QuantitySP Quantity::operator+(const double& other) const {
   throw std::runtime_error("Cannot add a scalar to a quantity with units.");
 }
-std::shared_ptr<Quantity> Quantity::operator+(
-    std::shared_ptr<Quantity> other) const {
+QuantitySP Quantity::operator+(const QuantitySP& other) const {
   if (!_unit->is_compatible_with(other->unit())) {
     throw std::runtime_error("Incompatible units for addition.");
   }
@@ -63,21 +81,33 @@ std::shared_ptr<Quantity> Quantity::operator+(
       other->unit()->convert_value_to(other->value(), _unit);
   return std::make_shared<Quantity>(_value + other_val_converted, _unit);
 }
+Quantity& Quantity::operator+=(const int& other) {
+  _value += other;
+  return *this;
+}
+Quantity& Quantity::operator+=(const double& other) {
+  _value += other;
+  return *this;
+}
+Quantity& Quantity::operator+=(const QuantitySP& other) {
+  convert_to(other->unit());
+  _value += other->value();
+  return *this;
+}
 
-std::shared_ptr<Quantity> Quantity::operator-() const {
+QuantitySP Quantity::operator-() const {
   return std::make_shared<Quantity>(-_value, _unit);
 }
 
-std::shared_ptr<Quantity> Quantity::operator-(int other) const {
+QuantitySP Quantity::operator-(const int& other) const {
   throw std::runtime_error(
       "Cannot subtract a scalar from a quantity with units.");
 }
-std::shared_ptr<Quantity> Quantity::operator-(double other) const {
+QuantitySP Quantity::operator-(const double& other) const {
   throw std::runtime_error(
       "Cannot subtract a scalar from a quantity with units.");
 }
-std::shared_ptr<Quantity> Quantity::operator-(
-    std::shared_ptr<Quantity> other) const {
+QuantitySP Quantity::operator-(const QuantitySP& other) const {
   if (!_unit->is_compatible_with(other->unit())) {
     throw std::runtime_error("Incompatible units for subtraction.");
   }
@@ -85,20 +115,27 @@ std::shared_ptr<Quantity> Quantity::operator-(
       other->unit()->convert_value_to(other->value(), _unit);
   return std::make_shared<Quantity>(_value - other_val_converted, _unit);
 }
+Quantity& Quantity::operator-=(const int& other) {
+  _value -= other;
+  return *this;
+}
+Quantity& Quantity::operator-=(const double& other) {
+  _value -= other;
+  return *this;
+}
+Quantity& Quantity::operator-=(const QuantitySP& other) {
+  convert_to(other->unit());
+  _value -= other->value();
+  return *this;
+}
 
-std::shared_ptr<Quantity> Quantity::abs() const {
+QuantitySP Quantity::abs() const {
   return std::make_shared<Quantity>(std::abs(_value), _unit);
 }
 
 Quantity::Quantity() = default;
 
-template <class Archive>
-void Quantity::serialize(Archive &ar) {
-  ar(cereal::base_class<Song>(this), _value, _unit);
-}
-
-}  // namespace math
-}  // namespace falcon_core
+}  // namespace falcon_core::math
 
 // Cereal registration
 CEREAL_REGISTER_TYPE(falcon_core::math::Quantity)

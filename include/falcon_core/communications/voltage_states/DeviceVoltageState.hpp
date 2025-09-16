@@ -5,9 +5,7 @@
 #include <falcon_core/physics/device_structures/BaseConnection.hpp>
 #include <falcon_core/physics/units/SymbolUnit.hpp>
 
-namespace falcon_core {
-namespace communications {
-namespace voltage_states {
+namespace falcon_core::communications::voltage_states {
 
 class DeviceVoltageState : public math::Quantity {
  public:
@@ -29,7 +27,5 @@ class DeviceVoltageState : public math::Quantity {
   template <class Archive>
   void serialize(Archive& ar);
 };
-
-}  // namespace voltage_states
-}  // namespace communications
-}  // namespace falcon_core
+using DeviceVoltageStateSP = std::shared_ptr<DeviceVoltageState>;
+}  // namespace falcon_core::communications::voltage_states
