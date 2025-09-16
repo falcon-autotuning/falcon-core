@@ -1,23 +1,17 @@
 #include "falcon_core/math/discrete_spaces/DiscreteSpace.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace discrete_spaces {
+namespace falcon_core::math::discrete_spaces {
 
 DiscreteSpace::DiscreteSpace() = default;
+DiscreteSpace::DiscreteSpace(
+    const spaces::UnitSpaceSP&                     space,
+    const AxesSP<domains::CoupledKnobDomain>&      axes,
+    const AxesSP<generic::Map<std::string, bool>>& increasing)
+    : BaseDiscreteSpace(space, axes, increasing) {}
 
-DiscreteSpace::DiscreteSpace(std::shared_ptr<spaces::UnitSpace> space,
-                             std::shared_ptr<Axes<domains::CoupledKnobDomain>> axes)
-    : BaseDiscreteSpace(space, axes) {}
-
-template <class Archive>
-void DiscreteSpace::serialize(Archive& ar) {
-    ar(cereal::base_class<BaseDiscreteSpace>(this));
-}
-
-}  // namespace discrete_spaces
-}  // namespace math
-}  // namespace falcon_core
+}  // namespace falcon_core::math::discrete_spaces
 
 CEREAL_REGISTER_TYPE(falcon_core::math::discrete_spaces::DiscreteSpace)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::math::discrete_spaces::BaseDiscreteSpace, falcon_core::math::discrete_spaces::DiscreteSpace)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::math::discrete_spaces::BaseDiscreteSpace,
+    falcon_core::math::discrete_spaces::DiscreteSpace)

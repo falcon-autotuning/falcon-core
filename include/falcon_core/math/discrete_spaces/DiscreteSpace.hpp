@@ -2,26 +2,23 @@
 #include "falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp"
 #include "falcon_core/math/domains/CoupledKnobDomain.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace discrete_spaces {
+namespace falcon_core::math::discrete_spaces {
 
 class DiscreteSpace : public BaseDiscreteSpace {
  public:
-  using BaseDiscreteSpace::BaseDiscreteSpace; // Inherit constructors
+  using BaseDiscreteSpace::BaseDiscreteSpace;  // Inherit constructors
 
-  DiscreteSpace();
-  DiscreteSpace(std::shared_ptr<spaces::UnitSpace> space,
-                std::shared_ptr<Axes<domains::CoupledKnobDomain>> axes);
-
-  // Additional methods as needed
+  DiscreteSpace(const spaces::UnitSpaceSP&                     space,
+                const AxesSP<domains::CoupledKnobDomain>&      axes,
+                const AxesSP<generic::Map<std::string, bool>>& increasing);
 
  private:
   friend class cereal::access;
+  DiscreteSpace();
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<BaseDiscreteSpace>(this));
+  }
 };
 
-}  // namespace discrete_spaces
-}  // namespace math
-}  // namespace falcon_core
+}  // namespace falcon_core::math::discrete_spaces
