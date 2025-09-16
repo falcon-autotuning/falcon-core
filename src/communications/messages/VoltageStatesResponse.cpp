@@ -1,27 +1,22 @@
 #include <falcon_core/communications/messages/VoltageStatesResponse.hpp>
 
-namespace falcon_core {
-namespace communications {
-namespace messages {
+namespace falcon_core::communications::messages {
 
 VoltageStatesResponse::VoltageStatesResponse() = default;
-VoltageStatesResponse::VoltageStatesResponse(const std::string& message, const std::shared_ptr<communications::voltage_states::DeviceVoltageStates>& states)
+VoltageStatesResponse::VoltageStatesResponse(
+    const std::string&                                           message,
+    const communications::voltage_states::DeviceVoltageStatesSP& states)
     : BaseMessage(message), _states(states) {}
 
-const std::shared_ptr<communications::voltage_states::DeviceVoltageStates>& VoltageStatesResponse::states() const {
+const communications::voltage_states::DeviceVoltageStatesSP&
+VoltageStatesResponse::states() const {
   return _states;
 }
 
-template <class Archive>
-void VoltageStatesResponse::serialize(Archive& ar) {
-  ar(cereal::base_class<BaseMessage>(this), _states);
-}
+}  // namespace falcon_core::communications::messages
 
-template void VoltageStatesResponse::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive& ar);
-template void VoltageStatesResponse::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive& ar);
-
-}  // namespace messages
-}  // namespace communications
-}  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(falcon_core::communications::messages::VoltageStatesResponse)
+CEREAL_REGISTER_TYPE(
+    falcon_core::communications::messages::VoltageStatesResponse)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::communications::messages::BaseMessage,
+    falcon_core::communications::messages::VoltageStatesResponse)

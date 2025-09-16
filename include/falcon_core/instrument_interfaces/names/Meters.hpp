@@ -21,5 +21,5 @@ class Meters : public Ports<Meter> {
     ar(cereal::base_class<Ports<Meter>>(this));
   }
 };
-
+using MetersSP = std::shared_ptr<Meters>;
 }  // namespace falcon_core::instrument_interfaces::names

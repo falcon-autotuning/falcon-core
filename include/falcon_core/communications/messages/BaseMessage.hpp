@@ -1,27 +1,24 @@
 #pragma once
 
 #include <falcon_core/generic/Song.hpp>
-#include <string>
 
-namespace falcon_core {
-namespace communications {
-namespace messages {
+namespace falcon_core::communications::messages {
 
 class BaseMessage : public generic::Song {
+  std::string _message;
+
  public:
-  BaseMessage();
-  explicit BaseMessage(const std::string& message);
+  BaseMessage(const std::string& message);
 
   const std::string& message() const;
 
- private:
-  std::string _message;
-
+ protected:
   friend class cereal::access;
+  BaseMessage();
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this), _message);
+  }
 };
-
-}  // namespace messages
-}  // namespace communications
-}  // namespace falcon_core
+using BaseMessageSP = std::shared_ptr<BaseMessage>;
+}  // namespace falcon_core::communications::messages

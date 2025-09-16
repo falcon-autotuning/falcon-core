@@ -3,29 +3,25 @@
 #include <falcon_core/communications/messages/BaseMessage.hpp>
 #include <falcon_core/communications/voltage_states/DeviceVoltageStates.hpp>
 
-namespace falcon_core {
-namespace communications {
-namespace messages {
+namespace falcon_core::communications::messages {
 
 class VoltageStatesResponse : public BaseMessage {
+  communications::voltage_states::DeviceVoltageStatesSP _states;
+
  public:
-  VoltageStatesResponse();
   VoltageStatesResponse(
-      const std::string& message,
-      const std::shared_ptr<
-          communications::voltage_states::DeviceVoltageStates>& states);
+      const std::string&                                           message,
+      const communications::voltage_states::DeviceVoltageStatesSP& states);
 
-  const std::shared_ptr<communications::voltage_states::DeviceVoltageStates>&
-  states() const;
+  const communications::voltage_states::DeviceVoltageStatesSP& states() const;
 
- private:
-  std::shared_ptr<communications::voltage_states::DeviceVoltageStates> _states;
-
+ protected:
+  VoltageStatesResponse();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<BaseMessage>(this), _states);
+  }
 };
-
-}  // namespace messages
-}  // namespace communications
-}  // namespace falcon_core
+using VoltageStatesResponseSP = std::shared_ptr<VoltageStatesResponse>;
+}  // namespace falcon_core::communications::messages

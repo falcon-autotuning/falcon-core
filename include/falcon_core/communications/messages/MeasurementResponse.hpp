@@ -2,28 +2,24 @@
 
 #include <falcon_core/communications/messages/BaseMessage.hpp>
 #include <falcon_core/math/arrays/LabelledMeasuredArrays.hpp>
-#include <memory>
 
-namespace falcon_core {
-namespace communications {
-namespace messages {
+namespace falcon_core::communications::messages {
 
 class MeasurementResponse : public BaseMessage {
+  math::arrays::LabelledMeasuredArraysSP _arrays;
+
  public:
+  MeasurementResponse(const math::arrays::LabelledMeasuredArraysSP& arrays);
+
+  const math::arrays::LabelledMeasuredArraysSP& arrays() const;
+
+ protected:
   MeasurementResponse();
-  MeasurementResponse(
-      const std::shared_ptr<math::arrays::LabelledMeasuredArrays>& arrays);
-
-  const std::shared_ptr<math::arrays::LabelledMeasuredArrays>& arrays() const;
-
- private:
-  std::shared_ptr<math::arrays::LabelledMeasuredArrays> _arrays;
-
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<BaseMessage>(this), _arrays);
+  }
 };
 using MeasurementResponseSP = std::shared_ptr<MeasurementResponse>;
-}  // namespace messages
-}  // namespace communications
-}  // namespace falcon_core
+}  // namespace falcon_core::communications::messages

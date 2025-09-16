@@ -1,14 +1,32 @@
 #include "falcon_core/communications/Time.hpp"
 
-using namespace falcon_core;
-using communications::Time;
-
-Time::Time() : _now(std::chrono::system_clock::now()) {}
-
-long long Time::time() const {
-  return std::chrono::duration_cast<std::chrono::seconds>(
-             _now.time_since_epoch())
-      .count();
+#include <chrono>
+namespace falcon_core::communications {
+Time::Time() {
+  auto now = std::chrono::system_clock::now();
+  auto us  = std::chrono::duration_cast<std::chrono::microseconds>(
+                now.time_since_epoch())
+                .count();
+  _micro_seconds_since_epoch = us;
 }
-CEREAL_REGISTER_TYPE(Time)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(generic::Song, Time)
+
+Time::Time(long long micro_seconds_since_epoch)
+    : _micro_seconds_since_epoch(micro_seconds_since_epoch) {}
+
+const long long Time::micro_seconds_since_epoch() const {
+  return _micro_seconds_since_epoch;
+}
+
+const long long Time::time() const { return _micro_seconds_since_epoch; }
+
+const std::string Time::to_string() const {
+  std::time_t sec = _micro_seconds_since_epoch / 1000000;
+  std::tm     tm  = *std::localtime(&sec);
+  char        buf[20];
+  std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &tm);
+  return std::string(buf);
+}
+}  // namespace falcon_core::communications
+CEREAL_REGISTER_TYPE(falcon_core::communications::Time)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::communications::Time)
