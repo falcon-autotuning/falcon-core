@@ -17,14 +17,13 @@ class Ports : public generic::List<Port> {
   /**
    * @brief Initialize ports from a collection of port.
    */
-  Ports(const std::vector<std::shared_ptr<Port>> ports)
+  Ports(const std::vector<typename generic::List<Port>::StoredValue> ports)
       : generic::List<Port>(ports) {}
   /**
    * @brief return the collection of ports.
    */
-  generic::ListSP<std::shared_ptr<Port>> ports() const {
-    return std::make_shared<generic::List<std::shared_ptr<Port>>>(
-        this->items());
+  generic::ListSP<Port> ports() const {
+    return std::make_shared<generic::List<Port>>(this->items());
   }
   /**
    * @brief Return the default names of the ports.
@@ -67,7 +66,8 @@ class Ports : public generic::List<Port> {
    */
   generic::ListSP<std::string> _get_instrument_facing_names() const {
     generic::ListSP<std::string> result;
-    for (const std::shared_ptr<Port>& port : this->items()) {
+    for (const typename generic::List<Port>::StoredValue& port :
+         this->items()) {
       result->push_back(port->instrument_facing_name());
     }
     return result;
@@ -78,9 +78,10 @@ class Ports : public generic::List<Port> {
    * @return The port with the given name
    * @throws std::runtime_error if no port has the given name.
    */
-  std::shared_ptr<Port> _get_psuedoname_matching_port(
+  typename generic::List<Port>::StoredValue _get_psuedoname_matching_port(
       const physics::device_structures::BaseConnectionSP& name) const {
-    for (const std::shared_ptr<Port>& port : this->items()) {
+    for (const typename generic::List<Port>::StoredValue& port :
+         this->items()) {
       if (port->pseudo_name() && *(port->pseudo_name()) == *name) {
         return port;
       }
@@ -95,9 +96,10 @@ class Ports : public generic::List<Port> {
    * @return The port with the given instrument type.
    * @throws std::runtime_error if no port has the given type.
    */
-  std::shared_ptr<Port> _get_instrument_type_matching_port(
+  typename generic::List<Port>::StoredValue _get_instrument_type_matching_port(
       const Instrument& type) const {
-    for (const std::shared_ptr<Port>& port : this->items()) {
+    for (const typename generic::List<Port>::StoredValue& port :
+         this->items()) {
       if (port->instrument_type() == type) {
         return port;
       }

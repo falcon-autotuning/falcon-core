@@ -1,28 +1,38 @@
 #pragma once
 
-#include <memory>
-
-#include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/analytic_functions/ValidatedAnalyticFunction.hpp"
 
 /**
  * @brief A transform that maps a port to a time domain analytic function.
  */
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace port_transforms {
+namespace falcon_core::instrument_interfaces::port_transforms {
 
 class PortTransform
     : public math::analytic_functions::ValidatedAnalyticFunction {
+  names::InstrumentPortSP _port;
+  /**
+   * @brief Validated that the transform is valid.
+   */
+  bool validate_transform();
+
  public:
+  /**
+   * @brief Construct a port transform
+   * @param port the port that the transform applies to.
+   * @param transfrom the transform that we want to communicate.
+   */
   PortTransform(
       names::InstrumentPortSP                               port,
       math::analytic_functions::ValidatedAnalyticFunctionSP transform);
-  bool validate_transform();
-
- private:
-  names::InstrumentPortSP _port;
+  /**
+   * @brief Returns the port associated with the transform.
+   */
+  const names::InstrumentPortSP port() const;
+  /**
+   * @brief Return the transform.
+   */
+  const math::analytic_functions::ValidatedAnalyticFunctionSP transform() const;
 
  protected:
   friend class cereal::access;
@@ -34,7 +44,5 @@ class PortTransform
   };
   PortTransform();
 };
-
-}  // namespace port_transforms
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
+using PortTransformSP = std::shared_ptr<PortTransform>;
+}  // namespace falcon_core::instrument_interfaces::port_transforms

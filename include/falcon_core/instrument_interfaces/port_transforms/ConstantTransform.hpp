@@ -4,13 +4,12 @@
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace port_transforms {
+namespace falcon_core::instrument_interfaces::port_transforms {
 
 class ConstantTransform : public PortTransform {
  public:
-  ConstantTransform(double scale, names::PortsSP<names::InstrumentPort> ports);
+  ConstantTransform(const double&                                scale,
+                    const names::PortsSP<names::InstrumentPort>& ports);
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -22,6 +21,4 @@ class ConstantTransform : public PortTransform {
   ConstantTransform();
 };
 
-}  // namespace port_transforms
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::instrument_interfaces::port_transforms

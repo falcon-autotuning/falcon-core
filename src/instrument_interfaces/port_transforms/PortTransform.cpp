@@ -1,13 +1,8 @@
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 
-#include <cereal/archives/binary.hpp>
-
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/analytic_functions/ValidatedAnalyticFunction.hpp"
 
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace port_transforms {
+namespace falcon_core::instrument_interfaces::port_transforms {
 
 PortTransform::PortTransform(
     names::InstrumentPortSP                               port,
@@ -22,13 +17,17 @@ bool PortTransform::validate_transform() {
   }
   return true;
 }
+const names::InstrumentPortSP PortTransform::port() const { return _port; }
+const math::analytic_functions::ValidatedAnalyticFunctionSP
+PortTransform::transform() const {
+  return std::make_shared<math::analytic_functions::ValidatedAnalyticFunction>(
+      ports(), function());
+}
 
-}  // namespace port_transforms
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::instrument_interfaces::port_transforms
 
 CEREAL_REGISTER_TYPE(
     falcon_core::instrument_interfaces::port_transforms::PortTransform)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
+    falcon_core::math::analytic_functions::ValidatedAnalyticFunction,
     falcon_core::instrument_interfaces::port_transforms::PortTransform)
