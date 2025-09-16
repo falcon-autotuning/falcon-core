@@ -1,6 +1,7 @@
 #pragma once
 
 #include "falcon_core/generic/Map.hpp"
+#include "falcon_core/instrument_interfaces/names/Knobs.hpp"
 #include "falcon_core/math/domains/CoupledKnobDomain.hpp"
 #include "falcon_core/math/spaces/UnitSpace.hpp"
 
@@ -12,12 +13,24 @@ class BaseDiscreteSpace : public generic::Song {
   AxesSP<generic::Map<std::string, bool>> _increasing;
 
  public:
+  /**
+   * @brief Initialize the DiscreteSpace.
+   * The order of the Knobs in teh axes are defined to line up with the space.
+   * @param space the space taht the decirete values fill
+   * @param axes the axes containing the discrete values.
+   * @param increasing True if the axes are decreasing with the direction of the
+   * domain or against.
+   */
   BaseDiscreteSpace(const spaces::UnitSpaceSP&                     space,
                     const AxesSP<domains::CoupledKnobDomain>&      axes,
                     const AxesSP<generic::Map<std::string, bool>>& increasing);
   const spaces::UnitSpaceSP&                     space() const;
   const AxesSP<domains::CoupledKnobDomain>&      axes() const;
   const AxesSP<generic::Map<std::string, bool>>& increasing() const;
+  /**
+   * @brief Return the knobs.
+   */
+  const instrument_interfaces::names::KnobsSP knobs() const;
   /**
    * @brief Validate that the unit space dimensionality matches the number of
    * knobs.
@@ -57,5 +70,5 @@ class BaseDiscreteSpace : public generic::Song {
     ar(cereal::base_class<generic::Song>(this), _space, _axes, _increasing);
   }
 };
-
+using BaseDiscreteSpaceSP = std::shared_ptr<BaseDiscreteSpace>;
 }  // namespace falcon_core::math::discrete_spaces

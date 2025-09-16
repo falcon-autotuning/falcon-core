@@ -1,41 +1,32 @@
 #pragma once
 #include "falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp"
-#include "falcon_core/math/spaces/CartesianSpace.hpp"
 #include "falcon_core/math/domains/CoupledKnobDomain.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace discrete_spaces {
+namespace falcon_core::math::discrete_spaces {
 
 class BaseCartesianDiscreteSpace : public BaseDiscreteSpace {
  public:
-  using AxesType = Axes<domains::CoupledKnobDomain>;
-  using SpacePtr = std::shared_ptr<spaces::CartesianSpace>;
+  /**
+   * @brief Initialize the DiscreteSpace.
+   * The order of the Knobs in teh axes are defined to line up with the space.
+   * @param space the space taht the decirete values fill
+   * @param axes the axes containing the discrete values.
+   * @param increasing True if the axes are decreasing with the direction of the
+   * domain or against.
+   */
+  BaseCartesianDiscreteSpace(
+      const spaces::UnitSpaceSP&                     space,
+      const AxesSP<domains::CoupledKnobDomain>&      axes,
+      const AxesSP<generic::Map<std::string, bool>>& increasing);
 
+ protected:
   BaseCartesianDiscreteSpace() = default;
-  BaseCartesianDiscreteSpace(SpacePtr space,
-                             std::shared_ptr<AxesType> axes)
-      : BaseDiscreteSpace(space, axes) {}
-
-  SpacePtr space() const {
-    return std::static_pointer_cast<spaces::CartesianSpace>(BaseDiscreteSpace::space());
-  }
-
-  // Additional methods as needed
-
- private:
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<BaseDiscreteSpace>(this));
   }
 };
-
-}  // namespace discrete_spaces
-}  // namespace math
-}  // namespace falcon_core
-
-#ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::math::discrete_spaces::BaseCartesianDiscreteSpace)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::math::discrete_spaces::BaseDiscreteSpace, falcon_core::math::discrete_spaces::BaseCartesianDiscreteSpace)
-#endif
+using BaseCartesianDiscreteSpaceSP =
+    std::shared_ptr<BaseCartesianDiscreteSpace>;
+}  // namespace falcon_core::math::discrete_spaces

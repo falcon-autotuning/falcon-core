@@ -1,31 +1,30 @@
 #pragma once
-#include "falcon_core/math/discrete_spaces/BaseCartesianDiscreteSpace.hpp"
-#include "falcon_core/math/spaces/Cartesian1DSpace.hpp"
-#include "falcon_core/math/domains/CoupledKnobDomain.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace discrete_spaces {
+#include "falcon_core/math/discrete_spaces/BaseCartesianDiscreteSpace.hpp"
+
+namespace falcon_core::math::discrete_spaces {
 
 class CartesianDiscreteSpace1D : public BaseCartesianDiscreteSpace {
  public:
-  using BaseCartesianDiscreteSpace::BaseCartesianDiscreteSpace;
+  CartesianDiscreteSpace1D(
+      const spaces::UnitSpaceSP&                     space,
+      const AxesSP<domains::CoupledKnobDomain>&      axes,
+      const AxesSP<generic::Map<std::string, bool>>& increasing);
 
+  static std::shared_ptr<CartesianDiscreteSpace1D> from_divisions(
+      const generic::ListSP<int>&                    divisions,
+      const AxesSP<domains::CoupledKnobDomain>&      axes,
+      const AxesSP<generic::Map<std::string, bool>>& increasing,
+      const domains::DomainSP&                       domain =
+          std::make_shared<domains::Domain>(std::pair<double, double>(0, 1)));
+
+ protected:
   CartesianDiscreteSpace1D();
-  CartesianDiscreteSpace1D(std::shared_ptr<spaces::Cartesian1DSpace> space,
-                           std::shared_ptr<Axes<domains::CoupledKnobDomain>> axes);
-
-  static std::shared_ptr<CartesianDiscreteSpace1D> from_division(
-      int division,
-      std::shared_ptr<domains::CoupledKnobDomain> shared_domain,
-      std::shared_ptr<domains::Domain> domain);
-
- private:
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<BaseCartesianDiscreteSpace>(this));
+  }
 };
-
-}  // namespace discrete_spaces
-}  // namespace math
-}  // namespace falcon_core
+using CartesianDiscreteSpace1DSP = std::shared_ptr<CartesianDiscreteSpace1D>;
+}  // namespace falcon_core::math::discrete_spaces

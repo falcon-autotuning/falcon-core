@@ -1,34 +1,36 @@
 #include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace1D.hpp"
-#include "falcon_core/math/spaces/Cartesian1DSpace.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace discrete_spaces {
+#include "falcon_core/math/spaces/CartesianSpace.hpp"
 
+namespace falcon_core::math::discrete_spaces {
 CartesianDiscreteSpace1D::CartesianDiscreteSpace1D() = default;
+CartesianDiscreteSpace1D::CartesianDiscreteSpace1D(
+    const spaces::UnitSpaceSP&                     space,
+    const AxesSP<domains::CoupledKnobDomain>&      axes,
+    const AxesSP<generic::Map<std::string, bool>>& increasing)
+    : BaseCartesianDiscreteSpace(space, axes, increasing) {}
 
-CartesianDiscreteSpace1D::CartesianDiscreteSpace1D(std::shared_ptr<spaces::Cartesian1DSpace> space,
-                                                   std::shared_ptr<Axes<domains::CoupledKnobDomain>> axes)
-    : BaseCartesianDiscreteSpace(space, axes) {}
-
-std::shared_ptr<CartesianDiscreteSpace1D> CartesianDiscreteSpace1D::from_division(
-    int division,
-    std::shared_ptr<domains::CoupledKnobDomain> shared_domain,
-    std::shared_ptr<domains::Domain> domain)
-{
-    auto space = std::make_shared<spaces::Cartesian1DSpace>(static_cast<double>(division), domain);
-    auto axes = std::make_shared<Axes<domains::CoupledKnobDomain>>();
-    return std::make_shared<CartesianDiscreteSpace1D>(space, axes);
+std::shared_ptr<CartesianDiscreteSpace1D>
+CartesianDiscreteSpace1D::from_divisions(
+    const generic::ListSP<int>&                    divisions,
+    const AxesSP<domains::CoupledKnobDomain>&      axes,
+    const AxesSP<generic::Map<std::string, bool>>& increasing,
+    const domains::DomainSP&                       domain) {
+  if (divisions->size() != axes->size()) {
+    throw std::runtime_error(
+        "The number of division of each axis must be the same size as the axes "
+        "for the sweeps.");
+  }
+  std::vector<double> deltas;
+  for (int d : *divisions) deltas.push_back(domain->range() / d);
+  auto space = std::make_shared<spaces::CartesianSpace>(deltas, domain);
+  return std::make_shared<CartesianDiscreteSpace1D>(space, axes, increasing);
 }
 
-template <class Archive>
-void CartesianDiscreteSpace1D::serialize(Archive& ar) {
-    ar(cereal::base_class<BaseCartesianDiscreteSpace>(this));
-}
+}  // namespace falcon_core::math::discrete_spaces
 
-} // namespace discrete_spaces
-} // namespace math
-} // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(falcon_core::math::discrete_spaces::CartesianDiscreteSpace1D)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::math::discrete_spaces::BaseCartesianDiscreteSpace, falcon_core::math::discrete_spaces::CartesianDiscreteSpace1D)
+CEREAL_REGISTER_TYPE(
+    falcon_core::math::discrete_spaces::CartesianDiscreteSpace1D)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::math::discrete_spaces::BaseCartesianDiscreteSpace,
+    falcon_core::math::discrete_spaces::CartesianDiscreteSpace1D)

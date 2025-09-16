@@ -2,29 +2,29 @@
 #include "falcon_core/math/discrete_spaces/BaseCartesianDiscreteSpace.hpp"
 #include "falcon_core/math/domains/CoupledKnobDomain.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace discrete_spaces {
+namespace falcon_core::math::discrete_spaces {
 
 class CartesianDiscreteSpace : public BaseCartesianDiscreteSpace {
  public:
-  using BaseCartesianDiscreteSpace::BaseCartesianDiscreteSpace;
-
-  CartesianDiscreteSpace();
-  CartesianDiscreteSpace(std::shared_ptr<spaces::CartesianSpace> space,
-                         std::shared_ptr<Axes<domains::CoupledKnobDomain>> axes);
+  CartesianDiscreteSpace(
+      const spaces::UnitSpaceSP&                     space,
+      const AxesSP<domains::CoupledKnobDomain>&      axes,
+      const AxesSP<generic::Map<std::string, bool>>& increasing);
 
   static std::shared_ptr<CartesianDiscreteSpace> from_divisions(
-      const std::vector<int>& divisions,
-      std::shared_ptr<Axes<domains::CoupledKnobDomain>> axes,
-      std::shared_ptr<domains::Domain> domain);
+      const generic::ListSP<int>&                    divisions,
+      const AxesSP<domains::CoupledKnobDomain>&      axes,
+      const AxesSP<generic::Map<std::string, bool>>& increasing,
+      const domains::DomainSP&                       domain =
+          std::make_shared<domains::Domain>(std::pair<double, double>(0, 1)));
 
  private:
+  CartesianDiscreteSpace();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<BaseCartesianDiscreteSpace>(this));
+  }
 };
-
-}  // namespace discrete_spaces
-}  // namespace math
-}  // namespace falcon_core
+using CartesianDiscreteSpaceSP = std::shared_ptr<CartesianDiscreteSpace>;
+}  // namespace falcon_core::math::discrete_spaces

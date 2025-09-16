@@ -2,6 +2,7 @@
 
 #include <stdexcept>
 
+#include "falcon_core/instrument_interfaces/names/Knob.hpp"
 #include "falcon_core/math/domains/CoupledKnobDomain.hpp"
 
 namespace falcon_core::math::discrete_spaces {
@@ -22,6 +23,15 @@ const AxesSP<domains::CoupledKnobDomain>& BaseDiscreteSpace::axes() const {
 const AxesSP<generic::Map<std::string, bool>>& BaseDiscreteSpace::increasing()
     const {
   return _increasing;
+}
+const instrument_interfaces::names::KnobsSP BaseDiscreteSpace::knobs() const {
+  instrument_interfaces::names::KnobsSP knobs;
+  for (const domains::CoupledKnobDomainSP axis : *axes()) {
+    for (const instrument_interfaces::names::KnobSP knob : *axis->knobs()) {
+      knobs->push_back(knob);
+    }
+  }
+  return knobs;
 }
 void BaseDiscreteSpace::validate_unit_space_dimensionality_matches_knobs()
     const {

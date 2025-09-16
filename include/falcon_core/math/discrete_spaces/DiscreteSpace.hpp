@@ -1,6 +1,6 @@
 #pragma once
+
 #include "falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp"
-#include "falcon_core/math/domains/CoupledKnobDomain.hpp"
 
 namespace falcon_core::math::discrete_spaces {
 
@@ -20,5 +20,5 @@ class DiscreteSpace : public BaseDiscreteSpace {
     ar(cereal::base_class<BaseDiscreteSpace>(this));
   }
 };
-
+using DiscreteSpaceSP = std::shared_ptr<DiscreteSpace>;
 }  // namespace falcon_core::math::discrete_spaces
