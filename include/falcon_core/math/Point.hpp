@@ -10,7 +10,6 @@
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
-// TODO: make sure units are conserved on loading into Point
 namespace falcon_core::math {
 /**
  * @brief Represents a point in a multi-dimensional space, indexed by
@@ -40,6 +39,18 @@ class Point : public generic::Map<physics::device_structures::BaseConnection,
         const physics::units::SymbolUnitSP& unit);
   Point(const generic::MapSP<physics::device_structures::BaseConnection,
                              Quantity>& init);
+  /**
+   * @brief an overide of insert to make sure units are fixed.
+   */
+  void insert_or_assign(const physics::device_structures::BaseConnectionSP& key,
+                        const QuantitySP& value);
+
+  /**
+   * @brief an overide of insert to make sure units are fixed.
+   */
+  std::pair<iterator, bool> insert(
+      const physics::device_structures::BaseConnectionSP& key,
+      const QuantitySP&                                   value);
   /**
    * @brief Returns the SI unit for the point.
    */

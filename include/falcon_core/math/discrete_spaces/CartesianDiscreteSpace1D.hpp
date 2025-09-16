@@ -6,16 +6,15 @@ namespace falcon_core::math::discrete_spaces {
 
 class CartesianDiscreteSpace1D : public BaseCartesianDiscreteSpace {
  public:
-  CartesianDiscreteSpace1D(
-      const spaces::UnitSpaceSP&                     space,
-      const AxesSP<domains::CoupledKnobDomain>&      axes,
-      const AxesSP<generic::Map<std::string, bool>>& increasing);
+  CartesianDiscreteSpace1D(const spaces::UnitSpaceSP&          space,
+                           const domains::CoupledKnobDomainSP& shared_domain,
+                           const generic::MapSP<std::string, bool>& increasing);
 
   static std::shared_ptr<CartesianDiscreteSpace1D> from_divisions(
-      const generic::ListSP<int>&                    divisions,
-      const AxesSP<domains::CoupledKnobDomain>&      axes,
-      const AxesSP<generic::Map<std::string, bool>>& increasing,
-      const domains::DomainSP&                       domain =
+      const int&                               division,
+      const domains::CoupledKnobDomainSP&      shared_domain,
+      const generic::MapSP<std::string, bool>& increasing,
+      const domains::DomainSP&                 domain =
           std::make_shared<domains::Domain>(std::pair<double, double>(0, 1)));
 
  protected:

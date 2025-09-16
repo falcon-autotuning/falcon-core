@@ -1,5 +1,7 @@
 #include "falcon_core/math/spaces/Cartesian2DSpace.hpp"
 
+#include "falcon_core/math/spaces/CartesianSpace.hpp"
+
 namespace falcon_core::math::spaces {
 
 Cartesian2DSpace::Cartesian2DSpace() = default;
@@ -15,4 +17,5 @@ Cartesian2DSpace::Cartesian2DSpace(const std::vector<double>& deltas,
 
 CEREAL_REGISTER_TYPE(falcon_core::math::spaces::Cartesian2DSpace)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song, falcon_core::math::spaces::Cartesian2DSpace)
+    falcon_core::math::spaces::CartesianSpace,
+    falcon_core::math::spaces::Cartesian2DSpace)

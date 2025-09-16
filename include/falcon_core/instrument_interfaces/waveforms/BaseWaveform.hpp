@@ -1,6 +1,7 @@
 #pragma once
-
-#include "falcon_core/generic/Song.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/instrument_interfaces/names/Ports.hpp"
+#include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransforms.hpp"
 #include "falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp"
 
@@ -9,71 +10,67 @@
  * domain and any time-dependent phenomena.
  * @tparam T The discrete space type.
  */
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace waveforms {
+namespace falcon_core::instrument_interfaces::waveforms {
 
 template <typename T>
 class BaseWaveform : public port_transforms::PortTransforms {
- public:
-  using space_type = T;
+  static_assert(
+      std::is_base_of<math::discrete_spaces::BaseDiscreteSpace, T>::value,
+      "T must be derived from BaseDiscreteSpace");
+  std::shared_ptr<T> _space;
 
+ public:
   /**
    * @brief Construct a BaseWaveform.
    * @param space The measurement space.
    * @param transforms The port transforms.
    */
-  BaseWaveform(std::shared_ptr<space_type> space,
-               std::vector<std::shared_ptr<port_transforms::PortTransform>>
-                   transforms = {})
-      : port_transforms::PortTransforms(), _space(std::move(space)) {
-    for (auto& t : transforms) this->append(t);
+  BaseWaveform(
+      const std::shared_ptr<T>                              space,
+      const generic::ListSP<port_transforms::PortTransform> transforms =
+          std::make_shared<generic::List<port_transforms::PortTransform>>())
+      : port_transforms::PortTransforms(transforms), _space(std::move(space)) {
     confirm_knobs_match();
   }
 
   /**
-   * @brief Default constructor for serialization.
-   */
-  BaseWaveform() : port_transforms::PortTransforms(), _space(nullptr) {}
-
-  /**
    * @brief Get the measurement space.
    */
-  const std::shared_ptr<space_type>& space() const { return _space; }
+  const std::shared_ptr<T>& space() const { return _space; }
 
   /**
    * @brief Confirm that all function knobs are in the discrete space.
-   * This should check that all transform ports are present in the space's axes.
-   * (Implementation is a placeholder.)
+   * @throws std::runtime_error if any function knob is not in the discrete
+   * space.
    */
   void confirm_knobs_match() const {
-    // TODO: Implement knob matching logic if space_type exposes axes/knobs.
-    // Example:
-    // std::set<KnobType> discrete_knobs = ...;
-    // std::set<KnobType> function_knobs = ...;
-    // assert(function_knobs ⊆ discrete_knobs);
+    names::PortsSP<names::InstrumentPort> discreteKnobs;
+    for (const math::domains::CoupledKnobDomainSP& axis :
+         _space.axes()->items()) {
+      for (const names::KnobSP& knob : *axis->knobs()) {
+        discreteKnobs->push_back(knob);
+      }
+    }
+    names::PortsSP<names::InstrumentPort> functionKnobs;
+    for (const port_transforms::PortTransformSP& transform : *transforms()) {
+      functionKnobs->push_back(transform->port());
+    }
+    for (const names::InstrumentPortSP& knob : functionKnobs->items()) {
+      if (!discreteKnobs->contains(knob)) {
+        throw std::runtime_error("Function knob " + knob->default_name() +
+                                 " not found in discrete space axes.");
+      }
+    }
   }
 
+ protected:
+  friend class cereal::access;
+  BaseWaveform() = default;
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<port_transforms::PortTransforms>(this), _space);
   }
-
- protected:
-  std::shared_ptr<space_type> _space;
 };
-
-}  // namespace waveforms
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
-
-#ifndef SWIG
-// Example registration for a specific space type; add more as needed.
-CEREAL_REGISTER_TYPE(
-    falcon_core::instrument_interfaces::waveforms::BaseWaveform<
-        falcon_core::math::discrete_spaces::BaseDiscreteSpace>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::instrument_interfaces::waveforms::BaseWaveform<
-        falcon_core::math::discrete_spaces::BaseDiscreteSpace>)
-#endif
+template <typename T>
+using BaseWaveformSP = std::shared_ptr<BaseWaveform<T>>;
+}  // namespace falcon_core::instrument_interfaces::waveforms

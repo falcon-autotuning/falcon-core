@@ -14,15 +14,20 @@ class Map : public virtual generic::Song {
                 "Key template argument must not be a pointer type");
   static_assert(!std::is_pointer<Value>::value,
                 "ValueType template argument must not be a pointer type");
+
+ protected:
   using StoredKey = typename std::
       conditional<is_primitive<Key>::value, Key, std::shared_ptr<Key>>::type;
-  using StoredValue    = typename std::conditional<is_primitive<Value>::value,
-                                                   Value,
-                                                   std::shared_ptr<Value>>::type;
+  using StoredValue = typename std::conditional<is_primitive<Value>::value,
+                                                Value,
+                                                std::shared_ptr<Value>>::type;
+
   using ContainerItem  = std::pair<StoredKey, StoredValue>;
   using Container      = std::vector<ContainerItem>;
   using iterator       = typename Container::iterator;
   using const_iterator = typename Container::const_iterator;
+
+ private:
   Container                _items;
   std::vector<StoredKey>   _key_ptrs;
   std::vector<StoredValue> _value_ptrs;

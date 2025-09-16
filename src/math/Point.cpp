@@ -1,5 +1,7 @@
 #include "falcon_core/math/Point.hpp"
 
+#include "falcon_core/math/Quantity.hpp"
+
 namespace falcon_core::math {
 
 Point::Point() = default;
@@ -23,6 +25,18 @@ Point::Point(const generic::MapSP<physics::device_structures::BaseConnection,
     quantity->convert_to(_unit);
     insert(pair.first, quantity);
   }
+}
+void Point::insert_or_assign(
+    const physics::device_structures::BaseConnectionSP& key,
+    const QuantitySP&                                   value) {
+  value->convert_to(_unit);
+  Map::insert_or_assign(key, value);
+}
+std::pair<Point::iterator, bool> Point::insert(
+    const physics::device_structures::BaseConnectionSP& key,
+    const QuantitySP&                                   value) {
+  value->convert_to(_unit);
+  return Map::insert(key, value);
 }
 
 const physics::units::SymbolUnitSP Point::unit() const { return _unit; }

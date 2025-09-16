@@ -90,5 +90,5 @@ class KnobDomain
         BaseLabelledDomain<instrument_interfaces::names::Knob>>(this));
   }
 };
-
+using KnobDomainSP = std::shared_ptr<KnobDomain>;
 }  // namespace falcon_core::math::domains

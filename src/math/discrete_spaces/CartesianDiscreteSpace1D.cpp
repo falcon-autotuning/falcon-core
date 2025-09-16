@@ -1,28 +1,33 @@
 #include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace1D.hpp"
 
+#include "falcon_core/generic/List.hpp"
+#include "falcon_core/math/domains/CoupledKnobDomain.hpp"
 #include "falcon_core/math/spaces/CartesianSpace.hpp"
-
 namespace falcon_core::math::discrete_spaces {
 CartesianDiscreteSpace1D::CartesianDiscreteSpace1D() = default;
 CartesianDiscreteSpace1D::CartesianDiscreteSpace1D(
-    const spaces::UnitSpaceSP&                     space,
-    const AxesSP<domains::CoupledKnobDomain>&      axes,
-    const AxesSP<generic::Map<std::string, bool>>& increasing)
-    : BaseCartesianDiscreteSpace(space, axes, increasing) {}
+    const spaces::UnitSpaceSP&               space,
+    const domains::CoupledKnobDomainSP&      shared_domain,
+    const generic::MapSP<std::string, bool>& increasing)
+    : BaseCartesianDiscreteSpace(
+          space,
+          std::make_shared<Axes<domains::CoupledKnobDomain>>(
+              generic::List<domains::CoupledKnobDomain>({shared_domain})),
+          std::make_shared<Axes<generic::Map<std::string, bool>>>(
+              generic::List<generic::Map<std::string, bool>>({increasing}))) {}
 
 std::shared_ptr<CartesianDiscreteSpace1D>
 CartesianDiscreteSpace1D::from_divisions(
-    const generic::ListSP<int>&                    divisions,
-    const AxesSP<domains::CoupledKnobDomain>&      axes,
-    const AxesSP<generic::Map<std::string, bool>>& increasing,
-    const domains::DomainSP&                       domain) {
-  if (divisions->size() != axes->size()) {
-    throw std::runtime_error(
-        "The number of division of each axis must be the same size as the axes "
-        "for the sweeps.");
-  }
+    const int&                               division,
+    const domains::CoupledKnobDomainSP&      shared_domain,
+    const generic::MapSP<std::string, bool>& increasing,
+    const domains::DomainSP&                 domain) {
   std::vector<double> deltas;
-  for (int d : *divisions) deltas.push_back(domain->range() / d);
+  deltas.push_back(domain->range() / division);
+
+  AxesSP<domains::CoupledKnobDomain> axes =
+      std::make_shared<Axes<domains::CoupledKnobDomain>>(
+          generic::List<domains::CoupledKnobDomain>({shared_domain}));
   auto space = std::make_shared<spaces::CartesianSpace>(deltas, domain);
   return std::make_shared<CartesianDiscreteSpace1D>(space, axes, increasing);
 }

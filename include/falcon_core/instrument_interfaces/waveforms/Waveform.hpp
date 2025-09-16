@@ -6,36 +6,30 @@
 /**
  * @brief A distinct measurement waveform.
  */
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace waveforms {
+namespace falcon_core::instrument_interfaces::waveforms {
 
 class Waveform : public BaseWaveform<
                      falcon_core::math::discrete_spaces::BaseDiscreteSpace> {
  public:
-  using base_type =
-      BaseWaveform<falcon_core::math::discrete_spaces::BaseDiscreteSpace>;
+  /**
+   * @brief Construct a Waveform.
+   * @param space The measurement space.
+   * @param transforms The port transforms.
+   */
+  Waveform(
+      const math::discrete_spaces::BaseDiscreteSpaceSP      space,
+      const generic::ListSP<port_transforms::PortTransform> transforms =
+          std::make_shared<generic::List<port_transforms::PortTransform>>());
 
-  Waveform(std::shared_ptr<base_type::space_type> space,
-           std::vector<std::shared_ptr<port_transforms::PortTransform>>
-               transforms = {})
-      : base_type(space, transforms) {}
-
-  Waveform() : base_type() {}
-
+ protected:
+  friend class cereal::access;
+  Waveform();
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<base_type>(this));
+    ar(cereal::base_class<
+        BaseWaveform<falcon_core::math::discrete_spaces::BaseDiscreteSpace>>(
+        this));
   }
 };
 
-}  // namespace waveforms
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
-
-#ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::waveforms::Waveform)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::instrument_interfaces::waveforms::Waveform)
-#endif
+}  // namespace falcon_core::instrument_interfaces::waveforms
