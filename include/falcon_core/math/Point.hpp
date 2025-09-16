@@ -10,7 +10,7 @@
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
-
+// TODO: make sure units are conserved on loading into Point
 namespace falcon_core::math {
 /**
  * @brief Represents a point in a multi-dimensional space, indexed by
@@ -55,8 +55,8 @@ class Point : public generic::Map<physics::device_structures::BaseConnection,
   const generic::ListSP<physics::device_structures::BaseConnection>
   connections() const;
 
-  std::shared_ptr<Point> operator+(const Point& other) const;
-  std::shared_ptr<Point> operator-(const Point& other) const;
+  std::shared_ptr<Point> operator+(const std::shared_ptr<Point>& other) const;
+  std::shared_ptr<Point> operator-(const std::shared_ptr<Point>& other) const;
   std::shared_ptr<Point> operator*(double scalar) const;
   std::shared_ptr<Point> operator/(double scalar) const;
   std::shared_ptr<Point> operator-() const;

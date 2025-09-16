@@ -92,6 +92,21 @@ class List : public generic::Song {
   void insert(iterator pos, const_iterator first, const_iterator last) {
     _items.insert(pos, first, last);
   }
+  /**
+   * @brief Finds the intersection between this list and another.
+   * @param other the other list to compare again.
+   * @returns A list of values containing elements from both.
+   */
+  std::shared_ptr<List<Value>> intersection(
+      const std::shared_ptr<List<Value>>& other) const {
+    std::shared_ptr<List<Value>> result;
+    for (const StoredValue& value : *items()) {
+      if (other.contains(value)) {
+        result->push_back(value);
+      }
+    }
+    return result;
+  }
   // SFINAE: If Derived is void, clone returns Map
   template <typename D = Derived>
   typename std::enable_if<std::is_same<D, void>::value,
@@ -115,6 +130,7 @@ class List : public generic::Song {
     }
     return result;
   }
+
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this), _items);

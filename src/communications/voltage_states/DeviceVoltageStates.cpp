@@ -1,25 +1,26 @@
 #include <falcon_core/communications/voltage_states/DeviceVoltageStates.hpp>
 
-namespace falcon_core {
-namespace communications {
-namespace voltage_states {
+#include "falcon_core/communications/voltage_states/DeviceVoltageState.hpp"
+
+namespace falcon_core::communications::voltage_states {
 
 DeviceVoltageStates::DeviceVoltageStates() = default;
 
-DeviceVoltageStates::DeviceVoltageStates(const container_type& states)
-    : _states(states) {}
+DeviceVoltageStates::DeviceVoltageStates(
+    const generic::ListSP<DeviceVoltageState>& states)
+    : generic::List<DeviceVoltageState>(*states) {}
 
-const DeviceVoltageStates::container_type& DeviceVoltageStates::states() const {
-  return _states;
+const generic::ListSP<DeviceVoltageState> DeviceVoltageStates::states() const {
+  return std::make_shared<List<DeviceVoltageState>>(items());
 }
 
-void DeviceVoltageStates::add_state(const std::shared_ptr<value_type>& state) {
-  _states.push_back(state);
+void DeviceVoltageStates::add_state(const DeviceVoltageStateSP& state) {
+  push_back(state);
 }
 
-std::shared_ptr<DeviceVoltageStates::value_type> DeviceVoltageStates::find_state(
-    const std::shared_ptr<physics::device_structures::BaseConnection>& connection) const {
-  for (const auto& state : _states) {
+const DeviceVoltageStateSP DeviceVoltageStates::find_state(
+    const physics::device_structures::BaseConnectionSP& connection) const {
+  for (const auto& state : items()) {
     if (state->connection()->name() == connection->name() &&
         state->connection()->type() == connection->type()) {
       return state;
@@ -28,17 +29,23 @@ std::shared_ptr<DeviceVoltageStates::value_type> DeviceVoltageStates::find_state
   return nullptr;
 }
 
-template <class Archive>
-void DeviceVoltageStates::serialize(Archive& ar) {
-  ar(cereal::base_class<generic::Song>(this), _states);
+const math::PointSP DeviceVoltageStates::to_point() const {
+  generic::MapSP<physics::device_structures::BaseConnection, math::Quantity>
+      rawPoint;
+  for (const DeviceVoltageStateSP& state : *states()) {
+    rawPoint->insert(state->connection(), state);
+  }
+  return std::make_shared<math::Point>(rawPoint);
 }
 
-// Explicit template instantiation for cereal
-template void DeviceVoltageStates::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive& ar);
-template void DeviceVoltageStates::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive& ar);
+}  // namespace falcon_core::communications::voltage_states
 
-}  // namespace voltage_states
-}  // namespace communications
-}  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(falcon_core::communications::voltage_states::DeviceVoltageStates)
+CEREAL_REGISTER_TYPE(
+    falcon_core::communications::voltage_states::DeviceVoltageStates)
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<
+        falcon_core::communications::voltage_states::DeviceVoltageState>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::List<
+        falcon_core::communications::voltage_states::DeviceVoltageState>,
+    falcon_core::communications::voltage_states::DeviceVoltageStates)

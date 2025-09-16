@@ -11,7 +11,27 @@
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
 namespace falcon_core::math {
+/**
+ * @brief a Tuple of two quantities that is serializeable.
+ */
+class DeltaQuantity : public generic::Song {
+  QuantitySP _first;
+  QuantitySP _second;
 
+ public:
+  DeltaQuantity(const QuantitySP& first, const QuantitySP& second);
+  const QuantitySP& first() const;
+  const QuantitySP& second() const;
+
+ protected:
+  DeltaQuantity();
+  friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this), _first, _second);
+  }
+};
+using DeltaQuantitySP = std::shared_ptr<DeltaQuantity>;
 /**
  * @brief Represents a vector in a multi-dimensional space, defined by start and
  * end points.
@@ -22,35 +42,35 @@ namespace falcon_core::math {
  * connections.
  */
 class Vector : public generic::Map<physics::device_structures::BaseConnection,
-                                   std::pair<Quantity, Quantity>> {
-  physics::device_structures::BaseConnectionsSP _connections;
+                                   DeltaQuantity> {
   physics::units::SymbolUnitSP                  _unit;
+  physics::device_structures::BaseConnectionsSP _connections;
 
  public:
-  Vector(PointSP start, PointSP end);
-  Vector(PointSP end);
-  Vector(const generic::Map<physics::device_structures::BaseConnection,
-                            Quantity>& end);
-  Vector(const generic::Map<physics::device_structures::BaseConnection,
-                            Quantity>& start,
-         const generic::Map<physics::device_structures::BaseConnection,
-                            Quantity>& end);
-  Vector(const generic::Map<physics::device_structures::BaseConnection, double>&
-                                                   end,
+  Vector(const PointSP& start, const PointSP& end);
+  Vector(const PointSP& end);
+  Vector(const generic::MapSP<physics::device_structures::BaseConnection,
+                              Quantity>& end);
+  Vector(const generic::MapSP<physics::device_structures::BaseConnection,
+                              Quantity>& start,
+         const generic::MapSP<physics::device_structures::BaseConnection,
+                              Quantity>& end);
+  Vector(const generic::MapSP<physics::device_structures::BaseConnection,
+                              double>&             end,
          falcon_core::physics::units::SymbolUnitSP unit);
-  Vector(const generic::Map<physics::device_structures::BaseConnection, double>&
-             start,
-         const generic::Map<physics::device_structures::BaseConnection, double>&
-                                                   end,
+  Vector(const generic::MapSP<physics::device_structures::BaseConnection,
+                              double>&             start,
+         const generic::MapSP<physics::device_structures::BaseConnection,
+                              double>&             end,
          falcon_core::physics::units::SymbolUnitSP unit);
   /**
    * @brief Returns the point at the end.
    */
-  const PointSP& end() const;
+  const PointSP endPoint() const;
   /**
    * @brief Returns the point at the start.
    */
-  const PointSP& start() const;
+  const PointSP startPoint() const;
   /**
    * @brief Returns the raw map of the ending point.
    */
@@ -74,15 +94,16 @@ class Vector : public generic::Map<physics::device_structures::BaseConnection,
   /**
    * @brief Returns the affected connections for this vector.
    */
-  const physics::device_structures::BaseConnectionsSP connections() const;
+  const physics::device_structures::BaseConnectionsSP& connections() const;
   /**
    * @brief Returns the unit of this vector.
    */
-  const falcon_core::physics::units::SymbolUnitSP unit() const;
+  const falcon_core::physics::units::SymbolUnitSP& unit() const;
   /**
    * @brief returns the principle_connection that is the largest.
    */
-  const physics::device_structures::BaseConnection principle_connection() const;
+  const physics::device_structures::BaseConnectionSP principle_connection()
+      const;
   /**
    * @brief The magnitude of the vector.
    */
@@ -120,6 +141,11 @@ class Vector : public generic::Map<physics::device_structures::BaseConnection,
       const generic::MapSP<physics::device_structures::BaseConnection, Quantity>
           point) const;
   /**
+   * @brief Displaces the origin of a vector by a point.
+   * @param point the diplacement
+   */
+  const std::shared_ptr<Vector> translate(const PointSP& point) const;
+  /**
    * @brief Translates a vector to the origin.
    */
   const std::shared_ptr<Vector> translate_to_origin() const;
@@ -143,12 +169,6 @@ class Vector : public generic::Map<physics::device_structures::BaseConnection,
    * @brief Generates the unit vector for the direction of this vector.
    */
   const std::shared_ptr<Vector> unit_vector() const;
-
-  /**
-   * @brief Displaces the origin of a vector by a point.
-   * @param point the diplacement
-   */
-  const std::shared_ptr<Vector> translate(const PointSP& point) const;
   /**
    * @brief Returns the normalized vector starting at the anchored starting
    * point.
@@ -159,14 +179,21 @@ class Vector : public generic::Map<physics::device_structures::BaseConnection,
    */
   const std::shared_ptr<Vector> project(
       const std::shared_ptr<Vector>& other) const;
+  /**
+   * @brief Updates the unit of this vector.
+   */
+  void update_unit(const physics::units::SymbolUnitSP& unit);
 
  protected:
   Vector();
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _connections, _unit);
+    ar(cereal::base_class<
+           generic::Map<physics::device_structures::BaseConnection,
+                        math::DeltaQuantity>>(this),
+       _unit);
   }
 };
-
+using VectorSP = std::shared_ptr<Vector>;
 }  // namespace falcon_core::math

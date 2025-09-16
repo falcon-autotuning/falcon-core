@@ -141,6 +141,16 @@ class BaseConnections
    * @brief Check if all connections are screening gates.
    */
   bool is_screening_gates() const;
+  /**
+   * @brief Finds the intersection between this list and another.
+   * @param other the other list to compare again.
+   * @returns A list of values containing elements from both.
+   */
+  std::shared_ptr<BaseConnections> intersection(
+      const std::shared_ptr<BaseConnections>& other) const {
+    return std::make_shared<BaseConnections>(
+        List::intersection(dynamic_pointer_cast<List<BaseConnection>>(other)));
+  }
 
  protected:
   friend class cereal::access;

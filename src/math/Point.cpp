@@ -41,9 +41,9 @@ Point::connections() const {
       generic::List<physics::device_structures::BaseConnection>>(keys());
 }
 
-PointSP Point::operator+(const Point& other) const {
+PointSP Point::operator+(const PointSP& other) const {
   PointSP result = clone();
-  for (const auto& kv : other.items()) {
+  for (const auto& kv : other->items()) {
     auto it = result->find(kv.first);
     if (it != result->end()) {
       *it->second += kv.second;
@@ -54,9 +54,9 @@ PointSP Point::operator+(const Point& other) const {
   return result;
 }
 
-PointSP Point::operator-(const Point& other) const {
+PointSP Point::operator-(const PointSP& other) const {
   PointSP result = clone();
-  for (const auto& kv : other.items()) {
+  for (const auto& kv : other->items()) {
     auto it = result->find(kv.first);
     if (it != result->end()) {
       *it->second -= kv.second;
