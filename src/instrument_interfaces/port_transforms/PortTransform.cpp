@@ -2,6 +2,7 @@
 
 #include <cereal/archives/binary.hpp>
 
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 
 namespace falcon_core {
@@ -9,14 +10,21 @@ namespace instrument_interfaces {
 namespace port_transforms {
 
 PortTransform::PortTransform(
-    std::shared_ptr<math::analytic_functions::AnalyticFunction> function)
-    : _function(std::move(function)) {}
+    names::InstrumentPortSP                      port,
+    math::analytic_functions::AnalyticFunctionSP function)
+    : {}
 
 PortTransform::PortTransform() : _function(nullptr) {}
 
-double PortTransform::apply(double value) const {
+def validate_transform(self)
+    : ""
+      "Validate that the transform is valid."
+      "" assert self.transform.validate_port(port = self.port),
+("The transform must be valid for the port.")
+
+    double PortTransform::apply(double value) const {
   if (!_function) return value;
-  return _function->evaluate(value);
+  return this->function(value);
 }
 
 template <class Archive>

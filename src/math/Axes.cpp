@@ -3,6 +3,7 @@
 #include <cereal/types/polymorphic.hpp>
 
 #include "falcon_core/math/Axes.hpp"
+#include "falcon_core/math/discretizers/BaseDiscretizer.hpp"
 
 // Explicit instantiation for Axes<double>
 template class falcon_core::math::Axes<double>;
