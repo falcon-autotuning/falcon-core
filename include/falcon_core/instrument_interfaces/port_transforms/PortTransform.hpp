@@ -1,6 +1,9 @@
 #pragma once
 
+#include <memory>
+
 #include "falcon_core/generic/Song.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 
 /**
@@ -10,22 +13,19 @@ namespace falcon_core {
 namespace instrument_interfaces {
 namespace port_transforms {
 
-class PortTransform : public generic::Song {
+class PortTransform : public math::analytic_functions::AnalyticFunction {
  public:
-  PortTransform(
-      std::shared_ptr<math::analytic_functions::AnalyticFunction> function);
-  PortTransform();
-
-  double apply(double value) const;
-
-  template <class Archive>
-  void serialize(Archive& ar);
+  PortTransform(names::InstrumentPortSP                      port,
+                math::analytic_functions::AnalyticFunctionSP transform);
 
  private:
-  std::shared_ptr<math::analytic_functions::AnalyticFunction> _function;
+  names::InstrumentPortSP _port;
 
  protected:
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar);
+  PortTransform();
 };
 
 }  // namespace port_transforms
