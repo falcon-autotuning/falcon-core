@@ -7,6 +7,9 @@ CoupledKnobDomain::CoupledKnobDomain(
     const std::vector<BaseLabelledDomainSP<instrument_interfaces::names::Knob>>&
         init)
     : BaseCoupledLabelledDomain<instrument_interfaces::names::Knob>(init) {}
+const instrument_interfaces::names::KnobsSP CoupledKnobDomain::knobs() const {
+  return std::make_shared<instrument_interfaces::names::Knobs>(labels());
+}
 
 }  // namespace falcon_core::math::domains
 

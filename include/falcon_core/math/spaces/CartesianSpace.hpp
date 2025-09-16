@@ -5,31 +5,28 @@
 
 #pragma once
 
-#include "falcon_core/math/discretizers/CartesianDiscretizer.hpp"
 #include "falcon_core/math/spaces/UnitSpace.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace spaces {
+namespace falcon_core::math::spaces {
 
 /**
  * @brief Represents a Cartesian space with discretization.
  */
 class CartesianSpace : public UnitSpace {
  public:
-  CartesianSpace(const std::vector<double>&       deltas,
-                 std::shared_ptr<domains::Domain> domain);
+  CartesianSpace(const std::vector<double>& deltas,
+                 const domains::DomainSP&   domain);
 
-  static Axes<discretizers::BaseDiscretizer> make_axes(
+  static AxesSP<discretizers::BaseDiscretizer> make_axes(
       const std::vector<double>& deltas);
 
  protected:
   friend class cereal::access;
   CartesianSpace();
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<UnitSpace>(this));
+  }
 };
 
-}  // namespace spaces
-}  // namespace math
-}  // namespace falcon_core
+}  // namespace falcon_core::math::spaces

@@ -1,57 +1,61 @@
 #pragma once
-#include <memory>
-#include "falcon_core/generic/Song.hpp"
-#include "falcon_core/math/Axes.hpp"
-#include "falcon_core/math/spaces/UnitSpace.hpp"
-#include "falcon_core/math/domains/CoupledKnobDomain.hpp"
 
-namespace falcon_core {
-namespace math {
-namespace discrete_spaces {
+#include "falcon_core/generic/Map.hpp"
+#include "falcon_core/math/domains/CoupledKnobDomain.hpp"
+#include "falcon_core/math/spaces/UnitSpace.hpp"
+
+namespace falcon_core::math::discrete_spaces {
 
 class BaseDiscreteSpace : public generic::Song {
+  spaces::UnitSpaceSP                     _space;
+  AxesSP<domains::CoupledKnobDomain>      _axes;
+  AxesSP<generic::Map<std::string, bool>> _increasing;
+
  public:
-  using AxesType = Axes<domains::CoupledKnobDomain>;
-  using SpacePtr = std::shared_ptr<spaces::UnitSpace>;
+  BaseDiscreteSpace(const spaces::UnitSpaceSP&                     space,
+                    const AxesSP<domains::CoupledKnobDomain>&      axes,
+                    const AxesSP<generic::Map<std::string, bool>>& increasing);
+  const spaces::UnitSpaceSP&                     space() const;
+  const AxesSP<domains::CoupledKnobDomain>&      axes() const;
+  const AxesSP<generic::Map<std::string, bool>>& increasing() const;
+  /**
+   * @brief Validate that the unit space dimensionality matches the number of
+   * knobs.
+   */
+  void validate_unit_space_dimensionality_matches_knobs() const;
+  /**
+   * @brief Validate that the knobs are unique.
+   */
+  void validate_knob_uniqueness() const;
+  /**
+   * @brief Return the index of the axis containing the given knob.
+   * @param knob The knob to search for.
+   * @return The index of the axis containing the knob.
+   * @throws std::runtime_error if the knob is not found.
+   */
+  const int get_axis(const instrument_interfaces::names::KnobSP& knob) const;
+  /**
+   * @brief Return the domain of the given knob.
+   * @param knob The knob to search for.
+   * @return The domain of the knob.
+   */
+  const domains::DomainSP get_domain(
+      const instrument_interfaces::names::KnobSP& knob) const;
+  /**
+   * @brief Return the projection of the unit space onto the given axes.
+   * @param projection The axes to project onto.
+   * @return The projection of th espace onto the given axes.
+   */
+  const AxesSP<double> get_projection(
+      const AxesSP<instrument_interfaces::names::Knob>& projection) const;
 
-  BaseDiscreteSpace() = default;
-  BaseDiscreteSpace(SpacePtr space,
-                    std::shared_ptr<AxesType> axes)
-      : _space(space), _axes(axes) {}
-
-  const SpacePtr& space() const { return _space; }
-  const std::shared_ptr<AxesType>& axes() const { return _axes; }
-
-  // TODO: Add validation and projection methods as needed
-
-  // Ported get_projection method (simplified, does not handle all Python edge cases)
-  // projection: Axes of Knobs to project onto
-  // Returns: Axes of projected values (dummy implementation, replace with real logic)
-  std::shared_ptr<Axes<double>> get_projection(const std::shared_ptr<Axes<falcon_core::instrument_interfaces::names::Knob>>& projection) const {
-    // For demonstration, just return an Axes<double> with dummy values
-    std::vector<std::shared_ptr<double>> projected;
-    for (size_t i = 0; i < projection->size(); ++i) {
-      projected.push_back(std::make_shared<double>(static_cast<double>(i)));
-    }
-    return std::make_shared<Axes<double>>(projected);
-  }
-
- private:
-  SpacePtr _space;
-  std::shared_ptr<AxesType> _axes;
-
+ protected:
+  BaseDiscreteSpace();
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _space, _axes);
+    ar(cereal::base_class<generic::Song>(this), _space, _axes, _increasing);
   }
 };
 
-}  // namespace discrete_spaces
-}  // namespace math
-}  // namespace falcon_core
-
-#ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::math::discrete_spaces::BaseDiscreteSpace)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, falcon_core::math::discrete_spaces::BaseDiscreteSpace)
-#endif
+}  // namespace falcon_core::math::discrete_spaces

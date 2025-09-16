@@ -21,5 +21,5 @@ class Knobs : public Ports<Knob> {
     ar(cereal::base_class<Ports<Knob>>(this));
   }
 };
-
+using KnobsSP = std::shared_ptr<Knobs>;
 }  // namespace falcon_core::instrument_interfaces::names
