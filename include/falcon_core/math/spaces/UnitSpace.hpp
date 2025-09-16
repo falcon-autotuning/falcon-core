@@ -84,5 +84,5 @@ class UnitSpace : public math::Axes<discretizers::BaseDiscretizer> {
        _space);
   }
 };
-
+using UnitSpaceSP = std::shared_ptr<UnitSpace>;
 }  // namespace falcon_core::math::spaces

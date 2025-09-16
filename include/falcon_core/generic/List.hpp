@@ -81,6 +81,14 @@ class List : public generic::Song {
           return item && value ? *item == *value : item == value;
         });
   }
+  size_t index(const StoredValue& value) const {
+    for (size_t i = 0; i < _items.size(); ++i) {
+      if (_items[i] && value ? *_items[i] == *value : _items[i] == value) {
+        return i;
+      }
+    }
+    throw std::out_of_range("Value not found in List");
+  }
   void insert(iterator pos, const_iterator first, const_iterator last) {
     _items.insert(pos, first, last);
   }
