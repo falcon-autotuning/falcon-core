@@ -1,24 +1,25 @@
 #pragma once
 
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/instrument_interfaces/names/Ports.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 
-/**
- * @brief A transform that applies a constant function to the data.
- */
 namespace falcon_core {
 namespace instrument_interfaces {
 namespace port_transforms {
 
 class ConstantTransform : public PortTransform {
  public:
-  ConstantTransform(double value);
-  ConstantTransform();
+  ConstantTransform(double scale, names::PortsSP<names::InstrumentPort> ports);
 
   template <class Archive>
-  void serialize(Archive& ar);
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<port_transforms::PortTransform>(this));
+  };
 
  protected:
   friend class cereal::access;
+  ConstantTransform();
 };
 
 }  // namespace port_transforms

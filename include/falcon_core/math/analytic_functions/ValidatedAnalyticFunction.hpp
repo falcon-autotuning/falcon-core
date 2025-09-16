@@ -71,6 +71,6 @@ class ValidatedAnalyticFunction : public generic::Song {
     ar(cereal::base_class<generic::Song>(this), _ports, _function);
   }
 };
-template <typename T>
+// template <typename T>
 using ValidatedAnalyticFunctionSP = std::shared_ptr<ValidatedAnalyticFunction>;
 }  // namespace falcon_core::math::analytic_functions

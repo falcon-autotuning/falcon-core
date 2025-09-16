@@ -1,8 +1,8 @@
 #pragma once
 
+#include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
-
 /**
  * @brief Container for multiple PortTransform objects.
  */
@@ -10,7 +10,7 @@ namespace falcon_core {
 namespace instrument_interfaces {
 namespace port_transforms {
 
-class PortTransforms : public generic::Song {
+class PortTransforms : public generic::List<PortTransform> {
  public:
   using value_type     = PortTransform;
   using container_type = std::vector<std::shared_ptr<value_type>>;

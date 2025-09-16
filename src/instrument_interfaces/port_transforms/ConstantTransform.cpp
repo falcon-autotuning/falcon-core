@@ -6,17 +6,14 @@ namespace falcon_core {
 namespace instrument_interfaces {
 namespace port_transforms {
 
-ConstantTransform::ConstantTransform(double value)
+ConstantTransform::ConstantTransform(
+    double                                scale,
+    names::PortsSP<names::InstrumentPort> ports)
     : PortTransform(
-          std::make_shared<math::analytic_functions::ConstantFunction>(value)) {
-}
+          ports->ports()->at(0),  // Use the first port in the collection
+          std::make_shared<math::analytic_functions::Constant>(ports, scale)) {}
 
 ConstantTransform::ConstantTransform() : PortTransform() {}
-
-template <class Archive>
-void ConstantTransform::serialize(Archive& ar) {
-  ar(cereal::base_class<PortTransform>(this));
-}
 
 }  // namespace port_transforms
 }  // namespace instrument_interfaces

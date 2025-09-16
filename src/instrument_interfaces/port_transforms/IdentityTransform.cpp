@@ -1,18 +1,18 @@
 #include "falcon_core/instrument_interfaces/port_transforms/IdentityTransform.hpp"
 
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/instrument_interfaces/names/Ports.hpp"
+#include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/math/analytic_functions/Identity.hpp"
-
 namespace falcon_core {
 namespace instrument_interfaces {
 namespace port_transforms {
 
-IdentityTransform::IdentityTransform()
-    : PortTransform(std::make_shared<math::analytic_functions::Identity>()) {}
-
-template <class Archive>
-void IdentityTransform::serialize(Archive& ar) {
-  ar(cereal::base_class<PortTransform>(this));
-}
+IdentityTransform::IdentityTransform(
+    names::InstrumentPortSP port, names::PortsSP<names::InstrumentPort> ports)
+    : port_transforms::PortTransform(
+          port,
+          std::make_shared<math::analytic_functions::Identity>(port, ports)) {}
 
 }  // namespace port_transforms
 }  // namespace instrument_interfaces
