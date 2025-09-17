@@ -1,14 +1,9 @@
 #pragma once
 
-#include <memory>
-
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace geometries {
+namespace falcon_core::physics::config::geometries {
 
 /*
  * @brief A gate with a right neighbor.
@@ -24,15 +19,13 @@ class HasRightNeighbor : public virtual generic::Song {
    */
   device_structures::BaseConnectionSP right_neighbor() const;
 
-  template <class Archive>
-  void serialize(Archive& ar);
-
  protected:
   HasRightNeighbor();
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this), _right_neighbor);
+  }
 };
 using HasRightNeighborSP = std::shared_ptr<HasRightNeighbor>;
-}  // namespace geometries
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::geometries

@@ -17,6 +17,10 @@ class PlungerGateWithNeighbors : public DotGateWithNeighbors {
  protected:
   PlungerGateWithNeighbors();
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<DotGateWithNeighbors>(this));
+  }
 };
 using PlungerGateWithNeighborsSP = std::shared_ptr<PlungerGateWithNeighbors>;
 }  // namespace geometries

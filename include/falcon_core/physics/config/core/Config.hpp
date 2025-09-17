@@ -2,7 +2,6 @@
 
 #include "falcon_core/autotuner_interfaces/names/Channels.hpp"
 #include "falcon_core/autotuner_interfaces/names/Gname.hpp"
-#include "falcon_core/generic/Map.hpp"
 #include "falcon_core/physics/config/core/Group.hpp"
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 #include "falcon_core/physics/config/core/VoltageConstraints.hpp"
@@ -10,19 +9,16 @@
 #include "falcon_core/physics/device_structures/GateRelations.hpp"
 #include "falcon_core/physics/device_structures/Impedances.hpp"
 #include "falcon_core/physics/device_structures/PlungerGates.hpp"
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace core {
+namespace falcon_core::physics::config::core {
 /**
  * @brief The imported config file for falcon use.
  */
 class Config : public StandardConfigConnections {
-  int                             _num_unique_channels;
-  device_structures::ImpedancesSP _wiring_DC;
-  ChannelsSP                      _channels;
-  VoltageConstraintsSP            _voltage_constraints;
-  generic::MapSP<Gname, Group>    _groups;
+  int                                     _num_unique_channels;
+  device_structures::ImpedancesSP         _wiring_DC;
+  autotuner_interfaces::names::ChannelsSP _channels;
+  VoltageConstraintsSP                    _voltage_constraints;
+  generic::MapSP<autotuner_interfaces::names::Gname, Group> _groups;
 
  public:
   /**
@@ -41,9 +37,9 @@ class Config : public StandardConfigConnections {
          const device_structures::OhmicsSP&         ohmics,
          const device_structures::BarrierGatesSP&   barrier_gates,
          const device_structures::ReservoirGatesSP& reservoir_gates,
-         const generic::MapSP<Gname, Group>         groups,
-         const device_structures::ImpedancesSP&     wiring_DC,
-         const VoltageConstraintsSP&                constriants);
+         const generic::MapSP<autotuner_interfaces::names::Gname, Group> groups,
+         const device_structures::ImpedancesSP& wiring_DC,
+         const VoltageConstraintsSP&            constriants);
   /**
    * @brief Returns the number of unique channels associated with the current
    * sample.
@@ -56,7 +52,7 @@ class Config : public StandardConfigConnections {
   /**
    * @brief Return the DC wiring impedances for the physical layout.
    */
-  generic::MapSP<Gname, Group> groups() const;
+  generic::MapSP<autotuner_interfaces::names::Gname, Group> groups() const;
   /**
    * @brief Returns the wiring impedances of the config.
    */
@@ -64,7 +60,7 @@ class Config : public StandardConfigConnections {
   /**
    * @brief Returns the channels of the config.
    */
-  ChannelsSP channels() const;
+  autotuner_interfaces::names::ChannelsSP channels() const;
   /**
    * @brief Check that all impedances are consistent.
    *
@@ -90,7 +86,7 @@ class Config : public StandardConfigConnections {
   /**
    * @brief Returns all of the group names.
    */
-  std::vector<GnameSP> get_all_gnames() const;
+  std::vector<autotuner_interfaces::names::GnameSP> get_all_gnames() const;
   /**
    * @brief Returns all of the groups.
    */
@@ -105,19 +101,19 @@ class Config : public StandardConfigConnections {
    * @param channel The channel to validate.
    * @returns true if the channel exists, false otherwise.
    */
-  bool has_channel(const ChannelSP& channel) const;
+  bool has_channel(const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Validates if this is a proper gatename.
    * @param gname The gname to validate.
    * @returns true if the gname exists, false otherwise.
    */
-  bool has_gname(const GnameSP& gname) const;
+  bool has_gname(const autotuner_interfaces::names::GnameSP& gname) const;
   /**
    * @brief Finds a group from the name and returns it.
    * @param gname The name of the group to find.
    * @returns The group matching the name. A nullptr if no match is found.
    */
-  GroupSP select_group(const GnameSP& gname) const;
+  GroupSP select_group(const autotuner_interfaces::names::GnameSP& gname) const;
   /**
    * @brief Finds the number of dots associated with a current channel from the
    * config.
@@ -125,13 +121,15 @@ class Config : public StandardConfigConnections {
    * @returns The number of dots associated with the channel. A 0 if there is no
    * match.
    */
-  int get_dot_number(const ChannelSP& channel) const;
+  int get_dot_number(
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Finds all of the arrays of dots that are charge sensors, i.e. only
    * one quantum dot per channel.
    * @returns A vector of gnames that are charge sensors.
    */
-  std::vector<GnameSP> get_charge_sense_groups() const;
+  std::vector<autotuner_interfaces::names::GnameSP> get_charge_sense_groups()
+      const;
   /**
    * @brief If the ohmic is inside of a charge sensor channel
    * @param ohmic The ohmic to check
@@ -152,14 +150,15 @@ class Config : public StandardConfigConnections {
    * @brief Gets all of the current channels from the config.
    * @returns All of the current channels from the config.
    */
-  ChannelsSP get_current_channels() const;
+  autotuner_interfaces::names::ChannelsSP get_current_channels() const;
   /**
    * @brief Gets the associated Gname with a Channel if it exists.
    * @param channel The channel to find the associated Gname for.
    * @returns The Gname associated with the Channel. A nullptr if no match is
    * found.
    */
-  GnameSP get_gname(const ChannelSP& channel) const;
+  autotuner_interfaces::names::GnameSP get_gname(
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Gets all of the barrier gates assocated with the selected
    * group from the config.
@@ -168,7 +167,7 @@ class Config : public StandardConfigConnections {
    * Otherwise a nullptr if no match is found.
    */
   device_structures::BarrierGatesSP get_group_barrier_gates(
-      const GnameSP& gname) const;
+      const autotuner_interfaces::names::GnameSP& gname) const;
   /**
    * @brief Gets all of the plunger gates assocated with the selected
    * group from the config.
@@ -177,7 +176,7 @@ class Config : public StandardConfigConnections {
    * Otherwise a nullptr if no match is found.
    */
   device_structures::PlungerGatesSP get_group_plunger_gates(
-      const GnameSP& gname) const;
+      const autotuner_interfaces::names::GnameSP& gname) const;
   /**
    * @brief Gets all of the reservoir gates assocated with the selected
    * group from the config.
@@ -186,7 +185,7 @@ class Config : public StandardConfigConnections {
    * Otherwise a nullptr if no match is found.
    */
   device_structures::ReservoirGatesSP get_group_reservoir_gates(
-      const GnameSP& gname) const;
+      const autotuner_interfaces::names::GnameSP& gname) const;
   /**
    * @brief Gets all of the screening gates assocated with the selected
    * group from the config.
@@ -195,7 +194,7 @@ class Config : public StandardConfigConnections {
    * Otherwise a nullptr if no match is found.
    */
   device_structures::ScreeningGatesSP get_group_screening_gates(
-      const GnameSP& gname) const;
+      const autotuner_interfaces::names::GnameSP& gname) const;
   /**
    * @brief Gets all of the dot gates assocated with the selected
    * group from the config.
@@ -204,7 +203,7 @@ class Config : public StandardConfigConnections {
    * Otherwise a nullptr if no match is found.
    */
   device_structures::BaseConnectionsSP get_group_dot_gates(
-      const GnameSP& gname) const;
+      const autotuner_interfaces::names::GnameSP& gname) const;
   /**
    * @brief Gets all of the gates assocated with the selected
    * group from the config.
@@ -213,7 +212,7 @@ class Config : public StandardConfigConnections {
    * Otherwise a nullptr if no match is found.
    */
   device_structures::BaseConnectionsSP get_group_gates(
-      const GnameSP& gname) const;
+      const autotuner_interfaces::names::GnameSP& gname) const;
   /**
    * @brief Gets all of the barrier gates assocated with the selected
    * current channel from the config.
@@ -222,7 +221,7 @@ class Config : public StandardConfigConnections {
    * channel. Otherwise a nullptr if no match is found.
    */
   device_structures::BarrierGatesSP get_channel_barrier_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Gets all of the plunger gates assocated with the selected
    * current channel from the config.
@@ -231,7 +230,7 @@ class Config : public StandardConfigConnections {
    * channel. Otherwise a nullptr if no match is found.
    */
   device_structures::PlungerGatesSP get_channel_plunger_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Gets all of the reservoir gates assocated with the selected
    * current channel from the config.
@@ -239,7 +238,7 @@ class Config : public StandardConfigConnections {
    * channel. Otherwise a nullptr if no match is found.
    */
   device_structures::ReservoirGatesSP get_channel_reservoir_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Gets all of the screening gates assocated with the selected
    * current channel from the config.
@@ -248,7 +247,7 @@ class Config : public StandardConfigConnections {
    * channel. Otherwise a nullptr if no match is found.
    */
   device_structures::ScreeningGatesSP get_channel_screening_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Gets all of the dot gates assocated with the selected
    * current channel from the config.
@@ -257,7 +256,7 @@ class Config : public StandardConfigConnections {
    * channel. Otherwise a nullptr if no match is found.
    */
   device_structures::BaseConnectionsSP get_channel_dot_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Gets all of the gates assocated with the selected
    * current channel from the config.
@@ -267,7 +266,7 @@ class Config : public StandardConfigConnections {
    * channel. Otherwise a nullptr if no match is found.
    */
   device_structures::BaseConnectionsSP get_channel_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Gets all of the ohmics assocated with the selected current channel.
    * @param channel The channel to find the ohmics for.
@@ -275,7 +274,7 @@ class Config : public StandardConfigConnections {
    * nullptr if no match is found.
    */
   device_structures::OhmicsSP get_channel_ohmics(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Gets all of the gates in the order at the selected channel from the
    * config with no ohmics.
@@ -284,7 +283,7 @@ class Config : public StandardConfigConnections {
    * nullptr
    */
   device_structures::BaseConnectionsSP get_channel_order_no_ohmics(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Returns the number of unique channels associated with the current
    * sample.
@@ -296,7 +295,7 @@ class Config : public StandardConfigConnections {
    * @returns All of the channels associated with a gate. Otherwise a nullptr if
    * no match is found.
    */
-  ChannelsSP return_channels_from_gate(
+  autotuner_interfaces::names::ChannelsSP return_channels_from_gate(
       const device_structures::BaseConnectionSP& gate) const;
   /**
    * @brief Returns the channel a given gate belongs to. If the gate is in
@@ -304,7 +303,7 @@ class Config : public StandardConfigConnections {
    * @param gate The gate to find the channel for.
    * @returns The channel the gate belongs to. A nullptr if no match is found.
    */
-  ChannelSP return_channel_from_gate(
+  autotuner_interfaces::names::ChannelSP return_channel_from_gate(
       const device_structures::BaseConnectionSP& gate) const;
   /**
    * @brief Checks if the ohmic is connected to a channel.
@@ -313,7 +312,7 @@ class Config : public StandardConfigConnections {
    * @returns true if the ohmic is connected to the channel, false otherwise.
    */
   bool ohmic_in_channel(const device_structures::OhmicSP& ohmic,
-                        const ChannelSP&) const;
+                        const autotuner_interfaces::names::ChannelSP&) const;
   /**
    * @brief Gets the nearby neighbors of the selected gate in the dot channel.
    * @param dotgate The gate of interest (must be in dot channel)
@@ -326,33 +325,39 @@ class Config : public StandardConfigConnections {
   /**
    * @brief Returns barrier gates indexed by channel.
    */
-  generic::MapSP<Channel, device_structures::BarrierGates>
+  generic::MapSP<autotuner_interfaces::names::Channel,
+                 device_structures::BarrierGates>
   get_barrier_gate_dict() const;
   /**
    * @brief Returns plunger gates indexed by channel.
    */
-  generic::MapSP<Channel, device_structures::PlungerGates>
+  generic::MapSP<autotuner_interfaces::names::Channel,
+                 device_structures::PlungerGates>
   get_plunger_gate_dict() const;
   /**
    * @brief Returns reservoir gates indexed by channel.
    */
-  generic::MapSP<Channel, device_structures::ReservoirGates>
+  generic::MapSP<autotuner_interfaces::names::Channel,
+                 device_structures::ReservoirGates>
   get_reservoir_gate_dict() const;
   /**
    * @brief Returns screening gates indexed by channel.
    */
-  generic::MapSP<Channel, device_structures::ScreeningGates>
+  generic::MapSP<autotuner_interfaces::names::Channel,
+                 device_structures::ScreeningGates>
   get_screening_gate_dict() const;
   /**
    * @brief Returns dot gates indexed by channel.
    */
-  generic::MapSP<Channel, device_structures::BaseConnections>
+  generic::MapSP<autotuner_interfaces::names::Channel,
+                 device_structures::BaseConnections>
   get_dot_gate_dict() const;
   /**
    * @brief Returns gates indexed by channel.
    */
-  generic::MapSP<Channel, device_structures::BaseConnections> get_gate_dict()
-      const;
+  generic::MapSP<autotuner_interfaces::names::Channel,
+                 device_structures::BaseConnections>
+  get_gate_dict() const;
   /**
    * @brief Task to find isolated barrier gates stored in the config.
    */
@@ -408,7 +413,7 @@ class Config : public StandardConfigConnections {
    * the selected channel.
    */
   device_structures::BarrierGatesSP get_shared_channel_barrier_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Finds the shared plunger gates in the selected
    * channel.
@@ -417,7 +422,7 @@ class Config : public StandardConfigConnections {
    * the selected channel.
    */
   device_structures::PlungerGatesSP get_shared_channel_plunger_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Finds the shared reservoir gates in the selected channel.
    * @param channel The channel of the device of interest.
@@ -425,7 +430,7 @@ class Config : public StandardConfigConnections {
    * in the selected channel.
    */
   device_structures::ReservoirGatesSP get_shared_channel_reservoir_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Finds the shared screening gates in the selected channel.
    * @param channel The channel of the device of interest.
@@ -433,7 +438,7 @@ class Config : public StandardConfigConnections {
    * in the selected channel.
    */
   device_structures::ScreeningGatesSP get_shared_channel_screening_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Finds the shared dot gates of the gatetype in the selected channel.
    * @param channel The channel of the device of interest.
@@ -441,7 +446,7 @@ class Config : public StandardConfigConnections {
    * selected channel.
    */
   device_structures::BaseConnectionsSP get_shared_channel_dot_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Finds the shared gates in the selected channel.
    * @param channel The channel of the device of interest.
@@ -449,7 +454,7 @@ class Config : public StandardConfigConnections {
    * the selected channel.
    */
   device_structures::BaseConnectionsSP get_shared_channel_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Finds the isolated barrier gates in the selected channel.
    * @param channel The channel of the device of interest.
@@ -457,7 +462,7 @@ class Config : public StandardConfigConnections {
    * in the selected channel.
    */
   device_structures::BarrierGatesSP get_isolated_channel_barrier_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Finds the isolated plunger gates in the selected channel.
    * @param channel The channel of the device of interest.
@@ -465,7 +470,7 @@ class Config : public StandardConfigConnections {
    * in the selected channel.
    */
   device_structures::PlungerGatesSP get_isolated_channel_plunger_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Finds the isolated reservoir gates in the selected channel.
    * @param channel The channel of the device of interest.
@@ -473,7 +478,7 @@ class Config : public StandardConfigConnections {
    * isolated in the selected channel.
    */
   device_structures::ReservoirGatesSP get_isolated_channel_reservoir_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Finds the isolated screening gates in the selected channel.
    * @param channel The channel of the device of interest.
@@ -481,7 +486,7 @@ class Config : public StandardConfigConnections {
    * isolated in the selected channel.
    */
   device_structures::ScreeningGatesSP get_isolated_channel_screening_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Finds the isolated dot gates in the selected channel.
    * @param channel The channel of the device of interest.
@@ -489,7 +494,7 @@ class Config : public StandardConfigConnections {
    * the selected channel.
    */
   device_structures::BaseConnectionsSP get_isolated_channel_dot_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Finds the isolated gates in the selected channel.
    * @param channel The channel of the device of interest.
@@ -497,57 +502,67 @@ class Config : public StandardConfigConnections {
    * in the selected channel.
    */
   device_structures::BaseConnectionsSP get_isolated_channel_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Returns barrier gates indexed by channel which are
    * unshared.
    */
-  generic::MapSP<Channel, device_structures::BarrierGates>
+  generic::MapSP<autotuner_interfaces::names::Channel,
+                 device_structures::BarrierGates>
   get_isolated_barrier_gates_by_channel() const;
   /**
    * @brief Returns plunger gates indexed by channel which are
    * unshared.
    */
-  generic::MapSP<Channel, device_structures::PlungerGates>
+  generic::MapSP<autotuner_interfaces::names::Channel,
+                 device_structures::PlungerGates>
   get_isolated_plunger_gates_by_channel() const;
   /**
    * @brief Returns reservoir gates indexed by channel which are
    * unshared.
    */
-  generic::MapSP<Channel, device_structures::ReservoirGates>
+  generic::MapSP<autotuner_interfaces::names::Channel,
+                 device_structures::ReservoirGates>
   get_isolated_reservoir_gates_by_channel() const;
   /**
    * @brief Returns screening gates indexed by channel which are
    * unshared.
    */
-  generic::MapSP<Channel, device_structures::ScreeningGates>
+  generic::MapSP<autotuner_interfaces::names::Channel,
+                 device_structures::ScreeningGates>
   get_isolated_screening_gates_by_channel() const;
   /**
    * @brief Returns dot gates indexed by channel which are
    * unshared.
    */
-  generic::MapSP<Channel, device_structures::BaseConnections>
+  generic::MapSP<autotuner_interfaces::names::Channel,
+                 device_structures::BaseConnections>
   get_isolated_dot_gates_by_channel() const;
   /**
    * @brief Returns gates indexed by channel which are
    * unshared.
    */
-  generic::MapSP<Channel, device_structures::BaseConnections>
+  generic::MapSP<autotuner_interfaces::names::Channel,
+                 device_structures::BaseConnections>
   get_isolated_gates_by_channel() const;
 
   /**
    * @brief Returns the gate relations in the config.
    */
   device_structures::GateRelationsSP generate_gate_relations() const;
-  template <class Archive>
-  void serialize(Archive& ar);
 
  protected:
   Config();
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<StandardConfigConnections>(this),
+       _num_unique_channels,
+       _wiring_DC,
+       _channels,
+       _voltage_constraints,
+       _groups);
+  }
 };
 using ConfigSP = std::shared_ptr<Config>;
-}  // namespace core
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::core

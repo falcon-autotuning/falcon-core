@@ -8,10 +8,7 @@
 #include "falcon_core/physics/device_structures/Ohmics.hpp"
 #include "falcon_core/physics/device_structures/ScreeningGates.hpp"
 
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace geometries {
+namespace falcon_core::physics::config::geometries {
 
 /**
  * @brief A 1D array of quantum dots with left and right reservoirs, barrier
@@ -119,9 +116,15 @@ class GateGeometryArray1D : public generic::Song {
  protected:
   GateGeometryArray1D();
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<Song>(this),
+       _raw_central_gates,
+       _central_dot_gates,
+       _screening_gates,
+       _lineararray,
+       _gate_name_map);
+  }
 };
 using GateGeometryArray1DSP = std::shared_ptr<GateGeometryArray1D>;
-}  // namespace geometries
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::geometries

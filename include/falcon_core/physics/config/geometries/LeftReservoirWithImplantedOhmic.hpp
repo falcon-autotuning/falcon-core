@@ -5,10 +5,7 @@
 #include "falcon_core/physics/device_structures/BarrierGate.hpp"
 #include "falcon_core/physics/device_structures/ReservoirGate.hpp"
 
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace geometries {
+namespace falcon_core::physics::config::geometries {
 /**
  * @brief A special reservoir geometry that has an implanted ohmic contact and
  *the rest of the channel extending to the right.
@@ -21,16 +18,17 @@ class LeftReservoirWithImplantedOhmic : public device_structures::ReservoirGate,
       std::string                      name,
       device_structures::BarrierGateSP right_neighbor,
       device_structures::OhmicSP       ohmic);
-  template <class Archive>
-  void serialize(Archive& ar);
 
  protected:
   LeftReservoirWithImplantedOhmic();
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<ReservoirGate>(this),
+       cereal::base_class<HasImplantedOhmic>(this),
+       cereal::base_class<HasRightNeighbor>(this));
+  }
 };
 using LeftReservoirWithImplantedOhmicSP =
     std::shared_ptr<LeftReservoirWithImplantedOhmic>;
-}  // namespace geometries
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::geometries

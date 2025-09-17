@@ -27,13 +27,13 @@ class Group : public StandardConfigConnections {
    * @param barrier_gates The barrier gates in the group.
    * @param order The order of the gates in the group.
    */
-  Group(const ChannelSP&                            name,
-        const int&                                  num_dots,
-        const device_structures::ScreeningGatesSP&  screening_gates,
-        const device_structures::ReservoirGatesSP&  reservoir_gates,
-        const device_structures::PlungerGatesSP&    plunger_gates,
-        const device_structures::BarrierGatesSP&    barrier_gates,
-        const device_structures::BaseConnectionsSP& order);
+  Group(const autotuner_interfaces::names::ChannelSP& name,
+        const int&                                    num_dots,
+        const device_structures::ScreeningGatesSP&    screening_gates,
+        const device_structures::ReservoirGatesSP&    reservoir_gates,
+        const device_structures::PlungerGatesSP&      plunger_gates,
+        const device_structures::BarrierGatesSP&      barrier_gates,
+        const device_structures::BaseConnectionsSP&   order);
   /**
    * @brief collect the ohmics pertaining to this group.
    */
@@ -41,7 +41,7 @@ class Group : public StandardConfigConnections {
   /**
    * @brief collect the name of this group.
    */
-  ChannelSP name() const;
+  autotuner_interfaces::names::ChannelSP name() const;
   /**
    * @brief collect the number of dots in this group.
    */
@@ -55,7 +55,7 @@ class Group : public StandardConfigConnections {
    * @param channel The channel to validate.
    * @returns true if the channel is present.
    */
-  bool has_channel(const ChannelSP& channel) const;
+  bool has_channel(const autotuner_interfaces::names::ChannelSP& channel) const;
   /**
    * @brief Checks if this channel could be a charge sensor.
    * @returns true if the channel has a single dot.
@@ -68,7 +68,11 @@ class Group : public StandardConfigConnections {
    * correct then empty gates are returned.
    */
   device_structures::BaseConnectionsSP get_all_channel_gates(
-      const ChannelSP& channel) const;
+      const autotuner_interfaces::names::ChannelSP& channel) const;
+
+ protected:
+  Group();
+  friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<StandardConfigConnections>(this),
@@ -77,10 +81,6 @@ class Group : public StandardConfigConnections {
        _order,
        _ohmics);
   }
-
- protected:
-  Group();
-  friend class cereal::access;
 };
 using GroupSP = std::shared_ptr<Group>;
 }  // namespace core

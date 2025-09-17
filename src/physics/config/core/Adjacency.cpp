@@ -16,11 +16,9 @@ std::vector<std::pair<int, int>> Adjacency::get_true_pairs() const {
   }
   return true_pairs;
 }
-template <class Archive>
-void Adjacency::serialize(Archive &ar) {
-  ar(cereal::base_class<generic::FArray<int>>(this), _indexes);
-}
 }  // namespace falcon_core::physics::config::core
 CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::Adjacency)
+CEREAL_REGISTER_TYPE(falcon_core::generic::FArray<int>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song, falcon_core::physics::config::core::Adjacency)
+    falcon_core::generic::FArray<int>,
+    falcon_core::physics::config::core::Adjacency)

@@ -1,10 +1,7 @@
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 
 #include <stdexcept>
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace geometries {
+namespace falcon_core::physics::config::geometries {
 DotGateWithNeighbors::DotGateWithNeighbors() = default;
 DotGateWithNeighbors::DotGateWithNeighbors(
     std::string                         name,
@@ -20,16 +17,7 @@ DotGateWithNeighbors::DotGateWithNeighbors(
   }
 }
 
-template <class Archive>
-void DotGateWithNeighbors::serialize(Archive& ar) {
-  ar(cereal::base_class<BaseConnection>(this),
-     left_neighbor(),
-     right_neighbor());
-}
-}  // namespace geometries
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::geometries
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::geometries::DotGateWithNeighbors)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

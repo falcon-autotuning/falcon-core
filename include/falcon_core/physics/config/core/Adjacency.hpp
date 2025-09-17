@@ -3,10 +3,7 @@
 #include "falcon_core/generic/FArray.hpp"
 #include "falcon_core/physics/device_structures/BaseConnections.hpp"
 
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace core {
+namespace falcon_core::physics::config::core {
 
 class Adjacency : public generic::FArray<int> {
   using Indexes = physics::device_structures::BaseConnectionsSP;
@@ -24,15 +21,14 @@ class Adjacency : public generic::FArray<int> {
    * @brief Returns the pairs of indexes where the adjacency matrix is true (1)
    */
   std::vector<std::pair<int, int>> get_true_pairs() const;
-  template <class Archive>
-  void serialize(Archive &ar);
 
  protected:
   Adjacency();
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive &ar) {
+    ar(cereal::base_class<generic::FArray<int>>(this), _indexes);
+  }
 };
 using AdjacencySP = std::shared_ptr<Adjacency>;
-}  // namespace core
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::core

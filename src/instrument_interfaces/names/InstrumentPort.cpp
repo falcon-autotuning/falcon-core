@@ -2,9 +2,7 @@
 
 #include "falcon_core/instrument_interfaces/Instrument.hpp"
 
-namespace falcon_core {
-namespace instrument_interfaces {
-namespace names {
+namespace falcon_core::instrument_interfaces::names {
 
 InstrumentPort::InstrumentPort(
     std::string                                                 default_name,
@@ -21,8 +19,10 @@ InstrumentPort::InstrumentPort(
 InstrumentPort::InstrumentPort()
     : _default_name(""),
       _pseudo_name(nullptr),
-      _instrument_type(falcon_core::instrument_interfaces::INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE),
-      _units(std::make_shared<physics::units::SymbolUnit>(physics::units::Units::Volt)),
+      _instrument_type(falcon_core::instrument_interfaces::INSTRUMENT_TYPES::
+                           DC_VOLTAGE_SOURCE),
+      _units(std::make_shared<physics::units::SymbolUnit>(
+          physics::units::Units::Volt)),
       _description("") {}
 
 const std::string InstrumentPort::default_name() const { return _default_name; }
@@ -49,34 +49,9 @@ const std::string InstrumentPort::instrument_facing_name() const {
   }
 }
 
-template <class Archive>
-void InstrumentPort::serialize(Archive& ar) {
-  ar(cereal::base_class<generic::Song>(this),
-     _default_name,
-     _pseudo_name,
-     _instrument_type,
-     _units,
-     _description);
-}
-
-// Explicit template instantiations for cereal
-template void InstrumentPort::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive& ar);
-template void InstrumentPort::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive& ar);
-template void InstrumentPort::serialize<cereal::BinaryOutputArchive>(cereal::BinaryOutputArchive& ar);
-template void InstrumentPort::serialize<cereal::BinaryInputArchive>(cereal::BinaryInputArchive& ar);
-
-}  // namespace names
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::instrument_interfaces::names
 
 CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::InstrumentPort)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
     falcon_core::instrument_interfaces::names::InstrumentPort)
-
-// Define static member for INSTRUMENT_TYPES
-namespace falcon_core {
-namespace instrument_interfaces {
-const std::string INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE = "DC_VOLTAGE_SOURCE";
-}  // namespace instrument_interfaces
-}  // namespace falcon_core

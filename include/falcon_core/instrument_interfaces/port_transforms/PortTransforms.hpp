@@ -24,7 +24,7 @@ class PortTransforms : public generic::List<PortTransform> {
 
   template <class Archive>
   void serialize(Archive& ar) {
-    return ar(cereal::base_class<generic::List<PortTransform>>(this));
+    ar(cereal::base_class<generic::List<PortTransform>>(this));
   }
 };
 

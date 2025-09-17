@@ -1,9 +1,6 @@
 #include "falcon_core/physics/config/core/VoltageConstraints.hpp"
 
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace core {
+namespace falcon_core::physics::config::core {
 VoltageConstraints::VoltageConstraints() = default;
 VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
                                        double                    max_safe_diff,
@@ -62,14 +59,7 @@ AdjacencySP VoltageConstraints::adjacency() const { return _adjacency; }
  * @brief The (min,max) safe voltage limits for each constraint.
  */
 std::pair<float, float> VoltageConstraints::limits() const { return _limits; }
-template <class Archive>
-void VoltageConstraints::serialize(Archive& ar) {
-  ar(cereal::base_class<generic::Song>(this), _matrix, _adjacency, _limits);
-}
-}  // namespace core
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::core
 CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::VoltageConstraints)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,

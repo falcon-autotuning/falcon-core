@@ -1,19 +1,8 @@
 #pragma once
 
-#include <cereal/archives/json.hpp>
-#include <memory>
-
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
-#include "falcon_core/physics/device_structures/BarrierGate.hpp"
-#include "falcon_core/physics/device_structures/Ohmic.hpp"
-#include "falcon_core/physics/device_structures/PlungerGate.hpp"
-#include "falcon_core/physics/device_structures/ReservoirGate.hpp"
-#include "falcon_core/physics/device_structures/ScreeningGate.hpp"
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace geometries {
+namespace falcon_core::physics::config::geometries {
 
 /**
  * @brief A serializable vector of DotGateWithNeighbors pointers, also a Song.
@@ -57,14 +46,7 @@ namespace geometries {
 class DotGatesWithNeighbors
     : public falcon_core::generic::List<DotGateWithNeighbors,
                                         DotGatesWithNeighbors> {
-  template <class Archive>
-  void serialize(Archive& ar);
-
  public:
-  /**
-   * @brief Default constructor: creates an empty DotGatesWithNeighbors
-   * container.
-   */
   DotGatesWithNeighbors();
   /**
    * @brief Construct a DotGatesWithNeighbors container with a given size.
@@ -95,9 +77,12 @@ class DotGatesWithNeighbors
 
  protected:
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<falcon_core::generic::List<DotGateWithNeighbors,
+                                                     DotGatesWithNeighbors>>(
+        this));
+  }
 };
 using DotGatesWithNeighborsSP = std::shared_ptr<DotGatesWithNeighbors>;
-}  // namespace geometries
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::geometries

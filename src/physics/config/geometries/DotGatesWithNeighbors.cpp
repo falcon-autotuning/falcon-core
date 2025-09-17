@@ -1,11 +1,6 @@
 #include "falcon_core/physics/config/geometries/DotGatesWithNeighbors.hpp"
 
-#include <algorithm>
-
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace geometries {
+namespace falcon_core::physics::config::geometries {
 
 DotGatesWithNeighbors::DotGatesWithNeighbors() = default;
 DotGatesWithNeighbors::DotGatesWithNeighbors(size_t count)
@@ -31,18 +26,12 @@ bool DotGatesWithNeighbors::is_barrier_gates() const {
       });
 }
 
-template <class Archive>
-void DotGatesWithNeighbors::serialize(Archive& ar) {
-  ar(cereal::base_class<
-      generic::List<DotGateWithNeighbors, DotGatesWithNeighbors>>(this));
-}
-
-}  // namespace geometries
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::geometries
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::geometries::DotGatesWithNeighbors)
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<
+        falcon_core::physics::config::geometries::DotGatesWithNeighbors>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::List<
         falcon_core::physics::config::geometries::DotGateWithNeighbors>,

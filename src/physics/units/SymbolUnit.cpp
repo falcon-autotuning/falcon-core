@@ -103,20 +103,6 @@ bool SymbolUnit::is_compatible_with(const SymbolUnitSP& other) const {
   return unit()->is_compatible_with(other->unit());
 }
 std::string SymbolUnit::str() const { return _symbol; }
-template <class Archive>
-void SymbolUnit::serialize(Archive& ar) {
-  ar(cereal::base_class<Song>(this), _unit, _symbol, _name);
-}
-
-// Explicit instantiations for Cereal archives
-template void SymbolUnit::serialize<cereal::BinaryInputArchive>(
-    cereal::BinaryInputArchive&);
-template void SymbolUnit::serialize<cereal::BinaryOutputArchive>(
-    cereal::BinaryOutputArchive&);
-template void SymbolUnit::serialize<cereal::JSONInputArchive>(
-    cereal::JSONInputArchive&);
-template void SymbolUnit::serialize<cereal::JSONOutputArchive>(
-    cereal::JSONOutputArchive&);
 
 std::pair<std::string, std::string> SymbolUnit::_find_matching_common_unit()
     const {

@@ -10,10 +10,7 @@
 #include "falcon_core/physics/device_structures/ReservoirGates.hpp"
 #include "falcon_core/physics/device_structures/ScreeningGates.hpp"
 
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace core {
+namespace falcon_core::physics::config::core {
 /**
  * @brief Base config functionality for core config classes.
  */
@@ -137,6 +134,10 @@ class StandardConfigConnections : public generic::Song {
    * @brief If this gate is a screeninggate of this group or not.
    */
   bool has_screening_gate(const device_structures::ScreeningGateSP& gate) const;
+
+ protected:
+  StandardConfigConnections();
+  friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this),
@@ -146,13 +147,6 @@ class StandardConfigConnections : public generic::Song {
        _barrier_gates,
        _ohmics);
   }
-
- protected:
-  StandardConfigConnections();
-  friend class cereal::access;
 };
 using StandardConfigConnectionsSP = std::shared_ptr<StandardConfigConnections>;
-}  // namespace core
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::core

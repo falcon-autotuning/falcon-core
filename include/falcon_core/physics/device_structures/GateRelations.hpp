@@ -3,9 +3,7 @@
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 #include "falcon_core/physics/device_structures/BaseConnections.hpp"
-namespace falcon_core {
-namespace physics {
-namespace device_structures {
+namespace falcon_core::physics::device_structures {
 
 /**
  * @brief Holds the relations between gates and their neighbors.
@@ -16,8 +14,6 @@ class GateRelations
   GateRelations();
   GateRelations(
       std::vector<std::pair<BaseConnectionSP, BaseConnectionsSP>> init);
-  template <class Archive>
-  void serialize(Archive& ar);
   /**
    * @brief Override the default Map assignment to force gate typing.
    */
@@ -33,8 +29,11 @@ class GateRelations
 
  protected:
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<Map<BaseConnection, BaseConnections, GateRelations>>(
+        this));
+  }
 };
 using GateRelationsSP = std::shared_ptr<GateRelations>;
-}  // namespace device_structures
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::device_structures

@@ -1,9 +1,6 @@
 #include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic.hpp"
 
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace geometries {
+namespace falcon_core::physics::config::geometries {
 RightReservoirWithImplantedOhmic::RightReservoirWithImplantedOhmic() = default;
 RightReservoirWithImplantedOhmic::RightReservoirWithImplantedOhmic(
     std::string                      name,
@@ -18,10 +15,7 @@ void RightReservoirWithImplantedOhmic::serialize(Archive& ar) {
      cereal::base_class<HasImplantedOhmic>(this),
      cereal::base_class<HasLeftNeighbor>(this));
 }
-}  // namespace geometries
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::geometries
 
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::geometries::RightReservoirWithImplantedOhmic)

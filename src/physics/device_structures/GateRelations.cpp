@@ -2,10 +2,7 @@
 
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 #include "falcon_core/physics/device_structures/BaseConnections.hpp"
-using namespace falcon_core::physics::device_structures;
-namespace falcon_core {
-namespace physics {
-namespace device_structures {
+namespace falcon_core::physics::device_structures {
 GateRelations::GateRelations() = default;
 GateRelations::GateRelations(
     std::vector<std::pair<BaseConnectionSP, BaseConnectionsSP>> init)
@@ -39,14 +36,10 @@ GateRelations::insert(const BaseConnectionSP&  key,
   }
   return Map::insert(key, value);
 }
-template <class Archive>
-void GateRelations::serialize(Archive& ar) {
-  ar(cereal::base_class<Map<BaseConnection, BaseConnections, GateRelations>>(
-      this));
-}
-}  // namespace device_structures
-}  // namespace physics
-}  // namespace falcon_core
-using MapGR = falcon_core::generic::Map<BaseConnection, BaseConnections>;
-CEREAL_REGISTER_TYPE(GateRelations)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(MapGR, GateRelations)
+}  // namespace falcon_core::physics::device_structures
+using MapGR = falcon_core::generic::Map<
+    falcon_core::physics::device_structures::BaseConnection,
+    falcon_core::physics::device_structures::BaseConnections>;
+CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::GateRelations)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    MapGR, falcon_core::physics::device_structures::GateRelations)

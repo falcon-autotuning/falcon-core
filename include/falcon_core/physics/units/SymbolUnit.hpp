@@ -110,12 +110,14 @@ class SymbolUnit : public generic::Song {
   std::map<std::string, std::string> get_dimension_symbols() const;
 
   std::string str() const;
-  template <class Archive>
-  void serialize(Archive& ar);
 
  protected:
   SymbolUnit();
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<Song>(this), _unit, _symbol, _name);
+  }
 };
 using SymbolUnitSP = std::shared_ptr<SymbolUnit>;
 }  // namespace units

@@ -80,12 +80,18 @@ class Unit : public generic::Song {
    * otherwise.
    */
   bool is_compatible_with(const std::shared_ptr<Unit>& other) const;
-  template <class Archive>
-  void serialize(Archive& ar);
 
  protected:
   Unit() = default;  // or initialize _name with a default value
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<Song>(this),
+       _scale_factor,
+       _offset,
+       _prefix,
+       _dimensions);
+  }
 };
 using UnitSP = std::shared_ptr<Unit>;
 }  // namespace units

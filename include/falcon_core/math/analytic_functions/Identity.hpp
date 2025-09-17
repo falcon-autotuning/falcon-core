@@ -30,7 +30,7 @@ class IdentityFunction : public AnalyticFunction {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    return ar(cereal::base_class<AnalyticFunction>(this), _port);
+    ar(cereal::base_class<AnalyticFunction>(this), _port);
   }
 };
 
@@ -48,7 +48,7 @@ class Identity : public ValidatedAnalyticFunction {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    return ar(cereal::base_class<ValidatedAnalyticFunction>(this));
+    ar(cereal::base_class<ValidatedAnalyticFunction>(this));
   }
 };
 using IdentitySP         = std::shared_ptr<Identity>;

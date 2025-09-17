@@ -1,7 +1,5 @@
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D.hpp"
 
-#include <memory>
-
 #include "falcon_core/macros.hpp"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic.hpp"

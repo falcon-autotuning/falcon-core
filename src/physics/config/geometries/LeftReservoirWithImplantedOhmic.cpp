@@ -2,10 +2,7 @@
 
 #include "falcon_core/physics/device_structures/ReservoirGate.hpp"
 
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace geometries {
+namespace falcon_core::physics::config::geometries {
 LeftReservoirWithImplantedOhmic::LeftReservoirWithImplantedOhmic() = default;
 LeftReservoirWithImplantedOhmic::LeftReservoirWithImplantedOhmic(
     std::string                      name,
@@ -14,13 +11,4 @@ LeftReservoirWithImplantedOhmic::LeftReservoirWithImplantedOhmic(
     : ReservoirGate(name),
       HasRightNeighbor(right_neighbor),
       HasImplantedOhmic(ohmic) {}
-template <class Archive>
-void LeftReservoirWithImplantedOhmic::serialize(Archive& ar) {
-  ar(cereal::base_class<ReservoirGate>(this),
-     cereal::base_class<HasImplantedOhmic>(this),
-     cereal::base_class<HasRightNeighbor>(this));
-}
-}  // namespace geometries
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::geometries

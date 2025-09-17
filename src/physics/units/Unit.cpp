@@ -5,9 +5,7 @@
 
 #include "falcon_core/physics/units/Prefix.hpp"
 #include "falcon_core/physics/units/TotalDimensions.hpp"
-namespace falcon_core {
-namespace physics {
-namespace units {
+namespace falcon_core::physics::units {
 Unit::Unit(TotalDimensions dimensions,
            double          scale_factor,
            double          offset,
@@ -118,28 +116,8 @@ double Unit::convert_value_to(const double  value,
 bool Unit::is_compatible_with(const UnitSP &other) const {
   return dimensions() == other->dimensions();
 }
-template <class Archive>
-void Unit::serialize(Archive &ar) {
-  ar(cereal::base_class<Song>(this),
-     _scale_factor,
-     _offset,
-     _prefix,
-     _dimensions);
-}
 
-// Explicit instantiations for Cereal archives
-template void Unit::serialize<cereal::BinaryInputArchive>(
-    cereal::BinaryInputArchive &);
-template void Unit::serialize<cereal::BinaryOutputArchive>(
-    cereal::BinaryOutputArchive &);
-template void Unit::serialize<cereal::JSONInputArchive>(
-    cereal::JSONInputArchive &);
-template void Unit::serialize<cereal::JSONOutputArchive>(
-    cereal::JSONOutputArchive &);
-
-}  // namespace units
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::units
 CEREAL_REGISTER_TYPE(falcon_core::physics::units::Unit)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::physics::units::Unit)

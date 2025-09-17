@@ -1,14 +1,9 @@
 #include "falcon_core/physics/config/geometries/BarrierGateWithNeighbors.hpp"
 
-#include <stdexcept>
-
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
 
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace geometries {
+namespace falcon_core::physics::config::geometries {
 BarrierGateWithNeighbors::BarrierGateWithNeighbors(
     std::string                         name,
     device_structures::BaseConnectionSP left_neighbor,
@@ -34,10 +29,7 @@ BarrierGateWithNeighbors::BarrierGateWithNeighbors(
 }
 
 BarrierGateWithNeighbors::BarrierGateWithNeighbors() = default;
-}  // namespace geometries
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::geometries
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::geometries::BarrierGateWithNeighbors)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

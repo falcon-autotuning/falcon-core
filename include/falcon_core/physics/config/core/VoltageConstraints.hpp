@@ -3,10 +3,7 @@
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/config/core/Adjacency.hpp"
 
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace core {
+namespace falcon_core::physics::config::core {
 
 /**
  * @brief Contains a ready to use voltage constrains matrix and matching limits
@@ -37,15 +34,14 @@ class VoltageConstraints : public generic::Song {
    * @brief The (min,max) safe voltage limits for each constraint.
    */
   std::pair<float, float> limits() const;
-  template <class Archive>
-  void serialize(Archive& ar);
 
  protected:
   VoltageConstraints();
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this), _matrix, _adjacency, _limits);
+  }
 };
 using VoltageConstraintsSP = std::shared_ptr<VoltageConstraints>;
-}  // namespace core
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::core

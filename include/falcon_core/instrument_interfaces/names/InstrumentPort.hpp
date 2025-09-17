@@ -55,9 +55,6 @@ class InstrumentPort : public generic::Song {
    */
   const std::string instrument_facing_name() const;
 
-  template <class Archive>
-  void serialize(Archive& ar);
-
  private:
   std::string                                                 _default_name;
   std::shared_ptr<physics::device_structures::BaseConnection> _pseudo_name;
@@ -68,6 +65,15 @@ class InstrumentPort : public generic::Song {
  protected:
   friend class cereal::access;
   InstrumentPort();
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<generic::Song>(this),
+       _default_name,
+       _pseudo_name,
+       _instrument_type,
+       _units,
+       _description);
+  }
 };
 
 using InstrumentPortSP = std::shared_ptr<InstrumentPort>;

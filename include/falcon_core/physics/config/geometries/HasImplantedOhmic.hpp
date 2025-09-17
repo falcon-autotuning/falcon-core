@@ -2,10 +2,7 @@
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/Ohmic.hpp"
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace geometries {
+namespace falcon_core::physics::config::geometries {
 /*
  * @brief A gate with an ohmic below it.
  */
@@ -18,14 +15,14 @@ class HasImplantedOhmic : public generic::Song {
    * @brief Returns the ohmic below the gate.
    */
   device_structures::OhmicSP ohmic() const;
-  template <class Archive>
-  void serialize(Archive& ar);
 
  protected:
   HasImplantedOhmic();
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<HasImplantedOhmic>(this), _ohmic);
+  }
 };
-}  // namespace geometries
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+using HasImplantedOhmicSP = std::shared_ptr<HasImplantedOhmic>;
+}  // namespace falcon_core::physics::config::geometries

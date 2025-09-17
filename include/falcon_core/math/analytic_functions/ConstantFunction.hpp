@@ -29,7 +29,7 @@ class ConstantFunction : public AnalyticFunction {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    return ar(cereal::base_class<AnalyticFunction>(this), _value);
+    ar(cereal::base_class<AnalyticFunction>(this), _value);
   }
 };
 /**
@@ -46,7 +46,7 @@ class Constant : public ValidatedAnalyticFunction {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    return ar(cereal::base_class<ValidatedAnalyticFunction>(this));
+    ar(cereal::base_class<ValidatedAnalyticFunction>(this));
   }
 };
 }  // namespace falcon_core::math::analytic_functions
