@@ -4,6 +4,7 @@
 
 #include <boost/uuid/uuid.hpp>
 
+#include "falcon_core/communications/messages/MeasurementRequest.hpp"
 #include "falcon_core/communications/messages/MeasurementResponse.hpp"
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates.hpp"
 #include "falcon_core/generic/Map.hpp"
@@ -14,24 +15,15 @@
 #include "falcon_core/math/domains/CoupledKnobDomain.hpp"
 namespace falcon_core::communications::hdf5 {
 class HDF5Data : public generic::Song {
-  using DimensionIndex = std::string;
-  using Dimension      = int;
-  using AxisLabel      = std::string;
-  using Unit           = std::string;
-  using Data           = std::string;
-  using Range          = generic::Map<std::string, Unit>;
-  using Metadata       = generic::Map<std::string, std::string>;
-  using Dimensions     = generic::Map<DimensionIndex, Dimension>;
-  using Domain         = generic::Map<std::string, Data>;
-  using Domains        = generic::Map<DimensionIndex, Domain>;
-  using Ranges         = generic::Map<AxisLabel, Range>;
-  std::shared_ptr<Dimensions> _dimensions;
-  std::shared_ptr<Domains>    _domains;
-  std::shared_ptr<Ranges>     _ranges;
-  std::shared_ptr<Metadata>   _metadata;
-  int                         _unique_id;
-  std::string                 _measurement_title;
-  int                         _timestamp;
+  using Metadata = generic::Map<std::string, std::string>;
+  math::AxesSP<int>                              _shape;
+  math::AxesSP<math::arrays::ControlArray>       _unit_domain;
+  math::AxesSP<math::domains::CoupledKnobDomain> _domain_labels;
+  math::arrays::LabelledMeasuredArraysSP         _ranges;
+  std::shared_ptr<Metadata>                      _metadata;
+  std::string                                    _measurement_title;
+  int                                            _unique_id;
+  int                                            _timestamp;
 
  protected:
   friend class cereal::access;
@@ -39,8 +31,9 @@ class HDF5Data : public generic::Song {
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this),
-       _dimensions,
-       _domains,
+       _shape,
+       _unit_domain,
+       _domain_labels,
        _ranges,
        _metadata,
        _unique_id,
@@ -60,14 +53,14 @@ class HDF5Data : public generic::Song {
    * @param unique_id A unique id for the measurement.
    * @param timestamp A timestamp for the measurement.
    */
-  HDF5Data(const AxesSP<int>&                            shape,
-           const AxesSP<math::arrays::ControlArray>&     unit_domain,
-           const AxesSP<CoupledKnobDomain>&              domain_labels,
-           const math::arrays::LabelledMeasuredArraysSP& ranges,
-           const std::shared_ptr<Metadata>&              metadata,
-           const std::string                             measurement_title,
-           const int                                     unique_id,
-           const int                                     timestamp);
+  HDF5Data(const math::AxesSP<int>&                              shape,
+           const math::AxesSP<math::arrays::ControlArray>&       unit_domain,
+           const math::AxesSP<math::domains::CoupledKnobDomain>& domain_labels,
+           const math::arrays::LabelledMeasuredArraysSP&         ranges,
+           const std::shared_ptr<Metadata>&                      metadata,
+           const std::string& measurement_title,
+           const int&         unique_id,
+           const int&         timestamp);
   /**
    * @brief Convert from a file to an HDF5Data object.
    * @param path The path to the HDF5 file.
@@ -86,13 +79,13 @@ class HDF5Data : public generic::Song {
    * @return A HDF5Data object.
    */
   static const std::shared_ptr<HDF5Data> from_communications(
-      const messages::MeasurementResponseSP&     request,
-      const messages::MeasurementResponse&       response,
-      const voltage_states::DeviceVoltageStates& device_voltage_states,
-      const boost::uuids::uuid&                  session_id,
-      const std::string&                         measurement_title,
-      const int                                  unique_id,
-      const int                                  timestamp);
+      const messages::MeasurementRequestSP&        request,
+      const messages::MeasurementResponseSP&       response,
+      const voltage_states::DeviceVoltageStatesSP& device_voltage_states,
+      const boost::uuids::uuid&                    session_id,
+      const std::string&                           measurement_title,
+      const int&                                   unique_id,
+      const int&                                   timestamp);
   /**
    * @brief Convert from an HDF5Data object to a file.
    * @param path The path to write the HDF5 file at.
@@ -101,9 +94,11 @@ class HDF5Data : public generic::Song {
   /**
    * @brief Convert from an HDF5Data object to a MeasurementResponse and a
    * Metadata.
-   * @return A pair of MeasurementResponse and Metadata.
+   * @return A pair of MeasurementResponse and MeasurementRequest.
    */
-  const std::pair<math::arrays::LabelledMeasuredArraysSP, Metadata>
+  const std::pair<communications::messages::MeasurementResponseSP,
+                  communications::messages::MeasurementRequestSP>
   to_communications() const;
 };
+using HDF5DataSP = std::shared_ptr<HDF5Data>;
 }  // namespace falcon_core::communications::hdf5

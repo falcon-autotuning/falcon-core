@@ -279,6 +279,7 @@ target_include_directories(
      falcon_core_cpp
      PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
             $<INSTALL_INTERFACE:include>
+            ${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux/include
    )
 
 target_link_libraries(falcon_core_cpp

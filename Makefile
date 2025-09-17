@@ -7,7 +7,21 @@ BUILD_DIR := build
 OUT_PYTHON_DIR := src/falcon_core
 
 # Default target: setup vcpkg and build the project
-all: setup-vcpkg build
+forward-header-xtensor-xarray:
+	@echo "--- Creating forwarding header for xtensor/xarray.hpp ---"
+	@if [ ! -e vcpkg_installed/x64-linux/include/xtensor/xarray.hpp ]; then \
+		echo '#include "containers/xarray.hpp"' > vcpkg_installed/x64-linux/include/xtensor/xarray.hpp; \
+	fi
+	@echo "--- Creating forwarding header for xtensor/xtensor.hpp ---"
+	@if [ ! -e vcpkg_installed/x64-linux/include/xtensor/xtensor.hpp ]; then \
+		echo '#include "containers/xtensor.hpp"' > vcpkg_installed/x64-linux/include/xtensor/xtensor.hpp; \
+	fi
+	@echo "--- Creating forwarding header for xtensor/xadapt.hpp ---"
+	@if [ ! -e vcpkg_installed/x64-linux/include/xtensor/xadapt.hpp ]; then \
+		echo '#include "containers/xadapt.hpp"' > vcpkg_installed/x64-linux/include/xtensor/xadapt.hpp; \
+	fi
+
+all: setup-vcpkg forward-header-xtensor-xarray build
 
 # Setup vcpkg toolchain
 setup-vcpkg:
