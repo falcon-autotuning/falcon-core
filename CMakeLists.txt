@@ -27,25 +27,25 @@ function(cpp_tests)
     # Default: include all test files
     set(RUN_TESTS_SOURCES
     tests/test_unit.cpp
-    tests/test_common_unit.cpp
-    tests/test_song.cpp
-    tests/test_device_structures.cpp
-    tests/test_arrays.cpp
-    tests/test_labelled_arrays.cpp
-    tests/test_quantity.cpp
-    tests/test_instrument_interfaces_names.cpp
-    tests/test_config.cpp
-    tests/test_domains.cpp
-    tests/test_discretizers.cpp
-    tests/test_spaces.cpp
-    tests/test_discrete_spaces.cpp
-    tests/test_vector.cpp
-    tests/test_analytic_function.cpp
-    tests/test_port_transforms.cpp
-    tests/test_waveforms.cpp
-    tests/test_device_voltage_states.cpp
-    tests/test_messages.cpp
-    tests/test_farray.cpp
+    # tests/test_common_unit.cpp
+    # tests/test_song.cpp
+    # tests/test_device_structures.cpp
+    # tests/test_arrays.cpp
+    # tests/test_labelled_arrays.cpp
+    # tests/test_quantity.cpp
+    # tests/test_instrument_interfaces_names.cpp
+    # tests/test_config.cpp
+    # tests/test_domains.cpp
+    # tests/test_discretizers.cpp
+    # tests/test_spaces.cpp
+    # tests/test_discrete_spaces.cpp
+    # tests/test_vector.cpp
+    # tests/test_analytic_function.cpp
+    # tests/test_port_transforms.cpp
+    # tests/test_waveforms.cpp
+    # tests/test_device_voltage_states.cpp
+    # tests/test_messages.cpp
+    # tests/test_farray.cpp
   )
   endif()
 

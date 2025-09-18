@@ -32,6 +32,14 @@ class LabelledControlArray : public ControlArray, public IsLabelled<double> {
   LabelledControlArray(
       const generic::FArraySP<double>&                            array,
       const autotuner_interfaces::contexts::AcquisitionContextSP& label);
+  /**
+   * @brief Constructs a new LabelledControlArray object using a BaseArray.
+   * @param array The control array.
+   * @param port The instrument port to create the label from.
+   */
+  LabelledControlArray(
+      const generic::FArraySP<double>&                      array,
+      const instrument_interfaces::names::InstrumentPortSP& port);
 
   LabelledControlArray(const LabelledControlArray&)                = default;
   LabelledControlArray(LabelledControlArray&&) noexcept            = default;

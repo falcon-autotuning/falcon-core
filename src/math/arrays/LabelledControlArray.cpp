@@ -14,6 +14,13 @@ LabelledControlArray::LabelledControlArray(
     : ControlArray(*array) {
   _label = label;
 }
+LabelledControlArray::LabelledControlArray(
+    const generic::FArraySP<double>&                      array,
+    const instrument_interfaces::names::InstrumentPortSP& port)
+    : ControlArray(*array) {
+  _label = std::make_shared<autotuner_interfaces::contexts::AcquisitionContext>(
+      port);
+}
 std::shared_ptr<LabelledControlArray> LabelledControlArray::operator+(
     const double other) const {
   return std::make_shared<LabelledControlArray>(

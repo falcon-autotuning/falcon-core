@@ -94,7 +94,7 @@ const AxesSP<arrays::LabelledControlArray> BaseDiscreteSpace::get_projection(
   auto unitprojections =
       _space->create_array(std::make_shared<Axes<int>>(projection_axes));
 
-  std::vector<arrays::ControlArray> scaled_projections;
+  std::vector<arrays::ControlArraySP> scaled_projections;
   for (size_t i = 0; i < unitprojections->size(); ++i) {
     auto unitprojection = unitprojections->at(i);
     auto knob           = projection->at(i);
@@ -105,13 +105,13 @@ const AxesSP<arrays::LabelledControlArray> BaseDiscreteSpace::get_projection(
     std::string index      = knob->instrument_facing_name();
     int         sign       = increasing_map->at(index) ? 1 : -1;
     double value = sign > 0 ? domain->lesser_bound() : domain->greater_bound();
-    scaled_projections.push_back(
-        *(*(*(*unitprojection * difference) * sign) + value));
+    scaled_projections.push_back(*(*(*unitprojection * difference) * sign) +
+                                 value);
   }
   generic::ListSP<arrays::LabelledControlArray> container;
   for (int i = 0; i <= projection_axes.size(); i++) {
     container->push_back(std::make_shared<arrays::LabelledControlArray>(
-        scaled_projections.at(i), projection_axes.at(i)));
+        scaled_projections.at(i), projection->at(i)));
   }
   return std::make_shared<Axes<arrays::LabelledControlArray>>(container);
 }
