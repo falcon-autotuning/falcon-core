@@ -4,7 +4,8 @@
 
 namespace falcon_core::communications::voltage_states {
 
-DeviceVoltageStates::DeviceVoltageStates() = default;
+DeviceVoltageStates::DeviceVoltageStates()
+    : generic::List<DeviceVoltageState>() {}
 
 DeviceVoltageStates::DeviceVoltageStates(
     const generic::ListSP<DeviceVoltageState>& states)

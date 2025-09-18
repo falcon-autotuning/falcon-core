@@ -13,6 +13,8 @@ BaseConnections::BaseConnections(size_t count, const BaseConnectionSP& value)
     : generic::List<BaseConnection, BaseConnections>(count, value) {}
 BaseConnections::BaseConnections(const std::vector<BaseConnectionSP>& vec)
     : generic::List<BaseConnection, BaseConnections>(vec) {}
+BaseConnections::BaseConnections(const generic::ListSP<BaseConnection>& vec)
+    : generic::List<BaseConnection, BaseConnections>(vec->items()) {}
 BaseConnections::BaseConnections(const std::vector<BarrierGateSP>& vec)
     : generic::List<BaseConnection, BaseConnections>([&vec] {
         std::vector<BaseConnectionSP> base_vec;
@@ -21,7 +23,14 @@ BaseConnections::BaseConnections(const std::vector<BarrierGateSP>& vec)
           base_vec.push_back(std::static_pointer_cast<BaseConnection>(g));
         return base_vec;
       }()) {}
-
+BaseConnections::BaseConnections(const generic::ListSP<BarrierGate>& vec)
+    : generic::List<BaseConnection, BaseConnections>([&vec] {
+        std::vector<BaseConnectionSP> base_vec;
+        base_vec.reserve(vec->size());
+        for (auto& g : *vec)
+          base_vec.push_back(std::static_pointer_cast<BaseConnection>(g));
+        return base_vec;
+      }()) {}
 BaseConnections::BaseConnections(const std::vector<PlungerGateSP>& vec)
     : generic::List<BaseConnection, BaseConnections>([&vec] {
         std::vector<BaseConnectionSP> base_vec;
@@ -30,7 +39,14 @@ BaseConnections::BaseConnections(const std::vector<PlungerGateSP>& vec)
           base_vec.push_back(std::static_pointer_cast<BaseConnection>(g));
         return base_vec;
       }()) {}
-
+BaseConnections::BaseConnections(const generic::ListSP<PlungerGate>& vec)
+    : generic::List<BaseConnection, BaseConnections>([&vec] {
+        std::vector<BaseConnectionSP> base_vec;
+        base_vec.reserve(vec->size());
+        for (auto& g : *vec)
+          base_vec.push_back(std::static_pointer_cast<BaseConnection>(g));
+        return base_vec;
+      }()) {}
 BaseConnections::BaseConnections(const std::vector<ScreeningGateSP>& vec)
     : generic::List<BaseConnection, BaseConnections>([&vec] {
         std::vector<BaseConnectionSP> base_vec;
@@ -39,7 +55,14 @@ BaseConnections::BaseConnections(const std::vector<ScreeningGateSP>& vec)
           base_vec.push_back(std::static_pointer_cast<BaseConnection>(g));
         return base_vec;
       }()) {}
-
+BaseConnections::BaseConnections(const generic::ListSP<ScreeningGate>& vec)
+    : generic::List<BaseConnection, BaseConnections>([&vec] {
+        std::vector<BaseConnectionSP> base_vec;
+        base_vec.reserve(vec->size());
+        for (auto& g : *vec)
+          base_vec.push_back(std::static_pointer_cast<BaseConnection>(g));
+        return base_vec;
+      }()) {}
 BaseConnections::BaseConnections(const std::vector<ReservoirGateSP>& vec)
     : generic::List<BaseConnection, BaseConnections>([&vec] {
         std::vector<BaseConnectionSP> base_vec;
@@ -48,12 +71,27 @@ BaseConnections::BaseConnections(const std::vector<ReservoirGateSP>& vec)
           base_vec.push_back(std::static_pointer_cast<BaseConnection>(g));
         return base_vec;
       }()) {}
-
+BaseConnections::BaseConnections(const generic::ListSP<ReservoirGate>& vec)
+    : generic::List<BaseConnection, BaseConnections>([&vec] {
+        std::vector<BaseConnectionSP> base_vec;
+        base_vec.reserve(vec->size());
+        for (auto& g : *vec)
+          base_vec.push_back(std::static_pointer_cast<BaseConnection>(g));
+        return base_vec;
+      }()) {}
 BaseConnections::BaseConnections(const std::vector<OhmicSP>& vec)
     : generic::List<BaseConnection, BaseConnections>([&vec] {
         std::vector<BaseConnectionSP> base_vec;
         base_vec.reserve(vec.size());
         for (auto& g : vec)
+          base_vec.push_back(std::static_pointer_cast<BaseConnection>(g));
+        return base_vec;
+      }()) {}
+BaseConnections::BaseConnections(const generic::ListSP<Ohmic>& vec)
+    : generic::List<BaseConnection, BaseConnections>([&vec] {
+        std::vector<BaseConnectionSP> base_vec;
+        base_vec.reserve(vec->size());
+        for (auto& g : *vec)
           base_vec.push_back(std::static_pointer_cast<BaseConnection>(g));
         return base_vec;
       }()) {}

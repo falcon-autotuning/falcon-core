@@ -1,10 +1,13 @@
 #include "falcon_core/math/Point.hpp"
 
 #include "falcon_core/math/Quantity.hpp"
+#include "falcon_core/physics/device_structures/BaseConnection.hpp"
 
 namespace falcon_core::math {
 
-Point::Point() = default;
+Point::Point()
+    : generic::
+          Map<physics::device_structures::BaseConnection, Quantity, Point>() {}
 Point::Point(const generic::MapSP<physics::device_structures::BaseConnection,
                                   double>&       init,
              const physics::units::SymbolUnitSP& unit)

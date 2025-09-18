@@ -3,12 +3,13 @@
 namespace falcon_core::communications::voltage_states {
 
 DeviceVoltageState::DeviceVoltageState(
-    physics::device_structures::BaseConnectionSP connection,
-    double                                       voltage,
-    physics::units::SymbolUnitSP                 unit)
+    const physics::device_structures::BaseConnectionSP& connection,
+    const double&                                       voltage,
+    const physics::units::SymbolUnitSP&                 unit)
     : math::Quantity(voltage, unit), _connection(std::move(connection)) {}
 
-DeviceVoltageState::DeviceVoltageState() = default;
+DeviceVoltageState::DeviceVoltageState()
+    : math::Quantity(), _connection(nullptr) {}
 
 std::shared_ptr<physics::device_structures::BaseConnection>
 DeviceVoltageState::connection() const {

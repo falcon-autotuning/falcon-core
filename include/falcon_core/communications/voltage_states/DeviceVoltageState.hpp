@@ -9,15 +9,17 @@ class DeviceVoltageState : public math::Quantity {
   physics::device_structures::BaseConnectionSP _connection;
 
  public:
-  DeviceVoltageState(physics::device_structures::BaseConnectionSP connection,
-                     double                                       voltage,
-                     physics::units::SymbolUnitSP                 unit);
+  DeviceVoltageState(
+      const physics::device_structures::BaseConnectionSP& connection,
+      const double&                                       voltage,
+      const physics::units::SymbolUnitSP&                 unit);
 
   std::shared_ptr<physics::device_structures::BaseConnection> connection()
       const;
   double voltage() const;
 
  protected:
+  friend class cereal::access;
   DeviceVoltageState();
   template <class Archive>
   void serialize(Archive& ar) {

@@ -7,7 +7,7 @@ IdentityTransform::IdentityTransform(
     names::InstrumentPortSP port, names::PortsSP<names::InstrumentPort> ports)
     : port_transforms::PortTransform(
           port,
-          std::make_shared<math::analytic_functions::Identity>(port, ports)) {}
+          std::make_shared<math::analytic_functions::Identity>(ports, port)) {}
 
 }  // namespace falcon_core::instrument_interfaces::port_transforms
 

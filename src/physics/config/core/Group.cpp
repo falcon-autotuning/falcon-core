@@ -7,13 +7,13 @@ namespace physics {
 namespace config {
 namespace core {
 Group::Group() = default;
-Group::Group(const ChannelSP&                            name,
-             const int&                                  num_dots,
-             const device_structures::ScreeningGatesSP&  screening_gates,
-             const device_structures::ReservoirGatesSP&  reservoir_gates,
-             const device_structures::PlungerGatesSP&    plunger_gates,
-             const device_structures::BarrierGatesSP&    barrier_gates,
-             const device_structures::BaseConnectionsSP& order)
+Group::Group(const autotuner_interfaces::names::ChannelSP& name,
+             const int&                                    num_dots,
+             const device_structures::ScreeningGatesSP&    screening_gates,
+             const device_structures::ReservoirGatesSP&    reservoir_gates,
+             const device_structures::PlungerGatesSP&      plunger_gates,
+             const device_structures::BarrierGatesSP&      barrier_gates,
+             const device_structures::BaseConnectionsSP&   order)
     : StandardConfigConnections(screening_gates,
                                 reservoir_gates,
                                 plunger_gates,
@@ -23,16 +23,17 @@ Group::Group(const ChannelSP&                            name,
       _num_dots(num_dots),
       _order(std::make_shared<geometries::GateGeometryArray1D>(
           order, screening_gates)) {}
-device_structures::OhmicsSP       Group::ohmics() const { return _ohmics; }
-ChannelSP                         Group::name() const { return _name; }
+device_structures::OhmicsSP            Group::ohmics() const { return _ohmics; }
+autotuner_interfaces::names::ChannelSP Group::name() const { return _name; }
 int                               Group::num_dots() const { return _num_dots; }
 geometries::GateGeometryArray1DSP Group::order() const { return _order; }
-bool Group::has_channel(const ChannelSP& channel) const {
+bool                              Group::has_channel(
+    const autotuner_interfaces::names::ChannelSP& channel) const {
   return *this->_name == *channel;
 }
 bool Group::is_charge_sensor() const { return this->_num_dots == 1; }
 device_structures::BaseConnectionsSP Group::get_all_channel_gates(
-    const ChannelSP& channel) const {
+    const autotuner_interfaces::names::ChannelSP& channel) const {
   if (has_channel(channel)) {
     return get_all_gates();
   }

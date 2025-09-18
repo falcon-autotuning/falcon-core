@@ -69,7 +69,7 @@ const domains::DomainSP BaseDiscreteSpace::get_domain(
   int axis = get_axis(knob);
   return _axes->at(axis)->get_domain(knob);
 }
-const AxesSP<double> BaseDiscreteSpace::get_projection(
+const AxesSP<arrays::LabelledControlArray> BaseDiscreteSpace::get_projection(
     const AxesSP<instrument_interfaces::names::Knob>& projection) const {
   // Validate dimensionality
   if (projection->size() != _space->dimension()) {
@@ -108,7 +108,12 @@ const AxesSP<double> BaseDiscreteSpace::get_projection(
     scaled_projections.push_back(
         *(*(*(*unitprojection * difference) * sign) + value));
   }
-  return std::make_shared<Axes<double>>(scaled_projections);
+  generic::ListSP<arrays::LabelledControlArray> container;
+  for (int i = 0; i <= projection_axes.size(); i++) {
+    container->push_back(std::make_shared<arrays::LabelledControlArray>(
+        scaled_projections.at(i), projection_axes.at(i)));
+  }
+  return std::make_shared<Axes<arrays::LabelledControlArray>>(container);
 }
 
 }  // namespace falcon_core::math::discrete_spaces

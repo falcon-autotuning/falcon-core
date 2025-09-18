@@ -9,12 +9,6 @@ RightReservoirWithImplantedOhmic::RightReservoirWithImplantedOhmic(
     : ReservoirGate(name),
       HasLeftNeighbor(right_neighbor),
       HasImplantedOhmic(ohmic) {}
-template <class Archive>
-void RightReservoirWithImplantedOhmic::serialize(Archive& ar) {
-  ar(cereal::base_class<ReservoirGate>(this),
-     cereal::base_class<HasImplantedOhmic>(this),
-     cereal::base_class<HasLeftNeighbor>(this));
-}
 }  // namespace falcon_core::physics::config::geometries
 
 CEREAL_REGISTER_TYPE(

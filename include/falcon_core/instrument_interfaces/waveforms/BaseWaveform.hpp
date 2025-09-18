@@ -46,7 +46,7 @@ class BaseWaveform : public port_transforms::PortTransforms {
   void confirm_knobs_match() const {
     names::PortsSP<names::InstrumentPort> discreteKnobs;
     for (const math::domains::CoupledKnobDomainSP& axis :
-         _space.axes()->items()) {
+         _space->axes()->items()) {
       for (const names::KnobSP& knob : *axis->knobs()) {
         discreteKnobs->push_back(knob);
       }

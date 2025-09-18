@@ -2,12 +2,14 @@
 
 #include <H5Attribute.h>
 
-#include <boost/lexical_cast.hpp>
+#include <boost/uuid.hpp>
 #include <xtensor-io/xhighfive.hpp>
 #include <xtensor/io/xio.hpp>
 #include <xtensor/xarray.hpp>
 
+#include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon_core/communications/messages/MeasurementResponse.hpp"
+#include "falcon_core/generic/FArray.hpp"
 #include "falcon_core/instrument_interfaces/waveforms/BaseWaveform.hpp"
 #include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
 #include "falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp"
@@ -71,18 +73,18 @@ void HDF5Data::to_file(const std::string& path) const {
     const auto& domains   = (*_domain_labels)[i]->domains();
     size_t      label_idx = 0;
     for (const auto& domain : domains) {
-      std::string label_name;
-      if (domain->label()->pseudo_name()) {
-        label_name = domain->label()->pseudo_name()->name();
-      } else {
-        label_name = domain->label()->instrument_type();
-      }
-      H5::Group label_group =
+      std::string label_name = domain->label()->instrument_facing_name();
+      H5::Group   label_group =
           sub_domain_group.createGroup("label" + std::to_string(label_idx));
       // label
       H5::DataSet label_ds =
           label_group.createDataSet("label", str_type, data_space);
       label_ds.write(label_name, str_type);
+      // instrument
+      std::string instrument = domain->label()->instrument_type();
+      H5::DataSet ins_name_ds =
+          label_group.createDataSet("instrument_type", str_type, data_space);
+      ins_name_ds.write(instrument, str_type);
       // unit
       std::string unit = domain->label()->units()->symbol();
       H5::DataSet unit_ds =
@@ -98,6 +100,11 @@ void HDF5Data::to_file(const std::string& path) const {
       H5::DataSet stop_ds = label_group.createDataSet(
           "stop", H5::PredType::NATIVE_DOUBLE, data_space);
       stop_ds.write(&stop, H5::PredType::NATIVE_DOUBLE);
+      // knob
+      std::string knob = domain->label()->to_json_string();
+      H5::DataSet knob_ds =
+          label_group.createDataSet("knob", str_type, data_space);
+      knob_ds.write(knob, str_type);
 
       ++label_idx;
     }
@@ -128,6 +135,10 @@ void HDF5Data::to_file(const std::string& path) const {
     H5::Attribute unit_attr =
         range_ds.createAttribute("unit", str_type, data_space);
     unit_attr.write(str_type, unit);
+    std::string   context = range->units()->to_json_string();
+    H5::Attribute context_attr =
+        range_ds.createAttribute("context", str_type, data_space);
+    context_attr.write(str_type, context);
     ++range_idx;
   }
 
@@ -196,14 +207,9 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_file(const std::string& path) {
       H5::Group   label_group = sub_domain_group.openGroup(label_name);
 
       // label
-      H5::DataSet label_ds = label_group.openDataSet("label");
-      std::string label;
-      label_ds.read(label, str_type);
-
-      // unit
-      H5::DataSet unit_ds = label_group.openDataSet("unit");
-      std::string unit;
-      unit_ds.read(unit, str_type);
+      H5::DataSet knob_ds = label_group.openDataSet("knob");
+      std::string rawKnob;
+      knob_ds.read(rawKnob, str_type);
 
       // start
       H5::DataSet start_ds = label_group.openDataSet("start");
@@ -216,8 +222,11 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_file(const std::string& path) {
       stop_ds.read(&stop, H5::PredType::NATIVE_DOUBLE);
 
       // Construct DomainLabel (implement this for your type)
+      instrument_interfaces::names::KnobSP knob =
+          instrument_interfaces::names::Knob::from_json_string<
+              instrument_interfaces::names::Knob>(rawKnob);
       auto domain_label = std::make_shared<math::domains::BaseLabelledDomain<
-          instrument_interfaces::names::Knob>>(label, unit, start, stop);
+          instrument_interfaces::names::Knob>>(start, stop, knob);
       labels_vec.push_back(domain_label);
     }
     // Construct CoupledKnobDomain (implement this for your type)
@@ -239,8 +248,8 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_file(const std::string& path) {
     std::string range_name   = "range" + std::to_string(i);
     std::string dataset_path = "/ranges/" + range_name + "/data";
     // Load the array from HDF5
-    xt::xarray<double> arr =
-        xt::load_hdf5<xt::xarray<double>>(path, dataset_path);
+    generic::FArraySP<double> arr = std::make_shared<generic::FArray<double>>(
+        xt::load_hdf5<xt::xarray<double>>(path, dataset_path));
 
     // Read attributes
     H5::DataSet   range_ds = ranges_group.openDataSet(range_name + "/data");
@@ -251,10 +260,16 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_file(const std::string& path) {
     H5::Attribute unit_attr = range_ds.openAttribute("unit");
     std::string   unit;
     unit_attr.read(str_type, unit);
+    H5::Attribute context_attr = range_ds.openAttribute("context");
+    std::string   rawContext;
+    context_attr.read(str_type, rawContext);
+    autotuner_interfaces::contexts::AcquisitionContextSP context =
+        autotuner_interfaces::contexts::AcquisitionContext::from_json_string<
+            autotuner_interfaces::contexts::AcquisitionContext>(rawContext);
 
     // Construct LabelledMeasuredArray from xtensor array
     math::arrays::LabelledMeasuredArraySP measured_array =
-        std::make_shared<math::arrays::LabelledMeasuredArray>(label, unit, arr);
+        std::make_shared<math::arrays::LabelledMeasuredArray>(arr, context);
     ranges_vec.push_back(measured_array);
   }
   math::arrays::LabelledMeasuredArraysSP ranges =
@@ -271,14 +286,15 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_file(const std::string& path) {
   H5::Attribute title_attr = metadata_group.openAttribute("measurement_title");
   title_attr.read(str_type, measurement_title);
 
-  std::map<std::string, std::string> metadata_map;
-  hsize_t                            num_md = metadata_group.getNumObjs();
+  std::vector<std::pair<std::string, std::string>> metadata_map;
+  hsize_t num_md = metadata_group.getNumObjs();
   for (hsize_t i = 0; i < num_md; ++i) {
     std::string key   = metadata_group.getObjnameByIdx(i);
     H5::DataSet md_ds = metadata_group.openDataSet(key);
     std::string value;
     md_ds.read(value, str_type);
-    metadata_map[key] = value;
+    metadata_map[i].first  = key;
+    metadata_map[i].second = value;
   }
   auto metadata = std::make_shared<HDF5Data::Metadata>(metadata_map);
 
@@ -307,24 +323,19 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_communications(
   }
 
   // Find a valid waveform
-
-  auto valid_waveform_it =
-      std::find_if(request->waveforms()->begin(),
-                   request->waveforms()->end(),
-                   [](const instrument_interfaces::waveforms::BaseWaveformSP<
-                       math::discrete_spaces::BaseDiscreteSpace>& waveform) {
-                     return waveform->space()->space()->space()->shape()[1] ==
-                            waveform->space()->axes()->size();
-                   });
-  if (valid_waveform_it == request->waveforms()->end()) {
-    throw std::runtime_error("No valid waveform found in request.");
-  }
   instrument_interfaces::waveforms::BaseWaveformSP<
       math::discrete_spaces::BaseDiscreteSpace>
-      valid_waveform =
-          std::make_shared<instrument_interfaces::waveforms::BaseWaveform<
-              math::discrete_spaces::BaseDiscreteSpace>>(
-              *(*valid_waveform_it)->clone());
+      valid_waveform;
+  for (const instrument_interfaces::waveforms::BaseWaveformSP waveform :
+       *request->waveforms()) {
+    if (waveform->space()->space()->space()->shape()[1] ==
+        waveform->space()->axes()->size()) {
+      valid_waveform = waveform;
+      goto found_waveform;
+    }
+  }
+  throw std::runtime_error("No valid waveform found in request.");
+found_waveform:
 
   // Build axes
   int              count = valid_waveform->space()->axes()->size();
@@ -349,12 +360,12 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_communications(
 
   // Metadata
   // TODO: remove internal stored compiled wavefrom to reduce hdf5 file size
-  auto metadata =
-      std::make_shared<HDF5Data::Metadata>(std::map<std::string, std::string>{
+  auto metadata = std::make_shared<HDF5Data::Metadata>(
+      std::vector<std::pair<std::string, std::string>>{
           {"song_request", request->to_json_string()},
           {"song_response", response->to_json_string()},
           {"device_voltage_states", device_voltage_states->to_json_string()},
-          {"session_id", boost::lexical_cast<std::string>(session_id)}});
+          {"session_id", boost::uuids::to_string(session_id)}});
 
   return std::make_shared<HDF5Data>(shape_axes,
                                     unit_domain,

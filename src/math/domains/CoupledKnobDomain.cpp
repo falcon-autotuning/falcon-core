@@ -2,7 +2,8 @@
 
 namespace falcon_core::math::domains {
 
-CoupledKnobDomain::CoupledKnobDomain() = default;
+CoupledKnobDomain::CoupledKnobDomain()
+    : BaseCoupledLabelledDomain<instrument_interfaces::names::Knob>() {}
 CoupledKnobDomain::CoupledKnobDomain(
     const std::vector<BaseLabelledDomainSP<instrument_interfaces::names::Knob>>&
         init)
@@ -14,5 +15,9 @@ const instrument_interfaces::names::KnobsSP CoupledKnobDomain::knobs() const {
 }  // namespace falcon_core::math::domains
 
 CEREAL_REGISTER_TYPE(falcon_core::math::domains::CoupledKnobDomain)
+CEREAL_REGISTER_TYPE(falcon_core::math::domains::BaseCoupledLabelledDomain<
+                     falcon_core::instrument_interfaces::names::Knob>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song, falcon_core::math::domains::CoupledKnobDomain)
+    falcon_core::math::domains::BaseCoupledLabelledDomain<
+        falcon_core::instrument_interfaces::names::Knob>,
+    falcon_core::math::domains::CoupledKnobDomain)

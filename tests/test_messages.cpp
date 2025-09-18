@@ -83,12 +83,11 @@ TEST(MessagesTest, MeasurementRequestConstructionAndSerialization) {
   meters->push_back(meter);
   auto waveform = std::make_shared<
       falcon_core::instrument_interfaces::waveforms::Waveform>();
-  std::vector<std::shared_ptr<waveform_type>> waveforms;
-  waveforms.push_back(waveform);
-  std::map<std::shared_ptr<Meter>, std::shared_ptr<PortTransform>>
-      meter_transforms;
-  meter_transforms[meter] = std::make_shared<PortTransform>();
-  auto time_domain        = std::make_shared<KnobDomain>(0.0, 1.0, nullptr);
+  falcon_core::generic::ListSP<waveform_type> waveforms;
+  waveforms->push_back(waveform);
+  falcon_core::generic::MapSP<Meter, PortTransform> meter_transforms;
+  meter_transforms->insert(meter, std::make_shared<PortTransform>());
+  auto time_domain = std::make_shared<KnobDomain>(0.0, 1.0, nullptr);
 
   MeasurementRequest req("measurement request",
                          "meas1",
@@ -99,17 +98,17 @@ TEST(MessagesTest, MeasurementRequestConstructionAndSerialization) {
 
   ASSERT_EQ(req.message(), "measurement request");
   ASSERT_EQ(req.measurement_name(), "meas1");
-  ASSERT_EQ(req.waveforms().size(), 1);
+  ASSERT_EQ(req.waveforms()->size(), 1);
   ASSERT_EQ(req.getters()->size(), 1);
-  ASSERT_EQ(req.meter_transforms().size(), 1);
+  ASSERT_EQ(req.meter_transforms()->size(), 1);
 
   std::string json = req.to_json_string();
   auto req2 = MeasurementRequest::from_json_string<MeasurementRequest>(json);
   ASSERT_EQ(req2->message(), "measurement request");
   ASSERT_EQ(req2->measurement_name(), "meas1");
-  ASSERT_EQ(req2->waveforms().size(), 1);
+  ASSERT_EQ(req2->waveforms()->size(), 1);
   ASSERT_EQ(req2->getters()->size(), 1);
-  ASSERT_EQ(req2->meter_transforms().size(), 1);
+  ASSERT_EQ(req2->meter_transforms()->size(), 1);
 }
 
 // MeasurementResponse test
@@ -136,13 +135,13 @@ TEST(MessagesTest, VoltageStatesResponseConstructionAndSerialization) {
   VoltageStatesResponse resp("voltage states response", states);
 
   ASSERT_EQ(resp.message(), "voltage states response");
-  ASSERT_EQ(resp.states()->states().size(), 1);
+  ASSERT_EQ(resp.states()->states()->size(), 1);
 
   std::string json = resp.to_json_string();
   auto        resp2 =
       VoltageStatesResponse::from_json_string<VoltageStatesResponse>(json);
   ASSERT_EQ(resp2->message(), "voltage states response");
-  ASSERT_EQ(resp2->states()->states().size(), 1);
+  ASSERT_EQ(resp2->states()->states()->size(), 1);
 }
 
 }  // namespace tests

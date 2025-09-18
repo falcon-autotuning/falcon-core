@@ -1,6 +1,7 @@
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 
 #include "falcon_core/instrument_interfaces/Instrument.hpp"
+#include "falcon_core/instrument_interfaces/InstrumentTypes.hpp"
 
 namespace falcon_core::instrument_interfaces::names {
 
@@ -19,7 +20,7 @@ InstrumentPort::InstrumentPort(
 InstrumentPort::InstrumentPort()
     : _default_name(""),
       _pseudo_name(nullptr),
-      _instrument_type(falcon_core::instrument_interfaces::INSTRUMENT_TYPES::
+      _instrument_type(falcon_core::instrument_interfaces::InstrumentTypes::
                            DC_VOLTAGE_SOURCE),
       _units(std::make_shared<physics::units::SymbolUnit>(
           physics::units::Units::Volt)),

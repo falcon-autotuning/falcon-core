@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 
+#include "falcon_core/Constants.hpp"
 #include "falcon_core/math/discretizers/CartesianDiscretizer.hpp"
 #include "falcon_core/math/discretizers/PolarDiscretizer.hpp"
 namespace tests {
@@ -12,8 +13,8 @@ TEST(DiscretizerTest, BaseDiscretizerBasicFunctionality) {
   BaseDiscretizer d(0.5, domain);
 
   EXPECT_DOUBLE_EQ(d.delta(), 0.5);
-  EXPECT_DOUBLE_EQ(d.delta_domain()->min(), -1.0);
-  EXPECT_DOUBLE_EQ(d.delta_domain()->max(), 1.0);
+  EXPECT_DOUBLE_EQ(d.domain()->lesser_bound(), -1.0);
+  EXPECT_DOUBLE_EQ(d.domain()->greater_bound(), 1.0);
 
   d.set_delta(0.25);
   EXPECT_DOUBLE_EQ(d.delta(), 0.25);
@@ -29,16 +30,16 @@ TEST(DiscretizerTest, BaseDiscretizerSerializationRoundTrip) {
 
   ASSERT_NE(d2, nullptr);
   EXPECT_DOUBLE_EQ(d2->delta(), 0.5);
-  EXPECT_DOUBLE_EQ(d2->delta_domain()->min(), -1.0);
-  EXPECT_DOUBLE_EQ(d2->delta_domain()->max(), 1.0);
+  EXPECT_DOUBLE_EQ(d2->domain()->lesser_bound(), -1.0);
+  EXPECT_DOUBLE_EQ(d2->domain()->greater_bound(), 1.0);
 }
 
 // Test CartesianDiscretizer basic functionality
 TEST(DiscretizerTest, CartesianDiscretizerBasicFunctionality) {
   CartesianDiscretizer d(0.1);
   EXPECT_DOUBLE_EQ(d.delta(), 0.1);
-  EXPECT_DOUBLE_EQ(d.delta_domain()->min(), -1.0);
-  EXPECT_DOUBLE_EQ(d.delta_domain()->max(), 1.0);
+  EXPECT_DOUBLE_EQ(d.domain()->lesser_bound(), -1.0);
+  EXPECT_DOUBLE_EQ(d.domain()->greater_bound(), 1.0);
 }
 
 // Test CartesianDiscretizer serialization
@@ -50,16 +51,16 @@ TEST(DiscretizerTest, CartesianDiscretizerSerializationRoundTrip) {
 
   ASSERT_NE(d2, nullptr);
   EXPECT_DOUBLE_EQ(d2->delta(), 0.1);
-  EXPECT_DOUBLE_EQ(d2->delta_domain()->min(), -1.0);
-  EXPECT_DOUBLE_EQ(d2->delta_domain()->max(), 1.0);
+  EXPECT_DOUBLE_EQ(d2->domain()->lesser_bound(), -1.0);
+  EXPECT_DOUBLE_EQ(d2->domain()->greater_bound(), 1.0);
 }
 
 // Test PolarDiscretizer basic functionality
 TEST(DiscretizerTest, PolarDiscretizerBasicFunctionality) {
   PolarDiscretizer d(0.2);
   EXPECT_DOUBLE_EQ(d.delta(), 0.2);
-  EXPECT_DOUBLE_EQ(d.delta_domain()->min(), -2.0 * falcon_core::PI);
-  EXPECT_DOUBLE_EQ(d.delta_domain()->max(), 2.0 * falcon_core::PI);
+  EXPECT_DOUBLE_EQ(d.domain()->lesser_bound(), -2.0 * falcon_core::PI);
+  EXPECT_DOUBLE_EQ(d.domain()->greater_bound(), 2.0 * falcon_core::PI);
 }
 
 // Test PolarDiscretizer serialization
@@ -71,7 +72,7 @@ TEST(DiscretizerTest, PolarDiscretizerSerializationRoundTrip) {
 
   ASSERT_NE(d2, nullptr);
   EXPECT_DOUBLE_EQ(d2->delta(), 0.2);
-  EXPECT_DOUBLE_EQ(d2->delta_domain()->min(), -2.0 * falcon_core::PI);
-  EXPECT_DOUBLE_EQ(d2->delta_domain()->max(), 2.0 * falcon_core::PI);
+  EXPECT_DOUBLE_EQ(d2->domain()->lesser_bound(), -2.0 * falcon_core::PI);
+  EXPECT_DOUBLE_EQ(d2->domain()->greater_bound(), 2.0 * falcon_core::PI);
 }
 }  // namespace tests

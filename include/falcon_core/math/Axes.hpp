@@ -29,7 +29,12 @@ class Axes : public generic::List<T> {
    * @param items Vector of axis objects.
    */
   explicit Axes(const generic::List<T>::Container& items)
-      : generic::List<typename generic::List<T>::StoredValue>(items) {}
+      : generic::List<T>(items) {}
+  /**
+   * @brief Construct Axes from a vector of items.
+   * @param items Vector of axis objects.
+   */
+  explicit Axes(const generic::ListSP<T>& items) : generic::List<T>(*items) {}
 
  protected:
   friend class cereal::access;

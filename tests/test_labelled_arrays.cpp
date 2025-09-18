@@ -45,8 +45,8 @@ TEST(BaseLabelledArraysTest, ConstructionAndAccess) {
   EXPECT_EQ(labelled_arrays.items().size(), 2);
   EXPECT_TRUE(xt::allclose(labelled_arrays.items()[0]->xtensor(), arr1_data));
   EXPECT_TRUE(xt::allclose(labelled_arrays.items()[1]->xtensor(), arr2_data));
-  EXPECT_EQ(labelled_arrays.items()[0]->label()->port()->default_name(), "P1");
-  EXPECT_EQ(labelled_arrays.items()[1]->label()->port()->default_name(), "P2");
+  EXPECT_EQ(labelled_arrays.items()[0]->label()->connection()->name(), "P1");
+  EXPECT_EQ(labelled_arrays.items()[1]->label()->connection()->name(), "P2");
 }
 
 TEST(BaseLabelledArraysTest, SerializationRoundTrip) {
@@ -83,8 +83,8 @@ TEST(BaseLabelledArraysTest, SerializationRoundTrip) {
   ASSERT_EQ(deserialized->items().size(), 2);
   EXPECT_TRUE(xt::allclose(deserialized->items()[0]->xtensor(), arr1_data));
   EXPECT_TRUE(xt::allclose(deserialized->items()[1]->xtensor(), arr2_data));
-  EXPECT_EQ(deserialized->items()[0]->label()->port()->default_name(), "P1");
-  EXPECT_EQ(deserialized->items()[1]->label()->port()->default_name(), "P2");
+  EXPECT_EQ(deserialized->items()[0]->label()->connection()->name(), "P1");
+  EXPECT_EQ(deserialized->items()[1]->label()->connection()->name(), "P2");
 }
 
 TEST(IsLabelled1DTest, GetStart) {

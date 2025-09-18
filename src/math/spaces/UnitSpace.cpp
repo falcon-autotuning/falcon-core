@@ -53,12 +53,8 @@ void      UnitSpace::make_discrete_axes() const {
                                   ? bounds.second + delta
                                   : bounds.second;
 
-    // Assuming ControlArray1D takes a std::vector<double>
-    std::vector<double> values;
-    for (double v = lower_bound; v < upper_bound; v += delta) {
-      values.push_back(v);
-    }
-    _ranges->push_back(std::make_shared<arrays::ControlArray1D>(values));
+    auto arr = xt::arange<double>(lower_bound, upper_bound, delta);
+    _ranges->push_back(std::make_shared<arrays::ControlArray1D>(arr));
   }
 }
 
@@ -85,8 +81,12 @@ const AxesSP<arrays::ControlArray> UnitSpace::create_array(
   for (int i = 0; i < axes->size(); ++i) {
     grids.push_back(_ranges->at(axes->at(i))->xtensor());
   }
-  std::vector<xt::xarray<double>> mesh = meshgrid_xt(grids);
-  return std::make_shared<math::Axes<arrays::ControlArray>>(mesh);
+  std::vector<xt::xarray<double>>                    mesh = meshgrid_xt(grids);
+  std::vector<std::shared_ptr<arrays::ControlArray>> mesh_ptrs;
+  for (auto& arr : mesh) {
+    mesh_ptrs.push_back(std::make_shared<arrays::ControlArray>(arr));
+  }
+  return std::make_shared<math::Axes<arrays::ControlArray>>(mesh_ptrs);
 }
 void UnitSpace::compile() {
   // Collect xtensor arrays from _ranges, reversed

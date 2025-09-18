@@ -88,7 +88,19 @@ class BaseConnections
    * values.
    * @param vec Vector of values to copy.
    */
+  BaseConnections(const generic::ListSP<BaseConnection>& vec);
+  /**
+   * @brief Construct a BaseConnections container from an existing vector of
+   * values.
+   * @param vec Vector of values to copy.
+   */
   BaseConnections(const std::vector<PlungerGateSP>& vec);
+  /**
+   * @brief Construct a BaseConnections container from an existing vector of
+   * values.
+   * @param vec Vector of values to copy.
+   */
+  BaseConnections(const generic::ListSP<PlungerGate>& vec);
   /**
    * @brief Construct a BaseConnections container from an existing vector of
    * values.
@@ -100,7 +112,19 @@ class BaseConnections
    * values.
    * @param vec Vector of values to copy.
    */
+  BaseConnections(const generic::ListSP<BarrierGate>& vec);
+  /**
+   * @brief Construct a BaseConnections container from an existing vector of
+   * values.
+   * @param vec Vector of values to copy.
+   */
   BaseConnections(const std::vector<ReservoirGateSP>& vec);
+  /**
+   * @brief Construct a BaseConnections container from an existing vector of
+   * values.
+   * @param vec Vector of values to copy.
+   */
+  BaseConnections(const generic::ListSP<ReservoirGate>& vec);
   /**
    * @brief Construct a BaseConnections container from an existing vector of
    * values.
@@ -112,7 +136,19 @@ class BaseConnections
    * values.
    * @param vec Vector of values to copy.
    */
+  BaseConnections(const generic::ListSP<ScreeningGate>& vec);
+  /**
+   * @brief Construct a BaseConnections container from an existing vector of
+   * values.
+   * @param vec Vector of values to copy.
+   */
   BaseConnections(const std::vector<OhmicSP>& vec);
+  /**
+   * @brief Construct a BaseConnections container from an existing vector of
+   * values.
+   * @param vec Vector of values to copy.
+   */
+  BaseConnections(const generic::ListSP<Ohmic>& vec);
   /**
    * @brief Check if all connections are gates (not ohmics).
    */

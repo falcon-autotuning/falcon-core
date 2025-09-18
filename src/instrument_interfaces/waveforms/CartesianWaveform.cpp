@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/IdentityTransform.hpp"
 namespace falcon_core::instrument_interfaces::waveforms {
 CartesianWaveform::CartesianWaveform() : BaseWaveform() {}
@@ -42,7 +43,8 @@ CartesianWaveform::setup_identity_everywhere(
       transforms->push_back(
           std::make_shared<port_transforms::IdentityTransform>(
               std::dynamic_pointer_cast<names::InstrumentPort>(knob),
-              space->knobs()->ports()));
+              std::dynamic_pointer_cast<names::Ports<names::InstrumentPort>>(
+                  space->knobs())));
     }
   }
   return std::make_shared<CartesianWaveform>(space, transforms);

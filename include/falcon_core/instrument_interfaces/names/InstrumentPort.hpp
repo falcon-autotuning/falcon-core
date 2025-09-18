@@ -8,6 +8,12 @@
 namespace falcon_core::instrument_interfaces::names {
 
 class InstrumentPort : public generic::Song {
+  std::string                                                 _default_name;
+  std::shared_ptr<physics::device_structures::BaseConnection> _pseudo_name;
+  Instrument                                                  _instrument_type;
+  std::shared_ptr<physics::units::SymbolUnit>                 _units;
+  std::string                                                 _description;
+
  public:
   /**
    * @brief Initialize an InstrumentPort.
@@ -54,13 +60,6 @@ class InstrumentPort : public generic::Song {
    * as a string.
    */
   const std::string instrument_facing_name() const;
-
- private:
-  std::string                                                 _default_name;
-  std::shared_ptr<physics::device_structures::BaseConnection> _pseudo_name;
-  Instrument                                                  _instrument_type;
-  std::shared_ptr<physics::units::SymbolUnit>                 _units;
-  std::string                                                 _description;
 
  protected:
   friend class cereal::access;

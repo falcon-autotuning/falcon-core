@@ -63,6 +63,8 @@ class Vector : public generic::Map<physics::device_structures::BaseConnection,
          const generic::MapSP<physics::device_structures::BaseConnection,
                               double>&             end,
          falcon_core::physics::units::SymbolUnitSP unit);
+  Vector(const generic::MapSP<physics::device_structures::BaseConnection,
+                              DeltaQuantity> map);
   /**
    * @brief Returns the point at the end.
    */

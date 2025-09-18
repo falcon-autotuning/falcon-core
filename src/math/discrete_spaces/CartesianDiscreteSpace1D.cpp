@@ -12,9 +12,11 @@ CartesianDiscreteSpace1D::CartesianDiscreteSpace1D(
     : BaseCartesianDiscreteSpace(
           space,
           std::make_shared<Axes<domains::CoupledKnobDomain>>(
-              generic::List<domains::CoupledKnobDomain>({shared_domain})),
+              generic::List<domains::CoupledKnobDomain>({shared_domain})
+                  .items()),
           std::make_shared<Axes<generic::Map<std::string, bool>>>(
-              generic::List<generic::Map<std::string, bool>>({increasing}))) {}
+              generic::List<generic::Map<std::string, bool>>({increasing})
+                  .items())) {}
 
 std::shared_ptr<CartesianDiscreteSpace1D>
 CartesianDiscreteSpace1D::from_divisions(
@@ -25,11 +27,9 @@ CartesianDiscreteSpace1D::from_divisions(
   std::vector<double> deltas;
   deltas.push_back(domain->range() / division);
 
-  AxesSP<domains::CoupledKnobDomain> axes =
-      std::make_shared<Axes<domains::CoupledKnobDomain>>(
-          generic::List<domains::CoupledKnobDomain>({shared_domain}));
   auto space = std::make_shared<spaces::CartesianSpace>(deltas, domain);
-  return std::make_shared<CartesianDiscreteSpace1D>(space, axes, increasing);
+  return std::make_shared<CartesianDiscreteSpace1D>(
+      space, shared_domain, increasing);
 }
 
 }  // namespace falcon_core::math::discrete_spaces

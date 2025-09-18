@@ -13,12 +13,16 @@ class Ports : public generic::List<Port> {
                 "Port must be derived from InstrumentPort");
 
  public:
-  Ports() = default;
+  Ports() : generic::List<Port>() {}
   /**
    * @brief Initialize ports from a collection of port.
    */
-  Ports(const std::vector<typename generic::List<Port>::StoredValue> ports)
+  Ports(const std::vector<std::shared_ptr<Port>> ports)
       : generic::List<Port>(ports) {}
+  /**
+   * @brief Initialize ports from a collection of port.
+   */
+  Ports(const generic::ListSP<Port> ports) : generic::List<Port>(*ports) {}
   /**
    * @brief return the collection of ports.
    */

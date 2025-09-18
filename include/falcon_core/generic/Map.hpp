@@ -31,15 +31,27 @@ class Map : public virtual generic::Song {
   Container                _items;
   std::vector<StoredKey>   _key_ptrs;
   std::vector<StoredValue> _value_ptrs;
-  iterator                 find_storage(const StoredKey& key) {
+  iterator                 find_storage(const Key& key) {
     return std::find_if(_items.begin(),
                         _items.end(),
                         [&](const ContainerItem& v) { return v.first == key; });
   }
-  const_iterator find_storage(const StoredKey& key) const {
+  iterator find_storage(const std::shared_ptr<Key>& key) {
+    return std::find_if(
+        _items.begin(), _items.end(), [&](const ContainerItem& v) {
+          return *v.first == *key;
+        });
+  }
+  const_iterator find_storage(const Key& key) const {
     return std::find_if(_items.begin(),
                         _items.end(),
                         [&](const ContainerItem& v) { return v.first == key; });
+  }
+  const_iterator find_storage(const std::shared_ptr<Key>& key) const {
+    return std::find_if(
+        _items.begin(), _items.end(), [&](const ContainerItem& v) {
+          return *v.first == *key;
+        });
   }
 
  public:
@@ -84,7 +96,7 @@ class Map : public virtual generic::Song {
     return it->second;
   }
   const StoredValue at(const StoredKey& key) const {
-    iterator it = find(key);
+    const_iterator it = find(key);
     if (it == _items.end()) throw std::out_of_range("Key not found");
     return it->second;
   }

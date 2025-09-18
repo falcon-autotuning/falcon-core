@@ -21,7 +21,7 @@ class CoupledLabelledDomain : public BaseCoupledLabelledDomain<Label> {
    * @param domains Vector of shared pointers to labelled domains.
    */
   CoupledLabelledDomain(const std::vector<BaseLabelledDomainSP<Label>>& init)
-      : BaseLabelledDomain<Label>(init) {}
+      : BaseCoupledLabelledDomain<Label>(init) {}
 
  public:
   friend class cereal::access;

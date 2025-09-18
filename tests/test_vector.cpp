@@ -30,7 +30,10 @@ TEST(VectorTest, SerializationRoundTrip) {
       std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
           {conn1, 0.0}, {conn2, 1.0}});
 
-  auto vec = std::make_shared<Vector>(end, start, unit);
+  auto vec = std::make_shared<Vector>(
+      std::make_shared<Map<BaseConnection, double>>(end),
+      std::make_shared<Map<BaseConnection, double>>(start),
+      unit);
 
   std::stringstream ss;
   {
@@ -44,10 +47,10 @@ TEST(VectorTest, SerializationRoundTrip) {
     iarchive(vec2);
   }
 
-  ASSERT_EQ((*vec2->end())[conn1], 1.0);
-  ASSERT_EQ((*vec2->end())[conn2], 2.0);
-  ASSERT_EQ((*vec2->start())[conn1], 0.0);
-  ASSERT_EQ((*vec2->start())[conn2], 1.0);
+  ASSERT_EQ((*vec2->endPoint())[conn1]->value(), 1.0);
+  ASSERT_EQ((*vec2->endPoint())[conn2]->value(), 2.0);
+  ASSERT_EQ((*vec2->startPoint())[conn1]->value(), 0.0);
+  ASSERT_EQ((*vec2->startPoint())[conn2]->value(), 1.0);
   // ASSERT_EQ(vec2->unit(), unit);  // pointer equality
 }
 
@@ -71,38 +74,44 @@ TEST(VectorTest, ArithmeticOperators) {
       std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
           {conn1, 1.0}, {conn2, 2.0}});
 
-  auto v1 = std::make_shared<Vector>(end1, start1, unit);
-  auto v2 = std::make_shared<Vector>(end2, start2, unit);
+  auto v1 = std::make_shared<Vector>(
+      std::make_shared<Map<BaseConnection, double>>(end1),
+      std::make_shared<Map<BaseConnection, double>>(start1),
+      unit);
+  auto v2 = std::make_shared<Vector>(
+      std::make_shared<Map<BaseConnection, double>>(end2),
+      std::make_shared<Map<BaseConnection, double>>(start2),
+      unit);
 
   auto v_add = *v1 + *v2;
-  EXPECT_DOUBLE_EQ((*v_add->end())[conn1], 4.0);
-  EXPECT_DOUBLE_EQ((*v_add->end())[conn2], 6.0);
-  EXPECT_DOUBLE_EQ((*v_add->start())[conn1], 1.0);
-  EXPECT_DOUBLE_EQ((*v_add->start())[conn2], 3.0);
+  EXPECT_DOUBLE_EQ((*v_add->endPoint())[conn1]->value(), 4.0);
+  EXPECT_DOUBLE_EQ((*v_add->endPoint())[conn2]->value(), 6.0);
+  EXPECT_DOUBLE_EQ((*v_add->startPoint())[conn1]->value(), 1.0);
+  EXPECT_DOUBLE_EQ((*v_add->startPoint())[conn2]->value(), 3.0);
 
   auto v_sub = *v1 - *v2;
-  EXPECT_DOUBLE_EQ((*v_sub->end())[conn1], -2.0);
-  EXPECT_DOUBLE_EQ((*v_sub->end())[conn2], -2.0);
-  EXPECT_DOUBLE_EQ((*v_sub->start())[conn1], -1.0);
-  EXPECT_DOUBLE_EQ((*v_sub->start())[conn2], -1.0);
+  EXPECT_DOUBLE_EQ((*v_sub->endPoint())[conn1]->value(), -2.0);
+  EXPECT_DOUBLE_EQ((*v_sub->endPoint())[conn2]->value(), -2.0);
+  EXPECT_DOUBLE_EQ((*v_sub->startPoint())[conn1]->value(), -1.0);
+  EXPECT_DOUBLE_EQ((*v_sub->startPoint())[conn2]->value(), -1.0);
 
   auto v_mul = *v1 * 2.0;
-  EXPECT_DOUBLE_EQ((*v_mul->end())[conn1], 2.0);
-  EXPECT_DOUBLE_EQ((*v_mul->end())[conn2], 4.0);
-  EXPECT_DOUBLE_EQ((*v_mul->start())[conn1], 0.0);
-  EXPECT_DOUBLE_EQ((*v_mul->start())[conn2], 2.0);
+  EXPECT_DOUBLE_EQ((*v_mul->endPoint())[conn1]->value(), 2.0);
+  EXPECT_DOUBLE_EQ((*v_mul->endPoint())[conn2]->value(), 4.0);
+  EXPECT_DOUBLE_EQ((*v_mul->startPoint())[conn1]->value(), 0.0);
+  EXPECT_DOUBLE_EQ((*v_mul->startPoint())[conn2]->value(), 2.0);
 
   auto v_div = *v1 / 2.0;
-  EXPECT_DOUBLE_EQ((*v_div->end())[conn1], 0.5);
-  EXPECT_DOUBLE_EQ((*v_div->end())[conn2], 1.0);
-  EXPECT_DOUBLE_EQ((*v_div->start())[conn1], 0.0);
-  EXPECT_DOUBLE_EQ((*v_div->start())[conn2], 0.5);
+  EXPECT_DOUBLE_EQ((*v_div->endPoint())[conn1]->value(), 0.5);
+  EXPECT_DOUBLE_EQ((*v_div->endPoint())[conn2]->value(), 1.0);
+  EXPECT_DOUBLE_EQ((*v_div->startPoint())[conn1]->value(), 0.0);
+  EXPECT_DOUBLE_EQ((*v_div->startPoint())[conn2]->value(), 0.5);
 
   auto v_neg = -(*v1);
-  EXPECT_DOUBLE_EQ((*v_neg->end())[conn1], -1.0);
-  EXPECT_DOUBLE_EQ((*v_neg->end())[conn2], -2.0);
-  EXPECT_DOUBLE_EQ((*v_neg->start())[conn1], -0.0);
-  EXPECT_DOUBLE_EQ((*v_neg->start())[conn2], -1.0);
+  EXPECT_DOUBLE_EQ((*v_neg->endPoint())[conn1]->value(), -1.0);
+  EXPECT_DOUBLE_EQ((*v_neg->endPoint())[conn2]->value(), -2.0);
+  EXPECT_DOUBLE_EQ((*v_neg->startPoint())[conn1]->value(), -0.0);
+  EXPECT_DOUBLE_EQ((*v_neg->startPoint())[conn2]->value(), -1.0);
 }
 
 TEST(VectorTest, MagnitudeAndIndexing) {
@@ -124,12 +133,12 @@ TEST(VectorTest, MagnitudeAndIndexing) {
   EXPECT_DOUBLE_EQ(vec->magnitude(), 5.0);
 
   auto pair = (*vec)[conn1];
-  EXPECT_DOUBLE_EQ(pair.first, 3.0);
-  EXPECT_DOUBLE_EQ(pair.second, 0.0);
+  EXPECT_DOUBLE_EQ(pair->first()->value(), 3.0);
+  EXPECT_DOUBLE_EQ(pair->second()->value(), 0.0);
 
   pair = (*vec)[conn2];
-  EXPECT_DOUBLE_EQ(pair.first, 4.0);
-  EXPECT_DOUBLE_EQ(pair.second, 0.0);
+  EXPECT_DOUBLE_EQ(pair->first()->value(), 4.0);
+  EXPECT_DOUBLE_EQ(pair->second()->value(), 0.0);
 }
 
 TEST(VectorTest, UnitConversion) {
@@ -146,10 +155,10 @@ TEST(VectorTest, UnitConversion) {
           {conn1, 0.0}});
 
   auto vec = std::make_shared<Vector>(end, start, unit1);
-  vec->convert_to(unit2);
+  vec->update_unit(unit2);
 
   ASSERT_EQ(vec->unit(), unit2);
-  ASSERT_EQ(vec->end()->unit(), unit2);
-  ASSERT_EQ(vec->start()->unit(), unit2);
+  ASSERT_EQ(vec->endPoint()->unit(), unit2);
+  ASSERT_EQ(vec->startPoint()->unit(), unit2);
 }
 }  // namespace tests

@@ -4,6 +4,7 @@ namespace falcon_core::instrument_interfaces::names {
 
 Knobs::Knobs() = default;
 Knobs::Knobs(const std::vector<KnobSP>& knobs) : Ports<Knob>(knobs) {}
+Knobs::Knobs(const generic::ListSP<Knob>& knobs) : Ports<Knob>(knobs) {}
 
 }  // namespace falcon_core::instrument_interfaces::names
 

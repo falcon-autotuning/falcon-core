@@ -60,7 +60,7 @@ class List : public generic::Song {
    *   List o{ptr1, ptr2, ptr3};
    *   @endcode
    */
-  List() = default;
+  List() : _items(std::vector<StoredValue>()) {}
   List(size_t count) : _items(count) {}
   List(size_t count, const StoredValue& value) : _items(count, value) {}
   List(const Container& init) : _items(init) {}
@@ -75,15 +75,29 @@ class List : public generic::Song {
   iterator         end() { return _items.end(); }
   const_iterator   begin() const { return _items.begin(); }
   const_iterator   end() const { return _items.end(); }
-  bool             contains(const StoredValue& value) const {
+  bool             contains(const Value& value) const {
     return std::any_of(
         _items.begin(), _items.end(), [&value](const StoredValue& item) {
-          return item && value ? *item == *value : item == value;
+          return item == value;
         });
   }
-  size_t index(const StoredValue& value) const {
+  bool contains(const std::shared_ptr<Value>& value) const {
+    return std::any_of(
+        _items.begin(), _items.end(), [&value](const StoredValue& item) {
+          return *item == *value;
+        });
+  }
+  size_t index(const Value& value) const {
     for (size_t i = 0; i < _items.size(); ++i) {
-      if (_items[i] && value ? *_items[i] == *value : _items[i] == value) {
+      if (_items[i] == value) {
+        return i;
+      }
+    }
+    throw std::out_of_range("Value not found in List");
+  }
+  size_t index(const std::shared_ptr<Value>& value) const {
+    for (size_t i = 0; i < _items.size(); ++i) {
+      if (*_items[i] == *value) {
         return i;
       }
     }
@@ -100,13 +114,17 @@ class List : public generic::Song {
   std::shared_ptr<List<Value>> intersection(
       const std::shared_ptr<List<Value>>& other) const {
     std::shared_ptr<List<Value>> result;
-    for (const StoredValue& value : *items()) {
-      if (other.contains(value)) {
+    for (const StoredValue& value : items()) {
+      if (other->contains(value)) {
         result->push_back(value);
       }
     }
     return result;
   }
+  /**
+   * @brief clears to contents of the list.
+   */
+  void clear() { _items.clear(); }
   // SFINAE: If Derived is void, clone returns Map
   template <typename D = Derived>
   typename std::enable_if<std::is_same<D, void>::value,

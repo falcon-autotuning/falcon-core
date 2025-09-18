@@ -1,26 +1,34 @@
 #include <gtest/gtest.h>
 
+#include "falcon_core/math/Axes.hpp"
 #include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace.hpp"
 #include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace1D.hpp"
 #include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace2D.hpp"
 #include "falcon_core/math/discrete_spaces/DiscreteSpace.hpp"
+#include "falcon_core/math/discretizers/CartesianDiscretizer.hpp"
+#include "falcon_core/math/domains/BaseLabelledDomain.hpp"
+#include "falcon_core/math/spaces/Cartesian1DSpace.hpp"
+#include "falcon_core/math/spaces/Cartesian2DSpace.hpp"
+#include "falcon_core/math/spaces/CartesianSpace.hpp"
 namespace tests {
-using namespace falcon_core::math::discrete_spaces;
-using namespace falcon_core::math::domains;
-using namespace falcon_core::math::spaces;
+using namespace falcon_core::math;
+using namespace discrete_spaces;
+using namespace domains;
+using namespace spaces;
 
 // Helper to create a dummy CoupledKnobDomain
 std::shared_ptr<CoupledKnobDomain> make_knob_domain(double min, double max) {
-  using Knob               = falcon_core::instrument_interfaces::names::Knob;
-  using LabelledDomainKnob = falcon_core::math::domains::LabelledDomain<Knob>;
+  using Knob = falcon_core::instrument_interfaces::names::Knob;
+  using LabelledDomainKnob =
+      falcon_core::math::domains::BaseLabelledDomain<Knob>;
   return std::make_shared<CoupledKnobDomain>(
-      min, max, nullptr, std::vector<std::shared_ptr<LabelledDomainKnob>>{});
+      std::vector({BaseLabelledDomain<Knob>(min, max, nullptr)}));
 }
 
 TEST(DiscreteSpacesTest, BaseDiscreteSpaceBasicFunctionality) {
   auto domain = std::make_shared<Domain>(0.0, 1.0);
   auto space  = std::make_shared<UnitSpace>(
-      Axes<discretizers::BaseDiscretizer>{}, domain);
+      std::make_shared<Axes<discretizers::BaseDiscretizer>>(), domain);
   auto axes = std::make_shared<Axes<CoupledKnobDomain>>(
       std::vector<std::shared_ptr<CoupledKnobDomain>>{
           make_knob_domain(0.0, 1.0)});
@@ -190,8 +198,9 @@ TEST(DiscreteSpacesTest, ComplexProjectionFunctionality) {
   auto axes_knobs = std::make_shared<Axes<Knob>>(knob_vec);
 
   // 3. Create CoupledKnobDomains for each Knob
-  using LabelledDomainKnob = falcon_core::math::domains::LabelledDomain<Knob>;
-  auto kd1                 = std::make_shared<CoupledKnobDomain>(
+  using LabelledDomainKnob =
+      falcon_core::math::domains::BaseLabelledDomain<Knob>;
+  auto kd1 = std::make_shared<CoupledKnobDomain>(
       0.0, 1.0, knob1, std::vector<std::shared_ptr<LabelledDomainKnob>>{});
   auto kd2 = std::make_shared<CoupledKnobDomain>(
       0.0, 1.0, knob2, std::vector<std::shared_ptr<LabelledDomainKnob>>{});

@@ -13,6 +13,10 @@ class Knobs : public Ports<Knob> {
    * @brief Initialize knobs from a collection of knob.
    */
   Knobs(const std::vector<KnobSP>& knobs);
+  /**
+   * @brief Initialize knobs from a collection of knob.
+   */
+  Knobs(const generic::ListSP<Knob>& knobs);
 
  protected:
   friend class cereal::access;

@@ -21,23 +21,24 @@ std::vector<std::string> split_on_semicolon(const std::string& s) {
 ConfigManipulations::ConfigManipulations() = default;
 core::ConfigSP ConfigManipulations::unpack_device_config(
     const YAML::Node& config) const {
-  generic::Map<Gname, core::Group>  groups;
-  core::StandardConfigConnectionsSP connections =
+  generic::Map<autotuner_interfaces::names::Gname, core::Group> groups;
+  core::StandardConfigConnectionsSP                             connections =
       _extract_standard_config_connections(config);
   for (const auto& group_pair : config["groups"]) {
     auto key         = group_pair.first.as<std::string>();
     auto value       = group_pair.second;
     auto connections = _extract_standard_config_connections(value);
     auto order = _extract_order(value["Order"].as<std::string>(), connections);
-    core::GroupSP new_group =
-        std::make_shared<core::Group>(std::make_shared<Channel>(key),
-                                      value["NumDots"].as<int>(),
-                                      connections->screening_gates(),
-                                      connections->reservoir_gates(),
-                                      connections->plunger_gates(),
-                                      connections->barrier_gates(),
-                                      order);
-    groups[std::make_shared<Gname>(key)] = new_group;
+    core::GroupSP new_group = std::make_shared<core::Group>(
+        std::make_shared<autotuner_interfaces::names::Channel>(key),
+        value["NumDots"].as<int>(),
+        connections->screening_gates(),
+        connections->reservoir_gates(),
+        connections->plunger_gates(),
+        connections->barrier_gates(),
+        order);
+    groups[std::make_shared<autotuner_interfaces::names::Gname>(key)] =
+        new_group;
   }
   auto ohmics    = _extract_ohmics(config["Ohmics"].as<std::string>());
   auto wiring_DC = _extract_dcwiring(config, ohmics, connections);
@@ -66,7 +67,9 @@ core::ConfigSP ConfigManipulations::unpack_device_config(
       ohmics,
       connections->barrier_gates(),
       connections->reservoir_gates(),
-      std::make_shared<generic::Map<Gname, core::Group>>(groups),
+      std::make_shared<
+          generic::Map<autotuner_interfaces::names::Gname, core::Group>>(
+          groups),
       wiring_DC,
       constraints);
 }

@@ -1,5 +1,6 @@
 #include "falcon_core/instrument_interfaces/waveforms/CartesianWaveform1D.hpp"
 
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/IdentityTransform.hpp"
 namespace falcon_core::instrument_interfaces::waveforms {
 
@@ -11,7 +12,7 @@ CartesianWaveform1D::CartesianWaveform1D(
           falcon_core::math::discrete_spaces::CartesianDiscreteSpace1D>(
           space, transforms) {}
 
-const CartesianWaveform1DSP from_divisions(
+const CartesianWaveform1DSP from_division(
     const int&                                             division,
     const falcon_core::math::domains::CoupledKnobDomainSP& shared_domain,
     const generic::MapSP<std::string, bool>&               increasing,
@@ -36,7 +37,8 @@ const CartesianWaveform1DSP setup_identity_everywhere(
   for (const names::KnobSP& knob : *space->knobs()) {
     transforms->push_back(std::make_shared<port_transforms::IdentityTransform>(
         std::dynamic_pointer_cast<names::InstrumentPort>(knob),
-        space->knobs()->ports()));
+        std::dynamic_pointer_cast<names::Ports<names::InstrumentPort>>(
+            space->knobs())));
   }
   return std::make_shared<CartesianWaveform1D>(space, transforms);
 }

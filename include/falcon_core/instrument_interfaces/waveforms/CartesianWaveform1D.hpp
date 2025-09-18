@@ -1,7 +1,6 @@
 #pragma once
 
 #include "falcon_core/instrument_interfaces/waveforms/BaseWaveform.hpp"
-#include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace.hpp"
 #include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace1D.hpp"
 
 /**
@@ -32,7 +31,7 @@ class CartesianWaveform1D
    * @param transforms the transforms to apply to the waveform.
    * @param increasing if the array should increase following the domain or not.
    */
-  static const std::shared_ptr<CartesianWaveform1D> from_divisions(
+  static const std::shared_ptr<CartesianWaveform1D> from_division(
       const int&                                             division,
       const falcon_core::math::domains::CoupledKnobDomainSP& shared_domain,
       const generic::MapSP<std::string, bool>&               increasing,
@@ -61,7 +60,7 @@ class CartesianWaveform1D
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<
-        BaseWaveform<math::discrete_spaces::CartesianDiscreteSpace>>(this));
+        BaseWaveform<math::discrete_spaces::CartesianDiscreteSpace1D>>(this));
   }
 };
 using CartesianWaveform1DSP = std::shared_ptr<CartesianWaveform1D>;

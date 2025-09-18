@@ -24,16 +24,8 @@ class Point : public generic::Map<physics::device_structures::BaseConnection,
                                   Point> {
   physics::units::SymbolUnitSP _unit;
 
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<
-           generic::Map<physics::device_structures::BaseConnection,
-                        Quantity,
-                        Point>>(this),
-       _unit);
-  }
-
  public:
+  Point();
   Point(const generic::MapSP<physics::device_structures::BaseConnection,
                              double>&       init,
         const physics::units::SymbolUnitSP& unit);
@@ -75,8 +67,15 @@ class Point : public generic::Map<physics::device_structures::BaseConnection,
   void set_unit(physics::units::SymbolUnitSP unit);
 
  protected:
-  Point();
   friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<
+           generic::Map<physics::device_structures::BaseConnection,
+                        Quantity,
+                        Point>>(this),
+       _unit);
+  }
 };
 using PointSP = std::shared_ptr<Point>;
 }  // namespace falcon_core::math

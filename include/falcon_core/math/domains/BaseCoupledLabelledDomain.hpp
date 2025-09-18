@@ -17,14 +17,14 @@ template <typename Label>
 class BaseCoupledLabelledDomain
     : public generic::List<BaseLabelledDomain<Label>> {
  public:
-  BaseCoupledLabelledDomain() = default;
+  BaseCoupledLabelledDomain() : generic::List<BaseLabelledDomain<Label>>() {}
   /**
    * @brief Construct from a vector of labelled domains.
    * @param domains Vector of shared pointers to labelled domains.
    */
   BaseCoupledLabelledDomain(
       const std::vector<BaseLabelledDomainSP<Label>>& init)
-      : generic::List<BaseLabelledDomainSP<Label>>(init) {}
+      : generic::List<BaseLabelledDomain<Label>>(init) {}
   /**
    * @brief Get all domains.
    */
@@ -35,10 +35,10 @@ class BaseCoupledLabelledDomain
    * @brief Get all labels.
    * @return Vector of shared pointers to labels.
    */
-  generic::List<Label> labels() const {
-    generic::List<Label> result;
+  const generic::ListSP<Label> labels() const {
+    generic::ListSP<Label> result;
     for (const auto& domain : domains()) {
-      result.push_back(domain->label());
+      result->push_back(domain->label());
     }
     return result;
   }

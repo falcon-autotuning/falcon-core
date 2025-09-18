@@ -2,6 +2,7 @@
 
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/instrument_interfaces/names/Knobs.hpp"
+#include "falcon_core/math/arrays/LabelledControlArray.hpp"
 #include "falcon_core/math/domains/CoupledKnobDomain.hpp"
 #include "falcon_core/math/spaces/UnitSpace.hpp"
 
@@ -59,7 +60,7 @@ class BaseDiscreteSpace : public generic::Song {
    * @param projection The axes to project onto.
    * @return The projection of th espace onto the given axes.
    */
-  const AxesSP<double> get_projection(
+  const AxesSP<arrays::LabelledControlArray> get_projection(
       const AxesSP<instrument_interfaces::names::Knob>& projection) const;
 
  protected:

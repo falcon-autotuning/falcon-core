@@ -84,6 +84,10 @@ Vector::Vector(const generic::MapSP<physics::device_structures::BaseConnection,
       end,
       unit);
 }
+Vector::Vector(const generic::MapSP<physics::device_structures::BaseConnection,
+                                    DeltaQuantity> map)
+    : generic::Map<physics::device_structures::BaseConnection, DeltaQuantity>(
+          *map) {}
 
 const PointSP Vector::endPoint() const {
   PointSP result;

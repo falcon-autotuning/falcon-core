@@ -14,7 +14,10 @@
 #include <memory>
 #include <string>
 #include <vector>
+
+#include "falcon_core/math/spaces/Cartesian1DSpace.hpp"
 namespace tests {
+using namespace falcon_core;
 using namespace falcon_core::instrument_interfaces::waveforms;
 using namespace falcon_core::math::domains;
 using namespace falcon_core::math::discrete_spaces;
@@ -32,11 +35,14 @@ TEST(WaveformTest, BasicConstructionAndAccess) {
 
   auto identity_transform = std::make_shared<IdentityTransform>();
   auto constant_transform = std::make_shared<ConstantTransform>(3.14);
-
-  Waveform waveform(space, {identity_transform, constant_transform});
+  generic::ListSP<PortTransform> transforms =
+      std::make_shared<generic::List<PortTransform>>(std::vector(
+          {std::dynamic_pointer_cast<PortTransform>(identity_transform),
+           std::dynamic_pointer_cast<PortTransform>(constant_transform)}));
+  Waveform waveform(space, transforms);
 
   ASSERT_EQ(waveform.space(), space);
-  ASSERT_EQ(waveform.get_transforms().size(), 2);
+  ASSERT_EQ(waveform.transforms()->size(), 2);
 }
 
 TEST(WaveformTest, SerializationRoundTrip) {
@@ -53,15 +59,22 @@ TEST(WaveformTest, SerializationRoundTrip) {
   auto identity_transform = std::make_shared<IdentityTransform>();
   auto constant_transform = std::make_shared<ConstantTransform>(42.0);
 
-  Waveform original(space, {identity_transform, constant_transform});
+  generic::ListSP<PortTransform> transforms =
+      std::make_shared<generic::List<PortTransform>>(std::vector(
+          {std::dynamic_pointer_cast<PortTransform>(identity_transform),
+           std::dynamic_pointer_cast<PortTransform>(constant_transform)}));
+  Waveform original(space, transforms);
 
   std::string json = original.to_json_string();
   auto recreated = falcon_core::generic::Song::from_json_string<Waveform>(json);
 
-  ASSERT_EQ(recreated->get_transforms().size(), 2);
+  ASSERT_EQ(recreated->transforms()->size(), 2);
+  generic::MapSP<std::string, double> map;
+  map->insert("x", 0.0);
   EXPECT_DOUBLE_EQ(
-      dynamic_cast<ConstantTransform*>(recreated->get_transforms()[1].get())
-          ->apply(0.0),
+      dynamic_cast<ConstantTransform*>(recreated->transforms()->at(2).get())
+          ->function()
+          ->function(map),
       42.0);
 }
 
@@ -73,49 +86,51 @@ TEST(CartesianWaveformTest, NDConstructionAndSerialization) {
       std::vector<int>{10, 20, 30});
   auto axes = std::make_shared<
       falcon_core::math::Axes<falcon_core::math::domains::CoupledKnobDomain>>();
-  auto increasing =
-      std::make_shared<falcon_core::math::Axes<std::map<std::string, bool>>>();
+  auto increasing = std::make_shared<
+      falcon_core::math::Axes<generic::Map<std::string, bool>>>();
 
   auto identity_transform = std::make_shared<IdentityTransform>();
   auto constant_transform = std::make_shared<ConstantTransform>(1.23);
 
+  generic::ListSP<PortTransform> transforms =
+      std::make_shared<generic::List<PortTransform>>(std::vector(
+          {std::dynamic_pointer_cast<PortTransform>(identity_transform),
+           std::dynamic_pointer_cast<PortTransform>(constant_transform)}));
   auto waveform = CartesianWaveform::from_divisions(
-      divisions,
-      axes,
-      increasing,
-      {identity_transform, constant_transform},
-      domain);
+      divisions, axes, increasing, transforms, domain);
 
   ASSERT_TRUE(waveform != nullptr);
-  ASSERT_EQ(waveform->get_transforms().size(), 2);
+  ASSERT_EQ(waveform->transforms()->size(), 2);
 
   // Serialization round-trip
   std::string json = waveform->to_json_string();
   auto        recreated =
       falcon_core::generic::Song::from_json_string<CartesianWaveform>(json);
-  ASSERT_EQ(recreated->get_transforms().size(), 2);
+  ASSERT_EQ(recreated->transforms()->size(), 2);
 }
 
 TEST(CartesianWaveform1DTest, ConstructionAndSerialization) {
   auto domain = std::make_shared<Domain>(-1.0, 1.0);
   auto shared_domain =
       std::make_shared<falcon_core::math::domains::CoupledKnobDomain>();
-  auto increasing =
-      std::make_shared<falcon_core::math::Axes<std::map<std::string, bool>>>();
+  auto increasing = std::make_shared<generic::Map<std::string, bool>>();
 
   auto identity_transform = std::make_shared<IdentityTransform>();
 
+  generic::ListSP<PortTransform> transforms =
+      std::make_shared<generic::List<PortTransform>>(std::vector(
+          {std::dynamic_pointer_cast<PortTransform>(identity_transform)}));
   auto waveform = CartesianWaveform1D::from_division(
-      10, shared_domain, increasing, {identity_transform}, domain);
+      10, shared_domain, increasing, transforms, domain);
 
   ASSERT_TRUE(waveform != nullptr);
-  ASSERT_EQ(waveform->get_transforms().size(), 1);
+  ASSERT_EQ(waveform->transforms()->size(), 1);
 
   // Serialization round-trip
   std::string json = waveform->to_json_string();
   auto        recreated =
       falcon_core::generic::Song::from_json_string<CartesianWaveform1D>(json);
-  ASSERT_EQ(recreated->get_transforms().size(), 1);
+  ASSERT_EQ(recreated->transforms()->size(), 1);
 }
 
 TEST(CartesianWaveform2DTest, ConstructionAndSerialization) {
@@ -133,12 +148,12 @@ TEST(CartesianWaveform2DTest, ConstructionAndSerialization) {
       divisions, axes, increasing, {identity_transform}, domain);
 
   ASSERT_TRUE(waveform != nullptr);
-  ASSERT_EQ(waveform->get_transforms().size(), 1);
+  ASSERT_EQ(waveform->transforms()->size(), 1);
 
   // Serialization round-trip
   std::string json = waveform->to_json_string();
   auto        recreated =
       falcon_core::generic::Song::from_json_string<CartesianWaveform2D>(json);
-  ASSERT_EQ(recreated->get_transforms().size(), 1);
+  ASSERT_EQ(recreated->transforms()->size(), 1);
 }
 }  // namespace tests
