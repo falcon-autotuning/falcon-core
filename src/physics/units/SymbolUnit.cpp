@@ -1,17 +1,8 @@
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
-#include <cereal/archives/binary.hpp>
-#include <memory>
-#include <sstream>
-
 #include "falcon_core/Constants.hpp"
 #include "falcon_core/physics/units/CommonUnits.hpp"
-#include "falcon_core/physics/units/Unit.hpp"
-using namespace falcon_core;
-using namespace falcon_core::physics::units;
-namespace falcon_core {
-namespace physics {
-namespace units {
+namespace falcon_core::physics::units {
 const std::vector<std::tuple<UnitSP, std::string, std::string>> Units_And_Names{
     {CommonUnits::Meter, SI::UNIT_SYMBOL_METER, SI::UNIT_NAME_METER},
     {CommonUnits::Kilogram, SI::UNIT_SYMBOL_KILOGRAM, SI::UNIT_NAME_KILOGRAM},
@@ -76,37 +67,40 @@ const std::string SymbolUnit::symbol() const { return _symbol; }
  * @brief Get the name of the unit.
  * @return The name as a string.
  */
-const std::string SymbolUnit::name() const { return _name; }
-SymbolUnitSP      SymbolUnit::operator*(const SymbolUnitSP& other) const {
+const std::string  SymbolUnit::name() const { return _name; }
+const SymbolUnitSP SymbolUnit::operator*(const SymbolUnitSP& other) const {
   return std::make_shared<SymbolUnit>(*unit() * other->unit());
 }
-SymbolUnitSP SymbolUnit::operator*(const std::shared_ptr<Unit>& other) const {
+const SymbolUnitSP SymbolUnit::operator*(
+    const std::shared_ptr<Unit>& other) const {
   return std::make_shared<SymbolUnit>(*unit() * other);
 }
-SymbolUnitSP SymbolUnit::operator/(const SymbolUnitSP& other) const {
+const SymbolUnitSP SymbolUnit::operator/(const SymbolUnitSP& other) const {
   return std::make_shared<SymbolUnit>(*unit() / other->unit());
 }
-SymbolUnitSP SymbolUnit::operator/(const std::shared_ptr<Unit>& other) const {
+const SymbolUnitSP SymbolUnit::operator/(
+    const std::shared_ptr<Unit>& other) const {
   return std::make_shared<SymbolUnit>(*unit() / other);
 }
-SymbolUnitSP SymbolUnit::operator^(const int power) const {
+const SymbolUnitSP SymbolUnit::operator^(const int power) const {
   return std::make_shared<SymbolUnit>(*unit() ^ power);
 }
-SymbolUnitSP SymbolUnit::with_prefix(const std::string prefix) const {
+const SymbolUnitSP SymbolUnit::with_prefix(const std::string prefix) const {
   return std::make_shared<SymbolUnit>(unit()->with_prefix(prefix));
 }
-double SymbolUnit::convert_value_to(const double        value,
-                                    const SymbolUnitSP& target_unit) const {
+const double SymbolUnit::convert_value_to(
+    const double value, const SymbolUnitSP& target_unit) const {
   return unit()->convert_value_to(value, target_unit->unit());
 }
-bool SymbolUnit::is_compatible_with(const SymbolUnitSP& other) const {
+const bool SymbolUnit::is_compatible_with(const SymbolUnitSP& other) const {
   return unit()->is_compatible_with(other->unit());
 }
-std::string SymbolUnit::str() const { return _symbol; }
+const std::string SymbolUnit::str() const { return _symbol; }
 
-std::pair<std::string, std::string> SymbolUnit::_find_matching_common_unit()
-    const {
-  for (const auto& triplet : get_unit_symbols()) {
+const std::pair<std::string, std::string>
+SymbolUnit::_find_matching_common_unit() const {
+  for (const std::tuple<UnitSP, std::string, std::string>& triplet :
+       get_unit_symbols()) {
     if (std::get<0>(triplet)->dimensions() == unit()->dimensions()) {
       return {unit()->prefix() + std::get<1>(triplet),
               unit()->prefix() + std::get<2>(triplet)};
@@ -115,7 +109,7 @@ std::pair<std::string, std::string> SymbolUnit::_find_matching_common_unit()
   // No exact match found, generate a custom symbol and name
   return std::make_pair(_generate_symbol(), _generate_name());
 }
-std::string SymbolUnit::_generate_symbol() const {
+const std::string SymbolUnit::_generate_symbol() const {
   // If dimensions are empty, return the appropriate SI unit symbol
   if (unit()->dimensions().empty()) {
     if (unit()->scale_factor() == 0.01) {
@@ -194,15 +188,17 @@ std::string SymbolUnit::_generate_symbol() const {
 
   return numerator_str + "·" + denominator_str;
 }
-std::vector<std::tuple<UnitSP, std::string, std::string>>
+const std::vector<std::tuple<UnitSP, std::string, std::string>>
 SymbolUnit::get_unit_symbols() const {
   return Units_And_Names;
 }
 
-std::map<std::string, std::string> SymbolUnit::get_dimension_symbols() const {
+const std::map<std::string, std::string> SymbolUnit::get_dimension_symbols()
+    const {
   return Dimension_Symbols;
 }
-std::string SymbolUnit::_get_dimension_symbol(std::string dimension) const {
+const std::string SymbolUnit::_get_dimension_symbol(
+    std::string dimension) const {
   // Check if the dimension is in the common units map
   std::map<std::string, std::string> symbols = get_dimension_symbols();
   auto                               it      = symbols.find(dimension);
@@ -212,7 +208,7 @@ std::string SymbolUnit::_get_dimension_symbol(std::string dimension) const {
   // If not found, return the dimension as is
   return dimension;
 }
-std::string SymbolUnit::_generate_name() const {
+const std::string SymbolUnit::_generate_name() const {
   // Look for a predefined name based on dimensions
   for (const auto& triplet : get_unit_symbols()) {
     if (std::get<0>(triplet)->dimensions() == unit()->dimensions()) {
@@ -222,9 +218,7 @@ std::string SymbolUnit::_generate_name() const {
   // Otherwise, use the symbol as the name
   return _generate_symbol();
 }
-}  // namespace units
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::units
 CEREAL_REGISTER_TYPE(falcon_core::physics::units::SymbolUnit)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::physics::units::SymbolUnit)
