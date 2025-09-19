@@ -1,16 +1,16 @@
 #include "falcon_core/instrument_interfaces/names/Timer.hpp"
 
-#include "falcon_core/physics/units/CommonUnits.hpp"
+#include "falcon_core/physics/units/SymbolUnit.hpp"
 
 namespace falcon_core::instrument_interfaces::names {
 
 Timer::Timer()
-    : Knob(falcon_core::INSTRUMENT_TYPES::CLOCK,  // default_name
-           nullptr,                               // pseudo_name
-           falcon_core::INSTRUMENT_TYPES::CLOCK,  // instrument_type
-           std::make_shared<physics::units::SymbolUnit>(
-               physics::units::CommonUnits::Second),
-           "Clock") {}
+    : Knob(INSTRUMENT_TYPES::CLOCK,  // default_name
+           nullptr,                  // pseudo_name
+           INSTRUMENT_TYPES::CLOCK,  // instrument_type
+           physics::units::SymbolUnit::Second(),
+           "A time clock used for measurement aquisition and synchronization") {
+}
 
 }  // namespace falcon_core::instrument_interfaces::names
 

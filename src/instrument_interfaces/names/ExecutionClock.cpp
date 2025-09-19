@@ -1,15 +1,13 @@
 #include "falcon_core/instrument_interfaces/names/ExecutionClock.hpp"
 
-#include "falcon_core/physics/units/CommonUnits.hpp"
 namespace falcon_core::instrument_interfaces::names {
 
 ExecutionClock::ExecutionClock()
     : Meter(falcon_core::INSTRUMENT_TYPES::CLOCK,  // default_name
             nullptr,                               // pseudo_name
             falcon_core::INSTRUMENT_TYPES::CLOCK,  // instrument_type
-            std::make_shared<physics::units::SymbolUnit>(
-                physics::units::CommonUnits::Second),
-            "Execution clock") {}
+            physics::units::SymbolUnit::Second(),
+            "Clock used to show time traces after execution") {}
 
 }  // namespace falcon_core::instrument_interfaces::names
 

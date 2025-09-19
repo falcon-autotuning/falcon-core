@@ -5,7 +5,6 @@
 #include "falcon_core/Sign.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
 #include "falcon_core/SymbolUnit.hpp"
-#include "falcon_core/Units.hpp"
 %}
 
 %shared_ptr(falcon_core::Unit);
@@ -19,6 +18,5 @@
 %include "falcon_core/physics/units/Prefix.hpp"
 %include "falcon_core/physics/units/Unit.hpp"
 %include "falcon_core/SymbolUnit.hpp"
-%include "falcon_core/Units.hpp"
 */
 

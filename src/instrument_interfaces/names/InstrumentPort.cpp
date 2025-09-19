@@ -22,8 +22,7 @@ InstrumentPort::InstrumentPort()
       _pseudo_name(nullptr),
       _instrument_type(falcon_core::instrument_interfaces::InstrumentTypes::
                            DC_VOLTAGE_SOURCE),
-      _units(std::make_shared<physics::units::SymbolUnit>(
-          physics::units::Units::Volt)),
+      _units(physics::units::SymbolUnit::Volt()),
       _description("") {}
 
 const std::string InstrumentPort::default_name() const { return _default_name; }

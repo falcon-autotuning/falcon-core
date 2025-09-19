@@ -7,7 +7,6 @@
 #include <falcon_core/instrument_interfaces/waveforms/BaseWaveform.hpp>
 #include <falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp>
 #include <falcon_core/math/domains/KnobDomain.hpp>
-#include <falcon_core/physics/units/Units.hpp>
 
 namespace falcon_core::communications::messages {
 

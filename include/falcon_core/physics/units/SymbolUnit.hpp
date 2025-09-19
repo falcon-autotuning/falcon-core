@@ -42,6 +42,226 @@ class SymbolUnit : public generic::Song {
    */
   SymbolUnit(UnitSP unit);
   /*
+   * @brief Construct a Meter
+   */
+  static std::shared_ptr<SymbolUnit> Meter();
+  /*
+   * @brief Construct a Kilogram
+   */
+  static std::shared_ptr<SymbolUnit> Kilogram();
+  /*
+   * @brief Construct a Second
+   */
+  static std::shared_ptr<SymbolUnit> Second();
+  /*
+   * @brief Construct an Ampere
+   */
+  static std::shared_ptr<SymbolUnit> Ampere();
+  /*
+   * @brief Construct a Kelvin
+   */
+  static std::shared_ptr<SymbolUnit> Kelvin();
+  /*
+   * @brief Construct a Mole
+   */
+  static std::shared_ptr<SymbolUnit> Mole();
+  /*
+   * @brief Construct a Candela
+   */
+  static std::shared_ptr<SymbolUnit> Candela();
+  /*
+   * @brief Construct a Hertz
+   */
+  static std::shared_ptr<SymbolUnit> Hertz();
+  /*
+   * @brief Construct a Newton
+   */
+  static std::shared_ptr<SymbolUnit> Newton();
+  /*
+   * @brief Construct a Pascal
+   */
+  static std::shared_ptr<SymbolUnit> Pascal();
+  /*
+   * @brief Construct a Joule
+   */
+  static std::shared_ptr<SymbolUnit> Joule();
+  /*
+   * @brief Construct a Watt
+   */
+  static std::shared_ptr<SymbolUnit> Watt();
+  /*
+   * @brief Construct a Coulomb
+   */
+  static std::shared_ptr<SymbolUnit> Coulomb();
+  /*
+   * @brief Construct a Volt
+   */
+  static std::shared_ptr<SymbolUnit> Volt();
+  /*
+   * @brief Construct a Farad
+   */
+  static std::shared_ptr<SymbolUnit> Farad();
+  /*
+   * @brief Construct an Ohm
+   */
+  static std::shared_ptr<SymbolUnit> Ohm();
+  /*
+   * @brief Construct a Seimens
+   */
+  static std::shared_ptr<SymbolUnit> Siemens();
+  /*
+   * @brief Construct a Weber
+   */
+  static std::shared_ptr<SymbolUnit> Weber();
+  /*
+   * @brief Construct a Tesla
+   */
+  static std::shared_ptr<SymbolUnit> Tesla();
+  /*
+   * @brief Construct a Henry
+   */
+  static std::shared_ptr<SymbolUnit> Henry();
+  /*
+   * @brief Construct a Minute
+   */
+  static std::shared_ptr<SymbolUnit> Minute();
+  /*
+   * @brief Construct an Hour
+   */
+  static std::shared_ptr<SymbolUnit> Hour();
+  /*
+   * @brief Construct an ElectronVolt
+   */
+  static std::shared_ptr<SymbolUnit> ElectronVolt();
+  /*
+   * @brief Construct a Celsius
+   */
+  static std::shared_ptr<SymbolUnit> Celsius();
+  /*
+   * @brief Construct a Fahrenheit
+   */
+  static std::shared_ptr<SymbolUnit> Fahrenheit();
+  /*
+   * @brief Construct a Dimensionless
+   */
+  static std::shared_ptr<SymbolUnit> Dimensionless();
+  /*
+   * @brief Construct a Percent
+   */
+  static std::shared_ptr<SymbolUnit> Percent();
+  /*
+   * @brief Construct a Radian
+   */
+  static std::shared_ptr<SymbolUnit> Radian();
+  /*
+   * @brief Construct a KiloMeter
+   */
+  static std::shared_ptr<SymbolUnit> KiloMeter();
+  /*
+   * @brief Construct a MilliMeter
+   */
+  static std::shared_ptr<SymbolUnit> MilliMeter();
+  /*
+   * @brief Construct a KiloVolt
+   */
+  static std::shared_ptr<SymbolUnit> KiloVolt();
+  /*
+   * @brief Construct a MilliAmpere
+   */
+  static std::shared_ptr<SymbolUnit> MilliAmpere();
+  /*
+   * @brief Construct a MicroAmpere
+   */
+  static std::shared_ptr<SymbolUnit> MicroAmpere();
+  /*
+   * @brief Construct a NanoAmpere
+   */
+  static std::shared_ptr<SymbolUnit> NanoAmpere();
+  /*
+   * @brief Construct a PicoAmpere
+   */
+  static std::shared_ptr<SymbolUnit> PicoAmpere();
+  /*
+   * @brief Construct a MilliSecond
+   */
+  static std::shared_ptr<SymbolUnit> MilliSecond();
+  /*
+   * @brief Construct a MicroSecond
+   */
+  static std::shared_ptr<SymbolUnit> MicroSecond();
+  /*
+   * @brief Construct a NanoSecond
+   */
+  static std::shared_ptr<SymbolUnit> NanoSecond();
+  /*
+   * @brief Construct a PicoSecond
+   */
+  static std::shared_ptr<SymbolUnit> PicoSecond();
+  /*
+   * @brief Construct a MilliOhm
+   */
+  static std::shared_ptr<SymbolUnit> MilliOhm();
+  /*
+   * @brief Construct a KiloOhm
+   */
+  static std::shared_ptr<SymbolUnit> KiloOhm();
+  /*
+   * @brief Construct a MegaOhm
+   */
+  static std::shared_ptr<SymbolUnit> MegaOhm();
+  /*
+   * @brief Construct a MilliHertz
+   */
+  static std::shared_ptr<SymbolUnit> MilliHertz();
+  /*
+   * @brief Construct a KiloHertz
+   */
+  static std::shared_ptr<SymbolUnit> KiloHertz();
+  /*
+   * @brief Construct a MegaHertz
+   */
+  static std::shared_ptr<SymbolUnit> MegaHertz();
+  /*
+   * @brief Construct a GigaHertz
+   */
+  static std::shared_ptr<SymbolUnit> GigaHertz();
+  /*
+   * @brief Construct a MetersPerSecond
+   */
+  static std::shared_ptr<SymbolUnit> MetersPerSecond();
+  /*
+   * @brief Construct a MetersPerSecondSquared
+   */
+  static std::shared_ptr<SymbolUnit> MetersPerSecondSquared();
+  /*
+   * @brief Construct a NewtonMeter
+   */
+  static std::shared_ptr<SymbolUnit> NewtonMeter();
+  /*
+   * @brief Construct a NewtonPerMeter
+   */
+  static std::shared_ptr<SymbolUnit> NewtonPerMeter();
+  /*
+   * @brief Construct a VoltsPerMeter
+   */
+  static std::shared_ptr<SymbolUnit> VoltsPerMeter();
+  /*
+   * @brief Construct a VoltsPerSecond
+   */
+  static std::shared_ptr<SymbolUnit> VoltsPerSecond();
+  /*
+   * @brief Construct an AmperesPerMeter
+   */
+  static std::shared_ptr<SymbolUnit> AmperesPerMeter();
+  /*
+   * @brief Construct a VoltsPerAmpere
+   */
+  static std::shared_ptr<SymbolUnit> VoltsPerAmpere();
+  /*
+   * @brief Construct a WattsPerMeterKelvin
+   */
+  static std::shared_ptr<SymbolUnit> WattsPerMeterKelvin();
+  /*
    * @brief Get the symbol of the unit.
    * @return The symbol as a string.
    */

@@ -3,7 +3,7 @@
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/Instrument.hpp"
 #include "falcon_core/physics/device_structures/BaseConnection.hpp"
-#include "falcon_core/physics/units/Units.hpp"
+#include "falcon_core/physics/units/SymbolUnit.hpp"
 
 namespace falcon_core::instrument_interfaces::names {
 
@@ -29,8 +29,7 @@ class InstrumentPort : public generic::Song {
           nullptr,
       Instrument instrument_type = INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE,
       std::shared_ptr<physics::units::SymbolUnit> units =
-          std::make_shared<physics::units::SymbolUnit>(
-              physics::units::Units::Volt),
+          physics::units::SymbolUnit::Volt(),
       std::string description = "");
 
   /**

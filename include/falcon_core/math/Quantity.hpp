@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "falcon_core/physics/units/Units.hpp"
+#include "falcon_core/physics/units/SymbolUnit.hpp"
 
 namespace falcon_core::math {
 
@@ -25,10 +25,9 @@ class Quantity : public generic::Song {
    * @param value the value of the quantity.
    * @param unit the unit of the quantity.
    */
-  Quantity(double                       value,
-           physics::units::SymbolUnitSP unit =
-               std::make_shared<physics::units::SymbolUnit>(
-                   physics::units::Units::Volt));
+  Quantity(
+      double                       value,
+      physics::units::SymbolUnitSP unit = physics::units::SymbolUnit::Volt());
 
   /**
    * @brief Return the value of the quantity.

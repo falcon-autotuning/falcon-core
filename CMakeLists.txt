@@ -26,27 +26,18 @@ function(cpp_tests)
   else()
     # Default: include all test files
     set(RUN_TESTS_SOURCES
-    tests/test_unit.cpp
-    # tests/test_common_unit.cpp
-    # tests/test_song.cpp
-    # tests/test_device_structures.cpp
-    # tests/test_arrays.cpp
-    # tests/test_labelled_arrays.cpp
-    # tests/test_quantity.cpp
-    # tests/test_instrument_interfaces_names.cpp
-    # tests/test_config.cpp
-    # tests/test_domains.cpp
-    # tests/test_discretizers.cpp
-    # tests/test_spaces.cpp
-    # tests/test_discrete_spaces.cpp
-    # tests/test_vector.cpp
-    # tests/test_analytic_function.cpp
-    # tests/test_port_transforms.cpp
-    # tests/test_waveforms.cpp
-    # tests/test_device_voltage_states.cpp
-    # tests/test_messages.cpp
-    # tests/test_farray.cpp
-  )
+        tests/test_unit.cpp
+        # tests/test_common_unit.cpp tests/test_song.cpp
+        # tests/test_device_structures.cpp tests/test_arrays.cpp
+        # tests/test_labelled_arrays.cpp tests/test_quantity.cpp
+        # tests/test_instrument_interfaces_names.cpp tests/test_config.cpp
+        # tests/test_domains.cpp tests/test_discretizers.cpp
+        # tests/test_spaces.cpp tests/test_discrete_spaces.cpp
+        # tests/test_vector.cpp tests/test_analytic_function.cpp
+        # tests/test_port_transforms.cpp tests/test_waveforms.cpp
+        # tests/test_device_voltage_states.cpp tests/test_messages.cpp
+        # tests/test_farray.cpp
+    )
   endif()
 
   add_executable(run_tests ${RUN_TESTS_SOURCES})
@@ -243,13 +234,10 @@ find_package(
   COMPONENTS Interpreter Development
   REQUIRED)
 
-# Find NumPy include directory
-# execute_process(
-#   COMMAND ${Python3_EXECUTABLE} -c "import numpy; print(numpy.get_include())"
-#   OUTPUT_VARIABLE NUMPY_INCLUDE_DIR
-#   OUTPUT_STRIP_TRAILING_WHITESPACE)
-# if(NOT NUMPY_INCLUDE_DIR)
-#   message(FATAL_ERROR "NumPy include directory not found. Is NumPy installed?")
+# Find NumPy include directory execute_process( COMMAND ${Python3_EXECUTABLE} -c
+# "import numpy; print(numpy.get_include())" OUTPUT_VARIABLE NUMPY_INCLUDE_DIR
+# OUTPUT_STRIP_TRAILING_WHITESPACE) if(NOT NUMPY_INCLUDE_DIR)
+# message(FATAL_ERROR "NumPy include directory not found. Is NumPy installed?")
 # endif()
 
 # Get SWIG's library directory for standard .i files
@@ -276,127 +264,126 @@ endif()
 add_library(falcon_core_cpp ${FALCON_CORE_SOURCES})
 
 target_include_directories(
-     falcon_core_cpp
-     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-            $<INSTALL_INTERFACE:include>
-            ${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux/include
-   )
+  falcon_core_cpp
+  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+         $<INSTALL_INTERFACE:include>
+         ${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux/include)
 
-target_link_libraries(falcon_core_cpp
-    PRIVATE
-    Boost::filesystem
-    Boost::system
-    Boost::uuid
-    xtl
-    xtensor
-    xsimd
-    yaml-cpp
-    hdf5::hdf5-static
-    hdf5::hdf5_cpp-static
-    cereal::cereal
-)
+target_link_libraries(
+  falcon_core_cpp
+  PRIVATE Boost::filesystem
+          Boost::system
+          Boost::uuid
+          xtl
+          xtensor
+          xsimd
+          yaml-cpp
+          hdf5::hdf5-static
+          hdf5::hdf5_cpp-static
+          cereal::cereal)
 
 target_link_libraries(falcon_core_cpp PUBLIC yaml-cpp)
 
 if(NOT FALCON_CORE_DIRS)
   set(FALCON_HEADERS
-    # falcon_core/generic/Song.hpp
-    # falcon_core/generic/FArray.hpp
-    # falcon_core::generic::FArray<double>
-    # falcon_core/generic/List.hpp
-    # falcon_core/generic/Map.hpp
-    # falcon_core/Constants.hpp
-    # falcon_core/physics/device_structures/BaseConnection.hpp
-    # falcon_core/physics/device_structures/BarrierGate.hpp
-    # falcon_core/physics/device_structures/ScreeningGate.hpp
-    # falcon_core/physics/device_structures/ReservoirGate.hpp
-    # falcon_core/physics/device_structures/PlungerGate.hpp
-    # falcon_core/physics/device_structures/Ohmic.hpp
-    # falcon_core/physics/device_structures/Impedance.hpp
-    # falcon_core/physics/device_structures/BaseConnections.hpp
-    # falcon_core/physics/device_structures/BarrierGates.hpp
-    # falcon_core/physics/device_structures/ScreeningGates.hpp
-    # falcon_core/physics/device_structures/ReservoirGates.hpp
-    # falcon_core/physics/device_structures/PlungerGates.hpp
-    # falcon_core/physics/device_structures/Ohmics.hpp
-    # falcon_core/physics/device_structures/Impedances.hpp
-    # falcon_core/physics/device_structures/GateRelations.hpp
-    # falcon_core/physics/units/TotalDimensions.hpp
-    # falcon_core/physics/units/Prefix.hpp
-    # falcon_core/physics/units/Unit.hpp
-    # falcon_core/physics/units/CommonUnits.hpp
-    # falcon_core/physics/units/SymbolUnit.hpp
-    # falcon_core/physics/units/Units.hpp
-    # falcon_core/instrument_interfaces/Instrument.hpp
-    # falcon_core/instrument_interfaces/names/InstrumentPort.hpp
-    # falcon_core/instrument_interfaces/names/Ports.hpp
-    # falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>
-    # falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Meter>
-    # falcon_core/instrument_interfaces/names/Knob.hpp
-    # falcon_core/instrument_interfaces/names/Knobs.hpp
-    # falcon_core/instrument_interfaces/names/Meter.hpp
-    # falcon_core/instrument_interfaces/names/Meters.hpp
-    # # falcon_core/math/Axes.hpp
-    # # std::map<falcon_core::physics::device_structures::BaseConnection,double>
-    # # falcon_core/math/Point.hpp
-    # falcon_core/math/Quantity.hpp
-    # # falcon_core/math/Sign.hpp
-    # falcon_core/math/arrays/ControlArray.hpp
-    # falcon_core/math/arrays/ControlArray1D.hpp
-    # falcon_core/math/arrays/IncreasingAlignment.hpp
-    # falcon_core/math/arrays/MeasuredArray.hpp
-    # # falcon_core/math/labelled_arrays/BaseLabelledArray.hpp
-    # # falcon_core/math/labelled_arrays/BaseLabelledArrays.hpp
-    # # falcon_core/math/labelled_arrays/IsLabelled1D.hpp
-    # # falcon_core::math::labelled_arrays::BaseLabelledArray<falcon_core::math::arrays::ControlArray1D,falcon_core::instrument_interfaces::names::InstrumentPort<falcon_core::physics::device_structures::Gate>>
-    # # falcon_core::math::labelled_arrays::IsLabelled1D<falcon_core::math::labelled_arrays::LabelledControlArray1D>
-    # # falcon_core/math/labelled_arrays/LabelledControlArray1D.hpp
-)
+      # falcon_core/generic/Song.hpp
+      # falcon_core/generic/FArray.hpp
+      # falcon_core::generic::FArray<double>
+      # falcon_core/generic/List.hpp
+      # falcon_core/generic/Map.hpp
+      # falcon_core/Constants.hpp
+      # falcon_core/physics/device_structures/BaseConnection.hpp
+      # falcon_core/physics/device_structures/BarrierGate.hpp
+      # falcon_core/physics/device_structures/ScreeningGate.hpp
+      # falcon_core/physics/device_structures/ReservoirGate.hpp
+      # falcon_core/physics/device_structures/PlungerGate.hpp
+      # falcon_core/physics/device_structures/Ohmic.hpp
+      # falcon_core/physics/device_structures/Impedance.hpp
+      # falcon_core/physics/device_structures/BaseConnections.hpp
+      # falcon_core/physics/device_structures/BarrierGates.hpp
+      # falcon_core/physics/device_structures/ScreeningGates.hpp
+      # falcon_core/physics/device_structures/ReservoirGates.hpp
+      # falcon_core/physics/device_structures/PlungerGates.hpp
+      # falcon_core/physics/device_structures/Ohmics.hpp
+      # falcon_core/physics/device_structures/Impedances.hpp
+      # falcon_core/physics/device_structures/GateRelations.hpp
+      # falcon_core/physics/units/TotalDimensions.hpp
+      # falcon_core/physics/units/Prefix.hpp
+      # falcon_core/physics/units/Unit.hpp
+      # falcon_core/physics/units/SymbolUnit.hpp
+      # falcon_core/instrument_interfaces/Instrument.hpp
+      # falcon_core/instrument_interfaces/names/InstrumentPort.hpp
+      # falcon_core/instrument_interfaces/names/Ports.hpp
+      # falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>
+      # falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Meter>
+      # falcon_core/instrument_interfaces/names/Knob.hpp
+      # falcon_core/instrument_interfaces/names/Knobs.hpp
+      # falcon_core/instrument_interfaces/names/Meter.hpp
+      # falcon_core/instrument_interfaces/names/Meters.hpp
+      # # falcon_core/math/Axes.hpp
+      # #
+      # std::map<falcon_core::physics::device_structures::BaseConnection,double>
+      # # falcon_core/math/Point.hpp
+      # falcon_core/math/Quantity.hpp
+      # # falcon_core/math/Sign.hpp
+      # falcon_core/math/arrays/ControlArray.hpp
+      # falcon_core/math/arrays/ControlArray1D.hpp
+      # falcon_core/math/arrays/IncreasingAlignment.hpp
+      # falcon_core/math/arrays/MeasuredArray.hpp
+      # # falcon_core/math/labelled_arrays/BaseLabelledArray.hpp
+      # # falcon_core/math/labelled_arrays/BaseLabelledArrays.hpp
+      # # falcon_core/math/labelled_arrays/IsLabelled1D.hpp
+      # #
+      # falcon_core::math::labelled_arrays::BaseLabelledArray<falcon_core::math::arrays::ControlArray1D,falcon_core::instrument_interfaces::names::InstrumentPort<falcon_core::physics::device_structures::Gate>>
+      # #
+      # falcon_core::math::labelled_arrays::IsLabelled1D<falcon_core::math::labelled_arrays::LabelledControlArray1D>
+      # # falcon_core/math/labelled_arrays/LabelledControlArray1D.hpp
+  )
   set(SWIG_MODULES
-    # song,Song,Song.i,generic
-    # farray,FArray,FArray.i,generic
-    # list,List,List.i,generic
-    # map,Map,Map.i,generic
-    # base_connection,BaseConnection,BaseConnection.i,physics/device_structures
-    # ohmic,Ohmic,Ohmic.i,physics/device_structures
-    # barrier_gate,BarrierGate,BarrierGate.i,physics/device_structures
-    # plunger_gate,PlungerGate,PlungerGate.i,physics/device_structures
-    # screening_gate,ScreeningGate,ScreeningGate.i,physics/device_structures
-    # reservoir_gate,ReservoirGate,ReservoirGate.i,physics/device_structures
-    # ohmics,Ohmics,Ohmics.i,physics/device_structures
-    # barrier_gates,BarrierGates,BarrierGates.i,physics/device_structures
-    # plunger_gates,PlungerGates,PlungerGates.i,physics/device_structures
-    # reservoir_gates,ReservoirGates,ReservoirGates.i,physics/device_structures
-    # screening_gates,ScreeningGates,ScreeningGates.i,physics/device_structures
-    # impedance,Impedance,Impedance.i,physics/device_structures
-    # impedances,Impedances,Impedances.i,physics/device_structures
-    # gate_relations,GateRelations,GateRelations.i,physics/device_structures
-    # prefix,Prefix,Prefix.i,physics/units
-    # unit,Unit,Unit.i,physics/units
-    # symbol_unit,SymbolUnit,SymbolUnit.i,physics/units
-    # units,Units,Units.i,physics/units
-    # instrument_port,InstrumentPort,InstrumentPort.i,instrument_interfaces/names
-    # knob,Knob,Knob.i,instrument_interfaces/names
-    # meter,Meter,Meter.i,instrument_interfaces/names
-    # ports,Ports,Ports.i,instrument_interfaces/names
-    # knobs,Knobs,Knobs.i,instrument_interfaces/names
-    # meters,Meters,Meters.i,instrument_interfaces/names
-    # quantity,Quantity,Quantity.i,math
-    # control_array,ControlArray,ControlArray.i,math/arrays
-    # control_array_1D,ControlArray1D,ControlArray1D.i,math/arrays
-    # increasing_alignment,IncreasingAlignment,IncreasingAlignment.i,math/arrays
-    # measured_array,MeasuredArray,MeasuredArray.i,math/arrays
-)
+      # song,Song,Song.i,generic
+      # farray,FArray,FArray.i,generic
+      # list,List,List.i,generic
+      # map,Map,Map.i,generic
+      # base_connection,BaseConnection,BaseConnection.i,physics/device_structures
+      # ohmic,Ohmic,Ohmic.i,physics/device_structures
+      # barrier_gate,BarrierGate,BarrierGate.i,physics/device_structures
+      # plunger_gate,PlungerGate,PlungerGate.i,physics/device_structures
+      # screening_gate,ScreeningGate,ScreeningGate.i,physics/device_structures
+      # reservoir_gate,ReservoirGate,ReservoirGate.i,physics/device_structures
+      # ohmics,Ohmics,Ohmics.i,physics/device_structures
+      # barrier_gates,BarrierGates,BarrierGates.i,physics/device_structures
+      # plunger_gates,PlungerGates,PlungerGates.i,physics/device_structures
+      # reservoir_gates,ReservoirGates,ReservoirGates.i,physics/device_structures
+      # screening_gates,ScreeningGates,ScreeningGates.i,physics/device_structures
+      # impedance,Impedance,Impedance.i,physics/device_structures
+      # impedances,Impedances,Impedances.i,physics/device_structures
+      # gate_relations,GateRelations,GateRelations.i,physics/device_structures
+      # prefix,Prefix,Prefix.i,physics/units
+      # unit,Unit,Unit.i,physics/units
+      # symbol_unit,SymbolUnit,SymbolUnit.i,physics/units
+      # units,Units,Units.i,physics/units
+      # instrument_port,InstrumentPort,InstrumentPort.i,instrument_interfaces/names
+      # knob,Knob,Knob.i,instrument_interfaces/names
+      # meter,Meter,Meter.i,instrument_interfaces/names
+      # ports,Ports,Ports.i,instrument_interfaces/names
+      # knobs,Knobs,Knobs.i,instrument_interfaces/names
+      # meters,Meters,Meters.i,instrument_interfaces/names
+      # quantity,Quantity,Quantity.i,math
+      # control_array,ControlArray,ControlArray.i,math/arrays
+      # control_array_1D,ControlArray1D,ControlArray1D.i,math/arrays
+      # increasing_alignment,IncreasingAlignment,IncreasingAlignment.i,math/arrays
+      # measured_array,MeasuredArray,MeasuredArray.i,math/arrays
+  )
   generate_swig_header_interface(
-  FALCON_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/swig/falcon_core_all.i"
-  "falcon_core_all")
+    FALCON_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/swig/falcon_core_all.i"
+    "falcon_core_all")
   generate_song_deserializers("${CMAKE_CURRENT_BINARY_DIR}/swig/")
   generate_swig_modules(SWIG_MODULES)
   # --- Python Binding Tests ---
   add_test(NAME python_bindings_test
-         COMMAND ${Python3_EXECUTABLE}
-                 ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_bindings.py)
+           COMMAND ${Python3_EXECUTABLE}
+                   ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_bindings.py)
   set_tests_properties(python_bindings_test
-                     PROPERTIES WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+                       PROPERTIES WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 endif()
 cpp_tests()
