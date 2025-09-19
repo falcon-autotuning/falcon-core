@@ -1,40 +1,36 @@
 #include <gtest/gtest.h>
 
 #include "falcon_core/Constants.hpp"
-#include "falcon_core/macros.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
-#include "falcon_core/physics/units/Units.hpp"
 namespace tests {
 using namespace falcon_core;
 using namespace falcon_core::physics::units;
-#define SPS(...) SP(SymbolUnit, __VA_ARGS__)
-#define SPU(...) SP(Unit, __VA_ARGS__)
 TEST(TestSymbolUnit, Initialization) {
-  SymbolUnit m = Units::Meter;
-  SymbolUnit s = Units::Second;
-  SymbolUnit v = Units::Volt;
+  SymbolUnitSP m = SymbolUnit::Meter();
+  SymbolUnitSP s = SymbolUnit::Second();
+  SymbolUnitSP v = SymbolUnit::Volt();
 
-  ASSERT_EQ(m.symbol(), SI::UNIT_SYMBOL_METER);
-  ASSERT_EQ(m.name(), SI::UNIT_NAME_METER);
-  ASSERT_EQ(s.symbol(), SI::UNIT_SYMBOL_SECOND);
-  ASSERT_EQ(s.name(), SI::UNIT_NAME_SECOND);
-  ASSERT_EQ(v.symbol(), SI::UNIT_SYMBOL_VOLT);
-  ASSERT_EQ(v.name(), SI::UNIT_NAME_VOLT);
+  ASSERT_EQ(m->symbol(), SI::UNIT_SYMBOL_METER);
+  ASSERT_EQ(m->name(), SI::UNIT_NAME_METER);
+  ASSERT_EQ(s->symbol(), SI::UNIT_SYMBOL_SECOND);
+  ASSERT_EQ(s->name(), SI::UNIT_NAME_SECOND);
+  ASSERT_EQ(v->symbol(), SI::UNIT_SYMBOL_VOLT);
+  ASSERT_EQ(v->name(), SI::UNIT_NAME_VOLT);
 }
 
-TEST(TestSymbolUnit, PrefixedUnits) {
-  SymbolUnit mm = Units::MilliMeter;
-  SymbolUnit kV = Units::KiloVolt;
+TEST(TestSymbolUnit, PrefixedSymbolUnit) {
+  SymbolUnitSP mm = SymbolUnit::MilliMeter();
+  SymbolUnitSP kV = SymbolUnit::KiloVolt();
 
-  ASSERT_EQ(mm.symbol(),
+  ASSERT_EQ(mm->symbol(),
             std::string(SI::MILLI_SYMBOL) + std::string(SI::UNIT_SYMBOL_METER));
-  ASSERT_EQ(kV.symbol(),
+  ASSERT_EQ(kV->symbol(),
             std::string(SI::KILO_SYMBOL) + std::string(SI::UNIT_SYMBOL_VOLT));
 }
 TEST(TestSymbolUnit, Operations) {
-  SymbolUnitSP m = SPS(Units::Meter);
-  SymbolUnitSP s = SPS(Units::Second);
-  SymbolUnitSP v = SPS(Units::Volt);
+  SymbolUnitSP m = SymbolUnit::Meter();
+  SymbolUnitSP s = SymbolUnit::Second();
+  SymbolUnitSP v = SymbolUnit::Volt();
 
   // Multiplication
   SymbolUnitSP m_times_s = *m * s;
@@ -49,29 +45,29 @@ TEST(TestSymbolUnit, Operations) {
             std::string(SI::UNIT_SYMBOL_METER) + "/" + SI::UNIT_SYMBOL_SECOND);
 
   // More complex operations
-  SymbolUnitSP ohm       = SPS(Units::Ohm);
+  SymbolUnitSP ohm       = SymbolUnit::Ohm();
   SymbolUnitSP v_div_ohm = *v / ohm;
   // Adjust this check to your actual dimensions representation
   // ASSERT_EQ(v_div_ohm.unit().dimensions(), ...);
 }
 
 TEST(TestSymbolUnit, EqualityAndCompatibility) {
-  SymbolUnitSP m1 = SPS(Units::Meter);
-  SymbolUnitSP m2 = SPS(Units::Meter);
-  SymbolUnitSP s  = SPS(Units::Second);
+  SymbolUnitSP m1 = SymbolUnit::Meter();
+  SymbolUnitSP m2 = SymbolUnit::Meter();
+  SymbolUnitSP s  = SymbolUnit::Second();
 
   ASSERT_EQ(m1->unit(), m2->unit());
   ASSERT_NE(m1->unit(), s->unit());
 
-  SymbolUnitSP mm = SPS(Units::MilliMeter);
+  SymbolUnitSP mm = SymbolUnit::MilliMeter();
   ASSERT_TRUE(m1->is_compatible_with(mm));
   ASSERT_FALSE(m1->is_compatible_with(s));
 }
 
 TEST(TestSymbolUnit, Conversion) {
-  SymbolUnitSP m  = SPS(Units::Meter);
-  SymbolUnitSP mm = SPS(Units::MilliMeter);
-  SymbolUnitSP km = SPS(Units::KiloMeter);
+  SymbolUnitSP m  = SymbolUnit::Meter();
+  SymbolUnitSP mm = SymbolUnit::MilliMeter();
+  SymbolUnitSP km = SymbolUnit::KiloMeter();
 
   ASSERT_NEAR(m->convert_value_to(1.0, mm), 1000.0, 1e-9);
   ASSERT_NEAR(m->convert_value_to(1.0, km), 0.001, 1e-9);
@@ -79,23 +75,23 @@ TEST(TestSymbolUnit, Conversion) {
   ASSERT_NEAR(km->convert_value_to(1.0, mm), 1e6, 1e-3);
 }
 
-TEST(TestSymbolUnit, DerivedUnits) {
-  SymbolUnitSP m = SPS(Units::Meter);
-  SymbolUnitSP s = SPS(Units::Second);
-  SymbolUnitSP n = SPS(Units::Newton);
+TEST(TestSymbolUnit, DerivedSymbolUnit) {
+  SymbolUnitSP m = SymbolUnit::Meter();
+  SymbolUnitSP s = SymbolUnit::Second();
+  SymbolUnitSP n = SymbolUnit::Newton();
 
   SymbolUnitSP m_per_s   = *m / s;
   SymbolUnitSP n_times_m = *n * m;
 
   ASSERT_EQ(m_per_s->symbol(),
             std::string(SI::UNIT_SYMBOL_METER) + "/" + SI::UNIT_SYMBOL_SECOND);
-  ASSERT_EQ(*n_times_m->unit(), *Units::Joule.unit());
+  ASSERT_EQ(*n_times_m->unit(), *SymbolUnit::Joule()->unit());
   ASSERT_EQ(n_times_m->symbol(), SI::UNIT_SYMBOL_JOULE);
 }
 
-TEST(TestSymbolUnit, DimensionlessUnits) {
-  SymbolUnitSP dimensionless = SPS(Units::Dimensionless);
-  SymbolUnitSP percent       = SPS(Units::Percent);
+TEST(TestSymbolUnit, DimensionlessSymbolUnit) {
+  SymbolUnitSP dimensionless = SymbolUnit::Dimensionless();
+  SymbolUnitSP percent       = SymbolUnit::Percent();
 
   // Adjust these checks to your actual dimensions representation
   // ASSERT_TRUE(dimensionless.unit().dimensions().empty());
@@ -104,9 +100,9 @@ TEST(TestSymbolUnit, DimensionlessUnits) {
   ASSERT_NEAR(percent->convert_value_to(100.0, dimensionless), 1.0, 1e-9);
 }
 
-TEST(TestSymbolUnit, ComplexUnits) {
-  SymbolUnitSP m = SPS(Units::Meter);
-  SymbolUnitSP s = SPS(Units::Second);
+TEST(TestSymbolUnit, ComplexSymbolUnit) {
+  SymbolUnitSP m = SymbolUnit::Meter();
+  SymbolUnitSP s = SymbolUnit::Second();
 
   SymbolUnitSP acceleration = *m / (*s ^ 2);
 
@@ -117,18 +113,23 @@ TEST(TestSymbolUnit, ComplexUnits) {
 
 TEST(TestSymbolUnit, CustomUnit) {
   // Create a custom unit with dimensions {length: 3}
-  UnitSP       custom_unit = SPU(Unit({{"LENGTH", 3}}));
-  SymbolUnitSP symbol_unit = SPS(SymbolUnit({custom_unit}));
+  UnitSP       custom_unit = std::make_shared<Unit>(Unit({{"LENGTH", 3}}));
+  SymbolUnitSP symbol_unit =
+      std::make_shared<SymbolUnit>(SymbolUnit({custom_unit}));
 
   ASSERT_TRUE(symbol_unit->symbol().find("^3") != std::string::npos);
 }
 
 TEST(TestSymbolUnit, SymbolGeneration) {
-  UnitSP length_time  = SPU(Unit({{"LENGTH", 1}, {"TIME", 1}}));
-  UnitSP complex_unit = SPU(Unit({{"LENGTH", 2}, {"TIME", -1}, {"MASS", 1}}));
+  UnitSP length_time =
+      std::make_shared<Unit>(Unit({{"LENGTH", 1}, {"TIME", 1}}));
+  UnitSP complex_unit =
+      std::make_shared<Unit>(Unit({{"LENGTH", 2}, {"TIME", -1}, {"MASS", 1}}));
 
-  SymbolUnitSP length_time_symbol = SPS(SymbolUnit({length_time}));
-  SymbolUnitSP complex_symbol     = SPS(SymbolUnit({complex_unit}));
+  SymbolUnitSP length_time_symbol =
+      std::make_shared<SymbolUnit>(SymbolUnit({length_time}));
+  SymbolUnitSP complex_symbol =
+      std::make_shared<SymbolUnit>(SymbolUnit({complex_unit}));
 
   ASSERT_TRUE(length_time_symbol->symbol().find(SI::UNIT_SYMBOL_METER) !=
               std::string::npos);
@@ -140,23 +141,24 @@ TEST(TestSymbolUnit, SymbolGeneration) {
 }
 
 TEST(TestSymbolUnit, WithPrefix) {
-  SymbolUnit   m  = Units::Meter;
-  SymbolUnitSP km = m.with_prefix(SI::KILO_SYMBOL);
+  SymbolUnitSP m  = SymbolUnit::Meter();
+  SymbolUnitSP km = m->with_prefix(SI::KILO_SYMBOL);
 
   ASSERT_EQ(km->symbol(), std::string(SI::KILO_SYMBOL) + SI::UNIT_SYMBOL_METER);
   ASSERT_EQ(km->unit()->scale_factor(), 1000.0);
-  ASSERT_EQ(km->unit()->dimensions(), m.unit()->dimensions());
+  ASSERT_EQ(km->unit()->dimensions(), m->unit()->dimensions());
 }
 
 TEST(TestSymbolUnit, InvalidConversion) {
-  SymbolUnitSP m = SPS(Units::Meter);
-  SymbolUnitSP s = SPS(Units::Second);
+  SymbolUnitSP m = SymbolUnit::Meter();
+  SymbolUnitSP s = SymbolUnit::Second();
 
   EXPECT_THROW(m->convert_value_to(10.0, s), std::invalid_argument);
 }
 TEST(TestSymbolUnit, Comparison) {
-  SymbolUnitSP m_per_s = Units::Meter / SPS(Units::Second);
-  SymbolUnitSP v       = SPS(SPU(Unit({{"LENGTH", 1}, {"TIME", -1}})));
+  SymbolUnitSP m_per_s = *SymbolUnit::Meter() / SymbolUnit::Second();
+  SymbolUnitSP v       = std::make_shared<SymbolUnit>(
+      std::make_shared<Unit>(Unit({{"LENGTH", 1}, {"TIME", -1}})));
 
   SymbolUnit m_per_s_copy = *m_per_s;
   SymbolUnit v_copy       = *v;
@@ -169,7 +171,7 @@ TEST(TestSymbolUnit, Comparison) {
 #include <sstream>
 
 TEST(TestSymbolUnit, SerializationRoundTrip) {
-  SymbolUnit m = Units::Meter;
+  SymbolUnitSP m = SymbolUnit::Meter();
 
   // Serialize to JSON
   std::stringstream ss;
@@ -179,35 +181,224 @@ TEST(TestSymbolUnit, SerializationRoundTrip) {
   }
 
   // Deserialize from JSON
-  SymbolUnit m2 = Units::Meter;
+  SymbolUnitSP m2 = SymbolUnit::Meter();
   {
     cereal::JSONInputArchive iarchive(ss);
     iarchive(m2);
   }
 
-  ASSERT_EQ(m.symbol(), m2.symbol());
-  ASSERT_EQ(m.name(), m2.name());
+  ASSERT_EQ(m->symbol(), m2->symbol());
+  ASSERT_EQ(m->name(), m2->name());
 }
 
 TEST(TestSymbolUnit, StringRepresentations) {
-  SymbolUnit m = Units::Meter;
+  SymbolUnitSP m = SymbolUnit::Meter();
 
-  ASSERT_EQ(m.str(), SI::UNIT_SYMBOL_METER);
-  std::string repr_str = m.repr();
+  ASSERT_EQ(m->str(), SI::UNIT_SYMBOL_METER);
+  std::string repr_str = m->repr();
   std::cout << "String Representation:\n" << repr_str << std::endl;
   ASSERT_TRUE(repr_str.find("\"value2\": \"m\"") != std::string::npos);
   ASSERT_TRUE(repr_str.find("\"value3\": \"meter\"") != std::string::npos);
 }
 
 TEST(TestSymbolUnit, PowerOperations) {
-  SymbolUnit m = Units::Meter;
+  SymbolUnitSP m = SymbolUnit::Meter();
 
-  SymbolUnitSP area = m ^ 2;
+  SymbolUnitSP area = *m ^ 2;
   ASSERT_EQ(area->unit()->dimensions().at("LENGTH"), 2);
   ASSERT_TRUE(area->symbol().find("m^2") != std::string::npos);
 
-  SymbolUnitSP volume = m ^ 3;
+  SymbolUnitSP volume = *m ^ 3;
   ASSERT_EQ(volume->unit()->dimensions().at("LENGTH"), 3);
   ASSERT_TRUE(volume->symbol().find("m^3") != std::string::npos);
+}
+TEST(TestUnit, BaseSymbolUnit) {
+  UnitSP          meter = Unit::Meter();
+  TotalDimensions mdims = {{SI::DIMENSION_LENGTH, 1}};
+  ASSERT_EQ(meter->dimensions(), mdims);
+  ASSERT_DOUBLE_EQ(meter->scale_factor(), 1.0);
+
+  UnitSP          kilogram = Unit::Kilogram();
+  TotalDimensions k_dims   = {{SI::DIMENSION_MASS, 1}};
+  ASSERT_EQ(kilogram->dimensions(), k_dims);
+
+  UnitSP          ampere = Unit::Ampere();
+  TotalDimensions a_dims = {{SI::DIMENSION_CURRENT, 1}};
+  ASSERT_EQ(ampere->dimensions(), a_dims);
+
+  UnitSP          second = Unit::Second();
+  TotalDimensions s_dims = {{SI::DIMENSION_TIME, 1}};
+  ASSERT_EQ(second->dimensions(), s_dims);
+}
+
+TEST(TestUnit, DerivedSymbolUnit) {
+  UnitSP          volt               = Unit::Volt();
+  TotalDimensions expected_volt_dims = {
+      {SI::DIMENSION_MASS, 1},
+      {SI::DIMENSION_LENGTH, 2},
+      {SI::DIMENSION_TIME, -3},
+      {SI::DIMENSION_CURRENT, -1},
+  };
+  ASSERT_EQ(volt->dimensions(), expected_volt_dims);
+
+  UnitSP          newton               = Unit::Newton();
+  TotalDimensions expected_newton_dims = {
+      {SI::DIMENSION_MASS, 1},
+      {SI::DIMENSION_LENGTH, 1},
+      {SI::DIMENSION_TIME, -2},
+  };
+  ASSERT_EQ(newton->dimensions(), expected_newton_dims);
+
+  UnitSP          hertz               = Unit::Hertz();
+  TotalDimensions expected_hertz_dims = {
+      {SI::DIMENSION_TIME, -1},
+  };
+  ASSERT_EQ(hertz->dimensions(), expected_hertz_dims);
+
+  UnitSP          tesla               = Unit::Tesla();
+  TotalDimensions expected_tesla_dims = {
+      {SI::DIMENSION_MASS, 1},
+      {SI::DIMENSION_TIME, -2},
+      {SI::DIMENSION_CURRENT, -1},
+  };
+  ASSERT_EQ(tesla->dimensions(), expected_tesla_dims);
+}
+
+TEST(TestUnit, ConsistencyWithDefinitionJoule) {
+  // Joule = Newton * Meter
+  UnitSP joule        = Unit::Joule();
+  UnitSP newton_meter = *Unit::Newton() * Unit::Meter();
+  ASSERT_EQ(joule->dimensions(), newton_meter->dimensions());
+}
+
+TEST(TestUnit, ConsistencyWithDefinitionWatt) {
+  // Watt = Joule / Second
+  UnitSP watt             = Unit::Watt();
+  UnitSP joule_per_second = *Unit::Joule() / Unit::Second();
+  ASSERT_EQ(watt->dimensions(), joule_per_second->dimensions());
+}
+
+TEST(TestUnit, ConsistencyWithDefinitionVolt) {
+  // Volt = Watt / Ampere
+  UnitSP volt            = Unit::Volt();
+  UnitSP watt_per_ampere = *Unit::Watt() / (Unit::Ampere());
+  ASSERT_EQ(volt->dimensions(), watt_per_ampere->dimensions());
+}
+
+TEST(TestUnit, ConsistencyWithDefinitionOhm) {
+  // Ohm = Volt / Ampere
+  UnitSP ohm             = Unit::Ohm();
+  UnitSP volt_per_ampere = *Unit::Volt() / (Unit::Ampere());
+  ASSERT_EQ(ohm->dimensions(), volt_per_ampere->dimensions());
+}
+
+// Non-SI units
+TEST(TestUnit, NonSISymbolUnit) {
+  // Minute
+  UnitSP          minute   = Unit::Minute();
+  TotalDimensions time_dim = {{SI::DIMENSION_TIME, 1}};
+  ASSERT_EQ(minute->dimensions(), time_dim);
+  ASSERT_DOUBLE_EQ(minute->scale_factor(), 60.0);
+
+  // Hour
+  UnitSP hour = Unit::Hour();
+  ASSERT_EQ(hour->dimensions(), time_dim);
+  ASSERT_DOUBLE_EQ(hour->scale_factor(), 3600.0);
+
+  // Electron volt
+  UnitSP          ev      = Unit::ElectronVolt();
+  TotalDimensions ev_dims = {
+      {SI::DIMENSION_MASS, 1},
+      {SI::DIMENSION_LENGTH, 2},
+      {SI::DIMENSION_TIME, -2},
+  };
+  ASSERT_EQ(ev->dimensions(), ev_dims);
+  ASSERT_NEAR(ev->scale_factor(), 1.602176634e-19, 1e-25);
+}
+
+// Temperature units
+TEST(TestUnit, TemperatureSymbolUnit) {
+  // Kelvin (base unit)
+  UnitSP          kelvin   = Unit::Kelvin();
+  TotalDimensions temp_dim = {{SI::DIMENSION_TEMPERATURE, 1}};
+  ASSERT_EQ(kelvin->dimensions(), temp_dim);
+  ASSERT_DOUBLE_EQ(kelvin->scale_factor(), 1.0);
+  ASSERT_DOUBLE_EQ(kelvin->offset(), 0.0);
+
+  // Celsius
+  UnitSP celsius = Unit::Celsius();
+  ASSERT_EQ(celsius->dimensions(), temp_dim);
+  ASSERT_DOUBLE_EQ(celsius->scale_factor(), 1.0);
+  ASSERT_DOUBLE_EQ(celsius->offset(), 273.15);
+
+  // Fahrenheit
+  UnitSP fahrenheit = Unit::Fahrenheit();
+  ASSERT_EQ(fahrenheit->dimensions(), temp_dim);
+  ASSERT_NEAR(fahrenheit->scale_factor(), 5.0 / 9.0, 1e-10);
+  ASSERT_NEAR(fahrenheit->offset(), 459.67, 1e-10);
+
+  // Temperature conversion validation
+  // 0°C = 273.15K
+  ASSERT_NEAR(celsius->convert_value_to(0.0, kelvin), 273.15, 1e-10);
+  // 0K = -273.15°C
+  ASSERT_NEAR(kelvin->convert_value_to(0.0, celsius), -273.15, 1e-10);
+  // 32°F = 0°C
+  ASSERT_NEAR(fahrenheit->convert_value_to(32.0, celsius), 0.0, 1e-10);
+}
+
+// Dimensionless units
+TEST(TestUnit, DimensionlessSymbolUnit) {
+  UnitSP          dimensionless = Unit::Dimensionless();
+  TotalDimensions empty_dims;
+  ASSERT_EQ(dimensionless->dimensions(), empty_dims);
+  ASSERT_DOUBLE_EQ(dimensionless->scale_factor(), 1.0);
+
+  UnitSP percent = Unit::Percent();
+  ASSERT_EQ(percent->dimensions(), empty_dims);
+  ASSERT_DOUBLE_EQ(percent->scale_factor(), 0.01);
+
+  // 100% = 1.0 dimensionless
+  ASSERT_DOUBLE_EQ(percent->convert_value_to(100.0, dimensionless), 1.0);
+}
+
+// Get unit with prefix
+TEST(TestUnit, GetUnitWithPrefix) {
+  // General prefix method
+  UnitSP          millimeter = Unit::Meter()->get_milli();
+  TotalDimensions len_dim    = {{SI::DIMENSION_LENGTH, 1}};
+  ASSERT_EQ(millimeter->dimensions(), len_dim);
+  ASSERT_DOUBLE_EQ(millimeter->scale_factor(), 0.001);
+
+  // Specific prefix methods
+  UnitSP km = Unit::Meter()->get_kilo();
+  ASSERT_DOUBLE_EQ(km->scale_factor(), 1000.0);
+
+  UnitSP uA = Unit::Ampere()->get_micro();
+  ASSERT_DOUBLE_EQ(uA->scale_factor(), 1e-6);
+
+  UnitSP mV = Unit::Volt()->get_milli();
+  ASSERT_DOUBLE_EQ(mV->scale_factor(), 0.001);
+
+  UnitSP MW = Unit::Watt()->get_mega();
+  ASSERT_DOUBLE_EQ(MW->scale_factor(), 1e6);
+}
+
+// Conversion between prefixed units
+TEST(TestUnit, ConversionBetweenPrefixedSymbolUnit) {
+  // 1 km to m
+  UnitSP km           = Unit::Meter()->get_kilo();
+  double meters_in_km = km->convert_value_to(1.0, Unit::Meter());
+  ASSERT_DOUBLE_EQ(meters_in_km, 1000.0);
+
+  // 1000 mV to V
+  UnitSP mV          = Unit::Volt()->get_milli();
+  double volts_in_mV = mV->convert_value_to(1000.0, Unit::Volt());
+  ASSERT_DOUBLE_EQ(volts_in_mV, 1.0);
+
+  // 1 MW to kW
+  UnitSP MW       = Unit::Watt()->get_mega();
+  UnitSP kW       = Unit::Watt()->get_kilo();
+  double kW_in_MW = MW->convert_value_to(1.0, kW);
+  ASSERT_DOUBLE_EQ(kW_in_MW, 1000.0);
 }
 }  // namespace tests

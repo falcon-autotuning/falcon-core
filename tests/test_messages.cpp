@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 
+#include <cstddef>
 #include <falcon_core/communications/messages/BaseMessage.hpp>
 #include <falcon_core/communications/messages/MeasurementRequest.hpp>
 #include <falcon_core/communications/messages/MeasurementResponse.hpp>
@@ -17,7 +18,6 @@
 #include <falcon_core/math/arrays/LabelledMeasuredArrays.hpp>
 #include <falcon_core/math/domains/KnobDomain.hpp>
 #include <falcon_core/physics/device_structures/BaseConnection.hpp>
-#include <falcon_core/physics/units/CommonUnits.hpp>
 #include <falcon_core/physics/units/SymbolUnit.hpp>
 #include <map>
 #include <memory>
@@ -70,7 +70,7 @@ TEST(MessagesTest, MeasurementRequestConstructionAndSerialization) {
   using waveform_type =
       falcon_core::instrument_interfaces::waveforms::BaseWaveform<
           falcon_core::math::discrete_spaces::BaseDiscreteSpace>;
-  auto unit = std::make_shared<SymbolUnit>(CommonUnits::Volt);
+  auto unit = Units::Volt;
   auto conn =
       std::make_shared<BaseConnection>("gate1", DeviceFeature::BarrierGate);
   auto meter  = std::make_shared<Meter>("meter1",   // default_name
@@ -81,13 +81,15 @@ TEST(MessagesTest, MeasurementRequestConstructionAndSerialization) {
   );
   auto meters = std::make_shared<Meters>();
   meters->push_back(meter);
-  auto waveform = std::make_shared<
-      falcon_core::instrument_interfaces::waveforms::Waveform>();
+  auto waveform =
+      std::make_shared<falcon_core::instrument_interfaces::waveforms::Waveform>(
+          nullptr, nullptr);
   falcon_core::generic::ListSP<waveform_type> waveforms;
   waveforms->push_back(waveform);
   falcon_core::generic::MapSP<Meter, PortTransform> meter_transforms;
-  meter_transforms->insert(meter, std::make_shared<PortTransform>());
-  auto time_domain = std::make_shared<KnobDomain>(0.0, 1.0, nullptr);
+  meter_transforms->insert(meter,
+                           std::make_shared<PortTransform>(nullptr, nullptr));
+  auto time_domain = KnobDomain::from_knob(nullptr, std::make_pair(0.0, 1.0));
 
   MeasurementRequest req("measurement request",
                          "meas1",
@@ -125,7 +127,7 @@ TEST(MessagesTest, MeasurementResponseConstructionAndSerialization) {
 
 // VoltageStatesResponse test
 TEST(MessagesTest, VoltageStatesResponseConstructionAndSerialization) {
-  auto unit = std::make_shared<SymbolUnit>(CommonUnits::Volt);
+  auto unit = std::make_shared<SymbolUnit>(Units::Volt);
   auto conn =
       std::make_shared<BaseConnection>("gate3", DeviceFeature::PlungerGate);
   auto dvs    = std::make_shared<DeviceVoltageState>(conn, 2.34, unit);

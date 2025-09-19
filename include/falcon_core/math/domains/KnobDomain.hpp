@@ -2,7 +2,6 @@
 
 #include "falcon_core/instrument_interfaces/names/Knob.hpp"
 #include "falcon_core/math/domains/BaseLabelledDomain.hpp"
-#include "falcon_core/physics/units/Units.hpp"
 namespace falcon_core::math::domains {
 /**
  * @brief A knob domain, which is a domain associated with a Knob.
@@ -31,8 +30,7 @@ class KnobDomain
              bool                                lesser_bound_contained  = true,
              bool                                greater_bound_contained = true,
              const physics::units::SymbolUnitSP& units =
-                 std::make_shared<physics::units::SymbolUnit>(
-                     physics::units::Units().Volt),
+                 physics::units::SymbolUnit::Volt(),
              const std::string& description = "");
   /**
    * @brief Create a KnobDomain from an existing knob and domain.
@@ -58,8 +56,7 @@ class KnobDomain
       const physics::device_structures::BaseConnectionSP& pseudo_name,
       const instrument_interfaces::Instrument&            instrument_type,
       const physics::units::SymbolUnitSP&                 units =
-          std::make_shared<physics::units::SymbolUnit>(
-              physics::units::Units().Volt),
+          physics::units::SymbolUnit::Volt(),
       const std::string& description = "");
   /**
    * @brief Create a KnobDomain from an existing knob.

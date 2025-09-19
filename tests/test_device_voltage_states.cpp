@@ -3,7 +3,6 @@
 #include <falcon_core/communications/voltage_states/DeviceVoltageState.hpp>
 #include <falcon_core/communications/voltage_states/DeviceVoltageStates.hpp>
 #include <falcon_core/physics/device_structures/BaseConnection.hpp>
-#include <falcon_core/physics/units/CommonUnits.hpp>
 #include <falcon_core/physics/units/SymbolUnit.hpp>
 #include <memory>
 #include <string>
@@ -15,7 +14,7 @@ using namespace falcon_core::physics::units;
 
 // Basic construction and access test
 TEST(DeviceVoltageStatesTest, BasicConstructionAndAccess) {
-  auto unit = std::make_shared<SymbolUnit>(CommonUnits::Volt);
+  auto unit = SymbolUnit::Volt();
   auto conn =
       std::make_shared<BaseConnection>("gate1", DeviceFeature::BarrierGate);
   auto dvs = std::make_shared<DeviceVoltageState>(conn, 1.23, unit);
@@ -34,7 +33,7 @@ TEST(DeviceVoltageStatesTest, BasicConstructionAndAccess) {
 
 // Serialization round-trip test
 TEST(DeviceVoltageStatesTest, SerializationRoundTrip) {
-  auto unit = std::make_shared<SymbolUnit>(CommonUnits::Volt);
+  auto unit = SymbolUnit::Volt();
   auto conn =
       std::make_shared<BaseConnection>("gate2", DeviceFeature::PlungerGate);
   auto dvs = std::make_shared<DeviceVoltageState>(conn, 4.56, unit);

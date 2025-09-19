@@ -3,6 +3,7 @@
 #include <cereal/archives/binary.hpp>
 #include <cmath>
 
+#include "falcon_core/Constants.hpp"
 #include "falcon_core/physics/units/Prefix.hpp"
 #include "falcon_core/physics/units/TotalDimensions.hpp"
 namespace falcon_core::physics::units {
@@ -15,11 +16,73 @@ Unit::Unit(TotalDimensions dimensions,
       _offset(offset),
       _prefix(prefix) {}
 
-UnitSP Unit::operator*(const UnitSP &other) const {
+UnitSP Unit::Meter() { return std::make_shared<Unit>(SI::DIMENSIONS_METER); }
+UnitSP Unit::Kilogram() {
+  return std::make_shared<Unit>(SI::DIMENSIONS_KILOGRAM);
+}
+UnitSP Unit::Second() { return std::make_shared<Unit>(SI::DIMENSIONS_SECOND); }
+UnitSP Unit::Ampere() { return std::make_shared<Unit>(SI::DIMENSIONS_AMPERE); }
+UnitSP Unit::Kelvin() { return std::make_shared<Unit>(SI::DIMENSIONS_KELVIN); }
+UnitSP Unit::Mole() { return std::make_shared<Unit>(SI::DIMENSIONS_MOLE); }
+UnitSP Unit::Candela() {
+  return std::make_shared<Unit>(SI::DIMENSIONS_CANDELA);
+}
+UnitSP Unit::Hertz() { return std::make_shared<Unit>(SI::DIMENSIONS_HERTZ); }
+UnitSP Unit::Newton() { return std::make_shared<Unit>(SI::DIMENSIONS_NEWTON); }
+UnitSP Unit::Pascal() { return std::make_shared<Unit>(SI::DIMENSIONS_PASCAL); }
+UnitSP Unit::Joule() { return std::make_shared<Unit>(SI::DIMENSIONS_JOULE); }
+UnitSP Unit::Watt() { return std::make_shared<Unit>(SI::DIMENSIONS_WATT); }
+UnitSP Unit::Coulomb() {
+  return std::make_shared<Unit>(SI::DIMENSIONS_COULOMB);
+}
+UnitSP Unit::Volt() { return std::make_shared<Unit>(SI::DIMENSIONS_VOLT); }
+UnitSP Unit::Farad() { return std::make_shared<Unit>(SI::DIMENSIONS_FARAD); }
+UnitSP Unit::Ohm() { return std::make_shared<Unit>(SI::DIMENSIONS_OHM); }
+UnitSP Unit::Siemens() {
+  return std::make_shared<Unit>(SI::DIMENSIONS_SIEMENS);
+}
+UnitSP Unit::Weber() { return std::make_shared<Unit>(SI::DIMENSIONS_WEBER); }
+UnitSP Unit::Tesla() { return std::make_shared<Unit>(SI::DIMENSIONS_TESLA); }
+UnitSP Unit::Henry() { return std::make_shared<Unit>(SI::DIMENSIONS_HENRY); }
+UnitSP Unit::Minute() {
+  return std::make_shared<Unit>(
+      SI::DIMENSIONS_SECOND, SECONDS_PER_MINUTE, 0.0, SI::UNIT_SYMBOL);
+}
+UnitSP Unit::Hour() {
+  return std::make_shared<Unit>(SI::DIMENSIONS_SECOND,
+                                SECONDS_PER_MINUTE * MINUTES_PER_HOUR,
+                                0.0,
+                                SI::UNIT_SYMBOL);
+}
+UnitSP Unit::ElectronVolt() {
+  return std::make_shared<Unit>(
+      SI::DIMENSIONS_JOULE, ELECTRON_CHARGE, 0.0, SI::UNIT_SYMBOL);
+}
+UnitSP Unit::Celsius() {
+  return std::make_shared<Unit>(
+      SI::DIMENSIONS_KELVIN, 1.0, CELSIUS_OFFSET, SI::UNIT_SYMBOL);
+}
+UnitSP Unit::Fahrenheit() {
+  return std::make_shared<Unit>(SI::DIMENSIONS_KELVIN,
+                                UNIT_SCALE_FAHRENHEIT,
+                                FAHRENHEIT_OFFSET,
+                                SI::UNIT_SYMBOL);
+}
+UnitSP Unit::Dimensionless() {
+  return std::make_shared<Unit>(SI::DIMENSIONS_DIMENSIONLESS);
+}
+UnitSP Unit::Percent() {
+  return std::make_shared<Unit>(
+      SI::DIMENSIONS_DIMENSIONLESS, 0.01, 0.0, SI::UNIT_SYMBOL);
+}
+UnitSP Unit::Radian() {
+  return std::make_shared<Unit>(SI::DIMENSIONS_DIMENSIONLESS);
+}
+UnitSP Unit::operator*(const UnitSP& other) const {
   TotalDimensions result_dims = this->_dimensions;
   for (auto it = other->_dimensions.begin(); it != other->_dimensions.end();
        ++it) {
-    const std::string &dim = it->first;
+    const std::string& dim = it->first;
     int                exp = it->second;
     result_dims[dim] += exp;
   }
@@ -29,7 +92,7 @@ UnitSP Unit::operator*(const UnitSP &other) const {
                                 this->_offset + other->_offset,
                                 this->_prefix);
 }
-void Unit::clean_dimensions(TotalDimensions &dims) {
+void Unit::clean_dimensions(TotalDimensions& dims) {
   for (auto it = dims.begin(); it != dims.end();) {
     if (it->second == 0) {
       it = dims.erase(it);
@@ -39,28 +102,16 @@ void Unit::clean_dimensions(TotalDimensions &dims) {
   }
 }
 
-/**
- * @brief The prefix applied to this unit.
- */
-std::string Unit::prefix() const { return this->_prefix; }
-/**
- * @brief Dimensions of this unit.
- */
+std::string     Unit::prefix() const { return this->_prefix; }
 TotalDimensions Unit::dimensions() const { return this->_dimensions; }
-/**
- * @brief Scale factor relatice to SI base units.
- */
-double Unit::scale_factor() const { return this->_scale_factor; }
-/**
- * @brief Offset from base unit.
- */
-double Unit::offset() const { return this->_offset; }
+double          Unit::scale_factor() const { return this->_scale_factor; }
+double          Unit::offset() const { return this->_offset; }
 
-UnitSP Unit::operator/(const UnitSP &other) const {
+UnitSP Unit::operator/(const UnitSP& other) const {
   TotalDimensions result_dims = this->_dimensions;
   for (auto it = other->_dimensions.begin(); it != other->_dimensions.end();
        ++it) {
-    const std::string &dim = it->first;
+    const std::string& dim = it->first;
     int                exp = it->second;
     result_dims[dim] -= exp;
   }
@@ -71,7 +122,7 @@ UnitSP Unit::operator/(const UnitSP &other) const {
                                 this->_prefix);
 }
 
-std::shared_ptr<Unit> Unit::operator^(const int power) const {
+UnitSP Unit::operator^(const int power) const {
   TotalDimensions result_dims = this->_dimensions;
   for (auto it = result_dims.begin(); it != result_dims.end(); ++it) {
     it->second *= power;
@@ -83,7 +134,7 @@ std::shared_ptr<Unit> Unit::operator^(const int power) const {
                                 this->_prefix);
 }
 
-std::shared_ptr<Unit> Unit::with_prefix(const std::string prefix) const {
+UnitSP Unit::with_prefix(const std::string prefix) const {
   if (!Prefix::is_valid(prefix)) {
     std::ostringstream oss;
     std::copy(std::begin(falcon_core::SI::ALL_PREFIXES),
@@ -99,9 +150,16 @@ std::shared_ptr<Unit> Unit::with_prefix(const std::string prefix) const {
   return std::make_shared<Unit>(
       dimensions(), scale_factor() / scale_adjustment, offset(), prefix);
 }
+UnitSP Unit::get_milli() const { return with_prefix(SI::MILLI_SYMBOL); }
+UnitSP Unit::get_micro() const { return with_prefix(SI::MICRO_SYMBOL); }
+UnitSP Unit::get_nano() const { return with_prefix(SI::NANO_SYMBOL); }
+UnitSP Unit::get_pico() const { return with_prefix(SI::PICO_SYMBOL); }
+UnitSP Unit::get_kilo() const { return with_prefix(SI::KILO_SYMBOL); }
+UnitSP Unit::get_mega() const { return with_prefix(SI::MEGA_SYMBOL); }
+UnitSP Unit::get_giga() const { return with_prefix(SI::GIGA_SYMBOL); }
 
 double Unit::convert_value_to(const double  value,
-                              const UnitSP &target_unit) const {
+                              const UnitSP& target_unit) const {
   if (dimensions() != target_unit->dimensions()) {
     throw std::invalid_argument(
         "Cannot convert between units with different dimensions.");
@@ -113,7 +171,7 @@ double Unit::convert_value_to(const double  value,
   return (base_value - target_unit->offset()) / target_unit->scale_factor();
 }
 
-bool Unit::is_compatible_with(const UnitSP &other) const {
+bool Unit::is_compatible_with(const UnitSP& other) const {
   return dimensions() == other->dimensions();
 }
 
