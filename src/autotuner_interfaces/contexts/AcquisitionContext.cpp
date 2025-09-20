@@ -5,9 +5,9 @@ namespace falcon_core::autotuner_interfaces::contexts {
 AcquisitionContext::AcquisitionContext() : BaseContext(), _units(nullptr) {}
 
 AcquisitionContext::AcquisitionContext(
-    const physics::device_structures::BaseConnectionSP& connection,
-    const instrument_interfaces::Instrument&            instrument_type,
-    const physics::units::SymbolUnitSP&                 units)
+    const physics::device_structures::ConnectionSP& connection,
+    const instrument_interfaces::Instrument&        instrument_type,
+    const physics::units::SymbolUnitSP&             units)
     : BaseContext(connection, instrument_type), _units(units) {}
 
 AcquisitionContext::AcquisitionContext(
@@ -37,7 +37,7 @@ const AcquisitionContextSP AcquisitionContext::operator/(
 }
 
 const bool AcquisitionContext::match_connection(
-    physics::device_structures::BaseConnectionSP other) const {
+    physics::device_structures::ConnectionSP other) const {
   return connection() == other;
 }
 

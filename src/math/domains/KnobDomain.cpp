@@ -5,14 +5,14 @@
 namespace falcon_core::math::domains {
 KnobDomain::KnobDomain() = default;
 KnobDomain::KnobDomain(
-    const std::string&                                  default_name,
-    const std::pair<double, double>&                    bounds,
-    const physics::device_structures::BaseConnectionSP& psuedo_name,
-    const instrument_interfaces::Instrument&            instrument_type,
-    bool                                                lesser_bound_contained,
-    bool                                                greater_bound_contained,
-    const physics::units::SymbolUnitSP&                 units,
-    const std::string&                                  description)
+    const std::string&                              default_name,
+    const std::pair<double, double>&                bounds,
+    const physics::device_structures::ConnectionSP& psuedo_name,
+    const instrument_interfaces::Instrument&        instrument_type,
+    bool                                            lesser_bound_contained,
+    bool                                            greater_bound_contained,
+    const physics::units::SymbolUnitSP&             units,
+    const std::string&                              description)
     : BaseLabelledDomain<instrument_interfaces::names::Knob>(
           bounds,
           std::make_shared<instrument_interfaces::names::Knob>(
@@ -32,12 +32,12 @@ std::shared_ptr<KnobDomain> KnobDomain::from_knob_and_domain(
                                       knob->description());
 }
 std::shared_ptr<KnobDomain> KnobDomain::from_domain(
-    const DomainSP&                                     domain,
-    const std::string&                                  default_name,
-    const physics::device_structures::BaseConnectionSP& pseudo_name,
-    const instrument_interfaces::Instrument&            instrument_type,
-    const physics::units::SymbolUnitSP&                 units,
-    const std::string&                                  description) {
+    const DomainSP&                                 domain,
+    const std::string&                              default_name,
+    const physics::device_structures::ConnectionSP& pseudo_name,
+    const instrument_interfaces::Instrument&        instrument_type,
+    const physics::units::SymbolUnitSP&             units,
+    const std::string&                              description) {
   return std::make_shared<KnobDomain>(default_name,
                                       domain->bounds(),
                                       pseudo_name,

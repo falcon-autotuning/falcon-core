@@ -3,15 +3,15 @@
 namespace falcon_core::communications::voltage_states {
 
 DeviceVoltageState::DeviceVoltageState(
-    const physics::device_structures::BaseConnectionSP& connection,
-    const double&                                       voltage,
-    const physics::units::SymbolUnitSP&                 unit)
+    const physics::device_structures::ConnectionSP& connection,
+    const double&                                   voltage,
+    const physics::units::SymbolUnitSP&             unit)
     : math::Quantity(voltage, unit), _connection(std::move(connection)) {}
 
 DeviceVoltageState::DeviceVoltageState()
     : math::Quantity(), _connection(nullptr) {}
 
-std::shared_ptr<physics::device_structures::BaseConnection>
+std::shared_ptr<physics::device_structures::Connection>
 DeviceVoltageState::connection() const {
   return _connection;
 }

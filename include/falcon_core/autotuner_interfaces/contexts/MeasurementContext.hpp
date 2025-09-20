@@ -2,7 +2,7 @@
 
 #include "falcon_core/autotuner_interfaces/contexts/BaseContext.hpp"
 #include "falcon_core/instrument_interfaces/Instrument.hpp"
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
 namespace falcon_core::autotuner_interfaces::contexts {
@@ -24,9 +24,8 @@ class MeasurementContext : public contexts::BaseContext {
    * @param connection The device connection.
    * @param instrument_type The type of instrument.
    */
-  MeasurementContext(
-      const physics::device_structures::BaseConnectionSP& connection,
-      const instrument_interfaces::Instrument&            instrument_type);
+  MeasurementContext(const physics::device_structures::ConnectionSP& connection,
+                     const instrument_interfaces::Instrument& instrument_type);
 
   /**
    * @brief Constructs a MeasururementContext from an AcquisitionContext.

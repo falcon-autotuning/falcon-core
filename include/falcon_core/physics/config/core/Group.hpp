@@ -3,10 +3,8 @@
 #include "falcon_core/autotuner_interfaces/names/Channel.hpp"
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D.hpp"
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace core {
+#include "falcon_core/physics/device_structures/Connections.hpp"
+namespace falcon_core::physics::config::core {
 /**
  * @brief Elements of the config that pertain to an individual group of gates.
  */
@@ -14,7 +12,7 @@ class Group : public StandardConfigConnections {
   autotuner_interfaces::names::ChannelSP _name;
   int                                    _num_dots;
   geometries::GateGeometryArray1DSP      _order;
-  device_structures::OhmicsSP            _ohmics;
+  device_structures::ConnectionsSP       _ohmics;
 
  public:
   /**
@@ -29,15 +27,15 @@ class Group : public StandardConfigConnections {
    */
   Group(const autotuner_interfaces::names::ChannelSP& name,
         const int&                                    num_dots,
-        const device_structures::ScreeningGatesSP&    screening_gates,
-        const device_structures::ReservoirGatesSP&    reservoir_gates,
-        const device_structures::PlungerGatesSP&      plunger_gates,
-        const device_structures::BarrierGatesSP&      barrier_gates,
-        const device_structures::BaseConnectionsSP&   order);
+        const device_structures::ConnectionsSP&       screening_gates,
+        const device_structures::ConnectionsSP&       reservoir_gates,
+        const device_structures::ConnectionsSP&       plunger_gates,
+        const device_structures::ConnectionsSP&       barrier_gates,
+        const device_structures::ConnectionsSP&       order);
   /**
    * @brief collect the ohmics pertaining to this group.
    */
-  device_structures::OhmicsSP ohmics() const;
+  device_structures::ConnectionsSP ohmics() const;
   /**
    * @brief collect the name of this group.
    */
@@ -62,12 +60,13 @@ class Group : public StandardConfigConnections {
    */
   bool is_charge_sensor() const;
   /**
-   * @brief Gets all of the gates assocciated with this channel from the config.
+   * @brief Gets all of the gates assocciated with this channel from the
+   * config.
    * @param channel The channel to collect the gates for.
    * @returns The gates associated with this channel. If the channel is not
    * correct then empty gates are returned.
    */
-  device_structures::BaseConnectionsSP get_all_channel_gates(
+  device_structures::ConnectionsSP get_all_channel_gates(
       const autotuner_interfaces::names::ChannelSP& channel) const;
 
  protected:
@@ -83,7 +82,4 @@ class Group : public StandardConfigConnections {
   }
 };
 using GroupSP = std::shared_ptr<Group>;
-}  // namespace core
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::core

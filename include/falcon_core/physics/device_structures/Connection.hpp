@@ -2,9 +2,7 @@
 
 #include "falcon_core/generic/Song.hpp"
 
-namespace falcon_core {
-namespace physics {
-namespace device_structures {
+namespace falcon_core::physics::device_structures {
 enum class DeviceFeature {
   BarrierGate,
   PlungerGate,
@@ -12,7 +10,7 @@ enum class DeviceFeature {
   ScreeningGate,
   Ohmic
 };
-class BaseConnection : public virtual generic::Song {
+class Connection : public virtual generic::Song {
   std::string   _name;
   DeviceFeature _type;
   template <class Archive>
@@ -21,14 +19,19 @@ class BaseConnection : public virtual generic::Song {
   }
 
  public:
-  bool operator<(const BaseConnection& other) const;
-  BaseConnection();
+  bool operator<(const Connection& other) const;
+  Connection();
   /**
-   * @brief Construct a BaseConnection with a name and type.
+   * @brief Construct a Connection with a name and type.
    * @param name The name of the connection.
    * @param type The type of the connection (DeviceFeature).
    */
-  BaseConnection(std::string name, DeviceFeature type);
+  Connection(const std::string& name, const DeviceFeature& type);
+  static std::shared_ptr<Connection> BarrierGate(const std::string& name);
+  static std::shared_ptr<Connection> PlungerGate(const std::string& name);
+  static std::shared_ptr<Connection> ReservoirGate(const std::string& name);
+  static std::shared_ptr<Connection> ScreeningGate(const std::string& name);
+  static std::shared_ptr<Connection> Ohmic(const std::string& name);
   /**
    * @brief The name of the connection.
    * @return The name as a string.
@@ -72,7 +75,5 @@ class BaseConnection : public virtual generic::Song {
  protected:
   friend class cereal::access;
 };
-using BaseConnectionSP = std::shared_ptr<BaseConnection>;
-}  // namespace device_structures
-}  // namespace physics
-}  // namespace falcon_core
+using ConnectionSP = std::shared_ptr<Connection>;
+}  // namespace falcon_core::physics::device_structures

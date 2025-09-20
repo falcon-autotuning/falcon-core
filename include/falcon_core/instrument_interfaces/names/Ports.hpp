@@ -2,7 +2,7 @@
 
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 
 namespace falcon_core::instrument_interfaces::names {
 
@@ -43,9 +43,9 @@ class Ports : public generic::List<Port> {
    * @brief Return the pseudo names of the ports.
    * @throws std::runtime_error if any port does not have a pseudo name.
    */
-  generic::ListSP<physics::device_structures::BaseConnectionSP>
-  get_pseudo_names() const {
-    generic::ListSP<physics::device_structures::BaseConnectionSP> result;
+  generic::ListSP<physics::device_structures::ConnectionSP> get_pseudo_names()
+      const {
+    generic::ListSP<physics::device_structures::ConnectionSP> result;
     for (const auto& port : this->items()) {
       if (!port->pseudo_name()) {
         throw std::runtime_error("Port does not have a pseudo name");
@@ -59,7 +59,7 @@ class Ports : public generic::List<Port> {
    */
   generic::ListSP<std::string> _get_raw_names() const {
     generic::ListSP<std::string> result;
-    for (const physics::device_structures::BaseConnectionSP& port :
+    for (const physics::device_structures::ConnectionSP& port :
          *get_pseudo_names()) {
       result->push_back(port->name());
     }
@@ -83,7 +83,7 @@ class Ports : public generic::List<Port> {
    * @throws std::runtime_error if no port has the given name.
    */
   typename generic::List<Port>::StoredValue _get_psuedoname_matching_port(
-      const physics::device_structures::BaseConnectionSP& name) const {
+      const physics::device_structures::ConnectionSP& name) const {
     for (const typename generic::List<Port>::StoredValue& port :
          this->items()) {
       if (port->pseudo_name() && *(port->pseudo_name()) == *name) {

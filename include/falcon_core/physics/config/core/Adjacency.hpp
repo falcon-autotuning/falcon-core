@@ -1,16 +1,16 @@
 #pragma once
 
 #include "falcon_core/generic/FArray.hpp"
-#include "falcon_core/physics/device_structures/BaseConnections.hpp"
+#include "falcon_core/physics/device_structures/Connections.hpp"
 
 namespace falcon_core::physics::config::core {
 
 class Adjacency : public generic::FArray<int> {
-  using Indexes = physics::device_structures::BaseConnectionsSP;
+  using Indexes = physics::device_structures::ConnectionsSP;
   Indexes _indexes;
 
  public:
-  Adjacency(const xt::xarray<int> &matrix, const Indexes indexes);
+  Adjacency(const xt::xarray<int>& matrix, const Indexes indexes);
   /**
    # @brief Returns the indexes of the gates in the order for the adjacency
    matrix
@@ -26,7 +26,7 @@ class Adjacency : public generic::FArray<int> {
   Adjacency();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive &ar) {
+  void serialize(Archive& ar) {
     ar(cereal::base_class<generic::FArray<int>>(this), _indexes);
   }
 };

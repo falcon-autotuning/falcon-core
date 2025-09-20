@@ -3,11 +3,11 @@
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/Instrument.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 namespace falcon_core::autotuner_interfaces::contexts {
 class BaseContext : public generic::Song {
-  physics::device_structures::BaseConnectionSP _connection;
-  instrument_interfaces::Instrument            _instrument_type;
+  physics::device_structures::ConnectionSP _connection;
+  instrument_interfaces::Instrument        _instrument_type;
 
  public:
   /**
@@ -15,8 +15,8 @@ class BaseContext : public generic::Song {
    * @param connection The device connection.
    * @param instrument_type The type of instrument.
    */
-  BaseContext(const physics::device_structures::BaseConnectionSP& connection,
-              const instrument_interfaces::Instrument& instrument_type);
+  BaseContext(const physics::device_structures::ConnectionSP& connection,
+              const instrument_interfaces::Instrument&        instrument_type);
   /**
    * @brief Initialize a BaseContext with an InstrumentPort.
    * @param port The instrument port.
@@ -25,7 +25,7 @@ class BaseContext : public generic::Song {
   /**
    * @brief Return the connection.
    */
-  const physics::device_structures::BaseConnectionSP connection() const;
+  const physics::device_structures::ConnectionSP connection() const;
   /**
    * @brief Return the instrument type.
    */

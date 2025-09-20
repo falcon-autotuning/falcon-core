@@ -12,7 +12,7 @@ class IsLabelled : public virtual generic::IFArray<T> {
   autotuner_interfaces::contexts::AcquisitionContextSP label() const {
     return _label;
   }
-  const physics::device_structures::BaseConnectionSP connection() const {
+  const physics::device_structures::ConnectionSP connection() const {
     return label()->connection();
   }
   const instrument_interfaces::Instrument instrument_type() const {

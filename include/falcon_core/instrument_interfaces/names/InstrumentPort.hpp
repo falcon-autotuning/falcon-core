@@ -2,17 +2,17 @@
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/Instrument.hpp"
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
 namespace falcon_core::instrument_interfaces::names {
 
 class InstrumentPort : public generic::Song {
-  std::string                                                 _default_name;
-  std::shared_ptr<physics::device_structures::BaseConnection> _pseudo_name;
-  Instrument                                                  _instrument_type;
-  std::shared_ptr<physics::units::SymbolUnit>                 _units;
-  std::string                                                 _description;
+  std::string                                             _default_name;
+  std::shared_ptr<physics::device_structures::Connection> _pseudo_name;
+  Instrument                                              _instrument_type;
+  std::shared_ptr<physics::units::SymbolUnit>             _units;
+  std::string                                             _description;
 
  public:
   /**
@@ -24,8 +24,8 @@ class InstrumentPort : public generic::Song {
    * @description A description of the port.
    */
   InstrumentPort(
-      std::string                                                 default_name,
-      std::shared_ptr<physics::device_structures::BaseConnection> pseudo_name =
+      std::string                                             default_name,
+      std::shared_ptr<physics::device_structures::Connection> pseudo_name =
           nullptr,
       Instrument instrument_type = INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE,
       std::shared_ptr<physics::units::SymbolUnit> units =
@@ -40,8 +40,8 @@ class InstrumentPort : public generic::Song {
    * @brief Return the pseudo name of the port.
    * @throws std::runtime_error if the pseudo name is not set.
    */
-  const std::shared_ptr<physics::device_structures::BaseConnection>
-  pseudo_name() const;
+  const std::shared_ptr<physics::device_structures::Connection> pseudo_name()
+      const;
   /**
    * @brief Returns the type of the instrument that the port is connected to.
    */

@@ -28,7 +28,7 @@ class DeviceVoltageStates : public generic::List<DeviceVoltageState> {
    * @returns the voltage state if found.
    */
   const DeviceVoltageStateSP find_state(
-      const physics::device_structures::BaseConnectionSP& connection) const;
+      const physics::device_structures::ConnectionSP& connection) const;
   /**
    * @brief Conversion to the Point datatype.
    */

@@ -7,9 +7,9 @@ namespace falcon_core::physics::config::geometries {
  */
 class BarrierGateWithNeighbors : public DotGateWithNeighbors {
  public:
-  BarrierGateWithNeighbors(std::string                         name,
-                           device_structures::BaseConnectionSP left_neighbor,
-                           device_structures::BaseConnectionSP right_neighbor);
+  BarrierGateWithNeighbors(std::string                     name,
+                           device_structures::ConnectionSP left_neighbor,
+                           device_structures::ConnectionSP right_neighbor);
 
  protected:
   BarrierGateWithNeighbors();

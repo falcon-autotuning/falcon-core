@@ -20,7 +20,7 @@ void DeviceVoltageStates::add_state(const DeviceVoltageStateSP& state) {
 }
 
 const DeviceVoltageStateSP DeviceVoltageStates::find_state(
-    const physics::device_structures::BaseConnectionSP& connection) const {
+    const physics::device_structures::ConnectionSP& connection) const {
   for (const auto& state : items()) {
     if (state->connection()->name() == connection->name() &&
         state->connection()->type() == connection->type()) {
@@ -31,7 +31,7 @@ const DeviceVoltageStateSP DeviceVoltageStates::find_state(
 }
 
 const math::PointSP DeviceVoltageStates::to_point() const {
-  generic::MapSP<physics::device_structures::BaseConnection, math::Quantity>
+  generic::MapSP<physics::device_structures::Connection, math::Quantity>
       rawPoint;
   for (const DeviceVoltageStateSP& state : *states()) {
     rawPoint->insert(state->connection(), state);

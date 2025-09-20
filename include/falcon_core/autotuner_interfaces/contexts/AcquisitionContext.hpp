@@ -26,10 +26,9 @@ class AcquisitionContext : public BaseContext {
    * @param instrument_type The type of instrument.
    * @param units The measurement units.
    */
-  AcquisitionContext(
-      const physics::device_structures::BaseConnectionSP& connection,
-      const instrument_interfaces::Instrument&            instrument_type,
-      const physics::units::SymbolUnitSP&                 units);
+  AcquisitionContext(const physics::device_structures::ConnectionSP& connection,
+                     const instrument_interfaces::Instrument& instrument_type,
+                     const physics::units::SymbolUnitSP&      units);
   /**
    * @brief Create an AcquisitionContext from an InstrumentPort.
    * @param port The instrument port.
@@ -66,7 +65,7 @@ class AcquisitionContext : public BaseContext {
    * @brief Returns if the connection is inside this context.
    */
   const bool match_connection(
-      physics::device_structures::BaseConnectionSP other) const;
+      physics::device_structures::ConnectionSP other) const;
   /**
    * @brief Returns if the instrument type matches this context.
    */

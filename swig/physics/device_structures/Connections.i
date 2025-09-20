@@ -1,4 +1,4 @@
-%module(package="physics.units.BaseConnections") physics::device_structures::BaseConnections
+%module(package="physics.units.Connections") physics::device_structures::Connections
 
 %extend physics::device_structures::BaseConnections {
     std::shared_ptr<T> __getitem__(size_t idx) {
@@ -14,11 +14,11 @@
     }
 }
 %{
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
-#include "falcon_core/physics/device_structures/BaseConnections.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
+#include "falcon_core/physics/device_structures/Connections.hpp"
 %}
-%include "falcon_core/physics/device_structures/BaseConnection.hpp"
-%include "falcon_core/physics/device_structures/BaseConnections.hpp"
+%include "falcon_core/physics/device_structures/Connection.hpp"
+%include "falcon_core/physics/device_structures/Connections.hpp"
 %include "add_song_deserializers.i"
-%shared_ptr(physics::device_structures::BaseConnection)
-%add_song_deserializers(BaseConnection)
+%shared_ptr(physics::device_structures::Connection)
+%add_song_deserializers(Connection)

@@ -1,16 +1,13 @@
 #include "falcon_core/physics/config/geometries/PlungerGateWithNeighbors.hpp"
 
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 
-namespace falcon_core {
-namespace physics {
-namespace config {
-namespace geometries {
+namespace falcon_core::physics::config::geometries {
 PlungerGateWithNeighbors::PlungerGateWithNeighbors(
-    std::string                         name,
-    device_structures::BaseConnectionSP left_neighbor,
-    device_structures::BaseConnectionSP right_neighbor)
+    std::string                     name,
+    device_structures::ConnectionSP left_neighbor,
+    device_structures::ConnectionSP right_neighbor)
     : DotGateWithNeighbors(name,
                            device_structures::DeviceFeature::PlungerGate,
                            left_neighbor,
@@ -24,10 +21,7 @@ PlungerGateWithNeighbors::PlungerGateWithNeighbors(
 }
 
 PlungerGateWithNeighbors::PlungerGateWithNeighbors() = default;
-}  // namespace geometries
-}  // namespace config
-}  // namespace physics
-}  // namespace falcon_core
+}  // namespace falcon_core::physics::config::geometries
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::geometries::PlungerGateWithNeighbors)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

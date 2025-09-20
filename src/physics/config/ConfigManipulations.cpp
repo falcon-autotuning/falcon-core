@@ -4,10 +4,8 @@
 
 #include "falcon_core/physics/config/core/Group.hpp"
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
-#include "falcon_core/physics/device_structures/BarrierGate.hpp"
+#include "falcon_core/physics/device_structures/Connections.hpp"
 #include "falcon_core/physics/device_structures/Impedances.hpp"
-#include "falcon_core/physics/device_structures/PlungerGate.hpp"
-#include "falcon_core/physics/device_structures/ScreeningGates.hpp"
 namespace falcon_core::physics::config {
 using core::StandardConfigConnections;
 
@@ -43,7 +41,7 @@ core::ConfigSP ConfigManipulations::unpack_device_config(
   auto ohmics    = _extract_ohmics(config["Ohmics"].as<std::string>());
   auto wiring_DC = _extract_dcwiring(config, ohmics, connections);
 
-  device_structures::BaseConnections total_gates;
+  device_structures::Connections total_gates;
   total_gates.insert(total_gates.end(),
                      connections->screening_gates()->begin(),
                      connections->screening_gates()->end());
@@ -58,8 +56,7 @@ core::ConfigSP ConfigManipulations::unpack_device_config(
                      connections->barrier_gates()->end());
 
   auto constraints = _extract_voltage_constraints(
-      config,
-      std::make_shared<device_structures::BaseConnections>(total_gates));
+      config, std::make_shared<device_structures::Connections>(total_gates));
 
   return std::make_shared<core::Config>(
       connections->screening_gates(),
@@ -75,8 +72,8 @@ core::ConfigSP ConfigManipulations::unpack_device_config(
 }
 
 core::AdjacencySP ConfigManipulations::_extract_adjacency(
-    const YAML::Node&                           map,
-    const device_structures::BaseConnectionsSP& total_gates) const {
+    const YAML::Node&                       map,
+    const device_structures::ConnectionsSP& total_gates) const {
   size_t               num_gates = total_gates->size();
   generic::FArray<int> adjacency =
       *generic::FArray<int>::zeros({num_gates, num_gates});
@@ -105,8 +102,8 @@ core::AdjacencySP ConfigManipulations::_extract_adjacency(
 }
 
 core::VoltageConstraintsSP ConfigManipulations::_extract_voltage_constraints(
-    const YAML::Node&                           map,
-    const device_structures::BaseConnectionsSP& total_gates) const {
+    const YAML::Node&                       map,
+    const device_structures::ConnectionsSP& total_gates) const {
   auto adjacency = _extract_adjacency(map, total_gates);
   if (!map["max_safe_diff"])
     throw std::runtime_error("Expected max_safe_diff in config");
@@ -124,87 +121,95 @@ core::VoltageConstraintsSP ConfigManipulations::_extract_voltage_constraints(
 
 device_structures::ImpedancesSP ConfigManipulations::_extract_dcwiring(
     const YAML::Node&                        map,
-    const device_structures::OhmicsSP&       ohmics,
+    const device_structures::ConnectionsSP&  ohmics,
     const core::StandardConfigConnectionsSP& connections) const {
   device_structures::Impedances outs;
   auto                          impedances = map["wiringDC"];
   for (const auto& entry : impedances) {
-    auto key    = entry.first.as<std::string>();
-    auto values = entry.second;
-    if (!values) continue;
-    if (ohmics->contains(std::make_shared<device_structures::Ohmic>(key))) {
-      outs.push_back(std::make_shared<device_structures::Impedance>(
-          std::make_shared<device_structures::Ohmic>(key),
-          values["resistance"].as<double>(),
-          values["capacitance"].as<double>()));
+    auto                            key    = entry.first.as<std::string>();
+    auto                            values = entry.second;
+    device_structures::ConnectionSP gt;
+    device_structures::ConnectionSP ohmic =
+        device_structures::Connection::Ohmic(key);
+    if (connections->has_ohmic(ohmic)) {
+      gt = ohmic;
     } else {
-      device_structures::BaseConnectionSP gt;
-      if (connections->has_plunger_gate(
-              std::make_shared<device_structures::PlungerGate>(key)))
-        gt = std::make_shared<device_structures::PlungerGate>(key);
-      else if (connections->has_barrier_gate(
-                   std::make_shared<device_structures::BarrierGate>(key)))
-        gt = std::make_shared<device_structures::BarrierGate>(key);
-      else if (connections->has_screening_gate(
-                   std::make_shared<device_structures::ScreeningGate>(key)))
-        gt = std::make_shared<device_structures::ScreeningGate>(key);
-      else if (connections->has_reservoir_gate(
-                   std::make_shared<device_structures::ReservoirGate>(key)))
-        gt = std::make_shared<device_structures::ReservoirGate>(key);
-      else
-        throw std::runtime_error("Cannot use that gate");
-      outs.push_back(std::make_shared<device_structures::Impedance>(
-          gt,
-          values["resistance"].as<double>(),
-          values["capacitance"].as<double>()));
+      device_structures::ConnectionSP plunger_gate =
+          device_structures::Connection::PlungerGate(key);
+      if (connections->has_plunger_gate(plunger_gate)) {
+        gt = plunger_gate;
+      } else {
+        device_structures::ConnectionSP barrier_gate =
+            device_structures::Connection::BarrierGate(key);
+        if (connections->has_barrier_gate(barrier_gate)) {
+          gt = barrier_gate;
+        } else {
+          device_structures::ConnectionSP screening_gate =
+              device_structures::Connection::ScreeningGate(key);
+          if (connections->has_screening_gate(screening_gate)) {
+            gt = screening_gate;
+          } else {
+            device_structures::ConnectionSP reservoir_gate =
+                device_structures::Connection::ReservoirGate(key);
+            if (connections->has_reservoir_gate(reservoir_gate)) {
+              gt = reservoir_gate;
+            } else {
+              throw std::runtime_error("Cannot use that gate");
+            }
+          }
+        }
+      }
     }
+
+    outs.push_back(std::make_shared<device_structures::Impedance>(
+        gt,
+        values["resistance"].as<double>(),
+        values["capacitance"].as<double>()));
   }
   return std::make_shared<device_structures::Impedances>(outs);
 }
 
-device_structures::BarrierGatesSP ConfigManipulations::_extract_barrier_gates(
+device_structures::ConnectionsSP ConfigManipulations::_extract_barrier_gates(
     const std::string raw) const {
   auto gate_names = split_on_semicolon(raw);
-  std::vector<device_structures::BarrierGateSP> barriergates;
+  std::vector<device_structures::ConnectionSP> barriergates;
   for (const auto& name : gate_names)
-    barriergates.push_back(
-        std::make_shared<device_structures::BarrierGate>(name));
-  return std::make_shared<device_structures::BarrierGates>(barriergates);
+    barriergates.push_back(device_structures::Connection::BarrierGate(name));
+  return std::make_shared<device_structures::Connections>(barriergates);
 }
-device_structures::PlungerGatesSP ConfigManipulations::_extract_plunger_gates(
+device_structures::ConnectionsSP ConfigManipulations::_extract_plunger_gates(
     const std::string raw) const {
   auto gate_names = split_on_semicolon(raw);
-  std::vector<device_structures::PlungerGateSP> plungergates;
+  std::vector<device_structures::ConnectionSP> plungergates;
   for (const auto& name : gate_names)
-    plungergates.push_back(
-        std::make_shared<device_structures::PlungerGate>(name));
-  return std::make_shared<device_structures::PlungerGates>(plungergates);
+    plungergates.push_back(device_structures::Connection::PlungerGate(name));
+  return std::make_shared<device_structures::Connections>(plungergates);
 }
-device_structures::ReservoirGatesSP
-ConfigManipulations::_extract_reservoir_gates(const std::string raw) const {
+device_structures::ConnectionsSP ConfigManipulations::_extract_reservoir_gates(
+    const std::string raw) const {
   auto gate_names = split_on_semicolon(raw);
-  std::vector<device_structures::ReservoirGateSP> reservoirgates;
+  std::vector<device_structures::ConnectionSP> reservoirgates;
   for (const auto& name : gate_names)
     reservoirgates.push_back(
-        std::make_shared<device_structures::ReservoirGate>(name));
-  return std::make_shared<device_structures::ReservoirGates>(reservoirgates);
+        device_structures::Connection::ReservoirGate(name));
+  return std::make_shared<device_structures::Connections>(reservoirgates);
 }
-device_structures::ScreeningGatesSP
-ConfigManipulations::_extract_screening_gates(const std::string raw) const {
+device_structures::ConnectionsSP ConfigManipulations::_extract_screening_gates(
+    const std::string raw) const {
   auto gate_names = split_on_semicolon(raw);
-  std::vector<device_structures::ScreeningGateSP> screeninggates;
+  std::vector<device_structures::ConnectionSP> screeninggates;
   for (const auto& name : gate_names)
     screeninggates.push_back(
-        std::make_shared<device_structures::ScreeningGate>(name));
-  return std::make_shared<device_structures::ScreeningGates>(screeninggates);
+        device_structures::Connection::ScreeningGate(name));
+  return std::make_shared<device_structures::Connections>(screeninggates);
 }
-device_structures::OhmicsSP ConfigManipulations::_extract_ohmics(
+device_structures::ConnectionsSP ConfigManipulations::_extract_ohmics(
     const std::string raw) const {
-  auto                                    gate_names = split_on_semicolon(raw);
-  std::vector<device_structures::OhmicSP> ohmics;
+  auto gate_names = split_on_semicolon(raw);
+  std::vector<device_structures::ConnectionSP> ohmics;
   for (const auto& name : gate_names)
-    ohmics.push_back(std::make_shared<device_structures::Ohmic>(name));
-  return std::make_shared<device_structures::Ohmics>(ohmics);
+    ohmics.push_back(device_structures::Connection::Ohmic(name));
+  return std::make_shared<device_structures::Connections>(ohmics);
 }
 
 core::StandardConfigConnectionsSP
@@ -222,29 +227,44 @@ ConfigManipulations::_extract_standard_config_connections(
       screening_gates, reservoir_gates, plunger_gates, barrier_gates, nullptr);
 }
 
-device_structures::BaseConnectionsSP ConfigManipulations::_extract_order(
+device_structures::ConnectionsSP ConfigManipulations::_extract_order(
     const std::string                        raw,
     const core::StandardConfigConnectionsSP& connections) const {
-  auto raworder = split_on_semicolon(raw);
-  std::vector<device_structures::BaseConnectionSP> order;
+  auto                             raworder = split_on_semicolon(raw);
+  device_structures::ConnectionsSP order;
   for (size_t i = 1; i + 1 < raworder.size(); ++i) {
-    const auto& gate = raworder[i];
-    if (connections->has_screening_gate(
-            std::make_shared<device_structures::ScreeningGate>(gate)))
-      order.push_back(std::make_shared<device_structures::ScreeningGate>(gate));
-    else if (connections->has_barrier_gate(
-                 std::make_shared<device_structures::BarrierGate>(gate)))
-      order.push_back(std::make_shared<device_structures::BarrierGate>(gate));
-    else if (connections->has_plunger_gate(
-                 std::make_shared<device_structures::PlungerGate>(gate)))
-      order.push_back(std::make_shared<device_structures::PlungerGate>(gate));
-    else
-      order.push_back(std::make_shared<device_structures::ReservoirGate>(gate));
+    const auto&                     gate = raworder[i];
+    device_structures::ConnectionSP realGate =
+        device_structures::Connection::ScreeningGate(gate);
+    if (connections->has_screening_gate(realGate)) {
+      order->push_back(realGate);
+    } else {
+      device_structures::ConnectionSP realGate =
+          device_structures::Connection::BarrierGate(gate);
+      if (connections->has_barrier_gate(realGate)) {
+        order->push_back(realGate);
+      } else {
+        device_structures::ConnectionSP realGate =
+            device_structures::Connection::PlungerGate(gate);
+        if (connections->has_plunger_gate(realGate)) {
+          order->push_back(realGate);
+        } else {
+          device_structures::ConnectionSP realGate =
+              device_structures::Connection::ReservoirGate(gate);
+          if (connections->has_reservoir_gate(realGate)) {
+            order->push_back(realGate);
+          } else
+            throw std::runtime_error("Unexpected gate name found of " + gate +
+                                     " does not belong in config.");
+        }
+      }
+    }
   }
-  order.insert(order.begin(),
-               std::make_shared<device_structures::Ohmic>(raworder.front()));
-  order.push_back(std::make_shared<device_structures::Ohmic>(raworder.back()));
-  return std::make_shared<device_structures::BaseConnections>(order);
+  auto ohmic_conn = device_structures::Connection::Ohmic(raworder.front());
+  std::vector<device_structures::ConnectionSP> temp{ohmic_conn};
+  order->insert(order->begin(), temp.begin(), temp.end());
+  order->push_back(device_structures::Connection::Ohmic(raworder.back()));
+  return order;
 }
 
 }  // namespace falcon_core::physics::config

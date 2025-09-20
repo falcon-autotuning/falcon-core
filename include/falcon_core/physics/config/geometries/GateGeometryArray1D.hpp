@@ -4,9 +4,7 @@
 #include "falcon_core/physics/config/geometries/DotGatesWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic.hpp"
 #include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic.hpp"
-#include "falcon_core/physics/device_structures/BaseConnections.hpp"
-#include "falcon_core/physics/device_structures/Ohmics.hpp"
-#include "falcon_core/physics/device_structures/ScreeningGates.hpp"
+#include "falcon_core/physics/device_structures/Connections.hpp"
 
 namespace falcon_core::physics::config::geometries {
 
@@ -16,17 +14,17 @@ namespace falcon_core::physics::config::geometries {
  *of the 1D array.
  */
 class GateGeometryArray1D : public generic::Song {
-  DotGatesWithNeighborsSP              _central_dot_gates;
-  device_structures::BaseConnections   _raw_central_gates;
-  device_structures::ScreeningGatesSP  _screening_gates;
-  device_structures::BaseConnectionsSP _lineararray;
-  std::unordered_map<std::string, device_structures::BaseConnectionSP>
+  DotGatesWithNeighborsSP          _central_dot_gates;
+  device_structures::Connections   _raw_central_gates;
+  device_structures::ConnectionsSP _screening_gates;
+  device_structures::ConnectionsSP _lineararray;
+  std::unordered_map<std::string, device_structures::ConnectionSP>
       _gate_name_map;
 
  public:
-  using iterator = typename device_structures::BaseConnections::iterator;
+  using iterator = typename device_structures::Connections::iterator;
   using const_iterator =
-      typename device_structures::BaseConnections::const_iterator;
+      typename device_structures::Connections::const_iterator;
   /**
    * @brief Starts the geometry of the gates.
    * @param lineararray A linear array of gates and ohmics in the order left to
@@ -35,8 +33,8 @@ class GateGeometryArray1D : public generic::Song {
    * @throws std::invalid_argument if the input does not conform to the expected
    * structure.
    */
-  GateGeometryArray1D(device_structures::BaseConnectionsSP lineararray,
-                      device_structures::ScreeningGatesSP  screening_gates);
+  GateGeometryArray1D(device_structures::ConnectionsSP lineararray,
+                      device_structures::ConnectionsSP screening_gates);
   iterator       begin();
   iterator       end();
   const_iterator begin() const;
@@ -47,9 +45,9 @@ class GateGeometryArray1D : public generic::Song {
    * @param gate The gate to append.
    */
   void append_central_gate(
-      const device_structures::BaseConnectionSP& left_neighbor,
-      const device_structures::BaseConnectionSP& selected_gate,
-      const device_structures::BaseConnectionSP& right_neighbor);
+      const device_structures::ConnectionSP& left_neighbor,
+      const device_structures::ConnectionSP& selected_gate,
+      const device_structures::ConnectionSP& right_neighbor);
 
   /**
    * @brief Gets all of the dot gates in the geometry
@@ -62,8 +60,8 @@ class GateGeometryArray1D : public generic::Song {
    * @param gate The gate to query neighbors for
    * @return The collection of neighboring gates
    */
-  device_structures::BaseConnectionsSP query_neighbors(
-      const device_structures::BaseConnectionSP& gate) const;
+  device_structures::ConnectionsSP query_neighbors(
+      const device_structures::ConnectionSP& gate) const;
 
   /**
    * @brief Gets the left reservoir with implanted ohmic contact.
@@ -91,17 +89,17 @@ class GateGeometryArray1D : public generic::Song {
    * @brief Gets the linear array of connections.
    * @return The linear array of connections.
    */
-  device_structures::BaseConnectionsSP lineararray() const;
+  device_structures::ConnectionsSP lineararray() const;
   /**
    * @brief Gets the screening gates in the geometry.
    * @return The screening gates in the geometry.
    */
-  device_structures::ScreeningGatesSP screening_gates() const;
+  device_structures::ConnectionsSP screening_gates() const;
   /**
    * @brief Gets the central gates without localities.
    * @return The central gates without localities.
    */
-  device_structures::BaseConnectionsSP raw_central_gates() const;
+  device_structures::ConnectionsSP raw_central_gates() const;
   /**
    * @brief Gets the central gates with localities.
    * @return The central gates with localities.
@@ -111,7 +109,7 @@ class GateGeometryArray1D : public generic::Song {
    * @brief Gets the ohmics attached the the quantum dot geometry.
    * @return The ohmics attached to the quantum dot geometry.
    */
-  device_structures::OhmicsSP ohmics() const;
+  device_structures::ConnectionsSP ohmics() const;
 
  protected:
   GateGeometryArray1D();

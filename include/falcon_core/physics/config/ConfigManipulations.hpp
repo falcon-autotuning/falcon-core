@@ -22,15 +22,15 @@ class ConfigManipulations {
    * adjacency matrix for this device.
    */
   core::AdjacencySP _extract_adjacency(
-      const YAML::Node&                           map,
-      const device_structures::BaseConnectionsSP& total_gates) const;
+      const YAML::Node&                       map,
+      const device_structures::ConnectionsSP& total_gates) const;
   /**
    * @brief Given the available gates and the config lets produce a voltage
    * constraints.
    */
   core::VoltageConstraintsSP _extract_voltage_constraints(
-      const YAML::Node&                           map,
-      const device_structures::BaseConnectionsSP& total_gates) const;
+      const YAML::Node&                       map,
+      const device_structures::ConnectionsSP& total_gates) const;
   /**
    * @brief Extracts a dcwiring from a config dictionary.
    * @param dict A mapping containing dcwiring details.
@@ -41,27 +41,27 @@ class ConfigManipulations {
    */
   device_structures::ImpedancesSP _extract_dcwiring(
       const YAML::Node&                        map,
-      const device_structures::OhmicsSP&       ohmics,
+      const device_structures::ConnectionsSP&  ohmics,
       const core::StandardConfigConnectionsSP& connections) const;
   /**
    * @brief Extract the barrier gates from the compressed ";" delimited string
    */
-  device_structures::BarrierGatesSP _extract_barrier_gates(
+  device_structures::ConnectionsSP _extract_barrier_gates(
       const std::string raw) const;
   /**
    * @brief Extract the plunger gates from the compressed ";" delimited string
    */
-  device_structures::PlungerGatesSP _extract_plunger_gates(
+  device_structures::ConnectionsSP _extract_plunger_gates(
       const std::string raw) const;
   /**
    * @brief Extract the reservoir gates from the compressed ";" delimited string
    */
-  device_structures::ReservoirGatesSP _extract_reservoir_gates(
+  device_structures::ConnectionsSP _extract_reservoir_gates(
       const std::string raw) const;
   /**
    * @brief Extract the screening gates from the compressed ";" delimited string
    */
-  device_structures::ScreeningGatesSP _extract_screening_gates(
+  device_structures::ConnectionsSP _extract_screening_gates(
       const std::string raw) const;
   /**
    * @brief Extracts the standard connections from a config dictonary
@@ -74,11 +74,11 @@ class ConfigManipulations {
   /**
    * @brief Extract the ohmics from the compressed ";" delimited string
    */
-  device_structures::OhmicsSP _extract_ohmics(const std::string raw) const;
+  device_structures::ConnectionsSP _extract_ohmics(const std::string raw) const;
   /**
    * @brief Extracts the order from the compressed ";" delimited string
    */
-  device_structures::BaseConnectionsSP _extract_order(
+  device_structures::ConnectionsSP _extract_order(
       const std::string                        raw,
       const core::StandardConfigConnectionsSP& connections) const;
 };

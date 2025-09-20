@@ -3,7 +3,7 @@
 #include <cmath>
 
 #include "falcon_core/math/Quantity.hpp"
-#include "falcon_core/physics/device_structures/BaseConnections.hpp"
+#include "falcon_core/physics/device_structures/Connections.hpp"
 
 namespace falcon_core::math {
 DeltaQuantity::DeltaQuantity() = default;
@@ -15,21 +15,19 @@ const QuantitySP& DeltaQuantity::second() const { return _second; }
 Vector::Vector() = default;
 Vector::Vector(const PointSP& start, const PointSP& end)
     : _unit(end->unit()),
-      _connections(
-          std::make_shared<physics::device_structures::BaseConnections>()),
-      generic::Map<physics::device_structures::BaseConnection,
-                   DeltaQuantity>() {
-  for (const physics::device_structures::BaseConnectionSP& connection :
+      _connections(std::make_shared<physics::device_structures::Connections>()),
+      generic::Map<physics::device_structures::Connection, DeltaQuantity>() {
+  for (const physics::device_structures::ConnectionSP& connection :
        *end->connections()) {
     _connections->push_back(connection);
   }
-  for (const physics::device_structures::BaseConnectionSP& connection :
+  for (const physics::device_structures::ConnectionSP& connection :
        *start->connections()) {
     if (!_connections->contains(connection)) {
       _connections->push_back(connection);
     }
   }
-  for (const physics::device_structures::BaseConnectionSP connectionSP :
+  for (const physics::device_structures::ConnectionSP connectionSP :
        *_connections) {
     QuantitySP first, second;
     if (start->contains(connectionSP)) {
@@ -51,42 +49,39 @@ Vector::Vector(const PointSP& end) {
   PointSP start = std::make_shared<Point>();
   Vector(start, end);
 }
-Vector::Vector(const generic::MapSP<physics::device_structures::BaseConnection,
+Vector::Vector(const generic::MapSP<physics::device_structures::Connection,
                                     Quantity>& start,
-               const generic::MapSP<physics::device_structures::BaseConnection,
+               const generic::MapSP<physics::device_structures::Connection,
                                     Quantity>& end) {
   PointSP startPoint = std::make_shared<Point>(start);
   PointSP endPoint   = std::make_shared<Point>(end);
   Vector(startPoint, endPoint);
 }
-Vector::Vector(const generic::MapSP<physics::device_structures::BaseConnection,
+Vector::Vector(const generic::MapSP<physics::device_structures::Connection,
                                     Quantity>& end) {
-  Vector(
-      std::make_shared<
-          generic::Map<physics::device_structures::BaseConnection, Quantity>>(),
-      end);
+  Vector(std::make_shared<
+             generic::Map<physics::device_structures::Connection, Quantity>>(),
+         end);
 }
-Vector::Vector(const generic::MapSP<physics::device_structures::BaseConnection,
-                                    double>&             start,
-               const generic::MapSP<physics::device_structures::BaseConnection,
-                                    double>&             end,
-               falcon_core::physics::units::SymbolUnitSP unit) {
+Vector::Vector(
+    const generic::MapSP<physics::device_structures::Connection, double>& start,
+    const generic::MapSP<physics::device_structures::Connection, double>& end,
+    falcon_core::physics::units::SymbolUnitSP unit) {
   PointSP startPoint = std::make_shared<Point>(start, unit);
   PointSP endPoint   = std::make_shared<Point>(end, unit);
   Vector(startPoint, endPoint);
 }
-Vector::Vector(const generic::MapSP<physics::device_structures::BaseConnection,
-                                    double>&             end,
-               falcon_core::physics::units::SymbolUnitSP unit) {
-  Vector(
-      std::make_shared<
-          generic::Map<physics::device_structures::BaseConnection, double>>(),
-      end,
-      unit);
+Vector::Vector(
+    const generic::MapSP<physics::device_structures::Connection, double>& end,
+    falcon_core::physics::units::SymbolUnitSP unit) {
+  Vector(std::make_shared<
+             generic::Map<physics::device_structures::Connection, double>>(),
+         end,
+         unit);
 }
-Vector::Vector(const generic::MapSP<physics::device_structures::BaseConnection,
+Vector::Vector(const generic::MapSP<physics::device_structures::Connection,
                                     DeltaQuantity> map)
-    : generic::Map<physics::device_structures::BaseConnection, DeltaQuantity>(
+    : generic::Map<physics::device_structures::Connection, DeltaQuantity>(
           *map) {}
 
 const PointSP Vector::endPoint() const {
@@ -103,51 +98,49 @@ const PointSP Vector::startPoint() const {
   }
   return result;
 }
-const generic::MapSP<physics::device_structures::BaseConnection, Quantity>
+const generic::MapSP<physics::device_structures::Connection, Quantity>
 Vector::end_quantities() const {
-  generic::MapSP<physics::device_structures::BaseConnection, Quantity> result;
+  generic::MapSP<physics::device_structures::Connection, Quantity> result;
   for (const auto pair : items()) {
     result->insert(pair.first, pair.second->second());
   }
   return result;
 }
-const generic::MapSP<physics::device_structures::BaseConnection, Quantity>
+const generic::MapSP<physics::device_structures::Connection, Quantity>
 Vector::start_quantities() const {
-  generic::MapSP<physics::device_structures::BaseConnection, Quantity> result;
+  generic::MapSP<physics::device_structures::Connection, Quantity> result;
   for (const auto pair : items()) {
     result->insert(pair.first, pair.second->first());
   }
   return result;
 }
-const generic::MapSP<physics::device_structures::BaseConnection, double>
+const generic::MapSP<physics::device_structures::Connection, double>
 Vector::end_map() const {
-  generic::MapSP<physics::device_structures::BaseConnection, double> result;
+  generic::MapSP<physics::device_structures::Connection, double> result;
   for (const auto pair : items()) {
     result->insert(pair.first, pair.second->second()->value());
   }
   return result;
 }
-const generic::MapSP<physics::device_structures::BaseConnection, double>
+const generic::MapSP<physics::device_structures::Connection, double>
 Vector::start_map() const {
-  generic::MapSP<physics::device_structures::BaseConnection, double> result;
+  generic::MapSP<physics::device_structures::Connection, double> result;
   for (const auto pair : items()) {
     result->insert(pair.first, pair.second->first()->value());
   }
   return result;
 }
-const physics::device_structures::BaseConnectionsSP& Vector::connections()
-    const {
+const physics::device_structures::ConnectionsSP& Vector::connections() const {
   return _connections;
 }
 const falcon_core::physics::units::SymbolUnitSP& Vector::unit() const {
   return _unit;
 }
-const physics::device_structures::BaseConnectionSP
-Vector::principle_connection() const {
-  physics::device_structures::BaseConnectionSP big_conn = connections()->at(0);
+const physics::device_structures::ConnectionSP Vector::principle_connection()
+    const {
+  physics::device_structures::ConnectionSP big_conn = connections()->at(0);
   double big_value = (*at(big_conn)->second() - at(big_conn)->first())->value();
-  for (const physics::device_structures::BaseConnectionSP& conn :
-       *connections()) {
+  for (const physics::device_structures::ConnectionSP& conn : *connections()) {
     double temp = (*at(conn)->second() - at(conn)->first())->value();
     if (temp > big_value) {
       big_value = temp;
@@ -158,8 +151,7 @@ Vector::principle_connection() const {
 }
 const double Vector::magnitude() const {
   double sum = 0.0;
-  for (const physics::device_structures::BaseConnectionSP& conn :
-       *_connections) {
+  for (const physics::device_structures::ConnectionSP& conn : *_connections) {
     double diff = (*at(conn)->second() - at(conn)->first())->value();
     sum += diff * diff;
   }
@@ -201,14 +193,13 @@ const VectorSP Vector::translate(const PointSP& point) const {
   return std::make_shared<Vector>(startPoint, endPoint);
 }
 const VectorSP Vector::translate(
-    const generic::MapSP<physics::device_structures::BaseConnection, double>
-                                       point,
+    const generic::MapSP<physics::device_structures::Connection, double> point,
     const physics::units::SymbolUnitSP unit) const {
   PointSP adjustment = std::make_shared<Point>(point, unit);
   return translate(adjustment);
 }
 const VectorSP Vector::translate(
-    const generic::MapSP<physics::device_structures::BaseConnection, Quantity>
+    const generic::MapSP<physics::device_structures::Connection, Quantity>
         point) const {
   PointSP adjustment = std::make_shared<Point>(point);
   return translate(adjustment);
@@ -253,10 +244,10 @@ const VectorSP Vector::project(const VectorSP& other) const {
   clone->update_unit(other->unit());
   PointSP ourEnd   = clone->translate_to_origin()->endPoint();
   PointSP otherEnd = other->translate_to_origin()->endPoint();
-  physics::device_structures::BaseConnectionsSP shared =
+  physics::device_structures::ConnectionsSP shared =
       connections()->intersection(other->connections());
-  generic::MapSP<physics::device_structures::BaseConnection, Quantity> rawPoint;
-  for (const physics::device_structures::BaseConnectionSP& conn : *shared) {
+  generic::MapSP<physics::device_structures::Connection, Quantity> rawPoint;
+  for (const physics::device_structures::ConnectionSP& conn : *shared) {
     rawPoint->insert(conn, *ourEnd->at(conn) * otherEnd->at(conn));
   }
   VectorSP result = std::make_shared<Vector>(rawPoint);
@@ -266,6 +257,6 @@ const VectorSP Vector::project(const VectorSP& other) const {
 
 CEREAL_REGISTER_TYPE(falcon_core::math::Vector)
 using MBD = falcon_core::generic::Map<
-    falcon_core::physics::device_structures::BaseConnection,
+    falcon_core::physics::device_structures::Connection,
     falcon_core::math::DeltaQuantity>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(MBD, falcon_core::math::Vector)

@@ -1,26 +1,26 @@
 #pragma once
 
 #include "falcon_core/generic/Song.hpp"
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
 
 class Impedance : public generic::Song {
-  std::shared_ptr<BaseConnection> _connection;
-  double                          _resistance;
-  double                          _capacitance;
+  std::shared_ptr<Connection> _connection;
+  double                      _resistance;
+  double                      _capacitance;
 
  public:
-  Impedance(std::shared_ptr<BaseConnection> connection,
-            double                          resistance,
-            double                          capacitance);
+  Impedance(std::shared_ptr<Connection> connection,
+            double                      resistance,
+            double                      capacitance);
   /*
    * @brief Gets the connection leading to the fridge with this impedance
    * @return A shared pointer to the BaseConnection
    */
-  BaseConnectionSP connection() const;
+  ConnectionSP connection() const;
   /*
    * @brief Gets the resistance of the impedance
    * @return The resistance in ohms

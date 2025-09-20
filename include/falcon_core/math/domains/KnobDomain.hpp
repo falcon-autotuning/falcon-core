@@ -23,10 +23,10 @@ class KnobDomain
    * @param units the units of the knob's domain.
    * @param description A description of the knob.
    */
-  KnobDomain(const std::string&                                  default_name,
-             const std::pair<double, double>&                    bounds,
-             const physics::device_structures::BaseConnectionSP& psuedo_name,
-             const instrument_interfaces::Instrument& instrument_type,
+  KnobDomain(const std::string&                              default_name,
+             const std::pair<double, double>&                bounds,
+             const physics::device_structures::ConnectionSP& psuedo_name,
+             const instrument_interfaces::Instrument&        instrument_type,
              bool                                lesser_bound_contained  = true,
              bool                                greater_bound_contained = true,
              const physics::units::SymbolUnitSP& units =
@@ -51,11 +51,11 @@ class KnobDomain
    * @return A created KnobDomain.
    */
   static std::shared_ptr<KnobDomain> from_domain(
-      const DomainSP&                                     domain,
-      const std::string&                                  default_name,
-      const physics::device_structures::BaseConnectionSP& pseudo_name,
-      const instrument_interfaces::Instrument&            instrument_type,
-      const physics::units::SymbolUnitSP&                 units =
+      const DomainSP&                                 domain,
+      const std::string&                              default_name,
+      const physics::device_structures::ConnectionSP& pseudo_name,
+      const instrument_interfaces::Instrument&        instrument_type,
+      const physics::units::SymbolUnitSP&             units =
           physics::units::SymbolUnit::Volt(),
       const std::string& description = "");
   /**

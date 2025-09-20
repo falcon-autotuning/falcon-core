@@ -1,7 +1,7 @@
 #pragma once
 
 #include "falcon_core/generic/Song.hpp"
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 
 namespace falcon_core::physics::config::geometries {
 
@@ -9,15 +9,15 @@ namespace falcon_core::physics::config::geometries {
  * @brief A gate with a left neighbor.
  */
 class HasLeftNeighbor : public virtual generic::Song {
-  device_structures::BaseConnectionSP _left_neighbor;
+  device_structures::ConnectionSP _left_neighbor;
 
  public:
-  HasLeftNeighbor(device_structures::BaseConnectionSP left_neighbor);
+  HasLeftNeighbor(device_structures::ConnectionSP left_neighbor);
 
   /**
    * @brief Returns the left neighbor of the gate.
    */
-  device_structures::BaseConnectionSP left_neighbor() const;
+  device_structures::ConnectionSP left_neighbor() const;
 
  protected:
   HasLeftNeighbor();

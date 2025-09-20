@@ -4,11 +4,10 @@
 namespace falcon_core::physics::config::geometries {
 
 HasLeftNeighbor::HasLeftNeighbor() = default;
-HasLeftNeighbor::HasLeftNeighbor(
-    device_structures::BaseConnectionSP left_neighbor)
+HasLeftNeighbor::HasLeftNeighbor(device_structures::ConnectionSP left_neighbor)
     : _left_neighbor(left_neighbor) {}
 
-device_structures::BaseConnectionSP HasLeftNeighbor::left_neighbor() const {
+device_structures::ConnectionSP HasLeftNeighbor::left_neighbor() const {
   return _left_neighbor;
 }
 

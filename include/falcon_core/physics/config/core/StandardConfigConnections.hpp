@@ -1,25 +1,19 @@
 #pragma once
 
 #include "falcon_core/generic/Song.hpp"
-#include "falcon_core/physics/device_structures/BarrierGates.hpp"
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
-#include "falcon_core/physics/device_structures/BaseConnections.hpp"
-#include "falcon_core/physics/device_structures/Ohmics.hpp"
-#include "falcon_core/physics/device_structures/PlungerGate.hpp"
-#include "falcon_core/physics/device_structures/PlungerGates.hpp"
-#include "falcon_core/physics/device_structures/ReservoirGates.hpp"
-#include "falcon_core/physics/device_structures/ScreeningGates.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
+#include "falcon_core/physics/device_structures/Connections.hpp"
 
 namespace falcon_core::physics::config::core {
 /**
  * @brief Base config functionality for core config classes.
  */
 class StandardConfigConnections : public generic::Song {
-  device_structures::ScreeningGatesSP _screening_gates;
-  device_structures::ReservoirGatesSP _reservoir_gates;
-  device_structures::PlungerGatesSP   _plunger_gates;
-  device_structures::BarrierGatesSP   _barrier_gates;
-  device_structures::OhmicsSP         _ohmics;
+  device_structures::ConnectionsSP _screening_gates;
+  device_structures::ConnectionsSP _reservoir_gates;
+  device_structures::ConnectionsSP _plunger_gates;
+  device_structures::ConnectionsSP _barrier_gates;
+  device_structures::ConnectionsSP _ohmics;
 
  public:
   /**
@@ -31,109 +25,109 @@ class StandardConfigConnections : public generic::Song {
    * @param ohmics The ohmic contacts.
    */
   StandardConfigConnections(
-      const device_structures::ScreeningGatesSP& screening_gates,
-      const device_structures::ReservoirGatesSP& reservoir_gates,
-      const device_structures::PlungerGatesSP&   plunger_gates,
-      const device_structures::BarrierGatesSP&   barrier_gates,
-      const device_structures::OhmicsSP&         ohmics);
+      const device_structures::ConnectionsSP& screening_gates,
+      const device_structures::ConnectionsSP& reservoir_gates,
+      const device_structures::ConnectionsSP& plunger_gates,
+      const device_structures::ConnectionsSP& barrier_gates,
+      const device_structures::ConnectionsSP& ohmics);
   /**
    * @brief The screening gates from the config.
    * @return The screening gates.
    */
-  device_structures::ScreeningGatesSP screening_gates() const;
+  device_structures::ConnectionsSP screening_gates() const;
   /**
    * @brief The reservoir gates from the config.
    * @return The reservoir gates.
    */
-  device_structures::ReservoirGatesSP reservoir_gates() const;
+  device_structures::ConnectionsSP reservoir_gates() const;
   /**
    * @brief The plunger gates from the config.
    * @return The plunger gates.
    */
-  device_structures::PlungerGatesSP plunger_gates() const;
+  device_structures::ConnectionsSP plunger_gates() const;
   /**
    * @brief The barrier gates from the config.
    * @return The barrier gates.
    */
-  device_structures::BarrierGatesSP barrier_gates() const;
+  device_structures::ConnectionsSP barrier_gates() const;
   /**
    * @brief The ohmics from the config.
    * @return The ohmics gates.
    */
-  device_structures::OhmicsSP ohmics() const;
+  device_structures::ConnectionsSP ohmics() const;
   /**
    * @brief Gets the connections of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
-   * connections are: Ohmic, BarrierGate, PlungerGate, ReservoirGate,
-   * ScreeningGate, DotGate, Gate. and Ohmic
+   * connections are: Connection, Connection, Connection, Connection,
+   * Connection, DotGate, Gate. and Connection
    * @returns the plural form of the connection type. This corresponds to the
    * conn_type
    */
-  device_structures::BaseConnectionsSP dot_gates() const;
+  device_structures::ConnectionsSP dot_gates() const;
   /**
    * @brief Gets the first ohmic connection.
    */
-  device_structures::OhmicSP get_ohmic() const;
+  device_structures::ConnectionSP get_ohmic() const;
   /**
    * @brief Gets the first barrier gate connection.
    */
-  device_structures::BarrierGateSP get_barrier_gate() const;
+  device_structures::ConnectionSP get_barrier_gate() const;
   /**
    * @brief Gets the first plunger gate connection.
    */
-  device_structures::PlungerGateSP get_plunger_gate() const;
+  device_structures::ConnectionSP get_plunger_gate() const;
   /**
    * @brief Gets the first reservoir gate connection..
    */
-  device_structures::ReservoirGateSP get_reservoir_gate() const;
+  device_structures::ConnectionSP get_reservoir_gate() const;
   /**
    * @brief Gets the first screening gate connection.
    */
-  device_structures::ScreeningGateSP get_screening_gate() const;
+  device_structures::ConnectionSP get_screening_gate() const;
   /**
    * @brief Gets the first dot gate connection.
    */
-  device_structures::BaseConnectionSP get_dot_gate() const;
+  device_structures::ConnectionSP get_dot_gate() const;
   /**
    * @brief Gets the first gate connection.
    */
-  device_structures::BaseConnectionSP get_gate() const;
+  device_structures::ConnectionSP get_gate() const;
   /**
    * @brief Gets all of the gates for this collection from the config.
    */
-  device_structures::BaseConnectionsSP get_all_gates() const;
+  device_structures::ConnectionsSP get_all_gates() const;
   /**
    * @brief Gets all of the ohmics for this collection from the config.
    */
-  device_structures::OhmicsSP get_all_ohmics() const;
+  device_structures::ConnectionsSP get_all_ohmics() const;
   /**
    * @brief Gets all of the connections for this collection from the config.
    */
-  device_structures::BaseConnectionsSP get_all_connections() const;
+  device_structures::ConnectionsSP get_all_connections() const;
   /**
    * @brief If this ohmic is a member of this group or not.
    */
-  bool has_ohmic(const device_structures::OhmicSP& ohmic) const;
+  bool has_ohmic(const device_structures::ConnectionSP& ohmic) const;
   /**
    * @brief If this gate is a member of this group or not.
    */
-  bool has_gate(const device_structures::BaseConnectionSP& gate) const;
+  bool has_gate(const device_structures::ConnectionSP& gate) const;
   /**
    * @brief If this gate is a barriergate of this group or not.
    */
-  bool has_barrier_gate(const device_structures::BarrierGateSP& gate) const;
+  bool has_barrier_gate(const device_structures::ConnectionSP& gate) const;
   /**
    * @brief If this gate is a plungergate of this group or not.
    */
-  bool has_plunger_gate(const device_structures::PlungerGateSP& gate) const;
+  bool has_plunger_gate(const device_structures::ConnectionSP& gate) const;
   /**
    * @brief If this gate is a reservoirgate of this group or not.
    */
-  bool has_reservoir_gate(const device_structures::ReservoirGateSP& gate) const;
+  bool has_reservoir_gate(const device_structures::ConnectionSP& gate) const;
   /**
    * @brief If this gate is a screeninggate of this group or not.
    */
-  bool has_screening_gate(const device_structures::ScreeningGateSP& gate) const;
+  bool has_screening_gate(const device_structures::ConnectionSP& gate) const;
 
  protected:
   StandardConfigConnections();

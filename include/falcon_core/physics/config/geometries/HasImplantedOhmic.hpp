@@ -1,20 +1,20 @@
 #pragma once
 
 #include "falcon_core/generic/Song.hpp"
-#include "falcon_core/physics/device_structures/Ohmic.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 namespace falcon_core::physics::config::geometries {
 /*
  * @brief A gate with an ohmic below it.
  */
 class HasImplantedOhmic : public generic::Song {
-  device_structures::OhmicSP _ohmic;
+  device_structures::ConnectionSP _ohmic;
 
  public:
-  HasImplantedOhmic(device_structures::OhmicSP ohmic);
+  HasImplantedOhmic(device_structures::ConnectionSP ohmic);
   /**
    * @brief Returns the ohmic below the gate.
    */
-  device_structures::OhmicSP ohmic() const;
+  device_structures::ConnectionSP ohmic() const;
 
  protected:
   HasImplantedOhmic();

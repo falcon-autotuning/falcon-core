@@ -4,11 +4,11 @@ namespace falcon_core::instrument_interfaces::names {
 
 Meter::Meter() = default;
 
-Meter::Meter(std::string                                        default_name,
-             std::shared_ptr<physics::device_structures::Ohmic> pseudo_name,
-             Instrument                                         instrument_type,
-             std::shared_ptr<physics::units::SymbolUnit>        units,
-             std::string                                        description)
+Meter::Meter(std::string                              default_name,
+             physics::device_structures::ConnectionSP pseudo_name,
+             Instrument                               instrument_type,
+             physics::units::SymbolUnitSP             units,
+             std::string                              description)
     : InstrumentPort(std::move(default_name),
                      std::move(pseudo_name),
                      std::move(instrument_type),

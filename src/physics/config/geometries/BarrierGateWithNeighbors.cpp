@@ -1,13 +1,13 @@
 #include "falcon_core/physics/config/geometries/BarrierGateWithNeighbors.hpp"
 
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 
 namespace falcon_core::physics::config::geometries {
 BarrierGateWithNeighbors::BarrierGateWithNeighbors(
-    std::string                         name,
-    device_structures::BaseConnectionSP left_neighbor,
-    device_structures::BaseConnectionSP right_neighbor)
+    std::string                     name,
+    device_structures::ConnectionSP left_neighbor,
+    device_structures::ConnectionSP right_neighbor)
     : DotGateWithNeighbors(name,
                            device_structures::DeviceFeature::BarrierGate,
                            left_neighbor,

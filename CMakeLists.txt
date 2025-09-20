@@ -27,8 +27,9 @@ function(cpp_tests)
     # Default: include all test files
     set(RUN_TESTS_SOURCES
         tests/test_unit.cpp
-        # tests/test_common_unit.cpp tests/test_song.cpp
-        # tests/test_device_structures.cpp tests/test_arrays.cpp
+        tests/test_song.cpp
+        tests/test_device_structures.cpp
+        tests/test_arrays.cpp
         # tests/test_labelled_arrays.cpp tests/test_quantity.cpp
         # tests/test_instrument_interfaces_names.cpp tests/test_config.cpp
         # tests/test_domains.cpp tests/test_discretizers.cpp
@@ -292,19 +293,9 @@ if(NOT FALCON_CORE_DIRS)
       # falcon_core/generic/List.hpp
       # falcon_core/generic/Map.hpp
       # falcon_core/Constants.hpp
-      # falcon_core/physics/device_structures/BaseConnection.hpp
-      # falcon_core/physics/device_structures/BarrierGate.hpp
-      # falcon_core/physics/device_structures/ScreeningGate.hpp
-      # falcon_core/physics/device_structures/ReservoirGate.hpp
-      # falcon_core/physics/device_structures/PlungerGate.hpp
-      # falcon_core/physics/device_structures/Ohmic.hpp
+      # falcon_core/physics/device_structures/Connection.hpp
       # falcon_core/physics/device_structures/Impedance.hpp
-      # falcon_core/physics/device_structures/BaseConnections.hpp
-      # falcon_core/physics/device_structures/BarrierGates.hpp
-      # falcon_core/physics/device_structures/ScreeningGates.hpp
-      # falcon_core/physics/device_structures/ReservoirGates.hpp
-      # falcon_core/physics/device_structures/PlungerGates.hpp
-      # falcon_core/physics/device_structures/Ohmics.hpp
+      # falcon_core/physics/device_structures/Connections.hpp
       # falcon_core/physics/device_structures/Impedances.hpp
       # falcon_core/physics/device_structures/GateRelations.hpp
       # falcon_core/physics/units/TotalDimensions.hpp

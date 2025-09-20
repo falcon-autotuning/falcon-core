@@ -10,9 +10,9 @@ namespace geometries {
  */
 class PlungerGateWithNeighbors : public DotGateWithNeighbors {
  public:
-  PlungerGateWithNeighbors(std::string                         name,
-                           device_structures::BaseConnectionSP left_neighbor,
-                           device_structures::BaseConnectionSP right_neighbor);
+  PlungerGateWithNeighbors(std::string                     name,
+                           device_structures::ConnectionSP left_neighbor,
+                           device_structures::ConnectionSP right_neighbor);
 
  protected:
   PlungerGateWithNeighbors();

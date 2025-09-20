@@ -1,17 +1,17 @@
 #pragma once
 
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 
 namespace falcon_core::instrument_interfaces::names {
 
 class Knob : public InstrumentPort {
  public:
-  Knob(std::string                                                 default_name,
-       std::shared_ptr<physics::device_structures::BaseConnection> pseudo_name,
-       Instrument                                  instrument_type,
-       std::shared_ptr<physics::units::SymbolUnit> units,
-       std::string                                 description);
+  Knob(std::string                              default_name,
+       physics::device_structures::ConnectionSP pseudo_name,
+       Instrument                               instrument_type,
+       physics::units::SymbolUnitSP             units,
+       std::string                              description);
 
  protected:
   Knob();

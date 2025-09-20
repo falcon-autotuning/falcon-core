@@ -6,11 +6,11 @@
 namespace falcon_core::instrument_interfaces::names {
 
 InstrumentPort::InstrumentPort(
-    std::string                                                 default_name,
-    std::shared_ptr<physics::device_structures::BaseConnection> pseudo_name,
-    Instrument                                                  instrument_type,
-    std::shared_ptr<physics::units::SymbolUnit>                 units,
-    std::string                                                 description)
+    std::string                                             default_name,
+    std::shared_ptr<physics::device_structures::Connection> pseudo_name,
+    Instrument                                              instrument_type,
+    std::shared_ptr<physics::units::SymbolUnit>             units,
+    std::string                                             description)
     : _default_name(std::move(default_name)),
       _pseudo_name(std::move(pseudo_name)),
       _instrument_type(std::move(instrument_type)),
@@ -26,7 +26,7 @@ InstrumentPort::InstrumentPort()
       _description("") {}
 
 const std::string InstrumentPort::default_name() const { return _default_name; }
-const std::shared_ptr<physics::device_structures::BaseConnection>
+const std::shared_ptr<physics::device_structures::Connection>
 InstrumentPort::pseudo_name() const {
   if (!_pseudo_name) {
     throw std::runtime_error("The pseudo_name of the port is not set");
