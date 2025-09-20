@@ -7,9 +7,8 @@ ConstantFunction::ConstantFunction() = default;
 double ConstantFunction::scale() const { return _value; }
 
 Constant::Constant() = default;
-Constant::Constant(const instrument_interfaces::names::PortsSP<
-                       instrument_interfaces::names::InstrumentPort>& ports,
-                   double                                             value)
+Constant::Constant(const instrument_interfaces::names::PortsSP& ports,
+                   double                                       value)
     : ValidatedAnalyticFunction(ports,
                                 std::make_shared<ConstantFunction>(value)) {}
 

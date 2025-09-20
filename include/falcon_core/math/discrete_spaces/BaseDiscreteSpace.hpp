@@ -1,16 +1,17 @@
 #pragma once
 
 #include "falcon_core/generic/Map.hpp"
-#include "falcon_core/instrument_interfaces/names/Knobs.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/instrument_interfaces/names/Ports.hpp"
 #include "falcon_core/math/arrays/LabelledControlArray.hpp"
-#include "falcon_core/math/domains/CoupledKnobDomain.hpp"
+#include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 #include "falcon_core/math/spaces/UnitSpace.hpp"
 
 namespace falcon_core::math::discrete_spaces {
 
 class BaseDiscreteSpace : public generic::Song {
   spaces::UnitSpaceSP                     _space;
-  AxesSP<domains::CoupledKnobDomain>      _axes;
+  AxesSP<domains::CoupledLabelledDomain>  _axes;
   AxesSP<generic::Map<std::string, bool>> _increasing;
 
  public:
@@ -23,15 +24,15 @@ class BaseDiscreteSpace : public generic::Song {
    * domain or against.
    */
   BaseDiscreteSpace(const spaces::UnitSpaceSP&                     space,
-                    const AxesSP<domains::CoupledKnobDomain>&      axes,
+                    const AxesSP<domains::CoupledLabelledDomain>&  axes,
                     const AxesSP<generic::Map<std::string, bool>>& increasing);
   const spaces::UnitSpaceSP&                     space() const;
-  const AxesSP<domains::CoupledKnobDomain>&      axes() const;
+  const AxesSP<domains::CoupledLabelledDomain>&  axes() const;
   const AxesSP<generic::Map<std::string, bool>>& increasing() const;
   /**
    * @brief Return the knobs.
    */
-  const instrument_interfaces::names::KnobsSP knobs() const;
+  const instrument_interfaces::names::PortsSP knobs() const;
   /**
    * @brief Validate that the unit space dimensionality matches the number of
    * knobs.
@@ -47,21 +48,23 @@ class BaseDiscreteSpace : public generic::Song {
    * @return The index of the axis containing the knob.
    * @throws std::runtime_error if the knob is not found.
    */
-  const int get_axis(const instrument_interfaces::names::KnobSP& knob) const;
+  const int get_axis(
+      const instrument_interfaces::names::InstrumentPortSP& knob) const;
   /**
    * @brief Return the domain of the given knob.
    * @param knob The knob to search for.
    * @return The domain of the knob.
    */
   const domains::DomainSP get_domain(
-      const instrument_interfaces::names::KnobSP& knob) const;
+      const instrument_interfaces::names::InstrumentPortSP& knob) const;
   /**
    * @brief Return the projection of the unit space onto the given axes.
    * @param projection The axes to project onto.
    * @return The projection of th espace onto the given axes.
    */
   const AxesSP<arrays::LabelledControlArray> get_projection(
-      const AxesSP<instrument_interfaces::names::Knob>& projection) const;
+      const AxesSP<instrument_interfaces::names::InstrumentPort>& projection)
+      const;
 
  protected:
   BaseDiscreteSpace();

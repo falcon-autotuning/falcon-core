@@ -9,7 +9,7 @@ class DiscreteSpace : public BaseDiscreteSpace {
   using BaseDiscreteSpace::BaseDiscreteSpace;  // Inherit constructors
 
   DiscreteSpace(const spaces::UnitSpaceSP&                     space,
-                const AxesSP<domains::CoupledKnobDomain>&      axes,
+                const AxesSP<domains::CoupledLabelledDomain>&  axes,
                 const AxesSP<generic::Map<std::string, bool>>& increasing);
 
  private:

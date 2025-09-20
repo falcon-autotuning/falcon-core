@@ -3,8 +3,7 @@
 namespace falcon_core::math::analytic_functions {
 
 Identity::Identity() = default;
-Identity::Identity(const instrument_interfaces::names::PortsSP<
-                       instrument_interfaces::names::InstrumentPort>&    ports,
+Identity::Identity(const instrument_interfaces::names::PortsSP&          ports,
                    const instrument_interfaces::names::InstrumentPortSP& port)
     : ValidatedAnalyticFunction(ports,
                                 std::make_shared<IdentityFunction>(port)) {}

@@ -1,34 +1,52 @@
 /**
- * @file CoupledLabelledDomain.hpp
- * @brief Defines the CoupledLabelledDomain template for FalconCore.
+ * @file BaseCoupledLabelledDomain.hpp
+ * @brief Defines the BaseCoupledLabelledDomain template for FalconCore.
  */
 
 #pragma once
 
-#include "falcon_core/math/domains/BaseCoupledLabelledDomain.hpp"
+#include "falcon_core/generic/List.hpp"
+#include "falcon_core/instrument_interfaces/names/Ports.hpp"
+#include "falcon_core/math/domains/LabelledDomain.hpp"
 
 namespace falcon_core::math::domains {
 
 /**
- * @brief Domain with a label and a set of coupled domains.
+ * @brief A collection of coupled domains to be attached together.
  */
-template <typename Label>
-class CoupledLabelledDomain : public BaseCoupledLabelledDomain<Label> {
+class CoupledLabelledDomain : public generic::List<LabelledDomain> {
  public:
-  CoupledLabelledDomain() = default;
+  CoupledLabelledDomain();
   /**
    * @brief Construct from a vector of labelled domains.
    * @param domains Vector of shared pointers to labelled domains.
    */
-  CoupledLabelledDomain(const std::vector<BaseLabelledDomainSP<Label>>& init)
-      : BaseCoupledLabelledDomain<Label>(init) {}
+  CoupledLabelledDomain(const std::vector<LabelledDomainSP>& init);
+  /**
+   * @brief Get all domains.
+   */
+  const std::vector<LabelledDomainSP>& domains() const;
+  /**
+   * @brief Get all labels.
+   * @return Vector of shared pointers to labels.
+   */
+  const instrument_interfaces::names::PortsSP labels() const;
 
- public:
+  /**
+   * @brief Get domain by label.
+   * @param search Shared pointer to label to search for.
+   * @return Shared pointer to the matching domain.
+   * @throws std::runtime_error if not found.
+   */
+  LabelledDomainSP get_domain(
+      const instrument_interfaces::names::InstrumentPortSP& search) const;
+
+ protected:
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseCoupledLabelledDomain<Label>>(this));
+    ar(cereal::base_class<generic::List<LabelledDomain>>(this));
   }
 };
-
+using CoupledLabelledDomainSP = std::shared_ptr<CoupledLabelledDomain>;
 }  // namespace falcon_core::math::domains

@@ -162,6 +162,10 @@ class SymbolUnit : public generic::Song {
    */
   static std::shared_ptr<SymbolUnit> MilliMeter();
   /*
+   * @brief Construct a MilliVolt
+   */
+  static std::shared_ptr<SymbolUnit> MilliVolt();
+  /*
    * @brief Construct a KiloVolt
    */
   static std::shared_ptr<SymbolUnit> KiloVolt();

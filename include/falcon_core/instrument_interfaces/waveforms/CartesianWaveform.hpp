@@ -34,7 +34,7 @@ class CartesianWaveform
   static const std::shared_ptr<CartesianWaveform> from_divisions(
       const falcon_core::math::AxesSP<int>& divisions,
       const falcon_core::math::AxesSP<
-          falcon_core::math::domains::CoupledKnobDomain>& axes,
+          falcon_core::math::domains::CoupledLabelledDomain>& axes,
       const falcon_core::math::AxesSP<generic::Map<std::string, bool>>&
                                                              increasing,
       const generic::ListSP<port_transforms::PortTransform>& transforms =
@@ -52,7 +52,7 @@ class CartesianWaveform
   static const std::shared_ptr<CartesianWaveform> setup_identity_everywhere(
       const falcon_core::math::AxesSP<int>& divisions,
       const falcon_core::math::AxesSP<
-          falcon_core::math::domains::CoupledKnobDomain>& axes,
+          falcon_core::math::domains::CoupledLabelledDomain>& axes,
       const falcon_core::math::AxesSP<generic::Map<std::string, bool>>&
                                                   increasing,
       const falcon_core::math::domains::DomainSP& domain =

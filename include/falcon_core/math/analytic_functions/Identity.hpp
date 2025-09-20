@@ -39,8 +39,7 @@ class IdentityFunction : public AnalyticFunction {
  */
 class Identity : public ValidatedAnalyticFunction {
  public:
-  Identity(const instrument_interfaces::names::PortsSP<
-               instrument_interfaces::names::InstrumentPort>&    ports,
+  Identity(const instrument_interfaces::names::PortsSP&          ports,
            const instrument_interfaces::names::InstrumentPortSP& port);
 
  protected:

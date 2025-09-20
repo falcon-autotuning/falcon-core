@@ -6,8 +6,8 @@
 
 namespace falcon_core::instrument_interfaces::port_transforms {
 
-ConstantTransform::ConstantTransform(
-    const double& scale, const names::PortsSP<names::InstrumentPort>& ports)
+ConstantTransform::ConstantTransform(const double&         scale,
+                                     const names::PortsSP& ports)
     : PortTransform(
           ports->ports()->at(0),
           std::make_shared<math::analytic_functions::Constant>(ports, scale)) {}

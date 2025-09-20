@@ -1,6 +1,6 @@
 #pragma once
 #include "falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp"
-#include "falcon_core/math/domains/CoupledKnobDomain.hpp"
+#include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 
 namespace falcon_core::math::discrete_spaces {
 
@@ -16,7 +16,7 @@ class BaseCartesianDiscreteSpace : public BaseDiscreteSpace {
    */
   BaseCartesianDiscreteSpace(
       const spaces::UnitSpaceSP&                     space,
-      const AxesSP<domains::CoupledKnobDomain>&      axes,
+      const AxesSP<domains::CoupledLabelledDomain>&  axes,
       const AxesSP<generic::Map<std::string, bool>>& increasing);
 
  protected:

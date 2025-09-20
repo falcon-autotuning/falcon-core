@@ -23,15 +23,12 @@ void ValidatedAnalyticFunction::validate_function_signature(
 }
 
 ValidatedAnalyticFunction::ValidatedAnalyticFunction(
-    instrument_interfaces::names::PortsSP<
-        instrument_interfaces::names::InstrumentPort> ports,
-    AnalyticFunctionSP                                function)
+    instrument_interfaces::names::PortsSP ports, AnalyticFunctionSP function)
     : _ports(std::move(ports)) {
   set_function(std::move(function));
 }
-const instrument_interfaces::names::PortsSP<
-    instrument_interfaces::names::InstrumentPort>&
-ValidatedAnalyticFunction::ports() const {
+const instrument_interfaces::names::PortsSP& ValidatedAnalyticFunction::ports()
+    const {
   return _ports;
 }
 const AnalyticFunctionSP& ValidatedAnalyticFunction::function() const {

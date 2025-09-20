@@ -142,6 +142,9 @@ SymbolUnitSP SymbolUnit::KiloMeter() {
 SymbolUnitSP SymbolUnit::MilliMeter() {
   return std::make_shared<SymbolUnit>(Unit::Meter()->get_milli());
 }
+SymbolUnitSP SymbolUnit::MilliVolt() {
+  return std::make_shared<SymbolUnit>(Unit::Volt()->get_milli());
+}
 SymbolUnitSP SymbolUnit::KiloVolt() {
   return std::make_shared<SymbolUnit>(Unit::Volt()->get_kilo());
 }

@@ -9,8 +9,7 @@ namespace falcon_core::instrument_interfaces::port_transforms {
 
 class IdentityTransform : public PortTransform {
  public:
-  IdentityTransform(names::InstrumentPortSP               port,
-                    names::PortsSP<names::InstrumentPort> ports);
+  IdentityTransform(names::InstrumentPortSP port, names::PortsSP ports);
 
  protected:
   IdentityTransform();

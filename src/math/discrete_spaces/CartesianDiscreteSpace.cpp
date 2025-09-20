@@ -7,13 +7,13 @@ namespace falcon_core::math::discrete_spaces {
 CartesianDiscreteSpace::CartesianDiscreteSpace() = default;
 CartesianDiscreteSpace::CartesianDiscreteSpace(
     const spaces::UnitSpaceSP&                     space,
-    const AxesSP<domains::CoupledKnobDomain>&      axes,
+    const AxesSP<domains::CoupledLabelledDomain>&  axes,
     const AxesSP<generic::Map<std::string, bool>>& increasing)
     : BaseCartesianDiscreteSpace(space, axes, increasing) {}
 
 std::shared_ptr<CartesianDiscreteSpace> CartesianDiscreteSpace::from_divisions(
     const generic::ListSP<int>&                    divisions,
-    const AxesSP<domains::CoupledKnobDomain>&      axes,
+    const AxesSP<domains::CoupledLabelledDomain>&  axes,
     const AxesSP<generic::Map<std::string, bool>>& increasing,
     const domains::DomainSP&                       domain) {
   if (divisions->size() != axes->size()) {

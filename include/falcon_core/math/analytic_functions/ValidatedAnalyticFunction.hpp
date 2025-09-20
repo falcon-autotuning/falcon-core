@@ -19,10 +19,8 @@ namespace falcon_core::math::analytic_functions {
  * @tparam PortsType The type of ports container.
  */
 class ValidatedAnalyticFunction : public generic::Song {
-  instrument_interfaces::names::PortsSP<
-      instrument_interfaces::names::InstrumentPort>
-                     _ports;
-  AnalyticFunctionSP _function;
+  instrument_interfaces::names::PortsSP _ports;
+  AnalyticFunctionSP                    _function;
   /**
    * @brief Validate that the function signature matches the ports.
    * @throws std::runtime_error if validation fails.
@@ -36,16 +34,12 @@ class ValidatedAnalyticFunction : public generic::Song {
    * @param function The analytic function.
    * @throws std::runtime_error if validation fails.
    */
-  ValidatedAnalyticFunction(
-      instrument_interfaces::names::PortsSP<
-          instrument_interfaces::names::InstrumentPort> ports,
-      AnalyticFunctionSP                                function);
+  ValidatedAnalyticFunction(instrument_interfaces::names::PortsSP ports,
+                            AnalyticFunctionSP                    function);
   /**
    * @brief Get the ports.
    */
-  const instrument_interfaces::names::PortsSP<
-      instrument_interfaces::names::InstrumentPort>&
-  ports() const;
+  const instrument_interfaces::names::PortsSP& ports() const;
   /**
    * @brief Get the analytic function.
    */

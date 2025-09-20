@@ -9,20 +9,16 @@
 #include <falcon_core/communications/messages/VoltageStatesResponse.hpp>
 #include <falcon_core/communications/voltage_states/DeviceVoltageState.hpp>
 #include <falcon_core/communications/voltage_states/DeviceVoltageStates.hpp>
-#include <falcon_core/instrument_interfaces/names/Meter.hpp>
-#include <falcon_core/instrument_interfaces/names/Meters.hpp>
 #include <falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp>
 #include <falcon_core/instrument_interfaces/waveforms/BaseWaveform.hpp>
 #include <falcon_core/instrument_interfaces/waveforms/CartesianWaveform1D.hpp>
 #include <falcon_core/instrument_interfaces/waveforms/Waveform.hpp>
 #include <falcon_core/math/arrays/LabelledMeasuredArrays.hpp>
-#include <falcon_core/math/domains/KnobDomain.hpp>
-#include <falcon_core/physics/device_structures/BaseConnection.hpp>
+#include <falcon_core/math/domains/LabelledDomain.hpp>
+#include <falcon_core/physics/device_structures/Connection.hpp>
 #include <falcon_core/physics/units/SymbolUnit.hpp>
-#include <map>
 #include <memory>
 #include <string>
-#include <vector>
 
 namespace tests {
 using namespace falcon_core::communications::messages;
@@ -70,26 +66,27 @@ TEST(MessagesTest, MeasurementRequestConstructionAndSerialization) {
   using waveform_type =
       falcon_core::instrument_interfaces::waveforms::BaseWaveform<
           falcon_core::math::discrete_spaces::BaseDiscreteSpace>;
-  auto unit = Units::Volt;
-  auto conn =
-      std::make_shared<BaseConnection>("gate1", DeviceFeature::BarrierGate);
-  auto meter  = std::make_shared<Meter>("meter1",   // default_name
+  auto unit = SymbolUnit::Volt();
+  auto conn = std::make_shared<Connection>("gate1", DeviceFeature::BarrierGate);
+  auto meter =
+      std::make_shared<InstrumentPort>("meter1",   // default_name
                                        nullptr,    // pseudo_name
                                        "UNKNOWN",  // instrument_type as string
                                        nullptr,    // units
                                        ""          // description
-  );
-  auto meters = std::make_shared<Meters>();
+      );
+  auto meters = std::make_shared<Ports>();
   meters->push_back(meter);
   auto waveform =
       std::make_shared<falcon_core::instrument_interfaces::waveforms::Waveform>(
           nullptr, nullptr);
   falcon_core::generic::ListSP<waveform_type> waveforms;
   waveforms->push_back(waveform);
-  falcon_core::generic::MapSP<Meter, PortTransform> meter_transforms;
+  falcon_core::generic::MapSP<InstrumentPort, PortTransform> meter_transforms;
   meter_transforms->insert(meter,
                            std::make_shared<PortTransform>(nullptr, nullptr));
-  auto time_domain = KnobDomain::from_knob(nullptr, std::make_pair(0.0, 1.0));
+  auto time_domain =
+      LabelledDomain::from_port(std::make_pair(0.0, 1.0), nullptr);
 
   MeasurementRequest req("measurement request",
                          "meas1",
@@ -127,9 +124,8 @@ TEST(MessagesTest, MeasurementResponseConstructionAndSerialization) {
 
 // VoltageStatesResponse test
 TEST(MessagesTest, VoltageStatesResponseConstructionAndSerialization) {
-  auto unit = std::make_shared<SymbolUnit>(Units::Volt);
-  auto conn =
-      std::make_shared<BaseConnection>("gate3", DeviceFeature::PlungerGate);
+  auto unit   = SymbolUnit::Volt();
+  auto conn   = Connection::PlungerGate("gate3");
   auto dvs    = std::make_shared<DeviceVoltageState>(conn, 2.34, unit);
   auto states = std::make_shared<DeviceVoltageStates>();
   states->add_state(dvs);

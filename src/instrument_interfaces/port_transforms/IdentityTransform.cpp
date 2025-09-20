@@ -3,8 +3,8 @@
 #include "falcon_core/math/analytic_functions/Identity.hpp"
 namespace falcon_core::instrument_interfaces::port_transforms {
 
-IdentityTransform::IdentityTransform(
-    names::InstrumentPortSP port, names::PortsSP<names::InstrumentPort> ports)
+IdentityTransform::IdentityTransform(names::InstrumentPortSP port,
+                                     names::PortsSP          ports)
     : port_transforms::PortTransform(
           port,
           std::make_shared<math::analytic_functions::Identity>(ports, port)) {}

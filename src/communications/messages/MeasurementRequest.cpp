@@ -1,5 +1,7 @@
 #include <falcon_core/communications/messages/MeasurementRequest.hpp>
 
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+
 namespace falcon_core::communications::messages {
 
 using waveform_type =
@@ -9,14 +11,14 @@ using waveform_type =
 MeasurementRequest::MeasurementRequest() = default;
 
 MeasurementRequest::MeasurementRequest(
-    const std::string&                            message,
-    const std::string&                            measurement_name,
-    const generic::ListSP<waveform_type>&         waveforms,
-    const instrument_interfaces::names::MetersSP& getters,
-    const generic::MapSP<instrument_interfaces::names::Meter,
+    const std::string&                           message,
+    const std::string&                           measurement_name,
+    const generic::ListSP<waveform_type>&        waveforms,
+    const instrument_interfaces::names::PortsSP& getters,
+    const generic::MapSP<instrument_interfaces::names::InstrumentPort,
                          instrument_interfaces::port_transforms::PortTransform>&
-                                       meter_transforms,
-    const math::domains::KnobDomainSP& time_domain)
+                                           meter_transforms,
+    const math::domains::LabelledDomainSP& time_domain)
     : BaseMessage(message),
       _measurement_name(measurement_name),
       _waveforms(waveforms),
@@ -27,19 +29,19 @@ MeasurementRequest::MeasurementRequest(
 const std::string& MeasurementRequest::measurement_name() const {
   return _measurement_name;
 }
-const instrument_interfaces::names::MetersSP& MeasurementRequest::getters()
+const instrument_interfaces::names::PortsSP& MeasurementRequest::getters()
     const {
   return _getters;
 }
 const generic::ListSP<waveform_type>& MeasurementRequest::waveforms() const {
   return _waveforms;
 }
-const generic::MapSP<instrument_interfaces::names::Meter,
+const generic::MapSP<instrument_interfaces::names::InstrumentPort,
                      instrument_interfaces::port_transforms::PortTransform>&
 MeasurementRequest::meter_transforms() const {
   return _meter_transforms;
 }
-const math::domains::KnobDomainSP& MeasurementRequest::time_domain() const {
+const math::domains::LabelledDomainSP& MeasurementRequest::time_domain() const {
   return _time_domain;
 }
 

@@ -1,9 +1,8 @@
 #include "falcon_core/instrument_interfaces/waveforms/CartesianWaveform.hpp"
 
-#include <memory>
-
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/IdentityTransform.hpp"
+
 namespace falcon_core::instrument_interfaces::waveforms {
 CartesianWaveform::CartesianWaveform() : BaseWaveform() {}
 CartesianWaveform::CartesianWaveform(
@@ -15,7 +14,7 @@ CartesianWaveform::CartesianWaveform(
 const CartesianWaveformSP CartesianWaveform::from_divisions(
     const falcon_core::math::AxesSP<int>& divisions,
     const falcon_core::math::AxesSP<
-        falcon_core::math::domains::CoupledKnobDomain>& axes,
+        falcon_core::math::domains::CoupledLabelledDomain>& axes,
     const falcon_core::math::AxesSP<generic::Map<std::string, bool>>&
                                                            increasing,
     const generic::ListSP<port_transforms::PortTransform>& transforms,
@@ -29,7 +28,7 @@ const std::shared_ptr<CartesianWaveform>
 CartesianWaveform::setup_identity_everywhere(
     const falcon_core::math::AxesSP<int>& divisions,
     const falcon_core::math::AxesSP<
-        falcon_core::math::domains::CoupledKnobDomain>& axes,
+        falcon_core::math::domains::CoupledLabelledDomain>& axes,
     const falcon_core::math::AxesSP<generic::Map<std::string, bool>>&
                                                 increasing,
     const falcon_core::math::domains::DomainSP& domain) {
@@ -38,13 +37,13 @@ CartesianWaveform::setup_identity_everywhere(
           divisions, axes, increasing, domain);
   generic::ListSP<port_transforms::PortTransform> transforms =
       std::make_shared<generic::List<port_transforms::PortTransform>>();
-  for (const math::domains::CoupledKnobDomainSP& knobDomain : *space->axes()) {
-    for (const names::KnobSP& knob : *knobDomain->knobs()) {
+  for (const math::domains::CoupledLabelledDomainSP& knobDomain :
+       *space->axes()) {
+    for (const names::InstrumentPortSP& knob : *knobDomain->labels()) {
       transforms->push_back(
           std::make_shared<port_transforms::IdentityTransform>(
               std::dynamic_pointer_cast<names::InstrumentPort>(knob),
-              std::dynamic_pointer_cast<names::Ports<names::InstrumentPort>>(
-                  space->knobs())));
+              std::dynamic_pointer_cast<names::Ports>(space->knobs())));
     }
   }
   return std::make_shared<CartesianWaveform>(space, transforms);

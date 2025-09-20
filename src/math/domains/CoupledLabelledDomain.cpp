@@ -1,0 +1,43 @@
+#include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
+
+#include "cereal/types/polymorphic.hpp"
+#include "falcon_core/generic/List.hpp"
+#include "falcon_core/instrument_interfaces/names/Ports.hpp"
+#include "falcon_core/math/domains/LabelledDomain.hpp"
+
+namespace falcon_core::math::domains {
+
+CoupledLabelledDomain::CoupledLabelledDomain()
+    : generic::List<LabelledDomain>() {}
+CoupledLabelledDomain::CoupledLabelledDomain(
+    const std::vector<LabelledDomainSP>& init)
+    : generic::List<LabelledDomain>(init) {}
+const std::vector<LabelledDomainSP>& CoupledLabelledDomain::domains() const {
+  return this->items();
+}
+const instrument_interfaces::names::PortsSP CoupledLabelledDomain::labels()
+    const {
+  generic::ListSP<instrument_interfaces::names::InstrumentPort> result;
+  for (const auto& domain : domains()) {
+    result->push_back(domain->port());
+  }
+  return std::make_shared<instrument_interfaces::names::Ports>(result);
+}
+
+LabelledDomainSP CoupledLabelledDomain::get_domain(
+    const instrument_interfaces::names::InstrumentPortSP& search) const {
+  for (const auto& domain : domains()) {
+    if (*(domain->port()) == *search) {
+      return domain;
+    }
+  }
+  throw std::runtime_error("No domain found matching label");
+}
+
+}  // namespace falcon_core::math::domains
+CEREAL_REGISTER_TYPE(falcon_core::math::domains::CoupledLabelledDomain);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>);
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>,
+    falcon_core::math::domains::CoupledLabelledDomain)

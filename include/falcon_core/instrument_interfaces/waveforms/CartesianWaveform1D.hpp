@@ -32,10 +32,10 @@ class CartesianWaveform1D
    * @param increasing if the array should increase following the domain or not.
    */
   static const std::shared_ptr<CartesianWaveform1D> from_division(
-      const int&                                             division,
-      const falcon_core::math::domains::CoupledKnobDomainSP& shared_domain,
-      const generic::MapSP<std::string, bool>&               increasing,
-      const generic::ListSP<port_transforms::PortTransform>& transforms =
+      const int&                                                 division,
+      const falcon_core::math::domains::CoupledLabelledDomainSP& shared_domain,
+      const generic::MapSP<std::string, bool>&                   increasing,
+      const generic::ListSP<port_transforms::PortTransform>&     transforms =
           std::make_shared<generic::List<port_transforms::PortTransform>>(),
       const falcon_core::math::domains::DomainSP& domain =
           std::make_shared<falcon_core::math::domains::Domain>(0, 1));
@@ -48,10 +48,10 @@ class CartesianWaveform1D
    * @param increasing if the array should increase following the domain or not.
    */
   static const std::shared_ptr<CartesianWaveform1D> setup_identity_everywhere(
-      const int&                                             division,
-      const falcon_core::math::domains::CoupledKnobDomainSP& shared_domain,
-      const generic::MapSP<std::string, bool>&               increasing,
-      const falcon_core::math::domains::DomainSP&            domain =
+      const int&                                                 division,
+      const falcon_core::math::domains::CoupledLabelledDomainSP& shared_domain,
+      const generic::MapSP<std::string, bool>&                   increasing,
+      const falcon_core::math::domains::DomainSP&                domain =
           std::make_shared<falcon_core::math::domains::Domain>(0, 1));
 
  protected:

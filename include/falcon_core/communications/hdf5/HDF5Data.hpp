@@ -12,18 +12,18 @@
 #include "falcon_core/math/Axes.hpp"
 #include "falcon_core/math/arrays/ControlArray.hpp"
 #include "falcon_core/math/arrays/LabelledMeasuredArrays.hpp"
-#include "falcon_core/math/domains/CoupledKnobDomain.hpp"
+#include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 namespace falcon_core::communications::hdf5 {
 class HDF5Data : public generic::Song {
   using Metadata = generic::Map<std::string, std::string>;
-  math::AxesSP<int>                              _shape;
-  math::AxesSP<math::arrays::ControlArray>       _unit_domain;
-  math::AxesSP<math::domains::CoupledKnobDomain> _domain_labels;
-  math::arrays::LabelledMeasuredArraysSP         _ranges;
-  std::shared_ptr<Metadata>                      _metadata;
-  std::string                                    _measurement_title;
-  int                                            _unique_id;
-  int                                            _timestamp;
+  math::AxesSP<int>                                  _shape;
+  math::AxesSP<math::arrays::ControlArray>           _unit_domain;
+  math::AxesSP<math::domains::CoupledLabelledDomain> _domain_labels;
+  math::arrays::LabelledMeasuredArraysSP             _ranges;
+  std::shared_ptr<Metadata>                          _metadata;
+  std::string                                        _measurement_title;
+  int                                                _unique_id;
+  int                                                _timestamp;
 
  protected:
   friend class cereal::access;
@@ -53,14 +53,15 @@ class HDF5Data : public generic::Song {
    * @param unique_id A unique id for the measurement.
    * @param timestamp A timestamp for the measurement.
    */
-  HDF5Data(const math::AxesSP<int>&                              shape,
-           const math::AxesSP<math::arrays::ControlArray>&       unit_domain,
-           const math::AxesSP<math::domains::CoupledKnobDomain>& domain_labels,
-           const math::arrays::LabelledMeasuredArraysSP&         ranges,
-           const std::shared_ptr<Metadata>&                      metadata,
-           const std::string& measurement_title,
-           const int&         unique_id,
-           const int&         timestamp);
+  HDF5Data(
+      const math::AxesSP<int>&                                  shape,
+      const math::AxesSP<math::arrays::ControlArray>&           unit_domain,
+      const math::AxesSP<math::domains::CoupledLabelledDomain>& domain_labels,
+      const math::arrays::LabelledMeasuredArraysSP&             ranges,
+      const std::shared_ptr<Metadata>&                          metadata,
+      const std::string& measurement_title,
+      const int&         unique_id,
+      const int&         timestamp);
   /**
    * @brief Convert from a file to an HDF5Data object.
    * @param path The path to the HDF5 file.

@@ -2,32 +2,33 @@
 
 #include <stdexcept>
 
-#include "falcon_core/instrument_interfaces/names/Knob.hpp"
-#include "falcon_core/math/domains/CoupledKnobDomain.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 
 namespace falcon_core::math::discrete_spaces {
 
 BaseDiscreteSpace::BaseDiscreteSpace() = default;
 BaseDiscreteSpace::BaseDiscreteSpace(
     const spaces::UnitSpaceSP&                     space,
-    const AxesSP<domains::CoupledKnobDomain>&      axes,
+    const AxesSP<domains::CoupledLabelledDomain>&  axes,
     const AxesSP<generic::Map<std::string, bool>>& increasing)
     : _space(space), _axes(axes), _increasing(increasing) {
   validate_unit_space_dimensionality_matches_knobs();
   validate_knob_uniqueness();
 }
 const spaces::UnitSpaceSP& BaseDiscreteSpace::space() const { return _space; }
-const AxesSP<domains::CoupledKnobDomain>& BaseDiscreteSpace::axes() const {
+const AxesSP<domains::CoupledLabelledDomain>& BaseDiscreteSpace::axes() const {
   return _axes;
 }
 const AxesSP<generic::Map<std::string, bool>>& BaseDiscreteSpace::increasing()
     const {
   return _increasing;
 }
-const instrument_interfaces::names::KnobsSP BaseDiscreteSpace::knobs() const {
-  instrument_interfaces::names::KnobsSP knobs;
-  for (const domains::CoupledKnobDomainSP axis : *axes()) {
-    for (const instrument_interfaces::names::KnobSP knob : *axis->knobs()) {
+const instrument_interfaces::names::PortsSP BaseDiscreteSpace::knobs() const {
+  instrument_interfaces::names::PortsSP knobs;
+  for (const domains::CoupledLabelledDomainSP axis : *axes()) {
+    for (const instrument_interfaces::names::InstrumentPortSP knob :
+         *axis->labels()) {
       knobs->push_back(knob);
     }
   }
@@ -42,9 +43,10 @@ void BaseDiscreteSpace::validate_unit_space_dimensionality_matches_knobs()
 }
 void BaseDiscreteSpace::validate_knob_uniqueness() const {
   std::set<std::string> old_names;
-  for (const domains::CoupledKnobDomainSP& axis : *_axes) {
-    std::set<std::string> new_names(axis->knobs()->get_default_names()->begin(),
-                                    axis->knobs()->get_default_names()->end());
+  for (const domains::CoupledLabelledDomainSP& axis : *_axes) {
+    std::set<std::string> new_names(
+        axis->labels()->get_default_names()->begin(),
+        axis->labels()->get_default_names()->end());
     assert(std::none_of(new_names.begin(),
                         new_names.end(),
                         [&](const std::string& name) {
@@ -55,9 +57,9 @@ void BaseDiscreteSpace::validate_knob_uniqueness() const {
   }
 }
 const int BaseDiscreteSpace::get_axis(
-    const instrument_interfaces::names::KnobSP& knob) const {
-  for (domains::CoupledKnobDomainSP axis : *_axes) {
-    if (axis->knobs()->contains(knob)) {
+    const instrument_interfaces::names::InstrumentPortSP& knob) const {
+  for (domains::CoupledLabelledDomainSP axis : *_axes) {
+    if (axis->labels()->contains(knob)) {
       return _axes->index(axis);
     }
   }
@@ -65,12 +67,13 @@ const int BaseDiscreteSpace::get_axis(
                            " not found in the axes.");
 }
 const domains::DomainSP BaseDiscreteSpace::get_domain(
-    const instrument_interfaces::names::KnobSP& knob) const {
+    const instrument_interfaces::names::InstrumentPortSP& knob) const {
   int axis = get_axis(knob);
   return _axes->at(axis)->get_domain(knob);
 }
 const AxesSP<arrays::LabelledControlArray> BaseDiscreteSpace::get_projection(
-    const AxesSP<instrument_interfaces::names::Knob>& projection) const {
+    const AxesSP<instrument_interfaces::names::InstrumentPort>& projection)
+    const {
   // Validate dimensionality
   if (projection->size() != _space->dimension()) {
     throw std::runtime_error(

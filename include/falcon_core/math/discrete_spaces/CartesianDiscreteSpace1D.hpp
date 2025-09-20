@@ -1,18 +1,20 @@
 #pragma once
 
 #include "falcon_core/math/discrete_spaces/BaseCartesianDiscreteSpace.hpp"
+#include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 
 namespace falcon_core::math::discrete_spaces {
 
 class CartesianDiscreteSpace1D : public BaseCartesianDiscreteSpace {
  public:
-  CartesianDiscreteSpace1D(const spaces::UnitSpaceSP&          space,
-                           const domains::CoupledKnobDomainSP& shared_domain,
-                           const generic::MapSP<std::string, bool>& increasing);
+  CartesianDiscreteSpace1D(
+      const spaces::UnitSpaceSP&               space,
+      const domains::CoupledLabelledDomainSP&  shared_domain,
+      const generic::MapSP<std::string, bool>& increasing);
 
   static std::shared_ptr<CartesianDiscreteSpace1D> from_divisions(
       const int&                               division,
-      const domains::CoupledKnobDomainSP&      shared_domain,
+      const domains::CoupledLabelledDomainSP&  shared_domain,
       const generic::MapSP<std::string, bool>& increasing,
       const domains::DomainSP&                 domain =
           std::make_shared<domains::Domain>(std::pair<double, double>(0, 1)));

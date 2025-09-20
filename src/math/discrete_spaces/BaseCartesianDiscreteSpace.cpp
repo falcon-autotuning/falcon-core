@@ -4,7 +4,7 @@ namespace falcon_core::math::discrete_spaces {
 
 BaseCartesianDiscreteSpace::BaseCartesianDiscreteSpace(
     const spaces::UnitSpaceSP&                     space,
-    const AxesSP<domains::CoupledKnobDomain>&      axes,
+    const AxesSP<domains::CoupledLabelledDomain>&  axes,
     const AxesSP<generic::Map<std::string, bool>>& increasing)
     : BaseDiscreteSpace(space, axes, increasing) {}
 

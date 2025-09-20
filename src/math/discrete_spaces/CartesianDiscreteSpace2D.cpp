@@ -6,7 +6,7 @@ CartesianDiscreteSpace2D::CartesianDiscreteSpace2D() = default;
 
 CartesianDiscreteSpace2D::CartesianDiscreteSpace2D(
     const spaces::UnitSpaceSP&                     space,
-    const AxesSP<domains::CoupledKnobDomain>&      axes,
+    const AxesSP<domains::CoupledLabelledDomain>&  axes,
     const AxesSP<generic::Map<std::string, bool>>& increasing)
     : BaseCartesianDiscreteSpace(space, axes, increasing) {}
 

@@ -10,6 +10,7 @@
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon_core/communications/messages/MeasurementResponse.hpp"
 #include "falcon_core/generic/FArray.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/instrument_interfaces/waveforms/BaseWaveform.hpp"
 #include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
 #include "falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp"
@@ -17,14 +18,14 @@
 namespace falcon_core::communications::hdf5 {
 HDF5Data::HDF5Data() = default;
 HDF5Data::HDF5Data(
-    const math::AxesSP<int>&                              shape,
-    const math::AxesSP<math::arrays::ControlArray>&       unit_domain,
-    const math::AxesSP<math::domains::CoupledKnobDomain>& domain_labels,
-    const math::arrays::LabelledMeasuredArraysSP&         ranges,
-    const std::shared_ptr<Metadata>&                      metadata,
-    const std::string&                                    measurement_title,
-    const int&                                            unique_id,
-    const int&                                            timestamp)
+    const math::AxesSP<int>&                                  shape,
+    const math::AxesSP<math::arrays::ControlArray>&           unit_domain,
+    const math::AxesSP<math::domains::CoupledLabelledDomain>& domain_labels,
+    const math::arrays::LabelledMeasuredArraysSP&             ranges,
+    const std::shared_ptr<Metadata>&                          metadata,
+    const std::string&                                        measurement_title,
+    const int&                                                unique_id,
+    const int&                                                timestamp)
     : _shape(shape),
       _unit_domain(unit_domain),
       _domain_labels(domain_labels),
@@ -73,7 +74,7 @@ void HDF5Data::to_file(const std::string& path) const {
     const auto& domains   = (*_domain_labels)[i]->domains();
     size_t      label_idx = 0;
     for (const auto& domain : domains) {
-      std::string label_name = domain->label()->instrument_facing_name();
+      std::string label_name = domain->port()->instrument_facing_name();
       H5::Group   label_group =
           sub_domain_group.createGroup("label" + std::to_string(label_idx));
       // label
@@ -81,12 +82,12 @@ void HDF5Data::to_file(const std::string& path) const {
           label_group.createDataSet("label", str_type, data_space);
       label_ds.write(label_name, str_type);
       // instrument
-      std::string instrument = domain->label()->instrument_type();
+      std::string instrument = domain->port()->instrument_type();
       H5::DataSet ins_name_ds =
           label_group.createDataSet("instrument_type", str_type, data_space);
       ins_name_ds.write(instrument, str_type);
       // unit
-      std::string unit = domain->label()->units()->symbol();
+      std::string unit = domain->port()->units()->symbol();
       H5::DataSet unit_ds =
           label_group.createDataSet("unit", str_type, data_space);
       unit_ds.write(unit, str_type);
@@ -101,7 +102,7 @@ void HDF5Data::to_file(const std::string& path) const {
           "stop", H5::PredType::NATIVE_DOUBLE, data_space);
       stop_ds.write(&stop, H5::PredType::NATIVE_DOUBLE);
       // knob
-      std::string knob = domain->label()->to_json_string();
+      std::string knob = domain->port()->to_json_string();
       H5::DataSet knob_ds =
           label_group.createDataSet("knob", str_type, data_space);
       knob_ds.write(knob, str_type);
@@ -180,8 +181,8 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_file(const std::string& path) {
 
   // Domains
   H5::Group domains_group = file.openGroup("/domains");
-  std::vector<math::arrays::ControlArraySP>       unit_domain_vec;
-  std::vector<math::domains::CoupledKnobDomainSP> domain_labels_vec;
+  std::vector<math::arrays::ControlArraySP>           unit_domain_vec;
+  std::vector<math::domains::CoupledLabelledDomainSP> domain_labels_vec;
   hsize_t     num_domains = domains_group.getNumObjs();
   H5::StrType str_type(H5::PredType::C_S1, H5T_VARIABLE);
   for (hsize_t i = 0; i < num_domains; ++i) {
@@ -197,9 +198,7 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_file(const std::string& path) {
     unit_domain_vec.push_back(control_array);
 
     // Labels
-    std::vector<
-        math::domains::BaseLabelledDomainSP<instrument_interfaces::names::Knob>>
-              labels_vec;
+    std::vector<math::domains::LabelledDomainSP> labels_vec;
     H5::Group sub_domain_group = domains_group.openGroup(dim_name);
     hsize_t   num_labels = sub_domain_group.getNumObjs() - 1;  // minus "data"
     for (hsize_t j = 0; j < num_labels; ++j) {
@@ -222,22 +221,23 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_file(const std::string& path) {
       stop_ds.read(&stop, H5::PredType::NATIVE_DOUBLE);
 
       // Construct DomainLabel (implement this for your type)
-      instrument_interfaces::names::KnobSP knob =
-          instrument_interfaces::names::Knob::from_json_string<
-              instrument_interfaces::names::Knob>(rawKnob);
-      auto domain_label = std::make_shared<math::domains::BaseLabelledDomain<
-          instrument_interfaces::names::Knob>>(start, stop, knob);
+      instrument_interfaces::names::InstrumentPortSP knob =
+          instrument_interfaces::names::InstrumentPort::from_json_string<
+              instrument_interfaces::names::InstrumentPort>(rawKnob);
+      auto domain_label = math::domains::LabelledDomain::from_port(
+          std::make_pair(start, stop), knob);
+
       labels_vec.push_back(domain_label);
     }
     // Construct CoupledKnobDomain (implement this for your type)
     auto coupled_domain =
-        std::make_shared<math::domains::CoupledKnobDomain>(labels_vec);
+        std::make_shared<math::domains::CoupledLabelledDomain>(labels_vec);
     domain_labels_vec.push_back(coupled_domain);
   }
   auto unit_domain_axes =
       std::make_shared<math::Axes<math::arrays::ControlArray>>(unit_domain_vec);
   auto domain_labels_axes =
-      std::make_shared<math::Axes<math::domains::CoupledKnobDomain>>(
+      std::make_shared<math::Axes<math::domains::CoupledLabelledDomain>>(
           domain_labels_vec);
 
   // Ranges

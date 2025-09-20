@@ -44,14 +44,14 @@ class BaseWaveform : public port_transforms::PortTransforms {
    * space.
    */
   void confirm_knobs_match() const {
-    names::PortsSP<names::InstrumentPort> discreteKnobs;
-    for (const math::domains::CoupledKnobDomainSP& axis :
+    names::PortsSP discreteKnobs;
+    for (const math::domains::CoupledLabelledDomainSP& axis :
          _space->axes()->items()) {
-      for (const names::KnobSP& knob : *axis->knobs()) {
+      for (const names::InstrumentPortSP& knob : *axis->labels()) {
         discreteKnobs->push_back(knob);
       }
     }
-    names::PortsSP<names::InstrumentPort> functionKnobs;
+    names::PortsSP functionKnobs;
     for (const port_transforms::PortTransformSP& transform : *transforms()) {
       functionKnobs->push_back(transform->port());
     }

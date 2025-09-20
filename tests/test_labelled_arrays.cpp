@@ -6,7 +6,6 @@
 #include "falcon_core/instrument_interfaces/InstrumentTypes.hpp"
 #include "falcon_core/math/arrays/LabelledControlArray1D.hpp"
 #include "falcon_core/math/arrays/LabelledControlArrays.hpp"
-#include "falcon_core/physics/device_structures/PlungerGate.hpp"
 namespace tests {
 
 using namespace falcon_core::math::arrays;

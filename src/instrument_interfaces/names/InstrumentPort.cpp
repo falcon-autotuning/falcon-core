@@ -6,16 +6,60 @@
 namespace falcon_core::instrument_interfaces::names {
 
 InstrumentPort::InstrumentPort(
-    std::string                                             default_name,
-    std::shared_ptr<physics::device_structures::Connection> pseudo_name,
-    Instrument                                              instrument_type,
-    std::shared_ptr<physics::units::SymbolUnit>             units,
-    std::string                                             description)
-    : _default_name(std::move(default_name)),
-      _pseudo_name(std::move(pseudo_name)),
-      _instrument_type(std::move(instrument_type)),
-      _units(std::move(units)),
-      _description(std::move(description)) {}
+    const std::string&                              default_name,
+    const physics::device_structures::ConnectionSP& pseudo_name,
+    const Instrument&                               instrument_type,
+    const physics::units::SymbolUnitSP&             units,
+    const std::string&                              description,
+    const PortType&                                 type)
+    : _default_name(default_name),
+      _pseudo_name(pseudo_name),
+      _instrument_type(instrument_type),
+      _units(units),
+      _description(description),
+      _type(type) {}
+std::shared_ptr<InstrumentPort> InstrumentPort::Knob(
+    const std::string&                              default_name,
+    const physics::device_structures::ConnectionSP& pseudo_name,
+    const Instrument&                               instrument_type,
+    const physics::units::SymbolUnitSP              units,
+    const std::string&                              description) {
+  return std::make_shared<InstrumentPort>(default_name,
+                                          pseudo_name,
+                                          instrument_type,
+                                          units,
+                                          description,
+                                          PortType::Knob);
+}
+std::shared_ptr<InstrumentPort> InstrumentPort::Meter(
+    const std::string&                              default_name,
+    const physics::device_structures::ConnectionSP& pseudo_name,
+    const Instrument&                               instrument_type,
+    const physics::units::SymbolUnitSP              units,
+    const std::string&                              description) {
+  return std::make_shared<InstrumentPort>(default_name,
+                                          pseudo_name,
+                                          instrument_type,
+                                          units,
+                                          description,
+                                          PortType::Meter);
+}
+std::shared_ptr<InstrumentPort> InstrumentPort::Timer() {
+  return std::make_shared<InstrumentPort>(
+      INSTRUMENT_TYPES::CLOCK,
+      nullptr,
+      INSTRUMENT_TYPES::CLOCK,
+      physics::units::SymbolUnit::Second(),
+      "A time clock used for measurment aquisition and synchronization");
+}
+std::shared_ptr<InstrumentPort> InstrumentPort::ExecutionClock() {
+  return std::make_shared<InstrumentPort>(
+      INSTRUMENT_TYPES::CLOCK,
+      nullptr,
+      INSTRUMENT_TYPES::CLOCK,
+      physics::units::SymbolUnit::Second(),
+      "A time clock to show time traces after execution");
+}
 
 InstrumentPort::InstrumentPort()
     : _default_name(""),
@@ -47,6 +91,11 @@ const std::string InstrumentPort::instrument_facing_name() const {
   } else {
     return instrument_type();
   }
+}
+const bool InstrumentPort::is_knob() const { return _type == PortType::Knob; }
+const bool InstrumentPort::is_meter() const { return _type == PortType::Meter; }
+const bool InstrumentPort::is_port() const {
+  return _type == PortType::InstrumentPort;
 }
 
 }  // namespace falcon_core::instrument_interfaces::names

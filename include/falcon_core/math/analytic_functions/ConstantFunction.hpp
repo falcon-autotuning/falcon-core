@@ -1,6 +1,5 @@
 #pragma once
 
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/analytic_functions/AnalyticFunction.hpp"
 #include "falcon_core/math/analytic_functions/ValidatedAnalyticFunction.hpp"
 
@@ -37,9 +36,7 @@ class ConstantFunction : public AnalyticFunction {
  */
 class Constant : public ValidatedAnalyticFunction {
  public:
-  Constant(const instrument_interfaces::names::PortsSP<
-               instrument_interfaces::names::InstrumentPort>& ports,
-           double                                             value);
+  Constant(const instrument_interfaces::names::PortsSP& ports, double value);
 
  protected:
   Constant();
