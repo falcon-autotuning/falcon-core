@@ -16,8 +16,8 @@ class RaySpace : public UnitSpace {
  public:
   RaySpace(double dr, double dtheta, domains::DomainSP domain);
 
-  static AxesSP<discretizers::BaseDiscretizer> make_axes(double dr,
-                                                         double dtheta);
+  static AxesSP<discrete_spaces::Discretizer> make_axes(double dr,
+                                                        double dtheta);
 
  protected:
   friend class cereal::access;

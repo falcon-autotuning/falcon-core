@@ -7,7 +7,7 @@
 
 #include "falcon_core/math/Axes.hpp"
 #include "falcon_core/math/arrays/ControlArray1D.hpp"
-#include "falcon_core/math/discretizers/BaseDiscretizer.hpp"
+#include "falcon_core/math/discrete_spaces/Discretizer.hpp"
 #include "falcon_core/math/domains/Domain.hpp"
 
 namespace falcon_core::math::spaces {
@@ -21,7 +21,7 @@ namespace falcon_core::math::spaces {
  * @details
  * UnitSpace is the base class for spaces with axes and a domain.
  */
-class UnitSpace : public math::Axes<discretizers::BaseDiscretizer> {
+class UnitSpace : public math::Axes<discrete_spaces::Discretizer> {
   domains::DomainSP              _domain;
   AxesSP<arrays::ControlArray1D> _ranges;
   generic::FArraySP<double>      _space;
@@ -38,12 +38,12 @@ class UnitSpace : public math::Axes<discretizers::BaseDiscretizer> {
    * @param axes The axes defining the space.
    * @param domain The domain of the space.
    */
-  UnitSpace(const AxesSP<discretizers::BaseDiscretizer>& axes,
-            const domains::DomainSP&                     domain);
+  UnitSpace(const AxesSP<discrete_spaces::Discretizer>& axes,
+            const domains::DomainSP&                    domain);
   /**
    * @brief Return the axes of the space.
    */
-  const AxesSP<discretizers::BaseDiscretizer> axes() const;
+  const AxesSP<discrete_spaces::Discretizer> axes() const;
   /**
    * @brief Return the domain of the space
    */
@@ -78,7 +78,7 @@ class UnitSpace : public math::Axes<discretizers::BaseDiscretizer> {
   UnitSpace();
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<math::Axes<discretizers::BaseDiscretizer>>(this),
+    ar(cereal::base_class<math::Axes<discrete_spaces::Discretizer>>(this),
        _domain,
        _ranges,
        _space);

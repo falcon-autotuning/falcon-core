@@ -17,7 +17,7 @@ class CartesianSpace : public UnitSpace {
   CartesianSpace(const std::vector<double>& deltas,
                  const domains::DomainSP&   domain);
 
-  static AxesSP<discretizers::BaseDiscretizer> make_axes(
+  static AxesSP<discrete_spaces::Discretizer> make_axes(
       const std::vector<double>& deltas);
 
  protected:

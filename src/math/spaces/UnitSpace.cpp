@@ -1,22 +1,17 @@
 #include "falcon_core/math/spaces/UnitSpace.hpp"
 
-#include <xtensor/containers/xadapt.hpp>
-
 #include "falcon_core/Constants.hpp"
-#include "falcon_core/math/discretizers/BaseDiscretizer.hpp"
-#include "falcon_core/math/discretizers/CartesianDiscretizer.hpp"
-#include "falcon_core/math/discretizers/PolarDiscretizer.hpp"
 #include "falcon_core/math/domains/Domain.hpp"
 
 namespace falcon_core::math::spaces {
 UnitSpace::UnitSpace() = default;
-UnitSpace::UnitSpace(const AxesSP<discretizers::BaseDiscretizer>& axes,
-                     const domains::DomainSP&                     domain)
-    : math::Axes<discretizers::BaseDiscretizer>(*axes), _domain(domain) {
+UnitSpace::UnitSpace(const AxesSP<discrete_spaces::Discretizer>& axes,
+                     const domains::DomainSP&                    domain)
+    : math::Axes<discrete_spaces::Discretizer>(*axes), _domain(domain) {
   make_discrete_axes();
 }
-const AxesSP<discretizers::BaseDiscretizer> UnitSpace::axes() const {
-  return std::make_shared<Axes<discretizers::BaseDiscretizer>>(items());
+const AxesSP<discrete_spaces::Discretizer> UnitSpace::axes() const {
+  return std::make_shared<Axes<discrete_spaces::Discretizer>>(items());
 }
 const domains::DomainSP&         UnitSpace::domain() const { return _domain; }
 const generic::FArraySP<double>& UnitSpace::space() const { return _space; }
@@ -29,15 +24,11 @@ const generic::ListSP<int>       UnitSpace::shape() const {
 }
 const int UnitSpace::dimension() const { return this->size(); }
 void      UnitSpace::make_discrete_axes() const {
-  for (const discretizers::BaseDiscretizerSP& disc : items()) {
+  for (const discrete_spaces::DiscretizerSP& disc : items()) {
     double factor = 1.0;
-    if (auto cart =
-            std::dynamic_pointer_cast<discretizers::CartesianDiscretizer>(
-                disc)) {
+    if (disc->is_cartesian()) {
       factor = 1.0;
-    } else if (auto polar =
-                   std::dynamic_pointer_cast<discretizers::PolarDiscretizer>(
-                       disc)) {
+    } else if (disc->is_polar()) {
       factor = PI / 2.0;
     } else {
       throw std::runtime_error("Discretizer type not supported.");
@@ -123,5 +114,5 @@ void UnitSpace::compile() {
 
 CEREAL_REGISTER_TYPE(falcon_core::math::spaces::UnitSpace)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::math::Axes<falcon_core::math::discretizers::BaseDiscretizer>,
+    falcon_core::math::Axes<falcon_core::math::discrete_spaces::Discretizer>,
     falcon_core::math::spaces::UnitSpace)

@@ -8,25 +8,20 @@
 #include "falcon_core/math/analytic_functions/ValidatedAnalyticFunction.hpp"
 
 namespace tests {
-using namespace falcon_core::math::analytic_functions;
-using namespace falcon_core::instrument_interfaces::names;
-
-// Helper to create a clock knob (mimics Python Clock class)
-std::shared_ptr<InstrumentPort> make_clock_knob() {
-  return std::make_shared<InstrumentPort>(
-      "CLOCK", nullptr, "CLOCK", nullptr, "Clock");
-}
+using namespace falcon_core;
+using namespace math::analytic_functions;
+using namespace instrument_interfaces::names;
+using namespace physics::device_structures;
 
 // Test constant function with ValidatedAnalyticFunction (mimics
 // test_constant_function in Python)
 TEST(AnalyticFunctionTest, ValidatedConstantFunctionEvaluateAndSerialization) {
   std::vector<std::string> stuff = {"a", "b", "c", "d", "e", "f", "g", "h"};
-  auto                     ports = std::make_shared<Ports<InstrumentPort>>();
+  PortsSP                  ports = std::make_shared<Ports>();
   for (const auto& name : stuff) {
-    ports->push_back(std::make_shared<InstrumentPort>(
-        name, nullptr, "PLUNGER", nullptr, ""));
+    ports->push_back(InstrumentPort::Knob(name, Connection::PlungerGate(name)));
   }
-  ports->push_back(make_clock_knob());
+  ports->push_back(InstrumentPort::Timer());
 
   auto func      = std::make_shared<ConstantFunction>(5.0);
   auto validated = std::make_shared<ValidatedAnalyticFunction>(ports, func);
