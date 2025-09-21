@@ -2,7 +2,7 @@
 
 #include <falcon_core/communications/voltage_states/DeviceVoltageState.hpp>
 #include <falcon_core/communications/voltage_states/DeviceVoltageStates.hpp>
-#include <falcon_core/physics/device_structures/BaseConnection.hpp>
+#include <falcon_core/physics/device_structures/Connection.hpp>
 #include <falcon_core/physics/units/SymbolUnit.hpp>
 #include <memory>
 #include <string>
@@ -14,10 +14,10 @@ using namespace falcon_core::physics::units;
 
 // Basic construction and access test
 TEST(DeviceVoltageStatesTest, BasicConstructionAndAccess) {
-  auto unit = SymbolUnit::Volt();
-  auto conn =
-      std::make_shared<BaseConnection>("gate1", DeviceFeature::BarrierGate);
-  auto dvs = std::make_shared<DeviceVoltageState>(conn, 1.23, unit);
+  SymbolUnitSP         unit = SymbolUnit::Volt();
+  ConnectionSP         conn = Connection::BarrierGate("gate1");
+  DeviceVoltageStateSP dvs =
+      std::make_shared<DeviceVoltageState>(conn, 1.23, unit);
 
   ASSERT_EQ(dvs->connection()->name(), "gate1");
   ASSERT_EQ(dvs->voltage(), 1.23);
@@ -33,10 +33,10 @@ TEST(DeviceVoltageStatesTest, BasicConstructionAndAccess) {
 
 // Serialization round-trip test
 TEST(DeviceVoltageStatesTest, SerializationRoundTrip) {
-  auto unit = SymbolUnit::Volt();
-  auto conn =
-      std::make_shared<BaseConnection>("gate2", DeviceFeature::PlungerGate);
-  auto dvs = std::make_shared<DeviceVoltageState>(conn, 4.56, unit);
+  SymbolUnitSP         unit = SymbolUnit::Volt();
+  ConnectionSP         conn = Connection::PlungerGate("gate2");
+  DeviceVoltageStateSP dvs =
+      std::make_shared<DeviceVoltageState>(conn, 4.56, unit);
 
   auto states = std::make_shared<DeviceVoltageStates>();
   states->add_state(dvs);

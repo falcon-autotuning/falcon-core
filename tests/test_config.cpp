@@ -14,21 +14,20 @@ class ConfigTestFixture : public ::testing::Test {
 
   ConfigTestFixture()
       : original_config(
-            std::make_shared<ScreeningGates>(std::vector<ScreeningGateSP>{
-                std::make_shared<ScreeningGate>("SG1"),
-                std::make_shared<ScreeningGate>("SG2")}),
-            std::make_shared<PlungerGates>(std::vector<PlungerGateSP>{
-                std::make_shared<PlungerGate>("P1"),
-                std::make_shared<PlungerGate>("P2")}),
-            std::make_shared<Ohmics>(std::vector<OhmicSP>{
-                std::make_shared<Ohmic>("O1"), std::make_shared<Ohmic>("O2")}),
-            std::make_shared<BarrierGates>(std::vector<BarrierGateSP>{
-                std::make_shared<BarrierGate>("B1"),
-                std::make_shared<BarrierGate>("B2"),
-                std::make_shared<BarrierGate>("B3")}),
-            std::make_shared<ReservoirGates>(std::vector<ReservoirGateSP>{
-                std::make_shared<ReservoirGate>("R1"),
-                std::make_shared<ReservoirGate>("R2")}),
+            std::make_shared<Connections>(
+                std::vector<ConnectionSP>{Connection::ScreeningGate("SG1"),
+                                          Connection::ScreeningGate("SG2")}),
+            std::make_shared<Connections>(std::vector<ConnectionSP>{
+                Connection::PlungerGate("P1"), Connection::PlungerGate("P2")}),
+            std::make_shared<Connections>(std::vector<ConnectionSP>{
+                Connection::Ohmic("O1"), Connection::Ohmic("O2")}),
+            std::make_shared<Connections>(
+                std::vector<ConnectionSP>{Connection::BarrierGate("B1"),
+                                          Connection::BarrierGate("B2"),
+                                          Connection::BarrierGate("B3")}),
+            std::make_shared<Connections>(
+                std::vector<ConnectionSP>{Connection::ReservoirGate("R1"),
+                                          Connection::ReservoirGate("R2")}),
             std::make_shared<falcon_core::generic::Map<
                 Gname,
                 falcon_core::physics::config::core::Group>>(
@@ -41,75 +40,74 @@ class ConfigTestFixture : public ::testing::Test {
                          falcon_core::physics::config::core::Group>(
                          std::make_shared<Channel>("CH1"),
                          2,
-                         std::make_shared<ScreeningGates>(
-                             std::vector<ScreeningGateSP>{
-                                 std::make_shared<ScreeningGate>("SG1"),
-                                 std::make_shared<ScreeningGate>("SG2")}),
-                         std::make_shared<ReservoirGates>(
-                             std::vector<ReservoirGateSP>{
-                                 std::make_shared<ReservoirGate>("R1"),
-                                 std::make_shared<ReservoirGate>("R2")}),
-                         std::make_shared<PlungerGates>(
-                             std::vector<PlungerGateSP>{
-                                 std::make_shared<PlungerGate>("P1"),
-                                 std::make_shared<PlungerGate>("P2")}),
-                         std::make_shared<BarrierGates>(
-                             std::vector<BarrierGateSP>{
-                                 std::make_shared<BarrierGate>("B1"),
-                                 std::make_shared<BarrierGate>("B2"),
-                                 std::make_shared<BarrierGate>("B3")}),
-                         std::make_shared<BaseConnections>(
-                             std::vector<std::shared_ptr<BaseConnection>>{
-                                 std::make_shared<Ohmic>("O1"),
-                                 std::make_shared<ReservoirGate>("R1"),
-                                 std::make_shared<BarrierGate>("B1"),
-                                 std::make_shared<PlungerGate>("P1"),
-                                 std::make_shared<BarrierGate>("B2"),
-                                 std::make_shared<PlungerGate>("P2"),
-                                 std::make_shared<BarrierGate>("B3"),
-                                 std::make_shared<ReservoirGate>("R2"),
-                                 std::make_shared<Ohmic>("O2"),
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::ScreeningGate("SG1"),
+                                 Connection::ScreeningGate("SG2")}),
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::ReservoirGate("R1"),
+                                 Connection::ReservoirGate("R2")}),
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::PlungerGate("P1"),
+                                 Connection::PlungerGate("P2")}),
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::BarrierGate("B1"),
+                                 Connection::BarrierGate("B2"),
+                                 Connection::BarrierGate("B3")}),
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::Ohmic("O1"),
+                                 Connection::ReservoirGate("R1"),
+                                 Connection::BarrierGate("B1"),
+                                 Connection::PlungerGate("P1"),
+                                 Connection::BarrierGate("B2"),
+                                 Connection::PlungerGate("P2"),
+                                 Connection::BarrierGate("B3"),
+                                 Connection::ReservoirGate("R2"),
+                                 Connection::Ohmic("O2"),
                              }))}}),
             std::make_shared<Impedances>(std::vector<ImpedanceSP>{
                 std::make_shared<Impedance>(
-                    std::make_shared<Ohmic>("O1"), 1000.0, 1e-12),
+                    Connection::Ohmic("O1"), 1000.0, 1e-12),
                 std::make_shared<Impedance>(
-                    std::make_shared<Ohmic>("O2"), 1000.0, 1e-12),
+                    Connection::Ohmic("O2"), 1000.0, 1e-12),
                 std::make_shared<Impedance>(
-                    std::make_shared<BarrierGate>("B1"), 10000.0, 1e-12),
+                    Connection::BarrierGate("B1"), 10000.0, 1e-12),
                 std::make_shared<Impedance>(
-                    std::make_shared<BarrierGate>("B2"), 10000.0, 1e-12),
+                    Connection::BarrierGate("B2"), 10000.0, 1e-12),
                 std::make_shared<Impedance>(
-                    std::make_shared<BarrierGate>("B3"), 10000.0, 1e-12),
+                    Connection::BarrierGate("B3"), 10000.0, 1e-12),
                 std::make_shared<Impedance>(
-                    std::make_shared<PlungerGate>("P1"), 10000.0, 1e-12),
+                    Connection::PlungerGate("P1"), 10000.0, 1e-12),
                 std::make_shared<Impedance>(
-                    std::make_shared<PlungerGate>("P2"), 10000.0, 1e-12),
+                    Connection::PlungerGate("P2"), 10000.0, 1e-12),
                 std::make_shared<Impedance>(
-                    std::make_shared<ReservoirGate>("R1"), 10000.0, 1e-12),
+                    Connection::ReservoirGate("R1"), 10000.0, 1e-12),
                 std::make_shared<Impedance>(
-                    std::make_shared<ReservoirGate>("R2"), 10000.0, 1e-12),
+                    Connection::ReservoirGate("R2"), 10000.0, 1e-12),
                 std::make_shared<Impedance>(
-                    std::make_shared<ScreeningGate>("SG1"), 10000.0, 1e-12),
+                    Connection::ScreeningGate("SG1"), 10000.0, 1e-12),
                 std::make_shared<Impedance>(
-                    std::make_shared<ScreeningGate>("SG2"), 10000.0, 1e-12),
+                    Connection::ScreeningGate("SG2"), 10000.0, 1e-12),
             }),
             std::make_shared<
                 falcon_core::physics::config::core::VoltageConstraints>(
                 std::make_shared<falcon_core::physics::config::core::Adjacency>(
                     xt::eye(9),
-                    std::make_shared<BaseConnections>(
-                        std::vector<BaseConnectionSP>{
-                            std::make_shared<ScreeningGate>("SG1"),
-                            std::make_shared<ScreeningGate>("SG2"),
-                            std::make_shared<PlungerGate>("P1"),
-                            std::make_shared<PlungerGate>("P2"),
-                            std::make_shared<BarrierGate>("B1"),
-                            std::make_shared<BarrierGate>("B2"),
-                            std::make_shared<BarrierGate>("B3"),
-                            std::make_shared<ReservoirGate>("R1"),
-                            std::make_shared<ReservoirGate>("R2"),
-                        })),
+                    std::make_shared<Connections>(std::vector<ConnectionSP>{
+                        Connection::ScreeningGate("SG1"),
+                        Connection::ScreeningGate("SG2"),
+                        Connection::PlungerGate("P1"),
+                        Connection::PlungerGate("P2"),
+                        Connection::BarrierGate("B1"),
+                        Connection::BarrierGate("B2"),
+                        Connection::BarrierGate("B3"),
+                        Connection::ReservoirGate("R1"),
+                        Connection::ReservoirGate("R2"),
+                    })),
                 1.0,
                 std::make_pair(-1.0, 1.0))) {}
 
@@ -217,13 +215,12 @@ TEST_F(ConfigTestFixture, BasicQueries) {
 
   // Test ohmic_in_charge_sensor (should not throw, may be false)
   for (const auto& o : *original_config.ohmics()) {
-    original_config.ohmic_in_charge_sensor(std::dynamic_pointer_cast<Ohmic>(o));
+    original_config.ohmic_in_charge_sensor(o);
   }
 
   // Test get_associated_ohmic (should not throw, may be nullptr)
   for (const auto& r : *original_config.reservoir_gates()) {
-    original_config.get_associated_ohmic(
-        std::dynamic_pointer_cast<ReservoirGate>(r));
+    original_config.get_associated_ohmic(r);
   }
 
   // Test get_gname and get_channel_gates

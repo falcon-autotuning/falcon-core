@@ -1,12 +1,8 @@
 #include <gtest/gtest.h>
 
-#include <cereal/archives/json.hpp>
-#include <memory>
-#include <sstream>
-
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/math/Vector.hpp"
-#include "falcon_core/physics/device_structures/BaseConnection.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
 namespace tests {
@@ -16,23 +12,21 @@ using namespace falcon_core::physics::units;
 using namespace falcon_core::generic;
 
 TEST(VectorTest, SerializationRoundTrip) {
-  auto unit = SymbolUnit::Volt();
-  auto conn1 =
-      std::make_shared<BaseConnection>("A", DeviceFeature::BarrierGate);
-  auto conn2 =
-      std::make_shared<BaseConnection>("B", DeviceFeature::BarrierGate);
+  auto unit  = SymbolUnit::Volt();
+  auto conn1 = Connection::BarrierGate("A");
+  auto conn2 = Connection::BarrierGate("B");
 
-  Map<BaseConnection, double> end(
-      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+  Map<Connection, double> end(
+      std::vector<std::pair<std::shared_ptr<Connection>, double>>{
           {conn1, 1.0}, {conn2, 2.0}});
-  Map<BaseConnection, double> start(
-      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+  Map<Connection, double> start(
+      std::vector<std::pair<std::shared_ptr<Connection>, double>>{
           {conn1, 0.0}, {conn2, 1.0}});
 
-  auto vec = std::make_shared<Vector>(
-      std::make_shared<Map<BaseConnection, double>>(end),
-      std::make_shared<Map<BaseConnection, double>>(start),
-      unit);
+  auto vec =
+      std::make_shared<Vector>(std::make_shared<Map<Connection, double>>(end),
+                               std::make_shared<Map<Connection, double>>(start),
+                               unit);
 
   std::stringstream ss;
   {
@@ -54,32 +48,30 @@ TEST(VectorTest, SerializationRoundTrip) {
 }
 
 TEST(VectorTest, ArithmeticOperators) {
-  auto unit = SymbolUnit::Volt();
-  auto conn1 =
-      std::make_shared<BaseConnection>("A", DeviceFeature::BarrierGate);
-  auto conn2 =
-      std::make_shared<BaseConnection>("B", DeviceFeature::BarrierGate);
+  auto unit  = SymbolUnit::Volt();
+  auto conn1 = std::make_shared<Connection>("A", DeviceFeature::BarrierGate);
+  auto conn2 = std::make_shared<Connection>("B", DeviceFeature::BarrierGate);
 
-  Map<BaseConnection, double> end1(
-      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+  Map<Connection, double> end1(
+      std::vector<std::pair<std::shared_ptr<Connection>, double>>{
           {conn1, 1.0}, {conn2, 2.0}});
-  Map<BaseConnection, double> start1(
-      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+  Map<Connection, double> start1(
+      std::vector<std::pair<std::shared_ptr<Connection>, double>>{
           {conn1, 0.0}, {conn2, 1.0}});
-  Map<BaseConnection, double> end2(
-      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+  Map<Connection, double> end2(
+      std::vector<std::pair<std::shared_ptr<Connection>, double>>{
           {conn1, 3.0}, {conn2, 4.0}});
-  Map<BaseConnection, double> start2(
-      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+  Map<Connection, double> start2(
+      std::vector<std::pair<std::shared_ptr<Connection>, double>>{
           {conn1, 1.0}, {conn2, 2.0}});
 
   auto v1 = std::make_shared<Vector>(
-      std::make_shared<Map<BaseConnection, double>>(end1),
-      std::make_shared<Map<BaseConnection, double>>(start1),
+      std::make_shared<Map<Connection, double>>(end1),
+      std::make_shared<Map<Connection, double>>(start1),
       unit);
   auto v2 = std::make_shared<Vector>(
-      std::make_shared<Map<BaseConnection, double>>(end2),
-      std::make_shared<Map<BaseConnection, double>>(start2),
+      std::make_shared<Map<Connection, double>>(end2),
+      std::make_shared<Map<Connection, double>>(start2),
       unit);
 
   auto v_add = *v1 + *v2;
@@ -114,17 +106,15 @@ TEST(VectorTest, ArithmeticOperators) {
 }
 
 TEST(VectorTest, MagnitudeAndIndexing) {
-  auto unit = SymbolUnit::Volt();
-  auto conn1 =
-      std::make_shared<BaseConnection>("A", DeviceFeature::BarrierGate);
-  auto conn2 =
-      std::make_shared<BaseConnection>("B", DeviceFeature::BarrierGate);
+  auto unit  = SymbolUnit::Volt();
+  auto conn1 = Connection::BarrierGate("A");
+  auto conn2 = Connection::BarrierGate("B");
 
-  auto end = std::make_shared<Map<BaseConnection, double>>(
-      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+  auto end = std::make_shared<Map<Connection, double>>(
+      std::vector<std::pair<std::shared_ptr<Connection>, double>>{
           {conn1, 3.0}, {conn2, 4.0}});
-  auto start = std::make_shared<Map<BaseConnection, double>>(
-      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+  auto start = std::make_shared<Map<Connection, double>>(
+      std::vector<std::pair<std::shared_ptr<Connection>, double>>{
           {conn1, 0.0}, {conn2, 0.0}});
 
   auto vec = std::make_shared<Vector>(end, start, unit);
@@ -143,14 +133,13 @@ TEST(VectorTest, MagnitudeAndIndexing) {
 TEST(VectorTest, UnitConversion) {
   auto unit1 = SymbolUnit::Volt();
   auto unit2 = SymbolUnit::Volt();
-  auto conn1 =
-      std::make_shared<BaseConnection>("A", DeviceFeature::BarrierGate);
+  auto conn1 = Connection::BarrierGate("A");
 
-  auto end = std::make_shared<Map<BaseConnection, double>>(
-      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+  auto end = std::make_shared<Map<Connection, double>>(
+      std::vector<std::pair<std::shared_ptr<Connection>, double>>{
           {conn1, 1.0}});
-  auto start = std::make_shared<Map<BaseConnection, double>>(
-      std::vector<std::pair<std::shared_ptr<BaseConnection>, double>>{
+  auto start = std::make_shared<Map<Connection, double>>(
+      std::vector<std::pair<std::shared_ptr<Connection>, double>>{
           {conn1, 0.0}});
 
   auto vec = std::make_shared<Vector>(end, start, unit1);

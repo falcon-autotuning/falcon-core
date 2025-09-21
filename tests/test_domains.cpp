@@ -1,47 +1,14 @@
 #include <gtest/gtest.h>
 
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
+#include "falcon_core/math/domains/Domain.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 namespace tests {
-using namespace falcon_core::math::domains;
-// Dummy label type for testing
-struct DummyLabel : public falcon_core::generic::Song {
-  std::string name;
-  int         id;
-  DummyLabel(std::string n, int i) : name(std::move(n)), id(i) {}
-  DummyLabel() : name(""), id(0) {}
-  bool operator==(const DummyLabel& other) const {
-    return name == other.name && id == other.id;
-  }
-
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<falcon_core::generic::Song>(this), name, id);
-  }
-};
-}  // namespace tests
-CEREAL_REGISTER_TYPE(tests::DummyLabel)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     tests::DummyLabel)
-CEREAL_REGISTER_TYPE(
-    falcon_core::math::domains::BaseLabelledDomain<tests::DummyLabel>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::math::domains::BaseLabelledDomain<tests::DummyLabel>)
-
-CEREAL_REGISTER_TYPE(
-    falcon_core::math::domains::BaseCoupledLabelledDomain<tests::DummyLabel>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::math::domains::BaseCoupledLabelledDomain<tests::DummyLabel>)
-
-CEREAL_REGISTER_TYPE(
-    falcon_core::math::domains::CoupledLabelledDomain<tests::DummyLabel>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::math::domains::CoupledLabelledDomain<tests::DummyLabel>)
-
-namespace tests {
-
+using namespace falcon_core;
+using namespace math;
+using namespace domains;
+using namespace instrument_interfaces::names;
 TEST(DomainTest, BasicFunctionality) {
   Domain d(1.0, 5.0);
   EXPECT_DOUBLE_EQ(d.lesser_bound(), 1.0);
@@ -59,96 +26,87 @@ TEST(DomainTest, SerializationRoundTrip) {
 }
 
 TEST(LabelledDomainTest, BasicFunctionality) {
-  auto label = std::make_shared<DummyLabel>("foo", 42);
-  BaseLabelledDomain<DummyLabel> ld(0.0, 10.0, label);
-  EXPECT_EQ(ld.label()->name, "foo");
-  EXPECT_EQ(ld.label()->id, 42);
-  EXPECT_DOUBLE_EQ(ld.lesser_bound(), 0.0);
-  EXPECT_DOUBLE_EQ(ld.greater_bound(), 10.0);
+  auto label = std::make_shared<InstrumentPort>(
+      "foo", physics::device_structures::Connection::PlungerGate("P1"));
+  LabelledDomainSP ld =
+      LabelledDomain::from_port(std::make_pair(0.0, 10.0), label);
+  EXPECT_EQ(ld->port()->default_name(), "foo");
+  EXPECT_DOUBLE_EQ(ld->lesser_bound(), 0.0);
+  EXPECT_DOUBLE_EQ(ld->greater_bound(), 10.0);
 }
 
 TEST(LabelledDomainTest, SerializationRoundTrip) {
-  auto label = std::make_shared<DummyLabel>("bar", 99);
-  auto ld = std::make_shared<BaseLabelledDomain<DummyLabel>>(1.0, 2.0, label);
-  std::string json = ld->to_json_string();
-  auto        ld2  = BaseLabelledDomain<DummyLabel>::from_json_string<
-              BaseLabelledDomain<DummyLabel>>(json);
+  InstrumentPortSP label = std::make_shared<InstrumentPort>(
+      "bar", physics::device_structures::Connection::BarrierGate("B1"));
+  LabelledDomainSP ld =
+      LabelledDomain::from_port(std::make_pair(1.0, 2.0), label);
+  std::string      json = ld->to_json_string();
+  LabelledDomainSP ld2 = LabelledDomain::from_json_string<LabelledDomain>(json);
   ASSERT_NE(ld2, nullptr);
-  EXPECT_EQ(ld2->label()->name, "bar");
-  EXPECT_EQ(ld2->label()->id, 99);
+  EXPECT_EQ(ld2->port()->default_name(), "bar");
   EXPECT_DOUBLE_EQ(ld2->lesser_bound(), 1.0);
   EXPECT_DOUBLE_EQ(ld2->greater_bound(), 2.0);
 }
 
 TEST(BaseCoupledLabelledDomainTest, BasicFunctionality) {
-  auto label1 = std::make_shared<DummyLabel>("a", 1);
-  auto label2 = std::make_shared<DummyLabel>("b", 2);
-  auto d1 = std::make_shared<BaseLabelledDomain<DummyLabel>>(0.0, 1.0, label1);
-  auto d2 = std::make_shared<BaseLabelledDomain<DummyLabel>>(1.0, 2.0, label2);
-  std::vector<std::shared_ptr<BaseLabelledDomain<DummyLabel>>> domains{d1, d2};
-  BaseCoupledLabelledDomain<DummyLabel>                        bcld(domains);
+  auto label1 = std::make_shared<InstrumentPort>("a");
+  auto label2 = std::make_shared<InstrumentPort>("b");
+  auto d1     = LabelledDomain::from_port(std::make_pair(0.0, 1.0), label1);
+  auto d2     = LabelledDomain::from_port(std::make_pair(1.0, 2.0), label2);
+  std::vector<std::shared_ptr<LabelledDomain>> domains{d1, d2};
+  CoupledLabelledDomain                        bcld(domains);
 
   EXPECT_EQ(bcld.domains().size(), 2);
   EXPECT_EQ(bcld.labels()->size(), 2);
-  EXPECT_EQ(bcld.labels()->at(0)->name, "a");
-  EXPECT_EQ(bcld.labels()->at(1)->id, 2);
+  EXPECT_EQ(bcld.labels()->at(0)->default_name(), "a");
 
   auto found = bcld.get_domain(label2);
-  EXPECT_EQ(found->label()->name, "b");
+  EXPECT_EQ(found->port()->default_name(), "b");
 }
 
 TEST(BaseCoupledLabelledDomainTest, SerializationRoundTrip) {
-  auto label1 = std::make_shared<DummyLabel>("x", 10);
-  auto label2 = std::make_shared<DummyLabel>("y", 20);
-  auto d1 = std::make_shared<BaseLabelledDomain<DummyLabel>>(5.0, 6.0, label1);
-  auto d2 = std::make_shared<BaseLabelledDomain<DummyLabel>>(6.0, 7.0, label2);
-  std::vector<std::shared_ptr<BaseLabelledDomain<DummyLabel>>> domains{d1, d2};
-  auto bcld = std::make_shared<BaseCoupledLabelledDomain<DummyLabel>>(domains);
+  auto label1 = std::make_shared<InstrumentPort>("x");
+  auto label2 = std::make_shared<InstrumentPort>("y");
+  auto d1     = LabelledDomain::from_port(std::make_pair(5.0, 6.0), label1);
+  auto d2     = LabelledDomain::from_port(std::make_pair(6.0, 7.0), label2);
+  std::vector<std::shared_ptr<LabelledDomain>> domains{d1, d2};
+  auto bcld = std::make_shared<CoupledLabelledDomain>(domains);
 
-  std::string json  = bcld->to_json_string();
-  auto        bcld2 = BaseCoupledLabelledDomain<DummyLabel>::from_json_string<
-             BaseCoupledLabelledDomain<DummyLabel>>(json);
+  std::string json = bcld->to_json_string();
+  auto        bcld2 =
+      CoupledLabelledDomain::from_json_string<CoupledLabelledDomain>(json);
   ASSERT_NE(bcld2, nullptr);
   EXPECT_EQ(bcld2->domains().size(), 2);
-  EXPECT_EQ(bcld2->labels()->at(0)->id, 10);
-  EXPECT_EQ(bcld2->labels()->at(1)->name, "y");
+  EXPECT_EQ(bcld2->labels()->at(1)->default_name(), "y");
 }
 
 TEST(CoupledLabelledDomainTest, BasicFunctionality) {
-  auto label1 = std::make_shared<DummyLabel>("first", 100);
-  auto label2 = std::make_shared<DummyLabel>("second", 200);
-  auto d1 =
-      std::make_shared<BaseLabelledDomain<DummyLabel>>(10.0, 20.0, label1);
-  auto d2 =
-      std::make_shared<BaseLabelledDomain<DummyLabel>>(20.0, 30.0, label2);
-  std::vector<std::shared_ptr<BaseLabelledDomain<DummyLabel>>> domains{d1, d2};
-  auto cld = std::make_shared<CoupledLabelledDomain<DummyLabel>>(domains);
+  auto label1 = std::make_shared<InstrumentPort>("first");
+  auto label2 = std::make_shared<InstrumentPort>("second");
+  auto d1     = LabelledDomain::from_port(std::make_pair(10.0, 20.0), label1);
+  auto d2     = LabelledDomain::from_port(std::make_pair(20.0, 30.0), label2);
+  std::vector<std::shared_ptr<LabelledDomain>> domains{d1, d2};
+  auto cld = std::make_shared<CoupledLabelledDomain>(domains);
 
   EXPECT_EQ(cld->domains().size(), 2);
-  EXPECT_EQ(cld->labels()->at(0)->name, "first");
-  EXPECT_EQ(cld->labels()->at(0)->id, 100);
-  EXPECT_EQ(cld->labels()->at(1)->name, "second");
-  EXPECT_EQ(cld->labels()->at(1)->id, 200);
+  EXPECT_EQ(cld->labels()->at(0)->default_name(), "first");
+  EXPECT_EQ(cld->labels()->at(1)->default_name(), "second");
 }
 
 TEST(CoupledLabelledDomainTest, SerializationRoundTrip) {
-  auto label1 = std::make_shared<DummyLabel>("first", 100);
-  auto label2 = std::make_shared<DummyLabel>("second", 200);
-  auto d1 =
-      std::make_shared<BaseLabelledDomain<DummyLabel>>(10.0, 20.0, label1);
-  auto d2 =
-      std::make_shared<BaseLabelledDomain<DummyLabel>>(20.0, 30.0, label2);
-  std::vector<std::shared_ptr<BaseLabelledDomain<DummyLabel>>> domains{d1, d2};
-  auto cld = std::make_shared<CoupledLabelledDomain<DummyLabel>>(domains);
+  auto label1 = std::make_shared<InstrumentPort>("first");
+  auto label2 = std::make_shared<InstrumentPort>("second");
+  auto d1     = LabelledDomain::from_port(std::make_pair(10.0, 20.0), label1);
+  auto d2     = LabelledDomain::from_port(std::make_pair(20.0, 30.0), label2);
+  std::vector<std::shared_ptr<LabelledDomain>> domains{d1, d2};
+  auto cld = std::make_shared<CoupledLabelledDomain>(domains);
 
   std::string json = cld->to_json_string();
-  auto        cld2 = CoupledLabelledDomain<DummyLabel>::from_json_string<
-             CoupledLabelledDomain<DummyLabel>>(json);
+  auto        cld2 =
+      CoupledLabelledDomain::from_json_string<CoupledLabelledDomain>(json);
   ASSERT_NE(cld2, nullptr);
   EXPECT_EQ(cld2->domains().size(), 2);
-  EXPECT_EQ(cld2->labels()->at(0)->name, "first");
-  EXPECT_EQ(cld2->labels()->at(0)->id, 100);
-  EXPECT_EQ(cld2->labels()->at(1)->name, "second");
-  EXPECT_EQ(cld2->labels()->at(1)->id, 200);
+  EXPECT_EQ(cld2->labels()->at(0)->default_name(), "first");
+  EXPECT_EQ(cld2->labels()->at(1)->default_name(), "second");
 }
 }  // namespace tests
