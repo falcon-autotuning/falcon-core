@@ -28,8 +28,8 @@ TEST(WaveformTest, BasicConstructionAndAccess) {
   auto cartesian_space =
       std::make_shared<falcon_core::math::spaces::Cartesian1DSpace>(10.0,
                                                                     domain);
-  auto axes = std::make_shared<
-      falcon_core::math::Axes<falcon_core::math::domains::CoupledKnobDomain>>();
+  auto axes = std::make_shared<falcon_core::math::Axes<
+      falcon_core::math::domains::CoupledLabelledDomain>>();
   auto space =
       std::make_shared<CartesianDiscreteSpace1D>(cartesian_space, axes);
 
@@ -51,8 +51,8 @@ TEST(WaveformTest, SerializationRoundTrip) {
   auto cartesian_space =
       std::make_shared<falcon_core::math::spaces::Cartesian1DSpace>(10.0,
                                                                     domain);
-  auto axes = std::make_shared<
-      falcon_core::math::Axes<falcon_core::math::domains::CoupledKnobDomain>>();
+  auto axes = std::make_shared<falcon_core::math::Axes<
+      falcon_core::math::domains::CoupledLabelledDomain>>();
   auto space =
       std::make_shared<CartesianDiscreteSpace1D>(cartesian_space, axes);
 
@@ -84,8 +84,8 @@ TEST(CartesianWaveformTest, NDConstructionAndSerialization) {
   // ND: 3 axes
   auto divisions = std::make_shared<falcon_core::math::Axes<int>>(
       std::vector<int>{10, 20, 30});
-  auto axes = std::make_shared<
-      falcon_core::math::Axes<falcon_core::math::domains::CoupledKnobDomain>>();
+  auto axes       = std::make_shared<falcon_core::math::Axes<
+            falcon_core::math::domains::CoupledLabelledDomain>>();
   auto increasing = std::make_shared<
       falcon_core::math::Axes<generic::Map<std::string, bool>>>();
 
@@ -112,7 +112,7 @@ TEST(CartesianWaveformTest, NDConstructionAndSerialization) {
 TEST(CartesianWaveform1DTest, ConstructionAndSerialization) {
   auto domain = std::make_shared<Domain>(-1.0, 1.0);
   auto shared_domain =
-      std::make_shared<falcon_core::math::domains::CoupledKnobDomain>();
+      std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>();
   auto increasing = std::make_shared<generic::Map<std::string, bool>>();
 
   auto identity_transform = std::make_shared<IdentityTransform>();
@@ -137,8 +137,8 @@ TEST(CartesianWaveform2DTest, ConstructionAndSerialization) {
   auto domain = std::make_shared<Domain>(-2.0, 2.0);
   auto divisions =
       std::make_shared<falcon_core::math::Axes<int>>(std::vector<int>{5, 5});
-  auto axes = std::make_shared<
-      falcon_core::math::Axes<falcon_core::math::domains::CoupledKnobDomain>>();
+  auto axes = std::make_shared<falcon_core::math::Axes<
+      falcon_core::math::domains::CoupledLabelledDomain>>();
   auto increasing =
       std::make_shared<falcon_core::math::Axes<std::map<std::string, bool>>>();
 

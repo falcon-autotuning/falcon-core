@@ -19,9 +19,8 @@ class CartesianWaveform2D
   using base_type  = BaseWaveform<space_type>;
 
   CartesianWaveform2D(
-      std::shared_ptr<space_type>                                  space,
-      std::vector<std::shared_ptr<port_transforms::PortTransform>> transforms =
-          {})
+      std::shared_ptr<space_type>                     space,
+      generic::ListSP<port_transforms::PortTransform> transforms = {})
       : base_type(space, transforms) {}
 
   CartesianWaveform2D() : base_type() {}
@@ -29,17 +28,16 @@ class CartesianWaveform2D
   /**
    * @brief Create a CartesianWaveform2D from raw divisions.
    */
-  static std::shared_ptr<CartesianWaveform2D> from_divisions(
-      std::shared_ptr<falcon_core::math::Axes<int>>       divisions,
-      std::shared_ptr<falcon_core::math::Axes<
-          falcon_core::math::domains::CoupledKnobDomain>> axes,
-      std::shared_ptr<falcon_core::math::Axes<std::map<std::string, bool>>>
-                                                                   increasing,
-      std::vector<std::shared_ptr<port_transforms::PortTransform>> transforms =
-          {},
-      std::shared_ptr<falcon_core::math::domains::Domain> domain =
-          std::make_shared<falcon_core::math::domains::Domain>(0, 1)) {
-    auto space = space_type::from_divisions(divisions->items(), axes, domain);
+  static const std::shared_ptr<CartesianWaveform2D> from_divisions(
+      const math::AxesSP<int>&                                  divisions,
+      const math::AxesSP<math::domains::CoupledLabelledDomain>& axes,
+      const math::AxesSP<generic::Map<std::string, bool>>&      increasing,
+      const generic::ListSP<port_transforms::PortTransform>&    transforms =
+          std::make_shared<generic::List<port_transforms::PortTransform>>(),
+      const math::domains::DomainSP& domain =
+          std::make_shared<math::domains::Domain>(0, 1)) {
+    auto space =
+        space_type::from_divisions(divisions, axes, increasing, domain);
     return std::make_shared<CartesianWaveform2D>(space, transforms);
   }
 

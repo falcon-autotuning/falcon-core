@@ -32,15 +32,13 @@ class CartesianWaveform
    * @param increasing if the array should increase following the domain or not.
    */
   static const std::shared_ptr<CartesianWaveform> from_divisions(
-      const falcon_core::math::AxesSP<int>& divisions,
-      const falcon_core::math::AxesSP<
-          falcon_core::math::domains::CoupledLabelledDomain>& axes,
-      const falcon_core::math::AxesSP<generic::Map<std::string, bool>>&
-                                                             increasing,
-      const generic::ListSP<port_transforms::PortTransform>& transforms =
+      const math::AxesSP<int>&                                  divisions,
+      const math::AxesSP<math::domains::CoupledLabelledDomain>& axes,
+      const math::AxesSP<generic::Map<std::string, bool>>&      increasing,
+      const generic::ListSP<port_transforms::PortTransform>&    transforms =
           std::make_shared<generic::List<port_transforms::PortTransform>>(),
-      const falcon_core::math::domains::DomainSP& domain =
-          std::make_shared<falcon_core::math::domains::Domain>(0, 1));
+      const math::domains::DomainSP& domain =
+          std::make_shared<math::domains::Domain>(0, 1));
 
   /**
    * @brief Create a CartesianWaveform with identity transforms.
@@ -50,13 +48,11 @@ class CartesianWaveform
    * @param increasing if the array should increase following the domain or not.
    */
   static const std::shared_ptr<CartesianWaveform> setup_identity_everywhere(
-      const falcon_core::math::AxesSP<int>& divisions,
-      const falcon_core::math::AxesSP<
-          falcon_core::math::domains::CoupledLabelledDomain>& axes,
-      const falcon_core::math::AxesSP<generic::Map<std::string, bool>>&
-                                                  increasing,
-      const falcon_core::math::domains::DomainSP& domain =
-          std::make_shared<falcon_core::math::domains::Domain>(0, 1));
+      const math::AxesSP<int>&                                  divisions,
+      const math::AxesSP<math::domains::CoupledLabelledDomain>& axes,
+      const math::AxesSP<generic::Map<std::string, bool>>&      increasing,
+      const math::domains::DomainSP&                            domain =
+          std::make_shared<math::domains::Domain>(0, 1));
 
  protected:
   CartesianWaveform();

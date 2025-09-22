@@ -4,19 +4,18 @@
 #include "falcon_core/math/spaces/Cartesian2DSpace.hpp"
 #include "falcon_core/math/spaces/RaySpace.hpp"
 namespace tests {
-using namespace falcon_core::math::spaces;
-using namespace falcon_core::math::domains;
-using namespace falcon_core::math;
+using namespace falcon_core;
+using namespace math;
+using namespace discrete_spaces;
+using namespace spaces;
+using namespace domains;
 
 // UnitSpace basic functionality
 TEST(SpacesTest, UnitSpaceBasicFunctionality) {
   auto domain = std::make_shared<Domain>(0.0, 1.0);
-  std::vector<std::shared_ptr<falcon_core::math::discretizers::BaseDiscretizer>>
-       axes;
+  std::vector<discrete_spaces::DiscretizerSP> axes;
   auto unit_space = std::make_shared<UnitSpace>(
-      std::make_shared<Axes<falcon_core::math::discretizers::BaseDiscretizer>>(
-          axes),
-      domain);
+      std::make_shared<Axes<Discretizer>>(axes), domain);
 
   EXPECT_EQ(unit_space->axes()->size(), 0);
   EXPECT_DOUBLE_EQ(unit_space->domain()->lesser_bound(), 0.0);
@@ -25,11 +24,10 @@ TEST(SpacesTest, UnitSpaceBasicFunctionality) {
 
 // UnitSpace serialization
 TEST(SpacesTest, UnitSpaceSerializationRoundTrip) {
-  auto domain = std::make_shared<Domain>(0.0, 1.0);
-  std::vector<std::shared_ptr<falcon_core::math::discretizers::BaseDiscretizer>>
-       axes;
-  auto unit_space = std::make_shared<UnitSpace>(
-      Axes<falcon_core::math::discretizers::BaseDiscretizer>(axes), domain);
+  auto                       domain = std::make_shared<Domain>(0.0, 1.0);
+  std::vector<DiscretizerSP> axes;
+  auto                       unit_space = std::make_shared<UnitSpace>(
+      std::make_shared<Axes<Discretizer>>(axes), domain);
 
   std::string json        = unit_space->to_json_string();
   auto        unit_space2 = UnitSpace::from_json_string<UnitSpace>(json);
