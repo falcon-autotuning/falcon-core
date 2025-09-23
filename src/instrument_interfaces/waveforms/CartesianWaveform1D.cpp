@@ -1,7 +1,6 @@
 #include "falcon_core/instrument_interfaces/waveforms/CartesianWaveform1D.hpp"
 
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/instrument_interfaces/port_transforms/IdentityTransform.hpp"
 namespace falcon_core::instrument_interfaces::waveforms {
 
 CartesianWaveform1D::CartesianWaveform1D() = default;
@@ -12,7 +11,7 @@ CartesianWaveform1D::CartesianWaveform1D(
           falcon_core::math::discrete_spaces::CartesianDiscreteSpace1D>(
           space, transforms) {}
 
-const CartesianWaveform1DSP from_division(
+const CartesianWaveform1DSP CartesianWaveform1D::from_division(
     const int&                                                 division,
     const falcon_core::math::domains::CoupledLabelledDomainSP& shared_domain,
     const generic::MapSP<std::string, bool>&                   increasing,
@@ -24,7 +23,7 @@ const CartesianWaveform1DSP from_division(
   return std::make_shared<CartesianWaveform1D>(space, transforms);
 }
 
-const CartesianWaveform1DSP setup_identity_everywhere(
+const CartesianWaveform1DSP CartesianWaveform1D::setup_identity_everywhere(
     const int&                                                 division,
     const falcon_core::math::domains::CoupledLabelledDomainSP& shared_domain,
     const generic::MapSP<std::string, bool>&                   increasing,
@@ -35,9 +34,8 @@ const CartesianWaveform1DSP setup_identity_everywhere(
   generic::ListSP<port_transforms::PortTransform> transforms =
       std::make_shared<generic::List<port_transforms::PortTransform>>();
   for (const names::InstrumentPortSP& knob : *space->knobs()) {
-    transforms->push_back(std::make_shared<port_transforms::IdentityTransform>(
-        std::dynamic_pointer_cast<names::InstrumentPort>(knob),
-        std::dynamic_pointer_cast<names::Ports>(space->knobs())));
+    transforms->push_back(
+        port_transforms::PortTransform::IdentityTransform(knob));
   }
   return std::make_shared<CartesianWaveform1D>(space, transforms);
 }

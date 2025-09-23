@@ -1,14 +1,17 @@
 #include <falcon_core/communications/messages/MeasurementResponse.hpp>
 
+#include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
+
 namespace falcon_core::communications::messages {
 
 MeasurementResponse::MeasurementResponse() = default;
 MeasurementResponse::MeasurementResponse(
-    const math::arrays::LabelledMeasuredArraysSP& arrays)
+    const math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>&
+        arrays)
     : _arrays(arrays) {}
 
-const math::arrays::LabelledMeasuredArraysSP& MeasurementResponse::arrays()
-    const {
+const math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>&
+MeasurementResponse::arrays() const {
   return _arrays;
 }
 

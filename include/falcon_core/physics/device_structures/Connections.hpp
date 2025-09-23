@@ -45,10 +45,10 @@ namespace device_structures {
  *   Connections o{ptr1, ptr2, ptr3};
  *   @endcode
  */
-class Connections : public falcon_core::generic::List<Connection, Connections> {
+class Connections : public falcon_core::generic::List<Connection> {
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::List<Connection, Connections>>(this));
+    ar(cereal::base_class<generic::List<Connection>>(this));
   }
 
  public:

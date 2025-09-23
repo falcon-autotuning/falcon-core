@@ -1,24 +1,21 @@
 #include "falcon_core/instrument_interfaces/waveforms/CartesianWaveform.hpp"
 
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/instrument_interfaces/port_transforms/IdentityTransform.hpp"
 
 namespace falcon_core::instrument_interfaces::waveforms {
 CartesianWaveform::CartesianWaveform() : BaseWaveform() {}
 CartesianWaveform::CartesianWaveform(
     math::discrete_spaces::CartesianDiscreteSpaceSP       space,
     const generic::ListSP<port_transforms::PortTransform> transforms)
-    : BaseWaveform<falcon_core::math::discrete_spaces::CartesianDiscreteSpace>(
-          space, transforms) {}
+    : BaseWaveform<math::discrete_spaces::CartesianDiscreteSpace>(space,
+                                                                  transforms) {}
 
 const CartesianWaveformSP CartesianWaveform::from_divisions(
-    const falcon_core::math::AxesSP<int>& divisions,
-    const falcon_core::math::AxesSP<
-        falcon_core::math::domains::CoupledLabelledDomain>& axes,
-    const falcon_core::math::AxesSP<generic::Map<std::string, bool>>&
-                                                           increasing,
-    const generic::ListSP<port_transforms::PortTransform>& transforms,
-    const falcon_core::math::domains::DomainSP&            domain) {
+    const math::AxesSP<int>&                                  divisions,
+    const math::AxesSP<math::domains::CoupledLabelledDomain>& axes,
+    const math::AxesSP<generic::Map<std::string, bool>>&      increasing,
+    const generic::ListSP<port_transforms::PortTransform>&    transforms,
+    const math::domains::DomainSP&                            domain) {
   math::discrete_spaces::CartesianDiscreteSpaceSP space =
       math::discrete_spaces::CartesianDiscreteSpace::from_divisions(
           divisions, axes, increasing, domain);
@@ -26,12 +23,10 @@ const CartesianWaveformSP CartesianWaveform::from_divisions(
 }
 const std::shared_ptr<CartesianWaveform>
 CartesianWaveform::setup_identity_everywhere(
-    const falcon_core::math::AxesSP<int>& divisions,
-    const falcon_core::math::AxesSP<
-        falcon_core::math::domains::CoupledLabelledDomain>& axes,
-    const falcon_core::math::AxesSP<generic::Map<std::string, bool>>&
-                                                increasing,
-    const falcon_core::math::domains::DomainSP& domain) {
+    const math::AxesSP<int>&                                  divisions,
+    const math::AxesSP<math::domains::CoupledLabelledDomain>& axes,
+    const math::AxesSP<generic::Map<std::string, bool>>&      increasing,
+    const math::domains::DomainSP&                            domain) {
   math::discrete_spaces::CartesianDiscreteSpaceSP space =
       math::discrete_spaces::CartesianDiscreteSpace::from_divisions(
           divisions, axes, increasing, domain);
@@ -41,9 +36,7 @@ CartesianWaveform::setup_identity_everywhere(
        *space->axes()) {
     for (const names::InstrumentPortSP& knob : *knobDomain->labels()) {
       transforms->push_back(
-          std::make_shared<port_transforms::IdentityTransform>(
-              std::dynamic_pointer_cast<names::InstrumentPort>(knob),
-              std::dynamic_pointer_cast<names::Ports>(space->knobs())));
+          port_transforms::PortTransform::IdentityTransform(knob));
     }
   }
   return std::make_shared<CartesianWaveform>(space, transforms);

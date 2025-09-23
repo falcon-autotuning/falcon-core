@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include "falcon_core/math/spaces/CartesianSpace.hpp"
 
 namespace falcon_core::math::spaces {
@@ -24,5 +26,5 @@ class Cartesian1DSpace : public CartesianSpace {
     ar(cereal::base_class<CartesianSpace>(this));
   }
 };
-
+using Cartesian1DSpaceSP = std::shared_ptr<Cartesian1DSpace>;
 }  // namespace falcon_core::math::spaces

@@ -1,5 +1,3 @@
-#pragma once
-
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
 
 namespace falcon_core::instrument_interfaces::names {

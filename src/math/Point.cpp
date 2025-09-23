@@ -6,12 +6,12 @@
 namespace falcon_core::math {
 
 Point::Point()
-    : generic::Map<physics::device_structures::Connection, Quantity, Point>() {}
+    : generic::Map<physics::device_structures::Connection, Quantity>() {}
 Point::Point(
     const generic::MapSP<physics::device_structures::Connection, double>& init,
     const physics::units::SymbolUnitSP&                                   unit)
     : _unit(unit),
-      generic::Map<physics::device_structures::Connection, Quantity, Point>() {
+      generic::Map<physics::device_structures::Connection, Quantity>() {
   for (const auto pair : *init) {
     insert(pair.first, std::make_shared<Quantity>(pair.second, unit));
   }
@@ -19,7 +19,7 @@ Point::Point(
 Point::Point(const generic::MapSP<physics::device_structures::Connection,
                                   Quantity>& init)
     : _unit(init->at(init->keys().at(0))->unit()),
-      generic::Map<physics::device_structures::Connection, Quantity, Point>() {
+      generic::Map<physics::device_structures::Connection, Quantity>() {
   for (const auto pair : *init) {
     QuantitySP quantity = pair.second;
     quantity->convert_to(_unit);
@@ -56,7 +56,10 @@ Point::connections() const {
 }
 
 PointSP Point::operator+(const PointSP& other) const {
-  PointSP result = clone();
+  PointSP result = std::make_shared<Point>(
+      std::make_shared<
+          generic::Map<physics::device_structures::Connection, Quantity>>(
+          items()));
   for (const auto& kv : other->items()) {
     auto it = result->find(kv.first);
     if (it != result->end()) {
@@ -69,7 +72,10 @@ PointSP Point::operator+(const PointSP& other) const {
 }
 
 PointSP Point::operator-(const PointSP& other) const {
-  PointSP result = clone();
+  PointSP result = std::make_shared<Point>(
+      std::make_shared<
+          generic::Map<physics::device_structures::Connection, Quantity>>(
+          items()));
   for (const auto& kv : other->items()) {
     auto it = result->find(kv.first);
     if (it != result->end()) {
@@ -82,7 +88,10 @@ PointSP Point::operator-(const PointSP& other) const {
 }
 
 PointSP Point::operator*(double scalar) const {
-  PointSP result = clone();
+  PointSP result = std::make_shared<Point>(
+      std::make_shared<
+          generic::Map<physics::device_structures::Connection, Quantity>>(
+          items()));
   for (auto& kv : result->items()) {
     *kv.second *= scalar;
   }
@@ -90,7 +99,10 @@ PointSP Point::operator*(double scalar) const {
 }
 
 PointSP Point::operator/(double scalar) const {
-  PointSP result = clone();
+  PointSP result = std::make_shared<Point>(
+      std::make_shared<
+          generic::Map<physics::device_structures::Connection, Quantity>>(
+          items()));
   for (auto& kv : result->items()) {
     *kv.second /= scalar;
   }
@@ -98,7 +110,10 @@ PointSP Point::operator/(double scalar) const {
 }
 
 PointSP Point::operator-() const {
-  PointSP result = clone();
+  PointSP result = std::make_shared<Point>(
+      std::make_shared<
+          generic::Map<physics::device_structures::Connection, Quantity>>(
+          items()));
   for (auto& kv : result->items()) {
     kv.second = -*kv.second;
   }

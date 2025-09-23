@@ -240,7 +240,7 @@ void           Vector::update_unit(const physics::units::SymbolUnitSP& unit) {
   }
 }
 const VectorSP Vector::project(const VectorSP& other) const {
-  VectorSP clone = std::make_shared<Vector>(this->clone());
+  VectorSP clone = std::make_shared<Vector>(startPoint(), endPoint());
   clone->update_unit(other->unit());
   PointSP ourEnd   = clone->translate_to_origin()->endPoint();
   PointSP otherEnd = other->translate_to_origin()->endPoint();

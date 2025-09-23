@@ -490,3 +490,11 @@ Abi: 42621000b285c1e053dd312fc18a98a18460eb76948404fcfd9fdf8a9afa2b53
 Description: yaml-cpp is a YAML parser and emitter in C++ matching the YAML 1.2 spec.
 Status: install ok installed
 
+Package: exprtk
+Version: 0.0.3
+Architecture: x64-linux
+Multi-Arch: same
+Abi: 4edaf58a7f0d840cb6b8cad8a50ae003500934e477b0192d0497a4c20c1f48f1
+Description: Simple to use, easy to integrate and extremely efficient run-time C++ mathematical expression parser and evaluation engine.
+Status: install ok installed
+

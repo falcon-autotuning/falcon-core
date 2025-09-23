@@ -1,17 +1,22 @@
 #pragma once
 
 #include <falcon_core/communications/messages/BaseMessage.hpp>
-#include <falcon_core/math/arrays/LabelledMeasuredArrays.hpp>
+#include <falcon_core/math/arrays/LabelledArrays.hpp>
+
+#include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
 
 namespace falcon_core::communications::messages {
 
 class MeasurementResponse : public BaseMessage {
-  math::arrays::LabelledMeasuredArraysSP _arrays;
+  math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray> _arrays;
 
  public:
-  MeasurementResponse(const math::arrays::LabelledMeasuredArraysSP& arrays);
+  MeasurementResponse(
+      const math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>&
+          arrays);
 
-  const math::arrays::LabelledMeasuredArraysSP& arrays() const;
+  const math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>&
+  arrays() const;
 
  protected:
   MeasurementResponse();

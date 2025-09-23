@@ -1,6 +1,7 @@
 #include "falcon_core/instrument_interfaces/waveforms/Waveform.hpp"
 
 namespace falcon_core::instrument_interfaces::waveforms {
+Waveform::Waveform() : BaseWaveform() {}
 Waveform::Waveform(
     const math::discrete_spaces::BaseDiscreteSpaceSP      space,
     const generic::ListSP<port_transforms::PortTransform> transforms)

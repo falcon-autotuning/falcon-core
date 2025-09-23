@@ -8,8 +8,7 @@ namespace falcon_core::physics::device_structures {
 /**
  * @brief Holds the relations between gates and their neighbors.
  */
-class GateRelations
-    : public generic::Map<Connection, Connections, GateRelations> {
+class GateRelations : public generic::Map<Connection, Connections> {
  public:
   GateRelations();
   GateRelations(std::vector<std::pair<ConnectionSP, ConnectionsSP>> init);
@@ -27,7 +26,7 @@ class GateRelations
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<Map<Connection, Connections, GateRelations>>(this));
+    ar(cereal::base_class<Map<Connection, Connections>>(this));
   }
 };
 using GateRelationsSP = std::shared_ptr<GateRelations>;

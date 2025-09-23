@@ -146,7 +146,7 @@ device_structures::ConnectionsSP GateGeometryArray1D::query_neighbors(
     throw std::invalid_argument("Gate " + gate->name() +
                                 " not found in geometry.");
   }
-  auto gate_geometry = it->second;
+  device_structures::ConnectionSP gate_geometry = it->second;
 
   device_structures::ConnectionsSP result;
 

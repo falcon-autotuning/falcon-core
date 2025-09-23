@@ -13,7 +13,7 @@
 #include <falcon_core/instrument_interfaces/waveforms/BaseWaveform.hpp>
 #include <falcon_core/instrument_interfaces/waveforms/CartesianWaveform1D.hpp>
 #include <falcon_core/instrument_interfaces/waveforms/Waveform.hpp>
-#include <falcon_core/math/arrays/LabelledMeasuredArrays.hpp>
+#include <falcon_core/math/arrays/LabelledArrays.hpp>
 #include <falcon_core/math/domains/LabelledDomain.hpp>
 #include <falcon_core/physics/device_structures/Connection.hpp>
 #include <falcon_core/physics/units/SymbolUnit.hpp>
@@ -112,7 +112,7 @@ TEST(MessagesTest, MeasurementRequestConstructionAndSerialization) {
 
 // MeasurementResponse test
 TEST(MessagesTest, MeasurementResponseConstructionAndSerialization) {
-  auto                arrays = std::make_shared<LabelledMeasuredArrays>();
+  auto arrays = LabelledArrays<LabelledMeasuredArray>::LabelledMeasuredArrays();
   MeasurementResponse resp(arrays);
 
   ASSERT_TRUE(resp.arrays() != nullptr);

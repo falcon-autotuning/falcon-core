@@ -19,8 +19,8 @@ namespace falcon_core::math {
  * Each Point stores a mapping from device connections to coordinate values,
  * along with a unit. Supports arithmetic operations and iteration.
  */
-class Point : public generic::
-                  Map<physics::device_structures::Connection, Quantity, Point> {
+class Point
+    : public generic::Map<physics::device_structures::Connection, Quantity> {
   physics::units::SymbolUnitSP _unit;
 
  public:
@@ -69,9 +69,9 @@ class Point : public generic::
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Map<physics::device_structures::Connection,
-                                       Quantity,
-                                       Point>>(this),
+    ar(cereal::base_class<
+           generic::Map<physics::device_structures::Connection, Quantity>>(
+           this),
        _unit);
   }
 };

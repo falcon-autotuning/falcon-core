@@ -156,31 +156,6 @@ class Map : public virtual generic::Song {
 
   // Get all value shared_ptrs
   const std::vector<StoredValue>& values() const { return _value_ptrs; }
-  // SFINAE: If Derived is void, clone returns Map
-  template <typename D = Derived>
-  typename std::enable_if<std::is_same<D, void>::value,
-                          std::shared_ptr<Map>>::type
-  clone() const {
-    auto result = std::make_shared<Map>(*this);
-    result->clear();
-    for (const auto& kv : _items) {
-      result->insert_or_assign(kv.first, kv.second);
-    }
-    return result;
-  }
-
-  // SFINAE: If Derived is not void, clone returns Derived
-  template <typename D = Derived>
-  typename std::enable_if<!std::is_same<D, void>::value,
-                          std::shared_ptr<Derived>>::type
-  clone() const {
-    auto result = std::make_shared<Derived>(static_cast<const Derived&>(*this));
-    result->clear();
-    for (const auto& kv : _items) {
-      result->insert_or_assign(kv.first, kv.second);
-    }
-    return result;
-  }
 
   template <class Archive>
   void serialize(Archive& ar) {

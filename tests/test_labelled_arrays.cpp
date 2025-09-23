@@ -5,8 +5,8 @@
 
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon_core/instrument_interfaces/InstrumentTypes.hpp"
+#include "falcon_core/math/arrays/LabelledArrays.hpp"
 #include "falcon_core/math/arrays/LabelledControlArray1D.hpp"
-#include "falcon_core/math/arrays/LabelledControlArrays.hpp"
 namespace tests {
 using namespace falcon_core;
 using namespace falcon_core::math::arrays;
@@ -14,7 +14,7 @@ using namespace autotuner_interfaces::contexts;
 
 using ArrayType          = ControlArray1D;
 using LabelledArrayType  = LabelledControlArray1D;
-using LabelledArraysType = LabelledControlArrays;
+using LabelledArraysType = LabelledArrays<LabelledControlArray>;
 
 TEST(BaseLabelledArraysTest, ConstructionAndAccess) {
   xt::xarray<double> arr1_data = {1.0, 2.0, 3.0};

@@ -4,7 +4,7 @@ namespace falcon_core::physics::device_structures {
 GateRelations::GateRelations() = default;
 GateRelations::GateRelations(
     std::vector<std::pair<ConnectionSP, ConnectionsSP>> init)
-    : generic::Map<Connection, Connections, GateRelations>(init) {}
+    : generic::Map<Connection, Connections>(init) {}
 
 void GateRelations::insert_or_assign(const ConnectionSP&  key,
                                      const ConnectionsSP& value) {

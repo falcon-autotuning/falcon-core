@@ -3,14 +3,13 @@
 namespace falcon_core::physics::device_structures {
 
 Connections::Connections() = default;
-Connections::Connections(size_t count)
-    : generic::List<Connection, Connections>(count) {}
+Connections::Connections(size_t count) : generic::List<Connection>(count) {}
 Connections::Connections(size_t count, const ConnectionSP& value)
-    : generic::List<Connection, Connections>(count, value) {}
+    : generic::List<Connection>(count, value) {}
 Connections::Connections(const std::vector<ConnectionSP>& vec)
-    : generic::List<Connection, Connections>(vec) {}
+    : generic::List<Connection>(vec) {}
 Connections::Connections(const generic::ListSP<Connection>& vec)
-    : generic::List<Connection, Connections>(vec->items()) {}
+    : generic::List<Connection>(vec->items()) {}
 bool Connections::is_gates() const {
   return std::all_of(this->begin(), this->end(), [](const ConnectionSP& conn) {
     return conn->is_gate();

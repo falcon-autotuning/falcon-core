@@ -125,29 +125,6 @@ class List : public generic::Song {
    * @brief clears to contents of the list.
    */
   void clear() { _items.clear(); }
-  // SFINAE: If Derived is void, clone returns Map
-  template <typename D = Derived>
-  typename std::enable_if<std::is_same<D, void>::value,
-                          std::shared_ptr<List>>::type
-  clone() const {
-    std::shared_ptr<List> result = std::make_shared<List>(*this);
-    result->clear();
-    result->_items = _items;
-    return result;
-  }
-
-  // SFINAE: If Derived is not void, clone returns Derived
-  template <typename D = Derived>
-  typename std::enable_if<!std::is_same<D, void>::value,
-                          std::shared_ptr<Derived>>::type
-  clone() const {
-    auto result = std::make_shared<Derived>(static_cast<const Derived&>(*this));
-    result->clear();
-    for (const auto& kv : _items) {
-      result->insert_or_assign(kv.first, kv.second);
-    }
-    return result;
-  }
 
   template <class Archive>
   void serialize(Archive& ar) {

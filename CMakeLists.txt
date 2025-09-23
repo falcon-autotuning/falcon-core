@@ -3,7 +3,11 @@ project(FalconCore LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_Position_INDEPENDENT_CODE ON)
+if(POLICY CMP0167)
+  cmake_policy(SET CMP0167 NEW)
+endif()
 
 # --- Dependencies via vcpkg ---
 find_package(cereal CONFIG REQUIRED)
@@ -284,93 +288,76 @@ target_link_libraries(
           xtl
           xtensor
           xsimd
-          yaml-cpp
+          yaml-cpp::yaml-cpp
           hdf5::hdf5-static
           hdf5::hdf5_cpp-static
           cereal::cereal)
 
-target_link_libraries(falcon_core_cpp PUBLIC yaml-cpp)
+target_link_libraries(falcon_core_cpp PUBLIC yaml-cpp::yaml-cpp)
 
 if(NOT FALCON_CORE_DIRS)
   set(FALCON_HEADERS
-      # falcon_core/generic/Song.hpp
-      # falcon_core/generic/FArray.hpp
-      # falcon_core::generic::FArray<double>
-      # falcon_core/generic/List.hpp
-      # falcon_core/generic/Map.hpp
-      # falcon_core/Constants.hpp
-      # falcon_core/physics/device_structures/Connection.hpp
-      # falcon_core/physics/device_structures/Impedance.hpp
-      # falcon_core/physics/device_structures/Connections.hpp
-      # falcon_core/physics/device_structures/Impedances.hpp
-      # falcon_core/physics/device_structures/GateRelations.hpp
-      # falcon_core/physics/units/TotalDimensions.hpp
-      # falcon_core/physics/units/Prefix.hpp
-      # falcon_core/physics/units/Unit.hpp
-      # falcon_core/physics/units/SymbolUnit.hpp
-      # falcon_core/instrument_interfaces/Instrument.hpp
-      # falcon_core/instrument_interfaces/names/InstrumentPort.hpp
-      # falcon_core/instrument_interfaces/names/Ports.hpp
-      # falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Knob>
-      # falcon_core::instrument_interfaces::names::Ports<falcon_core::instrument_interfaces::names::Meter>
-      # falcon_core/instrument_interfaces/names/Knob.hpp
-      # falcon_core/instrument_interfaces/names/Knobs.hpp
-      # falcon_core/instrument_interfaces/names/Meter.hpp
-      # falcon_core/instrument_interfaces/names/Meters.hpp
-      # # falcon_core/math/Axes.hpp
-      # #
-      # std::map<falcon_core::physics::device_structures::BaseConnection,double>
-      # # falcon_core/math/Point.hpp
-      # falcon_core/math/Quantity.hpp
-      # # falcon_core/math/Sign.hpp
-      # falcon_core/math/arrays/ControlArray.hpp
-      # falcon_core/math/arrays/ControlArray1D.hpp
-      # falcon_core/math/arrays/IncreasingAlignment.hpp
-      # falcon_core/math/arrays/MeasuredArray.hpp
-      # # falcon_core/math/labelled_arrays/BaseLabelledArray.hpp
-      # # falcon_core/math/labelled_arrays/BaseLabelledArrays.hpp
-      # # falcon_core/math/labelled_arrays/IsLabelled1D.hpp
-      # #
-      # falcon_core::math::labelled_arrays::BaseLabelledArray<falcon_core::math::arrays::ControlArray1D,falcon_core::instrument_interfaces::names::InstrumentPort<falcon_core::physics::device_structures::Gate>>
-      # #
-      # falcon_core::math::labelled_arrays::IsLabelled1D<falcon_core::math::labelled_arrays::LabelledControlArray1D>
-      # # falcon_core/math/labelled_arrays/LabelledControlArray1D.hpp
-  )
+      falcon_core/generic/Song.hpp
+      falcon_core/generic/FArrayProtocol.hpp
+      falcon_core::generic::IFArray<double>
+      falcon_core/generic/FArray.hpp
+      falcon_core::generic::FArray<double>
+      falcon_core/generic/List.hpp
+      falcon_core/generic/Map.hpp
+      falcon_core/Constants.hpp
+      falcon_core/physics/device_structures/Connection.hpp
+      falcon_core::generic::List<falcon_core::physics::device_structures::Connection>
+      falcon_core/physics/device_structures/Connections.hpp
+      falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,falcon_core::physics::device_structures::Connections>
+      falcon_core/physics/device_structures/Impedance.hpp
+      falcon_core::generic::List<falcon_core::physics::device_structures::Impedance,falcon_core::physics::device_structures::Impedances>
+      falcon_core/physics/device_structures/Impedances.hpp
+      falcon_core/physics/device_structures/GateRelations.hpp
+      falcon_core/physics/units/TotalDimensions.hpp
+      falcon_core/physics/units/Prefix.hpp
+      falcon_core/physics/units/Unit.hpp
+      falcon_core/physics/units/SymbolUnit.hpp
+      falcon_core/instrument_interfaces/Instrument.hpp
+      falcon_core/instrument_interfaces/names/InstrumentPort.hpp
+      falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>
+      falcon_core/instrument_interfaces/names/Ports.hpp
+      falcon_core/math/Axes.hpp
+      std::map<falcon_core::physics::device_structures::Connection,double>
+      falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>
+      falcon_core/math/Point.hpp
+      falcon_core/math/Quantity.hpp
+      falcon_core/math/Sign.hpp
+      falcon_core/math/arrays/IsControl.hpp
+      falcon_core::math::arrays::IsControl<double>
+      falcon_core/math/arrays/ControlArray.hpp
+      falcon_core/math/arrays/ControlArray1D.hpp
+      falcon_core/math/arrays/IncreasingAlignment.hpp
+      falcon_core/math/arrays/MeasuredArray.hpp
+      falcon_core/math/arrays/LabelledArrays.hpp
+      falcon_core/math/arrays/IsLabelled.hpp
+      falcon_core::math::arrays::IsLabelled<falcon_core::math::arrays::LabelledControlArray1D>
+      falcon_core/math/arrays/LabelledControlArray1D.hpp)
   set(SWIG_MODULES
-      # song,Song,Song.i,generic
-      # farray,FArray,FArray.i,generic
-      # list,List,List.i,generic
-      # map,Map,Map.i,generic
-      # base_connection,BaseConnection,BaseConnection.i,physics/device_structures
-      # ohmic,Ohmic,Ohmic.i,physics/device_structures
-      # barrier_gate,BarrierGate,BarrierGate.i,physics/device_structures
-      # plunger_gate,PlungerGate,PlungerGate.i,physics/device_structures
-      # screening_gate,ScreeningGate,ScreeningGate.i,physics/device_structures
-      # reservoir_gate,ReservoirGate,ReservoirGate.i,physics/device_structures
-      # ohmics,Ohmics,Ohmics.i,physics/device_structures
-      # barrier_gates,BarrierGates,BarrierGates.i,physics/device_structures
-      # plunger_gates,PlungerGates,PlungerGates.i,physics/device_structures
-      # reservoir_gates,ReservoirGates,ReservoirGates.i,physics/device_structures
-      # screening_gates,ScreeningGates,ScreeningGates.i,physics/device_structures
-      # impedance,Impedance,Impedance.i,physics/device_structures
-      # impedances,Impedances,Impedances.i,physics/device_structures
-      # gate_relations,GateRelations,GateRelations.i,physics/device_structures
-      # prefix,Prefix,Prefix.i,physics/units
-      # unit,Unit,Unit.i,physics/units
-      # symbol_unit,SymbolUnit,SymbolUnit.i,physics/units
-      # units,Units,Units.i,physics/units
-      # instrument_port,InstrumentPort,InstrumentPort.i,instrument_interfaces/names
-      # knob,Knob,Knob.i,instrument_interfaces/names
-      # meter,Meter,Meter.i,instrument_interfaces/names
-      # ports,Ports,Ports.i,instrument_interfaces/names
-      # knobs,Knobs,Knobs.i,instrument_interfaces/names
-      # meters,Meters,Meters.i,instrument_interfaces/names
-      # quantity,Quantity,Quantity.i,math
-      # control_array,ControlArray,ControlArray.i,math/arrays
-      # control_array_1D,ControlArray1D,ControlArray1D.i,math/arrays
-      # increasing_alignment,IncreasingAlignment,IncreasingAlignment.i,math/arrays
-      # measured_array,MeasuredArray,MeasuredArray.i,math/arrays
-  )
+      song,Song,Song.i,generic
+      farray,FArray,FArray.i,generic
+      list,List,List.i,generic
+      map,Map,Map.i,generic
+      connection,Connection,Connection.i,physics/device_structures
+      connections,Connections,Connections.i,physics/device_structures
+      ohmic,Ohmic,Ohmic.i,physics/device_structures
+      impedance,Impedance,Impedance.i,physics/device_structures
+      impedances,Impedances,Impedances.i,physics/device_structures
+      gate_relations,GateRelations,GateRelations.i,physics/device_structures
+      prefix,Prefix,Prefix.i,physics/units
+      unit,Unit,Unit.i,physics/units
+      symbol_unit,SymbolUnit,SymbolUnit.i,physics/units
+      instrument_port,InstrumentPort,InstrumentPort.i,instrument_interfaces/names
+      ports,Ports,Ports.i,instrument_interfaces/names
+      quantity,Quantity,Quantity.i,math
+      control_array,ControlArray,ControlArray.i,math/arrays
+      control_array_1D,ControlArray1D,ControlArray1D.i,math/arrays
+      increasing_alignment,IncreasingAlignment,IncreasingAlignment.i,math/arrays
+      measured_array,MeasuredArray,MeasuredArray.i,math/arrays)
   generate_swig_header_interface(
     FALCON_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/swig/falcon_core_all.i"
     "falcon_core_all")

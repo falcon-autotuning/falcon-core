@@ -1,33 +1,32 @@
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 
-#include "falcon_core/math/analytic_functions/ValidatedAnalyticFunction.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/math/AnalyticFunction.hpp"
 
 namespace falcon_core::instrument_interfaces::port_transforms {
 
-PortTransform::PortTransform(
-    names::InstrumentPortSP                               port,
-    math::analytic_functions::ValidatedAnalyticFunctionSP function)
-    : _port(port) {}
+PortTransform::PortTransform(const names::InstrumentPortSP&  port,
+                             const math::AnalyticFunctionSP& transform)
+    : AnalyticFunction(*transform), _port(port) {}
 
-PortTransform::PortTransform() = default;
-
-bool PortTransform::validate_transform() {
-  if (!validate_port(_port)) {
-    throw std::runtime_error("The transform must be valid for the port.");
-  }
-  return true;
+PortTransform::PortTransform() : AnalyticFunction(), _port(nullptr) {}
+PortTransformSP PortTransform::ConstantTransform(
+    const names::InstrumentPortSP& port, const double& value) {
+  return std::make_shared<PortTransform>(
+      port, math::AnalyticFunction::Constant(value));
 }
+PortTransformSP PortTransform::IdentityTransform(
+    const names::InstrumentPortSP& port) {
+  return std::make_shared<PortTransform>(port,
+                                         math::AnalyticFunction::Identity());
+}
+
 const names::InstrumentPortSP PortTransform::port() const { return _port; }
-const math::analytic_functions::ValidatedAnalyticFunctionSP
-PortTransform::transform() const {
-  return std::make_shared<math::analytic_functions::ValidatedAnalyticFunction>(
-      ports(), function());
-}
 
 }  // namespace falcon_core::instrument_interfaces::port_transforms
 
 CEREAL_REGISTER_TYPE(
     falcon_core::instrument_interfaces::port_transforms::PortTransform)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::math::analytic_functions::ValidatedAnalyticFunction,
+    falcon_core::math::AnalyticFunction,
     falcon_core::instrument_interfaces::port_transforms::PortTransform)

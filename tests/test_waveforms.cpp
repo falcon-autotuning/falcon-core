@@ -1,9 +1,6 @@
 #include <gtest/gtest.h>
 
 #include <falcon_core/generic/Song.hpp>
-#include <falcon_core/instrument_interfaces/port_transforms/ConstantTransform.hpp>
-#include <falcon_core/instrument_interfaces/port_transforms/IdentityTransform.hpp>
-#include <falcon_core/instrument_interfaces/waveforms/CartesianWaveform.hpp>
 #include <falcon_core/instrument_interfaces/waveforms/CartesianWaveform1D.hpp>
 #include <falcon_core/instrument_interfaces/waveforms/CartesianWaveform2D.hpp>
 #include <falcon_core/instrument_interfaces/waveforms/Waveform.hpp>
@@ -11,34 +8,45 @@
 #include <falcon_core/math/discrete_spaces/CartesianDiscreteSpace.hpp>
 #include <falcon_core/math/discrete_spaces/CartesianDiscreteSpace1D.hpp>
 #include <falcon_core/math/domains/Domain.hpp>
-#include <memory>
-#include <string>
-#include <vector>
 
+#include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
+#include "falcon_core/instrument_interfaces/waveforms/CartesianWaveform.hpp"
+#include "falcon_core/math/AnalyticFunction.hpp"
 #include "falcon_core/math/spaces/Cartesian1DSpace.hpp"
 namespace tests {
 using namespace falcon_core;
-using namespace falcon_core::instrument_interfaces::waveforms;
-using namespace falcon_core::math::domains;
-using namespace falcon_core::math::discrete_spaces;
-using namespace falcon_core::instrument_interfaces::port_transforms;
+using namespace math;
+using namespace instrument_interfaces;
+using namespace waveforms;
+using namespace domains;
+using namespace spaces;
+using namespace discrete_spaces;
+using namespace port_transforms;
 TEST(WaveformTest, BasicConstructionAndAccess) {
-  auto domain = std::make_shared<Domain>(0.0, 1.0);
+  DomainSP domain = std::make_shared<Domain>(0.0, 1.0);
   // Use a 1D CartesianDiscreteSpace for valid construction
-  auto cartesian_space =
-      std::make_shared<falcon_core::math::spaces::Cartesian1DSpace>(10.0,
-                                                                    domain);
-  auto axes = std::make_shared<falcon_core::math::Axes<
-      falcon_core::math::domains::CoupledLabelledDomain>>();
-  auto space =
-      std::make_shared<CartesianDiscreteSpace1D>(cartesian_space, axes);
+  Cartesian1DSpaceSP cartesian_space =
+      std::make_shared<Cartesian1DSpace>(10.0, domain);
+  names::InstrumentPortSP knob = names::InstrumentPort::Knob(
+      "test", physics::device_structures::Connection::PlungerGate("P1"));
+  LabelledDomainSP labelledD =
+      LabelledDomain::from_port_and_domain(knob, domain);
+  CoupledLabelledDomainSP coupledDomain =
+      std::make_shared<CoupledLabelledDomain>(
+          CoupledLabelledDomain(std::vector<LabelledDomainSP>{labelledD}));
+  generic::MapSP<std::string, bool> increasing =
+      std::make_shared<generic::Map<std::string, bool>>();
+  increasing->insert("P1", true);
+  auto space = std::make_shared<CartesianDiscreteSpace1D>(
+      cartesian_space, coupledDomain, increasing);
 
-  auto identity_transform = std::make_shared<IdentityTransform>();
-  auto constant_transform = std::make_shared<ConstantTransform>(3.14);
+  auto identity_transform =
+      port_transforms::PortTransform::IdentityTransform(knob);
+  auto constant_transform =
+      port_transforms::PortTransform::ConstantTransform(knob, 3.14);
   generic::ListSP<PortTransform> transforms =
-      std::make_shared<generic::List<PortTransform>>(std::vector(
-          {std::dynamic_pointer_cast<PortTransform>(identity_transform),
-           std::dynamic_pointer_cast<PortTransform>(constant_transform)}));
+      std::make_shared<generic::List<PortTransform>>(
+          std::vector{identity_transform, constant_transform});
   Waveform waveform(space, transforms);
 
   ASSERT_EQ(waveform.space(), space);
@@ -48,21 +56,31 @@ TEST(WaveformTest, BasicConstructionAndAccess) {
 TEST(WaveformTest, SerializationRoundTrip) {
   auto domain = std::make_shared<Domain>(-5.0, 5.0);
   // Use a 1D CartesianDiscreteSpace for valid construction
-  auto cartesian_space =
+  Cartesian1DSpaceSP cartesian_space =
       std::make_shared<falcon_core::math::spaces::Cartesian1DSpace>(10.0,
                                                                     domain);
-  auto axes = std::make_shared<falcon_core::math::Axes<
+  AxesSP<CoupledLabelledDomain> axes = std::make_shared<falcon_core::math::Axes<
       falcon_core::math::domains::CoupledLabelledDomain>>();
-  auto space =
-      std::make_shared<CartesianDiscreteSpace1D>(cartesian_space, axes);
+  names::InstrumentPortSP       knob = names::InstrumentPort::Knob(
+      "test", physics::device_structures::Connection::PlungerGate("P1"));
+  LabelledDomainSP labelledD =
+      LabelledDomain::from_port_and_domain(knob, domain);
+  CoupledLabelledDomainSP coupledDomain =
+      std::make_shared<CoupledLabelledDomain>(
+          CoupledLabelledDomain(std::vector<LabelledDomainSP>{labelledD}));
+  generic::MapSP<std::string, bool> increasing =
+      std::make_shared<generic::Map<std::string, bool>>();
+  increasing->insert("P1", true);
+  CartesianDiscreteSpace1DSP space = std::make_shared<CartesianDiscreteSpace1D>(
+      cartesian_space, coupledDomain, increasing);
 
-  auto identity_transform = std::make_shared<IdentityTransform>();
-  auto constant_transform = std::make_shared<ConstantTransform>(42.0);
+  PortTransformSP identity_transform = PortTransform::IdentityTransform(knob);
+  PortTransformSP constant_transform =
+      PortTransform::ConstantTransform(knob, 42.0);
 
   generic::ListSP<PortTransform> transforms =
-      std::make_shared<generic::List<PortTransform>>(std::vector(
-          {std::dynamic_pointer_cast<PortTransform>(identity_transform),
-           std::dynamic_pointer_cast<PortTransform>(constant_transform)}));
+      std::make_shared<generic::List<PortTransform>>(
+          std::vector({identity_transform, constant_transform}));
   Waveform original(space, transforms);
 
   std::string json = original.to_json_string();
@@ -71,31 +89,37 @@ TEST(WaveformTest, SerializationRoundTrip) {
   ASSERT_EQ(recreated->transforms()->size(), 2);
   generic::MapSP<std::string, double> map;
   map->insert("x", 0.0);
-  EXPECT_DOUBLE_EQ(
-      dynamic_cast<ConstantTransform*>(recreated->transforms()->at(2).get())
-          ->function()
-          ->function(map),
-      42.0);
+  EXPECT_DOUBLE_EQ(recreated->transforms()->at(2)->evaluate(map, 0.0), 42.0);
 }
 
 TEST(CartesianWaveformTest, NDConstructionAndSerialization) {
   auto domain = std::make_shared<Domain>(0.0, 10.0);
 
   // ND: 3 axes
-  auto divisions = std::make_shared<falcon_core::math::Axes<int>>(
-      std::vector<int>{10, 20, 30});
-  auto axes       = std::make_shared<falcon_core::math::Axes<
-            falcon_core::math::domains::CoupledLabelledDomain>>();
-  auto increasing = std::make_shared<
-      falcon_core::math::Axes<generic::Map<std::string, bool>>>();
+  AxesSP<int> divisions =
+      std::make_shared<math::Axes<int>>(std::vector<int>{10, 20, 30});
+  names::InstrumentPortSP knob = names::InstrumentPort::Knob(
+      "test", physics::device_structures::Connection::PlungerGate("P1"));
+  LabelledDomainSP labelledD =
+      LabelledDomain::from_port_and_domain(knob, domain);
+  CoupledLabelledDomainSP coupledDomain =
+      std::make_shared<CoupledLabelledDomain>(
+          CoupledLabelledDomain(std::vector<LabelledDomainSP>{labelledD}));
+  AxesSP<CoupledLabelledDomain> axes =
+      std::make_shared<Axes<CoupledLabelledDomain>>(
+          std::vector<CoupledLabelledDomainSP>{coupledDomain});
+  AxesSP<generic::Map<std::string, bool>> increasing =
+      std::make_shared<Axes<generic::Map<std::string, bool>>>(
+          std::vector<generic::MapSP<std::string, bool>>{
+              std::make_shared<generic::Map<std::string, bool>>()});
+  increasing->at(0)->insert("P1", true);
 
-  auto identity_transform = std::make_shared<IdentityTransform>();
-  auto constant_transform = std::make_shared<ConstantTransform>(1.23);
+  auto identity_transform = PortTransform::IdentityTransform(knob);
+  auto constant_transform = PortTransform::ConstantTransform(knob, 1.23);
 
   generic::ListSP<PortTransform> transforms =
-      std::make_shared<generic::List<PortTransform>>(std::vector(
-          {std::dynamic_pointer_cast<PortTransform>(identity_transform),
-           std::dynamic_pointer_cast<PortTransform>(constant_transform)}));
+      std::make_shared<generic::List<PortTransform>>(
+          std::vector({identity_transform, constant_transform}));
   auto waveform = CartesianWaveform::from_divisions(
       divisions, axes, increasing, transforms, domain);
 
@@ -115,11 +139,13 @@ TEST(CartesianWaveform1DTest, ConstructionAndSerialization) {
       std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>();
   auto increasing = std::make_shared<generic::Map<std::string, bool>>();
 
-  auto identity_transform = std::make_shared<IdentityTransform>();
+  names::InstrumentPortSP knob = names::InstrumentPort::Knob(
+      "test", physics::device_structures::Connection::PlungerGate("P1"));
+  auto identity_transform = PortTransform::IdentityTransform(knob);
 
   generic::ListSP<PortTransform> transforms =
-      std::make_shared<generic::List<PortTransform>>(std::vector(
-          {std::dynamic_pointer_cast<PortTransform>(identity_transform)}));
+      std::make_shared<generic::List<PortTransform>>(
+          std::vector({identity_transform}));
   auto waveform = CartesianWaveform1D::from_division(
       10, shared_domain, increasing, transforms, domain);
 
@@ -139,13 +165,21 @@ TEST(CartesianWaveform2DTest, ConstructionAndSerialization) {
       std::make_shared<falcon_core::math::Axes<int>>(std::vector<int>{5, 5});
   auto axes = std::make_shared<falcon_core::math::Axes<
       falcon_core::math::domains::CoupledLabelledDomain>>();
-  auto increasing =
-      std::make_shared<falcon_core::math::Axes<std::map<std::string, bool>>>();
+  AxesSP<generic::Map<std::string, bool>> increasing =
+      std::make_shared<Axes<generic::Map<std::string, bool>>>(
+          std::vector<generic::MapSP<std::string, bool>>{
+              std::make_shared<generic::Map<std::string, bool>>()});
+  increasing->at(0)->insert("P1", true);
 
-  auto identity_transform = std::make_shared<IdentityTransform>();
+  names::InstrumentPortSP knob = names::InstrumentPort::Knob(
+      "test", physics::device_structures::Connection::PlungerGate("P1"));
+  auto identity_transform = PortTransform::IdentityTransform(knob);
+  generic::ListSP<PortTransform> transforms =
+      std::make_shared<generic::List<PortTransform>>(
+          std::vector({identity_transform}));
 
   auto waveform = CartesianWaveform2D::from_divisions(
-      divisions, axes, increasing, {identity_transform}, domain);
+      divisions, axes, increasing, transforms, domain);
 
   ASSERT_TRUE(waveform != nullptr);
   ASSERT_EQ(waveform->transforms()->size(), 1);

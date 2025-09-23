@@ -21,11 +21,12 @@ HDF5Data::HDF5Data(
     const math::AxesSP<int>&                                  shape,
     const math::AxesSP<math::arrays::ControlArray>&           unit_domain,
     const math::AxesSP<math::domains::CoupledLabelledDomain>& domain_labels,
-    const math::arrays::LabelledMeasuredArraysSP&             ranges,
-    const std::shared_ptr<Metadata>&                          metadata,
-    const std::string&                                        measurement_title,
-    const int&                                                unique_id,
-    const int&                                                timestamp)
+    const math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>&
+                                     ranges,
+    const std::shared_ptr<Metadata>& metadata,
+    const std::string&               measurement_title,
+    const int&                       unique_id,
+    const int&                       timestamp)
     : _shape(shape),
       _unit_domain(unit_domain),
       _domain_labels(domain_labels),
@@ -272,8 +273,10 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_file(const std::string& path) {
         std::make_shared<math::arrays::LabelledMeasuredArray>(arr, context);
     ranges_vec.push_back(measured_array);
   }
-  math::arrays::LabelledMeasuredArraysSP ranges =
-      std::make_shared<math::arrays::LabelledMeasuredArrays>(ranges_vec);
+  math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray> ranges =
+      std::make_shared<
+          math::arrays::LabelledArrays<math::arrays::LabelledMeasuredArray>>(
+          ranges_vec);
 
   // Metadata
   H5::Group     metadata_group = file.openGroup("/metadata");
