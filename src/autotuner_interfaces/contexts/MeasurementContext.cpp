@@ -4,7 +4,7 @@ namespace falcon_core::autotuner_interfaces::contexts {
 MeasurementContext::MeasurementContext() = default;
 MeasurementContext::MeasurementContext(
     const physics::device_structures::ConnectionSP& connection,
-    const instrument_interfaces::Instrument&        instrument_type)
+    const instrument_interfaces::names::Instrument& instrument_type)
     : BaseContext(connection, instrument_type) {}
 MeasurementContext::MeasurementContext(const BaseContextSP& acquisition_context)
     : BaseContext(acquisition_context->connection(),

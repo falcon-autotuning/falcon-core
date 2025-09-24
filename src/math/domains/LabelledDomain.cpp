@@ -1,6 +1,7 @@
+#include "falcon_core/math/domains/LabelledDomain.hpp"
+
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/domains/Domain.hpp"
-#include "falcon_core/math/domains/LabelledDomain.hpp"
 
 namespace falcon_core::math::domains {
 LabelledDomain::LabelledDomain() = default;
@@ -8,7 +9,7 @@ LabelledDomain::LabelledDomain(
     const std::string&                              default_name,
     const std::pair<double, double>&                bounds,
     const physics::device_structures::ConnectionSP& psuedo_name,
-    const instrument_interfaces::Instrument&        instrument_type,
+    const instrument_interfaces::names::Instrument& instrument_type,
     bool                                            lesser_bound_contained,
     bool                                            greater_bound_contained,
     const physics::units::SymbolUnitSP&             units,
@@ -47,7 +48,7 @@ const std::shared_ptr<LabelledDomain> LabelledDomain::from_domain(
     const DomainSP&                                 domain,
     const std::string&                              default_name,
     const physics::device_structures::ConnectionSP& pseudo_name,
-    const instrument_interfaces::Instrument&        instrument_type,
+    const instrument_interfaces::names::Instrument& instrument_type,
     const physics::units::SymbolUnitSP&             units,
     const std::string&                              description) {
   return std::make_shared<LabelledDomain>(default_name,

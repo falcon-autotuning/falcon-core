@@ -1,20 +1,17 @@
 #include <falcon_core/communications/messages/MeasurementRequest.hpp>
 
+#include "falcon_core/instrument_interfaces/Waveform.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 
 namespace falcon_core::communications::messages {
 
-using waveform_type =
-    falcon_core::instrument_interfaces::waveforms::BaseWaveform<
-        falcon_core::math::discrete_spaces::BaseDiscreteSpace>;
-
 MeasurementRequest::MeasurementRequest() = default;
 
 MeasurementRequest::MeasurementRequest(
-    const std::string&                           message,
-    const std::string&                           measurement_name,
-    const generic::ListSP<waveform_type>&        waveforms,
-    const instrument_interfaces::names::PortsSP& getters,
+    const std::string&                                      message,
+    const std::string&                                      measurement_name,
+    const generic::ListSP<instrument_interfaces::Waveform>& waveforms,
+    const instrument_interfaces::names::PortsSP&            getters,
     const generic::MapSP<instrument_interfaces::names::InstrumentPort,
                          instrument_interfaces::port_transforms::PortTransform>&
                                            meter_transforms,
@@ -33,7 +30,8 @@ const instrument_interfaces::names::PortsSP& MeasurementRequest::getters()
     const {
   return _getters;
 }
-const generic::ListSP<waveform_type>& MeasurementRequest::waveforms() const {
+const generic::ListSP<instrument_interfaces::Waveform>&
+MeasurementRequest::waveforms() const {
   return _waveforms;
 }
 const generic::MapSP<instrument_interfaces::names::InstrumentPort,

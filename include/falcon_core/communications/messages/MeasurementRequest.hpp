@@ -1,11 +1,11 @@
 #pragma once
 
 #include <falcon_core/communications/messages/BaseMessage.hpp>
+#include <falcon_core/instrument_interfaces/Waveform.hpp>
 #include <falcon_core/instrument_interfaces/names/Ports.hpp>
 #include <falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp>
 #include <falcon_core/instrument_interfaces/port_transforms/PortTransforms.hpp>
-#include <falcon_core/instrument_interfaces/waveforms/BaseWaveform.hpp>
-#include <falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp>
+#include <falcon_core/math/discrete_spaces/DiscreteSpace.hpp>
 #include <falcon_core/math/domains/LabelledDomain.hpp>
 
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
@@ -15,31 +15,29 @@ namespace falcon_core::communications::messages {
 // Use the base waveform type for BaseDiscreteSpace
 
 class MeasurementRequest : public BaseMessage {
-  using waveform_type =
-      falcon_core::instrument_interfaces::waveforms::BaseWaveform<
-          falcon_core::math::discrete_spaces::BaseDiscreteSpace>;
-  std::string                           _measurement_name;
-  generic::ListSP<waveform_type>        _waveforms;
-  instrument_interfaces::names::PortsSP _getters;
+  std::string                                      _measurement_name;
+  generic::ListSP<instrument_interfaces::Waveform> _waveforms;
+  instrument_interfaces::names::PortsSP            _getters;
   generic::MapSP<instrument_interfaces::names::InstrumentPort,
                  instrument_interfaces::port_transforms::PortTransform>
                                   _meter_transforms;
   math::domains::LabelledDomainSP _time_domain;
 
  public:
-  MeasurementRequest(const std::string&                    message,
-                     const std::string&                    measurement_name,
-                     const generic::ListSP<waveform_type>& waveforms,
-                     const instrument_interfaces::names::PortsSP& getters,
-                     const generic::MapSP<
-                         instrument_interfaces::names::InstrumentPort,
-                         instrument_interfaces::port_transforms::PortTransform>&
-                                                            meter_transforms,
-                     const math::domains::LabelledDomainSP& time_domain);
+  MeasurementRequest(
+      const std::string&                                      message,
+      const std::string&                                      measurement_name,
+      const generic::ListSP<instrument_interfaces::Waveform>& waveforms,
+      const instrument_interfaces::names::PortsSP&            getters,
+      const generic::MapSP<
+          instrument_interfaces::names::InstrumentPort,
+          instrument_interfaces::port_transforms::PortTransform>&
+                                             meter_transforms,
+      const math::domains::LabelledDomainSP& time_domain);
 
   const std::string&                           measurement_name() const;
   const instrument_interfaces::names::PortsSP& getters() const;
-  const generic::ListSP<waveform_type>&        waveforms() const;
+  const generic::ListSP<instrument_interfaces::Waveform>& waveforms() const;
   const generic::MapSP<instrument_interfaces::names::InstrumentPort,
                        instrument_interfaces::port_transforms::PortTransform>&
                                          meter_transforms() const;

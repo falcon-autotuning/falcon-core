@@ -1,13 +1,13 @@
 #pragma once
 
 #include "falcon_core/generic/Song.hpp"
-#include "falcon_core/instrument_interfaces/Instrument.hpp"
+#include "falcon_core/instrument_interfaces/names/Instrument.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 namespace falcon_core::autotuner_interfaces::contexts {
 class BaseContext : public generic::Song {
   physics::device_structures::ConnectionSP _connection;
-  instrument_interfaces::Instrument        _instrument_type;
+  instrument_interfaces::names::Instrument _instrument_type;
 
  public:
   /**
@@ -16,7 +16,7 @@ class BaseContext : public generic::Song {
    * @param instrument_type The type of instrument.
    */
   BaseContext(const physics::device_structures::ConnectionSP& connection,
-              const instrument_interfaces::Instrument&        instrument_type);
+              const instrument_interfaces::names::Instrument& instrument_type);
   /**
    * @brief Initialize a BaseContext with an InstrumentPort.
    * @param port The instrument port.
@@ -29,7 +29,7 @@ class BaseContext : public generic::Song {
   /**
    * @brief Return the instrument type.
    */
-  const instrument_interfaces::Instrument instrument_type() const;
+  const instrument_interfaces::names::Instrument instrument_type() const;
 
  protected:
   friend class cereal::access;

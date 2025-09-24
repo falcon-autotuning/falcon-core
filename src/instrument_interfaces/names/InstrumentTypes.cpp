@@ -1,7 +1,6 @@
-#include "falcon_core/instrument_interfaces/InstrumentTypes.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentTypes.hpp"
 
-namespace falcon_core {
-namespace instrument_interfaces {
+namespace falcon_core::instrument_interfaces::names {
 const Instrument InstrumentTypes::DC_VOLTAGE_SOURCE{"dc_voltage_source"};
 const Instrument InstrumentTypes::AMNMETER{"amnmeter"};
 const Instrument InstrumentTypes::MAGNET{"magnet"};
@@ -15,5 +14,4 @@ const Instrument InstrumentTypes::THERMOMETER{"thermometer"};
 const Instrument InstrumentTypes::VOLTMETER{"voltmeter"};
 const Instrument InstrumentTypes::FPGA{"fpga"};
 const Instrument InstrumentTypes::DISCRETE{"discrete"};
-}  // namespace instrument_interfaces
-}  // namespace falcon_core
+}  // namespace falcon_core::instrument_interfaces::names

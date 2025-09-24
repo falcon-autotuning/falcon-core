@@ -1,7 +1,7 @@
 #pragma once
 
 #include "falcon_core/generic/Song.hpp"
-#include "falcon_core/instrument_interfaces/Instrument.hpp"
+#include "falcon_core/instrument_interfaces/names/Instrument.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 

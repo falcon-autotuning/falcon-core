@@ -1,7 +1,7 @@
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 
-#include "falcon_core/instrument_interfaces/Instrument.hpp"
-#include "falcon_core/instrument_interfaces/InstrumentTypes.hpp"
+#include "falcon_core/instrument_interfaces/names/Instrument.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentTypes.hpp"
 
 namespace falcon_core::instrument_interfaces::names {
 
@@ -64,8 +64,7 @@ std::shared_ptr<InstrumentPort> InstrumentPort::ExecutionClock() {
 InstrumentPort::InstrumentPort()
     : _default_name(""),
       _pseudo_name(nullptr),
-      _instrument_type(falcon_core::instrument_interfaces::InstrumentTypes::
-                           DC_VOLTAGE_SOURCE),
+      _instrument_type(InstrumentTypes::DC_VOLTAGE_SOURCE),
       _units(physics::units::SymbolUnit::Volt()),
       _description("") {}
 

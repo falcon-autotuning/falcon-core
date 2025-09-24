@@ -4,7 +4,7 @@
 #include <xtensor/io/xio.hpp>
 
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
-#include "falcon_core/instrument_interfaces/InstrumentTypes.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentTypes.hpp"
 #include "falcon_core/math/arrays/LabelledArrays.hpp"
 #include "falcon_core/math/arrays/LabelledControlArray1D.hpp"
 namespace tests {
@@ -23,11 +23,13 @@ TEST(BaseLabelledArraysTest, ConstructionAndAccess) {
   auto               arr2      = std::make_shared<ControlArray1D>(arr2_data);
   auto               label1    = std::make_shared<AcquisitionContext>(
       physics::device_structures::Connection::PlungerGate("P1"),
-      falcon_core::instrument_interfaces::InstrumentTypes::VOLTAGE_SOURCE,
+      falcon_core::instrument_interfaces::names::InstrumentTypes::
+          VOLTAGE_SOURCE,
       falcon_core::physics::units::SymbolUnit::Volt());
   auto label2 = std::make_shared<AcquisitionContext>(
       physics::device_structures::Connection::PlungerGate("P2"),
-      falcon_core::instrument_interfaces::InstrumentTypes::VOLTAGE_SOURCE,
+      falcon_core::instrument_interfaces::names::InstrumentTypes::
+          VOLTAGE_SOURCE,
       falcon_core::physics::units::SymbolUnit::Volt());
   auto labelled1 = std::make_shared<LabelledControlArray1D>(arr1, label1);
   auto labelled2 = std::make_shared<LabelledControlArray1D>(arr2, label2);
@@ -50,11 +52,13 @@ TEST(BaseLabelledArraysTest, SerializationRoundTrip) {
   auto               arr2      = std::make_shared<ControlArray1D>(arr2_data);
   auto               label1    = std::make_shared<AcquisitionContext>(
       physics::device_structures::Connection::PlungerGate("P1"),
-      falcon_core::instrument_interfaces::InstrumentTypes::VOLTAGE_SOURCE,
+      falcon_core::instrument_interfaces::names::InstrumentTypes::
+          VOLTAGE_SOURCE,
       falcon_core::physics::units::SymbolUnit::Volt());
   auto label2 = std::make_shared<AcquisitionContext>(
       physics::device_structures::Connection::PlungerGate("P2"),
-      falcon_core::instrument_interfaces::InstrumentTypes::VOLTAGE_SOURCE,
+      falcon_core::instrument_interfaces::names::InstrumentTypes::
+          VOLTAGE_SOURCE,
       falcon_core::physics::units::SymbolUnit::Volt());
   auto labelled1 = std::make_shared<LabelledControlArray1D>(arr1, label1);
   auto labelled2 = std::make_shared<LabelledControlArray1D>(arr2, label2);
@@ -82,7 +86,8 @@ TEST(IsLabelled1DTest, GetStart) {
   auto               arr      = std::make_shared<ControlArray1D>(arr_data);
   auto               label    = std::make_shared<AcquisitionContext>(
       physics::device_structures::Connection::PlungerGate("P1"),
-      falcon_core::instrument_interfaces::InstrumentTypes::VOLTAGE_SOURCE,
+      falcon_core::instrument_interfaces::names::InstrumentTypes::
+          VOLTAGE_SOURCE,
       falcon_core::physics::units::SymbolUnit::Volt());
   LabelledControlArray1D labelled(arr, label);
 
@@ -94,7 +99,8 @@ TEST(IsLabelled1DTest, ThrowsOnNon1D) {
   auto               arr      = std::make_shared<ControlArray1D>(arr_data);
   auto               label    = std::make_shared<AcquisitionContext>(
       physics::device_structures::Connection::PlungerGate("P1"),
-      falcon_core::instrument_interfaces::InstrumentTypes::VOLTAGE_SOURCE,
+      falcon_core::instrument_interfaces::names::InstrumentTypes::
+          VOLTAGE_SOURCE,
       falcon_core::physics::units::SymbolUnit::Volt());
   // get_start should throw since arr is not 1D
   LabelledControlArray1D labelled(arr, label);

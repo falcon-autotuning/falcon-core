@@ -6,7 +6,7 @@ AcquisitionContext::AcquisitionContext() : BaseContext(), _units(nullptr) {}
 
 AcquisitionContext::AcquisitionContext(
     const physics::device_structures::ConnectionSP& connection,
-    const instrument_interfaces::Instrument&        instrument_type,
+    const instrument_interfaces::names::Instrument& instrument_type,
     const physics::units::SymbolUnitSP&             units)
     : BaseContext(connection, instrument_type), _units(units) {}
 
@@ -42,7 +42,7 @@ const bool AcquisitionContext::match_connection(
 }
 
 const bool AcquisitionContext::match_instrument_type(
-    instrument_interfaces::Instrument other) const {
+    instrument_interfaces::names::Instrument other) const {
   return instrument_type() == other;
 }
 

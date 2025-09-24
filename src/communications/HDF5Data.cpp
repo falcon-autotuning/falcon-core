@@ -1,4 +1,4 @@
-#include "falcon_core/communications/hdf5/HDF5Data.hpp"
+#include "falcon_core/communications/HDF5Data.hpp"
 
 #include <H5Attribute.h>
 
@@ -10,12 +10,11 @@
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon_core/communications/messages/MeasurementResponse.hpp"
 #include "falcon_core/generic/FArray.hpp"
+#include "falcon_core/instrument_interfaces/Waveform.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/instrument_interfaces/waveforms/BaseWaveform.hpp"
 #include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
-#include "falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp"
 
-namespace falcon_core::communications::hdf5 {
+namespace falcon_core::communications {
 HDF5Data::HDF5Data() = default;
 HDF5Data::HDF5Data(
     const math::AxesSP<int>&                                  shape,
@@ -319,17 +318,13 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_communications(
     const int&                                   unique_id,
     const int&                                   timestamp) {
   // Compile all waveforms in the request
-  for (const instrument_interfaces::waveforms::BaseWaveformSP<
-           math::discrete_spaces::BaseDiscreteSpace>& wave :
-       *request->waveforms()) {
+  for (const instrument_interfaces::WaveformSP& wave : *request->waveforms()) {
     wave->space()->space()->compile();
   }
 
   // Find a valid waveform
-  instrument_interfaces::waveforms::BaseWaveformSP<
-      math::discrete_spaces::BaseDiscreteSpace>
-      valid_waveform;
-  for (const instrument_interfaces::waveforms::BaseWaveformSP waveform :
+  instrument_interfaces::WaveformSP valid_waveform;
+  for (const instrument_interfaces::WaveformSP waveform :
        *request->waveforms()) {
     if (waveform->space()->space()->space()->shape()[1] ==
         waveform->space()->axes()->size()) {
@@ -393,8 +388,8 @@ HDF5Data::to_communications() const {
           std::string(_metadata->at("song_request")));
   return std::make_pair(response, request);
 }
-}  // namespace falcon_core::communications::hdf5
+}  // namespace falcon_core::communications
 
-CEREAL_REGISTER_TYPE(falcon_core::communications::hdf5::HDF5Data)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song, falcon_core::communications::hdf5::HDF5Data)
+CEREAL_REGISTER_TYPE(falcon_core::communications::HDF5Data)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::communications::HDF5Data)

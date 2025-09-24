@@ -9,10 +9,7 @@
 #include <falcon_core/communications/messages/VoltageStatesResponse.hpp>
 #include <falcon_core/communications/voltage_states/DeviceVoltageState.hpp>
 #include <falcon_core/communications/voltage_states/DeviceVoltageStates.hpp>
-#include <falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp>
-#include <falcon_core/instrument_interfaces/waveforms/BaseWaveform.hpp>
-#include <falcon_core/instrument_interfaces/waveforms/CartesianWaveform1D.hpp>
-#include <falcon_core/instrument_interfaces/waveforms/Waveform.hpp>
+#include <falcon_core/instrument_interfaces/Waveform.hpp>
 #include <falcon_core/math/arrays/LabelledArrays.hpp>
 #include <falcon_core/math/domains/LabelledDomain.hpp>
 #include <falcon_core/physics/device_structures/Connection.hpp>
@@ -21,15 +18,16 @@
 #include <string>
 
 namespace tests {
-using namespace falcon_core::communications::messages;
-using namespace falcon_core::communications::voltage_states;
-using namespace falcon_core::physics::device_structures;
-using namespace falcon_core::physics::units;
-using namespace falcon_core::instrument_interfaces::names;
-using namespace falcon_core::instrument_interfaces::port_transforms;
-using namespace falcon_core::instrument_interfaces::waveforms;
-using namespace falcon_core::math::domains;
-using namespace falcon_core::math::arrays;
+using namespace falcon_core;
+using namespace instrument_interfaces;
+using namespace communications::messages;
+using namespace communications::voltage_states;
+using namespace physics::device_structures;
+using namespace physics::units;
+using namespace names;
+using namespace port_transforms;
+using namespace math::domains;
+using namespace math::arrays;
 
 // BaseMessage test
 TEST(MessagesTest, BaseMessageConstructionAndSerialization) {
@@ -63,9 +61,6 @@ TEST(MessagesTest, StandardResponseConstructionAndSerialization) {
 
 // MeasurementRequest test
 TEST(MessagesTest, MeasurementRequestConstructionAndSerialization) {
-  using waveform_type =
-      falcon_core::instrument_interfaces::waveforms::BaseWaveform<
-          falcon_core::math::discrete_spaces::BaseDiscreteSpace>;
   auto unit = SymbolUnit::Volt();
   auto conn = std::make_shared<Connection>("gate1", DeviceFeature::BarrierGate);
   auto meter =
@@ -77,10 +72,8 @@ TEST(MessagesTest, MeasurementRequestConstructionAndSerialization) {
       );
   auto meters = std::make_shared<Ports>();
   meters->push_back(meter);
-  auto waveform =
-      std::make_shared<falcon_core::instrument_interfaces::waveforms::Waveform>(
-          nullptr, nullptr);
-  falcon_core::generic::ListSP<waveform_type> waveforms;
+  auto waveform = std::make_shared<Waveform>(nullptr, nullptr);
+  falcon_core::generic::ListSP<Waveform> waveforms;
   waveforms->push_back(waveform);
   falcon_core::generic::MapSP<InstrumentPort, PortTransform> meter_transforms;
   meter_transforms->insert(meter,

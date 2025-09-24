@@ -29,14 +29,15 @@ class LabelledDomain : public Domain {
    * @units The units of the instrument.
    * @description The description of the instrument.
    */
-  LabelledDomain(const std::string&                              default_name,
-                 const std::pair<double, double>&                bounds,
-                 const physics::device_structures::ConnectionSP& psuedo_name,
-                 const instrument_interfaces::Instrument& instrument_type,
-                 bool                                lesser_bound_contained,
-                 bool                                greater_bound_contained,
-                 const physics::units::SymbolUnitSP& units,
-                 const std::string&                  description);
+  LabelledDomain(
+      const std::string&                              default_name,
+      const std::pair<double, double>&                bounds,
+      const physics::device_structures::ConnectionSP& psuedo_name,
+      const instrument_interfaces::names::Instrument& instrument_type,
+      bool                                            lesser_bound_contained,
+      bool                                            greater_bound_contained,
+      const physics::units::SymbolUnitSP&             units,
+      const std::string&                              description);
   /**
    * @brief Construct a labelled domain.
    * @param bounds Minimum, Maximum pair of the domain.
@@ -70,7 +71,7 @@ class LabelledDomain : public Domain {
       const DomainSP&                                 domain,
       const std::string&                              default_name,
       const physics::device_structures::ConnectionSP& pseudo_name,
-      const instrument_interfaces::Instrument&        instrument_type,
+      const instrument_interfaces::names::Instrument& instrument_type,
       const physics::units::SymbolUnitSP&             units =
           physics::units::SymbolUnit::Volt(),
       const std::string& description = "");

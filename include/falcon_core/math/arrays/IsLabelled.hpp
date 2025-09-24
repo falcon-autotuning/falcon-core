@@ -15,7 +15,7 @@ class IsLabelled : public virtual generic::IFArray<T> {
   const physics::device_structures::ConnectionSP connection() const {
     return label()->connection();
   }
-  const instrument_interfaces::Instrument instrument_type() const {
+  const instrument_interfaces::names::Instrument instrument_type() const {
     return label()->instrument_type();
   }
   const physics::units::SymbolUnitSP units() const { return label()->units(); }

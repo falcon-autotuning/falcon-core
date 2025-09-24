@@ -3,9 +3,6 @@
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/Axes.hpp"
 #include "falcon_core/math/UnitSpace.hpp"
-#include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace.hpp"
-#include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace1D.hpp"
-#include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace2D.hpp"
 #include "falcon_core/math/discrete_spaces/DiscreteSpace.hpp"
 #include "falcon_core/math/discrete_spaces/Discretizer.hpp"
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
@@ -29,7 +26,7 @@ class DiscreteSpaces1DTestFixture : public ::testing::Test {
   AxesSP<CoupledLabelledDomain>           axes;
   AxesSP<generic::Map<std::string, bool>> increasing;
   generic::MapSP<std::string, bool>       dim1;
-  std::shared_ptr<BaseDiscreteSpace>      ds;
+  std::shared_ptr<DiscreteSpace>          ds;
 
   void SetUp() override {
     domain = std::make_shared<Domain>(0.0, 1.0);
@@ -42,7 +39,7 @@ class DiscreteSpaces1DTestFixture : public ::testing::Test {
     dim1       = std::make_shared<generic::Map<std::string, bool>>();
     dim1->insert("", true);
     increasing->push_back(dim1);
-    ds = std::make_shared<BaseDiscreteSpace>(space, axes, increasing);
+    ds = std::make_shared<DiscreteSpace>(space, axes, increasing);
   }
 };
 class CartesianSpaces1DTestFixture : public ::testing::Test {
@@ -52,7 +49,7 @@ class CartesianSpaces1DTestFixture : public ::testing::Test {
   AxesSP<CoupledLabelledDomain>           axes;
   AxesSP<generic::Map<std::string, bool>> increasing;
   generic::MapSP<std::string, bool>       dim1;
-  std::shared_ptr<BaseDiscreteSpace>      ds;
+  std::shared_ptr<DiscreteSpace>          ds;
 
   void SetUp() override {
     domain = std::make_shared<Domain>(0.0, 2.0);
@@ -65,7 +62,7 @@ class CartesianSpaces1DTestFixture : public ::testing::Test {
     dim1       = std::make_shared<generic::Map<std::string, bool>>();
     dim1->insert("", true);
     increasing->push_back(dim1);
-    ds = std::make_shared<BaseDiscreteSpace>(space, axes, increasing);
+    ds = std::make_shared<DiscreteSpace>(space, axes, increasing);
   }
 };
 class CartesianDiscreteSpaces2DTestFixture : public ::testing::Test {
@@ -73,7 +70,7 @@ class CartesianDiscreteSpaces2DTestFixture : public ::testing::Test {
   DomainSP                                       domain;
   UnitSpaceSP                                    space;
   std::shared_ptr<Axes<CoupledLabelledDomain>>   axes;
-  std::shared_ptr<CartesianDiscreteSpace2D>      ds;
+  std::shared_ptr<DiscreteSpace>                 ds;
   AxesSP<generic::Map<std::string, bool>>        increasing;
   generic::MapSP<std::string, bool>              dim1;
   generic::MapSP<std::string, bool>              dim2;
@@ -109,7 +106,8 @@ class CartesianDiscreteSpaces2DTestFixture : public ::testing::Test {
     dim2->insert("", true);
     increasing->push_back(dim1);
     increasing->push_back(dim2);
-    ds = std::make_shared<CartesianDiscreteSpace2D>(space, axes, increasing);
+    ds = DiscreteSpace::CartesianDiscreteSpace(
+        std::make_shared<Axes<int>>(std::vector{10, 5}), axes, increasing);
   }
 };
 
@@ -135,8 +133,7 @@ TEST_F(CartesianDiscreteSpaces2DTestFixture,
 TEST_F(CartesianDiscreteSpaces2DTestFixture,
        CartesianDiscreteSpaceSerializationRoundTrip) {
   std::string json = ds->to_json_string();
-  auto        ds2 =
-      CartesianDiscreteSpace::from_json_string<CartesianDiscreteSpace>(json);
+  auto        ds2  = DiscreteSpace::from_json_string<DiscreteSpace>(json);
 
   ASSERT_NE(ds2, nullptr);
   EXPECT_EQ(ds2->axes()->size(), 2);
@@ -151,9 +148,7 @@ TEST_F(CartesianSpaces1DTestFixture,
 TEST_F(CartesianSpaces1DTestFixture,
        CartesianDiscreteSpace1DSerializationRoundTrip) {
   std::string json = ds->to_json_string();
-  auto        ds2 =
-      CartesianDiscreteSpace1D::from_json_string<CartesianDiscreteSpace1D>(
-          json);
+  auto        ds2  = DiscreteSpace::from_json_string<DiscreteSpace>(json);
 
   ASSERT_NE(ds2, nullptr);
   EXPECT_EQ(ds2->axes()->size(), 1);
