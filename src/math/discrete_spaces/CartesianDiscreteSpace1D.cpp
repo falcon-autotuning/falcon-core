@@ -3,15 +3,15 @@
 #include <memory>
 
 #include "falcon_core/generic/List.hpp"
+#include "falcon_core/math/UnitSpace.hpp"
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
-#include "falcon_core/math/spaces/CartesianSpace.hpp"
 namespace falcon_core::math::discrete_spaces {
 CartesianDiscreteSpace1D::CartesianDiscreteSpace1D() = default;
 CartesianDiscreteSpace1D::CartesianDiscreteSpace1D(
-    const spaces::UnitSpaceSP&               space,
+    const UnitSpaceSP&                       space,
     const domains::CoupledLabelledDomainSP&  shared_domain,
     const generic::MapSP<std::string, bool>& increasing)
-    : BaseCartesianDiscreteSpace(
+    : BaseDiscreteSpace(
           space,
           std::make_shared<Axes<domains::CoupledLabelledDomain>>(
               generic::List<domains::CoupledLabelledDomain>({shared_domain})
@@ -25,10 +25,8 @@ CartesianDiscreteSpace1DSP CartesianDiscreteSpace1D::from_divisions(
     const domains::CoupledLabelledDomainSP&  shared_domain,
     const generic::MapSP<std::string, bool>& increasing,
     const domains::DomainSP&                 domain) {
-  std::vector<double> deltas;
-  deltas.push_back(domain->range() / division);
-
-  auto space = std::make_shared<spaces::CartesianSpace>(deltas, domain);
+  UnitSpaceSP space =
+      UnitSpace::Cartesian1DSpace(domain->range() / division, domain);
   return std::make_shared<CartesianDiscreteSpace1D>(
       space, shared_domain, increasing);
 }
@@ -38,5 +36,5 @@ CartesianDiscreteSpace1DSP CartesianDiscreteSpace1D::from_divisions(
 CEREAL_REGISTER_TYPE(
     falcon_core::math::discrete_spaces::CartesianDiscreteSpace1D)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::math::discrete_spaces::BaseCartesianDiscreteSpace,
+    falcon_core::math::discrete_spaces::BaseDiscreteSpace,
     falcon_core::math::discrete_spaces::CartesianDiscreteSpace1D)

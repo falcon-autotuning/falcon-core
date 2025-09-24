@@ -1,14 +1,47 @@
-#include "falcon_core/math/spaces/UnitSpace.hpp"
+#include "falcon_core/math/UnitSpace.hpp"
+
+#include <stdexcept>
 
 #include "falcon_core/Constants.hpp"
 #include "falcon_core/math/domains/Domain.hpp"
 
-namespace falcon_core::math::spaces {
+namespace falcon_core::math {
 UnitSpace::UnitSpace() = default;
 UnitSpace::UnitSpace(const AxesSP<discrete_spaces::Discretizer>& axes,
                      const domains::DomainSP&                    domain)
     : math::Axes<discrete_spaces::Discretizer>(*axes), _domain(domain) {
   make_discrete_axes();
+}
+UnitSpaceSP UnitSpace::RaySpace(const double&            dr,
+                                const double&            dtheta,
+                                const domains::DomainSP& domain) {
+  AxesSP<discrete_spaces::Discretizer> axes;
+  axes->push_back(discrete_spaces::Discretizer::CartesianDiscretizer(dr));
+  axes->push_back(discrete_spaces::Discretizer::PolarDiscretizer(dtheta));
+  return std::make_shared<UnitSpace>(axes, domain);
+}
+UnitSpaceSP UnitSpace::CartesianSpace(const AxesSP<double>&    deltas,
+                                      const domains::DomainSP& domain) {
+  AxesSP<discrete_spaces::Discretizer> axes;
+  for (double delta : *deltas) {
+    axes->push_back(discrete_spaces::Discretizer::CartesianDiscretizer(delta));
+  }
+  return std::make_shared<UnitSpace>(axes, domain);
+}
+UnitSpaceSP UnitSpace::Cartesian2DSpace(const AxesSP<double>&    deltas,
+                                        const domains::DomainSP& domain) {
+  if (!(deltas->size() == 2)) {
+    throw std::runtime_error(
+        "Expected for a 2D space that there would only be two dimensions "
+        "specified");
+  }
+  return UnitSpace::CartesianSpace(deltas, domain);
+}
+UnitSpaceSP UnitSpace::Cartesian1DSpace(const double&            delta,
+                                        const domains::DomainSP& domain) {
+  AxesSP<discrete_spaces::Discretizer> axes;
+  axes->push_back(discrete_spaces::Discretizer::CartesianDiscretizer(delta));
+  return std::make_shared<UnitSpace>(axes, domain);
 }
 const AxesSP<discrete_spaces::Discretizer> UnitSpace::axes() const {
   return std::make_shared<Axes<discrete_spaces::Discretizer>>(items());
@@ -110,9 +143,9 @@ void UnitSpace::compile() {
   _space = std::make_shared<generic::FArray<double>>(reversed);
 }
 
-}  // namespace falcon_core::math::spaces
+}  // namespace falcon_core::math
 
-CEREAL_REGISTER_TYPE(falcon_core::math::spaces::UnitSpace)
+CEREAL_REGISTER_TYPE(falcon_core::math::UnitSpace)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::math::Axes<falcon_core::math::discrete_spaces::Discretizer>,
-    falcon_core::math::spaces::UnitSpace)
+    falcon_core::math::UnitSpace)

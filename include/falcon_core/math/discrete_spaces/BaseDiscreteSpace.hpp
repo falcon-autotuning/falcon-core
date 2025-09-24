@@ -3,14 +3,14 @@
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
+#include "falcon_core/math/UnitSpace.hpp"
 #include "falcon_core/math/arrays/LabelledControlArray.hpp"
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
-#include "falcon_core/math/spaces/UnitSpace.hpp"
 
 namespace falcon_core::math::discrete_spaces {
 
 class BaseDiscreteSpace : public generic::Song {
-  spaces::UnitSpaceSP                     _space;
+  UnitSpaceSP                             _space;
   AxesSP<domains::CoupledLabelledDomain>  _axes;
   AxesSP<generic::Map<std::string, bool>> _increasing;
 
@@ -23,10 +23,10 @@ class BaseDiscreteSpace : public generic::Song {
    * @param increasing True if the axes are decreasing with the direction of the
    * domain or against.
    */
-  BaseDiscreteSpace(const spaces::UnitSpaceSP&                     space,
+  BaseDiscreteSpace(const UnitSpaceSP&                             space,
                     const AxesSP<domains::CoupledLabelledDomain>&  axes,
                     const AxesSP<generic::Map<std::string, bool>>& increasing);
-  const spaces::UnitSpaceSP&                     space() const;
+  const UnitSpaceSP&                             space() const;
   const AxesSP<domains::CoupledLabelledDomain>&  axes() const;
   const AxesSP<generic::Map<std::string, bool>>& increasing() const;
   /**

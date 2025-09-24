@@ -4,7 +4,7 @@ namespace falcon_core::math::discrete_spaces {
 
 DiscreteSpace::DiscreteSpace() = default;
 DiscreteSpace::DiscreteSpace(
-    const spaces::UnitSpaceSP&                     space,
+    const UnitSpaceSP&                             space,
     const AxesSP<domains::CoupledLabelledDomain>&  axes,
     const AxesSP<generic::Map<std::string, bool>>& increasing)
     : BaseDiscreteSpace(space, axes, increasing) {}

@@ -1,12 +1,12 @@
 #pragma once
-#include "falcon_core/math/discrete_spaces/BaseCartesianDiscreteSpace.hpp"
+#include "falcon_core/math/discrete_spaces/BaseDiscreteSpace.hpp"
 
 namespace falcon_core::math::discrete_spaces {
 
-class CartesianDiscreteSpace2D : public BaseCartesianDiscreteSpace {
+class CartesianDiscreteSpace2D : public BaseDiscreteSpace {
  public:
   CartesianDiscreteSpace2D(
-      const spaces::UnitSpaceSP&                     space,
+      const UnitSpaceSP&                             space,
       const AxesSP<domains::CoupledLabelledDomain>&  axes,
       const AxesSP<generic::Map<std::string, bool>>& increasing);
 
@@ -15,7 +15,7 @@ class CartesianDiscreteSpace2D : public BaseCartesianDiscreteSpace {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<BaseCartesianDiscreteSpace>(this));
+    ar(cereal::base_class<BaseDiscreteSpace>(this));
   }
 };
 using CartesianDiscreteSpace2DSP = std::shared_ptr<CartesianDiscreteSpace2D>;

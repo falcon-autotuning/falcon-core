@@ -8,9 +8,8 @@
 #include "falcon_core/math/Axes.hpp"
 #include "falcon_core/math/arrays/ControlArray1D.hpp"
 #include "falcon_core/math/discrete_spaces/Discretizer.hpp"
-#include "falcon_core/math/domains/Domain.hpp"
 
-namespace falcon_core::math::spaces {
+namespace falcon_core::math {
 
 /**
  * @brief Respresents a hypercube of measurement space. It is defined by a set
@@ -40,6 +39,36 @@ class UnitSpace : public math::Axes<discrete_spaces::Discretizer> {
    */
   UnitSpace(const AxesSP<discrete_spaces::Discretizer>& axes,
             const domains::DomainSP&                    domain);
+  /**
+   * @brief Create a ray space with radial and angular discretization.
+   * @param dr the radial delta.
+   * @param dtheta the angular delta.
+   * @param domain The domain of the space.
+   */
+  static std::shared_ptr<UnitSpace> RaySpace(const double&            dr,
+                                             const double&            dtheta,
+                                             const domains::DomainSP& domain);
+  /**
+   * @brief Create a ND cartesian space.
+   * @param deltas The discretizations for each axis.
+   * @param domain The domain of the space.
+   */
+  static std::shared_ptr<UnitSpace> CartesianSpace(
+      const AxesSP<double>& deltas, const domains::DomainSP& domain);
+  /**
+   * @brief Create a 1D cartesian space.
+   * @param delta The discretization for the main axis.
+   * @param domain The domain of the space.
+   */
+  static std::shared_ptr<UnitSpace> Cartesian1DSpace(
+      const double& delta, const domains::DomainSP& domain);
+  /**
+   * @brief Create a 2D cartesian space.
+   * @param deltas The discretizations for each axis.
+   * @param domain The domain of the space.
+   */
+  static std::shared_ptr<UnitSpace> Cartesian2DSpace(
+      const AxesSP<double>& deltas, const domains::DomainSP& domain);
   /**
    * @brief Return the axes of the space.
    */
@@ -85,4 +114,4 @@ class UnitSpace : public math::Axes<discrete_spaces::Discretizer> {
   }
 };
 using UnitSpaceSP = std::shared_ptr<UnitSpace>;
-}  // namespace falcon_core::math::spaces
+}  // namespace falcon_core::math

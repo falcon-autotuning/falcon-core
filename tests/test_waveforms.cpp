@@ -11,22 +11,19 @@
 
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/instrument_interfaces/waveforms/CartesianWaveform.hpp"
-#include "falcon_core/math/AnalyticFunction.hpp"
-#include "falcon_core/math/spaces/Cartesian1DSpace.hpp"
+#include "falcon_core/math/UnitSpace.hpp"
 namespace tests {
 using namespace falcon_core;
 using namespace math;
 using namespace instrument_interfaces;
 using namespace waveforms;
 using namespace domains;
-using namespace spaces;
 using namespace discrete_spaces;
 using namespace port_transforms;
 TEST(WaveformTest, BasicConstructionAndAccess) {
   DomainSP domain = std::make_shared<Domain>(0.0, 1.0);
   // Use a 1D CartesianDiscreteSpace for valid construction
-  Cartesian1DSpaceSP cartesian_space =
-      std::make_shared<Cartesian1DSpace>(10.0, domain);
+  UnitSpaceSP cartesian_space  = UnitSpace::Cartesian1DSpace(10.0, domain);
   names::InstrumentPortSP knob = names::InstrumentPort::Knob(
       "test", physics::device_structures::Connection::PlungerGate("P1"));
   LabelledDomainSP labelledD =
@@ -56,9 +53,7 @@ TEST(WaveformTest, BasicConstructionAndAccess) {
 TEST(WaveformTest, SerializationRoundTrip) {
   auto domain = std::make_shared<Domain>(-5.0, 5.0);
   // Use a 1D CartesianDiscreteSpace for valid construction
-  Cartesian1DSpaceSP cartesian_space =
-      std::make_shared<falcon_core::math::spaces::Cartesian1DSpace>(10.0,
-                                                                    domain);
+  UnitSpaceSP cartesian_space = UnitSpace::Cartesian1DSpace(10.0, domain);
   AxesSP<CoupledLabelledDomain> axes = std::make_shared<falcon_core::math::Axes<
       falcon_core::math::domains::CoupledLabelledDomain>>();
   names::InstrumentPortSP       knob = names::InstrumentPort::Knob(

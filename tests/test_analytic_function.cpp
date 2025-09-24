@@ -1,17 +1,11 @@
 #include <gtest/gtest.h>
 
-#include <memory>
-
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/instrument_interfaces/names/Ports.hpp"
 #include "falcon_core/math/AnalyticFunction.hpp"
 #include "falcon_core/math/arrays/ControlArray1D.hpp"
 
 namespace tests {
 using namespace falcon_core;
 using namespace math;
-using namespace instrument_interfaces::names;
-using namespace physics::device_structures;
 
 // Test constant function with ValidatedAnalyticFunction (mimics
 // test_constant_function in Python)

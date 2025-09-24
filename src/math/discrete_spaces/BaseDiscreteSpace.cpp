@@ -9,14 +9,14 @@ namespace falcon_core::math::discrete_spaces {
 
 BaseDiscreteSpace::BaseDiscreteSpace() = default;
 BaseDiscreteSpace::BaseDiscreteSpace(
-    const spaces::UnitSpaceSP&                     space,
+    const UnitSpaceSP&                             space,
     const AxesSP<domains::CoupledLabelledDomain>&  axes,
     const AxesSP<generic::Map<std::string, bool>>& increasing)
     : _space(space), _axes(axes), _increasing(increasing) {
   validate_unit_space_dimensionality_matches_knobs();
   validate_knob_uniqueness();
 }
-const spaces::UnitSpaceSP& BaseDiscreteSpace::space() const { return _space; }
+const UnitSpaceSP& BaseDiscreteSpace::space() const { return _space; }
 const AxesSP<domains::CoupledLabelledDomain>& BaseDiscreteSpace::axes() const {
   return _axes;
 }

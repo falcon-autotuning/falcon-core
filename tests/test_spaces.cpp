@@ -1,13 +1,10 @@
 #include <gtest/gtest.h>
 
-#include "falcon_core/math/spaces/Cartesian1DSpace.hpp"
-#include "falcon_core/math/spaces/Cartesian2DSpace.hpp"
-#include "falcon_core/math/spaces/RaySpace.hpp"
+#include "falcon_core/math/UnitSpace.hpp"
 namespace tests {
 using namespace falcon_core;
 using namespace math;
 using namespace discrete_spaces;
-using namespace spaces;
 using namespace domains;
 
 // UnitSpace basic functionality
@@ -40,9 +37,10 @@ TEST(SpacesTest, UnitSpaceSerializationRoundTrip) {
 
 // CartesianSpace basic functionality
 TEST(SpacesTest, CartesianSpaceBasicFunctionality) {
-  auto                domain = std::make_shared<Domain>(-1.0, 1.0);
-  std::vector<double> deltas{0.1, 0.2, 0.3};
-  auto cart_space = std::make_shared<CartesianSpace>(deltas, domain);
+  auto           domain = std::make_shared<Domain>(-1.0, 1.0);
+  AxesSP<double> deltas =
+      std::make_shared<Axes<double>>(std::vector<double>{0.1, 0.2, 0.3});
+  auto cart_space = UnitSpace::CartesianSpace(deltas, domain);
 
   EXPECT_EQ(cart_space->axes()->size(), 3);
   EXPECT_DOUBLE_EQ(cart_space->domain()->lesser_bound(), -1.0);
@@ -51,12 +49,13 @@ TEST(SpacesTest, CartesianSpaceBasicFunctionality) {
 
 // CartesianSpace serialization
 TEST(SpacesTest, CartesianSpaceSerializationRoundTrip) {
-  auto                domain = std::make_shared<Domain>(-1.0, 1.0);
-  std::vector<double> deltas{0.1, 0.2, 0.3};
-  auto cart_space = std::make_shared<CartesianSpace>(deltas, domain);
+  auto           domain = std::make_shared<Domain>(-1.0, 1.0);
+  AxesSP<double> deltas =
+      std::make_shared<Axes<double>>(std::vector<double>{0.1, 0.2, 0.3});
+  auto cart_space = UnitSpace::CartesianSpace(deltas, domain);
 
-  std::string json = cart_space->to_json_string();
-  auto cart_space2 = CartesianSpace::from_json_string<CartesianSpace>(json);
+  std::string json        = cart_space->to_json_string();
+  auto        cart_space2 = UnitSpace::from_json_string<UnitSpace>(json);
 
   ASSERT_NE(cart_space2, nullptr);
   EXPECT_EQ(cart_space2->axes()->size(), 3);
@@ -67,7 +66,7 @@ TEST(SpacesTest, CartesianSpaceSerializationRoundTrip) {
 // Cartesian1DSpace basic functionality
 TEST(SpacesTest, Cartesian1DSpaceBasicFunctionality) {
   auto domain = std::make_shared<Domain>(0.0, 2.0);
-  auto space  = std::make_shared<Cartesian1DSpace>(0.5, domain);
+  auto space  = UnitSpace::Cartesian1DSpace(0.5, domain);
 
   EXPECT_EQ(space->axes()->size(), 1);
   EXPECT_DOUBLE_EQ(space->domain()->lesser_bound(), 0.0);
@@ -77,10 +76,10 @@ TEST(SpacesTest, Cartesian1DSpaceBasicFunctionality) {
 // Cartesian1DSpace serialization
 TEST(SpacesTest, Cartesian1DSpaceSerializationRoundTrip) {
   auto domain = std::make_shared<Domain>(0.0, 2.0);
-  auto space  = std::make_shared<Cartesian1DSpace>(0.5, domain);
+  auto space  = UnitSpace::Cartesian1DSpace(0.5, domain);
 
-  std::string json = space->to_json_string();
-  auto space2      = Cartesian1DSpace::from_json_string<Cartesian1DSpace>(json);
+  std::string json   = space->to_json_string();
+  auto        space2 = UnitSpace::from_json_string<UnitSpace>(json);
 
   ASSERT_NE(space2, nullptr);
   EXPECT_EQ(space2->axes()->size(), 1);
@@ -90,9 +89,10 @@ TEST(SpacesTest, Cartesian1DSpaceSerializationRoundTrip) {
 
 // Cartesian2DSpace basic functionality
 TEST(SpacesTest, Cartesian2DSpaceBasicFunctionality) {
-  auto                domain = std::make_shared<Domain>(-2.0, 2.0);
-  std::vector<double> deltas{0.1, 0.2};
-  auto space = std::make_shared<Cartesian2DSpace>(deltas, domain);
+  auto           domain = std::make_shared<Domain>(-2.0, 2.0);
+  AxesSP<double> deltas =
+      std::make_shared<Axes<double>>(std::vector<double>{0.1, 0.2});
+  auto space = UnitSpace::Cartesian2DSpace(deltas, domain);
 
   EXPECT_EQ(space->axes()->size(), 2);
   EXPECT_DOUBLE_EQ(space->domain()->lesser_bound(), -2.0);
@@ -101,12 +101,13 @@ TEST(SpacesTest, Cartesian2DSpaceBasicFunctionality) {
 
 // Cartesian2DSpace serialization
 TEST(SpacesTest, Cartesian2DSpaceSerializationRoundTrip) {
-  auto                domain = std::make_shared<Domain>(-2.0, 2.0);
-  std::vector<double> deltas{0.1, 0.2};
-  auto space = std::make_shared<Cartesian2DSpace>(deltas, domain);
+  auto           domain = std::make_shared<Domain>(-2.0, 2.0);
+  AxesSP<double> deltas =
+      std::make_shared<Axes<double>>(std::vector<double>{0.1, 0.2});
+  auto space = UnitSpace::Cartesian2DSpace(deltas, domain);
 
-  std::string json = space->to_json_string();
-  auto space2      = Cartesian2DSpace::from_json_string<Cartesian2DSpace>(json);
+  std::string json   = space->to_json_string();
+  auto        space2 = UnitSpace::from_json_string<UnitSpace>(json);
 
   ASSERT_NE(space2, nullptr);
   EXPECT_EQ(space2->axes()->size(), 2);
@@ -117,7 +118,7 @@ TEST(SpacesTest, Cartesian2DSpaceSerializationRoundTrip) {
 // RaySpace basic functionality
 TEST(SpacesTest, RaySpaceBasicFunctionality) {
   auto domain = std::make_shared<Domain>(0.0, 1.0);
-  auto space  = std::make_shared<RaySpace>(0.1, 0.2, domain);
+  auto space  = UnitSpace::RaySpace(0.1, 0.2, domain);
 
   EXPECT_EQ(space->axes()->size(), 2);
   EXPECT_DOUBLE_EQ(space->domain()->lesser_bound(), 0.0);
@@ -127,10 +128,10 @@ TEST(SpacesTest, RaySpaceBasicFunctionality) {
 // RaySpace serialization
 TEST(SpacesTest, RaySpaceSerializationRoundTrip) {
   auto domain = std::make_shared<Domain>(0.0, 1.0);
-  auto space  = std::make_shared<RaySpace>(0.1, 0.2, domain);
+  auto space  = UnitSpace::RaySpace(0.1, 0.2, domain);
 
   std::string json   = space->to_json_string();
-  auto        space2 = RaySpace::from_json_string<RaySpace>(json);
+  auto        space2 = UnitSpace::from_json_string<UnitSpace>(json);
 
   ASSERT_NE(space2, nullptr);
   EXPECT_EQ(space2->axes()->size(), 2);

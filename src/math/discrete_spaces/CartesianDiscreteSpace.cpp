@@ -1,15 +1,15 @@
 #include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace.hpp"
 
-#include "falcon_core/math/spaces/CartesianSpace.hpp"
+#include "falcon_core/math/UnitSpace.hpp"
 
 namespace falcon_core::math::discrete_spaces {
 
 CartesianDiscreteSpace::CartesianDiscreteSpace() = default;
 CartesianDiscreteSpace::CartesianDiscreteSpace(
-    const spaces::UnitSpaceSP&                     space,
+    const UnitSpaceSP&                             space,
     const AxesSP<domains::CoupledLabelledDomain>&  axes,
     const AxesSP<generic::Map<std::string, bool>>& increasing)
-    : BaseCartesianDiscreteSpace(space, axes, increasing) {}
+    : BaseDiscreteSpace(space, axes, increasing) {}
 
 std::shared_ptr<CartesianDiscreteSpace> CartesianDiscreteSpace::from_divisions(
     const generic::ListSP<int>&                    divisions,
@@ -21,9 +21,9 @@ std::shared_ptr<CartesianDiscreteSpace> CartesianDiscreteSpace::from_divisions(
         "The number of division of each axis must be the same size as the axes "
         "for the sweeps.");
   }
-  std::vector<double> deltas;
-  for (int d : *divisions) deltas.push_back(domain->range() / d);
-  auto space = std::make_shared<spaces::CartesianSpace>(deltas, domain);
+  AxesSP<double> deltas;
+  for (int d : *divisions) deltas->push_back(domain->range() / d);
+  auto space = UnitSpace::CartesianSpace(deltas, domain);
   return std::make_shared<CartesianDiscreteSpace>(space, axes, increasing);
 }
 
@@ -31,5 +31,5 @@ std::shared_ptr<CartesianDiscreteSpace> CartesianDiscreteSpace::from_divisions(
 
 CEREAL_REGISTER_TYPE(falcon_core::math::discrete_spaces::CartesianDiscreteSpace)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::math::discrete_spaces::BaseCartesianDiscreteSpace,
+    falcon_core::math::discrete_spaces::BaseDiscreteSpace,
     falcon_core::math::discrete_spaces::CartesianDiscreteSpace)

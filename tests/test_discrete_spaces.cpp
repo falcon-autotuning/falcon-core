@@ -2,6 +2,7 @@
 
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/Axes.hpp"
+#include "falcon_core/math/UnitSpace.hpp"
 #include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace.hpp"
 #include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace1D.hpp"
 #include "falcon_core/math/discrete_spaces/CartesianDiscreteSpace2D.hpp"
@@ -9,16 +10,11 @@
 #include "falcon_core/math/discrete_spaces/Discretizer.hpp"
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 #include "falcon_core/math/domains/LabelledDomain.hpp"
-#include "falcon_core/math/spaces/Cartesian1DSpace.hpp"
-#include "falcon_core/math/spaces/Cartesian2DSpace.hpp"
-#include "falcon_core/math/spaces/CartesianSpace.hpp"
-#include "xtensor/reducers/xreducer.hpp"
 namespace tests {
 using namespace falcon_core;
 using namespace falcon_core::math;
 using namespace discrete_spaces;
 using namespace domains;
-using namespace spaces;
 
 CoupledLabelledDomainSP make_coupled_domain(double min, double max) {
   return std::make_shared<CoupledLabelledDomain>(
@@ -60,7 +56,7 @@ class CartesianSpaces1DTestFixture : public ::testing::Test {
 
   void SetUp() override {
     domain = std::make_shared<Domain>(0.0, 2.0);
-    space  = std::make_shared<Cartesian1DSpace>(0.5, domain);
+    space  = UnitSpace::Cartesian1DSpace(0.5, domain);
     AxesSP<CoupledLabelledDomain> axes;
     axes->push_back(
         std::make_shared<CoupledLabelledDomain>(std::vector<LabelledDomainSP>{
@@ -74,8 +70,8 @@ class CartesianSpaces1DTestFixture : public ::testing::Test {
 };
 class CartesianDiscreteSpaces2DTestFixture : public ::testing::Test {
  protected:
-  std::shared_ptr<Domain>                        domain;
-  std::shared_ptr<Cartesian2DSpace>              space;
+  DomainSP                                       domain;
+  UnitSpaceSP                                    space;
   std::shared_ptr<Axes<CoupledLabelledDomain>>   axes;
   std::shared_ptr<CartesianDiscreteSpace2D>      ds;
   AxesSP<generic::Map<std::string, bool>>        increasing;
@@ -86,8 +82,10 @@ class CartesianDiscreteSpaces2DTestFixture : public ::testing::Test {
 
   void SetUp() override {
     domain = std::make_shared<Domain>(-1.0, 1.0);
-    std::vector<double> deltas{0.1, 0.2};
-    space = std::make_shared<Cartesian2DSpace>(deltas, domain);
+    AxesSP<double> deltas;
+    deltas->push_back(0.1);
+    deltas->push_back(0.2);
+    space = UnitSpace::Cartesian2DSpace(deltas, domain);
     instrument_interfaces::names::InstrumentPortSP knob1 =
         instrument_interfaces::names::InstrumentPort::Knob(
             "x0", nullptr, "clock", nullptr, "desc");
