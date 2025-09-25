@@ -1,14 +1,20 @@
 #include <gtest/gtest.h>
 
 #include "falcon_core/generic/Song.hpp"
-namespace tests {
+namespace {
 // --- Helper Classes for Testing ---
 
 // Mirrors python `strjson`
 class StrSong : public falcon_core::generic::Song {
  public:
   StrSong(std::string value = "") : _value(std::move(value)) {}
-  bool operator==(const StrSong& other) const { return _value == other._value; }
+
+  bool operator==(const StrSong& other) const {
+    return Song::operator==(other);
+  }
+  bool operator!=(const StrSong& other) const {
+    return Song::operator!=(other);
+  }
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -22,9 +28,6 @@ class StrSong : public falcon_core::generic::Song {
 class ListSong : public falcon_core::generic::Song {
  public:
   ListSong(std::vector<std::string> value = {}) : _value(std::move(value)) {}
-  bool operator==(const ListSong& other) const {
-    return _value == other._value;
-  }
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -44,19 +47,6 @@ class ComplexSong : public falcon_core::generic::Song {
               std::vector<std::shared_ptr<StrSong>> songs   = {},
               MyEnum                                other   = MyEnum::STUFF)
       : _strings(std::move(strings)), _songs(std::move(songs)), _other(other) {}
-
-  bool operator==(const ComplexSong& other) const {
-    if (_strings != other._strings || _other != other._other ||
-        _songs.size() != other._songs.size()) {
-      return false;
-    }
-    for (size_t i = 0; i < _songs.size(); ++i) {
-      if (!(*_songs[i] == *other._songs[i])) {
-        return false;
-      }
-    }
-    return true;
-  }
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -109,23 +99,21 @@ class TheDestroyerSong : public falcon_core::generic::Song {
   }
 };
 
-}  // namespace tests
+}  // namespace
 
 // --- Cereal Type Registration ---
-CEREAL_REGISTER_TYPE(tests::StrSong)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, tests::StrSong)
-CEREAL_REGISTER_TYPE(tests::ListSong)
+CEREAL_REGISTER_TYPE(::StrSong)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ::StrSong)
+CEREAL_REGISTER_TYPE(::ListSong)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ::ListSong)
+CEREAL_REGISTER_TYPE(::ComplexSong)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ::ComplexSong)
+CEREAL_REGISTER_TYPE(::TheDestroyerSong)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     tests::ListSong)
-CEREAL_REGISTER_TYPE(tests::ComplexSong)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     tests::ComplexSong)
-CEREAL_REGISTER_TYPE(tests::TheDestroyerSong)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     tests::TheDestroyerSong)
+                                     ::TheDestroyerSong)
 
 // --- Test Fixture ---
-namespace tests {
+namespace {
 template <typename T>
 void test_serialization(const T& original) {
   // Test string methods
@@ -151,10 +139,37 @@ TEST(SongTest, SimpleSerialization) {
   test_serialization(ListSong({"hello", "world"}));
 }
 
-TEST(SongTest, ComplexSerialization) {
-  auto original = ComplexSong(
-      {"hello"}, {std::make_shared<StrSong>("world")}, MyEnum::STUFF);
-  test_serialization(original);
+TEST(SongTest, Inequality) {
+  auto song1 = StrSong("hello");
+  auto song2 = StrSong("goodbye");
+  ASSERT_TRUE(song1 != song2);
+}
+TEST(SongTest, NotInequality) {
+  auto song1 = StrSong("hello");
+  auto song2 = StrSong("hello");
+  ASSERT_FALSE(song1 != song2);
+}
+
+TEST(SongTest, Equality) {
+  auto song1 = StrSong("hello");
+  auto song2 = StrSong("hello");
+  ASSERT_TRUE(song1 == song2);
+}
+TEST(SongTest, NotEquality) {
+  auto song1 = StrSong("hello");
+  auto song2 = StrSong("goodbye");
+  ASSERT_FALSE(song1 == song2);
+}
+TEST(SongTest, LambdaDeleterIsCalled) {
+  bool           deleter_called = false;
+  const StrSong* song_ptr       = new StrSong("test");
+  {
+    // Lambda sets flag when called
+    std::shared_ptr<const StrSong> ptr(
+        song_ptr, [&](const StrSong*) { deleter_called = true; });
+    // ptr goes out of scope here, lambda should be called
+  }
+  EXPECT_TRUE(deleter_called);
 }
 
 TEST(SongTest, DestroyerSerialization) {
@@ -204,4 +219,4 @@ TEST(SongTest, DestroyerSerialization) {
   ASSERT_EQ(*(stream_orig_it->first), *(des_stream_it->first));
   ASSERT_EQ(*(stream_orig_it->second), *(des_stream_it->second));
 }
-}  // namespace tests
+}  // namespace

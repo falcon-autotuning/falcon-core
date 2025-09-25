@@ -191,16 +191,6 @@ TEST(TestSymbolUnit, SerializationRoundTrip) {
   ASSERT_EQ(m->name(), m2->name());
 }
 
-TEST(TestSymbolUnit, StringRepresentations) {
-  SymbolUnitSP m = SymbolUnit::Meter();
-
-  ASSERT_EQ(m->str(), SI::UNIT_SYMBOL_METER);
-  std::string repr_str = m->repr();
-  std::cout << "String Representation:\n" << repr_str << std::endl;
-  ASSERT_TRUE(repr_str.find("\"value2\": \"m\"") != std::string::npos);
-  ASSERT_TRUE(repr_str.find("\"value3\": \"meter\"") != std::string::npos);
-}
-
 TEST(TestSymbolUnit, PowerOperations) {
   SymbolUnitSP m = SymbolUnit::Meter();
 

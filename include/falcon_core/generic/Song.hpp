@@ -12,8 +12,7 @@
 #include <sstream>
 #include <string>
 
-namespace falcon_core {
-namespace generic {
+namespace falcon_core::generic {
 /**
  * @brief Abstract base for all serializable Song objects.
  *
@@ -90,18 +89,8 @@ class Song {
    * @brief Equality operator.
    * Override in derived classes to compare member variables.
    */
-  bool        operator==(const Song& other) const;
-  bool        operator!=(const Song& other) const;
-  std::string repr() const { return to_json_string(); }
+  bool operator==(const Song& other) const;
+  bool operator!=(const Song& other) const;
 };
-
-struct SongPtrEqual {
-  bool operator()(const std::shared_ptr<Song>& a,
-                  const std::shared_ptr<Song>& b) const {
-    return a->to_json_string() == b->to_json_string();
-  }
-};
-
-}  // namespace generic
-}  // namespace falcon_core
-   //
+using SongSP = std::shared_ptr<Song>;
+}  // namespace falcon_core::generic

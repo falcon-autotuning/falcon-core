@@ -2,7 +2,7 @@
 
 #include <sstream>
 
-using namespace falcon_core::generic;
+namespace falcon_core::generic {
 std::string Song::to_json_string() const {
   std::ostringstream oss;
   to_json_stream(oss);
@@ -19,17 +19,9 @@ bool Song::operator==(const Song& other) const {
   return to_json_string() == other.to_json_string();
 }
 bool Song::operator!=(const Song& other) const {
-  return to_json_string() != other.to_json_string();
+  return !(to_json_string() == other.to_json_string());
 }
 
-// Hash specialization for Song
-namespace std {
-template <>
-struct hash<falcon_core::generic::Song> {
-  std::size_t operator()(const falcon_core::generic::Song& s) const {
-    return std::hash<std::string>()(s.to_json_string());
-  }
-};
-}  // namespace std
+}  // namespace falcon_core::generic
 
-CEREAL_REGISTER_TYPE(Song)
+CEREAL_REGISTER_TYPE(falcon_core::generic::Song)

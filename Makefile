@@ -43,7 +43,8 @@ build:
 		-DCMAKE_C_COMPILER_LAUNCHER=ccache \
 		-DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
 		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
-		-DCMAKE_CXX_FLAGS="-g -O0" \
+		-DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" \
+		-DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping" \
 		-DCMAKE_TOOLCHAIN_FILE="$$(vcpkg integrate install --triplet=x64-linux | grep -o '/.*\.cmake' | head -n1)" \
 		-DVCPKG_TARGET_TRIPLET=x64-linux \
 		. -S . -B $(BUILD_DIR)
@@ -78,6 +79,14 @@ install:
 	@echo "--- Installing Python package ---"
 	@uv pip install .
 
+coverage:
+	@LLVM_PROFILE_FILE="run_tests.profraw" ./build/run_tests 
+	@llvm-profdata merge -sparse run_tests.profraw -o run_tests.profdata
+	@llvm-cov show ./build/run_tests -instr-profile=run_tests.profdata \
+	  -format=html -output-dir=coverage_html \
+	  -ignore-filename-regex='(vcpkg_installed|tests/)'
+	@xdg-open coverage_html/index.html
+
 # Run tests using CTest
 test: build
 	@echo "--- Running C++ Tests ---"
@@ -88,6 +97,7 @@ clean:
 	@echo "--- Cleaning build directory and compiled extension ---"
 	@rm -rf $(BUILD_DIR)
 	@rm -rf $(OUT_PYTHON_DIR)
+	@rm -rf ./coverage_html/
 
 # Clean everything including vcpkg cache
 clean-all: clean

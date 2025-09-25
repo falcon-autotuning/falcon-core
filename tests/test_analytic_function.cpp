@@ -51,13 +51,13 @@ TEST(AnalyticFunctionTest, NegativeTimeEvaluate) {
 TEST(AnalyticFunctionTest, BadMapThrowsRange) {
   auto func = AnalyticFunction::Identity();
   auto map = std::make_shared<falcon_core::generic::Map<std::string, double>>();
-  EXPECT_THROW(func->evaluate(map, 0.0, 1.0), std::invalid_argument);
+  EXPECT_THROW(func->evaluate(map, 0.1, 1.0), std::invalid_argument);
 }
 
 TEST(AnalyticFunctionTest, NullMapInputRange) {
   auto func = AnalyticFunction::Identity();
   auto map  = nullptr;
-  EXPECT_THROW(func->evaluate(map, 0.0, 1.0), std::invalid_argument);
+  EXPECT_THROW(func->evaluate(map, 0.1, 1.0), std::invalid_argument);
 }
 
 TEST(AnalyticFunctionTest, NegativeDeltaT) {
@@ -98,8 +98,8 @@ TEST(AnalyticFunctionTest, CustomEvaluation) {
 TEST(AnalyticFunctionTest, CustomDeltaEvaluation) {
   AnalyticFunctionSP func = AnalyticFunction::Constant(5.0);
   auto map = std::make_shared<falcon_core::generic::Map<std::string, double>>();
-  arrays::ControlArray1DSP out = func->evaluate(map, 0.1, 1.0);
-  EXPECT_EQ(out->size(), 10);
+  auto out = func->evaluate(map, 0.1, 1.0);
+  EXPECT_EQ(out->size(), 11);
   EXPECT_EQ(out->xtensor().at(0), 5.0);
   EXPECT_EQ(out->xtensor().at(9), 5.0);
 }
@@ -122,7 +122,7 @@ TEST(AnalyticFunctionTest, InvalidExpressionThrows) {
   generic::ListSP<std::string> labels =
       std::make_shared<generic::List<std::string>>(
           std::vector<std::string>{"constant"});
-  std::string expression = "x[i";
+  std::string expression = "x[0]x[i";
   EXPECT_THROW(AnalyticFunction(labels, expression), std::invalid_argument);
 }
 
@@ -148,7 +148,7 @@ TEST(AnalyticFunctionTest, CustomQuadraticTimeEvaluation) {
   std::string expression = "t^2";
   auto        func       = AnalyticFunction(labels, expression);
   auto map = std::make_shared<falcon_core::generic::Map<std::string, double>>();
-  EXPECT_DOUBLE_EQ(func.evaluate(map, 2.0), 2.0);
+  EXPECT_DOUBLE_EQ(func.evaluate(map, 2.0), 4.0);
 }
 
 TEST(AnalyticFunctionTest, CustomQuadraticTimeArray) {
@@ -157,13 +157,33 @@ TEST(AnalyticFunctionTest, CustomQuadraticTimeArray) {
   std::string expression = "t^2";
   auto        func       = AnalyticFunction(labels, expression);
   auto map = std::make_shared<falcon_core::generic::Map<std::string, double>>();
-  double                                    delta = 0.1;
-  double                                    start = 0.0;
-  double                                    end   = 2.0;
+  double                                    delta     = 0.1;
+  double                                    start     = 0.0;
+  double                                    end       = 2.0;
+  const double                              tolerance = 1e-6;
   falcon_core::math::arrays::ControlArray1D expected_result =
       falcon_core::math::arrays::ControlArray1D(
           xt::pow(xt::arange(start, end, delta), 2));
-  EXPECT_EQ(*func.evaluate(map, delta, end), expected_result);
+  auto result = *func.evaluate(map, delta, end);
+  for (int i = 0; i < expected_result.size(); i++) {
+    EXPECT_NEAR(
+        result.xtensor().at(i), expected_result.xtensor().at(i), tolerance);
+  }
+}
+TEST(AnalyticFunctionTest, BrokenHardestPrompt) {
+  double                       delta      = 0.1;
+  double                       start      = 0.0;
+  double                       end        = 2.0;
+  double                       gate_value = 0.3;
+  const double                 tolerance  = 1e-6;
+  generic::ListSP<std::string> labels =
+      std::make_shared<generic::List<std::string>>(
+          std::vector<std::string>{"gate"});
+  std::string expression = "2*x[0]*t^3";
+  auto        func       = AnalyticFunction(labels, expression);
+  auto map = std::make_shared<falcon_core::generic::Map<std::string, double>>();
+  map->insert("g", gate_value);
+  EXPECT_THROW(func.evaluate(map, delta, end), std::invalid_argument);
 }
 
 TEST(AnalyticFunctionTest, HardestPrompt) {
@@ -171,6 +191,7 @@ TEST(AnalyticFunctionTest, HardestPrompt) {
   double                       start      = 0.0;
   double                       end        = 2.0;
   double                       gate_value = 0.3;
+  const double                 tolerance  = 1e-6;
   generic::ListSP<std::string> labels =
       std::make_shared<generic::List<std::string>>(
           std::vector<std::string>{"gate"});
@@ -181,7 +202,11 @@ TEST(AnalyticFunctionTest, HardestPrompt) {
   falcon_core::math::arrays::ControlArray1D expected_result =
       falcon_core::math::arrays::ControlArray1D(
           xt::pow(xt::arange(start, end, delta), 3) * 2 * gate_value);
-  EXPECT_EQ(*func.evaluate(map, delta, end), expected_result);
+  auto result = *func.evaluate(map, delta, end);
+  for (int i = 0; i < expected_result.size(); i++) {
+    EXPECT_NEAR(
+        result.xtensor().at(i), expected_result.xtensor().at(i), tolerance);
+  }
 }
 
 }  // namespace

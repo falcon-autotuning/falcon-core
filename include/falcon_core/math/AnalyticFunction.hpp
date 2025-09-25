@@ -26,6 +26,13 @@ namespace falcon_core::math {
 using VariableName = std::string;
 class AnalyticFunction : public generic::List<VariableName> {
   std::string _expression;
+  /**
+   * @brief Checks that it is safe to evaluate the args that the user passed in.
+   * @param args The user args from the evaluate function
+   * @throw invalid_argument if the args are improper.
+   */
+  void checkSafeEvaluateArgs(
+      const generic::MapSP<VariableName, double>& args) const;
 
  public:
   /**
@@ -64,7 +71,7 @@ class AnalyticFunction : public generic::List<VariableName> {
    * @param deltaT The different between calculated datapoints
    * @param maxTime The total time to expend running the calculation.
    */
-  arrays::ControlArray1DSP evaluate(
+  generic::FArraySP<double> evaluate(
       const generic::MapSP<VariableName, double>& args,
       const double&                               deltaT,
       const double&                               maxTime) const;
