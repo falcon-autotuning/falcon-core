@@ -18,13 +18,15 @@ const generic::ListSP<VariableName> AnalyticFunction::labels() const {
 }
 AnalyticFunctionSP AnalyticFunction::Identity() {
   std::string                   expression = "x[0]";
-  generic::ListSP<VariableName> labels;
+  generic::ListSP<VariableName> labels =
+      std::make_shared<generic::List<VariableName>>();
   labels->push_back("x");
   return std::make_shared<AnalyticFunction>(labels, expression);
 }
 AnalyticFunctionSP AnalyticFunction::Constant(const double& value) {
   std::string                   expression = std::to_string(value);
-  generic::ListSP<VariableName> labels;
+  generic::ListSP<VariableName> labels =
+      std::make_shared<generic::List<VariableName>>();
   return std::make_shared<AnalyticFunction>(labels, expression);
 }
 double AnalyticFunction::evaluate(
@@ -36,6 +38,10 @@ double AnalyticFunction::evaluate(
   std::vector<double>          x(items().size());
   double                       t = time;
   for (size_t i = 0; i < items().size(); ++i) {
+    if (!args->contains(items()[i])) {
+      throw std::invalid_argument("Expected argument " + items()[i] +
+                                  " in the map, but did not find it.");
+    }
     x[i] = args->at(items()[i]);
   }
   symbol_table.add_vector("x", x.data(), x.size());
@@ -57,6 +63,9 @@ arrays::ControlArray1DSP AnalyticFunction::evaluate(
   double                       t         = 0.0;
   size_t                       numPoints = floor(maxTime / deltaT);
   std::vector<double>          x(items().size());
+  if (!args) {
+    throw std::runtime_error("Need to specify the args.");
+  }
   for (size_t i = 0; i < items().size(); ++i) {
     x[i] = args->at(items()[i]);
   }

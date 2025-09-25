@@ -37,9 +37,10 @@ class Map : public virtual generic::Song {
                         [&](const ContainerItem& v) { return v.first == key; });
   }
   iterator find_storage(const std::shared_ptr<Key>& key) {
+    if (!key) return _items.end();
     return std::find_if(
         _items.begin(), _items.end(), [&](const ContainerItem& v) {
-          return *v.first == *key;
+          return v.first && (*v.first == *key);
         });
   }
   const_iterator find_storage(const Key& key) const {
@@ -48,9 +49,10 @@ class Map : public virtual generic::Song {
                         [&](const ContainerItem& v) { return v.first == key; });
   }
   const_iterator find_storage(const std::shared_ptr<Key>& key) const {
+    if (!key) return _items.end();
     return std::find_if(
         _items.begin(), _items.end(), [&](const ContainerItem& v) {
-          return *v.first == *key;
+          return v.first && (*v.first == *key);
         });
   }
 
