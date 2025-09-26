@@ -85,11 +85,11 @@ class Config : public StandardConfigConnections {
   /**
    * @brief Returns all of the group names.
    */
-  std::vector<autotuner_interfaces::names::GnameSP> get_all_gnames() const;
+  generic::ListSP<autotuner_interfaces::names::Gname> get_all_gnames() const;
   /**
    * @brief Returns all of the groups.
    */
-  std::vector<GroupSP> get_all_groups() const;
+  generic::ListSP<Group> get_all_groups() const;
   /**
    * @brief Searches through all Group and collects all of the Channel.
    */
@@ -127,7 +127,7 @@ class Config : public StandardConfigConnections {
    * one quantum dot per channel.
    * @returns A vector of gnames that are charge sensors.
    */
-  std::vector<autotuner_interfaces::names::GnameSP> get_charge_sense_groups()
+  generic::ListSP<autotuner_interfaces::names::Gname> get_charge_sense_groups()
       const;
   /**
    * @brief If the ohmic is inside of a charge sensor channel

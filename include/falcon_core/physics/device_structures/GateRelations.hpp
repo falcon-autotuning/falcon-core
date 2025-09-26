@@ -19,7 +19,8 @@ class GateRelations : public generic::Map<Connection, Connections> {
   /**
    * @brief Override the assert method to force gate typing.
    */
-  std::pair<std::vector<std::pair<ConnectionSP, ConnectionsSP>>::iterator, bool>
+  std::pair<generic::List<generic::Pair<Connection, Connections>>::iterator,
+            bool>
   insert(const ConnectionSP& key, const ConnectionsSP& value);
 
  protected:

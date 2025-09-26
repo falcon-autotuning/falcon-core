@@ -184,10 +184,10 @@ TEST_F(ConfigTestFixture, JsonRoundTrip) {
 TEST_F(ConfigTestFixture, BasicQueries) {
   auto gnames = original_config.get_all_gnames();
   auto groups = original_config.get_all_groups();
-  ASSERT_EQ(gnames.size(), groups.size());
-  for (size_t i = 0; i < gnames.size(); ++i) {
-    ASSERT_TRUE(groups[i]);
-    ASSERT_TRUE(gnames[i]);
+  ASSERT_EQ(gnames->size(), groups->size());
+  for (size_t i = 0; i < gnames->size(); ++i) {
+    ASSERT_TRUE(groups->items()[i]);
+    ASSERT_TRUE(gnames->items()[i]);
   }
 
   // Test compile_channels and has_channel
@@ -198,7 +198,7 @@ TEST_F(ConfigTestFixture, BasicQueries) {
   }
 
   // Test has_gname and select_group
-  for (const auto& gn : gnames) {
+  for (const auto& gn : *gnames) {
     ASSERT_TRUE(original_config.has_gname(gn));
     auto group = original_config.select_group(gn);
     ASSERT_TRUE(group);

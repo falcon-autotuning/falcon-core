@@ -13,17 +13,17 @@ Point::Point(
     : _unit(unit),
       generic::Map<physics::device_structures::Connection, Quantity>() {
   for (const auto pair : *init) {
-    insert(pair.first, std::make_shared<Quantity>(pair.second, unit));
+    insert(pair->first(), std::make_shared<Quantity>(pair->second(), unit));
   }
 }
 Point::Point(const generic::MapSP<physics::device_structures::Connection,
                                   Quantity>& init)
-    : _unit(init->at(init->keys().at(0))->unit()),
+    : _unit(init->at(init->keys()->at(0))->unit()),
       generic::Map<physics::device_structures::Connection, Quantity>() {
   for (const auto pair : *init) {
-    QuantitySP quantity = pair.second;
+    QuantitySP quantity = pair->second();
     quantity->convert_to(_unit);
-    insert(pair.first, quantity);
+    insert(pair->first(), quantity);
   }
 }
 void Point::insert_or_assign(
@@ -45,14 +45,13 @@ Point::coordinates() const {
   auto map = std::make_shared<
       generic::Map<physics::device_structures::Connection, Quantity>>();
   for (const auto& pair : items()) {
-    map->insert(pair.first, pair.second);
+    map->insert(pair->first(), pair->second());
   }
   return map;
 }
 const generic::ListSP<physics::device_structures::Connection>
 Point::connections() const {
-  return std::make_shared<
-      generic::List<physics::device_structures::Connection>>(keys());
+  return keys();
 }
 
 PointSP Point::operator+(const PointSP& other) const {
@@ -61,11 +60,11 @@ PointSP Point::operator+(const PointSP& other) const {
           generic::Map<physics::device_structures::Connection, Quantity>>(
           items()));
   for (const auto& kv : other->items()) {
-    auto it = result->find(kv.first);
+    auto it = result->find(kv->first());
     if (it != result->end()) {
-      *it->second += kv.second;
+      *(*it)->second() += kv->second();
     } else {
-      result->insert_or_assign(kv.first, kv.second);
+      result->insert_or_assign(kv->first(), kv->second());
     }
   }
   return result;
@@ -77,11 +76,11 @@ PointSP Point::operator-(const PointSP& other) const {
           generic::Map<physics::device_structures::Connection, Quantity>>(
           items()));
   for (const auto& kv : other->items()) {
-    auto it = result->find(kv.first);
+    auto it = result->find(kv->first());
     if (it != result->end()) {
-      *it->second -= kv.second;
+      *(*it)->second() -= kv->second();
     } else {
-      result->insert_or_assign(kv.first, kv.second);
+      result->insert_or_assign(kv->first(), kv->second());
     }
   }
   return result;
@@ -93,7 +92,7 @@ PointSP Point::operator*(double scalar) const {
           generic::Map<physics::device_structures::Connection, Quantity>>(
           items()));
   for (auto& kv : result->items()) {
-    *kv.second *= scalar;
+    *kv->second() *= scalar;
   }
   return result;
 }
@@ -104,7 +103,7 @@ PointSP Point::operator/(double scalar) const {
           generic::Map<physics::device_structures::Connection, Quantity>>(
           items()));
   for (auto& kv : result->items()) {
-    *kv.second /= scalar;
+    *kv->second() /= scalar;
   }
   return result;
 }
@@ -112,10 +111,10 @@ PointSP Point::operator/(double scalar) const {
 PointSP Point::operator-() const {
   PointSP result = std::make_shared<Point>(
       std::make_shared<
-          generic::Map<physics::device_structures::Connection, Quantity>>(
-          items()));
-  for (auto& kv : result->items()) {
-    kv.second = -*kv.second;
+          generic::Map<physics::device_structures::Connection, Quantity>>());
+
+  for (auto& kv : items()) {
+    result->insert(kv->first(), -*kv->second());
   }
   return result;
 }

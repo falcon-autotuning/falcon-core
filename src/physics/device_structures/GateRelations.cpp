@@ -19,7 +19,7 @@ void GateRelations::insert_or_assign(const ConnectionSP&  key,
   }
   Map::insert_or_assign(key, value);
 }
-std::pair<std::vector<std::pair<ConnectionSP, ConnectionsSP>>::iterator, bool>
+std::pair<generic::List<generic::Pair<Connection, Connections>>::iterator, bool>
 GateRelations::insert(const ConnectionSP& key, const ConnectionsSP& value) {
   // Override to ensure proper types
   if (!key->is_gate()) {

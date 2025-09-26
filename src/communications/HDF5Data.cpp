@@ -146,11 +146,12 @@ void HDF5Data::to_file(const std::string& path) const {
   // Metadata
   H5::Group   metadata_group = file.createGroup("/metadata");
   H5::StrType str_type(H5::PredType::C_S1, H5T_VARIABLE);
-  for (const auto& [key, value] : *_metadata) {
+  for (const auto& pair : *_metadata) {
     hsize_t       md_dims[1] = {1};
     H5::DataSpace md_space(1, md_dims);
-    H5::DataSet   md_ds = metadata_group.createDataSet(key, str_type, md_space);
-    md_ds.write(value, str_type);
+    H5::DataSet   md_ds =
+        metadata_group.createDataSet(pair->first(), str_type, md_space);
+    md_ds.write(pair->second(), str_type);
   }
   H5::Attribute timestamp_attr = metadata_group.createAttribute(
       "timestamp", H5::PredType::NATIVE_INT, H5::DataSpace());

@@ -6,32 +6,12 @@
 #pragma once
 
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates.hpp"
+#include "falcon_core/generic/Pair.hpp"
 #include "falcon_core/math/Point.hpp"
+#include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
-
 namespace falcon_core::math {
-/**
- * @brief a Tuple of two quantities that is serializeable.
- */
-class DeltaQuantity : public generic::Song {
-  QuantitySP _first;
-  QuantitySP _second;
-
- public:
-  DeltaQuantity(const QuantitySP& first, const QuantitySP& second);
-  const QuantitySP& first() const;
-  const QuantitySP& second() const;
-
- protected:
-  DeltaQuantity();
-  friend class cereal::access;
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this), _first, _second);
-  }
-};
-using DeltaQuantitySP = std::shared_ptr<DeltaQuantity>;
 /**
  * @brief Represents a vector in a multi-dimensional space, defined by start and
  * end points.
@@ -42,7 +22,7 @@ using DeltaQuantitySP = std::shared_ptr<DeltaQuantity>;
  * connections.
  */
 class Vector : public generic::Map<physics::device_structures::Connection,
-                                   DeltaQuantity> {
+                                   generic::Pair<Quantity, Quantity>> {
   physics::units::SymbolUnitSP              _unit;
   physics::device_structures::ConnectionsSP _connections;
 
@@ -64,7 +44,7 @@ class Vector : public generic::Map<physics::device_structures::Connection,
       const generic::MapSP<physics::device_structures::Connection, double>& end,
       falcon_core::physics::units::SymbolUnitSP unit);
   Vector(const generic::MapSP<physics::device_structures::Connection,
-                              DeltaQuantity> map);
+                              generic::Pair<Quantity, Quantity>> map);
   /**
    * @brief Returns the point at the end.
    */
@@ -191,7 +171,8 @@ class Vector : public generic::Map<physics::device_structures::Connection,
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Map<physics::device_structures::Connection,
-                                       math::DeltaQuantity>>(this),
+                                       generic::Pair<Quantity, Quantity>>>(
+           this),
        _unit);
   }
 };
