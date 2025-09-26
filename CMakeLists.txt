@@ -31,6 +31,9 @@ function(cpp_tests)
     # Default: include all test files
     set(RUN_TESTS_SOURCES
         tests/test_unit.cpp
+        tests/test_list.cpp
+        tests/test_pair.cpp
+        tests/test_map.cpp
         tests/test_song.cpp
         tests/test_device_structures.cpp
         tests/test_arrays.cpp

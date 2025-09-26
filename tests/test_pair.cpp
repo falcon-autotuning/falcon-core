@@ -27,8 +27,14 @@ class Dummy : public Song {
 };
 using DummySP = std::shared_ptr<Dummy>;
 }  // namespace
-CEREAL_REGISTER_TYPE(Dummy)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, Dummy)
+CEREAL_REGISTER_TYPE(::Dummy)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ::Dummy)
+using PID = falcon_core::generic::Pair<int, double>;
+CEREAL_REGISTER_TYPE(PID)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PID);
+using PDD = falcon_core::generic::Pair<::Dummy, ::Dummy>;
+CEREAL_REGISTER_TYPE(PDD)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PDD);
 namespace {
 using namespace falcon_core::generic;
 
@@ -68,8 +74,8 @@ TEST(PairTest, SerializationNonPrimitive) {
   Pair<Dummy, Dummy> orig(d1, d2);
   auto               string = orig.to_json_string();
   auto               restored =
-      Pair<int, double>::from_json_string<Pair<int, double>>(string);
-  EXPECT_EQ(restored->first(), 11);
-  EXPECT_EQ(restored->second(), 22);
+      Pair<Dummy, Dummy>::from_json_string<Pair<Dummy, Dummy>>(string);
+  EXPECT_EQ(restored->first()->value(), 11);
+  EXPECT_EQ(restored->second()->value(), 22);
 }
 }  // namespace

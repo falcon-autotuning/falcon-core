@@ -83,7 +83,12 @@ class Song {
     cereal::JSONInputArchive archive(is);
     std::shared_ptr<Song>    ptr;
     archive(ptr);
-    return std::dynamic_pointer_cast<T>(ptr);
+    auto casted = std::dynamic_pointer_cast<T>(ptr);
+    if (!casted) {
+      throw std::runtime_error(
+          "Song: Failed to cast Song to requested type from json stream");
+    }
+    return casted;
   }
   /**
    * @brief Equality operator.

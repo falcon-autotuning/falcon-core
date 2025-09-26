@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
 
+#include <stdexcept>
+
 #include "falcon_core/generic/Song.hpp"
 namespace {
 // --- Helper Classes for Testing ---
@@ -137,6 +139,9 @@ void test_serialization(const T& original) {
 TEST(SongTest, SimpleSerialization) {
   test_serialization(StrSong("hello"));
   test_serialization(ListSong({"hello", "world"}));
+  auto string = StrSong("hello").to_json_string();
+  ASSERT_THROW(TheDestroyerSong::from_json_string<TheDestroyerSong>(string),
+               std::runtime_error);
 }
 
 TEST(SongTest, Inequality) {

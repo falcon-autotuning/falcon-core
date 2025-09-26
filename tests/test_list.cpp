@@ -117,14 +117,14 @@ TEST_F(ListTest, CreateFullPrimitivePushBack) {
   auto   list  = List<double>(double_data);
   double value = 10.0;
   list.push_back(value);
-  EXPECT_EQ(list[11], value);
+  EXPECT_EQ(list[10], value);
 }
 
 TEST_F(ListTest, CreateFullSongPushBack) {
   auto list  = List<StrSong>(song_data);
   auto value = std::make_shared<StrSong>("Whee");
   list.push_back(value);
-  EXPECT_EQ(list[11], value);
+  EXPECT_EQ(list[3], value);
 }
 
 TEST_F(ListTest, SizePrimitives) {
@@ -202,6 +202,16 @@ TEST_F(ListTest, ItemsAccess) {
   EXPECT_EQ(list.items(), double_data);
   list.items()[0] = 42.0;
   EXPECT_EQ(list.items()[0], 42.0);
+}
+
+TEST_F(ListTest, OOBAtPrimitive) {
+  List<double> list(double_data);
+  ASSERT_THROW(list[11], std::out_of_range);
+}
+
+TEST_F(ListTest, OOBAtSong) {
+  List<StrSong> list(song_data);
+  ASSERT_THROW(list[11], std::out_of_range);
 }
 
 TEST_F(ListTest, Iterators) {
@@ -283,6 +293,17 @@ TEST_F(ListTest, Clear) {
   EXPECT_EQ(list.size(), 0);
 }
 
+TEST_F(ListTest, EraseAt) {
+  List<double> list(double_data);
+  list.erase_at(1);
+  EXPECT_EQ(list.at(1), 2.0);
+}
+
+TEST_F(ListTest, NoEraseAt) {
+  List<double> list(double_data);
+  EXPECT_THROW(list.erase_at(10), std::out_of_range);
+}
+
 TEST_F(ListTest, SerializeDeserialize) {
   List<double>      list(double_data);
   std::stringstream ss;
@@ -299,6 +320,43 @@ TEST_F(ListTest, SerializeDeserialize) {
   for (size_t i = 0; i < list.size(); ++i) {
     EXPECT_EQ(list2[i], list[i]);
   }
+}
+
+TEST_F(ListTest, BackReturnsLastElement) {
+  List<double> list(double_data);
+  list.push_back(1);
+  list.push_back(2);
+  EXPECT_EQ(list.back(), 2);
+  const auto& clist = list;
+  EXPECT_EQ(clist.back(), 2);
+}
+
+TEST_F(ListTest, BackThrowsOnEmptyList) {
+  List<int> empty_list;
+  EXPECT_THROW(empty_list.back(), std::out_of_range);
+
+  const List<int> const_empty_list;
+  EXPECT_THROW(const_empty_list.back(), std::out_of_range);
+}
+
+TEST_F(ListTest, PushBackThrowsOnNullPointer) {
+  List<StrSong> list(song_data);
+  EXPECT_THROW(list.push_back(nullptr), std::invalid_argument);
+}
+
+TEST_F(ListTest, ContainsThrowsOnNullPointer) {
+  List<StrSong> list(song_data);
+  EXPECT_THROW(list.contains(nullptr), std::invalid_argument);
+}
+
+TEST_F(ListTest, IndexThrowsOnNullPointer) {
+  List<StrSong> list(song_data);
+  EXPECT_THROW(list.index(nullptr), std::invalid_argument);
+}
+
+TEST_F(ListTest, IntersectionThrowsOnNullPointer) {
+  List<StrSong> list(song_data);
+  EXPECT_THROW(list.intersection(nullptr), std::invalid_argument);
 }
 
 }  // namespace

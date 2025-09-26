@@ -1,8 +1,8 @@
 #pragma once
 
+#include "falcon_core/generic/FArray.hpp"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Map.hpp"
-#include "falcon_core/math/arrays/ControlArray1D.hpp"
 
 /**
  * @file AnalyticFunction.hpp
