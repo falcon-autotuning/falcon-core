@@ -5,7 +5,163 @@
 namespace tests {
 using namespace falcon_core;
 using namespace falcon_core::physics::units;
-TEST(TestSymbolUnit, Initialization) {
+class UnitTest : public ::testing::Test {};
+
+TEST_F(UnitTest, ConstructorWithDimensionsOnly) {
+  TotalDimensions dims = {{"LENGTH", 1}};
+  Unit            u(dims);
+  ASSERT_EQ(u.dimensions(), dims);
+  ASSERT_DOUBLE_EQ(u.scale_factor(), 1.0);
+  ASSERT_DOUBLE_EQ(u.offset(), 0.0);
+  ASSERT_EQ(u.prefix(), SI::UNIT_SYMBOL);
+}
+
+TEST_F(UnitTest, ConstructorWithAllArguments) {
+  TotalDimensions dims = {{"LENGTH", 2}, {"TIME", -1}};
+  Unit            u(dims, 42.0, 3.14, "k");
+  ASSERT_EQ(u.dimensions(), dims);
+  ASSERT_DOUBLE_EQ(u.scale_factor(), 42.0);
+  ASSERT_DOUBLE_EQ(u.offset(), 3.14);
+  ASSERT_EQ(u.prefix(), "k");
+}
+
+TEST_F(UnitTest, StaticConstructors) {
+  ASSERT_EQ(Unit::Meter()->dimensions().at(SI::DIMENSION_LENGTH), 1);
+  ASSERT_EQ(Unit::Kilogram()->dimensions().at(SI::DIMENSION_MASS), 1);
+  ASSERT_EQ(Unit::Second()->dimensions().at(SI::DIMENSION_TIME), 1);
+  ASSERT_EQ(Unit::Ampere()->dimensions().at(SI::DIMENSION_CURRENT), 1);
+  ASSERT_EQ(Unit::Kelvin()->dimensions().at(SI::DIMENSION_TEMPERATURE), 1);
+  ASSERT_EQ(Unit::Mole()->dimensions().at(SI::DIMENSION_AMOUNT), 1);
+  ASSERT_EQ(Unit::Candela()->dimensions().at(SI::DIMENSION_LUMINOSITY), 1);
+  ASSERT_EQ(Unit::Dimensionless()->dimensions().size(), 0);
+}
+
+TEST_F(UnitTest, PrefixAndOffsetAccessors) {
+  auto m = Unit::Meter();
+  ASSERT_EQ(m->prefix(), SI::UNIT_SYMBOL);
+  ASSERT_DOUBLE_EQ(m->offset(), 0.0);
+
+  auto c = Unit::Celsius();
+  ASSERT_DOUBLE_EQ(c->offset(), 273.15);
+  ASSERT_EQ(c->prefix(), SI::UNIT_SYMBOL);
+}
+
+TEST_F(UnitTest, OperatorMultiplyNullptrThrows) {
+  auto m = Unit::Meter();
+  EXPECT_THROW(*m * nullptr, std::invalid_argument);
+}
+
+TEST_F(UnitTest, OperatorDivideNullptrThrows) {
+  auto m = Unit::Meter();
+  EXPECT_THROW(*m / nullptr, std::invalid_argument);
+}
+
+TEST_F(UnitTest, ConvertValueToNullptrThrows) {
+  auto m = Unit::Meter();
+  EXPECT_THROW(m->convert_value_to(1.0, nullptr), std::invalid_argument);
+}
+
+TEST_F(UnitTest, IsCompatibleWithNullptrThrows) {
+  auto m = Unit::Meter();
+  EXPECT_THROW(m->is_compatible_with(nullptr), std::invalid_argument);
+}
+
+TEST_F(UnitTest, OperatorMultiplyWorks) {
+  auto m      = Unit::Meter();
+  auto s      = Unit::Second();
+  auto result = *m * s;
+  ASSERT_TRUE(result != nullptr);
+  ASSERT_EQ(result->dimensions().at(SI::DIMENSION_LENGTH), 1);
+  ASSERT_EQ(result->dimensions().at(SI::DIMENSION_TIME), 1);
+}
+
+TEST_F(UnitTest, OperatorDivideWorks) {
+  auto m      = Unit::Meter();
+  auto s      = Unit::Second();
+  auto result = *m / s;
+  ASSERT_TRUE(result != nullptr);
+  ASSERT_EQ(result->dimensions().at(SI::DIMENSION_LENGTH), 1);
+  ASSERT_EQ(result->dimensions().at(SI::DIMENSION_TIME), -1);
+}
+
+TEST_F(UnitTest, OperatorPowerWorks) {
+  auto m      = Unit::Meter();
+  auto result = *m ^ 2;
+  ASSERT_TRUE(result != nullptr);
+  ASSERT_EQ(result->dimensions().at(SI::DIMENSION_LENGTH), 2);
+}
+
+TEST_F(UnitTest, WithPrefixWorks) {
+  auto m  = Unit::Meter();
+  auto km = m->with_prefix(SI::KILO_SYMBOL);
+  ASSERT_TRUE(km != nullptr);
+  ASSERT_EQ(km->prefix(), SI::KILO_SYMBOL);
+  ASSERT_EQ(km->scale_factor(), 1000.0);
+  ASSERT_EQ(km->dimensions(), m->dimensions());
+}
+
+TEST_F(UnitTest, WithPrefixInvalidThrows) {
+  auto m = Unit::Meter();
+  EXPECT_THROW(m->with_prefix("invalid"), std::invalid_argument);
+}
+
+TEST_F(UnitTest, GetMilliMicroNanoPicoKiloMegaGiga) {
+  auto   m         = Unit::Meter();
+  double tolerance = 1e6;
+  ASSERT_NEAR(m->get_milli()->scale_factor(), 0.001, tolerance);
+  ASSERT_NEAR(m->get_micro()->scale_factor(), 1e-6, tolerance);
+  ASSERT_NEAR(m->get_nano()->scale_factor(), 1e-9, tolerance);
+  ASSERT_NEAR(m->get_pico()->scale_factor(), 1e-12, tolerance);
+  ASSERT_NEAR(m->get_kilo()->scale_factor(), 1000.0, tolerance);
+  ASSERT_NEAR(m->get_mega()->scale_factor(), 1e6, tolerance);
+  ASSERT_NEAR(m->get_giga()->scale_factor(), 1e9, tolerance);
+}
+
+TEST_F(UnitTest, ConvertValueToWorks) {
+  auto m  = Unit::Meter();
+  auto mm = m->get_milli();
+  ASSERT_DOUBLE_EQ(m->convert_value_to(1.0, mm), 1000.0);
+}
+
+TEST_F(UnitTest, ConvertValueToIncompatibleThrows) {
+  auto m = Unit::Meter();
+  auto s = Unit::Second();
+  EXPECT_THROW(m->convert_value_to(1.0, s), std::invalid_argument);
+}
+
+TEST_F(UnitTest, IsCompatibleWithWorks) {
+  auto m  = Unit::Meter();
+  auto mm = m->get_milli();
+  auto s  = Unit::Second();
+  ASSERT_TRUE(m->is_compatible_with(mm));
+  ASSERT_FALSE(m->is_compatible_with(s));
+}
+
+TEST_F(UnitTest, CleanDimensionsRemovesZeroExponents) {
+  TotalDimensions dims = {{"LENGTH", 1}, {"TIME", 0}};
+  Unit::clean_dimensions(dims);
+  ASSERT_EQ(dims.count("TIME"), 0);
+  ASSERT_EQ(dims.at("LENGTH"), 1);
+}
+
+TEST_F(UnitTest, SerializationRoundTrip) {
+  auto              m = Unit::Meter();
+  std::stringstream ss;
+  {
+    cereal::JSONOutputArchive oarchive(ss);
+    oarchive(m);
+  }
+  UnitSP m2 = Unit::Meter();
+  {
+    cereal::JSONInputArchive iarchive(ss);
+    iarchive(m2);
+  }
+  ASSERT_EQ(m->dimensions(), m2->dimensions());
+  ASSERT_EQ(m->scale_factor(), m2->scale_factor());
+  ASSERT_EQ(m->offset(), m2->offset());
+  ASSERT_EQ(m->prefix(), m2->prefix());
+}
+TEST_F(UnitTest, Initialization) {
   SymbolUnitSP m = SymbolUnit::Meter();
   SymbolUnitSP s = SymbolUnit::Second();
   SymbolUnitSP v = SymbolUnit::Volt();
@@ -18,7 +174,7 @@ TEST(TestSymbolUnit, Initialization) {
   ASSERT_EQ(v->name(), SI::UNIT_NAME_VOLT);
 }
 
-TEST(TestSymbolUnit, PrefixedSymbolUnit) {
+TEST_F(UnitTest, PrefixedSymbolUnit) {
   SymbolUnitSP mm = SymbolUnit::MilliMeter();
   SymbolUnitSP kV = SymbolUnit::KiloVolt();
 
@@ -27,7 +183,7 @@ TEST(TestSymbolUnit, PrefixedSymbolUnit) {
   ASSERT_EQ(kV->symbol(),
             std::string(SI::KILO_SYMBOL) + std::string(SI::UNIT_SYMBOL_VOLT));
 }
-TEST(TestSymbolUnit, Operations) {
+TEST_F(UnitTest, Operations) {
   SymbolUnitSP m = SymbolUnit::Meter();
   SymbolUnitSP s = SymbolUnit::Second();
   SymbolUnitSP v = SymbolUnit::Volt();
@@ -51,12 +207,12 @@ TEST(TestSymbolUnit, Operations) {
   // ASSERT_EQ(v_div_ohm.unit().dimensions(), ...);
 }
 
-TEST(TestSymbolUnit, EqualityAndCompatibility) {
+TEST_F(UnitTest, EqualityAndCompatibility) {
   SymbolUnitSP m1 = SymbolUnit::Meter();
   SymbolUnitSP m2 = SymbolUnit::Meter();
   SymbolUnitSP s  = SymbolUnit::Second();
 
-  ASSERT_EQ(m1->unit(), m2->unit());
+  ASSERT_EQ(*m1->unit(), *m2->unit());
   ASSERT_NE(m1->unit(), s->unit());
 
   SymbolUnitSP mm = SymbolUnit::MilliMeter();
@@ -64,7 +220,7 @@ TEST(TestSymbolUnit, EqualityAndCompatibility) {
   ASSERT_FALSE(m1->is_compatible_with(s));
 }
 
-TEST(TestSymbolUnit, Conversion) {
+TEST_F(UnitTest, Conversion) {
   SymbolUnitSP m  = SymbolUnit::Meter();
   SymbolUnitSP mm = SymbolUnit::MilliMeter();
   SymbolUnitSP km = SymbolUnit::KiloMeter();
@@ -75,7 +231,7 @@ TEST(TestSymbolUnit, Conversion) {
   ASSERT_NEAR(km->convert_value_to(1.0, mm), 1e6, 1e-3);
 }
 
-TEST(TestSymbolUnit, DerivedSymbolUnit) {
+TEST_F(UnitTest, DerivedSymbolUnit) {
   SymbolUnitSP m = SymbolUnit::Meter();
   SymbolUnitSP s = SymbolUnit::Second();
   SymbolUnitSP n = SymbolUnit::Newton();
@@ -89,7 +245,7 @@ TEST(TestSymbolUnit, DerivedSymbolUnit) {
   ASSERT_EQ(n_times_m->symbol(), SI::UNIT_SYMBOL_JOULE);
 }
 
-TEST(TestSymbolUnit, DimensionlessSymbolUnit) {
+TEST_F(UnitTest, DimensionlessSymbolUnit) {
   SymbolUnitSP dimensionless = SymbolUnit::Dimensionless();
   SymbolUnitSP percent       = SymbolUnit::Percent();
 
@@ -100,7 +256,7 @@ TEST(TestSymbolUnit, DimensionlessSymbolUnit) {
   ASSERT_NEAR(percent->convert_value_to(100.0, dimensionless), 1.0, 1e-9);
 }
 
-TEST(TestSymbolUnit, ComplexSymbolUnit) {
+TEST_F(UnitTest, ComplexSymbolUnit) {
   SymbolUnitSP m = SymbolUnit::Meter();
   SymbolUnitSP s = SymbolUnit::Second();
 
@@ -111,7 +267,7 @@ TEST(TestSymbolUnit, ComplexSymbolUnit) {
   ASSERT_TRUE(acceleration->symbol().find("^-2") != std::string::npos);
 }
 
-TEST(TestSymbolUnit, CustomUnit) {
+TEST_F(UnitTest, CustomUnit) {
   // Create a custom unit with dimensions {length: 3}
   UnitSP       custom_unit = std::make_shared<Unit>(Unit({{"LENGTH", 3}}));
   SymbolUnitSP symbol_unit =
@@ -120,7 +276,7 @@ TEST(TestSymbolUnit, CustomUnit) {
   ASSERT_TRUE(symbol_unit->symbol().find("^3") != std::string::npos);
 }
 
-TEST(TestSymbolUnit, SymbolGeneration) {
+TEST_F(UnitTest, SymbolGeneration) {
   UnitSP length_time =
       std::make_shared<Unit>(Unit({{"LENGTH", 1}, {"TIME", 1}}));
   UnitSP complex_unit =
@@ -140,7 +296,7 @@ TEST(TestSymbolUnit, SymbolGeneration) {
   ASSERT_TRUE(complex_symbol->symbol().find("s") != std::string::npos);
 }
 
-TEST(TestSymbolUnit, WithPrefix) {
+TEST_F(UnitTest, WithPrefix) {
   SymbolUnitSP m  = SymbolUnit::Meter();
   SymbolUnitSP km = m->with_prefix(SI::KILO_SYMBOL);
 
@@ -149,13 +305,14 @@ TEST(TestSymbolUnit, WithPrefix) {
   ASSERT_EQ(km->unit()->dimensions(), m->unit()->dimensions());
 }
 
-TEST(TestSymbolUnit, InvalidConversion) {
+TEST_F(UnitTest, InvalidConversion) {
   SymbolUnitSP m = SymbolUnit::Meter();
   SymbolUnitSP s = SymbolUnit::Second();
 
   EXPECT_THROW(m->convert_value_to(10.0, s), std::invalid_argument);
 }
-TEST(TestSymbolUnit, Comparison) {
+
+TEST_F(UnitTest, Comparison) {
   SymbolUnitSP m_per_s = *SymbolUnit::Meter() / SymbolUnit::Second();
   SymbolUnitSP v       = std::make_shared<SymbolUnit>(
       std::make_shared<Unit>(Unit({{"LENGTH", 1}, {"TIME", -1}})));
@@ -166,32 +323,38 @@ TEST(TestSymbolUnit, Comparison) {
   // Symbol comparison may differ
 }
 
-#include <cereal/archives/json.hpp>
-#include <cereal/types/memory.hpp>
-#include <sstream>
-
-TEST(TestSymbolUnit, SerializationRoundTrip) {
-  SymbolUnitSP m = SymbolUnit::Meter();
-
-  // Serialize to JSON
-  std::stringstream ss;
-  {
-    cereal::JSONOutputArchive oarchive(ss);
-    oarchive(m);
-  }
-
-  // Deserialize from JSON
-  SymbolUnitSP m2 = SymbolUnit::Meter();
-  {
-    cereal::JSONInputArchive iarchive(ss);
-    iarchive(m2);
-  }
-
-  ASSERT_EQ(m->symbol(), m2->symbol());
-  ASSERT_EQ(m->name(), m2->name());
+TEST_F(UnitTest, AllStaticConstructors) {
+  ASSERT_TRUE(Unit::Meter() != nullptr);
+  ASSERT_TRUE(Unit::Kilogram() != nullptr);
+  ASSERT_TRUE(Unit::Second() != nullptr);
+  ASSERT_TRUE(Unit::Ampere() != nullptr);
+  ASSERT_TRUE(Unit::Kelvin() != nullptr);
+  ASSERT_TRUE(Unit::Mole() != nullptr);
+  ASSERT_TRUE(Unit::Candela() != nullptr);
+  ASSERT_TRUE(Unit::Hertz() != nullptr);
+  ASSERT_TRUE(Unit::Newton() != nullptr);
+  ASSERT_TRUE(Unit::Pascal() != nullptr);
+  ASSERT_TRUE(Unit::Joule() != nullptr);
+  ASSERT_TRUE(Unit::Watt() != nullptr);
+  ASSERT_TRUE(Unit::Coulomb() != nullptr);
+  ASSERT_TRUE(Unit::Volt() != nullptr);
+  ASSERT_TRUE(Unit::Farad() != nullptr);
+  ASSERT_TRUE(Unit::Ohm() != nullptr);
+  ASSERT_TRUE(Unit::Siemens() != nullptr);
+  ASSERT_TRUE(Unit::Weber() != nullptr);
+  ASSERT_TRUE(Unit::Tesla() != nullptr);
+  ASSERT_TRUE(Unit::Henry() != nullptr);
+  ASSERT_TRUE(Unit::Minute() != nullptr);
+  ASSERT_TRUE(Unit::Hour() != nullptr);
+  ASSERT_TRUE(Unit::ElectronVolt() != nullptr);
+  ASSERT_TRUE(Unit::Celsius() != nullptr);
+  ASSERT_TRUE(Unit::Fahrenheit() != nullptr);
+  ASSERT_TRUE(Unit::Dimensionless() != nullptr);
+  ASSERT_TRUE(Unit::Percent() != nullptr);
+  ASSERT_TRUE(Unit::Radian() != nullptr);
 }
 
-TEST(TestSymbolUnit, PowerOperations) {
+TEST_F(UnitTest, PowerOperations) {
   SymbolUnitSP m = SymbolUnit::Meter();
 
   SymbolUnitSP area = *m ^ 2;

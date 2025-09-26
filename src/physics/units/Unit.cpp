@@ -2,6 +2,7 @@
 
 #include <cereal/archives/binary.hpp>
 #include <cmath>
+#include <stdexcept>
 
 #include "falcon_core/Constants.hpp"
 #include "falcon_core/physics/units/Prefix.hpp"
@@ -79,6 +80,9 @@ UnitSP Unit::Radian() {
   return std::make_shared<Unit>(SI::DIMENSIONS_DIMENSIONLESS);
 }
 UnitSP Unit::operator*(const UnitSP& other) const {
+  if (!other) {
+    throw std::invalid_argument("Unit: Don't multiply by null");
+  }
   TotalDimensions result_dims = this->_dimensions;
   for (auto it = other->_dimensions.begin(); it != other->_dimensions.end();
        ++it) {
@@ -108,6 +112,9 @@ double          Unit::scale_factor() const { return this->_scale_factor; }
 double          Unit::offset() const { return this->_offset; }
 
 UnitSP Unit::operator/(const UnitSP& other) const {
+  if (!other) {
+    throw std::invalid_argument("Unit: Don't divide by null");
+  }
   TotalDimensions result_dims = this->_dimensions;
   for (auto it = other->_dimensions.begin(); it != other->_dimensions.end();
        ++it) {
@@ -160,10 +167,15 @@ UnitSP Unit::get_giga() const { return with_prefix(SI::GIGA_SYMBOL); }
 
 double Unit::convert_value_to(const double  value,
                               const UnitSP& target_unit) const {
+  if (!target_unit) {
+    throw std::invalid_argument(
+        "Unit: The target to convert to cannot be null.");
+  }
   if (dimensions() != target_unit->dimensions()) {
     throw std::invalid_argument(
         "Cannot convert between units with different dimensions.");
   }
+
   // Convert from source unit to base SI unit
   double base_value = (value + offset()) * scale_factor();
 
@@ -172,6 +184,9 @@ double Unit::convert_value_to(const double  value,
 }
 
 bool Unit::is_compatible_with(const UnitSP& other) const {
+  if (!other) {
+    throw std::invalid_argument("Unit: The other cannot be null.");
+  }
   return dimensions() == other->dimensions();
 }
 
