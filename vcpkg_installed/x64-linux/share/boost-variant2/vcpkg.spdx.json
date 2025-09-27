@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/boost-variant2-x64-linux-1.88.0-e0bc2b6e-b9fe-4dae-bfb6-477505e056e4",
-  "name": "boost-variant2:x64-linux@1.88.0 8f340b7704d0d34fac9504dbe5bba5f485d96939a01bbd819b620224636769e0",
+  "documentNamespace": "https://spdx.org/spdxdocs/boost-variant2-x64-linux-1.88.0-728a95bd-ae43-4674-beca-c3ee56ca54fd",
+  "name": "boost-variant2:x64-linux@1.88.0 756ad3e43c7f0c196dc488804073e294fb6e6a140c6c62eb50f72b7536cc31f3",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-2025-08-29-4737a2fcbb0c14fce98c56ead78bf0fbdc29a545"
+      "Tool: vcpkg-2025-09-03-4580816534ed8fd9634ac83d46471440edd82dfe"
     ],
-    "created": "2025-09-17T20:23:45Z"
+    "created": "2025-09-27T19:25:39Z"
   },
   "relationships": [
     {
@@ -84,7 +84,7 @@
     {
       "name": "boost-variant2:x64-linux",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "8f340b7704d0d34fac9504dbe5bba5f485d96939a01bbd819b620224636769e0",
+      "versionInfo": "756ad3e43c7f0c196dc488804073e294fb6e6a140c6c62eb50f72b7536cc31f3",
       "downloadLocation": "NONE",
       "licenseConcluded": "BSL-1.0",
       "licenseDeclared": "NOASSERTION",
@@ -156,24 +156,24 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./share/boost_variant2/boost_variant2-config-version.cmake",
+      "fileName": "./share/boost-variant2/copyright",
       "SPDXID": "SPDXRef-binary-file-2",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "085b73b114768f85b167769db10730a57201fa73a94eaeb3a6fbfc878f82889d"
+          "checksumValue": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
         }
       ],
       "licenseConcluded": "NOASSERTION",
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./share/boost_variant2/boost_variant2-config.cmake",
+      "fileName": "./share/boost_variant2/boost_variant2-config-version.cmake",
       "SPDXID": "SPDXRef-binary-file-3",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "018d7933a5982293c2ceacc5ac3eb37211017e7cde9dc61047a4dfd6a4f70b44"
+          "checksumValue": "085b73b114768f85b167769db10730a57201fa73a94eaeb3a6fbfc878f82889d"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -192,12 +192,12 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./share/boost-variant2/copyright",
+      "fileName": "./share/boost_variant2/boost_variant2-config.cmake",
       "SPDXID": "SPDXRef-binary-file-5",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+          "checksumValue": "018d7933a5982293c2ceacc5ac3eb37211017e7cde9dc61047a4dfd6a4f70b44"
         }
       ],
       "licenseConcluded": "NOASSERTION",

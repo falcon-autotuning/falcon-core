@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/boost-headers-x64-linux-1.88.0-1c956c20-4dc3-41d5-a62b-5dc766feb60d",
-  "name": "boost-headers:x64-linux@1.88.0 7041efdde81f0d271faac8a871b6e84b91239e28d4c94ef8cff0077b6b8d7849",
+  "documentNamespace": "https://spdx.org/spdxdocs/boost-headers-x64-linux-1.88.0-a18970a4-f9ba-4553-a26b-904520de9d6c",
+  "name": "boost-headers:x64-linux@1.88.0 5714363a8f86f855269314068468b664bc0526492c703d97f4c275935f5d9ecb",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-2025-08-29-4737a2fcbb0c14fce98c56ead78bf0fbdc29a545"
+      "Tool: vcpkg-2025-09-03-4580816534ed8fd9634ac83d46471440edd82dfe"
     ],
-    "created": "2025-09-17T20:23:37Z"
+    "created": "2025-09-27T19:25:27Z"
   },
   "relationships": [
     {
@@ -79,7 +79,7 @@
     {
       "name": "boost-headers:x64-linux",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "7041efdde81f0d271faac8a871b6e84b91239e28d4c94ef8cff0077b6b8d7849",
+      "versionInfo": "5714363a8f86f855269314068468b664bc0526492c703d97f4c275935f5d9ecb",
       "downloadLocation": "NONE",
       "licenseConcluded": "BSL-1.0",
       "licenseDeclared": "NOASSERTION",
@@ -139,8 +139,20 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./share/boost_headers/boost_headers-config-version.cmake",
+      "fileName": "./share/boost-headers/copyright",
       "SPDXID": "SPDXRef-binary-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./share/boost_headers/boost_headers-config-version.cmake",
+      "SPDXID": "SPDXRef-binary-file-2",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -152,7 +164,7 @@
     },
     {
       "fileName": "./share/boost_headers/boost_headers-config.cmake",
-      "SPDXID": "SPDXRef-binary-file-2",
+      "SPDXID": "SPDXRef-binary-file-3",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -164,23 +176,11 @@
     },
     {
       "fileName": "./share/boost_headers/boost_headers-targets.cmake",
-      "SPDXID": "SPDXRef-binary-file-3",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "9b6fe4dad5a2aee6a4775b8aa8e9c0a5275e9685d2113358b14c8868653bda9f"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./share/boost-headers/copyright",
       "SPDXID": "SPDXRef-binary-file-4",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+          "checksumValue": "9b6fe4dad5a2aee6a4775b8aa8e9c0a5275e9685d2113358b14c8868653bda9f"
         }
       ],
       "licenseConcluded": "NOASSERTION",

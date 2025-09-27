@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/yaml-cpp-x64-linux-0.8.0#3-2bc195d5-9f94-4a35-bf70-2a05d11d7e27",
-  "name": "yaml-cpp:x64-linux@0.8.0#3 42621000b285c1e053dd312fc18a98a18460eb76948404fcfd9fdf8a9afa2b53",
+  "documentNamespace": "https://spdx.org/spdxdocs/yaml-cpp-x64-linux-0.8.0#3-9462cbd7-7939-46e4-9b44-09171e445e95",
+  "name": "yaml-cpp:x64-linux@0.8.0#3 0982329eefe083c423b046faf1761e733ccf4dee0d2bc413b6e857f09fa6464e",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-2025-08-29-4737a2fcbb0c14fce98c56ead78bf0fbdc29a545"
+      "Tool: vcpkg-2025-09-03-4580816534ed8fd9634ac83d46471440edd82dfe"
     ],
-    "created": "2025-09-17T20:26:17Z"
+    "created": "2025-09-27T19:27:55Z"
   },
   "relationships": [
     {
@@ -28,11 +28,6 @@
       "relatedSpdxElement": "SPDXRef-port-file-1"
     },
     {
-      "spdxElementId": "SPDXRef-port-file-1",
-      "relationshipType": "DEPENDENCY_MANIFEST_OF",
-      "relatedSpdxElement": "SPDXRef-port"
-    },
-    {
       "spdxElementId": "SPDXRef-port",
       "relationshipType": "CONTAINS",
       "relatedSpdxElement": "SPDXRef-port-file-2"
@@ -41,6 +36,11 @@
       "spdxElementId": "SPDXRef-port",
       "relationshipType": "CONTAINS",
       "relatedSpdxElement": "SPDXRef-port-file-3"
+    },
+    {
+      "spdxElementId": "SPDXRef-port-file-3",
+      "relationshipType": "DEPENDENCY_MANIFEST_OF",
+      "relatedSpdxElement": "SPDXRef-port"
     },
     {
       "spdxElementId": "SPDXRef-binary",
@@ -299,7 +299,7 @@
     {
       "name": "yaml-cpp:x64-linux",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "42621000b285c1e053dd312fc18a98a18460eb76948404fcfd9fdf8a9afa2b53",
+      "versionInfo": "0982329eefe083c423b046faf1761e733ccf4dee0d2bc413b6e857f09fa6464e",
       "downloadLocation": "NONE",
       "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",
@@ -323,32 +323,8 @@
   ],
   "files": [
     {
-      "fileName": "./portfile.cmake",
-      "SPDXID": "SPDXRef-port-file-0",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "e276910793f6236f42d6b545ead55af3cc69edfb78e29ea843b2544320d91868"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./vcpkg.json",
-      "SPDXID": "SPDXRef-port-file-1",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "8d235069d89a9eb27d1a3dc36f6811a696a8ee2c6aec71a34ab5110fe251f16c"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
       "fileName": "./yaml-cpp-pr-1212.patch",
-      "SPDXID": "SPDXRef-port-file-2",
+      "SPDXID": "SPDXRef-port-file-0",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -359,8 +335,20 @@
       "copyrightText": "NOASSERTION"
     },
     {
+      "fileName": "./portfile.cmake",
+      "SPDXID": "SPDXRef-port-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e276910793f6236f42d6b545ead55af3cc69edfb78e29ea843b2544320d91868"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
       "fileName": "./yaml-cpp-pr-1310.patch",
-      "SPDXID": "SPDXRef-port-file-3",
+      "SPDXID": "SPDXRef-port-file-2",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -371,36 +359,12 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./debug/lib/libyaml-cppd.a",
-      "SPDXID": "SPDXRef-binary-file-0",
+      "fileName": "./vcpkg.json",
+      "SPDXID": "SPDXRef-port-file-3",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "4e27a8329c0eb6fafdfba73bc5f298e79df45da0f66392f862adec41261ae9e1"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./debug/lib/pkgconfig/yaml-cpp.pc",
-      "SPDXID": "SPDXRef-binary-file-1",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "57e4265e918378e75c3d0af19a23be130d55a8240d39199a338aa7e76d934a17"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./lib/libyaml-cpp.a",
-      "SPDXID": "SPDXRef-binary-file-2",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "4e04f5c7c2bbfa09a2b9a22dc703a3942b4cb204f60f691c0f12559cf876f96e"
+          "checksumValue": "8d235069d89a9eb27d1a3dc36f6811a696a8ee2c6aec71a34ab5110fe251f16c"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -408,7 +372,7 @@
     },
     {
       "fileName": "./lib/pkgconfig/yaml-cpp.pc",
-      "SPDXID": "SPDXRef-binary-file-3",
+      "SPDXID": "SPDXRef-binary-file-0",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -419,24 +383,60 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./include/yaml-cpp/anchor.h",
-      "SPDXID": "SPDXRef-binary-file-4",
+      "fileName": "./lib/libyaml-cpp.a",
+      "SPDXID": "SPDXRef-binary-file-1",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "e1674864314ce7a1d78c71d37b60ec6c130fc352ed178bd9b8467928774b1be8"
+          "checksumValue": "4e04f5c7c2bbfa09a2b9a22dc703a3942b4cb204f60f691c0f12559cf876f96e"
         }
       ],
       "licenseConcluded": "NOASSERTION",
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./include/yaml-cpp/binary.h",
+      "fileName": "./include/yaml-cpp/emitterdef.h",
+      "SPDXID": "SPDXRef-binary-file-2",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "58d709085b46f31eef29fd8074d1c6d1657d3ebd4fb393b1c06a73cef69e6e48"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/emitfromevents.h",
+      "SPDXID": "SPDXRef-binary-file-3",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3eb5e3c9dd75d3dd12f19b8e42d49bf3cfcf4c41ee65eb0e4fec5217fcfc22b4"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/traits.h",
+      "SPDXID": "SPDXRef-binary-file-4",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6548f3725275c1659652164a161ab70d96cf8cc0ee544053ef2a15e0314db826"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/anchor.h",
       "SPDXID": "SPDXRef-binary-file-5",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "1be5b37a45f0e1eb0c2dbd6aa3093363171d5149e89e0830c5a56e0eea0eac4a"
+          "checksumValue": "e1674864314ce7a1d78c71d37b60ec6c130fc352ed178bd9b8467928774b1be8"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -467,20 +467,8 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./include/yaml-cpp/depthguard.h",
-      "SPDXID": "SPDXRef-binary-file-8",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "1471521778b70c549e057a38c56b11a42a4aa4d666e3fbb5f80e9ac90b9f610c"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
       "fileName": "./include/yaml-cpp/dll.h",
-      "SPDXID": "SPDXRef-binary-file-9",
+      "SPDXID": "SPDXRef-binary-file-8",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -491,44 +479,8 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./include/yaml-cpp/emitfromevents.h",
-      "SPDXID": "SPDXRef-binary-file-10",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "3eb5e3c9dd75d3dd12f19b8e42d49bf3cfcf4c41ee65eb0e4fec5217fcfc22b4"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/emitter.h",
-      "SPDXID": "SPDXRef-binary-file-11",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "db41147539d4483995ebbea2481b1c42892df83679fd7e2aee0b5aeb0e403c25"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/emitterdef.h",
-      "SPDXID": "SPDXRef-binary-file-12",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "58d709085b46f31eef29fd8074d1c6d1657d3ebd4fb393b1c06a73cef69e6e48"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
       "fileName": "./include/yaml-cpp/emittermanip.h",
-      "SPDXID": "SPDXRef-binary-file-13",
+      "SPDXID": "SPDXRef-binary-file-9",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -539,48 +491,24 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./include/yaml-cpp/emitterstyle.h",
-      "SPDXID": "SPDXRef-binary-file-14",
+      "fileName": "./include/yaml-cpp/emitter.h",
+      "SPDXID": "SPDXRef-binary-file-10",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "ff854b2abd44bbb7c3a0f0e557068d2613e6a9dbcbf38ccd563942a7bb0ff1c2"
+          "checksumValue": "db41147539d4483995ebbea2481b1c42892df83679fd7e2aee0b5aeb0e403c25"
         }
       ],
       "licenseConcluded": "NOASSERTION",
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./include/yaml-cpp/eventhandler.h",
-      "SPDXID": "SPDXRef-binary-file-15",
+      "fileName": "./include/yaml-cpp/parser.h",
+      "SPDXID": "SPDXRef-binary-file-11",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "0a91628a17a18d58b71154c595cb7d31c3cd6208cccae670b245fd730f0f8d66"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/exceptions.h",
-      "SPDXID": "SPDXRef-binary-file-16",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "968b33a9fd4b75ffbecf5c7209ed8fc4ebf59ef0f825e279fb8baa9c689b53fe"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/mark.h",
-      "SPDXID": "SPDXRef-binary-file-17",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "069033be17c7a5875817102f3f77538431afdb7d1834a4673bad6a7267f0cab5"
+          "checksumValue": "a954930f86e865fcea885e1b65d35feb25f6d5fceb27cccb406425c354cda1af"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -588,7 +516,7 @@
     },
     {
       "fileName": "./include/yaml-cpp/node/convert.h",
-      "SPDXID": "SPDXRef-binary-file-18",
+      "SPDXID": "SPDXRef-binary-file-12",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -599,140 +527,8 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./include/yaml-cpp/node/detail/impl.h",
-      "SPDXID": "SPDXRef-binary-file-19",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "7ead18bfc864986262a4e9000aec9b4acdceaa9162e7741723ccba18e4e4177e"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/node/detail/iterator.h",
-      "SPDXID": "SPDXRef-binary-file-20",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "ca5e2af6fea3d1b17408d395528e00374bdf4fdcb63b12f303e09fe459eda461"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/node/detail/iterator_fwd.h",
-      "SPDXID": "SPDXRef-binary-file-21",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "ce9bf893f38351d5e3e95f5b55a67765c721ba0e4c9f01e38ecba89d64722a6b"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/node/detail/memory.h",
-      "SPDXID": "SPDXRef-binary-file-22",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "41203dbe13e74200dd6d9f93d3a07a99f7870db9b1af864d2acdcb0f68e031b8"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/node/detail/node.h",
-      "SPDXID": "SPDXRef-binary-file-23",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "b9e55e166b8d3168b88ebdc06506c4c2dc3a5f0bc046435ee4b04795dba34275"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/node/detail/node_data.h",
-      "SPDXID": "SPDXRef-binary-file-24",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "53419f8984bce1e2d1d5aa15cba420e04918f8c665489dd5b4071793654f30f8"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/node/detail/node_iterator.h",
-      "SPDXID": "SPDXRef-binary-file-25",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "6b58c8a26de6af125291979d34fa525f5f2e049f47cf72ab1c100feb9ea1e246"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/node/detail/node_ref.h",
-      "SPDXID": "SPDXRef-binary-file-26",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "26fbb939e32d5f4237ab1712eedb3d695820de004cee2a0b2bb2d394b8dbd70b"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/node/emit.h",
-      "SPDXID": "SPDXRef-binary-file-27",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "39f35d344ba0502e05449a935c5c9fa3a0179d72b9aa2b75ee964ddd1c4a26af"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/node/impl.h",
-      "SPDXID": "SPDXRef-binary-file-28",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "4dc95d496e7396c93e88c50e28fed5f4193f60d1083aae290672378476c94731"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/node/iterator.h",
-      "SPDXID": "SPDXRef-binary-file-29",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "c09465516b6d854f476f08392aa730d08df63688b80f04cf49e1562eab3e0cfe"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
       "fileName": "./include/yaml-cpp/node/node.h",
-      "SPDXID": "SPDXRef-binary-file-30",
+      "SPDXID": "SPDXRef-binary-file-13",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -744,7 +540,7 @@
     },
     {
       "fileName": "./include/yaml-cpp/node/parse.h",
-      "SPDXID": "SPDXRef-binary-file-31",
+      "SPDXID": "SPDXRef-binary-file-14",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -755,12 +551,132 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./include/yaml-cpp/node/ptr.h",
-      "SPDXID": "SPDXRef-binary-file-32",
+      "fileName": "./include/yaml-cpp/node/impl.h",
+      "SPDXID": "SPDXRef-binary-file-15",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "d56a5edbfeeaa03d374afd970a39e3603ee72be98564382e0ab2aef29367d4b7"
+          "checksumValue": "4dc95d496e7396c93e88c50e28fed5f4193f60d1083aae290672378476c94731"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/node/emit.h",
+      "SPDXID": "SPDXRef-binary-file-16",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "39f35d344ba0502e05449a935c5c9fa3a0179d72b9aa2b75ee964ddd1c4a26af"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/node/detail/node.h",
+      "SPDXID": "SPDXRef-binary-file-17",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b9e55e166b8d3168b88ebdc06506c4c2dc3a5f0bc046435ee4b04795dba34275"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/node/detail/node_data.h",
+      "SPDXID": "SPDXRef-binary-file-18",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "53419f8984bce1e2d1d5aa15cba420e04918f8c665489dd5b4071793654f30f8"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/node/detail/node_iterator.h",
+      "SPDXID": "SPDXRef-binary-file-19",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6b58c8a26de6af125291979d34fa525f5f2e049f47cf72ab1c100feb9ea1e246"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/node/detail/iterator_fwd.h",
+      "SPDXID": "SPDXRef-binary-file-20",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ce9bf893f38351d5e3e95f5b55a67765c721ba0e4c9f01e38ecba89d64722a6b"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/node/detail/impl.h",
+      "SPDXID": "SPDXRef-binary-file-21",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7ead18bfc864986262a4e9000aec9b4acdceaa9162e7741723ccba18e4e4177e"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/node/detail/node_ref.h",
+      "SPDXID": "SPDXRef-binary-file-22",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "26fbb939e32d5f4237ab1712eedb3d695820de004cee2a0b2bb2d394b8dbd70b"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/node/detail/memory.h",
+      "SPDXID": "SPDXRef-binary-file-23",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "41203dbe13e74200dd6d9f93d3a07a99f7870db9b1af864d2acdcb0f68e031b8"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/node/detail/iterator.h",
+      "SPDXID": "SPDXRef-binary-file-24",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ca5e2af6fea3d1b17408d395528e00374bdf4fdcb63b12f303e09fe459eda461"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/node/iterator.h",
+      "SPDXID": "SPDXRef-binary-file-25",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c09465516b6d854f476f08392aa730d08df63688b80f04cf49e1562eab3e0cfe"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -768,7 +684,7 @@
     },
     {
       "fileName": "./include/yaml-cpp/node/type.h",
-      "SPDXID": "SPDXRef-binary-file-33",
+      "SPDXID": "SPDXRef-binary-file-26",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -779,12 +695,48 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./include/yaml-cpp/noexcept.h",
-      "SPDXID": "SPDXRef-binary-file-34",
+      "fileName": "./include/yaml-cpp/node/ptr.h",
+      "SPDXID": "SPDXRef-binary-file-27",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "67280724ff2528ac4cc9863db5770216a6bd467a35a2e8b067f43b92d7c278d7"
+          "checksumValue": "d56a5edbfeeaa03d374afd970a39e3603ee72be98564382e0ab2aef29367d4b7"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/binary.h",
+      "SPDXID": "SPDXRef-binary-file-28",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1be5b37a45f0e1eb0c2dbd6aa3093363171d5149e89e0830c5a56e0eea0eac4a"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/exceptions.h",
+      "SPDXID": "SPDXRef-binary-file-29",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "968b33a9fd4b75ffbecf5c7209ed8fc4ebf59ef0f825e279fb8baa9c689b53fe"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/yaml.h",
+      "SPDXID": "SPDXRef-binary-file-30",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "946643e99e2f865887852f838a66130c54ed770645a73f2c5f8b71b9bb2b1488"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -792,7 +744,7 @@
     },
     {
       "fileName": "./include/yaml-cpp/null.h",
-      "SPDXID": "SPDXRef-binary-file-35",
+      "SPDXID": "SPDXRef-binary-file-31",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -803,32 +755,8 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./include/yaml-cpp/ostream_wrapper.h",
-      "SPDXID": "SPDXRef-binary-file-36",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "43bd5094bdf5fb1bd64a3081e372336b2ea410effd86fd910fd5d96b91f586c6"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "fileName": "./include/yaml-cpp/parser.h",
-      "SPDXID": "SPDXRef-binary-file-37",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "a954930f86e865fcea885e1b65d35feb25f6d5fceb27cccb406425c354cda1af"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
       "fileName": "./include/yaml-cpp/stlemitter.h",
-      "SPDXID": "SPDXRef-binary-file-38",
+      "SPDXID": "SPDXRef-binary-file-32",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -839,24 +767,96 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./include/yaml-cpp/traits.h",
-      "SPDXID": "SPDXRef-binary-file-39",
+      "fileName": "./include/yaml-cpp/emitterstyle.h",
+      "SPDXID": "SPDXRef-binary-file-33",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "6548f3725275c1659652164a161ab70d96cf8cc0ee544053ef2a15e0314db826"
+          "checksumValue": "ff854b2abd44bbb7c3a0f0e557068d2613e6a9dbcbf38ccd563942a7bb0ff1c2"
         }
       ],
       "licenseConcluded": "NOASSERTION",
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./include/yaml-cpp/yaml.h",
+      "fileName": "./include/yaml-cpp/depthguard.h",
+      "SPDXID": "SPDXRef-binary-file-34",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1471521778b70c549e057a38c56b11a42a4aa4d666e3fbb5f80e9ac90b9f610c"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/mark.h",
+      "SPDXID": "SPDXRef-binary-file-35",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "069033be17c7a5875817102f3f77538431afdb7d1834a4673bad6a7267f0cab5"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/noexcept.h",
+      "SPDXID": "SPDXRef-binary-file-36",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "67280724ff2528ac4cc9863db5770216a6bd467a35a2e8b067f43b92d7c278d7"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/ostream_wrapper.h",
+      "SPDXID": "SPDXRef-binary-file-37",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "43bd5094bdf5fb1bd64a3081e372336b2ea410effd86fd910fd5d96b91f586c6"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./include/yaml-cpp/eventhandler.h",
+      "SPDXID": "SPDXRef-binary-file-38",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0a91628a17a18d58b71154c595cb7d31c3cd6208cccae670b245fd730f0f8d66"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./debug/lib/libyaml-cppd.a",
+      "SPDXID": "SPDXRef-binary-file-39",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1b0d80a0b50e2ac1e004ce1df3c2ae9ec55ec04b9367fe5af0679e055ba64e19"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./debug/lib/pkgconfig/yaml-cpp.pc",
       "SPDXID": "SPDXRef-binary-file-40",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "946643e99e2f865887852f838a66130c54ed770645a73f2c5f8b71b9bb2b1488"
+          "checksumValue": "57e4265e918378e75c3d0af19a23be130d55a8240d39199a338aa7e76d934a17"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -875,24 +875,24 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./share/yaml-cpp/yaml-cpp-targets-release.cmake",
+      "fileName": "./share/yaml-cpp/yaml-cpp-config.cmake",
       "SPDXID": "SPDXRef-binary-file-42",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "265589a1e66f39a4871635028f14fc96afe4b92cb9d3d47292c7174a4eae72bc"
+          "checksumValue": "69d69c2e6d971350c56dddccc9036269d92eb09a51b7556e5fc7d26f71d9ec4d"
         }
       ],
       "licenseConcluded": "NOASSERTION",
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./share/yaml-cpp/yaml-cpp-config.cmake",
+      "fileName": "./share/yaml-cpp/yaml-cpp-targets-debug.cmake",
       "SPDXID": "SPDXRef-binary-file-43",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "69d69c2e6d971350c56dddccc9036269d92eb09a51b7556e5fc7d26f71d9ec4d"
+          "checksumValue": "89870a5d806e0c2854cbcb87113bcc6313e51db27839bd29287f873601ac6c6b"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -911,12 +911,12 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./share/yaml-cpp/yaml-cpp-targets-debug.cmake",
+      "fileName": "./share/yaml-cpp/yaml-cpp-targets-release.cmake",
       "SPDXID": "SPDXRef-binary-file-45",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "89870a5d806e0c2854cbcb87113bcc6313e51db27839bd29287f873601ac6c6b"
+          "checksumValue": "265589a1e66f39a4871635028f14fc96afe4b92cb9d3d47292c7174a4eae72bc"
         }
       ],
       "licenseConcluded": "NOASSERTION",

@@ -112,6 +112,9 @@ subset-coverage: run-subset-tests cov-term
 # Usage: make coverage FILE=/path/to/source.cpp
 coverage: run-subset-tests cov-term
 
+coverage-overview:
+	@llvm-cov report ./build/run_tests -instr-profile=run_tests.profdata -ignore-filename-regex='(vcpkg_installed|tests/)' -Xdemangler c++filt -Xdemangler -n                                                                     [15:00:01]
+
 # Run tests using CTest
 test: build
 	@echo "--- Running C++ Tests ---"
