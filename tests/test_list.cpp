@@ -31,8 +31,9 @@ using namespace falcon_core;
 using namespace generic;
 class ListTest : public ::testing::Test {
  protected:
-  std::vector<double>    double_data;
-  std::vector<StrSongSP> song_data;
+  std::vector<double>      double_data;
+  std::vector<StrSongSP>   song_data;
+  std::vector<std::string> str_data;
 
   void SetUp() override {
     double_data = {0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
@@ -40,6 +41,7 @@ class ListTest : public ::testing::Test {
     auto song2  = std::make_shared<StrSong>("world");
     auto song3  = std::make_shared<StrSong>("again");
     song_data   = {song1, song2, song3};
+    str_data    = {"hello", "world", "again"};
   }
 };
 
@@ -341,17 +343,20 @@ TEST_F(ListTest, BackThrowsOnEmptyList) {
 
 TEST_F(ListTest, PushBackThrowsOnNullPointer) {
   List<StrSong> list(song_data);
-  EXPECT_THROW(list.push_back(nullptr), std::invalid_argument);
+  StrSongSP     bad;
+  EXPECT_THROW(list.push_back(bad), std::invalid_argument);
 }
 
 TEST_F(ListTest, ContainsThrowsOnNullPointer) {
   List<StrSong> list(song_data);
-  EXPECT_THROW(list.contains(nullptr), std::invalid_argument);
+  StrSongSP     bad;
+  EXPECT_THROW(list.contains(bad), std::invalid_argument);
 }
 
 TEST_F(ListTest, IndexThrowsOnNullPointer) {
   List<StrSong> list(song_data);
-  EXPECT_THROW(list.index(nullptr), std::invalid_argument);
+  StrSongSP     bad;
+  EXPECT_THROW(list.index(bad), std::invalid_argument);
 }
 
 TEST_F(ListTest, IntersectionThrowsOnNullPointer) {

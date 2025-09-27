@@ -1,6 +1,7 @@
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
 #include <cassert>
+#include <stdexcept>
 
 #include "falcon_core/Constants.hpp"
 namespace falcon_core::physics::units {
@@ -221,12 +222,7 @@ SymbolUnitSP SymbolUnit::WattsPerMeterKelvin() {
   return std::make_shared<SymbolUnit>(*Unit::Watt() /
                                       (*Unit::Meter() * Unit::Kelvin()));
 }
-const UnitSP SymbolUnit::unit() const {
-  if (!_unit) {
-    throw std::runtime_error("Our Unit " + name() + " is a null pointer");
-  }
-  return _unit;
-}
+const UnitSP SymbolUnit::unit() const { return _unit; }
 /*
  * @brief Get the name of the unit.
  * @return The name as a string.
@@ -238,17 +234,29 @@ const std::string SymbolUnit::symbol() const { return _symbol; }
  */
 const std::string  SymbolUnit::name() const { return _name; }
 const SymbolUnitSP SymbolUnit::operator*(const SymbolUnitSP& other) const {
+  if (!other) {
+    throw std::invalid_argument("SymbolUnit: Cannot multiple by null.");
+  }
   return std::make_shared<SymbolUnit>(*unit() * other->unit());
 }
 const SymbolUnitSP SymbolUnit::operator*(
     const std::shared_ptr<Unit>& other) const {
+  if (!other) {
+    throw std::invalid_argument("SymbolUnit: Cannot multiple by null.");
+  }
   return std::make_shared<SymbolUnit>(*unit() * other);
 }
 const SymbolUnitSP SymbolUnit::operator/(const SymbolUnitSP& other) const {
+  if (!other) {
+    throw std::invalid_argument("SymbolUnit: Cannot divide by null.");
+  }
   return std::make_shared<SymbolUnit>(*unit() / other->unit());
 }
 const SymbolUnitSP SymbolUnit::operator/(
     const std::shared_ptr<Unit>& other) const {
+  if (!other) {
+    throw std::invalid_argument("SymbolUnit: Cannot divide by null.");
+  }
   return std::make_shared<SymbolUnit>(*unit() / other);
 }
 const SymbolUnitSP SymbolUnit::operator^(const int power) const {
@@ -259,20 +267,33 @@ const SymbolUnitSP SymbolUnit::with_prefix(const std::string prefix) const {
 }
 const double SymbolUnit::convert_value_to(
     const double value, const SymbolUnitSP& target_unit) const {
+  if (!target_unit) {
+    throw std::invalid_argument("SymbolUnit: Cannot convert to null.");
+  }
   return unit()->convert_value_to(value, target_unit->unit());
 }
 const bool SymbolUnit::is_compatible_with(const SymbolUnitSP& other) const {
+  if (!other) {
+    throw std::invalid_argument("SymbolUnit: Is not compatible with null.");
+  }
   return unit()->is_compatible_with(other->unit());
 }
 const std::string SymbolUnit::str() const { return _symbol; }
 
 const std::pair<std::string, std::string>
 SymbolUnit::_find_matching_common_unit() const {
+  double tolerance = 1e-6;
   for (const std::tuple<UnitSP, std::string, std::string>& triplet :
        get_unit_symbols()) {
-    if (!std::get<0>(triplet)) {
-      throw std::runtime_error("Unit " + std::get<1>(triplet) +
-                               " is a null pointer");
+    if (unit()->dimensions().empty()) {
+      if (std::abs(unit()->scale_factor() - 0.01) <= tolerance) {
+        return {SI::UNIT_SYMBOL_PERCENT, SI::UNIT_SYMBOL_PERCENT};
+      } else if (std::abs(unit()->scale_factor() - (1 / (2 * PI))) <=
+                 tolerance) {
+        return {SI::UNIT_SYMBOL_RADIAN, SI::UNIT_SYMBOL_RADIAN};
+      } else {
+        return {SI::UNIT_SYMBOL, SI::UNIT_SYMBOL};  // Dimensionless
+      }
     }
     if (std::get<0>(triplet)->dimensions() == unit()->dimensions()) {
       return {unit()->prefix() + std::get<1>(triplet),
@@ -280,18 +301,11 @@ SymbolUnit::_find_matching_common_unit() const {
     }
   }
   // No exact match found, generate a custom symbol and name
-  return std::make_pair(_generate_symbol(), _generate_name());
+  auto sym = _generate_symbol();
+  return std::make_pair(sym, sym);
 }
 const std::string SymbolUnit::_generate_symbol() const {
   // If dimensions are empty, return the appropriate SI unit symbol
-  if (unit()->dimensions().empty()) {
-    if (unit()->scale_factor() == 0.01) {
-      return SI::UNIT_SYMBOL_PERCENT;
-    } else {
-      return SI::UNIT_SYMBOL;  // Dimensionless
-    }
-  }
-
   std::map<std::string, int> numerator, denominator;
 
   // Separate numerator and denominator
@@ -378,22 +392,9 @@ const std::string SymbolUnit::_get_dimension_symbol(
   if (it != symbols.end()) {
     return it->second;
   }
-  // If not found, return the dimension as is
-  return dimension;
-}
-const std::string SymbolUnit::_generate_name() const {
-  // Look for a predefined name based on dimensions
-  for (const auto& triplet : get_unit_symbols()) {
-    if (!std::get<0>(triplet)) {
-      throw std::runtime_error("Unit " + std::get<1>(triplet) +
-                               " is a null pointer");
-    }
-    if (std::get<0>(triplet)->dimensions() == unit()->dimensions()) {
-      return std::get<1>(triplet);
-    }
-  }
-  // Otherwise, use the symbol as the name
-  return _generate_symbol();
+  throw std::invalid_argument(
+      "SymbolUnit: Custom dimensions are not supported. If you want to use one "
+      "fix Constants.");
 }
 }  // namespace falcon_core::physics::units
 CEREAL_REGISTER_TYPE(falcon_core::physics::units::SymbolUnit)

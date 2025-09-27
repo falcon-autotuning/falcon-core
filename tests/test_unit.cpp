@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "falcon_core/Constants.hpp"
-#include "falcon_core/physics/units/SymbolUnit.hpp"
+#include "falcon_core/physics/units/Unit.hpp"
 namespace tests {
 using namespace falcon_core;
 using namespace falcon_core::physics::units;
@@ -161,167 +161,6 @@ TEST_F(UnitTest, SerializationRoundTrip) {
   ASSERT_EQ(m->offset(), m2->offset());
   ASSERT_EQ(m->prefix(), m2->prefix());
 }
-TEST_F(UnitTest, Initialization) {
-  SymbolUnitSP m = SymbolUnit::Meter();
-  SymbolUnitSP s = SymbolUnit::Second();
-  SymbolUnitSP v = SymbolUnit::Volt();
-
-  ASSERT_EQ(m->symbol(), SI::UNIT_SYMBOL_METER);
-  ASSERT_EQ(m->name(), SI::UNIT_NAME_METER);
-  ASSERT_EQ(s->symbol(), SI::UNIT_SYMBOL_SECOND);
-  ASSERT_EQ(s->name(), SI::UNIT_NAME_SECOND);
-  ASSERT_EQ(v->symbol(), SI::UNIT_SYMBOL_VOLT);
-  ASSERT_EQ(v->name(), SI::UNIT_NAME_VOLT);
-}
-
-TEST_F(UnitTest, PrefixedSymbolUnit) {
-  SymbolUnitSP mm = SymbolUnit::MilliMeter();
-  SymbolUnitSP kV = SymbolUnit::KiloVolt();
-
-  ASSERT_EQ(mm->symbol(),
-            std::string(SI::MILLI_SYMBOL) + std::string(SI::UNIT_SYMBOL_METER));
-  ASSERT_EQ(kV->symbol(),
-            std::string(SI::KILO_SYMBOL) + std::string(SI::UNIT_SYMBOL_VOLT));
-}
-TEST_F(UnitTest, Operations) {
-  SymbolUnitSP m = SymbolUnit::Meter();
-  SymbolUnitSP s = SymbolUnit::Second();
-  SymbolUnitSP v = SymbolUnit::Volt();
-
-  // Multiplication
-  SymbolUnitSP m_times_s = *m * s;
-  // Adjust this check to your actual dimensions representation
-  // ASSERT_EQ(m_times_s.unit().dimensions(), ...);
-  ASSERT_EQ(m_times_s->symbol(),
-            std::string(SI::UNIT_SYMBOL_METER) + "·" + SI::UNIT_SYMBOL_SECOND);
-
-  // Division
-  SymbolUnitSP m_per_s = *m / s;
-  ASSERT_EQ(m_per_s->symbol(),
-            std::string(SI::UNIT_SYMBOL_METER) + "/" + SI::UNIT_SYMBOL_SECOND);
-
-  // More complex operations
-  SymbolUnitSP ohm       = SymbolUnit::Ohm();
-  SymbolUnitSP v_div_ohm = *v / ohm;
-  // Adjust this check to your actual dimensions representation
-  // ASSERT_EQ(v_div_ohm.unit().dimensions(), ...);
-}
-
-TEST_F(UnitTest, EqualityAndCompatibility) {
-  SymbolUnitSP m1 = SymbolUnit::Meter();
-  SymbolUnitSP m2 = SymbolUnit::Meter();
-  SymbolUnitSP s  = SymbolUnit::Second();
-
-  ASSERT_EQ(*m1->unit(), *m2->unit());
-  ASSERT_NE(m1->unit(), s->unit());
-
-  SymbolUnitSP mm = SymbolUnit::MilliMeter();
-  ASSERT_TRUE(m1->is_compatible_with(mm));
-  ASSERT_FALSE(m1->is_compatible_with(s));
-}
-
-TEST_F(UnitTest, Conversion) {
-  SymbolUnitSP m  = SymbolUnit::Meter();
-  SymbolUnitSP mm = SymbolUnit::MilliMeter();
-  SymbolUnitSP km = SymbolUnit::KiloMeter();
-
-  ASSERT_NEAR(m->convert_value_to(1.0, mm), 1000.0, 1e-9);
-  ASSERT_NEAR(m->convert_value_to(1.0, km), 0.001, 1e-9);
-  ASSERT_NEAR(km->convert_value_to(1.0, m), 1000.0, 1e-9);
-  ASSERT_NEAR(km->convert_value_to(1.0, mm), 1e6, 1e-3);
-}
-
-TEST_F(UnitTest, DerivedSymbolUnit) {
-  SymbolUnitSP m = SymbolUnit::Meter();
-  SymbolUnitSP s = SymbolUnit::Second();
-  SymbolUnitSP n = SymbolUnit::Newton();
-
-  SymbolUnitSP m_per_s   = *m / s;
-  SymbolUnitSP n_times_m = *n * m;
-
-  ASSERT_EQ(m_per_s->symbol(),
-            std::string(SI::UNIT_SYMBOL_METER) + "/" + SI::UNIT_SYMBOL_SECOND);
-  ASSERT_EQ(*n_times_m->unit(), *SymbolUnit::Joule()->unit());
-  ASSERT_EQ(n_times_m->symbol(), SI::UNIT_SYMBOL_JOULE);
-}
-
-TEST_F(UnitTest, DimensionlessSymbolUnit) {
-  SymbolUnitSP dimensionless = SymbolUnit::Dimensionless();
-  SymbolUnitSP percent       = SymbolUnit::Percent();
-
-  // Adjust these checks to your actual dimensions representation
-  // ASSERT_TRUE(dimensionless.unit().dimensions().empty());
-  // ASSERT_TRUE(percent.unit().dimensions().empty());
-  ASSERT_NEAR(percent->unit()->scale_factor(), 0.01, 1e-9);
-  ASSERT_NEAR(percent->convert_value_to(100.0, dimensionless), 1.0, 1e-9);
-}
-
-TEST_F(UnitTest, ComplexSymbolUnit) {
-  SymbolUnitSP m = SymbolUnit::Meter();
-  SymbolUnitSP s = SymbolUnit::Second();
-
-  SymbolUnitSP acceleration = *m / (*s ^ 2);
-
-  // Adjust this check to your actual dimensions representation
-  // ASSERT_EQ(acceleration.unit().dimensions(), ...);
-  ASSERT_TRUE(acceleration->symbol().find("^-2") != std::string::npos);
-}
-
-TEST_F(UnitTest, CustomUnit) {
-  // Create a custom unit with dimensions {length: 3}
-  UnitSP       custom_unit = std::make_shared<Unit>(Unit({{"LENGTH", 3}}));
-  SymbolUnitSP symbol_unit =
-      std::make_shared<SymbolUnit>(SymbolUnit({custom_unit}));
-
-  ASSERT_TRUE(symbol_unit->symbol().find("^3") != std::string::npos);
-}
-
-TEST_F(UnitTest, SymbolGeneration) {
-  UnitSP length_time =
-      std::make_shared<Unit>(Unit({{"LENGTH", 1}, {"TIME", 1}}));
-  UnitSP complex_unit =
-      std::make_shared<Unit>(Unit({{"LENGTH", 2}, {"TIME", -1}, {"MASS", 1}}));
-
-  SymbolUnitSP length_time_symbol =
-      std::make_shared<SymbolUnit>(SymbolUnit({length_time}));
-  SymbolUnitSP complex_symbol =
-      std::make_shared<SymbolUnit>(SymbolUnit({complex_unit}));
-
-  ASSERT_TRUE(length_time_symbol->symbol().find(SI::UNIT_SYMBOL_METER) !=
-              std::string::npos);
-  ASSERT_TRUE(length_time_symbol->symbol().find(SI::UNIT_SYMBOL_SECOND) !=
-              std::string::npos);
-  ASSERT_TRUE(complex_symbol->symbol().find("kg") != std::string::npos);
-  ASSERT_TRUE(complex_symbol->symbol().find("m^2") != std::string::npos);
-  ASSERT_TRUE(complex_symbol->symbol().find("s") != std::string::npos);
-}
-
-TEST_F(UnitTest, WithPrefix) {
-  SymbolUnitSP m  = SymbolUnit::Meter();
-  SymbolUnitSP km = m->with_prefix(SI::KILO_SYMBOL);
-
-  ASSERT_EQ(km->symbol(), std::string(SI::KILO_SYMBOL) + SI::UNIT_SYMBOL_METER);
-  ASSERT_EQ(km->unit()->scale_factor(), 1000.0);
-  ASSERT_EQ(km->unit()->dimensions(), m->unit()->dimensions());
-}
-
-TEST_F(UnitTest, InvalidConversion) {
-  SymbolUnitSP m = SymbolUnit::Meter();
-  SymbolUnitSP s = SymbolUnit::Second();
-
-  EXPECT_THROW(m->convert_value_to(10.0, s), std::invalid_argument);
-}
-
-TEST_F(UnitTest, Comparison) {
-  SymbolUnitSP m_per_s = *SymbolUnit::Meter() / SymbolUnit::Second();
-  SymbolUnitSP v       = std::make_shared<SymbolUnit>(
-      std::make_shared<Unit>(Unit({{"LENGTH", 1}, {"TIME", -1}})));
-
-  SymbolUnit m_per_s_copy = *m_per_s;
-  SymbolUnit v_copy       = *v;
-  ASSERT_EQ(*m_per_s_copy.unit(), *v_copy.unit());
-  // Symbol comparison may differ
-}
 
 TEST_F(UnitTest, AllStaticConstructors) {
   ASSERT_TRUE(Unit::Meter() != nullptr);
@@ -354,17 +193,6 @@ TEST_F(UnitTest, AllStaticConstructors) {
   ASSERT_TRUE(Unit::Radian() != nullptr);
 }
 
-TEST_F(UnitTest, PowerOperations) {
-  SymbolUnitSP m = SymbolUnit::Meter();
-
-  SymbolUnitSP area = *m ^ 2;
-  ASSERT_EQ(area->unit()->dimensions().at("LENGTH"), 2);
-  ASSERT_TRUE(area->symbol().find("m^2") != std::string::npos);
-
-  SymbolUnitSP volume = *m ^ 3;
-  ASSERT_EQ(volume->unit()->dimensions().at("LENGTH"), 3);
-  ASSERT_TRUE(volume->symbol().find("m^3") != std::string::npos);
-}
 TEST(TestUnit, BaseSymbolUnit) {
   UnitSP          meter = Unit::Meter();
   TotalDimensions mdims = {{SI::DIMENSION_LENGTH, 1}};

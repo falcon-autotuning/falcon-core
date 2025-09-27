@@ -29,11 +29,6 @@ class SymbolUnit : public generic::Song {
    * @return A string representing the symbol for the dimension.
    */
   const std::string _get_dimension_symbol(std::string dimension) const;
-  /*
-   * @brief Generate a name for the unit based on its dimensions.
-   * @return A string representing the generated name.
-   */
-  const std::string _generate_name() const;
 
  public:
   /*

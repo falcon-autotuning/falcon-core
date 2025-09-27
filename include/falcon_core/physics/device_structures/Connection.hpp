@@ -13,14 +13,9 @@ enum class DeviceFeature {
 class Connection : public virtual generic::Song {
   std::string   _name;
   DeviceFeature _type;
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<falcon_core::generic::Song>(this), _name, _type);
-  }
 
  public:
   bool operator<(const Connection& other) const;
-  Connection();
   /**
    * @brief Construct a Connection with a name and type.
    * @param name The name of the connection.
@@ -74,6 +69,11 @@ class Connection : public virtual generic::Song {
 
  protected:
   friend class cereal::access;
+  Connection();
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<falcon_core::generic::Song>(this), _name, _type);
+  }
 };
 using ConnectionSP = std::shared_ptr<Connection>;
 }  // namespace falcon_core::physics::device_structures

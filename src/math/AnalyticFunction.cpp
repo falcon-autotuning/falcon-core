@@ -5,7 +5,6 @@
 #include <stdexcept>
 #include <string>
 
-#include "falcon_core/math/arrays/ControlArray1D.hpp"
 #include "xtensor/containers/xadapt.hpp"
 
 namespace falcon_core::math {
@@ -87,7 +86,7 @@ AnalyticFunctionSP AnalyticFunction::Identity() {
   std::string                   expression = "x[0]";
   generic::ListSP<VariableName> labels =
       std::make_shared<generic::List<VariableName>>();
-  labels->push_back("x");
+  labels->push_back(std::string("x"));
   return std::make_shared<AnalyticFunction>(labels, expression);
 }
 AnalyticFunctionSP AnalyticFunction::Constant(const double& value) {

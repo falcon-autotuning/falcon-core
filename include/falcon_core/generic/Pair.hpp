@@ -5,15 +5,23 @@ namespace falcon_core::generic {
 template <typename T1, typename T2>
 class Pair : public generic::Song {
   static_assert(!std::is_pointer<T1>::value,
-                "Value template argument must not be a pointer type");
+                "First template argument must not be a pointer type");
   static_assert(!std::is_pointer<T2>::value,
-                "Value template argument must not be a pointer type");
+                "Second template argument must not be a pointer type");
+  static_assert(std::is_base_of<Song, T1>::value || is_primitive<T1>::value,
+                "First template argument must be a Song or a primitive.");
+  static_assert(std::is_base_of<Song, T2>::value || is_primitive<T2>::value,
+                "Second template argument must be a Song or a primitive.");
 
  public:
-  using StoredT1 = typename std::
-      conditional<is_primitive<T1>::value, T1, std::shared_ptr<T1>>::type;
-  using StoredT2 = typename std::
-      conditional<is_primitive<T2>::value, T2, std::shared_ptr<T2>>::type;
+  using StoredT1 =
+      typename std::conditional<std::is_base_of<generic::Song, T1>::value,
+                                std::shared_ptr<T1>,
+                                T1>::type;
+  using StoredT2 =
+      typename std::conditional<std::is_base_of<generic::Song, T2>::value,
+                                std::shared_ptr<T2>,
+                                T2>::type;
 
  private:
   StoredT1 _first;

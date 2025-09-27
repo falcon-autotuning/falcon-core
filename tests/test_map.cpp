@@ -5,7 +5,7 @@
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/generic/Pair.hpp"
-
+namespace {
 using namespace falcon_core::generic;
 // TODO: test all constructor for map
 class MapIntStringTest : public ::testing::Test {
@@ -74,8 +74,8 @@ TEST_F(MapIntStringTest, KeysAndValues) {
   EXPECT_EQ(values->size(), 2);
   EXPECT_TRUE(keys->contains(1));
   EXPECT_TRUE(keys->contains(2));
-  EXPECT_TRUE(values->contains("one"));
-  EXPECT_TRUE(values->contains("two"));
+  EXPECT_TRUE(values->contains(std::string("one")));
+  EXPECT_TRUE(values->contains(std::string("two")));
 }
 
 TEST_F(MapIntStringTest, AtThrowsIfNotFound) {
@@ -100,3 +100,10 @@ TEST_F(MapIntStringTest, ConstructFromList) {
   EXPECT_EQ(m.at(1), "one");
   EXPECT_EQ(m.at(2), "two");
 }
+
+TEST(MapStringDouble, PushbackNull) {
+  List<Pair<std::string, double>> list;
+  PairSP<std::string, double>     bad;
+  EXPECT_THROW(list.push_back(bad), std::invalid_argument);
+}
+}  // namespace

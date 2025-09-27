@@ -77,7 +77,8 @@ UnitSP Unit::Percent() {
       SI::DIMENSIONS_DIMENSIONLESS, 0.01, 0.0, SI::UNIT_SYMBOL);
 }
 UnitSP Unit::Radian() {
-  return std::make_shared<Unit>(SI::DIMENSIONS_DIMENSIONLESS);
+  return std::make_shared<Unit>(
+      SI::DIMENSIONS_DIMENSIONLESS, 1 / (2 * PI), 0.0, SI::UNIT_SYMBOL);
 }
 UnitSP Unit::operator*(const UnitSP& other) const {
   if (!other) {

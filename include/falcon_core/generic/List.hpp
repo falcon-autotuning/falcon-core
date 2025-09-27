@@ -7,16 +7,54 @@
 #include "falcon_core/generic/Song.hpp"
 namespace falcon_core {
 namespace generic {
+template <typename T>
+struct is_shared_ptr : std::false_type {};
+
+template <typename T>
+struct is_shared_ptr<std::shared_ptr<T>> : std::true_type {};
+template <typename T>
+bool isBool(const T& query) {
+  return (typeid(query) == typeid(bool));
+}
+template <typename T>
+bool isString(const T& query) {
+  return (typeid(query) == typeid(std::string));
+}
+template <typename T>
+bool isFloat(const T& query) {
+  return (typeid(query) == typeid(float));
+}
+template <typename T>
+bool isDouble(const T& query) {
+  return (typeid(query) == typeid(double));
+}
+template <typename T>
+bool isInt(const T& query) {
+  return (typeid(query) == typeid(int));
+}
+template <typename T>
+bool isChar(const T& query) {
+  return (typeid(query) == typeid(char));
+}
+template <typename T>
+bool isPrimitive(const T& query) {
+  return isBool(query) || isString(query) || isFloat(query) ||
+         isDouble(query) || isInt(query) || isChar(query);
+}
 template <typename Value, typename Derived = void>
 class List : public generic::Song {
   static_assert(!std::is_pointer<Value>::value,
                 "Value template argument must not be a pointer type");
+  static_assert(std::is_base_of<Song, Value>::value ||
+                    is_primitive<Value>::value,
+                "Value template argument must be a Song or a primitive.");
 
  protected:
-  using StoredValue = typename std::conditional<is_primitive<Value>::value,
-                                                Value,
-                                                std::shared_ptr<Value>>::type;
-  using Container   = std::vector<StoredValue>;
+  using StoredValue =
+      typename std::conditional<std::is_base_of<Song, Value>::value,
+                                std::shared_ptr<Value>,
+                                Value>::type;
+  using Container = std::vector<StoredValue>;
 
  private:
   Container _items;
@@ -65,12 +103,19 @@ class List : public generic::Song {
   List(size_t count) : _items(count) {}
   List(size_t count, const StoredValue& value) : _items(count, value) {}
   List(const Container& init) : _items(init) {}
-  void push_back(const Value& item) { _items.push_back(item); }
-  void push_back(const std::shared_ptr<Value>& item) {
+  template <typename T = Value>
+    requires std::is_base_of_v<Song, T> && (!is_primitive<T>::value)
+  void push_back(const std::shared_ptr<T>& item) {
     if (!item) {
       throw std::invalid_argument(
-          "List: If an element is to be pushed back, it needs to not be null");
+          "List: If an element is to be pushed back, it needs to not be "
+          "null");
     }
+    _items.push_back(item);
+  }
+  template <typename T = Value>
+    requires is_primitive<T>::value
+  void push_back(const T& item) {
     _items.push_back(item);
   }
   size_t      size() const { return _items.size(); }
@@ -90,42 +135,53 @@ class List : public generic::Song {
   iterator         end() { return _items.end(); }
   const_iterator   begin() const { return _items.begin(); }
   const_iterator   end() const { return _items.end(); }
-  bool             contains(const Value& value) const {
-    return std::any_of(
-        _items.begin(), _items.end(), [&value](const StoredValue& item) {
-          return item == value;
-        });
-  }
-  bool contains(const std::shared_ptr<Value>& value) const {
+  template <typename T = Value>
+    requires std::is_base_of_v<Song, T> && (!is_primitive<T>::value)
+  bool contains(const std::shared_ptr<T>& value) const {
     if (!value) {
       throw std::invalid_argument(
           "List: The value must be specified and not null to check if this "
           "list contains it.");
     }
+
     return std::any_of(
         _items.begin(), _items.end(), [&value](const StoredValue& item) {
           return *item == *value;
         });
   }
-  size_t index(const Value& value) const {
-    for (size_t i = 0; i < _items.size(); ++i) {
-      if (_items[i] == value) {
-        return i;
-      }
-    }
-    throw std::out_of_range("Value not found in List");
+  template <typename T = Value>
+    requires is_primitive<T>::value
+  bool contains(const T& value) const {
+    return std::any_of(
+        _items.begin(), _items.end(), [&value](const StoredValue& item) {
+          return item == value;
+        });
   }
-  size_t index(const std::shared_ptr<Value>& value) const {
+  template <typename T = Value>
+    requires std::is_base_of_v<Song, T> && (!is_primitive<T>::value)
+  size_t index(const std::shared_ptr<T>& value) const {
     if (!value) {
       throw std::invalid_argument(
-          "List: The value must be specified and not null to find its index.");
+          "List: The value must be specified and not null to find its "
+          "index.");
     }
+
     for (size_t i = 0; i < _items.size(); ++i) {
       if (*_items[i] == *value) {
         return i;
       }
     }
     throw std::out_of_range("List: Value not found in List");
+  }
+  template <typename T = Value>
+    requires is_primitive<T>::value
+  size_t index(const T& value) const {
+    for (size_t i = 0; i < _items.size(); ++i) {
+      if (_items[i] == value) {
+        return i;
+      }
+    }
+    throw std::out_of_range("Value not found in List");
   }
   void insert(iterator pos, const_iterator first, const_iterator last) {
     _items.insert(pos, first, last);

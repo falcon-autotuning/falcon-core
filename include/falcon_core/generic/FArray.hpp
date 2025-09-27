@@ -103,6 +103,10 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   }
   std::shared_ptr<FArray<T>> operator+(
       const std::shared_ptr<FArray<T>>& other) const {
+    if (!other) {
+      throw std::invalid_argument(
+          "FArray: The other array cannot be null for addition.");
+    }
     FArray<T> result(*this);
     result._data += other->_data;
     return std::make_shared<FArray<T>>(result);
@@ -128,6 +132,10 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   std::shared_ptr<FArray<T>> operator-() { return (*this) * -1; }
   std::shared_ptr<FArray<T>> operator-(
       const std::shared_ptr<FArray<T>>& other) const {
+    if (!other) {
+      throw std::invalid_argument(
+          "FArray: The other array cannot be null for subtraction.");
+    }
     FArray<T> result(*this);
     result._data -= other->_data;
     return std::make_shared<FArray<T>>(result);
@@ -168,6 +176,10 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   }
   std::shared_ptr<FArray<T>> operator*(
       const std::shared_ptr<FArray<T>>& other) const {
+    if (!other) {
+      throw std::invalid_argument(
+          "FArray: The other array cannot be null for multiplication.");
+    }
     FArray<T> result(*this);
     result._data *= other->_data;
     return std::make_shared<FArray<T>>(result);
@@ -196,6 +208,10 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   }
   std::shared_ptr<FArray<T>> operator/(
       const std::shared_ptr<FArray<T>>& other) const {
+    if (!other) {
+      throw std::invalid_argument(
+          "FArray: The other array cannot be null for division.");
+    }
     FArray<T> result(*this);
     result._data /= other->_data;
     return std::make_shared<FArray<T>>(result);
@@ -206,7 +222,7 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     return std::make_shared<FArray<T>>(result);
   }
   FArray<T>& operator^(const double other) {
-    xt::pow(this->_data.pow, other);
+    xt::pow(this->_data, other);
     return *this;
   }
   std::shared_ptr<FArray<T>> abs() const {
@@ -216,10 +232,18 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   }
   T                          min() const override { return xt::amin(_data)(); }
   std::shared_ptr<FArray<T>> min(const std::shared_ptr<FArray<T>> other) const {
+    if (!other) {
+      throw std::invalid_argument(
+          "FArray: The other array cannot be null for min.");
+    }
     return std::make_shared<FArray<T>>(xt::minimum(_data, other->_data));
   }
   T                          max() const override { return xt::amax(_data)(); }
   std::shared_ptr<FArray<T>> max(const std::shared_ptr<FArray<T>> other) const {
+    if (!other) {
+      throw std::invalid_argument(
+          "FArray: The other array cannot be null for max.");
+    }
     return std::make_shared<FArray<T>>(xt::maximum(_data, other->_data));
   }
 
