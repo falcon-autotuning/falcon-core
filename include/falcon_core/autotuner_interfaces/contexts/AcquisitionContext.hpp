@@ -5,8 +5,6 @@
 
 namespace falcon_core::autotuner_interfaces::contexts {
 
-// This is a simplified placeholder for AcquisitionContext.
-// A full implementation would depend on MeasurementContext.
 class AcquisitionContext : public BaseContext {
   physics::units::SymbolUnitSP _units;
 

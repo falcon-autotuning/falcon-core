@@ -16,3 +16,15 @@ ImpedancesTest.*
 GateRelationsTest.*
 PrefixTest.*
 RightReservoirWithImplantedOhmicTest.*
+BaseContextTest.*
+ChannelTest.*
+ChannelsTest.*
+AcquisitionContextTest.*
+PlungerGateWithNeighborsTest.*
+DotGateWithNeighborsTest.*
+LeftReservoirWithImplantedOhmicTest.*
+NameBaseTest.*
+GnameTest.*
+BarrierGateWithNeighborsTest.*
+DotGatesWithNeighborsTest.*
+GateGeometryArray1DTest.*

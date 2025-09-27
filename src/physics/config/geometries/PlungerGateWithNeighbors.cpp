@@ -12,7 +12,8 @@ PlungerGateWithNeighbors::PlungerGateWithNeighbors(
                            device_structures::DeviceFeature::PlungerGate,
                            left_neighbor,
                            right_neighbor) {
-  if (!(left_neighbor->is_barrier_gate() || left_neighbor->is_barrier_gate())) {
+  if (!(left_neighbor->is_barrier_gate() &&
+        right_neighbor->is_barrier_gate())) {
     throw std::runtime_error(
         "The left_neighbor can only be a BarrierGate, not "
         "a " +

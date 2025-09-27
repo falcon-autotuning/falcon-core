@@ -6,11 +6,11 @@ namespace falcon_core::autotuner_interfaces::names {
 class NameBase : public generic::Song {
   std::string _name;
   int         _num;
-  std::string _index_string = "";
+  std::string _index_string;
 
  public:
-  NameBase(const std::string& name);
-  NameBase(const int& num);
+  NameBase(const std::string& name, const std::string& index_string);
+  NameBase(const int& num, const std::string& index_string);
   /**
    * @brief The string form of the name.
    */
@@ -19,15 +19,17 @@ class NameBase : public generic::Song {
    * @brief The numeric form of the name.
    */
   int                       num() const;
-  std::shared_ptr<NameBase> operator+(const NameBase& other) const;
-  std::shared_ptr<NameBase> operator-(const NameBase& other) const;
+  std::shared_ptr<NameBase> operator+(
+      const std::shared_ptr<NameBase>& other) const;
+  std::shared_ptr<NameBase> operator-(
+      const std::shared_ptr<NameBase>& other) const;
 
  protected:
   NameBase() = default;
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<Song>(this), _name);
+    ar(cereal::base_class<Song>(this), _name, _index_string);
   }
 };
 using NameBaseSP = std::shared_ptr<NameBase>;

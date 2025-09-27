@@ -13,14 +13,10 @@ LeftReservoirWithImplantedOhmic::LeftReservoirWithImplantedOhmic(
     : Connection(name, device_structures::DeviceFeature::ReservoirGate),
       HasRightNeighbor(right_neighbor),
       HasImplantedOhmic(ohmic) {
-  if (!ohmic->is_ohmic()) {
-    throw std::runtime_error(
-        "Expected only type ohmic for the implanted ohmic but got " +
-        ohmic->type());
-  }
   if (!right_neighbor->is_barrier_gate()) {
     throw std::runtime_error(
-        "Expected only type barriergate for the right neighbor but got " +
+        "LeftReservoirWithImplantedOhmic: Expected only type barriergate for "
+        "the right neighbor but got " +
         right_neighbor->type());
   }
 }

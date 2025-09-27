@@ -106,13 +106,16 @@ cov-term:
 # Usage: make subset-coverage-html
 subset-coverage-html: run-subset-tests cov-html 
 # Usage: make coverage-html 
-coverage-html: run-subset-tests cov-html 
+coverage-html: run-all-tests cov-html 
 # Usage: make subset-coverage FILE=/path/to/source.cpp
 subset-coverage: run-subset-tests cov-term
-# Usage: make coverage FILE=/path/to/source.cpp
-coverage: run-subset-tests cov-term
+# Usage: make coverage 
+coverage: run-all-tests cov-term
 
-coverage-overview:
+subset-coverage-overview: subset-coverage
+	@llvm-cov report ./build/run_tests -instr-profile=run_tests.profdata -ignore-filename-regex='(vcpkg_installed|tests/)' -Xdemangler c++filt -Xdemangler -n                                                                     [15:00:01]
+
+coverage-overview: coverage
 	@llvm-cov report ./build/run_tests -instr-profile=run_tests.profdata -ignore-filename-regex='(vcpkg_installed|tests/)' -Xdemangler c++filt -Xdemangler -n                                                                     [15:00:01]
 
 # Run tests using CTest

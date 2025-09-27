@@ -1,0 +1,139 @@
+#include <gtest/gtest.h>
+
+#include <stdexcept>
+
+#include "falcon_core/physics/config/geometries/GateGeometryArray1D.hpp"
+#include "falcon_core/physics/device_structures/Connections.hpp"
+namespace {
+using namespace falcon_core;
+using namespace physics;
+using namespace config;
+using namespace device_structures;
+using namespace geometries;
+
+class GateGeometryArray1DTest : public ::testing::Test {
+ protected:
+  ConnectionsSP linear;
+  ConnectionsSP even_linear;
+  ConnectionsSP screening;
+  ConnectionsSP empty_screening;
+  ConnectionsSP screening_wrong_contents;
+  ConnectionsSP nolohmic;
+  ConnectionsSP norohmic;
+  void          SetUp() override {
+    linear = std::make_shared<Connections>();
+    linear->push_back(Connection::Ohmic("O1"));
+    linear->push_back(Connection::ReservoirGate("R1"));
+    linear->push_back(Connection::BarrierGate("B1"));
+    linear->push_back(Connection::PlungerGate("P1"));
+    linear->push_back(Connection::BarrierGate("B2"));
+    linear->push_back(Connection::ReservoirGate("R2"));
+    linear->push_back(Connection::Ohmic("O2"));
+
+    screening = std::make_shared<Connections>();
+    screening->push_back(Connection::ScreeningGate("S1"));
+    screening->push_back(Connection::ScreeningGate("S2"));
+
+    empty_screening = std::make_shared<Connections>();
+
+    screening_wrong_contents = std::make_shared<Connections>();
+    screening_wrong_contents->push_back(Connection::PlungerGate("P1"));
+
+    even_linear = std::make_shared<Connections>();
+    even_linear->push_back(Connection::Ohmic("O1"));
+    even_linear->push_back(Connection::ReservoirGate("R1"));
+    even_linear->push_back(Connection::BarrierGate("B1"));
+    even_linear->push_back(Connection::PlungerGate("P1"));
+    even_linear->push_back(Connection::PlungerGate("P2"));
+    even_linear->push_back(Connection::BarrierGate("B2"));
+    even_linear->push_back(Connection::ReservoirGate("R2"));
+    even_linear->push_back(Connection::Ohmic("O2"));
+
+    nolohmic = std::make_shared<Connections>();
+    nolohmic->push_back(Connection::ReservoirGate("R1"));
+    nolohmic->push_back(Connection::BarrierGate("B1"));
+    nolohmic->push_back(Connection::PlungerGate("P1"));
+    nolohmic->push_back(Connection::PlungerGate("P2"));
+    nolohmic->push_back(Connection::BarrierGate("B2"));
+    nolohmic->push_back(Connection::ReservoirGate("R2"));
+    nolohmic->push_back(Connection::Ohmic("O2"));
+
+    norohmic = std::make_shared<Connections>();
+    norohmic->push_back(Connection::Ohmic("O1"));
+    norohmic->push_back(Connection::ReservoirGate("R1"));
+    norohmic->push_back(Connection::BarrierGate("B1"));
+    norohmic->push_back(Connection::PlungerGate("P1"));
+    norohmic->push_back(Connection::PlungerGate("P2"));
+    norohmic->push_back(Connection::BarrierGate("B2"));
+    norohmic->push_back(Connection::ReservoirGate("R2"));
+  }
+};
+
+TEST_F(GateGeometryArray1DTest, ConstructorValid) {
+  EXPECT_NO_THROW(GateGeometryArray1D(linear, screening));
+}
+
+TEST_F(GateGeometryArray1DTest, TooManyGatesInArray) {
+  EXPECT_THROW(GateGeometryArray1D(even_linear, screening),
+               std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, OScreeningGateConstructorThrow) {
+  EXPECT_THROW(GateGeometryArray1D(linear, empty_screening),
+               std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, NoScreeningGateConstructorThrow) {
+  EXPECT_THROW(GateGeometryArray1D(linear, screening_wrong_contents),
+               std::runtime_error);
+}
+
+TEST_F(GateGeometryArray1DTest, ConstructorNullptrLineararrayThrows) {
+  EXPECT_THROW(GateGeometryArray1D(nullptr, screening), std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, NoLeftOhmicThrows) {
+  EXPECT_THROW(GateGeometryArray1D(nolohmic, screening), std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, NoRightOhmicThrows) {
+  EXPECT_THROW(GateGeometryArray1D(norohmic, screening), std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, ConstructorNullptrScreeningThrows) {
+  EXPECT_THROW(GateGeometryArray1D(linear, nullptr), std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, Serialization) {
+  GateGeometryArray1D original(linear, screening);
+  auto                string = original.to_json_string();
+  auto                loaded =
+      GateGeometryArray1D::from_json_string<GateGeometryArray1D>(string);
+  ASSERT_EQ(*original.screening_gates(), *loaded->screening_gates());
+  ASSERT_EQ(*original.raw_central_gates(), *loaded->raw_central_gates());
+  ASSERT_EQ(*original.central_dot_gates(), *loaded->central_dot_gates());
+  ASSERT_EQ(*original.ohmics(), *loaded->ohmics());
+  ASSERT_EQ(*original.all_dot_gates(), *loaded->all_dot_gates());
+}
+
+TEST_F(GateGeometryArray1DTest, AppendCentralGateNullptrLeftThrows) {
+  GateGeometryArray1D arr(linear, screening);
+  auto                gate = Connection::PlungerGate("P1");
+  EXPECT_THROW(arr.append_central_gate(nullptr, gate, gate),
+               std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, AppendCentralGateNullptrSelectedThrows) {
+  GateGeometryArray1D arr(linear, screening);
+  auto                gate = Connection::PlungerGate("P1");
+  EXPECT_THROW(arr.append_central_gate(gate, nullptr, gate),
+               std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, AppendCentralGateNullptrRightThrows) {
+  GateGeometryArray1D arr(linear, screening);
+  auto                gate = Connection::PlungerGate("P1");
+  EXPECT_THROW(arr.append_central_gate(gate, gate, nullptr),
+               std::invalid_argument);
+}
+}  // namespace

@@ -11,6 +11,14 @@ GateGeometryArray1D::GateGeometryArray1D(
     device_structures::ConnectionsSP lineararray,
     device_structures::ConnectionsSP screening_gates)
     : _lineararray(lineararray), _screening_gates(screening_gates) {
+  if (!lineararray) {
+    throw std::invalid_argument(
+        "GateGeometryArray1D: The lineararray cannot be null.");
+  }
+  if (!screening_gates) {
+    throw std::invalid_argument(
+        "GateGeometryArray1D: The screening_gates cannot be null.");
+  }
   if (!screening_gates->is_screening_gates()) {
     throw std::runtime_error(
         "Expected the screening_gates to consist of only screening gates");
@@ -57,6 +65,7 @@ GateGeometryArray1D::GateGeometryArray1D(
         "Expected Plunger Gates at the correct positions.");
   }
 
+  _central_dot_gates = std::make_shared<DotGatesWithNeighbors>();
   // Central dot gates logic (example, adjust as needed)
   for (size_t i = 1; i + 1 < dot_gates.size(); ++i) {
     auto left_neighbor  = dot_gates[i - 1];
@@ -109,6 +118,10 @@ void GateGeometryArray1D::append_central_gate(
     const device_structures::ConnectionSP& left_neighbor,
     const device_structures::ConnectionSP& selected_gate,
     const device_structures::ConnectionSP& right_neighbor) {
+  if (!left_neighbor || !selected_gate || !right_neighbor) {
+    throw std::invalid_argument(
+        "append_central_gate: neighbors and selected_gate must not be null");
+  }
   if (selected_gate->is_barrier_gate()) {
     if (!(left_neighbor->is_plunger_gate()) ||
         !(right_neighbor->is_plunger_gate())) {

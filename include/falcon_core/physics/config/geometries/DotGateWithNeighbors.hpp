@@ -20,7 +20,9 @@ class DotGateWithNeighbors : public device_structures::Connection,
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<Connection>(this), left_neighbor(), right_neighbor());
+    ar(cereal::base_class<Connection>(this));
+    ar(cereal::base_class<HasLeftNeighbor>(this));
+    ar(cereal::base_class<HasRightNeighbor>(this));
   }
 };
 using DotGateWithNeighborsSP = std::shared_ptr<DotGateWithNeighbors>;

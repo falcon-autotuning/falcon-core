@@ -1,5 +1,7 @@
 #include "falcon_core/physics/config/geometries/BarrierGateWithNeighbors.hpp"
 
+#include <stdexcept>
+
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
@@ -14,15 +16,17 @@ BarrierGateWithNeighbors::BarrierGateWithNeighbors(
                            right_neighbor) {
   if (!(left_neighbor->is_reservoir_gate() ||
         left_neighbor->is_plunger_gate())) {
-    throw std::runtime_error(
-        "The left_neighbor can only be a ReservoirGate or a PlungerGate, not "
+    throw std::invalid_argument(
+        "BarrierGateWithNeighbors: The left_neighbor can only be a "
+        "ReservoirGate or a PlungerGate, not "
         "a " +
         left_neighbor->type());
   }
   if (!(right_neighbor->is_reservoir_gate() ||
         right_neighbor->is_plunger_gate())) {
-    throw std::runtime_error(
-        "The left_neighbor can only be a ReservoirGate or a PlungerGate, not "
+    throw std::invalid_argument(
+        "BarrierGateWithNeighbors: The left_neighbor can only be a "
+        "ReservoirGate or a PlungerGate, not "
         "a " +
         right_neighbor->type());
   }

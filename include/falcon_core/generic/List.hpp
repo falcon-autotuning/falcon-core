@@ -7,40 +7,6 @@
 #include "falcon_core/generic/Song.hpp"
 namespace falcon_core {
 namespace generic {
-template <typename T>
-struct is_shared_ptr : std::false_type {};
-
-template <typename T>
-struct is_shared_ptr<std::shared_ptr<T>> : std::true_type {};
-template <typename T>
-bool isBool(const T& query) {
-  return (typeid(query) == typeid(bool));
-}
-template <typename T>
-bool isString(const T& query) {
-  return (typeid(query) == typeid(std::string));
-}
-template <typename T>
-bool isFloat(const T& query) {
-  return (typeid(query) == typeid(float));
-}
-template <typename T>
-bool isDouble(const T& query) {
-  return (typeid(query) == typeid(double));
-}
-template <typename T>
-bool isInt(const T& query) {
-  return (typeid(query) == typeid(int));
-}
-template <typename T>
-bool isChar(const T& query) {
-  return (typeid(query) == typeid(char));
-}
-template <typename T>
-bool isPrimitive(const T& query) {
-  return isBool(query) || isString(query) || isFloat(query) ||
-         isDouble(query) || isInt(query) || isChar(query);
-}
 template <typename Value, typename Derived = void>
 class List : public generic::Song {
   static_assert(!std::is_pointer<Value>::value,
@@ -102,7 +68,11 @@ class List : public generic::Song {
   List() : _items(std::vector<StoredValue>()) {}
   List(size_t count) : _items(count) {}
   List(size_t count, const StoredValue& value) : _items(count, value) {}
-  List(const Container& init) : _items(init) {}
+  List(const Container& init) : _items() {
+    for (const auto& item : init) {
+      push_back(item);
+    }
+  }
   template <typename T = Value>
     requires std::is_base_of_v<Song, T> && (!is_primitive<T>::value)
   void push_back(const std::shared_ptr<T>& item) {
