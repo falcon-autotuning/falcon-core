@@ -5,9 +5,13 @@ namespace falcon_core::physics::device_structures {
 Impedance::Impedance(std::shared_ptr<Connection> connection,
                      double                      resistance,
                      double                      capacitance)
-    : _connection(std::move(connection)),
+    : _connection(connection),
       _resistance(resistance),
-      _capacitance(capacitance) {}
+      _capacitance(capacitance) {
+  if (!connection) {
+    throw std::invalid_argument("Impedance: connection cannot be nullptr");
+  }
+}
 
 Impedance::Impedance() = default;
 ConnectionSP Impedance::connection() const { return _connection; }
