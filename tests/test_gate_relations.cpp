@@ -68,4 +68,64 @@ TEST(GateRelationsTest, SerializationRoundTrip) {
   ASSERT_TRUE(got);
   EXPECT_EQ(got->at(0)->name(), "n");
 }
+
+TEST(GateRelationsTest, InsertOrAssignThrowsOnNonGateKey) {
+  GateRelations gr;
+  auto          ohmic    = Connection::Ohmic("o");
+  auto          neighbor = Connection::BarrierGate("n");
+  auto          neighbors =
+      std::make_shared<Connections>(std::vector<ConnectionSP>{neighbor});
+  EXPECT_THROW({ gr.insert_or_assign(ohmic, neighbors); }, std::runtime_error);
+  try {
+    gr.insert_or_assign(ohmic, neighbors);
+  } catch (const std::runtime_error& e) {
+    EXPECT_STREQ(e.what(),
+                 "Only a gate is allowed as keys of the GateRelations");
+  }
+}
+
+TEST(GateRelationsTest, InsertOrAssignThrowsOnNonGatesValue) {
+  GateRelations gr;
+  auto          ohmic = Connection::Ohmic("o");
+  auto          gate  = Connection::BarrierGate("n");
+  auto          neighbors =
+      std::make_shared<Connections>(std::vector<ConnectionSP>{ohmic});
+  EXPECT_THROW({ gr.insert_or_assign(gate, neighbors); }, std::runtime_error);
+  try {
+    gr.insert_or_assign(gate, neighbors);
+  } catch (const std::runtime_error& e) {
+    EXPECT_STREQ(e.what(),
+                 "Only gates are allowed as values of the GateRelations");
+  }
+}
+
+TEST(GateRelationsTest, InsertThrowsOnNonGateKey) {
+  GateRelations gr;
+  auto          ohmic = Connection::Ohmic("o");
+  auto          gate  = Connection::BarrierGate("n");
+  auto          neighbors =
+      std::make_shared<Connections>(std::vector<ConnectionSP>{gate});
+  EXPECT_THROW({ gr.insert(ohmic, neighbors); }, std::runtime_error);
+  try {
+    gr.insert(ohmic, neighbors);
+  } catch (const std::runtime_error& e) {
+    EXPECT_STREQ(e.what(),
+                 "Only a gate is allowed as keys of the GateRelations");
+  }
+}
+
+TEST(GateRelationsTest, InsertThrowsOnNonGatesValue) {
+  GateRelations gr;
+  auto          ohmic = Connection::Ohmic("o");
+  auto          gate  = Connection::BarrierGate("n");
+  auto          neighbors =
+      std::make_shared<Connections>(std::vector<ConnectionSP>{ohmic});
+  EXPECT_THROW({ gr.insert(gate, neighbors); }, std::runtime_error);
+  try {
+    gr.insert(gate, neighbors);
+  } catch (const std::runtime_error& e) {
+    EXPECT_STREQ(e.what(),
+                 "Only gates are allowed as values of the GateRelations");
+  }
+}
 }  // namespace
