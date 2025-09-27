@@ -3,8 +3,6 @@
 #include <map>
 #include <string>
 
-#include "falcon_core/Constants.hpp"
-
 namespace falcon_core {
 namespace physics {
 namespace units {

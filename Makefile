@@ -79,13 +79,38 @@ install:
 	@echo "--- Installing Python package ---"
 	@uv pip install .
 
-coverage:
+# check coverage of entire module
+run-all-tests:
 	@LLVM_PROFILE_FILE="run_tests.profraw" ./build/run_tests 
 	@llvm-profdata merge -sparse run_tests.profraw -o run_tests.profdata
+
+#check coverage of all the modles listed in the test_filter.txt
+run-subset-tests:
+	@LLVM_PROFILE_FILE="run_tests.profraw" ./build/run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
+	@llvm-profdata merge -sparse run_tests.profraw -o run_tests.profdata
+
+# launches the interactive html for the entire coverage run
+cov-html:
 	@llvm-cov show ./build/run_tests -instr-profile=run_tests.profdata \
 	  -format=html -output-dir=coverage_html \
-	  -ignore-filename-regex='(vcpkg_installed|tests/)'
+	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
+		-Xdemangler c++filt -Xdemangler -n
 	@xdg-open coverage_html/index.html
+
+# Usage: make coverage-term FILE=/path/to/source.cpp
+cov-term:
+	@llvm-cov show ./build/run_tests -instr-profile=run_tests.profdata $(FILE) \
+	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
+	  -Xdemangler c++filt -Xdemangler -n
+
+# Usage: make subset-coverage-html
+subset-coverage-html: run-subset-tests cov-html 
+# Usage: make coverage-html 
+coverage-html: run-subset-tests cov-html 
+# Usage: make subset-coverage FILE=/path/to/source.cpp
+subset-coverage: run-subset-tests cov-term
+# Usage: make coverage FILE=/path/to/source.cpp
+coverage: run-subset-tests cov-term
 
 # Run tests using CTest
 test: build

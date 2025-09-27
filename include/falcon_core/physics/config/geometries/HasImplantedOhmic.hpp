@@ -6,7 +6,7 @@ namespace falcon_core::physics::config::geometries {
 /*
  * @brief A gate with an ohmic below it.
  */
-class HasImplantedOhmic : public generic::Song {
+class HasImplantedOhmic : public virtual generic::Song {
   device_structures::ConnectionSP _ohmic;
 
  public:
@@ -21,7 +21,7 @@ class HasImplantedOhmic : public generic::Song {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<HasImplantedOhmic>(this), _ohmic);
+    ar(cereal::base_class<Song>(this), _ohmic);
   }
 };
 using HasImplantedOhmicSP = std::shared_ptr<HasImplantedOhmic>;
