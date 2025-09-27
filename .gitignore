@@ -5,6 +5,7 @@ __pycache__/
 # ignore vcpkg since it is large
 vcpkg/
 vcpkg_installed/
+coverage_html/
 /vcpkg*
 
 # .pyenv file
