@@ -31,12 +31,12 @@ class Connection : public virtual generic::Song {
    * @brief The name of the connection.
    * @return The name as a string.
    */
-  std::string name() const;
+  const std::string& name() const;
   /**
    * @brief The type of the connection.
    * @return The type as a string.
    */
-  std::string type() const;
+  const std::string type() const;
   /**
    * @brief Check if the connection is a plungergate or barriergate.
    */

@@ -57,11 +57,6 @@ class Connections : public falcon_core::generic::List<Connection> {
    */
   Connections();
   /**
-   * @brief Construct a Connections container with a given size.
-   * @param count Number of elements.
-   */
-  Connections(size_t count);
-  /**
    * @brief Construct a Connections container with a given size, and value.
    * @param count Number of elements.
    * @param value Value to copy.

@@ -1,9 +1,17 @@
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 
+#include <memory>
 #include <stdexcept>
 
+#include "falcon_core/physics/device_structures/Connections.hpp"
+
 namespace falcon_core::physics::config::core {
-StandardConfigConnections::StandardConfigConnections() = default;
+StandardConfigConnections::StandardConfigConnections()
+    : _screening_gates(std::make_shared<device_structures::Connections>()),
+      _reservoir_gates(std::make_shared<device_structures::Connections>()),
+      _plunger_gates(std::make_shared<device_structures::Connections>()),
+      _barrier_gates(std::make_shared<device_structures::Connections>()),
+      _ohmics(std::make_shared<device_structures::Connections>()) {}
 StandardConfigConnections::StandardConfigConnections(
     const device_structures::ConnectionsSP& screening_gates,
     const device_structures::ConnectionsSP& reservoir_gates,
@@ -15,6 +23,12 @@ StandardConfigConnections::StandardConfigConnections(
       _plunger_gates(plunger_gates),
       _barrier_gates(barrier_gates),
       _ohmics(ohmics) {
+  if (!screening_gates || !reservoir_gates || !plunger_gates ||
+      !barrier_gates || !ohmics) {
+    throw std::invalid_argument(
+        "StandardConfigConnections: All the constructor inputs need to not be "
+        "null.");
+  }
   if (!_screening_gates->is_screening_gates()) {
     throw std::runtime_error(
         "Expected all the gates in the screening_gates to be screening gates.");
@@ -36,53 +50,58 @@ StandardConfigConnections::StandardConfigConnections(
         "Expected all the connections in the ohmics to be ohmic.");
   }
 }
-device_structures::ConnectionsSP StandardConfigConnections::screening_gates()
-    const {
+const device_structures::ConnectionsSP&
+StandardConfigConnections::screening_gates() const {
   return _screening_gates;
 }
-device_structures::ConnectionsSP StandardConfigConnections::reservoir_gates()
-    const {
+const device_structures::ConnectionsSP&
+StandardConfigConnections::reservoir_gates() const {
   return _reservoir_gates;
 }
-device_structures::ConnectionsSP StandardConfigConnections::plunger_gates()
-    const {
+const device_structures::ConnectionsSP&
+StandardConfigConnections::plunger_gates() const {
   return _plunger_gates;
 }
-device_structures::ConnectionsSP StandardConfigConnections::barrier_gates()
-    const {
+const device_structures::ConnectionsSP&
+StandardConfigConnections::barrier_gates() const {
   return _barrier_gates;
 }
-device_structures::ConnectionsSP StandardConfigConnections::ohmics() const {
+const device_structures::ConnectionsSP& StandardConfigConnections::ohmics()
+    const {
   return _ohmics;
 }
-device_structures::ConnectionsSP StandardConfigConnections::dot_gates() const {
-  device_structures::ConnectionsSP combination;
-  combination->insert(
-      combination->end(), _barrier_gates->begin(), _barrier_gates->end());
-  combination->insert(
-      combination->end(), _plunger_gates->begin(), _plunger_gates->end());
-  return combination;
+const device_structures::ConnectionsSP StandardConfigConnections::dot_gates()
+    const {
+  device_structures::Connections combination = device_structures::Connections();
+  auto total_collection = std::vector{plunger_gates(), barrier_gates()};
+  for (const device_structures::ConnectionsSP& collection : total_collection) {
+    for (const device_structures::ConnectionSP& connection : *collection) {
+      combination.push_back(connection);
+    }
+  }
+  return std::make_shared<device_structures::Connections>(combination);
 }
-device_structures::ConnectionSP StandardConfigConnections::get_ohmic() const {
+const device_structures::ConnectionSP StandardConfigConnections::get_ohmic()
+    const {
   return _ohmics->at(0);
 }
-device_structures::ConnectionSP StandardConfigConnections::get_barrier_gate()
-    const {
+const device_structures::ConnectionSP
+StandardConfigConnections::get_barrier_gate() const {
   return _barrier_gates->at(0);
 }
-device_structures::ConnectionSP StandardConfigConnections::get_plunger_gate()
-    const {
+const device_structures::ConnectionSP
+StandardConfigConnections::get_plunger_gate() const {
   return _plunger_gates->at(0);
 }
-device_structures::ConnectionSP StandardConfigConnections::get_reservoir_gate()
-    const {
+const device_structures::ConnectionSP
+StandardConfigConnections::get_reservoir_gate() const {
   return _reservoir_gates->at(0);
 }
-device_structures::ConnectionSP StandardConfigConnections::get_screening_gate()
-    const {
+const device_structures::ConnectionSP
+StandardConfigConnections::get_screening_gate() const {
   return _screening_gates->at(0);
 }
-device_structures::ConnectionSP StandardConfigConnections::get_dot_gate()
+const device_structures::ConnectionSP StandardConfigConnections::get_dot_gate()
     const {
   if (_plunger_gates->size() > 0) {
     return _plunger_gates->at(0);
@@ -92,7 +111,8 @@ device_structures::ConnectionSP StandardConfigConnections::get_dot_gate()
     return nullptr;
   }
 }
-device_structures::ConnectionSP StandardConfigConnections::get_gate() const {
+const device_structures::ConnectionSP StandardConfigConnections::get_gate()
+    const {
   if (_plunger_gates->size() > 0) {
     return _plunger_gates->at(0);
   } else if (_barrier_gates->size() > 0) {
@@ -105,36 +125,38 @@ device_structures::ConnectionSP StandardConfigConnections::get_gate() const {
     return nullptr;
   }
 }
-device_structures::ConnectionsSP StandardConfigConnections::get_all_gates()
-    const {
-  device_structures::ConnectionsSP combination;
-  combination->insert(
-      combination->end(), _barrier_gates->begin(), _barrier_gates->end());
-  combination->insert(
-      combination->end(), _plunger_gates->begin(), _plunger_gates->end());
-  combination->insert(
-      combination->end(), _reservoir_gates->begin(), _reservoir_gates->end());
-  combination->insert(
-      combination->end(), _screening_gates->begin(), _screening_gates->end());
+const device_structures::ConnectionsSP
+StandardConfigConnections::get_all_gates() const {
+  device_structures::ConnectionsSP combination =
+      std::make_shared<device_structures::Connections>();
+  auto total_collection = std::vector{
+      barrier_gates(), plunger_gates(), screening_gates(), reservoir_gates()};
+  for (const auto collection : total_collection) {
+    for (const device_structures::ConnectionSP& connection : *collection) {
+      combination->push_back(connection);
+    }
+  }
   return combination;
 }
-device_structures::ConnectionsSP StandardConfigConnections::get_all_ohmics()
-    const {
-  return _ohmics;
-}
-device_structures::ConnectionsSP
+const device_structures::ConnectionsSP
 StandardConfigConnections::get_all_connections() const {
-  device_structures::ConnectionsSP combination;
-  device_structures::ConnectionsSP all_gates  = get_all_gates();
-  device_structures::ConnectionsSP all_ohmics = ohmics();
-  combination->insert(combination->end(), all_gates->begin(), all_gates->end());
-  combination->insert(
-      combination->end(), all_ohmics->begin(), all_ohmics->end());
+  device_structures::ConnectionsSP combination =
+      std::make_shared<device_structures::Connections>();
+  auto total_collection = std::vector{get_all_gates(), ohmics()};
+  for (const auto collection : total_collection) {
+    for (const device_structures::ConnectionSP& connection : *collection) {
+      combination->push_back(connection);
+    }
+  }
   return combination;
 }
 bool StandardConfigConnections::has_ohmic(
     const device_structures::ConnectionSP& ohmic) const {
-  for (auto& o : *_ohmics) {
+  if (!ohmic) {
+    throw std::invalid_argument(
+        "StandardConfigConnections: The ohmic has to not be null.");
+  }
+  for (auto& o : *ohmics()) {
     if (*o == *ohmic) {
       return true;
     }
@@ -143,7 +165,13 @@ bool StandardConfigConnections::has_ohmic(
 }
 bool StandardConfigConnections::has_gate(
     const device_structures::ConnectionSP& gate) const {
-  for (auto& g : *get_all_gates()) {
+  if (!gate) {
+    throw std::invalid_argument(
+        "StandardConfigConnections: The gate has to not be null.");
+  }
+  auto all_gates = get_all_gates();
+  for (const device_structures::ConnectionSP& g : *all_gates) {
+    std::cout << g->to_json_string();
     if (*g == *gate) {
       return true;
     }
@@ -152,7 +180,11 @@ bool StandardConfigConnections::has_gate(
 }
 bool StandardConfigConnections::has_barrier_gate(
     const device_structures::ConnectionSP& gate) const {
-  for (device_structures::ConnectionSP& g : *barrier_gates()) {
+  if (!gate) {
+    throw std::invalid_argument(
+        "StandardConfigConnections: The gate has to not be null.");
+  }
+  for (const device_structures::ConnectionSP& g : *barrier_gates()) {
     if (*g == *gate) {
       return true;
     }
@@ -161,7 +193,11 @@ bool StandardConfigConnections::has_barrier_gate(
 }
 bool StandardConfigConnections::has_plunger_gate(
     const device_structures::ConnectionSP& gate) const {
-  for (device_structures::ConnectionSP& g : *plunger_gates()) {
+  if (!gate) {
+    throw std::invalid_argument(
+        "StandardConfigConnections: The gate has to not be null.");
+  }
+  for (const device_structures::ConnectionSP& g : *plunger_gates()) {
     if (*g == *gate) {
       return true;
     }
@@ -170,7 +206,11 @@ bool StandardConfigConnections::has_plunger_gate(
 }
 bool StandardConfigConnections::has_reservoir_gate(
     const device_structures::ConnectionSP& gate) const {
-  for (device_structures::ConnectionSP& g : *reservoir_gates()) {
+  if (!gate) {
+    throw std::invalid_argument(
+        "StandardConfigConnections: The gate has to not be null.");
+  }
+  for (const device_structures::ConnectionSP& g : *reservoir_gates()) {
     if (*g == *gate) {
       return true;
     }
@@ -179,7 +219,11 @@ bool StandardConfigConnections::has_reservoir_gate(
 }
 bool StandardConfigConnections::has_screening_gate(
     const device_structures::ConnectionSP& gate) const {
-  for (device_structures::ConnectionSP& g : *screening_gates()) {
+  if (!gate) {
+    throw std::invalid_argument(
+        "StandardConfigConnections: The gate has to not be null.");
+  }
+  for (const device_structures::ConnectionSP& g : *screening_gates()) {
     if (*g == *gate) {
       return true;
     }

@@ -13,8 +13,6 @@ namespace device_structures {
 class Impedances : public generic::List<Impedance, Impedances> {
  public:
   Impedances();
-  explicit Impedances(size_t count);
-  Impedances(size_t count, const ImpedanceSP& value);
   Impedances(const std::vector<ImpedanceSP>& vec);
 
   template <class Archive>

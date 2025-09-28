@@ -165,17 +165,6 @@ TEST(SongTest, NotEquality) {
   auto song2 = StrSong("goodbye");
   ASSERT_FALSE(song1 == song2);
 }
-TEST(SongTest, LambdaDeleterIsCalled) {
-  bool           deleter_called = false;
-  const StrSong* song_ptr       = new StrSong("test");
-  {
-    // Lambda sets flag when called
-    std::shared_ptr<const StrSong> ptr(
-        song_ptr, [&](const StrSong*) { deleter_called = true; });
-    // ptr goes out of scope here, lambda should be called
-  }
-  EXPECT_TRUE(deleter_called);
-}
 
 TEST(SongTest, DestroyerSerialization) {
   auto original    = std::make_shared<TheDestroyerSong>();

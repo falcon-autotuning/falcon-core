@@ -5,16 +5,6 @@
 namespace falcon_core::physics::config::geometries {
 
 DotGatesWithNeighbors::DotGatesWithNeighbors() = default;
-DotGatesWithNeighbors::DotGatesWithNeighbors(size_t count)
-    : generic::List<DotGateWithNeighbors, DotGatesWithNeighbors>(count) {}
-DotGatesWithNeighbors::DotGatesWithNeighbors(
-    size_t count, const DotGateWithNeighborsSP& value)
-    : generic::List<DotGateWithNeighbors, DotGatesWithNeighbors>(count, value) {
-  if (!value) {
-    throw std::invalid_argument(
-        "DotGatesWithNeighbors: The gate to replicate cannot be null.");
-  }
-}
 DotGatesWithNeighbors::DotGatesWithNeighbors(
     const std::vector<DotGateWithNeighborsSP>& vec)
     : generic::List<DotGateWithNeighbors, DotGatesWithNeighbors>(vec) {}

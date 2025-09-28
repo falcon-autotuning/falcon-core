@@ -44,7 +44,7 @@ build:
 		-DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
 		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
 		-DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" \
-		-DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping" \
+		-DCMAKE_CXX_FLAGS="-fsanitize=address -g -O0 -fprofile-instr-generate -fcoverage-mapping" \
 		-DCMAKE_TOOLCHAIN_FILE="$$(vcpkg integrate install --triplet=x64-linux | grep -o '/.*\.cmake' | head -n1)" \
 		-DVCPKG_TARGET_TRIPLET=x64-linux \
 		. -S . -B $(BUILD_DIR)

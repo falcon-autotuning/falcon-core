@@ -302,4 +302,45 @@ TEST_F(GateGeometryArray1DTest, QueryNeighborsThrowsForUnknownGate) {
   auto                unknown = Connection::Ohmic("unknown");
   EXPECT_THROW(arr.query_neighbors(unknown), std::invalid_argument);
 }
+
+TEST_F(GateGeometryArray1DTest, QueryNeighborsScreeningGate) {
+  GateGeometryArray1D arr(linear, screening);
+  auto                result = arr.query_neighbors((*screening)[0]);
+  // Should contain left_barrier()->left_neighbor(), all raw_central_gates,
+  // right_barrier()->right_neighbor()
+  EXPECT_GT(result->size(), 0);
+}
+
+TEST_F(GateGeometryArray1DTest, QueryNeighborsLeftReservoir) {
+  GateGeometryArray1D arr(linear, screening);
+  auto                result = arr.query_neighbors((*linear)[1]);
+  // Should contain left_reservoir()->right_neighbor() and all screening gates
+  EXPECT_GT(result->size(), 0);
+}
+
+TEST_F(GateGeometryArray1DTest, QueryNeighborsRightReservoir) {
+  GateGeometryArray1D arr(linear, screening);
+  auto result = arr.query_neighbors((*linear)[linear->size() - 2]);
+  // Should contain right_reservoir()->left_neighbor() and all screening gates
+  EXPECT_GT(result->size(), 0);
+}
+
+TEST_F(GateGeometryArray1DTest, QueryNeighborsDotGate) {
+  GateGeometryArray1D arr(linear, screening);
+  auto dot_gate = (*linear)[3];  // Should be a plunger gate in the middle
+  auto result   = arr.query_neighbors(dot_gate);
+  // Should contain left_neighbor, right_neighbor, and all screening gates
+  EXPECT_GT(result->size(), 0);
+}
+
+TEST_F(GateGeometryArray1DTest,
+       AppendCentralGateThrowsIfRightNeighborNotPlunger) {
+  GateGeometryArray1D arr(linear, screening);
+  auto                barrier = Connection::BarrierGate("B1");
+  auto                plunger = Connection::PlungerGate("P1");
+  auto not_plunger            = Connection::BarrierGate("B2");  // Not a plunger
+  // left is plunger, right is not plunger
+  EXPECT_THROW(arr.append_central_gate(plunger, barrier, not_plunger),
+               std::invalid_argument);
+}
 }  // namespace

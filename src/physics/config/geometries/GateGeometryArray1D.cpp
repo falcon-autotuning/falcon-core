@@ -97,10 +97,12 @@ GateGeometryArray1D::const_iterator GateGeometryArray1D::begin() const {
 GateGeometryArray1D::const_iterator GateGeometryArray1D::end() const {
   return _lineararray->end();
 }
-device_structures::ConnectionsSP GateGeometryArray1D::lineararray() const {
+const device_structures::ConnectionsSP& GateGeometryArray1D::lineararray()
+    const {
   return _lineararray;
 }
-device_structures::ConnectionsSP GateGeometryArray1D::screening_gates() const {
+const device_structures::ConnectionsSP& GateGeometryArray1D::screening_gates()
+    const {
   if (!_screening_gates->is_screening_gates()) {
     throw std::runtime_error(
         "Expected the screening_gates to only be screening_gates");
@@ -161,27 +163,37 @@ device_structures::ConnectionsSP GateGeometryArray1D::query_neighbors(
   }
   device_structures::ConnectionSP gate_geometry = it->second;
 
-  device_structures::ConnectionsSP result;
+  device_structures::ConnectionsSP result =
+      std::make_shared<device_structures::Connections>();
 
   // If gate_geometry is in screening_gates
   for (const auto& sg : *screening_gates()) {
     if (sg->name() == gate_geometry->name()) {
-      result->push_back(left_barrier()->left_neighbor());
-      for (const auto& g : *raw_central_gates()) {
+      auto lbar      = left_barrier();
+      auto lneighbor = lbar->left_neighbor();
+      result->push_back(lneighbor);
+      auto central_gates = raw_central_gates();
+      for (const auto& g : *central_gates) {
         result->push_back(g);
       }
-      result->push_back(right_barrier()->right_neighbor());
+      auto rbar      = right_barrier();
+      auto rneighbor = rbar->right_neighbor();
+      result->push_back(rneighbor);
       return result;
     }
   }
   if (gate_geometry->name() == left_reservoir()->name()) {
-    result->push_back(left_reservoir()->right_neighbor());
+    auto lres      = left_reservoir();
+    auto rneighbor = lres->right_neighbor();
+    result->push_back(rneighbor);
     for (const auto& sg : *screening_gates()) {
       result->push_back(sg);
     }
     return result;
   } else if (gate_geometry->name() == right_reservoir()->name()) {
-    result->push_back(right_reservoir()->left_neighbor());
+    auto rres      = right_reservoir();
+    auto lneighbor = rres->left_neighbor();
+    result->push_back(lneighbor);
     for (const auto& sg : *screening_gates()) {
       result->push_back(sg);
     }

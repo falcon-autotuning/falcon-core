@@ -34,27 +34,27 @@ class StandardConfigConnections : public generic::Song {
    * @brief The screening gates from the config.
    * @return The screening gates.
    */
-  device_structures::ConnectionsSP screening_gates() const;
+  const device_structures::ConnectionsSP& screening_gates() const;
   /**
    * @brief The reservoir gates from the config.
    * @return The reservoir gates.
    */
-  device_structures::ConnectionsSP reservoir_gates() const;
+  const device_structures::ConnectionsSP& reservoir_gates() const;
   /**
    * @brief The plunger gates from the config.
    * @return The plunger gates.
    */
-  device_structures::ConnectionsSP plunger_gates() const;
+  const device_structures::ConnectionsSP& plunger_gates() const;
   /**
    * @brief The barrier gates from the config.
    * @return The barrier gates.
    */
-  device_structures::ConnectionsSP barrier_gates() const;
+  const device_structures::ConnectionsSP& barrier_gates() const;
   /**
    * @brief The ohmics from the config.
    * @return The ohmics gates.
    */
-  device_structures::ConnectionsSP ohmics() const;
+  const device_structures::ConnectionsSP& ohmics() const;
   /**
    * @brief Gets the connections of type as supplied.
    * @param conn_type The type of connection to get. The types of supported
@@ -63,47 +63,43 @@ class StandardConfigConnections : public generic::Song {
    * @returns the plural form of the connection type. This corresponds to the
    * conn_type
    */
-  device_structures::ConnectionsSP dot_gates() const;
+  const device_structures::ConnectionsSP dot_gates() const;
   /**
    * @brief Gets the first ohmic connection.
    */
-  device_structures::ConnectionSP get_ohmic() const;
+  const device_structures::ConnectionSP get_ohmic() const;
   /**
    * @brief Gets the first barrier gate connection.
    */
-  device_structures::ConnectionSP get_barrier_gate() const;
+  const device_structures::ConnectionSP get_barrier_gate() const;
   /**
    * @brief Gets the first plunger gate connection.
    */
-  device_structures::ConnectionSP get_plunger_gate() const;
+  const device_structures::ConnectionSP get_plunger_gate() const;
   /**
    * @brief Gets the first reservoir gate connection..
    */
-  device_structures::ConnectionSP get_reservoir_gate() const;
+  const device_structures::ConnectionSP get_reservoir_gate() const;
   /**
    * @brief Gets the first screening gate connection.
    */
-  device_structures::ConnectionSP get_screening_gate() const;
+  const device_structures::ConnectionSP get_screening_gate() const;
   /**
    * @brief Gets the first dot gate connection.
    */
-  device_structures::ConnectionSP get_dot_gate() const;
+  const device_structures::ConnectionSP get_dot_gate() const;
   /**
    * @brief Gets the first gate connection.
    */
-  device_structures::ConnectionSP get_gate() const;
+  const device_structures::ConnectionSP get_gate() const;
   /**
    * @brief Gets all of the gates for this collection from the config.
    */
-  device_structures::ConnectionsSP get_all_gates() const;
-  /**
-   * @brief Gets all of the ohmics for this collection from the config.
-   */
-  device_structures::ConnectionsSP get_all_ohmics() const;
+  const device_structures::ConnectionsSP get_all_gates() const;
   /**
    * @brief Gets all of the connections for this collection from the config.
    */
-  device_structures::ConnectionsSP get_all_connections() const;
+  const device_structures::ConnectionsSP get_all_connections() const;
   /**
    * @brief If this ohmic is a member of this group or not.
    */

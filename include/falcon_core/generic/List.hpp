@@ -66,8 +66,22 @@ class List : public generic::Song {
    *   @endcode
    */
   List() : _items(std::vector<StoredValue>()) {}
-  List(size_t count) : _items(count) {}
-  List(size_t count, const StoredValue& value) : _items(count, value) {}
+  List(size_t count) {
+    if constexpr (std::is_base_of_v<Song, Value>) {
+      throw std::invalid_argument(
+          "List: Default-initialized List of shared_ptr is not allowed");
+    } else {
+      _items = Container(count);
+    }
+  }
+  List(size_t count, const StoredValue& value) {
+    if (!value) {
+      throw std::invalid_argument(
+          "List: If an element is to be put in the array, it needs to not be "
+          "null");
+    }
+    _items = Container(count, value);
+  }
   List(const Container& init) : _items() {
     for (const auto& item : init) {
       push_back(item);
@@ -162,7 +176,16 @@ class List : public generic::Song {
     }
     throw std::out_of_range("Value not found in List");
   }
-  void insert(iterator pos, const_iterator first, const_iterator last) {
+  void insert(iterator pos, const_iterator first, const_iterator last)
+  // FIXME: Might be broken for single items in list
+  {
+    if constexpr (std::is_base_of_v<Song, Value>) {
+      for (auto it = first; it != last; ++it) {
+        if (!*it) {
+          throw std::invalid_argument("List: Cannot insert nullptr element.");
+        }
+      }
+    }
     _items.insert(pos, first, last);
   }
   /**
@@ -228,9 +251,5 @@ class List : public generic::Song {
 };
 template <typename Value>
 using ListSP = std::shared_ptr<List<Value>>;
-template <typename T>
-typename T::StoredValue at(const std::shared_ptr<T>& list, size_t idx) {
-  return (*list)[idx];
-}
 }  // namespace generic
 }  // namespace falcon_core

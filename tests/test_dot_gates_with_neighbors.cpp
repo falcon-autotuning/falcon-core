@@ -15,26 +15,6 @@ TEST(DotGatesWithNeighborsTest, DefaultConstructor) {
   EXPECT_EQ(gates.size(), 0);
 }
 
-TEST(DotGatesWithNeighborsTest, SizedConstructor) {
-  DotGatesWithNeighbors gates(3);
-  EXPECT_EQ(gates.size(), 3);
-}
-
-TEST(DotGatesWithNeighborsTest, FillConstructorValid) {
-  ConnectionSP b1   = Connection::BarrierGate("b1");
-  ConnectionSP b2   = Connection::BarrierGate("b2");
-  auto         gate = std::make_shared<PlungerGateWithNeighbors>("g", b1, b2);
-  DotGatesWithNeighbors gates(2, gate);
-  EXPECT_EQ(gates.size(), 2);
-  EXPECT_EQ(*gates[0], *gate);
-  EXPECT_EQ(*gates[1], *gate);
-}
-
-TEST(DotGatesWithNeighborsTest, FillConstructorNullptrThrows) {
-  EXPECT_THROW(
-      { DotGatesWithNeighbors gates(2, nullptr); }, std::invalid_argument);
-}
-
 TEST(DotGatesWithNeighborsTest, VectorConstructorValid) {
   ConnectionSP b1    = Connection::BarrierGate("b1");
   ConnectionSP b2    = Connection::BarrierGate("b2");

@@ -1,12 +1,19 @@
 #include "falcon_core/physics/config/core/VoltageConstraints.hpp"
 
+#include <stdexcept>
+
 namespace falcon_core::physics::config::core {
 VoltageConstraints::VoltageConstraints() = default;
 VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
                                        double                    max_safe_diff,
                                        std::pair<double, double> bounds)
-    : _adjacency(adjacency) {
-  std::vector<std::pair<int, int>> pairs = this->adjacency()->get_true_pairs();
+    : _adjacency(adjacency), _limits(bounds) {
+  if (!adjacency) {
+    throw std::invalid_argument(
+        "VoltageConstraints: The adjacency matrix needs to not be null.");
+  }
+  std::vector<std::pair<size_t, size_t>> pairs =
+      this->adjacency()->get_true_pairs();
   // So the first n rows are for the identity comparison for each gate.
   // The second n rows are for the negative identity comparison for each gate.
   // The next rows are for the pairs of connected gates, one row for each pair.
@@ -21,14 +28,10 @@ VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
   generic::FArray<double> pairMatrix =
       *generic::FArray<double>::zeros({2 * pairs.size(), W});
   // Creates pairs of constraint equations for every set of connected gates
-  for (int i = 0; i < pairs.size(); i++) {
-    int a = pairs[i].first;
-    int b = pairs[i].second;
-    if (a < 0 || a >= W || b < 0 || b >= W) {
-      std::cerr << "Invalid pair index: (" << a << ", " << b << "), W=" << W
-                << std::endl;
-      continue;  // or throw/assert
-    }
+  for (size_t i = 0; i < pairs.size(); i++) {
+    size_t a = pairs[i].first;
+    size_t b = pairs[i].second;
+    // a && b < W always
     pairMatrix(2 * i, a)     = 1;
     pairMatrix(2 * i, b)     = -1;
     pairMatrix(2 * i + 1, a) = -1;

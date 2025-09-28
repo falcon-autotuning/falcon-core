@@ -3,7 +3,7 @@
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
-Connection::Connection() : _name("") {}
+Connection::Connection() : _name(""), _type(DeviceFeature::Ohmic) {}
 Connection::Connection(const std::string& name, const DeviceFeature& type)
     : _name(name), _type(type) {}
 ConnectionSP Connection::BarrierGate(const std::string& name) {
@@ -21,8 +21,8 @@ ConnectionSP Connection::ScreeningGate(const std::string& name) {
 ConnectionSP Connection::Ohmic(const std::string& name) {
   return std::make_shared<Connection>(name, DeviceFeature::Ohmic);
 }
-std::string Connection::name() const { return _name; }
-std::string Connection::type() const {
+const std::string& Connection::name() const { return _name; }
+const std::string  Connection::type() const {
   switch (_type) {
     case DeviceFeature::BarrierGate:
       return "BarrierGate";
@@ -32,10 +32,8 @@ std::string Connection::type() const {
       return "ReservoirGate";
     case DeviceFeature::ScreeningGate:
       return "ScreeningGate";
-    case DeviceFeature::Ohmic:
+    default:  // DeviceFeature::Ohmic
       return "Ohmic";
-    default:
-      return "Unknown";
   }
 }
 bool Connection::is_dot_gate() const {

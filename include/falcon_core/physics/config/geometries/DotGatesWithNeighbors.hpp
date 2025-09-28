@@ -49,18 +49,6 @@ class DotGatesWithNeighbors
  public:
   DotGatesWithNeighbors();
   /**
-   * @brief Construct a DotGatesWithNeighbors container with a given size.
-   * @param count Number of elements.
-   */
-  DotGatesWithNeighbors(size_t count);
-  /**
-   * @brief Construct a DotGatesWithNeighbors container with a given size, and
-   * value.
-   * @param count Number of elements.
-   * @param value Value to copy.
-   */
-  DotGatesWithNeighbors(size_t count, const DotGateWithNeighborsSP& value);
-  /**
    * @brief Construct a DotGatesWithNeighbors container from an existing vector
    * of values.
    * @param vec Vector of values to copy.

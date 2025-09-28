@@ -14,24 +14,6 @@ TEST(ImpedancesTest, DefaultConstructor) {
   EXPECT_EQ(imps.size(), 0);
 }
 
-TEST(ImpedancesTest, CountConstructor) {
-  Impedances imps(3);
-  EXPECT_EQ(imps.size(), 3);
-  for (const auto& imp : imps) {
-    EXPECT_EQ(imp, nullptr);
-  }
-}
-
-TEST(ImpedancesTest, CountValueConstructor) {
-  auto       conn = Connection::BarrierGate("foo");
-  auto       imp  = std::make_shared<Impedance>(conn, 1.0, 2.0);
-  Impedances imps(2, imp);
-  EXPECT_EQ(imps.size(), 2);
-  for (const auto& item : imps) {
-    EXPECT_EQ(item, imp);
-  }
-}
-
 TEST(ImpedancesTest, VectorConstructor) {
   auto                     conn1 = Connection::BarrierGate("a");
   auto                     conn2 = Connection::Ohmic("b");

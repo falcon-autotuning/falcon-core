@@ -20,7 +20,7 @@ class Adjacency : public generic::FArray<int> {
   /**
    * @brief Returns the pairs of indexes where the adjacency matrix is true (1)
    */
-  std::vector<std::pair<int, int>> get_true_pairs() const;
+  std::vector<std::pair<size_t, size_t>> get_true_pairs() const;
 
  protected:
   Adjacency();

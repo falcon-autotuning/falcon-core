@@ -1,0 +1,70 @@
+
+#include <gtest/gtest.h>
+
+#include "falcon_core/physics/config/core/Adjacency.hpp"
+#include "falcon_core/physics/config/core/VoltageConstraints.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
+#include "falcon_core/physics/device_structures/Connections.hpp"
+namespace {
+using namespace falcon_core::physics::config::core;
+using namespace falcon_core::physics::device_structures;
+
+class VoltageConstraintsTest : public ::testing::Test {
+ protected:
+  AdjacencySP               adjacency;
+  xt::xarray<int>           adj_matrix;
+  double                    max_safe_diff;
+  std::pair<double, double> bounds;
+
+  void SetUp() override {
+    auto indexes = std::make_shared<Connections>();
+    indexes->push_back(Connection::Ohmic("O1"));
+    indexes->push_back(Connection::ReservoirGate("R1"));
+    indexes->push_back(Connection::BarrierGate("B1"));
+    adj_matrix    = xt::xarray<int>{{0, 1, 0}, {1, 0, 1}, {0, 1, 0}};
+    adjacency     = std::make_shared<Adjacency>(adj_matrix, indexes);
+    max_safe_diff = 1.5;
+    bounds        = {0.0, 5.0};
+  }
+};
+
+TEST_F(VoltageConstraintsTest, ConstructorValid) {
+  EXPECT_NO_THROW(VoltageConstraints vc(adjacency, max_safe_diff, bounds));
+}
+
+TEST_F(VoltageConstraintsTest, ConstructorNullptrAdjacencyThrows) {
+  EXPECT_THROW(VoltageConstraints vc(nullptr, max_safe_diff, bounds),
+               std::invalid_argument);
+}
+
+TEST_F(VoltageConstraintsTest, AdjacencyReturnsExpected) {
+  VoltageConstraints vc(adjacency, max_safe_diff, bounds);
+  EXPECT_EQ(vc.adjacency(), adjacency);
+}
+
+TEST_F(VoltageConstraintsTest, LimitsReturnsExpected) {
+  VoltageConstraints vc(adjacency, max_safe_diff, bounds);
+  EXPECT_EQ(vc.limits().first, static_cast<float>(bounds.first));
+  EXPECT_EQ(vc.limits().second, static_cast<float>(bounds.second));
+}
+
+TEST_F(VoltageConstraintsTest, SerializationRoundTrip) {
+  VoltageConstraints vc(adjacency, max_safe_diff, bounds);
+  auto               string = vc.to_json_string();
+  auto               loaded =
+      VoltageConstraints::from_json_string<VoltageConstraints>(string);
+  EXPECT_EQ(vc.matrix().shape(), loaded->matrix().shape());
+  EXPECT_EQ(vc.limits(), loaded->limits());
+  // Adjacency shape and indexes
+  EXPECT_EQ(vc.adjacency()->shape(), loaded->adjacency()->shape());
+  EXPECT_EQ(vc.adjacency()->indexes()->size(),
+            loaded->adjacency()->indexes()->size());
+}
+
+TEST_F(VoltageConstraintsTest, ConstMatrixGetter) {
+  VoltageConstraints        vc(adjacency, max_safe_diff, bounds);
+  const VoltageConstraints& cvc = vc;
+  const auto&               m   = cvc.matrix();
+  EXPECT_EQ(m.shape(), vc.matrix().shape());
+}
+}  // namespace

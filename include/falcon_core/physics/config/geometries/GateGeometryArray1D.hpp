@@ -89,12 +89,12 @@ class GateGeometryArray1D : public generic::Song {
    * @brief Gets the linear array of connections.
    * @return The linear array of connections.
    */
-  device_structures::ConnectionsSP lineararray() const;
+  const device_structures::ConnectionsSP& lineararray() const;
   /**
    * @brief Gets the screening gates in the geometry.
    * @return The screening gates in the geometry.
    */
-  device_structures::ConnectionsSP screening_gates() const;
+  const device_structures::ConnectionsSP& screening_gates() const;
   /**
    * @brief Gets the central gates without localities.
    * @return The central gates without localities.

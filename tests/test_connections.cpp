@@ -6,16 +6,8 @@ namespace {
 using namespace falcon_core::physics::device_structures;
 
 TEST(ConnectionsTest, DefaultConstructor) {
-  Connections c;
+  Connections c = Connections();
   EXPECT_EQ(c.size(), 0);
-}
-
-TEST(ConnectionsTest, CountConstructor) {
-  Connections c(3);
-  EXPECT_EQ(c.size(), 3);
-  for (const auto& conn : c) {
-    EXPECT_EQ(conn, nullptr);
-  }
 }
 
 TEST(ConnectionsTest, CountValueConstructor) {
@@ -49,32 +41,41 @@ TEST(ConnectionsTest, ListSPConstructor) {
 }
 
 TEST(ConnectionsTest, TypeChecks) {
-  auto gate    = Connection::ScreeningGate("g");
-  auto ohmic   = Connection::Ohmic("o");
-  auto dot     = Connection::ReservoirGate("d");
-  auto plunger = Connection::PlungerGate("p");
-  auto barrier = Connection::BarrierGate("b");
-  auto reservoir =
-      std::make_shared<Connection>("r", DeviceFeature::ReservoirGate);
-  auto screening =
-      std::make_shared<Connection>("s", DeviceFeature::ScreeningGate);
+  auto gate      = Connection::ScreeningGate("g");
+  auto ohmic     = Connection::Ohmic("o");
+  auto plunger   = Connection::PlungerGate("p");
+  auto barrier   = Connection::BarrierGate("b");
+  auto reservoir = Connection::ReservoirGate("r");
+  auto screening = Connection::ScreeningGate("s");
 
   Connections gates({gate, gate});
   EXPECT_TRUE(gates.is_gates());
+  EXPECT_FALSE(gates.is_dot_gates());
+  EXPECT_FALSE(gates.is_reservoir_gates());
+  EXPECT_FALSE(gates.is_barrier_gates());
+  EXPECT_FALSE(gates.is_plunger_gates());
   EXPECT_FALSE(gates.is_ohmics());
 
   Connections ohmics({ohmic, ohmic});
   EXPECT_TRUE(ohmics.is_ohmics());
+  EXPECT_FALSE(gates.is_dot_gates());
+  EXPECT_FALSE(gates.is_reservoir_gates());
+  EXPECT_FALSE(gates.is_barrier_gates());
+  EXPECT_FALSE(gates.is_plunger_gates());
+  EXPECT_FALSE(ohmics.is_screening_gates());
   EXPECT_FALSE(ohmics.is_gates());
-
-  Connections dots({dot, dot});
-  EXPECT_FALSE(dots.is_dot_gates());
 
   Connections plungers({plunger, plunger});
   EXPECT_TRUE(plungers.is_plunger_gates());
+  EXPECT_TRUE(plungers.is_dot_gates());
 
   Connections barriers({barrier, barrier});
   EXPECT_TRUE(barriers.is_barrier_gates());
+
+  Connections dotmixed({plunger, barrier});
+  EXPECT_TRUE(dotmixed.is_dot_gates());
+  EXPECT_FALSE(dotmixed.is_plunger_gates());
+  EXPECT_FALSE(dotmixed.is_barrier_gates());
 
   Connections reservoirs({reservoir, reservoir});
   EXPECT_TRUE(reservoirs.is_reservoir_gates());

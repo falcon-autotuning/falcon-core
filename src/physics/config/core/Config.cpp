@@ -314,7 +314,7 @@ device_structures::ConnectionsSP Config::get_channel_ohmics(
   if (!has_channel(channel)) return nullptr;
   for (const GroupSP& group : *get_all_groups()) {
     if (group->has_channel(channel)) {
-      return group->get_all_ohmics();
+      return group->ohmics();
     }
   }
   return nullptr;

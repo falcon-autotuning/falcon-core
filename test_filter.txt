@@ -28,3 +28,6 @@ GnameTest.*
 BarrierGateWithNeighborsTest.*
 DotGatesWithNeighborsTest.*
 GateGeometryArray1DTest.*
+AdjacencyTest.*
+VoltageConstraintsTest.*
+StandardConfigConnectionsTest.*

@@ -14,7 +14,7 @@ class StrSong : public Song {
  public:
   StrSong(std::string value = "") : _value(value) {}
 
-  const std::string value() { return _value; }
+  std::string value() { return _value; }
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -23,8 +23,8 @@ class StrSong : public Song {
 };
 using StrSongSP = std::shared_ptr<StrSong>;
 }  // namespace
-CEREAL_REGISTER_TYPE(::StrSong)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ::StrSong)
+CEREAL_REGISTER_TYPE(StrSong)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, StrSong)
 
 namespace {
 using namespace falcon_core;
@@ -35,7 +35,7 @@ class ListTest : public ::testing::Test {
   std::vector<StrSongSP>   song_data;
   std::vector<std::string> str_data;
 
-  void SetUp() override {
+  ListTest() {
     double_data = {0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
     auto song1  = std::make_shared<StrSong>("hello");
     auto song2  = std::make_shared<StrSong>("world");
@@ -60,12 +60,6 @@ TEST_F(ListTest, CreateEmptySong) {
 TEST_F(ListTest, CreateEmptyArrayPrimitive) {
   size_t length = 5;
   auto   list   = List<double>(length);
-  EXPECT_EQ(list.items().size(), length);
-}
-
-TEST_F(ListTest, CreateEmptyArraySong) {
-  size_t length = 5;
-  auto   list   = List<StrSong>(length);
   EXPECT_EQ(list.items().size(), length);
 }
 
@@ -104,15 +98,19 @@ TEST_F(ListTest, CreateFullSong) {
 TEST_F(ListTest, CreateEmptyPrimitivePushBack) {
   auto   list  = List<double>();
   double value = 10.0;
+  EXPECT_EQ(list.size(), 0);
   list.push_back(value);
   EXPECT_EQ(list[0], value);
+  EXPECT_EQ(list.size(), 1);
 }
 
 TEST_F(ListTest, CreateEmptySongPushBack) {
   auto list  = List<StrSong>();
   auto value = std::make_shared<StrSong>("Whee");
+  EXPECT_EQ(list.size(), 0);
   list.push_back(value);
   EXPECT_EQ(list[0], value);
+  EXPECT_EQ(list.size(), 1);
 }
 
 TEST_F(ListTest, CreateFullPrimitivePushBack) {
@@ -225,6 +223,15 @@ TEST_F(ListTest, Iterators) {
   EXPECT_EQ(sum, 45.0);
 }
 
+TEST_F(ListTest, RangeIterators) {
+  List<double> list(double_data);
+  double       sum = 0.0;
+  for (const auto& value : list) {
+    sum += value;
+  }
+  EXPECT_EQ(sum, 45.0);
+}
+
 TEST_F(ListTest, ConstIterators) {
   const List<double> list(double_data);
   double             sum = 0.0;
@@ -232,6 +239,51 @@ TEST_F(ListTest, ConstIterators) {
     sum += *it;
   }
   EXPECT_EQ(sum, 45.0);
+}
+
+TEST_F(ListTest, RangeConstIterators) {
+  const List<double> list(double_data);
+  double             sum = 0.0;
+  for (const auto& value : list) {
+    sum += value;
+  }
+  EXPECT_EQ(sum, 45.0);
+}
+
+// TEST_F(ListTest, SongIterators) {
+//   List<StrSong> list(song_data);
+//   std::string   total;
+//   for (auto it = list.begin(); it != list.end(); ++it) {
+//     total.append(it->value());
+//   }
+//   EXPECT_EQ(total, "helloworldagain");
+// }
+//
+TEST_F(ListTest, SongRangeIterators) {
+  List<StrSong> list(song_data);
+  std::string   total;
+  for (const auto& value : list) {
+    total.append(value->value());
+  }
+  EXPECT_EQ(total, "helloworldagain");
+}
+
+// TEST_F(ListTest, SongConstIterators) {
+//   const List<StrSong> list(song_data);
+//   std::string         total;
+//   for (auto it = list.begin(); it != list.end(); ++it) {
+//     total.append(it->value());
+//   }
+//   EXPECT_EQ(total, "helloworldagain");
+// }
+
+TEST_F(ListTest, SongRangeConstIterators) {
+  const List<StrSong> list(song_data);
+  std::string         total;
+  for (const auto& value : list) {
+    total.append(value->value());
+  }
+  EXPECT_EQ(total, "helloworldagain");
 }
 
 TEST_F(ListTest, ContainsPrimitive) {
