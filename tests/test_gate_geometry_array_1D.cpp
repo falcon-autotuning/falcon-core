@@ -136,4 +136,170 @@ TEST_F(GateGeometryArray1DTest, AppendCentralGateNullptrRightThrows) {
   EXPECT_THROW(arr.append_central_gate(gate, gate, nullptr),
                std::invalid_argument);
 }
+
+TEST_F(GateGeometryArray1DTest, ScreeningGatesTypeCheckThrows) {
+  GateGeometryArray1D arr(linear, screening);
+  // Force _screening_gates to be invalid by casting away constness (hack for
+  // coverage)
+  auto* nonconst = const_cast<Connections*>(arr.screening_gates().get());
+  // Replace with a non-screening gate to trigger the runtime_error
+  nonconst->clear();
+  nonconst->push_back(Connection::PlungerGate("P1"));
+  EXPECT_THROW(arr.screening_gates(), std::runtime_error);
+}
+
+TEST_F(GateGeometryArray1DTest, RawCentralGatesReturnsExpected) {
+  GateGeometryArray1D arr(linear, screening);
+  auto                raw = arr.raw_central_gates();
+  ASSERT_EQ(raw->size(), 3);
+  EXPECT_TRUE((*raw)[0]->is_barrier_gate());
+  EXPECT_TRUE((*raw)[1]->is_plunger_gate());
+  EXPECT_TRUE((*raw)[2]->is_barrier_gate());
+}
+
+TEST_F(GateGeometryArray1DTest, CentralDotGatesReturnsExpected) {
+  GateGeometryArray1D arr(linear, screening);
+  auto                central = arr.central_dot_gates();
+  ASSERT_EQ(central->size(), 1);
+  EXPECT_EQ((*central)[0]->name(), "P1");
+}
+
+TEST_F(GateGeometryArray1DTest, AllDotGatesReturnsExpected) {
+  GateGeometryArray1D arr(linear, screening);
+  auto                all = arr.all_dot_gates();
+  ASSERT_EQ(all->size(), 3);
+  EXPECT_EQ((*all)[0]->name(), "B1");
+  EXPECT_EQ((*all)[1]->name(), "P1");
+  EXPECT_EQ((*all)[2]->name(), "B2");
+}
+
+TEST_F(GateGeometryArray1DTest, OhmicsReturnsExpected) {
+  GateGeometryArray1D arr(linear, screening);
+  auto                ohmics = arr.ohmics();
+  ASSERT_EQ(ohmics->size(), 2);
+  EXPECT_TRUE((*ohmics)[0]->is_ohmic());
+  EXPECT_TRUE((*ohmics)[1]->is_ohmic());
+}
+
+TEST_F(GateGeometryArray1DTest, LeftReservoirThrowsIfNotOhmic) {
+  auto bad_linear = std::make_shared<Connections>(*linear);
+  // Replace first element with a non-ohmic
+  (*bad_linear)[0] = Connection::BarrierGate("BX");
+  EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
+               std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, LeftReservoirThrowsIfNotBarrier) {
+  auto bad_linear = std::make_shared<Connections>(*linear);
+  // Replace second element with a non-barrier
+  (*bad_linear)[2] = Connection::PlungerGate("PX");
+  EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
+               std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, RightReservoirThrowsIfNotReservoir) {
+  auto bad_linear = std::make_shared<Connections>(*linear);
+  // Replace second-to-last element with a non-reservoir
+  (*bad_linear)[bad_linear->size() - 2] = Connection::BarrierGate("BX");
+  EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
+               std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, RightReservoirThrowsIfNotBarrier) {
+  auto bad_linear = std::make_shared<Connections>(*linear);
+  // Replace third-to-last element with a non-barrier
+  (*bad_linear)[bad_linear->size() - 4] = Connection::ScreeningGate("PX");
+  EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
+               std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, LeftBarrierThrowsIfNotReservoir) {
+  auto bad_linear = std::make_shared<Connections>(*linear);
+  // Replace second element with a non-reservoir
+  (*bad_linear)[1] = Connection::BarrierGate("BX");
+  EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
+               std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, LeftBarrierThrowsIfNotPlunger) {
+  auto bad_linear = std::make_shared<Connections>(*linear);
+  // Replace fourth element with a non-plunger
+  (*bad_linear)[3] = Connection::BarrierGate("BX");
+  EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
+               std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, RightBarrierThrowsIfNotReservoir) {
+  auto bad_linear = std::make_shared<Connections>(*linear);
+  // Replace second-to-last element with a non-reservoir
+  (*bad_linear)[bad_linear->size() - 2] = Connection::BarrierGate("BX");
+  EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
+               std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, RightBarrierThrowsIfNotPlunger) {
+  auto bad_linear = std::make_shared<Connections>(*linear);
+  // Replace fourth-to-last element with a non-plunger
+  (*bad_linear)[bad_linear->size() - 4] = Connection::BarrierGate("BX");
+  EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
+               std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, AppendCentralGateThrowsForWrongNeighbors) {
+  GateGeometryArray1D arr(linear, screening);
+  auto                barrier = Connection::BarrierGate("BX");
+  auto                plunger = Connection::PlungerGate("PX");
+  // Barrier must be bounded by plunger
+  EXPECT_THROW(arr.append_central_gate(barrier, barrier, barrier),
+               std::invalid_argument);
+  // Plunger must be bounded by barrier
+  EXPECT_THROW(arr.append_central_gate(plunger, plunger, plunger),
+               std::invalid_argument);
+  // Selected gate must be plunger or barrier
+  auto ohmic = Connection::Ohmic("OX");
+  EXPECT_THROW(arr.append_central_gate(barrier, ohmic, barrier),
+               std::invalid_argument);
+}
+
+TEST_F(GateGeometryArray1DTest, IteratorsWork) {
+  GateGeometryArray1D arr(linear, screening);
+  auto                it    = arr.begin();
+  auto                end   = arr.end();
+  int                 count = 0;
+  for (; it != end; ++it) ++count;
+  EXPECT_EQ(count, linear->size());
+}
+
+TEST_F(GateGeometryArray1DTest, ConstIteratorsWork) {
+  const GateGeometryArray1D arr(linear, screening);
+  auto                      it    = arr.begin();
+  auto                      end   = arr.end();
+  int                       count = 0;
+  for (; it != end; ++it) ++count;
+  EXPECT_EQ(count, linear->size());
+}
+
+TEST_F(GateGeometryArray1DTest, LineararrayReturnsExpected) {
+  GateGeometryArray1D arr(linear, screening);
+  EXPECT_EQ(arr.lineararray(), linear);
+}
+
+TEST_F(GateGeometryArray1DTest, ScreeningGatesReturnsExpected) {
+  GateGeometryArray1D arr(linear, screening);
+  EXPECT_EQ(arr.screening_gates(), screening);
+}
+
+TEST_F(GateGeometryArray1DTest, AppendCentralGateValid) {
+  GateGeometryArray1D arr(linear, screening);
+  auto                left     = Connection::BarrierGate("B1");
+  auto                selected = Connection::PlungerGate("P1");
+  auto                right    = Connection::BarrierGate("B2");
+  EXPECT_NO_THROW(arr.append_central_gate(left, selected, right));
+}
+
+TEST_F(GateGeometryArray1DTest, QueryNeighborsThrowsForUnknownGate) {
+  GateGeometryArray1D arr(linear, screening);
+  auto                unknown = Connection::Ohmic("unknown");
+  EXPECT_THROW(arr.query_neighbors(unknown), std::invalid_argument);
+}
 }  // namespace

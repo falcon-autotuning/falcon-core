@@ -199,20 +199,9 @@ device_structures::ConnectionsSP GateGeometryArray1D::query_neighbors(
 LeftReservoirWithImplantedOhmicSP GateGeometryArray1D::left_reservoir() const {
   std::string                     name  = ((*lineararray())[1])->name();
   device_structures::ConnectionSP ohmic = (*lineararray())[0];
-  if (!ohmic->is_ohmic()) {
-    throw std::runtime_error(
-        "Expected the first element of the array to be an ohmic and not " +
-        ohmic->type());
-  }
   device_structures::ConnectionSP barrier_gate =
 
       (*lineararray())[2];
-  if (!barrier_gate->is_barrier_gate()) {
-    throw std::runtime_error(
-        "Expected the second element of the array to be a barrier gate and "
-        "not " +
-        barrier_gate->type());
-  }
   LeftReservoirWithImplantedOhmicSP left_reservoir =
       std::make_shared<LeftReservoirWithImplantedOhmic>(
           name, barrier_gate, ohmic);
@@ -223,20 +212,8 @@ RightReservoirWithImplantedOhmicSP GateGeometryArray1D::right_reservoir()
   std::string name = (*lineararray())[lineararray()->size() - 2] -> name();
   device_structures::ConnectionSP ohmic =
       (*lineararray())[lineararray()->size() - 1];
-  if (!ohmic->is_ohmic()) {
-    throw std::runtime_error(
-        "Expected the last element of the array to be an ohmic and not " +
-        ohmic->type());
-  }
   device_structures::ConnectionSP barrier_gate =
       (*lineararray())[lineararray()->size() - 3];
-  if (!barrier_gate->is_barrier_gate()) {
-    throw std::runtime_error(
-        "Expected the second to last element of the array to be a barrier gate "
-        "and "
-        "not " +
-        barrier_gate->type());
-  }
   return std::make_shared<RightReservoirWithImplantedOhmic>(
       name, barrier_gate, ohmic);
 }
@@ -244,20 +221,6 @@ BarrierGateWithNeighborsSP GateGeometryArray1D::left_barrier() const {
   std::string                     name = ((*lineararray())[2])->name();
   device_structures::ConnectionSP reservoir_gate = (*lineararray())[1];
   device_structures::ConnectionSP plunger_gate   = (*lineararray())[3];
-  if (!reservoir_gate->is_reservoir_gate()) {
-    throw std::runtime_error(
-        "Expected the second element of the array to be a reservoir gate "
-        "and "
-        "not " +
-        reservoir_gate->type());
-  }
-  if (!plunger_gate->is_plunger_gate()) {
-    throw std::runtime_error(
-        "Expected the fourth element of the array to be a plunger gate "
-        "and "
-        "not " +
-        plunger_gate->type());
-  }
   return std::make_shared<BarrierGateWithNeighbors>(
       name, reservoir_gate, plunger_gate);
 }
@@ -267,21 +230,6 @@ BarrierGateWithNeighborsSP GateGeometryArray1D::right_barrier() const {
       (*lineararray())[lineararray()->size() - 2];
   device_structures::ConnectionSP plunger_gate =
       (*lineararray())[lineararray()->size() - 4];
-  if (!reservoir_gate->is_reservoir_gate()) {
-    throw std::runtime_error(
-        "Expected the second to last element of the array to be a reservoir "
-        "gate "
-        "and "
-        "not " +
-        reservoir_gate->type());
-  }
-  if (!plunger_gate->is_plunger_gate()) {
-    throw std::runtime_error(
-        "Expected the fourth to last element of the array to be a plunger gate "
-        "and "
-        "not " +
-        plunger_gate->type());
-  }
   return std::make_shared<BarrierGateWithNeighbors>(
       name, plunger_gate, reservoir_gate);
 }
@@ -289,16 +237,6 @@ device_structures::ConnectionsSP GateGeometryArray1D::ohmics() const {
   device_structures::ConnectionSP left_ohmic = (*lineararray())[0];
   device_structures::ConnectionSP right_ohmic =
       (*lineararray())[lineararray()->size() - 1];
-  if (!left_ohmic->is_ohmic()) {
-    throw std::runtime_error(
-        "Expected the first element of the array to be an ohmic and not " +
-        left_ohmic->type());
-  }
-  if (!right_ohmic->is_ohmic()) {
-    throw std::runtime_error(
-        "Expected the last element of the array to be an ohmic and not " +
-        right_ohmic->type());
-  }
   std::vector<device_structures::ConnectionSP> tmp({left_ohmic, right_ohmic});
   return std::make_shared<device_structures::Connections>(tmp);
 }
