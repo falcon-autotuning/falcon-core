@@ -171,7 +171,6 @@ bool StandardConfigConnections::has_gate(
   }
   auto all_gates = get_all_gates();
   for (const device_structures::ConnectionSP& g : *all_gates) {
-    std::cout << g->to_json_string();
     if (*g == *gate) {
       return true;
     }

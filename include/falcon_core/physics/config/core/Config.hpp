@@ -81,7 +81,7 @@ class Config : public StandardConfigConnections {
    * if no match is found.
    */
   device_structures::ImpedanceSP get_impedance(
-      const device_structures::Connection& connection) const;
+      const device_structures::ConnectionSP& connection) const;
   /**
    * @brief Returns all of the group names.
    */

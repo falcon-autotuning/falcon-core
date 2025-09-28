@@ -5,14 +5,15 @@
 
 #include "falcon_core/physics/config/Loader.hpp"
 #include "falcon_core/physics/config/core/Config.hpp"
-namespace tests {
+
+namespace {
 using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::autotuner_interfaces::names;
-class ConfigTestFixture : public ::testing::Test {
+
+class ConfigTest : public ::testing::Test {
  protected:
   falcon_core::physics::config::core::Config original_config;
-
-  ConfigTestFixture()
+  ConfigTest()
       : original_config(
             std::make_shared<Connections>(
                 std::vector<ConnectionSP>{Connection::ScreeningGate("SG1"),
@@ -110,28 +111,20 @@ class ConfigTestFixture : public ::testing::Test {
                     })),
                 1.0,
                 std::make_pair(-1.0, 1.0))) {}
-
   void SetUp() override {}
   void TearDown() override {}
 };
 
-TEST_F(ConfigTestFixture, JsonRoundTrip) {
-  // Use the fixture's original_config
+TEST_F(ConfigTest, JsonRoundTrip) {
   std::string json_str = original_config.to_json_string();
   ASSERT_FALSE(json_str.empty());
-
-  // Deserialize from JSON
   auto deserialized_config =
       *falcon_core::physics::config::core::Config::from_json_string<
           falcon_core::physics::config::core::Config>(json_str);
-
-  // Verify basic properties are preserved
   ASSERT_EQ(deserialized_config.num_unique_channels(),
             original_config.num_unique_channels());
   ASSERT_EQ(deserialized_config.groups()->size(),
             original_config.groups()->size());
-
-  // Compare channels
   std::vector<std::string> ch1, ch2;
   for (const auto& c : *deserialized_config.channels())
     ch1.push_back(c->name());
@@ -139,8 +132,6 @@ TEST_F(ConfigTestFixture, JsonRoundTrip) {
   std::sort(ch1.begin(), ch1.end());
   std::sort(ch2.begin(), ch2.end());
   ASSERT_EQ(ch1, ch2);
-
-  // Compare gates
   ASSERT_EQ(deserialized_config.get_all_gates()->size(),
             original_config.get_all_gates()->size());
   std::vector<std::string> g1, g2;
@@ -151,8 +142,6 @@ TEST_F(ConfigTestFixture, JsonRoundTrip) {
   std::sort(g1.begin(), g1.end());
   std::sort(g2.begin(), g2.end());
   ASSERT_EQ(g1, g2);
-
-  // Compare ohmics
   ASSERT_EQ(deserialized_config.ohmics()->size(),
             original_config.ohmics()->size());
   std::vector<std::string> o1, o2;
@@ -161,8 +150,6 @@ TEST_F(ConfigTestFixture, JsonRoundTrip) {
   std::sort(o1.begin(), o1.end());
   std::sort(o2.begin(), o2.end());
   ASSERT_EQ(o1, o2);
-
-  // Compare impedances
   ASSERT_EQ(deserialized_config.wiring_DC()->size(),
             original_config.wiring_DC()->size());
   auto sort_by_conn = [](const ImpedanceSP& a, const ImpedanceSP& b) {
@@ -176,12 +163,11 @@ TEST_F(ConfigTestFixture, JsonRoundTrip) {
     ASSERT_EQ(w1[i]->resistance(), w2[i]->resistance());
     ASSERT_EQ(w1[i]->capacitance(), w2[i]->capacitance());
   }
-
-  // Test that we can re-serialize the deserialized object
   std::string json_str2 = deserialized_config.to_json_string();
   ASSERT_FALSE(json_str2.empty());
 }
-TEST_F(ConfigTestFixture, BasicQueries) {
+
+TEST_F(ConfigTest, BasicQueries) {
   auto gnames = original_config.get_all_gnames();
   auto groups = original_config.get_all_groups();
   ASSERT_EQ(gnames->size(), groups->size());
@@ -189,41 +175,27 @@ TEST_F(ConfigTestFixture, BasicQueries) {
     ASSERT_TRUE(groups->items()[i]);
     ASSERT_TRUE(gnames->items()[i]);
   }
-
-  // Test compile_channels and has_channel
   auto channels = original_config.get_current_channels();
   ASSERT_TRUE(channels);
   for (const auto& ch : *channels) {
     ASSERT_TRUE(original_config.has_channel(ch));
   }
-
-  // Test has_gname and select_group
   for (const auto& gn : *gnames) {
     ASSERT_TRUE(original_config.has_gname(gn));
     auto group = original_config.select_group(gn);
     ASSERT_TRUE(group);
   }
-
-  // Test get_dot_number
   for (const auto& ch : *channels) {
     int dots = original_config.get_dot_number(ch);
     ASSERT_GE(dots, 0);
   }
-
-  // Test get_charge_sense_groups (should not throw, may be empty)
   auto charge_sense = original_config.get_charge_sense_groups();
-
-  // Test ohmic_in_charge_sensor (should not throw, may be false)
   for (const auto& o : *original_config.ohmics()) {
     original_config.ohmic_in_charge_sensor(o);
   }
-
-  // Test get_associated_ohmic (should not throw, may be nullptr)
   for (const auto& r : *original_config.reservoir_gates()) {
     original_config.get_associated_ohmic(r);
   }
-
-  // Test get_gname and get_channel_gates
   for (const auto& ch : *channels) {
     auto gn = original_config.get_gname(ch);
     if (gn) {
@@ -231,37 +203,171 @@ TEST_F(ConfigTestFixture, BasicQueries) {
       auto pg = original_config.get_channel_plunger_gates(ch);
       auto rg = original_config.get_channel_reservoir_gates(ch);
       auto sg = original_config.get_channel_screening_gates(ch);
-      // Just check that these calls do not throw and return something (may be
-      // nullptr)
     }
   }
-
-  // Test get_isolated_gates and get_shared_gates
   auto isolated_barriers = original_config.get_isolated_barrier_gates();
   auto shared_barriers   = original_config.get_shared_barrier_gates();
-  // Should not throw, may be empty
-
-  // Test get_isolated_channel_gates
   for (const auto& ch : *channels) {
     auto iso = original_config.get_isolated_channel_gates(ch);
-    // Should not throw, may be empty
   }
-
-  // Test get_isolated_gates_by_type
-  auto iso_map = original_config.get_isolated_gates_by_channel();
-  // Should not throw, may be empty
-
-  // Test generate_gate_relations
+  auto iso_map   = original_config.get_isolated_gates_by_channel();
   auto relations = original_config.generate_gate_relations();
   ASSERT_TRUE(relations);
-
-  // Test get_impedance for all connections
   for (const auto& conn : *original_config.get_all_connections()) {
-    original_config.get_impedance(*conn);
+    original_config.get_impedance(conn);
   }
 }
+
+TEST_F(ConfigTest, HasChannelNullptrThrows) {
+  EXPECT_THROW(original_config.has_channel(nullptr), std::invalid_argument);
+}
+TEST_F(ConfigTest, HasGnameNullptrThrows) {
+  EXPECT_THROW(original_config.has_gname(nullptr), std::invalid_argument);
+}
+TEST_F(ConfigTest, SelectGroupNullptrThrows) {
+  EXPECT_THROW(original_config.select_group(nullptr), std::invalid_argument);
+}
+TEST_F(ConfigTest, GetDotNumberNullptrThrows) {
+  EXPECT_THROW(original_config.get_dot_number(nullptr), std::invalid_argument);
+}
+TEST_F(ConfigTest, OhmicInChargeSensorNullptrThrows) {
+  EXPECT_THROW(original_config.ohmic_in_charge_sensor(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetAssociatedOhmicNullptrThrows) {
+  EXPECT_THROW(original_config.get_associated_ohmic(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetGnameNullptrThrows) {
+  EXPECT_THROW(original_config.get_gname(nullptr), std::invalid_argument);
+}
+TEST_F(ConfigTest, GetGroupBarrierGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_group_barrier_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetGroupPlungerGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_group_plunger_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetGroupReservoirGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_group_reservoir_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetGroupScreeningGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_group_screening_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetGroupDotGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_group_dot_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetGroupGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_group_gates(nullptr), std::invalid_argument);
+}
+TEST_F(ConfigTest, GetChannelBarrierGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_channel_barrier_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetChannelPlungerGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_channel_plunger_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetChannelReservoirGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_channel_reservoir_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetChannelScreeningGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_channel_screening_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetChannelDotGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_channel_dot_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetChannelGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_channel_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetChannelOhmicsNullptrThrows) {
+  EXPECT_THROW(original_config.get_channel_ohmics(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetChannelOrderNoOhmicsNullptrThrows) {
+  EXPECT_THROW(original_config.get_channel_order_no_ohmics(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, ReturnChannelsFromGateNullptrThrows) {
+  EXPECT_THROW(original_config.return_channels_from_gate(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, ReturnChannelFromGateNullptrThrows) {
+  EXPECT_THROW(original_config.return_channel_from_gate(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, OhmicInChannelNullptrOhmicThrows) {
+  auto ch = std::make_shared<Channel>("CH1");
+  EXPECT_THROW(original_config.ohmic_in_channel(nullptr, ch),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, OhmicInChannelNullptrChannelThrows) {
+  auto ohmic = Connection::Ohmic("O1");
+  EXPECT_THROW(original_config.ohmic_in_channel(ohmic, nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetDotChannelNeighborsNullptrThrows) {
+  EXPECT_THROW(original_config.get_dot_channel_neighbors(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetSharedChannelBarrierGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_shared_channel_barrier_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetSharedChannelPlungerGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_shared_channel_plunger_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetSharedChannelReservoirGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_shared_channel_reservoir_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetSharedChannelScreeningGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_shared_channel_screening_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetSharedChannelDotGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_shared_channel_dot_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetSharedChannelGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_shared_channel_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetIsolatedChannelBarrierGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_isolated_channel_barrier_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetIsolatedChannelPlungerGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_isolated_channel_plunger_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetIsolatedChannelReservoirGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_isolated_channel_reservoir_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetIsolatedChannelScreeningGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_isolated_channel_screening_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetIsolatedChannelDotGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_isolated_channel_dot_gates(nullptr),
+               std::invalid_argument);
+}
+TEST_F(ConfigTest, GetIsolatedChannelGatesNullptrThrows) {
+  EXPECT_THROW(original_config.get_isolated_channel_gates(nullptr),
+               std::invalid_argument);
+}
+
 TEST(ConfigLoaderTest, LoadConfigFromYaml) {
-  // Write YAML to a temp file
   const char* yaml_content =
       "ScreeningGates: \"S1;S2;S3\"\n"
       "PlungerGates: \"P1;P2;P3\"\n"
@@ -321,16 +427,14 @@ TEST(ConfigLoaderTest, LoadConfigFromYaml) {
       "  B3: {resistance: 1000.0, capacitance: 1e-12}\n"
       "  B4: {resistance: 1000.0, capacitance: 1e-12}\n"
       "  B5: {resistance: 1000.0, capacitance: 1e-12}\n";
-
   std::string   temp_yaml_path = "/tmp/test_config.yaml";
   std::ofstream yaml_file(temp_yaml_path);
   yaml_file << yaml_content;
   yaml_file.close();
-
   falcon_core::physics::config::Loader loader(temp_yaml_path);
   auto                                 config = loader.config();
-
   ASSERT_TRUE(config != nullptr);
   EXPECT_EQ(config->num_unique_channels(), 2);
 }
-}  // namespace tests
+
+}  // namespace

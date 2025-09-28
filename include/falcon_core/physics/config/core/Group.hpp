@@ -12,7 +12,6 @@ class Group : public StandardConfigConnections {
   autotuner_interfaces::names::ChannelSP _name;
   int                                    _num_dots;
   geometries::GateGeometryArray1DSP      _order;
-  device_structures::ConnectionsSP       _ohmics;
 
  public:
   /**
@@ -35,19 +34,19 @@ class Group : public StandardConfigConnections {
   /**
    * @brief collect the ohmics pertaining to this group.
    */
-  device_structures::ConnectionsSP ohmics() const;
+  const device_structures::ConnectionsSP ohmics() const;
   /**
    * @brief collect the name of this group.
    */
-  autotuner_interfaces::names::ChannelSP name() const;
+  const autotuner_interfaces::names::ChannelSP& name() const;
   /**
    * @brief collect the number of dots in this group.
    */
-  int num_dots() const;
+  const int& num_dots() const;
   /**
    * @brief collect the order of the gates in this group.
    */
-  geometries::GateGeometryArray1DSP order() const;
+  const geometries::GateGeometryArray1DSP& order() const;
   /**
    * @brief Validates if this channel is present.
    * @param channel The channel to validate.
@@ -77,8 +76,7 @@ class Group : public StandardConfigConnections {
     ar(cereal::base_class<StandardConfigConnections>(this),
        _name,
        _num_dots,
-       _order,
-       _ohmics);
+       _order);
   }
 };
 using GroupSP = std::shared_ptr<Group>;

@@ -31,3 +31,5 @@ GateGeometryArray1DTest.*
 AdjacencyTest.*
 VoltageConstraintsTest.*
 StandardConfigConnectionsTest.*
+GroupTest.*
+ConfigTest.*
