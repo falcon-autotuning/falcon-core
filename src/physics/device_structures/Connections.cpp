@@ -65,6 +65,15 @@ bool Connections::is_screening_gates() const {
   }
   return true;
 }
+ConnectionsSP Connections::intersection(
+    const std::shared_ptr<Connections>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "Connections: Cannot intersect with a null connections.");
+  }
+  return std::make_shared<Connections>(
+      List::intersection(dynamic_pointer_cast<List<Connection>>(other)));
+}
 
 }  // namespace falcon_core::physics::device_structures
 CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Connections)

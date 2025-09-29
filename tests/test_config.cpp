@@ -2,6 +2,8 @@
 
 #include <fstream>
 #include <memory>
+#include <ranges>
+#include <stdexcept>
 
 #include "falcon_core/physics/config/Loader.hpp"
 #include "falcon_core/physics/config/core/Config.hpp"
@@ -13,6 +15,7 @@ using namespace falcon_core::autotuner_interfaces::names;
 class ConfigTest : public ::testing::Test {
  protected:
   falcon_core::physics::config::core::Config original_config;
+  falcon_core::physics::config::core::Config two_channel_config;
   ConfigTest()
       : original_config(
             std::make_shared<Connections>(
@@ -110,9 +113,166 @@ class ConfigTest : public ::testing::Test {
                         Connection::ReservoirGate("R2"),
                     })),
                 1.0,
+                std::make_pair(-1.0, 1.0))),
+        two_channel_config(
+            std::make_shared<Connections>(
+                std::vector<ConnectionSP>{Connection::ScreeningGate("SG1"),
+                                          Connection::ScreeningGate("SG2"),
+                                          Connection::ScreeningGate("SG3")}),
+            std::make_shared<Connections>(
+                std::vector<ConnectionSP>{Connection::PlungerGate("P1"),
+                                          Connection::PlungerGate("P2"),
+                                          Connection::PlungerGate("P3")}),
+            std::make_shared<Connections>(
+                std::vector<ConnectionSP>{Connection::Ohmic("O1"),
+                                          Connection::Ohmic("O2"),
+                                          Connection::Ohmic("O3"),
+                                          Connection::Ohmic("O4")}),
+            std::make_shared<Connections>(
+                std::vector<ConnectionSP>{Connection::BarrierGate("B1"),
+                                          Connection::BarrierGate("B2"),
+                                          Connection::BarrierGate("B3"),
+                                          Connection::BarrierGate("B4"),
+                                          Connection::BarrierGate("B5")}),
+            std::make_shared<Connections>(
+                std::vector<ConnectionSP>{Connection::ReservoirGate("R1"),
+                                          Connection::ReservoirGate("R2"),
+                                          Connection::ReservoirGate("R3"),
+                                          Connection::ReservoirGate("R4")}),
+            std::make_shared<falcon_core::generic::Map<
+                Gname,
+                falcon_core::physics::config::core::Group>>(
+                std::vector<
+                    std::pair<std::shared_ptr<Gname>,
+                              std::shared_ptr<
+                                  falcon_core::physics::config::core::Group>>>{
+                    {std::make_shared<Gname>("group1"),
+                     std::make_shared<
+                         falcon_core::physics::config::core::Group>(
+                         std::make_shared<Channel>("CH1"),
+                         2,
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::ScreeningGate("SG1"),
+                                 Connection::ScreeningGate("SG2")}),
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::ReservoirGate("R1"),
+                                 Connection::ReservoirGate("R2")}),
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::PlungerGate("P1"),
+                                 Connection::PlungerGate("P2")}),
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::BarrierGate("B1"),
+                                 Connection::BarrierGate("B2"),
+                                 Connection::BarrierGate("B3")}),
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::Ohmic("O1"),
+                                 Connection::ReservoirGate("R1"),
+                                 Connection::BarrierGate("B1"),
+                                 Connection::PlungerGate("P1"),
+                                 Connection::BarrierGate("B2"),
+                                 Connection::PlungerGate("P2"),
+                                 Connection::BarrierGate("B3"),
+                                 Connection::ReservoirGate("R2"),
+                                 Connection::Ohmic("O2"),
+                             }))},
+                    {std::make_shared<Gname>("group2"),
+                     std::make_shared<
+                         falcon_core::physics::config::core::Group>(
+                         std::make_shared<Channel>("CH2"),
+                         1,
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::ScreeningGate("SG2"),
+                                 Connection::ScreeningGate("SG3")}),
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::ReservoirGate("R3"),
+                                 Connection::ReservoirGate("R4")}),
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::PlungerGate("P3")}),
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::BarrierGate("B4"),
+                                 Connection::BarrierGate("B5")}),
+                         std::make_shared<Connections>(
+                             std::vector<ConnectionSP>{
+                                 Connection::Ohmic("O3"),
+                                 Connection::ReservoirGate("R3"),
+                                 Connection::BarrierGate("B4"),
+                                 Connection::PlungerGate("P3"),
+                                 Connection::BarrierGate("B5"),
+                                 Connection::ReservoirGate("R4"),
+                                 Connection::Ohmic("O4"),
+                             }))}}),
+            std::make_shared<Impedances>(std::vector<ImpedanceSP>{
+                std::make_shared<Impedance>(
+                    Connection::Ohmic("O1"), 1000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::Ohmic("O2"), 1000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::Ohmic("O3"), 1000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::Ohmic("O4"), 1000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::BarrierGate("B1"), 10000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::BarrierGate("B2"), 10000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::BarrierGate("B3"), 10000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::BarrierGate("B4"), 10000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::BarrierGate("B5"), 10000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::PlungerGate("P1"), 10000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::PlungerGate("P2"), 10000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::PlungerGate("P3"), 10000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::ReservoirGate("R1"), 10000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::ReservoirGate("R2"), 10000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::ReservoirGate("R3"), 10000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::ReservoirGate("R4"), 10000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::ScreeningGate("SG1"), 10000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::ScreeningGate("SG2"), 10000.0, 1e-12),
+                std::make_shared<Impedance>(
+                    Connection::ScreeningGate("SG3"), 10000.0, 1e-12),
+            }),
+            std::make_shared<
+                falcon_core::physics::config::core::VoltageConstraints>(
+                std::make_shared<falcon_core::physics::config::core::Adjacency>(
+                    xt::eye(9),
+                    std::make_shared<Connections>(std::vector<ConnectionSP>{
+                        Connection::ScreeningGate("SG1"),
+                        Connection::ScreeningGate("SG2"),
+                        Connection::ScreeningGate("SG3"),
+                        Connection::PlungerGate("P1"),
+                        Connection::PlungerGate("P2"),
+                        Connection::PlungerGate("P3"),
+                        Connection::BarrierGate("B1"),
+                        Connection::BarrierGate("B2"),
+                        Connection::BarrierGate("B3"),
+                        Connection::BarrierGate("B4"),
+                        Connection::BarrierGate("B5"),
+                        Connection::ReservoirGate("R1"),
+                        Connection::ReservoirGate("R2"),
+                        Connection::ReservoirGate("R3"),
+                        Connection::ReservoirGate("R4"),
+                    })),
+                1.0,
                 std::make_pair(-1.0, 1.0))) {}
-  void SetUp() override {}
-  void TearDown() override {}
 };
 
 TEST_F(ConfigTest, JsonRoundTrip) {
@@ -135,18 +295,20 @@ TEST_F(ConfigTest, JsonRoundTrip) {
   ASSERT_EQ(deserialized_config.get_all_gates()->size(),
             original_config.get_all_gates()->size());
   std::vector<std::string> g1, g2;
-  for (const auto& g : *deserialized_config.get_all_gates())
-    g1.push_back(g->name());
-  for (const auto& g : *original_config.get_all_gates())
-    g2.push_back(g->name());
+  auto                     all_gates    = *deserialized_config.get_all_gates();
+  auto                     all_og_names = *original_config.get_all_gates();
+  for (const auto& g : all_gates) g1.push_back(g->name());
+  for (const auto& g : all_og_names) g2.push_back(g->name());
   std::sort(g1.begin(), g1.end());
   std::sort(g2.begin(), g2.end());
   ASSERT_EQ(g1, g2);
   ASSERT_EQ(deserialized_config.ohmics()->size(),
             original_config.ohmics()->size());
   std::vector<std::string> o1, o2;
-  for (const auto& o : *deserialized_config.ohmics()) o1.push_back(o->name());
-  for (const auto& o : *original_config.ohmics()) o2.push_back(o->name());
+  auto                     all_ohmics    = *deserialized_config.ohmics();
+  auto                     all_og_ohmics = *original_config.ohmics();
+  for (const auto& o : all_ohmics) o1.push_back(o->name());
+  for (const auto& o : all_og_ohmics) o2.push_back(o->name());
   std::sort(o1.begin(), o1.end());
   std::sort(o2.begin(), o2.end());
   ASSERT_EQ(o1, o2);
@@ -189,11 +351,13 @@ TEST_F(ConfigTest, BasicQueries) {
     int dots = original_config.get_dot_number(ch);
     ASSERT_GE(dots, 0);
   }
-  auto charge_sense = original_config.get_charge_sense_groups();
-  for (const auto& o : *original_config.ohmics()) {
+  auto charge_sense    = original_config.get_charge_sense_groups();
+  auto ohmics          = *original_config.ohmics();
+  auto reservoir_gates = *original_config.reservoir_gates();
+  for (const auto& o : ohmics) {
     original_config.ohmic_in_charge_sensor(o);
   }
-  for (const auto& r : *original_config.reservoir_gates()) {
+  for (const auto& r : reservoir_gates) {
     original_config.get_associated_ohmic(r);
   }
   for (const auto& ch : *channels) {
@@ -213,7 +377,8 @@ TEST_F(ConfigTest, BasicQueries) {
   auto iso_map   = original_config.get_isolated_gates_by_channel();
   auto relations = original_config.generate_gate_relations();
   ASSERT_TRUE(relations);
-  for (const auto& conn : *original_config.get_all_connections()) {
+  auto all_connections = *original_config.get_all_connections();
+  for (const auto& conn : all_connections) {
     original_config.get_impedance(conn);
   }
 }
@@ -435,6 +600,312 @@ TEST(ConfigLoaderTest, LoadConfigFromYaml) {
   auto                                 config = loader.config();
   ASSERT_TRUE(config != nullptr);
   EXPECT_EQ(config->num_unique_channels(), 2);
+}
+
+TEST_F(ConfigTest, SharedChannelGateFunctions_NullChannel) {
+  // Test that all functions throw on nullptr channel
+  EXPECT_THROW(original_config.get_shared_channel_barrier_gates(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(original_config.get_shared_channel_plunger_gates(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(original_config.get_shared_channel_reservoir_gates(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(original_config.get_shared_channel_screening_gates(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(original_config.get_shared_channel_dot_gates(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(original_config.get_shared_channel_gates(nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(ConfigTest, SharedChannelGateFunctions_ValidChannel) {
+  // Create or obtain a valid ChannelSP for testing
+  auto channel = std::make_shared<Channel>("CH1");
+
+  // Each function should return a non-null ConnectionsSP
+  EXPECT_NE(original_config.get_shared_channel_barrier_gates(channel), nullptr);
+  EXPECT_NE(original_config.get_shared_channel_plunger_gates(channel), nullptr);
+  EXPECT_NE(original_config.get_shared_channel_reservoir_gates(channel),
+            nullptr);
+  EXPECT_NE(original_config.get_shared_channel_screening_gates(channel),
+            nullptr);
+  EXPECT_NE(original_config.get_shared_channel_dot_gates(channel), nullptr);
+  EXPECT_NE(original_config.get_shared_channel_gates(channel), nullptr);
+}
+
+TEST_F(ConfigTest, GetIsolatedBarrierGates_ReturnsExpected) {
+  auto result = original_config.get_isolated_barrier_gates();
+  ASSERT_NE(result, nullptr);
+  // Should contain all unique barrier gates from the config
+  EXPECT_GE(result->size(), 1);
+}
+
+TEST_F(ConfigTest, GetIsolatedPlungerGates_ReturnsExpected) {
+  auto result = original_config.get_isolated_plunger_gates();
+  ASSERT_NE(result, nullptr);
+  EXPECT_GE(result->size(), 1);
+}
+
+TEST_F(ConfigTest, GetIsolatedReservoirGates_ReturnsExpected) {
+  auto result = original_config.get_isolated_reservoir_gates();
+  ASSERT_NE(result, nullptr);
+  EXPECT_GE(result->size(), 1);
+}
+
+TEST_F(ConfigTest, GetIsolatedScreeningGates_ReturnsExpected) {
+  auto result = original_config.get_isolated_screening_gates();
+  ASSERT_NE(result, nullptr);
+  EXPECT_GE(result->size(), 1);
+}
+
+TEST_F(ConfigTest, GetIsolatedDotGates_ReturnsExpected) {
+  auto result = original_config.get_isolated_dot_gates();
+  ASSERT_NE(result, nullptr);
+  EXPECT_GE(result->size(), 1);
+}
+
+TEST_F(ConfigTest, GetBarrierGateDict_ReturnsExpected) {
+  auto dict = original_config.get_barrier_gate_dict();
+  ASSERT_NE(dict, nullptr);
+  auto groups = original_config.get_all_groups();
+  for (const auto& group : *groups) {
+    auto key   = group->name();
+    auto gates = group->barrier_gates();
+    ASSERT_TRUE(dict->contains(key));
+    auto mapped = dict->at(key);
+    ASSERT_EQ(mapped->size(), gates->size());
+    for (size_t i = 0; i < gates->size(); ++i)
+      EXPECT_EQ((*mapped)[i]->name(), (*gates)[i]->name());
+  }
+}
+
+TEST_F(ConfigTest, GetPlungerGateDict_ReturnsExpected) {
+  auto dict = original_config.get_plunger_gate_dict();
+  ASSERT_NE(dict, nullptr);
+  auto groups = original_config.get_all_groups();
+  for (const auto& group : *groups) {
+    auto key   = group->name();
+    auto gates = group->plunger_gates();
+    ASSERT_TRUE(dict->contains(key));
+    auto mapped = dict->at(key);
+    ASSERT_EQ(mapped->size(), gates->size());
+    for (size_t i = 0; i < gates->size(); ++i)
+      EXPECT_EQ((*mapped)[i]->name(), (*gates)[i]->name());
+  }
+}
+
+TEST_F(ConfigTest, GetReservoirGateDict_ReturnsExpected) {
+  auto dict = original_config.get_reservoir_gate_dict();
+  ASSERT_NE(dict, nullptr);
+  auto groups = original_config.get_all_groups();
+  for (const auto& group : *groups) {
+    auto key   = group->name();
+    auto gates = group->reservoir_gates();
+    ASSERT_TRUE(dict->contains(key));
+    auto mapped = dict->at(key);
+    ASSERT_EQ(mapped->size(), gates->size());
+    for (size_t i = 0; i < gates->size(); ++i)
+      EXPECT_EQ((*mapped)[i]->name(), (*gates)[i]->name());
+  }
+}
+
+TEST_F(ConfigTest, GetScreeningGateDict_ReturnsExpected) {
+  auto dict = original_config.get_screening_gate_dict();
+  ASSERT_NE(dict, nullptr);
+  auto groups = original_config.get_all_groups();
+  for (const auto& group : *groups) {
+    auto key   = group->name();
+    auto gates = group->screening_gates();
+    ASSERT_TRUE(dict->contains(key));
+    auto mapped = dict->at(key);
+    ASSERT_EQ(mapped->size(), gates->size());
+    for (size_t i = 0; i < gates->size(); ++i)
+      EXPECT_EQ((*mapped)[i]->name(), (*gates)[i]->name());
+  }
+}
+
+TEST_F(ConfigTest, GetDotGateDict_ReturnsExpected) {
+  auto dict = original_config.get_dot_gate_dict();
+  ASSERT_NE(dict, nullptr);
+  auto groups = original_config.get_all_groups();
+  for (const auto& group : *groups) {
+    auto key   = group->name();
+    auto gates = group->dot_gates();
+    ASSERT_TRUE(dict->contains(key));
+    auto mapped = dict->at(key);
+    ASSERT_EQ(mapped->size(), gates->size());
+    for (size_t i = 0; i < gates->size(); ++i)
+      EXPECT_EQ((*mapped)[i]->name(), (*gates)[i]->name());
+  }
+}
+
+TEST_F(ConfigTest, GetIsolatedBarrierGatesByChannel_ReturnsExpected) {
+  auto dict = original_config.get_isolated_barrier_gates_by_channel();
+  ASSERT_NE(dict, nullptr);
+  auto channels = original_config.get_current_channels();
+  auto isolated = original_config.get_isolated_barrier_gates();
+  std::unordered_set<std::string> isolated_names;
+  for (const auto& g : *isolated) isolated_names.insert(g->name());
+  for (const auto& ch : *channels) {
+    if (dict->contains(ch)) {
+      auto gates = dict->at(ch);
+      for (const auto& g : *gates) EXPECT_TRUE(isolated_names.count(g->name()));
+    }
+  }
+}
+
+TEST_F(ConfigTest, GetIsolatedPlungerGatesByChannel_ReturnsExpected) {
+  auto dict = original_config.get_isolated_plunger_gates_by_channel();
+  ASSERT_NE(dict, nullptr);
+  auto channels = original_config.get_current_channels();
+  auto isolated = original_config.get_isolated_plunger_gates();
+  std::unordered_set<std::string> isolated_names;
+  for (const auto& g : *isolated) isolated_names.insert(g->name());
+  for (const auto& ch : *channels) {
+    if (dict->contains(ch)) {
+      auto gates = dict->at(ch);
+      for (const auto& g : *gates) EXPECT_TRUE(isolated_names.count(g->name()));
+    }
+  }
+}
+
+TEST_F(ConfigTest, GetIsolatedReservoirGatesByChannel_ReturnsExpected) {
+  auto dict = original_config.get_isolated_reservoir_gates_by_channel();
+  ASSERT_NE(dict, nullptr);
+  auto channels = original_config.get_current_channels();
+  auto isolated = original_config.get_isolated_reservoir_gates();
+  std::unordered_set<std::string> isolated_names;
+  for (const auto& g : *isolated) isolated_names.insert(g->name());
+  for (const auto& ch : *channels) {
+    if (dict->contains(ch)) {
+      auto gates = dict->at(ch);
+      for (const auto& g : *gates) EXPECT_TRUE(isolated_names.count(g->name()));
+    }
+  }
+}
+
+TEST_F(ConfigTest, GetIsolatedScreeningGatesByChannel_ReturnsExpected) {
+  auto dict = original_config.get_isolated_screening_gates_by_channel();
+  ASSERT_NE(dict, nullptr);
+  auto channels = original_config.get_current_channels();
+  auto isolated = original_config.get_isolated_screening_gates();
+  std::unordered_set<std::string> isolated_names;
+  for (const auto& g : *isolated) isolated_names.insert(g->name());
+  for (const auto& ch : *channels) {
+    if (dict->contains(ch)) {
+      auto gates = dict->at(ch);
+      for (const auto& g : *gates) EXPECT_TRUE(isolated_names.count(g->name()));
+    }
+  }
+}
+
+TEST_F(ConfigTest, GetIsolatedDotGatesByChannel_ReturnsExpected) {
+  auto dict = original_config.get_isolated_dot_gates_by_channel();
+  ASSERT_NE(dict, nullptr);
+  auto channels = original_config.get_current_channels();
+  auto isolated = original_config.get_isolated_dot_gates();
+  std::unordered_set<std::string> isolated_names;
+  for (const auto& g : *isolated) isolated_names.insert(g->name());
+  for (const auto& ch : *channels) {
+    if (dict->contains(ch)) {
+      auto gates = dict->at(ch);
+      for (const auto& g : *gates) EXPECT_TRUE(isolated_names.count(g->name()));
+    }
+  }
+}
+
+TEST_F(ConfigTest, GetSharedChannelGates_PushBackHappens_TwoChannel) {
+  // Use a channel that is present in the two_channel_config and has shared
+  // gates
+  auto channel = std::make_shared<Channel>("CH1");
+  auto result  = two_channel_config.get_shared_channel_gates(channel);
+  ASSERT_NE(result, nullptr);
+  // At least one gate should be present if there is overlap
+  EXPECT_GT(result->size(), 0);
+  // Optionally, check that all gates in result are in both shared_gates and
+  // channel_gates
+  auto shared_gates  = two_channel_config.get_shared_gates();
+  auto channel_gates = two_channel_config.get_channel_gates(channel);
+  for (const auto& gate : *result) {
+    bool in_shared  = shared_gates->contains(gate);
+    bool in_channel = channel_gates->contains(gate);
+    EXPECT_TRUE(in_shared && in_channel);
+  }
+}
+
+// Helper: Clone the two_channel_config and mutate a group's gate type
+static falcon_core::physics::config::core::Config
+MakeGroupGateTypeInconsistentConfig(
+    std::function<void(
+        std::shared_ptr<falcon_core::physics::config::core::Group>&)> mutator,
+    const falcon_core::physics::config::core::Config&                 base) {
+  using namespace falcon_core::physics::config::core;
+  using namespace falcon_core::autotuner_interfaces::names;
+
+  // Deep copy groups
+  auto groups_vec =
+      std::vector<std::pair<std::shared_ptr<Gname>, std::shared_ptr<Group>>>();
+  for (const auto& pair : *base.groups()) {
+    auto gname = std::make_shared<Gname>(*pair->first());
+    auto group = std::make_shared<Group>(*pair->second());
+    mutator(group);
+    groups_vec.emplace_back(gname, group);
+  }
+  auto groups =
+      std::make_shared<falcon_core::generic::Map<Gname, Group>>(groups_vec);
+
+  return Config(base.screening_gates(),
+                base.plunger_gates(),
+                base.ohmics(),
+                base.barrier_gates(),
+                base.reservoir_gates(),
+                groups,
+                base.wiring_DC(),
+                base.voltage_constraints());
+}
+
+TEST_F(ConfigTest, CheckGroupConsistency_ThrowsOnScreeningGate) {
+  EXPECT_THROW(MakeGroupGateTypeInconsistentConfig(
+                   [](auto& group) {
+                     group->screening_gates()->push_back(
+                         falcon_core::physics::device_structures::Connection::
+                             ScreeningGate("SG999"));
+                   },
+                   two_channel_config),
+               std::logic_error);
+}
+
+TEST_F(ConfigTest, CheckGroupConsistency_ThrowsOnReservoirGate) {
+  EXPECT_THROW(MakeGroupGateTypeInconsistentConfig(
+                   [](auto& group) {
+                     group->reservoir_gates()->push_back(
+                         falcon_core::physics::device_structures::Connection::
+                             ReservoirGate("R999"));
+                   },
+                   two_channel_config),
+               std::logic_error);
+}
+
+TEST_F(ConfigTest, CheckGroupConsistency_ThrowsOnPlungerGate) {
+  EXPECT_THROW(MakeGroupGateTypeInconsistentConfig(
+                   [](auto& group) {
+                     group->plunger_gates()->push_back(
+                         falcon_core::physics::device_structures::Connection::
+                             PlungerGate("P999"));
+                   },
+                   two_channel_config),
+               std::logic_error);
+}
+
+TEST_F(ConfigTest, CheckGroupConsistency_ThrowsOnBarrierGate) {
+  EXPECT_THROW(MakeGroupGateTypeInconsistentConfig(
+                   [](auto& group) {
+                     group->barrier_gates()->push_back(
+                         falcon_core::physics::device_structures::Connection::
+                             BarrierGate("B999"));
+                   },
+                   two_channel_config),
+               std::logic_error);
 }
 
 }  // namespace

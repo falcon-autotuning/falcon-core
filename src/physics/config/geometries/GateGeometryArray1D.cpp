@@ -21,25 +21,29 @@ GateGeometryArray1D::GateGeometryArray1D(
   }
   if (!screening_gates->is_screening_gates()) {
     throw std::runtime_error(
-        "Expected the screening_gates to consist of only screening gates");
+        "GateGeometryArray1D: Expected the screening_gates to consist of only "
+        "screening gates");
   }
   if (screening_gates->size() != 2) {
-    throw std::invalid_argument("Expected two screening gates.");
+    throw std::invalid_argument(
+        "GateGeometryArray1D: Expected two screening gates.");
   }
   if (lineararray->size() % 2 == 0) {
     throw std::invalid_argument(
-        "Expected an odd number of elements in the linear array. Got " +
+        "GateGeometryArray1D: Expected an odd number of elements in the linear "
+        "array. Got " +
         std::to_string(lineararray->size()) + " elements.");
   }
   if (!((*lineararray)[0]->is_ohmic()) ||
       !((*lineararray)[lineararray->size() - 1]->is_ohmic())) {
     throw std::invalid_argument(
-        "Expected Ohmic at the ends of the linear array.");
+        "GateGeometryArray1D: Expected Ohmic at the ends of the linear array.");
   }
   if (!((*lineararray)[1]->is_reservoir_gate()) ||
       !((*lineararray)[lineararray->size() - 2]->is_reservoir_gate())) {
     throw std::invalid_argument(
-        "Expected Reservoir Gates bounding the central dot gates.");
+        "GateGeometryArray1D: Expected Reservoir Gates bounding the central "
+        "dot gates.");
   }
 
   // Extract dot gates
@@ -48,7 +52,8 @@ GateGeometryArray1D::GateGeometryArray1D(
     device_structures::ConnectionSP dot_gate = (*lineararray)[i];
     if (!(dot_gate->is_dot_gate())) {
       throw std::invalid_argument(
-          "Expected DotGates in the middle of the linear array.");
+          "GateGeometryArray1D: Expected DotGates in the middle of the linear "
+          "array.");
     }
     dot_gates.push_back(dot_gate);
   }
@@ -122,28 +127,34 @@ void GateGeometryArray1D::append_central_gate(
     const device_structures::ConnectionSP& right_neighbor) {
   if (!left_neighbor || !selected_gate || !right_neighbor) {
     throw std::invalid_argument(
-        "append_central_gate: neighbors and selected_gate must not be null");
+        "GateGeometryArray1D: neighbors and selected_gate must not be null");
   }
   if (selected_gate->is_barrier_gate()) {
     if (!(left_neighbor->is_plunger_gate()) ||
         !(right_neighbor->is_plunger_gate())) {
       throw std::invalid_argument(
-          "Expected PlungerGate bounding selected BarrierGate.");
+          "GateGeometryArray1D: Expected PlungerGate bounding selected "
+          "BarrierGate.");
     }
+    _central_dot_gates->push_back(
+        std::static_pointer_cast<DotGateWithNeighbors>(
+            std::make_shared<BarrierGateWithNeighbors>(
+                selected_gate->name(), left_neighbor, right_neighbor)));
   } else if (selected_gate->is_plunger_gate()) {
     if (!(left_neighbor->is_barrier_gate()) ||
         !(right_neighbor->is_barrier_gate())) {
       throw std::invalid_argument(
-          "Expected BarrierGate bounding selected PlungerGate.");
+          "GateGeometryArray1D: Expected BarrierGate bounding selected "
+          "PlungerGate.");
     }
+    _central_dot_gates->push_back(
+        std::static_pointer_cast<DotGateWithNeighbors>(
+            std::make_shared<PlungerGateWithNeighbors>(
+                selected_gate->name(), left_neighbor, right_neighbor)));
   } else {
     throw std::invalid_argument(
         "Expected either a PlungerGate or BarrierGate.");
   }
-
-  _central_dot_gates->push_back(std::static_pointer_cast<DotGateWithNeighbors>(
-      std::make_shared<PlungerGateWithNeighbors>(
-          selected_gate->name(), left_neighbor, right_neighbor)));
 }
 DotGatesWithNeighborsSP GateGeometryArray1D::all_dot_gates() const {
   DotGatesWithNeighbors all_dot_gates;

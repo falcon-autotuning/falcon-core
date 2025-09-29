@@ -98,4 +98,21 @@ TEST(ConnectionsTest, SerializationRoundTrip) {
   EXPECT_EQ(c2->at(0)->name(), "g");
   EXPECT_EQ(c2->at(1)->name(), "o");
 }
+
+TEST(ConnectionsTest, IntersectionThrowsOnNullptr) {
+  Connections                  c1({Connection::BarrierGate("a")});
+  std::shared_ptr<Connections> null_ptr;
+  EXPECT_THROW(c1.intersection(null_ptr), std::invalid_argument);
+}
+
+TEST(ConnectionsTest, IntersectionNormalCase) {
+  auto        a = Connection::BarrierGate("a");
+  auto        b = Connection::BarrierGate("b");
+  Connections c1({a, b});
+  Connections c2({a});
+  auto        result = c1.intersection(std::make_shared<Connections>(c2));
+  ASSERT_NE(result, nullptr);
+  ASSERT_EQ(result->size(), 1);
+  EXPECT_EQ((*result)[0], a);
+}
 }  // namespace

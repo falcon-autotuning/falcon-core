@@ -1,7 +1,9 @@
 #include "falcon_core/physics/config/core/Config.hpp"
 
+#include <functional>
 #include <stdexcept>
 
+#include "falcon_core/autotuner_interfaces/names/Channels.hpp"
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
@@ -25,7 +27,8 @@ Config::Config(
                                 ohmics),
       _groups(groups),
       _wiring_DC(wiring_DC),
-      _voltage_constraints(constraints) {
+      _voltage_constraints(constraints),
+      _channels(std::make_shared<autotuner_interfaces::names::Channels>()) {
   if (!constraints || !wiring_DC || !groups) {
     throw std::invalid_argument(
         "Config: The constraints, wiring, and groups are not permitted to be "
@@ -41,15 +44,16 @@ Config::Config(
 void Config::check_impedance_consistency() const {
   if (!_wiring_DC || _wiring_DC->empty()) return;
   auto all_connections = get_all_connections();
-  for (const device_structures::ConnectionSP& connection : *all_connections) {
-    if (!std::any_of(wiring_DC()->begin(),
-                     wiring_DC()->end(),
-                     [&](const device_structures::ImpedanceSP& imp) {
-                       return imp->connection() == connection;
-                     })) {
-      throw std::runtime_error(
-          "Config: Connection not in wiring_DC. Include all or none.");
+  for (const device_structures::ImpedanceSP& imp : *wiring_DC()) {
+    if (!all_connections->contains(imp->connection())) {
+      throw std::runtime_error("Config: Connection " +
+                               imp->connection()->name() +
+                               " not in wiring_DC.");
     }
+  }
+  if (all_connections->size() != wiring_DC()->size()) {
+    throw std::runtime_error(
+        "Config: Include all connections or none in wiring_DC.");
   }
 }
 
@@ -60,20 +64,25 @@ void Config::check_group_consistency() const {
   device_structures::Connections bgates;
   device_structures::Connections os;
   auto                           all_groups = get_all_groups();
+  auto                           storage_vector =
+      std::vector<std::reference_wrapper<device_structures::Connections>>{
+          sgates, rgates, pgates, bgates, os};
   for (const GroupSP& group : *all_groups) {
-    sgates.insert(sgates.end(),
-                  group->screening_gates()->begin(),
-                  group->screening_gates()->end());
-    rgates.insert(rgates.end(),
-                  group->reservoir_gates()->begin(),
-                  group->reservoir_gates()->end());
-    pgates.insert(pgates.end(),
-                  group->plunger_gates()->begin(),
-                  group->plunger_gates()->end());
-    bgates.insert(bgates.end(),
-                  group->barrier_gates()->begin(),
-                  group->barrier_gates()->end());
-    os.insert(os.end(), group->ohmics()->begin(), group->ohmics()->end());
+    const std::vector group_connections =
+        std::vector<device_structures::Connections>{*group->screening_gates(),
+                                                    *group->reservoir_gates(),
+                                                    *group->plunger_gates(),
+                                                    *group->barrier_gates(),
+                                                    *group->ohmics()};
+    for (size_t i = 0; i < group_connections.size(); i++) {
+      const auto connections = group_connections[i];
+      auto&      storage     = storage_vector[i].get();
+      for (const device_structures::ConnectionSP& conn : connections) {
+        if (!storage.contains(conn)) {
+          storage.push_back(conn);
+        }
+      }
+    }
   }
   if (sgates != *screening_gates()) {
     throw std::logic_error(
@@ -148,7 +157,8 @@ bool Config::has_channel(
     throw std::invalid_argument("Config: The channel must not be null.");
   }
   if (!channels()) return false;
-  for (const autotuner_interfaces::names::ChannelSP& ch : *channels()) {
+  auto all_channels = *channels();
+  for (const autotuner_interfaces::names::ChannelSP& ch : all_channels) {
     if (*ch == *channel) return true;
   }
   return false;
@@ -160,7 +170,8 @@ bool Config::has_gname(
     throw std::invalid_argument("Config: The group name must not be null.");
   }
   if (!groups()) return false;
-  for (const autotuner_interfaces::names::GnameSP& gn : *get_all_gnames()) {
+  auto all_gnames = *get_all_gnames();
+  for (const autotuner_interfaces::names::GnameSP& gn : all_gnames) {
     if (*gn == *gname) return true;
   }
   return false;
@@ -178,7 +189,8 @@ GroupSP Config::select_group(
 int Config::get_dot_number(
     const autotuner_interfaces::names::ChannelSP& channel) const {
   if (!has_channel(channel)) return 0;
-  for (const GroupSP& group : *get_all_groups()) {
+  auto all_groups = *get_all_groups();
+  for (const GroupSP& group : all_groups) {
     if (group->has_channel(channel)) return group->num_dots();
   }
   return 0;
@@ -186,7 +198,8 @@ int Config::get_dot_number(
 
 generic::ListSP<autotuner_interfaces::names::Gname>
 Config::get_charge_sense_groups() const {
-  generic::ListSP<autotuner_interfaces::names::Gname> outs;
+  generic::ListSP<autotuner_interfaces::names::Gname> outs =
+      std::make_shared<generic::List<autotuner_interfaces::names::Gname>>();
   if (!groups()) return outs;
   for (const auto& it : *groups()) {
     if (it->second()->is_charge_sensor()) {
@@ -199,7 +212,8 @@ Config::get_charge_sense_groups() const {
 bool Config::ohmic_in_charge_sensor(
     const device_structures::ConnectionSP& ohmic) const {
   if (!has_ohmic(ohmic)) return false;
-  for (const GroupSP& group : *get_all_groups()) {
+  auto all_groups = *get_all_groups();
+  for (const GroupSP& group : all_groups) {
     if (group->is_charge_sensor() && group->has_ohmic(ohmic)) {
       return true;
     }
@@ -209,7 +223,8 @@ bool Config::ohmic_in_charge_sensor(
 
 device_structures::ConnectionSP Config::get_associated_ohmic(
     const device_structures::ConnectionSP& reservoir_gate) const {
-  for (const GroupSP& group : *get_all_groups()) {
+  auto all_groups = *get_all_groups();
+  for (const GroupSP& group : all_groups) {
     if (!group->has_gate(reservoir_gate)) continue;
     auto left_reservoir  = group->order()->left_reservoir();
     auto right_reservoir = group->order()->right_reservoir();
@@ -335,14 +350,15 @@ device_structures::ConnectionsSP Config::get_channel_dot_gates(
 device_structures::ConnectionsSP Config::get_channel_gates(
     const autotuner_interfaces::names::ChannelSP& channel) const {
   autotuner_interfaces::names::GnameSP gname = get_gname(channel);
-  return get_group_dot_gates(gname);
+  return get_group_gates(gname);
 }
 
 device_structures::ConnectionsSP Config::get_channel_ohmics(
     const autotuner_interfaces::names::ChannelSP& channel) const {
   if (!has_channel(channel))
     throw std::invalid_argument("Config: The channel is not in the Config.");
-  for (const GroupSP& group : *get_all_groups()) {
+  auto all_groups = *get_all_groups();
+  for (const GroupSP& group : all_groups) {
     if (group->has_channel(channel)) {
       return group->ohmics();
     }
@@ -355,7 +371,8 @@ device_structures::ConnectionsSP Config::get_channel_order_no_ohmics(
   autotuner_interfaces::names::GnameSP gname = get_gname(channel);
   GroupSP                              group = select_group(gname);
   geometries::GateGeometryArray1DSP    order = group->order();
-  device_structures::ConnectionsSP     typed_order;
+  device_structures::ConnectionsSP     typed_order =
+      std::make_shared<device_structures::Connections>();
   for (const auto& gate : *order) {
     if (gate->is_dot_gate()) {
       typed_order->push_back(gate);
@@ -372,7 +389,8 @@ int Config::get_num_unique_channels() const { return num_unique_channels(); }
 autotuner_interfaces::names::ChannelsSP Config::return_channels_from_gate(
     const device_structures::ConnectionSP& gate) const {
   std::set<autotuner_interfaces::names::ChannelSP> channels;
-  for (const GroupSP& group : *get_all_groups()) {
+  auto all_groups = *get_all_groups();
+  for (const GroupSP& group : all_groups) {
     if (group->has_gate(gate)) {
       channels.insert(group->name());
     }
@@ -397,7 +415,8 @@ bool Config::ohmic_in_channel(
     const device_structures::ConnectionSP&        ohmic,
     const autotuner_interfaces::names::ChannelSP& channel) const {
   if (!has_channel(channel) || !has_ohmic(ohmic)) return false;
-  for (const GroupSP& group : *get_all_groups()) {
+  auto all_groups = *get_all_groups();
+  for (const GroupSP& group : all_groups) {
     if (group->has_channel(channel)) {
       return group->has_ohmic(ohmic);
     }
@@ -430,7 +449,8 @@ generic::MapSP<autotuner_interfaces::names::Channel,
 Config::get_barrier_gate_dict() const {
   auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
                                            device_structures::Connections>>();
-  for (const GroupSP& group : *get_all_groups()) {
+  auto all_groups = *get_all_groups();
+  for (const GroupSP& group : all_groups) {
     auto gates = group->barrier_gates();
     out->insert(group->name(), gates);
   }
@@ -442,7 +462,8 @@ generic::MapSP<autotuner_interfaces::names::Channel,
 Config::get_plunger_gate_dict() const {
   auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
                                            device_structures::Connections>>();
-  for (const GroupSP& group : *get_all_groups()) {
+  auto all_groups = *get_all_groups();
+  for (const GroupSP& group : all_groups) {
     auto gates = group->plunger_gates();
     out->insert(group->name(), gates);
   }
@@ -454,7 +475,8 @@ generic::MapSP<autotuner_interfaces::names::Channel,
 Config::get_reservoir_gate_dict() const {
   auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
                                            device_structures::Connections>>();
-  for (const GroupSP& group : *get_all_groups()) {
+  auto all_groups = *get_all_groups();
+  for (const GroupSP& group : all_groups) {
     auto gates = group->reservoir_gates();
     out->insert(group->name(), gates);
   }
@@ -466,7 +488,8 @@ generic::MapSP<autotuner_interfaces::names::Channel,
 Config::get_screening_gate_dict() const {
   auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
                                            device_structures::Connections>>();
-  for (const GroupSP& group : *get_all_groups()) {
+  auto all_groups = *get_all_groups();
+  for (const GroupSP& group : all_groups) {
     auto gates = group->screening_gates();
     out->insert(group->name(), gates);
   }
@@ -478,7 +501,8 @@ generic::MapSP<autotuner_interfaces::names::Channel,
 Config::get_dot_gate_dict() const {
   auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
                                            device_structures::Connections>>();
-  for (const GroupSP& group : *get_all_groups()) {
+  auto all_groups = *get_all_groups();
+  for (const GroupSP& group : all_groups) {
     auto gates = group->dot_gates();
     out->insert(group->name(), gates);
   }
@@ -490,7 +514,8 @@ generic::MapSP<autotuner_interfaces::names::Channel,
 Config::get_gate_dict() const {
   auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
                                            device_structures::Connections>>();
-  for (const GroupSP& group : *get_all_groups()) {
+  auto all_groups = *get_all_groups();
+  for (const GroupSP& group : all_groups) {
     auto gates = group->get_all_gates();
     out->insert(group->name(), gates);
   }
@@ -499,8 +524,10 @@ Config::get_gate_dict() const {
 device_structures::ConnectionsSP Config::get_isolated_barrier_gates() const {
   std::vector<device_structures::ConnectionSP> gates;
   for (const auto& group : *groups()) {
-    auto connection = group->second()->get_barrier_gate();
-    if (connection) gates.push_back(connection);
+    auto connections = group->second()->barrier_gates();
+    for (const auto& conn : *connections) {
+      gates.push_back(conn);
+    }
   }
   if (gates.empty()) {
     throw std::runtime_error(
@@ -523,8 +550,10 @@ device_structures::ConnectionsSP Config::get_isolated_barrier_gates() const {
 device_structures::ConnectionsSP Config::get_isolated_plunger_gates() const {
   std::vector<device_structures::ConnectionSP> gates;
   for (const auto& group : *groups()) {
-    auto connection = group->second()->get_plunger_gate();
-    if (connection) gates.push_back(connection);
+    auto connections = group->second()->plunger_gates();
+    for (const auto& conn : *connections) {
+      gates.push_back(conn);
+    }
   }
   if (gates.empty()) {
     throw std::runtime_error(
@@ -546,8 +575,10 @@ device_structures::ConnectionsSP Config::get_isolated_plunger_gates() const {
 device_structures::ConnectionsSP Config::get_isolated_reservoir_gates() const {
   std::vector<device_structures::ConnectionSP> gates;
   for (const auto& group : *groups()) {
-    auto connection = group->second()->get_reservoir_gate();
-    if (connection) gates.push_back(connection);
+    auto connections = group->second()->reservoir_gates();
+    for (const auto& conn : *connections) {
+      gates.push_back(conn);
+    }
   }
   if (gates.empty()) {
     throw std::runtime_error(
@@ -592,8 +623,10 @@ device_structures::ConnectionsSP Config::get_isolated_screening_gates() const {
 device_structures::ConnectionsSP Config::get_isolated_dot_gates() const {
   std::vector<device_structures::ConnectionSP> gates;
   for (const auto& group : *groups()) {
-    auto connection = group->second()->get_dot_gate();
-    if (connection) gates.push_back(connection);
+    auto connections = group->second()->dot_gates();
+    for (const auto& conn : *connections) {
+      gates.push_back(conn);
+    }
   }
   if (gates.empty()) {
     throw std::runtime_error(
@@ -615,8 +648,10 @@ device_structures::ConnectionsSP Config::get_isolated_dot_gates() const {
 device_structures::ConnectionsSP Config::get_isolated_gates() const {
   std::vector<device_structures::ConnectionSP> gates;
   for (const auto& group : *groups()) {
-    auto connection = group->second()->get_gate();
-    if (connection) gates.push_back(connection);
+    auto connections = group->second()->get_all_gates();
+    for (const auto& conn : *connections) {
+      gates.push_back(conn);
+    }
   }
   if (gates.empty()) {
     throw std::runtime_error(
@@ -639,8 +674,10 @@ device_structures::ConnectionsSP Config::get_isolated_gates() const {
 device_structures::ConnectionsSP Config::get_shared_barrier_gates() const {
   std::vector<device_structures::ConnectionSP> gates;
   for (const auto& group : *groups()) {
-    auto connection = group->second()->get_barrier_gate();
-    if (connection) gates.push_back(connection);
+    auto connections = group->second()->barrier_gates();
+    for (const auto& conn : *connections) {
+      gates.push_back(conn);
+    }
   }
   if (gates.empty()) {
     throw std::runtime_error(
@@ -674,8 +711,10 @@ device_structures::ConnectionsSP Config::get_shared_barrier_gates() const {
 device_structures::ConnectionsSP Config::get_shared_plunger_gates() const {
   std::vector<device_structures::ConnectionSP> gates;
   for (const auto& group : *groups()) {
-    auto connection = group->second()->get_plunger_gate();
-    if (connection) gates.push_back(connection);
+    auto connections = group->second()->plunger_gates();
+    for (const auto& conn : *connections) {
+      gates.push_back(conn);
+    }
   }
   if (gates.empty()) {
     throw std::runtime_error(
@@ -708,8 +747,10 @@ device_structures::ConnectionsSP Config::get_shared_plunger_gates() const {
 device_structures::ConnectionsSP Config::get_shared_reservoir_gates() const {
   std::vector<device_structures::ConnectionSP> gates;
   for (const auto& group : *groups()) {
-    auto connection = group->second()->get_reservoir_gate();
-    if (connection) gates.push_back(connection);
+    auto connections = group->second()->reservoir_gates();
+    for (const auto& conn : *connections) {
+      gates.push_back(conn);
+    }
   }
   if (gates.empty()) {
     throw std::runtime_error(
@@ -742,8 +783,10 @@ device_structures::ConnectionsSP Config::get_shared_reservoir_gates() const {
 device_structures::ConnectionsSP Config::get_shared_screening_gates() const {
   std::vector<device_structures::ConnectionSP> gates;
   for (const auto& group : *groups()) {
-    auto connection = group->second()->get_screening_gate();
-    if (connection) gates.push_back(connection);
+    auto connections = group->second()->screening_gates();
+    for (const auto& conn : *connections) {
+      gates.push_back(conn);
+    }
   }
   if (gates.empty()) {
     throw std::runtime_error(
@@ -776,8 +819,10 @@ device_structures::ConnectionsSP Config::get_shared_screening_gates() const {
 device_structures::ConnectionsSP Config::get_shared_dot_gates() const {
   std::vector<device_structures::ConnectionSP> gates;
   for (const auto& group : *groups()) {
-    auto connection = group->second()->get_dot_gate();
-    if (connection) gates.push_back(connection);
+    auto connections = group->second()->dot_gates();
+    for (const auto& conn : *connections) {
+      gates.push_back(conn);
+    }
   }
   if (gates.empty()) {
     throw std::runtime_error(
@@ -810,8 +855,10 @@ device_structures::ConnectionsSP Config::get_shared_dot_gates() const {
 device_structures::ConnectionsSP Config::get_shared_gates() const {
   std::vector<device_structures::ConnectionSP> gates;
   for (const auto& group : *groups()) {
-    auto connection = group->second()->get_gate();
-    if (connection) gates.push_back(connection);
+    auto connections = group->second()->get_all_gates();
+    for (const auto& conn : *connections) {
+      gates.push_back(conn);
+    }
   }
   if (gates.empty()) {
     throw std::runtime_error(
@@ -986,8 +1033,8 @@ device_structures::ConnectionsSP Config::get_isolated_channel_gates(
 generic::MapSP<autotuner_interfaces::names::Channel,
                device_structures::Connections>
 Config::get_isolated_barrier_gates_by_channel() const {
-  auto out = generic::MapSP<autotuner_interfaces::names::Channel,
-                            device_structures::Connections>();
+  auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
+                                           device_structures::Connections>>();
   device_structures::ConnectionsSP unshared_gates =
       get_isolated_barrier_gates();
   generic::MapSP<autotuner_interfaces::names::Channel,
@@ -1020,8 +1067,8 @@ Config::get_isolated_barrier_gates_by_channel() const {
 generic::MapSP<autotuner_interfaces::names::Channel,
                device_structures::Connections>
 Config::get_isolated_plunger_gates_by_channel() const {
-  auto out = generic::MapSP<autotuner_interfaces::names::Channel,
-                            device_structures::Connections>();
+  auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
+                                           device_structures::Connections>>();
   device_structures::ConnectionsSP unshared_gates =
       get_isolated_plunger_gates();
   generic::MapSP<autotuner_interfaces::names::Channel,
@@ -1054,8 +1101,8 @@ Config::get_isolated_plunger_gates_by_channel() const {
 generic::MapSP<autotuner_interfaces::names::Channel,
                device_structures::Connections>
 Config::get_isolated_reservoir_gates_by_channel() const {
-  auto out = generic::MapSP<autotuner_interfaces::names::Channel,
-                            device_structures::Connections>();
+  auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
+                                           device_structures::Connections>>();
   device_structures::ConnectionsSP unshared_gates =
       get_isolated_reservoir_gates();
   generic::MapSP<autotuner_interfaces::names::Channel,
@@ -1088,8 +1135,8 @@ Config::get_isolated_reservoir_gates_by_channel() const {
 generic::MapSP<autotuner_interfaces::names::Channel,
                device_structures::Connections>
 Config::get_isolated_screening_gates_by_channel() const {
-  auto out = generic::MapSP<autotuner_interfaces::names::Channel,
-                            device_structures::Connections>();
+  auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
+                                           device_structures::Connections>>();
   device_structures::ConnectionsSP unshared_gates =
       get_isolated_screening_gates();
   generic::MapSP<autotuner_interfaces::names::Channel,
@@ -1122,8 +1169,8 @@ Config::get_isolated_screening_gates_by_channel() const {
 generic::MapSP<autotuner_interfaces::names::Channel,
                device_structures::Connections>
 Config::get_isolated_dot_gates_by_channel() const {
-  auto out = generic::MapSP<autotuner_interfaces::names::Channel,
-                            device_structures::Connections>();
+  auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
+                                           device_structures::Connections>>();
   device_structures::ConnectionsSP unshared_gates = get_isolated_dot_gates();
   generic::MapSP<autotuner_interfaces::names::Channel,
                  device_structures::Connections>
@@ -1155,8 +1202,8 @@ Config::get_isolated_dot_gates_by_channel() const {
 generic::MapSP<autotuner_interfaces::names::Channel,
                device_structures::Connections>
 Config::get_isolated_gates_by_channel() const {
-  auto out = generic::MapSP<autotuner_interfaces::names::Channel,
-                            device_structures::Connections>();
+  auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
+                                           device_structures::Connections>>();
   device_structures::ConnectionsSP unshared_gates = get_isolated_gates();
   generic::MapSP<autotuner_interfaces::names::Channel,
                  device_structures::Connections>
@@ -1189,19 +1236,104 @@ device_structures::GateRelationsSP Config::generate_gate_relations() const {
   device_structures::ConnectionsSP all_gates  = get_all_gates();
   auto                             all_groups = get_all_groups();
   for (const device_structures::ConnectionSP& gate : *all_gates) {
-    device_structures::ConnectionsSP neighbors;
+    device_structures::ConnectionsSP neighbors =
+        std::make_shared<device_structures::Connections>();
     for (const GroupSP& group : *all_groups) {
       if (!group->has_gate(gate)) continue;
       device_structures::ConnectionsSP group_neighbors =
           group->order()->query_neighbors(gate);
-      neighbors->insert(
-          neighbors->end(), group_neighbors->begin(), group_neighbors->end());
+      for (const device_structures::ConnectionSP& conn : *group_neighbors) {
+        neighbors->push_back(conn);
+      }
     }
     out[gate] = neighbors;
   }
   return std::make_shared<device_structures::GateRelations>(out);
 }
-// FIXME: Need to implement get_shared_channel_xxxx_gates functions
+device_structures::ConnectionsSP Config::get_shared_channel_barrier_gates(
+    const autotuner_interfaces::names::ChannelSP& channel) const {
+  if (!channel) {
+    throw std::invalid_argument("Config: The channel must not be null.");
+  }
+  device_structures::ConnectionsSP outs =
+      std::make_shared<device_structures::Connections>();
+  auto shared_bgates = get_shared_barrier_gates();
+  auto channel_gates = get_channel_barrier_gates(channel);
+  for (const device_structures::ConnectionSP& bgate : *channel_gates) {
+    if (shared_bgates->contains(bgate)) outs->push_back(bgate);
+  }
+  return outs;
+}
+device_structures::ConnectionsSP Config::get_shared_channel_plunger_gates(
+    const autotuner_interfaces::names::ChannelSP& channel) const {
+  if (!channel) {
+    throw std::invalid_argument("Config: The channel must not be null.");
+  }
+  device_structures::ConnectionsSP outs =
+      std::make_shared<device_structures::Connections>();
+  auto shared_bgates = get_shared_plunger_gates();
+  auto channel_gates = get_channel_plunger_gates(channel);
+  for (const device_structures::ConnectionSP& pgate : *channel_gates) {
+    if (shared_bgates->contains(pgate)) outs->push_back(pgate);
+  }
+  return outs;
+}
+device_structures::ConnectionsSP Config::get_shared_channel_reservoir_gates(
+    const autotuner_interfaces::names::ChannelSP& channel) const {
+  if (!channel) {
+    throw std::invalid_argument("Config: The channel must not be null.");
+  }
+  device_structures::ConnectionsSP outs =
+      std::make_shared<device_structures::Connections>();
+  auto shared_bgates = get_shared_reservoir_gates();
+  auto channel_gates = get_channel_reservoir_gates(channel);
+  for (const device_structures::ConnectionSP& rgate : *channel_gates) {
+    if (shared_bgates->contains(rgate)) outs->push_back(rgate);
+  }
+  return outs;
+}
+device_structures::ConnectionsSP Config::get_shared_channel_screening_gates(
+    const autotuner_interfaces::names::ChannelSP& channel) const {
+  if (!channel) {
+    throw std::invalid_argument("Config: The channel must not be null.");
+  }
+  device_structures::ConnectionsSP outs =
+      std::make_shared<device_structures::Connections>();
+  auto shared_gates  = get_shared_screening_gates();
+  auto channel_gates = get_channel_screening_gates(channel);
+  for (const device_structures::ConnectionSP& sgate : *channel_gates) {
+    if (shared_gates->contains(sgate)) outs->push_back(sgate);
+  }
+  return outs;
+}
+device_structures::ConnectionsSP Config::get_shared_channel_dot_gates(
+    const autotuner_interfaces::names::ChannelSP& channel) const {
+  if (!channel) {
+    throw std::invalid_argument("Config: The channel must not be null.");
+  }
+  device_structures::ConnectionsSP outs =
+      std::make_shared<device_structures::Connections>();
+  auto shared_gates  = get_shared_dot_gates();
+  auto channel_gates = get_channel_dot_gates(channel);
+  for (const device_structures::ConnectionSP& dgate : *channel_gates) {
+    if (shared_gates->contains(dgate)) outs->push_back(dgate);
+  }
+  return outs;
+}
+device_structures::ConnectionsSP Config::get_shared_channel_gates(
+    const autotuner_interfaces::names::ChannelSP& channel) const {
+  if (!channel) {
+    throw std::invalid_argument("Config: The channel must not be null.");
+  }
+  device_structures::ConnectionsSP outs =
+      std::make_shared<device_structures::Connections>();
+  auto shared_gates  = get_shared_gates();
+  auto channel_gates = get_channel_gates(channel);
+  for (const device_structures::ConnectionSP& gate : *channel_gates) {
+    if (shared_gates->contains(gate)) outs->push_back(gate);
+  }
+  return outs;
+}
 }  // namespace falcon_core::physics::config::core
 CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::Config)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

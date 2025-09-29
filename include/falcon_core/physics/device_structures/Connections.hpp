@@ -108,10 +108,7 @@ class Connections : public falcon_core::generic::List<Connection> {
    * @returns A list of values containing elements from both.
    */
   std::shared_ptr<Connections> intersection(
-      const std::shared_ptr<Connections>& other) const {
-    return std::make_shared<Connections>(
-        List::intersection(dynamic_pointer_cast<List<Connection>>(other)));
-  }
+      const std::shared_ptr<Connections>& other) const;
 
  protected:
   friend class cereal::access;
