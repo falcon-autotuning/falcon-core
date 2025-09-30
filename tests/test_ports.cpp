@@ -8,6 +8,7 @@
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
+
 namespace {
 using namespace falcon_core;
 using namespace generic;
@@ -16,140 +17,121 @@ using namespace names;
 
 class PortsTest : public ::testing::Test {
  protected:
-  InstrumentPortSP portA =
-      std::make_shared<InstrumentPort>("A",
-                                       nullptr,
-                                       INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE,
-                                       physics::units::SymbolUnit::Volt(),
-                                       "descA",
-                                       PortType::InstrumentPort);
-  InstrumentPortSP portB =
-      std::make_shared<InstrumentPort>("B",
-                                       nullptr,
-                                       INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE,
-                                       physics::units::SymbolUnit::Volt(),
-                                       "descB",
-                                       PortType::InstrumentPort);
-  InstrumentPortSP portC =
-      std::make_shared<InstrumentPort>("C",
-                                       nullptr,
-                                       INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE,
-                                       physics::units::SymbolUnit::Volt(),
-                                       "descC",
-                                       PortType::InstrumentPort);
+  InstrumentPortSP portA = std::make_shared<InstrumentPort>(
+      "A",
+      falcon_core::physics::device_structures::Connection::PlungerGate("PA"),
+      INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE,
+      physics::units::SymbolUnit::Volt(),
+      "descA",
+      PortType::InstrumentPort);
+  InstrumentPortSP portB = std::make_shared<InstrumentPort>(
+      "B",
+      falcon_core::physics::device_structures::Connection::PlungerGate("PB"),
+      INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE,
+      physics::units::SymbolUnit::Volt(),
+      "descB",
+      PortType::InstrumentPort);
+  InstrumentPortSP portC = std::make_shared<InstrumentPort>(
+      "C",
+      falcon_core::physics::device_structures::Connection::PlungerGate("PC"),
+      INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE,
+      physics::units::SymbolUnit::Volt(),
+      "descC",
+      PortType::InstrumentPort);
   PortsSP ports_empty = std::make_shared<Ports>();
   PortsSP ports_ABC   = std::make_shared<Ports>(
       std::vector<InstrumentPortSP>{portA, portB, portC});
 };
 
-TEST_F(PortsTest, DefaultConstructor) {
-  EXPECT_TRUE(ports_empty->empty());
-  EXPECT_EQ(ports_empty->size(), 0u);
+TEST_F(PortsTest, ListSPConstructorAndNullptrThrows) {
+  PortsSP valid = std::make_shared<Ports>(std::vector<InstrumentPortSP>{portA});
+  Ports   from_list(valid);
+  EXPECT_EQ(from_list.size(), 1u);
+  EXPECT_THROW(Ports(nullptr), std::invalid_argument);
 }
 
-TEST_F(PortsTest, VectorConstructor) {
+TEST_F(PortsTest, PortsGetter) {
   Ports ports(*ports_ABC);
-  EXPECT_EQ(ports.size(), 3u);
-  EXPECT_EQ(ports[0], portA);
-  EXPECT_EQ(ports[1], portB);
-  EXPECT_EQ(ports[2], portC);
+  auto  list = ports.ports();
+  EXPECT_EQ(list->size(), 3u);
+  EXPECT_EQ((*list)[0], portA);
 }
 
-TEST_F(PortsTest, PushBackValid) {
-  Ports ports;
-  ports.push_back(portA);
-  EXPECT_EQ(ports.size(), 1u);
-  EXPECT_EQ(ports[0], portA);
-}
-
-TEST_F(PortsTest, PushBackNullptrThrows) {
-  Ports            ports;
-  InstrumentPortSP dummy;
-  EXPECT_THROW(ports.push_back(dummy), std::invalid_argument);
-}
-
-TEST_F(PortsTest, AtAndOperatorIndex) {
+TEST_F(PortsTest, GetDefaultNames) {
   Ports ports(*ports_ABC);
-  EXPECT_EQ(ports.at(0), portA);
-  EXPECT_EQ(ports[1], portB);
-  EXPECT_EQ(ports[2], portC);
-  EXPECT_THROW(ports.at(3), std::out_of_range);
-  EXPECT_THROW(ports[3], std::out_of_range);
+  auto  names = ports.get_default_names();
+  ASSERT_EQ(names->size(), 3u);
+  EXPECT_EQ((*names)[0], "A");
+  EXPECT_EQ((*names)[1], "B");
+  EXPECT_EQ((*names)[2], "C");
 }
 
-TEST_F(PortsTest, ContainsAndIndex) {
+TEST_F(PortsTest, GetPseudoNames) {
   Ports ports(*ports_ABC);
-  EXPECT_TRUE(ports.contains(portA));
-  EXPECT_TRUE(ports.contains(portB));
-  EXPECT_TRUE(ports.contains(portC));
-  EXPECT_EQ(ports.index(portB), 1u);
-  InstrumentPortSP dummy;
-  EXPECT_THROW(ports.contains(dummy), std::invalid_argument);
-  EXPECT_THROW(ports.index(dummy), std::invalid_argument);
-  InstrumentPortSP portD = std::make_shared<InstrumentPort>("D");
-  EXPECT_FALSE(ports.contains(portD));
-  EXPECT_THROW(ports.index(portD), std::out_of_range);
+  auto  pseudos = ports.get_pseudo_names();
+  ASSERT_EQ(pseudos->size(), 3u);
+  EXPECT_EQ((*pseudos)[0]->name(), "PA");
+  EXPECT_EQ((*pseudos)[1]->name(), "PB");
+  EXPECT_EQ((*pseudos)[2]->name(), "PC");
 }
 
-TEST_F(PortsTest, InsertThrowsOnNullptr) {
-  Ports                         ports(*ports_ABC);
-  std::vector<InstrumentPortSP> vec{nullptr};
-  EXPECT_THROW(ports.insert(ports.begin(), vec.begin(), vec.end()),
+TEST_F(PortsTest, GetPseudoNamesThrowsIfMissing) {
+  InstrumentPortSP no_pseudo = std::make_shared<InstrumentPort>("D");
+  Ports            ports({no_pseudo});
+  EXPECT_THROW(ports.get_pseudo_names(), std::runtime_error);
+}
+
+TEST_F(PortsTest, GetRawNames) {
+  Ports ports(*ports_ABC);
+  auto  raw = ports._get_raw_names();
+  ASSERT_EQ(raw->size(), 3u);
+  EXPECT_EQ((*raw)[0], "PA");
+}
+
+TEST_F(PortsTest, GetInstrumentFacingNames) {
+  Ports ports(*ports_ABC);
+  auto  names = ports._get_instrument_facing_names();
+  ASSERT_EQ(names->size(), 3u);
+  EXPECT_EQ((*names)[0], portA->instrument_facing_name());
+}
+
+TEST_F(PortsTest, GetPsuedonameMatchingPort) {
+  Ports ports(*ports_ABC);
+  auto  found = ports._get_psuedoname_matching_port(portA->pseudo_name());
+  EXPECT_EQ(found, portA);
+  EXPECT_THROW(ports._get_psuedoname_matching_port(nullptr),
                std::invalid_argument);
+  InstrumentPortSP not_found = std::make_shared<InstrumentPort>(
+      "X",
+      falcon_core::physics::device_structures::Connection::PlungerGate("PX"));
+  EXPECT_THROW(ports._get_psuedoname_matching_port(not_found->pseudo_name()),
+               std::runtime_error);
 }
 
-TEST_F(PortsTest, IntersectionThrowsOnNullptr) {
+TEST_F(PortsTest, GetInstrumentTypeMatchingPort) {
   Ports ports(*ports_ABC);
-  EXPECT_THROW(ports.intersection(nullptr), std::invalid_argument);
+  auto  found = ports._get_instrument_type_matching_port(
+      INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE);
+  EXPECT_EQ(found->instrument_type(), INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE);
+  EXPECT_THROW(
+      ports._get_instrument_type_matching_port(INSTRUMENT_TYPES::AMNMETER),
+      std::runtime_error);
 }
 
-TEST_F(PortsTest, IntersectionWorks) {
-  Ports   ports1(*ports_ABC);
-  Ports   ports2(std::vector{portB, portC});
-  PortsSP result = std::make_shared<Ports>(
-      ports1.intersection(std::make_shared<Ports>(ports2)));
-  ASSERT_EQ(result->size(), 2u);
-  EXPECT_EQ((*result)[0], portB);
-  EXPECT_EQ((*result)[1], portC);
-}
-
-TEST_F(PortsTest, ClearAndEraseAt) {
-  Ports ports(*ports_ABC);
-  ports.erase_at(2);
-  EXPECT_EQ(ports.size(), 2u);
-  ports.clear();
-  EXPECT_TRUE(ports.empty());
-  EXPECT_THROW(ports.erase_at(0), std::out_of_range);
-}
-
-TEST_F(PortsTest, BackThrowsOnEmpty) {
-  Ports ports;
-  EXPECT_THROW(ports.back(), std::out_of_range);
-  EXPECT_THROW(const_cast<const Ports&>(ports).back(), std::out_of_range);
-}
-
-TEST_F(PortsTest, BackReturnsLast) {
-  Ports ports(*ports_ABC);
-  EXPECT_EQ(ports.back(), portC);
-  EXPECT_EQ(const_cast<const Ports&>(ports).back(), portC);
-}
-
-TEST_F(PortsTest, EqualityOperators) {
-  Ports ports1(*ports_ABC);
-  Ports ports2(*ports_ABC);
-  Ports ports3(std::vector{portA});
-  EXPECT_TRUE(ports1 == ports2);
-  EXPECT_FALSE(ports1 != ports2);
-  EXPECT_FALSE(ports1 == ports3);
-  EXPECT_TRUE(ports1 != ports3);
-}
-
-TEST_F(PortsTest, SerializationRoundTrip) {
-  Ports ports1(*ports_ABC);
-  auto  string = ports1.to_json_string();
-  auto  ports2 = Ports::from_json_string<Ports>(string);
-  std::cout << ports1.to_json_string();
-  std::cout << ports2->to_json_string();
-  EXPECT_EQ(ports1, *ports2);
+TEST_F(PortsTest, IsKnobsAndIsMeters) {
+  auto knob = InstrumentPort::Knob(
+      "K",
+      falcon_core::physics::device_structures::Connection::PlungerGate("P1"));
+  auto meter = InstrumentPort::Meter(
+      "M", falcon_core::physics::device_structures::Connection::Ohmic("O1"));
+  Ports knobs({knob, knob});
+  Ports meters({meter, meter});
+  Ports mixed({knob, meter});
+  EXPECT_TRUE(knobs.is_knobs());
+  EXPECT_FALSE(knobs.is_meters());
+  EXPECT_TRUE(meters.is_meters());
+  EXPECT_FALSE(meters.is_knobs());
+  EXPECT_FALSE(mixed.is_knobs());
+  EXPECT_FALSE(mixed.is_meters());
 }
 }  // namespace

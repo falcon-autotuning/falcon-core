@@ -101,6 +101,8 @@ class UnitSpace : public math::Axes<discrete_spaces::Discretizer> {
    */
   const AxesSP<arrays::ControlArray> create_array(
       const AxesSP<int>& axes) const;
+  bool operator==(const UnitSpace& other) const;
+  bool operator!=(const UnitSpace& other) const;
 
  protected:
   friend class cereal::access;
@@ -109,8 +111,7 @@ class UnitSpace : public math::Axes<discrete_spaces::Discretizer> {
   void serialize(Archive& ar) {
     ar(cereal::base_class<math::Axes<discrete_spaces::Discretizer>>(this),
        _domain,
-       _ranges,
-       _space);
+       _ranges);
   }
 };
 using UnitSpaceSP = std::shared_ptr<UnitSpace>;

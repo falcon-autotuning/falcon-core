@@ -100,6 +100,8 @@ class DiscreteSpace : public generic::Song {
   const AxesSP<arrays::LabelledControlArray> get_projection(
       const AxesSP<instrument_interfaces::names::InstrumentPort>& projection)
       const;
+  bool operator==(const DiscreteSpace& other) const;
+  bool operator!=(const DiscreteSpace& other) const;
 
  protected:
   DiscreteSpace();

@@ -36,7 +36,7 @@ class Quantity : public generic::Song {
   /**
    * @brief Return the unit of the quantity.
    */
-  physics::units::SymbolUnitSP unit();
+  physics::units::SymbolUnitSP unit() const;
   /**
    * @brief Convert the quantity to a different unit.
    * @param target_unit the raget unit to convert to.
@@ -80,6 +80,8 @@ class Quantity : public generic::Song {
   Quantity& operator-=(const std::shared_ptr<Quantity>& other);
 
   std::shared_ptr<Quantity> abs() const;
+  bool                      operator==(const Quantity& other) const;
+  bool                      operator!=(const Quantity& other) const;
 
  protected:
   friend class cereal::access;

@@ -17,34 +17,17 @@ TEST(VectorTest, SerializationRoundTrip) {
   auto conn2 = Connection::BarrierGate("B");
 
   Map<Connection, double> end(
-      std::vector<std::pair<std::shared_ptr<Connection>, double>>{
-          {conn1, 1.0}, {conn2, 2.0}});
+      std::vector<std::pair<ConnectionSP, double>>{{conn1, 1.0}, {conn2, 2.0}});
   Map<Connection, double> start(
-      std::vector<std::pair<std::shared_ptr<Connection>, double>>{
-          {conn1, 0.0}, {conn2, 1.0}});
+      std::vector<std::pair<ConnectionSP, double>>{{conn1, 0.0}, {conn2, 1.0}});
 
   auto vec =
       std::make_shared<Vector>(std::make_shared<Map<Connection, double>>(end),
                                std::make_shared<Map<Connection, double>>(start),
                                unit);
-
-  std::stringstream ss;
-  {
-    cereal::JSONOutputArchive oarchive(ss);
-    oarchive(vec);
-  }
-
-  std::shared_ptr<Vector> vec2;
-  {
-    cereal::JSONInputArchive iarchive(ss);
-    iarchive(vec2);
-  }
-
-  ASSERT_EQ((*vec2->endPoint())[conn1] -> value(), 1.0);
-  ASSERT_EQ((*vec2->endPoint())[conn2] -> value(), 2.0);
-  ASSERT_EQ((*vec2->startPoint())[conn1] -> value(), 0.0);
-  ASSERT_EQ((*vec2->startPoint())[conn2] -> value(), 1.0);
-  // ASSERT_EQ(vec2->unit(), unit);  // pointer equality
+  auto string = vec->to_json_string();
+  auto vec2   = Vector::from_json_string<Vector>(string);
+  ASSERT_EQ(*vec, *vec2);
 }
 
 TEST(VectorTest, ArithmeticOperators) {

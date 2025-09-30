@@ -3,6 +3,7 @@
 #include <stdexcept>
 
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 
 namespace falcon_core::instrument_interfaces::names {
 
@@ -10,7 +11,8 @@ Ports::Ports() : generic::List<InstrumentPort>() {}
 Ports::Ports(const std::vector<std::shared_ptr<InstrumentPort>> ports)
     : generic::List<InstrumentPort>(ports) {}
 Ports::Ports(const generic::ListSP<InstrumentPort> ports)
-    : generic::List<InstrumentPort>(*ports) {
+    : generic::List<InstrumentPort>(ports ? *ports
+                                          : generic::List<InstrumentPort>()) {
   if (!ports) {
     throw std::invalid_argument("Ports: The ports must not be null.");
   }
@@ -19,7 +21,7 @@ generic::ListSP<InstrumentPort> Ports::ports() const {
   return std::make_shared<generic::List<InstrumentPort>>(this->items());
 }
 generic::ListSP<std::string> Ports::get_default_names() const {
-  generic::ListSP<std::string> result;
+  generic::ListSP<std::string> result = std::make_shared<List<std::string>>();
   for (const auto& port : this->items()) {
     result->push_back(port->default_name());
   }
@@ -27,7 +29,8 @@ generic::ListSP<std::string> Ports::get_default_names() const {
 }
 generic::ListSP<physics::device_structures::Connection>
 Ports::get_pseudo_names() const {
-  generic::ListSP<physics::device_structures::Connection> result;
+  generic::ListSP<physics::device_structures::Connection> result =
+      std::make_shared<List<physics::device_structures::Connection>>();
   for (const auto& port : this->items()) {
     if (!port->pseudo_name()) {
       throw std::runtime_error("Port does not have a pseudo name");
@@ -37,15 +40,15 @@ Ports::get_pseudo_names() const {
   return result;
 }
 generic::ListSP<std::string> Ports::_get_raw_names() const {
-  generic::ListSP<std::string> result;
-  for (const physics::device_structures::ConnectionSP& port :
-       *get_pseudo_names()) {
+  generic::ListSP<std::string> result = std::make_shared<List<std::string>>();
+  auto                         names  = *get_pseudo_names();
+  for (const physics::device_structures::ConnectionSP& port : names) {
     result->push_back(port->name());
   }
   return result;
 }
 generic::ListSP<std::string> Ports::_get_instrument_facing_names() const {
-  generic::ListSP<std::string> result;
+  generic::ListSP<std::string> result = std::make_shared<List<std::string>>();
   for (const typename generic::List<InstrumentPort>::StoredValue& port :
        this->items()) {
     result->push_back(port->instrument_facing_name());

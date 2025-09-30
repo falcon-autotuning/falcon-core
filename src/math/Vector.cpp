@@ -82,14 +82,14 @@ Vector::Vector(const generic::MapSP<physics::device_structures::Connection,
                    generic::Pair<Quantity, Quantity>>(*map) {}
 
 const PointSP Vector::endPoint() const {
-  PointSP result;
+  PointSP result = std::make_shared<Point>();
   for (const auto pair : items()) {
     result->insert(pair->first(), pair->second()->second());
   }
   return result;
 }
 const PointSP Vector::startPoint() const {
-  PointSP result;
+  PointSP result = std::make_shared<Point>();
   for (const auto pair : items()) {
     result->insert(pair->first(), pair->second()->first());
   }
@@ -97,7 +97,8 @@ const PointSP Vector::startPoint() const {
 }
 const generic::MapSP<physics::device_structures::Connection, Quantity>
 Vector::end_quantities() const {
-  generic::MapSP<physics::device_structures::Connection, Quantity> result;
+  generic::MapSP<physics::device_structures::Connection, Quantity> result =
+      std::make_shared<Map<physics::device_structures::Connection, Quantity>>();
   for (const auto pair : items()) {
     result->insert(pair->first(), pair->second()->second());
   }
@@ -105,7 +106,8 @@ Vector::end_quantities() const {
 }
 const generic::MapSP<physics::device_structures::Connection, Quantity>
 Vector::start_quantities() const {
-  generic::MapSP<physics::device_structures::Connection, Quantity> result;
+  generic::MapSP<physics::device_structures::Connection, Quantity> result =
+      std::make_shared<Map<physics::device_structures::Connection, Quantity>>();
   for (const auto pair : items()) {
     result->insert(pair->first(), pair->second()->first());
   }
@@ -113,7 +115,8 @@ Vector::start_quantities() const {
 }
 const generic::MapSP<physics::device_structures::Connection, double>
 Vector::end_map() const {
-  generic::MapSP<physics::device_structures::Connection, double> result;
+  generic::MapSP<physics::device_structures::Connection, double> result =
+      std::make_shared<Map<physics::device_structures::Connection, double>>();
   for (const auto pair : items()) {
     result->insert(pair->first(), pair->second()->second()->value());
   }
@@ -121,7 +124,8 @@ Vector::end_map() const {
 }
 const generic::MapSP<physics::device_structures::Connection, double>
 Vector::start_map() const {
-  generic::MapSP<physics::device_structures::Connection, double> result;
+  generic::MapSP<physics::device_structures::Connection, double> result =
+      std::make_shared<Map<physics::device_structures::Connection, double>>();
   for (const auto pair : items()) {
     result->insert(pair->first(), pair->second()->first()->value());
   }
@@ -257,4 +261,6 @@ using MBD = falcon_core::generic::Map<
     falcon_core::physics::device_structures::Connection,
     falcon_core::generic::Pair<falcon_core::math::Quantity,
                                falcon_core::math::Quantity>>;
+CEREAL_REGISTER_TYPE(MBD)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MBD)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(MBD, falcon_core::math::Vector)

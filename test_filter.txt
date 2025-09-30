@@ -39,3 +39,6 @@ LabelledDomainTest.*
 CoupledLabelledDomainTest.*
 DiscretizerTest.*
 PortsTest.*
+QuantityTest.*
+PointTest.*
+UnitSpaceTest.*

@@ -1,5 +1,7 @@
 #include "falcon_core/math/Point.hpp"
 
+#include <stdexcept>
+
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
@@ -12,14 +14,21 @@ Point::Point(
     const physics::units::SymbolUnitSP&                                   unit)
     : _unit(unit),
       generic::Map<physics::device_structures::Connection, Quantity>() {
+  if (!init || !unit) {
+    throw std::invalid_argument(
+        "Point: The initial map and unit cannot be null.");
+  }
   for (const auto pair : *init) {
     insert(pair->first(), std::make_shared<Quantity>(pair->second(), unit));
   }
 }
 Point::Point(const generic::MapSP<physics::device_structures::Connection,
                                   Quantity>& init)
-    : _unit(init->at(init->keys()->at(0))->unit()),
-      generic::Map<physics::device_structures::Connection, Quantity>() {
+    : generic::Map<physics::device_structures::Connection, Quantity>() {
+  if (!init) {
+    throw std::invalid_argument("Point: The initial map cannot be null.");
+  }
+  _unit = init->at(init->keys()->at(0))->unit();
   for (const auto pair : *init) {
     QuantitySP quantity = pair->second();
     quantity->convert_to(_unit);
@@ -29,12 +38,18 @@ Point::Point(const generic::MapSP<physics::device_structures::Connection,
 void Point::insert_or_assign(
     const physics::device_structures::ConnectionSP& key,
     const QuantitySP&                               value) {
+  if (!key || !value) {
+    throw std::invalid_argument("Point: The key and value cannot be null.");
+  }
   value->convert_to(_unit);
   Map::insert_or_assign(key, value);
 }
 std::pair<Point::iterator, bool> Point::insert(
     const physics::device_structures::ConnectionSP& key,
     const QuantitySP&                               value) {
+  if (!key || !value) {
+    throw std::invalid_argument("Point: The key and value cannot be null.");
+  }
   value->convert_to(_unit);
   return Map::insert(key, value);
 }
@@ -55,10 +70,16 @@ Point::connections() const {
 }
 
 PointSP Point::operator+(const PointSP& other) const {
-  PointSP result = std::make_shared<Point>(
-      std::make_shared<
-          generic::Map<physics::device_structures::Connection, Quantity>>(
-          items()));
+  if (!other) {
+    throw std::invalid_argument("Point: The other point cannot be null.");
+  }
+  auto new_map = std::make_shared<
+      generic::Map<physics::device_structures::Connection, Quantity>>();
+  for (const auto& kv : items()) {
+    new_map->insert(kv->first(),
+                    std::make_shared<Quantity>(*kv->second()));  // deep copy
+  }
+  PointSP result = std::make_shared<Point>(new_map);
   for (const auto& kv : other->items()) {
     auto it = result->find(kv->first());
     if (it != result->end()) {
@@ -71,26 +92,35 @@ PointSP Point::operator+(const PointSP& other) const {
 }
 
 PointSP Point::operator-(const PointSP& other) const {
-  PointSP result = std::make_shared<Point>(
-      std::make_shared<
-          generic::Map<physics::device_structures::Connection, Quantity>>(
-          items()));
+  if (!other) {
+    throw std::invalid_argument("Point: The other point cannot be null.");
+  }
+  auto new_map = std::make_shared<
+      generic::Map<physics::device_structures::Connection, Quantity>>();
+  for (const auto& kv : items()) {
+    new_map->insert(kv->first(),
+                    std::make_shared<Quantity>(*kv->second()));  // deep copy
+  }
+  PointSP result = std::make_shared<Point>(new_map);
   for (const auto& kv : other->items()) {
     auto it = result->find(kv->first());
     if (it != result->end()) {
       *(*it)->second() -= kv->second();
     } else {
-      result->insert_or_assign(kv->first(), kv->second());
+      result->insert_or_assign(kv->first(), -*kv->second());
     }
   }
   return result;
 }
 
 PointSP Point::operator*(double scalar) const {
-  PointSP result = std::make_shared<Point>(
-      std::make_shared<
-          generic::Map<physics::device_structures::Connection, Quantity>>(
-          items()));
+  auto new_map = std::make_shared<
+      generic::Map<physics::device_structures::Connection, Quantity>>();
+  for (const auto& kv : items()) {
+    new_map->insert(kv->first(),
+                    std::make_shared<Quantity>(*kv->second()));  // deep copy
+  }
+  PointSP result = std::make_shared<Point>(new_map);
   for (auto& kv : result->items()) {
     *kv->second() *= scalar;
   }
@@ -98,10 +128,13 @@ PointSP Point::operator*(double scalar) const {
 }
 
 PointSP Point::operator/(double scalar) const {
-  PointSP result = std::make_shared<Point>(
-      std::make_shared<
-          generic::Map<physics::device_structures::Connection, Quantity>>(
-          items()));
+  auto new_map = std::make_shared<
+      generic::Map<physics::device_structures::Connection, Quantity>>();
+  for (const auto& kv : items()) {
+    new_map->insert(kv->first(),
+                    std::make_shared<Quantity>(*kv->second()));  // deep copy
+  }
+  PointSP result = std::make_shared<Point>(new_map);
   for (auto& kv : result->items()) {
     *kv->second() /= scalar;
   }
@@ -109,17 +142,27 @@ PointSP Point::operator/(double scalar) const {
 }
 
 PointSP Point::operator-() const {
-  PointSP result = std::make_shared<Point>(
-      std::make_shared<
-          generic::Map<physics::device_structures::Connection, Quantity>>());
-
-  for (auto& kv : items()) {
-    result->insert(kv->first(), -*kv->second());
+  auto new_map = std::make_shared<
+      generic::Map<physics::device_structures::Connection, Quantity>>();
+  for (const auto& kv : items()) {
+    new_map->insert(kv->first(),
+                    -*kv->second());  // negate value
   }
-  return result;
+  return std::make_shared<Point>(new_map);
 }
 
-void Point::set_unit(physics::units::SymbolUnitSP unit) { _unit = unit; }
+void Point::set_unit(physics::units::SymbolUnitSP unit) {
+  if (!unit) {
+    throw std::invalid_argument("Point: The unit cannot be null.");
+  }
+  _unit = unit;
+}
+bool Point::operator==(const Point& other) const {
+  return (*unit() == *other.unit()) &&
+         (Map<physics::device_structures::Connection, Quantity>::operator==(
+             other));
+}
+bool Point::operator!=(const Point& other) const { return !(*this == other); }
 
 }  // namespace falcon_core::math
 using MapP = falcon_core::generic::Map<

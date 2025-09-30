@@ -64,6 +64,8 @@ class Point
   std::shared_ptr<Point> operator-() const;
 
   void set_unit(physics::units::SymbolUnitSP unit);
+  bool operator==(const Point& other) const;
+  bool operator!=(const Point& other) const;
 
  protected:
   friend class cereal::access;

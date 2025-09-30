@@ -3,26 +3,43 @@
 #include <stdexcept>
 
 #include "falcon_core/Constants.hpp"
+#include "falcon_core/math/arrays/ControlArray1D.hpp"
 #include "falcon_core/math/domains/Domain.hpp"
 
 namespace falcon_core::math {
 UnitSpace::UnitSpace() = default;
 UnitSpace::UnitSpace(const AxesSP<discrete_spaces::Discretizer>& axes,
                      const domains::DomainSP&                    domain)
-    : math::Axes<discrete_spaces::Discretizer>(*axes), _domain(domain) {
+    : math::Axes<discrete_spaces::Discretizer>(
+          axes ? *axes : math::Axes<discrete_spaces::Discretizer>()),
+      _domain(domain),
+      _ranges(std::make_shared<Axes<arrays::ControlArray1D>>()) {
+  if (!axes || !domain) {
+    throw std::invalid_argument(
+        "UnitSpace: The axes and domain must not be null.");
+  }
   make_discrete_axes();
 }
 UnitSpaceSP UnitSpace::RaySpace(const double&            dr,
                                 const double&            dtheta,
                                 const domains::DomainSP& domain) {
-  AxesSP<discrete_spaces::Discretizer> axes;
+  if (!domain) {
+    throw std::invalid_argument("UnitSpace: The domain must not be null.");
+  }
+  AxesSP<discrete_spaces::Discretizer> axes =
+      std::make_shared<Axes<discrete_spaces::Discretizer>>();
   axes->push_back(discrete_spaces::Discretizer::CartesianDiscretizer(dr));
   axes->push_back(discrete_spaces::Discretizer::PolarDiscretizer(dtheta));
   return std::make_shared<UnitSpace>(axes, domain);
 }
 UnitSpaceSP UnitSpace::CartesianSpace(const AxesSP<double>&    deltas,
                                       const domains::DomainSP& domain) {
-  AxesSP<discrete_spaces::Discretizer> axes;
+  if (!deltas || !domain) {
+    throw std::invalid_argument(
+        "UnitSpace: The deltas and domain must not be null.");
+  }
+  AxesSP<discrete_spaces::Discretizer> axes =
+      std::make_shared<Axes<discrete_spaces::Discretizer>>();
   for (double delta : *deltas) {
     axes->push_back(discrete_spaces::Discretizer::CartesianDiscretizer(delta));
   }
@@ -30,6 +47,10 @@ UnitSpaceSP UnitSpace::CartesianSpace(const AxesSP<double>&    deltas,
 }
 UnitSpaceSP UnitSpace::Cartesian2DSpace(const AxesSP<double>&    deltas,
                                         const domains::DomainSP& domain) {
+  if (!deltas || !domain) {
+    throw std::invalid_argument(
+        "UnitSpace: The deltas and domain must not be null.");
+  }
   if (!(deltas->size() == 2)) {
     throw std::runtime_error(
         "Expected for a 2D space that there would only be two dimensions "
@@ -39,7 +60,11 @@ UnitSpaceSP UnitSpace::Cartesian2DSpace(const AxesSP<double>&    deltas,
 }
 UnitSpaceSP UnitSpace::Cartesian1DSpace(const double&            delta,
                                         const domains::DomainSP& domain) {
-  AxesSP<discrete_spaces::Discretizer> axes;
+  if (!domain) {
+    throw std::invalid_argument("UnitSpace: The domain must not be null.");
+  }
+  AxesSP<discrete_spaces::Discretizer> axes =
+      std::make_shared<Axes<discrete_spaces::Discretizer>>();
   axes->push_back(discrete_spaces::Discretizer::CartesianDiscretizer(delta));
   return std::make_shared<UnitSpace>(axes, domain);
 }
@@ -49,7 +74,7 @@ const AxesSP<discrete_spaces::Discretizer> UnitSpace::axes() const {
 const domains::DomainSP&         UnitSpace::domain() const { return _domain; }
 const generic::FArraySP<double>& UnitSpace::space() const { return _space; }
 const generic::ListSP<int>       UnitSpace::shape() const {
-  generic::ListSP<int> shape;
+  generic::ListSP<int> shape = std::make_shared<List<int>>();
   for (const arrays::ControlArray1DSP& array : *_ranges) {
     shape->push_back(array->size());
   }
@@ -101,6 +126,9 @@ std::vector<xt::xarray<double>> meshgrid_xt(
 }
 const AxesSP<arrays::ControlArray> UnitSpace::create_array(
     const AxesSP<int>& axes) const {
+  if (!axes) {
+    throw std::invalid_argument("UnitSpace: The axes must not be null.");
+  }
   std::vector<xt::xarray<double>> grids;
   for (int i = 0; i < axes->size(); ++i) {
     grids.push_back(_ranges->at(axes->at(i))->xtensor());
@@ -141,6 +169,12 @@ void UnitSpace::compile() {
 
   // Assign to _space (assuming BaseArray accepts xt::xarray<double>)
   _space = std::make_shared<generic::FArray<double>>(reversed);
+}
+bool UnitSpace::operator==(const UnitSpace& other) const {
+  return (*domain() == *other.domain()) && (*_ranges == *other._ranges);
+}
+bool UnitSpace::operator!=(const UnitSpace& other) const {
+  return !(*this == other);
 }
 
 }  // namespace falcon_core::math

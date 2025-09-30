@@ -149,7 +149,13 @@ const AxesSP<arrays::LabelledControlArray> DiscreteSpace::get_projection(
   }
   return std::make_shared<Axes<arrays::LabelledControlArray>>(container);
 }
-
+bool DiscreteSpace::operator==(const DiscreteSpace& other) const {
+  return (space() == other.space()) && (axes() == other.axes()) &&
+         (increasing() == other.increasing());
+}
+bool DiscreteSpace::operator!=(const DiscreteSpace& other) const {
+  return !(*this == other);
+}
 }  // namespace falcon_core::math::discrete_spaces
 CEREAL_REGISTER_TYPE(falcon_core::math::discrete_spaces::DiscreteSpace)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
