@@ -34,6 +34,8 @@ class VoltageConstraints : public generic::Song {
    * @brief The (min,max) safe voltage limits for each constraint.
    */
   std::pair<float, float> limits() const;
+  bool                    operator==(const VoltageConstraints& other) const;
+  bool                    operator!=(const VoltageConstraints& other) const;
 
  protected:
   VoltageConstraints();

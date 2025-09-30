@@ -56,6 +56,12 @@ bool Connection::is_gate() const { return !is_ohmic(); }
 bool Connection::operator<(const Connection& other) const {
   return _name < other._name;  // Compare based on name
 }
+bool Connection::operator==(const Connection& other) const {
+  return (name() == other.name()) && (type() == other.type());
+}
+bool Connection::operator!=(const Connection& other) const {
+  return !(*this == other);
+}
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

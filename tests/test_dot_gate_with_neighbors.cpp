@@ -63,4 +63,46 @@ TEST(DotGateWithNeighborsTest, ConstructorWithNonDotGateThrows) {
       std::invalid_argument);
 }
 
+TEST(DotGateWithNeighborsTest, ThrowsIfNotDotGate) {
+  auto left  = Connection::PlungerGate("left");
+  auto right = Connection::PlungerGate("right");
+  // Use a DeviceFeature that is definitely not a dot gate
+  EXPECT_THROW(
+      DotGateWithNeighbors("center", DeviceFeature::ReservoirGate, left, right),
+      std::invalid_argument);
+}
+
+TEST(DotGateWithNeighborsTest, EqualityOperatorTrueForIdentical) {
+  auto                 left  = Connection::PlungerGate("left");
+  auto                 right = Connection::PlungerGate("right");
+  DotGateWithNeighbors gate1("center", DeviceFeature::PlungerGate, left, right);
+  DotGateWithNeighbors gate2("center", DeviceFeature::PlungerGate, left, right);
+  EXPECT_TRUE(gate1 == gate2);
+  EXPECT_FALSE(gate1 != gate2);
+}
+
+TEST(DotGateWithNeighborsTest, EqualityOperatorFalseForDifferentLeft) {
+  auto                 left1 = Connection::PlungerGate("left");
+  auto                 left2 = Connection::PlungerGate("left2");
+  auto                 right = Connection::PlungerGate("right");
+  DotGateWithNeighbors gate1(
+      "center", DeviceFeature::PlungerGate, left1, right);
+  DotGateWithNeighbors gate2(
+      "center", DeviceFeature::PlungerGate, left2, right);
+  EXPECT_FALSE(gate1 == gate2);
+  EXPECT_TRUE(gate1 != gate2);
+}
+
+TEST(DotGateWithNeighborsTest, EqualityOperatorFalseForDifferentRight) {
+  auto                 left   = Connection::PlungerGate("left");
+  auto                 right1 = Connection::PlungerGate("right");
+  auto                 right2 = Connection::PlungerGate("right2");
+  DotGateWithNeighbors gate1(
+      "center", DeviceFeature::PlungerGate, left, right1);
+  DotGateWithNeighbors gate2(
+      "center", DeviceFeature::PlungerGate, left, right2);
+  EXPECT_FALSE(gate1 == gate2);
+  EXPECT_TRUE(gate1 != gate2);
+}
+
 }  // namespace

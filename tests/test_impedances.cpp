@@ -32,9 +32,29 @@ TEST(ImpedancesTest, SerializationRoundTrip) {
   Impedances imps({imp});
   auto       json  = imps.to_json_string();
   auto       imps2 = Impedances::from_json_string<Impedances>(json);
-  ASSERT_EQ(imps2->size(), 1);
-  EXPECT_EQ(imps2->at(0)->connection()->name(), "foo");
-  EXPECT_DOUBLE_EQ(imps2->at(0)->resistance(), 5.0);
-  EXPECT_DOUBLE_EQ(imps2->at(0)->capacitance(), 6.0);
+  ASSERT_EQ(imps, *imps2);
+}
+
+TEST(ImpedancesTest, Equality) {
+  auto       conn = Connection::BarrierGate("foo");
+  auto       imp  = std::make_shared<Impedance>(conn, 5.0, 6.0);
+  Impedances imps({imp});
+  auto       conn1 = Connection::BarrierGate("boo");
+  auto       imp1  = std::make_shared<Impedance>(conn1, 5.0, 6.0);
+  Impedances imps1({imp1, imp});
+  Impedances imps2({imps1});
+  ASSERT_EQ(imps, imps);
+  ASSERT_NE(imps, imps1);
+  ASSERT_FALSE(imps == imps2);
+}
+
+TEST(ImpedancesTest, EqualityDifferentElements) {
+  auto       conn1 = Connection::BarrierGate("x");
+  auto       conn2 = Connection::BarrierGate("y");
+  auto       imp1  = std::make_shared<Impedance>(conn1, 1.0, 2.0);
+  auto       imp2  = std::make_shared<Impedance>(conn2, 1.0, 2.0);
+  Impedances imps1({imp1});
+  Impedances imps2({imp2});
+  ASSERT_FALSE(imps1 == imps2);
 }
 }  // namespace

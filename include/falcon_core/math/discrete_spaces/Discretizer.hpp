@@ -32,9 +32,9 @@ class Discretizer : public generic::Song {
    * @param delta_domain Domain for step size.
    * @param type the type of Dividers to construct.
    */
-  Discretizer(const double&                           delta,
-              const std::shared_ptr<domains::Domain>& delta_domain,
-              const Dividers&                         type);
+  Discretizer(const double&            delta,
+              const domains::DomainSP& delta_domain,
+              const Dividers&          type);
   /**
    * @brief Constructs a CartesianDiscretizer for Cartesian square axes.
    */
@@ -42,10 +42,10 @@ class Discretizer : public generic::Song {
   /**
    * @brief Construct a PolarDiscretizer for polar angled coordinates.
    */
-  static std::shared_ptr<Discretizer>     PolarDiscretizer(const double& delta);
-  double                                  delta() const;
-  void                                    set_delta(double delta);
-  const std::shared_ptr<domains::Domain>& domain() const;
+  static std::shared_ptr<Discretizer> PolarDiscretizer(const double& delta);
+  double                              delta() const;
+  void                                set_delta(double delta);
+  const domains::DomainSP&            domain() const;
   /**
    * @brief Checks if the current Discretizer is Cartesian.
    */
@@ -54,6 +54,8 @@ class Discretizer : public generic::Song {
    * @brief Checks if the current Discretizer is Polar.
    */
   const bool is_polar() const;
+  bool       operator==(const Discretizer& other) const;
+  bool       operator!=(const Discretizer& other) const;
 
  protected:
   friend class cereal::access;

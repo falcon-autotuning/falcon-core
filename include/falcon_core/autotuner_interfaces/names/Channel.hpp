@@ -14,6 +14,8 @@ class Channel : public generic::Song {
  public:
   Channel(const std::string& name);
   std::string name() const;
+  bool        operator==(const Channel& other) const;
+  bool        operator!=(const Channel& other) const;
 
  protected:
   Channel();

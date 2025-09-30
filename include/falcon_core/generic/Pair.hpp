@@ -44,6 +44,10 @@ class Pair : public generic::Song {
    * @brief Get the stored second value.
    */
   StoredT2& second() { return _second; }
+  bool      operator==(const Pair<T1, T2>& other) const {
+    return (_first == other._first) && (_second == other._second);
+  }
+  bool operator!=(const Pair<T1, T2>& other) const { return !(*this == other); }
 
  protected:
   friend class cereal::access;

@@ -4,6 +4,7 @@
 
 #include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/device_structures/Impedance.hpp"
+namespace {
 using namespace falcon_core::physics::device_structures;
 
 TEST(ImpedanceTest, ValueConstructor) {
@@ -23,9 +24,15 @@ TEST(ImpedanceTest, SerializationRoundTrip) {
   Impedance imp(conn, 10.0, 5.0);
   auto      json = imp.to_json_string();
   auto      imp2 = Impedance::from_json_string<Impedance>(json);
-  ASSERT_NE(imp2->connection(), nullptr);
-  EXPECT_EQ(imp2->connection()->name(), "bar");
-  EXPECT_EQ(imp2->connection()->type(), "Ohmic");
-  EXPECT_DOUBLE_EQ(imp2->resistance(), 10.0);
-  EXPECT_DOUBLE_EQ(imp2->capacitance(), 5.0);
+  ASSERT_EQ(*imp2, imp);
 }
+
+TEST(ImpedanceTest, Equality) {
+  auto      conn = Connection::PlungerGate("foo");
+  Impedance imp(conn, 42.5, 3.14);
+  auto      conn2 = Connection::PlungerGate("boo");
+  Impedance imp2(conn2, 42.5, 3.12);
+  ASSERT_EQ(imp, imp);
+  ASSERT_NE(imp, imp2);
+}
+}  // namespace

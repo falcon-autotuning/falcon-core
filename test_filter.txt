@@ -33,3 +33,9 @@ VoltageConstraintsTest.*
 StandardConfigConnectionsTest.*
 GroupTest.*
 ConfigTest.*
+DomainTest.*
+InstrumentPortTest.*
+LabelledDomainTest.*
+CoupledLabelledDomainTest.*
+DiscretizerTest.*
+PortsTest.*

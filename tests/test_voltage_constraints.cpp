@@ -67,4 +67,39 @@ TEST_F(VoltageConstraintsTest, ConstMatrixGetter) {
   const auto&               m   = cvc.matrix();
   EXPECT_EQ(m.shape(), vc.matrix().shape());
 }
+
+TEST_F(VoltageConstraintsTest, EqualityOperatorTrueForIdentical) {
+  VoltageConstraints vc1(adjacency, max_safe_diff, bounds);
+  VoltageConstraints vc2(adjacency, max_safe_diff, bounds);
+  EXPECT_TRUE(vc1 == vc2);
+  EXPECT_FALSE(vc1 != vc2);
+}
+
+TEST_F(VoltageConstraintsTest, EqualityOperatorFalseForDifferentLimits) {
+  VoltageConstraints vc1(adjacency, max_safe_diff, bounds);
+  VoltageConstraints vc2(adjacency, max_safe_diff, std::make_pair(1.0, 5.0));
+  EXPECT_FALSE(vc1 == vc2);
+  EXPECT_TRUE(vc1 != vc2);
+}
+
+TEST_F(VoltageConstraintsTest, EqualityOperatorFalseForDifferentAdjacency) {
+  auto indexes2 = std::make_shared<Connections>();
+  indexes2->push_back(Connection::Ohmic("O1"));
+  indexes2->push_back(Connection::ReservoirGate("R1"));
+  indexes2->push_back(Connection::BarrierGate("B2"));  // Different
+  auto               adj2 = std::make_shared<Adjacency>(adj_matrix, indexes2);
+  VoltageConstraints vc1(adjacency, max_safe_diff, bounds);
+  VoltageConstraints vc2(adj2, max_safe_diff, bounds);
+  EXPECT_FALSE(vc1 == vc2);
+  EXPECT_TRUE(vc1 != vc2);
+}
+
+TEST_F(VoltageConstraintsTest, EqualityOperatorFalseForDifferentMatrix) {
+  xt::xarray<int> other_matrix{{0, 0, 0}, {0, 0, 1}, {0, 1, 0}};
+  auto adj2 = std::make_shared<Adjacency>(other_matrix, adjacency->indexes());
+  VoltageConstraints vc1(adjacency, max_safe_diff, bounds);
+  VoltageConstraints vc2(adj2, max_safe_diff, bounds);
+  EXPECT_FALSE(vc1 == vc2);
+  EXPECT_TRUE(vc1 != vc2);
+}
 }  // namespace

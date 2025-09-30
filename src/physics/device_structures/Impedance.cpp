@@ -17,6 +17,14 @@ Impedance::Impedance() = default;
 ConnectionSP Impedance::connection() const { return _connection; }
 double       Impedance::resistance() const { return _resistance; }
 double       Impedance::capacitance() const { return _capacitance; }
+bool         Impedance::operator==(const Impedance& other) const {
+  return (*connection() == *other.connection()) &&
+         (resistance() == other.resistance()) &&
+         (capacitance() == other.capacitance());
+}
+bool Impedance::operator!=(const Impedance& other) const {
+  return !(*this == other);
+}
 }  // namespace falcon_core::physics::device_structures
 CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Impedance)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

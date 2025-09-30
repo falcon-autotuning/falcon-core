@@ -78,4 +78,15 @@ TEST(PairTest, SerializationNonPrimitive) {
   EXPECT_EQ(restored->first()->value(), 11);
   EXPECT_EQ(restored->second()->value(), 22);
 }
+
+TEST(PairTest, Equality) {
+  auto               d1 = std::make_shared<Dummy>(11);
+  auto               d2 = std::make_shared<Dummy>(22);
+  Pair<Dummy, Dummy> orig(d1, d2);
+  auto               d3 = std::make_shared<Dummy>(11);
+  auto               d4 = std::make_shared<Dummy>(24);
+  Pair<Dummy, Dummy> orig1(d3, d4);
+  EXPECT_EQ(orig, orig);
+  EXPECT_NE(orig, orig1);
+}
 }  // namespace

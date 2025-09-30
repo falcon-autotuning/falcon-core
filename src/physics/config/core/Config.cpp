@@ -129,7 +129,8 @@ device_structures::ImpedanceSP Config::get_impedance(
     throw std::invalid_argument("Config: A null connection is not searchable.");
   }
   for (const device_structures::ImpedanceSP& imp : *wiring_DC()) {
-    if (*imp->connection() == *connection) return imp;
+    auto search = *imp->connection();
+    if (search == *connection) return imp;
   }
   throw std::invalid_argument(
       "Config: The selected connection is not a part of the config.");
@@ -172,7 +173,7 @@ bool Config::has_gname(
   if (!groups()) return false;
   auto all_gnames = *get_all_gnames();
   for (const autotuner_interfaces::names::GnameSP& gn : all_gnames) {
-    if (*gn == *gname) return true;
+    if (gn->name() == gname->name()) return true;
   }
   return false;
 }
@@ -228,10 +229,10 @@ device_structures::ConnectionSP Config::get_associated_ohmic(
     if (!group->has_gate(reservoir_gate)) continue;
     auto left_reservoir  = group->order()->left_reservoir();
     auto right_reservoir = group->order()->right_reservoir();
-    if (left_reservoir->name() == reservoir_gate->name()) {
+    if (*left_reservoir == *reservoir_gate) {
       return left_reservoir->ohmic();
     }
-    if (right_reservoir->name() == reservoir_gate->name()) {
+    if (*right_reservoir == *reservoir_gate) {
       return right_reservoir->ohmic();
     }
   }
@@ -434,7 +435,7 @@ Config::get_dot_channel_neighbors(
 
   auto all_dot_gates = group->order()->all_dot_gates();
   for (const auto& connection : *all_dot_gates) {
-    if (dotgate->name() == connection->name()) {
+    if (*dotgate == *connection) {
       auto left_neighbor  = connection->left_neighbor();
       auto right_neighbor = connection->right_neighbor();
       return {left_neighbor, right_neighbor};

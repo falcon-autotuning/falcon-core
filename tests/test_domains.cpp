@@ -1,112 +1,176 @@
 #include <gtest/gtest.h>
 
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 #include "falcon_core/math/domains/Domain.hpp"
-#include "falcon_core/physics/device_structures/Connection.hpp"
-namespace tests {
-using namespace falcon_core;
-using namespace math;
-using namespace domains;
-using namespace instrument_interfaces::names;
+
+namespace {
+
+using namespace falcon_core::math::domains;
 TEST(DomainTest, BasicFunctionality) {
   Domain d(1.0, 5.0);
   EXPECT_DOUBLE_EQ(d.lesser_bound(), 1.0);
   EXPECT_DOUBLE_EQ(d.greater_bound(), 5.0);
   EXPECT_DOUBLE_EQ(d.range(), 4.0);
+  EXPECT_TRUE(d.lesser_bound_contained());
+  EXPECT_TRUE(d.greater_bound_contained());
+  EXPECT_EQ(d.bounds(), std::make_pair(1.0, 5.0));
+  EXPECT_DOUBLE_EQ(d.get_center(), 3.0);
+  EXPECT_TRUE(d.in(1.0));
+  EXPECT_TRUE(d.in(5.0));
+  EXPECT_TRUE(d.in(3.0));
+  EXPECT_FALSE(d.in(0.0));
+  EXPECT_FALSE(d.in(6.0));
+  EXPECT_FALSE(d.is_empty());
 }
 
-TEST(DomainTest, SerializationRoundTrip) {
-  auto        d    = std::make_shared<Domain>(2.0, 7.0);
-  std::string json = d->to_json_string();
-  auto        d2   = Domain::from_json_string<Domain>(json);
-  ASSERT_NE(d2, nullptr);
-  EXPECT_DOUBLE_EQ(d2->lesser_bound(), 2.0);
-  EXPECT_DOUBLE_EQ(d2->greater_bound(), 7.0);
+TEST(DomainTest, BoundContainmentFlags) {
+  Domain d(1.0, 5.0, false, false);
+  EXPECT_FALSE(d.lesser_bound_contained());
+  EXPECT_FALSE(d.greater_bound_contained());
+  EXPECT_FALSE(d.in(1.0));
+  EXPECT_FALSE(d.in(5.0));
+  EXPECT_TRUE(d.in(3.0));
 }
 
-TEST(LabelledDomainTest, BasicFunctionality) {
-  auto label = std::make_shared<InstrumentPort>(
-      "foo", physics::device_structures::Connection::PlungerGate("P1"));
-  LabelledDomainSP ld =
-      LabelledDomain::from_port(std::make_pair(0.0, 10.0), label);
-  EXPECT_EQ(ld->port()->default_name(), "foo");
-  EXPECT_DOUBLE_EQ(ld->lesser_bound(), 0.0);
-  EXPECT_DOUBLE_EQ(ld->greater_bound(), 10.0);
+TEST(DomainTest, InvalidConstruction) {
+  EXPECT_THROW(Domain(5.0, 1.0), std::invalid_argument);
+  EXPECT_NO_THROW(Domain(std::make_pair(5.0, 1.0)));
 }
 
-TEST(LabelledDomainTest, SerializationRoundTrip) {
-  InstrumentPortSP label = std::make_shared<InstrumentPort>(
-      "bar", physics::device_structures::Connection::BarrierGate("B1"));
-  LabelledDomainSP ld =
-      LabelledDomain::from_port(std::make_pair(1.0, 2.0), label);
-  std::string      json = ld->to_json_string();
-  LabelledDomainSP ld2 = LabelledDomain::from_json_string<LabelledDomain>(json);
-  ASSERT_NE(ld2, nullptr);
-  EXPECT_EQ(ld2->port()->default_name(), "bar");
-  EXPECT_DOUBLE_EQ(ld2->lesser_bound(), 1.0);
-  EXPECT_DOUBLE_EQ(ld2->greater_bound(), 2.0);
+TEST(DomainTest, PairConstructor) {
+  Domain d(std::make_pair(2.0, 4.0), false, true);
+  EXPECT_DOUBLE_EQ(d.lesser_bound(), 2.0);
+  EXPECT_DOUBLE_EQ(d.greater_bound(), 4.0);
+  EXPECT_FALSE(d.lesser_bound_contained());
+  EXPECT_TRUE(d.greater_bound_contained());
 }
 
-TEST(BaseCoupledLabelledDomainTest, BasicFunctionality) {
-  auto label1 = std::make_shared<InstrumentPort>("a");
-  auto label2 = std::make_shared<InstrumentPort>("b");
-  auto d1     = LabelledDomain::from_port(std::make_pair(0.0, 1.0), label1);
-  auto d2     = LabelledDomain::from_port(std::make_pair(1.0, 2.0), label2);
-  std::vector<std::shared_ptr<LabelledDomain>> domains{d1, d2};
-  CoupledLabelledDomain                        bcld(domains);
+TEST(DomainTest, Intersection) {
+  auto d1           = std::make_shared<Domain>(1.0, 5.0);
+  auto d2           = std::make_shared<Domain>(3.0, 7.0);
+  auto intersection = *d1 & d2;
+  EXPECT_DOUBLE_EQ(intersection->lesser_bound(), 3.0);
+  EXPECT_DOUBLE_EQ(intersection->greater_bound(), 5.0);
 
-  EXPECT_EQ(bcld.domains().size(), 2);
-  EXPECT_EQ(bcld.labels()->size(), 2);
-  EXPECT_EQ(bcld.labels()->at(0)->default_name(), "a");
-
-  auto found = bcld.get_domain(label2);
-  EXPECT_EQ(found->port()->default_name(), "b");
+  auto d3 = std::make_shared<Domain>(6.0, 8.0);
+  EXPECT_THROW(*d1 & d3, std::runtime_error);
 }
 
-TEST(BaseCoupledLabelledDomainTest, SerializationRoundTrip) {
-  auto label1 = std::make_shared<InstrumentPort>("x");
-  auto label2 = std::make_shared<InstrumentPort>("y");
-  auto d1     = LabelledDomain::from_port(std::make_pair(5.0, 6.0), label1);
-  auto d2     = LabelledDomain::from_port(std::make_pair(6.0, 7.0), label2);
-  std::vector<std::shared_ptr<LabelledDomain>> domains{d1, d2};
-  auto bcld = std::make_shared<CoupledLabelledDomain>(domains);
-
-  std::string json = bcld->to_json_string();
-  auto        bcld2 =
-      CoupledLabelledDomain::from_json_string<CoupledLabelledDomain>(json);
-  ASSERT_NE(bcld2, nullptr);
-  EXPECT_EQ(bcld2->domains().size(), 2);
-  EXPECT_EQ(bcld2->labels()->at(1)->default_name(), "y");
+TEST(DomainTest, IntersectionNullptr) {
+  auto                    d1 = std::make_shared<Domain>(1.0, 5.0);
+  std::shared_ptr<Domain> null_domain;
+  EXPECT_THROW(*d1 & null_domain, std::invalid_argument);
 }
 
-TEST(CoupledLabelledDomainTest, BasicFunctionality) {
-  auto label1 = std::make_shared<InstrumentPort>("first");
-  auto label2 = std::make_shared<InstrumentPort>("second");
-  auto d1     = LabelledDomain::from_port(std::make_pair(10.0, 20.0), label1);
-  auto d2     = LabelledDomain::from_port(std::make_pair(20.0, 30.0), label2);
-  std::vector<std::shared_ptr<LabelledDomain>> domains{d1, d2};
-  auto cld = std::make_shared<CoupledLabelledDomain>(domains);
+TEST(DomainTest, Union) {
+  auto d1  = std::make_shared<Domain>(1.0, 5.0);
+  auto d2  = std::make_shared<Domain>(3.0, 7.0);
+  auto uni = *d1 | d2;
+  EXPECT_DOUBLE_EQ(uni->lesser_bound(), 1.0);
+  EXPECT_DOUBLE_EQ(uni->greater_bound(), 7.0);
 
-  EXPECT_EQ(cld->domains().size(), 2);
-  EXPECT_EQ(cld->labels()->at(0)->default_name(), "first");
-  EXPECT_EQ(cld->labels()->at(1)->default_name(), "second");
+  auto d3 = std::make_shared<Domain>(8.0, 10.0);
+  EXPECT_THROW(*d1 | d3, std::runtime_error);
 }
 
-TEST(CoupledLabelledDomainTest, SerializationRoundTrip) {
-  auto label1 = std::make_shared<InstrumentPort>("first");
-  auto label2 = std::make_shared<InstrumentPort>("second");
-  auto d1     = LabelledDomain::from_port(std::make_pair(10.0, 20.0), label1);
-  auto d2     = LabelledDomain::from_port(std::make_pair(20.0, 30.0), label2);
-  std::vector<std::shared_ptr<LabelledDomain>> domains{d1, d2};
-  auto cld = std::make_shared<CoupledLabelledDomain>(domains);
-
-  std::string json = cld->to_json_string();
-  auto        cld2 =
-      CoupledLabelledDomain::from_json_string<CoupledLabelledDomain>(json);
-  ASSERT_NE(cld2, nullptr);
-  EXPECT_EQ(cld2->domains().size(), 2);
-  EXPECT_EQ(cld2->labels()->at(0)->default_name(), "first");
-  EXPECT_EQ(cld2->labels()->at(1)->default_name(), "second");
+TEST(DomainTest, UnionNullptr) {
+  auto                    d1 = std::make_shared<Domain>(1.0, 5.0);
+  std::shared_ptr<Domain> null_domain;
+  EXPECT_THROW(*d1 | null_domain, std::invalid_argument);
 }
-}  // namespace tests
+
+TEST(DomainTest, ContainsDomain) {
+  auto d1 = std::make_shared<Domain>(1.0, 10.0);
+  auto d2 = std::make_shared<Domain>(3.0, 7.0);
+  EXPECT_TRUE(d1->contains_domain(d2));
+  EXPECT_FALSE(d2->contains_domain(d1));
+}
+
+TEST(DomainTest, ContainsDomainNullptr) {
+  auto                    d1 = std::make_shared<Domain>(1.0, 10.0);
+  std::shared_ptr<Domain> null_domain;
+  EXPECT_THROW(d1->contains_domain(null_domain), std::invalid_argument);
+}
+
+TEST(DomainTest, Shift) {
+  auto d       = std::make_shared<Domain>(1.0, 5.0);
+  auto shifted = d->shift(2.0);
+  EXPECT_DOUBLE_EQ(shifted->lesser_bound(), 3.0);
+  EXPECT_DOUBLE_EQ(shifted->greater_bound(), 7.0);
+}
+
+TEST(DomainTest, Scale) {
+  auto d      = std::make_shared<Domain>(2.0, 4.0);
+  auto scaled = d->scale(2.0);
+  EXPECT_DOUBLE_EQ(scaled->lesser_bound(), 1.0);
+  EXPECT_DOUBLE_EQ(scaled->greater_bound(), 5.0);
+}
+
+TEST(DomainTest, CalculateTransform) {
+  auto d1     = std::make_shared<Domain>(1.0, 5.0);
+  auto d2     = std::make_shared<Domain>(2.0, 6.0);
+  auto params = d1->calculate_transform(d2);
+  EXPECT_DOUBLE_EQ(params.first, 1.0);   // scale
+  EXPECT_DOUBLE_EQ(params.second, 1.0);  // offset
+}
+
+TEST(DomainTest, CalculateTransformNullptr) {
+  auto                    d1 = std::make_shared<Domain>(1.0, 5.0);
+  std::shared_ptr<Domain> null_domain;
+  EXPECT_THROW(d1->calculate_transform(null_domain), std::invalid_argument);
+}
+
+TEST(DomainTest, Transform) {
+  auto   d1  = std::make_shared<Domain>(1.0, 5.0);
+  auto   d2  = std::make_shared<Domain>(2.0, 6.0);
+  double val = d1->transform(d2, 3.0);
+  EXPECT_DOUBLE_EQ(val, 4.0);
+}
+
+TEST(DomainTest, TransformNullptr) {
+  auto                    d1 = std::make_shared<Domain>(1.0, 5.0);
+  std::shared_ptr<Domain> null_domain;
+  EXPECT_THROW(d1->transform(null_domain, 3.0), std::invalid_argument);
+}
+
+TEST(DomainTest, EmptyDomain) {
+  Domain d(1.0, 1.0, false, false);
+  EXPECT_TRUE(d.is_empty());
+}
+
+TEST(DomainTest, RoundTripSerialization) {
+  Domain      d(1.0, 2.0, false, false);
+  std::string serial = d.to_json_string();
+  auto        loaded = Domain::from_json_string<Domain>(serial);
+  EXPECT_EQ(d, *loaded);
+}
+
+TEST(DomainTest, Intersection_OnlyThisGreaterBoundNotContained) {
+  auto d1 = std::make_shared<Domain>(1.0, 5.0, true, false);
+  auto d2 = std::make_shared<Domain>(5.0, 10.0, true, true);
+  EXPECT_THROW(*d1 & d2, std::runtime_error);
+}
+
+TEST(DomainTest, Intersection_OnlyOtherGreaterBoundNotContained) {
+  auto d1 = std::make_shared<Domain>(1.0, 5.0, true, true);
+  auto d2 = std::make_shared<Domain>(5.0, 10.0, true, false);
+  EXPECT_NO_THROW(*d1 & d2);
+}
+
+TEST(DomainTest, Intersection_OnlyThisLesserBoundNotContained) {
+  auto d1 = std::make_shared<Domain>(5.0, 10.0, false, true);
+  auto d2 = std::make_shared<Domain>(1.0, 5.0, true, true);
+  EXPECT_THROW(*d1 & d2, std::runtime_error);
+}
+
+TEST(DomainTest, Intersection_OnlyOtherLesserBoundNotContained) {
+  auto d1 = std::make_shared<Domain>(5.0, 10.0, true, true);
+  auto d2 = std::make_shared<Domain>(1.0, 5.0, false, true);
+  EXPECT_NO_THROW(*d1 & d2);
+}
+
+TEST(DomainTest, IsEmpty_GreaterBoundNotContained) {
+  Domain d(2.0, 2.0, true, false);
+  EXPECT_TRUE(d.is_empty());
+}
+
+}  // namespace

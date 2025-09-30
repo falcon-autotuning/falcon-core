@@ -76,4 +76,11 @@ TEST(ConnectionTest, SerializationRoundTrip) {
   EXPECT_EQ(c2->type(), "ScreeningGate");
   EXPECT_TRUE(c2->is_screening_gate());
 }
+
+TEST(ConnectionTest, Equality) {
+  Connection a("a", DeviceFeature::BarrierGate);
+  Connection b("b", DeviceFeature::BarrierGate);
+  EXPECT_NE(a, b);
+  EXPECT_EQ(a, a);
+}
 }  // namespace

@@ -1,5 +1,7 @@
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 
+#include <stdexcept>
+
 #include "falcon_core/instrument_interfaces/names/Instrument.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentTypes.hpp"
 
@@ -17,13 +19,22 @@ InstrumentPort::InstrumentPort(
       _instrument_type(instrument_type),
       _units(units),
       _description(description),
-      _type(type) {}
+      _type(type) {
+  if (!units) {
+    throw std::invalid_argument(
+        "InstrumentPort: The units needs to not be null.");
+  }
+}
 std::shared_ptr<InstrumentPort> InstrumentPort::Knob(
     const std::string&                              default_name,
     const physics::device_structures::ConnectionSP& pseudo_name,
     const Instrument&                               instrument_type,
     const physics::units::SymbolUnitSP              units,
     const std::string&                              description) {
+  if (!pseudo_name) {
+    throw std::invalid_argument(
+        "InstrumentPort: The pseudo_name needs to not be null.");
+  }
   return std::make_shared<InstrumentPort>(default_name,
                                           pseudo_name,
                                           instrument_type,
@@ -37,6 +48,10 @@ std::shared_ptr<InstrumentPort> InstrumentPort::Meter(
     const Instrument&                               instrument_type,
     const physics::units::SymbolUnitSP              units,
     const std::string&                              description) {
+  if (!pseudo_name) {
+    throw std::invalid_argument(
+        "InstrumentPort: The pseudo_name needs to not be null.");
+  }
   return std::make_shared<InstrumentPort>(default_name,
                                           pseudo_name,
                                           instrument_type,
@@ -95,6 +110,16 @@ const bool InstrumentPort::is_knob() const { return _type == PortType::Knob; }
 const bool InstrumentPort::is_meter() const { return _type == PortType::Meter; }
 const bool InstrumentPort::is_port() const {
   return _type == PortType::InstrumentPort;
+}
+bool InstrumentPort::operator==(const InstrumentPort& other) const {
+  return (default_name() == other.default_name()) &&
+         (instrument_type() == other.instrument_type()) &&
+         (*units() == *other.units()) &&
+         (description() == other.description()) && (_type == other._type) &&
+         (instrument_facing_name() == other.instrument_facing_name());
+}
+bool InstrumentPort::operator!=(const InstrumentPort& other) const {
+  return !(*this == other);
 }
 
 }  // namespace falcon_core::instrument_interfaces::names

@@ -44,8 +44,7 @@ namespace falcon_core::physics::config::geometries {
  *   @endcode
  */
 class DotGatesWithNeighbors
-    : public falcon_core::generic::List<DotGateWithNeighbors,
-                                        DotGatesWithNeighbors> {
+    : public falcon_core::generic::List<DotGateWithNeighbors> {
  public:
   DotGatesWithNeighbors();
   /**
@@ -62,13 +61,14 @@ class DotGatesWithNeighbors
    * @brief Check if all connections are barrier gates.
    */
   bool is_barrier_gates() const;
+  bool operator==(const DotGatesWithNeighbors& other) const;
+  bool operator!=(const DotGatesWithNeighbors& other) const;
 
  protected:
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<falcon_core::generic::List<DotGateWithNeighbors,
-                                                     DotGatesWithNeighbors>>(
+    ar(cereal::base_class<falcon_core::generic::List<DotGateWithNeighbors>>(
         this));
   }
 };

@@ -66,6 +66,8 @@ class Connection : public virtual generic::Song {
    * reservoir, screening).
    */
   bool is_gate() const;
+  bool operator==(const Connection& other) const;
+  bool operator!=(const Connection& other) const;
 
  protected:
   friend class cereal::access;

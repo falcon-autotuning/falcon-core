@@ -38,6 +38,8 @@ class Impedance : public generic::Song {
        _resistance,
        _capacitance);
   }
+  bool operator==(const Impedance& other) const;
+  bool operator!=(const Impedance& other) const;
 
  protected:
   Impedance();

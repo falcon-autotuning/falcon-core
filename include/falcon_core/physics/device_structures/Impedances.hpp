@@ -10,14 +10,16 @@ namespace device_structures {
 /**
  * @brief A collection of Impedances.
  */
-class Impedances : public generic::List<Impedance, Impedances> {
+class Impedances : public generic::List<Impedance> {
  public:
   Impedances();
   Impedances(const std::vector<ImpedanceSP>& vec);
+  bool operator==(const Impedances& other) const;
+  bool operator!=(const Impedances& other) const;
 
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<List<Impedance, Impedances>>(this));
+    ar(cereal::base_class<List<Impedance>>(this));
   }
 
  protected:

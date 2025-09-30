@@ -5,7 +5,7 @@
 #include "falcon_core/generic/Song.hpp"
 namespace falcon_core::generic {
 
-template <typename Key, typename Value, typename Derived = void>
+template <typename Key, typename Value>
 class Map : public virtual generic::Song {
   static_assert(!std::is_pointer<Key>::value,
                 "Key template argument must not be a pointer type");

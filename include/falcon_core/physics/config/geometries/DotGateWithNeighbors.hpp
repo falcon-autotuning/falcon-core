@@ -14,6 +14,8 @@ class DotGateWithNeighbors : public device_structures::Connection,
                        device_structures::DeviceFeature type,
                        device_structures::ConnectionSP  left_neighbor,
                        device_structures::ConnectionSP  right_neighbor);
+  bool operator==(const DotGateWithNeighbors& other) const;
+  bool operator!=(const DotGateWithNeighbors& other) const;
 
  protected:
   DotGateWithNeighbors();

@@ -19,6 +19,14 @@ DotGateWithNeighbors::DotGateWithNeighbors(
         "instantiation");
   }
 }
+bool DotGateWithNeighbors::operator==(const DotGateWithNeighbors& other) const {
+  return Connection::operator==(other) &&
+         (*left_neighbor() == *other.left_neighbor()) &&
+         (*right_neighbor() == *other.right_neighbor());
+}
+bool DotGateWithNeighbors::operator!=(const DotGateWithNeighbors& other) const {
+  return !(*this == other);
+}
 
 }  // namespace falcon_core::physics::config::geometries
 CEREAL_REGISTER_TYPE(

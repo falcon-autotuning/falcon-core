@@ -1,5 +1,7 @@
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 
+#include <stdexcept>
+
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/domains/Domain.hpp"
 
@@ -16,12 +18,21 @@ LabelledDomain::LabelledDomain(
     const std::string&                              description)
     : Domain(bounds, lesser_bound_contained, greater_bound_contained),
       _port(std::make_shared<instrument_interfaces::names::InstrumentPort>(
-          default_name, psuedo_name, instrument_type, units, description)) {}
+          default_name, psuedo_name, instrument_type, units, description)) {
+  if (!psuedo_name || !units) {
+    throw std::invalid_argument(
+        "LabelledDomain: The psuedo name and the units must not be null.");
+  }
+}
 const std::shared_ptr<LabelledDomain> LabelledDomain::from_port(
     const std::pair<double, double>&                      bounds,
     const instrument_interfaces::names::InstrumentPortSP& port,
     const bool& lesser_bound_contained,
     const bool& greater_bound_contained) {
+  if (!port) {
+    throw std::invalid_argument(
+        "LabelledDomain: The instrument port must not be null.");
+  }
   return std::make_shared<LabelledDomain>(port->default_name(),
                                           bounds,
                                           port->pseudo_name(),
@@ -35,6 +46,10 @@ const std::shared_ptr<LabelledDomain> LabelledDomain::from_port(
 const std::shared_ptr<LabelledDomain> LabelledDomain::from_port_and_domain(
     const instrument_interfaces::names::InstrumentPortSP& port,
     const DomainSP&                                       domain) {
+  if (!port || !domain) {
+    throw std::invalid_argument(
+        "LabelledDomain: The instrument port and domain must not be null.");
+  }
   return std::make_shared<LabelledDomain>(port->default_name(),
                                           domain->bounds(),
                                           port->pseudo_name(),
@@ -51,6 +66,9 @@ const std::shared_ptr<LabelledDomain> LabelledDomain::from_domain(
     const instrument_interfaces::names::Instrument& instrument_type,
     const physics::units::SymbolUnitSP&             units,
     const std::string&                              description) {
+  if (!domain) {
+    throw std::invalid_argument("LabelledDomain: The domain must not be null.");
+  }
   return std::make_shared<LabelledDomain>(default_name,
                                           domain->bounds(),
                                           pseudo_name,
@@ -72,6 +90,9 @@ std::shared_ptr<Domain> LabelledDomain::domain() const {
 }
 bool LabelledDomain::matching_port(
     const instrument_interfaces::names::InstrumentPortSP& port) const {
+  if (!port) {
+    throw std::invalid_argument("LabelledDomain: The port must not be null.");
+  }
   return _port && *_port == *port;
 }
 }  // namespace falcon_core::math::domains

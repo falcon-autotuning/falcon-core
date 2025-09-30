@@ -7,7 +7,7 @@
 #include "falcon_core/generic/Song.hpp"
 namespace falcon_core {
 namespace generic {
-template <typename Value, typename Derived = void>
+template <typename Value>
 class List : public generic::Song {
   static_assert(!std::is_pointer<Value>::value,
                 "Value template argument must not be a pointer type");
@@ -245,6 +245,37 @@ class List : public generic::Song {
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this), _items);
   }
+  template <typename T = Value>
+    requires std::is_base_of_v<Song, T> && (!is_primitive<T>::value)
+  bool operator==(const List<Value>& other) const {
+    if (size() != other.size()) {
+      return false;
+    }
+    for (size_t i = 0; i < size(); i++) {
+      const StoredValue our_conn   = this->at(i);
+      const StoredValue other_conn = other.at(i);
+      if (*our_conn != *other_conn) {
+        return false;
+      }
+    }
+    return true;
+  }
+  template <typename T = Value>
+    requires is_primitive<T>::value
+  bool operator==(const List<Value>& other) const {
+    if (size() != other.size()) {
+      return false;
+    }
+    for (size_t i = 0; i < size(); i++) {
+      const StoredValue our_conn   = this->at(i);
+      const StoredValue other_conn = other.at(i);
+      if (our_conn != other_conn) {
+        return false;
+      }
+    }
+    return true;
+  }
+  bool operator!=(const List<Value>& other) const { return !(*this == other); }
 
  protected:
   friend class cereal::access;

@@ -44,6 +44,26 @@ build:
 		-DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
 		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
 		-DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" \
+		-DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping" \
+		-DCMAKE_TOOLCHAIN_FILE="$$(vcpkg integrate install --triplet=x64-linux | grep -o '/.*\.cmake' | head -n1)" \
+		-DVCPKG_TARGET_TRIPLET=x64-linux \
+		. -S . -B $(BUILD_DIR)
+	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
+	@ninja -C $(BUILD_DIR) -d stats
+	@echo "--- Build complete. Python extension is now in src/falcon_core/ ---"
+
+build-and-sanitize:
+	@echo "--- Configuring and Building C++ Extension with vcpkg ---"
+	@mkdir -p $(BUILD_DIR)
+	@mkdir -p $(OUT_PYTHON_DIR)
+	@cmake -G Ninja \
+		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+		-DCMAKE_C_COMPILER=clang \
+		-DCMAKE_CXX_COMPILER=clang++ \
+		-DCMAKE_C_COMPILER_LAUNCHER=ccache \
+		-DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
+		-DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" \
 		-DCMAKE_CXX_FLAGS="-fsanitize=address -g -O0 -fprofile-instr-generate -fcoverage-mapping" \
 		-DCMAKE_TOOLCHAIN_FILE="$$(vcpkg integrate install --triplet=x64-linux | grep -o '/.*\.cmake' | head -n1)" \
 		-DVCPKG_TARGET_TRIPLET=x64-linux \
@@ -101,7 +121,7 @@ cov-html:
 cov-term:
 	@llvm-cov show ./build/run_tests -instr-profile=run_tests.profdata $(FILE) \
 	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
-	  -Xdemangler c++filt -Xdemangler -n
+	  -Xdemangler c++filt -Xdemangler -n 
 
 # Usage: make subset-coverage-html
 subset-coverage-html: run-subset-tests cov-html 
@@ -113,7 +133,9 @@ subset-coverage: run-subset-tests cov-term
 coverage: run-all-tests cov-term
 
 subset-coverage-overview: subset-coverage
-	@llvm-cov report ./build/run_tests -instr-profile=run_tests.profdata -ignore-filename-regex='(vcpkg_installed|tests/)' -Xdemangler c++filt -Xdemangler -n                                                                     [15:00:01]
+	@llvm-cov report ./build/run_tests -instr-profile=run_tests.profdata \
+		-ignore-filename-regex='(vcpkg_installed|tests/)' \
+		-Xdemangler c++filt -Xdemangler -n                                                                     [15:00:01]
 
 coverage-overview: coverage
 	@llvm-cov report ./build/run_tests -instr-profile=run_tests.profdata -ignore-filename-regex='(vcpkg_installed|tests/)' -Xdemangler c++filt -Xdemangler -n                                                                     [15:00:01]

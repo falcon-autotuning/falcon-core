@@ -52,4 +52,31 @@ TEST_F(AdjacencyTest, SerializationRoundTrip) {
   EXPECT_EQ(adj.indexes()->size(), loaded->indexes()->size());
   EXPECT_EQ(adj.get_true_pairs(), loaded->get_true_pairs());
 }
+
+TEST_F(AdjacencyTest, EqualityOperatorTrueForIdentical) {
+  Adjacency adj1(matrix, indexes);
+  Adjacency adj2(matrix, indexes);
+  EXPECT_TRUE(adj1 == adj2);
+  EXPECT_FALSE(adj1 != adj2);
+}
+
+TEST_F(AdjacencyTest, EqualityOperatorFalseForDifferentIndexes) {
+  auto other_indexes = std::make_shared<Connections>();
+  other_indexes->push_back(Connection::Ohmic("O1"));
+  other_indexes->push_back(Connection::ReservoirGate("R1"));
+  // Different third connection
+  other_indexes->push_back(Connection::BarrierGate("B2"));
+  Adjacency adj1(matrix, indexes);
+  Adjacency adj2(matrix, other_indexes);
+  EXPECT_FALSE(adj1 == adj2);
+  EXPECT_TRUE(adj1 != adj2);
+}
+
+TEST_F(AdjacencyTest, EqualityOperatorFalseForDifferentMatrix) {
+  xt::xarray<int> other_matrix{{0, 0, 0}, {0, 0, 1}, {0, 1, 0}};
+  Adjacency       adj1(matrix, indexes);
+  Adjacency       adj2(other_matrix, indexes);
+  EXPECT_FALSE(adj1 == adj2);
+  EXPECT_TRUE(adj1 != adj2);
+}
 }  // namespace

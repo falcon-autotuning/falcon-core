@@ -1,4 +1,3 @@
-
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -26,6 +25,7 @@ using StrSongSP = std::shared_ptr<StrSong>;
 CEREAL_REGISTER_TYPE(StrSong)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, StrSong)
 
+CEREAL_REGISTER_TYPE(List<double>)
 namespace {
 using namespace falcon_core;
 using namespace generic;
@@ -250,15 +250,6 @@ TEST_F(ListTest, RangeConstIterators) {
   EXPECT_EQ(sum, 45.0);
 }
 
-// TEST_F(ListTest, SongIterators) {
-//   List<StrSong> list(song_data);
-//   std::string   total;
-//   for (auto it = list.begin(); it != list.end(); ++it) {
-//     total.append(it->value());
-//   }
-//   EXPECT_EQ(total, "helloworldagain");
-// }
-//
 TEST_F(ListTest, SongRangeIterators) {
   List<StrSong> list(song_data);
   std::string   total;
@@ -267,15 +258,6 @@ TEST_F(ListTest, SongRangeIterators) {
   }
   EXPECT_EQ(total, "helloworldagain");
 }
-
-// TEST_F(ListTest, SongConstIterators) {
-//   const List<StrSong> list(song_data);
-//   std::string         total;
-//   for (auto it = list.begin(); it != list.end(); ++it) {
-//     total.append(it->value());
-//   }
-//   EXPECT_EQ(total, "helloworldagain");
-// }
 
 TEST_F(ListTest, SongRangeConstIterators) {
   const List<StrSong> list(song_data);
@@ -359,21 +341,10 @@ TEST_F(ListTest, NoEraseAt) {
 }
 
 TEST_F(ListTest, SerializeDeserialize) {
-  List<double>      list(double_data);
-  std::stringstream ss;
-  {
-    cereal::JSONOutputArchive archive(ss);
-    list.serialize(archive);
-  }
-  List<double> list2;
-  {
-    cereal::JSONInputArchive archive(ss);
-    list2.serialize(archive);
-  }
-  EXPECT_EQ(list2.size(), list.size());
-  for (size_t i = 0; i < list.size(); ++i) {
-    EXPECT_EQ(list2[i], list[i]);
-  }
+  List<double> list(double_data);
+  auto         string = list.to_json_string();
+  auto         list2  = List<double>::from_json_string<List<double>>(string);
+  EXPECT_EQ(*list2, list);
 }
 
 TEST_F(ListTest, BackReturnsLastElement) {
@@ -414,6 +385,14 @@ TEST_F(ListTest, IndexThrowsOnNullPointer) {
 TEST_F(ListTest, IntersectionThrowsOnNullPointer) {
   List<StrSong> list(song_data);
   EXPECT_THROW(list.intersection(nullptr), std::invalid_argument);
+}
+
+TEST_F(ListTest, EqualityPrimitives) {
+  List<std::string> list(str_data);
+  List<std::string> list2(str_data);
+  list2.push_back(std::string("hi"));
+  EXPECT_EQ(list, list);
+  EXPECT_NE(list, list2);
 }
 
 }  // namespace

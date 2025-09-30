@@ -13,6 +13,8 @@ class Gname : public NameBase {
    * @brief Collect the gname as a string.
    */
   std::string gname() const;
+  bool        operator==(const Gname& other) const;
+  bool        operator!=(const Gname& other) const;
 
  protected:
   Gname();

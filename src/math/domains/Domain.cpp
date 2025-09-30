@@ -1,5 +1,7 @@
 #include "falcon_core/math/domains/Domain.hpp"
 
+#include <stdexcept>
+
 namespace falcon_core::math::domains {
 Domain::Domain() = default;
 Domain::Domain(double min_val,
@@ -45,26 +47,32 @@ const double Domain::get_center() const {
 }
 const std::shared_ptr<Domain> Domain::operator&(
     const std::shared_ptr<Domain>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "Domain: The other domain to & with must not be null.");
+  }
   double new_min = std::max(this->lesser_bound(), other->lesser_bound());
   double new_max = std::min(this->greater_bound(), other->greater_bound());
-  if (new_min > new_max ||
-      (new_min == new_max &&
-       (!this->greater_bound_contained() ||
-        !other->greater_bound_contained()) &&
-       (!this->lesser_bound_contained() || !other->lesser_bound_contained()))) {
-    throw std::runtime_error("Domains do not intersect");
-  }
+  if (new_min > new_max)
+    throw std::runtime_error("Domain: Domains are split and do not intersect");
   bool new_min_contained =
       (new_min == this->lesser_bound() && this->lesser_bound_contained()) ||
       (new_min == other->lesser_bound() && other->lesser_bound_contained());
   bool new_max_contained =
       (new_max == this->greater_bound() && this->greater_bound_contained()) ||
       (new_max == other->greater_bound() && other->greater_bound_contained());
+  if (new_min == new_max && (!new_min_contained || !new_max_contained)) {
+    throw std::runtime_error("Domain: Domains do not intersect");
+  }
   return std::make_shared<Domain>(
       new_min, new_max, new_min_contained, new_max_contained);
 }
 const std::shared_ptr<Domain> Domain::operator|(
     const std::shared_ptr<Domain>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "Domain: The other domain to & with must not be null.");
+  }
   this->operator&(other);  // Check if they intersect or touch
   double new_min = std::min(this->lesser_bound(), other->lesser_bound());
   double new_max = std::max(this->greater_bound(), other->greater_bound());
@@ -84,6 +92,10 @@ const bool Domain::is_empty() const {
          (!lesser_bound_contained() || !greater_bound_contained());
 }
 const bool Domain::contains_domain(const std::shared_ptr<Domain>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "Domain: The other domain to & with must not be null.");
+  }
   return *(*this | other) == *this;
 }
 const std::shared_ptr<Domain> Domain::shift(double offset) const {
@@ -103,14 +115,21 @@ const std::shared_ptr<Domain> Domain::scale(double factor) const {
 }
 const std::pair<double, double> Domain::calculate_transform(
     const std::shared_ptr<Domain>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "Domain: The other domain to & with must not be null.");
+  }
   double scale  = range() / other->range();
   double offset = other->lesser_bound() - lesser_bound() * scale;
   return {scale, offset};
 }
-const double transform_value(double                         value,
-                             const std::shared_ptr<Domain>& from,
-                             const std::shared_ptr<Domain>& to) {
-  auto [scale, offset] = to->calculate_transform(from);
+const double Domain::transform(const std::shared_ptr<Domain>& other,
+                               double                         value) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "Domain: The other to transfofrm using must not be null.");
+  }
+  auto [scale, offset] = calculate_transform(other);
   return value * scale + offset;
 }
 }  // namespace falcon_core::math::domains

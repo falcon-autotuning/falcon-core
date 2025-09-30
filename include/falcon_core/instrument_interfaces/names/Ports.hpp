@@ -12,7 +12,7 @@ class Ports : public generic::List<InstrumentPort> {
   /**
    * @brief Initialize ports from a collection of port.
    */
-  Ports(const std::vector<std::shared_ptr<InstrumentPort>> ports);
+  Ports(const std::vector<InstrumentPortSP> ports);
   /**
    * @brief Initialize ports from a collection of port.
    */
@@ -65,6 +65,8 @@ class Ports : public generic::List<InstrumentPort> {
    * @return True if the ports only contain meters.
    */
   const bool is_meters() const;
+  bool       operator==(const Ports& other) const;
+  bool       operator!=(const Ports& other) const;
 
  protected:
   friend class cereal::access;

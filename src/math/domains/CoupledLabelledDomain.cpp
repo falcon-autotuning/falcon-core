@@ -1,5 +1,7 @@
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 
+#include <stdexcept>
+
 #include "cereal/types/polymorphic.hpp"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
@@ -17,7 +19,8 @@ const std::vector<LabelledDomainSP>& CoupledLabelledDomain::domains() const {
 }
 const instrument_interfaces::names::PortsSP CoupledLabelledDomain::labels()
     const {
-  generic::ListSP<instrument_interfaces::names::InstrumentPort> result;
+  generic::ListSP<instrument_interfaces::names::InstrumentPort> result =
+      std::make_shared<List<instrument_interfaces::names::InstrumentPort>>();
   for (const auto& domain : domains()) {
     result->push_back(domain->port());
   }
@@ -26,12 +29,34 @@ const instrument_interfaces::names::PortsSP CoupledLabelledDomain::labels()
 
 LabelledDomainSP CoupledLabelledDomain::get_domain(
     const instrument_interfaces::names::InstrumentPortSP& search) const {
+  if (!search) {
+    throw std::invalid_argument(
+        "CoupledLabelledDomain: The port must not be null.");
+  }
   for (const auto& domain : domains()) {
     if (*(domain->port()) == *search) {
       return domain;
     }
   }
   throw std::runtime_error("No domain found matching label");
+}
+bool CoupledLabelledDomain::operator==(
+    const CoupledLabelledDomain& other) const {
+  if (size() != other.size()) {
+    return false;
+  }
+  for (size_t i = 0; i < size(); i++) {
+    const LabelledDomainSP our_conn   = this->at(i);
+    const LabelledDomainSP other_conn = other.at(i);
+    if (*our_conn != *other_conn) {
+      return false;
+    }
+  }
+  return true;
+}
+bool CoupledLabelledDomain::operator!=(
+    const CoupledLabelledDomain& other) const {
+  return !(*this == other);
 }
 
 }  // namespace falcon_core::math::domains

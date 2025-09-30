@@ -1,12 +1,20 @@
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
 
+#include <stdexcept>
+
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+
 namespace falcon_core::instrument_interfaces::names {
 
 Ports::Ports() : generic::List<InstrumentPort>() {}
 Ports::Ports(const std::vector<std::shared_ptr<InstrumentPort>> ports)
     : generic::List<InstrumentPort>(ports) {}
 Ports::Ports(const generic::ListSP<InstrumentPort> ports)
-    : generic::List<InstrumentPort>(*ports) {}
+    : generic::List<InstrumentPort>(*ports) {
+  if (!ports) {
+    throw std::invalid_argument("Ports: The ports must not be null.");
+  }
+}
 generic::ListSP<InstrumentPort> Ports::ports() const {
   return std::make_shared<generic::List<InstrumentPort>>(this->items());
 }
@@ -46,6 +54,9 @@ generic::ListSP<std::string> Ports::_get_instrument_facing_names() const {
 }
 InstrumentPortSP Ports::_get_psuedoname_matching_port(
     const physics::device_structures::ConnectionSP& name) const {
+  if (!name) {
+    throw std::invalid_argument("Ports: The connection must not be null.");
+  }
   for (const typename generic::List<InstrumentPort>::StoredValue& port :
        this->items()) {
     if (port->pseudo_name() && *(port->pseudo_name()) == *name) {
@@ -84,6 +95,20 @@ const bool Ports::is_meters() const {
   }
   return true;
 }
+bool Ports::operator==(const Ports& other) const {
+  if (size() != other.size()) {
+    return false;
+  }
+  for (size_t i = 0; i < size(); i++) {
+    const InstrumentPortSP our_conn   = this->at(i);
+    const InstrumentPortSP other_conn = other.at(i);
+    if (*our_conn != *other_conn) {
+      return false;
+    }
+  }
+  return true;
+}
+bool Ports::operator!=(const Ports& other) const { return !(*this == other); }
 
 }  // namespace falcon_core::instrument_interfaces::names
 CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::Ports)

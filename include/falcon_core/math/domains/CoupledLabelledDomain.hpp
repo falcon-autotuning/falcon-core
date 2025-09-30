@@ -40,6 +40,8 @@ class CoupledLabelledDomain : public generic::List<LabelledDomain> {
    */
   LabelledDomainSP get_domain(
       const instrument_interfaces::names::InstrumentPortSP& search) const;
+  bool operator==(const CoupledLabelledDomain& other) const;
+  bool operator!=(const CoupledLabelledDomain& other) const;
 
  protected:
   friend class cereal::access;

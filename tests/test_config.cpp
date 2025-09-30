@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 
+#include <concepts>
 #include <fstream>
+#include <iostream>
 #include <memory>
 #include <ranges>
 #include <stdexcept>
@@ -317,16 +319,10 @@ TEST_F(ConfigTest, JsonRoundTrip) {
   auto sort_by_conn = [](const ImpedanceSP& a, const ImpedanceSP& b) {
     return a->connection()->name() < b->connection()->name();
   };
-  auto w1 = *deserialized_config.wiring_DC(), w2 = *original_config.wiring_DC();
-  std::sort(w1.begin(), w1.end(), sort_by_conn);
-  std::sort(w2.begin(), w2.end(), sort_by_conn);
-  for (size_t i = 0; i < w1.size(); ++i) {
-    ASSERT_EQ(w1[i]->connection()->name(), w2[i]->connection()->name());
-    ASSERT_EQ(w1[i]->resistance(), w2[i]->resistance());
-    ASSERT_EQ(w1[i]->capacitance(), w2[i]->capacitance());
-  }
-  std::string json_str2 = deserialized_config.to_json_string();
-  ASSERT_FALSE(json_str2.empty());
+  std::cout << deserialized_config.wiring_DC()->to_json_string();
+  std::cout << original_config.wiring_DC()->to_json_string();
+  ASSERT_TRUE(*(deserialized_config.wiring_DC()) ==
+              *(original_config.wiring_DC()));
 }
 
 TEST_F(ConfigTest, BasicQueries) {

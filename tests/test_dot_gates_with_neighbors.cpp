@@ -114,4 +114,36 @@ TEST(DotGatesWithNeighborsTest, IsPlungerAndBarrierGatesEmpty) {
   EXPECT_TRUE(gates.is_plunger_gates());
   EXPECT_TRUE(gates.is_barrier_gates());
 }
+
+TEST(DotGatesWithNeighborsTest, EqualityDifferentSizes) {
+  ConnectionSP b1    = Connection::BarrierGate("b1");
+  ConnectionSP b2    = Connection::BarrierGate("b2");
+  auto         gate1 = std::make_shared<PlungerGateWithNeighbors>("g", b1, b2);
+  DotGatesWithNeighbors gates1({gate1});
+  DotGatesWithNeighbors gates2;
+  EXPECT_FALSE(gates1 == gates2);
+  EXPECT_TRUE(gates1 != gates2);
+}
+
+TEST(DotGatesWithNeighborsTest, EqualityDifferentElements) {
+  ConnectionSP b1    = Connection::BarrierGate("b1");
+  ConnectionSP b2    = Connection::BarrierGate("b2");
+  ConnectionSP b3    = Connection::BarrierGate("b3");
+  auto         gate1 = std::make_shared<PlungerGateWithNeighbors>("g", b1, b2);
+  auto         gate2 = std::make_shared<PlungerGateWithNeighbors>("g", b3, b2);
+  DotGatesWithNeighbors gates1({gate1});
+  DotGatesWithNeighbors gates2({gate2});
+  EXPECT_FALSE(gates1 == gates2);
+  EXPECT_TRUE(gates1 != gates2);
+}
+
+TEST(DotGatesWithNeighborsTest, InequalityFalseForEqual) {
+  ConnectionSP b1    = Connection::BarrierGate("b1");
+  ConnectionSP b2    = Connection::BarrierGate("b2");
+  auto         gate1 = std::make_shared<PlungerGateWithNeighbors>("g", b1, b2);
+  DotGatesWithNeighbors gates1({gate1});
+  DotGatesWithNeighbors gates2({gate1});
+  EXPECT_TRUE(gates1 == gates2);
+  EXPECT_FALSE(gates1 != gates2);
+}
 }  // namespace

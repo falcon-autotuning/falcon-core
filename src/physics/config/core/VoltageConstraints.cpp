@@ -21,25 +21,21 @@ VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
   size_t                  H      = 2 * adjacency->size() + 2 * pairs.size();
   size_t                  W      = adjacency->size();
   generic::FArray<double> matrix = *generic::FArray<double>::zeros({H, W});
-  generic::FArray<double> Imatrix =
-      generic::FArray<double>(xt::eye(adjacency->size()));
-  generic::FArray<double> invImatrix =
-      generic::FArray<double>(-xt::eye(adjacency->size()));
-  generic::FArray<double> pairMatrix =
-      *generic::FArray<double>::zeros({2 * pairs.size(), W});
-  // Creates pairs of constraint equations for every set of connected gates
-  for (size_t i = 0; i < pairs.size(); i++) {
-    size_t a = pairs[i].first;
-    size_t b = pairs[i].second;
-    // a && b < W always
-    pairMatrix(2 * i, a)     = 1;
-    pairMatrix(2 * i, b)     = -1;
-    pairMatrix(2 * i + 1, a) = -1;
-    pairMatrix(2 * i + 1, b) = 1;
+  // Fill identity block
+  for (size_t i = 0; i < W; ++i) {
+    matrix(i, i)     = 1;
+    matrix(W + i, i) = -1;
   }
-  matrix = generic::FArray<double>(xt::vstack(xt::xtuple(
-      Imatrix.xtensor(), invImatrix.xtensor(), pairMatrix.xtensor())));
-
+  // Fill pairMatrix block directly into matrix
+  for (size_t i = 0; i < pairs.size(); ++i) {
+    size_t row         = 2 * W + 2 * i;
+    size_t a           = pairs[i].first;
+    size_t b           = pairs[i].second;
+    matrix(row, a)     = 1;
+    matrix(row, b)     = -1;
+    matrix(row + 1, a) = -1;
+    matrix(row + 1, b) = 1;
+  }
   generic::FArray<double> limits = *generic::FArray<double>::zeros({H, 1});
   std::fill(
       limits.data(), limits.data() + 2 * adjacency->size(), bounds.second);
@@ -62,6 +58,14 @@ AdjacencySP VoltageConstraints::adjacency() const { return _adjacency; }
  * @brief The (min,max) safe voltage limits for each constraint.
  */
 std::pair<float, float> VoltageConstraints::limits() const { return _limits; }
+bool VoltageConstraints::operator==(const VoltageConstraints& other) const {
+  return (limits() == other.limits()) && (adjacency() == other.adjacency()) &&
+         (matrix() == other.matrix());
+}
+
+bool VoltageConstraints::operator!=(const VoltageConstraints& other) const {
+  return !(*this == other);
+}
 }  // namespace falcon_core::physics::config::core
 CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::VoltageConstraints)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
