@@ -1,13 +1,20 @@
 #include <gtest/gtest.h>
 
-#include <memory>
-
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/generic/Pair.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
+#include "falcon_core/math/Quantity.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
+#include "falcon_core/physics/device_structures/Connections.hpp"
 namespace {
 using namespace falcon_core::generic;
-// TODO: test all constructor for map
+using namespace falcon_core::generic;
+using namespace falcon_core::physics::device_structures;
+using namespace falcon_core::math;
+using namespace falcon_core::instrument_interfaces::names;
+using namespace falcon_core::instrument_interfaces::port_transforms;
 class MapIntStringTest : public ::testing::Test {
  protected:
   using Key     = int;
@@ -105,5 +112,131 @@ TEST(MapStringDouble, PushbackNull) {
   List<Pair<std::string, double>> list;
   PairSP<std::string, double>     bad;
   EXPECT_THROW(list.push_back(bad), std::invalid_argument);
+}
+
+TEST(MapConnectionDoubleTest, DefaultConstructEmpty) {
+  Map<Connection, double> m;
+  EXPECT_EQ(m.size(), 0);
+  EXPECT_TRUE(m.empty());
+}
+
+TEST(MapConnectionDoubleTest, InsertOrAssignAndFind) {
+  auto                    conn = Connection::BarrierGate("A");
+  Map<Connection, double> m;
+  m.insert_or_assign(conn, 1.23);
+  EXPECT_EQ(m.at(conn), 1.23);
+  EXPECT_TRUE(m.contains(conn));
+}
+
+TEST(MapConnectionDoubleTest, InsertReturnsIteratorAndBool) {
+  auto                    conn = Connection::BarrierGate("A");
+  Map<Connection, double> m;
+  auto                    result = m.insert(conn, 1.23);
+  EXPECT_TRUE(result.second);
+  EXPECT_EQ((*result.first)->first(), conn);
+  EXPECT_EQ((*result.first)->second(), 1.23);
+  auto result2 = m.insert(conn, 2.34);
+  EXPECT_FALSE(result2.second);
+  EXPECT_EQ((*result2.first)->second(), 1.23);
+}
+
+TEST(MapConnectionDoubleTest, OperatorSquareBracket) {
+  auto                    conn = Connection::BarrierGate("A");
+  Map<Connection, double> m;
+  m[conn] = 3.21;
+  EXPECT_EQ(m.at(conn), 3.21);
+  auto conn2 = Connection::BarrierGate("B");
+  EXPECT_EQ(m[conn2], 0.0);
+  EXPECT_EQ(m.size(), 2);
+}
+
+TEST(MapConnectionDoubleTest, EraseKey) {
+  auto                    conn = Connection::BarrierGate("A");
+  Map<Connection, double> m;
+  m.insert_or_assign(conn, 1.23);
+  m.erase(conn);
+  EXPECT_FALSE(m.contains(conn));
+  EXPECT_EQ(m.size(), 0);
+}
+
+TEST(MapConnectionDoubleTest, KeysAndValues) {
+  auto                    conn1 = Connection::BarrierGate("A");
+  auto                    conn2 = Connection::BarrierGate("B");
+  Map<Connection, double> m;
+  m.insert_or_assign(conn1, 1.0);
+  m.insert_or_assign(conn2, 2.0);
+  auto keys   = m.keys();
+  auto values = m.values();
+  EXPECT_EQ(keys->size(), 2);
+  EXPECT_EQ(values->size(), 2);
+  EXPECT_TRUE(keys->contains(conn1));
+  EXPECT_TRUE(keys->contains(conn2));
+  EXPECT_TRUE(values->contains(1.0));
+  EXPECT_TRUE(values->contains(2.0));
+}
+
+TEST(MapConnectionDoubleTest, AtThrowsIfNotFound) {
+  Map<Connection, double> m;
+  auto                    conn = Connection::BarrierGate("A");
+  EXPECT_THROW(m.at(conn), std::out_of_range);
+}
+
+TEST(MapConnectionDoubleTest, ConstructFromVector) {
+  auto conn1 = Connection::BarrierGate("A");
+  auto conn2 = Connection::BarrierGate("B");
+  std::vector<std::pair<ConnectionSP, double>> vec = {{conn1, 1.0},
+                                                      {conn2, 2.0}};
+  Map<Connection, double>                      m(vec);
+  EXPECT_EQ(m.size(), 2);
+  EXPECT_EQ(m.at(conn1), 1.0);
+  EXPECT_EQ(m.at(conn2), 2.0);
+}
+
+TEST(MapConnectionDoubleTest, ConstructFromList) {
+  using PairType = Pair<Connection, double>;
+  List<PairType> list;
+  auto           conn1 = Connection::BarrierGate("A");
+  auto           conn2 = Connection::BarrierGate("B");
+  list.push_back(std::make_shared<PairType>(conn1, 1.0));
+  list.push_back(std::make_shared<PairType>(conn2, 2.0));
+  Map<Connection, double> m(list);
+  EXPECT_EQ(m.size(), 2);
+  EXPECT_EQ(m.at(conn1), 1.0);
+  EXPECT_EQ(m.at(conn2), 2.0);
+}
+
+TEST(MapConnectionDoubleTest, EqualityOperators) {
+  auto                    conn1 = Connection::BarrierGate("A");
+  auto                    conn2 = Connection::BarrierGate("B");
+  Map<Connection, double> m1;
+  Map<Connection, double> m2;
+  m1.insert_or_assign(conn1, 1.0);
+  m1.insert_or_assign(conn2, 2.0);
+  m2.insert_or_assign(conn1, 1.0);
+  m2.insert_or_assign(conn2, 2.0);
+  EXPECT_TRUE(m1 == m2);
+  EXPECT_FALSE(m1 != m2);
+
+  m2.insert_or_assign(conn2, 3.0);
+  EXPECT_FALSE(m1 == m2);
+  EXPECT_TRUE(m1 != m2);
+}
+
+TEST(MapConnectionConnectionTest, AtThrowsIfNotFound) {
+  Map<Connection, Connections> m;
+  auto                         conn = Connection::BarrierGate("A");
+  EXPECT_THROW(m.at(conn), std::out_of_range);
+}
+
+TEST(MapConnectionDoubleTest, SerializationAndEquality) {
+  auto                    conn1 = Connection::BarrierGate("A");
+  auto                    conn2 = Connection::BarrierGate("B");
+  Map<Connection, double> m1;
+  m1.insert_or_assign(conn1, 1.0);
+  m1.insert_or_assign(conn2, 2.0);
+  auto string = m1.to_json_string();
+  auto m2 = Map<Connection, double>::from_json_string<Map<Connection, double>>(
+      string);
+  EXPECT_EQ(m1, *m2);
 }
 }  // namespace

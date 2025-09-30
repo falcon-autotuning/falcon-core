@@ -2,10 +2,12 @@ SongTest.*
 ListTest.*
 PairTest.*
 MapIntStringTest.*
+MapStringDouble.*
+MapConnectionDoubleTest.*
+MapConnectionConnectionTest.*
 AnalyticFunctionTest.*
 UnitTest.*
 SymbolUnitTest.*
-MapStringDouble.*
 FArrayTest.*
 FArrayIntTest.*
 FArrayDoubleTest.*
@@ -40,8 +42,8 @@ CoupledLabelledDomainTest.*
 DiscretizerTest.*
 PortsTest.*
 QuantityTest.*
-PointTest.*
 UnitSpaceTest.*
 PortTransformTest.*
 IncreasingAlignmentTest.*
+PointTest.*
 VectorTest.*

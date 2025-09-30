@@ -319,8 +319,6 @@ TEST_F(ConfigTest, JsonRoundTrip) {
   auto sort_by_conn = [](const ImpedanceSP& a, const ImpedanceSP& b) {
     return a->connection()->name() < b->connection()->name();
   };
-  std::cout << deserialized_config.wiring_DC()->to_json_string();
-  std::cout << original_config.wiring_DC()->to_json_string();
   ASSERT_TRUE(*(deserialized_config.wiring_DC()) ==
               *(original_config.wiring_DC()));
 }

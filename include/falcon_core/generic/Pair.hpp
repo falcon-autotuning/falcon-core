@@ -48,7 +48,7 @@ class Pair : public generic::Song {
   template <typename U1 = T1, typename U2 = T2>
     requires is_primitive<U1>::value && is_primitive<U2>::value
   bool operator==(const Pair<T1, T2>& other) const {
-    return _first == other._first && _second == other._second;
+    return (_first == other._first) && (_second == other._second);
   }
 
   // Case 2: T1 is primitive, T2 is Song
@@ -56,7 +56,7 @@ class Pair : public generic::Song {
     requires is_primitive<U1>::value && std::is_base_of_v<Song, U2> &&
              (!is_primitive<U2>::value)
   bool operator==(const Pair<T1, T2>& other) const {
-    return _first == other._first && (*_second == *other._second);
+    return (_first == other._first) && (*_second == *other._second);
   }
 
   // Case 3: T1 is Song, T2 is primitive
@@ -64,7 +64,7 @@ class Pair : public generic::Song {
     requires std::is_base_of_v<Song, U1> && (!is_primitive<U1>::value) &&
              is_primitive<U2>::value
   bool operator==(const Pair<T1, T2>& other) const {
-    return (*_first == *other._first) && _second == other._second;
+    return (*_first == *other._first) && (_second == other._second);
   }
 
   // Case 4: Both T1 and T2 are Song
@@ -75,9 +75,6 @@ class Pair : public generic::Song {
     return (*_first == *other._first) && (*_second == *other._second);
   }
   bool operator!=(const Pair<T1, T2>& other) const { return !(*this == other); }
-  bool operator==(const Pair<T1, T2>& other) const {
-    return (_first == other._first) && (_second == other._second);
-  }
 
  protected:
   friend class cereal::access;

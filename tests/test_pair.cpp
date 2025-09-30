@@ -1,7 +1,5 @@
 #include <gtest/gtest.h>
 
-#include <sstream>
-
 #include "cereal/access.hpp"
 #include "cereal/types/polymorphic.hpp"
 #include "falcon_core/generic/Pair.hpp"
@@ -13,10 +11,8 @@ class Dummy : public Song {
 
  public:
   Dummy(int v = 0) : _value(v) {}
-  bool operator==(const std::shared_ptr<Dummy>& other) const {
-    return _value == other->_value;
-  }
-  int value() { return _value; }
+  bool operator==(const Dummy& other) const { return _value == other._value; }
+  int  value() { return _value; }
 
  protected:
   friend class cereal::access;

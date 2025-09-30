@@ -90,8 +90,8 @@ class Vector : public generic::Map<physics::device_structures::Connection,
    */
   const double magnitude() const;
 
-  std::shared_ptr<Vector> operator+(const Vector& other) const;
-  std::shared_ptr<Vector> operator-(const Vector& other) const;
+  std::shared_ptr<Vector> operator+(const std::shared_ptr<Vector>& other) const;
+  std::shared_ptr<Vector> operator-(const std::shared_ptr<Vector>& other) const;
   std::shared_ptr<Vector> operator*(double scalar) const;
   std::shared_ptr<Vector> operator*(int scalar) const;
   std::shared_ptr<Vector> operator/(double scalar) const;

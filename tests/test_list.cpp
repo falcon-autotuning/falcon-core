@@ -3,6 +3,7 @@
 #include <stdexcept>
 
 #include "falcon_core/generic/List.hpp"
+#include "xtensor/reducers/xreducer.hpp"
 
 namespace {
 using namespace falcon_core;
@@ -393,6 +394,70 @@ TEST_F(ListTest, EqualityPrimitives) {
   list2.push_back(std::string("hi"));
   EXPECT_EQ(list, list);
   EXPECT_NE(list, list2);
+}
+
+TEST_F(ListTest, BackReturnsLastElementPrimitive) {
+  List<double> list(double_data);
+  EXPECT_EQ(list.back(), double_data.back());
+  const List<double>& clist = list;
+  EXPECT_EQ(clist.back(), double_data.back());
+  std::vector<int> int_data = {1, 2};
+  List<int>        list2(int_data);
+  EXPECT_EQ(list2.back(), int_data.back());
+  const List<int>& clist2 = list2;
+  EXPECT_EQ(clist2.back(), int_data.back());
+}
+
+TEST_F(ListTest, BackReturnsLastElementSong) {
+  List<StrSong> list(song_data);
+  EXPECT_EQ(*list.back(), *song_data.back());
+  const List<StrSong>& clist = list;
+  EXPECT_EQ(*clist.back(), *song_data.back());
+}
+
+TEST_F(ListTest, BackThrowsOnEmptyListPrimitive) {
+  List<int> empty_list;
+  EXPECT_THROW(empty_list.back(), std::out_of_range);
+  const List<int> const_empty_list;
+  EXPECT_THROW(const_empty_list.back(), std::out_of_range);
+  List<double> list;
+  EXPECT_THROW(list.back(), std::out_of_range);
+}
+
+TEST_F(ListTest, EqualityPrimitiveEdgeCases) {
+  List<double> list1({1.0, 2.0, 3.0});
+  List<double> list2({1.0, 2.0, 3.0});
+  List<double> list3(std::vector{1.0, 2.0});
+  List<double> list4({1.0, 2.0, 4.0});
+  EXPECT_TRUE(list1 == list2);   // same size, same values
+  EXPECT_FALSE(list1 == list3);  // different size
+  EXPECT_FALSE(list1 == list4);  // same size, different values
+}
+
+TEST_F(ListTest, EqualityStringEdgeCases) {
+  List<std::string> list1({"a", "b", "c"});
+  List<std::string> list2({"a", "b", "c"});
+  List<std::string> list3({"a", "b"});
+  List<std::string> list4({"a", "b", "d"});
+  EXPECT_TRUE(list1 == list2);   // same size, same values
+  EXPECT_FALSE(list1 == list3);  // different size
+  EXPECT_FALSE(list1 == list4);  // same size, different values
+}
+
+TEST_F(ListTest, EqualitySongEdgeCases) {
+  auto song1 = std::make_shared<StrSong>("hello");
+  auto song2 = std::make_shared<StrSong>("world");
+  auto song3 = std::make_shared<StrSong>("again");
+  auto song4 = std::make_shared<StrSong>("different");
+
+  List<StrSong> list1({song1, song2, song3});
+  List<StrSong> list2({song1, song2, song3});
+  List<StrSong> list3({song1, song2});
+  List<StrSong> list4({song1, song2, song4});
+
+  EXPECT_TRUE(list1 == list2);   // same size, same values
+  EXPECT_FALSE(list1 == list3);  // different size
+  EXPECT_FALSE(list1 == list4);  // same size, different values
 }
 
 }  // namespace

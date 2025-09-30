@@ -17,7 +17,8 @@ physics::units::SymbolUnitSP Quantity::unit() const { return _unit; }
 
 void Quantity::convert_to(physics::units::SymbolUnitSP target_unit) {
   if (!target_unit) {
-    throw std::invalid_argument("Quantity: The unit must not be null.");
+    throw std::invalid_argument(
+        "Quantity: The conversion unit must not be null.");
   }
   _value = _unit->convert_value_to(_value, target_unit);
   _unit  = target_unit;

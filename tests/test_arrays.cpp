@@ -67,7 +67,6 @@ TEST(ControlArray1DTest, SerializationRoundTrip) {
   auto               arr1d = std::make_shared<ControlArray1D>(vec);
   // Serialize to JSON using the class helper
   std::string json = arr1d->to_json_string();
-  std::cout << "Serialized JSON:\n" << json << std::endl;
 
   // Deserialize from JSON using the class helper
   auto arr1d2 = ControlArray1D::from_json_string<ControlArray1D>(json);

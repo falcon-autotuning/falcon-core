@@ -1,6 +1,7 @@
 #pragma once
 
 #include <algorithm>
+#include <memory>
 #include <stdexcept>
 
 #include "falcon_core/generic/IsPrimitive.hpp"
@@ -252,8 +253,8 @@ class List : public generic::Song {
       return false;
     }
     for (size_t i = 0; i < size(); i++) {
-      const StoredValue our_conn   = this->at(i);
-      const StoredValue other_conn = other.at(i);
+      const std::shared_ptr<Value> our_conn   = this->at(i);
+      const std::shared_ptr<Value> other_conn = other.at(i);
       if (*our_conn != *other_conn) {
         return false;
       }
@@ -267,8 +268,8 @@ class List : public generic::Song {
       return false;
     }
     for (size_t i = 0; i < size(); i++) {
-      const StoredValue our_conn   = this->at(i);
-      const StoredValue other_conn = other.at(i);
+      const Value our_conn   = this->at(i);
+      const Value other_conn = other.at(i);
       if (our_conn != other_conn) {
         return false;
       }

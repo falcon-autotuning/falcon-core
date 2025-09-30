@@ -420,4 +420,12 @@ TEST_F(SymbolUnitTest, CustomCrash) {
   auto custom = std::make_shared<Unit>(std::map<std::string, int>{{"woah", 1}});
   ASSERT_THROW(SymbolUnit thebads(custom), std::invalid_argument);
 }
+
+TEST_F(SymbolUnitTest, InequalityOperator) {
+  SymbolUnitSP m1 = SymbolUnit::Meter();
+  SymbolUnitSP m2 = SymbolUnit::Meter();
+  SymbolUnitSP s  = SymbolUnit::Second();
+  ASSERT_FALSE(*m1 != *m2);  // should be equal
+  ASSERT_TRUE(*m1 != *s);    // should not be equal
+}
 }  // namespace

@@ -164,15 +164,15 @@ const double Vector::magnitude() const {
   return std::sqrt(sum);
 }
 
-VectorSP Vector::operator+(const Vector& other) const {
-  auto new_start = startPoint()->operator+(other.startPoint());
-  auto new_end   = endPoint()->operator+(other.endPoint());
+VectorSP Vector::operator+(const VectorSP& other) const {
+  auto new_start = startPoint()->operator+(other->startPoint());
+  auto new_end   = endPoint()->operator+(other->endPoint());
   return std::make_shared<Vector>(new_start, new_end);
 }
 
-VectorSP Vector::operator-(const Vector& other) const {
-  auto new_start = startPoint()->operator-(other.startPoint());
-  auto new_end   = endPoint()->operator-(other.endPoint());
+VectorSP Vector::operator-(const VectorSP& other) const {
+  auto new_start = startPoint()->operator-(other->startPoint());
+  auto new_end   = endPoint()->operator-(other->endPoint());
   return std::make_shared<Vector>(new_start, new_end);
 }
 

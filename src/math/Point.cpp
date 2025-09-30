@@ -2,6 +2,8 @@
 
 #include <stdexcept>
 
+#include "cereal/types/polymorphic.hpp"
+#include "falcon_core/generic/Pair.hpp"
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
@@ -25,8 +27,9 @@ Point::Point(
 Point::Point(const generic::MapSP<physics::device_structures::Connection,
                                   Quantity>& init)
     : generic::Map<physics::device_structures::Connection, Quantity>() {
-  if (!init) {
-    throw std::invalid_argument("Point: The initial map cannot be null.");
+  if (!init || init->size() == 0) {
+    throw std::invalid_argument(
+        "Point: The initial map cannot be null or empty.");
   }
   _unit = init->at(init->keys()->at(0))->unit();
   for (const auto pair : *init) {
@@ -165,10 +168,22 @@ bool Point::operator==(const Point& other) const {
 bool Point::operator!=(const Point& other) const { return !(*this == other); }
 
 }  // namespace falcon_core::math
+using PairCQ = falcon_core::generic::Pair<
+    falcon_core::physics::device_structures::Connection,
+    falcon_core::math::Quantity>;
 using MapP = falcon_core::generic::Map<
     falcon_core::physics::device_structures::Connection,
     falcon_core::math::Quantity>;
+using MapD = falcon_core::generic::
+    Map<falcon_core::physics::device_structures::Connection, double>;
 CEREAL_REGISTER_TYPE(MapP)
+CEREAL_REGISTER_TYPE(MapD)
+CEREAL_REGISTER_TYPE(PairCQ)
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<PairCQ>)
 CEREAL_REGISTER_TYPE(falcon_core::math::Point)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MapP)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PairCQ)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::generic::List<PairCQ>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MapD)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(MapP, falcon_core::math::Point)
