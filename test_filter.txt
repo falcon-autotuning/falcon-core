@@ -42,3 +42,6 @@ PortsTest.*
 QuantityTest.*
 PointTest.*
 UnitSpaceTest.*
+PortTransformTest.*
+IncreasingAlignmentTest.*
+VectorTest.*

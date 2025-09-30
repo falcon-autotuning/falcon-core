@@ -396,6 +396,14 @@ const std::string SymbolUnit::_get_dimension_symbol(
       "SymbolUnit: Custom dimensions are not supported. If you want to use one "
       "fix Constants.");
 }
+bool SymbolUnit::operator==(const SymbolUnit& other) const {
+  return (*unit() == *other.unit()) && (symbol() == other.symbol()) &&
+         (name() == other.name());
+}
+
+bool SymbolUnit::operator!=(const SymbolUnit& other) const {
+  return !(*this == other);
+}
 }  // namespace falcon_core::physics::units
 CEREAL_REGISTER_TYPE(falcon_core::physics::units::SymbolUnit)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,

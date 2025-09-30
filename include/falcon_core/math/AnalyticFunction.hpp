@@ -75,6 +75,8 @@ class AnalyticFunction : public generic::List<VariableName> {
       const generic::MapSP<VariableName, double>& args,
       const double&                               deltaT,
       const double&                               maxTime) const;
+  bool operator==(const AnalyticFunction& other) const;
+  bool operator!=(const AnalyticFunction& other) const;
 
  protected:
   AnalyticFunction();

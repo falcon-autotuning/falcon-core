@@ -137,6 +137,13 @@ generic::FArraySP<double> AnalyticFunction::evaluate(
   xt::xarray<double> rawArray = xt::adapt(rawVec);
   return std::make_shared<generic::FArray<double>>(rawArray);
 }
+bool AnalyticFunction::operator==(const AnalyticFunction& other) const {
+  return (_expression == other._expression) &&
+         generic::List<VariableName>::operator==(other);
+}
+bool AnalyticFunction::operator!=(const AnalyticFunction& other) const {
+  return !(*this == other);
+}
 }  // namespace falcon_core::math
 
 CEREAL_REGISTER_TYPE(falcon_core::math::AnalyticFunction)

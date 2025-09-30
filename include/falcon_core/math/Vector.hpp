@@ -164,6 +164,8 @@ class Vector : public generic::Map<physics::device_structures::Connection,
    * @brief Updates the unit of this vector.
    */
   void update_unit(const physics::units::SymbolUnitSP& unit);
+  bool operator==(const Vector& other) const;
+  bool operator!=(const Vector& other) const;
 
  protected:
   Vector();

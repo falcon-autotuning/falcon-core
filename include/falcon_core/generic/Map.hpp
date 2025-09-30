@@ -159,6 +159,12 @@ class Map : public virtual generic::Song {
     }
     return out;
   }
+  bool operator==(const Map<Key, Value>& other) const {
+    return *_items == *other._items;
+  }
+  bool operator!=(const Map<Key, Value>& other) const {
+    return !(*this == other);
+  }
 
  protected:
   friend class cereal::access;

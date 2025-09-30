@@ -5,7 +5,13 @@ namespace falcon_core::math::arrays {
 IncreasingAlignment::IncreasingAlignment() : _alignment(0) {}
 IncreasingAlignment::IncreasingAlignment(const bool alignment)
     : _alignment(alignment ? 1 : -1) {}
-int IncreasingAlignment::alignment() const { return _alignment; }
+int  IncreasingAlignment::alignment() const { return _alignment; }
+bool IncreasingAlignment::operator==(const IncreasingAlignment& other) const {
+  return alignment() == other.alignment();
+}
+bool IncreasingAlignment::operator!=(const IncreasingAlignment& other) const {
+  return !(*this == other);
+}
 }  // namespace falcon_core::math::arrays
 
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::IncreasingAlignment)

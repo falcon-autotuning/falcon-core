@@ -1,24 +1,33 @@
 #include "falcon_core/math/Vector.hpp"
 
 #include <cmath>
+#include <stdexcept>
 
+#include "falcon_core/generic/Pair.hpp"
 #include "falcon_core/math/Quantity.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
 
 namespace falcon_core::math {
 
 Vector::Vector() = default;
 Vector::Vector(const PointSP& start, const PointSP& end)
-    : _unit(end->unit()),
+    : _unit(end ? end->unit() : nullptr),
       _connections(std::make_shared<physics::device_structures::Connections>()),
       generic::Map<physics::device_structures::Connection,
                    generic::Pair<Quantity, Quantity>>() {
+  if (!start || !end) {
+    throw std::invalid_argument(
+        "Vector: The start and end points must not be null.");
+  }
+  auto end_connections   = end->connections();
+  auto start_connections = start->connections();
   for (const physics::device_structures::ConnectionSP& connection :
-       *end->connections()) {
+       *end_connections) {
     _connections->push_back(connection);
   }
   for (const physics::device_structures::ConnectionSP& connection :
-       *start->connections()) {
+       *start_connections) {
     if (!_connections->contains(connection)) {
       _connections->push_back(connection);
     }
@@ -42,40 +51,36 @@ Vector::Vector(const PointSP& start, const PointSP& end)
            std::make_shared<generic::Pair<Quantity, Quantity>>(first, second));
   }
 }
-Vector::Vector(const PointSP& end) {
-  PointSP start = std::make_shared<Point>();
-  Vector(start, end);
-}
-Vector::Vector(const generic::MapSP<physics::device_structures::Connection,
-                                    Quantity>& start,
-               const generic::MapSP<physics::device_structures::Connection,
-                                    Quantity>& end) {
-  PointSP startPoint = std::make_shared<Point>(start);
-  PointSP endPoint   = std::make_shared<Point>(end);
-  Vector(startPoint, endPoint);
-}
-Vector::Vector(const generic::MapSP<physics::device_structures::Connection,
-                                    Quantity>& end) {
-  Vector(std::make_shared<
-             generic::Map<physics::device_structures::Connection, Quantity>>(),
-         end);
-}
+Vector::Vector(const PointSP& end) : Vector(std::make_shared<Point>(), end) {}
+
+Vector::Vector(
+    const generic::MapSP<physics::device_structures::Connection, Quantity>&
+        start,
+    const generic::MapSP<physics::device_structures::Connection, Quantity>& end)
+    : Vector(std::make_shared<Point>(start), std::make_shared<Point>(end)) {}
+
+Vector::Vector(
+    const generic::MapSP<physics::device_structures::Connection, Quantity>& end)
+    : Vector(
+          std::make_shared<
+              generic::Map<physics::device_structures::Connection, Quantity>>(),
+          end) {}
+
 Vector::Vector(
     const generic::MapSP<physics::device_structures::Connection, double>& start,
     const generic::MapSP<physics::device_structures::Connection, double>& end,
-    falcon_core::physics::units::SymbolUnitSP unit) {
-  PointSP startPoint = std::make_shared<Point>(start, unit);
-  PointSP endPoint   = std::make_shared<Point>(end, unit);
-  Vector(startPoint, endPoint);
-}
+    falcon_core::physics::units::SymbolUnitSP                             unit)
+    : Vector(std::make_shared<Point>(start, unit),
+             std::make_shared<Point>(end, unit)) {}
+
 Vector::Vector(
     const generic::MapSP<physics::device_structures::Connection, double>& end,
-    falcon_core::physics::units::SymbolUnitSP unit) {
-  Vector(std::make_shared<
-             generic::Map<physics::device_structures::Connection, double>>(),
-         end,
-         unit);
-}
+    falcon_core::physics::units::SymbolUnitSP                             unit)
+    : Vector(
+          std::make_shared<
+              generic::Map<physics::device_structures::Connection, double>>(),
+          end,
+          unit) {}
 Vector::Vector(const generic::MapSP<physics::device_structures::Connection,
                                     generic::Pair<Quantity, Quantity>> map)
     : generic::Map<physics::device_structures::Connection,
@@ -162,33 +167,37 @@ const double Vector::magnitude() const {
 VectorSP Vector::operator+(const Vector& other) const {
   auto new_start = startPoint()->operator+(other.startPoint());
   auto new_end   = endPoint()->operator+(other.endPoint());
-  return std::make_shared<Vector>(new_end, new_start);
+  return std::make_shared<Vector>(new_start, new_end);
 }
 
 VectorSP Vector::operator-(const Vector& other) const {
   auto new_start = startPoint()->operator-(other.startPoint());
   auto new_end   = endPoint()->operator-(other.endPoint());
-  return std::make_shared<Vector>(new_end, new_start);
+  return std::make_shared<Vector>(new_start, new_end);
 }
 
 VectorSP Vector::operator*(double scalar) const {
   auto new_start = startPoint()->operator*(scalar);
   auto new_end   = endPoint()->operator*(scalar);
-  return std::make_shared<Vector>(new_end, new_start);
+  return std::make_shared<Vector>(new_start, new_end);
 }
 
 VectorSP Vector::operator/(double scalar) const {
   auto new_start = startPoint()->operator/(scalar);
   auto new_end   = endPoint()->operator/(scalar);
-  return std::make_shared<Vector>(new_end, new_start);
+  return std::make_shared<Vector>(new_start, new_end);
 }
 
 VectorSP Vector::operator-() const {
   auto new_start = startPoint()->operator-();
   auto new_end   = endPoint()->operator-();
-  return std::make_shared<Vector>(new_end, new_start);
+  return std::make_shared<Vector>(new_start, new_end);
 }
 const VectorSP Vector::translate(const PointSP& point) const {
+  if (!point) {
+    throw std::invalid_argument(
+        "Vector: The other point to translate by should not be null.");
+  }
   PointSP startPoint = *this->startPoint() + point;
   PointSP endPoint   = *this->endPoint() + point;
   return std::make_shared<Vector>(startPoint, endPoint);
@@ -196,12 +205,20 @@ const VectorSP Vector::translate(const PointSP& point) const {
 const VectorSP Vector::translate(
     const generic::MapSP<physics::device_structures::Connection, double> point,
     const physics::units::SymbolUnitSP unit) const {
+  if (!point || !unit) {
+    throw std::invalid_argument(
+        "Vector: The other map and unit to translate by should not be null.");
+  }
   PointSP adjustment = std::make_shared<Point>(point, unit);
   return translate(adjustment);
 }
 const VectorSP Vector::translate(
     const generic::MapSP<physics::device_structures::Connection, Quantity>
         point) const {
+  if (!point) {
+    throw std::invalid_argument(
+        "Vector: The other map and unit to translate by should not be null.");
+  }
   PointSP adjustment = std::make_shared<Point>(point);
   return translate(adjustment);
 }
@@ -210,6 +227,9 @@ const VectorSP Vector::translate_to_origin() const {
 }
 const VectorSP Vector::update_start_from_states(
     const communications::voltage_states::DeviceVoltageStatesSP& state) const {
+  if (!state) {
+    throw std::invalid_argument("Vector: The start state should not be null.");
+  }
   VectorSP originVector = translate_to_origin();
   return originVector->translate(state->to_point());
 }
@@ -241,6 +261,9 @@ void           Vector::update_unit(const physics::units::SymbolUnitSP& unit) {
   }
 }
 const VectorSP Vector::project(const VectorSP& other) const {
+  if (!other) {
+    throw std::invalid_argument("Vector: The projection vector not be null.");
+  }
   VectorSP clone = std::make_shared<Vector>(startPoint(), endPoint());
   clone->update_unit(other->unit());
   PointSP ourEnd   = clone->translate_to_origin()->endPoint();
@@ -254,13 +277,22 @@ const VectorSP Vector::project(const VectorSP& other) const {
   VectorSP result = std::make_shared<Vector>(rawPoint);
   return result->translate(startPoint());
 }
+bool Vector::operator==(const Vector& other) const {
+  return (*unit() == *other.unit()) &&
+         (*connections() == *other.connections()) &&
+         generic::Map<physics::device_structures::Connection,
+                      generic::Pair<Quantity, Quantity>>::operator==(other);
+}
+bool Vector::operator!=(const Vector& other) const { return !(*this == other); }
 }  // namespace falcon_core::math
 
 CEREAL_REGISTER_TYPE(falcon_core::math::Vector)
-using MBD = falcon_core::generic::Map<
-    falcon_core::physics::device_structures::Connection,
-    falcon_core::generic::Pair<falcon_core::math::Quantity,
-                               falcon_core::math::Quantity>>;
+using PQQ = falcon_core::generic::Pair<falcon_core::math::Quantity,
+                                       falcon_core::math::Quantity>;
+using MBD = falcon_core::generic::
+    Map<falcon_core::physics::device_structures::Connection, PQQ>;
+CEREAL_REGISTER_TYPE(PQQ)
 CEREAL_REGISTER_TYPE(MBD)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PQQ)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MBD)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(MBD, falcon_core::math::Vector)

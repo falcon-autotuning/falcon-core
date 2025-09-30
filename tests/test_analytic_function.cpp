@@ -209,4 +209,11 @@ TEST(AnalyticFunctionTest, HardestPrompt) {
   }
 }
 
+TEST(AnalyticFunctionTest, InequalityOperator) {
+  auto func1 = AnalyticFunction::Constant(5.0);
+  auto func2 = AnalyticFunction::Constant(6.0);
+  EXPECT_TRUE(*func1 != *func2);
+  EXPECT_FALSE(*func1 != *func1);
+}
+
 }  // namespace

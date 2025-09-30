@@ -134,4 +134,37 @@ TEST_F(PortsTest, IsKnobsAndIsMeters) {
   EXPECT_FALSE(mixed.is_knobs());
   EXPECT_FALSE(mixed.is_meters());
 }
+
+TEST_F(PortsTest, EqualityOperators) {
+  // Equal ports
+  Ports ports1({portA, portB, portC});
+  Ports ports2({portA, portB, portC});
+  EXPECT_TRUE(ports1 == ports2);
+  EXPECT_FALSE(ports1 != ports2);
+
+  // Different size
+  Ports ports3({portA, portB});
+  EXPECT_FALSE(ports1 == ports3);
+  EXPECT_TRUE(ports1 != ports3);
+
+  // Same size, different content
+  InstrumentPortSP portC_alt = std::make_shared<InstrumentPort>(
+      "C_alt",
+      falcon_core::physics::device_structures::Connection::PlungerGate(
+          "PC_alt"),
+      INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE,
+      physics::units::SymbolUnit::Volt(),
+      "descC_alt",
+      PortType::InstrumentPort);
+  Ports ports4({portA, portB, portC_alt});
+  EXPECT_FALSE(ports1 == ports4);
+  EXPECT_TRUE(ports1 != ports4);
+}
+
+TEST_F(PortsTest, GetPseudoNamesThrowsIfPortIsNullptr) {
+  InstrumentPortSP erroroneus_port =
+      std::make_shared<InstrumentPort>("badport");
+  Ports ports({erroroneus_port});
+  EXPECT_THROW(ports.get_pseudo_names(), std::runtime_error);
+}
 }  // namespace

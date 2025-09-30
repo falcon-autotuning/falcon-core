@@ -35,6 +35,8 @@ class PortTransform : public math::AnalyticFunction {
    * @brief Returns the port associated with the transform.
    */
   const names::InstrumentPortSP port() const;
+  bool                          operator==(const PortTransform& other) const;
+  bool                          operator!=(const PortTransform& other) const;
 
  protected:
   friend class cereal::access;

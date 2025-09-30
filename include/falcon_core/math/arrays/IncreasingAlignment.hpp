@@ -5,8 +5,6 @@
 
 #pragma once
 
-#include <memory>
-
 #include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core::math::arrays {
@@ -32,7 +30,9 @@ class IncreasingAlignment : public generic::Song {
   /**
    * @brief Return the alignment of the domain.
    */
-  int alignment() const;
+  int  alignment() const;
+  bool operator==(const IncreasingAlignment& other) const;
+  bool operator!=(const IncreasingAlignment& other) const;
 };
 using IncreasingAlignmentSP = std::shared_ptr<IncreasingAlignment>;
 }  // namespace falcon_core::math::arrays

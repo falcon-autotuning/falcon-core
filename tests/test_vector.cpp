@@ -11,25 +11,6 @@ using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::physics::units;
 using namespace falcon_core::generic;
 
-TEST(VectorTest, SerializationRoundTrip) {
-  auto unit  = SymbolUnit::Volt();
-  auto conn1 = Connection::BarrierGate("A");
-  auto conn2 = Connection::BarrierGate("B");
-
-  Map<Connection, double> end(
-      std::vector<std::pair<ConnectionSP, double>>{{conn1, 1.0}, {conn2, 2.0}});
-  Map<Connection, double> start(
-      std::vector<std::pair<ConnectionSP, double>>{{conn1, 0.0}, {conn2, 1.0}});
-
-  auto vec =
-      std::make_shared<Vector>(std::make_shared<Map<Connection, double>>(end),
-                               std::make_shared<Map<Connection, double>>(start),
-                               unit);
-  auto string = vec->to_json_string();
-  auto vec2   = Vector::from_json_string<Vector>(string);
-  ASSERT_EQ(*vec, *vec2);
-}
-
 TEST(VectorTest, ArithmeticOperators) {
   auto unit  = SymbolUnit::Volt();
   auto conn1 = std::make_shared<Connection>("A", DeviceFeature::BarrierGate);
@@ -128,8 +109,27 @@ TEST(VectorTest, UnitConversion) {
   auto vec = std::make_shared<Vector>(end, start, unit1);
   vec->update_unit(unit2);
 
-  ASSERT_EQ(vec->unit(), unit2);
-  ASSERT_EQ(vec->endPoint()->unit(), unit2);
-  ASSERT_EQ(vec->startPoint()->unit(), unit2);
+  ASSERT_EQ(*vec->unit(), *unit2);
+  ASSERT_EQ(*vec->endPoint()->unit(), *unit2);
+  ASSERT_EQ(*vec->startPoint()->unit(), *unit2);
+}
+
+TEST(VectorTest, SerializationRoundTrip) {
+  auto unit  = SymbolUnit::Volt();
+  auto conn1 = Connection::BarrierGate("A");
+  auto conn2 = Connection::BarrierGate("B");
+
+  Map<Connection, double> end(
+      std::vector<std::pair<ConnectionSP, double>>{{conn1, 1.0}, {conn2, 2.0}});
+  Map<Connection, double> start(
+      std::vector<std::pair<ConnectionSP, double>>{{conn1, 0.0}, {conn2, 1.0}});
+
+  auto vec =
+      std::make_shared<Vector>(std::make_shared<Map<Connection, double>>(end),
+                               std::make_shared<Map<Connection, double>>(start),
+                               unit);
+  auto string = vec->to_json_string();
+  auto vec2   = Vector::from_json_string<Vector>(string);
+  ASSERT_EQ(*vec, *vec2);
 }
 }  // namespace tests
