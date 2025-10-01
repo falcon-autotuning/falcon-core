@@ -79,8 +79,9 @@ PointSP Point::operator+(const PointSP& other) const {
   auto new_map = std::make_shared<
       generic::Map<physics::device_structures::Connection, Quantity>>();
   for (const auto& kv : items()) {
-    new_map->insert(kv->first(),
-                    std::make_shared<Quantity>(*kv->second()));  // deep copy
+    new_map->insert_or_assign(
+        kv->first(),
+        std::make_shared<Quantity>(*kv->second()));  // deep copy
   }
   PointSP result = std::make_shared<Point>(new_map);
   for (const auto& kv : other->items()) {
@@ -88,7 +89,9 @@ PointSP Point::operator+(const PointSP& other) const {
     if (it != result->end()) {
       *(*it)->second() += kv->second();
     } else {
-      result->insert_or_assign(kv->first(), kv->second());
+      result->insert_or_assign(
+          kv->first(),
+          std::make_shared<Quantity>(*kv->second()));  // deep copy
     }
   }
   return result;

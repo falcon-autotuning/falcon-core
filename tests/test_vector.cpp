@@ -35,7 +35,9 @@ class VectorTest : public ::testing::Test {
 };
 
 TEST_F(VectorTest, AdditionOperator) {
+  std::cout << "Made it here.";
   auto v_add = *v1 + v2;
+  std::cout << "Made it here too.";
   EXPECT_DOUBLE_EQ((*v_add->endPoint())[conn1] -> value(), 4.0);
   EXPECT_DOUBLE_EQ((*v_add->endPoint())[conn2] -> value(), 6.0);
   EXPECT_DOUBLE_EQ((*v_add->startPoint())[conn1] -> value(), 1.0);
