@@ -97,6 +97,7 @@ TEST(ConnectionsTest, SerializationRoundTrip) {
   ASSERT_EQ(c2->size(), 2);
   EXPECT_EQ(c2->at(0)->name(), "g");
   EXPECT_EQ(c2->at(1)->name(), "o");
+  EXPECT_EQ(c, *c2);
 }
 
 TEST(ConnectionsTest, IntersectionThrowsOnNullptr) {

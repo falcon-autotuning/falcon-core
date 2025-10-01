@@ -147,20 +147,10 @@ TEST_F(SymbolUnitTest, GetUnitSymbolsAndDimensionSymbols) {
 }
 
 TEST_F(SymbolUnitTest, SerializationRoundTrip) {
-  auto              m = meter();
-  std::stringstream ss;
-  {
-    cereal::JSONOutputArchive oarchive(ss);
-    oarchive(m);
-  }
-  SymbolUnitSP m2 = SymbolUnit::Meter();
-  {
-    cereal::JSONInputArchive iarchive(ss);
-    iarchive(m2);
-  }
-  ASSERT_EQ(m->symbol(), m2->symbol());
-  ASSERT_EQ(m->name(), m2->name());
-  ASSERT_EQ(m->unit()->dimensions(), m2->unit()->dimensions());
+  auto m      = meter();
+  auto string = m->to_json_string();
+  auto m2     = SymbolUnit::from_json_string<SymbolUnit>(string);
+  ASSERT_EQ(*m, *m2);
 }
 
 TEST_F(SymbolUnitTest, CustomConstructor) {

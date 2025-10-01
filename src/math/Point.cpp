@@ -31,11 +31,8 @@ Point::Point(const generic::MapSP<physics::device_structures::Connection,
     throw std::invalid_argument(
         "Point: The initial map cannot be null or empty.");
   }
-  _unit = init->at(init->keys()->at(0))->unit();
   for (const auto pair : *init) {
-    QuantitySP quantity = pair->second();
-    quantity->convert_to(_unit);
-    insert(pair->first(), quantity);
+    insert(pair->first(), pair->second());
   }
 }
 void Point::insert_or_assign(
@@ -43,6 +40,11 @@ void Point::insert_or_assign(
     const QuantitySP&                               value) {
   if (!key || !value) {
     throw std::invalid_argument("Point: The key and value cannot be null.");
+  }
+  // If default constructing an empty Point a unit can still be set by the first
+  // inserted entry.
+  if (items().empty()) {
+    _unit = value->unit();
   }
   value->convert_to(_unit);
   Map::insert_or_assign(key, value);
@@ -52,6 +54,11 @@ std::pair<Point::iterator, bool> Point::insert(
     const QuantitySP&                               value) {
   if (!key || !value) {
     throw std::invalid_argument("Point: The key and value cannot be null.");
+  }
+  // If default constructing an empty Point a unit can still be set by the first
+  // inserted entry.
+  if (items().empty()) {
+    _unit = value->unit();
   }
   value->convert_to(_unit);
   return Map::insert(key, value);

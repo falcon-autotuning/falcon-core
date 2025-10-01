@@ -1,0 +1,207 @@
+{
+    "value0": {
+        "polymorphic_id": 2147483649,
+        "polymorphic_name": "falcon_core::math::Vector",
+        "ptr_wrapper": {
+            "id": 2147483649,
+            "data": {
+                "value0": {
+                    "value0": {},
+                    "value1": {
+                        "value0": {},
+                        "value1": [
+                            {
+                                "polymorphic_id": 1073741824,
+                                "ptr_wrapper": {
+                                    "id": 2147483650,
+                                    "data": {
+                                        "value0": {},
+                                        "value1": {
+                                            "polymorphic_id": 1073741824,
+                                            "ptr_wrapper": {
+                                                "id": 2147483651,
+                                                "data": {
+                                                    "value0": {},
+                                                    "value1": "A",
+                                                    "value2": 0
+                                                }
+                                            }
+                                        },
+                                        "value2": {
+                                            "polymorphic_id": 1073741824,
+                                            "ptr_wrapper": {
+                                                "id": 2147483652,
+                                                "data": {
+                                                    "value0": {},
+                                                    "value1": {
+                                                        "polymorphic_id": 1073741824,
+                                                        "ptr_wrapper": {
+                                                            "id": 2147483653,
+                                                            "data": {
+                                                                "value0": {},
+                                                                "value1": 0.0,
+                                                                "value2": {
+                                                                    "polymorphic_id": 1073741824,
+                                                                    "ptr_wrapper": {
+                                                                        "id": 2147483654,
+                                                                        "data": {
+                                                                            "value0": {},
+                                                                            "value1": {
+                                                                                "polymorphic_id": 1073741824,
+                                                                                "ptr_wrapper": {
+                                                                                    "id": 2147483655,
+                                                                                    "data": {
+                                                                                        "value0": {},
+                                                                                        "value1": 1.0,
+                                                                                        "value2": 0.0,
+                                                                                        "value3": "",
+                                                                                        "value4": [
+                                                                                            {
+                                                                                                "key": "CURRENT",
+                                                                                                "value": -1
+                                                                                            },
+                                                                                            {
+                                                                                                "key": "LENGTH",
+                                                                                                "value": 2
+                                                                                            },
+                                                                                            {
+                                                                                                "key": "MASS",
+                                                                                                "value": 1
+                                                                                            },
+                                                                                            {
+                                                                                                "key": "TIME",
+                                                                                                "value": -3
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            "value2": "V",
+                                                                            "value3": "volt"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "value2": {
+                                                        "polymorphic_id": 1073741824,
+                                                        "ptr_wrapper": {
+                                                            "id": 2147483656,
+                                                            "data": {
+                                                                "value0": {},
+                                                                "value1": 1.0,
+                                                                "value2": {
+                                                                    "polymorphic_id": 1073741824,
+                                                                    "ptr_wrapper": {
+                                                                        "id": 6
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "polymorphic_id": 1073741824,
+                                "ptr_wrapper": {
+                                    "id": 2147483657,
+                                    "data": {
+                                        "value0": {},
+                                        "value1": {
+                                            "polymorphic_id": 1073741824,
+                                            "ptr_wrapper": {
+                                                "id": 2147483658,
+                                                "data": {
+                                                    "value0": {},
+                                                    "value1": "B",
+                                                    "value2": 0
+                                                }
+                                            }
+                                        },
+                                        "value2": {
+                                            "polymorphic_id": 1073741824,
+                                            "ptr_wrapper": {
+                                                "id": 2147483659,
+                                                "data": {
+                                                    "value0": {},
+                                                    "value1": {
+                                                        "polymorphic_id": 1073741824,
+                                                        "ptr_wrapper": {
+                                                            "id": 2147483660,
+                                                            "data": {
+                                                                "value0": {},
+                                                                "value1": 1.0,
+                                                                "value2": {
+                                                                    "polymorphic_id": 1073741824,
+                                                                    "ptr_wrapper": {
+                                                                        "id": 6
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "value2": {
+                                                        "polymorphic_id": 1073741824,
+                                                        "ptr_wrapper": {
+                                                            "id": 2147483661,
+                                                            "data": {
+                                                                "value0": {},
+                                                                "value1": 2.0,
+                                                                "value2": {
+                                                                    "polymorphic_id": 1073741824,
+                                                                    "ptr_wrapper": {
+                                                                        "id": 6
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "value1": {
+                    "polymorphic_id": 1073741824,
+                    "ptr_wrapper": {
+                        "id": 2147483662,
+                        "data": {
+                            "value0": {
+                                "value0": {},
+                                "value1": [
+                                    {
+                                        "polymorphic_id": 1073741824,
+                                        "ptr_wrapper": {
+                                            "id": 3
+                                        }
+                                    },
+                                    {
+                                        "polymorphic_id": 1073741824,
+                                        "ptr_wrapper": {
+                                            "id": 10
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "value2": {
+                    "polymorphic_id": 1073741824,
+                    "ptr_wrapper": {
+                        "id": 6
+                    }
+                }
+            }
+        }
+    }
+}

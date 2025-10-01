@@ -10,7 +10,11 @@
 
 namespace falcon_core::math {
 
-Vector::Vector() = default;
+Vector::Vector()
+    : _unit(physics::units::SymbolUnit::Dimensionless()),
+      _connections(std::make_shared<physics::device_structures::Connections>()),
+      generic::Map<physics::device_structures::Connection,
+                   generic::Pair<Quantity, Quantity>>() {}
 Vector::Vector(const PointSP& start, const PointSP& end)
     : _unit(end ? end->unit() : nullptr),
       _connections(std::make_shared<physics::device_structures::Connections>()),
@@ -278,10 +282,12 @@ const VectorSP Vector::project(const VectorSP& other) const {
   return result->translate(startPoint());
 }
 bool Vector::operator==(const Vector& other) const {
-  return (*unit() == *other.unit()) &&
-         (*connections() == *other.connections()) &&
-         generic::Map<physics::device_structures::Connection,
-                      generic::Pair<Quantity, Quantity>>::operator==(other);
+  bool unit_equality = (*unit() == *other.unit());
+  bool conn_equality = (*connections() == *other.connections());
+  bool map_equality =
+      generic::Map<physics::device_structures::Connection,
+                   generic::Pair<Quantity, Quantity>>::operator==(other);
+  return unit_equality && conn_equality && map_equality;
 }
 bool Vector::operator!=(const Vector& other) const { return !(*this == other); }
 }  // namespace falcon_core::math

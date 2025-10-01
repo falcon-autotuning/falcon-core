@@ -175,6 +175,7 @@ class Vector : public generic::Map<physics::device_structures::Connection,
     ar(cereal::base_class<generic::Map<physics::device_structures::Connection,
                                        generic::Pair<Quantity, Quantity>>>(
            this),
+       _connections,
        _unit);
   }
 };

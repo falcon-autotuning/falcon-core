@@ -1,5 +1,7 @@
 #pragma once
 
+#include <numeric>
+
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Pair.hpp"
 #include "falcon_core/generic/Song.hpp"
@@ -160,7 +162,24 @@ class Map : public virtual generic::Song {
     return out;
   }
   bool operator==(const Map<Key, Value>& other) const {
-    return *_items == *other._items;
+    if (size() != other.size()) return false;
+    std::vector<size_t> unmatched_indexes(size());
+    std::iota(
+        unmatched_indexes.begin(), unmatched_indexes.end(), 0);  // 0..size()-1
+
+    for (const PairSP<Key, Value>& pair : *_items) {
+      bool found = false;
+      for (auto it = unmatched_indexes.begin(); it != unmatched_indexes.end();
+           ++it) {
+        if (*pair == *other._items->at(*it)) {
+          unmatched_indexes.erase(it);  // Remove matched index
+          found = true;
+          break;
+        }
+      }
+      if (!found) return false;  // No match found for this pair
+    }
+    return unmatched_indexes.empty();  // All pairs matched
   }
   bool operator!=(const Map<Key, Value>& other) const {
     return !(*this == other);
