@@ -51,11 +51,11 @@ class IsControl : public virtual generic::IFArray<T> {
     }
 
     if (alignments.empty()) {
-      throw std::runtime_error("The array must have an alignment.");
+      throw std::runtime_error("IsControl: The array must have an alignment.");
     }
     if (alignments.size() > 1) {
       throw std::runtime_error(
-          "The array must have exactly one alignment dimension.");
+          "IsControl: The array must have exactly one alignment dimension.");
     }
 
     _principle_dimension = alignments[0].second;

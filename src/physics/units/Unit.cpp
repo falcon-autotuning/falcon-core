@@ -166,6 +166,18 @@ UnitSP Unit::get_kilo() const { return with_prefix(SI::KILO_SYMBOL); }
 UnitSP Unit::get_mega() const { return with_prefix(SI::MEGA_SYMBOL); }
 UnitSP Unit::get_giga() const { return with_prefix(SI::GIGA_SYMBOL); }
 
+std::string dimensions_to_string(const TotalDimensions& dims) {
+  std::ostringstream oss;
+  oss << "{";
+  bool first = true;
+  for (const auto& [key, value] : dims) {
+    if (!first) oss << ", ";
+    first = false;
+    oss << key << ": " << value;
+  }
+  oss << "}";
+  return oss.str();
+}
 double Unit::convert_value_to(const double  value,
                               const UnitSP& target_unit) const {
   if (!target_unit) {
@@ -174,7 +186,11 @@ double Unit::convert_value_to(const double  value,
   }
   if (dimensions() != target_unit->dimensions()) {
     throw std::invalid_argument(
-        "Cannot convert between units with different dimensions.");
+        "Unit: Cannot convert between units with different dimensions. Our "
+        "dimensions are " +
+        dimensions_to_string(dimensions()) +
+        " but the units we are converting to are " +
+        dimensions_to_string(target_unit->dimensions()));
   }
 
   // Convert from source unit to base SI unit

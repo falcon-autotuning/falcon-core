@@ -27,9 +27,8 @@ Point::Point(
 Point::Point(const generic::MapSP<physics::device_structures::Connection,
                                   Quantity>& init)
     : generic::Map<physics::device_structures::Connection, Quantity>() {
-  if (!init || init->size() == 0) {
-    throw std::invalid_argument(
-        "Point: The initial map cannot be null or empty.");
+  if (!init) {
+    throw std::invalid_argument("Point: The initial map cannot be null.");
   }
   for (const auto pair : *init) {
     insert(pair->first(), pair->second());

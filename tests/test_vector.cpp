@@ -236,4 +236,44 @@ TEST_F(VectorTest, Normalize) {
   auto norm = v1->normalize();
   ASSERT_NE(norm, nullptr);
 }
+
+TEST_F(VectorTest, ProjectValid) {
+  auto projected = v1->project(v2);
+  ASSERT_NE(projected, nullptr);
+}
+
+TEST_F(VectorTest, ProjectNullThrows) {
+  EXPECT_THROW(v1->project(nullptr), std::invalid_argument);
+}
+
+TEST_F(VectorTest, PrincipleConnectionSingleConnection) {
+  auto single_map = std::make_shared<Map<Connection, double>>(
+      std::vector<std::pair<ConnectionSP, double>>{{conn1, 5.0}});
+  auto vec  = std::make_shared<Vector>(single_map, unit);
+  auto conn = vec->principle_connection();
+  ASSERT_EQ(conn, conn1);
+}
+
+TEST_F(VectorTest, PrincipleConnectionEqualValues) {
+  auto equal_map = std::make_shared<Map<Connection, double>>(
+      std::vector<std::pair<ConnectionSP, double>>{{conn1, 2.0}, {conn2, 2.0}});
+  auto start_map = std::make_shared<Map<Connection, double>>(
+      std::vector<std::pair<ConnectionSP, double>>{{conn1, 0.0}, {conn2, 0.0}});
+  auto vec  = std::make_shared<Vector>(start_map, equal_map, unit);
+  auto conn = vec->principle_connection();
+  // Should be one of the connections, since both have equal values
+  ASSERT_TRUE(conn == conn1 || conn == conn2);
+}
+
+TEST_F(VectorTest, PrincipleConnectionNullThrows) {
+  // If connections() is empty, at(0) will throw
+  auto empty_map = std::make_shared<Map<Connection, double>>();
+  auto vec       = std::make_shared<Vector>(empty_map, unit);
+  EXPECT_THROW(vec->principle_connection(), std::out_of_range);
+}
+
+TEST_F(VectorTest, NotEqualOperator) {
+  ASSERT_TRUE(*v1 != *v2);
+  ASSERT_FALSE(*v1 != *v1);
+}
 }  // namespace

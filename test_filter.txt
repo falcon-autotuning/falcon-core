@@ -47,3 +47,4 @@ PortTransformTest.*
 IncreasingAlignmentTest.*
 PointTest.*
 VectorTest.*
+ControlArrayTest.*

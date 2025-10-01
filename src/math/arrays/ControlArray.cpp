@@ -1,6 +1,6 @@
 #include "falcon_core/math/arrays/ControlArray.hpp"
 
-#include <memory>
+#include <stdexcept>
 
 #include "falcon_core/math/arrays/IncreasingAlignment.hpp"
 namespace falcon_core::math::arrays {
@@ -14,7 +14,10 @@ ControlArray::ControlArray(const xt::xarray<double>& arr)
   _alignment           = _determine_alignments();
 }
 ControlArray::ControlArray(const generic::FArraySP<double>& arr)
-    : FArray<double>(*arr) {
+    : FArray<double>(arr ? *arr : generic::FArray<double>()) {
+  if (!arr) {
+    throw std::invalid_argument("ControlArray: input array must not be null.");
+  }
   _principle_dimension = 0;
   _alignment           = _determine_alignments();
 }
@@ -35,15 +38,26 @@ std::shared_ptr<ControlArray> ControlArray::operator+(const int other) const {
 }
 
 std::shared_ptr<ControlArray> ControlArray::operator+(
-    const std::shared_ptr<ControlArray>& other) const {
+    const ControlArraySP& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot be null.");
+  }
+  if (*other->alignment() != *alignment()) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot have a different alignment.");
+  }
   return std::make_shared<ControlArray>(
       generic::FArray<double>::operator+(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::operator+(
-    const std::shared_ptr<FArray<double>>& other) const {
-  return std::make_shared<ControlArray>(
-      generic::FArray<double>::operator+(other));
+    const generic::FArraySP<double>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot be null.");
+  }
+  return ControlArray::operator+(std::make_shared<ControlArray>(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::operator-(
@@ -58,15 +72,26 @@ std::shared_ptr<ControlArray> ControlArray::operator-(const int other) const {
 }
 
 std::shared_ptr<ControlArray> ControlArray::operator-(
-    const std::shared_ptr<ControlArray>& other) const {
+    const ControlArraySP& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot be null.");
+  }
+  if (*other->alignment() != *alignment()) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot have a different alignment.");
+  }
   return std::make_shared<ControlArray>(
       generic::FArray<double>::operator-(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::operator-(
-    const std::shared_ptr<FArray<double>>& other) const {
-  return std::make_shared<ControlArray>(
-      generic::FArray<double>::operator-(other));
+    const generic::FArraySP<double>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot be null.");
+  }
+  return ControlArray::operator-(std::make_shared<ControlArray>(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::operator-() const {
@@ -85,15 +110,26 @@ std::shared_ptr<ControlArray> ControlArray::operator*(const int other) const {
 }
 
 std::shared_ptr<ControlArray> ControlArray::operator*(
-    const std::shared_ptr<ControlArray>& other) const {
+    const ControlArraySP& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot be null.");
+  }
+  if (*other->alignment() != *alignment()) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot have a different alignment.");
+  }
   return std::make_shared<ControlArray>(
       generic::FArray<double>::operator*(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::operator*(
-    const std::shared_ptr<FArray<double>>& other) const {
-  return std::make_shared<ControlArray>(
-      generic::FArray<double>::operator*(other));
+    const generic::FArraySP<double>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot be null.");
+  }
+  return ControlArray::operator*(std::make_shared<ControlArray>(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::operator/(
@@ -108,14 +144,26 @@ std::shared_ptr<ControlArray> ControlArray::operator/(const int other) const {
 }
 
 std::shared_ptr<ControlArray> ControlArray::operator/(
-    const std::shared_ptr<ControlArray>& other) const {
+    const ControlArraySP& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot be null.");
+  }
+  if (*other->alignment() != *alignment()) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot have a different alignment.");
+  }
   return std::make_shared<ControlArray>(
       generic::FArray<double>::operator/(other));
 }
+
 std::shared_ptr<ControlArray> ControlArray::operator/(
-    const std::shared_ptr<FArray<double>>& other) const {
-  return std::make_shared<ControlArray>(
-      generic::FArray<double>::operator/(other));
+    const generic::FArraySP<double>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot be null.");
+  }
+  return ControlArray::operator/(std::make_shared<ControlArray>(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::operator^(
@@ -129,23 +177,47 @@ std::shared_ptr<ControlArray> ControlArray::abs() const {
 }
 
 std::shared_ptr<ControlArray> ControlArray::min(
-    const std::shared_ptr<ControlArray>& other) const {
+    const ControlArraySP& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot be null.");
+  }
+  if (*other->alignment() != *alignment()) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot have a different alignment.");
+  }
   return std::make_shared<ControlArray>(generic::FArray<double>::min(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::min(
-    const std::shared_ptr<FArray<double>>& other) const {
-  return std::make_shared<ControlArray>(generic::FArray<double>::min(other));
+    const generic::FArraySP<double>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot be null.");
+  }
+  return ControlArray::min(std::make_shared<ControlArray>(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::max(
-    const std::shared_ptr<ControlArray>& other) const {
+    const ControlArraySP& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot be null.");
+  }
+  if (*other->alignment() != *alignment()) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot have a different alignment.");
+  }
   return std::make_shared<ControlArray>(generic::FArray<double>::max(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::max(
-    const std::shared_ptr<FArray<double>>& other) const {
-  return std::make_shared<ControlArray>(generic::FArray<double>::max(other));
+    const generic::FArraySP<double>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "ControlArray: The other array cannot be null.");
+  }
+  return ControlArray::max(std::make_shared<ControlArray>(other));
 }
 
 std::shared_ptr<ControlArray> ControlArray::reshape(

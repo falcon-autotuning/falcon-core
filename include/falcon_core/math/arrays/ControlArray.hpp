@@ -30,12 +30,6 @@ class ControlArray : public generic::FArray<double>, public IsControl<double> {
   ControlArray(ControlArray&&) noexcept            = default;
   ControlArray& operator=(const ControlArray&)     = default;
   ControlArray& operator=(ControlArray&&) noexcept = default;
-  static std::shared_ptr<ControlArray> zeros(const std::vector<size_t>& shape) {
-    return std::make_shared<ControlArray>(xt::zeros<double>(shape));
-  }
-  static std::shared_ptr<ControlArray> empty(const std::vector<size_t>& shape) {
-    return std::make_shared<ControlArray>(xt::empty<double>(shape));
-  }
   // Arithmetic operators
   std::shared_ptr<ControlArray> operator+(const double other) const;
 

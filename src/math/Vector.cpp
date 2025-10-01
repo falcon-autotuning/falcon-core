@@ -274,9 +274,10 @@ const VectorSP Vector::project(const VectorSP& other) const {
   PointSP otherEnd = other->translate_to_origin()->endPoint();
   physics::device_structures::ConnectionsSP shared =
       connections()->intersection(other->connections());
-  generic::MapSP<physics::device_structures::Connection, Quantity> rawPoint;
+  generic::MapSP<physics::device_structures::Connection, Quantity> rawPoint =
+      std::make_shared<Map<physics::device_structures::Connection, Quantity>>();
   for (const physics::device_structures::ConnectionSP& conn : *shared) {
-    rawPoint->insert(conn, *ourEnd->at(conn) * otherEnd->at(conn));
+    rawPoint->insert(conn, *ourEnd->at(conn) * otherEnd->at(conn)->value());
   }
   VectorSP result = std::make_shared<Vector>(rawPoint);
   return result->translate(startPoint());
