@@ -1,9 +1,6 @@
 
 #include <gtest/gtest.h>
 
-#include <cereal/archives/json.hpp>
-#include <sstream>
-
 #include "falcon_core/physics/device_structures/Connection.hpp"
 namespace {
 using namespace falcon_core::physics::device_structures;

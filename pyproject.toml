@@ -15,7 +15,6 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Topic :: Scientific/Engineering",
 ]
-dependencies = ["numpy>=2.0.0", "scipy>=1.11.2", "h5py==3.13.0"]
 dynamic = ["version"]
 
 [project.optional-dependencies]
@@ -51,12 +50,11 @@ filterwarnings = [
 
 
 [tool.setuptools]
-packages = ["falcon_core"]
-package-dir = { "" = "src" }
+packages = { find = { where = ["src"], include = ["falcon_core*"] } }
 include-package-data = true
 
 [tool.setuptools.package-data]
-falcon_core = ["*.so"]
+falcon_core = ["**/*.so"]
 
 [tool.pytest.ini_options]
 # addopts="-n 5 --dist worksteal"

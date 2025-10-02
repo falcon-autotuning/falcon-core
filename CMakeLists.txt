@@ -277,15 +277,12 @@ target_link_libraries(falcon_core_cpp PUBLIC yaml-cpp::yaml-cpp)
 
 if(NOT FALCON_CORE_DIRS)
   set(FALCON_HEADERS
-      # falcon_core/generic/Song.hpp
+      falcon_core/generic/Song.hpp
       # falcon_core/generic/FArrayProtocol.hpp
-      # falcon_core::generic::IFArray<double>
-      # falcon_core/generic/FArray.hpp
-      # falcon_core::generic::FArray<double>
-      # falcon_core/generic/List.hpp
-      # falcon_core/generic/Map.hpp
-      # falcon_core/Constants.hpp
-      # falcon_core/physics/device_structures/Connection.hpp
+      # falcon_core::generic::IFArray<double> falcon_core/generic/FArray.hpp
+      # falcon_core::generic::FArray<double> falcon_core/generic/List.hpp
+      # falcon_core/generic/Map.hpp falcon_core/Constants.hpp
+      falcon_core/physics/device_structures/Connection.hpp
       # falcon_core::generic::List<falcon_core::physics::device_structures::Connection>
       # falcon_core/physics/device_structures/Connections.hpp
       # falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,falcon_core::physics::device_structures::Connections>
@@ -294,8 +291,7 @@ if(NOT FALCON_CORE_DIRS)
       # falcon_core/physics/device_structures/Impedances.hpp
       # falcon_core/physics/device_structures/GateRelations.hpp
       # falcon_core/physics/units/TotalDimensions.hpp
-      # falcon_core/physics/units/Prefix.hpp
-      # falcon_core/physics/units/Unit.hpp
+      # falcon_core/physics/units/Prefix.hpp falcon_core/physics/units/Unit.hpp
       # falcon_core/physics/units/SymbolUnit.hpp
       # falcon_core/instrument_interfaces/Instrument.hpp
       # falcon_core/instrument_interfaces/names/InstrumentPort.hpp
@@ -304,10 +300,8 @@ if(NOT FALCON_CORE_DIRS)
       # falcon_core/math/Axes.hpp
       # std::map<falcon_core::physics::device_structures::Connection,double>
       # falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>
-      # falcon_core/math/Point.hpp
-      # falcon_core/math/Quantity.hpp
-      # falcon_core/math/Sign.hpp
-      # falcon_core/math/arrays/IsControl.hpp
+      # falcon_core/math/Point.hpp falcon_core/math/Quantity.hpp
+      # falcon_core/math/Sign.hpp falcon_core/math/arrays/IsControl.hpp
       # falcon_core::math::arrays::IsControl<double>
       # falcon_core/math/arrays/ControlArray.hpp
       # falcon_core/math/arrays/ControlArray1D.hpp
@@ -319,18 +313,16 @@ if(NOT FALCON_CORE_DIRS)
       # falcon_core/math/arrays/LabelledControlArray1D.hpp)
   )
   set(SWIG_MODULES
-      # song,Song,Song.i,generic
-      # farray,FArray,FArray.i,generic
-      # list,List,List.i,generic
+      song,Song,Song.i,generic
+      # farray,FArray,FArray.i,generic list,List,List.i,generic
       # map,Map,Map.i,generic
-      # connection,Connection,Connection.i,physics/device_structures
+      connection,Connection,Connection.i,physics/device_structures
       # connections,Connections,Connections.i,physics/device_structures
       # ohmic,Ohmic,Ohmic.i,physics/device_structures
       # impedance,Impedance,Impedance.i,physics/device_structures
       # impedances,Impedances,Impedances.i,physics/device_structures
       # gate_relations,GateRelations,GateRelations.i,physics/device_structures
-      # prefix,Prefix,Prefix.i,physics/units
-      # unit,Unit,Unit.i,physics/units
+      # prefix,Prefix,Prefix.i,physics/units unit,Unit,Unit.i,physics/units
       # symbol_unit,SymbolUnit,SymbolUnit.i,physics/units
       # instrument_port,InstrumentPort,InstrumentPort.i,instrument_interfaces/names
       # ports,Ports,Ports.i,instrument_interfaces/names

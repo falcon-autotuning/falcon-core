@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/boost-throw-exception-x64-linux-1.88.0-3e567400-f825-4590-8a5b-2ad19329fe7a",
-  "name": "boost-throw-exception:x64-linux@1.88.0 c36cab9a444739f4bd64e4c9d42794c653a139b753d37bc1204554cdfc9c3b3f",
+  "documentNamespace": "https://spdx.org/spdxdocs/boost-throw-exception-x64-linux-1.88.0-6af84b10-4b2f-4521-958d-90350e27f14a",
+  "name": "boost-throw-exception:x64-linux@1.88.0 c7e430401497653bfc624c2dc4b1e42beb57140aa82bc17751672ada2250e2ed",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-2025-09-03-4580816534ed8fd9634ac83d46471440edd82dfe"
+      "Tool: vcpkg-2025-08-29-4737a2fcbb0c14fce98c56ead78bf0fbdc29a545"
     ],
-    "created": "2025-09-27T19:25:40Z"
+    "created": "2025-09-17T20:23:46Z"
   },
   "relationships": [
     {
@@ -84,7 +84,7 @@
     {
       "name": "boost-throw-exception:x64-linux",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "c36cab9a444739f4bd64e4c9d42794c653a139b753d37bc1204554cdfc9c3b3f",
+      "versionInfo": "c7e430401497653bfc624c2dc4b1e42beb57140aa82bc17751672ada2250e2ed",
       "downloadLocation": "NONE",
       "licenseConcluded": "BSL-1.0",
       "licenseDeclared": "NOASSERTION",
@@ -132,20 +132,8 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./include/boost/throw_exception.hpp",
-      "SPDXID": "SPDXRef-binary-file-0",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "fbf66a8b406e803d30dde7c616c15e0f1407bf0325f1d4f9665a8788aeedd745"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
       "fileName": "./include/boost/exception/exception.hpp",
-      "SPDXID": "SPDXRef-binary-file-1",
+      "SPDXID": "SPDXRef-binary-file-0",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -156,12 +144,12 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./share/boost_throw_exception/boost_throw_exception-targets.cmake",
-      "SPDXID": "SPDXRef-binary-file-2",
+      "fileName": "./include/boost/throw_exception.hpp",
+      "SPDXID": "SPDXRef-binary-file-1",
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "aba3cac2b069929031fa29decbc1d16e6deb5c9dc75c1095250c7ad0a681ea57"
+          "checksumValue": "fbf66a8b406e803d30dde7c616c15e0f1407bf0325f1d4f9665a8788aeedd745"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -169,7 +157,7 @@
     },
     {
       "fileName": "./share/boost_throw_exception/boost_throw_exception-config-version.cmake",
-      "SPDXID": "SPDXRef-binary-file-3",
+      "SPDXID": "SPDXRef-binary-file-2",
       "checksums": [
         {
           "algorithm": "SHA256",
@@ -181,11 +169,23 @@
     },
     {
       "fileName": "./share/boost_throw_exception/boost_throw_exception-config.cmake",
-      "SPDXID": "SPDXRef-binary-file-4",
+      "SPDXID": "SPDXRef-binary-file-3",
       "checksums": [
         {
           "algorithm": "SHA256",
           "checksumValue": "e5d55b2f703ed92187b7ee48a973a355a07acccb672b6eb3b694f21950d74fe8"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./share/boost_throw_exception/boost_throw_exception-targets.cmake",
+      "SPDXID": "SPDXRef-binary-file-4",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "aba3cac2b069929031fa29decbc1d16e6deb5c9dc75c1095250c7ad0a681ea57"
         }
       ],
       "licenseConcluded": "NOASSERTION",
