@@ -32,6 +32,14 @@ class LabelledMeasuredArray : public MeasuredArray, public IsLabelled<double> {
   LabelledMeasuredArray(
       const generic::FArraySP<double>&                            array,
       const autotuner_interfaces::contexts::AcquisitionContextSP& label);
+  /**
+   * @brief Constructs a new LabelledMeasuredArray object using a BaseArray.
+   * @param array The control array.
+   * @param port The instrument port to create the label from.
+   */
+  LabelledMeasuredArray(
+      const generic::FArraySP<double>&                      array,
+      const instrument_interfaces::names::InstrumentPortSP& port);
 
   LabelledMeasuredArray(const LabelledMeasuredArray&)                = default;
   LabelledMeasuredArray(LabelledMeasuredArray&&) noexcept            = default;
@@ -132,13 +140,15 @@ class LabelledMeasuredArray : public MeasuredArray, public IsLabelled<double> {
    * @return A vector of FArray gradients (one for each axis).
    */
   generic::ListSP<generic::FArray<double>> gradient() const;
+  bool operator==(const LabelledMeasuredArray& other) const;
+  bool operator!=(const LabelledMeasuredArray& other) const;
 
  protected:
   LabelledMeasuredArray();
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<MeasuredArray>(this), label());
+    ar(cereal::base_class<MeasuredArray>(this), _label);
   }
 };
 using LabelledMeasuredArraySP = std::shared_ptr<LabelledMeasuredArray>;

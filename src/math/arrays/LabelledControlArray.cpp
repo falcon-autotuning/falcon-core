@@ -1,12 +1,5 @@
 #include "falcon_core/math/arrays/LabelledControlArray.hpp"
 
-#include <stdexcept>
-
-#include "cereal/types/polymorphic.hpp"
-#include "falcon_core/generic/FArray.hpp"
-#include "falcon_core/math/arrays/ControlArray.hpp"
-#include "falcon_core/math/arrays/IsLabelled.hpp"
-
 namespace falcon_core::math::arrays {
 const arrays::ControlArray& check_and_deref(
     const arrays::ControlArraySP& array) {

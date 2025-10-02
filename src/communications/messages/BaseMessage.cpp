@@ -5,9 +5,15 @@
 namespace falcon_core::communications::messages {
 
 BaseMessage::BaseMessage() = default;
-BaseMessage::BaseMessage(const std::string &message) : _message(message) {}
+BaseMessage::BaseMessage(const std::string& message) : _message(message) {}
 
-const std::string &BaseMessage::message() const { return _message; }
+const std::string& BaseMessage::message() const { return _message; }
+bool               BaseMessage::operator==(const BaseMessage& other) const {
+  return (message() == other.message());
+}
+bool BaseMessage::operator!=(const BaseMessage& other) const {
+  return !(*this == other);
+}
 
 }  // namespace falcon_core::communications::messages
 

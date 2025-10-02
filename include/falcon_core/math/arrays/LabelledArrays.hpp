@@ -72,8 +72,9 @@ class LabelledArrays : public generic::List<ArrayType> {
    */
   void check_array_labels() const {
     generic::List<autotuner_interfaces::contexts::AcquisitionContext> seen;
+    auto all_labels = *labels();
     for (autotuner_interfaces::contexts::AcquisitionContextSP& label :
-         *labels()) {
+         all_labels) {
       if (seen.contains(label)) {
         throw std::runtime_error("Array labels are not unique.");
       }
@@ -84,8 +85,8 @@ class LabelledArrays : public generic::List<ArrayType> {
    * @brief Checks if the contents are of control arrays.
    */
   bool isControlArrays() const {
-    for (const ArrayType& array : this->items()) {
-      if (!dynamic_cast<const ControlArray*>(&array)) {
+    for (const std::shared_ptr<ArrayType>& array : this->items()) {
+      if (!array || !dynamic_cast<const ControlArray*>(array.get())) {
         return false;
       }
     }
@@ -95,8 +96,8 @@ class LabelledArrays : public generic::List<ArrayType> {
    * @brief Checks if the contents are of measured arrays.
    */
   bool isMeasuredArrays() const {
-    for (const ArrayType& array : this->items()) {
-      if (!dynamic_cast<const MeasuredArray*>(&array)) {
+    for (const std::shared_ptr<ArrayType>& array : this->items()) {
+      if (!array || !dynamic_cast<const MeasuredArray*>(array.get())) {
         return false;
       }
     }

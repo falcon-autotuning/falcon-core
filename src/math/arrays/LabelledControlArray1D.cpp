@@ -15,150 +15,157 @@ LabelledControlArray1D::LabelledControlArray1D(
     const generic::FArraySP<double>&                            array,
     const autotuner_interfaces::contexts::AcquisitionContextSP& label)
     : LabelledControlArray(array, label) {}
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator+(
+LabelledControlArray1DSP LabelledControlArray1D::operator+(
     const double other) const {
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::operator+(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator+(
+LabelledControlArray1DSP LabelledControlArray1D::operator+(
     const int other) const {
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::operator+(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator+(
-    const std::shared_ptr<LabelledControlArray1D>& other) const {
+LabelledControlArray1DSP LabelledControlArray1D::operator+(
+    const LabelledControlArray1DSP& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "LabelledControlArray1D: The other array cannot be null.");
+  }
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::operator+(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator+(
+LabelledControlArray1DSP LabelledControlArray1D::operator+(
     const std::shared_ptr<FArray<double>>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "LabelledControlArray1D: The other array cannot be null.");
+  }
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::operator+(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator-(
+LabelledControlArray1DSP LabelledControlArray1D::operator-(
     const double other) const {
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::operator-(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator-(
+LabelledControlArray1DSP LabelledControlArray1D::operator-(
     const int other) const {
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::operator-(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator-(
-    const std::shared_ptr<LabelledControlArray1D>& other) const {
+LabelledControlArray1DSP LabelledControlArray1D::operator-(
+    const LabelledControlArray1DSP& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "LabelledControlArray1D: The other array cannot be null.");
+  }
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::operator-(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator-(
+LabelledControlArray1DSP LabelledControlArray1D::operator-(
     const std::shared_ptr<FArray<double>>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "LabelledControlArray1D: The other array cannot be null.");
+  }
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::operator-(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator-()
-    const {
+LabelledControlArray1DSP LabelledControlArray1D::operator-() const {
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::operator-(), this -> label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator*(
+LabelledControlArray1DSP LabelledControlArray1D::operator*(
     const double other) const {
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::operator*(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator*(
+LabelledControlArray1DSP LabelledControlArray1D::operator*(
     const int other) const {
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::operator*(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator*(
-    const std::shared_ptr<LabelledControlArray1D>& other) const {
-  return std::make_shared<LabelledControlArray1D>(
-      generic::FArray<double>::operator*(other), this->label());
-}
-
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator*(
-    const std::shared_ptr<FArray<double>>& other) const {
-  return std::make_shared<LabelledControlArray1D>(
-      generic::FArray<double>::operator*(other), this->label());
-}
-
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator/(
+LabelledControlArray1DSP LabelledControlArray1D::operator/(
     const double other) const {
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::operator/(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator/(
+LabelledControlArray1DSP LabelledControlArray1D::operator/(
     const int other) const {
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::operator/(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator/(
-    const std::shared_ptr<LabelledControlArray1D>& other) const {
-  return std::make_shared<LabelledControlArray1D>(
-      generic::FArray<double>::operator/(other), this->label());
-}
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator/(
-    const std::shared_ptr<FArray<double>>& other) const {
-  return std::make_shared<LabelledControlArray1D>(
-      generic::FArray<double>::operator/(other), this->label());
-}
-
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::operator^(
+LabelledControlArray1DSP LabelledControlArray1D::operator^(
     const double other) const {
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::operator^(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::abs() const {
+LabelledControlArray1DSP LabelledControlArray1D::abs() const {
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::abs(), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::min(
-    const std::shared_ptr<LabelledControlArray1D>& other) const {
+LabelledControlArray1DSP LabelledControlArray1D::min(
+    const LabelledControlArray1DSP& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "LabelledControlArray1D: The other array cannot be null.");
+  }
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::min(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::min(
+LabelledControlArray1DSP LabelledControlArray1D::min(
     const std::shared_ptr<FArray<double>>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "LabelledControlArray1D: The other array cannot be null.");
+  }
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::min(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::max(
-    const std::shared_ptr<LabelledControlArray1D>& other) const {
+LabelledControlArray1DSP LabelledControlArray1D::max(
+    const LabelledControlArray1DSP& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "LabelledControlArray1D: The other array cannot be null.");
+  }
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::max(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::max(
+LabelledControlArray1DSP LabelledControlArray1D::max(
     const std::shared_ptr<FArray<double>>& other) const {
+  if (!other) {
+    throw std::invalid_argument(
+        "LabelledControlArray1D: The other array cannot be null.");
+  }
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::max(other), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::reshape(
+LabelledControlArray1DSP LabelledControlArray1D::reshape(
     const std::vector<size_t>& shape) const {
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::reshape(shape), this->label());
 }
 
-std::shared_ptr<LabelledControlArray1D> LabelledControlArray1D::flip(
-    size_t axis) const {
+LabelledControlArray1DSP LabelledControlArray1D::flip(size_t axis) const {
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::flip(axis), this->label());
 }

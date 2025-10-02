@@ -70,21 +70,9 @@ class LabelledControlArray1D : public LabelledControlArray,
 
   std::shared_ptr<LabelledControlArray1D> operator*(const int other) const;
 
-  std::shared_ptr<LabelledControlArray1D> operator*(
-      const std::shared_ptr<LabelledControlArray1D>& other) const;
-
-  std::shared_ptr<LabelledControlArray1D> operator*(
-      const std::shared_ptr<FArray<double>>& other) const;
-
   std::shared_ptr<LabelledControlArray1D> operator/(const double other) const;
 
   std::shared_ptr<LabelledControlArray1D> operator/(const int other) const;
-
-  std::shared_ptr<LabelledControlArray1D> operator/(
-      const std::shared_ptr<LabelledControlArray1D>& other) const;
-
-  std::shared_ptr<LabelledControlArray1D> operator/(
-      const std::shared_ptr<FArray<double>>& other) const;
 
   std::shared_ptr<LabelledControlArray1D> operator^(const double other) const;
 

@@ -51,3 +51,14 @@ ControlArrayTest.*
 ControlArray1DTest.*
 MeasuredArrayTest.*
 LabelledControlArrayTest.*
+LabelledControlArray1DTest.*
+LabelledMeasuredArrayTest.*
+BaseMessageTest.*
+DeviceVoltageStateTest.*
+DeviceVoltageStatesTest.*
+VoltageStatesResponseTest.*
+LabelledArraysTest.*
+AxesTest.*
+StandardRequestTest.*
+StandardResponseTest.*
+PortTransformsTest.*

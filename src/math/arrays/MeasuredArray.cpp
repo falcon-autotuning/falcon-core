@@ -7,7 +7,7 @@ MeasuredArray::MeasuredArray(const xt::xarray<double>& arr)
 MeasuredArray::MeasuredArray(const generic::FArraySP<double>& arr)
     : FArray<double>(arr ? *arr : generic::FArray<double>()) {
   if (!arr) {
-    throw std::invalid_argument("ControlArray: input array must not be null.");
+    throw std::invalid_argument("MeasuredArray: input array must not be null.");
   }
 }
 MeasuredArray::MeasuredArray(xt::xarray<double>&& arr) noexcept
@@ -25,12 +25,18 @@ std::shared_ptr<MeasuredArray> MeasuredArray::operator+(const int other) const {
 
 std::shared_ptr<MeasuredArray> MeasuredArray::operator+(
     const std::shared_ptr<MeasuredArray>& other) const {
+  if (!other) {
+    throw std::invalid_argument("MeasuredArray: other array must not be null.");
+  }
   return std::make_shared<MeasuredArray>(
       generic::FArray<double>::operator+(other));
 }
 
 std::shared_ptr<MeasuredArray> MeasuredArray::operator+(
     const std::shared_ptr<FArray<double>>& other) const {
+  if (!other) {
+    throw std::invalid_argument("MeasuredArray: other array must not be null.");
+  }
   return std::make_shared<MeasuredArray>(
       generic::FArray<double>::operator+(other));
 }
@@ -48,12 +54,18 @@ std::shared_ptr<MeasuredArray> MeasuredArray::operator-(const int other) const {
 
 std::shared_ptr<MeasuredArray> MeasuredArray::operator-(
     const std::shared_ptr<MeasuredArray>& other) const {
+  if (!other) {
+    throw std::invalid_argument("MeasuredArray: other array must not be null.");
+  }
   return std::make_shared<MeasuredArray>(
       generic::FArray<double>::operator-(other));
 }
 
 std::shared_ptr<MeasuredArray> MeasuredArray::operator-(
     const std::shared_ptr<FArray<double>>& other) const {
+  if (!other) {
+    throw std::invalid_argument("MeasuredArray: other array must not be null.");
+  }
   return std::make_shared<MeasuredArray>(
       generic::FArray<double>::operator-(other));
 }
@@ -75,12 +87,18 @@ std::shared_ptr<MeasuredArray> MeasuredArray::operator*(const int other) const {
 
 std::shared_ptr<MeasuredArray> MeasuredArray::operator*(
     const std::shared_ptr<MeasuredArray>& other) const {
+  if (!other) {
+    throw std::invalid_argument("MeasuredArray: other array must not be null.");
+  }
   return std::make_shared<MeasuredArray>(
       generic::FArray<double>::operator*(other));
 }
 
 std::shared_ptr<MeasuredArray> MeasuredArray::operator*(
     const std::shared_ptr<FArray<double>>& other) const {
+  if (!other) {
+    throw std::invalid_argument("MeasuredArray: other array must not be null.");
+  }
   return std::make_shared<MeasuredArray>(
       generic::FArray<double>::operator*(other));
 }
@@ -98,11 +116,17 @@ std::shared_ptr<MeasuredArray> MeasuredArray::operator/(const int other) const {
 
 std::shared_ptr<MeasuredArray> MeasuredArray::operator/(
     const std::shared_ptr<MeasuredArray>& other) const {
+  if (!other) {
+    throw std::invalid_argument("MeasuredArray: other array must not be null.");
+  }
   return std::make_shared<MeasuredArray>(
       generic::FArray<double>::operator/(other));
 }
 std::shared_ptr<MeasuredArray> MeasuredArray::operator/(
     const std::shared_ptr<FArray<double>>& other) const {
+  if (!other) {
+    throw std::invalid_argument("MeasuredArray: other array must not be null.");
+  }
   return std::make_shared<MeasuredArray>(
       generic::FArray<double>::operator/(other));
 }
@@ -119,21 +143,33 @@ std::shared_ptr<MeasuredArray> MeasuredArray::abs() const {
 
 std::shared_ptr<MeasuredArray> MeasuredArray::min(
     const std::shared_ptr<MeasuredArray>& other) const {
+  if (!other) {
+    throw std::invalid_argument("MeasuredArray: other array must not be null.");
+  }
   return std::make_shared<MeasuredArray>(generic::FArray<double>::min(other));
 }
 
 std::shared_ptr<MeasuredArray> MeasuredArray::min(
     const std::shared_ptr<FArray<double>>& other) const {
+  if (!other) {
+    throw std::invalid_argument("MeasuredArray: other array must not be null.");
+  }
   return std::make_shared<MeasuredArray>(generic::FArray<double>::min(other));
 }
 
 std::shared_ptr<MeasuredArray> MeasuredArray::max(
     const std::shared_ptr<MeasuredArray>& other) const {
+  if (!other) {
+    throw std::invalid_argument("MeasuredArray: other array must not be null.");
+  }
   return std::make_shared<MeasuredArray>(generic::FArray<double>::max(other));
 }
 
 std::shared_ptr<MeasuredArray> MeasuredArray::max(
     const std::shared_ptr<FArray<double>>& other) const {
+  if (!other) {
+    throw std::invalid_argument("MeasuredArray: other array must not be null.");
+  }
   return std::make_shared<MeasuredArray>(generic::FArray<double>::max(other));
 }
 

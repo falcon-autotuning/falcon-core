@@ -4,9 +4,15 @@
 
 namespace falcon_core::instrument_interfaces::port_transforms {
 
+const generic::List<PortTransform>& pts_check_and_deref(
+    const generic::ListSP<PortTransform>& init) {
+  if (!init)
+    throw std::invalid_argument("PortTransforms: init must not be null.");
+  return *init;
+}
 PortTransforms::PortTransforms() = default;
 PortTransforms::PortTransforms(const generic::ListSP<PortTransform>& init)
-    : List(*init) {}
+    : List(pts_check_and_deref(init)) {}
 PortTransforms::PortTransforms(const std::vector<PortTransformSP>& init)
     : List(init) {}
 const generic::ListSP<PortTransform> PortTransforms::transforms() const {

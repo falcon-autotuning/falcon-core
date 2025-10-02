@@ -11,6 +11,8 @@ class BaseMessage : public generic::Song {
   BaseMessage(const std::string& message);
 
   const std::string& message() const;
+  bool               operator==(const BaseMessage& other) const;
+  bool               operator!=(const BaseMessage& other) const;
 
  protected:
   friend class cereal::access;

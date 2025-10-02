@@ -14,6 +14,8 @@ class VoltageStatesResponse : public BaseMessage {
       const communications::voltage_states::DeviceVoltageStatesSP& states);
 
   const communications::voltage_states::DeviceVoltageStatesSP& states() const;
+  bool operator==(const VoltageStatesResponse& other) const;
+  bool operator!=(const VoltageStatesResponse& other) const;
 
  protected:
   VoltageStatesResponse();

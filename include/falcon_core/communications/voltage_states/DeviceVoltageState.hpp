@@ -13,8 +13,10 @@ class DeviceVoltageState : public math::Quantity {
                      const double&                                   voltage,
                      const physics::units::SymbolUnitSP&             unit);
 
-  std::shared_ptr<physics::device_structures::Connection> connection() const;
-  double                                                  voltage() const;
+  const physics::device_structures::ConnectionSP& connection() const;
+  double                                          voltage() const;
+  bool operator==(const DeviceVoltageState& other) const;
+  bool operator!=(const DeviceVoltageState& other) const;
 
  protected:
   friend class cereal::access;

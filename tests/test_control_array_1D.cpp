@@ -227,4 +227,8 @@ TEST_F(ControlArray1DTest, SerializationRoundTrip) {
   auto other  = ControlArray1D::from_json_string<ControlArray1D>(string);
   EXPECT_EQ(*ca1, *other);
 }
+
+TEST_F(ControlArray1DTest, GetStart) {
+  EXPECT_DOUBLE_EQ(ca1->get_start(), (*ca1)(0));
+}
 }  // namespace

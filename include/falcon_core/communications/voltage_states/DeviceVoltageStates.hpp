@@ -38,7 +38,7 @@ class DeviceVoltageStates : public generic::List<DeviceVoltageState> {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::Song>(this));
+    ar(cereal::base_class<generic::List<DeviceVoltageState>>(this));
   }
 };
 using DeviceVoltageStatesSP = std::shared_ptr<DeviceVoltageStates>;

@@ -8,7 +8,12 @@
  */
 
 namespace falcon_core::math {
-
+template <typename Value>
+static const generic::List<Value>& list_check_and_deref(
+    const generic::ListSP<Value>& items) {
+  if (!items) throw std::invalid_argument("Axes: items must not be null.");
+  return *items;
+}
 /**
  * @brief Container for a collection of axis objects.
  *
@@ -35,7 +40,7 @@ class Axes : public generic::List<Value> {
    * @param items Vector of axis objects.
    */
   explicit Axes(const generic::ListSP<Value>& items)
-      : generic::List<Value>(*items) {}
+      : generic::List<Value>(list_check_and_deref<Value>(items)) {}
   template <typename T = Value>
     requires std::is_base_of_v<generic::Song, T> &&
              (!generic::is_primitive<T>::value)
