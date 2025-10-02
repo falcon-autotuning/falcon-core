@@ -21,11 +21,6 @@ class ControlArrayTest : public ::testing::Test {
   }
 };
 
-TEST_F(ControlArrayTest, DefaultConstructor) {
-  ControlArray ca;
-  EXPECT_EQ(ca.shape().size(), 0);
-}
-
 TEST_F(ControlArrayTest, XtArrayConstructor) {
   ControlArray ca(arr1);
   EXPECT_EQ(ca.shape(), arr1.shape());
@@ -47,8 +42,8 @@ TEST_F(ControlArrayTest, MoveXtArrayConstructor) {
   EXPECT_EQ(ca.shape().size(), 2);
 }
 
-TEST_F(ControlArrayTest, DifferentAlignmentsNotEqual) {
-  ASSERT_NE(*ca1->alignment(), *ca2->alignment());
+TEST_F(ControlArrayTest, DifferentPrincipleNotEqual) {
+  ASSERT_NE(ca1->principle_dimension(), ca2->principle_dimension());
 }
 
 TEST_F(ControlArrayTest, ArithmeticAddSameAlignment) {
@@ -82,14 +77,6 @@ TEST_F(ControlArrayTest, ArithmeticAddNullThrows) {
 
 TEST_F(ControlArrayTest, ArithmeticSubNullThrows) {
   EXPECT_THROW(ca1->operator-((ControlArraySP) nullptr), std::invalid_argument);
-}
-
-TEST_F(ControlArrayTest, ArithmeticMulNullThrows) {
-  EXPECT_THROW(ca1->operator*((ControlArraySP) nullptr), std::invalid_argument);
-}
-
-TEST_F(ControlArrayTest, ArithmeticDivNullThrows) {
-  EXPECT_THROW(ca1->operator/((ControlArraySP) nullptr), std::invalid_argument);
 }
 
 TEST_F(ControlArrayTest, MinSameAlignment) {
@@ -160,25 +147,6 @@ TEST_F(ControlArrayTest, AddInt) {
   EXPECT_DOUBLE_EQ((*result)(0, 0), (*ca1)(0, 0) + 3);
 }
 
-TEST_F(ControlArrayTest, MulControlArrayNullThrows) {
-  EXPECT_THROW(ca1->operator*((ControlArraySP) nullptr), std::invalid_argument);
-}
-
-TEST_F(ControlArrayTest, MulControlArrayDifferentAlignmentThrows) {
-  EXPECT_THROW(ca1->operator*(ca2), std::runtime_error);
-}
-
-TEST_F(ControlArrayTest, MulFArraySP) {
-  auto farr   = std::make_shared<generic::FArray<double>>(arr1);
-  auto result = ca1->operator*(farr);
-  EXPECT_EQ(result->shape(), ca1->shape());
-}
-
-TEST_F(ControlArrayTest, MulFArraySPNullThrows) {
-  EXPECT_THROW(ca1->operator*((generic::FArraySP<double>)nullptr),
-               std::invalid_argument);
-}
-
 TEST_F(ControlArrayTest, AddFArraySP) {
   auto farr   = std::make_shared<generic::FArray<double>>(arr1);
   auto result = ca1->operator+(farr);
@@ -206,8 +174,6 @@ TEST_F(ControlArrayTest, MaxControlArrayNullThrows) {
 }
 
 TEST_F(ControlArrayTest, MaxControlArrayDifferentAlignmentThrows) {
-  std::cout << ca1->alignment()->to_json_string() << std::endl;
-  std::cout << ca2->alignment()->to_json_string() << std::endl;
   EXPECT_THROW(ca1->max(ca2), std::invalid_argument);
 }
 
@@ -216,4 +182,62 @@ TEST_F(ControlArrayTest, MaxFArraySPNullThrows) {
                std::invalid_argument);
 }
 
+TEST_F(ControlArrayTest, SubtractDouble) {
+  auto result = ca1->operator-(2.0);
+  EXPECT_EQ(result->shape(), ca1->shape());
+  EXPECT_DOUBLE_EQ((*result)(0, 0), (*ca1)(0, 0) - 2.0);
+}
+
+TEST_F(ControlArrayTest, SubtractInt) {
+  auto result = ca1->operator-(1);
+  EXPECT_EQ(result->shape(), ca1->shape());
+  EXPECT_DOUBLE_EQ((*result)(0, 0), (*ca1)(0, 0) - 1);
+}
+
+TEST_F(ControlArrayTest, SubtractFArraySP) {
+  auto farr   = std::make_shared<generic::FArray<double>>(arr1);
+  auto result = (*ca1 * 2)->operator-(farr);
+  EXPECT_EQ(result->shape(), ca1->shape());
+}
+
+TEST_F(ControlArrayTest, SubtractFArraySPNullThrows) {
+  EXPECT_THROW(ca1->operator-((generic::FArraySP<double>)nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(ControlArrayTest, MaxFArraySP) {
+  auto farr   = std::make_shared<generic::FArray<double>>(arr1);
+  auto result = ca1->max(farr);
+  EXPECT_EQ(result->shape(), ca1->shape());
+}
+
+TEST_F(ControlArrayTest, ArithmeticAddDifferentAlignmentThrows) {
+  EXPECT_THROW(ca1->operator+(ca2), std::invalid_argument);
+}
+
+TEST_F(ControlArrayTest, ArithmeticSubDifferentAlignmentThrows) {
+  EXPECT_THROW(ca1->operator-(ca2), std::invalid_argument);
+}
+
+TEST_F(ControlArrayTest, ArithmeticDivInt) {
+  auto result = ca1->operator/(2);
+  EXPECT_EQ(result->shape(), ca1->shape());
+  EXPECT_DOUBLE_EQ((*result)(0, 0), (*ca1)(0, 0) / 2.0);
+}
+
+TEST_F(ControlArrayTest, MinDifferentAlignmentThrows) {
+  EXPECT_THROW(ca1->min(ca2), std::invalid_argument);
+}
+
+TEST_F(ControlArrayTest, DetermineAlignmentsThrowsIfNoAlignment) {
+  // All dimensions <= 1, so no alignment possible
+  xt::xarray<double> arr = {42.0};
+  EXPECT_THROW(ControlArray varname(arr), std::runtime_error);
+}
+
+TEST_F(ControlArrayTest, DetermineAlignmentsThrowsIfMultipleAlignments) {
+  // Construct an array with two increasing dimensions
+  xt::xarray<double> arr = {{1.0, 2.0}, {3.0, 4.0}};
+  EXPECT_THROW(ControlArray varname(arr), std::runtime_error);
+}
 }  // namespace

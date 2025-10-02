@@ -14,6 +14,7 @@ namespace falcon_core::math::arrays {
 class ControlArray : public generic::FArray<double>, public IsControl<double> {
  protected:
   friend class cereal::access;
+  ControlArray();
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<FArray<double>>(this),
@@ -22,7 +23,6 @@ class ControlArray : public generic::FArray<double>, public IsControl<double> {
   }
 
  public:
-  ControlArray();
   ControlArray(const xt::xarray<double>& arr);
   ControlArray(const generic::FArraySP<double>& arr);
   ControlArray(xt::xarray<double>&& arr) noexcept;
@@ -57,21 +57,9 @@ class ControlArray : public generic::FArray<double>, public IsControl<double> {
 
   std::shared_ptr<ControlArray> operator*(const int other) const;
 
-  std::shared_ptr<ControlArray> operator*(
-      const std::shared_ptr<ControlArray>& other) const;
-
-  std::shared_ptr<ControlArray> operator*(
-      const std::shared_ptr<FArray<double>>& other) const;
-
   std::shared_ptr<ControlArray> operator/(const double other) const;
 
   std::shared_ptr<ControlArray> operator/(const int other) const;
-
-  std::shared_ptr<ControlArray> operator/(
-      const std::shared_ptr<ControlArray>& other) const;
-
-  std::shared_ptr<ControlArray> operator/(
-      const std::shared_ptr<FArray<double>>& other) const;
 
   std::shared_ptr<ControlArray> operator^(const double other) const;
 

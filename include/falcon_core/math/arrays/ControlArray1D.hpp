@@ -13,6 +13,7 @@ namespace falcon_core::math::arrays {
 class ControlArray1D : public ControlArray, public Is1D<double> {
  protected:
   friend class cereal::access;
+  ControlArray1D();
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<ControlArray>(this),
@@ -21,7 +22,6 @@ class ControlArray1D : public ControlArray, public Is1D<double> {
   }
 
  public:
-  ControlArray1D();
   ControlArray1D(const xt::xarray<double>& arr);
   ControlArray1D(const generic::FArraySP<double>& arr);
   ControlArray1D(const ControlArraySP& arr);
@@ -30,14 +30,6 @@ class ControlArray1D : public ControlArray, public Is1D<double> {
   ControlArray1D(ControlArray1D&&) noexcept            = default;
   ControlArray1D& operator=(const ControlArray1D&)     = default;
   ControlArray1D& operator=(ControlArray1D&&) noexcept = default;
-  static std::shared_ptr<ControlArray1D> zeros(
-      const std::vector<size_t>& shape) {
-    return std::make_shared<ControlArray1D>(xt::zeros<double>(shape));
-  }
-  static std::shared_ptr<ControlArray1D> empty(
-      const std::vector<size_t>& shape) {
-    return std::make_shared<ControlArray1D>(xt::empty<double>(shape));
-  }
   // Arithmetic operators
   std::shared_ptr<ControlArray1D> operator+(const double other) const;
 
@@ -65,21 +57,9 @@ class ControlArray1D : public ControlArray, public Is1D<double> {
 
   std::shared_ptr<ControlArray1D> operator*(const int other) const;
 
-  std::shared_ptr<ControlArray1D> operator*(
-      const std::shared_ptr<ControlArray1D>& other) const;
-
-  std::shared_ptr<ControlArray1D> operator*(
-      const std::shared_ptr<FArray<double>>& other) const;
-
   std::shared_ptr<ControlArray1D> operator/(const double other) const;
 
   std::shared_ptr<ControlArray1D> operator/(const int other) const;
-
-  std::shared_ptr<ControlArray1D> operator/(
-      const std::shared_ptr<ControlArray1D>& other) const;
-
-  std::shared_ptr<ControlArray1D> operator/(
-      const std::shared_ptr<FArray<double>>& other) const;
 
   std::shared_ptr<ControlArray1D> operator^(const double other) const;
 

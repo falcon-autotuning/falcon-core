@@ -48,3 +48,6 @@ IncreasingAlignmentTest.*
 PointTest.*
 VectorTest.*
 ControlArrayTest.*
+ControlArray1DTest.*
+MeasuredArrayTest.*
+LabelledControlArrayTest.*

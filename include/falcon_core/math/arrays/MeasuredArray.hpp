@@ -12,9 +12,16 @@ namespace falcon_core::math::arrays {
  * @brief Array type for measured data, derived from BaseArray.
  */
 class MeasuredArray : public generic::FArray<double> {
+ protected:
+  friend class cereal::access;
+  MeasuredArray();
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<FArray<double>>(this));
+  }
+
  public:
   using value_type = double;
-  MeasuredArray();
   MeasuredArray(const generic::FArraySP<double>& arr);
   MeasuredArray(const xt::xarray<double>& arr);
   MeasuredArray(xt::xarray<double>&& arr) noexcept;

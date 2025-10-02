@@ -171,7 +171,6 @@ std::string dimensions_to_string(const TotalDimensions& dims) {
   oss << "{";
   bool first = true;
   for (const auto& [key, value] : dims) {
-    if (!first) oss << ", ";
     first = false;
     oss << key << ": " << value;
   }

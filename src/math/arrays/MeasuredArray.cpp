@@ -5,7 +5,11 @@ MeasuredArray::MeasuredArray() : FArray<double>() {}
 MeasuredArray::MeasuredArray(const xt::xarray<double>& arr)
     : FArray<double>(arr) {}
 MeasuredArray::MeasuredArray(const generic::FArraySP<double>& arr)
-    : FArray<double>(*arr) {}
+    : FArray<double>(arr ? *arr : generic::FArray<double>()) {
+  if (!arr) {
+    throw std::invalid_argument("ControlArray: input array must not be null.");
+  }
+}
 MeasuredArray::MeasuredArray(xt::xarray<double>&& arr) noexcept
     : FArray<double>(arr) {}
 std::shared_ptr<MeasuredArray> MeasuredArray::operator+(

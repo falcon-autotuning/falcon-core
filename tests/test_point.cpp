@@ -184,4 +184,14 @@ TEST_F(PointTest, SubtractionWithDisjointConnections) {
   EXPECT_DOUBLE_EQ(diff.at(connB)->value(), 5.0);   // 7.0 - 2.0
   EXPECT_DOUBLE_EQ(diff.at(connC)->value(), -1.0);  // 0 - 1.0
 }
+
+TEST_F(PointTest, InsertOrAssignSetsUnitOnEmptyPoint) {
+  Point p;
+  EXPECT_EQ(p.size(), 0u);
+  // Insert first item, should set unit
+  p.insert_or_assign(connA, q1);
+  EXPECT_EQ(p.size(), 1u);
+  EXPECT_EQ(p.unit()->symbol(), "V");
+  EXPECT_DOUBLE_EQ(p.at(connA)->value(), 1.0);
+}
 }  // namespace

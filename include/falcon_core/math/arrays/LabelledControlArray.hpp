@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "cereal/types/base_class.hpp"
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon_core/math/arrays/ControlArray.hpp"
 #include "falcon_core/math/arrays/IsLabelled.hpp"
@@ -72,21 +73,9 @@ class LabelledControlArray : public ControlArray, public IsLabelled<double> {
 
   std::shared_ptr<LabelledControlArray> operator*(const int other) const;
 
-  std::shared_ptr<LabelledControlArray> operator*(
-      const std::shared_ptr<LabelledControlArray>& other) const;
-
-  std::shared_ptr<LabelledControlArray> operator*(
-      const std::shared_ptr<FArray<double>>& other) const;
-
   std::shared_ptr<LabelledControlArray> operator/(const double other) const;
 
   std::shared_ptr<LabelledControlArray> operator/(const int other) const;
-
-  std::shared_ptr<LabelledControlArray> operator/(
-      const std::shared_ptr<LabelledControlArray>& other) const;
-
-  std::shared_ptr<LabelledControlArray> operator/(
-      const std::shared_ptr<FArray<double>>& other) const;
 
   std::shared_ptr<LabelledControlArray> operator^(const double other) const;
 
@@ -140,13 +129,15 @@ class LabelledControlArray : public ControlArray, public IsLabelled<double> {
    * @return A vector of FArray gradients (one for each axis).
    */
   generic::ListSP<generic::FArray<double>> gradient() const;
+  bool operator==(const LabelledControlArray& other) const;
+  bool operator!=(const LabelledControlArray& other) const;
 
  protected:
   LabelledControlArray();
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
-    ar(cereal::base_class<ControlArray>(this), label());
+    ar(cereal::base_class<ControlArray>(this), _label);
   }
 };
 using LabelledControlArraySP = std::shared_ptr<LabelledControlArray>;

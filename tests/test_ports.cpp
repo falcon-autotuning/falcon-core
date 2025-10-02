@@ -167,4 +167,11 @@ TEST_F(PortsTest, GetPseudoNamesThrowsIfPortIsNullptr) {
   Ports ports({erroroneus_port});
   EXPECT_THROW(ports.get_pseudo_names(), std::runtime_error);
 }
+
+TEST_F(PortsTest, GetPseudoNamesThrowsIfPortIsNullptrInList) {
+  InstrumentPortSP no_pseudo = std::make_shared<InstrumentPort>("D");
+  Ports            ports({portA, no_pseudo, portC});
+  EXPECT_THROW(ports.get_pseudo_names(), std::runtime_error);
+}
+
 }  // namespace
