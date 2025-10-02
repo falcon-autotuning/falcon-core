@@ -26,28 +26,34 @@ StandardConfigConnections::StandardConfigConnections(
   if (!screening_gates || !reservoir_gates || !plunger_gates ||
       !barrier_gates || !ohmics) {
     throw std::invalid_argument(
-        "StandardConfigConnections: All the constructor inputs need to not be "
+        "StandardConfigConnections: The screening_gates, reservoir_gates, "
+        "plunger_gates, barrier_gates, and ohmics are not allowed to not be "
         "null.");
   }
   if (!_screening_gates->is_screening_gates()) {
     throw std::runtime_error(
-        "Expected all the gates in the screening_gates to be screening gates.");
+        "StandardConfigConnections: Expected all the gates in the "
+        "screening_gates to be screening gates.");
   }
   if (!_reservoir_gates->is_reservoir_gates()) {
     throw std::runtime_error(
-        "Expected all the gates in the reservoir_gates to be reservoir gates.");
+        "StandardConfigConnections: Expected all the gates in the "
+        "reservoir_gates to be reservoir gates.");
   }
   if (!_plunger_gates->is_plunger_gates()) {
     throw std::runtime_error(
-        "Expected all the gates in the plunger_gates to be plunger gates.");
+        "StandardConfigConnections: Expected all the gates in the "
+        "plunger_gates to be plunger gates.");
   }
   if (!_barrier_gates->is_barrier_gates()) {
     throw std::runtime_error(
-        "Expected all the gates in the barrier_gates to be barrier gates.");
+        "StandardConfigConnections: Expected all the gates in the "
+        "barrier_gates to be barrier gates.");
   }
   if (!_ohmics->is_ohmics()) {
     throw std::runtime_error(
-        "Expected all the connections in the ohmics to be ohmic.");
+        "StandardConfigConnections: Expected all the connections in the ohmics "
+        "to be ohmic.");
   }
 }
 const device_structures::ConnectionsSP&

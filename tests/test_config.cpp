@@ -902,4 +902,121 @@ TEST_F(ConfigTest, CheckGroupConsistency_ThrowsOnBarrierGate) {
                std::logic_error);
 }
 
+TEST_F(ConfigTest, GetSharedChannelBarrierGates_PushBackHappens_TwoChannel) {
+  auto channel = std::make_shared<Channel>("CH1");
+  auto result  = two_channel_config.get_shared_channel_barrier_gates(channel);
+  ASSERT_NE(result, nullptr);
+  EXPECT_EQ(result->size(), 0);
+  auto shared_gates  = two_channel_config.get_shared_barrier_gates();
+  auto channel_gates = two_channel_config.get_channel_barrier_gates(channel);
+  for (const auto& gate : *result) {
+    EXPECT_TRUE(shared_gates->contains(gate));
+    EXPECT_TRUE(channel_gates->contains(gate));
+  }
+}
+
+TEST_F(ConfigTest, GetSharedChannelPlungerGates_PushBackHappens_TwoChannel) {
+  auto channel = std::make_shared<Channel>("CH1");
+  auto result  = two_channel_config.get_shared_channel_plunger_gates(channel);
+  ASSERT_NE(result, nullptr);
+  EXPECT_EQ(result->size(), 0);
+  auto shared_gates  = two_channel_config.get_shared_plunger_gates();
+  auto channel_gates = two_channel_config.get_channel_plunger_gates(channel);
+  for (const auto& gate : *result) {
+    EXPECT_TRUE(shared_gates->contains(gate));
+    EXPECT_TRUE(channel_gates->contains(gate));
+  }
+}
+
+TEST_F(ConfigTest, GetSharedChannelReservoirGates_PushBackHappens_TwoChannel) {
+  auto channel = std::make_shared<Channel>("CH1");
+  auto result  = two_channel_config.get_shared_channel_reservoir_gates(channel);
+  ASSERT_NE(result, nullptr);
+  EXPECT_EQ(result->size(), 0);
+  auto shared_gates  = two_channel_config.get_shared_reservoir_gates();
+  auto channel_gates = two_channel_config.get_channel_reservoir_gates(channel);
+  for (const auto& gate : *result) {
+    EXPECT_TRUE(shared_gates->contains(gate));
+    EXPECT_TRUE(channel_gates->contains(gate));
+  }
+}
+
+TEST_F(ConfigTest, GetSharedChannelScreeningGates_PushBackHappens_TwoChannel) {
+  auto channel = std::make_shared<Channel>("CH1");
+  auto result  = two_channel_config.get_shared_channel_screening_gates(channel);
+  ASSERT_NE(result, nullptr);
+  EXPECT_GT(result->size(), 0);
+  auto shared_gates  = two_channel_config.get_shared_screening_gates();
+  auto channel_gates = two_channel_config.get_channel_screening_gates(channel);
+  for (const auto& gate : *result) {
+    EXPECT_TRUE(shared_gates->contains(gate));
+    EXPECT_TRUE(channel_gates->contains(gate));
+  }
+}
+
+TEST_F(ConfigTest, GetSharedChannelDotGates_PushBackHappens_TwoChannel) {
+  auto channel = std::make_shared<Channel>("CH1");
+  auto result  = two_channel_config.get_shared_channel_dot_gates(channel);
+  ASSERT_NE(result, nullptr);
+  EXPECT_EQ(result->size(), 0);
+  auto shared_gates  = two_channel_config.get_shared_dot_gates();
+  auto channel_gates = two_channel_config.get_channel_dot_gates(channel);
+  for (const auto& gate : *result) {
+    EXPECT_TRUE(shared_gates->contains(gate));
+    EXPECT_TRUE(channel_gates->contains(gate));
+  }
+}
+
+TEST_F(ConfigTest, GetIsolatedChannelBarrierGates_NoIsolatedGatesFound) {
+  auto channel = std::make_shared<Channel>("CH2");
+  auto result  = two_channel_config.get_isolated_channel_barrier_gates(channel);
+  ASSERT_NE(result, nullptr);
+  EXPECT_GT(result->size(), 0);
+}
+
+TEST_F(ConfigTest, GetIsolatedChannelPlungerGates_NoIsolatedGatesFound) {
+  auto channel = std::make_shared<Channel>("CH2");
+  auto result  = two_channel_config.get_isolated_channel_plunger_gates(channel);
+  ASSERT_NE(result, nullptr);
+  EXPECT_GT(result->size(), 0);
+}
+
+TEST_F(ConfigTest, GetIsolatedChannelReservoirGates_NoIsolatedGatesFound) {
+  auto channel = std::make_shared<Channel>("CH2");
+  auto result =
+      two_channel_config.get_isolated_channel_reservoir_gates(channel);
+  ASSERT_NE(result, nullptr);
+  EXPECT_GT(result->size(), 0);
+}
+
+TEST_F(ConfigTest, GetIsolatedChannelScreeningGates_NoIsolatedGatesFound) {
+  auto channel = std::make_shared<Channel>("CH2");
+  auto result =
+      two_channel_config.get_isolated_channel_screening_gates(channel);
+  ASSERT_NE(result, nullptr);
+  EXPECT_GT(result->size(), 0);
+}
+
+TEST_F(ConfigTest, GetIsolatedChannelDotGates_NoIsolatedGatesFound) {
+  auto channel = std::make_shared<Channel>("CH2");
+  auto result  = two_channel_config.get_isolated_channel_dot_gates(channel);
+  ASSERT_NE(result, nullptr);
+  EXPECT_GT(result->size(), 0);
+}
+
+TEST_F(ConfigTest, GetGateDictWorks) {
+  auto dict = original_config.get_gate_dict();
+  ASSERT_NE(dict, nullptr);
+  auto groups = original_config.get_all_groups();
+  for (const auto& group : *groups) {
+    auto key   = group->name();
+    auto gates = group->get_all_gates();
+    ASSERT_TRUE(dict->contains(key));
+    auto mapped = dict->at(key);
+    ASSERT_EQ(mapped->size(), gates->size());
+    for (size_t i = 0; i < gates->size(); ++i)
+      EXPECT_EQ((*mapped)[i]->name(), (*gates)[i]->name());
+  }
+}
+
 }  // namespace

@@ -120,9 +120,10 @@ class InstrumentPort : public generic::Song {
   /**
    * @brief Checks if this port is a port.
    */
-  const bool is_port() const;
-  bool       operator==(const InstrumentPort& other) const;
-  bool       operator!=(const InstrumentPort& other) const;
+  const bool     is_port() const;
+  bool           operator==(const InstrumentPort& other) const;
+  bool           operator!=(const InstrumentPort& other) const;
+  const PortType type() const;
 
  protected:
   friend class cereal::access;

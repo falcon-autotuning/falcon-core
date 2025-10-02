@@ -3,6 +3,7 @@
 #include <stdexcept>
 
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/math/arrays/LabelledControlArray.hpp"
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 
 namespace falcon_core::math::discrete_spaces {
@@ -13,6 +14,10 @@ DiscreteSpace::DiscreteSpace(
     const AxesSP<domains::CoupledLabelledDomain>&  axes,
     const AxesSP<generic::Map<std::string, bool>>& increasing)
     : _space(space), _axes(axes), _increasing(increasing) {
+  if (!space || !axes || !increasing) {
+    throw std::invalid_argument(
+        "DiscreteSpace: The space, axes, and increasing cannot be null.");
+  }
   validate_unit_space_dimensionality_matches_knobs();
   validate_knob_uniqueness();
 }
@@ -21,6 +26,11 @@ DiscreteSpaceSP DiscreteSpace::CartesianDiscreteSpace(
     const AxesSP<domains::CoupledLabelledDomain>&  axes,
     const AxesSP<generic::Map<std::string, bool>>& increasing,
     const domains::DomainSP&                       domain) {
+  if (!divisions || !axes || !increasing || !domain) {
+    throw std::invalid_argument(
+        "DiscreteSpace: The divisions, axes, increasing, and domain cannot be "
+        "null.");
+  }
   if (divisions->size() != axes->size()) {
     throw std::runtime_error(
         "The number of division of each axis must be the same size as the axes "
@@ -31,7 +41,7 @@ DiscreteSpaceSP DiscreteSpace::CartesianDiscreteSpace(
         "The number of division of each axis must be the same size as the "
         "increasing for the sweeps.");
   }
-  AxesSP<double> deltas;
+  AxesSP<double> deltas = std::make_shared<Axes<double>>();
   for (int d : *divisions) deltas->push_back(domain->range() / d);
   auto space = UnitSpace::CartesianSpace(deltas, domain);
   return std::make_shared<DiscreteSpace>(space, axes, increasing);
@@ -57,10 +67,11 @@ const AxesSP<generic::Map<std::string, bool>>& DiscreteSpace::increasing()
   return _increasing;
 }
 const instrument_interfaces::names::PortsSP DiscreteSpace::knobs() const {
-  instrument_interfaces::names::PortsSP knobs;
+  instrument_interfaces::names::PortsSP knobs =
+      std::make_shared<instrument_interfaces::names::Ports>();
   for (const domains::CoupledLabelledDomainSP axis : *axes()) {
-    for (const instrument_interfaces::names::InstrumentPortSP knob :
-         *axis->labels()) {
+    auto labels = *axis->labels();
+    for (const instrument_interfaces::names::InstrumentPortSP knob : labels) {
       knobs->push_back(knob);
     }
   }
@@ -75,53 +86,70 @@ void DiscreteSpace::validate_unit_space_dimensionality_matches_knobs() const {
 void DiscreteSpace::validate_knob_uniqueness() const {
   std::set<std::string> old_names;
   for (const domains::CoupledLabelledDomainSP& axis : *_axes) {
-    std::set<std::string> new_names(
-        axis->labels()->get_default_names()->begin(),
-        axis->labels()->get_default_names()->end());
-    assert(std::none_of(new_names.begin(),
-                        new_names.end(),
-                        [&](const std::string& name) {
-                          return old_names.count(name);
-                        }) &&
-           "The default names must be unique.");
+    auto                  labels        = axis->labels();
+    auto                  default_names = labels->get_default_names();
+    std::set<std::string> new_names(default_names->begin(),
+                                    default_names->end());
+    if (std::any_of(
+            new_names.begin(), new_names.end(), [&](const std::string& name) {
+              return old_names.count(name);
+            })) {
+      throw std::runtime_error("The default names must be unique.");
+    }
     old_names.insert(new_names.begin(), new_names.end());
   }
 }
 const int DiscreteSpace::get_axis(
     const instrument_interfaces::names::InstrumentPortSP& knob) const {
+  if (!knob) {
+    throw std::invalid_argument(
+        "DiscreteSpace: The knob label cannot be null.");
+  }
   for (domains::CoupledLabelledDomainSP axis : *_axes) {
-    if (axis->labels()->contains(knob)) {
+    auto labels = axis->labels();
+    if (labels->contains(knob)) {
       return _axes->index(axis);
     }
   }
-  throw std::runtime_error("Knob " + knob->default_name() +
+  throw std::runtime_error("DiscreteSpace: Knob " + knob->default_name() +
                            " not found in the axes.");
 }
 const domains::DomainSP DiscreteSpace::get_domain(
     const instrument_interfaces::names::InstrumentPortSP& knob) const {
+  if (!knob) {
+    throw std::invalid_argument(
+        "DiscreteSpace: The knob label cannot be null.");
+  }
   int axis = get_axis(knob);
   return _axes->at(axis)->get_domain(knob);
 }
 const AxesSP<arrays::LabelledControlArray> DiscreteSpace::get_projection(
     const AxesSP<instrument_interfaces::names::InstrumentPort>& projection)
     const {
+  if (!projection) {
+    throw std::invalid_argument(
+        "DiscreteSpace: The projection must not be null.");
+  }
   // Validate dimensionality
   if (projection->size() != _space->dimension()) {
     throw std::runtime_error(
-        "The projection dimensionality must be less than or equal to the space "
+        "DiscreteSpace: The projection dimensionality must be less than or "
+        "equal to the space "
         "dimensionality.");
   }
 
   // Get projection axes indices
   std::vector<int> projection_axes;
-  for (const auto& knob : *projection) {
+  for (const instrument_interfaces::names::InstrumentPortSP& knob :
+       *projection) {
     projection_axes.push_back(get_axis(knob));
   }
 
   // Check uniqueness
   std::set<int> unique_axes(projection_axes.begin(), projection_axes.end());
   if (projection->size() != unique_axes.size()) {
-    throw std::runtime_error("The projection axes must be unique.");
+    throw std::runtime_error(
+        "DiscreteSpace: The projection axes must be unique.");
   }
 
   // Create unit projections
@@ -142,16 +170,17 @@ const AxesSP<arrays::LabelledControlArray> DiscreteSpace::get_projection(
     scaled_projections.push_back(*(*(*unitprojection * difference) * sign) +
                                  value);
   }
-  generic::ListSP<arrays::LabelledControlArray> container;
-  for (int i = 0; i <= projection_axes.size(); i++) {
+  generic::ListSP<arrays::LabelledControlArray> container =
+      std::make_shared<generic::List<arrays::LabelledControlArray>>();
+  for (int i = 0; i < projection_axes.size(); i++) {
     container->push_back(std::make_shared<arrays::LabelledControlArray>(
         scaled_projections.at(i), projection->at(i)));
   }
   return std::make_shared<Axes<arrays::LabelledControlArray>>(container);
 }
 bool DiscreteSpace::operator==(const DiscreteSpace& other) const {
-  return (space() == other.space()) && (axes() == other.axes()) &&
-         (increasing() == other.increasing());
+  return (*space() == *other.space()) && (*axes() == *other.axes()) &&
+         (*increasing() == *other.increasing());
 }
 bool DiscreteSpace::operator!=(const DiscreteSpace& other) const {
   return !(*this == other);

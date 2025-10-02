@@ -122,6 +122,8 @@ class Waveform : public port_transforms::PortTransforms {
    * space.
    */
   void confirm_knobs_match() const;
+  bool operator==(const Waveform& other) const;
+  bool operator!=(const Waveform& other) const;
 
  protected:
   friend class cereal::access;

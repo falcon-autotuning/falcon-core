@@ -1,173 +1,272 @@
 #include <gtest/gtest.h>
 
-#include <falcon_core/generic/Song.hpp>
 #include <falcon_core/instrument_interfaces/Waveform.hpp>
 #include <falcon_core/math/discrete_spaces/DiscreteSpace.hpp>
+#include <stdexcept>
 
+#include "falcon_core/generic/Map.hpp"
+#include "falcon_core/instrument_interfaces/Waveform.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
-namespace tests {
+#include "falcon_core/instrument_interfaces/port_transforms/PortTransforms.hpp"
+#include "falcon_core/math/Axes.hpp"
+#include "falcon_core/math/discrete_spaces/DiscreteSpace.hpp"
+#include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
+#include "falcon_core/math/domains/Domain.hpp"
+#include "falcon_core/math/domains/LabelledDomain.hpp"
+namespace {
 using namespace falcon_core;
 using namespace math;
 using namespace instrument_interfaces;
 using namespace domains;
 using namespace discrete_spaces;
 using namespace port_transforms;
-TEST(WaveformTest, BasicConstructionAndAccess) {
-  DomainSP                domain = std::make_shared<Domain>(0.0, 1.0);
-  names::InstrumentPortSP knob   = names::InstrumentPort::Knob(
-      "test", physics::device_structures::Connection::PlungerGate("P1"));
-  LabelledDomainSP labelledD =
-      LabelledDomain::from_port_and_domain(knob, domain);
-  CoupledLabelledDomainSP coupledDomain =
-      std::make_shared<CoupledLabelledDomain>(
-          CoupledLabelledDomain(std::vector<LabelledDomainSP>{labelledD}));
-  generic::MapSP<std::string, bool> increasing =
-      std::make_shared<generic::Map<std::string, bool>>();
-  increasing->insert("P1", true);
-  auto space =
-      DiscreteSpace::CartesianDiscreteSpace1D(10, coupledDomain, increasing);
 
-  auto identity_transform =
-      port_transforms::PortTransform::IdentityTransform(knob);
-  auto constant_transform =
-      port_transforms::PortTransform::ConstantTransform(knob, 3.14);
-  generic::ListSP<PortTransform> transforms =
-      std::make_shared<generic::List<PortTransform>>(
-          std::vector{identity_transform, constant_transform});
-  Waveform waveform(space, transforms);
+using namespace falcon_core::instrument_interfaces;
+using namespace falcon_core::math;
+using namespace falcon_core::math::domains;
+using namespace falcon_core::math::discrete_spaces;
+using namespace falcon_core::generic;
 
-  ASSERT_EQ(waveform.space(), space);
-  ASSERT_EQ(waveform.transforms()->size(), 2);
+class WaveformTest : public ::testing::Test {
+ protected:
+  DiscreteSpaceSP                        discrete_space;
+  CoupledLabelledDomainSP                coupled_domain;
+  CoupledLabelledDomainSP                coupled_domain2;
+  AxesSP<CoupledLabelledDomain>          axes;
+  AxesSP<CoupledLabelledDomain>          axes2D;
+  AxesSP<Map<std::string, bool>>         increasing;
+  AxesSP<Map<std::string, bool>>         increasing2D;
+  MapSP<std::string, bool>               map_increasing;
+  MapSP<std::string, bool>               map_increasing2;
+  DomainSP                               domain;
+  names::InstrumentPortSP                knob_port;
+  names::InstrumentPortSP                knob_port2;
+  LabelledDomainSP                       labelled_domain;
+  LabelledDomainSP                       labelled_domain2;
+  ListSP<port_transforms::PortTransform> transforms;
+  ListSP<port_transforms::PortTransform> transforms2D;
+
+  void SetUp() override {
+    knob_port = names::InstrumentPort::Knob(
+        "Vg1",
+        falcon_core::physics::device_structures::Connection::PlungerGate("P1"));
+    knob_port2 = names::InstrumentPort::Knob(
+        "Vg2",
+        falcon_core::physics::device_structures::Connection::PlungerGate("P2"));
+    domain          = std::make_shared<Domain>(std::pair<double, double>(0, 1));
+    labelled_domain = LabelledDomain::from_port_and_domain(knob_port, domain);
+    labelled_domain2 = LabelledDomain::from_port_and_domain(knob_port2, domain);
+    coupled_domain   = std::make_shared<CoupledLabelledDomain>(
+        std::vector<LabelledDomainSP>{labelled_domain});
+    coupled_domain2 = std::make_shared<CoupledLabelledDomain>(
+        std::vector<LabelledDomainSP>{labelled_domain2});
+    axes = std::make_shared<Axes<CoupledLabelledDomain>>();
+    axes->push_back(coupled_domain);
+    axes2D = std::make_shared<Axes<CoupledLabelledDomain>>();
+    axes2D->push_back(coupled_domain);
+    axes2D->push_back(coupled_domain2);
+    map_increasing = std::make_shared<Map<std::string, bool>>();
+    map_increasing->insert("Vg1", true);
+    map_increasing2 = std::make_shared<Map<std::string, bool>>();
+    map_increasing2->insert("Vg2", true);
+    increasing = std::make_shared<Axes<Map<std::string, bool>>>();
+    increasing->push_back(map_increasing);
+    increasing2D = std::make_shared<Axes<Map<std::string, bool>>>();
+    increasing2D->push_back(map_increasing);
+    increasing2D->push_back(map_increasing2);
+    discrete_space = DiscreteSpace::CartesianDiscreteSpace(
+        std::make_shared<Axes<int>>(std::vector<int>{10}),
+        axes,
+        increasing,
+        domain);
+    transforms = std::make_shared<List<port_transforms::PortTransform>>();
+    transforms->push_back(
+        port_transforms::PortTransform::IdentityTransform(knob_port));
+    transforms2D = std::make_shared<List<port_transforms::PortTransform>>();
+    transforms2D->push_back(
+        port_transforms::PortTransform::IdentityTransform(knob_port));
+    transforms2D->push_back(
+        port_transforms::PortTransform::IdentityTransform(knob_port2));
+  }
+};
+
+TEST_F(WaveformTest, ConstructorWorks) {
+  Waveform waveform(discrete_space, transforms);
+  EXPECT_EQ(*waveform.space(), *discrete_space);
 }
 
-TEST(WaveformTest, SerializationRoundTrip) {
-  auto                          domain = std::make_shared<Domain>(-5.0, 5.0);
-  AxesSP<CoupledLabelledDomain> axes = std::make_shared<falcon_core::math::Axes<
-      falcon_core::math::domains::CoupledLabelledDomain>>();
-  names::InstrumentPortSP       knob = names::InstrumentPort::Knob(
-      "test", physics::device_structures::Connection::PlungerGate("P1"));
-  LabelledDomainSP labelledD =
-      LabelledDomain::from_port_and_domain(knob, domain);
-  CoupledLabelledDomainSP coupledDomain =
-      std::make_shared<CoupledLabelledDomain>(
-          CoupledLabelledDomain(std::vector<LabelledDomainSP>{labelledD}));
-  generic::MapSP<std::string, bool> increasing =
-      std::make_shared<generic::Map<std::string, bool>>();
-  increasing->insert("P1", true);
-  DiscreteSpaceSP space =
-      DiscreteSpace::CartesianDiscreteSpace1D(10, coupledDomain, increasing);
-
-  PortTransformSP identity_transform = PortTransform::IdentityTransform(knob);
-  PortTransformSP constant_transform =
-      PortTransform::ConstantTransform(knob, 42.0);
-
-  generic::ListSP<PortTransform> transforms =
-      std::make_shared<generic::List<PortTransform>>(
-          std::vector({identity_transform, constant_transform}));
-  Waveform original(space, transforms);
-
-  std::string json = original.to_json_string();
-  auto recreated = falcon_core::generic::Song::from_json_string<Waveform>(json);
-
-  ASSERT_EQ(recreated->transforms()->size(), 2);
-  generic::MapSP<std::string, double> map;
-  map->insert("x", 0.0);
-  EXPECT_DOUBLE_EQ(recreated->transforms()->at(2)->evaluate(map, 0.0), 42.0);
+TEST_F(WaveformTest, ConstructorThrowsOnNullSpace) {
+  EXPECT_THROW(Waveform(nullptr, transforms), std::invalid_argument);
 }
 
-TEST(CartesianWaveformTest, NDConstructionAndSerialization) {
-  auto domain = std::make_shared<Domain>(0.0, 10.0);
+TEST_F(WaveformTest, ConstructorThrowsOnNullTransforms) {
+  EXPECT_THROW(Waveform(discrete_space, nullptr), std::invalid_argument);
+}
 
-  // ND: 3 axes
-  AxesSP<int> divisions =
-      std::make_shared<math::Axes<int>>(std::vector<int>{10, 20, 30});
-  names::InstrumentPortSP knob = names::InstrumentPort::Knob(
-      "test", physics::device_structures::Connection::PlungerGate("P1"));
-  LabelledDomainSP labelledD =
-      LabelledDomain::from_port_and_domain(knob, domain);
-  CoupledLabelledDomainSP coupledDomain =
-      std::make_shared<CoupledLabelledDomain>(
-          CoupledLabelledDomain(std::vector<LabelledDomainSP>{labelledD}));
-  AxesSP<CoupledLabelledDomain> axes =
-      std::make_shared<Axes<CoupledLabelledDomain>>(
-          std::vector<CoupledLabelledDomainSP>{coupledDomain});
-  AxesSP<generic::Map<std::string, bool>> increasing =
-      std::make_shared<Axes<generic::Map<std::string, bool>>>(
-          std::vector<generic::MapSP<std::string, bool>>{
-              std::make_shared<generic::Map<std::string, bool>>()});
-  increasing->at(0)->insert("P1", true);
+TEST_F(WaveformTest, CartesianWaveformThrowsOnNullArgs) {
+  auto divisions = std::make_shared<Axes<int>>(std::vector<int>{10});
+  EXPECT_THROW(Waveform::CartesianWaveform(
+                   nullptr, axes, increasing, transforms, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianWaveform(
+                   divisions, nullptr, increasing, transforms, domain),
+               std::invalid_argument);
+  EXPECT_THROW(
+      Waveform::CartesianWaveform(divisions, axes, nullptr, transforms, domain),
+      std::invalid_argument);
+  EXPECT_THROW(
+      Waveform::CartesianWaveform(divisions, axes, increasing, nullptr, domain),
+      std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianWaveform(
+                   divisions, axes, increasing, transforms, nullptr),
+               std::invalid_argument);
+}
 
-  auto identity_transform = PortTransform::IdentityTransform(knob);
-  auto constant_transform = PortTransform::ConstantTransform(knob, 1.23);
-
-  generic::ListSP<PortTransform> transforms =
-      std::make_shared<generic::List<PortTransform>>(
-          std::vector({identity_transform, constant_transform}));
-  auto waveform = Waveform::CartesianWaveform(
+TEST_F(WaveformTest, CartesianWaveformWorks) {
+  auto divisions = std::make_shared<Axes<int>>(std::vector<int>{10});
+  auto waveform  = Waveform::CartesianWaveform(
       divisions, axes, increasing, transforms, domain);
-
-  ASSERT_TRUE(waveform != nullptr);
-  ASSERT_EQ(waveform->transforms()->size(), 2);
-
-  // Serialization round-trip
-  std::string json      = waveform->to_json_string();
-  auto        recreated = Waveform::from_json_string<Waveform>(json);
-  ASSERT_EQ(recreated->transforms()->size(), 2);
+  ASSERT_NE(waveform, nullptr);
+  EXPECT_EQ(waveform->space()->axes()->size(), axes->size());
 }
 
-TEST(CartesianWaveform1DTest, ConstructionAndSerialization) {
-  auto domain = std::make_shared<Domain>(-1.0, 1.0);
-  auto shared_domain =
-      std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>();
-  auto increasing = std::make_shared<generic::Map<std::string, bool>>();
+TEST_F(WaveformTest, CartesianWaveformNullptrs) {
+  auto divisions = std::make_shared<Axes<int>>(std::vector<int>{10});
+  EXPECT_THROW(Waveform::CartesianWaveform(
+                   nullptr, axes, increasing, transforms, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianWaveform(
+                   divisions, nullptr, increasing, transforms, domain),
+               std::invalid_argument);
+  EXPECT_THROW(
+      Waveform::CartesianWaveform(divisions, axes, nullptr, transforms, domain),
+      std::invalid_argument);
+  EXPECT_THROW(
+      Waveform::CartesianWaveform(divisions, axes, increasing, nullptr, domain),
+      std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianWaveform(
+                   divisions, axes, increasing, transforms, nullptr),
+               std::invalid_argument);
+}
 
-  names::InstrumentPortSP knob = names::InstrumentPort::Knob(
-      "test", physics::device_structures::Connection::PlungerGate("P1"));
-  auto identity_transform = PortTransform::IdentityTransform(knob);
+TEST_F(WaveformTest, CartesianIdentityWaveformWorks) {
+  auto divisions = std::make_shared<Axes<int>>(std::vector<int>{10});
+  auto waveform =
+      Waveform::CartesianIdentityWaveform(divisions, axes, increasing, domain);
+  ASSERT_NE(waveform, nullptr);
+}
 
-  generic::ListSP<PortTransform> transforms =
-      std::make_shared<generic::List<PortTransform>>(
-          std::vector({identity_transform}));
+TEST_F(WaveformTest, CartesianIdentityWaveformNullptrs) {
+  auto divisions = std::make_shared<Axes<int>>(std::vector<int>{10});
+  EXPECT_THROW(
+      Waveform::CartesianIdentityWaveform(nullptr, axes, increasing, domain),
+      std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianIdentityWaveform(
+                   divisions, nullptr, increasing, domain),
+               std::invalid_argument);
+  EXPECT_THROW(
+      Waveform::CartesianIdentityWaveform(divisions, axes, nullptr, domain),
+      std::invalid_argument);
+  EXPECT_THROW(
+      Waveform::CartesianIdentityWaveform(divisions, axes, increasing, nullptr),
+      std::invalid_argument);
+}
+
+TEST_F(WaveformTest, CartesianWaveform2DWorks) {
+  auto divisions = std::make_shared<Axes<int>>(std::vector<int>{10, 10});
+  auto waveform  = Waveform::CartesianWaveform2D(
+      divisions, axes2D, increasing2D, transforms2D, domain);
+  ASSERT_NE(waveform, nullptr);
+  EXPECT_EQ(waveform->space()->axes()->size(), 2);
+}
+
+TEST_F(WaveformTest, CartesianWaveform2DNullptrs) {
+  auto divisions = std::make_shared<Axes<int>>(std::vector<int>{10, 10});
+  EXPECT_THROW(Waveform::CartesianWaveform2D(
+                   nullptr, axes, increasing, transforms, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianWaveform2D(
+                   divisions, nullptr, increasing, transforms, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianWaveform2D(
+                   divisions, axes, nullptr, transforms, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianWaveform2D(
+                   divisions, axes, increasing, nullptr, domain),
+               std::runtime_error);
+  EXPECT_THROW(Waveform::CartesianWaveform2D(
+                   divisions, axes, increasing, transforms, nullptr),
+               std::runtime_error);
+}
+
+TEST_F(WaveformTest, CartesianIdentityWaveform2DWorks) {
+  auto divisions = std::make_shared<Axes<int>>(std::vector<int>{10, 10});
+  auto waveform  = Waveform::CartesianIdentityWaveform2D(
+      divisions, axes2D, increasing2D, domain);
+  ASSERT_NE(waveform, nullptr);
+  EXPECT_EQ(waveform->space()->axes()->size(), 2);
+}
+
+TEST_F(WaveformTest, CartesianIdentityWaveform2DNullptrs) {
+  auto divisions = std::make_shared<Axes<int>>(std::vector<int>{10, 10});
+  EXPECT_THROW(
+      Waveform::CartesianIdentityWaveform2D(nullptr, axes, increasing, domain),
+      std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianIdentityWaveform2D(
+                   divisions, nullptr, increasing, domain),
+               std::invalid_argument);
+  EXPECT_THROW(
+      Waveform::CartesianIdentityWaveform2D(divisions, axes, nullptr, domain),
+      std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianIdentityWaveform2D(
+                   divisions, axes, increasing, nullptr),
+               std::runtime_error);
+}
+
+TEST_F(WaveformTest, CartesianWaveform1DWorks) {
   auto waveform = Waveform::CartesianWaveform1D(
-      10, shared_domain, increasing, transforms, domain);
-
-  ASSERT_TRUE(waveform != nullptr);
-  ASSERT_EQ(waveform->transforms()->size(), 1);
-
-  // Serialization round-trip
-  std::string json      = waveform->to_json_string();
-  auto        recreated = Waveform::from_json_string<Waveform>(json);
-  ASSERT_EQ(recreated->transforms()->size(), 1);
+      10, coupled_domain, map_increasing, transforms, domain);
+  ASSERT_NE(waveform, nullptr);
 }
 
-TEST(CartesianWaveform2DTest, ConstructionAndSerialization) {
-  auto domain = std::make_shared<Domain>(-2.0, 2.0);
-  auto divisions =
-      std::make_shared<falcon_core::math::Axes<int>>(std::vector<int>{5, 5});
-  auto axes = std::make_shared<falcon_core::math::Axes<
-      falcon_core::math::domains::CoupledLabelledDomain>>();
-  AxesSP<generic::Map<std::string, bool>> increasing =
-      std::make_shared<Axes<generic::Map<std::string, bool>>>(
-          std::vector<generic::MapSP<std::string, bool>>{
-              std::make_shared<generic::Map<std::string, bool>>()});
-  increasing->at(0)->insert("P1", true);
-
-  names::InstrumentPortSP knob = names::InstrumentPort::Knob(
-      "test", physics::device_structures::Connection::PlungerGate("P1"));
-  auto identity_transform = PortTransform::IdentityTransform(knob);
-  generic::ListSP<PortTransform> transforms =
-      std::make_shared<generic::List<PortTransform>>(
-          std::vector({identity_transform}));
-
-  auto waveform = Waveform::CartesianWaveform2D(
-      divisions, axes, increasing, transforms, domain);
-
-  ASSERT_TRUE(waveform != nullptr);
-  ASSERT_EQ(waveform->transforms()->size(), 1);
-
-  // Serialization round-trip
-  std::string json      = waveform->to_json_string();
-  auto        recreated = Waveform::from_json_string<Waveform>(json);
-  ASSERT_EQ(recreated->transforms()->size(), 1);
+TEST_F(WaveformTest, CartesianWaveform1DNullptrs) {
+  EXPECT_THROW(Waveform::CartesianWaveform1D(
+                   10, nullptr, map_increasing, transforms, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianWaveform1D(
+                   10, coupled_domain, nullptr, transforms, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianWaveform1D(
+                   10, coupled_domain, map_increasing, nullptr, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianWaveform1D(
+                   10, coupled_domain, map_increasing, transforms, nullptr),
+               std::invalid_argument);
 }
-}  // namespace tests
+
+TEST_F(WaveformTest, CartesianIdentityWaveform1DWorks) {
+  auto waveform = Waveform::CartesianIdentityWaveform1D(
+      10, coupled_domain, map_increasing, domain);
+  ASSERT_NE(waveform, nullptr);
+}
+
+TEST_F(WaveformTest, CartesianIdentityWaveform1DNullptrs) {
+  EXPECT_THROW(Waveform::CartesianIdentityWaveform1D(
+                   10, nullptr, map_increasing, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianIdentityWaveform1D(
+                   10, coupled_domain, nullptr, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform::CartesianIdentityWaveform1D(
+                   10, coupled_domain, map_increasing, nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(WaveformTest, SerializationRoundTrip) {
+  Waveform waveform(discrete_space, transforms);
+  auto     string = waveform.to_json_string();
+  auto     loaded = Waveform::from_json_string<Waveform>(string);
+  EXPECT_EQ(waveform, *loaded);
+}
+}  // namespace

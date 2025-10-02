@@ -1,4 +1,5 @@
 #include <falcon_core/communications/messages/MeasurementRequest.hpp>
+#include <stdexcept>
 
 #include "falcon_core/instrument_interfaces/Waveform.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
@@ -21,7 +22,13 @@ MeasurementRequest::MeasurementRequest(
       _waveforms(waveforms),
       _getters(getters),
       _meter_transforms(meter_transforms),
-      _time_domain(time_domain) {}
+      _time_domain(time_domain) {
+  if (!waveforms || !getters || !meter_transforms || !time_domain) {
+    throw std::invalid_argument(
+        "MeasurementRequest: The waveforms, getters, and meter transforms must "
+        "not be null.");
+  }
+}
 
 const std::string& MeasurementRequest::measurement_name() const {
   return _measurement_name;

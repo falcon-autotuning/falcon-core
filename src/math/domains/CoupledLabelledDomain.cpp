@@ -21,7 +21,8 @@ const instrument_interfaces::names::PortsSP CoupledLabelledDomain::labels()
     const {
   generic::ListSP<instrument_interfaces::names::InstrumentPort> result =
       std::make_shared<List<instrument_interfaces::names::InstrumentPort>>();
-  for (const auto& domain : domains()) {
+  auto collected_domains = domains();
+  for (const auto& domain : collected_domains) {
     result->push_back(domain->port());
   }
   return std::make_shared<instrument_interfaces::names::Ports>(result);

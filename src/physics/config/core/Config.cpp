@@ -897,9 +897,6 @@ device_structures::ConnectionsSP Config::get_isolated_channel_barrier_gates(
       get_channel_barrier_gates(channel);
   device_structures::ConnectionsSP isolated_gates =
       get_isolated_barrier_gates();
-  if (!channel_gates)
-    return std::make_shared<
-        typename device_structures::ConnectionsSP::element_type>();
   auto result = std::make_shared<
       typename device_structures::ConnectionsSP::element_type>();
   std::unordered_set<std::string> isolated_names;
@@ -921,9 +918,6 @@ device_structures::ConnectionsSP Config::get_isolated_channel_plunger_gates(
       get_channel_plunger_gates(channel);
   device_structures::ConnectionsSP isolated_gates =
       get_isolated_plunger_gates();
-  if (!channel_gates)
-    return std::make_shared<
-        typename device_structures::ConnectionsSP::element_type>();
   auto result = std::make_shared<
       typename device_structures::ConnectionsSP::element_type>();
   std::unordered_set<std::string> isolated_names;
@@ -945,9 +939,6 @@ device_structures::ConnectionsSP Config::get_isolated_channel_reservoir_gates(
       get_channel_reservoir_gates(channel);
   device_structures::ConnectionsSP isolated_gates =
       get_isolated_reservoir_gates();
-  if (!channel_gates)
-    return std::make_shared<
-        typename device_structures::ConnectionsSP::element_type>();
   auto result = std::make_shared<
       typename device_structures::ConnectionsSP::element_type>();
   std::unordered_set<std::string> isolated_names;
@@ -969,9 +960,6 @@ device_structures::ConnectionsSP Config::get_isolated_channel_screening_gates(
       get_channel_screening_gates(channel);
   device_structures::ConnectionsSP isolated_gates =
       get_isolated_screening_gates();
-  if (!channel_gates)
-    return std::make_shared<
-        typename device_structures::ConnectionsSP::element_type>();
   auto result = std::make_shared<
       typename device_structures::ConnectionsSP::element_type>();
   std::unordered_set<std::string> isolated_names;
@@ -992,11 +980,8 @@ device_structures::ConnectionsSP Config::get_isolated_channel_dot_gates(
   device_structures::ConnectionsSP channel_gates =
       get_channel_dot_gates(channel);
   device_structures::ConnectionsSP isolated_gates = get_isolated_dot_gates();
-  if (!channel_gates)
-    return std::make_shared<
-        typename device_structures::ConnectionsSP::element_type>();
-  auto result = std::make_shared<
-      typename device_structures::ConnectionsSP::element_type>();
+  auto                             result         = std::make_shared<
+                                          typename device_structures::ConnectionsSP::element_type>();
   std::unordered_set<std::string> isolated_names;
   for (const auto& gate : *isolated_gates) {
     isolated_names.insert(gate->name());
@@ -1014,11 +999,8 @@ device_structures::ConnectionsSP Config::get_isolated_channel_gates(
     const autotuner_interfaces::names::ChannelSP& channel) const {
   device_structures::ConnectionsSP channel_gates  = get_channel_gates(channel);
   device_structures::ConnectionsSP isolated_gates = get_isolated_gates();
-  if (!channel_gates)
-    return std::make_shared<
-        typename device_structures::ConnectionsSP::element_type>();
-  auto result = std::make_shared<
-      typename device_structures::ConnectionsSP::element_type>();
+  auto                             result         = std::make_shared<
+                                          typename device_structures::ConnectionsSP::element_type>();
   std::unordered_set<std::string> isolated_names;
   for (const auto& gate : *isolated_gates) {
     isolated_names.insert(gate->name());
@@ -1036,31 +1018,9 @@ generic::MapSP<autotuner_interfaces::names::Channel,
 Config::get_isolated_barrier_gates_by_channel() const {
   auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
                                            device_structures::Connections>>();
-  device_structures::ConnectionsSP unshared_gates =
-      get_isolated_barrier_gates();
-  generic::MapSP<autotuner_interfaces::names::Channel,
-                 device_structures::Connections>
-                                          gate_dict = get_barrier_gate_dict();
-  autotuner_interfaces::names::ChannelsSP channels  = get_current_channels();
-  std::unordered_set<std::string>         unshared_names;
-  for (const auto& gate : *unshared_gates) {
-    unshared_names.insert(gate->name());
-  }
+  autotuner_interfaces::names::ChannelsSP channels = get_current_channels();
   for (const auto& channel : *channels) {
-    auto gates_it = gate_dict->find(channel);
-    if (gates_it != gate_dict->end()) {
-      const auto& gates        = (*gates_it)->second();
-      bool        all_unshared = true;
-      for (const auto& gate : *gates) {
-        if (!unshared_names.count(gate->name())) {
-          all_unshared = false;
-          break;
-        }
-      }
-      if (all_unshared) {
-        out->insert(channel, gates);
-      }
-    }
+    out->insert(channel, get_isolated_channel_barrier_gates(channel));
   }
   return out;
 }
@@ -1070,31 +1030,9 @@ generic::MapSP<autotuner_interfaces::names::Channel,
 Config::get_isolated_plunger_gates_by_channel() const {
   auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
                                            device_structures::Connections>>();
-  device_structures::ConnectionsSP unshared_gates =
-      get_isolated_plunger_gates();
-  generic::MapSP<autotuner_interfaces::names::Channel,
-                 device_structures::Connections>
-                                          gate_dict = get_plunger_gate_dict();
-  autotuner_interfaces::names::ChannelsSP channels  = get_current_channels();
-  std::unordered_set<std::string>         unshared_names;
-  for (const auto& gate : *unshared_gates) {
-    unshared_names.insert(gate->name());
-  }
+  autotuner_interfaces::names::ChannelsSP channels = get_current_channels();
   for (const auto& channel : *channels) {
-    auto gates_it = gate_dict->find(channel);
-    if (gates_it != gate_dict->end()) {
-      const auto& gates        = (*gates_it)->second();
-      bool        all_unshared = true;
-      for (const auto& gate : *gates) {
-        if (!unshared_names.count(gate->name())) {
-          all_unshared = false;
-          break;
-        }
-      }
-      if (all_unshared) {
-        out->insert(channel, gates);
-      }
-    }
+    out->insert(channel, get_isolated_channel_plunger_gates(channel));
   }
   return out;
 }
@@ -1104,31 +1042,9 @@ generic::MapSP<autotuner_interfaces::names::Channel,
 Config::get_isolated_reservoir_gates_by_channel() const {
   auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
                                            device_structures::Connections>>();
-  device_structures::ConnectionsSP unshared_gates =
-      get_isolated_reservoir_gates();
-  generic::MapSP<autotuner_interfaces::names::Channel,
-                 device_structures::Connections>
-                                          gate_dict = get_reservoir_gate_dict();
-  autotuner_interfaces::names::ChannelsSP channels  = get_current_channels();
-  std::unordered_set<std::string>         unshared_names;
-  for (const auto& gate : *unshared_gates) {
-    unshared_names.insert(gate->name());
-  }
+  autotuner_interfaces::names::ChannelsSP channels = get_current_channels();
   for (const auto& channel : *channels) {
-    auto gates_it = gate_dict->find(channel);
-    if (gates_it != gate_dict->end()) {
-      const auto& gates        = (*gates_it)->second();
-      bool        all_unshared = true;
-      for (const auto& gate : *gates) {
-        if (!unshared_names.count(gate->name())) {
-          all_unshared = false;
-          break;
-        }
-      }
-      if (all_unshared) {
-        out->insert(channel, gates);
-      }
-    }
+    out->insert(channel, get_isolated_channel_reservoir_gates(channel));
   }
   return out;
 }
@@ -1138,31 +1054,9 @@ generic::MapSP<autotuner_interfaces::names::Channel,
 Config::get_isolated_screening_gates_by_channel() const {
   auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
                                            device_structures::Connections>>();
-  device_structures::ConnectionsSP unshared_gates =
-      get_isolated_screening_gates();
-  generic::MapSP<autotuner_interfaces::names::Channel,
-                 device_structures::Connections>
-                                          gate_dict = get_screening_gate_dict();
-  autotuner_interfaces::names::ChannelsSP channels  = get_current_channels();
-  std::unordered_set<std::string>         unshared_names;
-  for (const auto& gate : *unshared_gates) {
-    unshared_names.insert(gate->name());
-  }
+  autotuner_interfaces::names::ChannelsSP channels = get_current_channels();
   for (const auto& channel : *channels) {
-    auto gates_it = gate_dict->find(channel);
-    if (gates_it != gate_dict->end()) {
-      const auto& gates        = (*gates_it)->second();
-      bool        all_unshared = true;
-      for (const auto& gate : *gates) {
-        if (!unshared_names.count(gate->name())) {
-          all_unshared = false;
-          break;
-        }
-      }
-      if (all_unshared) {
-        out->insert(channel, gates);
-      }
-    }
+    out->insert(channel, get_isolated_channel_screening_gates(channel));
   }
   return out;
 }
@@ -1172,30 +1066,9 @@ generic::MapSP<autotuner_interfaces::names::Channel,
 Config::get_isolated_dot_gates_by_channel() const {
   auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
                                            device_structures::Connections>>();
-  device_structures::ConnectionsSP unshared_gates = get_isolated_dot_gates();
-  generic::MapSP<autotuner_interfaces::names::Channel,
-                 device_structures::Connections>
-                                          gate_dict = get_dot_gate_dict();
-  autotuner_interfaces::names::ChannelsSP channels  = get_current_channels();
-  std::unordered_set<std::string>         unshared_names;
-  for (const auto& gate : *unshared_gates) {
-    unshared_names.insert(gate->name());
-  }
+  autotuner_interfaces::names::ChannelsSP channels = get_current_channels();
   for (const auto& channel : *channels) {
-    auto gates_it = gate_dict->find(channel);
-    if (gates_it != gate_dict->end()) {
-      const auto& gates        = (*gates_it)->second();
-      bool        all_unshared = true;
-      for (const auto& gate : *gates) {
-        if (!unshared_names.count(gate->name())) {
-          all_unshared = false;
-          break;
-        }
-      }
-      if (all_unshared) {
-        out->insert(channel, gates);
-      }
-    }
+    out->insert(channel, get_isolated_channel_dot_gates(channel));
   }
   return out;
 }
@@ -1205,30 +1078,9 @@ generic::MapSP<autotuner_interfaces::names::Channel,
 Config::get_isolated_gates_by_channel() const {
   auto out = std::make_shared<generic::Map<autotuner_interfaces::names::Channel,
                                            device_structures::Connections>>();
-  device_structures::ConnectionsSP unshared_gates = get_isolated_gates();
-  generic::MapSP<autotuner_interfaces::names::Channel,
-                 device_structures::Connections>
-                                          gate_dict = get_gate_dict();
-  autotuner_interfaces::names::ChannelsSP channels  = get_current_channels();
-  std::unordered_set<std::string>         unshared_names;
-  for (const auto& gate : *unshared_gates) {
-    unshared_names.insert(gate->name());
-  }
+  autotuner_interfaces::names::ChannelsSP channels = get_current_channels();
   for (const auto& channel : *channels) {
-    auto gates_it = gate_dict->find(channel);
-    if (gates_it != gate_dict->end()) {
-      const auto& gates        = (*gates_it)->second();
-      bool        all_unshared = true;
-      for (const auto& gate : *gates) {
-        if (!unshared_names.count(gate->name())) {
-          all_unshared = false;
-          break;
-        }
-      }
-      if (all_unshared) {
-        out->insert(channel, gates);
-      }
-    }
+    out->insert(channel, get_isolated_channel_gates(channel));
   }
   return out;
 }

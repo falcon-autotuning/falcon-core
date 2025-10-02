@@ -81,7 +81,8 @@ InstrumentPort::InstrumentPort()
       _pseudo_name(nullptr),
       _instrument_type(InstrumentTypes::DC_VOLTAGE_SOURCE),
       _units(physics::units::SymbolUnit::Volt()),
-      _description("") {}
+      _description(""),
+      _type(PortType::InstrumentPort) {}
 
 const std::string InstrumentPort::default_name() const { return _default_name; }
 const std::shared_ptr<physics::device_structures::Connection>
@@ -121,6 +122,7 @@ bool InstrumentPort::operator==(const InstrumentPort& other) const {
 bool InstrumentPort::operator!=(const InstrumentPort& other) const {
   return !(*this == other);
 }
+const PortType InstrumentPort::type() const { return _type; }
 
 }  // namespace falcon_core::instrument_interfaces::names
 

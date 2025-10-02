@@ -16,7 +16,9 @@ class MeasurementResponse : public BaseMessage {
           arrays);
 
   const math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>&
-  arrays() const;
+       arrays() const;
+  bool operator==(const MeasurementResponse& other) const;
+  bool operator!=(const MeasurementResponse& other) const;
 
  protected:
   MeasurementResponse();

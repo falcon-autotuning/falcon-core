@@ -88,6 +88,10 @@ class List : public generic::Song {
       push_back(item);
     }
   }
+  List<Value>(const List<Value>&)                = default;
+  List<Value>(List<Value>&&) noexcept            = default;
+  List<Value>& operator=(const List<Value>&)     = default;
+  List<Value>& operator=(List<Value>&&) noexcept = default;
   template <typename T = Value>
     requires std::is_base_of_v<Song, T> && (!is_primitive<T>::value)
   void push_back(const std::shared_ptr<T>& item) {

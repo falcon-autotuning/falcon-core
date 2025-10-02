@@ -37,7 +37,9 @@ class LabelledDomain : public Domain {
       bool                                            lesser_bound_contained,
       bool                                            greater_bound_contained,
       const physics::units::SymbolUnitSP&             units,
-      const std::string&                              description);
+      const std::string&                              description,
+      const instrument_interfaces::names::PortType    type =
+          instrument_interfaces::names::PortType::Knob);
   /**
    * @brief Construct a labelled domain.
    * @param bounds Minimum, Maximum pair of the domain.

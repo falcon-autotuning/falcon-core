@@ -72,6 +72,14 @@ class ConfigManipulations {
   core::StandardConfigConnectionsSP _extract_standard_config_connections(
       const YAML::Node& config) const;
   /**
+   * @brief Extracts the standard connections from a config dictonary
+   * @param config The dictionary with keys that are gate types and values which
+   * are ";" delimtted strings of gates. This version does not include ohmics.
+   * @returns a collection of standard connections.
+   */
+  core::StandardConfigConnectionsSP _extract_standard_group_config_connections(
+      const YAML::Node& config) const;
+  /**
    * @brief Extract the ohmics from the compressed ";" delimited string
    */
   device_structures::ConnectionsSP _extract_ohmics(const std::string raw) const;

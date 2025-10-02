@@ -21,4 +21,11 @@ TEST(ChannelTest, SerializationRoundTripJson) {
   EXPECT_EQ(out->name(), test_name);
 }
 
+TEST(ChannelTest, NotEqualOperator) {
+  Channel channel1("chan1");
+  Channel channel2("chan2");
+  EXPECT_TRUE(channel1 != channel2);
+  EXPECT_FALSE(channel1 != channel1);
+}
+
 }  // namespace

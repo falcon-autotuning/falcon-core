@@ -88,12 +88,12 @@ class Map : public virtual generic::Song {
   // at
   ContainerItem::StoredT2 at(const ContainerItem::StoredT1& key) {
     iterator it = find(key);
-    if (it == _items->end()) throw std::out_of_range("Key not found");
+    if (it == _items->end()) throw std::out_of_range("Map: Key not found");
     return (*it)->second();
   }
   const ContainerItem::StoredT2 at(const ContainerItem::StoredT1& key) const {
     const_iterator it = find(key);
-    if (it == _items->end()) throw std::out_of_range("Key not found");
+    if (it == _items->end()) throw std::out_of_range("Map: Key not found");
     return (*it)->second();
   }
 

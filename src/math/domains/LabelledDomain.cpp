@@ -15,10 +15,16 @@ LabelledDomain::LabelledDomain(
     bool                                            lesser_bound_contained,
     bool                                            greater_bound_contained,
     const physics::units::SymbolUnitSP&             units,
-    const std::string&                              description)
+    const std::string&                              description,
+    const instrument_interfaces::names::PortType    type)
     : Domain(bounds, lesser_bound_contained, greater_bound_contained),
       _port(std::make_shared<instrument_interfaces::names::InstrumentPort>(
-          default_name, psuedo_name, instrument_type, units, description)) {
+          default_name,
+          psuedo_name,
+          instrument_type,
+          units,
+          description,
+          type)) {
   if (!psuedo_name || !units) {
     throw std::invalid_argument(
         "LabelledDomain: The psuedo name and the units must not be null.");
@@ -40,7 +46,8 @@ const std::shared_ptr<LabelledDomain> LabelledDomain::from_port(
                                           lesser_bound_contained,
                                           greater_bound_contained,
                                           port->units(),
-                                          port->description());
+                                          port->description(),
+                                          port->type());
 }
 
 const std::shared_ptr<LabelledDomain> LabelledDomain::from_port_and_domain(
@@ -57,7 +64,8 @@ const std::shared_ptr<LabelledDomain> LabelledDomain::from_port_and_domain(
                                           domain->lesser_bound_contained(),
                                           domain->greater_bound_contained(),
                                           port->units(),
-                                          port->description());
+                                          port->description(),
+                                          port->type());
 }
 const std::shared_ptr<LabelledDomain> LabelledDomain::from_domain(
     const DomainSP&                                 domain,
@@ -69,14 +77,16 @@ const std::shared_ptr<LabelledDomain> LabelledDomain::from_domain(
   if (!domain) {
     throw std::invalid_argument("LabelledDomain: The domain must not be null.");
   }
-  return std::make_shared<LabelledDomain>(default_name,
-                                          domain->bounds(),
-                                          pseudo_name,
-                                          instrument_type,
-                                          domain->lesser_bound_contained(),
-                                          domain->greater_bound_contained(),
-                                          units,
-                                          description);
+  return std::make_shared<LabelledDomain>(
+      default_name,
+      domain->bounds(),
+      pseudo_name,
+      instrument_type,
+      domain->lesser_bound_contained(),
+      domain->greater_bound_contained(),
+      units,
+      description,
+      instrument_interfaces::names::PortType::Knob);
 }
 const instrument_interfaces::names::InstrumentPortSP& LabelledDomain::port()
     const {

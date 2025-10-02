@@ -1,6 +1,7 @@
 #include "falcon_core/physics/config/ConfigManipulations.hpp"
 
 #include <ranges>
+#include <stdexcept>
 
 #include "falcon_core/physics/config/core/Group.hpp"
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
@@ -23,17 +24,18 @@ core::ConfigSP ConfigManipulations::unpack_device_config(
   core::StandardConfigConnectionsSP                             connections =
       _extract_standard_config_connections(config);
   for (const auto& group_pair : config["groups"]) {
-    auto key         = group_pair.first.as<std::string>();
-    auto value       = group_pair.second;
-    auto connections = _extract_standard_config_connections(value);
-    auto order = _extract_order(value["Order"].as<std::string>(), connections);
+    auto key               = group_pair.first.as<std::string>();
+    auto value             = group_pair.second;
+    auto group_connections = _extract_standard_group_config_connections(value);
+    auto order =
+        _extract_order(value["Order"].as<std::string>(), group_connections);
     core::GroupSP new_group = std::make_shared<core::Group>(
         std::make_shared<autotuner_interfaces::names::Channel>(key),
         value["NumDots"].as<int>(),
-        connections->screening_gates(),
-        connections->reservoir_gates(),
-        connections->plunger_gates(),
-        connections->barrier_gates(),
+        group_connections->screening_gates(),
+        group_connections->reservoir_gates(),
+        group_connections->plunger_gates(),
+        group_connections->barrier_gates(),
         order);
     groups[std::make_shared<autotuner_interfaces::names::Gname>(key)] =
         new_group;
@@ -74,6 +76,10 @@ core::ConfigSP ConfigManipulations::unpack_device_config(
 core::AdjacencySP ConfigManipulations::_extract_adjacency(
     const YAML::Node&                       map,
     const device_structures::ConnectionsSP& total_gates) const {
+  if (!total_gates) {
+    throw std::invalid_argument(
+        "ConfigManipulations: The total_gates cannot be null.");
+  }
   size_t               num_gates = total_gates->size();
   generic::FArray<int> adjacency =
       *generic::FArray<int>::zeros({num_gates, num_gates});
@@ -123,10 +129,15 @@ device_structures::ImpedancesSP ConfigManipulations::_extract_dcwiring(
     const YAML::Node&                        map,
     const device_structures::ConnectionsSP&  ohmics,
     const core::StandardConfigConnectionsSP& connections) const {
+  if (!ohmics || !connections) {
+    throw std ::runtime_error(
+        "ConfigManipulations: The ohmics and the connecations "
+        "cannot be null.");
+  }
   device_structures::Impedances outs;
   auto                          impedances = map["wiringDC"];
   for (const auto& entry : impedances) {
-    auto                            key    = entry.first.as<std::string>();
+    std::string                     key    = entry.first.as<std::string>();
     auto                            values = entry.second;
     device_structures::ConnectionSP gt;
     device_structures::ConnectionSP ohmic =
@@ -154,7 +165,8 @@ device_structures::ImpedancesSP ConfigManipulations::_extract_dcwiring(
             if (connections->has_reservoir_gate(reservoir_gate)) {
               gt = reservoir_gate;
             } else {
-              throw std::runtime_error("Cannot use that gate");
+              throw std::runtime_error(
+                  "ConfigManipulations: Cannot use that connection : " + key);
             }
           }
         }
@@ -213,7 +225,7 @@ device_structures::ConnectionsSP ConfigManipulations::_extract_ohmics(
 }
 
 core::StandardConfigConnectionsSP
-ConfigManipulations::_extract_standard_config_connections(
+ConfigManipulations::_extract_standard_group_config_connections(
     const YAML::Node& config) const {
   auto screening_gates =
       _extract_screening_gates(config["ScreeningGates"].as<std::string>());
@@ -224,14 +236,39 @@ ConfigManipulations::_extract_standard_config_connections(
   auto barrier_gates =
       _extract_barrier_gates(config["BarrierGates"].as<std::string>());
   return std::make_shared<core::StandardConfigConnections>(
-      screening_gates, reservoir_gates, plunger_gates, barrier_gates, nullptr);
+      screening_gates,
+      reservoir_gates,
+      plunger_gates,
+      barrier_gates,
+      std::make_shared<device_structures::Connections>());
+}
+
+core::StandardConfigConnectionsSP
+ConfigManipulations::_extract_standard_config_connections(
+    const YAML::Node& config) const {
+  auto screening_gates =
+      _extract_screening_gates(config["ScreeningGates"].as<std::string>());
+  auto reservoir_gates =
+      _extract_reservoir_gates(config["ReservoirGates"].as<std::string>());
+  auto plunger_gates =
+      _extract_plunger_gates(config["PlungerGates"].as<std::string>());
+  auto barrier_gates =
+      _extract_barrier_gates(config["BarrierGates"].as<std::string>());
+  auto ohmics = _extract_ohmics(config["Ohmics"].as<std::string>());
+  return std::make_shared<core::StandardConfigConnections>(
+      screening_gates, reservoir_gates, plunger_gates, barrier_gates, ohmics);
 }
 
 device_structures::ConnectionsSP ConfigManipulations::_extract_order(
     const std::string                        raw,
     const core::StandardConfigConnectionsSP& connections) const {
+  if (!connections) {
+    throw std::invalid_argument(
+        "ConfigManipulations: The connections cannot be null.");
+  }
   auto                             raworder = split_on_semicolon(raw);
-  device_structures::ConnectionsSP order;
+  device_structures::ConnectionsSP order =
+      std::make_shared<device_structures::Connections>();
   for (size_t i = 1; i + 1 < raworder.size(); ++i) {
     const auto&                     gate = raworder[i];
     device_structures::ConnectionSP realGate =

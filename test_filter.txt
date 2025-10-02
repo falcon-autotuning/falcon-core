@@ -62,3 +62,9 @@ AxesTest.*
 StandardRequestTest.*
 StandardResponseTest.*
 PortTransformsTest.*
+DiscreteSpaceTest.*
+WaveformTest.*
+MeasurementRequestTest.*
+MeasurementResponseTest.*
+ConfigManipulationsTest.*
+LoaderTest.*
