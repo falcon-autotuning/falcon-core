@@ -220,4 +220,14 @@ class Connection(Song):
 
 # Register Connection in _falcon_core_connection:
 _falcon_core_connection.Connection_swigregister(Connection)
+class std__shared_ptr_falcon_core__physics__device_structures__Connection_(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self):
+        _falcon_core_connection.std__shared_ptr_falcon_core__physics__device_structures__Connection__swiginit(self, _falcon_core_connection.new_std__shared_ptr_falcon_core__physics__device_structures__Connection_())
+    __swig_destroy__ = _falcon_core_connection.delete_std__shared_ptr_falcon_core__physics__device_structures__Connection_
+
+# Register std__shared_ptr_falcon_core__physics__device_structures__Connection_ in _falcon_core_connection:
+_falcon_core_connection.std__shared_ptr_falcon_core__physics__device_structures__Connection__swigregister(std__shared_ptr_falcon_core__physics__device_structures__Connection_)
 

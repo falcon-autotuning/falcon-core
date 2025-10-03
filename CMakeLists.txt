@@ -99,7 +99,6 @@ function(generate_swig_header_interface HEADER_LIST_VAR OUTPUT_FILE MODULE_NAME)
   # file(APPEND "${OUTPUT_FILE}" "%include <std_pair.i>\n")
   file(APPEND "${OUTPUT_FILE}" "%include <std_except.i>\n")
   file(APPEND "${OUTPUT_FILE}" "%include <std_shared_ptr.i>\n")
-  file(APPEND "${OUTPUT_FILE}" "%include <std_unique_ptr.i>\n")
   # Write the %include lines
   foreach(header ${headers})
     if(header MATCHES "\\.hpp$")
@@ -284,6 +283,7 @@ if(NOT FALCON_CORE_DIRS)
       # falcon_core::generic::FArray<double> falcon_core/generic/List.hpp
       # falcon_core/generic/Map.hpp falcon_core/Constants.hpp
       falcon_core/physics/device_structures/Connection.hpp
+      std::shared_ptr<falcon_core::physics::device_structures::Connection>
       # falcon_core::generic::List<falcon_core::physics::device_structures::Connection>
       # falcon_core/physics/device_structures/Connections.hpp
       # falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,falcon_core::physics::device_structures::Connections>
