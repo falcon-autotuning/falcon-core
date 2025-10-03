@@ -16,6 +16,8 @@ We use [clang](https://clang.llvm.org/) /(llvm/) as our main compiler, but [gcc]
 We also heavily use [SWIG](https://www.swig.org/) to provide for our bindings in other programming languages.
 
 We use vcpkg to manager all of our C++ dependencies. This needs to be installed following distro specific [instruction](https://learn.microsoft.com/en-us/vcpkg/get_started/overview)
+With vcpkg we use [ninja](https://ninja-build.org/) as our build system. This also needs to be installed on your system.
+Finally we recommend using [ccache](https://ccache.dev/) to speed up compilation times.
 
 With those 3 precursors setup, to build run in the main directory
 
