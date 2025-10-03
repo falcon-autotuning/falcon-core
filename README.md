@@ -4,7 +4,13 @@ Core utilities for all falcon applications used for autotuning of quantum device
 
 This repository contains the main datatypes that can be used for serialization within falcon. All of the source code is written in  C++20. It can be found at /build and /src respectively. It is compiled via commands from the /Makefile.
 
-## Getting started
+The different supported languages are found in /dist with the folder indicating the language. Currently supported languages are Python and Go.
+
+## Installing
+
+Navigate to the README in the dist folder you are interested in using. More details can be found there on how to install falcon-core.
+
+## Getting started for devs
 
 We use [clang](https://clang.llvm.org/) /(llvm/) as our main compiler, but [gcc](https://gcc.gnu.org/) should also work. The code is tested on Linux. You need one of the above c compilers installed on your system.
 We also heavily use [SWIG](https://www.swig.org/) to provide for our bindings in other programming languages.

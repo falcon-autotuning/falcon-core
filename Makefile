@@ -4,7 +4,7 @@
 
 # Variables
 BUILD_DIR := build
-OUT_PYTHON_DIR := src/falcon_core
+OUT_PYTHON_DIR := dist/python/src/falcon_core
 
 # Default target: setup vcpkg and build the project
 forward-header-xtensor-xarray:
@@ -50,7 +50,7 @@ build:
 		. -S . -B $(BUILD_DIR)
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
 	@ninja -C $(BUILD_DIR) -d stats
-	@echo "--- Build complete. Python extension is now in dist/python/src/falcon_core/ ---"
+	@echo "--- Build complete. Python extension is now in ${OUT_PYTHON_DIR} ---"
 
 build-and-sanitize:
 	@echo "--- Configuring and Building C++ Extension with vcpkg ---"
