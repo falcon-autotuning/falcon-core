@@ -70,7 +70,7 @@ build-and-sanitize:
 		. -S . -B $(BUILD_DIR)
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
 	@ninja -C $(BUILD_DIR) -d stats
-	@echo "--- Build complete. Python extension is now in dist/python/src/falcon_core/ ---"
+	@echo "--- Build complete. Python extension is now in ${OUT_PYTHON_DIR} ---"
 
 # Build only selected sources and tests
 build-part: setup-vcpkg
