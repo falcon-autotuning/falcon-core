@@ -2,17 +2,15 @@
 __pycache__/
 *.py[cod]
 
+
 # ignore vcpkg since it is large
-vcpkg/
+vcpkg/*
 vcpkg_installed/
-coverage_html/
+coverage_html/*
 /vcpkg*
 
 # .pyenv file
 .python-version
-
-# build python package
-/src/falcon_core/*
 
 # ipython extras
 .ipynb_checkpoints/
@@ -89,7 +87,6 @@ tmp/
 .#*
 .mypy_cache/*
 tests/cache/*
-tests/Device_Voltages.yaml
 
 docs/examples/data/*
 
@@ -98,7 +95,6 @@ docs/examples/data/*
 
 /venv/
 /.venv/
-/.VSCodeCounter/
 
 # Mac files
 .DS_Store
