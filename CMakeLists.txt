@@ -48,7 +48,8 @@ function(generate_swig_modules SWIG_MODULES_LIST)
   set(SWIG_MODULE_NAME "falcon_core")
 
   # Set the output directory for Python package files
-  set(PYTHON_PACKAGE_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/src/falcon_core")
+  set(PYTHON_PACKAGE_ROOT
+      "${CMAKE_CURRENT_SOURCE_DIR}/dist/python/src/falcon_core")
   set(TEMPLATE_I_FILE "${CMAKE_CURRENT_SOURCE_DIR}/swig/default.in")
 
   # Set the swig modules for disccovery/generation

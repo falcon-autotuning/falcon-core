@@ -50,7 +50,7 @@ build:
 		. -S . -B $(BUILD_DIR)
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
 	@ninja -C $(BUILD_DIR) -d stats
-	@echo "--- Build complete. Python extension is now in src/falcon_core/ ---"
+	@echo "--- Build complete. Python extension is now in dist/python/src/falcon_core/ ---"
 
 build-and-sanitize:
 	@echo "--- Configuring and Building C++ Extension with vcpkg ---"
@@ -70,7 +70,7 @@ build-and-sanitize:
 		. -S . -B $(BUILD_DIR)
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
 	@ninja -C $(BUILD_DIR) -d stats
-	@echo "--- Build complete. Python extension is now in src/falcon_core/ ---"
+	@echo "--- Build complete. Python extension is now in dist/python/src/falcon_core/ ---"
 
 # Build only selected sources and tests
 build-part: setup-vcpkg
@@ -84,7 +84,7 @@ build-part: setup-vcpkg
 		-DCMAKE_C_COMPILER_LAUNCHER=ccache \
 		-DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
 		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
-		-DCMAKE_CXX_FLAGS="-g -O0" \
+		-DCMAKE_CXX_FLAGS="-g -O3" \
 		-DCMAKE_TOOLCHAIN_FILE="$(VCPKG_ROOT)/scripts/buildsystems/vcpkg.cmake"
 		-DVCPKG_TARGET_TRIPLET=x64-linux \
 		-DFALCON_CORE_DIRS="$(DIRS)" \
@@ -94,10 +94,6 @@ build-part: setup-vcpkg
 	@ninja -C $(BUILD_DIR) -d stats
 	@echo "--- Partial build complete."
 
-# Install the Python package using pip
-install:
-	@echo "--- Installing Python package ---"
-	@uv pip install .
 
 # check coverage of entire module
 run-all-tests:
@@ -139,11 +135,6 @@ subset-coverage-overview: subset-coverage
 
 coverage-overview: coverage
 	@llvm-cov report ./build/run_tests -instr-profile=run_tests.profdata -ignore-filename-regex='(vcpkg_installed|tests/)' -Xdemangler c++filt -Xdemangler -n                                                                     [15:00:01]
-
-# Run tests using CTest
-test: build
-	@echo "--- Running C++ Tests ---"
-	@cd $(BUILD_DIR) && ctest -V
 
 # Clean up build artifacts
 clean:
