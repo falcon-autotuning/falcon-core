@@ -11,3 +11,15 @@ uv venv -y; uv pip install .
 ```
 
 Everything should be installed and ready to go.
+
+If you are interested in running the tests, you can instead run
+
+```console
+uv venv -y; uv pip install '.[test]' 
+```
+
+To get the typings moved correctly you should go to the source directory of falcon-core and run
+
+```console
+make python-types
+```

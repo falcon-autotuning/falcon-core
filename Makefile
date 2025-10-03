@@ -4,7 +4,9 @@
 
 # Variables
 BUILD_DIR := build
-OUT_PYTHON_DIR := dist/python/src/falcon_core
+PYTHON_DIST := dist/python
+GO_DIST := dist/go
+OUT_PYTHON_DIR := ${PYTHON_DIST}/src/falcon_core
 
 # Default target: setup vcpkg and build the project
 forward-header-xtensor-xarray:
@@ -147,3 +149,14 @@ clean:
 clean-all: clean
 	@echo "--- Cleaning vcpkg cache ---"
 	@rm -rf vcpkg_installed
+
+# Move the python types into the built package
+python-types:
+	@echo "--- Copying Python type stubs to the package directory ---"
+	@cd $(PYTHON_DIST)/typings/falcon_core && \
+	find . -name '*.pyi' | while read f; do \
+	  mkdir -p "../../src/falcon_core/$$(dirname "$$f")"; \
+	  echo "Copying $$f to $(OUT_PYTHON_DIR)/$$f"; \
+	  cp "$$f" "../../src/falcon_core/$$f"; \
+	done
+	@touch $(PYTHON_DIST)/src/falcon_core/py.typed
