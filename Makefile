@@ -160,3 +160,12 @@ python-types:
 	  cp "$$f" "../../src/falcon_core/$$f"; \
 	done
 	@touch $(PYTHON_DIST)/src/falcon_core/py.typed
+
+setup-venv:
+	@echo "--- Setting up Python virtual environment ---"
+	uv venv --clear
+	uv pip install './dist/python[test]' -v
+
+python-test: clean build python-types setup-venv 
+	@echo "--- Prepared to run python tests ---"
+	pytest ${PYTHON_DIST}/tests/test_connection.py

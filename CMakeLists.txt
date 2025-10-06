@@ -96,7 +96,7 @@ function(generate_swig_header_interface HEADER_LIST_VAR OUTPUT_FILE MODULE_NAME)
   file(APPEND "${OUTPUT_FILE}" "%include <std_wstring.i>\n")
   file(APPEND "${OUTPUT_FILE}" "%include <std_vector.i>\n")
   file(APPEND "${OUTPUT_FILE}" "%include <std_map.i>\n")
-  # file(APPEND "${OUTPUT_FILE}" "%include <std_pair.i>\n")
+  file(APPEND "${OUTPUT_FILE}" "%include <attributes.i>\n")
   file(APPEND "${OUTPUT_FILE}" "%include <std_except.i>\n")
   file(APPEND "${OUTPUT_FILE}" "%include <std_shared_ptr.i>\n")
   # Write the %include lines

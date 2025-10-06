@@ -3,6 +3,7 @@ from falcon_core.physics.device_structures.connection import Connection
 
 def test_barrier_construction():
     barrier = Connection.BarrierGate("B1")
+    print(dir(barrier))
     assert barrier.name() == "B1"
     assert barrier.is_barrier_gate()
     assert barrier.is_dot_gate()

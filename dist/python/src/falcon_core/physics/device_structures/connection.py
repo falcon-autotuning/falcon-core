@@ -58,66 +58,6 @@ class _SwigNonDynamicMeta(type):
     __setattr__ = _swig_setattr_nondynamic_class_variable(type.__setattr__)
 
 
-class SwigPyIterator(object):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-
-    def __init__(self, *args, **kwargs):
-        raise AttributeError("No constructor defined - class is abstract")
-    __repr__ = _swig_repr
-    __swig_destroy__ = _falcon_core_connection.delete_SwigPyIterator
-
-    def value(self):
-        return _falcon_core_connection.SwigPyIterator_value(self)
-
-    def incr(self, n=1):
-        return _falcon_core_connection.SwigPyIterator_incr(self, n)
-
-    def decr(self, n=1):
-        return _falcon_core_connection.SwigPyIterator_decr(self, n)
-
-    def distance(self, x):
-        return _falcon_core_connection.SwigPyIterator_distance(self, x)
-
-    def equal(self, x):
-        return _falcon_core_connection.SwigPyIterator_equal(self, x)
-
-    def copy(self):
-        return _falcon_core_connection.SwigPyIterator_copy(self)
-
-    def next(self):
-        return _falcon_core_connection.SwigPyIterator_next(self)
-
-    def __next__(self):
-        return _falcon_core_connection.SwigPyIterator___next__(self)
-
-    def previous(self):
-        return _falcon_core_connection.SwigPyIterator_previous(self)
-
-    def advance(self, n):
-        return _falcon_core_connection.SwigPyIterator_advance(self, n)
-
-    def __eq__(self, x):
-        return _falcon_core_connection.SwigPyIterator___eq__(self, x)
-
-    def __ne__(self, x):
-        return _falcon_core_connection.SwigPyIterator___ne__(self, x)
-
-    def __iadd__(self, n):
-        return _falcon_core_connection.SwigPyIterator___iadd__(self, n)
-
-    def __isub__(self, n):
-        return _falcon_core_connection.SwigPyIterator___isub__(self, n)
-
-    def __add__(self, n):
-        return _falcon_core_connection.SwigPyIterator___add__(self, n)
-
-    def __sub__(self, *args):
-        return _falcon_core_connection.SwigPyIterator___sub__(self, *args)
-    def __iter__(self):
-        return self
-
-# Register SwigPyIterator in _falcon_core_connection:
-_falcon_core_connection.SwigPyIterator_swigregister(SwigPyIterator)
 SHARED_PTR_DISOWN = _falcon_core_connection.SHARED_PTR_DISOWN
 class Song(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
@@ -208,26 +148,45 @@ class Connection(Song):
 
     def __ne__(self, other):
         return _falcon_core_connection.Connection___ne__(self, other)
-
-    @staticmethod
-    def from_json_string(json):
-        return _falcon_core_connection.Connection_from_json_string(json)
-
-    @staticmethod
-    def from_json_stream(_is):
-        return _falcon_core_connection.Connection_from_json_stream(_is)
     __swig_destroy__ = _falcon_core_connection.delete_Connection
 
 # Register Connection in _falcon_core_connection:
 _falcon_core_connection.Connection_swigregister(Connection)
-class std__shared_ptr_falcon_core__physics__device_structures__Connection_(object):
+class ConnectionSP(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
-    def __init__(self):
-        _falcon_core_connection.std__shared_ptr_falcon_core__physics__device_structures__Connection__swiginit(self, _falcon_core_connection.new_std__shared_ptr_falcon_core__physics__device_structures__Connection_())
-    __swig_destroy__ = _falcon_core_connection.delete_std__shared_ptr_falcon_core__physics__device_structures__Connection_
+    def is_barrier_gate(self):
+        return _falcon_core_connection.ConnectionSP_is_barrier_gate(self)
 
-# Register std__shared_ptr_falcon_core__physics__device_structures__Connection_ in _falcon_core_connection:
-_falcon_core_connection.std__shared_ptr_falcon_core__physics__device_structures__Connection__swigregister(std__shared_ptr_falcon_core__physics__device_structures__Connection_)
+    def is_plunger_gate(self):
+        return _falcon_core_connection.ConnectionSP_is_plunger_gate(self)
+
+    def is_reservoir_gate(self):
+        return _falcon_core_connection.ConnectionSP_is_reservoir_gate(self)
+
+    def is_screening_gate(self):
+        return _falcon_core_connection.ConnectionSP_is_screening_gate(self)
+
+    def is_ohmic(self):
+        return _falcon_core_connection.ConnectionSP_is_ohmic(self)
+
+    def is_dot_gate(self):
+        return _falcon_core_connection.ConnectionSP_is_dot_gate(self)
+
+    def is_gate(self):
+        return _falcon_core_connection.ConnectionSP_is_gate(self)
+
+    def name(self):
+        return _falcon_core_connection.ConnectionSP_name(self)
+
+    def type(self):
+        return _falcon_core_connection.ConnectionSP_type(self)
+
+    def __init__(self):
+        _falcon_core_connection.ConnectionSP_swiginit(self, _falcon_core_connection.new_ConnectionSP())
+    __swig_destroy__ = _falcon_core_connection.delete_ConnectionSP
+
+# Register ConnectionSP in _falcon_core_connection:
+_falcon_core_connection.ConnectionSP_swigregister(ConnectionSP)
 
