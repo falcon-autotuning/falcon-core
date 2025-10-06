@@ -38,8 +38,8 @@ def test_screening_construction():
 
 
 def test_ohmic_construction():
-    screening = Connection.Ohmic(")1")
-    assert screening.name() == ")1"
+    screening = Connection.Ohmic("O1")
+    assert screening.name() == "O1"
     assert screening.is_ohmic()
     assert not screening.is_dot_gate()
     assert not screening.is_gate()

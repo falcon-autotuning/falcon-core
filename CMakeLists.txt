@@ -221,7 +221,7 @@ endfunction()
 find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
 find_package(
-  Python3
+  Python3 3.13
   COMPONENTS Interpreter Development
   REQUIRED)
 
