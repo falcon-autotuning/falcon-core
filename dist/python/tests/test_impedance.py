@@ -1,0 +1,2 @@
+from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.device_structures.impedance import Impedance

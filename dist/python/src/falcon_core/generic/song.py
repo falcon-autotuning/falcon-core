@@ -60,17 +60,54 @@ class _SwigNonDynamicMeta(type):
 
 SHARED_PTR_DISOWN = _falcon_core_song.SHARED_PTR_DISOWN
 class Song(object):
+    r"""
+    Abstract base for all serializable Song objects.
+
+    Inherit from Song in your serializable class, implement serialize(), and
+    register with cereal.
+
+    Notes: 
+    std::hash<falcon_core::generic::Song> is specialized (see Song.cpp)
+    so Song can be used as a key in std::unordered_map.
+
+
+    .. code-block:: c++
+
+        struct Animal : public Song {
+            int legs = 4;
+            template<class Archive>
+            void serialize(Archive& ar) { ar(CEREAL_NVP(legs)); }
+            virtual ~Animal() = default;
+        };
+        struct Dog : public Animal {
+            bool tail = true;
+            template<class Archive>
+            void serialize(Archive& ar) {
+                ar(cereal::base_class<Animal>(this), CEREAL_NVP(tail));
+            }
+        };
+        CEREAL_REGISTER_TYPE(Animal)
+        CEREAL_REGISTER_TYPE(Dog)
+        CEREAL_REGISTER_POLYMORPHIC_RELATION(Animal, Dog)
+    """
+
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
     __swig_destroy__ = _falcon_core_song.delete_Song
 
     def to_json_string(self):
+        r"""Serialize this object to a JSON string."""
         return _falcon_core_song.Song_to_json_string(self)
 
     def to_json_stream(self, os):
+        r"""Serialize this object to a JSON archive (output stream)."""
         return _falcon_core_song.Song_to_json_stream(self, os)
 
     def __eq__(self, other):
+        r"""
+        Equality operator.
+        Override in derived classes to compare member variables.
+        """
         return _falcon_core_song.Song___eq__(self, other)
 
     def __ne__(self, other):

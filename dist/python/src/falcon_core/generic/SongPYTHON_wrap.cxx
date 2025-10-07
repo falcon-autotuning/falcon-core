@@ -3561,9 +3561,12 @@ SWIGINTERN PyObject *Song_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *arg
 
 static PyMethodDef SwigMethods[] = {
 	 { "delete_Song", _wrap_delete_Song, METH_O, NULL},
-	 { "Song_to_json_string", _wrap_Song_to_json_string, METH_O, NULL},
-	 { "Song_to_json_stream", _wrap_Song_to_json_stream, METH_VARARGS, NULL},
-	 { "Song___eq__", _wrap_Song___eq__, METH_VARARGS, NULL},
+	 { "Song_to_json_string", _wrap_Song_to_json_string, METH_O, "Serialize this object to a JSON string."},
+	 { "Song_to_json_stream", _wrap_Song_to_json_stream, METH_VARARGS, "Serialize this object to a JSON archive (output stream)."},
+	 { "Song___eq__", _wrap_Song___eq__, METH_VARARGS, "\n"
+		"Equality operator.\n"
+		"Override in derived classes to compare member variables.\n"
+		""},
 	 { "Song___ne__", _wrap_Song___ne__, METH_VARARGS, NULL},
 	 { "new_Song", _wrap_new_Song, METH_NOARGS, NULL},
 	 { "Song_swigregister", Song_swigregister, METH_O, NULL},

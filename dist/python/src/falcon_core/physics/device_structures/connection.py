@@ -5,6 +5,7 @@
 # the SWIG interface file instead.
 
 from sys import version_info as _swig_python_version_info
+
 # Import the low-level C/C++ module
 if __package__ or "." in __name__:
     from . import _falcon_core_connection
@@ -16,12 +17,17 @@ try:
 except ImportError:
     import __builtin__
 
+
 def _swig_repr(self):
     try:
         strthis = "proxy of " + self.this.__repr__()
     except __builtin__.Exception:
         strthis = ""
-    return "<%s.%s; %s >" % (self.__class__.__module__, self.__class__.__name__, strthis,)
+    return "<%s.%s; %s >" % (
+        self.__class__.__module__,
+        self.__class__.__name__,
+        strthis,
+    )
 
 
 def _swig_setattr_nondynamic_instance_variable(set):
@@ -34,6 +40,7 @@ def _swig_setattr_nondynamic_instance_variable(set):
             set(self, name, value)
         else:
             raise AttributeError("You cannot add instance attributes to %s" % self)
+
     return set_instance_attr
 
 
@@ -43,58 +50,56 @@ def _swig_setattr_nondynamic_class_variable(set):
             set(cls, name, value)
         else:
             raise AttributeError("You cannot add class attributes to %s" % cls)
+
     return set_class_attr
 
 
 def _swig_add_metaclass(metaclass):
     """Class decorator for adding a metaclass to a SWIG wrapped class - a slimmed down version of six.add_metaclass"""
+
     def wrapper(cls):
         return metaclass(cls.__name__, cls.__bases__, cls.__dict__.copy())
+
     return wrapper
 
 
 class _SwigNonDynamicMeta(type):
     """Meta class to enforce nondynamic attributes (no new attributes) for a class"""
+
     __setattr__ = _swig_setattr_nondynamic_class_variable(type.__setattr__)
 
 
 SHARED_PTR_DISOWN = _falcon_core_connection.SHARED_PTR_DISOWN
-class Song(object):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
-    __repr__ = _swig_repr
-    __swig_destroy__ = _falcon_core_connection.delete_Song
 
-    def to_json_string(self):
-        return _falcon_core_connection.Song_to_json_string(self)
+from falcon_core.generic.song import Song
 
-    def to_json_stream(self, os):
-        return _falcon_core_connection.Song_to_json_stream(self, os)
-
-    def __eq__(self, other):
-        return _falcon_core_connection.Song___eq__(self, other)
-
-    def __ne__(self, other):
-        return _falcon_core_connection.Song___ne__(self, other)
-
-    def __init__(self):
-        _falcon_core_connection.Song_swiginit(self, _falcon_core_connection.new_Song())
-
-# Register Song in _falcon_core_connection:
-_falcon_core_connection.Song_swigregister(Song)
 DeviceFeature_BarrierGate = _falcon_core_connection.DeviceFeature_BarrierGate
 DeviceFeature_PlungerGate = _falcon_core_connection.DeviceFeature_PlungerGate
 DeviceFeature_ReservoirGate = _falcon_core_connection.DeviceFeature_ReservoirGate
 DeviceFeature_ScreeningGate = _falcon_core_connection.DeviceFeature_ScreeningGate
 DeviceFeature_Ohmic = _falcon_core_connection.DeviceFeature_Ohmic
-class Connection(Song):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+
+class Connection(object):
+    thisown = property(
+        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
+    )
     __repr__ = _swig_repr
 
     def __lt__(self, other):
         return _falcon_core_connection.Connection___lt__(self, other)
 
     def __init__(self, name, type):
-        _falcon_core_connection.Connection_swiginit(self, _falcon_core_connection.new_Connection(name, type))
+        r"""
+        Construct a Connection with a name and type.
+        :type name: string
+        :param name: The name of the connection.
+        :type type: int
+        :param type: The type of the connection (DeviceFeature).
+        """
+        _falcon_core_connection.Connection_swiginit(
+            self, _falcon_core_connection.new_Connection(name, type)
+        )
 
     @staticmethod
     def BarrierGate(name):
@@ -117,30 +122,50 @@ class Connection(Song):
         return _falcon_core_connection.Connection_Ohmic(name)
 
     def name(self):
+        r"""
+        The name of the connection.
+        :rtype: string
+        :return: The name as a string.
+        """
         return _falcon_core_connection.Connection_name(self)
 
     def type(self):
+        r"""
+        The type of the connection.
+        :rtype: string
+        :return: The type as a string.
+        """
         return _falcon_core_connection.Connection_type(self)
 
     def is_dot_gate(self):
+        r"""Check if the connection is a plungergate or barriergate."""
         return _falcon_core_connection.Connection_is_dot_gate(self)
 
     def is_barrier_gate(self):
+        r"""Check if the connection is a barriergate."""
         return _falcon_core_connection.Connection_is_barrier_gate(self)
 
     def is_plunger_gate(self):
+        r"""Check if the connection is a plunger gate."""
         return _falcon_core_connection.Connection_is_plunger_gate(self)
 
     def is_reservoir_gate(self):
+        r"""Check if the connection is a reservoir gate."""
         return _falcon_core_connection.Connection_is_reservoir_gate(self)
 
     def is_screening_gate(self):
+        r"""Check if the connection is a screening gate."""
         return _falcon_core_connection.Connection_is_screening_gate(self)
 
     def is_ohmic(self):
+        r"""Check if the connection is an ohmic contact."""
         return _falcon_core_connection.Connection_is_ohmic(self)
 
     def is_gate(self):
+        r"""
+        Check if the connection is any type of gate (barrier, plunger,
+        reservoir, screening).
+        """
         return _falcon_core_connection.Connection_is_gate(self)
 
     def __eq__(self, other):
@@ -148,12 +173,18 @@ class Connection(Song):
 
     def __ne__(self, other):
         return _falcon_core_connection.Connection___ne__(self, other)
+
     __swig_destroy__ = _falcon_core_connection.delete_Connection
+
 
 # Register Connection in _falcon_core_connection:
 _falcon_core_connection.Connection_swigregister(Connection)
+
+
 class ConnectionSP(object):
-    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    thisown = property(
+        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
+    )
     __repr__ = _swig_repr
 
     def is_barrier_gate(self):
@@ -184,9 +215,12 @@ class ConnectionSP(object):
         return _falcon_core_connection.ConnectionSP_type(self)
 
     def __init__(self):
-        _falcon_core_connection.ConnectionSP_swiginit(self, _falcon_core_connection.new_ConnectionSP())
+        _falcon_core_connection.ConnectionSP_swiginit(
+            self, _falcon_core_connection.new_ConnectionSP()
+        )
+
     __swig_destroy__ = _falcon_core_connection.delete_ConnectionSP
+
 
 # Register ConnectionSP in _falcon_core_connection:
 _falcon_core_connection.ConnectionSP_swigregister(ConnectionSP)
-

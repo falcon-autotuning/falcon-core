@@ -3205,13 +3205,10 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_char swig_types[0]
-#define SWIGTYPE_p_falcon_core__generic__Song swig_types[1]
-#define SWIGTYPE_p_falcon_core__physics__device_structures__Connection swig_types[2]
-#define SWIGTYPE_p_std__ostream swig_types[3]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__generic__Song_t swig_types[4]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t swig_types[5]
-static swig_type_info *swig_types[7];
-static swig_module_info swig_module = {swig_types, 6, 0, 0, 0, 0};
+#define SWIGTYPE_p_falcon_core__physics__device_structures__Connection swig_types[1]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t swig_types[2]
+static swig_type_info *swig_types[4];
+static swig_module_info swig_module = {swig_types, 3, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3371,6 +3368,13 @@ SWIGINTERNINLINE PyObject*
 #include <string>
 
 
+SWIGINTERNINLINE PyObject*
+  SWIG_From_bool  (bool value)
+{
+  return PyBool_FromLong(value ? 1 : 0);
+}
+
+
 SWIGINTERN swig_type_info*
 SWIG_pchar_descriptor(void)
 {
@@ -3379,45 +3383,6 @@ SWIG_pchar_descriptor(void)
     info = SWIG_TypeQuery("_p_char");
   }
   return info;
-}
-
-
-SWIGINTERNINLINE PyObject *
-SWIG_FromCharPtrAndSize(const char* carray, size_t size)
-{
-  if (carray) {
-    if (size > INT_MAX) {
-      swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
-      return pchar_descriptor ? 
-	SWIG_InternalNewPointerObj(const_cast< char * >(carray), pchar_descriptor, 0) : SWIG_Py_Void();
-    } else {
-#if PY_VERSION_HEX >= 0x03000000
-#if defined(SWIG_PYTHON_STRICT_BYTE_CHAR)
-      return PyBytes_FromStringAndSize(carray, static_cast< Py_ssize_t >(size));
-#else
-      return PyUnicode_DecodeUTF8(carray, static_cast< Py_ssize_t >(size), "surrogateescape");
-#endif
-#else
-      return PyString_FromStringAndSize(carray, static_cast< Py_ssize_t >(size));
-#endif
-    }
-  } else {
-    return SWIG_Py_Void();
-  }
-}
-
-
-SWIGINTERNINLINE PyObject *
-SWIG_From_std_string  (const std::string& s)
-{
-  return SWIG_FromCharPtrAndSize(s.data(), s.size());
-}
-
-
-SWIGINTERNINLINE PyObject*
-  SWIG_From_bool  (bool value)
-{
-  return PyBool_FromLong(value ? 1 : 0);
 }
 
 
@@ -3692,6 +3657,38 @@ SWIG_AsVal_int (PyObject * obj, int *val)
   return res;
 }
 
+
+SWIGINTERNINLINE PyObject *
+SWIG_FromCharPtrAndSize(const char* carray, size_t size)
+{
+  if (carray) {
+    if (size > INT_MAX) {
+      swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
+      return pchar_descriptor ? 
+	SWIG_InternalNewPointerObj(const_cast< char * >(carray), pchar_descriptor, 0) : SWIG_Py_Void();
+    } else {
+#if PY_VERSION_HEX >= 0x03000000
+#if defined(SWIG_PYTHON_STRICT_BYTE_CHAR)
+      return PyBytes_FromStringAndSize(carray, static_cast< Py_ssize_t >(size));
+#else
+      return PyUnicode_DecodeUTF8(carray, static_cast< Py_ssize_t >(size), "surrogateescape");
+#endif
+#else
+      return PyString_FromStringAndSize(carray, static_cast< Py_ssize_t >(size));
+#endif
+    }
+  } else {
+    return SWIG_Py_Void();
+  }
+}
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_std_string  (const std::string& s)
+{
+  return SWIG_FromCharPtrAndSize(s.data(), s.size());
+}
+
 SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_barrier_gate(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_barrier_gate(); }
 SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_plunger_gate(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_plunger_gate(); }
 SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_reservoir_gate(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_reservoir_gate(); }
@@ -3704,189 +3701,6 @@ SWIGINTERN std::string std_shared_ptr_Sl_falcon_core_physics_device_structures_C
 #ifdef __cplusplus
 extern "C" {
 #endif
-SWIGINTERN PyObject *_wrap_delete_Song(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  falcon_core::generic::Song *arg1 = (falcon_core::generic::Song *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  
-  (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__generic__Song, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Song" "', argument " "1"" of type '" "falcon_core::generic::Song *""'"); 
-  }
-  arg1 = reinterpret_cast< falcon_core::generic::Song * >(argp1);
-  delete arg1;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Song_to_json_string(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  falcon_core::generic::Song *arg1 = (falcon_core::generic::Song *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  std::string result;
-  
-  (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__generic__Song, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Song_to_json_string" "', argument " "1"" of type '" "falcon_core::generic::Song const *""'"); 
-  }
-  arg1 = reinterpret_cast< falcon_core::generic::Song * >(argp1);
-  result = ((falcon_core::generic::Song const *)arg1)->to_json_string();
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Song_to_json_stream(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  falcon_core::generic::Song *arg1 = (falcon_core::generic::Song *) 0 ;
-  std::ostream *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  (void)self;
-  if (!SWIG_Python_UnpackTuple(args, "Song_to_json_stream", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__generic__Song, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Song_to_json_stream" "', argument " "1"" of type '" "falcon_core::generic::Song const *""'"); 
-  }
-  arg1 = reinterpret_cast< falcon_core::generic::Song * >(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_std__ostream,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Song_to_json_stream" "', argument " "2"" of type '" "std::ostream &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Song_to_json_stream" "', argument " "2"" of type '" "std::ostream &""'"); 
-  }
-  arg2 = reinterpret_cast< std::ostream * >(argp2);
-  ((falcon_core::generic::Song const *)arg1)->to_json_stream(*arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Song___eq__(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  falcon_core::generic::Song *arg1 = (falcon_core::generic::Song *) 0 ;
-  falcon_core::generic::Song *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  bool result;
-  
-  (void)self;
-  if (!SWIG_Python_UnpackTuple(args, "Song___eq__", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__generic__Song, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Song___eq__" "', argument " "1"" of type '" "falcon_core::generic::Song const *""'"); 
-  }
-  arg1 = reinterpret_cast< falcon_core::generic::Song * >(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_falcon_core__generic__Song,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Song___eq__" "', argument " "2"" of type '" "falcon_core::generic::Song const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Song___eq__" "', argument " "2"" of type '" "falcon_core::generic::Song const &""'"); 
-  }
-  arg2 = reinterpret_cast< falcon_core::generic::Song * >(argp2);
-  result = (bool)((falcon_core::generic::Song const *)arg1)->operator ==((falcon_core::generic::Song const &)*arg2);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  return resultobj;
-fail:
-  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
-    return NULL;
-  }
-  PyErr_Clear();
-  SWIG_Py_INCREF(Py_NotImplemented);
-  return Py_NotImplemented;
-}
-
-
-SWIGINTERN PyObject *_wrap_Song___ne__(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  falcon_core::generic::Song *arg1 = (falcon_core::generic::Song *) 0 ;
-  falcon_core::generic::Song *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  bool result;
-  
-  (void)self;
-  if (!SWIG_Python_UnpackTuple(args, "Song___ne__", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__generic__Song, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Song___ne__" "', argument " "1"" of type '" "falcon_core::generic::Song const *""'"); 
-  }
-  arg1 = reinterpret_cast< falcon_core::generic::Song * >(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_falcon_core__generic__Song,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Song___ne__" "', argument " "2"" of type '" "falcon_core::generic::Song const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Song___ne__" "', argument " "2"" of type '" "falcon_core::generic::Song const &""'"); 
-  }
-  arg2 = reinterpret_cast< falcon_core::generic::Song * >(argp2);
-  result = (bool)((falcon_core::generic::Song const *)arg1)->operator !=((falcon_core::generic::Song const &)*arg2);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  return resultobj;
-fail:
-  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
-    return NULL;
-  }
-  PyErr_Clear();
-  SWIG_Py_INCREF(Py_NotImplemented);
-  return Py_NotImplemented;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_Song(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  falcon_core::generic::Song *result = 0 ;
-  
-  (void)self;
-  if (!SWIG_Python_UnpackTuple(args, "new_Song", 0, 0, 0)) SWIG_fail;
-  result = (falcon_core::generic::Song *)new falcon_core::generic::Song();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__generic__Song, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *Song_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj = NULL;
-  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__generic__Song, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *Song_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  return SWIG_Python_InitShadowInstance(args);
-}
-
 SWIGINTERN PyObject *_wrap_Connection___lt__(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   falcon_core::physics::device_structures::Connection *arg1 = (falcon_core::physics::device_structures::Connection *) 0 ;
@@ -4819,30 +4633,39 @@ SWIGINTERN PyObject *ConnectionSP_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObj
 }
 
 static PyMethodDef SwigMethods[] = {
-	 { "delete_Song", _wrap_delete_Song, METH_O, NULL},
-	 { "Song_to_json_string", _wrap_Song_to_json_string, METH_O, NULL},
-	 { "Song_to_json_stream", _wrap_Song_to_json_stream, METH_VARARGS, NULL},
-	 { "Song___eq__", _wrap_Song___eq__, METH_VARARGS, NULL},
-	 { "Song___ne__", _wrap_Song___ne__, METH_VARARGS, NULL},
-	 { "new_Song", _wrap_new_Song, METH_NOARGS, NULL},
-	 { "Song_swigregister", Song_swigregister, METH_O, NULL},
-	 { "Song_swiginit", Song_swiginit, METH_VARARGS, NULL},
 	 { "Connection___lt__", _wrap_Connection___lt__, METH_VARARGS, NULL},
-	 { "new_Connection", _wrap_new_Connection, METH_VARARGS, NULL},
+	 { "new_Connection", _wrap_new_Connection, METH_VARARGS, "\n"
+		"Construct a Connection with a name and type.\n"
+		":type name: string\n"
+		":param name: The name of the connection.\n"
+		":type type: int\n"
+		":param type: The type of the connection (DeviceFeature).\n"
+		""},
 	 { "Connection_BarrierGate", _wrap_Connection_BarrierGate, METH_O, NULL},
 	 { "Connection_PlungerGate", _wrap_Connection_PlungerGate, METH_O, NULL},
 	 { "Connection_ReservoirGate", _wrap_Connection_ReservoirGate, METH_O, NULL},
 	 { "Connection_ScreeningGate", _wrap_Connection_ScreeningGate, METH_O, NULL},
 	 { "Connection_Ohmic", _wrap_Connection_Ohmic, METH_O, NULL},
-	 { "Connection_name", _wrap_Connection_name, METH_O, NULL},
-	 { "Connection_type", _wrap_Connection_type, METH_O, NULL},
-	 { "Connection_is_dot_gate", _wrap_Connection_is_dot_gate, METH_O, NULL},
-	 { "Connection_is_barrier_gate", _wrap_Connection_is_barrier_gate, METH_O, NULL},
-	 { "Connection_is_plunger_gate", _wrap_Connection_is_plunger_gate, METH_O, NULL},
-	 { "Connection_is_reservoir_gate", _wrap_Connection_is_reservoir_gate, METH_O, NULL},
-	 { "Connection_is_screening_gate", _wrap_Connection_is_screening_gate, METH_O, NULL},
-	 { "Connection_is_ohmic", _wrap_Connection_is_ohmic, METH_O, NULL},
-	 { "Connection_is_gate", _wrap_Connection_is_gate, METH_O, NULL},
+	 { "Connection_name", _wrap_Connection_name, METH_O, "\n"
+		"The name of the connection.\n"
+		":rtype: string\n"
+		":return: The name as a string.\n"
+		""},
+	 { "Connection_type", _wrap_Connection_type, METH_O, "\n"
+		"The type of the connection.\n"
+		":rtype: string\n"
+		":return: The type as a string.\n"
+		""},
+	 { "Connection_is_dot_gate", _wrap_Connection_is_dot_gate, METH_O, "Check if the connection is a plungergate or barriergate."},
+	 { "Connection_is_barrier_gate", _wrap_Connection_is_barrier_gate, METH_O, "Check if the connection is a barriergate."},
+	 { "Connection_is_plunger_gate", _wrap_Connection_is_plunger_gate, METH_O, "Check if the connection is a plunger gate."},
+	 { "Connection_is_reservoir_gate", _wrap_Connection_is_reservoir_gate, METH_O, "Check if the connection is a reservoir gate."},
+	 { "Connection_is_screening_gate", _wrap_Connection_is_screening_gate, METH_O, "Check if the connection is a screening gate."},
+	 { "Connection_is_ohmic", _wrap_Connection_is_ohmic, METH_O, "Check if the connection is an ohmic contact."},
+	 { "Connection_is_gate", _wrap_Connection_is_gate, METH_O, "\n"
+		"Check if the connection is any type of gate (barrier, plunger,\n"
+		"reservoir, screening).\n"
+		""},
 	 { "Connection___eq__", _wrap_Connection___eq__, METH_VARARGS, NULL},
 	 { "Connection___ne__", _wrap_Connection___ne__, METH_VARARGS, NULL},
 	 { "delete_Connection", _wrap_delete_Connection, METH_O, NULL},
@@ -4867,38 +4690,23 @@ static PyMethodDef SwigMethods[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static void *_p_falcon_core__physics__device_structures__ConnectionTo_p_falcon_core__generic__Song(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((falcon_core::generic::Song *)  ((falcon_core::physics::device_structures::Connection *) x));
-}
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_falcon_core__generic__Song = {"_p_falcon_core__generic__Song", "falcon_core::generic::Song *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__physics__device_structures__Connection = {"_p_falcon_core__physics__device_structures__Connection", "falcon_core::physics::device_structures::Connection *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__ostream = {"_p_std__ostream", "std::ostream *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__generic__Song_t = {"_p_std__shared_ptrT_falcon_core__generic__Song_t", "falcon_core::generic::SongSP *|std::shared_ptr< falcon_core::generic::Song > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t = {"_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t", "falcon_core::physics::device_structures::ConnectionSP *|std::shared_ptr< falcon_core::physics::device_structures::Connection > *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_char,
-  &_swigt__p_falcon_core__generic__Song,
   &_swigt__p_falcon_core__physics__device_structures__Connection,
-  &_swigt__p_std__ostream,
-  &_swigt__p_std__shared_ptrT_falcon_core__generic__Song_t,
   &_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,
 };
 
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_falcon_core__generic__Song[] = {  {&_swigt__p_falcon_core__generic__Song, 0, 0, 0},  {&_swigt__p_falcon_core__physics__device_structures__Connection, _p_falcon_core__physics__device_structures__ConnectionTo_p_falcon_core__generic__Song, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__physics__device_structures__Connection[] = {  {&_swigt__p_falcon_core__physics__device_structures__Connection, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__ostream[] = {  {&_swigt__p_std__ostream, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__generic__Song_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__generic__Song_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_char,
-  _swigc__p_falcon_core__generic__Song,
   _swigc__p_falcon_core__physics__device_structures__Connection,
-  _swigc__p_std__ostream,
-  _swigc__p_std__shared_ptrT_falcon_core__generic__Song_t,
   _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,
 };
 

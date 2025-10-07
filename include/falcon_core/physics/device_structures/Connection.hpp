@@ -22,10 +22,30 @@ class Connection : public virtual generic::Song {
    * @param type The type of the connection (DeviceFeature).
    */
   Connection(const std::string& name, const DeviceFeature& type);
+  /**
+   * @brief Construct a BarrierGate with a name.
+   * @param name The name of the connection.
+   */
   static std::shared_ptr<Connection> BarrierGate(const std::string& name);
+  /**
+   * @brief Construct a PlungerGate with a name.
+   * @param name The name of the connection.
+   */
   static std::shared_ptr<Connection> PlungerGate(const std::string& name);
+  /**
+   * @brief Construct a ReservoirGate with a name.
+   * @param name The name of the connection.
+   */
   static std::shared_ptr<Connection> ReservoirGate(const std::string& name);
+  /**
+   * @brief Construct a ScreeningGate with a name.
+   * @param name The name of the connection.
+   */
   static std::shared_ptr<Connection> ScreeningGate(const std::string& name);
+  /**
+   * @brief Construct a Ohmic with a name.
+   * @param name The name of the connection.
+   */
   static std::shared_ptr<Connection> Ohmic(const std::string& name);
   /**
    * @brief The name of the connection.
