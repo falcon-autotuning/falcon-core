@@ -166,6 +166,8 @@ setup-venv:
 	uv venv --clear
 	uv pip install './dist/python[test]' -v
 
-python-test: clean build python-types setup-venv 
+python-test: clean build python-types setup-venv
 	@echo "--- Prepared to run python tests ---"
-	pytest ${PYTHON_DIST}/tests/test_connection.py
+	@while read testfile; do \
+		pytest -W ignore::DeprecationWarning ${PYTHON_DIST}/tests/$$testfile; \
+	done < python_test_filter.txt

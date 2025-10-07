@@ -285,11 +285,10 @@ if(NOT FALCON_CORE_DIRS)
       # falcon_core::generic::FArray<double> falcon_core/generic/List.hpp
       # falcon_core/generic/Map.hpp falcon_core/Constants.hpp
       falcon_core/physics/device_structures/Connection.hpp
-      std::shared_ptr<falcon_core::physics::device_structures::Connection>
       # falcon_core::generic::List<falcon_core::physics::device_structures::Connection>
       # falcon_core/physics/device_structures/Connections.hpp
       # falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,falcon_core::physics::device_structures::Connections>
-      # falcon_core/physics/device_structures/Impedance.hpp
+      falcon_core/physics/device_structures/Impedance.hpp
       # falcon_core::generic::List<falcon_core::physics::device_structures::Impedance,falcon_core::physics::device_structures::Impedances>
       # falcon_core/physics/device_structures/Impedances.hpp
       # falcon_core/physics/device_structures/GateRelations.hpp
@@ -322,7 +321,7 @@ if(NOT FALCON_CORE_DIRS)
       connection,Connection,Connection.i,physics/device_structures
       # connections,Connections,Connections.i,physics/device_structures
       # ohmic,Ohmic,Ohmic.i,physics/device_structures
-      # impedance,Impedance,Impedance.i,physics/device_structures
+      impedance,Impedance,Impedance.i,physics/device_structures
       # impedances,Impedances,Impedances.i,physics/device_structures
       # gate_relations,GateRelations,GateRelations.i,physics/device_structures
       # prefix,Prefix,Prefix.i,physics/units unit,Unit,Unit.i,physics/units

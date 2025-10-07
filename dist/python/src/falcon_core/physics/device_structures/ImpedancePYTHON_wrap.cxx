@@ -11,7 +11,7 @@
 #define SWIGPYTHON
 #define SWIG_PYTHON_DIRECTOR_NO_VTABLE
 
-#define SWIG_name    "_falcon_core_connection"
+#define SWIG_name    "_falcon_core_impedance"
 /* -----------------------------------------------------------------------------
  *  This section contains generic SWIG labels for method/variable
  *  declarations/attributes, and other compiler dependent labels.
@@ -3206,9 +3206,12 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 
 #define SWIGTYPE_p_char swig_types[0]
 #define SWIGTYPE_p_falcon_core__physics__device_structures__Connection swig_types[1]
-#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t swig_types[2]
-static swig_type_info *swig_types[4];
-static swig_module_info swig_module = {swig_types, 3, 0, 0, 0, 0};
+#define SWIGTYPE_p_falcon_core__physics__device_structures__Impedance swig_types[2]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t swig_types[3]
+#define SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t swig_types[4]
+#define SWIGTYPE_p_std__string swig_types[5]
+static swig_type_info *swig_types[7];
+static swig_module_info swig_module = {swig_types, 6, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3220,13 +3223,13 @@ static swig_module_info swig_module = {swig_types, 3, 0, 0, 0, 0};
 #define SWIG_TypeQuery SWIG_Python_TypeQuery
 
 /*-----------------------------------------------
-              @(target):= _falcon_core_connection.so
+              @(target):= _falcon_core_impedance.so
   ------------------------------------------------*/
 #if PY_VERSION_HEX >= 0x03000000
-#  define SWIG_init    PyInit__falcon_core_connection
+#  define SWIG_init    PyInit__falcon_core_impedance
 
 #else
-#  define SWIG_init    init_falcon_core_connection
+#  define SWIG_init    init_falcon_core_impedance
 
 #endif
 
@@ -3355,7 +3358,7 @@ namespace swig {
 }
 
 
-#include "falcon_core/physics/device_structures/Connection.hpp"
+#include "falcon_core/physics/device_structures/Impedance.hpp"
 
 
 SWIGINTERNINLINE PyObject*
@@ -3365,138 +3368,10 @@ SWIGINTERNINLINE PyObject*
 }
 
 
-#include <string>
-
-
 SWIGINTERNINLINE PyObject*
   SWIG_From_bool  (bool value)
 {
   return PyBool_FromLong(value ? 1 : 0);
-}
-
-
-SWIGINTERN swig_type_info*
-SWIG_pchar_descriptor(void)
-{
-  static swig_type_info* info = 0;
-  if (!info) {
-    info = SWIG_TypeQuery("_p_char");
-  }
-  return info;
-}
-
-
-/* Return string from Python obj. NOTE: obj must remain in scope in order
-   to use the returned cptr (but only when alloc is set to SWIG_OLDOBJ) */
-SWIGINTERN int
-SWIG_AsCharPtrAndSize(PyObject *obj, char **cptr, size_t *psize, int *alloc)
-{
-#if PY_VERSION_HEX>=0x03000000
-#if defined(SWIG_PYTHON_STRICT_BYTE_CHAR)
-  if (PyBytes_Check(obj))
-#else
-  if (PyUnicode_Check(obj))
-#endif
-#else  
-  if (PyString_Check(obj))
-#endif
-  {
-    char *cstr; Py_ssize_t len;
-    PyObject *bytes = NULL;
-    int ret = SWIG_OK;
-    if (alloc)
-      *alloc = SWIG_OLDOBJ;
-#if PY_VERSION_HEX>=0x03000000 && defined(SWIG_PYTHON_STRICT_BYTE_CHAR)
-    if (PyBytes_AsStringAndSize(obj, &cstr, &len) == -1)
-      return SWIG_TypeError;
-#else
-    cstr = (char *)SWIG_PyUnicode_AsUTF8AndSize(obj, &len, &bytes);
-    if (!cstr)
-      return SWIG_TypeError;
-    /* The returned string is only duplicated if the char * returned is not owned and memory managed by obj */
-    if (bytes && cptr) {
-      if (alloc) {
-        cstr = reinterpret_cast< char* >(memcpy(new char[len + 1], cstr, sizeof(char)*(len + 1)));
-        *alloc = SWIG_NEWOBJ;
-      } else {
-        /* alloc must be set in order to clean up allocated memory */
-        return SWIG_RuntimeError;
-      }
-    }
-#endif
-    if (cptr) *cptr = cstr;
-    if (psize) *psize = len + 1;
-    SWIG_Py_XDECREF(bytes);
-    return ret;
-  } else {
-#if defined(SWIG_PYTHON_2_UNICODE)
-#if defined(SWIG_PYTHON_STRICT_BYTE_CHAR)
-#error "Cannot use both SWIG_PYTHON_2_UNICODE and SWIG_PYTHON_STRICT_BYTE_CHAR at once"
-#endif
-#if PY_VERSION_HEX<0x03000000
-    if (PyUnicode_Check(obj)) {
-      char *cstr; Py_ssize_t len;
-      if (!alloc && cptr) {
-        return SWIG_RuntimeError;
-      }
-      obj = PyUnicode_AsUTF8String(obj);
-      if (!obj)
-        return SWIG_TypeError;
-      if (PyString_AsStringAndSize(obj, &cstr, &len) != -1) {
-        if (cptr) {
-          if (alloc) *alloc = SWIG_NEWOBJ;
-          *cptr = reinterpret_cast< char* >(memcpy(new char[len + 1], cstr, sizeof(char)*(len + 1)));
-        }
-        if (psize) *psize = len + 1;
-
-        SWIG_Py_XDECREF(obj);
-        return SWIG_OK;
-      } else {
-        SWIG_Py_XDECREF(obj);
-      }
-    }
-#endif
-#endif
-
-    swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
-    if (pchar_descriptor) {
-      void* vptr = 0;
-      if (SWIG_ConvertPtr(obj, &vptr, pchar_descriptor, 0) == SWIG_OK) {
-	if (cptr) *cptr = (char *) vptr;
-	if (psize) *psize = vptr ? (strlen((char *)vptr) + 1) : 0;
-	if (alloc) *alloc = SWIG_OLDOBJ;
-	return SWIG_OK;
-      }
-    }
-  }
-  return SWIG_TypeError;
-}
-
-
-SWIGINTERN int
-SWIG_AsPtr_std_string (PyObject * obj, std::string **val) 
-{
-  char* buf = 0 ; size_t size = 0; int alloc = SWIG_OLDOBJ;
-  if (SWIG_IsOK((SWIG_AsCharPtrAndSize(obj, &buf, &size, &alloc)))) {
-    if (buf) {
-      if (val) *val = new std::string(buf, size - 1);
-      if (alloc == SWIG_NEWOBJ) delete[] buf;
-      return SWIG_NEWOBJ;
-    } else {
-      if (val) *val = 0;
-      return SWIG_OLDOBJ;
-    }
-  } else {
-    PyErr_Clear();
-    static swig_type_info *descriptor = SWIG_TypeQuery("std::string" " *");
-    if (descriptor) {
-      std::string *vptr;
-      int res = SWIG_ConvertPtr(obj, (void**)&vptr, descriptor, 0);
-      if (SWIG_IsOK(res) && val) *val = vptr;
-      return res;
-    }
-  }
-  return SWIG_ERROR;
 }
 
 
@@ -3658,46 +3533,11 @@ SWIG_AsVal_int (PyObject * obj, int *val)
 }
 
 
-SWIGINTERNINLINE PyObject *
-SWIG_FromCharPtrAndSize(const char* carray, size_t size)
-{
-  if (carray) {
-    if (size > INT_MAX) {
-      swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
-      return pchar_descriptor ? 
-	SWIG_InternalNewPointerObj(const_cast< char * >(carray), pchar_descriptor, 0) : SWIG_Py_Void();
-    } else {
-#if PY_VERSION_HEX >= 0x03000000
-#if defined(SWIG_PYTHON_STRICT_BYTE_CHAR)
-      return PyBytes_FromStringAndSize(carray, static_cast< Py_ssize_t >(size));
-#else
-      return PyUnicode_DecodeUTF8(carray, static_cast< Py_ssize_t >(size), "surrogateescape");
-#endif
-#else
-      return PyString_FromStringAndSize(carray, static_cast< Py_ssize_t >(size));
-#endif
-    }
-  } else {
-    return SWIG_Py_Void();
-  }
-}
+  #define SWIG_From_double   PyFloat_FromDouble 
 
-
-SWIGINTERNINLINE PyObject *
-SWIG_From_std_string  (const std::string& s)
-{
-  return SWIG_FromCharPtrAndSize(s.data(), s.size());
-}
-
-SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_barrier_gate(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_barrier_gate(); }
-SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_plunger_gate(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_plunger_gate(); }
-SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_reservoir_gate(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_reservoir_gate(); }
-SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_screening_gate(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_screening_gate(); }
-SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_ohmic(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_ohmic(); }
-SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_dot_gate(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_dot_gate(); }
-SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_gate(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_gate(); }
-SWIGINTERN std::string std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__name(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->name(); }
-SWIGINTERN std::string std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__type(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->type(); }
+SWIGINTERN falcon_core::physics::device_structures::ConnectionSP std_shared_ptr_Sl_falcon_core_physics_device_structures_Impedance_Sg__connection(std::shared_ptr< falcon_core::physics::device_structures::Impedance > *self){ return self->get()->connection(); }
+SWIGINTERN double std_shared_ptr_Sl_falcon_core_physics_device_structures_Impedance_Sg__resistance(std::shared_ptr< falcon_core::physics::device_structures::Impedance > *self){ return self->get()->resistance(); }
+SWIGINTERN double std_shared_ptr_Sl_falcon_core_physics_device_structures_Impedance_Sg__capacitance(std::shared_ptr< falcon_core::physics::device_structures::Impedance > *self){ return self->get()->capacitance(); }
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -3744,7 +3584,8 @@ SWIGINTERN PyObject *_wrap_new_Connection(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string *arg1 = 0 ;
   falcon_core::physics::device_structures::DeviceFeature *arg2 = 0 ;
-  int res1 = SWIG_OLDOBJ ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
   int val2 ;
   int ecode2 ;
   falcon_core::physics::device_structures::DeviceFeature temp2 ;
@@ -3753,17 +3594,14 @@ SWIGINTERN PyObject *_wrap_new_Connection(PyObject *self, PyObject *args) {
   
   (void)self;
   if (!SWIG_Python_UnpackTuple(args, "new_Connection", 2, 2, swig_obj)) SWIG_fail;
-  {
-    std::string *ptr = (std::string *)0;
-    res1 = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Connection" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_Connection" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    arg1 = ptr;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Connection" "', argument " "1"" of type '" "std::string const &""'"); 
   }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_Connection" "', argument " "1"" of type '" "std::string const &""'"); 
+  }
+  arg1 = reinterpret_cast< std::string * >(argp1);
   ecode2 = SWIG_AsVal_int (swig_obj[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Connection" "', argument " "2"" of type '" "falcon_core::physics::device_structures::DeviceFeature const &""'");
@@ -3773,10 +3611,8 @@ SWIGINTERN PyObject *_wrap_new_Connection(PyObject *self, PyObject *args) {
   }
   result = (falcon_core::physics::device_structures::Connection *)new falcon_core::physics::device_structures::Connection((std::string const &)*arg1,(falcon_core::physics::device_structures::DeviceFeature const &)*arg2);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__physics__device_structures__Connection, SWIG_POINTER_NEW |  0 );
-  if (SWIG_IsNewObj(res1)) delete arg1;
   return resultobj;
 fail:
-  if (SWIG_IsNewObj(res1)) delete arg1;
   return NULL;
 }
 
@@ -3784,30 +3620,26 @@ fail:
 SWIGINTERN PyObject *_wrap_Connection_BarrierGate(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string *arg1 = 0 ;
-  int res1 = SWIG_OLDOBJ ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
   PyObject *swig_obj[1] ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > result;
+  SwigValueWrapper< std::shared_ptr< falcon_core::physics::device_structures::Connection > > result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  {
-    std::string *ptr = (std::string *)0;
-    res1 = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Connection_BarrierGate" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Connection_BarrierGate" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    arg1 = ptr;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Connection_BarrierGate" "', argument " "1"" of type '" "std::string const &""'"); 
   }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Connection_BarrierGate" "', argument " "1"" of type '" "std::string const &""'"); 
+  }
+  arg1 = reinterpret_cast< std::string * >(argp1);
   result = falcon_core::physics::device_structures::Connection::BarrierGate((std::string const &)*arg1);
   resultobj = SWIG_NewPointerObj((new std::shared_ptr< falcon_core::physics::device_structures::Connection >(result)), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t, SWIG_POINTER_OWN |  0 );
-  if (SWIG_IsNewObj(res1)) delete arg1;
   return resultobj;
 fail:
-  if (SWIG_IsNewObj(res1)) delete arg1;
   return NULL;
 }
 
@@ -3815,30 +3647,26 @@ fail:
 SWIGINTERN PyObject *_wrap_Connection_PlungerGate(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string *arg1 = 0 ;
-  int res1 = SWIG_OLDOBJ ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
   PyObject *swig_obj[1] ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > result;
+  SwigValueWrapper< std::shared_ptr< falcon_core::physics::device_structures::Connection > > result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  {
-    std::string *ptr = (std::string *)0;
-    res1 = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Connection_PlungerGate" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Connection_PlungerGate" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    arg1 = ptr;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Connection_PlungerGate" "', argument " "1"" of type '" "std::string const &""'"); 
   }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Connection_PlungerGate" "', argument " "1"" of type '" "std::string const &""'"); 
+  }
+  arg1 = reinterpret_cast< std::string * >(argp1);
   result = falcon_core::physics::device_structures::Connection::PlungerGate((std::string const &)*arg1);
   resultobj = SWIG_NewPointerObj((new std::shared_ptr< falcon_core::physics::device_structures::Connection >(result)), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t, SWIG_POINTER_OWN |  0 );
-  if (SWIG_IsNewObj(res1)) delete arg1;
   return resultobj;
 fail:
-  if (SWIG_IsNewObj(res1)) delete arg1;
   return NULL;
 }
 
@@ -3846,30 +3674,26 @@ fail:
 SWIGINTERN PyObject *_wrap_Connection_ReservoirGate(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string *arg1 = 0 ;
-  int res1 = SWIG_OLDOBJ ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
   PyObject *swig_obj[1] ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > result;
+  SwigValueWrapper< std::shared_ptr< falcon_core::physics::device_structures::Connection > > result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  {
-    std::string *ptr = (std::string *)0;
-    res1 = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Connection_ReservoirGate" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Connection_ReservoirGate" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    arg1 = ptr;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Connection_ReservoirGate" "', argument " "1"" of type '" "std::string const &""'"); 
   }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Connection_ReservoirGate" "', argument " "1"" of type '" "std::string const &""'"); 
+  }
+  arg1 = reinterpret_cast< std::string * >(argp1);
   result = falcon_core::physics::device_structures::Connection::ReservoirGate((std::string const &)*arg1);
   resultobj = SWIG_NewPointerObj((new std::shared_ptr< falcon_core::physics::device_structures::Connection >(result)), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t, SWIG_POINTER_OWN |  0 );
-  if (SWIG_IsNewObj(res1)) delete arg1;
   return resultobj;
 fail:
-  if (SWIG_IsNewObj(res1)) delete arg1;
   return NULL;
 }
 
@@ -3877,30 +3701,26 @@ fail:
 SWIGINTERN PyObject *_wrap_Connection_ScreeningGate(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string *arg1 = 0 ;
-  int res1 = SWIG_OLDOBJ ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
   PyObject *swig_obj[1] ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > result;
+  SwigValueWrapper< std::shared_ptr< falcon_core::physics::device_structures::Connection > > result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  {
-    std::string *ptr = (std::string *)0;
-    res1 = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Connection_ScreeningGate" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Connection_ScreeningGate" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    arg1 = ptr;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Connection_ScreeningGate" "', argument " "1"" of type '" "std::string const &""'"); 
   }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Connection_ScreeningGate" "', argument " "1"" of type '" "std::string const &""'"); 
+  }
+  arg1 = reinterpret_cast< std::string * >(argp1);
   result = falcon_core::physics::device_structures::Connection::ScreeningGate((std::string const &)*arg1);
   resultobj = SWIG_NewPointerObj((new std::shared_ptr< falcon_core::physics::device_structures::Connection >(result)), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t, SWIG_POINTER_OWN |  0 );
-  if (SWIG_IsNewObj(res1)) delete arg1;
   return resultobj;
 fail:
-  if (SWIG_IsNewObj(res1)) delete arg1;
   return NULL;
 }
 
@@ -3908,30 +3728,26 @@ fail:
 SWIGINTERN PyObject *_wrap_Connection_Ohmic(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::string *arg1 = 0 ;
-  int res1 = SWIG_OLDOBJ ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
   PyObject *swig_obj[1] ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > result;
+  SwigValueWrapper< std::shared_ptr< falcon_core::physics::device_structures::Connection > > result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  {
-    std::string *ptr = (std::string *)0;
-    res1 = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Connection_Ohmic" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Connection_Ohmic" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    arg1 = ptr;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__string,  0  | 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Connection_Ohmic" "', argument " "1"" of type '" "std::string const &""'"); 
   }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Connection_Ohmic" "', argument " "1"" of type '" "std::string const &""'"); 
+  }
+  arg1 = reinterpret_cast< std::string * >(argp1);
   result = falcon_core::physics::device_structures::Connection::Ohmic((std::string const &)*arg1);
   resultobj = SWIG_NewPointerObj((new std::shared_ptr< falcon_core::physics::device_structures::Connection >(result)), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t, SWIG_POINTER_OWN |  0 );
-  if (SWIG_IsNewObj(res1)) delete arg1;
   return resultobj;
 fail:
-  if (SWIG_IsNewObj(res1)) delete arg1;
   return NULL;
 }
 
@@ -3953,7 +3769,7 @@ SWIGINTERN PyObject *_wrap_Connection_name(PyObject *self, PyObject *args) {
   }
   arg1 = reinterpret_cast< falcon_core::physics::device_structures::Connection * >(argp1);
   result = (std::string *) &((falcon_core::physics::device_structures::Connection const *)arg1)->name();
-  resultobj = SWIG_From_std_string(static_cast< std::string >(*result));
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__string, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -3977,7 +3793,7 @@ SWIGINTERN PyObject *_wrap_Connection_type(PyObject *self, PyObject *args) {
   }
   arg1 = reinterpret_cast< falcon_core::physics::device_structures::Connection * >(argp1);
   result = ((falcon_core::physics::device_structures::Connection const *)arg1)->type();
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_NewPointerObj((new std::string(result)), SWIGTYPE_p_std__string, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -4264,322 +4080,349 @@ SWIGINTERN PyObject *Connection_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObjec
   return SWIG_Python_InitShadowInstance(args);
 }
 
-SWIGINTERN PyObject *_wrap_ConnectionSP_is_barrier_gate(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_Impedance(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *) 0 ;
+  SwigValueWrapper< std::shared_ptr< falcon_core::physics::device_structures::Connection > > arg1 ;
+  double arg2 ;
+  double arg3 ;
   void *argp1 ;
   int res1 = 0 ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > tempshared1 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[3] ;
+  falcon_core::physics::device_structures::Impedance *result = 0 ;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "new_Impedance", 3, 3, swig_obj)) SWIG_fail;
+  {
+    res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0  | 0);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Impedance" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection >""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "new_Impedance" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection >""'");
+    } else {
+      std::shared_ptr< falcon_core::physics::device_structures::Connection > * temp = reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
+      arg1 = *temp;
+      if (SWIG_IsNewObj(res1)) delete temp;
+    }
+  }
+  ecode2 = SWIG_AsVal_double(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Impedance" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  ecode3 = SWIG_AsVal_double(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Impedance" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
+  result = (falcon_core::physics::device_structures::Impedance *)new falcon_core::physics::device_structures::Impedance(SWIG_STD_MOVE(arg1),arg2,arg3);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_falcon_core__physics__device_structures__Impedance, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Impedance_connection(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::Impedance *arg1 = (falcon_core::physics::device_structures::Impedance *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
   PyObject *swig_obj[1] ;
+  SwigValueWrapper< std::shared_ptr< falcon_core::physics::device_structures::Connection > > result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__Impedance, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Impedance_connection" "', argument " "1"" of type '" "falcon_core::physics::device_structures::Impedance const *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::Impedance * >(argp1);
+  result = ((falcon_core::physics::device_structures::Impedance const *)arg1)->connection();
+  resultobj = SWIG_NewPointerObj((new falcon_core::physics::device_structures::ConnectionSP(result)), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Impedance_resistance(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::Impedance *arg1 = (falcon_core::physics::device_structures::Impedance *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  double result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__Impedance, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Impedance_resistance" "', argument " "1"" of type '" "falcon_core::physics::device_structures::Impedance const *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::Impedance * >(argp1);
+  result = (double)((falcon_core::physics::device_structures::Impedance const *)arg1)->resistance();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Impedance_capacitance(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::Impedance *arg1 = (falcon_core::physics::device_structures::Impedance *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  double result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__Impedance, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Impedance_capacitance" "', argument " "1"" of type '" "falcon_core::physics::device_structures::Impedance const *""'"); 
+  }
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::Impedance * >(argp1);
+  result = (double)((falcon_core::physics::device_structures::Impedance const *)arg1)->capacitance();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Impedance___eq__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  falcon_core::physics::device_structures::Impedance *arg1 = (falcon_core::physics::device_structures::Impedance *) 0 ;
+  falcon_core::physics::device_structures::Impedance *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
   bool result;
   
   (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  {
-    int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ConnectionSP_is_barrier_gate" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection > *""'");
-    }
-    if (newmem & SWIG_CAST_NEW_MEMORY) {
-      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      arg1 = &tempshared1;
-    } else {
-      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1) : &tempshared1;
-    }
+  if (!SWIG_Python_UnpackTuple(args, "Impedance___eq__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__Impedance, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Impedance___eq__" "', argument " "1"" of type '" "falcon_core::physics::device_structures::Impedance const *""'"); 
   }
-  result = (bool)std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_barrier_gate(arg1);
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::Impedance * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_falcon_core__physics__device_structures__Impedance,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Impedance___eq__" "', argument " "2"" of type '" "falcon_core::physics::device_structures::Impedance const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Impedance___eq__" "', argument " "2"" of type '" "falcon_core::physics::device_structures::Impedance const &""'"); 
+  }
+  arg2 = reinterpret_cast< falcon_core::physics::device_structures::Impedance * >(argp2);
+  result = (bool)((falcon_core::physics::device_structures::Impedance const *)arg1)->operator ==((falcon_core::physics::device_structures::Impedance const &)*arg2);
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
-  return NULL;
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
 }
 
 
-SWIGINTERN PyObject *_wrap_ConnectionSP_is_plunger_gate(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_Impedance___ne__(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *) 0 ;
-  void *argp1 ;
+  falcon_core::physics::device_structures::Impedance *arg1 = (falcon_core::physics::device_structures::Impedance *) 0 ;
+  falcon_core::physics::device_structures::Impedance *arg2 = 0 ;
+  void *argp1 = 0 ;
   int res1 = 0 ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > tempshared1 ;
-  PyObject *swig_obj[1] ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
   bool result;
   
   (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  {
-    int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ConnectionSP_is_plunger_gate" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection > *""'");
-    }
-    if (newmem & SWIG_CAST_NEW_MEMORY) {
-      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      arg1 = &tempshared1;
-    } else {
-      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1) : &tempshared1;
-    }
+  if (!SWIG_Python_UnpackTuple(args, "Impedance___ne__", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__Impedance, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Impedance___ne__" "', argument " "1"" of type '" "falcon_core::physics::device_structures::Impedance const *""'"); 
   }
-  result = (bool)std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_plunger_gate(arg1);
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::Impedance * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_falcon_core__physics__device_structures__Impedance,  0  | 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Impedance___ne__" "', argument " "2"" of type '" "falcon_core::physics::device_structures::Impedance const &""'"); 
+  }
+  if (!argp2) {
+    SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Impedance___ne__" "', argument " "2"" of type '" "falcon_core::physics::device_structures::Impedance const &""'"); 
+  }
+  arg2 = reinterpret_cast< falcon_core::physics::device_structures::Impedance * >(argp2);
+  result = (bool)((falcon_core::physics::device_structures::Impedance const *)arg1)->operator !=((falcon_core::physics::device_structures::Impedance const &)*arg2);
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
-  return NULL;
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
 }
 
 
-SWIGINTERN PyObject *_wrap_ConnectionSP_is_reservoir_gate(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_delete_Impedance(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *) 0 ;
-  void *argp1 ;
+  falcon_core::physics::device_structures::Impedance *arg1 = (falcon_core::physics::device_structures::Impedance *) 0 ;
+  void *argp1 = 0 ;
   int res1 = 0 ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > tempshared1 ;
   PyObject *swig_obj[1] ;
-  bool result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
-  {
-    int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ConnectionSP_is_reservoir_gate" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection > *""'");
-    }
-    if (newmem & SWIG_CAST_NEW_MEMORY) {
-      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      arg1 = &tempshared1;
-    } else {
-      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1) : &tempshared1;
-    }
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_falcon_core__physics__device_structures__Impedance, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Impedance" "', argument " "1"" of type '" "falcon_core::physics::device_structures::Impedance *""'"); 
   }
-  result = (bool)std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_reservoir_gate(arg1);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  arg1 = reinterpret_cast< falcon_core::physics::device_structures::Impedance * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_ConnectionSP_is_screening_gate(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *Impedance_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj = NULL;
+  if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_falcon_core__physics__device_structures__Impedance, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *Impedance_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  return SWIG_Python_InitShadowInstance(args);
+}
+
+SWIGINTERN PyObject *_wrap_ImpedanceSP_connection(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *) 0 ;
+  std::shared_ptr< falcon_core::physics::device_structures::Impedance > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Impedance > *) 0 ;
   void *argp1 ;
   int res1 = 0 ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::device_structures::Impedance > tempshared1 ;
   PyObject *swig_obj[1] ;
-  bool result;
+  SwigValueWrapper< std::shared_ptr< falcon_core::physics::device_structures::Connection > > result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
   {
     int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t,  0 , &newmem);
     if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ConnectionSP_is_screening_gate" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection > *""'");
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ImpedanceSP_connection" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Impedance > *""'");
     }
     if (newmem & SWIG_CAST_NEW_MEMORY) {
-      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
+      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Impedance > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Impedance > * >(argp1);
       arg1 = &tempshared1;
     } else {
-      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1) : &tempshared1;
+      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Impedance > * >(argp1) : &tempshared1;
     }
   }
-  result = (bool)std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_screening_gate(arg1);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  result = std_shared_ptr_Sl_falcon_core_physics_device_structures_Impedance_Sg__connection(arg1);
+  resultobj = SWIG_NewPointerObj((new falcon_core::physics::device_structures::ConnectionSP(result)), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_ConnectionSP_is_ohmic(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_ImpedanceSP_resistance(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *) 0 ;
+  std::shared_ptr< falcon_core::physics::device_structures::Impedance > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Impedance > *) 0 ;
   void *argp1 ;
   int res1 = 0 ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::device_structures::Impedance > tempshared1 ;
   PyObject *swig_obj[1] ;
-  bool result;
+  double result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
   {
     int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t,  0 , &newmem);
     if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ConnectionSP_is_ohmic" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection > *""'");
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ImpedanceSP_resistance" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Impedance > *""'");
     }
     if (newmem & SWIG_CAST_NEW_MEMORY) {
-      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
+      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Impedance > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Impedance > * >(argp1);
       arg1 = &tempshared1;
     } else {
-      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1) : &tempshared1;
+      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Impedance > * >(argp1) : &tempshared1;
     }
   }
-  result = (bool)std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_ohmic(arg1);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  result = (double)std_shared_ptr_Sl_falcon_core_physics_device_structures_Impedance_Sg__resistance(arg1);
+  resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_ConnectionSP_is_dot_gate(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_ImpedanceSP_capacitance(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *) 0 ;
+  std::shared_ptr< falcon_core::physics::device_structures::Impedance > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Impedance > *) 0 ;
   void *argp1 ;
   int res1 = 0 ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::device_structures::Impedance > tempshared1 ;
   PyObject *swig_obj[1] ;
-  bool result;
+  double result;
   
   (void)self;
   if (!args) SWIG_fail;
   swig_obj[0] = args;
   {
     int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t,  0 , &newmem);
     if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ConnectionSP_is_dot_gate" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection > *""'");
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ImpedanceSP_capacitance" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Impedance > *""'");
     }
     if (newmem & SWIG_CAST_NEW_MEMORY) {
-      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
+      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Impedance > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Impedance > * >(argp1);
       arg1 = &tempshared1;
     } else {
-      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1) : &tempshared1;
+      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Impedance > * >(argp1) : &tempshared1;
     }
   }
-  result = (bool)std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_dot_gate(arg1);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  result = (double)std_shared_ptr_Sl_falcon_core_physics_device_structures_Impedance_Sg__capacitance(arg1);
+  resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_ConnectionSP_is_gate(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_ImpedanceSP(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *) 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > tempshared1 ;
-  PyObject *swig_obj[1] ;
-  bool result;
+  std::shared_ptr< falcon_core::physics::device_structures::Impedance > *result = 0 ;
   
   (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
+  if (!SWIG_Python_UnpackTuple(args, "new_ImpedanceSP", 0, 0, 0)) SWIG_fail;
+  result = (std::shared_ptr< falcon_core::physics::device_structures::Impedance > *)new std::shared_ptr< falcon_core::physics::device_structures::Impedance >();
   {
-    int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ConnectionSP_is_gate" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection > *""'");
-    }
-    if (newmem & SWIG_CAST_NEW_MEMORY) {
-      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      arg1 = &tempshared1;
-    } else {
-      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1) : &tempshared1;
-    }
-  }
-  result = (bool)std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_gate(arg1);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_ConnectionSP_name(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *) 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > tempshared1 ;
-  PyObject *swig_obj[1] ;
-  std::string result;
-  
-  (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  {
-    int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ConnectionSP_name" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection > *""'");
-    }
-    if (newmem & SWIG_CAST_NEW_MEMORY) {
-      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      arg1 = &tempshared1;
-    } else {
-      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1) : &tempshared1;
-    }
-  }
-  result = std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__name(arg1);
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_ConnectionSP_type(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *) 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > tempshared1 ;
-  PyObject *swig_obj[1] ;
-  std::string result;
-  
-  (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  {
-    int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ConnectionSP_type" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection > *""'");
-    }
-    if (newmem & SWIG_CAST_NEW_MEMORY) {
-      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      arg1 = &tempshared1;
-    } else {
-      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1) : &tempshared1;
-    }
-  }
-  result = std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__type(arg1);
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_ConnectionSP(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > *result = 0 ;
-  
-  (void)self;
-  if (!SWIG_Python_UnpackTuple(args, "new_ConnectionSP", 0, 0, 0)) SWIG_fail;
-  result = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *)new std::shared_ptr< falcon_core::physics::device_structures::Connection >();
-  {
-    std::shared_ptr<  falcon_core::physics::device_structures::Connection > *smartresult = (result && *result) ? new std::shared_ptr<  falcon_core::physics::device_structures::Connection >(*result) : 0;
-    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t, SWIG_POINTER_OWN);
+    std::shared_ptr<  falcon_core::physics::device_structures::Impedance > *smartresult = (result && *result) ? new std::shared_ptr<  falcon_core::physics::device_structures::Impedance >(*result) : 0;
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t, SWIG_POINTER_OWN);
     if (SWIG_POINTER_NEW) delete result;
   }
   return resultobj;
@@ -4588,12 +4431,12 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_delete_ConnectionSP(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_delete_ImpedanceSP(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *) 0 ;
+  std::shared_ptr< falcon_core::physics::device_structures::Impedance > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Impedance > *) 0 ;
   void *argp1 ;
   int res1 = 0 ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > tempshared1 ;
+  std::shared_ptr< falcon_core::physics::device_structures::Impedance > tempshared1 ;
   PyObject *swig_obj[1] ;
   
   (void)self;
@@ -4601,16 +4444,16 @@ SWIGINTERN PyObject *_wrap_delete_ConnectionSP(PyObject *self, PyObject *args) {
   swig_obj[0] = args;
   {
     int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t,  0 , &newmem);
     if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_ConnectionSP" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection > *""'");
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_ImpedanceSP" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Impedance > *""'");
     }
     if (newmem & SWIG_CAST_NEW_MEMORY) {
-      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
+      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Impedance > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Impedance > * >(argp1);
       arg1 = &tempshared1;
     } else {
-      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1) : &tempshared1;
+      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Impedance > * >(argp1) : &tempshared1;
     }
   }
   delete arg1;
@@ -4621,14 +4464,14 @@ fail:
 }
 
 
-SWIGINTERN PyObject *ConnectionSP_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *ImpedanceSP_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj = NULL;
   if (!SWIG_Python_UnpackTuple(args, "swigregister", 1, 1, &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t, SWIG_NewClientData(obj));
+  SWIG_TypeNewClientData(SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *ConnectionSP_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *ImpedanceSP_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   return SWIG_Python_InitShadowInstance(args);
 }
 
@@ -4691,19 +4534,22 @@ static PyMethodDef SwigMethods[] = {
 	 { "delete_Connection", _wrap_delete_Connection, METH_O, NULL},
 	 { "Connection_swigregister", Connection_swigregister, METH_O, NULL},
 	 { "Connection_swiginit", Connection_swiginit, METH_VARARGS, NULL},
-	 { "ConnectionSP_is_barrier_gate", _wrap_ConnectionSP_is_barrier_gate, METH_O, NULL},
-	 { "ConnectionSP_is_plunger_gate", _wrap_ConnectionSP_is_plunger_gate, METH_O, NULL},
-	 { "ConnectionSP_is_reservoir_gate", _wrap_ConnectionSP_is_reservoir_gate, METH_O, NULL},
-	 { "ConnectionSP_is_screening_gate", _wrap_ConnectionSP_is_screening_gate, METH_O, NULL},
-	 { "ConnectionSP_is_ohmic", _wrap_ConnectionSP_is_ohmic, METH_O, NULL},
-	 { "ConnectionSP_is_dot_gate", _wrap_ConnectionSP_is_dot_gate, METH_O, NULL},
-	 { "ConnectionSP_is_gate", _wrap_ConnectionSP_is_gate, METH_O, NULL},
-	 { "ConnectionSP_name", _wrap_ConnectionSP_name, METH_O, NULL},
-	 { "ConnectionSP_type", _wrap_ConnectionSP_type, METH_O, NULL},
-	 { "new_ConnectionSP", _wrap_new_ConnectionSP, METH_NOARGS, NULL},
-	 { "delete_ConnectionSP", _wrap_delete_ConnectionSP, METH_O, NULL},
-	 { "ConnectionSP_swigregister", ConnectionSP_swigregister, METH_O, NULL},
-	 { "ConnectionSP_swiginit", ConnectionSP_swiginit, METH_VARARGS, NULL},
+	 { "new_Impedance", _wrap_new_Impedance, METH_VARARGS, NULL},
+	 { "Impedance_connection", _wrap_Impedance_connection, METH_O, NULL},
+	 { "Impedance_resistance", _wrap_Impedance_resistance, METH_O, NULL},
+	 { "Impedance_capacitance", _wrap_Impedance_capacitance, METH_O, NULL},
+	 { "Impedance___eq__", _wrap_Impedance___eq__, METH_VARARGS, NULL},
+	 { "Impedance___ne__", _wrap_Impedance___ne__, METH_VARARGS, NULL},
+	 { "delete_Impedance", _wrap_delete_Impedance, METH_O, NULL},
+	 { "Impedance_swigregister", Impedance_swigregister, METH_O, NULL},
+	 { "Impedance_swiginit", Impedance_swiginit, METH_VARARGS, NULL},
+	 { "ImpedanceSP_connection", _wrap_ImpedanceSP_connection, METH_O, NULL},
+	 { "ImpedanceSP_resistance", _wrap_ImpedanceSP_resistance, METH_O, NULL},
+	 { "ImpedanceSP_capacitance", _wrap_ImpedanceSP_capacitance, METH_O, NULL},
+	 { "new_ImpedanceSP", _wrap_new_ImpedanceSP, METH_NOARGS, NULL},
+	 { "delete_ImpedanceSP", _wrap_delete_ImpedanceSP, METH_O, NULL},
+	 { "ImpedanceSP_swigregister", ImpedanceSP_swigregister, METH_O, NULL},
+	 { "ImpedanceSP_swiginit", ImpedanceSP_swiginit, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -4712,22 +4558,34 @@ static PyMethodDef SwigMethods[] = {
 
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_falcon_core__physics__device_structures__Connection = {"_p_falcon_core__physics__device_structures__Connection", "falcon_core::physics::device_structures::Connection *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_falcon_core__physics__device_structures__Impedance = {"_p_falcon_core__physics__device_structures__Impedance", "falcon_core::physics::device_structures::Impedance *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t = {"_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t", "falcon_core::physics::device_structures::ConnectionSP *|std::shared_ptr< falcon_core::physics::device_structures::Connection > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t = {"_p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t", "falcon_core::physics::device_structures::ImpedanceSP *|std::shared_ptr< falcon_core::physics::device_structures::Impedance > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_char,
   &_swigt__p_falcon_core__physics__device_structures__Connection,
+  &_swigt__p_falcon_core__physics__device_structures__Impedance,
   &_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,
+  &_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t,
+  &_swigt__p_std__string,
 };
 
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_falcon_core__physics__device_structures__Connection[] = {  {&_swigt__p_falcon_core__physics__device_structures__Connection, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_falcon_core__physics__device_structures__Impedance[] = {  {&_swigt__p_falcon_core__physics__device_structures__Impedance, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t[] = {  {&_swigt__p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_char,
   _swigc__p_falcon_core__physics__device_structures__Connection,
+  _swigc__p_falcon_core__physics__device_structures__Impedance,
   _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,
+  _swigc__p_std__shared_ptrT_falcon_core__physics__device_structures__Impedance_t,
+  _swigc__p_std__string,
 };
 
 
