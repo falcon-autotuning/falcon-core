@@ -181,6 +181,10 @@ class Connection(object):
 
     def __ne__(self, other):
         return _falcon_core_connection.Connection___ne__(self, other)
+
+    @staticmethod
+    def from_json_string(json):
+        return _falcon_core_connection.Connection_from_json_string(json)
     __swig_destroy__ = _falcon_core_connection.delete_Connection
 
 # Register Connection in _falcon_core_connection:
@@ -188,9 +192,6 @@ _falcon_core_connection.Connection_swigregister(Connection)
 class ConnectionSP(object):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-
-    def is_barrier_gate(self):
-        return _falcon_core_connection.ConnectionSP_is_barrier_gate(self)
 
     def is_plunger_gate(self):
         return _falcon_core_connection.ConnectionSP_is_plunger_gate(self)
@@ -215,6 +216,15 @@ class ConnectionSP(object):
 
     def type(self):
         return _falcon_core_connection.ConnectionSP_type(self)
+
+    def to_json_string(self):
+        return _falcon_core_connection.ConnectionSP_to_json_string(self)
+
+    def __eq__(self, other):
+        return _falcon_core_connection.ConnectionSP___eq__(self, other)
+
+    def __neq__(self, other):
+        return _falcon_core_connection.ConnectionSP___neq__(self, other)
 
     def __init__(self):
         _falcon_core_connection.ConnectionSP_swiginit(self, _falcon_core_connection.new_ConnectionSP())

@@ -3689,7 +3689,9 @@ SWIG_From_std_string  (const std::string& s)
   return SWIG_FromCharPtrAndSize(s.data(), s.size());
 }
 
-SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_barrier_gate(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_barrier_gate(); }
+SWIGINTERN falcon_core::physics::device_structures::ConnectionSP falcon_core_physics_device_structures_Connection_from_json_string(std::string const &json){
+        return falcon_core::physics::device_structures::Connection::from_json_string<falcon_core::physics::device_structures::Connection>(json);
+    }
 SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_plunger_gate(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_plunger_gate(); }
 SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_reservoir_gate(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_reservoir_gate(); }
 SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_screening_gate(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_screening_gate(); }
@@ -3698,6 +3700,9 @@ SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connecti
 SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_gate(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->is_gate(); }
 SWIGINTERN std::string std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__name(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->name(); }
 SWIGINTERN std::string std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__type(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->type(); }
+SWIGINTERN std::string std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__to_json_string(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self){ return self->get()->to_json_string(); }
+SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg____eq__(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self,falcon_core::physics::device_structures::ConnectionSP const other){ return *self->get() == *other; }
+SWIGINTERN bool std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg____neq__(std::shared_ptr< falcon_core::physics::device_structures::Connection > *self,falcon_core::physics::device_structures::ConnectionSP const other){ return *self->get() != *other; }
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -4230,6 +4235,37 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Connection_from_json_string(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::string *arg1 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
+  PyObject *swig_obj[1] ;
+  falcon_core::physics::device_structures::ConnectionSP result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    std::string *ptr = (std::string *)0;
+    res1 = SWIG_AsPtr_std_string(swig_obj[0], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Connection_from_json_string" "', argument " "1"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_NullReferenceError, "invalid null reference " "in method '" "Connection_from_json_string" "', argument " "1"" of type '" "std::string const &""'"); 
+    }
+    arg1 = ptr;
+  }
+  result = falcon_core_physics_device_structures_Connection_from_json_string((std::string const &)*arg1);
+  resultobj = SWIG_NewPointerObj((new falcon_core::physics::device_structures::ConnectionSP(result)), SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t, SWIG_POINTER_OWN |  0 );
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_delete_Connection(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   falcon_core::physics::device_structures::Connection *arg1 = (falcon_core::physics::device_structures::Connection *) 0 ;
@@ -4263,40 +4299,6 @@ SWIGINTERN PyObject *Connection_swigregister(PyObject *SWIGUNUSEDPARM(self), PyO
 SWIGINTERN PyObject *Connection_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   return SWIG_Python_InitShadowInstance(args);
 }
-
-SWIGINTERN PyObject *_wrap_ConnectionSP_is_barrier_gate(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *) 0 ;
-  void *argp1 ;
-  int res1 = 0 ;
-  std::shared_ptr< falcon_core::physics::device_structures::Connection > tempshared1 ;
-  PyObject *swig_obj[1] ;
-  bool result;
-  
-  (void)self;
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  {
-    int newmem = 0;
-    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ConnectionSP_is_barrier_gate" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection > *""'");
-    }
-    if (newmem & SWIG_CAST_NEW_MEMORY) {
-      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
-      arg1 = &tempshared1;
-    } else {
-      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1) : &tempshared1;
-    }
-  }
-  result = (bool)std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__is_barrier_gate(arg1);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
 
 SWIGINTERN PyObject *_wrap_ConnectionSP_is_plunger_gate(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
@@ -4570,6 +4572,135 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_ConnectionSP_to_json_string(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::shared_ptr< falcon_core::physics::device_structures::Connection > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *) 0 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::device_structures::Connection > tempshared1 ;
+  PyObject *swig_obj[1] ;
+  std::string result;
+  
+  (void)self;
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ConnectionSP_to_json_string" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection > *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
+      arg1 = &tempshared1;
+    } else {
+      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1) : &tempshared1;
+    }
+  }
+  result = std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg__to_json_string(arg1);
+  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_ConnectionSP___eq__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::shared_ptr< falcon_core::physics::device_structures::Connection > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *) 0 ;
+  falcon_core::physics::device_structures::ConnectionSP arg2 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::device_structures::Connection > tempshared1 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  bool result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "ConnectionSP___eq__", 2, 2, swig_obj)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ConnectionSP___eq__" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection > *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
+      arg1 = &tempshared1;
+    } else {
+      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1) : &tempshared1;
+    }
+  }
+  {
+    int newmem = 0;
+    res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ConnectionSP___eq__" "', argument " "2"" of type '" "falcon_core::physics::device_structures::ConnectionSP const""'");
+    }
+    if (argp2) arg2 = *(reinterpret_cast< falcon_core::physics::device_structures::ConnectionSP * >(argp2));
+    if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< falcon_core::physics::device_structures::ConnectionSP * >(argp2);
+  }
+  result = (bool)std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg____eq__(arg1,SWIG_STD_MOVE(arg2));
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  if (PyErr_Occurred() && !PyErr_ExceptionMatches(PyExc_TypeError)) {
+    return NULL;
+  }
+  PyErr_Clear();
+  SWIG_Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_ConnectionSP___neq__(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  std::shared_ptr< falcon_core::physics::device_structures::Connection > *arg1 = (std::shared_ptr< falcon_core::physics::device_structures::Connection > *) 0 ;
+  falcon_core::physics::device_structures::ConnectionSP arg2 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  std::shared_ptr< falcon_core::physics::device_structures::Connection > tempshared1 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  bool result;
+  
+  (void)self;
+  if (!SWIG_Python_UnpackTuple(args, "ConnectionSP___neq__", 2, 2, swig_obj)) SWIG_fail;
+  {
+    int newmem = 0;
+    res1 = SWIG_ConvertPtrAndOwn(swig_obj[0], &argp1, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ConnectionSP___neq__" "', argument " "1"" of type '" "std::shared_ptr< falcon_core::physics::device_structures::Connection > *""'");
+    }
+    if (newmem & SWIG_CAST_NEW_MEMORY) {
+      if (argp1) tempshared1 = *reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
+      delete reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1);
+      arg1 = &tempshared1;
+    } else {
+      arg1 = (argp1) ? reinterpret_cast< std::shared_ptr< falcon_core::physics::device_structures::Connection > * >(argp1) : &tempshared1;
+    }
+  }
+  {
+    int newmem = 0;
+    res2 = SWIG_ConvertPtrAndOwn(swig_obj[1], &argp2, SWIGTYPE_p_std__shared_ptrT_falcon_core__physics__device_structures__Connection_t,  0 , &newmem);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ConnectionSP___neq__" "', argument " "2"" of type '" "falcon_core::physics::device_structures::ConnectionSP const""'");
+    }
+    if (argp2) arg2 = *(reinterpret_cast< falcon_core::physics::device_structures::ConnectionSP * >(argp2));
+    if (newmem & SWIG_CAST_NEW_MEMORY) delete reinterpret_cast< falcon_core::physics::device_structures::ConnectionSP * >(argp2);
+  }
+  result = (bool)std_shared_ptr_Sl_falcon_core_physics_device_structures_Connection_Sg____neq__(arg1,SWIG_STD_MOVE(arg2));
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_ConnectionSP(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   std::shared_ptr< falcon_core::physics::device_structures::Connection > *result = 0 ;
@@ -4688,10 +4819,10 @@ static PyMethodDef SwigMethods[] = {
 		""},
 	 { "Connection___eq__", _wrap_Connection___eq__, METH_VARARGS, NULL},
 	 { "Connection___ne__", _wrap_Connection___ne__, METH_VARARGS, NULL},
+	 { "Connection_from_json_string", _wrap_Connection_from_json_string, METH_O, NULL},
 	 { "delete_Connection", _wrap_delete_Connection, METH_O, NULL},
 	 { "Connection_swigregister", Connection_swigregister, METH_O, NULL},
 	 { "Connection_swiginit", Connection_swiginit, METH_VARARGS, NULL},
-	 { "ConnectionSP_is_barrier_gate", _wrap_ConnectionSP_is_barrier_gate, METH_O, NULL},
 	 { "ConnectionSP_is_plunger_gate", _wrap_ConnectionSP_is_plunger_gate, METH_O, NULL},
 	 { "ConnectionSP_is_reservoir_gate", _wrap_ConnectionSP_is_reservoir_gate, METH_O, NULL},
 	 { "ConnectionSP_is_screening_gate", _wrap_ConnectionSP_is_screening_gate, METH_O, NULL},
@@ -4700,6 +4831,9 @@ static PyMethodDef SwigMethods[] = {
 	 { "ConnectionSP_is_gate", _wrap_ConnectionSP_is_gate, METH_O, NULL},
 	 { "ConnectionSP_name", _wrap_ConnectionSP_name, METH_O, NULL},
 	 { "ConnectionSP_type", _wrap_ConnectionSP_type, METH_O, NULL},
+	 { "ConnectionSP_to_json_string", _wrap_ConnectionSP_to_json_string, METH_O, NULL},
+	 { "ConnectionSP___eq__", _wrap_ConnectionSP___eq__, METH_VARARGS, NULL},
+	 { "ConnectionSP___neq__", _wrap_ConnectionSP___neq__, METH_VARARGS, NULL},
 	 { "new_ConnectionSP", _wrap_new_ConnectionSP, METH_NOARGS, NULL},
 	 { "delete_ConnectionSP", _wrap_delete_ConnectionSP, METH_O, NULL},
 	 { "ConnectionSP_swigregister", ConnectionSP_swigregister, METH_O, NULL},

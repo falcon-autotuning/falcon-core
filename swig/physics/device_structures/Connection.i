@@ -20,4 +20,12 @@ from falcon_core.generic.song import Song
     bool is_gate() { return $self->get()->is_gate(); }
     std::string name() { return $self->get()->name(); }
     std::string type() { return $self->get()->type(); }
+    std::string to_json_string() { return $self->get()->to_json_string(); }
+    bool __eq__(const falcon_core::physics::device_structures::ConnectionSP other) { return *$self->get() == *other; }
+    bool __neq__(const falcon_core::physics::device_structures::ConnectionSP other) { return *$self->get() != *other; }
+}
+%extend falcon_core::physics::device_structures::Connection {
+    static falcon_core::physics::device_structures::ConnectionSP from_json_string(const std::string& json) {
+        return falcon_core::physics::device_structures::Connection::from_json_string<falcon_core::physics::device_structures::Connection>(json);
+    }
 }

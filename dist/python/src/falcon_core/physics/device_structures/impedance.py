@@ -63,12 +63,71 @@ SHARED_PTR_DISOWN = _falcon_core_impedance.SHARED_PTR_DISOWN
 from falcon_core.generic.song import Song
 from falcon_core.physics.device_structures.connection import Connection
 
+class Song(object):
+    r"""
+    Abstract base for all serializable Song objects.
+
+    Inherit from Song in your serializable class, implement serialize(), and
+    register with cereal.
+
+    Notes: 
+    std::hash<falcon_core::generic::Song> is specialized (see Song.cpp)
+    so Song can be used as a key in std::unordered_map.
+
+
+    .. code-block:: c++
+
+        struct Animal : public Song {
+            int legs = 4;
+            template<class Archive>
+            void serialize(Archive& ar) { ar(CEREAL_NVP(legs)); }
+            virtual ~Animal() = default;
+        };
+        struct Dog : public Animal {
+            bool tail = true;
+            template<class Archive>
+            void serialize(Archive& ar) {
+                ar(cereal::base_class<Animal>(this), CEREAL_NVP(tail));
+            }
+        };
+        CEREAL_REGISTER_TYPE(Animal)
+        CEREAL_REGISTER_TYPE(Dog)
+        CEREAL_REGISTER_POLYMORPHIC_RELATION(Animal, Dog)
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _falcon_core_impedance.delete_Song
+
+    def to_json_string(self):
+        r"""Serialize this object to a JSON string."""
+        return _falcon_core_impedance.Song_to_json_string(self)
+
+    def to_json_stream(self, os):
+        r"""Serialize this object to a JSON archive (output stream)."""
+        return _falcon_core_impedance.Song_to_json_stream(self, os)
+
+    def __eq__(self, other):
+        r"""
+        Equality operator.
+        Override in derived classes to compare member variables.
+        """
+        return _falcon_core_impedance.Song___eq__(self, other)
+
+    def __ne__(self, other):
+        return _falcon_core_impedance.Song___ne__(self, other)
+
+    def __init__(self):
+        _falcon_core_impedance.Song_swiginit(self, _falcon_core_impedance.new_Song())
+
+# Register Song in _falcon_core_impedance:
+_falcon_core_impedance.Song_swigregister(Song)
 DeviceFeature_BarrierGate = _falcon_core_impedance.DeviceFeature_BarrierGate
 DeviceFeature_PlungerGate = _falcon_core_impedance.DeviceFeature_PlungerGate
 DeviceFeature_ReservoirGate = _falcon_core_impedance.DeviceFeature_ReservoirGate
 DeviceFeature_ScreeningGate = _falcon_core_impedance.DeviceFeature_ScreeningGate
 DeviceFeature_Ohmic = _falcon_core_impedance.DeviceFeature_Ohmic
-class Connection(object):
+class Connection(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
@@ -186,12 +245,16 @@ class Connection(object):
 
 # Register Connection in _falcon_core_impedance:
 _falcon_core_impedance.Connection_swigregister(Connection)
-class Impedance(object):
+class Impedance(Song):
     thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def __init__(self, connection, resistance, capacitance):
         _falcon_core_impedance.Impedance_swiginit(self, _falcon_core_impedance.new_Impedance(connection, resistance, capacitance))
+
+    @staticmethod
+    def create(connection, resistance, capacitance):
+        return _falcon_core_impedance.Impedance_create(connection, resistance, capacitance)
 
     def connection(self):
         return _falcon_core_impedance.Impedance_connection(self)
@@ -207,6 +270,10 @@ class Impedance(object):
 
     def __ne__(self, other):
         return _falcon_core_impedance.Impedance___ne__(self, other)
+
+    @staticmethod
+    def from_json_string(json):
+        return _falcon_core_impedance.Impedance_from_json_string(json)
     __swig_destroy__ = _falcon_core_impedance.delete_Impedance
 
 # Register Impedance in _falcon_core_impedance:
@@ -223,6 +290,15 @@ class ImpedanceSP(object):
 
     def capacitance(self):
         return _falcon_core_impedance.ImpedanceSP_capacitance(self)
+
+    def to_json_string(self):
+        return _falcon_core_impedance.ImpedanceSP_to_json_string(self)
+
+    def __eq__(self, other):
+        return _falcon_core_impedance.ImpedanceSP___eq__(self, other)
+
+    def __neq__(self, other):
+        return _falcon_core_impedance.ImpedanceSP___neq__(self, other)
 
     def __init__(self):
         _falcon_core_impedance.ImpedanceSP_swiginit(self, _falcon_core_impedance.new_ImpedanceSP())

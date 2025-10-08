@@ -67,6 +67,9 @@ class List : public generic::Song {
    *   @endcode
    */
   List() : _items(std::vector<StoredValue>()) {}
+  static std::shared_ptr<List<Value>> empty() {
+    return std::make_shared<List<Value>>();
+  }
   List(size_t count) {
     if constexpr (std::is_base_of_v<Song, Value>) {
       throw std::invalid_argument(
@@ -74,6 +77,9 @@ class List : public generic::Song {
     } else {
       _items = Container(count);
     }
+  }
+  static std::shared_ptr<List<Value>> allocate(size_t count) {
+    return std::make_shared<List<Value>>(count);
   }
   List(size_t count, const StoredValue& value) {
     if (!value) {
@@ -83,10 +89,17 @@ class List : public generic::Song {
     }
     _items = Container(count, value);
   }
+  static std::shared_ptr<List<Value>> fill_value(size_t             count,
+                                                 const StoredValue& value) {
+    return std::make_shared<List<Value>>(count, value);
+  }
   List(const Container& init) : _items() {
     for (const auto& item : init) {
       push_back(item);
     }
+  }
+  static std::shared_ptr<List<Value>> create(const Container& init) {
+    return std::make_shared<List<Value>>(init);
   }
   List<Value>(const List<Value>&)                = default;
   List<Value>(List<Value>&&) noexcept            = default;

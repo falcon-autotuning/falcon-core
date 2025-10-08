@@ -2,9 +2,9 @@
 
 namespace falcon_core::physics::device_structures {
 
-Impedance::Impedance(std::shared_ptr<Connection> connection,
-                     double                      resistance,
-                     double                      capacitance)
+Impedance::Impedance(ConnectionSP connection,
+                     double       resistance,
+                     double       capacitance)
     : _connection(connection),
       _resistance(resistance),
       _capacitance(capacitance) {
@@ -14,6 +14,11 @@ Impedance::Impedance(std::shared_ptr<Connection> connection,
 }
 
 Impedance::Impedance() = default;
+ImpedanceSP Impedance::create(const ConnectionSP connection,
+                              const double       resistance,
+                              double             capacitance) {
+  return std::make_shared<Impedance>(connection, resistance, capacitance);
+}
 ConnectionSP Impedance::connection() const { return _connection; }
 double       Impedance::resistance() const { return _resistance; }
 double       Impedance::capacitance() const { return _capacitance; }

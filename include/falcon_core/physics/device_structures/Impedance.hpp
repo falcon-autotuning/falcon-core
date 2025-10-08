@@ -16,6 +16,9 @@ class Impedance : public generic::Song {
   Impedance(std::shared_ptr<Connection> connection,
             double                      resistance,
             double                      capacitance);
+  static std::shared_ptr<Impedance> create(const ConnectionSP connection,
+                                           const double       resistance,
+                                           const double       capacitance);
   /*
    * @brief Gets the connection leading to the fridge with this impedance
    * @return A shared pointer to the BaseConnection

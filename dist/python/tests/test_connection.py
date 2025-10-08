@@ -44,3 +44,18 @@ def test_ohmic_construction():
     assert screening.is_ohmic()
     assert not screening.is_dot_gate()
     assert not screening.is_gate()
+
+
+def test_serialization():
+    barrier = Connection.BarrierGate("B3")
+    string = barrier.to_json_string()
+    barrier_clone = Connection.from_json_string(string)
+    assert barrier == barrier_clone
+
+
+def test_equality():
+    barrier = Connection.BarrierGate("B3")
+    barrier_clone = barrier
+    assert barrier == barrier_clone
+    plunger = Connection.PlungerGate("P1")
+    assert barrier != plunger
