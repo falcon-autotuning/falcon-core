@@ -1,5 +1,5 @@
 #pragma once
-#include "falcon_core/generic/IsPrimitive.hpp"
+#include "falcon_core/generic/CategoryTags.hpp"
 #include "falcon_core/generic/Song.hpp"
 namespace falcon_core::generic {
 template <typename T1, typename T2>
@@ -44,35 +44,11 @@ class Pair : public generic::Song {
    * @brief Get the stored second value.
    */
   StoredT2& second() { return _second; }
-  // Case 1: Both T1 and T2 are primitive
-  template <typename U1 = T1, typename U2 = T2>
-    requires is_primitive<U1>::value && is_primitive<U2>::value
-  bool operator==(const Pair<T1, T2>& other) const {
-    return (_first == other._first) && (_second == other._second);
-  }
 
-  // Case 2: T1 is primitive, T2 is Song
-  template <typename U1 = T1, typename U2 = T2>
-    requires is_primitive<U1>::value && std::is_base_of_v<Song, U2> &&
-             (!is_primitive<U2>::value)
   bool operator==(const Pair<T1, T2>& other) const {
-    return (_first == other._first) && (*_second == *other._second);
-  }
-
-  // Case 3: T1 is Song, T2 is primitive
-  template <typename U1 = T1, typename U2 = T2>
-    requires std::is_base_of_v<Song, U1> && (!is_primitive<U1>::value) &&
-             is_primitive<U2>::value
-  bool operator==(const Pair<T1, T2>& other) const {
-    return (*_first == *other._first) && (_second == other._second);
-  }
-
-  // Case 4: Both T1 and T2 are Song
-  template <typename U1 = T1, typename U2 = T2>
-    requires std::is_base_of_v<Song, U1> && (!is_primitive<U1>::value) &&
-             std::is_base_of_v<Song, U2> && (!is_primitive<U2>::value)
-  bool operator==(const Pair<T1, T2>& other) const {
-    return (*_first == *other._first) && (*_second == *other._second);
+    return operator_equal_impl(other,
+                               typename category::determine_tag<T1>::type{},
+                               typename category::determine_tag<T2>::type{});
   }
   bool operator!=(const Pair<T1, T2>& other) const { return !(*this == other); }
 
@@ -82,6 +58,34 @@ class Pair : public generic::Song {
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this), _first, _second);
+  }
+  // Case 1: Both T1 and T2 are primitive
+  template <typename U1, typename U2>
+  bool operator_equal_impl(const Pair<U1, U2>& other,
+                           category::primitive_tag,
+                           category::primitive_tag) const {
+    return (_first == other._first) && (_second == other._second);
+  }
+  // Case 2: T1 is primitive, T2 is Song
+  template <typename U1, typename U2>
+  bool operator_equal_impl(const Pair<U1, U2>& other,
+                           category::primitive_tag,
+                           category::song_tag) const {
+    return (_first == other._first) && (*_second == *other._second);
+  }
+  // Case 3: U1 is a Song and U2 is primitive
+  template <typename U1, typename U2>
+  bool operator_equal_impl(const Pair<U1, U2>& other,
+                           category::song_tag,
+                           category::primitive_tag) const {
+    return (*_first == *other._first) && (_second == other._second);
+  }
+  // Case 4: Both U1 and U2 are Song
+  template <typename U1, typename U2>
+  bool operator_equal_impl(const Pair<U1, U2>& other,
+                           category::song_tag,
+                           category::song_tag) const {
+    return (*_first == *other._first) && (*_second == *other._second);
   }
 };
 template <typename T1, typename T2>

@@ -41,36 +41,9 @@ class Axes : public generic::List<Value> {
    */
   explicit Axes(const generic::ListSP<Value>& items)
       : generic::List<Value>(list_check_and_deref<Value>(items)) {}
-  template <typename T = Value>
-    requires std::is_base_of_v<generic::Song, T> &&
-             (!generic::is_primitive<T>::value)
-  bool operator==(const Axes<T>& other) const {
-    if (this->size() != other.size()) {
-      return false;
-    }
-    for (size_t i = 0; i < this->size(); i++) {
-      const std::shared_ptr<T> our_conn   = this->at(i);
-      const std::shared_ptr<T> other_conn = other.at(i);
-      if (*our_conn != *other_conn) {
-        return false;
-      }
-    }
-    return true;
-  }
-  template <typename T = Value>
-    requires generic::is_primitive<T>::value
-  bool operator==(const Axes<T>& other) const {
-    if (this->size() != other.size()) {
-      return false;
-    }
-    for (size_t i = 0; i < this->size(); i++) {
-      const T our_conn   = this->at(i);
-      const T other_conn = other.at(i);
-      if (our_conn != other_conn) {
-        return false;
-      }
-    }
-    return true;
+  bool operator==(const Axes<Value>& other) const {
+    return operator_equal_impl(
+        other, typename generic::category::determine_tag<Value>::type{});
   }
   bool operator!=(const Axes<Value>& other) const { return !(*this == other); }
 
@@ -79,6 +52,39 @@ class Axes : public generic::List<Value> {
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::List<Value>>(this));
+  }
+  bool operator_equal_impl(const Axes<Value>& other,
+                           generic::category::song_tag) const {
+    if (this->size() != other.size()) {
+      return false;
+    }
+    for (size_t i = 0; i < this->size(); i++) {
+      const std::shared_ptr<Value> our_conn   = this->at(i);
+      const std::shared_ptr<Value> other_conn = other.at(i);
+      if (*our_conn != *other_conn) {
+        return false;
+      }
+    }
+    return true;
+  }
+  bool operator_equal_impl(const Axes<Value>& other,
+                           generic::category::primitive_tag) const {
+    if (this->size() != other.size()) {
+      return false;
+    }
+    for (size_t i = 0; i < this->size(); i++) {
+      const Value our_conn   = this->at(i);
+      const Value other_conn = other.at(i);
+      if (our_conn != other_conn) {
+        return false;
+      }
+    }
+    return true;
+  }
+  bool operator_equal_impl(const Axes<Value>& other,
+                           generic::category::other_tag) const {
+    // Handle or static_assert if not supported
+    static_assert(sizeof(Value) == 0, "Unsupported type for List");
   }
 };
 template <typename V>

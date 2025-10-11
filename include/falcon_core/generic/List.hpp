@@ -4,22 +4,9 @@
 #include <memory>
 #include <stdexcept>
 
-#include "falcon_core/generic/IsPrimitive.hpp"
+#include "falcon_core/generic/CategoryTags.hpp"
 #include "falcon_core/generic/Song.hpp"
 namespace falcon_core::generic {
-namespace category {
-struct song_tag {};
-struct primitive_tag {};
-struct other_tag {};
-
-template <typename T>
-struct determine_tag {
-  using type = std::conditional_t<
-      std::is_base_of<Song, T>::value && !is_primitive<T>::value,
-      song_tag,
-      std::conditional_t<is_primitive<T>::value, primitive_tag, other_tag>>;
-};
-}  // namespace category
 template <typename Value>
 class List : public generic::Song {
   static_assert(!std::is_pointer<Value>::value,
@@ -37,109 +24,6 @@ class List : public generic::Song {
 
  private:
   Container _items;
-
- protected:
-  template <typename T>
-  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
-    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
-    _items.push_back(item);
-  }
-  template <typename T>
-  void push_back_impl(const T& item, category::primitive_tag) {
-    _items.push_back(item);
-  }
-  template <typename T>
-  void push_back_impl(const T& item, category::other_tag) {
-    // Handle or static_assert if not supported
-    static_assert(sizeof(T) == 0, "Unsupported type for List");
-  }
-  template <typename T>
-  bool contains_impl(const std::shared_ptr<T>& value, category::song_tag) {
-    if (!value) {
-      throw std::invalid_argument(
-          "List: The value must be specified and not null to check if this "
-          "list contains it.");
-    }
-
-    return std::any_of(
-        _items.begin(), _items.end(), [&value](const StoredValue& item) {
-          return *item == *value;
-        });
-  }
-  template <typename T>
-  bool contains_impl(const T& value, category::primitive_tag) {
-    return std::any_of(
-        _items.begin(), _items.end(), [&value](const StoredValue& item) {
-          return item == value;
-        });
-  }
-  template <typename T>
-  bool contains_impl(const T& value, category::other_tag) {
-    // Handle or static_assert if not supported
-    static_assert(sizeof(T) == 0, "Unsupported type for List");
-  }
-  template <typename T>
-  size_t index_impl(const std::shared_ptr<T>& value, category::song_tag) {
-    if (!value) {
-      throw std::invalid_argument(
-          "List: The value must be specified and not null to find its "
-          "index.");
-    }
-
-    for (size_t i = 0; i < _items.size(); ++i) {
-      if (*_items[i] == *value) {
-        return i;
-      }
-    }
-    throw std::out_of_range("List: Value not found in List");
-  }
-  template <typename T>
-  size_t index_impl(const T& value, category::primitive_tag) {
-    for (size_t i = 0; i < _items.size(); ++i) {
-      if (_items[i] == value) {
-        return i;
-      }
-    }
-    throw std::out_of_range("Value not found in List");
-  }
-  template <typename T>
-  size_t index_impl(const T& value, category::other_tag) {
-    // Handle or static_assert if not supported
-    static_assert(sizeof(T) == 0, "Unsupported type for List");
-  }
-  template <typename T>
-  bool operator_equal_impl(const List<Value>& other, category::song_tag) {
-    if (size() != other.size()) {
-      return false;
-    }
-    for (size_t i = 0; i < size(); i++) {
-      const std::shared_ptr<Value> our_conn   = this->at(i);
-      const std::shared_ptr<Value> other_conn = other.at(i);
-      if (*our_conn != *other_conn) {
-        return false;
-      }
-    }
-    return true;
-  }
-  template <typename T>
-  bool operator_equal_impl(const List<Value>& other, category::primitive_tag) {
-    if (size() != other.size()) {
-      return false;
-    }
-    for (size_t i = 0; i < size(); i++) {
-      const Value our_conn   = this->at(i);
-      const Value other_conn = other.at(i);
-      if (our_conn != other_conn) {
-        return false;
-      }
-    }
-    return true;
-  }
-  template <typename T>
-  bool operator_equal_impl(const List<Value>& other, category::other_tag) {
-    // Handle or static_assert if not supported
-    static_assert(sizeof(T) == 0, "Unsupported type for List");
-  }
 
  public:
   using iterator       = typename Container::iterator;
@@ -222,6 +106,18 @@ class List : public generic::Song {
   List<Value>& operator=(List<Value>&&) noexcept = default;
   void         push_back(const StoredValue& item) {
     push_back_impl(item, typename category::determine_tag<Value>::type{});
+  }
+  void insert(iterator pos, const_iterator first, const_iterator last)
+  // FIXME: Might be broken for single items in list
+  {
+    if (std::is_base_of<Song, Value>::value) {
+      for (auto it = first; it != last; ++it) {
+        if (!*it) {
+          throw std::invalid_argument("List: Cannot insert nullptr element.");
+        }
+      }
+    }
+    _items.insert(pos, first, last);
   }
 
   size_t             size() const { return _items.size(); }
@@ -324,6 +220,107 @@ class List : public generic::Song {
 
  protected:
   friend class cereal::access;
+  template <typename T>
+  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
+    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
+    _items.push_back(item);
+  }
+  template <typename T>
+  void push_back_impl(const T& item, category::primitive_tag) {
+    _items.push_back(item);
+  }
+  template <typename T>
+  void push_back_impl(const T& item, category::other_tag) {
+    // Handle or static_assert if not supported
+    static_assert(sizeof(T) == 0, "Unsupported type for List");
+  }
+  template <typename T>
+  bool contains_impl(const std::shared_ptr<T>& value,
+                     category::song_tag) const {
+    if (!value) {
+      throw std::invalid_argument(
+          "List: The value must be specified and not null to check if this "
+          "list contains it.");
+    }
+
+    return std::any_of(
+        _items.begin(), _items.end(), [&value](const StoredValue& item) {
+          return *item == *value;
+        });
+  }
+  template <typename T>
+  bool contains_impl(const T& value, category::primitive_tag) const {
+    return std::any_of(
+        _items.begin(), _items.end(), [&value](const StoredValue& item) {
+          return item == value;
+        });
+  }
+  template <typename T>
+  bool contains_impl(const T& value, category::other_tag) const {
+    // Handle or static_assert if not supported
+    static_assert(sizeof(T) == 0, "Unsupported type for List");
+  }
+  template <typename T>
+  size_t index_impl(const std::shared_ptr<T>& value, category::song_tag) const {
+    if (!value) {
+      throw std::invalid_argument(
+          "List: The value must be specified and not null to find its "
+          "index.");
+    }
+
+    for (size_t i = 0; i < _items.size(); ++i) {
+      if (*_items[i] == *value) {
+        return i;
+      }
+    }
+    throw std::out_of_range("List: Value not found in List");
+  }
+  template <typename T>
+  size_t index_impl(const T& value, category::primitive_tag) const {
+    for (size_t i = 0; i < _items.size(); ++i) {
+      if (_items[i] == value) {
+        return i;
+      }
+    }
+    throw std::out_of_range("Value not found in List");
+  }
+  template <typename T>
+  size_t index_impl(const T& value, category::other_tag) const {
+    // Handle or static_assert if not supported
+    static_assert(sizeof(T) == 0, "Unsupported type for List");
+  }
+  bool operator_equal_impl(const List<Value>& other, category::song_tag) const {
+    if (size() != other.size()) {
+      return false;
+    }
+    for (size_t i = 0; i < size(); i++) {
+      const std::shared_ptr<Value> our_conn   = this->at(i);
+      const std::shared_ptr<Value> other_conn = other.at(i);
+      if (*our_conn != *other_conn) {
+        return false;
+      }
+    }
+    return true;
+  }
+  bool operator_equal_impl(const List<Value>& other,
+                           category::primitive_tag) const {
+    if (size() != other.size()) {
+      return false;
+    }
+    for (size_t i = 0; i < size(); i++) {
+      const Value our_conn   = this->at(i);
+      const Value other_conn = other.at(i);
+      if (our_conn != other_conn) {
+        return false;
+      }
+    }
+    return true;
+  }
+  bool operator_equal_impl(const List<Value>& other,
+                           category::other_tag) const {
+    // Handle or static_assert if not supported
+    static_assert(sizeof(Value) == 0, "Unsupported type for List");
+  }
 };
 template <typename Value>
 using ListSP = std::shared_ptr<List<Value>>;
