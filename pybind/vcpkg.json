@@ -1,5 +1,5 @@
 {
-  "name": "falcon-core",
+  "name": "falcon-core-pybind",
   "version": "1.0.0",
   "dependencies": [
     {

@@ -6,8 +6,20 @@
 
 #include "falcon_core/generic/IsPrimitive.hpp"
 #include "falcon_core/generic/Song.hpp"
-namespace falcon_core {
-namespace generic {
+namespace falcon_core::generic {
+namespace category {
+struct song_tag {};
+struct primitive_tag {};
+struct other_tag {};
+
+template <typename T>
+struct determine_tag {
+  using type = std::conditional_t<
+      std::is_base_of<Song, T>::value && !is_primitive<T>::value,
+      song_tag,
+      std::conditional_t<is_primitive<T>::value, primitive_tag, other_tag>>;
+};
+}  // namespace category
 template <typename Value>
 class List : public generic::Song {
   static_assert(!std::is_pointer<Value>::value,
@@ -25,6 +37,20 @@ class List : public generic::Song {
 
  private:
   Container _items;
+  template <typename T>
+  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
+    if (!item) throw std::invalid_argument("Cannot push nullptr");
+    _items.push_back(item);
+  }
+  template <typename T>
+  void push_back_impl(const T& item, category::primitive_tag) {
+    _items.push_back(item);
+  }
+  template <typename T>
+  void push_back_impl(const T& item, category::other_tag) {
+    // Handle or static_assert if not supported
+    static_assert(sizeof(T) == 0, "Unsupported type for List");
+  }
 
  public:
   using iterator       = typename Container::iterator;
@@ -67,7 +93,7 @@ class List : public generic::Song {
    *   @endcode
    */
   List() : _items(std::vector<StoredValue>()) {}
-  static std::shared_ptr<List<Value>> empty() {
+  static std::shared_ptr<List<Value>> create_empty() {
     return std::make_shared<List<Value>>();
   }
   List(size_t count) {
@@ -106,19 +132,13 @@ class List : public generic::Song {
   List<Value>& operator=(const List<Value>&)     = default;
   List<Value>& operator=(List<Value>&&) noexcept = default;
   template <typename T = Value>
-    requires std::is_base_of_v<Song, T> && (!is_primitive<T>::value)
   void push_back(const std::shared_ptr<T>& item) {
-    if (!item) {
-      throw std::invalid_argument(
-          "List: If an element is to be pushed back, it needs to not be "
-          "null");
-    }
-    _items.push_back(item);
+    push_back_impl(item, typename category::determine_tag<T>::type{});
   }
+
   template <typename T = Value>
-    requires is_primitive<T>::value
   void push_back(const T& item) {
-    _items.push_back(item);
+    push_back_impl(item, typename category::determine_tag<T>::type{});
   }
   size_t             size() const { return _items.size(); }
   bool               empty() const { return _items.empty(); }
@@ -300,5 +320,4 @@ class List : public generic::Song {
 };
 template <typename Value>
 using ListSP = std::shared_ptr<List<Value>>;
-}  // namespace generic
-}  // namespace falcon_core
+}  // namespace falcon_core::generic
