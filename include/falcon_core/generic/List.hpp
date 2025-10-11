@@ -37,9 +37,11 @@ class List : public generic::Song {
 
  private:
   Container _items;
+
+ protected:
   template <typename T>
   void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
-    if (!item) throw std::invalid_argument("Cannot push nullptr");
+    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
     _items.push_back(item);
   }
   template <typename T>
@@ -48,6 +50,93 @@ class List : public generic::Song {
   }
   template <typename T>
   void push_back_impl(const T& item, category::other_tag) {
+    // Handle or static_assert if not supported
+    static_assert(sizeof(T) == 0, "Unsupported type for List");
+  }
+  template <typename T>
+  bool contains_impl(const std::shared_ptr<T>& value, category::song_tag) {
+    if (!value) {
+      throw std::invalid_argument(
+          "List: The value must be specified and not null to check if this "
+          "list contains it.");
+    }
+
+    return std::any_of(
+        _items.begin(), _items.end(), [&value](const StoredValue& item) {
+          return *item == *value;
+        });
+  }
+  template <typename T>
+  bool contains_impl(const T& value, category::primitive_tag) {
+    return std::any_of(
+        _items.begin(), _items.end(), [&value](const StoredValue& item) {
+          return item == value;
+        });
+  }
+  template <typename T>
+  bool contains_impl(const T& value, category::other_tag) {
+    // Handle or static_assert if not supported
+    static_assert(sizeof(T) == 0, "Unsupported type for List");
+  }
+  template <typename T>
+  size_t index_impl(const std::shared_ptr<T>& value, category::song_tag) {
+    if (!value) {
+      throw std::invalid_argument(
+          "List: The value must be specified and not null to find its "
+          "index.");
+    }
+
+    for (size_t i = 0; i < _items.size(); ++i) {
+      if (*_items[i] == *value) {
+        return i;
+      }
+    }
+    throw std::out_of_range("List: Value not found in List");
+  }
+  template <typename T>
+  size_t index_impl(const T& value, category::primitive_tag) {
+    for (size_t i = 0; i < _items.size(); ++i) {
+      if (_items[i] == value) {
+        return i;
+      }
+    }
+    throw std::out_of_range("Value not found in List");
+  }
+  template <typename T>
+  size_t index_impl(const T& value, category::other_tag) {
+    // Handle or static_assert if not supported
+    static_assert(sizeof(T) == 0, "Unsupported type for List");
+  }
+  template <typename T>
+  bool operator_equal_impl(const List<Value>& other, category::song_tag) {
+    if (size() != other.size()) {
+      return false;
+    }
+    for (size_t i = 0; i < size(); i++) {
+      const std::shared_ptr<Value> our_conn   = this->at(i);
+      const std::shared_ptr<Value> other_conn = other.at(i);
+      if (*our_conn != *other_conn) {
+        return false;
+      }
+    }
+    return true;
+  }
+  template <typename T>
+  bool operator_equal_impl(const List<Value>& other, category::primitive_tag) {
+    if (size() != other.size()) {
+      return false;
+    }
+    for (size_t i = 0; i < size(); i++) {
+      const Value our_conn   = this->at(i);
+      const Value other_conn = other.at(i);
+      if (our_conn != other_conn) {
+        return false;
+      }
+    }
+    return true;
+  }
+  template <typename T>
+  bool operator_equal_impl(const List<Value>& other, category::other_tag) {
     // Handle or static_assert if not supported
     static_assert(sizeof(T) == 0, "Unsupported type for List");
   }
@@ -97,7 +186,7 @@ class List : public generic::Song {
     return std::make_shared<List<Value>>();
   }
   List(size_t count) {
-    if constexpr (std::is_base_of_v<Song, Value>) {
+    if (std::is_base_of<Song, Value>::value) {
       throw std::invalid_argument(
           "List: Default-initialized List of shared_ptr is not allowed");
     } else {
@@ -131,15 +220,10 @@ class List : public generic::Song {
   List<Value>(List<Value>&&) noexcept            = default;
   List<Value>& operator=(const List<Value>&)     = default;
   List<Value>& operator=(List<Value>&&) noexcept = default;
-  template <typename T = Value>
-  void push_back(const std::shared_ptr<T>& item) {
-    push_back_impl(item, typename category::determine_tag<T>::type{});
+  void         push_back(const StoredValue& item) {
+    push_back_impl(item, typename category::determine_tag<Value>::type{});
   }
 
-  template <typename T = Value>
-  void push_back(const T& item) {
-    push_back_impl(item, typename category::determine_tag<T>::type{});
-  }
   size_t             size() const { return _items.size(); }
   bool               empty() const { return _items.empty(); }
   const StoredValue& at(const size_t idx) const {
@@ -166,66 +250,15 @@ class List : public generic::Song {
   iterator           end() { return _items.end(); }
   const_iterator     begin() const { return _items.begin(); }
   const_iterator     end() const { return _items.end(); }
-  template <typename T = Value>
-    requires std::is_base_of_v<Song, T> && (!is_primitive<T>::value)
-  bool contains(const std::shared_ptr<T>& value) const {
-    if (!value) {
-      throw std::invalid_argument(
-          "List: The value must be specified and not null to check if this "
-          "list contains it.");
-    }
+  bool               contains(const StoredValue& value) const {
+    return contains_impl(value,
+                         typename category::determine_tag<Value>::type{});
+  }
 
-    return std::any_of(
-        _items.begin(), _items.end(), [&value](const StoredValue& item) {
-          return *item == *value;
-        });
+  size_t index(const StoredValue& value) const {
+    return index_impl(value, typename category::determine_tag<Value>::type{});
   }
-  template <typename T = Value>
-    requires is_primitive<T>::value
-  bool contains(const T& value) const {
-    return std::any_of(
-        _items.begin(), _items.end(), [&value](const StoredValue& item) {
-          return item == value;
-        });
-  }
-  template <typename T = Value>
-    requires std::is_base_of_v<Song, T> && (!is_primitive<T>::value)
-  size_t index(const std::shared_ptr<T>& value) const {
-    if (!value) {
-      throw std::invalid_argument(
-          "List: The value must be specified and not null to find its "
-          "index.");
-    }
 
-    for (size_t i = 0; i < _items.size(); ++i) {
-      if (*_items[i] == *value) {
-        return i;
-      }
-    }
-    throw std::out_of_range("List: Value not found in List");
-  }
-  template <typename T = Value>
-    requires is_primitive<T>::value
-  size_t index(const T& value) const {
-    for (size_t i = 0; i < _items.size(); ++i) {
-      if (_items[i] == value) {
-        return i;
-      }
-    }
-    throw std::out_of_range("Value not found in List");
-  }
-  void insert(iterator pos, const_iterator first, const_iterator last)
-  // FIXME: Might be broken for single items in list
-  {
-    if constexpr (std::is_base_of_v<Song, Value>) {
-      for (auto it = first; it != last; ++it) {
-        if (!*it) {
-          throw std::invalid_argument("List: Cannot insert nullptr element.");
-        }
-      }
-    }
-    _items.insert(pos, first, last);
-  }
   /**
    * @brief Finds the intersection between this list and another.
    * @param other the other list to compare again.
@@ -283,35 +316,9 @@ class List : public generic::Song {
   void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this), _items);
   }
-  template <typename T = Value>
-    requires std::is_base_of_v<Song, T> && (!is_primitive<T>::value)
   bool operator==(const List<Value>& other) const {
-    if (size() != other.size()) {
-      return false;
-    }
-    for (size_t i = 0; i < size(); i++) {
-      const std::shared_ptr<Value> our_conn   = this->at(i);
-      const std::shared_ptr<Value> other_conn = other.at(i);
-      if (*our_conn != *other_conn) {
-        return false;
-      }
-    }
-    return true;
-  }
-  template <typename T = Value>
-    requires is_primitive<T>::value
-  bool operator==(const List<Value>& other) const {
-    if (size() != other.size()) {
-      return false;
-    }
-    for (size_t i = 0; i < size(); i++) {
-      const Value our_conn   = this->at(i);
-      const Value other_conn = other.at(i);
-      if (our_conn != other_conn) {
-        return false;
-      }
-    }
-    return true;
+    return operator_equal_impl(other,
+                               typename category::determine_tag<Value>::type{});
   }
   bool operator!=(const List<Value>& other) const { return !(*this == other); }
 
