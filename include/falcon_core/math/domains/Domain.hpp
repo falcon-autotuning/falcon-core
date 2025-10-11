@@ -2,7 +2,9 @@
 
 #include "falcon_core/generic/Song.hpp"
 
-namespace falcon_core::math::domains {
+namespace falcon_core {
+namespace math {
+namespace domains {
 
 class Domain : public generic::Song {
   double _lesser_bound;
@@ -148,4 +150,6 @@ class Domain : public generic::Song {
   }
 };
 using DomainSP = std::shared_ptr<Domain>;
-}  // namespace falcon_core::math::domains
+}  // namespace domains
+}  // namespace math
+}  // namespace falcon_core

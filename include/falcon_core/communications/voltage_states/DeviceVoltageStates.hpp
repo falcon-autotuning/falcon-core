@@ -3,7 +3,9 @@
 #include "falcon_core/communications/voltage_states/DeviceVoltageState.hpp"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/math/Point.hpp"
-namespace falcon_core::communications::voltage_states {
+namespace falcon_core {
+namespace communications {
+namespace voltage_states {
 
 class DeviceVoltageStates : public generic::List<DeviceVoltageState> {
  public:
@@ -42,4 +44,6 @@ class DeviceVoltageStates : public generic::List<DeviceVoltageState> {
   }
 };
 using DeviceVoltageStatesSP = std::shared_ptr<DeviceVoltageStates>;
-}  // namespace falcon_core::communications::voltage_states
+}  // namespace voltage_states
+}  // namespace communications
+}  // namespace falcon_core

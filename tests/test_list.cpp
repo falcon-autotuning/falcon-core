@@ -3,7 +3,6 @@
 #include <stdexcept>
 
 #include "falcon_core/generic/List.hpp"
-#include "xtensor/reducers/xreducer.hpp"
 
 namespace {
 using namespace falcon_core;

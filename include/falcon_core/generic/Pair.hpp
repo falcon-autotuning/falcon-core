@@ -1,7 +1,8 @@
 #pragma once
 #include "falcon_core/generic/CategoryTags.hpp"
 #include "falcon_core/generic/Song.hpp"
-namespace falcon_core::generic {
+namespace falcon_core {
+namespace generic {
 template <typename T1, typename T2>
 class Pair : public generic::Song {
   static_assert(!std::is_pointer<T1>::value,
@@ -90,4 +91,5 @@ class Pair : public generic::Song {
 };
 template <typename T1, typename T2>
 using PairSP = std::shared_ptr<Pair<T1, T2>>;
-}  // namespace falcon_core::generic
+}  // namespace generic
+}  // namespace falcon_core

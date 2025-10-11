@@ -3,7 +3,9 @@
 #include <falcon_core/math/Quantity.hpp>
 #include <falcon_core/physics/device_structures/Connection.hpp>
 
-namespace falcon_core::communications::voltage_states {
+namespace falcon_core {
+namespace communications {
+namespace voltage_states {
 
 class DeviceVoltageState : public math::Quantity {
   physics::device_structures::ConnectionSP _connection;
@@ -27,4 +29,6 @@ class DeviceVoltageState : public math::Quantity {
   }
 };
 using DeviceVoltageStateSP = std::shared_ptr<DeviceVoltageState>;
-}  // namespace falcon_core::communications::voltage_states
+}  // namespace voltage_states
+}  // namespace communications
+}  // namespace falcon_core

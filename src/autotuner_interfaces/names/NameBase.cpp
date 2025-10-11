@@ -2,7 +2,9 @@
 
 #include <stdexcept>
 
-namespace falcon_core::autotuner_interfaces::names {
+namespace falcon_core {
+namespace autotuner_interfaces {
+namespace names {
 
 NameBase::NameBase(const std::string& name, const std::string& index_string)
     : _name(name), _index_string(index_string) {
@@ -31,7 +33,9 @@ NameBaseSP NameBase::operator-(const NameBaseSP& other) const {
   return std::make_shared<NameBase>(this->num() - other->num(),
                                     this->_index_string);
 }
-}  // namespace falcon_core::autotuner_interfaces::names
+}  // namespace names
+}  // namespace autotuner_interfaces
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::autotuner_interfaces::names::NameBase)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,

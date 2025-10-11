@@ -3,7 +3,9 @@
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 
-namespace falcon_core::instrument_interfaces::names {
+namespace falcon_core {
+namespace instrument_interfaces {
+namespace names {
 
 // Generic collection of instrument ports
 class Ports : public generic::List<InstrumentPort> {
@@ -76,4 +78,6 @@ class Ports : public generic::List<InstrumentPort> {
   }
 };
 using PortsSP = std::shared_ptr<Ports>;
-}  // namespace falcon_core::instrument_interfaces::names
+}  // namespace names
+}  // namespace instrument_interfaces
+}  // namespace falcon_core

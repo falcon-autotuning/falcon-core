@@ -3,7 +3,9 @@
 #include <falcon_core/communications/messages/BaseMessage.hpp>
 #include <falcon_core/communications/voltage_states/DeviceVoltageStates.hpp>
 
-namespace falcon_core::communications::messages {
+namespace falcon_core {
+namespace communications {
+namespace messages {
 
 class VoltageStatesResponse : public BaseMessage {
   communications::voltage_states::DeviceVoltageStatesSP _states;
@@ -26,4 +28,6 @@ class VoltageStatesResponse : public BaseMessage {
   }
 };
 using VoltageStatesResponseSP = std::shared_ptr<VoltageStatesResponse>;
-}  // namespace falcon_core::communications::messages
+}  // namespace messages
+}  // namespace communications
+}  // namespace falcon_core

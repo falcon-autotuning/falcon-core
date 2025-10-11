@@ -2,7 +2,9 @@
 
 #include "falcon_core/generic/Song.hpp"
 
-namespace falcon_core::physics::device_structures {
+namespace falcon_core {
+namespace physics {
+namespace device_structures {
 enum class DeviceFeature {
   BarrierGate,
   PlungerGate,
@@ -98,4 +100,6 @@ class Connection : public virtual generic::Song {
   }
 };
 using ConnectionSP = std::shared_ptr<Connection>;
-}  // namespace falcon_core::physics::device_structures
+}  // namespace device_structures
+}  // namespace physics
+}  // namespace falcon_core

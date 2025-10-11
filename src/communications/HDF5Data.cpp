@@ -4,8 +4,8 @@
 
 #include <boost/uuid.hpp>
 #include <xtensor-io/xhighfive.hpp>
-#include <xtensor/io/xio.hpp>
 #include <xtensor/xarray.hpp>
+#include <xtensor/xio.hpp>
 
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon_core/communications/messages/MeasurementResponse.hpp"
@@ -14,7 +14,8 @@
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
 
-namespace falcon_core::communications {
+namespace falcon_core {
+namespace communications {
 HDF5Data::HDF5Data() = default;
 HDF5Data::HDF5Data(
     const math::AxesSP<int>&                                  shape,
@@ -389,7 +390,8 @@ HDF5Data::to_communications() const {
           std::string(_metadata->at("song_request")));
   return std::make_pair(response, request);
 }
-}  // namespace falcon_core::communications
+}  // namespace communications
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::communications::HDF5Data)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,

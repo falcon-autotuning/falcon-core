@@ -4,7 +4,10 @@
 #include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
 
-namespace falcon_core::physics::config::core {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace core {
 /**
  * @brief Base config functionality for core config classes.
  */
@@ -139,4 +142,7 @@ class StandardConfigConnections : public generic::Song {
   }
 };
 using StandardConfigConnectionsSP = std::shared_ptr<StandardConfigConnections>;
-}  // namespace falcon_core::physics::config::core
+}  // namespace core
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core

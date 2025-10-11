@@ -6,7 +6,9 @@
 /**
  * @brief A transform that maps a port to a time domain analytic function.
  */
-namespace falcon_core::instrument_interfaces::port_transforms {
+namespace falcon_core {
+namespace instrument_interfaces {
+namespace port_transforms {
 
 class PortTransform : public math::AnalyticFunction {
   names::InstrumentPortSP _port;
@@ -47,4 +49,6 @@ class PortTransform : public math::AnalyticFunction {
   PortTransform();
 };
 using PortTransformSP = std::shared_ptr<PortTransform>;
-}  // namespace falcon_core::instrument_interfaces::port_transforms
+}  // namespace port_transforms
+}  // namespace instrument_interfaces
+}  // namespace falcon_core

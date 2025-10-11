@@ -2,7 +2,8 @@
 
 #include <sstream>
 
-namespace falcon_core::generic {
+namespace falcon_core {
+namespace generic {
 std::string Song::to_json_string() const {
   std::ostringstream oss;
   to_json_stream(oss);
@@ -20,6 +21,7 @@ bool Song::operator==(const Song& other) const {
 }
 bool Song::operator!=(const Song& other) const { return !(*this == other); }
 
-}  // namespace falcon_core::generic
+}  // namespace generic
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::generic::Song)

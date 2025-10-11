@@ -2,7 +2,9 @@
 
 #include "falcon_core/autotuner_interfaces/names/NameBase.hpp"
 
-namespace falcon_core::autotuner_interfaces::names {
+namespace falcon_core {
+namespace autotuner_interfaces {
+namespace names {
 class Gname : public NameBase {
   std::string _index_string = "group";
 
@@ -25,4 +27,6 @@ class Gname : public NameBase {
   }
 };
 using GnameSP = std::shared_ptr<Gname>;
-}  // namespace falcon_core::autotuner_interfaces::names
+}  // namespace names
+}  // namespace autotuner_interfaces
+}  // namespace falcon_core

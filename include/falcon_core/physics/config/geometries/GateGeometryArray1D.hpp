@@ -6,7 +6,10 @@
 #include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
 
-namespace falcon_core::physics::config::geometries {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace geometries {
 
 /**
  * @brief A 1D array of quantum dots with left and right reservoirs, barrier
@@ -125,4 +128,7 @@ class GateGeometryArray1D : public generic::Song {
   }
 };
 using GateGeometryArray1DSP = std::shared_ptr<GateGeometryArray1D>;
-}  // namespace falcon_core::physics::config::geometries
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core

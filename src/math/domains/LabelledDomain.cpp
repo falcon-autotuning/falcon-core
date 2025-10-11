@@ -5,7 +5,9 @@
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/domains/Domain.hpp"
 
-namespace falcon_core::math::domains {
+namespace falcon_core {
+namespace math {
+namespace domains {
 LabelledDomain::LabelledDomain() = default;
 LabelledDomain::LabelledDomain(
     const std::string&                              default_name,
@@ -105,7 +107,9 @@ bool LabelledDomain::matching_port(
   }
   return _port && *_port == *port;
 }
-}  // namespace falcon_core::math::domains
+}  // namespace domains
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::domains::LabelledDomain)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::math::domains::Domain,

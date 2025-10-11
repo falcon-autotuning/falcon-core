@@ -4,7 +4,9 @@
 #include "falcon_core/math/Axes.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
-namespace falcon_core::autotuner_interfaces::interpretations {
+namespace falcon_core {
+namespace autotuner_interfaces {
+namespace interpretations {
 
 /**
  * @brief A context that describes measurement variables.
@@ -96,4 +98,6 @@ class InterpretationContext : public generic::Song {
   }
 };
 using InterpretationContextSP = std::shared_ptr<InterpretationContext>;
-}  // namespace falcon_core::autotuner_interfaces::interpretations
+}  // namespace interpretations
+}  // namespace autotuner_interfaces
+}  // namespace falcon_core

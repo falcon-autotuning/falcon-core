@@ -10,16 +10,18 @@
 #include "falcon_core/math/arrays/LabelledControlArray.hpp"
 #include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
 #include "falcon_core/math/arrays/MeasuredArray.hpp"
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 /**
  * @brief Container for multiple labelled arrays.
  * @param T Type of labelled array.
  */
 template <typename ArrayType>
 class LabelledArrays : public generic::List<ArrayType> {
-  static_assert(std::is_base_of_v<generic::FArray<double>, ArrayType>,
+  static_assert(std::is_base_of<generic::FArray<double>, ArrayType>::value,
                 "T must inherit from FArray");
-  static_assert(std::is_base_of_v<IsLabelled<double>, ArrayType>,
+  static_assert(std::is_base_of<IsLabelled<double>, ArrayType>::value,
                 "T must inherit from IsLabelled");
 
  public:
@@ -113,23 +115,6 @@ class LabelledArrays : public generic::List<ArrayType> {
 };
 template <typename T>
 using LabelledArraysSP = std::shared_ptr<LabelledArrays<T>>;
-}  // namespace falcon_core::math::arrays
-#ifndef SWIG
-CEREAL_REGISTER_TYPE(falcon_core::math::arrays::LabelledArrays<
-                     falcon_core::math::arrays::LabelledMeasuredArray>)
-CEREAL_REGISTER_TYPE(falcon_core::math::arrays::LabelledArrays<
-                     falcon_core::math::arrays::LabelledControlArray>)
-CEREAL_REGISTER_TYPE(falcon_core::generic::List<
-                     falcon_core::math::arrays::LabelledMeasuredArray>)
-CEREAL_REGISTER_TYPE(
-    falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::List<
-        falcon_core::math::arrays::LabelledMeasuredArray>,
-    falcon_core::math::arrays::LabelledArrays<
-        falcon_core::math::arrays::LabelledMeasuredArray>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>,
-    falcon_core::math::arrays::LabelledArrays<
-        falcon_core::math::arrays::LabelledControlArray>)
-#endif  // !SWIG
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core

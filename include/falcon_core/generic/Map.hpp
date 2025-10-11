@@ -4,7 +4,8 @@
 
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Pair.hpp"
-namespace falcon_core::generic {
+namespace falcon_core {
+namespace generic {
 
 template <typename Key, typename Value>
 class Map : public virtual generic::Song {
@@ -36,8 +37,8 @@ class Map : public virtual generic::Song {
     }
   }
 
-  void insert_or_assign(const ContainerItem::StoredT1& key,
-                        const ContainerItem::StoredT2& value) {
+  void insert_or_assign(const typename ContainerItem::StoredT1& key,
+                        const typename ContainerItem::StoredT2& value) {
     auto it = find(key);
     if (it != _items->end()) {
       (*it)->second() = value;
@@ -46,8 +47,9 @@ class Map : public virtual generic::Song {
     }
   }
 
-  std::pair<iterator, bool> insert(const ContainerItem::StoredT1& key,
-                                   const ContainerItem::StoredT2& value) {
+  std::pair<iterator, bool> insert(
+      const typename ContainerItem::StoredT1& key,
+      const typename ContainerItem::StoredT2& value) {
     auto it = find(key);
     if (it != _items->end()) {
       return {it, false};
@@ -85,18 +87,21 @@ class Map : public virtual generic::Song {
   }
 
   // at
-  ContainerItem::StoredT2 at(const ContainerItem::StoredT1& key) {
+  typename ContainerItem::StoredT2 at(
+      const typename ContainerItem::StoredT1& key) {
     iterator it = find(key);
     if (it == _items->end()) throw std::out_of_range("Map: Key not found");
     return (*it)->second();
   }
-  const ContainerItem::StoredT2 at(const ContainerItem::StoredT1& key) const {
+  const typename ContainerItem::StoredT2 at(
+      const typename ContainerItem::StoredT1& key) const {
     const_iterator it = find(key);
     if (it == _items->end()) throw std::out_of_range("Map: Key not found");
     return (*it)->second();
   }
 
-  ContainerItem::StoredT2& operator[](const ContainerItem::StoredT1& key) {
+  typename ContainerItem::StoredT2& operator[](
+      const typename ContainerItem::StoredT1& key) {
     auto it = find(key);
     if (it != _items->end()) {
       return (*it)->second();
@@ -107,7 +112,7 @@ class Map : public virtual generic::Song {
   }
 
   // erase
-  void erase(const ContainerItem::StoredT1& key) {
+  void erase(const typename ContainerItem::StoredT1& key) {
     auto it = find(key);
     if (it != _items->end()) {
       auto idx = it - _items->begin();
@@ -133,7 +138,7 @@ class Map : public virtual generic::Song {
   const_iterator cend() const { return _items->cend(); }
 
   // contains
-  bool contains(const ContainerItem::StoredT1& key) const {
+  bool contains(const typename ContainerItem::StoredT1& key) const {
     return find(key) != _items->end();
   }
 
@@ -193,4 +198,5 @@ class Map : public virtual generic::Song {
 };
 template <typename Key, typename Value>
 using MapSP = std::shared_ptr<Map<Key, Value>>;
-}  // namespace falcon_core::generic
+}  // namespace generic
+}  // namespace falcon_core

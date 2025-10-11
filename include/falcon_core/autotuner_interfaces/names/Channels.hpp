@@ -2,7 +2,9 @@
 
 #include "falcon_core/autotuner_interfaces/names/Channel.hpp"
 #include "falcon_core/generic/List.hpp"
-namespace falcon_core::autotuner_interfaces::names {
+namespace falcon_core {
+namespace autotuner_interfaces {
+namespace names {
 
 /**
  * @brief A collection of channels..
@@ -57,4 +59,6 @@ class Channels : public generic::List<Channel> {
   }
 };
 using ChannelsSP = std::shared_ptr<Channels>;
-}  // namespace falcon_core::autotuner_interfaces::names
+}  // namespace names
+}  // namespace autotuner_interfaces
+}  // namespace falcon_core

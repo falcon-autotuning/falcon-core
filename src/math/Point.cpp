@@ -7,7 +7,8 @@
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
-namespace falcon_core::math {
+namespace falcon_core {
+namespace math {
 
 Point::Point()
     : generic::Map<physics::device_structures::Connection, Quantity>() {}
@@ -176,7 +177,8 @@ bool Point::operator==(const Point& other) const {
 }
 bool Point::operator!=(const Point& other) const { return !(*this == other); }
 
-}  // namespace falcon_core::math
+}  // namespace math
+}  // namespace falcon_core
 using PairCQ = falcon_core::generic::Pair<
     falcon_core::physics::device_structures::Connection,
     falcon_core::math::Quantity>;

@@ -2,7 +2,9 @@
 #include "falcon_core/generic/FArray.hpp"
 #include "falcon_core/generic/FArrayProtocol.hpp"
 #include "falcon_core/math/arrays/IncreasingAlignment.hpp"
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 template <typename T>
 class IsControl : public virtual generic::IFArray<T> {
  protected:
@@ -62,4 +64,6 @@ class IsControl : public virtual generic::IFArray<T> {
     return alignments[0].first;
   }
 };
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core

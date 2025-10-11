@@ -2,7 +2,8 @@
 
 #include "falcon_core/generic/Song.hpp"
 
-namespace falcon_core::communications {
+namespace falcon_core {
+namespace communications {
 /**
  * @brief Represents a point in time with microsecond precision.
  */
@@ -45,4 +46,5 @@ class Time : public generic::Song {
    */
   const std::string to_string() const;
 };
-}  // namespace falcon_core::communications
+}  // namespace communications
+}  // namespace falcon_core

@@ -6,7 +6,9 @@
 #include "falcon_core/math/arrays/LabelledControlArray.hpp"
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 
-namespace falcon_core::math::discrete_spaces {
+namespace falcon_core {
+namespace math {
+namespace discrete_spaces {
 
 DiscreteSpace::DiscreteSpace() = default;
 DiscreteSpace::DiscreteSpace(
@@ -56,7 +58,7 @@ DiscreteSpaceSP DiscreteSpace::CartesianDiscreteSpace1D(
       std::make_shared<Axes<domains::CoupledLabelledDomain>>(
           std::vector<domains::CoupledLabelledDomainSP>{shared_domain}),
       std::make_shared<Axes<generic::Map<std::string, bool>>>(
-          std::vector{increasing}));
+          std::vector<generic::MapSP<std::string, bool>>{increasing}));
 }
 const UnitSpaceSP& DiscreteSpace::space() const { return _space; }
 const AxesSP<domains::CoupledLabelledDomain>& DiscreteSpace::axes() const {
@@ -185,7 +187,9 @@ bool DiscreteSpace::operator==(const DiscreteSpace& other) const {
 bool DiscreteSpace::operator!=(const DiscreteSpace& other) const {
   return !(*this == other);
 }
-}  // namespace falcon_core::math::discrete_spaces
+}  // namespace discrete_spaces
+}  // namespace math
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::math::discrete_spaces::DiscreteSpace)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,

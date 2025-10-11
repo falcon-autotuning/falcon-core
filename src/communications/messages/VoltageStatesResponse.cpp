@@ -3,7 +3,9 @@
 
 #include "falcon_core/communications/messages/BaseMessage.hpp"
 
-namespace falcon_core::communications::messages {
+namespace falcon_core {
+namespace communications {
+namespace messages {
 
 VoltageStatesResponse::VoltageStatesResponse() = default;
 VoltageStatesResponse::VoltageStatesResponse(
@@ -29,7 +31,9 @@ bool VoltageStatesResponse::operator!=(
   return !(*this == other);
 }
 
-}  // namespace falcon_core::communications::messages
+}  // namespace messages
+}  // namespace communications
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(
     falcon_core::communications::messages::VoltageStatesResponse)

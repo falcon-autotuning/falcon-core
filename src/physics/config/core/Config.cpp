@@ -9,7 +9,10 @@
 #include "falcon_core/physics/device_structures/Connections.hpp"
 #include "falcon_core/physics/device_structures/Impedance.hpp"
 
-namespace falcon_core::physics::config::core {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace core {
 Config::Config() = default;
 Config::Config(
     const device_structures::ConnectionsSP& screening_gates,
@@ -68,7 +71,7 @@ void Config::check_group_consistency() const {
       std::vector<std::reference_wrapper<device_structures::Connections>>{
           sgates, rgates, pgates, bgates, os};
   for (const GroupSP& group : *all_groups) {
-    const std::vector group_connections =
+    const std::vector<device_structures::Connections> group_connections =
         std::vector<device_structures::Connections>{*group->screening_gates(),
                                                     *group->reservoir_gates(),
                                                     *group->plunger_gates(),
@@ -1187,7 +1190,10 @@ device_structures::ConnectionsSP Config::get_shared_channel_gates(
   }
   return outs;
 }
-}  // namespace falcon_core::physics::config::core
+}  // namespace core
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::Config)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::physics::config::core::StandardConfigConnections,

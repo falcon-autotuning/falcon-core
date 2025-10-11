@@ -5,7 +5,9 @@
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
-namespace falcon_core::instrument_interfaces::names {
+namespace falcon_core {
+namespace instrument_interfaces {
+namespace names {
 
 Ports::Ports() : generic::List<InstrumentPort>() {}
 Ports::Ports(const std::vector<std::shared_ptr<InstrumentPort>> ports)
@@ -113,7 +115,9 @@ bool Ports::operator==(const Ports& other) const {
 }
 bool Ports::operator!=(const Ports& other) const { return !(*this == other); }
 
-}  // namespace falcon_core::instrument_interfaces::names
+}  // namespace names
+}  // namespace instrument_interfaces
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::Ports)
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<
                      falcon_core::instrument_interfaces::names::InstrumentPort>)

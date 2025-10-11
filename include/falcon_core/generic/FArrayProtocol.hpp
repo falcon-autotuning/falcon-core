@@ -1,9 +1,11 @@
 #pragma once
 
-#include "falcon_core/generic/List.hpp"
-#include "xtensor/core/xshape.hpp"
+#include <xtensor/xshape.hpp>
 
-namespace falcon_core::generic {
+#include "falcon_core/generic/List.hpp"
+
+namespace falcon_core {
+namespace generic {
 
 template <typename T>
 class IFArray {
@@ -27,10 +29,10 @@ class IFArray {
   virtual const T*                         data() const noexcept      = 0;
 
   // Iterators
-  virtual array_type::iterator       begin() noexcept        = 0;
-  virtual array_type::iterator       end() noexcept          = 0;
-  virtual array_type::const_iterator cbegin() const noexcept = 0;
-  virtual array_type::const_iterator cend() const noexcept   = 0;
+  virtual typename array_type::iterator       begin() noexcept        = 0;
+  virtual typename array_type::iterator       end() noexcept          = 0;
+  virtual typename array_type::const_iterator cbegin() const noexcept = 0;
+  virtual typename array_type::const_iterator cend() const noexcept   = 0;
 
   // Math
   virtual T min() const = 0;
@@ -58,4 +60,5 @@ class IFArray {
   virtual ListSP<List<size_t>> where(const T& value) const = 0;
 };
 
-}  // namespace falcon_core::generic
+}  // namespace generic
+}  // namespace falcon_core

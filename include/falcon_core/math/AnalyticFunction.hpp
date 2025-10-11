@@ -21,7 +21,8 @@
  * turned into human readable labels.
  */
 
-namespace falcon_core::math {
+namespace falcon_core {
+namespace math {
 
 using VariableName = std::string;
 class AnalyticFunction : public generic::List<VariableName> {
@@ -87,4 +88,5 @@ class AnalyticFunction : public generic::List<VariableName> {
   }
 };
 using AnalyticFunctionSP = std::shared_ptr<AnalyticFunction>;
-}  // namespace falcon_core::math
+}  // namespace math
+}  // namespace falcon_core

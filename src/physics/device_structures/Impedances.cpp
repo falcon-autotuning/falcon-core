@@ -1,6 +1,8 @@
 #include "falcon_core/physics/device_structures/Impedances.hpp"
 
-namespace falcon_core::physics::device_structures {
+namespace falcon_core {
+namespace physics {
+namespace device_structures {
 
 Impedances::Impedances() = default;
 
@@ -22,7 +24,9 @@ bool Impedances::operator==(const Impedances& other) const {
 bool Impedances::operator!=(const Impedances& other) const {
   return !(*this == other);
 }
-}  // namespace falcon_core::physics::device_structures
+}  // namespace device_structures
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Impedances)
 using LII = falcon_core::generic::List<
     falcon_core::physics::device_structures::Impedance>;

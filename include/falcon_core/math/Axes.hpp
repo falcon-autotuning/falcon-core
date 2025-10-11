@@ -7,7 +7,8 @@
  * @brief Defines the Axes container for FalconCore.
  */
 
-namespace falcon_core::math {
+namespace falcon_core {
+namespace math {
 template <typename Value>
 static const generic::List<Value>& list_check_and_deref(
     const generic::ListSP<Value>& items) {
@@ -33,7 +34,7 @@ class Axes : public generic::List<Value> {
    * @brief Construct Axes from a vector of items.
    * @param items Vector of axis objects.
    */
-  explicit Axes(const generic::List<Value>::Container& items)
+  explicit Axes(const typename generic::List<Value>::Container& items)
       : generic::List<Value>(items) {}
   /**
    * @brief Construct Axes from a vector of items.
@@ -89,4 +90,5 @@ class Axes : public generic::List<Value> {
 };
 template <typename V>
 using AxesSP = std::shared_ptr<Axes<V>>;
-}  // namespace falcon_core::math
+}  // namespace math
+}  // namespace falcon_core

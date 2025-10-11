@@ -1,6 +1,8 @@
 #include "falcon_core/math/arrays/MeasuredArray.hpp"
 
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 MeasuredArray::MeasuredArray() : FArray<double>() {}
 MeasuredArray::MeasuredArray(const xt::xarray<double>& arr)
     : FArray<double>(arr) {}
@@ -188,7 +190,9 @@ generic::FArraySP<double> MeasuredArray::gradient(size_t axis) const {
 generic::ListSP<generic::FArray<double>> MeasuredArray::gradient() const {
   return generic::FArray<double>::gradient();
 }
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::MeasuredArray)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::FArray<double>,
                                      falcon_core::math::arrays::MeasuredArray)

@@ -7,7 +7,9 @@
 #include "falcon_core/Constants.hpp"
 #include "falcon_core/physics/units/Prefix.hpp"
 #include "falcon_core/physics/units/TotalDimensions.hpp"
-namespace falcon_core::physics::units {
+namespace falcon_core {
+namespace physics {
+namespace units {
 Unit::Unit(TotalDimensions dimensions,
            double          scale_factor,
            double          offset,
@@ -170,9 +172,10 @@ std::string dimensions_to_string(const TotalDimensions& dims) {
   std::ostringstream oss;
   oss << "{";
   bool first = true;
-  for (const auto& [key, value] : dims) {
+  for (auto it = dims.begin(); it != dims.end(); ++it) {
+    if (!first) oss << ", ";
     first = false;
-    oss << key << ": " << value;
+    oss << it->first << ": " << it->second;
   }
   oss << "}";
   return oss.str();
@@ -206,7 +209,9 @@ bool Unit::is_compatible_with(const UnitSP& other) const {
   return dimensions() == other->dimensions();
 }
 
-}  // namespace falcon_core::physics::units
+}  // namespace units
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::physics::units::Unit)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::physics::units::Unit)

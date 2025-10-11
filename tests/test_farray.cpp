@@ -3,8 +3,8 @@
 #include <cereal/archives/json.hpp>
 #include <sstream>
 #include <stdexcept>
-#include <xtensor/containers/xarray.hpp>
-#include <xtensor/io/xio.hpp>
+#include <xtensor/xarray.hpp>
+#include <xtensor/xio.hpp>
 
 #include "falcon_core/generic/FArray.hpp"
 

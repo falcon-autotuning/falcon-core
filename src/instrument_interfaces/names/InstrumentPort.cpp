@@ -5,7 +5,9 @@
 #include "falcon_core/instrument_interfaces/names/Instrument.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentTypes.hpp"
 
-namespace falcon_core::instrument_interfaces::names {
+namespace falcon_core {
+namespace instrument_interfaces {
+namespace names {
 
 InstrumentPort::InstrumentPort(
     const std::string&                              default_name,
@@ -124,7 +126,9 @@ bool InstrumentPort::operator!=(const InstrumentPort& other) const {
 }
 const PortType InstrumentPort::type() const { return _type; }
 
-}  // namespace falcon_core::instrument_interfaces::names
+}  // namespace names
+}  // namespace instrument_interfaces
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::InstrumentPort)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

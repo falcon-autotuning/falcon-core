@@ -8,7 +8,10 @@
 #include "falcon_core/physics/device_structures/Connections.hpp"
 #include "falcon_core/physics/device_structures/GateRelations.hpp"
 #include "falcon_core/physics/device_structures/Impedances.hpp"
-namespace falcon_core::physics::config::core {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace core {
 /**
  * @brief The imported config file for falcon use.
  */
@@ -564,4 +567,7 @@ class Config : public StandardConfigConnections {
   }
 };
 using ConfigSP = std::shared_ptr<Config>;
-}  // namespace falcon_core::physics::config::core
+}  // namespace core
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core

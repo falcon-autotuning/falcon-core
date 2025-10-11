@@ -5,7 +5,10 @@
 #include "falcon_core/physics/config/geometries/HasLeftNeighbor.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
-namespace falcon_core::physics::config::geometries {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace geometries {
 RightReservoirWithImplantedOhmic::RightReservoirWithImplantedOhmic() = default;
 RightReservoirWithImplantedOhmic::RightReservoirWithImplantedOhmic(
     std::string                     name,
@@ -36,7 +39,10 @@ RightReservoirWithImplantedOhmic::RightReservoirWithImplantedOhmic(
   HasLeftNeighbor::  operator=(HasLeftNeighbor(left_neighbor));
   HasImplantedOhmic::operator=(HasImplantedOhmic(ohmic));
 }
-}  // namespace falcon_core::physics::config::geometries
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::geometries::RightReservoirWithImplantedOhmic)

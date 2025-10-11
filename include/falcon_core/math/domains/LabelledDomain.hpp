@@ -9,7 +9,9 @@
 
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/domains/Domain.hpp"
-namespace falcon_core::math::domains {
+namespace falcon_core {
+namespace math {
+namespace domains {
 
 /**
  * @brief Domain with an associated label with the instrument associated.
@@ -104,4 +106,6 @@ class LabelledDomain : public Domain {
   }
 };
 using LabelledDomainSP = std::shared_ptr<LabelledDomain>;
-}  // namespace falcon_core::math::domains
+}  // namespace domains
+}  // namespace math
+}  // namespace falcon_core

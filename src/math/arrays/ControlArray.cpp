@@ -3,7 +3,9 @@
 #include <stdexcept>
 
 #include "falcon_core/math/arrays/IncreasingAlignment.hpp"
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 ControlArray::ControlArray() : FArray<double>() {
   _principle_dimension = 0;
   _alignment = std::make_shared<IncreasingAlignment>(IncreasingAlignment(true));
@@ -181,7 +183,9 @@ generic::FArraySP<double> ControlArray::gradient(size_t axis) const {
 generic::ListSP<generic::FArray<double>> ControlArray::gradient() const {
   return generic::FArray<double>::gradient();
 }
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::FArray<double>,
                                      falcon_core::math::arrays::ControlArray)

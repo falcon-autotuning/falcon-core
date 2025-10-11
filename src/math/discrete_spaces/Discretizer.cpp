@@ -3,7 +3,9 @@
 #include <stdexcept>
 
 #include "falcon_core/Constants.hpp"
-namespace falcon_core::math::discrete_spaces {
+namespace falcon_core {
+namespace math {
+namespace discrete_spaces {
 
 Discretizer::Discretizer(const double&            delta,
                          const domains::DomainSP& delta_domain,
@@ -41,7 +43,9 @@ bool Discretizer::operator==(const Discretizer& other) const {
 bool Discretizer::operator!=(const Discretizer& other) const {
   return !(*this == other);
 }
-}  // namespace falcon_core::math::discrete_spaces
+}  // namespace discrete_spaces
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::discrete_spaces::Discretizer)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

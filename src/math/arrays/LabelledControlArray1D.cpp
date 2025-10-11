@@ -1,6 +1,8 @@
 #include "falcon_core/math/arrays/LabelledControlArray1D.hpp"
 
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 LabelledControlArray1D::LabelledControlArray1D() : LabelledControlArray() {}
 LabelledControlArray1D::LabelledControlArray1D(
     const arrays::ControlArraySP&                               array,
@@ -176,7 +178,9 @@ generic::ListSP<generic::FArray<double>> LabelledControlArray1D::gradient()
     const {
   return generic::FArray<double>::gradient();
 }
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::LabelledControlArray1D)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::FArray<double>,

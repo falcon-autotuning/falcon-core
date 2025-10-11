@@ -7,7 +7,9 @@
 #include "falcon_core/math/arrays/LabelledControlArray.hpp"
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 
-namespace falcon_core::math::discrete_spaces {
+namespace falcon_core {
+namespace math {
+namespace discrete_spaces {
 
 class DiscreteSpace : public generic::Song {
   UnitSpaceSP                             _space;
@@ -112,4 +114,6 @@ class DiscreteSpace : public generic::Song {
   }
 };
 using DiscreteSpaceSP = std::shared_ptr<DiscreteSpace>;
-}  // namespace falcon_core::math::discrete_spaces
+}  // namespace discrete_spaces
+}  // namespace math
+}  // namespace falcon_core

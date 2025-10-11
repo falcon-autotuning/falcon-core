@@ -1,6 +1,8 @@
 #include "falcon_core/autotuner_interfaces/names/Gname.hpp"
 
-namespace falcon_core::autotuner_interfaces::names {
+namespace falcon_core {
+namespace autotuner_interfaces {
+namespace names {
 Gname::Gname() : NameBase() {}
 Gname::Gname(const std::string& name) : NameBase(name, "group") {}
 Gname::Gname(const int& num) : NameBase(num, "group") {}
@@ -9,7 +11,9 @@ bool        Gname::operator==(const Gname& other) const {
   return name() == other.name();
 }
 bool Gname::operator!=(const Gname& other) const { return !(*this == other); }
-}  // namespace falcon_core::autotuner_interfaces::names
+}  // namespace names
+}  // namespace autotuner_interfaces
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::autotuner_interfaces::names::Gname)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::autotuner_interfaces::names::NameBase,

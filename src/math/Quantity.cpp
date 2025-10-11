@@ -3,7 +3,8 @@
 #include <cmath>
 #include <stdexcept>
 
-namespace falcon_core::math {
+namespace falcon_core {
+namespace math {
 
 Quantity::Quantity(double value, physics::units::SymbolUnitSP unit)
     : _value(value), _unit(unit) {
@@ -183,7 +184,8 @@ bool Quantity::operator!=(const Quantity& other) const {
   return !(*this == other);
 }
 
-}  // namespace falcon_core::math
+}  // namespace math
+}  // namespace falcon_core
 
 // Cereal registration
 CEREAL_REGISTER_TYPE(falcon_core::math::Quantity)

@@ -5,7 +5,9 @@
 
 #include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
 
-namespace falcon_core::communications::messages {
+namespace falcon_core {
+namespace communications {
+namespace messages {
 
 class MeasurementResponse : public BaseMessage {
   math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray> _arrays;
@@ -29,4 +31,6 @@ class MeasurementResponse : public BaseMessage {
   }
 };
 using MeasurementResponseSP = std::shared_ptr<MeasurementResponse>;
-}  // namespace falcon_core::communications::messages
+}  // namespace messages
+}  // namespace communications
+}  // namespace falcon_core

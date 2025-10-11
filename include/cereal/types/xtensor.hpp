@@ -2,7 +2,7 @@
 
 #include <cereal/cereal.hpp>
 #include <cereal/types/vector.hpp>
-#include <xtensor/containers/xarray.hpp>
+#include <xtensor/xarray.hpp>
 namespace cereal {
 // Save for xt::xarray
 template <class Archive, class T>

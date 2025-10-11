@@ -1,6 +1,8 @@
 #include "falcon_core/math/arrays/IncreasingAlignment.hpp"
 
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 
 IncreasingAlignment::IncreasingAlignment() : _alignment(0) {}
 IncreasingAlignment::IncreasingAlignment(const bool alignment)
@@ -12,7 +14,9 @@ bool IncreasingAlignment::operator==(const IncreasingAlignment& other) const {
 bool IncreasingAlignment::operator!=(const IncreasingAlignment& other) const {
   return !(*this == other);
 }
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::IncreasingAlignment)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

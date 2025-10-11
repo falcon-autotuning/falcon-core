@@ -9,7 +9,8 @@
 #include "falcon_core/math/arrays/ControlArray1D.hpp"
 #include "falcon_core/math/discrete_spaces/Discretizer.hpp"
 
-namespace falcon_core::math {
+namespace falcon_core {
+namespace math {
 
 /**
  * @brief Respresents a hypercube of measurement space. It is defined by a set
@@ -115,4 +116,5 @@ class UnitSpace : public math::Axes<discrete_spaces::Discretizer> {
   }
 };
 using UnitSpaceSP = std::shared_ptr<UnitSpace>;
-}  // namespace falcon_core::math
+}  // namespace math
+}  // namespace falcon_core

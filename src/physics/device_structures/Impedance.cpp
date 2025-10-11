@@ -1,6 +1,8 @@
 #include "falcon_core/physics/device_structures/Impedance.hpp"
 
-namespace falcon_core::physics::device_structures {
+namespace falcon_core {
+namespace physics {
+namespace device_structures {
 
 Impedance::Impedance(ConnectionSP connection,
                      double       resistance,
@@ -30,7 +32,9 @@ bool         Impedance::operator==(const Impedance& other) const {
 bool Impedance::operator!=(const Impedance& other) const {
   return !(*this == other);
 }
-}  // namespace falcon_core::physics::device_structures
+}  // namespace device_structures
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Impedance)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,

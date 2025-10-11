@@ -8,7 +8,8 @@
  * domain and any time-dependent phenomena.
  * @tparam T The discrete space type.
  */
-namespace falcon_core::instrument_interfaces {
+namespace falcon_core {
+namespace instrument_interfaces {
 
 class Waveform : public port_transforms::PortTransforms {
   math::discrete_spaces::DiscreteSpaceSP _space;
@@ -134,4 +135,5 @@ class Waveform : public port_transforms::PortTransforms {
   }
 };
 using WaveformSP = std::shared_ptr<Waveform>;
-}  // namespace falcon_core::instrument_interfaces
+}  // namespace instrument_interfaces
+}  // namespace falcon_core

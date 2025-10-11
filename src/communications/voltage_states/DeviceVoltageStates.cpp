@@ -1,12 +1,13 @@
 #include <falcon_core/communications/voltage_states/DeviceVoltageStates.hpp>
-#include <ranges>
 #include <stdexcept>
 
 #include "falcon_core/communications/voltage_states/DeviceVoltageState.hpp"
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
-namespace falcon_core::communications::voltage_states {
+namespace falcon_core {
+namespace communications {
+namespace voltage_states {
 
 static const generic::List<DeviceVoltageState>& dvs_check_and_deref(
     const generic::ListSP<DeviceVoltageState>& states) {
@@ -61,7 +62,9 @@ const math::PointSP DeviceVoltageStates::to_point() const {
   return std::make_shared<math::Point>(rawPoint);
 }
 
-}  // namespace falcon_core::communications::voltage_states
+}  // namespace voltage_states
+}  // namespace communications
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(
     falcon_core::communications::voltage_states::DeviceVoltageStates)

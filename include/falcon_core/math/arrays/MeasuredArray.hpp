@@ -6,7 +6,9 @@
 #pragma once
 
 #include "falcon_core/generic/FArray.hpp"
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 
 /**
  * @brief Array type for measured data, derived from BaseArray.
@@ -134,4 +136,6 @@ class MeasuredArray : public generic::FArray<double> {
   generic::ListSP<generic::FArray<double>> gradient() const;
 };
 using MeasuredArraySP = std::shared_ptr<MeasuredArray>;
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core

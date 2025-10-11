@@ -2,7 +2,9 @@
 
 #include <stdexcept>
 
-namespace falcon_core::autotuner_interfaces::contexts {
+namespace falcon_core {
+namespace autotuner_interfaces {
+namespace contexts {
 
 AcquisitionContext::AcquisitionContext() : BaseContext(), _units(nullptr) {}
 
@@ -85,7 +87,9 @@ const bool AcquisitionContext::match_instrument_type(
   return instrument_type() == other;
 }
 
-}  // namespace falcon_core::autotuner_interfaces::contexts
+}  // namespace contexts
+}  // namespace autotuner_interfaces
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(
     falcon_core::autotuner_interfaces::contexts::AcquisitionContext)

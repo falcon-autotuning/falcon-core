@@ -2,7 +2,9 @@
 
 #include "falcon_core/generic/Song.hpp"
 
-namespace falcon_core::autotuner_interfaces::names {
+namespace falcon_core {
+namespace autotuner_interfaces {
+namespace names {
 class NameBase : public generic::Song {
   std::string _name;
   int         _num;
@@ -33,4 +35,6 @@ class NameBase : public generic::Song {
   }
 };
 using NameBaseSP = std::shared_ptr<NameBase>;
-}  // namespace falcon_core::autotuner_interfaces::names
+}  // namespace names
+}  // namespace autotuner_interfaces
+}  // namespace falcon_core

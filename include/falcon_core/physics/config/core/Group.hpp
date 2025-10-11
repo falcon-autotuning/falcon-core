@@ -4,7 +4,10 @@
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
-namespace falcon_core::physics::config::core {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace core {
 /**
  * @brief Elements of the config that pertain to an individual group of gates.
  */
@@ -80,4 +83,7 @@ class Group : public StandardConfigConnections {
   }
 };
 using GroupSP = std::shared_ptr<Group>;
-}  // namespace falcon_core::physics::config::core
+}  // namespace core
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core

@@ -3,7 +3,9 @@
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
-namespace falcon_core::physics::device_structures {
+namespace falcon_core {
+namespace physics {
+namespace device_structures {
 
 /**
  * @brief Holds the relations between gates and their neighbors.
@@ -31,4 +33,6 @@ class GateRelations : public generic::Map<Connection, Connections> {
   }
 };
 using GateRelationsSP = std::shared_ptr<GateRelations>;
-}  // namespace falcon_core::physics::device_structures
+}  // namespace device_structures
+}  // namespace physics
+}  // namespace falcon_core

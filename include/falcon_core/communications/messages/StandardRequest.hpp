@@ -2,7 +2,9 @@
 
 #include <falcon_core/communications/messages/BaseMessage.hpp>
 
-namespace falcon_core::communications::messages {
+namespace falcon_core {
+namespace communications {
+namespace messages {
 
 class StandardRequest : public BaseMessage {
  public:
@@ -17,4 +19,6 @@ class StandardRequest : public BaseMessage {
   }
 };
 using StandardRequestSP = std::shared_ptr<StandardRequest>;
-}  // namespace falcon_core::communications::messages
+}  // namespace messages
+}  // namespace communications
+}  // namespace falcon_core

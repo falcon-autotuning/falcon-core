@@ -1,6 +1,8 @@
 #include "falcon_core/math/arrays/LabelledMeasuredArray1D.hpp"
 
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 LabelledMeasuredArray1D::LabelledMeasuredArray1D() : LabelledMeasuredArray() {}
 LabelledMeasuredArray1D::LabelledMeasuredArray1D(
     const arrays::MeasuredArraySP&                              array,
@@ -169,7 +171,9 @@ generic::ListSP<generic::FArray<double>> LabelledMeasuredArray1D::gradient()
     const {
   return generic::FArray<double>::gradient();
 }
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::LabelledMeasuredArray1D)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::FArray<double>,

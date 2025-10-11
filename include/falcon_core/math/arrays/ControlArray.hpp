@@ -6,7 +6,9 @@
 #pragma once
 
 #include "falcon_core/math/arrays/IsControl.hpp"
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 
 /**
  * @brief Array type for control independant axis data
@@ -114,4 +116,6 @@ class ControlArray : public generic::FArray<double>, public IsControl<double> {
   generic::ListSP<generic::FArray<double>> gradient() const override;
 };
 using ControlArraySP = std::shared_ptr<ControlArray>;
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core

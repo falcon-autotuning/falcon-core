@@ -1,7 +1,8 @@
 #include "falcon_core/communications/Time.hpp"
 
 #include <chrono>
-namespace falcon_core::communications {
+namespace falcon_core {
+namespace communications {
 Time::Time() {
   auto now = std::chrono::system_clock::now();
   auto us  = std::chrono::duration_cast<std::chrono::microseconds>(
@@ -26,7 +27,8 @@ const std::string Time::to_string() const {
   std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &tm);
   return std::string(buf);
 }
-}  // namespace falcon_core::communications
+}  // namespace communications
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::communications::Time)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::communications::Time)

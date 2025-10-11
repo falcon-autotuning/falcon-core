@@ -2,7 +2,9 @@
 
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 
-namespace falcon_core::instrument_interfaces::port_transforms {
+namespace falcon_core {
+namespace instrument_interfaces {
+namespace port_transforms {
 
 const generic::List<PortTransform>& pts_check_and_deref(
     const generic::ListSP<PortTransform>& init) {
@@ -19,7 +21,9 @@ const generic::ListSP<PortTransform> PortTransforms::transforms() const {
   return std::make_shared<List<PortTransform>>(items());
 }
 
-}  // namespace falcon_core::instrument_interfaces::port_transforms
+}  // namespace port_transforms
+}  // namespace instrument_interfaces
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(
     falcon_core::instrument_interfaces::port_transforms::PortTransforms)

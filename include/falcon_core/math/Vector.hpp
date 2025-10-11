@@ -11,7 +11,8 @@
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
-namespace falcon_core::math {
+namespace falcon_core {
+namespace math {
 /**
  * @brief Represents a vector in a multi-dimensional space, defined by start and
  * end points.
@@ -180,4 +181,5 @@ class Vector : public generic::Map<physics::device_structures::Connection,
   }
 };
 using VectorSP = std::shared_ptr<Vector>;
-}  // namespace falcon_core::math
+}  // namespace math
+}  // namespace falcon_core

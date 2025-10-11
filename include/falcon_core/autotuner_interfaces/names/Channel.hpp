@@ -2,7 +2,9 @@
 
 #include "falcon_core/generic/Song.hpp"
 
-namespace falcon_core::autotuner_interfaces::names {
+namespace falcon_core {
+namespace autotuner_interfaces {
+namespace names {
 /**
  * @brief A string corresponding to a channel name.
  */
@@ -26,4 +28,6 @@ class Channel : public generic::Song {
   }
 };
 using ChannelSP = std::shared_ptr<Channel>;
-}  // namespace falcon_core::autotuner_interfaces::names
+}  // namespace names
+}  // namespace autotuner_interfaces
+}  // namespace falcon_core

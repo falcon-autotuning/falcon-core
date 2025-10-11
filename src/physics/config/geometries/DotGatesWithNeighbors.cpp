@@ -1,6 +1,9 @@
 #include "falcon_core/physics/config/geometries/DotGatesWithNeighbors.hpp"
 
-namespace falcon_core::physics::config::geometries {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace geometries {
 
 DotGatesWithNeighbors::DotGatesWithNeighbors() = default;
 DotGatesWithNeighbors::DotGatesWithNeighbors(
@@ -38,7 +41,10 @@ bool DotGatesWithNeighbors::operator!=(
   return !(*this == other);
 }
 
-}  // namespace falcon_core::physics::config::geometries
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::geometries::DotGatesWithNeighbors)
 CEREAL_REGISTER_TYPE(

@@ -8,7 +8,9 @@
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon_core/math/arrays/IsLabelled.hpp"
 #include "falcon_core/math/arrays/MeasuredArray.hpp"
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 
 /**
  * @brief An array with a context label attached.
@@ -152,4 +154,6 @@ class LabelledMeasuredArray : public MeasuredArray, public IsLabelled<double> {
   }
 };
 using LabelledMeasuredArraySP = std::shared_ptr<LabelledMeasuredArray>;
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core

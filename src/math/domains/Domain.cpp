@@ -2,7 +2,9 @@
 
 #include <stdexcept>
 
-namespace falcon_core::math::domains {
+namespace falcon_core {
+namespace math {
+namespace domains {
 Domain::Domain() = default;
 Domain::Domain(double min_val,
                double max_val,
@@ -129,10 +131,14 @@ const double Domain::transform(const std::shared_ptr<Domain>& other,
     throw std::invalid_argument(
         "Domain: The other to transfofrm using must not be null.");
   }
-  auto [scale, offset] = calculate_transform(other);
+  auto transform = calculate_transform(other);
+  auto scale     = transform.first;
+  auto offset    = transform.second;
   return value * scale + offset;
 }
-}  // namespace falcon_core::math::domains
+}  // namespace domains
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::domains::Domain)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,

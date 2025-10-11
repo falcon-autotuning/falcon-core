@@ -6,7 +6,8 @@
 #include "falcon_core/math/arrays/ControlArray1D.hpp"
 #include "falcon_core/math/domains/Domain.hpp"
 
-namespace falcon_core::math {
+namespace falcon_core {
+namespace math {
 UnitSpace::UnitSpace() = default;
 UnitSpace::UnitSpace(const AxesSP<discrete_spaces::Discretizer>& axes,
                      const domains::DomainSP&                    domain)
@@ -177,7 +178,8 @@ bool UnitSpace::operator!=(const UnitSpace& other) const {
   return !(*this == other);
 }
 
-}  // namespace falcon_core::math
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::UnitSpace)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

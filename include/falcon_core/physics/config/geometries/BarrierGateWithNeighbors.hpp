@@ -1,7 +1,10 @@
 #pragma once
 
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
-namespace falcon_core::physics::config::geometries {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace geometries {
 /*
  * @brief A special barrier with two neighbor gates.
  */
@@ -20,4 +23,7 @@ class BarrierGateWithNeighbors : public DotGateWithNeighbors {
   }
 };
 using BarrierGateWithNeighborsSP = std::shared_ptr<BarrierGateWithNeighbors>;
-}  // namespace falcon_core::physics::config::geometries
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core

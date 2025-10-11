@@ -4,7 +4,10 @@
 
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
-namespace falcon_core::physics::config::geometries {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace geometries {
 LeftReservoirWithImplantedOhmic::LeftReservoirWithImplantedOhmic() = default;
 LeftReservoirWithImplantedOhmic::LeftReservoirWithImplantedOhmic(
     std::string                     name,
@@ -20,7 +23,10 @@ LeftReservoirWithImplantedOhmic::LeftReservoirWithImplantedOhmic(
         right_neighbor->type());
   }
 }
-}  // namespace falcon_core::physics::config::geometries
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::geometries::LeftReservoirWithImplantedOhmic)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

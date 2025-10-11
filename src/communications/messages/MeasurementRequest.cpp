@@ -4,7 +4,9 @@
 #include "falcon_core/instrument_interfaces/Waveform.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 
-namespace falcon_core::communications::messages {
+namespace falcon_core {
+namespace communications {
+namespace messages {
 
 MeasurementRequest::MeasurementRequest() = default;
 
@@ -50,7 +52,9 @@ const math::domains::LabelledDomainSP& MeasurementRequest::time_domain() const {
   return _time_domain;
 }
 
-}  // namespace falcon_core::communications::messages
+}  // namespace messages
+}  // namespace communications
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::communications::messages::MeasurementRequest)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

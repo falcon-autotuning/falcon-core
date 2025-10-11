@@ -5,7 +5,9 @@
 #include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
-namespace falcon_core::instrument_interfaces::names {
+namespace falcon_core {
+namespace instrument_interfaces {
+namespace names {
 
 enum class PortType {
   Knob,
@@ -141,4 +143,6 @@ class InstrumentPort : public generic::Song {
 };
 
 using InstrumentPortSP = std::shared_ptr<InstrumentPort>;
-}  // namespace falcon_core::instrument_interfaces::names
+}  // namespace names
+}  // namespace instrument_interfaces
+}  // namespace falcon_core

@@ -5,7 +5,9 @@
 #include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
-namespace falcon_core::autotuner_interfaces::contexts {
+namespace falcon_core {
+namespace autotuner_interfaces {
+namespace contexts {
 
 class MeasurementContext : public contexts::BaseContext {
   physics::units::SymbolUnitSP _unit;
@@ -35,4 +37,6 @@ class MeasurementContext : public contexts::BaseContext {
   MeasurementContext(const contexts::BaseContextSP& acquisition_context);
 };
 using MeasurementContextSP = std::shared_ptr<MeasurementContext>;
-}  // namespace falcon_core::autotuner_interfaces::contexts
+}  // namespace contexts
+}  // namespace autotuner_interfaces
+}  // namespace falcon_core

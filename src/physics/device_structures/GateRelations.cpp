@@ -1,6 +1,8 @@
 #include "falcon_core/physics/device_structures/GateRelations.hpp"
 
-namespace falcon_core::physics::device_structures {
+namespace falcon_core {
+namespace physics {
+namespace device_structures {
 GateRelations::GateRelations() = default;
 GateRelations::GateRelations(
     std::vector<std::pair<ConnectionSP, ConnectionsSP>> init)
@@ -32,7 +34,9 @@ GateRelations::insert(const ConnectionSP& key, const ConnectionsSP& value) {
   }
   return Map::insert(key, value);
 }
-}  // namespace falcon_core::physics::device_structures
+}  // namespace device_structures
+}  // namespace physics
+}  // namespace falcon_core
 using MapGR = falcon_core::generic::Map<
     falcon_core::physics::device_structures::Connection,
     falcon_core::physics::device_structures::Connections>;

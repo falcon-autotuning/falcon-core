@@ -2,7 +2,9 @@
 
 #include <falcon_core/generic/Song.hpp>
 
-namespace falcon_core::communications::messages {
+namespace falcon_core {
+namespace communications {
+namespace messages {
 
 class BaseMessage : public generic::Song {
   std::string _message;
@@ -23,4 +25,6 @@ class BaseMessage : public generic::Song {
   }
 };
 using BaseMessageSP = std::shared_ptr<BaseMessage>;
-}  // namespace falcon_core::communications::messages
+}  // namespace messages
+}  // namespace communications
+}  // namespace falcon_core

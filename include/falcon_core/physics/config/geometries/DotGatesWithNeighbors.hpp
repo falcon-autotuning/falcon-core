@@ -2,7 +2,10 @@
 
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
-namespace falcon_core::physics::config::geometries {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace geometries {
 
 /**
  * @brief A serializable vector of DotGateWithNeighbors pointers, also a Song.
@@ -73,4 +76,7 @@ class DotGatesWithNeighbors
   }
 };
 using DotGatesWithNeighborsSP = std::shared_ptr<DotGatesWithNeighbors>;
-}  // namespace falcon_core::physics::config::geometries
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core

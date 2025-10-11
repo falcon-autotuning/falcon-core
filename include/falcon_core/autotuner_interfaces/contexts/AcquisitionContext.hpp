@@ -3,7 +3,9 @@
 #include "falcon_core/autotuner_interfaces/contexts/BaseContext.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 
-namespace falcon_core::autotuner_interfaces::contexts {
+namespace falcon_core {
+namespace autotuner_interfaces {
+namespace contexts {
 
 class AcquisitionContext : public BaseContext {
   physics::units::SymbolUnitSP _units;
@@ -72,4 +74,6 @@ class AcquisitionContext : public BaseContext {
       instrument_interfaces::names::Instrument other) const;
 };
 using AcquisitionContextSP = std::shared_ptr<AcquisitionContext>;
-}  // namespace falcon_core::autotuner_interfaces::contexts
+}  // namespace contexts
+}  // namespace autotuner_interfaces
+}  // namespace falcon_core

@@ -3,9 +3,9 @@
 #include <cereal/types/memory.hpp>
 #include <cereal/types/vector.hpp>
 #include <cereal/types/xtensor.hpp>
-#include <xtensor/containers/xarray.hpp>
-#include <xtensor/io/xio.hpp>
-#include <xtensor/views/xview.hpp>
+#include <xtensor/xarray.hpp>
+#include <xtensor/xio.hpp>
+#include <xtensor/xview.hpp>
 
 #include "falcon_core/generic/FArrayProtocol.hpp"
 #include "falcon_core/generic/List.hpp"
@@ -13,7 +13,8 @@
 #define XTENSOR_ENABLE_CEREAL
 #include <cereal/archives/binary.hpp>
 
-namespace falcon_core::generic {
+namespace falcon_core {
+namespace generic {
 
 template <typename T>
 class FArray : public generic::Song, public virtual IFArray<T> {
@@ -422,4 +423,5 @@ class FArray : public generic::Song, public virtual IFArray<T> {
 template <typename T>
 using FArraySP = std::shared_ptr<FArray<T>>;
 
-}  // namespace falcon_core::generic
+}  // namespace generic
+}  // namespace falcon_core

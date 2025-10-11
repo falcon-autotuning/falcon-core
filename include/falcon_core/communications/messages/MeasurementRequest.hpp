@@ -10,7 +10,9 @@
 
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 
-namespace falcon_core::communications::messages {
+namespace falcon_core {
+namespace communications {
+namespace messages {
 
 // Use the base waveform type for BaseDiscreteSpace
 
@@ -57,4 +59,6 @@ class MeasurementRequest : public BaseMessage {
   }
 };
 using MeasurementRequestSP = std::shared_ptr<MeasurementRequest>;
-}  // namespace falcon_core::communications::messages
+}  // namespace messages
+}  // namespace communications
+}  // namespace falcon_core

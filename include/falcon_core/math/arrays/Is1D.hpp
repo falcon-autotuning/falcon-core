@@ -1,7 +1,9 @@
 #pragma once
 #include "falcon_core/generic/FArray.hpp"
 #include "falcon_core/generic/FArrayProtocol.hpp"
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 template <typename T>
 class Is1D : public virtual generic::IFArray<T> {
  public:
@@ -106,4 +108,6 @@ class Is1D : public virtual generic::IFArray<T> {
     return result;
   }
 };
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core

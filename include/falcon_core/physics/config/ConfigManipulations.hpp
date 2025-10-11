@@ -3,7 +3,9 @@
 
 #include "falcon_core/physics/config/core/Config.hpp"
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
-namespace falcon_core::physics::config {
+namespace falcon_core {
+namespace physics {
+namespace config {
 /**
  * @brief A utility class for manipulating and extracting information from
  * device configurations.
@@ -90,4 +92,6 @@ class ConfigManipulations {
       const std::string                        raw,
       const core::StandardConfigConnectionsSP& connections) const;
 };
-}  // namespace falcon_core::physics::config
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core

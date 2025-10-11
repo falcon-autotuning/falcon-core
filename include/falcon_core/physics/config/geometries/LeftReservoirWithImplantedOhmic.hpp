@@ -3,7 +3,10 @@
 #include "falcon_core/physics/config/geometries/HasImplantedOhmic.hpp"
 #include "falcon_core/physics/config/geometries/HasRightNeighbor.hpp"
 
-namespace falcon_core::physics::config::geometries {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace geometries {
 /**
  * @brief A special reservoir geometry that has an implanted ohmic contact and
  *the rest of the channel extending to the right.
@@ -29,4 +32,7 @@ class LeftReservoirWithImplantedOhmic : public device_structures::Connection,
 };
 using LeftReservoirWithImplantedOhmicSP =
     std::shared_ptr<LeftReservoirWithImplantedOhmic>;
-}  // namespace falcon_core::physics::config::geometries
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core

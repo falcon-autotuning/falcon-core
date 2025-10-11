@@ -5,7 +5,9 @@
 /**
  * @brief Container for multiple PortTransform objects.
  */
-namespace falcon_core::instrument_interfaces::port_transforms {
+namespace falcon_core {
+namespace instrument_interfaces {
+namespace port_transforms {
 
 class PortTransforms : public generic::List<PortTransform> {
  public:
@@ -28,4 +30,6 @@ class PortTransforms : public generic::List<PortTransform> {
   }
 };
 
-}  // namespace falcon_core::instrument_interfaces::port_transforms
+}  // namespace port_transforms
+}  // namespace instrument_interfaces
+}  // namespace falcon_core

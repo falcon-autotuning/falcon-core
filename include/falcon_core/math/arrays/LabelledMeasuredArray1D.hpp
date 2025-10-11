@@ -8,7 +8,9 @@
 #include "falcon_core/math/arrays/Is1D.hpp"
 #include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
 #include "falcon_core/math/arrays/MeasuredArray1D.hpp"
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 
 /// @brief 1D control array with a label.
 class LabelledMeasuredArray1D : public LabelledMeasuredArray,
@@ -148,4 +150,6 @@ class LabelledMeasuredArray1D : public LabelledMeasuredArray,
   }
 };
 using LabelledMeasuredArray1DSP = std::shared_ptr<LabelledMeasuredArray1D>;
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core

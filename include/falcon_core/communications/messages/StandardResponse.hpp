@@ -2,7 +2,9 @@
 
 #include <falcon_core/communications/messages/BaseMessage.hpp>
 
-namespace falcon_core::communications::messages {
+namespace falcon_core {
+namespace communications {
+namespace messages {
 
 class StandardResponse : public BaseMessage {
  public:
@@ -17,4 +19,6 @@ class StandardResponse : public BaseMessage {
   }
 };
 
-}  // namespace falcon_core::communications::messages
+}  // namespace messages
+}  // namespace communications
+}  // namespace falcon_core

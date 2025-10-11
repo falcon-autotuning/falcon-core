@@ -11,7 +11,9 @@ enum class Dividers {
   Cartesian,
   Polar,
 };
-namespace falcon_core::math::discrete_spaces {
+namespace falcon_core {
+namespace math {
+namespace discrete_spaces {
 
 /**
  * @brief Abstract base class for discretizers.
@@ -66,4 +68,6 @@ class Discretizer : public generic::Song {
   }
 };
 using DiscretizerSP = std::shared_ptr<Discretizer>;
-}  // namespace falcon_core::math::discrete_spaces
+}  // namespace discrete_spaces
+}  // namespace math
+}  // namespace falcon_core

@@ -2,7 +2,10 @@
 
 #include <stdexcept>
 
-namespace falcon_core::physics::config::core {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace core {
 Adjacency::Adjacency() = default;
 Adjacency::Adjacency(const xt::xarray<int>& matrix, const Indexes indexes)
     : _indexes(indexes), generic::FArray<int>(matrix) {
@@ -28,7 +31,10 @@ bool Adjacency::operator==(const Adjacency& other) const {
 bool Adjacency::operator!=(const Adjacency& other) const {
   return !(*this == other);
 }
-}  // namespace falcon_core::physics::config::core
+}  // namespace core
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::Adjacency)
 CEREAL_REGISTER_TYPE(falcon_core::generic::FArray<int>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

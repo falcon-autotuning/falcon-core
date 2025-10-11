@@ -7,7 +7,9 @@
 
 #include "falcon_core/math/arrays/Is1D.hpp"
 #include "falcon_core/math/arrays/MeasuredArray.hpp"
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 
 /**
  * @brief Array type for measured data, derived from BaseArray.
@@ -136,4 +138,6 @@ class MeasuredArray1D : public MeasuredArray, public Is1D<double> {
   }
 };
 using MeasuredArray1DSP = std::shared_ptr<MeasuredArray1D>;
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core

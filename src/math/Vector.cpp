@@ -8,7 +8,8 @@
 #include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
 
-namespace falcon_core::math {
+namespace falcon_core {
+namespace math {
 
 Vector::Vector()
     : _unit(physics::units::SymbolUnit::Dimensionless()),
@@ -291,7 +292,8 @@ bool Vector::operator==(const Vector& other) const {
   return unit_equality && conn_equality && map_equality;
 }
 bool Vector::operator!=(const Vector& other) const { return !(*this == other); }
-}  // namespace falcon_core::math
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::Vector)
 using PQQ = falcon_core::generic::Pair<falcon_core::math::Quantity,

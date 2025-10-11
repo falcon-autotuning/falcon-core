@@ -5,7 +5,10 @@
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic.hpp"
 #include "falcon_core/physics/config/geometries/PlungerGateWithNeighbors.hpp"
-namespace falcon_core::physics::config::geometries {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace geometries {
 GateGeometryArray1D::GateGeometryArray1D() = default;
 GateGeometryArray1D::GateGeometryArray1D(
     device_structures::ConnectionsSP lineararray,
@@ -263,7 +266,10 @@ device_structures::ConnectionsSP GateGeometryArray1D::ohmics() const {
   std::vector<device_structures::ConnectionSP> tmp({left_ohmic, right_ohmic});
   return std::make_shared<device_structures::Connections>(tmp);
 }
-}  // namespace falcon_core::physics::config::geometries
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::geometries::GateGeometryArray1D)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

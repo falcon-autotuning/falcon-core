@@ -4,7 +4,10 @@
 
 #include "falcon_core/physics/device_structures/Connections.hpp"
 
-namespace falcon_core::physics::config::core {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace core {
 Group::Group() = default;
 Group::Group(const autotuner_interfaces::names::ChannelSP& name,
              const int&                                    num_dots,
@@ -50,7 +53,10 @@ device_structures::ConnectionsSP Group::get_all_channel_gates(
   }
   return std::make_shared<device_structures::Connections>();
 }
-}  // namespace falcon_core::physics::config::core
+}  // namespace core
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::Group)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::physics::config::core::StandardConfigConnections,

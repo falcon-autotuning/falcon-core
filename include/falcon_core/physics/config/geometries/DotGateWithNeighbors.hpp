@@ -4,7 +4,10 @@
 #include "falcon_core/physics/config/geometries/HasRightNeighbor.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
-namespace falcon_core::physics::config::geometries {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace geometries {
 
 class DotGateWithNeighbors : public device_structures::Connection,
                              public HasLeftNeighbor,
@@ -29,4 +32,7 @@ class DotGateWithNeighbors : public device_structures::Connection,
 };
 using DotGateWithNeighborsSP = std::shared_ptr<DotGateWithNeighbors>;
 
-}  // namespace falcon_core::physics::config::geometries
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core

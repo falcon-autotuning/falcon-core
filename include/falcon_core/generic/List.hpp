@@ -6,7 +6,8 @@
 
 #include "falcon_core/generic/CategoryTags.hpp"
 #include "falcon_core/generic/Song.hpp"
-namespace falcon_core::generic {
+namespace falcon_core {
+namespace generic {
 template <typename Value>
 class List : public generic::Song {
   static_assert(!std::is_pointer<Value>::value,
@@ -324,4 +325,5 @@ class List : public generic::Song {
 };
 template <typename Value>
 using ListSP = std::shared_ptr<List<Value>>;
-}  // namespace falcon_core::generic
+}  // namespace generic
+}  // namespace falcon_core

@@ -4,7 +4,10 @@
 
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
-namespace falcon_core::physics::config::geometries {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace geometries {
 HasImplantedOhmic::HasImplantedOhmic() = default;
 HasImplantedOhmic::HasImplantedOhmic(device_structures::ConnectionSP ohmic)
     : _ohmic(ohmic) {
@@ -20,7 +23,10 @@ HasImplantedOhmic::HasImplantedOhmic(device_structures::ConnectionSP ohmic)
 device_structures::ConnectionSP HasImplantedOhmic::ohmic() const {
   return _ohmic;
 }
-}  // namespace falcon_core::physics::config::geometries
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::geometries::HasImplantedOhmic)

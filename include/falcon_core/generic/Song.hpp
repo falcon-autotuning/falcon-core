@@ -12,7 +12,8 @@
 #include <sstream>
 #include <string>
 
-namespace falcon_core::generic {
+namespace falcon_core {
+namespace generic {
 /**
  * @brief Abstract base for all serializable Song objects.
  *
@@ -98,4 +99,5 @@ class Song {
   bool operator!=(const Song& other) const;
 };
 using SongSP = std::shared_ptr<Song>;
-}  // namespace falcon_core::generic
+}  // namespace generic
+}  // namespace falcon_core

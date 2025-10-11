@@ -9,7 +9,9 @@
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon_core/math/arrays/ControlArray.hpp"
 #include "falcon_core/math/arrays/IsLabelled.hpp"
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 
 /**
  * @brief An array with a context label attached.
@@ -141,4 +143,6 @@ class LabelledControlArray : public ControlArray, public IsLabelled<double> {
   }
 };
 using LabelledControlArraySP = std::shared_ptr<LabelledControlArray>;
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core

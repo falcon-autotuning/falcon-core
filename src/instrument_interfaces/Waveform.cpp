@@ -2,10 +2,13 @@
 
 #include <stdexcept>
 
+#include "falcon_core/generic/Map.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransforms.hpp"
+#include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 
-namespace falcon_core::instrument_interfaces {
+namespace falcon_core {
+namespace instrument_interfaces {
 
 const generic::ListSP<port_transforms::PortTransform>& wave_check_and_deref(
     const generic::ListSP<port_transforms::PortTransform>& transforms) {
@@ -109,17 +112,17 @@ const WaveformSP Waveform::CartesianIdentityWaveform2D(
       divisions, axes, increasing, domain);
 }
 const WaveformSP Waveform::CartesianWaveform1D(
-    const int&                                                 division,
-    const falcon_core::math::domains::CoupledLabelledDomainSP& shared_domain,
-    const generic::MapSP<std::string, bool>&                   increasing,
-    const generic::ListSP<port_transforms::PortTransform>&     transforms,
-    const falcon_core::math::domains::DomainSP&                domain) {
+    const int&                                             division,
+    const math::domains::CoupledLabelledDomainSP&          shared_domain,
+    const generic::MapSP<std::string, bool>&               increasing,
+    const generic::ListSP<port_transforms::PortTransform>& transforms,
+    const falcon_core::math::domains::DomainSP&            domain) {
   return Waveform::CartesianWaveform(
-      std::make_shared<math::Axes<int>>(std::vector{division}),
+      std::make_shared<math::Axes<int>>(std::vector<int>{division}),
       std::make_shared<math::Axes<math::domains::CoupledLabelledDomain>>(
-          std::vector{shared_domain}),
+          std::vector<math::domains::CoupledLabelledDomainSP>{shared_domain}),
       std::make_shared<math::Axes<generic::Map<std::string, bool>>>(
-          std::vector{increasing}),
+          std::vector<generic::MapSP<std::string, bool>>{increasing}),
       transforms,
       domain);
 }
@@ -130,11 +133,11 @@ const WaveformSP Waveform::CartesianIdentityWaveform1D(
     const generic::MapSP<std::string, bool>&                   increasing,
     const falcon_core::math::domains::DomainSP&                domain) {
   return Waveform::CartesianIdentityWaveform(
-      std::make_shared<math::Axes<int>>(std::vector{division}),
+      std::make_shared<math::Axes<int>>(std::vector<int>{division}),
       std::make_shared<math::Axes<math::domains::CoupledLabelledDomain>>(
-          std::vector{shared_domain}),
+          std::vector<math::domains::CoupledLabelledDomainSP>{shared_domain}),
       std::make_shared<math::Axes<generic::Map<std::string, bool>>>(
-          std::vector{increasing}),
+          std::vector<generic::MapSP<std::string, bool>>{increasing}),
       domain);
 }
 const math::discrete_spaces::DiscreteSpaceSP& Waveform::space() const {
@@ -171,7 +174,8 @@ bool Waveform::operator!=(const Waveform& other) const {
   return !(*this == other);
 }
 
-}  // namespace falcon_core::instrument_interfaces
+}  // namespace instrument_interfaces
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::Waveform)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::instrument_interfaces::port_transforms::PortTransforms,

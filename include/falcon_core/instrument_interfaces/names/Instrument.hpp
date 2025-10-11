@@ -1,8 +1,12 @@
 #pragma once
 #include <string>
 
-namespace falcon_core::instrument_interfaces::names {
+namespace falcon_core {
+namespace instrument_interfaces {
+namespace names {
 
 using Instrument = std::string;
 
-}  // namespace falcon_core::instrument_interfaces::names
+}
+}  // namespace instrument_interfaces
+}  // namespace falcon_core

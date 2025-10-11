@@ -7,7 +7,9 @@
 
 #include "falcon_core/generic/Song.hpp"
 
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 
 /**
  * @brief A three state system.
@@ -35,4 +37,6 @@ class IncreasingAlignment : public generic::Song {
   bool operator!=(const IncreasingAlignment& other) const;
 };
 using IncreasingAlignmentSP = std::shared_ptr<IncreasingAlignment>;
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core

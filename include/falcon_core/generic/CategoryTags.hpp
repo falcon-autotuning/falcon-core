@@ -1,7 +1,9 @@
 #pragma once
 #include "falcon_core/generic/IsPrimitive.hpp"
 #include "falcon_core/generic/Song.hpp"
-namespace falcon_core::generic::category {
+namespace falcon_core {
+namespace generic {
+namespace category {
 struct song_tag {};
 struct primitive_tag {};
 struct other_tag {};
@@ -13,4 +15,6 @@ struct determine_tag {
       song_tag,
       std::conditional_t<is_primitive<T>::value, primitive_tag, other_tag>>;
 };
-}  // namespace falcon_core::generic::category
+}  // namespace category
+}  // namespace generic
+}  // namespace falcon_core

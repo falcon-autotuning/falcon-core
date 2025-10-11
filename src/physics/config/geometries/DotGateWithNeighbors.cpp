@@ -3,7 +3,10 @@
 #include <stdexcept>
 
 #include "falcon_core/physics/config/geometries/HasLeftNeighbor.hpp"
-namespace falcon_core::physics::config::geometries {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace geometries {
 DotGateWithNeighbors::DotGateWithNeighbors() = default;
 DotGateWithNeighbors::DotGateWithNeighbors(
     std::string                      name,
@@ -28,7 +31,10 @@ bool DotGateWithNeighbors::operator!=(const DotGateWithNeighbors& other) const {
   return !(*this == other);
 }
 
-}  // namespace falcon_core::physics::config::geometries
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::geometries::DotGateWithNeighbors)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

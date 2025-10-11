@@ -9,7 +9,9 @@
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 
-namespace falcon_core::math::domains {
+namespace falcon_core {
+namespace math {
+namespace domains {
 
 /**
  * @brief A collection of coupled domains to be attached together.
@@ -51,4 +53,6 @@ class CoupledLabelledDomain : public generic::List<LabelledDomain> {
   }
 };
 using CoupledLabelledDomainSP = std::shared_ptr<CoupledLabelledDomain>;
-}  // namespace falcon_core::math::domains
+}  // namespace domains
+}  // namespace math
+}  // namespace falcon_core

@@ -1,20 +1,24 @@
 #include "falcon_core/physics/config/ConfigManipulations.hpp"
 
-#include <ranges>
 #include <stdexcept>
 
 #include "falcon_core/physics/config/core/Group.hpp"
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
 #include "falcon_core/physics/device_structures/Impedances.hpp"
-namespace falcon_core::physics::config {
+namespace falcon_core {
+namespace physics {
+namespace config {
 using core::StandardConfigConnections;
 
 std::vector<std::string> split_on_semicolon(const std::string& s) {
   std::vector<std::string> result;
-  for (auto&& sub : std::views::split(s, ';')) {
-    result.emplace_back(sub.begin(), sub.end());
+  std::string::size_type   start = 0, end;
+  while ((end = s.find(';', start)) != std::string::npos) {
+    result.push_back(s.substr(start, end - start));
+    start = end + 1;
   }
+  result.push_back(s.substr(start));
   return result;
 }
 ConfigManipulations::ConfigManipulations() = default;
@@ -304,4 +308,6 @@ device_structures::ConnectionsSP ConfigManipulations::_extract_order(
   return order;
 }
 
-}  // namespace falcon_core::physics::config
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core

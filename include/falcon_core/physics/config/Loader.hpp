@@ -2,7 +2,9 @@
 #include <boost/filesystem.hpp>
 
 #include "falcon_core/physics/config/ConfigManipulations.hpp"
-namespace falcon_core::physics::config {
+namespace falcon_core {
+namespace physics {
+namespace config {
 class Loader : public ConfigManipulations {
   boost::filesystem::path _config_path;
   core::ConfigSP          _config;
@@ -27,4 +29,6 @@ class Loader : public ConfigManipulations {
    */
   core::ConfigSP config() const;
 };
-}  // namespace falcon_core::physics::config
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core

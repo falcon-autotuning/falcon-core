@@ -1,7 +1,9 @@
 #pragma once
 #include "falcon_core/instrument_interfaces/names/Instrument.hpp"
 
-namespace falcon_core::instrument_interfaces::names {
+namespace falcon_core {
+namespace instrument_interfaces {
+namespace names {
 struct InstrumentTypes {
   static const Instrument DC_VOLTAGE_SOURCE;
   static const Instrument AMNMETER;
@@ -18,4 +20,6 @@ struct InstrumentTypes {
   static const Instrument CLOCK;
   static const Instrument DISCRETE;
 };
-}  // namespace falcon_core::instrument_interfaces::names
+}  // namespace names
+}  // namespace instrument_interfaces
+}  // namespace falcon_core

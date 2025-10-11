@@ -2,7 +2,9 @@
 
 #include "cereal/types/polymorphic.hpp"
 
-namespace falcon_core::communications::messages {
+namespace falcon_core {
+namespace communications {
+namespace messages {
 
 BaseMessage::BaseMessage() = default;
 BaseMessage::BaseMessage(const std::string& message) : _message(message) {}
@@ -15,7 +17,9 @@ bool BaseMessage::operator!=(const BaseMessage& other) const {
   return !(*this == other);
 }
 
-}  // namespace falcon_core::communications::messages
+}  // namespace messages
+}  // namespace communications
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::communications::messages::BaseMessage)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

@@ -3,7 +3,10 @@
 #include "falcon_core/generic/FArray.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
 
-namespace falcon_core::physics::config::core {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace core {
 
 class Adjacency : public generic::FArray<int> {
   using Indexes = physics::device_structures::ConnectionsSP;
@@ -33,4 +36,7 @@ class Adjacency : public generic::FArray<int> {
   }
 };
 using AdjacencySP = std::shared_ptr<Adjacency>;
-}  // namespace falcon_core::physics::config::core
+}  // namespace core
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core

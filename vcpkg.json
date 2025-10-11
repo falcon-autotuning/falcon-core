@@ -27,7 +27,7 @@
     },
     {
       "name": "gtest",
-      "version>=": "1.17.0#1"
+      "version>=": "1.16.0"
     },
     {
       "name": "yaml-cpp",
@@ -35,7 +35,7 @@
     },
     {
       "name": "xtensor",
-      "version>=": "0.27.0#0"
+      "version>=": "0.25.0"
     },
     {
       "name": "xtensor-io",
@@ -47,11 +47,11 @@
     },
     {
       "name": "xtl",
-      "version>=": "0.8.0#0"
+      "version>=": "0.7.5"
     },
     {
       "name": "xsimd",
-      "version>=": "13.2.0#0"
+      "version>=": "10.0.0"
     },
     {
       "name": "cereal",
@@ -62,5 +62,15 @@
       "version>=": "3.0.1#0"
     }
   ],
-  "builtin-baseline": "7213cf8135c329c37c7e2778e40774489a0583a8"
+  "builtin-baseline": "7213cf8135c329c37c7e2778e40774489a0583a8",
+  "overrides": [
+    {
+      "name": "xtensor",
+      "version": "0.25.0"
+    },
+    {
+      "name": "xtl",
+      "version": "0.7.5"
+    }
+  ]
 }

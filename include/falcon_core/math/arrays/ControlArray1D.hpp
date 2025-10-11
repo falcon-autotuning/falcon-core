@@ -7,7 +7,9 @@
 
 #include "falcon_core/math/arrays/ControlArray.hpp"
 #include "falcon_core/math/arrays/Is1D.hpp"
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 
 /// @brief 1D control array, enforces 1D shape at construction.
 class ControlArray1D : public ControlArray, public Is1D<double> {
@@ -115,4 +117,6 @@ class ControlArray1D : public ControlArray, public Is1D<double> {
   generic::ListSP<generic::FArray<double>> gradient() const;
 };
 using ControlArray1DSP = std::shared_ptr<ControlArray1D>;
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core

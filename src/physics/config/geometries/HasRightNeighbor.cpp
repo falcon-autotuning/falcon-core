@@ -2,7 +2,10 @@
 
 #include <stdexcept>
 
-namespace falcon_core::physics::config::geometries {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace geometries {
 
 HasRightNeighbor::HasRightNeighbor() = default;
 HasRightNeighbor::HasRightNeighbor(
@@ -18,7 +21,10 @@ device_structures::ConnectionSP HasRightNeighbor::right_neighbor() const {
   return _right_neighbor;
 }
 
-}  // namespace falcon_core::physics::config::geometries
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::physics::config::geometries::HasRightNeighbor)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,

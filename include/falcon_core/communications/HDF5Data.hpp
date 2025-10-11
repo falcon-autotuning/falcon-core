@@ -13,7 +13,8 @@
 #include "falcon_core/math/arrays/ControlArray.hpp"
 #include "falcon_core/math/arrays/LabelledArrays.hpp"
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
-namespace falcon_core::communications {
+namespace falcon_core {
+namespace communications {
 class HDF5Data : public generic::Song {
   using Metadata = generic::Map<std::string, std::string>;
   math::AxesSP<int>                                  _shape;
@@ -103,4 +104,5 @@ class HDF5Data : public generic::Song {
   to_communications() const;
 };
 using HDF5DataSP = std::shared_ptr<HDF5Data>;
-}  // namespace falcon_core::communications
+}  // namespace communications
+}  // namespace falcon_core

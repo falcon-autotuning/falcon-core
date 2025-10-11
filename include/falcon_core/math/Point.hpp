@@ -10,7 +10,8 @@
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
-namespace falcon_core::math {
+namespace falcon_core {
+namespace math {
 /**
  * @brief Represents a point in a multi-dimensional space, indexed by
  * connections.
@@ -78,4 +79,5 @@ class Point
   }
 };
 using PointSP = std::shared_ptr<Point>;
-}  // namespace falcon_core::math
+}  // namespace math
+}  // namespace falcon_core

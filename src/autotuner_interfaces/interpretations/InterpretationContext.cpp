@@ -2,7 +2,9 @@
 
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
-namespace falcon_core::autotuner_interfaces::interpretations {
+namespace falcon_core {
+namespace autotuner_interfaces {
+namespace interpretations {
 InterpretationContext::InterpretationContext() = default;
 InterpretationContext::InterpretationContext(
     const math::AxesSP<autotuner_interfaces::contexts::MeasurementContext>&
@@ -54,7 +56,9 @@ const InterpretationContextSP InterpretationContext::with_unit(
   return std::make_shared<InterpretationContext>(
       _independent_variables, _dependent_variables, unit);
 }
-}  // namespace falcon_core::autotuner_interfaces::interpretations
+}  // namespace interpretations
+}  // namespace autotuner_interfaces
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(
     falcon_core::autotuner_interfaces::interpretations::InterpretationContext)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

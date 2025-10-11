@@ -1,8 +1,10 @@
 #include "falcon_core/physics/device_structures/Connections.hpp"
 
-namespace falcon_core::physics::device_structures {
+namespace falcon_core {
+namespace physics {
+namespace device_structures {
 
-Connections::Connections() : List<Connection>() {}
+Connections::Connections() : generic::List<Connection>() {}
 Connections::Connections(size_t count, const ConnectionSP& value)
     : generic::List<Connection>(count, value) {}
 Connections::Connections(const std::vector<ConnectionSP>& vec)
@@ -71,11 +73,15 @@ ConnectionsSP Connections::intersection(
     throw std::invalid_argument(
         "Connections: Cannot intersect with a null connections.");
   }
+  generic::ListSP<Connection> other_list =
+      std::dynamic_pointer_cast<generic::List<Connection>>(other);
   return std::make_shared<Connections>(
-      List::intersection(dynamic_pointer_cast<List<Connection>>(other)));
+      generic::List<Connection>::intersection(other_list));
 }
 
-}  // namespace falcon_core::physics::device_structures
+}  // namespace device_structures
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Connections)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::List<

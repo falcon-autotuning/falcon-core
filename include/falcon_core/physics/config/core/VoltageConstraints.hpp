@@ -3,7 +3,10 @@
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/config/core/Adjacency.hpp"
 
-namespace falcon_core::physics::config::core {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace core {
 
 /**
  * @brief Contains a ready to use voltage constrains matrix and matching limits
@@ -46,4 +49,7 @@ class VoltageConstraints : public generic::Song {
   }
 };
 using VoltageConstraintsSP = std::shared_ptr<VoltageConstraints>;
-}  // namespace falcon_core::physics::config::core
+}  // namespace core
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core

@@ -7,7 +7,9 @@
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 
-namespace falcon_core::math::domains {
+namespace falcon_core {
+namespace math {
+namespace domains {
 
 CoupledLabelledDomain::CoupledLabelledDomain()
     : generic::List<LabelledDomain>() {}
@@ -60,7 +62,9 @@ bool CoupledLabelledDomain::operator!=(
   return !(*this == other);
 }
 
-}  // namespace falcon_core::math::domains
+}  // namespace domains
+}  // namespace math
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::math::domains::CoupledLabelledDomain);
 CEREAL_REGISTER_TYPE(
     falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>);

@@ -1,7 +1,9 @@
 #include <falcon_core/communications/voltage_states/DeviceVoltageState.hpp>
 #include <stdexcept>
 
-namespace falcon_core::communications::voltage_states {
+namespace falcon_core {
+namespace communications {
+namespace voltage_states {
 
 DeviceVoltageState::DeviceVoltageState(
     const physics::device_structures::ConnectionSP& connection,
@@ -31,7 +33,9 @@ bool   DeviceVoltageState::operator==(const DeviceVoltageState& other) const {
 bool DeviceVoltageState::operator!=(const DeviceVoltageState& other) const {
   return !(*this == other);
 }
-}  // namespace falcon_core::communications::voltage_states
+}  // namespace voltage_states
+}  // namespace communications
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(
     falcon_core::communications::voltage_states::DeviceVoltageState)

@@ -2,7 +2,9 @@
 
 #include "falcon_core/generic/FArray.hpp"
 
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 ControlArray1D::ControlArray1D() : ControlArray() {}
 ControlArray1D::ControlArray1D(const xt::xarray<double>& arr)
     : ControlArray(arr) {}
@@ -152,7 +154,9 @@ generic::FArraySP<double> ControlArray1D::gradient(size_t axis) const {
 generic::ListSP<generic::FArray<double>> ControlArray1D::gradient() const {
   return generic::FArray<double>::gradient();
 }
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray1D)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::FArray<double>,
                                      falcon_core::math::arrays::ControlArray1D)

@@ -2,7 +2,10 @@
 
 #include <stdexcept>
 
-namespace falcon_core::physics::config::core {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace core {
 VoltageConstraints::VoltageConstraints() = default;
 VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
                                        double                    max_safe_diff,
@@ -66,7 +69,10 @@ bool VoltageConstraints::operator==(const VoltageConstraints& other) const {
 bool VoltageConstraints::operator!=(const VoltageConstraints& other) const {
   return !(*this == other);
 }
-}  // namespace falcon_core::physics::config::core
+}  // namespace core
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::VoltageConstraints)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,

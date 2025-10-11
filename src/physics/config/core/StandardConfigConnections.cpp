@@ -5,7 +5,10 @@
 
 #include "falcon_core/physics/device_structures/Connections.hpp"
 
-namespace falcon_core::physics::config::core {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace core {
 StandardConfigConnections::StandardConfigConnections()
     : _screening_gates(std::make_shared<device_structures::Connections>()),
       _reservoir_gates(std::make_shared<device_structures::Connections>()),
@@ -79,7 +82,8 @@ const device_structures::ConnectionsSP& StandardConfigConnections::ohmics()
 const device_structures::ConnectionsSP StandardConfigConnections::dot_gates()
     const {
   device_structures::Connections combination = device_structures::Connections();
-  auto total_collection = std::vector{plunger_gates(), barrier_gates()};
+  auto total_collection = std::vector<device_structures::ConnectionsSP>{
+      plunger_gates(), barrier_gates()};
   for (const device_structures::ConnectionsSP& collection : total_collection) {
     for (const device_structures::ConnectionSP& connection : *collection) {
       combination.push_back(connection);
@@ -135,7 +139,7 @@ const device_structures::ConnectionsSP
 StandardConfigConnections::get_all_gates() const {
   device_structures::ConnectionsSP combination =
       std::make_shared<device_structures::Connections>();
-  auto total_collection = std::vector{
+  auto total_collection = std::vector<device_structures::ConnectionsSP>{
       barrier_gates(), plunger_gates(), screening_gates(), reservoir_gates()};
   for (const auto collection : total_collection) {
     for (const device_structures::ConnectionSP& connection : *collection) {
@@ -148,7 +152,8 @@ const device_structures::ConnectionsSP
 StandardConfigConnections::get_all_connections() const {
   device_structures::ConnectionsSP combination =
       std::make_shared<device_structures::Connections>();
-  auto total_collection = std::vector{get_all_gates(), ohmics()};
+  auto total_collection =
+      std::vector<device_structures::ConnectionsSP>{get_all_gates(), ohmics()};
   for (const auto collection : total_collection) {
     for (const device_structures::ConnectionSP& connection : *collection) {
       combination->push_back(connection);
@@ -235,7 +240,10 @@ bool StandardConfigConnections::has_screening_gate(
   }
   return false;
 }
-}  // namespace falcon_core::physics::config::core
+}  // namespace core
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(
     falcon_core::physics::config::core::StandardConfigConnections)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

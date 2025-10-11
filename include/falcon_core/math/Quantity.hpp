@@ -7,7 +7,8 @@
 
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
-namespace falcon_core::math {
+namespace falcon_core {
+namespace math {
 
 /**
  * @brief Represents a physical quantity with a value and unit.
@@ -92,4 +93,5 @@ class Quantity : public generic::Song {
   }
 };
 using QuantitySP = std::shared_ptr<Quantity>;
-}  // namespace falcon_core::math
+}  // namespace math
+}  // namespace falcon_core

@@ -2,7 +2,9 @@
 
 #include <stdexcept>
 
-namespace falcon_core::autotuner_interfaces::contexts {
+namespace falcon_core {
+namespace autotuner_interfaces {
+namespace contexts {
 BaseContext::BaseContext() = default;
 BaseContext::BaseContext(
     const physics::device_structures::ConnectionSP& connection,
@@ -28,7 +30,9 @@ const instrument_interfaces::names::Instrument BaseContext::instrument_type()
     const {
   return _instrument_type;
 }
-}  // namespace falcon_core::autotuner_interfaces::contexts
+}  // namespace contexts
+}  // namespace autotuner_interfaces
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::autotuner_interfaces::contexts::BaseContext)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,

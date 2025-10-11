@@ -2,7 +2,10 @@
 
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
-namespace falcon_core::physics::config::geometries {
+namespace falcon_core {
+namespace physics {
+namespace config {
+namespace geometries {
 /*
  * @brief A gate with an ohmic below it.
  */
@@ -25,4 +28,7 @@ class HasImplantedOhmic : public virtual generic::Song {
   }
 };
 using HasImplantedOhmicSP = std::shared_ptr<HasImplantedOhmic>;
-}  // namespace falcon_core::physics::config::geometries
+}  // namespace geometries
+}  // namespace config
+}  // namespace physics
+}  // namespace falcon_core

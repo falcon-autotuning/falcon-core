@@ -4,7 +4,9 @@
 #include <stdexcept>
 
 #include "falcon_core/Constants.hpp"
-namespace falcon_core::physics::units {
+namespace falcon_core {
+namespace physics {
+namespace units {
 const std::vector<std::tuple<UnitSP, std::string, std::string>> Units_And_Names{
     {Unit::Meter(), SI::UNIT_SYMBOL_METER, SI::UNIT_NAME_METER},
     {Unit::Kilogram(), SI::UNIT_SYMBOL_KILOGRAM, SI::UNIT_NAME_KILOGRAM},
@@ -404,7 +406,9 @@ bool SymbolUnit::operator==(const SymbolUnit& other) const {
 bool SymbolUnit::operator!=(const SymbolUnit& other) const {
   return !(*this == other);
 }
-}  // namespace falcon_core::physics::units
+}  // namespace units
+}  // namespace physics
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::physics::units::SymbolUnit)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::physics::units::SymbolUnit)

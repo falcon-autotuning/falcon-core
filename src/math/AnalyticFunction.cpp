@@ -5,9 +5,10 @@
 #include <stdexcept>
 #include <string>
 
-#include "xtensor/containers/xadapt.hpp"
+#include "xtensor/xadapt.hpp"
 
-namespace falcon_core::math {
+namespace falcon_core {
+namespace math {
 size_t maxXindex(const std::string& expr) {
   std::regex           x_index_regex(R"(x\[(\d+)\])");
   std::sregex_iterator iter(expr.begin(), expr.end(), x_index_regex);
@@ -144,7 +145,8 @@ bool AnalyticFunction::operator==(const AnalyticFunction& other) const {
 bool AnalyticFunction::operator!=(const AnalyticFunction& other) const {
   return !(*this == other);
 }
-}  // namespace falcon_core::math
+}  // namespace math
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(falcon_core::math::AnalyticFunction)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(

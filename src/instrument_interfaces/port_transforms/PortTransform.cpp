@@ -5,7 +5,9 @@
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/AnalyticFunction.hpp"
 
-namespace falcon_core::instrument_interfaces::port_transforms {
+namespace falcon_core {
+namespace instrument_interfaces {
+namespace port_transforms {
 
 PortTransform::PortTransform(const names::InstrumentPortSP&  port,
                              const math::AnalyticFunctionSP& transform)
@@ -43,7 +45,9 @@ bool PortTransform::operator!=(const PortTransform& other) const {
   return !(*this == other);
 }
 
-}  // namespace falcon_core::instrument_interfaces::port_transforms
+}  // namespace port_transforms
+}  // namespace instrument_interfaces
+}  // namespace falcon_core
 
 CEREAL_REGISTER_TYPE(
     falcon_core::instrument_interfaces::port_transforms::PortTransform)

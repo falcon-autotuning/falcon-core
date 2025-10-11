@@ -4,7 +4,9 @@
 
 #include "falcon_core/math/arrays/MeasuredArray.hpp"
 
-namespace falcon_core::math::arrays {
+namespace falcon_core {
+namespace math {
+namespace arrays {
 const arrays::MeasuredArray& check_and_deref(
     const arrays::MeasuredArraySP& array) {
   if (!array)
@@ -289,7 +291,9 @@ bool LabelledMeasuredArray::operator!=(
     const LabelledMeasuredArray& other) const {
   return !(*this == other);
 }
-}  // namespace falcon_core::math::arrays
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::math::arrays::LabelledMeasuredArray)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::math::arrays::MeasuredArray,
