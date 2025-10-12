@@ -426,7 +426,7 @@ TEST_F(ListTest, BackThrowsOnEmptyListPrimitive) {
 TEST_F(ListTest, EqualityPrimitiveEdgeCases) {
   List<double> list1({1.0, 2.0, 3.0});
   List<double> list2({1.0, 2.0, 3.0});
-  List<double> list3(std::vector{1.0, 2.0});
+  List<double> list3(std::vector<double>{1.0, 2.0});
   List<double> list4({1.0, 2.0, 4.0});
   EXPECT_TRUE(list1 == list2);   // same size, same values
   EXPECT_FALSE(list1 == list3);  // different size

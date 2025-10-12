@@ -2,9 +2,11 @@
 
 Core utilities for all falcon applications used for autotuning of quantum devices.
 
-This repository contains the main datatypes that can be used for serialization within falcon. All of the source code is written in  C++20. It can be found at /build and /src respectively. It is compiled via commands from the /Makefile.
+This repository contains the main datatypes that can be used for serialization within falcon. All of the source code is written in  C++14. It can be found at /build and /src respectively. It is compiled via commands from the /Makefile.
 
 The different supported languages are found in /dist with the folder indicating the language. Currently supported languages are Python and Go.
+
+The C-api is located in /c-api
 
 ## Installing
 

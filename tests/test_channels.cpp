@@ -24,7 +24,7 @@ TEST(ChannelsTest, VectorConstructor) {
 TEST(ChannelsTest, InitializerListConstructor) {
   auto     ch1 = std::make_shared<Channel>("x");
   auto     ch2 = std::make_shared<Channel>("y");
-  Channels channels(std::vector{ch1, ch2});
+  Channels channels(std::vector<ChannelSP>{ch1, ch2});
   EXPECT_EQ(channels.size(), 2);
   EXPECT_EQ(channels[0]->name(), "x");
   EXPECT_EQ(channels[1]->name(), "y");
@@ -33,7 +33,7 @@ TEST(ChannelsTest, InitializerListConstructor) {
 TEST(ChannelsTest, SerializationRoundTripJson) {
   auto     ch1 = std::make_shared<Channel>("json1");
   auto     ch2 = std::make_shared<Channel>("json2");
-  Channels channels(std::vector{ch1, ch2});
+  Channels channels(std::vector<ChannelSP>{ch1, ch2});
   auto     json   = channels.to_json_string();
   auto     loaded = Channels::from_json_string<Channels>(json);
   ASSERT_EQ(loaded->size(), 2);
