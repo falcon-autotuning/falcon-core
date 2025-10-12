@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.14)
 project(FalconCoreCAPI LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 include_directories(../include include ../vcpkg_installed/x64-linux/include)
