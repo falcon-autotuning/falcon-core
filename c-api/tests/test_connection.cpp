@@ -23,10 +23,10 @@ class ConnectionCAPI_Fixture : public ::testing::Test {
 };
 
 TEST(ConnectionCAPI_Constructors, ConstructorsAndAccessors) {
-  ConnectionHandle c2 = Connection_create("foo", DEVICE_FEATURE_BARRIER_GATE);
+  ConnectionHandle c2 = Connection_create_barrier_gate("foo");
   EXPECT_STREQ(Connection_get_name(c2), "foo");
   EXPECT_STREQ(Connection_get_type(c2), "BarrierGate");
-  ConnectionHandle c3 = Connection_create("bar", DEVICE_FEATURE_OHMIC);
+  ConnectionHandle c3 = Connection_create_ohmic("bar");
   EXPECT_STREQ(Connection_get_name(c3), "bar");
   EXPECT_STREQ(Connection_get_type(c3), "Ohmic");
   Connection_destroy(c2);
@@ -73,8 +73,8 @@ TEST_F(ConnectionCAPI_Fixture, StaticFactories_FeatureChecks) {
 }
 
 TEST(ConnectionCAPI_Comparison, EqualityAndInequality) {
-  ConnectionHandle a = Connection_create("a", DEVICE_FEATURE_BARRIER_GATE);
-  ConnectionHandle b = Connection_create("b", DEVICE_FEATURE_BARRIER_GATE);
+  ConnectionHandle a = Connection_create_barrier_gate("a");
+  ConnectionHandle b = Connection_create_barrier_gate("b");
   EXPECT_TRUE(Connection_not_equal(a, b));
   EXPECT_TRUE(Connection_equal(a, a));
   Connection_destroy(a);
@@ -82,7 +82,7 @@ TEST(ConnectionCAPI_Comparison, EqualityAndInequality) {
 }
 
 TEST(ConnectionCAPI_Serialization, SerializationRoundTrip) {
-  ConnectionHandle c = Connection_create("foo", DEVICE_FEATURE_SCREENING_GATE);
+  ConnectionHandle c    = Connection_create_screening_gate("foo");
   const char*      json = Connection_to_json_string(c);
   ConnectionHandle c2   = Connection_from_json_string(json);
   EXPECT_STREQ(Connection_get_name(c2), "foo");

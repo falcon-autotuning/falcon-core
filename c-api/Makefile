@@ -3,6 +3,7 @@ C_API_TARGET := falcon_core_c_api
 VCPKG_TOOLCHAIN := ../vcpkg/scripts/buildsystems/vcpkg.cmake
 CORE_BUILD_DIR := ../build
 VCPKG_INSTALLED := ../vcpkg_installed
+SO_DIRECTORY := ../dist/c_api
 
 .PHONY: all build clean clean-all
 
@@ -39,6 +40,14 @@ clean:
 		rm -rf $(C_API_BUILD_DIR)/.[!.]*; \
 	else \
 		echo "Error: C_API_BUILD_DIR is not set correctly or does not exist!"; \
+		exit 1; \
+	fi
+	@if [ -d "$(SO_DIRECTORY)" ]; then \
+		echo "Cleaning $(SO_DIRECTORY) ..."; \
+		rm -rf $(SO_DIRECTORY)/*; \
+		rm -rf $(SO_DIRECTORY)/.[!.]*; \
+	else \
+		echo "Error: SO_DIRECTORY is not set correctly or does not exist!"; \
 		exit 1; \
 	fi
 

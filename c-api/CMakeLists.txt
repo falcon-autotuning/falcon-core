@@ -27,6 +27,11 @@ message(STATUS "Setting up C++ tests")
 enable_testing()
 file(GLOB RUN_TESTS_SOURCES tests/test_*.cpp)
 add_executable(run_tests ${RUN_TESTS_SOURCES})
+set_target_properties(
+  run_tests
+  PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build"
+             BUILD_RPATH "${CMAKE_CURRENT_SOURCE_DIR}/../dist/c_api"
+             INSTALL_RPATH "${CMAKE_CURRENT_SOURCE_DIR}/../dist/c_api")
 find_package(GTest REQUIRED)
 target_link_libraries(run_tests GTest::gtest_main falcon_core_c_api)
 include(GoogleTest)
