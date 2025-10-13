@@ -22,3 +22,12 @@ set_target_properties(
              "${CMAKE_CURRENT_SOURCE_DIR}/../dist/c_api"
              PREFIX ""
              SUFFIX ".so")
+
+message(STATUS "Setting up C++ tests")
+enable_testing()
+file(GLOB RUN_TESTS_SOURCES tests/test_*.cpp)
+add_executable(run_tests ${RUN_TESTS_SOURCES})
+find_package(GTest REQUIRED)
+target_link_libraries(run_tests GTest::gtest_main falcon_core_c_api)
+include(GoogleTest)
+gtest_discover_tests(run_tests)

@@ -1,4 +1,6 @@
 #pragma once
+#include <memory>
+
 #include "falcon_core/generic/CategoryTags.hpp"
 #include "falcon_core/generic/Song.hpp"
 namespace falcon_core {
@@ -36,6 +38,15 @@ class Pair : public generic::Song {
    */
   Pair(const StoredT1& first, const StoredT2& second)
       : _first(first), _second(second) {}
+
+  /**
+   * @brief Store a pair of values.
+   * @param first The first value.
+   * @param second The second value.
+   */
+  std::shared_ptr<Pair> create(const StoredT1& first, const StoredT2& second) {
+    return std::make_shared<Pair<T1, T2>>(first, second);
+  }
 
   /**
    * @brief Get the stored first value.
