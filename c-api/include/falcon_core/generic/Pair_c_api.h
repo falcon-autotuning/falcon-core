@@ -1,29 +1,40 @@
+#pragma once
 #ifdef __cplusplus
 extern "C" {
 #endif
+#include "falcon_core/physics/device_structures/Connection_c_api.h"
 
-// Define all the type pairs you need
-#define PAIR_TYPES            \
-  X(int, int, IntInt)         \
-  X(float, float, FloatFloat) \
-  X(int, float, IntFloat)     \
-  /* Add more as needed */
+// Forward declarations for opaque handles
+typedef void* PairIntIntHandle;
+typedef void* PairFloatFloatHandle;
+typedef void* PairIntFloatHandle;
+typedef void* PairConnectionConnectionHandle;
 
-// Generate typedefs
-#define X(T1, T2, NAME) typedef void* Pair##NAME##Handle;
-PAIR_TYPES
-#undef X
+// Function declarations
 
-// Generate function declarations
-#define X(T1, T2, NAME)                                                \
-  Pair##NAME##Handle Pair##NAME##_create(T1 first, T2 second);         \
-  void               Pair##NAME##_destroy(Pair##NAME##Handle handle);  \
-  T1                 Pair##NAME##_first(Pair##NAME##Handle handle);    \
-  T2                 Pair##NAME##_second(Pair##NAME##Handle handle);   \
-  bool Pair##NAME##_equal(Pair##NAME##Handle a, Pair##NAME##Handle b); \
-  bool Pair##NAME##_not_equal(Pair##NAME##Handle a, Pair##NAME##Handle b);
-PAIR_TYPES
-#undef X
+PairIntIntHandle PairIntInt_create(int first, int second);
+void PairIntInt_destroy(PairIntIntHandle handle);
+int PairIntInt_first(PairIntIntHandle handle);
+int PairIntInt_second(PairIntIntHandle handle);
+bool PairIntInt_equal(PairIntIntHandle a, PairIntIntHandle b);
+
+PairFloatFloatHandle PairFloatFloat_create(float first, float second);
+void PairFloatFloat_destroy(PairFloatFloatHandle handle);
+float PairFloatFloat_first(PairFloatFloatHandle handle);
+float PairFloatFloat_second(PairFloatFloatHandle handle);
+bool PairFloatFloat_equal(PairFloatFloatHandle a, PairFloatFloatHandle b);
+
+PairIntFloatHandle PairIntFloat_create(int first, float second);
+void PairIntFloat_destroy(PairIntFloatHandle handle);
+int PairIntFloat_first(PairIntFloatHandle handle);
+float PairIntFloat_second(PairIntFloatHandle handle);
+bool PairIntFloat_equal(PairIntFloatHandle a, PairIntFloatHandle b);
+
+PairConnectionConnectionHandle PairConnectionConnection_create(ConnectionHandle first, ConnectionHandle second);
+void PairConnectionConnection_destroy(PairConnectionConnectionHandle handle);
+ConnectionHandle PairConnectionConnection_first(PairConnectionConnectionHandle handle);
+ConnectionHandle PairConnectionConnection_second(PairConnectionConnectionHandle handle);
+bool PairConnectionConnection_equal(PairConnectionConnectionHandle a, PairConnectionConnectionHandle b);
 
 #ifdef __cplusplus
 }

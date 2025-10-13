@@ -9,7 +9,13 @@ SO_DIRECTORY := ../dist/c_api
 
 all: build
 
-build:
+generate_pair:
+	@python3 ./generate_pair.py
+
+generate_list:
+	@python3 ./generate_list.py
+
+build: generate_pair
 	@if [ ! -d "$(CORE_BUILD_DIR)" ]; then \
 		echo "Error: C++ core must be built first (missing $(CORE_BUILD_DIR))."; \
 		exit 1; \

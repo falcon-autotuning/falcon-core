@@ -24,6 +24,9 @@ class Map : public virtual generic::Song {
 
  public:
   Map() : _items(std::make_shared<Container>()) {}
+  std::shared_ptr<Map<Key, Value>> create_empty() {
+    return std::make_shared<Map<Key, Value>>();
+  }
   Map(const std::vector<std::pair<typename ContainerItem::StoredT1,
                                   typename ContainerItem::StoredT2>>& init)
       : _items(std::make_shared<Container>()) {
@@ -35,6 +38,11 @@ class Map : public virtual generic::Song {
     for (const PairSP<Key, Value>& kv : init) {
       insert_or_assign((*kv).first(), (*kv).second());
     }
+  }
+  std::shared_ptr<Map<Key, Value>> create(
+      const std::vector<std::pair<typename ContainerItem::StoredT1,
+                                  typename ContainerItem::StoredT2>>& init) {
+    return std::make_shared<Map<Key, Value>>(init);
   }
 
   void insert_or_assign(const typename ContainerItem::StoredT1& key,
