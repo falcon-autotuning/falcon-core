@@ -8,7 +8,13 @@ MapFloatFloatHandle MapFloatFloat_create_empty() {
 }
 
 MapFloatFloatHandle MapFloatFloat_create(const PairFloatFloatHandle* data, size_t count) {
-    std::vector<falcon_core::generic::PairSP<float,float>> vec(data, data + count);
+    std::vector<falcon_core::generic::PairSP<float,float>> vec;
+    vec.reserve(count);
+    for (size_t i = 0; i < count; ++i) {
+        vec.push_back(*reinterpret_cast<
+                    std::shared_ptr<falcon_core::generic::Pair<float,float>>*>(
+            data[i]));
+    }
     return new std::shared_ptr<falcon_core::generic::Map<float,float>>(
             std::make_shared<falcon_core::generic::Map<float,float>>(vec));
 }

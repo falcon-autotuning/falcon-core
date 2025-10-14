@@ -601,7 +601,13 @@ auto correct_value = std::make_shared<{cpp_value_type}>(temp_value);"""
 }}
 
 {self.chandle()} {self.mangled_name()}_create(const Pair{name}Handle* data, size_t count) {{
-    std::vector<falcon_core::generic::PairSP<{cpp_key_type},{cpp_value_type}>> vec(data, data + count);
+    std::vector<falcon_core::generic::PairSP<{cpp_key_type},{cpp_value_type}>> vec;
+    vec.reserve(count);
+    for (size_t i = 0; i < count; ++i) {{
+        vec.push_back(*reinterpret_cast<
+                    std::shared_ptr<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>>*>(
+            data[i]));
+    }}
     return new std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>(
             std::make_shared<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>(vec));
 }}

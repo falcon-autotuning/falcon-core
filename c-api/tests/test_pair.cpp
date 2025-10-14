@@ -2,7 +2,7 @@
 
 #define PAIR_T1 int
 #define PAIR_T2 int
-#include "falcon_core/generic/Pair_c_api.h"
+#include "falcon_core/generic/PairIntInt_c_api.h"
 
 TEST(Pairintint, Construction) {
   PairIntIntHandle pair = PairIntInt_create(42, 7);

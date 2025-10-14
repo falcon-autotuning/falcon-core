@@ -9,7 +9,13 @@ MapConnectionFloatHandle MapConnectionFloat_create_empty() {
 }
 
 MapConnectionFloatHandle MapConnectionFloat_create(const PairConnectionFloatHandle* data, size_t count) {
-    std::vector<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection,float>> vec(data, data + count);
+    std::vector<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection,float>> vec;
+    vec.reserve(count);
+    for (size_t i = 0; i < count; ++i) {
+        vec.push_back(*reinterpret_cast<
+                    std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,float>>*>(
+            data[i]));
+    }
     return new std::shared_ptr<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>>(
             std::make_shared<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>>(vec));
 }

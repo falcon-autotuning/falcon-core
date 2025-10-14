@@ -8,7 +8,13 @@ MapIntIntHandle MapIntInt_create_empty() {
 }
 
 MapIntIntHandle MapIntInt_create(const PairIntIntHandle* data, size_t count) {
-    std::vector<falcon_core::generic::PairSP<int,int>> vec(data, data + count);
+    std::vector<falcon_core::generic::PairSP<int,int>> vec;
+    vec.reserve(count);
+    for (size_t i = 0; i < count; ++i) {
+        vec.push_back(*reinterpret_cast<
+                    std::shared_ptr<falcon_core::generic::Pair<int,int>>*>(
+            data[i]));
+    }
     return new std::shared_ptr<falcon_core::generic::Map<int,int>>(
             std::make_shared<falcon_core::generic::Map<int,int>>(vec));
 }
