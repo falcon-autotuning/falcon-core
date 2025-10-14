@@ -4,21 +4,17 @@ VCPKG_TOOLCHAIN := ../vcpkg/scripts/buildsystems/vcpkg.cmake
 CORE_BUILD_DIR := ../build
 VCPKG_INSTALLED := ../vcpkg_installed
 SO_DIRECTORY := ../dist/c_api
+GENERATED_MANIFEST := generated_template_manifest.txt
 
 .PHONY: all build clean clean-all
 
 all: build
 
-generate_pair:
-	@python3 ./generate_pair.py
+generate_types:
+	@test -f ${GENERATED_MANIFEST} || touch ${GENERATED_MANIFEST} 
+	@python3 ./generate_templated_types.py --manifest $(GENERATED_MANIFEST)
 
-generate_list:
-	@python3 ./generate_list.py
-
-generate_map:
-	@python3 ./generate_map.py
-
-build: generate_pair generate_list generate_map
+build: generate_types 
 	@if [ ! -d "$(CORE_BUILD_DIR)" ]; then \
 		echo "Error: C++ core must be built first (missing $(CORE_BUILD_DIR))."; \
 		exit 1; \
@@ -58,6 +54,11 @@ clean:
 	else \
 		echo "Error: SO_DIRECTORY is not set correctly or does not exist!"; \
 		exit 1; \
+	fi
+	@if [ -f "${GENERATED_MANIFEST}" ]; then \
+		echo "Removing generated files listed in manifest ..."; \
+		xargs rm < generated_template_manifest.txt; \
+		> generated_template_manifest.txt; \
 	fi
 
 clean-all: clean

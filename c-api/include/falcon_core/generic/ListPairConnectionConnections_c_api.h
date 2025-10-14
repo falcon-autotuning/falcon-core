@@ -1,0 +1,32 @@
+#pragma once
+#ifdef __cplusplus
+    extern "C" {
+#endif
+#include "falcon_core/generic/PairConnectionConnections_c_api.h"
+#include <cstddef>
+
+// Forward declarations for opaque handles
+typedef void* ListPairConnectionConnectionsHandle;
+// Function declarations
+
+ListPairConnectionConnectionsHandle ListPairConnectionConnections_create_empty();
+ListPairConnectionConnectionsHandle ListPairConnectionConnections_allocate(size_t count);
+ListPairConnectionConnectionsHandle ListPairConnectionConnections_fill_value(size_t count, PairConnectionConnectionsHandle value);
+ListPairConnectionConnectionsHandle ListPairConnectionConnections_create(const PairConnectionConnectionsHandle* data, size_t count);
+void ListPairConnectionConnections_destroy(ListPairConnectionConnectionsHandle handle);
+void ListPairConnectionConnections_push_back(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle value);
+size_t ListPairConnectionConnections_size(ListPairConnectionConnectionsHandle handle);
+bool ListPairConnectionConnections_empty(ListPairConnectionConnectionsHandle handle);
+void ListPairConnectionConnections_erase_at(ListPairConnectionConnectionsHandle handle, size_t idx);
+void ListPairConnectionConnections_clear(ListPairConnectionConnectionsHandle handle);
+PairConnectionConnectionsHandle ListPairConnectionConnections_const_at(ListPairConnectionConnectionsHandle handle, size_t idx);
+PairConnectionConnectionsHandle ListPairConnectionConnections_at(ListPairConnectionConnectionsHandle handle, size_t idx);
+size_t ListPairConnectionConnections_items(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle* out_buffer, size_t buffer_size);
+bool ListPairConnectionConnections_contains(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle value);
+size_t ListPairConnectionConnections_index(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle value);
+ListPairConnectionConnectionsHandle ListPairConnectionConnections_intersection(ListPairConnectionConnectionsHandle handle, ListPairConnectionConnectionsHandle other);
+bool ListPairConnectionConnections_equal(ListPairConnectionConnectionsHandle a, ListPairConnectionConnectionsHandle b);
+bool ListPairConnectionConnections_not_equal(ListPairConnectionConnectionsHandle a, ListPairConnectionConnectionsHandle b);
+#ifdef __cplusplus
+}
+#endif
