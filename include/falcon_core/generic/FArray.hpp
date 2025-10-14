@@ -41,7 +41,6 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     return std::make_shared<FArray<T>>(xt::empty<T>(shape));
   }
 
-#ifndef SWIG
   template <typename... Args>
   decltype(auto) operator()(Args&&... args) {
     return _data(std::forward<Args>(args)...);
@@ -50,7 +49,6 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   decltype(auto) operator()(Args&&... args) const {
     return _data(std::forward<Args>(args)...);
   }
-#endif
   reference       operator()(size_t i) override { return _data(i); }
   const_reference operator()(size_t i) const override { return _data(i); }
 
@@ -248,7 +246,6 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     return std::make_shared<FArray<T>>(xt::maximum(_data, other->_data));
   }
 
-#ifndef SWIG
   template <typename... Args>
   decltype(auto) view(Args&&... args) {
     return xt::view(_data, std::forward<Args>(args)...);
@@ -257,7 +254,6 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   decltype(auto) view(Args&&... args) const {
     return xt::view(_data, std::forward<Args>(args)...);
   }
-#endif
   // Assignment and conversion
   FArray<T>& operator=(const array_type& arr) {
     _data = arr;
