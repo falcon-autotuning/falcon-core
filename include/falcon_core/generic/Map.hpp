@@ -39,9 +39,7 @@ class Map : public virtual generic::Song {
       insert_or_assign((*kv).first(), (*kv).second());
     }
   }
-  std::shared_ptr<Map<Key, Value>> create(
-      const std::vector<std::pair<typename ContainerItem::StoredT1,
-                                  typename ContainerItem::StoredT2>>& init) {
+  std::shared_ptr<Map<Key, Value>> create(const Container& init) {
     return std::make_shared<Map<Key, Value>>(init);
   }
 

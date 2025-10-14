@@ -15,7 +15,10 @@ generate_pair:
 generate_list:
 	@python3 ./generate_list.py
 
-build: generate_pair
+generate_map:
+	@python3 ./generate_map.py
+
+build: generate_pair generate_list generate_map
 	@if [ ! -d "$(CORE_BUILD_DIR)" ]; then \
 		echo "Error: C++ core must be built first (missing $(CORE_BUILD_DIR))."; \
 		exit 1; \

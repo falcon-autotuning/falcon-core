@@ -15,6 +15,15 @@ type_combinations = [
         "falcon_core::physics::device_structures::ConnectionSP",
         "ConnectionConnection",
     ),
+    (
+        "ConnectionHandle",
+        "falcon_core::physics::device_structures::Connection",
+        "falcon_core::physics::device_structures::ConnectionSP",
+        "float",
+        "float",
+        "float",
+        "ConnectionFloat",
+    ),
 ]
 
 header_path = "./include/falcon_core/generic/Pair_c_api.h"
@@ -77,6 +86,7 @@ def generate_implementation():
 #include <falcon_core/generic/Pair.hpp>
 #include <falcon_core/physics/device_structures/Connection.hpp>
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
+#include "falcon_core/generic/List_c_api.h"
 #include "falcon_core/generic/Pair_c_api.h"
 
 using namespace falcon_core::generic;
@@ -101,23 +111,19 @@ using namespace falcon_core::physics::device_structures;
             # Generate create function
             if is_primitive_1 and is_primitive_2:
                 # Both primitive
-                create_func = f"Pair{name}_create({c_type_1} first, {c_type_2} second)"
                 create_body = (
                     f"return new Pair<{cpp_real_1}, {cpp_real_2}>(first, second);"
                 )
             elif is_primitive_1 and not is_primitive_2:
                 # First primitive, second complex
-                create_func = f"Pair{name}_create({c_type_1} first, {c_type_2} second)"
                 create_body = f"""auto second_obj = static_cast<{cpp_stored_2}*>(second);
     return new Pair<{cpp_real_1}, {cpp_real_2}>(first, *second_obj);"""
             elif not is_primitive_1 and is_primitive_2:
                 # First complex, second primitive
-                create_func = f"Pair{name}_create({c_type_1} first, {c_type_2} second)"
                 create_body = f"""auto first_obj = static_cast<{cpp_stored_1}*>(first);
     return new Pair<{cpp_real_1}, {cpp_real_2}>(*first_obj, second);"""
             else:
                 # Both complex
-                create_func = f"Pair{name}_create({c_type_1} first, {c_type_2} second)"
                 create_body = f"""auto first_obj = static_cast<{cpp_stored_1}*>(first);
     auto second_obj = static_cast<{cpp_stored_2}*>(second);
     return new Pair<{cpp_real_1}, {cpp_real_2}>(*first_obj, *second_obj);"""
@@ -138,7 +144,7 @@ using namespace falcon_core::physics::device_structures;
 
             # Write the complete implementation
             f.write(f"""
-Pair{name}Handle {create_func} {{
+Pair{name}Handle Pair{name}_create({c_type_1} first, {c_type_2} second) {{
     {create_body}
 }}
 

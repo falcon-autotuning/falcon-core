@@ -24,6 +24,12 @@ list_type_combinations = [
         "PairIntFloat",
     ),
     (
+        "PairConnectionFloatHandle",
+        "falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>",
+        "falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, float>",
+        "PairConnectionFloat",
+    ),
+    (
         "ConnectionHandle",
         "falcon_core::physics::device_structures::Connection",
         "falcon_core::physics::device_structures::ConnectionSP",

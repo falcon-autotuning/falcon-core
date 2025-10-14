@@ -9,6 +9,7 @@ typedef void* PairIntIntHandle;
 typedef void* PairFloatFloatHandle;
 typedef void* PairIntFloatHandle;
 typedef void* PairConnectionConnectionHandle;
+typedef void* PairConnectionFloatHandle;
 
 // Function declarations
 
@@ -35,6 +36,12 @@ void PairConnectionConnection_destroy(PairConnectionConnectionHandle handle);
 ConnectionHandle PairConnectionConnection_first(PairConnectionConnectionHandle handle);
 ConnectionHandle PairConnectionConnection_second(PairConnectionConnectionHandle handle);
 bool PairConnectionConnection_equal(PairConnectionConnectionHandle a, PairConnectionConnectionHandle b);
+
+PairConnectionFloatHandle PairConnectionFloat_create(ConnectionHandle first, float second);
+void PairConnectionFloat_destroy(PairConnectionFloatHandle handle);
+ConnectionHandle PairConnectionFloat_first(PairConnectionFloatHandle handle);
+float PairConnectionFloat_second(PairConnectionFloatHandle handle);
+bool PairConnectionFloat_equal(PairConnectionFloatHandle a, PairConnectionFloatHandle b);
 
 #ifdef __cplusplus
 }
