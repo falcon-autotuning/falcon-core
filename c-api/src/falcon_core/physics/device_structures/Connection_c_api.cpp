@@ -30,13 +30,13 @@ void Connection_destroy(ConnectionHandle handle) {
   delete static_cast<Connection*>(handle);
 }
 
-const char* Connection_get_name(ConnectionHandle handle) {
+const char* Connection_name(ConnectionHandle handle) {
   static thread_local std::string name;
   name = static_cast<Connection*>(handle)->name();
   return name.c_str();
 }
 
-const char* Connection_get_type(ConnectionHandle handle) {
+const char* Connection_type(ConnectionHandle handle) {
   static thread_local std::string type;
   type = static_cast<Connection*>(handle)->type();
   return type.c_str();

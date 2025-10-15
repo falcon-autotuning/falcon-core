@@ -24,26 +24,26 @@ class ConnectionCAPI_Fixture : public ::testing::Test {
 
 TEST(ConnectionCAPI_Constructors, ConstructorsAndAccessors) {
   ConnectionHandle c2 = Connection_create_barrier_gate("foo");
-  EXPECT_STREQ(Connection_get_name(c2), "foo");
-  EXPECT_STREQ(Connection_get_type(c2), "BarrierGate");
+  EXPECT_STREQ(Connection_name(c2), "foo");
+  EXPECT_STREQ(Connection_type(c2), "BarrierGate");
   ConnectionHandle c3 = Connection_create_ohmic("bar");
-  EXPECT_STREQ(Connection_get_name(c3), "bar");
-  EXPECT_STREQ(Connection_get_type(c3), "Ohmic");
+  EXPECT_STREQ(Connection_name(c3), "bar");
+  EXPECT_STREQ(Connection_type(c3), "Ohmic");
   Connection_destroy(c2);
   Connection_destroy(c3);
 }
 
 TEST_F(ConnectionCAPI_Fixture, StaticFactories_NamesAndTypes) {
-  EXPECT_STREQ(Connection_get_name(barrier), "b");
-  EXPECT_STREQ(Connection_get_type(barrier), "BarrierGate");
-  EXPECT_STREQ(Connection_get_name(plunger), "p");
-  EXPECT_STREQ(Connection_get_type(plunger), "PlungerGate");
-  EXPECT_STREQ(Connection_get_name(reservoir), "r");
-  EXPECT_STREQ(Connection_get_type(reservoir), "ReservoirGate");
-  EXPECT_STREQ(Connection_get_name(screening), "s");
-  EXPECT_STREQ(Connection_get_type(screening), "ScreeningGate");
-  EXPECT_STREQ(Connection_get_name(ohmic), "o");
-  EXPECT_STREQ(Connection_get_type(ohmic), "Ohmic");
+  EXPECT_STREQ(Connection_name(barrier), "b");
+  EXPECT_STREQ(Connection_type(barrier), "BarrierGate");
+  EXPECT_STREQ(Connection_name(plunger), "p");
+  EXPECT_STREQ(Connection_type(plunger), "PlungerGate");
+  EXPECT_STREQ(Connection_name(reservoir), "r");
+  EXPECT_STREQ(Connection_type(reservoir), "ReservoirGate");
+  EXPECT_STREQ(Connection_name(screening), "s");
+  EXPECT_STREQ(Connection_type(screening), "ScreeningGate");
+  EXPECT_STREQ(Connection_name(ohmic), "o");
+  EXPECT_STREQ(Connection_type(ohmic), "Ohmic");
 }
 
 TEST_F(ConnectionCAPI_Fixture, StaticFactories_FeatureChecks) {
@@ -85,8 +85,8 @@ TEST(ConnectionCAPI_Serialization, SerializationRoundTrip) {
   ConnectionHandle c    = Connection_create_screening_gate("foo");
   const char*      json = Connection_to_json_string(c);
   ConnectionHandle c2   = Connection_from_json_string(json);
-  EXPECT_STREQ(Connection_get_name(c2), "foo");
-  EXPECT_STREQ(Connection_get_type(c2), "ScreeningGate");
+  EXPECT_STREQ(Connection_name(c2), "foo");
+  EXPECT_STREQ(Connection_type(c2), "ScreeningGate");
   EXPECT_TRUE(Connection_is_screening_gate(c2));
   Connection_destroy(c);
   Connection_destroy(c2);

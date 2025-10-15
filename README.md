@@ -10,6 +10,68 @@ The C-api is located in /c-api
 
 ## Installing
 
+To install this package you will first need to install the core cpp implementation.
+
+These are the dependencies that this is known to work with.
+
+* boost@1.88.0
+* bzip2@1.0.8#6
+* cereal@1.3.2#1
+* expat@2.7.1
+* exprtk@0.0.2
+* hdf5@1.14.6
+* highfive@3.1.1
+* nlohmann-json@3.12.0
+* openssl@3.5.2
+* openssl@3.5.2
+* pybind11@3.0.1
+* python3@3.12.9
+* sqlite3@3.50.4
+* xsimd@13.2.0
+* xtensor@0.25.0
+* xtensor-io@0.13.0
+* xtl@0.7.5
+* yaml-cpp@0.8.0
+* zlib@1.3.1
+
+And for the dev version this one is also needed
+
+* gtest:x64-linux-dynamic@1.16.0
+
+Many of these packages are available on the AUR or Pacman for Arch Linux.
+Some of these packages are quite old, so we have packaged them for ease of installation.
+These packages can be found in the /packaging folder.
+
+* xsimd@13.2.0
+* xtensor@0.25.0
+* xtensor-io@0.13.0
+* xtl@0.7.5
+
+They can be installed via the following commands.
+
+```console
+cd /packaging/xtl
+makepkg -si
+cd ..
+cd /xsimd
+makepkg -si
+cd ..
+cd /xtensor
+makepkg -si
+cd ..
+cd /xtensor-io
+makepkg -si
+cd ..
+```
+
+Finally the package can be installed via the following commands
+
+```console
+cd /falcon-core-cpp
+makepkg -si
+cd ..
+```
+
 Navigate to the README in the dist folder you are interested in using. More details can be found there on how to install falcon-core.
 
 ## Getting started for devs

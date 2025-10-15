@@ -17,8 +17,8 @@ ConnectionHandle Connection_create_ohmic(const char* name);
 void Connection_destroy(ConnectionHandle handle);
 
 // Methods
-const char* Connection_get_name(ConnectionHandle handle);
-const char* Connection_get_type(ConnectionHandle handle);
+const char* Connection_name(ConnectionHandle handle);
+const char* Connection_type(ConnectionHandle handle);
 bool        Connection_is_dot_gate(ConnectionHandle handle);
 bool        Connection_is_barrier_gate(ConnectionHandle handle);
 bool        Connection_is_plunger_gate(ConnectionHandle handle);

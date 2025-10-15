@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/tylerk/falcon-dev/falcon-core/packaging/xtensor/src/xtensor-0.25.0/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

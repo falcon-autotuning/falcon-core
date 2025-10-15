@@ -7,23 +7,9 @@ BUILD_DIR := build
 PYTHON_DIST := dist/python
 GO_DIST := dist/go
 OUT_PYTHON_DIR := ${PYTHON_DIST}/src/falcon_core
+CPP_TARGET := falcon_core_cpp
 
-# Default target: setup vcpkg and build the project
-forward-header-xtensor-xarray:
-	@echo "--- Creating forwarding header for xtensor/xarray.hpp ---"
-	@if [ ! -e vcpkg_installed/x64-linux/include/xtensor/xarray.hpp ]; then \
-		echo '#include "containers/xarray.hpp"' > vcpkg_installed/x64-linux/include/xtensor/xarray.hpp; \
-	fi
-	@echo "--- Creating forwarding header for xtensor/xtensor.hpp ---"
-	@if [ ! -e vcpkg_installed/x64-linux/include/xtensor/xtensor.hpp ]; then \
-		echo '#include "containers/xtensor.hpp"' > vcpkg_installed/x64-linux/include/xtensor/xtensor.hpp; \
-	fi
-	@echo "--- Creating forwarding header for xtensor/xadapt.hpp ---"
-	@if [ ! -e vcpkg_installed/x64-linux/include/xtensor/xadapt.hpp ]; then \
-		echo '#include "containers/xadapt.hpp"' > vcpkg_installed/x64-linux/include/xtensor/xadapt.hpp; \
-	fi
-
-all: setup-vcpkg forward-header-xtensor-xarray build
+all: setup-vcpkg build
 
 # Setup vcpkg toolchain
 setup-vcpkg:
@@ -31,11 +17,32 @@ setup-vcpkg:
 	@which vcpkg > /dev/null 2>&1 || (echo "Error: vcpkg not found in PATH. Please install vcpkg and add it to your PATH."; exit 1)
 	@echo "Using vcpkg from: $$(which vcpkg)"
 	@echo "Installing dependencies..."
-	@vcpkg install --triplet=x64-linux
+	@vcpkg install --triplet=x64-linux-dynamic
 
-# Configure and build the project using CMake with vcpkg
 build:
-	@echo "--- Configuring and Building C++ Extension with vcpkg ---"
+	@echo "--- Configuring and Building C++ Extension (release, no tests) ---"
+	@mkdir -p $(BUILD_DIR)
+	@mkdir -p $(OUT_PYTHON_DIR)
+	@cmake -G Ninja \
+		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+		-DCMAKE_C_COMPILER=clang \
+		-DCMAKE_CXX_COMPILER=clang++ \
+		-DCMAKE_C_COMPILER_LAUNCHER=ccache \
+		-DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
+		-DCMAKE_C_FLAGS="-O2" \
+		-DCMAKE_CXX_FLAGS="-g -O2" \
+		-DCMAKE_TOOLCHAIN_FILE="$$(vcpkg integrate install --triplet=x64-linux-dynamic | grep -o '/.*\.cmake' | head -n1)" \
+		-DVCPKG_TARGET_TRIPLET=x64-linux-dynamic \
+		-DCPP_TARGET=$(CPP_TARGET) \
+		-DBUILD_TESTS=OFF \
+		. -S . -B $(BUILD_DIR)
+	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
+	@ninja -C $(BUILD_DIR) -d stats
+	@echo "--- Build complete ---"
+
+build-dev:
+	@echo "--- Configuring and Building C++ Extension (dev, tests, coverage) ---"
 	@mkdir -p $(BUILD_DIR)
 	@mkdir -p $(OUT_PYTHON_DIR)
 	@cmake -G Ninja \
@@ -47,55 +54,14 @@ build:
 		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
 		-DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" \
 		-DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping" \
-		-DCMAKE_TOOLCHAIN_FILE="$$(vcpkg integrate install --triplet=x64-linux | grep -o '/.*\.cmake' | head -n1)" \
-		-DVCPKG_TARGET_TRIPLET=x64-linux \
+		-DCMAKE_TOOLCHAIN_FILE="$$(vcpkg integrate install --triplet=x64-linux-dynamic | grep -o '/.*\.cmake' | head -n1)" \
+		-DVCPKG_TARGET_TRIPLET=x64-linux-dynamic \
+		-DCPP_TARGET=$(CPP_TARGET) \
+		-DBUILD_TESTS=ON \
 		. -S . -B $(BUILD_DIR)
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
-	@ninja -C $(BUILD_DIR) -d stats
+	@LD_LIBRARY_PATH=$(BUILD_DIR)/vcpkg_installed/x64-linux-dynamic/debug/lib:$$LD_LIBRARY_PATH ninja -C $(BUILD_DIR) -d stats
 	@echo "--- Build complete ---"
-
-build-and-sanitize:
-	@echo "--- Configuring and Building C++ Extension with vcpkg ---"
-	@mkdir -p $(BUILD_DIR)
-	@mkdir -p $(OUT_PYTHON_DIR)
-	@cmake -G Ninja \
-		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-		-DCMAKE_C_COMPILER=clang \
-		-DCMAKE_CXX_COMPILER=clang++ \
-		-DCMAKE_C_COMPILER_LAUNCHER=ccache \
-		-DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
-		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
-		-DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" \
-		-DCMAKE_CXX_FLAGS="-fsanitize=address -g -O0 -fprofile-instr-generate -fcoverage-mapping" \
-		-DCMAKE_TOOLCHAIN_FILE="$$(vcpkg integrate install --triplet=x64-linux | grep -o '/.*\.cmake' | head -n1)" \
-		-DVCPKG_TARGET_TRIPLET=x64-linux \
-		. -S . -B $(BUILD_DIR)
-	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
-	@ninja -C $(BUILD_DIR) -d stats
-	@echo "--- Build complete ---"
-
-# Build only selected sources and tests
-build-part: setup-vcpkg
-	@echo "--- Configuring and Building Selected Parts: $(DIRS), Tests: $(TESTS) ---"
-	@mkdir -p $(BUILD_DIR)
-	@mkdir -p $(OUT_PYTHON_DIR)
-	@cmake -G Ninja \
-		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-		-DCMAKE_C_COMPILER=clang \
-		-DCMAKE_CXX_COMPILER=clang++ \
-		-DCMAKE_C_COMPILER_LAUNCHER=ccache \
-		-DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
-		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
-		-DCMAKE_CXX_FLAGS="-g -O3" \
-		-DCMAKE_TOOLCHAIN_FILE="$(VCPKG_ROOT)/scripts/buildsystems/vcpkg.cmake"
-		-DVCPKG_TARGET_TRIPLET=x64-linux \
-		-DFALCON_CORE_DIRS="$(DIRS)" \
-		-DFALCON_CORE_TESTS="$(TESTS)" \
-		. -S . -B $(BUILD_DIR)
-	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
-	@ninja -C $(BUILD_DIR) -d stats
-	@echo "--- Partial build complete."
-
 
 # check coverage of entire module
 run-all-tests:
@@ -129,6 +95,20 @@ coverage-html: run-all-tests cov-html
 subset-coverage: run-subset-tests cov-term
 # Usage: make coverage 
 coverage: run-all-tests cov-term
+
+install:
+	@echo "--- Installing library and headers ---"
+	@mkdir -p /usr/local/lib
+	@mkdir -p /usr/local/include
+	@cp $(BUILD_DIR)/libfalcon_core_cpp.so /usr/local/lib/
+	@cp -r include/falcon_core_cpp /usr/local/include/
+	@echo "--- Install complete ---"
+
+uninstall:
+	@echo "--- Uninstalling library and headers ---"
+	@rm -f /usr/local/lib/libfalcon_core_cpp.so
+	@rm -rf /usr/local/include/falcon_core_cpp
+	@echo "--- Uninstall complete ---"
 
 subset-coverage-overview: subset-coverage
 	@llvm-cov report ./build/run_tests -instr-profile=run_tests.profdata \

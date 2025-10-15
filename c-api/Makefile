@@ -3,7 +3,7 @@ C_API_TARGET := falcon_core_c_api
 VCPKG_TOOLCHAIN := ../vcpkg/scripts/buildsystems/vcpkg.cmake
 CORE_BUILD_DIR := ../build
 VCPKG_INSTALLED := ../vcpkg_installed
-SO_DIRECTORY := ../dist/c_api
+SO_DIRECTORY := build
 GENERATED_MANIFEST := generated_template_manifest.txt
 
 .PHONY: all build clean clean-all
@@ -33,7 +33,8 @@ build: generate_types
 		-DCMAKE_TOOLCHAIN_FILE="$(VCPKG_ROOT)/scripts/buildsystems/vcpkg.cmake" \
 		-DVCPKG_TARGET_TRIPLET=x64-linux \
 		-DCMAKE_PREFIX_PATH="$(CORE_BUILD_DIR);$(VCPKG_INSTALLED)/x64-linux" \
-		-S . -B $(C_API_BUILD_DIR)
+   	-DC_API_TARGET=$(C_API_TARGET) \
+   	-S . -B $(C_API_BUILD_DIR)
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
 	@ninja -C $(C_API_BUILD_DIR) -d stats
 	@echo "--- Build complete. C API library is now in $(C_API_BUILD_DIR) ---"

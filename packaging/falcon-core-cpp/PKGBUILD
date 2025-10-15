@@ -1,0 +1,30 @@
+# PKGBUILD for falcon-core-cpp (library only)
+pkgname=falcon-core-cpp
+pkgver=1.0.0
+pkgrel=1
+arch=('x86_64')
+pkgdesc="Falcon Core C++ shared library"
+license=('MIT')
+depends=(
+  'boost-libs>=1.88.0'
+  'hdf5>=1.14.6'
+  'yaml-cpp>=0.8.0'
+  'xtensor>=0.25.0'
+  'xtl>=0.7.5'
+  'xsimd>=10.0.0'
+  'cereal>=1.3.2'
+  'exprtk>=0.0.3'
+  'highfive>=3.1.1'
+  'xtensor-io>=0.13.0'
+  'pybind11>=3.0.1'
+)
+source=()
+build() {
+  cd "$srcdir"
+  make build
+}
+package() {
+  install -Dm755 build/libfalcon_core_cpp.so "$pkgdir/usr/lib/libfalcon_core_cpp.so"
+  install -d "$pkgdir/usr/include/falcon_core_cpp"
+  cp -r include/falcon_core_cpp/* "$pkgdir/usr/include/falcon_core_cpp/"
+}
