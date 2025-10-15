@@ -96,20 +96,6 @@ subset-coverage: run-subset-tests cov-term
 # Usage: make coverage 
 coverage: run-all-tests cov-term
 
-install:
-	@echo "--- Installing library and headers ---"
-	@mkdir -p /usr/local/lib
-	@mkdir -p /usr/local/include
-	@cp $(BUILD_DIR)/libfalcon_core_cpp.so /usr/local/lib/
-	@cp -r include/falcon_core_cpp /usr/local/include/
-	@echo "--- Install complete ---"
-
-uninstall:
-	@echo "--- Uninstalling library and headers ---"
-	@rm -f /usr/local/lib/libfalcon_core_cpp.so
-	@rm -rf /usr/local/include/falcon_core_cpp
-	@echo "--- Uninstall complete ---"
-
 subset-coverage-overview: subset-coverage
 	@llvm-cov report ./build/run_tests -instr-profile=run_tests.profdata \
 		-ignore-filename-regex='(vcpkg_installed|tests/)' \

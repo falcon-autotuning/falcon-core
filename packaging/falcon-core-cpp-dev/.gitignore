@@ -1,4 +1,5 @@
 src/
+falcon-core/
 pkg/
 *.tar.*
 *.pkg.tar.*

@@ -29,11 +29,12 @@ makedepends=('llvm' 'clang' 'gcovr') # For coverage
 source=("git+ssh://git@github.com/falcon-autotuning/falcon-core.git#branch=cpp-refactor")
 sha256sums=('SKIP')
 build() {
-  cd "$srcdir"
+  cd "$srcdir/falcon-core"
   make build-dev
 }
+
 check() {
-  cd "$srcdir"
+  cd "$srcdir/falcon-core"
   make run-all-tests
   make coverage-html
 }
