@@ -1,6 +1,0 @@
-# pack-refs with: peeled fully-peeled sorted 
-3f904c9082ede9071f21f827cbe7f67a95c3ddf3 refs/heads/cpp-refactor
-c7b4f9da2a0ed2f16f4afabd5e65c3540f88737f refs/heads/crev
-f315dde2cde502637a1b71eba985dfbe93bb5524 refs/heads/dev
-28c3a931ccaeb240691d5141d88f9eb940d5a908 refs/heads/main
-01d1bb198c41eabb88535e10103053eb202d18b7 refs/heads/xtensorSupport

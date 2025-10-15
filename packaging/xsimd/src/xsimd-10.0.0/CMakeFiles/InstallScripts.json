@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/home/tylerk/falcon-dev/falcon-core/packaging/xsimd/src/xsimd-10.0.0/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
