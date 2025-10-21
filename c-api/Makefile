@@ -2,7 +2,7 @@ C_API_BUILD_DIR := build
 C_API_TARGET := falcon_core_c_api
 VCPKG_TOOLCHAIN := ../vcpkg/scripts/buildsystems/vcpkg.cmake
 CORE_BUILD_DIR := ../build
-VCPKG_INSTALLED := ../vcpkg_installed
+VCPKG_INSTALLED := /vcpkg_installed
 SO_DIRECTORY := build
 GENERATED_MANIFEST := generated_template_manifest.txt
 

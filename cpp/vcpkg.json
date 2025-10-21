@@ -71,10 +71,6 @@
     {
       "name": "xtl",
       "version": "0.7.5"
-    },
-    {
-      "name": "gtest",
-      "version": "1.16.0"
     }
   ]
 }

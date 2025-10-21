@@ -3,7 +3,6 @@ project(FalconCore LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-set(CMAKE_Position_INDEPENDENT_CODE ON)
 set(CPP_LIB_NAME
     "${CPP_TARGET}"
     CACHE STRING "ChangeMe")
@@ -49,16 +48,20 @@ if(BUILD_TESTS)
   enable_testing()
   file(GLOB RUN_TESTS_SOURCES tests/test_*.cpp)
   add_executable(run_tests ${RUN_TESTS_SOURCES})
-  set(HDF5_DEBUG_LIB
-      "${CMAKE_CURRENT_SOURCE_DIR}/build/vcpkg_installed/x64-linux-dynamic/debug/lib"
-  )
   set_target_properties(
     run_tests
-    PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build"
-               BUILD_RPATH "${HDF5_DEBUG_LIB}"
-               INSTALL_RPATH "${HDF5_DEBUG_LIB}")
-  target_link_libraries(run_tests GTest::gtest_main Boost::filesystem
-                        Boost::system ${CPP_LIB_NAME})
+    PROPERTIES
+      BUILD_RPATH
+      "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux-dynamic/debug/lib;${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux-dynamic/lib"
+      INSTALL_RPATH
+      "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux-dynamic/debug/lib;${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux-dynamic/lib"
+      SKIP_BUILD_RPATH FALSE
+      SKIP_INSTALL_RPATH FALSE
+      BUILD_WITH_INSTALL_RPATH FALSE)
+  target_link_libraries(
+    run_tests PRIVATE GTest::gtest_main Boost::filesystem Boost::system
+                      yaml-cpp::yaml-cpp ${CPP_LIB_NAME})
+  target_link_libraries(run_tests PUBLIC yaml-cpp::yaml-cpp)
   include(GoogleTest)
   gtest_discover_tests(run_tests)
 endif()

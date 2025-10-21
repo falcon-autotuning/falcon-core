@@ -4,9 +4,9 @@ Core utilities for all falcon applications used for autotuning of quantum device
 
 This repository contains the main datatypes that can be used for serialization within falcon. All of the source code is written in  C++14. It can be found at /build and /src respectively. It is compiled via commands from the /Makefile.
 
-The different supported languages are found in /dist with the folder indicating the language. Currently supported languages are Python and Go.
+The different supported languages are found in /go and /python with the folder indicating the language. Currently supported languages are Python and Go.
 
-The C-api is located in /c-api
+The C-api that binds all of the languages together is located in /c-api
 
 ## Installing
 
@@ -67,7 +67,7 @@ cd ..
 Finally the package can be installed via the following commands
 
 ```console
-cd /falcon-core-cpp
+cd /falcon-core
 makepkg -si
 cd ..
 ```
@@ -77,13 +77,12 @@ Navigate to the README in the dist folder you are interested in using. More deta
 ## Getting started for devs
 
 We use [clang](https://clang.llvm.org/) /(llvm/) as our main compiler, but [gcc](https://gcc.gnu.org/) should also work. The code is tested on Linux. You need one of the above c compilers installed on your system.
-We also heavily use [SWIG](https://www.swig.org/) to provide for our bindings in other programming languages.
 
 We use vcpkg to manager all of our C++ dependencies. This needs to be installed following distro specific [instruction](https://learn.microsoft.com/en-us/vcpkg/get_started/overview)
 With vcpkg we use [ninja](https://ninja-build.org/) as our build system. This also needs to be installed on your system.
 Finally we recommend using [ccache](https://ccache.dev/) to speed up compilation times.
 
-With those 3 precursors setup, to build run in the main directory
+With those 3 precursors setup, to build run in the cpp directory
 
 ```console
 make clean-all; make all 
