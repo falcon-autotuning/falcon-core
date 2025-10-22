@@ -57,13 +57,12 @@ if(BUILD_TESTS)
   file(GLOB RUN_TESTS_SOURCES tests/test_*.cpp)
   add_executable(run_tests ${RUN_TESTS_SOURCES})
   target_link_directories(run_tests PRIVATE ${CORE_BUILD_ABS})
+  find_package(GTest REQUIRED)
   set_target_properties(
     run_tests
     PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build"
-               BUILD_RPATH "${CMAKE_CURRENT_SOURCE_DIR}/build;${CORE_BUILD_ABS}"
-               INSTALL_RPATH
-               "${CMAKE_CURRENT_SOURCE_DIR}/build;${CORE_BUILD_ABS}")
-  find_package(GTest REQUIRED)
+               BUILD_RPATH "$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>"
+               INSTALL_RPATH "$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>")
   target_link_libraries(
     run_tests PRIVATE GTest::gtest_main Boost::filesystem Boost::system
                       yaml-cpp::yaml-cpp ${C_API_LIB_NAME})
