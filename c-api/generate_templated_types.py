@@ -752,6 +752,21 @@ registry: dict[str, Entry] = {
         ["<falcon_core/physics/device_structures/Connection.hpp>"],
         Path("generic"),
     ),
+    "ImpedanceList": Entry(
+        Template.List,
+        [
+            "ImpedanceHandle",
+            "falcon_core::physics::device_structures::Impedance",
+            "falcon_core::physics::device_structures::ImpedanceSP",
+            "Impedance",
+        ],
+        [
+            '"falcon_core/physics/device_structures/Impedance_c_api.h"',
+            "<cstddef>",
+        ],
+        ["<falcon_core/physics/device_structures/Impedance.hpp>"],
+        Path("generic"),
+    ),
     "ConnectionsList": Entry(
         Template.List,
         [
@@ -1016,6 +1031,7 @@ entry_queue: list[str] = [
     "ConnectionConnectionPair",
     "ConnectionList",
     "ConnectionsList",
+    "ImpedanceList",
     "ConnectionConnectionsPair",
     "PairIntIntList",
     "PairFloatFloatList",

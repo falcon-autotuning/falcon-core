@@ -1,5 +1,4 @@
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
-
 #include <falcon_core/physics/device_structures/Connection.hpp>
 #include <string>
 using namespace falcon_core::physics::device_structures;
