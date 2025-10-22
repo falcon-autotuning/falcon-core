@@ -17,18 +17,31 @@ find_package(yaml-cpp CONFIG REQUIRED)
 find_package(hdf5 CONFIG REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem system uuid)
 
-include_directories(${CORE_ROOT}/include include
-                    vcpkg_installed/x64-linux/include)
 
 file(GLOB_RECURSE C_API_SOURCES "src/*.cpp")
 
 add_library(${C_API_LIB_NAME} SHARED ${C_API_SOURCES})
 
+target_include_directories(${C_API_LIB_NAME}
+  PUBLIC $<BUILD_INTERFACE:${CORE_ROOT}/include>
+         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+         $<INSTALL_INTERFACE:include>)
+
 message(STATUS "CORE_ROOT is: ${CORE_ROOT}")
 get_filename_component(CORE_BUILD_ABS "${CORE_ROOT}/build" ABSOLUTE)
 message(STATUS "CORE_BUILD_ABS: ${CORE_BUILD_ABS}")
 target_link_libraries(${C_API_LIB_NAME}
-                      PRIVATE ${CORE_BUILD_ABS}/libfalcon_core_cpp.so)
+  PRIVATE ${CORE_BUILD_ABS}/libfalcon_core_cpp.so
+          cereal::cereal
+          xtl
+          xtensor
+          xsimd
+          yaml-cpp::yaml-cpp
+          hdf5::hdf5-shared
+          hdf5::hdf5_cpp-shared
+          Boost::filesystem
+          Boost::system
+          Boost::uuid)
 
 set_target_properties(
   ${C_API_LIB_NAME}
