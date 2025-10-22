@@ -6,7 +6,7 @@ extern "C" {
 
 #include <stdbool.h>
 
-#include "falcon_core/generic/ListInt_c_api.h"
+#include "falcon_core/generic/ListConnections_c_api.h"
 #include "falcon_core/generic/ListPairConnectionConnections_c_api.h"
 #include "falcon_core/generic/ListPairIntInt_c_api.h"
 #include "falcon_core/physics/device_structures/Connections_c_api.h"
@@ -33,9 +33,10 @@ size_t GateRelations_size(GateRelationsHandle handle);
 bool   GateRelations_empty(GateRelationsHandle handle);
 void   GateRelations_clear(GateRelationsHandle handle);
 bool   GateRelations_contains(GateRelationsHandle handle, ConnectionHandle key);
-ListIntHandle        GateRelations_keys(GateRelationsHandle handle);
-ListIntHandle        GateRelations_values(GateRelationsHandle handle);
-ListPairIntIntHandle GateRelations_items(GateRelationsHandle handle);
+ListConnectionHandle  GateRelations_keys(GateRelationsHandle handle);
+ListConnectionsHandle GateRelations_values(GateRelationsHandle handle);
+ListPairConnectionConnectionsHandle GateRelations_items(
+    GateRelationsHandle handle);
 bool GateRelations_equal(GateRelationsHandle a, GateRelationsHandle b);
 bool GateRelations_not_equal(GateRelationsHandle a, GateRelationsHandle b);
 

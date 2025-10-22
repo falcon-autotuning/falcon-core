@@ -752,6 +752,21 @@ registry: dict[str, Entry] = {
         ["<falcon_core/physics/device_structures/Connection.hpp>"],
         Path("generic"),
     ),
+    "ConnectionsList": Entry(
+        Template.List,
+        [
+            "ConnectionsHandle",
+            "falcon_core::physics::device_structures::Connections",
+            "falcon_core::physics::device_structures::ConnectionsSP",
+            "Connections",
+        ],
+        [
+            '"falcon_core/physics/device_structures/Connections_c_api.h"',
+            "<cstddef>",
+        ],
+        ["<falcon_core/physics/device_structures/Connections.hpp>"],
+        Path("generic"),
+    ),
     "PairIntIntList": Entry(
         Template.List,
         [
@@ -1000,6 +1015,7 @@ entry_queue: list[str] = [
     "ConnectionFloatPair",
     "ConnectionConnectionPair",
     "ConnectionList",
+    "ConnectionsList",
     "ConnectionConnectionsPair",
     "PairIntIntList",
     "PairFloatFloatList",
