@@ -17,12 +17,12 @@ find_package(yaml-cpp CONFIG REQUIRED)
 find_package(hdf5 CONFIG REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem system uuid)
 
-
 file(GLOB_RECURSE C_API_SOURCES "src/*.cpp")
 
 add_library(${C_API_LIB_NAME} SHARED ${C_API_SOURCES})
 
-target_include_directories(${C_API_LIB_NAME}
+target_include_directories(
+  ${C_API_LIB_NAME}
   PUBLIC $<BUILD_INTERFACE:${CORE_ROOT}/include>
          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
          $<INSTALL_INTERFACE:include>)
@@ -30,7 +30,8 @@ target_include_directories(${C_API_LIB_NAME}
 message(STATUS "CORE_ROOT is: ${CORE_ROOT}")
 get_filename_component(CORE_BUILD_ABS "${CORE_ROOT}/build" ABSOLUTE)
 message(STATUS "CORE_BUILD_ABS: ${CORE_BUILD_ABS}")
-target_link_libraries(${C_API_LIB_NAME}
+target_link_libraries(
+  ${C_API_LIB_NAME}
   PRIVATE ${CORE_BUILD_ABS}/libfalcon_core_cpp.so
           cereal::cereal
           xtl
@@ -60,9 +61,13 @@ if(BUILD_TESTS)
   find_package(GTest REQUIRED)
   set_target_properties(
     run_tests
-    PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build"
-               BUILD_RPATH "$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>"
-               INSTALL_RPATH "$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>")
+    PROPERTIES
+      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build"
+      BUILD_RPATH
+      "$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>"
+      INSTALL_RPATH
+      "$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>"
+  )
   target_link_libraries(
     run_tests PRIVATE GTest::gtest_main Boost::filesystem Boost::system
                       yaml-cpp::yaml-cpp ${C_API_LIB_NAME})

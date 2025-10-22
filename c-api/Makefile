@@ -81,7 +81,7 @@ build-dev: setup-vcpkg generate_types
 
 clean:
 	@echo "--- Cleaning build directory and compiled extension ---"
-	@rm -rf $(BUILD_DIR)
+	@rm -rf $(C_API_BUILD_DIR)
 
 clean-all: clean
 	@echo "--- Cleaning vcpkg cache ---"
