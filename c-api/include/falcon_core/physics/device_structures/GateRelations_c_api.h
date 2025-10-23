@@ -14,7 +14,7 @@ typedef void* GateRelationsHandle;
 // Constructors
 GateRelationsHandle GateRelations_create_empty();
 GateRelationsHandle GateRelations_create(
-    const ListPairConnectionConnectionsHandle items);
+    ListPairConnectionConnectionsHandle items);
 
 // Destructor
 void GateRelations_destroy(GateRelationsHandle handle);

@@ -19,7 +19,6 @@ size_t ListPairConnectionFloat_size(ListPairConnectionFloatHandle handle);
 bool ListPairConnectionFloat_empty(ListPairConnectionFloatHandle handle);
 void ListPairConnectionFloat_erase_at(ListPairConnectionFloatHandle handle, size_t idx);
 void ListPairConnectionFloat_clear(ListPairConnectionFloatHandle handle);
-PairConnectionFloatHandle ListPairConnectionFloat_const_at(ListPairConnectionFloatHandle handle, size_t idx);
 PairConnectionFloatHandle ListPairConnectionFloat_at(ListPairConnectionFloatHandle handle, size_t idx);
 size_t ListPairConnectionFloat_items(ListPairConnectionFloatHandle handle, PairConnectionFloatHandle* out_buffer, size_t buffer_size);
 bool ListPairConnectionFloat_contains(ListPairConnectionFloatHandle handle, PairConnectionFloatHandle value);

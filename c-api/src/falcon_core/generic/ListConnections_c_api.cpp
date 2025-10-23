@@ -70,11 +70,6 @@ void ListConnections_push_back(ListConnectionsHandle handle, ConnectionsHandle v
     static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Connections>*>(handle)->push_back(stored_obj);
 }
 
-ConnectionsHandle ListConnections_const_at(ListConnectionsHandle handle, size_t idx) {
-    auto obj = static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Connections>*>(handle)->at(idx);
-    return new falcon_core::physics::device_structures::Connections(*obj);
-}
-
 ConnectionsHandle ListConnections_at(ListConnectionsHandle handle, size_t idx) {
     auto obj = static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Connections>*>(handle)->at(idx);
     return new falcon_core::physics::device_structures::Connections(*obj);

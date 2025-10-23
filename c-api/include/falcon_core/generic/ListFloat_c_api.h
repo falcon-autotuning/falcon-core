@@ -18,7 +18,6 @@ size_t ListFloat_size(ListFloatHandle handle);
 bool ListFloat_empty(ListFloatHandle handle);
 void ListFloat_erase_at(ListFloatHandle handle, size_t idx);
 void ListFloat_clear(ListFloatHandle handle);
-float ListFloat_const_at(ListFloatHandle handle, size_t idx);
 float ListFloat_at(ListFloatHandle handle, size_t idx);
 size_t ListFloat_items(ListFloatHandle handle, float* out_buffer, size_t buffer_size);
 bool ListFloat_contains(ListFloatHandle handle, float value);

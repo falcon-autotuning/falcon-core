@@ -70,11 +70,6 @@ void ListPairIntFloat_push_back(ListPairIntFloatHandle handle, PairIntFloatHandl
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->push_back(stored_obj);
 }
 
-PairIntFloatHandle ListPairIntFloat_const_at(ListPairIntFloatHandle handle, size_t idx) {
-    auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->at(idx);
-    return new falcon_core::generic::Pair<int, float>(*obj);
-}
-
 PairIntFloatHandle ListPairIntFloat_at(ListPairIntFloatHandle handle, size_t idx) {
     auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->at(idx);
     return new falcon_core::generic::Pair<int, float>(*obj);

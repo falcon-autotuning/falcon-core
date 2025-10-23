@@ -19,7 +19,6 @@ size_t ListImpedance_size(ListImpedanceHandle handle);
 bool ListImpedance_empty(ListImpedanceHandle handle);
 void ListImpedance_erase_at(ListImpedanceHandle handle, size_t idx);
 void ListImpedance_clear(ListImpedanceHandle handle);
-ImpedanceHandle ListImpedance_const_at(ListImpedanceHandle handle, size_t idx);
 ImpedanceHandle ListImpedance_at(ListImpedanceHandle handle, size_t idx);
 size_t ListImpedance_items(ListImpedanceHandle handle, ImpedanceHandle* out_buffer, size_t buffer_size);
 bool ListImpedance_contains(ListImpedanceHandle handle, ImpedanceHandle value);

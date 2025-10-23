@@ -71,11 +71,6 @@ void ListPairConnectionFloat_push_back(ListPairConnectionFloatHandle handle, Pai
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>*>(handle)->push_back(stored_obj);
 }
 
-PairConnectionFloatHandle ListPairConnectionFloat_const_at(ListPairConnectionFloatHandle handle, size_t idx) {
-    auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>*>(handle)->at(idx);
-    return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>(*obj);
-}
-
 PairConnectionFloatHandle ListPairConnectionFloat_at(ListPairConnectionFloatHandle handle, size_t idx) {
     auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>*>(handle)->at(idx);
     return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>(*obj);

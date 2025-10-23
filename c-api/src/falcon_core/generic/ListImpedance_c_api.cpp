@@ -70,11 +70,6 @@ void ListImpedance_push_back(ListImpedanceHandle handle, ImpedanceHandle value) 
     static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>*>(handle)->push_back(stored_obj);
 }
 
-ImpedanceHandle ListImpedance_const_at(ListImpedanceHandle handle, size_t idx) {
-    auto obj = static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>*>(handle)->at(idx);
-    return new falcon_core::physics::device_structures::Impedance(*obj);
-}
-
 ImpedanceHandle ListImpedance_at(ListImpedanceHandle handle, size_t idx) {
     auto obj = static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>*>(handle)->at(idx);
     return new falcon_core::physics::device_structures::Impedance(*obj);

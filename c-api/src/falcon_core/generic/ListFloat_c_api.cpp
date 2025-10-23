@@ -63,10 +63,6 @@ void ListFloat_push_back(ListFloatHandle handle, float value) {
     static_cast<falcon_core::generic::List<float>*>(handle)->push_back(value);
 }
 
-float ListFloat_const_at(ListFloatHandle handle, size_t idx) {
-    return static_cast<falcon_core::generic::List<float>*>(handle)->at(idx);
-}
-
 float ListFloat_at(ListFloatHandle handle, size_t idx) {
     return static_cast<falcon_core::generic::List<float>*>(handle)->at(idx);
 }

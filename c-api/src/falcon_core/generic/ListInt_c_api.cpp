@@ -63,10 +63,6 @@ void ListInt_push_back(ListIntHandle handle, int value) {
     static_cast<falcon_core::generic::List<int>*>(handle)->push_back(value);
 }
 
-int ListInt_const_at(ListIntHandle handle, size_t idx) {
-    return static_cast<falcon_core::generic::List<int>*>(handle)->at(idx);
-}
-
 int ListInt_at(ListIntHandle handle, size_t idx) {
     return static_cast<falcon_core::generic::List<int>*>(handle)->at(idx);
 }

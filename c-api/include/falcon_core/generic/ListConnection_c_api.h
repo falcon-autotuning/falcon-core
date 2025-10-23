@@ -19,7 +19,6 @@ size_t ListConnection_size(ListConnectionHandle handle);
 bool ListConnection_empty(ListConnectionHandle handle);
 void ListConnection_erase_at(ListConnectionHandle handle, size_t idx);
 void ListConnection_clear(ListConnectionHandle handle);
-ConnectionHandle ListConnection_const_at(ListConnectionHandle handle, size_t idx);
 ConnectionHandle ListConnection_at(ListConnectionHandle handle, size_t idx);
 size_t ListConnection_items(ListConnectionHandle handle, ConnectionHandle* out_buffer, size_t buffer_size);
 bool ListConnection_contains(ListConnectionHandle handle, ConnectionHandle value);

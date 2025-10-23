@@ -11,7 +11,7 @@ typedef void* ConnectionsHandle;
 
 // Constructors
 ConnectionsHandle Connections_create_empty();
-ConnectionsHandle Connections_create(const ListConnectionHandle items);
+ConnectionsHandle Connections_create(ListConnectionHandle items);
 
 // Destructor
 void Connections_destroy(ConnectionsHandle handle);
@@ -31,11 +31,12 @@ size_t Connections_size(ConnectionsHandle handle);
 bool   Connections_empty(ConnectionsHandle handle);
 void   Connections_erase_at(ConnectionsHandle handle, size_t idx);
 void   Connections_clear(ConnectionsHandle handle);
-ConnectionHandle Connections_const_at(ConnectionsHandle handle, size_t idx);
-ConnectionHandle Connections_at(ConnectionsHandle handle, size_t idx);
-size_t           Connections_items(ConnectionsHandle handle,
-                                   ConnectionHandle* out_buffer,
-                                   size_t            buffer_size);
+const ConnectionHandle Connections_const_at(ConnectionsHandle handle,
+                                            size_t            idx);
+ConnectionHandle       Connections_at(ConnectionsHandle handle, size_t idx);
+size_t                 Connections_items(ConnectionsHandle handle,
+                                         ConnectionHandle* out_buffer,
+                                         size_t            buffer_size);
 bool   Connections_contains(ConnectionsHandle handle, ConnectionHandle value);
 size_t Connections_index(ConnectionsHandle handle, ConnectionHandle value);
 bool   Connections_equal(ConnectionsHandle a, ConnectionsHandle b);

@@ -19,7 +19,6 @@ size_t ListPairIntInt_size(ListPairIntIntHandle handle);
 bool ListPairIntInt_empty(ListPairIntIntHandle handle);
 void ListPairIntInt_erase_at(ListPairIntIntHandle handle, size_t idx);
 void ListPairIntInt_clear(ListPairIntIntHandle handle);
-PairIntIntHandle ListPairIntInt_const_at(ListPairIntIntHandle handle, size_t idx);
 PairIntIntHandle ListPairIntInt_at(ListPairIntIntHandle handle, size_t idx);
 size_t ListPairIntInt_items(ListPairIntIntHandle handle, PairIntIntHandle* out_buffer, size_t buffer_size);
 bool ListPairIntInt_contains(ListPairIntIntHandle handle, PairIntIntHandle value);

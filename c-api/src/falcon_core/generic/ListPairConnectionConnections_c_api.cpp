@@ -71,11 +71,6 @@ void ListPairConnectionConnections_push_back(ListPairConnectionConnectionsHandle
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connections>>*>(handle)->push_back(stored_obj);
 }
 
-PairConnectionConnectionsHandle ListPairConnectionConnections_const_at(ListPairConnectionConnectionsHandle handle, size_t idx) {
-    auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connections>>*>(handle)->at(idx);
-    return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connections>(*obj);
-}
-
 PairConnectionConnectionsHandle ListPairConnectionConnections_at(ListPairConnectionConnectionsHandle handle, size_t idx) {
     auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connections>>*>(handle)->at(idx);
     return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connections>(*obj);

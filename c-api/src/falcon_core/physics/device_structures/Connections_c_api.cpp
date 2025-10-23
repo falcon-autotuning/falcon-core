@@ -76,11 +76,6 @@ void Connections_clear(ConnectionsHandle handle) {
   static_cast<Connections*>(handle)->clear();
 }
 
-ConnectionHandle Connections_const_at(ConnectionsHandle handle, size_t idx) {
-  const auto conn = static_cast<Connections*>(handle)->at(idx);
-  return static_cast<ConnectionHandle>(conn.get());
-}
-
 ConnectionHandle Connections_at(ConnectionsHandle handle, size_t idx) {
   auto conn = static_cast<Connections*>(handle)->at(idx);
   return static_cast<ConnectionHandle>(conn.get());

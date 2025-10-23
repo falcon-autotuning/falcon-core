@@ -19,7 +19,6 @@ size_t ListPairFloatFloat_size(ListPairFloatFloatHandle handle);
 bool ListPairFloatFloat_empty(ListPairFloatFloatHandle handle);
 void ListPairFloatFloat_erase_at(ListPairFloatFloatHandle handle, size_t idx);
 void ListPairFloatFloat_clear(ListPairFloatFloatHandle handle);
-PairFloatFloatHandle ListPairFloatFloat_const_at(ListPairFloatFloatHandle handle, size_t idx);
 PairFloatFloatHandle ListPairFloatFloat_at(ListPairFloatFloatHandle handle, size_t idx);
 size_t ListPairFloatFloat_items(ListPairFloatFloatHandle handle, PairFloatFloatHandle* out_buffer, size_t buffer_size);
 bool ListPairFloatFloat_contains(ListPairFloatFloatHandle handle, PairFloatFloatHandle value);

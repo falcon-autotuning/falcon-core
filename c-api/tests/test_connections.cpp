@@ -34,7 +34,7 @@ TEST_F(ConnectionsCAPI_Fixture, CountValueConstructor) {
   Connections_push_back(c, barrier);
   EXPECT_EQ(Connections_size(c), 2);
   for (size_t i = 0; i < Connections_size(c); ++i) {
-    EXPECT_TRUE(Connection_equal(Connections_const_at(c, i), barrier));
+    EXPECT_TRUE(Connection_equal(Connections_at(c, i), barrier));
   }
   Connections_destroy(c);
 }
@@ -44,8 +44,8 @@ TEST_F(ConnectionsCAPI_Fixture, VectorConstructor) {
   Connections_push_back(c, barrier);
   Connections_push_back(c, ohmic);
   EXPECT_EQ(Connections_size(c), 2);
-  EXPECT_TRUE(Connection_equal(Connections_const_at(c, 0), barrier));
-  EXPECT_TRUE(Connection_equal(Connections_const_at(c, 1), ohmic));
+  EXPECT_TRUE(Connection_equal(Connections_at(c, 0), barrier));
+  EXPECT_TRUE(Connection_equal(Connections_at(c, 1), ohmic));
   Connections_destroy(c);
 }
 

@@ -205,7 +205,6 @@ size_t {self.mangled_name()}_size({self.chandle()} handle);
 bool {self.mangled_name()}_empty({self.chandle()} handle);
 void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx);
 void {self.mangled_name()}_clear({self.chandle()} handle);
-{c_type} {self.mangled_name()}_const_at({self.chandle()} handle, size_t idx);
 {c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx);
 size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size);
 bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value);
@@ -314,7 +313,7 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
         c_type = self.combo[0]
         cpp_real = self.combo[1]
         cpp_stored = self.combo[2]
-        is_primitive = c_type == cpp_real
+        is_primitive = "Handle" not in c_type
         with self.edit_implementation() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty() {{
@@ -382,10 +381,6 @@ void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value) {{
     static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->push_back(value);
 }}
 
-{c_type} {self.mangled_name()}_const_at({self.chandle()} handle, size_t idx) {{
-    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->at(idx);
-}}
-
 {c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx) {{
     return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->at(idx);
 }}
@@ -426,11 +421,6 @@ size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value) {{
 void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value) {{
     auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );
     static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->push_back(stored_obj);
-}}
-
-{c_type} {self.mangled_name()}_const_at({self.chandle()} handle, size_t idx) {{
-    auto obj = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->at(idx);
-    return new {cpp_real}(*obj);
 }}
 
 {c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx) {{
@@ -703,6 +693,36 @@ registry: dict[str, Entry] = {
             "<cstddef>",
         ],
         ["<falcon_core/physics/device_structures/Connection.hpp>"],
+        Path("generic"),
+    ),
+    "InstrumentPortList": Entry(
+        Template.List,
+        [
+            "InstrumentPortHandle",
+            "falcon_core::instrument_interfaces::names::InstrumentPort",
+            "falcon_core::instrument_interfaces::names::InstrumentPortSP",
+            "InstrumentPort",
+        ],
+        [
+            '"falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"',
+            "<cstddef>",
+        ],
+        ["<falcon_core/instrument_interfaces/names/InstrumentPort.hpp>"],
+        Path("generic"),
+    ),
+    "LabelledDomainList": Entry(
+        Template.List,
+        [
+            "LabelledDomainHandle",
+            "falcon_core::math::domains::LabelledDomain",
+            "falcon_core::math::domains::LabelledDomainSP",
+            "LabelledDomain",
+        ],
+        [
+            '"falcon_core/math/domains/LabelledDomain_c_api.h"',
+            "<cstddef>",
+        ],
+        ["<falcon_core/math/domains/LabelledDomain.hpp>"],
         Path("generic"),
     ),
     "ImpedanceList": Entry(
@@ -983,6 +1003,8 @@ entry_queue: list[str] = [
     "ConnectionFloatPair",
     "ConnectionConnectionPair",
     "ConnectionList",
+    "LabelledDomainList",
+    "InstrumentPortList",
     "ConnectionsList",
     "ImpedanceList",
     "ConnectionConnectionsPair",

@@ -18,7 +18,6 @@ size_t ListInt_size(ListIntHandle handle);
 bool ListInt_empty(ListIntHandle handle);
 void ListInt_erase_at(ListIntHandle handle, size_t idx);
 void ListInt_clear(ListIntHandle handle);
-int ListInt_const_at(ListIntHandle handle, size_t idx);
 int ListInt_at(ListIntHandle handle, size_t idx);
 size_t ListInt_items(ListIntHandle handle, int* out_buffer, size_t buffer_size);
 bool ListInt_contains(ListIntHandle handle, int value);
