@@ -680,6 +680,18 @@ registry: dict[str, Entry] = {
         [],
         Path("generic"),
     ),
+    "DoubleList": Entry(
+        Template.List,
+        [
+            "double",
+            "double",
+            "double",
+            "Double",
+        ],
+        ["<cstddef>"],
+        [],
+        Path("generic"),
+    ),
     "ConnectionList": Entry(
         Template.List,
         [
@@ -738,6 +750,21 @@ registry: dict[str, Entry] = {
             "<cstddef>",
         ],
         ["<falcon_core/math/domains/LabelledDomain.hpp>"],
+        Path("generic"),
+    ),
+    "QuantityList": Entry(
+        Template.List,
+        [
+            "QuantityHandle",
+            "falcon_core::math::Quantity",
+            "falcon_core::math::QuantitySP",
+            "Quantity",
+        ],
+        [
+            '"falcon_core/math/Quantity_c_api.h"',
+            "<cstddef>",
+        ],
+        ["<falcon_core/math/Quantity.hpp>"],
         Path("generic"),
     ),
     "ImpedanceList": Entry(
@@ -833,6 +860,24 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "PairConnectionDoubleList": Entry(
+        Template.List,
+        [
+            "PairConnectionDoubleHandle",
+            "falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>",
+            "falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, double>",
+            "PairConnectionDouble",
+        ],
+        [
+            '"falcon_core/generic/PairConnectionDouble_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/physics/device_structures/Connection.hpp>",
+        ],
+        Path("generic"),
+    ),
     "PairConnectionConnectionsList": Entry(
         Template.List,
         [
@@ -848,6 +893,25 @@ registry: dict[str, Entry] = {
         [
             "<falcon_core/generic/Pair.hpp>",
             "<falcon_core/physics/device_structures/Connections.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "PairConnectionQuantityList": Entry(
+        Template.List,
+        [
+            "PairConnectionQuantityHandle",
+            "falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>",
+            "falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>",
+            "PairConnectionQuantity",
+        ],
+        [
+            '"falcon_core/generic/PairConnectionQuantity_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/math/Quantity.hpp>",
+            "<falcon_core/physics/device_structures/Connection.hpp>",
         ],
         Path("generic"),
     ),
@@ -909,6 +973,75 @@ registry: dict[str, Entry] = {
         ],
         ['"falcon_core/physics/device_structures/Connection_c_api.h"'],
         ["<falcon_core/physics/device_structures/Connection.hpp>"],
+        Path("generic"),
+    ),
+    "ConnectionDoublePair": Entry(
+        Template.Pair,
+        [
+            "ConnectionHandle",
+            "falcon_core::physics::device_structures::Connection",
+            "falcon_core::physics::device_structures::ConnectionSP",
+            "double",
+            "double",
+            "double",
+            "ConnectionDouble",
+        ],
+        ['"falcon_core/physics/device_structures/Connection_c_api.h"'],
+        ["<falcon_core/physics/device_structures/Connection.hpp>"],
+        Path("generic"),
+    ),
+    "QuantityQuantityPair": Entry(
+        Template.Pair,
+        [
+            "QuantityHandle",
+            "falcon_core::math::Quantity",
+            "falcon_core::math::QuantitySP",
+            "QuantityHandle",
+            "falcon_core::math::Quantity",
+            "falcon_core::math::QuantitySP",
+            "QuantityQuantity",
+        ],
+        ['"falcon_core/math/Quantity_c_api.h"'],
+        ["<falcon_core/math/Quantity.hpp>"],
+        Path("generic"),
+    ),
+    "ConnectionQuantityPair": Entry(
+        Template.Pair,
+        [
+            "ConnectionHandle",
+            "falcon_core::physics::device_structures::Connection",
+            "falcon_core::physics::device_structures::ConnectionSP",
+            "QuantityHandle",
+            "falcon_core::math::Quantity",
+            "falcon_core::math::QuantitySP",
+            "ConnectionQuantity",
+        ],
+        [
+            '"falcon_core/math/Quantity_c_api.h"',
+            '"falcon_core/physics/device_structures/Connection_c_api.h"',
+        ],
+        [
+            "<falcon_core/math/Quantity.hpp>",
+            "<falcon_core/physics/device_structures/Connection.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "PairQuantityQuantityList": Entry(
+        Template.List,
+        [
+            "PairQuantityQuantityHandle",
+            "falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>",
+            "falcon_core::generic::PairSP<falcon_core::math::Quantity, falcon_core::math::Quantity>",
+            "PairQuantityQuantity",
+        ],
+        [
+            '"falcon_core/generic/PairQuantityQuantity_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/math/Quantity.hpp>",
+        ],
         Path("generic"),
     ),
     "ConnectionConnectionPair": Entry(
@@ -1008,17 +1141,73 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "ConnectionDoubleMap": Entry(
+        Template.Map,
+        [
+            "ConnectionHandle",
+            "falcon_core::physics::device_structures::Connection",
+            "falcon_core::physics::device_structures::ConnectionSP",
+            "double",
+            "double",
+            "double",
+            "Connection",
+            "Double",
+            "ConnectionDouble",
+        ],
+        [
+            '"falcon_core/generic/PairConnectionDouble_c_api.h"',
+            '"falcon_core/generic/ListDouble_c_api.h"',
+            '"falcon_core/generic/ListConnection_c_api.h"',
+            '"falcon_core/generic/ListPairConnectionDouble_c_api.h"',
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/physics/device_structures/Connection.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "ConnectionQuantityMap": Entry(
+        Template.Map,
+        [
+            "ConnectionHandle",
+            "falcon_core::physics::device_structures::Connection",
+            "falcon_core::physics::device_structures::ConnectionSP",
+            "QuantityHandle",
+            "falcon_core::math::Quantity",
+            "falcon_core::math::QuantitySP",
+            "Connection",
+            "Quantity",
+            "ConnectionQuantity",
+        ],
+        [
+            '"falcon_core/generic/PairConnectionQuantity_c_api.h"',
+            '"falcon_core/generic/ListQuantity_c_api.h"',
+            '"falcon_core/generic/ListConnection_c_api.h"',
+            '"falcon_core/generic/ListPairConnectionQuantity_c_api.h"',
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/math/Quantity.hpp>",
+            "<falcon_core/physics/device_structures/Connection.hpp>",
+        ],
+        Path("generic"),
+    ),
 }
 entry_queue: list[str] = [
     "IntList",
     "FloatList",
+    "DoubleList",
     "IntIntPair",
     "FloatFloatPair",
     "IntFloatPair",
+    "QuantityQuantityPair",
+    "PairQuantityQuantityList",
     "ConnectionFloatPair",
+    "ConnectionDoublePair",
     "ConnectionConnectionPair",
     "ConnectionList",
     "ChannelList",
+    "QuantityList",
     "LabelledDomainList",
     "InstrumentPortList",
     "ConnectionsList",
@@ -1028,10 +1217,15 @@ entry_queue: list[str] = [
     "PairFloatFloatList",
     "PairIntFloatList",
     "PairConnectionFloatList",
+    "PairConnectionDoubleList",
     "PairConnectionConnectionsList",
     "IntIntMap",
     "FloatFloatMap",
     "ConnectionFloatMap",
+    "ConnectionDoubleMap",
+    "ConnectionQuantityPair",
+    "PairConnectionQuantityList",
+    "ConnectionQuantityMap",
 ]
 
 
