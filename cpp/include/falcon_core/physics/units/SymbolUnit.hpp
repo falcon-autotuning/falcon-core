@@ -328,9 +328,8 @@ class SymbolUnit : public generic::Song {
 
   const std::map<std::string, std::string> get_dimension_symbols() const;
 
-  const std::string str() const;
-  bool              operator==(const SymbolUnit& other) const;
-  bool              operator!=(const SymbolUnit& other) const;
+  bool operator==(const SymbolUnit& other) const;
+  bool operator!=(const SymbolUnit& other) const;
 
  protected:
   SymbolUnit();

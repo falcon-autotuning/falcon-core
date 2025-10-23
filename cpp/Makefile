@@ -99,12 +99,12 @@ subset-coverage: run-subset-tests cov-term
 coverage: run-all-tests cov-term
 
 subset-coverage-overview: subset-coverage
-	@llvm-cov report ./build/run_tests -instr-profile=run_tests.profdata \
+	@llvm-cov report ./build/lib$(CPP_TARGET).so -instr-profile=run_tests.profdata \
 		-ignore-filename-regex='(vcpkg_installed|tests/)' \
 		-Xdemangler c++filt -Xdemangler -n                                                                     [15:00:01]
 
 coverage-overview: coverage
-	@llvm-cov report ./build/run_tests -instr-profile=run_tests.profdata -ignore-filename-regex='(vcpkg_installed|tests/)' -Xdemangler c++filt -Xdemangler -n                                                                     [15:00:01]
+	@llvm-cov report ./build/lib$(CPP_TARGET).so -instr-profile=run_tests.profdata -ignore-filename-regex='(vcpkg_installed|tests/)' -Xdemangler c++filt -Xdemangler -n                                                                     [15:00:01]
 
 # Clean up build artifacts
 clean:

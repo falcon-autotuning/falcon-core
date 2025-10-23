@@ -40,7 +40,6 @@ TEST_F(SymbolUnitTest, Properties) {
   ASSERT_EQ(m->symbol(), "m");
   ASSERT_FALSE(m->name().empty());
   ASSERT_TRUE(m->unit() != nullptr);
-  ASSERT_GT(m->str().size(), 0);
 }
 
 TEST_F(SymbolUnitTest, OperatorMultiplyWorks) {

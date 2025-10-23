@@ -3,8 +3,8 @@
 #include <falcon_core/physics/device_structures/Connection.hpp>
 
 PairConnectionFloatHandle PairConnectionFloat_create(ConnectionHandle first, float second) {
-    auto first_obj = static_cast<falcon_core::physics::device_structures::ConnectionSP*>(first);
-    return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>(*first_obj, second);
+    auto first_obj = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(first),[](falcon_core::physics::device_structures::Connection*) {});
+    return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>(first_obj, second);
 }
 
 void PairConnectionFloat_destroy(PairConnectionFloatHandle handle) {
@@ -13,7 +13,7 @@ void PairConnectionFloat_destroy(PairConnectionFloatHandle handle) {
 
 ConnectionHandle PairConnectionFloat_first(PairConnectionFloatHandle handle) {
     auto pair = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>*>(handle);
-    return new falcon_core::physics::device_structures::ConnectionSP(pair->first());
+    return new falcon_core::physics::device_structures::Connection(*pair->first());
 }
 
 float PairConnectionFloat_second(PairConnectionFloatHandle handle) {

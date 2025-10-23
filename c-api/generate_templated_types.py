@@ -147,7 +147,7 @@ class Entry:
         return self.mangled_name() + "Handle"
 
     def generate_header(self):
-        match entry.temp:
+        match self.temp:
             case Template.List:
                 self.generate_list_header()
             case Template.Map:
@@ -160,7 +160,7 @@ class Entry:
                 raise ValueError("Bad template")
 
     def generate_implementation(self):
-        match entry.temp:
+        match self.temp:
             case Template.List:
                 self.generate_list_implementation()
             case Template.Map:
@@ -175,25 +175,25 @@ class Entry:
     def edit_header(self):
         """Opens context manager for header"""
         return HeaderContext(
-            entry.temp,
-            entry.name(),
-            entry.header_path,
-            entry.header_includes,
+            self.temp,
+            self.name(),
+            self.header_path,
+            self.header_includes,
         )
 
     def edit_implementation(self):
         """Opens context manager for implementation"""
         return ImplementationContext(
-            entry.temp,
-            entry.name(),
-            entry.implementation_path,
-            entry.header_path,
-            entry.implementation_includes,
+            self.temp,
+            self.name(),
+            self.implementation_path,
+            self.header_path,
+            self.implementation_includes,
         )
 
     def generate_list_header(self):
-        c_type = entry.combo[0]
-        with entry.edit_header() as f:
+        c_type = self.combo[0]
+        with self.edit_header() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty();
 {self.chandle()} {self.mangled_name()}_allocate(size_t count);
@@ -215,9 +215,9 @@ bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);""")
 
     def generate_pair_header(self):
-        c_type_1 = entry.combo[0]
-        c_type_2 = entry.combo[3]
-        with entry.edit_header() as f:
+        c_type_1 = self.combo[0]
+        c_type_2 = self.combo[3]
+        with self.edit_header() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create({c_type_1} first, {c_type_2} second);
 void {self.mangled_name()}_destroy({self.chandle()} handle);
@@ -226,9 +226,9 @@ void {self.mangled_name()}_destroy({self.chandle()} handle);
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);""")
 
     def generate_farray_header(self):
-        c_type = entry.combo[0]
+        c_type = self.combo[0]
         # TODO: view and operator() and xtensor are not wrapped
-        with entry.edit_header() as f:
+        with self.edit_header() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty();
 {self.chandle()} {self.mangled_name()}_from_shape(const size_t* shape, size_t ndim);
@@ -286,12 +286,12 @@ double {self.mangled_name()}_get_summed_diff_double_of_squares({self.chandle()} 
 double {self.mangled_name()}_get_summed_diff_array_of_squares({self.chandle()} handle, {self.chandle()} other);""")
 
     def generate_map_header(self):
-        c_key_type = entry.combo[0]
-        c_value_type = entry.combo[3]
-        key_name = entry.combo[6]
-        value_name = entry.combo[7]
-        name = entry.combo[8]
-        with entry.edit_header() as f:
+        c_key_type = self.combo[0]
+        c_value_type = self.combo[3]
+        key_name = self.combo[6]
+        value_name = self.combo[7]
+        name = self.combo[8]
+        with self.edit_header() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty();
 {self.chandle()} {self.mangled_name()}_create(const Pair{name}Handle* data, size_t count);
@@ -311,197 +311,150 @@ bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);""")
 
     def generate_list_implementation(self):
-        c_type = entry.combo[0]
-        cpp_real = entry.combo[1]
-        cpp_stored = entry.combo[2]
+        c_type = self.combo[0]
+        cpp_real = self.combo[1]
+        cpp_stored = self.combo[2]
         is_primitive = c_type == cpp_real
-        with entry.edit_implementation() as f:
-            if is_primitive:
-                # Primitive type implementation
-                f.write(f"""
+        with self.edit_implementation() as f:
+            f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty() {{
-    return new std::shared_ptr<falcon_core::generic::List<{cpp_real}>>(
-        std::make_shared<falcon_core::generic::List<{cpp_real}>>());
+    return new falcon_core::generic::List<{cpp_real}>(
+        falcon_core::generic::List<{cpp_real}>());
 }}
 
 {self.chandle()} {self.mangled_name()}_allocate(size_t count) {{
-    return new std::shared_ptr<falcon_core::generic::List<{cpp_real}>>(
-        std::make_shared<falcon_core::generic::List<{cpp_real}>>(count));
+    return new falcon_core::generic::List<{cpp_real}>(
+        falcon_core::generic::List<{cpp_real}>(count));
 }}
 
+void {self.mangled_name()}_destroy({self.chandle()} handle) {{
+    delete static_cast<falcon_core::generic::List<{cpp_real}>*>(handle);
+}}
+
+size_t {self.mangled_name()}_size({self.chandle()} handle) {{
+    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->size();
+}}
+
+bool {self.mangled_name()}_empty({self.chandle()} handle) {{
+    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->empty();
+}}
+
+void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx) {{
+    static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->erase_at(idx);
+}}
+
+void {self.mangled_name()}_clear({self.chandle()} handle) {{
+    static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->clear();
+}}
+
+bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
+    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(a);
+    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(b);
+    return *listA == *listB;
+}}
+
+bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
+    return !{self.mangled_name()}_equal(a, b);
+}}
+
+{self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other) {{
+    auto listA = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle);
+    auto listB = static_cast<falcon_core::generic::List<{cpp_real}>*>(other);
+    auto result = listA->intersection(std::make_shared<falcon_core::generic::List<{cpp_real}>>(*listB));
+    return new falcon_core::generic::List<{cpp_real}>(*result);
+}}
+""")
+            if is_primitive:
+                # Primitive type implementation
+                f.write(f"""
 {self.chandle()} {self.mangled_name()}_fill_value(size_t count, {c_type} value) {{
-    return new std::shared_ptr<falcon_core::generic::List<{cpp_real}>>(
-        std::make_shared<falcon_core::generic::List<{cpp_real}>>(count, value));
+    return new falcon_core::generic::List<{cpp_real}>(
+        falcon_core::generic::List<{cpp_real}>(count, value));
 }}
 
 {self.chandle()} {self.mangled_name()}_create(const {c_type}* data, size_t count) {{
     std::vector<{cpp_stored}> vec(data, data + count);
-    return new std::shared_ptr<falcon_core::generic::List<{cpp_real}>>(
-        std::make_shared<falcon_core::generic::List<{cpp_real}>>(vec));
-}}
-
-void {self.mangled_name()}_destroy({self.chandle()} handle) {{
-    delete static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle);
+    return new falcon_core::generic::List<{cpp_real}>(
+        falcon_core::generic::List<{cpp_real}>(vec));
 }}
 
 void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value) {{
-    (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->push_back(value);
-}}
-
-size_t {self.mangled_name()}_size({self.chandle()} handle) {{
-    return (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->size();
-}}
-
-bool {self.mangled_name()}_empty({self.chandle()} handle) {{
-    return (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->empty();
-}}
-
-void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx) {{
-    (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->erase_at(idx);
-}}
-
-void {self.mangled_name()}_clear({self.chandle()} handle) {{
-    (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->clear();
+    static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->push_back(value);
 }}
 
 {c_type} {self.mangled_name()}_const_at({self.chandle()} handle, size_t idx) {{
-    return (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->at(idx);
+    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->at(idx);
 }}
 
 {c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx) {{
-    return (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->at(idx);
+    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->at(idx);
 }}
 
 size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size) {{
-    auto& list = *static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle);
+    auto list = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     std::copy_n(list->items().begin(), n, out_buffer);
     return n;
 }}
 
 bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value) {{
-    return (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->contains(value);
+    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->contains(value);
 }}
 
 size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value) {{
-    return (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->index(value);
-}}
-
-{self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other) {{
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(other);
-    auto result = listA->intersection(listB);
-    return new std::shared_ptr<falcon_core::generic::List<{cpp_real}>>(result);
-}}
-
-bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(b);
-    return *listA == *listB;
-}}
-
-bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
-    return !{self.mangled_name()}_equal(a, b);
+    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->index(value);
 }}
 """)
             else:
-                # Complex type implementation (handles)
                 f.write(f"""
-{self.chandle()} {self.mangled_name()}_create_empty() {{
-    return new std::shared_ptr<falcon_core::generic::List<{cpp_real}>>(
-        std::make_shared<falcon_core::generic::List<{cpp_real}>>());
-}}
-
-{self.chandle()} {self.mangled_name()}_allocate(size_t count) {{
-    return new std::shared_ptr<falcon_core::generic::List<{cpp_real}>>(
-        std::make_shared<falcon_core::generic::List<{cpp_real}>>(count));
-}}
-
 {self.chandle()} {self.mangled_name()}_fill_value(size_t count, {c_type} value) {{
-    auto stored_obj = *static_cast<{cpp_stored}*>(value);
-    return new std::shared_ptr<falcon_core::generic::List<{cpp_real}>>(
-        std::make_shared<falcon_core::generic::List<{cpp_real}>>(count, stored_obj));
+    auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );
+    return new falcon_core::generic::List<{cpp_real}>(
+        falcon_core::generic::List<{cpp_real}>(count, stored_obj));
 }}
 
 {self.chandle()} {self.mangled_name()}_create(const {c_type}* data, size_t count) {{
     std::vector<{cpp_stored}> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {{
-        vec.push_back(*static_cast<{cpp_stored}*>(data[i]));
+        vec.push_back(std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(data[i]), []({cpp_real}*) {{}} ));
     }}
-    return new std::shared_ptr<falcon_core::generic::List<{cpp_real}>>(
-        std::make_shared<falcon_core::generic::List<{cpp_real}>>(vec));
-}}
-
-void {self.mangled_name()}_destroy({self.chandle()} handle) {{
-    delete static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle);
+    return new falcon_core::generic::List<{cpp_real}>(
+        falcon_core::generic::List<{cpp_real}>(vec));
 }}
 
 void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value) {{
-    auto stored_obj = *static_cast<{cpp_stored}*>(value);
-    (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->push_back(stored_obj);
-}}
-
-size_t {self.mangled_name()}_size({self.chandle()} handle) {{
-    return (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->size();
-}}
-
-bool {self.mangled_name()}_empty({self.chandle()} handle) {{
-    return (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->empty();
-}}
-
-void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx) {{
-    (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->erase_at(idx);
-}}
-
-void {self.mangled_name()}_clear({self.chandle()} handle) {{
-    (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->clear();
+    auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );
+    static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->push_back(stored_obj);
 }}
 
 {c_type} {self.mangled_name()}_const_at({self.chandle()} handle, size_t idx) {{
-    auto& obj = (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->at(idx);
-    return new {cpp_stored}(obj);
+    auto obj = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->at(idx);
+    return new {cpp_real}(*obj);
 }}
 
 {c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx) {{
-    auto& obj = (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->at(idx);
-    return new {cpp_stored}(obj);
+    auto obj = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->at(idx);
+    return new {cpp_real}(*obj);
 }}
 
 size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size) {{
-    auto& list = *static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle);
+    auto list = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     for (size_t i = 0; i < n; ++i) {{
-        out_buffer[i] = new {cpp_stored}(list->items()[i]);
+        out_buffer[i] = new {cpp_real}(*list->items()[i]);
     }}
     return n;
 }}
 
 bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value) {{
-    auto stored_obj = *static_cast<{cpp_stored}*>(value);
-    return (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->contains(stored_obj);
+    auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );
+    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->contains(stored_obj);
 }}
 
 size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value) {{
-    auto stored_obj = *static_cast<{cpp_stored}*>(value);
-    return (*static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle))->index(stored_obj);
-}}
-
-{self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other) {{
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(handle);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(other);
-    auto result = listA->intersection(listB);
-    return new std::shared_ptr<falcon_core::generic::List<{cpp_real}>>(result);
-}}
-
-bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(b);
-    return *listA == *listB;
-}}
-
-bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
-    return !{self.mangled_name()}_equal(a, b);
+    auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );
+    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->index(stored_obj);
 }}
 """)
 
@@ -514,37 +467,37 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
         cpp_stored_2 = self.combo[5]
         is_primitive_1 = c_type_1 == cpp_real_1
         is_primitive_2 = c_type_2 == cpp_real_2
-        with entry.edit_implementation() as f:
+        with self.edit_implementation() as f:
             if is_primitive_1 and is_primitive_2:
                 # Both primitive
                 create_body = f"return new falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>(first, second);"
             elif is_primitive_1 and not is_primitive_2:
                 # First primitive, second complex
-                create_body = f"""auto second_obj = static_cast<{cpp_stored_2}*>(second);
-    return new falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>(first, *second_obj);"""
+                create_body = f"""auto second_obj = std::shared_ptr<{cpp_real_2}>(static_cast<{cpp_real_2}*>(second),[]({cpp_real_2}*) {{}});
+    return new falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>(first, second_obj);"""
             elif not is_primitive_1 and is_primitive_2:
                 # First complex, second primitive
-                create_body = f"""auto first_obj = static_cast<{cpp_stored_1}*>(first);
-    return new falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>(*first_obj, second);"""
+                create_body = f"""auto first_obj = std::shared_ptr<{cpp_real_1}>(static_cast<{cpp_real_1}*>(first),[]({cpp_real_1}*) {{}});
+    return new falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>(first_obj, second);"""
             else:
                 # Both complex
-                create_body = f"""auto first_obj = static_cast<{cpp_stored_1}*>(first);
-    auto second_obj = static_cast<{cpp_stored_2}*>(second);
-    return new falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>(*first_obj, *second_obj);"""
+                create_body = f"""auto first_obj = std::shared_ptr<{cpp_real_1}>(static_cast<{cpp_real_1}*>(first),[]({cpp_real_1}*) {{}});
+    auto second_obj = std::shared_ptr<{cpp_real_2}>(static_cast<{cpp_real_2}*>(second),[]({cpp_real_2}*) {{}});
+    return new falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>(first_obj, second_obj);"""
 
             # Generate first() function
             if is_primitive_1:
                 first_return = f"return static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(handle)->first();"
             else:
                 first_return = f"""auto pair = static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(handle);
-    return new {cpp_stored_1}(pair->first());"""
+    return new {cpp_real_1}(*pair->first());"""
 
             # Generate second() function
             if is_primitive_2:
                 second_return = f"return static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(handle)->second();"
             else:
                 second_return = f"""auto pair = static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(handle);
-    return new {cpp_stored_2}(pair->second());"""
+    return new {cpp_real_2}(*pair->second());"""
 
             # Write the complete implementation
             f.write(f"""
@@ -583,7 +536,7 @@ bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
         name = self.combo[8]
         is_primitive_key = cpp_key_type == c_key_type
         is_primitive_value = cpp_value_type == c_value_type
-        with entry.edit_implementation() as f:
+        with self.edit_implementation() as f:
             if not is_primitive_key:
                 correct_key = f"""auto temp_key = *static_cast<{cpp_key_type}*>(key);
 auto correct_key = std::make_shared<{cpp_key_type}>(temp_key);"""
@@ -688,7 +641,7 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
     def generate_farray_implementation(self):
         c_type = self.combo[0]
         cpp_type = self.combo[1]
-        with entry.edit_implementation() as f:
+        with self.edit_implementation() as f:
             # TODO: do implementation
             pass
 

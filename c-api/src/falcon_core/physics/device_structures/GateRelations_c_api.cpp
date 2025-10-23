@@ -44,15 +44,11 @@ void GateRelations_insert(GateRelationsHandle handle,
                                    [](Connections*) {}));
 }
 
-int GateRelations_at(GateRelationsHandle handle, ConnectionHandle key) {
-  auto it =
-      static_cast<GateRelations*>(handle)->find(std::shared_ptr<Connection>(
-          static_cast<Connection*>(key), [](Connection*) {}));
-  if (it != static_cast<GateRelations*>(handle)->end()) {
-    return 1;  // Found
-  } else {
-    return 0;  // Not found
-  }
+ConnectionsHandle GateRelations_at(GateRelationsHandle handle,
+                                   ConnectionHandle    key) {
+  return new Connections(
+      static_cast<GateRelations*>(handle)->at(std::shared_ptr<Connection>(
+          static_cast<Connection*>(key), [](Connection*) {})));
 }
 
 void GateRelations_erase(GateRelationsHandle handle, ConnectionHandle key) {

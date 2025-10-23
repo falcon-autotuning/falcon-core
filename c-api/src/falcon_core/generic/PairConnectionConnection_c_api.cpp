@@ -3,9 +3,9 @@
 #include <falcon_core/physics/device_structures/Connection.hpp>
 
 PairConnectionConnectionHandle PairConnectionConnection_create(ConnectionHandle first, ConnectionHandle second) {
-    auto first_obj = static_cast<falcon_core::physics::device_structures::ConnectionSP*>(first);
-    auto second_obj = static_cast<falcon_core::physics::device_structures::ConnectionSP*>(second);
-    return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>(*first_obj, *second_obj);
+    auto first_obj = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(first),[](falcon_core::physics::device_structures::Connection*) {});
+    auto second_obj = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(second),[](falcon_core::physics::device_structures::Connection*) {});
+    return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>(first_obj, second_obj);
 }
 
 void PairConnectionConnection_destroy(PairConnectionConnectionHandle handle) {
@@ -14,12 +14,12 @@ void PairConnectionConnection_destroy(PairConnectionConnectionHandle handle) {
 
 ConnectionHandle PairConnectionConnection_first(PairConnectionConnectionHandle handle) {
     auto pair = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(handle);
-    return new falcon_core::physics::device_structures::ConnectionSP(pair->first());
+    return new falcon_core::physics::device_structures::Connection(*pair->first());
 }
 
 ConnectionHandle PairConnectionConnection_second(PairConnectionConnectionHandle handle) {
     auto pair = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(handle);
-    return new falcon_core::physics::device_structures::ConnectionSP(pair->second());
+    return new falcon_core::physics::device_structures::Connection(*pair->second());
 }
 
 bool PairConnectionConnection_equal(PairConnectionConnectionHandle a, PairConnectionConnectionHandle b) {

@@ -280,8 +280,6 @@ const bool SymbolUnit::is_compatible_with(const SymbolUnitSP& other) const {
   }
   return unit()->is_compatible_with(other->unit());
 }
-const std::string SymbolUnit::str() const { return _symbol; }
-
 const std::pair<std::string, std::string>
 SymbolUnit::_find_matching_common_unit() const {
   double tolerance = 1e-6;

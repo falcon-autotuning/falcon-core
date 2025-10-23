@@ -8,7 +8,6 @@ extern "C" {
 
 #include "falcon_core/generic/ListConnections_c_api.h"
 #include "falcon_core/generic/ListPairConnectionConnections_c_api.h"
-#include "falcon_core/generic/ListPairIntInt_c_api.h"
 #include "falcon_core/physics/device_structures/Connections_c_api.h"
 typedef void* GateRelationsHandle;
 
@@ -21,13 +20,14 @@ GateRelationsHandle GateRelations_create(
 void GateRelations_destroy(GateRelationsHandle handle);
 
 // Methods
-void   GateRelations_insert_or_assign(GateRelationsHandle handle,
-                                      ConnectionHandle    key,
-                                      ConnectionsHandle   value);
-void   GateRelations_insert(GateRelationsHandle handle,
-                            ConnectionHandle    key,
-                            ConnectionsHandle   value);
-int    GateRelations_at(GateRelationsHandle handle, ConnectionHandle key);
+void              GateRelations_insert_or_assign(GateRelationsHandle handle,
+                                                 ConnectionHandle    key,
+                                                 ConnectionsHandle   value);
+void              GateRelations_insert(GateRelationsHandle handle,
+                                       ConnectionHandle    key,
+                                       ConnectionsHandle   value);
+ConnectionsHandle GateRelations_at(GateRelationsHandle handle,
+                                   ConnectionHandle    key);
 void   GateRelations_erase(GateRelationsHandle handle, ConnectionHandle key);
 size_t GateRelations_size(GateRelationsHandle handle);
 bool   GateRelations_empty(GateRelationsHandle handle);

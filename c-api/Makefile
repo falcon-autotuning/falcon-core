@@ -50,7 +50,7 @@ build: generate_types
 	@ninja -C $(C_API_BUILD_DIR) -d stats
 	@echo "--- Build complete. C API library is now in $(C_API_BUILD_DIR) ---"
 
-build-dev: setup-vcpkg generate_types 
+build-dev: generate_types 
 	@if [ ! -d "$(CORE_BUILD_DIR)" ]; then \
 		echo "Error: C++ core must be built first (missing $(CORE_BUILD_DIR))."; \
 		exit 1; \
@@ -79,6 +79,47 @@ build-dev: setup-vcpkg generate_types
 	ninja -C $(C_API_BUILD_DIR) -d stats
 	@echo "--- Build complete. C API library is now in $(C_API_BUILD_DIR) ---"
 
+# check coverage of entire module
+run-all-tests:
+	@LLVM_PROFILE_FILE="run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$(CORE_BUILD_DIR):$$LD_LIBRARY_PATH ./build/run_tests
+	@llvm-profdata merge -sparse run_tests.profraw -o run_tests.profdata
+
+#check coverage of all the modles listed in the test_filter.txt
+run-subset-tests:
+	@LLVM_PROFILE_FILE="build/run_tests.profraw" ./build/run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
+	@llvm-profdata merge -sparse run_tests.profraw -o run_tests.profdata
+
+# launches the interactive html for the entire coverage run
+cov-html:
+	@llvm-cov show ./build/run_tests -instr-profile=run_tests.profdata \
+	  -format=html -output-dir=coverage_html \
+	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
+		-Xdemangler c++filt -Xdemangler -n
+	@xdg-open coverage_html/index.html
+
+# Usage: make coverage-term FILE=/path/to/source.cpp
+cov-term:
+	@llvm-cov show ./build/run_tests -instr-profile=run_tests.profdata $(FILE) \
+	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
+	  -Xdemangler c++filt -Xdemangler -n 
+
+# Usage: make subset-coverage-html
+subset-coverage-html: run-subset-tests cov-html 
+# Usage: make coverage-html 
+coverage-html: run-all-tests cov-html 
+# Usage: make subset-coverage FILE=/path/to/source.cpp
+subset-coverage: run-subset-tests cov-term
+# Usage: make coverage 
+coverage: run-all-tests cov-term
+
+subset-coverage-overview: subset-coverage
+	@llvm-cov report ./build/lib$(C_API_TARGET).so -instr-profile=run_tests.profdata \
+		-ignore-filename-regex='(cpp/include/)' \
+		-Xdemangler c++filt -Xdemangler -n                                                                     [15:00:01]
+
+coverage-overview: coverage
+	@llvm-cov report ./build/lib$(C_API_TARGET).so -instr-profile=run_tests.profdata -ignore-filename-regex='(cpp/include/)' -Xdemangler c++filt -Xdemangler -n                                                                     [15:00:01]
+
 clean:
 	@echo "--- Cleaning build directory and compiled extension ---"
 	@rm -rf $(C_API_BUILD_DIR)
@@ -86,3 +127,7 @@ clean:
 clean-all: clean
 	@echo "--- Cleaning vcpkg cache ---"
 	@rm -rf $(VCPKG_INSTALLED)
+
+debug-test:
+	LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$(CORE_BUILD_DIR):$$LD_LIBRARY_PATH \
+	gdb --args build/run_tests --gtest_filter="GateRelationsCAPI_Fixture.InitConstructor"

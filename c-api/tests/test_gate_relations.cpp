@@ -1,0 +1,187 @@
+#include <gtest/gtest.h>
+
+#include "falcon_core/physics/device_structures/Connection_c_api.h"
+#include "falcon_core/physics/device_structures/Connections_c_api.h"
+#include "falcon_core/physics/device_structures/GateRelations_c_api.h"
+
+class GateRelationsCAPI_Fixture : public ::testing::Test {
+ protected:
+  ConnectionHandle  gate1, gate2, neighbor1, neighbor2, ohmic;
+  ConnectionsHandle neighbors1, neighbors2, ohmic_neighbors;
+  void              SetUp() override {
+    gate1     = Connection_create_barrier_gate("g1");
+    gate2     = Connection_create_barrier_gate("g2");
+    neighbor1 = Connection_create_screening_gate("n1");
+    neighbor2 = Connection_create_screening_gate("n2");
+    ohmic     = Connection_create_ohmic("o");
+
+    neighbors1 = Connections_create_empty();
+    Connections_push_back(neighbors1, neighbor1);
+
+    neighbors2 = Connections_create_empty();
+    Connections_push_back(neighbors2, neighbor2);
+
+    ohmic_neighbors = Connections_create_empty();
+    Connections_push_back(ohmic_neighbors, ohmic);
+  }
+  void TearDown() override {
+    Connection_destroy(gate1);
+    Connection_destroy(gate2);
+    Connection_destroy(neighbor1);
+    Connection_destroy(neighbor2);
+    Connection_destroy(ohmic);
+
+    Connections_destroy(neighbors1);
+    Connections_destroy(neighbors2);
+    Connections_destroy(ohmic_neighbors);
+  }
+};
+
+TEST(GateRelationsCAPI_Constructors, DefaultConstructor) {
+  GateRelationsHandle gr = GateRelations_create_empty();
+  EXPECT_EQ(GateRelations_size(gr), 0);
+  EXPECT_TRUE(GateRelations_empty(gr));
+  GateRelations_destroy(gr);
+}
+
+TEST_F(GateRelationsCAPI_Fixture, InitConstructor) {
+  ListPairConnectionConnectionsHandle init =
+      ListPairConnectionConnections_create_empty();
+  PairConnectionConnectionsHandle pair1 =
+      PairConnectionConnections_create(gate1, neighbors1);
+  PairConnectionConnectionsHandle pair2 =
+      PairConnectionConnections_create(gate2, neighbors2);
+  ListPairConnectionConnections_push_back(init, pair1);
+  ListPairConnectionConnections_push_back(init, pair2);
+
+  GateRelationsHandle gr = GateRelations_create(init);
+  EXPECT_EQ(GateRelations_size(gr), 2);
+
+  ConnectionsHandle conns1 = GateRelations_at(gr, gate1);
+  ConnectionsHandle conns2 = GateRelations_at(gr, gate2);
+  EXPECT_TRUE(Connections_not_equal(conns1, conns2));
+
+  ListConnectionsHandle values = GateRelations_values(gr);
+  ConnectionsHandle     val1   = ListConnections_at(values, 0);
+  ConnectionsHandle     val2   = ListConnections_at(values, 1);
+  EXPECT_STREQ(Connection_name(Connections_at(val1, 0)), "n1");
+  EXPECT_STREQ(Connection_name(Connections_at(val2, 0)), "n2");
+
+  ListConnections_destroy(values);
+  GateRelations_destroy(gr);
+  ListPairConnectionConnections_destroy(init);
+}
+
+TEST_F(GateRelationsCAPI_Fixture, InsertOrAssign) {
+  GateRelationsHandle gr = GateRelations_create_empty();
+  GateRelations_insert_or_assign(gr, gate1, neighbors1);
+  EXPECT_EQ(GateRelations_size(gr), 1);
+
+  ConnectionsHandle     conns  = GateRelations_at(gr, gate1);
+  ListConnectionsHandle values = GateRelations_values(gr);
+  ConnectionsHandle     val    = ListConnections_at(values, 0);
+  EXPECT_STREQ(Connection_name(Connections_at(val, 0)), "n1");
+
+  ListConnections_destroy(values);
+  GateRelations_destroy(gr);
+}
+
+TEST_F(GateRelationsCAPI_Fixture, Insert) {
+  GateRelationsHandle gr = GateRelations_create_empty();
+  GateRelations_insert(gr, gate1, neighbors1);
+  EXPECT_EQ(GateRelations_size(gr), 1);
+
+  ConnectionsHandle     conns  = GateRelations_at(gr, gate1);
+  ListConnectionsHandle values = GateRelations_values(gr);
+  ConnectionsHandle     val    = ListConnections_at(values, 0);
+  EXPECT_STREQ(Connection_name(Connections_at(val, 0)), "n1");
+
+  ListConnections_destroy(values);
+  GateRelations_destroy(gr);
+}
+
+TEST_F(GateRelationsCAPI_Fixture, SerializationRoundTrip) {
+  GateRelationsHandle gr = GateRelations_create_empty();
+  GateRelations_insert_or_assign(gr, gate1, neighbors1);
+
+  const char*         json = GateRelations_to_json_string(gr);
+  GateRelationsHandle gr2  = GateRelations_from_json_string(json);
+
+  EXPECT_EQ(GateRelations_size(gr2), 1);
+  ConnectionsHandle     conns  = GateRelations_at(gr, gate1);
+  ListConnectionsHandle values = GateRelations_values(gr2);
+  ConnectionsHandle     val    = ListConnections_at(values, 0);
+  EXPECT_STREQ(Connection_name(Connections_at(val, 0)), "n1");
+
+  ListConnections_destroy(values);
+  GateRelations_destroy(gr);
+  GateRelations_destroy(gr2);
+}
+
+TEST_F(GateRelationsCAPI_Fixture, InsertOrAssignThrowsOnNonGateKey) {
+  GateRelationsHandle gr = GateRelations_create_empty();
+  // Should throw or handle error gracefully
+  EXPECT_ANY_THROW(GateRelations_insert_or_assign(gr, ohmic, neighbors1));
+  GateRelations_destroy(gr);
+}
+
+TEST_F(GateRelationsCAPI_Fixture, InsertOrAssignThrowsOnNonGatesValue) {
+  GateRelationsHandle gr = GateRelations_create_empty();
+  EXPECT_ANY_THROW(GateRelations_insert_or_assign(gr, gate1, ohmic_neighbors));
+  GateRelations_destroy(gr);
+}
+
+TEST_F(GateRelationsCAPI_Fixture, InsertThrowsOnNonGateKey) {
+  GateRelationsHandle gr = GateRelations_create_empty();
+  EXPECT_ANY_THROW(GateRelations_insert(gr, ohmic, neighbors1));
+  GateRelations_destroy(gr);
+}
+
+TEST_F(GateRelationsCAPI_Fixture, InsertThrowsOnNonGatesValue) {
+  GateRelationsHandle gr = GateRelations_create_empty();
+  EXPECT_ANY_THROW(GateRelations_insert(gr, gate1, ohmic_neighbors));
+  GateRelations_destroy(gr);
+}
+
+TEST_F(GateRelationsCAPI_Fixture,
+       Methods_EraseClearContainsKeysValuesItemsEquality) {
+  GateRelationsHandle gr = GateRelations_create_empty();
+  GateRelations_insert_or_assign(gr, gate1, neighbors1);
+  GateRelations_insert_or_assign(gr, gate2, neighbors2);
+
+  EXPECT_TRUE(GateRelations_contains(gr, gate1));
+  GateRelations_erase(gr, gate1);
+  EXPECT_FALSE(GateRelations_contains(gr, gate1));
+  EXPECT_EQ(GateRelations_size(gr), 1);
+
+  GateRelations_clear(gr);
+  EXPECT_EQ(GateRelations_size(gr), 0);
+  EXPECT_TRUE(GateRelations_empty(gr));
+
+  // Keys, values, items
+  GateRelations_insert_or_assign(gr, gate1, neighbors1);
+  GateRelations_insert_or_assign(gr, gate2, neighbors2);
+
+  ListConnectionHandle keys = GateRelations_keys(gr);
+  EXPECT_EQ(ListConnection_size(keys), 2);
+  ListConnection_destroy(keys);
+
+  ListConnectionsHandle values = GateRelations_values(gr);
+  EXPECT_EQ(ListConnections_size(values), 2);
+  ListConnections_destroy(values);
+
+  ListPairConnectionConnectionsHandle items = GateRelations_items(gr);
+  EXPECT_EQ(ListPairConnectionConnections_size(items), 2);
+  ListPairConnectionConnections_destroy(items);
+
+  // Equality
+  GateRelationsHandle gr2 = GateRelations_create_empty();
+  GateRelations_insert_or_assign(gr2, gate1, neighbors1);
+  GateRelations_insert_or_assign(gr2, gate2, neighbors2);
+
+  EXPECT_TRUE(GateRelations_equal(gr, gr2));
+  EXPECT_FALSE(GateRelations_not_equal(gr, gr2));
+
+  GateRelations_destroy(gr);
+  GateRelations_destroy(gr2);
+}
