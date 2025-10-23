@@ -695,6 +695,21 @@ registry: dict[str, Entry] = {
         ["<falcon_core/physics/device_structures/Connection.hpp>"],
         Path("generic"),
     ),
+    "ChannelList": Entry(
+        Template.List,
+        [
+            "ChannelHandle",
+            "falcon_core::autotuner_interfaces::names::Channel",
+            "falcon_core::autotuner_interfaces::names::ChannelSP",
+            "Channel",
+        ],
+        [
+            '"falcon_core/autotuner_interfaces/names/Channel_c_api.h"',
+            "<cstddef>",
+        ],
+        ["<falcon_core/autotuner_interfaces/names/Channel.hpp>"],
+        Path("generic"),
+    ),
     "InstrumentPortList": Entry(
         Template.List,
         [
@@ -1003,6 +1018,7 @@ entry_queue: list[str] = [
     "ConnectionFloatPair",
     "ConnectionConnectionPair",
     "ConnectionList",
+    "ChannelList",
     "LabelledDomainList",
     "InstrumentPortList",
     "ConnectionsList",
