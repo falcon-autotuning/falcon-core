@@ -82,12 +82,8 @@ class List : public generic::Song {
     return std::make_shared<List<Value>>(count);
   }
   List(size_t count, const StoredValue& value) {
-    if (!value) {
-      throw std::invalid_argument(
-          "List: If an element is to be put in the array, it needs to not be "
-          "null");
-    }
-    _items = Container(count, value);
+    create_duplicates_impl(
+        count, value, typename category::determine_tag<Value>::type{});
   }
   static std::shared_ptr<List<Value>> fill_value(size_t             count,
                                                  const StoredValue& value) {
@@ -221,6 +217,30 @@ class List : public generic::Song {
 
  protected:
   friend class cereal::access;
+  template <typename T>
+  void create_duplicates_impl(size_t                    count,
+                              const std::shared_ptr<T>& item,
+                              category::song_tag) {
+    if (!item) {
+      throw std::invalid_argument(
+          "List: If an element is to be put in the array, it needs to not be "
+          "null");
+    }
+    _items = Container(count, item);
+  }
+  template <typename T>
+  void create_duplicates_impl(size_t   count,
+                              const T& item,
+                              category::primitive_tag) {
+    _items = Container(count, item);
+  }
+  template <typename T>
+  void create_duplicates_impl(size_t   count,
+                              const T& item,
+                              category::other_tag) {
+    // Handle or static_assert if not supported
+    static_assert(sizeof(T) == 0, "Unsupported type for List");
+  }
   template <typename T>
   void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
     if (!item) throw std::invalid_argument("List: Cannot push nullptr");

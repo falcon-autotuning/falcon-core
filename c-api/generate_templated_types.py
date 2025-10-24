@@ -357,15 +357,17 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
         if c_type == "StringHandle":
             stored_fill_value = self.from_cstring("value", "stored_obj")
             copy_to_out_buffer = """
-for (size_t i = 0; i < n; ++i) {{
-    auto str = *list->items()[i];
-    out_buffer[i] = String_wrap(str);
-}}"""
-            stored_out_value = "return String_create(obj->data(), obj->size());"
-            create_allocation = """    vec.reserve(count);
-    for (size_t i = 0; i < count; ++i) {{
-        vec.push_back(list->items()[i]->raw);
-    }}
+    for (size_t i = 0; i < n; ++i) {
+        auto str      = list->items()[i];
+        out_buffer[i] = String_create(str.data(), str.size());
+    }
+"""
+            stored_out_value = "return String_create(obj.data(), obj.size());"
+            create_allocation = """
+    vec.reserve(count);
+    for (size_t i = 0; i < count; ++i) {
+        vec.push_back(data[i]->raw);
+    }
 """
         elif is_primitive:
             stored_fill_value = "auto stored_obj = value;"

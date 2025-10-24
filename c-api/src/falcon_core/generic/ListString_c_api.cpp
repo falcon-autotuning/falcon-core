@@ -19,10 +19,11 @@ ListStringHandle ListString_allocate(size_t count) {
 
 ListStringHandle ListString_create(const StringHandle* data, size_t count) {
     std::vector<std::string> vec;
-        vec.reserve(count);
-    for (size_t i = 0; i < count; ++i) {{
-        vec.push_back(list->items()[i]->raw);
-    }}
+    
+    vec.reserve(count);
+    for (size_t i = 0; i < count; ++i) {
+        vec.push_back(data[i]->raw);
+    }
 
     return new falcon_core::generic::List<std::string>(
         falcon_core::generic::List<std::string>(vec));
@@ -67,16 +68,17 @@ size_t ListString_items(ListStringHandle handle, StringHandle* out_buffer, size_
     auto list = static_cast<falcon_core::generic::List<std::string>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     
-for (size_t i = 0; i < n; ++i) {{
-    auto str = *list->items()[i];
-    out_buffer[i] = String_wrap(str);
-}}
+    for (size_t i = 0; i < n; ++i) {
+        auto str      = list->items()[i];
+        out_buffer[i] = String_create(str.data(), str.size());
+    }
+
     return n;
 }
 
 StringHandle ListString_at(ListStringHandle handle, size_t idx) {
     auto obj = static_cast<falcon_core::generic::List<std::string>*>(handle)->at(idx);
-    return String_create(obj->data(), obj->size());
+    return String_create(obj.data(), obj.size());
 }
 
 bool ListString_equal(ListStringHandle a, ListStringHandle b) {
