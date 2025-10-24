@@ -2,6 +2,7 @@
 #include <cstddef>
 
 #include "falcon_core/generic/ListInstrumentPort_c_api.h"
+#include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #ifdef __cplusplus
 extern "C" {

@@ -1,11 +1,13 @@
 #pragma once
-#include <cstddef>
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdbool.h>
 
+#include "falcon_core/generic/FArrayDouble_c_api.h"
+#include "falcon_core/generic/ListString_c_api.h"
+#include "falcon_core/generic/MapStringDouble_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 typedef void* AnalyticFunctionHandle;
 
@@ -21,11 +23,11 @@ void AnalyticFunction_destroy(AnalyticFunctionHandle handle);
 // Methods
 ListStringHandle   AnalyticFunction_labels(AnalyticFunctionHandle handle);
 double             AnalyticFunction_evaluate(AnalyticFunctionHandle handle,
-                                             MapStringDouble        args,
+                                             MapStringDoubleHandle  args,
                                              double                 time);
 FArrayDoubleHandle AnalyticFunction_evaluate_arraywise(
     AnalyticFunctionHandle handle,
-    MapStringDouble        args,
+    MapStringDoubleHandle  args,
     double                 deltaT,
     double                 maxTime);
 bool AnalyticFunction_equal(AnalyticFunctionHandle a, AnalyticFunctionHandle b);

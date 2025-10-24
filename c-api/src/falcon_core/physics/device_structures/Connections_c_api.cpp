@@ -111,7 +111,7 @@ StringHandle Connections_to_json_string(ConnectionsHandle handle) {
   return String_create(json.c_str(), json.size());
 }
 
-ConnectionsHandle Connection_from_json_string(StringHandle json) {
+ConnectionsHandle Connections_from_json_string(StringHandle json) {
   auto ptr = Connections::from_json_string<Connections>(json->raw);
   return new Connections(*ptr);
 }

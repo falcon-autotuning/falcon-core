@@ -24,24 +24,24 @@ void MapStringDouble_destroy(MapStringDoubleHandle handle) {
 }
 
 void MapStringDouble_insert_or_assign(MapStringDoubleHandle handle, const StringHandle key, const double value) {
-    auto correct_key = key;
+    auto correct_key = std::string(key->raw, key->length);
     auto correct_value = value;
     static_cast<falcon_core::generic::Map<std::string,double>*>(handle)->insert_or_assign(correct_key,correct_value);
 }
 
 void MapStringDouble_insert(MapStringDoubleHandle handle, const StringHandle key, const double value) {
-    auto correct_key = key;
+    auto correct_key = std::string(key->raw, key->length);
     auto correct_value = value;
     static_cast<falcon_core::generic::Map<std::string,double>*>(handle)->insert(correct_key,correct_value);
 }
 
 double MapStringDouble_at(MapStringDoubleHandle handle, const StringHandle key) {
-    auto correct_key = key;
+    auto correct_key = std::string(key->raw, key->length);
     return static_cast<falcon_core::generic::Map<std::string,double>*>(handle)->at(correct_key);
 }
 
 void MapStringDouble_erase(MapStringDoubleHandle handle, const StringHandle key) {
-    auto correct_key = key;
+    auto correct_key = std::string(key->raw, key->length);
     return static_cast<falcon_core::generic::Map<std::string,double>*>(handle)->erase(correct_key);
 }
 
@@ -59,7 +59,7 @@ void MapStringDouble_clear(MapStringDoubleHandle handle) {
 }
 
 bool MapStringDouble_contains(MapStringDoubleHandle handle, StringHandle key) {
-    auto correct_key = key;
+    auto correct_key = std::string(key->raw, key->length);
     return static_cast<falcon_core::generic::Map<std::string,double>*>(handle)->contains(correct_key);
 }
 

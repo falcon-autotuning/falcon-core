@@ -579,19 +579,26 @@ std::string json = static_cast<falcon_core::generic::Pair<{cpp_real_1},{cpp_real
         name = self.combo[8]
         is_primitive_key = c_key_type in c_primitives
         is_primitive_value = c_value_type in c_primitives
-        with self.edit_implementation() as f:
-            if not is_primitive_key:
-                correct_key = f"""auto temp_key = *static_cast<{cpp_key_type}*>(key);
+        if c_key_type == "StringHandle":
+            correct_key = "auto correct_key = std::string(key->raw, key->length);"
+        elif not is_primitive_key:
+            correct_key = f"""auto temp_key = *static_cast<{cpp_key_type}*>(key);
 auto correct_key = std::make_shared<{cpp_key_type}>(temp_key);"""
-            else:
-                correct_key = """auto correct_key = key;"""
-            if not is_primitive_value:
-                correct_value = f"""auto temp_value = *static_cast<{cpp_value_type}*>(value);
+        else:
+            correct_key = """auto correct_key = key;"""
+        if c_value_type == "StringHandle":
+            correct_value = (
+                "auto correct_value = std::string(value->raw, value->length);"
+            )
+            at_return = "return String_wrap(static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->at(correct_key)"
+        elif not is_primitive_value:
+            correct_value = f"""auto temp_value = *static_cast<{cpp_value_type}*>(value);
 auto correct_value = std::make_shared<{cpp_value_type}>(temp_value);"""
-                at_return = f"""return new {cpp_value_type}(*static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->at(correct_key));"""
-            else:
-                correct_value = """auto correct_value = value;"""
-                at_return = f"""return static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->at(correct_key);"""
+            at_return = f"""return new {cpp_value_type}(*static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->at(correct_key));"""
+        else:
+            correct_value = """auto correct_value = value;"""
+            at_return = f"""return static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->at(correct_key);"""
+        with self.edit_implementation() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty() {{
     return new falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>(
@@ -1420,6 +1427,42 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "PairStringDoubleList": Entry(
+        Template.List,
+        [
+            "PairStringDoubleHandle",
+            "falcon_core::generic::Pair<std::string, double>",
+            "falcon_core::generic::PairSP<std::string, double>",
+            "PairStringDouble",
+        ],
+        [
+            '"falcon_core/generic/PairStringDouble_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "PairConnectionPairQuantityQuantityList": Entry(
+        Template.List,
+        [
+            "PairConnectionPairQuantityQuantityHandle",
+            "falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>",
+            "falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>",
+            "PairConnectionPairQuantityQuantity",
+        ],
+        [
+            '"falcon_core/generic/PairConnectionPairQuantityQuantity_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/physics/device_structures/Connection.hpp>",
+            "<falcon_core/math/Quantity.hpp>",
+        ],
+        Path("generic"),
+    ),
     "StringDoublePair": Entry(
         Template.Pair,
         [
@@ -1466,6 +1509,27 @@ registry: dict[str, Entry] = {
         ],
         ['"falcon_core/physics/device_structures/Connections_c_api.h"'],
         ["<falcon_core/physics/device_structures/Connections.hpp>"],
+        Path("generic"),
+    ),
+    "ConnectionPairQuantityQuantityPair": Entry(
+        Template.Pair,
+        [
+            "ConnectionHandle",
+            "falcon_core::physics::device_structures::Connection",
+            "falcon_core::physics::device_structures::ConnectionSP",
+            "PairQuantityQuantityHandle",
+            "falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>",
+            "falcon_core::generic::PairSP<falcon_core::math::Quantity, falcon_core::math::Quantity>",
+            "ConnectionPairQuantityQuantity",
+        ],
+        [
+            '"falcon_core/physics/device_structures/Connection_c_api.h"',
+            '"falcon_core/generic/PairQuantityQuantity_c_api.h"',
+        ],
+        [
+            "<falcon_core/physics/device_structures/Connection.hpp>",
+            "<falcon_core/math/Quantity.hpp>",
+        ],
         Path("generic"),
     ),
     "IntIntMap": Entry(
@@ -1650,6 +1714,7 @@ entry_queue: list[str] = [
     "SizeTList",
     "StringList",
     "StringDoublePair",
+    "PairStringDoubleList",
     "ListSizeTList",
     "DoubleFArray",
     "IntFArray",
@@ -1686,6 +1751,8 @@ entry_queue: list[str] = [
     "ConnectionQuantityPair",
     "PairConnectionQuantityList",
     "ConnectionQuantityMap",
+    "ConnectionPairQuantityQuantityPair",
+    "PairConnectionPairQuantityQuantityList",
 ]
 
 

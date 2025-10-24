@@ -7,6 +7,7 @@ extern "C" {
 
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
 #include "falcon_core/generic/ListChannel_c_api.h"
+#include "falcon_core/generic/ListString_c_api.h"
 typedef void* ChannelsHandle;
 
 // Constructors
