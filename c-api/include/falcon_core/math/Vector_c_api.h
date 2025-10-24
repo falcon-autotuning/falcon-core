@@ -1,7 +1,9 @@
 #pragma once
 #include <cstddef>
 
+#include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
 #include "falcon_core/generic/ListConnection_c_api.h"
+#include "falcon_core/generic/ListPairConnectionPairQuantityQuantity_c_api.h"
 #include "falcon_core/generic/ListPairQuantityQuantity_c_api.h"
 #include "falcon_core/generic/PairQuantityQuantity_c_api.h"
 #include "falcon_core/math/Point_c_api.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "falcon_core/physics/config/geometries/BarrierGateWithNeighbors.hpp"
+#include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/DotGatesWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic.hpp"
 #include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic.hpp"
@@ -82,12 +82,12 @@ class GateGeometryArray1D : public generic::Song {
    * @brief Gets the leftmost barrier gate in the array.
    * @return The leftmost barrier gate.
    */
-  BarrierGateWithNeighborsSP left_barrier() const;
+  DotGateWithNeighborsSP left_barrier() const;
   /**
    * @brief Gets the rightmost barrier gate in the array.
    * @return The rightmost barrier gate.
    */
-  BarrierGateWithNeighborsSP right_barrier() const;
+  DotGateWithNeighborsSP right_barrier() const;
   /**
    * @brief Gets the linear array of connections.
    * @return The linear array of connections.

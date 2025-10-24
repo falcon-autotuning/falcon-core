@@ -117,9 +117,9 @@ class List : public generic::Song {
     _items.insert(pos, first, last);
   }
 
-  size_t             size() const { return _items.size(); }
-  bool               empty() const { return _items.empty(); }
-  const StoredValue& at(const size_t idx) const {
+  size_t            size() const { return _items.size(); }
+  bool              empty() const { return _items.empty(); }
+  const StoredValue at(const size_t idx) const {
     if (idx >= _items.size()) {
       throw std::out_of_range("List: The index " + std::to_string(idx) +
                               " exceeds the length of the array " +
@@ -127,7 +127,7 @@ class List : public generic::Song {
     }
     return _items.at(idx);
   }
-  StoredValue& at(const size_t idx) {
+  StoredValue at(const size_t idx) {
     if (idx >= _items.size()) {
       throw std::out_of_range("List: The index " + std::to_string(idx) +
                               " exceeds the length of the array " +

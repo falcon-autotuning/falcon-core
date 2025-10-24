@@ -2,10 +2,9 @@
 #ifdef __cplusplus
     extern "C" {
 #endif
-#include "falcon_core/generic/PairStringDouble_c_api.h"
+#include "falcon_core/generic/ListPairStringDouble_c_api.h"
 #include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/ListDouble_c_api.h"
-#include "falcon_core/generic/ListPairStringDouble_c_api.h"
 #include <cstddef>
 #include "falcon_core/generic/String_c_api.h"
 

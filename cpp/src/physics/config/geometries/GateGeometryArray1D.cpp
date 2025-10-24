@@ -4,7 +4,6 @@
 
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic.hpp"
-#include "falcon_core/physics/config/geometries/PlungerGateWithNeighbors.hpp"
 namespace falcon_core {
 namespace physics {
 namespace config {
@@ -140,9 +139,8 @@ void GateGeometryArray1D::append_central_gate(
           "BarrierGate.");
     }
     _central_dot_gates->push_back(
-        std::static_pointer_cast<DotGateWithNeighbors>(
-            std::make_shared<BarrierGateWithNeighbors>(
-                selected_gate->name(), left_neighbor, right_neighbor)));
+        DotGateWithNeighbors::BarrierGateWithNeighbors(
+            selected_gate->name(), left_neighbor, right_neighbor));
   } else if (selected_gate->is_plunger_gate()) {
     if (!(left_neighbor->is_barrier_gate()) ||
         !(right_neighbor->is_barrier_gate())) {
@@ -151,9 +149,8 @@ void GateGeometryArray1D::append_central_gate(
           "PlungerGate.");
     }
     _central_dot_gates->push_back(
-        std::static_pointer_cast<DotGateWithNeighbors>(
-            std::make_shared<PlungerGateWithNeighbors>(
-                selected_gate->name(), left_neighbor, right_neighbor)));
+        DotGateWithNeighbors::PlungerGateWithNeighbors(
+            selected_gate->name(), left_neighbor, right_neighbor));
   } else {
     throw std::invalid_argument(
         "Expected either a PlungerGate or BarrierGate.");
@@ -243,20 +240,20 @@ RightReservoirWithImplantedOhmicSP GateGeometryArray1D::right_reservoir()
   return std::make_shared<RightReservoirWithImplantedOhmic>(
       name, barrier_gate, ohmic);
 }
-BarrierGateWithNeighborsSP GateGeometryArray1D::left_barrier() const {
+DotGateWithNeighborsSP GateGeometryArray1D::left_barrier() const {
   std::string                     name = ((*lineararray())[2])->name();
   device_structures::ConnectionSP reservoir_gate = (*lineararray())[1];
   device_structures::ConnectionSP plunger_gate   = (*lineararray())[3];
-  return std::make_shared<BarrierGateWithNeighbors>(
+  return DotGateWithNeighbors::BarrierGateWithNeighbors(
       name, reservoir_gate, plunger_gate);
 }
-BarrierGateWithNeighborsSP GateGeometryArray1D::right_barrier() const {
+DotGateWithNeighborsSP GateGeometryArray1D::right_barrier() const {
   std::string name = ((*lineararray())[lineararray()->size() - 3])->name();
   device_structures::ConnectionSP reservoir_gate =
       (*lineararray())[lineararray()->size() - 2];
   device_structures::ConnectionSP plunger_gate =
       (*lineararray())[lineararray()->size() - 4];
-  return std::make_shared<BarrierGateWithNeighbors>(
+  return DotGateWithNeighbors::PlungerGateWithNeighbors(
       name, plunger_gate, reservoir_gate);
 }
 device_structures::ConnectionsSP GateGeometryArray1D::ohmics() const {

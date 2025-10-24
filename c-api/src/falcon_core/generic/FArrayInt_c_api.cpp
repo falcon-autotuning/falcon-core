@@ -7,6 +7,14 @@ FArrayIntHandle FArrayInt_create_empty() {
     return new falcon_core::generic::FArray<int>(falcon_core::generic::FArray<int>());
 }
 
+FArrayIntHandle FArrayInt_create_zeros(const size_t* shape, size_t ndim) {
+    std::vector<size_t> vec;
+    for (size_t i =0; i < ndim; ++i) {
+        vec.push_back(shape[i]);
+    }
+    return new falcon_core::generic::FArray<int>(*falcon_core::generic::FArray<int>::zeros(vec));
+}
+
 FArrayIntHandle FArrayInt_from_shape(const size_t* shape, size_t ndim) {
     std::vector<size_t> vec;
     for (size_t i =0; i < ndim; ++i) {

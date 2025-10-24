@@ -123,6 +123,10 @@ coverage-overview: coverage
 clean:
 	@echo "--- Cleaning build directory and compiled extension ---"
 	@rm -rf $(C_API_BUILD_DIR)
+	@if [ -f $(GENERATED_MANIFEST) ]; then \
+		while read -r f; do [ -n "$$f" ] && rm "$$f"; done < $(GENERATED_MANIFEST); \
+		: > $(GENERATED_MANIFEST); \
+	fi
 
 clean-all: clean
 	@echo "--- Cleaning vcpkg cache ---"

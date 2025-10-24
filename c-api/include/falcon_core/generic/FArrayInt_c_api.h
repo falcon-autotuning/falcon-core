@@ -11,6 +11,7 @@ typedef void* FArrayIntHandle;
 // Function declarations
 
 FArrayIntHandle FArrayInt_create_empty();
+FArrayIntHandle FArrayInt_create_zeros();
 FArrayIntHandle FArrayInt_from_shape(const size_t* shape, size_t ndim);
 FArrayIntHandle FArrayInt_from_data(const int* data, const size_t* shape, size_t ndim);
 void FArrayInt_destroy(FArrayIntHandle handle);

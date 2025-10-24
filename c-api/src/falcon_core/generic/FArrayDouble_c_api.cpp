@@ -7,6 +7,14 @@ FArrayDoubleHandle FArrayDouble_create_empty() {
     return new falcon_core::generic::FArray<double>(falcon_core::generic::FArray<double>());
 }
 
+FArrayDoubleHandle FArrayDouble_create_zeros(const size_t* shape, size_t ndim) {
+    std::vector<size_t> vec;
+    for (size_t i =0; i < ndim; ++i) {
+        vec.push_back(shape[i]);
+    }
+    return new falcon_core::generic::FArray<double>(*falcon_core::generic::FArray<double>::zeros(vec));
+}
+
 FArrayDoubleHandle FArrayDouble_from_shape(const size_t* shape, size_t ndim) {
     std::vector<size_t> vec;
     for (size_t i =0; i < ndim; ++i) {

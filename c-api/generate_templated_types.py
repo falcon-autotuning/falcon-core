@@ -18,13 +18,26 @@ c_primitives = [
 ]
 
 
-class Template(Enum):
+class Template:
+    """Stores the information about the template like the name of the template,
+    and the number of arguments that need to be supplied for templating."""
+
+    name: str
+    arguments: int
+
+    def __init__(self, name: str, arguments: int):
+        self.name = name
+        self.arguments = arguments
+
+
+class Options(Enum):
     """This is a generic type of cpp object that has functions to bind it to C"""
 
-    List = 4
-    Map = 9
-    Pair = 7
-    FArray = 3
+    List = Template("List", 4)
+    Map = Template("Map", 9)
+    Pair = Template("Pair", 7)
+    FArray = Template("FArray", 3)
+    Axes = Template("Axes", 4)
 
 
 class HeaderContext:
@@ -37,7 +50,7 @@ class HeaderContext:
 
     def __init__(
         self,
-        temp: Template,
+        temp: Options,
         name: str,
         path: Path,
         header_includes: list[str],
@@ -87,7 +100,7 @@ class ImplementationContext:
 
     def __init__(
         self,
-        temp: Template,
+        temp: Options,
         name: str,
         path: Path,
         header_path: Path,
@@ -134,7 +147,7 @@ class Entry:
     file_path: The path to the header file from /c-api/falcon_core
     """
 
-    temp: Template
+    temp: Options
     combo: list[str]
     header_includes: list[str]
     implementation_includes: list[str]
@@ -143,7 +156,7 @@ class Entry:
 
     def __init__(
         self,
-        temp: Template,
+        temp: Options,
         combo: list[str],
         header_includes: list[str],
         implementation_includes: list[str],
@@ -160,9 +173,9 @@ class Entry:
         self.implementation_path = (
             "src/falcon_core" / file_path / str(self.mangled_name() + "_c_api.cpp")
         )
-        if len(combo) != temp.value:
+        if len(combo) != temp.value.arguments:
             raise ValueError(
-                f"Template of {temp.name} expected {temp.value} items but got {len(combo)} instead."
+                f"Template of {temp.name} expected {temp.value.name} items but got {len(combo)} instead."
             )
 
     def name(self):
@@ -178,28 +191,32 @@ class Entry:
         return self.mangled_name() + "Handle"
 
     def generate_header(self):
-        match self.temp:
-            case Template.List:
+        match self.temp.name:
+            case Options.List.name:
                 self.generate_list_header()
-            case Template.Map:
+            case Options.Map.name:
                 self.generate_map_header()
-            case Template.Pair:
+            case Options.Pair.name:
                 self.generate_pair_header()
-            case Template.FArray:
+            case Options.FArray.name:
                 self.generate_farray_header()
+            case Options.Axes.name:
+                self.generate_axes_header()
             case _:
                 raise ValueError("Bad template")
 
     def generate_implementation(self):
-        match self.temp:
-            case Template.List:
+        match self.temp.name:
+            case Options.List.name:
                 self.generate_list_implementation()
-            case Template.Map:
+            case Options.Map.name:
                 self.generate_map_implementation()
-            case Template.Pair:
+            case Options.Pair.name:
                 self.generate_pair_implementation()
-            case Template.FArray:
+            case Options.FArray.name:
                 self.generate_farray_implementation()
+            case Options.Axes.name:
+                self.generate_axes_implementation()
             case _:
                 raise ValueError("Bad template")
 
@@ -253,6 +270,28 @@ bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);
 """)
 
+    def generate_axes_header(self):
+        c_type = self.combo[0]
+        with self.edit_header() as f:
+            f.write(f"""
+{self.chandle()} {self.mangled_name()}_create_empty();
+{self.chandle()} {self.mangled_name()}_create_raw(const {c_type}* data, size_t count);
+{self.chandle()} {self.mangled_name()}_create(List{self.name()}Handle data);
+void {self.mangled_name()}_destroy({self.chandle()} handle);
+void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value);
+size_t {self.mangled_name()}_size({self.chandle()} handle);
+bool {self.mangled_name()}_empty({self.chandle()} handle);
+void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx);
+void {self.mangled_name()}_clear({self.chandle()} handle);
+{c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx);
+size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size);
+bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value);
+size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value);
+{self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other);
+bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
+bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);
+""")
+
     def generate_pair_header(self):
         c_type_1 = self.combo[0]
         c_type_2 = self.combo[3]
@@ -270,6 +309,7 @@ bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);""")
         with self.edit_header() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty();
+{self.chandle()} {self.mangled_name()}_create_zeros();
 {self.chandle()} {self.mangled_name()}_from_shape(const size_t* shape, size_t ndim);
 {self.chandle()} {self.mangled_name()}_from_data(const {c_type}* data, const size_t* shape, size_t ndim);
 void {self.mangled_name()}_destroy({self.chandle()} handle);
@@ -482,6 +522,137 @@ StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) 
 {self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
   auto ptr = falcon_core::generic::List<{cpp_real}>::from_json_string<falcon_core::generic::List<{cpp_real}>>(json->raw);
   return new falcon_core::generic::List<{cpp_real}>(*ptr);
+}}
+""")
+
+    def generate_axes_implementation(self):
+        c_type = self.combo[0]
+        cpp_real = self.combo[1]
+        cpp_stored = self.combo[2]
+        is_primitive = c_type in c_primitives
+        if c_type == "StringHandle":
+            stored_fill_value = self.from_cstring("value", "stored_obj")
+            copy_to_out_buffer = """
+    for (size_t i = 0; i < n; ++i) {
+        auto str      = list->items()[i];
+        out_buffer[i] = String_create(str.data(), str.size());
+    }
+"""
+            stored_out_value = "return String_create(obj.data(), obj.size());"
+            create_allocation = """
+    vec.reserve(count);
+    for (size_t i = 0; i < count; ++i) {
+        vec.push_back(data[i]->raw);
+    }
+"""
+        elif is_primitive:
+            stored_fill_value = "auto stored_obj = value;"
+            copy_to_out_buffer = "std::copy_n(list->items().begin(), n, out_buffer);"
+            stored_out_value = "return obj;"
+            create_allocation = "vec.insert(vec.end(), data, data + count);"
+        else:
+            stored_fill_value = f"auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );"
+            copy_to_out_buffer = f"""
+for (size_t i = 0; i < n; ++i) {{
+    out_buffer[i] = new {cpp_real}(*list->items()[i]);
+}}"""
+            stored_out_value = f"return new {cpp_real}(*obj);"
+            create_allocation = f"""    vec.reserve(count);
+    for (size_t i = 0; i < count; ++i) {{
+        vec.push_back(std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(data[i]), []({cpp_real}*) {{}} ));
+    }}
+"""
+        with self.edit_implementation() as f:
+            f.write(f"""
+{self.chandle()} {self.mangled_name()}_create_empty() {{
+    return new falcon_core::math::Axes<{cpp_real}>(
+        falcon_core::math::Axes<{cpp_real}>());
+}}
+
+{self.chandle()} {self.mangled_name()}_create_raw(const {c_type}* data, size_t count) {{
+    std::vector<{cpp_stored}> vec;
+    {create_allocation}
+    return new falcon_core::math::Axes<{cpp_real}>(
+        falcon_core::math::Axes<{cpp_real}>(vec));
+}}
+
+{self.chandle()} {self.mangled_name()}_create(List{self.name()}Handle data) {{
+    auto list = static_cast<falcon_core::generic::List<{cpp_real}>*>(data);
+    return new falcon_core::math::Axes<{cpp_real}>(
+            std::shared_ptr<falcon_core::generic::List<{cpp_real}>>(list));
+}}
+
+void {self.mangled_name()}_destroy({self.chandle()} handle) {{
+    delete static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle);
+}}
+
+size_t {self.mangled_name()}_size({self.chandle()} handle) {{
+    return static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->size();
+}}
+
+bool {self.mangled_name()}_empty({self.chandle()} handle) {{
+    return static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->empty();
+}}
+
+void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx) {{
+    static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->erase_at(idx);
+}}
+
+void {self.mangled_name()}_clear({self.chandle()} handle) {{
+    static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->clear();
+}}
+
+void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value) {{
+    {stored_fill_value}
+    static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->push_back(stored_obj);
+}}
+
+bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value) {{
+    {stored_fill_value}
+    return static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->contains(stored_obj);
+}}
+
+size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value) {{
+    {stored_fill_value}
+    return static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->index(stored_obj);
+}}
+
+size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size) {{
+    auto list = static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle);
+    size_t n = std::min(buffer_size, list->items().size());
+    {copy_to_out_buffer}
+    return n;
+}}
+
+{c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx) {{
+    auto obj = static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->at(idx);
+    {stored_out_value}
+}}
+
+bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
+    auto listA = static_cast<falcon_core::math::Axes<{cpp_real}>*>(a);
+    auto listB = static_cast<falcon_core::math::Axes<{cpp_real}>*>(b);
+    return *listA == *listB;
+}}
+
+bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
+    return !{self.mangled_name()}_equal(a, b);
+}}
+
+{self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other) {{
+    auto listA = static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle);
+    auto listB = static_cast<falcon_core::math::Axes<{cpp_real}>*>(other);
+    auto result = listA->intersection(std::make_shared<falcon_core::math::Axes<{cpp_real}>>(*listB));
+    return new falcon_core::math::Axes<{cpp_real}>(result);
+}}
+
+StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+    std::string json = static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->to_json_string();
+    return String_create(json.c_str(), json.size());
+}}
+{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
+  auto ptr = falcon_core::math::Axes<{cpp_real}>::from_json_string<falcon_core::math::Axes<{cpp_real}>>(json->raw);
+  return new falcon_core::math::Axes<{cpp_real}>(*ptr);
 }}
 """)
 
@@ -706,6 +877,14 @@ std::string json = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_val
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty() {{
     return new falcon_core::generic::FArray<{cpp_type}>(falcon_core::generic::FArray<{cpp_type}>());
+}}
+
+{self.chandle()} {self.mangled_name()}_create_zeros(const size_t* shape, size_t ndim) {{
+    std::vector<size_t> vec;
+    for (size_t i =0; i < ndim; ++i) {{
+        vec.push_back(shape[i]);
+    }}
+    return new falcon_core::generic::FArray<{cpp_type}>(*falcon_core::generic::FArray<{cpp_type}>::zeros(vec));
 }}
 
 {self.chandle()} {self.mangled_name()}_from_shape(const size_t* shape, size_t ndim) {{
@@ -998,7 +1177,7 @@ def add_to_manifest(manifest_path, header_path, implementation_path):
 
 registry: dict[str, Entry] = {
     "IntList": Entry(
-        Template.List,
+        Options.List,
         [
             "int",
             "int",
@@ -1010,7 +1189,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "FloatList": Entry(
-        Template.List,
+        Options.List,
         [
             "float",
             "float",
@@ -1022,7 +1201,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "DoubleList": Entry(
-        Template.List,
+        Options.List,
         [
             "double",
             "double",
@@ -1034,7 +1213,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "ConnectionList": Entry(
-        Template.List,
+        Options.List,
         [
             "ConnectionHandle",
             "falcon_core::physics::device_structures::Connection",
@@ -1049,7 +1228,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "ChannelList": Entry(
-        Template.List,
+        Options.List,
         [
             "ChannelHandle",
             "falcon_core::autotuner_interfaces::names::Channel",
@@ -1064,7 +1243,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "InstrumentPortList": Entry(
-        Template.List,
+        Options.List,
         [
             "InstrumentPortHandle",
             "falcon_core::instrument_interfaces::names::InstrumentPort",
@@ -1079,7 +1258,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "LabelledDomainList": Entry(
-        Template.List,
+        Options.List,
         [
             "LabelledDomainHandle",
             "falcon_core::math::domains::LabelledDomain",
@@ -1094,7 +1273,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "QuantityList": Entry(
-        Template.List,
+        Options.List,
         [
             "QuantityHandle",
             "falcon_core::math::Quantity",
@@ -1109,7 +1288,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "SizeTList": Entry(
-        Template.List,
+        Options.List,
         [
             "size_t",
             "size_t",
@@ -1123,7 +1302,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "ListSizeTList": Entry(
-        Template.List,
+        Options.List,
         [
             "ListSizeTHandle",
             "falcon_core::generic::List<size_t>",
@@ -1137,7 +1316,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "ImpedanceList": Entry(
-        Template.List,
+        Options.List,
         [
             "ImpedanceHandle",
             "falcon_core::physics::device_structures::Impedance",
@@ -1151,8 +1330,23 @@ registry: dict[str, Entry] = {
         ["<falcon_core/physics/device_structures/Impedance.hpp>"],
         Path("generic"),
     ),
+    "DeviceVoltageStateList": Entry(
+        Options.List,
+        [
+            "DeviceVoltageStateHandle",
+            "falcon_core::communications::voltage_states::DeviceVoltageState",
+            "falcon_core::communications::voltage_states::DeviceVoltageStateSP",
+            "DeviceVoltageState",
+        ],
+        [
+            '"falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"',
+            "<cstddef>",
+        ],
+        ["<falcon_core/communications/voltage_states/DeviceVoltageState.hpp>"],
+        Path("generic"),
+    ),
     "StringList": Entry(
-        Template.List,
+        Options.List,
         [
             "StringHandle",
             "std::string",
@@ -1166,7 +1360,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "ConnectionsList": Entry(
-        Template.List,
+        Options.List,
         [
             "ConnectionsHandle",
             "falcon_core::physics::device_structures::Connections",
@@ -1180,8 +1374,22 @@ registry: dict[str, Entry] = {
         ["<falcon_core/physics/device_structures/Connections.hpp>"],
         Path("generic"),
     ),
+    "BoolList": Entry(
+        Options.List,
+        [
+            "bool",
+            "bool",
+            "bool",
+            "Bool",
+        ],
+        [
+            "<cstddef>",
+        ],
+        [],
+        Path("generic"),
+    ),
     "PairIntIntList": Entry(
-        Template.List,
+        Options.List,
         [
             "PairIntIntHandle",
             "falcon_core::generic::Pair<int, int>",
@@ -1196,7 +1404,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "PairFloatFloatList": Entry(
-        Template.List,
+        Options.List,
         [
             "PairFloatFloatHandle",
             "falcon_core::generic::Pair<float, float>",
@@ -1211,7 +1419,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "PairIntFloatList": Entry(
-        Template.List,
+        Options.List,
         [
             "PairIntFloatHandle",
             "falcon_core::generic::Pair<int, float>",
@@ -1226,7 +1434,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "PairConnectionFloatList": Entry(
-        Template.List,
+        Options.List,
         [
             "PairConnectionFloatHandle",
             "falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>",
@@ -1244,7 +1452,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "PairConnectionDoubleList": Entry(
-        Template.List,
+        Options.List,
         [
             "PairConnectionDoubleHandle",
             "falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>",
@@ -1262,7 +1470,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "PairConnectionConnectionsList": Entry(
-        Template.List,
+        Options.List,
         [
             "PairConnectionConnectionsHandle",
             "falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connections>",
@@ -1280,7 +1488,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "PairConnectionQuantityList": Entry(
-        Template.List,
+        Options.List,
         [
             "PairConnectionQuantityHandle",
             "falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>",
@@ -1299,7 +1507,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "IntIntPair": Entry(
-        Template.Pair,
+        Options.Pair,
         [
             "int",
             "int",
@@ -1314,7 +1522,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "FloatFloatPair": Entry(
-        Template.Pair,
+        Options.Pair,
         [
             "float",
             "float",
@@ -1328,8 +1536,23 @@ registry: dict[str, Entry] = {
         [],
         Path("generic"),
     ),
+    "DoubleDoublePair": Entry(
+        Options.Pair,
+        [
+            "double",
+            "double",
+            "double",
+            "double",
+            "double",
+            "double",
+            "DoubleDouble",
+        ],
+        [],
+        [],
+        Path("generic"),
+    ),
     "IntFloatPair": Entry(
-        Template.Pair,
+        Options.Pair,
         [
             "int",
             "int",
@@ -1344,7 +1567,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "ConnectionFloatPair": Entry(
-        Template.Pair,
+        Options.Pair,
         [
             "ConnectionHandle",
             "falcon_core::physics::device_structures::Connection",
@@ -1359,7 +1582,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "ConnectionDoublePair": Entry(
-        Template.Pair,
+        Options.Pair,
         [
             "ConnectionHandle",
             "falcon_core::physics::device_structures::Connection",
@@ -1374,7 +1597,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "QuantityQuantityPair": Entry(
-        Template.Pair,
+        Options.Pair,
         [
             "QuantityHandle",
             "falcon_core::math::Quantity",
@@ -1389,7 +1612,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "ConnectionQuantityPair": Entry(
-        Template.Pair,
+        Options.Pair,
         [
             "ConnectionHandle",
             "falcon_core::physics::device_structures::Connection",
@@ -1410,7 +1633,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "PairQuantityQuantityList": Entry(
-        Template.List,
+        Options.List,
         [
             "PairQuantityQuantityHandle",
             "falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>",
@@ -1428,7 +1651,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "PairStringDoubleList": Entry(
-        Template.List,
+        Options.List,
         [
             "PairStringDoubleHandle",
             "falcon_core::generic::Pair<std::string, double>",
@@ -1444,8 +1667,144 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "PairStringBoolList": Entry(
+        Options.List,
+        [
+            "PairStringBoolHandle",
+            "falcon_core::generic::Pair<std::string, bool>",
+            "falcon_core::generic::PairSP<std::string, bool>",
+            "PairStringBool",
+        ],
+        [
+            '"falcon_core/generic/PairStringBool_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "PairSizeTSizeTList": Entry(
+        Options.List,
+        [
+            "PairSizeTSizeTHandle",
+            "falcon_core::generic::Pair<size_t, size_t>",
+            "falcon_core::generic::PairSP<size_t, size_t>",
+            "PairSizeTSizeT",
+        ],
+        [
+            '"falcon_core/generic/PairSizeTSizeT_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "FArrayDoubleList": Entry(
+        Options.List,
+        [
+            "FArrayDoubleHandle",
+            "falcon_core::generic::FArray<double>",
+            "falcon_core::generic::FArraySP<double>",
+            "FArrayDouble",
+        ],
+        [
+            '"falcon_core/generic/FArrayDouble_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/FArray.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "ControlArrayList": Entry(
+        Options.List,
+        [
+            "ControlArrayHandle",
+            "falcon_core::math::arrays::ControlArray",
+            "falcon_core::math::arrays::ControlArraySP",
+            "ControlArray",
+        ],
+        [
+            '"falcon_core/math/arrays/ControlArray_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/math/arrays/ControlArray.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "DotGateWithNeighborsList": Entry(
+        Options.List,
+        [
+            "DotGateWithNeighborsHandle",
+            "falcon_core::physics::config::geometries::DotGateWithNeighbors",
+            "falcon_core::physics::config::geometries::DotGateWithNeighborsSP",
+            "DotGateWithNeighbors",
+        ],
+        [
+            '"falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "ControlArray1DList": Entry(
+        Options.List,
+        [
+            "ControlArray1DHandle",
+            "falcon_core::math::arrays::ControlArray1D",
+            "falcon_core::math::arrays::ControlArray1DSP",
+            "ControlArray1D",
+        ],
+        [
+            '"falcon_core/math/arrays/ControlArray1D_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/math/arrays/ControlArray1D.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "CoupledLabelledDomainList": Entry(
+        Options.List,
+        [
+            "CoupledLabelledDomainHandle",
+            "falcon_core::math::domains::CoupledLabelledDomain",
+            "falcon_core::math::domains::CoupledLabelledDomainSP",
+            "CoupledLabelledDomain",
+        ],
+        [
+            '"falcon_core/math/domains/CoupledLabelledDomain_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/math/domains/CoupledLabelledDomain.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "MapStringBoolList": Entry(
+        Options.List,
+        [
+            "MapStringBoolHandle",
+            "falcon_core::generic::Map<std::string, bool>",
+            "falcon_core::generic::MapSP<std::string, bool>",
+            "MapStringBool",
+        ],
+        [
+            '"falcon_core/generic/MapStringBool_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Map.hpp>",
+        ],
+        Path("generic"),
+    ),
     "PairConnectionPairQuantityQuantityList": Entry(
-        Template.List,
+        Options.List,
         [
             "PairConnectionPairQuantityQuantityHandle",
             "falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>",
@@ -1464,7 +1823,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "StringDoublePair": Entry(
-        Template.Pair,
+        Options.Pair,
         [
             "StringHandle",
             "std::string",
@@ -1481,8 +1840,43 @@ registry: dict[str, Entry] = {
         [],
         Path("generic"),
     ),
+    "StringBoolPair": Entry(
+        Options.Pair,
+        [
+            "StringHandle",
+            "std::string",
+            "std::string",
+            "bool",
+            "bool",
+            "bool",
+            "StringBool",
+        ],
+        [
+            "<cstddef>",
+            '"falcon_core/generic/String_c_api.h"',
+        ],
+        [],
+        Path("generic"),
+    ),
+    "SizeTSizeTPair": Entry(
+        Options.Pair,
+        [
+            "size_t",
+            "size_t",
+            "size_t",
+            "size_t",
+            "size_t",
+            "size_t",
+            "SizeTSizeT",
+        ],
+        [
+            "<cstddef>",
+        ],
+        [],
+        Path("generic"),
+    ),
     "ConnectionConnectionPair": Entry(
-        Template.Pair,
+        Options.Pair,
         [
             "ConnectionHandle",
             "falcon_core::physics::device_structures::Connection",
@@ -1497,7 +1891,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "ConnectionConnectionsPair": Entry(
-        Template.Pair,
+        Options.Pair,
         [
             "ConnectionHandle",
             "falcon_core::physics::device_structures::Connection",
@@ -1512,7 +1906,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "ConnectionPairQuantityQuantityPair": Entry(
-        Template.Pair,
+        Options.Pair,
         [
             "ConnectionHandle",
             "falcon_core::physics::device_structures::Connection",
@@ -1533,7 +1927,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "IntIntMap": Entry(
-        Template.Map,
+        Options.Map,
         [
             "int",
             "int",
@@ -1554,7 +1948,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "FloatFloatMap": Entry(
-        Template.Map,
+        Options.Map,
         [
             "float",
             "float",
@@ -1575,7 +1969,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "ConnectionFloatMap": Entry(
-        Template.Map,
+        Options.Map,
         [
             "ConnectionHandle",
             "falcon_core::physics::device_structures::Connection",
@@ -1600,7 +1994,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "ConnectionDoubleMap": Entry(
-        Template.Map,
+        Options.Map,
         [
             "ConnectionHandle",
             "falcon_core::physics::device_structures::Connection",
@@ -1625,7 +2019,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "ConnectionQuantityMap": Entry(
-        Template.Map,
+        Options.Map,
         [
             "ConnectionHandle",
             "falcon_core::physics::device_structures::Connection",
@@ -1651,7 +2045,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "StringDoubleMap": Entry(
-        Template.Map,
+        Options.Map,
         [
             "StringHandle",
             "std::string",
@@ -1664,10 +2058,33 @@ registry: dict[str, Entry] = {
             "StringDouble",
         ],
         [
-            '"falcon_core/generic/PairStringDouble_c_api.h"',
+            '"falcon_core/generic/ListPairStringDouble_c_api.h"',
             '"falcon_core/generic/ListString_c_api.h"',
             '"falcon_core/generic/ListDouble_c_api.h"',
-            '"falcon_core/generic/ListPairStringDouble_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "StringBoolMap": Entry(
+        Options.Map,
+        [
+            "StringHandle",
+            "std::string",
+            "std::string",
+            "bool",
+            "bool",
+            "bool",
+            "String",
+            "Bool",
+            "StringBool",
+        ],
+        [
+            '"falcon_core/generic/ListPairStringBool_c_api.h"',
+            '"falcon_core/generic/ListString_c_api.h"',
+            '"falcon_core/generic/ListBool_c_api.h"',
             "<cstddef>",
         ],
         [
@@ -1676,7 +2093,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "DoubleFArray": Entry(
-        Template.FArray,
+        Options.FArray,
         [
             "double",
             "double",
@@ -1693,7 +2110,7 @@ registry: dict[str, Entry] = {
         Path("generic"),
     ),
     "IntFArray": Entry(
-        Template.FArray,
+        Options.FArray,
         [
             "int",
             "int",
@@ -1709,20 +2126,190 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "DiscretizerList": Entry(
+        Options.List,
+        [
+            "DiscretizerHandle",
+            "falcon_core::math::discrete_spaces::Discretizer",
+            "falcon_core::math::discrete_spaces::DiscretizerSP",
+            "Discretizer",
+        ],
+        [
+            '"falcon_core/math/discrete_spaces/Discretizer_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/math/discrete_spaces/Discretizer.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "DoubleAxes": Entry(
+        Options.Axes,
+        [
+            "double",
+            "double",
+            "double",
+            "Double",
+        ],
+        [
+            '"falcon_core/generic/ListDouble_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+        ],
+        Path("math"),
+    ),
+    "IntAxes": Entry(
+        Options.Axes,
+        [
+            "int",
+            "int",
+            "int",
+            "Int",
+        ],
+        [
+            '"falcon_core/generic/ListInt_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+        ],
+        Path("math"),
+    ),
+    "DiscretizerAxes": Entry(
+        Options.Axes,
+        [
+            "DiscretizerHandle",
+            "falcon_core::math::discrete_spaces::Discretizer",
+            "falcon_core::math::discrete_spaces::DiscretizerSP",
+            "Discretizer",
+        ],
+        [
+            '"falcon_core/math/discrete_spaces/Discretizer_c_api.h"',
+            '"falcon_core/generic/ListDiscretizer_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/math/discrete_spaces/Discretizer.hpp>",
+        ],
+        Path("math"),
+    ),
+    "ControlArrayAxes": Entry(
+        Options.Axes,
+        [
+            "ControlArrayHandle",
+            "falcon_core::math::arrays::ControlArray",
+            "falcon_core::math::arrays::ControlArraySP",
+            "ControlArray",
+        ],
+        [
+            '"falcon_core/math/arrays/ControlArray_c_api.h"',
+            '"falcon_core/generic/ListControlArray_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/math/arrays/ControlArray.hpp>",
+        ],
+        Path("math"),
+    ),
+    "ControlArray1DAxes": Entry(
+        Options.Axes,
+        [
+            "ControlArray1DHandle",
+            "falcon_core::math::arrays::ControlArray1D",
+            "falcon_core::math::arrays::ControlArray1DSP",
+            "ControlArray1D",
+        ],
+        [
+            '"falcon_core/math/arrays/ControlArray1D_c_api.h"',
+            '"falcon_core/generic/ListControlArray1D_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/math/arrays/ControlArray1D.hpp>",
+        ],
+        Path("math"),
+    ),
+    "InstrumentPortAxes": Entry(
+        Options.Axes,
+        [
+            "InstrumentPortHandle",
+            "falcon_core::instrument_interfaces::names::InstrumentPort",
+            "falcon_core::instrument_interfaces::names::InstrumentPortSP",
+            "InstrumentPort",
+        ],
+        [
+            '"falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"',
+            '"falcon_core/generic/ListInstrumentPort_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/instrument_interfaces/names/InstrumentPort.hpp>",
+        ],
+        Path("math"),
+    ),
+    "CoupledLabelledDomainAxes": Entry(
+        Options.Axes,
+        [
+            "CoupledLabelledDomainHandle",
+            "falcon_core::math::domains::CoupledLabelledDomain",
+            "falcon_core::math::domains::CoupledLabelledDomainSP",
+            "CoupledLabelledDomain",
+        ],
+        [
+            '"falcon_core/math/domains/CoupledLabelledDomain_c_api.h"',
+            '"falcon_core/generic/ListCoupledLabelledDomain_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/math/domains/CoupledLabelledDomain.hpp>",
+        ],
+        Path("math"),
+    ),
+    "MapStringBoolAxes": Entry(
+        Options.Axes,
+        [
+            "MapStringBoolHandle",
+            "falcon_core::generic::Map<std::string, bool>",
+            "falcon_core::generic::MapSP<std::string, bool>",
+            "MapStringBool",
+        ],
+        [
+            '"falcon_core/generic/ListMapStringBool_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/generic/Map.hpp>",
+        ],
+        Path("math"),
+    ),
 }
 entry_queue: list[str] = [
     "SizeTList",
     "StringList",
+    "BoolList",
     "StringDoublePair",
+    "StringBoolPair",
+    "SizeTSizeTPair",
+    "PairSizeTSizeTList",
     "PairStringDoubleList",
     "ListSizeTList",
     "DoubleFArray",
+    "FArrayDoubleList",
     "IntFArray",
     "IntList",
     "FloatList",
     "DoubleList",
     "IntIntPair",
     "FloatFloatPair",
+    "DoubleDoublePair",
     "IntFloatPair",
     "QuantityQuantityPair",
     "PairQuantityQuantityList",
@@ -1732,6 +2319,7 @@ entry_queue: list[str] = [
     "ConnectionList",
     "ChannelList",
     "QuantityList",
+    "DeviceVoltageStateList",
     "LabelledDomainList",
     "InstrumentPortList",
     "ConnectionsList",
@@ -1753,6 +2341,22 @@ entry_queue: list[str] = [
     "ConnectionQuantityMap",
     "ConnectionPairQuantityQuantityPair",
     "PairConnectionPairQuantityQuantityList",
+    "DiscretizerList",
+    "DoubleAxes",
+    "IntAxes",
+    "DiscretizerAxes",
+    "ControlArrayList",
+    "ControlArrayAxes",
+    "ControlArray1DList",
+    "ControlArray1DAxes",
+    "CoupledLabelledDomainList",
+    "CoupledLabelledDomainAxes",
+    "PairStringBoolList",
+    "StringBoolMap",
+    "InstrumentPortAxes",
+    "MapStringBoolList",
+    "MapStringBoolAxes",
+    "DotGateWithNeighborsList",
 ]
 
 
@@ -1764,9 +2368,10 @@ if __name__ == "__main__":
     for name in entry_queue:
         if name not in registry.keys():
             raise ValueError(
-                f"Invalid name {name} used that was not present in the registry. Skipping..."
+                f"Invalid name {name} used that was not present in the registry."
             )
         entry = registry[name]
+        print(f"Working on {entry.temp.name} for {entry.name()}")
         entry.generate_header()
         entry.generate_implementation()
         print(f"Generated {entry.header_path}")
