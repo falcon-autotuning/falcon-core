@@ -49,14 +49,14 @@ TEST_F(SymbolUnitCAPI_Fixture, StaticConstructors) {
 }
 
 TEST_F(SymbolUnitCAPI_Fixture, Properties) {
-  EXPECT_STREQ(SymbolUnit_symbol(meter), "m");
-  EXPECT_STRNE(SymbolUnit_name(meter), "");
+  EXPECT_STREQ(SymbolUnit_symbol(meter)->raw, "m");
+  EXPECT_STRNE(SymbolUnit_name(meter)->raw, "");
 }
 
 TEST_F(SymbolUnitCAPI_Fixture, OperatorMultiplyWorks) {
   SymbolUnitHandle result = SymbolUnit_multiplication(meter, second);
   EXPECT_TRUE(result != nullptr);
-  EXPECT_NE(std::string(SymbolUnit_symbol(result)).find("m·s"),
+  EXPECT_NE(std::string(SymbolUnit_symbol(result)->raw).find("m·s"),
             std::string::npos);
   SymbolUnit_destroy(result);
 }
@@ -64,7 +64,7 @@ TEST_F(SymbolUnitCAPI_Fixture, OperatorMultiplyWorks) {
 TEST_F(SymbolUnitCAPI_Fixture, OperatorDivideWorks) {
   SymbolUnitHandle result = SymbolUnit_division(meter, second);
   EXPECT_TRUE(result != nullptr);
-  EXPECT_NE(std::string(SymbolUnit_symbol(result)).find("m/s"),
+  EXPECT_NE(std::string(SymbolUnit_symbol(result)->raw).find("m/s"),
             std::string::npos);
   SymbolUnit_destroy(result);
 }
@@ -72,20 +72,21 @@ TEST_F(SymbolUnitCAPI_Fixture, OperatorDivideWorks) {
 TEST_F(SymbolUnitCAPI_Fixture, OperatorPowerWorks) {
   SymbolUnitHandle area = SymbolUnit_power(meter, 2);
   EXPECT_TRUE(area != nullptr);
-  EXPECT_NE(std::string(SymbolUnit_symbol(area)).find("m^2"),
+  EXPECT_NE(std::string(SymbolUnit_symbol(area)->raw).find("m^2"),
             std::string::npos);
   SymbolUnit_destroy(area);
 }
 
 TEST_F(SymbolUnitCAPI_Fixture, WithPrefixWorks) {
-  SymbolUnitHandle km = SymbolUnit_with_prefix(meter, "k");
+  SymbolUnitHandle km = SymbolUnit_with_prefix(meter, String_wrap("k"));
   EXPECT_TRUE(km != nullptr);
-  EXPECT_NE(std::string(SymbolUnit_symbol(km)).find("km"), std::string::npos);
+  EXPECT_NE(std::string(SymbolUnit_symbol(km)->raw).find("km"),
+            std::string::npos);
   SymbolUnit_destroy(km);
 }
 
 TEST_F(SymbolUnitCAPI_Fixture, WithPrefixInvalidThrows) {
-  EXPECT_ANY_THROW(SymbolUnit_with_prefix(meter, "invalid"));
+  EXPECT_ANY_THROW(SymbolUnit_with_prefix(meter, String_wrap("invalid")));
 }
 
 TEST_F(SymbolUnitCAPI_Fixture, ConvertValueToWorks) {
@@ -111,7 +112,7 @@ TEST_F(SymbolUnitCAPI_Fixture, IsCompatibleWithNullptrThrows) {
 }
 
 TEST_F(SymbolUnitCAPI_Fixture, SerializationRoundTrip) {
-  const char*      json = SymbolUnit_to_json_string(meter);
+  StringHandle     json = SymbolUnit_to_json_string(meter);
   SymbolUnitHandle m2   = SymbolUnit_from_json_string(json);
   EXPECT_TRUE(SymbolUnit_equal(meter, m2));
   SymbolUnit_destroy(m2);

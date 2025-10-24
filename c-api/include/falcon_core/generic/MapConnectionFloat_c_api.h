@@ -6,6 +6,7 @@
 #include "falcon_core/generic/ListFloat_c_api.h"
 #include "falcon_core/generic/ListConnection_c_api.h"
 #include "falcon_core/generic/ListPairConnectionFloat_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* MapConnectionFloatHandle;
@@ -28,8 +29,8 @@ ListPairConnectionFloatHandle MapConnectionFloat_items(MapConnectionFloatHandle 
 bool MapConnectionFloat_equal(MapConnectionFloatHandle a, MapConnectionFloatHandle b);
 bool MapConnectionFloat_not_equal(MapConnectionFloatHandle a, MapConnectionFloatHandle b);
 // Serialization (from Song)
-const char*      MapConnectionFloat_to_json_string(MapConnectionFloatHandle handle);
-MapConnectionFloatHandle MapConnectionFloat_from_json_string(const char* json);
+StringHandle      MapConnectionFloat_to_json_string(MapConnectionFloatHandle handle);
+MapConnectionFloatHandle MapConnectionFloat_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

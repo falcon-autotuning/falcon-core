@@ -4,6 +4,7 @@
 #endif
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include <cstddef>
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* ListConnectionHandle;
@@ -28,8 +29,8 @@ bool ListConnection_equal(ListConnectionHandle a, ListConnectionHandle b);
 bool ListConnection_not_equal(ListConnectionHandle a, ListConnectionHandle b);
 
 // Serialization (from Song)
-const char*      ListConnection_to_json_string(ListConnectionHandle handle);
-ListConnectionHandle ListConnection_from_json_string(const char* json);
+StringHandle      ListConnection_to_json_string(ListConnectionHandle handle);
+ListConnectionHandle ListConnection_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -7,9 +7,26 @@ ListChannelHandle ListChannel_create_empty() {
         falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>());
 }
 
+ListChannelHandle ListChannel_fill_value(size_t count, ChannelHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value), [](falcon_core::autotuner_interfaces::names::Channel*) {} );
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(
+        falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(count, stored_obj));
+}
+
 ListChannelHandle ListChannel_allocate(size_t count) {
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(
         falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(count));
+}
+
+ListChannelHandle ListChannel_create(const ChannelHandle* data, size_t count) {
+    std::vector<falcon_core::autotuner_interfaces::names::ChannelSP> vec;
+        vec.reserve(count);
+    for (size_t i = 0; i < count; ++i) {
+        vec.push_back(std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(data[i]), [](falcon_core::autotuner_interfaces::names::Channel*) {} ));
+    }
+
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(
+        falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(vec));
 }
 
 void ListChannel_destroy(ListChannelHandle handle) {
@@ -32,6 +49,36 @@ void ListChannel_clear(ListChannelHandle handle) {
     static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->clear();
 }
 
+void ListChannel_push_back(ListChannelHandle handle, ChannelHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value), [](falcon_core::autotuner_interfaces::names::Channel*) {} );
+    static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->push_back(stored_obj);
+}
+
+bool ListChannel_contains(ListChannelHandle handle, ChannelHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value), [](falcon_core::autotuner_interfaces::names::Channel*) {} );
+    return static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->contains(stored_obj);
+}
+
+size_t ListChannel_index(ListChannelHandle handle, ChannelHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value), [](falcon_core::autotuner_interfaces::names::Channel*) {} );
+    return static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->index(stored_obj);
+}
+
+size_t ListChannel_items(ListChannelHandle handle, ChannelHandle* out_buffer, size_t buffer_size) {
+    auto list = static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle);
+    size_t n = std::min(buffer_size, list->items().size());
+    
+for (size_t i = 0; i < n; ++i) {
+    out_buffer[i] = new falcon_core::autotuner_interfaces::names::Channel(*list->items()[i]);
+}
+    return n;
+}
+
+ChannelHandle ListChannel_at(ListChannelHandle handle, size_t idx) {
+    auto obj = static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->at(idx);
+    return new falcon_core::autotuner_interfaces::names::Channel(*obj);
+}
+
 bool ListChannel_equal(ListChannelHandle a, ListChannelHandle b) {
     auto listA = static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(a);
     auto listB = static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(b);
@@ -49,57 +96,11 @@ ListChannelHandle ListChannel_intersection(ListChannelHandle handle, ListChannel
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(*result);
 }
 
-ListChannelHandle ListChannel_fill_value(size_t count, ChannelHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value), [](falcon_core::autotuner_interfaces::names::Channel*) {} );
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(count, stored_obj));
+StringHandle      ListChannel_to_json_string(ListChannelHandle handle) {
+    std::string json = static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->to_json_string();
+    return String_create(json.c_str(), json.size());
 }
-
-ListChannelHandle ListChannel_create(const ChannelHandle* data, size_t count) {
-    std::vector<falcon_core::autotuner_interfaces::names::ChannelSP> vec;
-    vec.reserve(count);
-    for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(data[i]), [](falcon_core::autotuner_interfaces::names::Channel*) {} ));
-    }
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(vec));
-}
-
-void ListChannel_push_back(ListChannelHandle handle, ChannelHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value), [](falcon_core::autotuner_interfaces::names::Channel*) {} );
-    static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->push_back(stored_obj);
-}
-
-ChannelHandle ListChannel_at(ListChannelHandle handle, size_t idx) {
-    auto obj = static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->at(idx);
-    return new falcon_core::autotuner_interfaces::names::Channel(*obj);
-}
-
-size_t ListChannel_items(ListChannelHandle handle, ChannelHandle* out_buffer, size_t buffer_size) {
-    auto list = static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle);
-    size_t n = std::min(buffer_size, list->items().size());
-    for (size_t i = 0; i < n; ++i) {
-        out_buffer[i] = new falcon_core::autotuner_interfaces::names::Channel(*list->items()[i]);
-    }
-    return n;
-}
-
-bool ListChannel_contains(ListChannelHandle handle, ChannelHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value), [](falcon_core::autotuner_interfaces::names::Channel*) {} );
-    return static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->contains(stored_obj);
-}
-
-size_t ListChannel_index(ListChannelHandle handle, ChannelHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value), [](falcon_core::autotuner_interfaces::names::Channel*) {} );
-    return static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->index(stored_obj);
-}
-
-const char*      ListChannel_to_json_string(ListChannelHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->to_json_string();
-  return json.c_str();
-}
-ListChannelHandle ListChannel_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>::from_json_string<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>>(std::string(json));
+ListChannelHandle ListChannel_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>::from_json_string<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>>(json->raw);
   return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(*ptr);
 }

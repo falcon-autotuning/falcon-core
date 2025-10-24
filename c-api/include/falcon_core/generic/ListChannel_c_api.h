@@ -4,6 +4,7 @@
 #endif
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
 #include <cstddef>
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* ListChannelHandle;
@@ -28,8 +29,8 @@ bool ListChannel_equal(ListChannelHandle a, ListChannelHandle b);
 bool ListChannel_not_equal(ListChannelHandle a, ListChannelHandle b);
 
 // Serialization (from Song)
-const char*      ListChannel_to_json_string(ListChannelHandle handle);
-ListChannelHandle ListChannel_from_json_string(const char* json);
+StringHandle      ListChannel_to_json_string(ListChannelHandle handle);
+ListChannelHandle ListChannel_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

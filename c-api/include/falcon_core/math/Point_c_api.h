@@ -2,6 +2,7 @@
 #include <cstddef>
 
 #include "falcon_core/generic/ListConnection_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/Quantity_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/units/SymbolUnit_c_api.h"
@@ -51,8 +52,8 @@ bool        Point_equal(PointHandle a, PointHandle b);
 bool        Point_not_equal(PointHandle a, PointHandle b);
 
 // Serialization (from Song)
-const char* Point_to_json_string(PointHandle handle);
-PointHandle Point_from_json_string(const char* json);
+StringHandle Point_to_json_string(PointHandle handle);
+PointHandle  Point_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

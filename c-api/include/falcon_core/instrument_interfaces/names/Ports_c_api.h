@@ -18,20 +18,14 @@ void Ports_destroy(PortsHandle handle);
 
 // Methods
 ListInstrumentPortHandle Ports_ports(PortsHandle handle);
-void                     Ports_default_names(PortsHandle handle,
-                                             char**      out_buffer,
-                                             size_t      buffer_size);
+ListStringHandle         Ports_default_names(PortsHandle handle);
 ConnectionHandle         Ports_get_psuedo_names(PortsHandle handle);
-void                     Ports__get_raw_names(PortsHandle handle,
-                                              char**      out_buffer,
-                                              size_t      buffer_size);
-void                     Ports__get_instrument_facing_names(PortsHandle handle,
-                                                            char**      out_buffer,
-                                                            size_t      buffer_size);
+ListStringHandle         Ports__get_raw_names(PortsHandle handle);
+ListStringHandle         Ports__get_instrument_facing_names(PortsHandle handle);
 InstrumentPortHandle     Ports__get_psuedoname_matching_port(PortsHandle handle,
                                                              ConnectionHandle name);
 InstrumentPortHandle     Ports__get_instrument_type_matching_port(
-        PortsHandle handle, const char* type);
+        PortsHandle handle, StringHandle type);
 bool        Ports_is_knobs(PortsHandle handle);
 bool        Ports_is_meters(PortsHandle handle);
 PortsHandle Ports_intersection(PortsHandle handle, PortsHandle other);
@@ -42,17 +36,15 @@ void        Ports_erase_at(PortsHandle handle, size_t idx);
 void        Ports_clear(PortsHandle handle);
 const InstrumentPortHandle Ports_const_at(PortsHandle handle, size_t idx);
 InstrumentPortHandle       Ports_at(PortsHandle handle, size_t idx);
-size_t                     Ports_items(PortsHandle           handle,
-                                       InstrumentPortHandle* out_buffer,
-                                       size_t                buffer_size);
+ListStringHandle           Ports_items(PortsHandle handle);
 bool   Ports_contains(PortsHandle handle, InstrumentPortHandle value);
 size_t Ports_index(PortsHandle handle, InstrumentPortHandle value);
 bool   Ports_equal(PortsHandle a, PortsHandle b);
 bool   Ports_not_equal(PortsHandle a, PortsHandle b);
 
 // Serialization (from Song)
-const char* Ports_to_json_string(PortsHandle handle);
-PortsHandle Ports_from_json_string(const char* json);
+StringHandle Ports_to_json_string(PortsHandle handle);
+PortsHandle  Ports_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

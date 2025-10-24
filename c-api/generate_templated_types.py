@@ -70,8 +70,8 @@ class HeaderContext:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.file.write(f"""
 // Serialization (from Song)
-const char*      {self.mangled_name()}_to_json_string({self.chandle()} handle);
-{self.chandle()} {self.mangled_name()}_from_json_string(const char* json);
+StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle);
+{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json);
 """)
         self.file.write("\n#ifdef __cplusplus\n}\n#endif")
         self.file.close()
@@ -130,7 +130,7 @@ class Entry:
     temp: The type of template we are evaluating
     combo: All the strings necessary to fill out the template
     header_includes: Any additional dependancies that must be included at the top of the header for C to load all the types
-    implementation_includes: Any additional dependancies that must be included at the top of the implementation for Cpp to load all the types. This is everythign after the "#include "
+    implementation_includes: Any addtional dependancies that must be included at the top of the implementation for Cpp to load all the types. This is everythign after the "#include "
     file_path: The path to the header file from /c-api/falcon_core
     """
 
@@ -152,6 +152,7 @@ class Entry:
         self.temp = temp
         self.combo = combo
         self.header_includes = header_includes
+        self.header_includes.append('"falcon_core/generic/String_c_api.h"')
         self.implementation_includes = implementation_includes
         self.header_path = (
             "include/falcon_core" / file_path / str(self.mangled_name() + "_c_api.h")
@@ -353,6 +354,36 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
         cpp_real = self.combo[1]
         cpp_stored = self.combo[2]
         is_primitive = c_type in c_primitives
+        if c_type == "StringHandle":
+            stored_fill_value = self.from_cstring("value", "stored_obj")
+            copy_to_out_buffer = """
+for (size_t i = 0; i < n; ++i) {{
+    auto str = *list->items()[i];
+    out_buffer[i] = String_wrap(str);
+}}"""
+            stored_out_value = "return String_create(obj->data(), obj->size());"
+            create_allocation = """    vec.reserve(count);
+    for (size_t i = 0; i < count; ++i) {{
+        vec.push_back(list->items()[i]->raw);
+    }}
+"""
+        elif is_primitive:
+            stored_fill_value = "auto stored_obj = value;"
+            copy_to_out_buffer = "std::copy_n(list->items().begin(), n, out_buffer);"
+            stored_out_value = "return obj;"
+            create_allocation = "vec.insert(vec.end(), data, data + count);"
+        else:
+            stored_fill_value = f"auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );"
+            copy_to_out_buffer = f"""
+for (size_t i = 0; i < n; ++i) {{
+    out_buffer[i] = new {cpp_real}(*list->items()[i]);
+}}"""
+            stored_out_value = f"return new {cpp_real}(*obj);"
+            create_allocation = f"""    vec.reserve(count);
+    for (size_t i = 0; i < count; ++i) {{
+        vec.push_back(std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(data[i]), []({cpp_real}*) {{}} ));
+    }}
+"""
         with self.edit_implementation() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty() {{
@@ -360,9 +391,22 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
         falcon_core::generic::List<{cpp_real}>());
 }}
 
+{self.chandle()} {self.mangled_name()}_fill_value(size_t count, {c_type} value) {{
+    {stored_fill_value}
+    return new falcon_core::generic::List<{cpp_real}>(
+        falcon_core::generic::List<{cpp_real}>(count, stored_obj));
+}}
+
 {self.chandle()} {self.mangled_name()}_allocate(size_t count) {{
     return new falcon_core::generic::List<{cpp_real}>(
         falcon_core::generic::List<{cpp_real}>(count));
+}}
+
+{self.chandle()} {self.mangled_name()}_create(const {c_type}* data, size_t count) {{
+    std::vector<{cpp_stored}> vec;
+    {create_allocation}
+    return new falcon_core::generic::List<{cpp_real}>(
+        falcon_core::generic::List<{cpp_real}>(vec));
 }}
 
 void {self.mangled_name()}_destroy({self.chandle()} handle) {{
@@ -385,6 +429,33 @@ void {self.mangled_name()}_clear({self.chandle()} handle) {{
     static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->clear();
 }}
 
+void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value) {{
+    {stored_fill_value}
+    static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->push_back(stored_obj);
+}}
+
+bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value) {{
+    {stored_fill_value}
+    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->contains(stored_obj);
+}}
+
+size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value) {{
+    {stored_fill_value}
+    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->index(stored_obj);
+}}
+
+size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size) {{
+    auto list = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle);
+    size_t n = std::min(buffer_size, list->items().size());
+    {copy_to_out_buffer}
+    return n;
+}}
+
+{c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx) {{
+    auto obj = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->at(idx);
+    {stored_out_value}
+}}
+
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
     auto listA = static_cast<falcon_core::generic::List<{cpp_real}>*>(a);
     auto listB = static_cast<falcon_core::generic::List<{cpp_real}>*>(b);
@@ -401,98 +472,13 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
     auto result = listA->intersection(std::make_shared<falcon_core::generic::List<{cpp_real}>>(*listB));
     return new falcon_core::generic::List<{cpp_real}>(*result);
 }}
-""")
-            if is_primitive:
-                # Primitive type implementation
-                f.write(f"""
-{self.chandle()} {self.mangled_name()}_fill_value(size_t count, {c_type} value) {{
-    return new falcon_core::generic::List<{cpp_real}>(
-        falcon_core::generic::List<{cpp_real}>(count, value));
-}}
 
-{self.chandle()} {self.mangled_name()}_create(const {c_type}* data, size_t count) {{
-    std::vector<{cpp_stored}> vec(data, data + count);
-    return new falcon_core::generic::List<{cpp_real}>(
-        falcon_core::generic::List<{cpp_real}>(vec));
+StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+    std::string json = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->to_json_string();
+    return String_create(json.c_str(), json.size());
 }}
-
-void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value) {{
-    static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->push_back(value);
-}}
-
-{c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx) {{
-    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->at(idx);
-}}
-
-size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size) {{
-    auto list = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle);
-    size_t n = std::min(buffer_size, list->items().size());
-    std::copy_n(list->items().begin(), n, out_buffer);
-    return n;
-}}
-
-bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value) {{
-    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->contains(value);
-}}
-
-size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value) {{
-    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->index(value);
-}}
-""")
-            else:
-                f.write(f"""
-{self.chandle()} {self.mangled_name()}_fill_value(size_t count, {c_type} value) {{
-    auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );
-    return new falcon_core::generic::List<{cpp_real}>(
-        falcon_core::generic::List<{cpp_real}>(count, stored_obj));
-}}
-
-{self.chandle()} {self.mangled_name()}_create(const {c_type}* data, size_t count) {{
-    std::vector<{cpp_stored}> vec;
-    vec.reserve(count);
-    for (size_t i = 0; i < count; ++i) {{
-        vec.push_back(std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(data[i]), []({cpp_real}*) {{}} ));
-    }}
-    return new falcon_core::generic::List<{cpp_real}>(
-        falcon_core::generic::List<{cpp_real}>(vec));
-}}
-
-void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value) {{
-    auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );
-    static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->push_back(stored_obj);
-}}
-
-{c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx) {{
-    auto obj = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->at(idx);
-    return new {cpp_real}(*obj);
-}}
-
-size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size) {{
-    auto list = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle);
-    size_t n = std::min(buffer_size, list->items().size());
-    for (size_t i = 0; i < n; ++i) {{
-        out_buffer[i] = new {cpp_real}(*list->items()[i]);
-    }}
-    return n;
-}}
-
-bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value) {{
-    auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );
-    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->contains(stored_obj);
-}}
-
-size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value) {{
-    auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );
-    return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->index(stored_obj);
-}}
-
-const char*      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->to_json_string();
-  return json.c_str();
-}}
-{self.chandle()} {self.mangled_name()}_from_json_string(const char* json) {{
-  auto ptr = falcon_core::generic::List<{cpp_real}>::from_json_string<falcon_core::generic::List<{cpp_real}>>(std::string(json));
+{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
+  auto ptr = falcon_core::generic::List<{cpp_real}>::from_json_string<falcon_core::generic::List<{cpp_real}>>(json->raw);
   return new falcon_core::generic::List<{cpp_real}>(*ptr);
 }}
 """)
@@ -569,13 +555,12 @@ bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
     return *pair_a == *pair_b;
 }}
 
-const char*      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+std::string json = static_cast<falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }}
-{self.chandle()} {self.mangled_name()}_from_json_string(const char* json) {{
-  auto ptr = falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>::from_json_string<falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>>(std::string(json));
+{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
+  auto ptr = falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>::from_json_string<falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>>(json->raw);
   return new falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>(*ptr);
 }}
 """)
@@ -695,13 +680,12 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
     return !{self.mangled_name()}_equal(a, b);
 }}
 
-const char*      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+std::string json = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }}
-{self.chandle()} {self.mangled_name()}_from_json_string(const char* json) {{
-  auto ptr = falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>::from_json_string<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>(std::string(json));
+{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
+  auto ptr = falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>::from_json_string<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>(json->raw);
   return new falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>(*ptr);
 }}
 """)
@@ -973,13 +957,12 @@ double {self.mangled_name()}_get_summed_diff_array_of_squares({self.chandle()} h
     auto oarray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
     return farray->get_sum_of_squares(std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray));
 }}
-const char*      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+  std::string json = static_cast<falcon_core::generic::FArray<{c_type}>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }}
-{self.chandle()} {self.mangled_name()}_from_json_string(const char* json) {{
-  auto ptr = falcon_core::generic::FArray<{cpp_type}>::from_json_string<falcon_core::generic::FArray<{cpp_type}>>(std::string(json));
+{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
+  auto ptr = falcon_core::generic::FArray<{cpp_type}>::from_json_string<falcon_core::generic::FArray<{cpp_type}>>(json->raw);
   return new falcon_core::generic::FArray<{cpp_type}>(*ptr);
 }}
 """)
@@ -1157,6 +1140,20 @@ registry: dict[str, Entry] = {
             "<cstddef>",
         ],
         ["<falcon_core/physics/device_structures/Impedance.hpp>"],
+        Path("generic"),
+    ),
+    "StringList": Entry(
+        Template.List,
+        [
+            "StringHandle",
+            "std::string",
+            "std::string",
+            "String",
+        ],
+        [
+            "<cstddef>",
+        ],
+        [],
         Path("generic"),
     ),
     "ConnectionsList": Entry(
@@ -1590,7 +1587,7 @@ registry: dict[str, Entry] = {
     "StringDoubleMap": Entry(
         Template.Map,
         [
-            "char*",
+            "StringHandle",
             "std::string",
             "std::string",
             "double",
@@ -1649,6 +1646,7 @@ registry: dict[str, Entry] = {
 }
 entry_queue: list[str] = [
     "SizeTList",
+    "StringList",
     "StringDoublePair",
     "ListSizeTList",
     "DoubleFArray",

@@ -4,7 +4,7 @@
 #include "falcon_core/physics/device_structures/Impedance_c_api.h"
 
 TEST(ImpedanceCAPI_Constructors, ValueConstructor) {
-  ConnectionHandle conn = Connection_create_plunger_gate("foo");
+  ConnectionHandle conn = Connection_create_plunger_gate(String_wrap("foo"));
   ImpedanceHandle  imp  = Impedance_create(conn, 42.5, 3.14);
   EXPECT_TRUE(Connection_equal(Impedance_connection(imp), conn));
   EXPECT_DOUBLE_EQ(Impedance_resistance(imp), 42.5);
@@ -18,24 +18,24 @@ TEST(ImpedanceCAPI_Constructors, NullConnectionThrows) {
 }
 
 TEST(ImpedanceCAPI_Serialization, SerializationRoundTrip) {
-  ConnectionHandle conn = Connection_create_ohmic("bar");
+  ConnectionHandle conn = Connection_create_ohmic(String_wrap("bar"));
   ImpedanceHandle  imp  = Impedance_create(conn, 10.0, 5.0);
-  const char*      json = Impedance_to_json_string(imp);
+  StringHandle     json = Impedance_to_json_string(imp);
   ImpedanceHandle  imp2 = Impedance_from_json_string(json);
   EXPECT_TRUE(Impedance_equal(imp, imp2));
   EXPECT_DOUBLE_EQ(Impedance_resistance(imp2), 10.0);
   EXPECT_DOUBLE_EQ(Impedance_capacitance(imp2), 5.0);
-  EXPECT_STREQ(Connection_name(Impedance_connection(imp2)), "bar");
+  EXPECT_STREQ(Connection_name(Impedance_connection(imp2))->raw, "bar");
   Impedance_destroy(imp);
   Impedance_destroy(imp2);
   Connection_destroy(conn);
 }
 
 TEST(ImpedanceCAPI_Comparison, EqualityAndInequality) {
-  ConnectionHandle conn1 = Connection_create_plunger_gate("foo");
+  ConnectionHandle conn1 = Connection_create_plunger_gate(String_wrap("foo"));
   ImpedanceHandle  imp1  = Impedance_create(conn1, 42.5, 3.14);
 
-  ConnectionHandle conn2 = Connection_create_plunger_gate("boo");
+  ConnectionHandle conn2 = Connection_create_plunger_gate(String_wrap("boo"));
   ImpedanceHandle  imp2  = Impedance_create(conn2, 42.5, 3.12);
 
   EXPECT_TRUE(Impedance_equal(imp1, imp1));

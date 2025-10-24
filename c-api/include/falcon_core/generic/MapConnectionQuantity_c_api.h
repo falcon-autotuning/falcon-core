@@ -6,6 +6,7 @@
 #include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/ListConnection_c_api.h"
 #include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* MapConnectionQuantityHandle;
@@ -28,8 +29,8 @@ ListPairConnectionQuantityHandle MapConnectionQuantity_items(MapConnectionQuanti
 bool MapConnectionQuantity_equal(MapConnectionQuantityHandle a, MapConnectionQuantityHandle b);
 bool MapConnectionQuantity_not_equal(MapConnectionQuantityHandle a, MapConnectionQuantityHandle b);
 // Serialization (from Song)
-const char*      MapConnectionQuantity_to_json_string(MapConnectionQuantityHandle handle);
-MapConnectionQuantityHandle MapConnectionQuantity_from_json_string(const char* json);
+StringHandle      MapConnectionQuantity_to_json_string(MapConnectionQuantityHandle handle);
+MapConnectionQuantityHandle MapConnectionQuantity_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

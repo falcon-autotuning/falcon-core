@@ -23,29 +23,25 @@ void MapStringDouble_destroy(MapStringDoubleHandle handle) {
     delete static_cast<falcon_core::generic::Map<std::string, double>*>(handle);
 }
 
-void MapStringDouble_insert_or_assign(MapStringDoubleHandle handle, const char* key, const double value) {
-    auto temp_key = *static_cast<std::string*>(key);
-auto correct_key = std::make_shared<std::string>(temp_key);
+void MapStringDouble_insert_or_assign(MapStringDoubleHandle handle, const StringHandle key, const double value) {
+    auto correct_key = key;
     auto correct_value = value;
     static_cast<falcon_core::generic::Map<std::string,double>*>(handle)->insert_or_assign(correct_key,correct_value);
 }
 
-void MapStringDouble_insert(MapStringDoubleHandle handle, const char* key, const double value) {
-    auto temp_key = *static_cast<std::string*>(key);
-auto correct_key = std::make_shared<std::string>(temp_key);
+void MapStringDouble_insert(MapStringDoubleHandle handle, const StringHandle key, const double value) {
+    auto correct_key = key;
     auto correct_value = value;
     static_cast<falcon_core::generic::Map<std::string,double>*>(handle)->insert(correct_key,correct_value);
 }
 
-double MapStringDouble_at(MapStringDoubleHandle handle, const char* key) {
-    auto temp_key = *static_cast<std::string*>(key);
-auto correct_key = std::make_shared<std::string>(temp_key);
+double MapStringDouble_at(MapStringDoubleHandle handle, const StringHandle key) {
+    auto correct_key = key;
     return static_cast<falcon_core::generic::Map<std::string,double>*>(handle)->at(correct_key);
 }
 
-void MapStringDouble_erase(MapStringDoubleHandle handle, const char* key) {
-    auto temp_key = *static_cast<std::string*>(key);
-auto correct_key = std::make_shared<std::string>(temp_key);
+void MapStringDouble_erase(MapStringDoubleHandle handle, const StringHandle key) {
+    auto correct_key = key;
     return static_cast<falcon_core::generic::Map<std::string,double>*>(handle)->erase(correct_key);
 }
 
@@ -62,9 +58,8 @@ void MapStringDouble_clear(MapStringDoubleHandle handle) {
     return static_cast<falcon_core::generic::Map<std::string,double>*>(handle)->clear();
 }
 
-bool MapStringDouble_contains(MapStringDoubleHandle handle, char* key) {
-    auto temp_key = *static_cast<std::string*>(key);
-auto correct_key = std::make_shared<std::string>(temp_key);
+bool MapStringDouble_contains(MapStringDoubleHandle handle, StringHandle key) {
+    auto correct_key = key;
     return static_cast<falcon_core::generic::Map<std::string,double>*>(handle)->contains(correct_key);
 }
 
@@ -96,12 +91,11 @@ bool MapStringDouble_not_equal(MapStringDoubleHandle a, MapStringDoubleHandle b)
     return !MapStringDouble_equal(a, b);
 }
 
-const char*      MapStringDouble_to_json_string(MapStringDoubleHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::Map<std::string,double>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      MapStringDouble_to_json_string(MapStringDoubleHandle handle) {
+std::string json = static_cast<falcon_core::generic::Map<std::string,double>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
-MapStringDoubleHandle MapStringDouble_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::Map<std::string,double>::from_json_string<falcon_core::generic::Map<std::string,double>>(std::string(json));
+MapStringDoubleHandle MapStringDouble_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::Map<std::string,double>::from_json_string<falcon_core::generic::Map<std::string,double>>(json->raw);
   return new falcon_core::generic::Map<std::string,double>(*ptr);
 }

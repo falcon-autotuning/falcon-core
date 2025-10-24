@@ -7,6 +7,7 @@
 #include "falcon_core/generic/ListDouble_c_api.h"
 #include "falcon_core/generic/ListPairStringDouble_c_api.h"
 #include <cstddef>
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* MapStringDoubleHandle;
@@ -15,22 +16,22 @@ typedef void* MapStringDoubleHandle;
 MapStringDoubleHandle MapStringDouble_create_empty();
 MapStringDoubleHandle MapStringDouble_create(const PairStringDoubleHandle* data, size_t count);
 void MapStringDouble_destroy(MapStringDoubleHandle handle);
-void MapStringDouble_insert_or_assign(MapStringDoubleHandle handle, const char* key, const double value);
-void MapStringDouble_insert(MapStringDoubleHandle handle, const char* key, const double value);
-double MapStringDouble_at(MapStringDoubleHandle handle, const char* key);
-void MapStringDouble_erase(MapStringDoubleHandle handle, const char* key);
+void MapStringDouble_insert_or_assign(MapStringDoubleHandle handle, const StringHandle key, const double value);
+void MapStringDouble_insert(MapStringDoubleHandle handle, const StringHandle key, const double value);
+double MapStringDouble_at(MapStringDoubleHandle handle, const StringHandle key);
+void MapStringDouble_erase(MapStringDoubleHandle handle, const StringHandle key);
 size_t MapStringDouble_size(MapStringDoubleHandle handle);
 bool MapStringDouble_empty(MapStringDoubleHandle handle);
 void MapStringDouble_clear(MapStringDoubleHandle handle);
-bool MapStringDouble_contains(MapStringDoubleHandle handle, const char* key);
+bool MapStringDouble_contains(MapStringDoubleHandle handle, const StringHandle key);
 ListStringHandle MapStringDouble_keys(MapStringDoubleHandle handle);
 ListDoubleHandle MapStringDouble_values(MapStringDoubleHandle handle);
 ListPairStringDoubleHandle MapStringDouble_items(MapStringDoubleHandle handle);
 bool MapStringDouble_equal(MapStringDoubleHandle a, MapStringDoubleHandle b);
 bool MapStringDouble_not_equal(MapStringDoubleHandle a, MapStringDoubleHandle b);
 // Serialization (from Song)
-const char*      MapStringDouble_to_json_string(MapStringDoubleHandle handle);
-MapStringDoubleHandle MapStringDouble_from_json_string(const char* json);
+StringHandle      MapStringDouble_to_json_string(MapStringDoubleHandle handle);
+MapStringDoubleHandle MapStringDouble_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

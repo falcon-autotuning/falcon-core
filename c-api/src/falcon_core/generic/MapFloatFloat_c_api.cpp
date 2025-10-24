@@ -91,12 +91,11 @@ bool MapFloatFloat_not_equal(MapFloatFloatHandle a, MapFloatFloatHandle b) {
     return !MapFloatFloat_equal(a, b);
 }
 
-const char*      MapFloatFloat_to_json_string(MapFloatFloatHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::Map<float,float>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      MapFloatFloat_to_json_string(MapFloatFloatHandle handle) {
+std::string json = static_cast<falcon_core::generic::Map<float,float>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
-MapFloatFloatHandle MapFloatFloat_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::Map<float,float>::from_json_string<falcon_core::generic::Map<float,float>>(std::string(json));
+MapFloatFloatHandle MapFloatFloat_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::Map<float,float>::from_json_string<falcon_core::generic::Map<float,float>>(json->raw);
   return new falcon_core::generic::Map<float,float>(*ptr);
 }

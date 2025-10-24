@@ -2,6 +2,7 @@
 #ifdef __cplusplus
     extern "C" {
 #endif
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* PairFloatFloatHandle;
@@ -13,8 +14,8 @@ float PairFloatFloat_first(PairFloatFloatHandle handle);
 float PairFloatFloat_second(PairFloatFloatHandle handle);
 bool PairFloatFloat_equal(PairFloatFloatHandle a, PairFloatFloatHandle b);
 // Serialization (from Song)
-const char*      PairFloatFloat_to_json_string(PairFloatFloatHandle handle);
-PairFloatFloatHandle PairFloatFloat_from_json_string(const char* json);
+StringHandle      PairFloatFloat_to_json_string(PairFloatFloatHandle handle);
+PairFloatFloatHandle PairFloatFloat_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -4,6 +4,7 @@
 #endif
 #include "falcon_core/math/Quantity_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* PairConnectionQuantityHandle;
@@ -15,8 +16,8 @@ ConnectionHandle PairConnectionQuantity_first(PairConnectionQuantityHandle handl
 QuantityHandle PairConnectionQuantity_second(PairConnectionQuantityHandle handle);
 bool PairConnectionQuantity_equal(PairConnectionQuantityHandle a, PairConnectionQuantityHandle b);
 // Serialization (from Song)
-const char*      PairConnectionQuantity_to_json_string(PairConnectionQuantityHandle handle);
-PairConnectionQuantityHandle PairConnectionQuantity_from_json_string(const char* json);
+StringHandle      PairConnectionQuantity_to_json_string(PairConnectionQuantityHandle handle);
+PairConnectionQuantityHandle PairConnectionQuantity_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -7,9 +7,26 @@ ListPairIntFloatHandle ListPairIntFloat_create_empty() {
         falcon_core::generic::List<falcon_core::generic::Pair<int, float>>());
 }
 
+ListPairIntFloatHandle ListPairIntFloat_fill_value(size_t count, PairIntFloatHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(value), [](falcon_core::generic::Pair<int, float>*) {} );
+    return new falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(
+        falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(count, stored_obj));
+}
+
 ListPairIntFloatHandle ListPairIntFloat_allocate(size_t count) {
     return new falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(
         falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(count));
+}
+
+ListPairIntFloatHandle ListPairIntFloat_create(const PairIntFloatHandle* data, size_t count) {
+    std::vector<falcon_core::generic::PairSP<int, float>> vec;
+        vec.reserve(count);
+    for (size_t i = 0; i < count; ++i) {
+        vec.push_back(std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(data[i]), [](falcon_core::generic::Pair<int, float>*) {} ));
+    }
+
+    return new falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(
+        falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(vec));
 }
 
 void ListPairIntFloat_destroy(ListPairIntFloatHandle handle) {
@@ -32,6 +49,36 @@ void ListPairIntFloat_clear(ListPairIntFloatHandle handle) {
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->clear();
 }
 
+void ListPairIntFloat_push_back(ListPairIntFloatHandle handle, PairIntFloatHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(value), [](falcon_core::generic::Pair<int, float>*) {} );
+    static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->push_back(stored_obj);
+}
+
+bool ListPairIntFloat_contains(ListPairIntFloatHandle handle, PairIntFloatHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(value), [](falcon_core::generic::Pair<int, float>*) {} );
+    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->contains(stored_obj);
+}
+
+size_t ListPairIntFloat_index(ListPairIntFloatHandle handle, PairIntFloatHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(value), [](falcon_core::generic::Pair<int, float>*) {} );
+    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->index(stored_obj);
+}
+
+size_t ListPairIntFloat_items(ListPairIntFloatHandle handle, PairIntFloatHandle* out_buffer, size_t buffer_size) {
+    auto list = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle);
+    size_t n = std::min(buffer_size, list->items().size());
+    
+for (size_t i = 0; i < n; ++i) {
+    out_buffer[i] = new falcon_core::generic::Pair<int, float>(*list->items()[i]);
+}
+    return n;
+}
+
+PairIntFloatHandle ListPairIntFloat_at(ListPairIntFloatHandle handle, size_t idx) {
+    auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->at(idx);
+    return new falcon_core::generic::Pair<int, float>(*obj);
+}
+
 bool ListPairIntFloat_equal(ListPairIntFloatHandle a, ListPairIntFloatHandle b) {
     auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(a);
     auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(b);
@@ -49,57 +96,11 @@ ListPairIntFloatHandle ListPairIntFloat_intersection(ListPairIntFloatHandle hand
     return new falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(*result);
 }
 
-ListPairIntFloatHandle ListPairIntFloat_fill_value(size_t count, PairIntFloatHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(value), [](falcon_core::generic::Pair<int, float>*) {} );
-    return new falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(count, stored_obj));
+StringHandle      ListPairIntFloat_to_json_string(ListPairIntFloatHandle handle) {
+    std::string json = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->to_json_string();
+    return String_create(json.c_str(), json.size());
 }
-
-ListPairIntFloatHandle ListPairIntFloat_create(const PairIntFloatHandle* data, size_t count) {
-    std::vector<falcon_core::generic::PairSP<int, float>> vec;
-    vec.reserve(count);
-    for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(data[i]), [](falcon_core::generic::Pair<int, float>*) {} ));
-    }
-    return new falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(vec));
-}
-
-void ListPairIntFloat_push_back(ListPairIntFloatHandle handle, PairIntFloatHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(value), [](falcon_core::generic::Pair<int, float>*) {} );
-    static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->push_back(stored_obj);
-}
-
-PairIntFloatHandle ListPairIntFloat_at(ListPairIntFloatHandle handle, size_t idx) {
-    auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->at(idx);
-    return new falcon_core::generic::Pair<int, float>(*obj);
-}
-
-size_t ListPairIntFloat_items(ListPairIntFloatHandle handle, PairIntFloatHandle* out_buffer, size_t buffer_size) {
-    auto list = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle);
-    size_t n = std::min(buffer_size, list->items().size());
-    for (size_t i = 0; i < n; ++i) {
-        out_buffer[i] = new falcon_core::generic::Pair<int, float>(*list->items()[i]);
-    }
-    return n;
-}
-
-bool ListPairIntFloat_contains(ListPairIntFloatHandle handle, PairIntFloatHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(value), [](falcon_core::generic::Pair<int, float>*) {} );
-    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->contains(stored_obj);
-}
-
-size_t ListPairIntFloat_index(ListPairIntFloatHandle handle, PairIntFloatHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(value), [](falcon_core::generic::Pair<int, float>*) {} );
-    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->index(stored_obj);
-}
-
-const char*      ListPairIntFloat_to_json_string(ListPairIntFloatHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->to_json_string();
-  return json.c_str();
-}
-ListPairIntFloatHandle ListPairIntFloat_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<int, float>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>>(std::string(json));
+ListPairIntFloatHandle ListPairIntFloat_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<int, float>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>>(json->raw);
   return new falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(*ptr);
 }

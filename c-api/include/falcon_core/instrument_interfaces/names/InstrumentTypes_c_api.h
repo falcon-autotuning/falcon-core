@@ -1,22 +1,23 @@
 #pragma once
+#include "falcon_core/generic/String_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-const char* InstrumentTypes_dc_voltage_source();
-const char* InstrumentTypes_amnmeter();
-const char* InstrumentTypes_magnet();
-const char* InstrumentTypes_lockin();
-const char* InstrumentTypes_voltage_source();
-const char* InstrumentTypes_current_source();
-const char* InstrumentTypes_hf_voltage_source();
-const char* InstrumentTypes_dc_current_source();
-const char* InstrumentTypes_hf_current_source();
-const char* InstrumentTypes_thermometer();
-const char* InstrumentTypes_voltmeter();
-const char* InstrumentTypes_fpga();
-const char* InstrumentTypes_clock();
-const char* InstrumentTypes_discrete();
+StringHandle InstrumentTypes_dc_voltage_source();
+StringHandle InstrumentTypes_amnmeter();
+StringHandle InstrumentTypes_magnet();
+StringHandle InstrumentTypes_lockin();
+StringHandle InstrumentTypes_voltage_source();
+StringHandle InstrumentTypes_current_source();
+StringHandle InstrumentTypes_hf_voltage_source();
+StringHandle InstrumentTypes_dc_current_source();
+StringHandle InstrumentTypes_hf_current_source();
+StringHandle InstrumentTypes_thermometer();
+StringHandle InstrumentTypes_voltmeter();
+StringHandle InstrumentTypes_fpga();
+StringHandle InstrumentTypes_clock();
+StringHandle InstrumentTypes_discrete();
 
 #ifdef __cplusplus
 }

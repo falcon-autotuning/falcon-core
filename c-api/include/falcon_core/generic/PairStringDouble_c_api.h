@@ -4,6 +4,7 @@
 #endif
 #include <cstddef>
 #include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* PairStringDoubleHandle;
@@ -15,8 +16,8 @@ StringHandle PairStringDouble_first(PairStringDoubleHandle handle);
 double PairStringDouble_second(PairStringDoubleHandle handle);
 bool PairStringDouble_equal(PairStringDoubleHandle a, PairStringDoubleHandle b);
 // Serialization (from Song)
-const char*      PairStringDouble_to_json_string(PairStringDoubleHandle handle);
-PairStringDoubleHandle PairStringDouble_from_json_string(const char* json);
+StringHandle      PairStringDouble_to_json_string(PairStringDoubleHandle handle);
+PairStringDoubleHandle PairStringDouble_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

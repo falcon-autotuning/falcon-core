@@ -4,6 +4,7 @@
 #endif
 #include "falcon_core/generic/PairQuantityQuantity_c_api.h"
 #include <cstddef>
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* ListPairQuantityQuantityHandle;
@@ -28,8 +29,8 @@ bool ListPairQuantityQuantity_equal(ListPairQuantityQuantityHandle a, ListPairQu
 bool ListPairQuantityQuantity_not_equal(ListPairQuantityQuantityHandle a, ListPairQuantityQuantityHandle b);
 
 // Serialization (from Song)
-const char*      ListPairQuantityQuantity_to_json_string(ListPairQuantityQuantityHandle handle);
-ListPairQuantityQuantityHandle ListPairQuantityQuantity_from_json_string(const char* json);
+StringHandle      ListPairQuantityQuantity_to_json_string(ListPairQuantityQuantityHandle handle);
+ListPairQuantityQuantityHandle ListPairQuantityQuantity_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

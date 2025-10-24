@@ -2,8 +2,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 #include <stdbool.h>
+
+#include "falcon_core/generic/String_c_api.h"
 typedef void* SymbolUnitHandle;
 
 // Constructors
@@ -68,27 +69,27 @@ SymbolUnitHandle SymbolUnit_create_watts_per_meter_kelvin();
 void SymbolUnit_destroy(SymbolUnitHandle handle);
 
 // Methods
-const char*      SymbolUnit_symbol(SymbolUnitHandle handle);
-const char*      SymbolUnit_name(SymbolUnitHandle handle);
+StringHandle     SymbolUnit_symbol(SymbolUnitHandle handle);
+StringHandle     SymbolUnit_name(SymbolUnitHandle handle);
 SymbolUnitHandle SymbolUnit_multiplication(SymbolUnitHandle handle,
                                            SymbolUnitHandle other);
 SymbolUnitHandle SymbolUnit_division(SymbolUnitHandle handle,
                                      SymbolUnitHandle other);
 SymbolUnitHandle SymbolUnit_power(SymbolUnitHandle handle, int power);
 SymbolUnitHandle SymbolUnit_with_prefix(SymbolUnitHandle handle,
-                                        const char*      prefix);
+                                        StringHandle     prefix);
 double           SymbolUnit_convert_value_to(SymbolUnitHandle handle,
                                              double           value,
                                              SymbolUnitHandle target);
 bool             SymbolUnit_is_compatible_with(SymbolUnitHandle handle,
                                                SymbolUnitHandle other);
-const char*      SymbolUnit_str(SymbolUnitHandle handle);
+StringHandle     SymbolUnit_str(SymbolUnitHandle handle);
 bool SymbolUnit_equal(SymbolUnitHandle handle, SymbolUnitHandle other);
 bool SymbolUnit_not_equal(SymbolUnitHandle handle, SymbolUnitHandle other);
 
 // Serialization (from Song)
-const char*      SymbolUnit_to_json_string(SymbolUnitHandle handle);
-SymbolUnitHandle SymbolUnit_from_json_string(const char* json);
+StringHandle     SymbolUnit_to_json_string(SymbolUnitHandle handle);
+SymbolUnitHandle SymbolUnit_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

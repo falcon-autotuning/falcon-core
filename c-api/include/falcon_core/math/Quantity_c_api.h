@@ -1,4 +1,5 @@
 #pragma once
+#include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #ifdef __cplusplus
 extern "C" {
@@ -60,8 +61,8 @@ bool           Quantity_equal(QuantityHandle a, QuantityHandle b);
 bool           Quantity_not_equal(QuantityHandle a, QuantityHandle b);
 
 // Serialization (from Song)
-const char*    Quantity_to_json_string(QuantityHandle handle);
-QuantityHandle Quantity_from_json_string(const char* json);
+StringHandle   Quantity_to_json_string(QuantityHandle handle);
+QuantityHandle Quantity_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

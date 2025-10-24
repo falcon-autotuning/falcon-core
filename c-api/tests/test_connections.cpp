@@ -1,5 +1,8 @@
 #include <gtest/gtest.h>
 
+#include "falcon_core/generic/List.hpp"
+#include "falcon_core/generic/ListConnection_c_api.h"
+#include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/device_structures/Connections_c_api.h"
 
@@ -7,11 +10,11 @@ class ConnectionsCAPI_Fixture : public ::testing::Test {
  protected:
   ConnectionHandle barrier, plunger, reservoir, screening, ohmic;
   void             SetUp() override {
-    barrier   = Connection_create_barrier_gate("b");
-    plunger   = Connection_create_plunger_gate("p");
-    reservoir = Connection_create_reservoir_gate("r");
-    screening = Connection_create_screening_gate("s");
-    ohmic     = Connection_create_ohmic("o");
+    barrier   = Connection_create_barrier_gate(String_wrap("b"));
+    plunger   = Connection_create_plunger_gate(String_wrap("p"));
+    reservoir = Connection_create_reservoir_gate(String_wrap("r"));
+    screening = Connection_create_screening_gate(String_wrap("s"));
+    ohmic     = Connection_create_ohmic(String_wrap("o"));
   }
   void TearDown() override {
     Connection_destroy(barrier);
@@ -135,12 +138,10 @@ TEST_F(ConnectionsCAPI_Fixture, Items_Buffer) {
   Connections_push_back(c, plunger);
   Connections_push_back(c, ohmic);
 
-  ConnectionHandle buffer[3];
-  size_t           n = Connections_items(c, buffer, 3);
-  EXPECT_EQ(n, 3);
-  EXPECT_TRUE(Connection_equal(buffer[0], barrier));
-  EXPECT_TRUE(Connection_equal(buffer[1], plunger));
-  EXPECT_TRUE(Connection_equal(buffer[2], ohmic));
+  ListConnectionHandle handle = Connections_items(c);
+  EXPECT_TRUE(Connection_equal(ListConnection_at(handle, 0), barrier));
+  EXPECT_TRUE(Connection_equal(ListConnection_at(handle, 1), plunger));
+  EXPECT_TRUE(Connection_equal(ListConnection_at(handle, 2), ohmic));
   Connections_destroy(c);
 }
 
@@ -168,12 +169,12 @@ TEST_F(ConnectionsCAPI_Fixture, SerializationRoundTrip) {
   Connections_push_back(c, plunger);
   Connections_push_back(c, ohmic);
 
-  const char*       json = Connections_to_json_string(c);
+  StringHandle      json = Connections_to_json_string(c);
   ConnectionsHandle c2   = Connections_from_json_string(json);
 
   EXPECT_EQ(Connections_size(c2), 2);
-  EXPECT_STREQ(Connection_name(Connections_at(c2, 0)), "p");
-  EXPECT_STREQ(Connection_name(Connections_at(c2, 1)), "o");
+  EXPECT_STREQ(Connection_name(Connections_at(c2, 0))->raw, "p");
+  EXPECT_STREQ(Connection_name(Connections_at(c2, 1))->raw, "o");
   EXPECT_TRUE(Connections_equal(c, c2));
 
   Connections_destroy(c);
@@ -189,8 +190,8 @@ TEST_F(ConnectionsCAPI_Fixture, IntersectionThrowsOnNullptr) {
 }
 
 TEST_F(ConnectionsCAPI_Fixture, IntersectionNormalCase) {
-  ConnectionHandle  a  = Connection_create_barrier_gate("a");
-  ConnectionHandle  b  = Connection_create_barrier_gate("b");
+  ConnectionHandle  a  = Connection_create_barrier_gate(String_wrap("a"));
+  ConnectionHandle  b  = Connection_create_barrier_gate(String_wrap("b"));
   ConnectionsHandle c1 = Connections_create_empty();
   Connections_push_back(c1, a);
   Connections_push_back(c1, b);

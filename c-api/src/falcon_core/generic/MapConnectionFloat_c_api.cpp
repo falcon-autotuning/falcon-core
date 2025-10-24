@@ -97,12 +97,11 @@ bool MapConnectionFloat_not_equal(MapConnectionFloatHandle a, MapConnectionFloat
     return !MapConnectionFloat_equal(a, b);
 }
 
-const char*      MapConnectionFloat_to_json_string(MapConnectionFloatHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      MapConnectionFloat_to_json_string(MapConnectionFloatHandle handle) {
+std::string json = static_cast<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
-MapConnectionFloatHandle MapConnectionFloat_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>::from_json_string<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>>(std::string(json));
+MapConnectionFloatHandle MapConnectionFloat_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>::from_json_string<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>>(json->raw);
   return new falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>(*ptr);
 }

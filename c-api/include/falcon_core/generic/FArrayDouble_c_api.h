@@ -4,6 +4,7 @@
 #endif
 #include <cstddef>
 #include "falcon_core/generic/ListListSizeT_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* FArrayDoubleHandle;
@@ -64,8 +65,8 @@ double FArrayDouble_get_summed_diff_int_of_squares(FArrayDoubleHandle handle, co
 double FArrayDouble_get_summed_diff_double_of_squares(FArrayDoubleHandle handle, const double other);
 double FArrayDouble_get_summed_diff_array_of_squares(FArrayDoubleHandle handle, FArrayDoubleHandle other);
 // Serialization (from Song)
-const char*      FArrayDouble_to_json_string(FArrayDoubleHandle handle);
-FArrayDoubleHandle FArrayDouble_from_json_string(const char* json);
+StringHandle      FArrayDouble_to_json_string(FArrayDoubleHandle handle);
+FArrayDoubleHandle FArrayDouble_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

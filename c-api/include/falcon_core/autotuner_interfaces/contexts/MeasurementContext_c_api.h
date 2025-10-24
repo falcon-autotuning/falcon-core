@@ -1,4 +1,5 @@
 #pragma once
+#include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/units/SymbolUnit_c_api.h"
@@ -28,8 +29,8 @@ bool        MeasurementContext_not_equal(MeasurementContextHandle a,
                                          MeasurementContextHandle b);
 
 // Serialization (from Song)
-const char* MeasurementContext_to_json_string(MeasurementContextHandle handle);
-MeasurementContextHandle MeasurementContext_from_json_string(const char* json);
+StringHandle MeasurementContext_to_json_string(MeasurementContextHandle handle);
+MeasurementContextHandle MeasurementContext_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

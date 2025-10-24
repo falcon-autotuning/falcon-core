@@ -3,6 +3,7 @@
     extern "C" {
 #endif
 #include "falcon_core/physics/device_structures/Connections_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* PairConnectionConnectionsHandle;
@@ -14,8 +15,8 @@ ConnectionHandle PairConnectionConnections_first(PairConnectionConnectionsHandle
 ConnectionsHandle PairConnectionConnections_second(PairConnectionConnectionsHandle handle);
 bool PairConnectionConnections_equal(PairConnectionConnectionsHandle a, PairConnectionConnectionsHandle b);
 // Serialization (from Song)
-const char*      PairConnectionConnections_to_json_string(PairConnectionConnectionsHandle handle);
-PairConnectionConnectionsHandle PairConnectionConnections_from_json_string(const char* json);
+StringHandle      PairConnectionConnections_to_json_string(PairConnectionConnectionsHandle handle);
+PairConnectionConnectionsHandle PairConnectionConnections_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

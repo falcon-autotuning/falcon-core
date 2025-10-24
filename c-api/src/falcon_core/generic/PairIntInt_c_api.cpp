@@ -25,12 +25,11 @@ bool PairIntInt_equal(PairIntIntHandle a, PairIntIntHandle b) {
     return *pair_a == *pair_b;
 }
 
-const char*      PairIntInt_to_json_string(PairIntIntHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::Pair<int,int>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      PairIntInt_to_json_string(PairIntIntHandle handle) {
+std::string json = static_cast<falcon_core::generic::Pair<int,int>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
-PairIntIntHandle PairIntInt_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::Pair<int,int>::from_json_string<falcon_core::generic::Pair<int,int>>(std::string(json));
+PairIntIntHandle PairIntInt_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::Pair<int,int>::from_json_string<falcon_core::generic::Pair<int,int>>(json->raw);
   return new falcon_core::generic::Pair<int,int>(*ptr);
 }

@@ -3,6 +3,7 @@
     extern "C" {
 #endif
 #include <cstddef>
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* ListSizeTHandle;
@@ -27,8 +28,8 @@ bool ListSizeT_equal(ListSizeTHandle a, ListSizeTHandle b);
 bool ListSizeT_not_equal(ListSizeTHandle a, ListSizeTHandle b);
 
 // Serialization (from Song)
-const char*      ListSizeT_to_json_string(ListSizeTHandle handle);
-ListSizeTHandle ListSizeT_from_json_string(const char* json);
+StringHandle      ListSizeT_to_json_string(ListSizeTHandle handle);
+ListSizeTHandle ListSizeT_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -100,12 +100,11 @@ bool MapConnectionQuantity_not_equal(MapConnectionQuantityHandle a, MapConnectio
     return !MapConnectionQuantity_equal(a, b);
 }
 
-const char*      MapConnectionQuantity_to_json_string(MapConnectionQuantityHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      MapConnectionQuantity_to_json_string(MapConnectionQuantityHandle handle) {
+std::string json = static_cast<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
-MapConnectionQuantityHandle MapConnectionQuantity_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>::from_json_string<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>>(std::string(json));
+MapConnectionQuantityHandle MapConnectionQuantity_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>::from_json_string<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>>(json->raw);
   return new falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>(*ptr);
 }

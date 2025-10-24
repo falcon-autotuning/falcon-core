@@ -4,6 +4,7 @@
 #endif
 #include "falcon_core/math/domains/LabelledDomain_c_api.h"
 #include <cstddef>
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* ListLabelledDomainHandle;
@@ -28,8 +29,8 @@ bool ListLabelledDomain_equal(ListLabelledDomainHandle a, ListLabelledDomainHand
 bool ListLabelledDomain_not_equal(ListLabelledDomainHandle a, ListLabelledDomainHandle b);
 
 // Serialization (from Song)
-const char*      ListLabelledDomain_to_json_string(ListLabelledDomainHandle handle);
-ListLabelledDomainHandle ListLabelledDomain_from_json_string(const char* json);
+StringHandle      ListLabelledDomain_to_json_string(ListLabelledDomainHandle handle);
+ListLabelledDomainHandle ListLabelledDomain_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

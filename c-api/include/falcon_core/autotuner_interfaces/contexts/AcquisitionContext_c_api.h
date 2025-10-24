@@ -1,4 +1,5 @@
 #pragma once
+#include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/units/SymbolUnit_c_api.h"
@@ -30,15 +31,16 @@ AcquisitionContextHandle AcquisitionContext_division(
 bool AcquisitionContext_match_connection(AcquisitionContextHandle handle,
                                          ConnectionHandle         other);
 bool AcquisitionContext_match_instrument_type(AcquisitionContextHandle handle,
-                                              const char*              other);
+                                              StringHandle             other);
 bool AcquisitionContext_equal(AcquisitionContextHandle a,
                               AcquisitionContextHandle b);
 bool AcquisitionContext_not_equal(AcquisitionContextHandle a,
                                   AcquisitionContextHandle b);
 
 // Serialization (from Song)
-const char* AcquisitionContext_to_json_string(AcquisitionContextHandle handle);
-AcquisitionContextHandle AcquisitionContext_from_json_string(const char* json);
+StringHandle AcquisitionContext_to_json_string(AcquisitionContextHandle handle);
+AcquisitionContextHandle AcquisitionContext_from_json_string(
+    const StringHandle json);
 
 #ifdef __cplusplus
 }

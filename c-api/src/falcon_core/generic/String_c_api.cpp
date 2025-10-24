@@ -14,6 +14,15 @@ StringHandle String_create(const char* raw, size_t length) {
   return out;
 }
 
+StringHandle String_wrap(const char* raw) {
+  size_t       length = strlen(raw);
+  StringHandle out    = (StringHandle)malloc(sizeof(struct string));
+  out->length         = length;
+  out->raw            = (char*)malloc(length + 1);
+  memcpy(out->raw, raw, length + 1);  // includes null terminator
+  return out;
+}
+
 void String_destroy(StringHandle handle) {
   if (handle) {
     free(handle->raw);

@@ -28,12 +28,11 @@ bool PairStringDouble_equal(PairStringDoubleHandle a, PairStringDoubleHandle b) 
     return *pair_a == *pair_b;
 }
 
-const char*      PairStringDouble_to_json_string(PairStringDoubleHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::Pair<std::string,double>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      PairStringDouble_to_json_string(PairStringDoubleHandle handle) {
+std::string json = static_cast<falcon_core::generic::Pair<std::string,double>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
-PairStringDoubleHandle PairStringDouble_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::Pair<std::string,double>::from_json_string<falcon_core::generic::Pair<std::string,double>>(std::string(json));
+PairStringDoubleHandle PairStringDouble_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::Pair<std::string,double>::from_json_string<falcon_core::generic::Pair<std::string,double>>(json->raw);
   return new falcon_core::generic::Pair<std::string,double>(*ptr);
 }

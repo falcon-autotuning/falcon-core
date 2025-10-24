@@ -11,6 +11,7 @@ struct string {
 typedef struct string* StringHandle;
 // Constructors
 StringHandle String_create(const char* raw, size_t length);
+StringHandle String_wrap(const char* raw);
 
 // Destructor
 void String_destroy(StringHandle handle);

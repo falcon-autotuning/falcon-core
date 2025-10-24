@@ -233,16 +233,14 @@ void SymbolUnit_destroy(SymbolUnitHandle handle) {
   delete static_cast<SymbolUnit*>(handle);
 }
 
-const char* SymbolUnit_symbol(SymbolUnitHandle handle) {
-  static thread_local std::string symbol;
-  symbol = static_cast<SymbolUnit*>(handle)->symbol();
-  return symbol.c_str();
+StringHandle SymbolUnit_symbol(SymbolUnitHandle handle) {
+  std::string symbol = static_cast<SymbolUnit*>(handle)->symbol();
+  return String_create(symbol.c_str(), symbol.size());
 }
 
-const char* SymbolUnit_name(SymbolUnitHandle handle) {
-  static thread_local std::string name;
-  name = static_cast<SymbolUnit*>(handle)->name();
-  return name.c_str();
+StringHandle SymbolUnit_name(SymbolUnitHandle handle) {
+  std::string name = static_cast<SymbolUnit*>(handle)->name();
+  return String_create(name.c_str(), name.size());
 }
 
 SymbolUnitHandle SymbolUnit_multiplication(SymbolUnitHandle handle,
@@ -266,9 +264,9 @@ SymbolUnitHandle SymbolUnit_power(SymbolUnitHandle handle, int power) {
 }
 
 SymbolUnitHandle SymbolUnit_with_prefix(SymbolUnitHandle handle,
-                                        const char*      prefix) {
-  return new SymbolUnit(
-      *static_cast<SymbolUnit*>(handle)->with_prefix(std::string(prefix)));
+                                        StringHandle     prefix) {
+  return new SymbolUnit(*static_cast<SymbolUnit*>(handle)->with_prefix(
+      std::string(prefix->raw, prefix->length)));
 }
 
 double SymbolUnit_convert_value_to(SymbolUnitHandle handle,
@@ -297,14 +295,13 @@ bool SymbolUnit_not_equal(SymbolUnitHandle handle, SymbolUnitHandle other) {
          *(static_cast<SymbolUnit*>(other));
 }
 
-const char* SymbolUnit_to_json_string(SymbolUnitHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<SymbolUnit*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle SymbolUnit_to_json_string(SymbolUnitHandle handle) {
+  std::string json = static_cast<SymbolUnit*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
 
-SymbolUnitHandle SymbolUnit_from_json_string(const char* json) {
-  return new SymbolUnit(
-      *SymbolUnit::from_json_string<SymbolUnit>(std::string(json)));
+SymbolUnitHandle SymbolUnit_from_json_string(StringHandle json) {
+  auto ptr = SymbolUnit::from_json_string<SymbolUnit>(json->raw);
+  return new SymbolUnit(*ptr);
 }
 }

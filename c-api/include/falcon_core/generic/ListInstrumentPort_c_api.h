@@ -4,6 +4,7 @@
 #endif
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include <cstddef>
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* ListInstrumentPortHandle;
@@ -28,8 +29,8 @@ bool ListInstrumentPort_equal(ListInstrumentPortHandle a, ListInstrumentPortHand
 bool ListInstrumentPort_not_equal(ListInstrumentPortHandle a, ListInstrumentPortHandle b);
 
 // Serialization (from Song)
-const char*      ListInstrumentPort_to_json_string(ListInstrumentPortHandle handle);
-ListInstrumentPortHandle ListInstrumentPort_from_json_string(const char* json);
+StringHandle      ListInstrumentPort_to_json_string(ListInstrumentPortHandle handle);
+ListInstrumentPortHandle ListInstrumentPort_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -6,6 +6,7 @@ extern "C" {
 #include <stdbool.h>
 
 #include "falcon_core/generic/ListLabelledDomain_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
 #include "falcon_core/math/domains/LabelledDomain_c_api.h"
 typedef void* CoupledLabelledDomainHandle;
@@ -19,9 +20,8 @@ CoupledLabelledDomainHandle CoupledLabelledDomain_create(
 void CoupledLabelledDomain_destroy(CoupledLabelledDomainHandle handle);
 
 // Methods
-void        CoupledLabelledDomain_domains(CoupledLabelledDomainHandle handle,
-                                          LabelledDomainHandle*       out_buffer,
-                                          size_t                      buffer_size);
+ListLabelledDomainHandle CoupledLabelledDomain_domains(
+    CoupledLabelledDomainHandle handle);
 PortsHandle CoupledLabelledDomain_labels(CoupledLabelledDomainHandle handle);
 LabelledDomainHandle CoupledLabelledDomain_get_domain(
     CoupledLabelledDomainHandle handle, InstrumentPortHandle search);
@@ -38,9 +38,8 @@ LabelledDomainHandle CoupledLabelledDomain_const_at(
     CoupledLabelledDomainHandle handle, size_t idx);
 LabelledDomainHandle CoupledLabelledDomain_at(
     CoupledLabelledDomainHandle handle, size_t idx);
-size_t CoupledLabelledDomain_items(CoupledLabelledDomainHandle handle,
-                                   LabelledDomainHandle*       out_buffer,
-                                   size_t                      buffer_size);
+ListLabelledDomainHandle CoupledLabelledDomain_items(
+    CoupledLabelledDomainHandle handle);
 bool   CoupledLabelledDomain_contains(CoupledLabelledDomainHandle handle,
                                       LabelledDomainHandle        value);
 size_t CoupledLabelledDomain_index(CoupledLabelledDomainHandle handle,
@@ -51,10 +50,10 @@ bool   CoupledLabelledDomain_not_equal(CoupledLabelledDomainHandle a,
                                        CoupledLabelledDomainHandle b);
 
 // Serialization (from Song)
-const char* CoupledLabelledDomain_to_json_string(
+StringHandle CoupledLabelledDomain_to_json_string(
     CoupledLabelledDomainHandle handle);
 CoupledLabelledDomainHandle CoupledLabelledDomain_from_json_string(
-    const char* json);
+    StringHandle json);
 
 #ifdef __cplusplus
 }

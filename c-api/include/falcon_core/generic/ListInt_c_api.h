@@ -3,6 +3,7 @@
     extern "C" {
 #endif
 #include <cstddef>
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* ListIntHandle;
@@ -27,8 +28,8 @@ bool ListInt_equal(ListIntHandle a, ListIntHandle b);
 bool ListInt_not_equal(ListIntHandle a, ListIntHandle b);
 
 // Serialization (from Song)
-const char*      ListInt_to_json_string(ListIntHandle handle);
-ListIntHandle ListInt_from_json_string(const char* json);
+StringHandle      ListInt_to_json_string(ListIntHandle handle);
+ListIntHandle ListInt_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -32,8 +32,8 @@ bool   Impedances_equal(ImpedancesHandle a, ImpedancesHandle b);
 bool   Impedances_not_equal(ImpedancesHandle a, ImpedancesHandle b);
 
 // Serialization (from Song)
-const char*      Impedances_to_json_string(ImpedancesHandle handle);
-ImpedancesHandle Impedances_from_json_string(const char* json);
+StringHandle     Impedances_to_json_string(ImpedancesHandle handle);
+ImpedancesHandle Impedances_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

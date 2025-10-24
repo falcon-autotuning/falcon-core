@@ -12,51 +12,51 @@ typedef void* LabelledDomainHandle;
 
 // Constructors
 LabelledDomainHandle LabelledDomain_create_primitive_knob(
-    const char*      default_name,
+    StringHandle     default_name,
     double           min_val,
     double           max_val,
     ConnectionHandle psuedo_name,
-    const char*      instrument_type,
+    StringHandle     instrument_type,
     bool             lesser_bound_contained,
     bool             greater_bound_contained,
     SymbolUnitHandle units,
-    const char*      description = "");
+    StringHandle     description = String_wrap(""));
 LabelledDomainHandle LabelledDomain_create_primitive_meter(
-    const char*      default_name,
+    StringHandle     default_name,
     double           min_val,
     double           max_val,
     ConnectionHandle psuedo_name,
-    const char*      instrument_type,
+    StringHandle     instrument_type,
     bool             lesser_bound_contained,
     bool             greater_bound_contained,
     SymbolUnitHandle units,
-    const char*      description = "");
+    StringHandle     description = String_wrap(""));
 LabelledDomainHandle LabelledDomain_create_primitive_port(
-    const char*      default_name,
+    StringHandle     default_name,
     double           min_val,
     double           max_val,
     ConnectionHandle psuedo_name,
-    const char*      instrument_type,
+    StringHandle     instrument_type,
     bool             lesser_bound_contained,
     bool             greater_bound_contained,
     SymbolUnitHandle units,
-    const char*      description = "");
+    StringHandle     description = String_wrap(""));
 LabelledDomainHandle LabelledDomain_create_from_port(
     double               min_val,
     double               max_val,
-    const char*          instrument_type,
+    StringHandle         instrument_type,
     InstrumentPortHandle port,
     bool                 lesser_bound_contained  = true,
     bool                 greater_bound_contained = true);
 LabelledDomainHandle LabelledDomain_create_from_port_and_domain(
-    const char* instrument_type, DomainHandle domain);
+    StringHandle instrument_type, DomainHandle domain);
 LabelledDomainHandle LabelledDomain_create_from_domain(
     DomainHandle     domain,
-    const char*      default_name,
+    StringHandle     default_name,
     ConnectionHandle psuedo_name,
-    const char*      instrument_type,
+    StringHandle     instrument_type,
     SymbolUnitHandle units       = SymbolUnit_create_volt(),
-    const char*      description = "");
+    StringHandle     description = String_wrap(""));
 
 // Destructor
 void LabelledDomain_destroy(LabelledDomainHandle handle);
@@ -93,8 +93,8 @@ bool                 LabelledDomain_not_equal(LabelledDomainHandle handle,
                                               LabelledDomainHandle other);
 
 // Serialization (from Song)
-const char*          LabelledDomain_to_json_string(LabelledDomainHandle handle);
-LabelledDomainHandle LabelledDomain_from_json_string(const char* json);
+StringHandle         LabelledDomain_to_json_string(LabelledDomainHandle handle);
+LabelledDomainHandle LabelledDomain_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

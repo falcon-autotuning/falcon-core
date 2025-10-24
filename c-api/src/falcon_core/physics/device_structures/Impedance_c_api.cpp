@@ -42,14 +42,13 @@ bool Impedance_not_equal(ImpedanceHandle a, ImpedanceHandle b) {
   return *(static_cast<Impedance*>(a)) != *(static_cast<Impedance*>(b));
 }
 
-const char* Impedance_to_json_string(ImpedanceHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<Impedance*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle Impedance_to_json_string(ImpedanceHandle handle) {
+  std::string json = static_cast<Impedance*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
 
-ImpedanceHandle Impedance_from_json_string(const char* json) {
-  auto ptr = Impedance::from_json_string<Impedance>(std::string(json));
+ImpedanceHandle Impedance_from_json_string(StringHandle json) {
+  auto ptr = Impedance::from_json_string<Impedance>(json->raw);
   return new Impedance(*ptr);
 }
 }

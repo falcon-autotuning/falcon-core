@@ -85,8 +85,8 @@ bool         Vector_equal(VectorHandle a, VectorHandle b);
 bool         Vector_not_equal(VectorHandle a, VectorHandle b);
 
 // Serialization (from Song)
-const char*  Vector_to_json_string(VectorHandle handle);
-VectorHandle Vector_from_json_string(const char* json);
+StringHandle Vector_to_json_string(VectorHandle handle);
+VectorHandle Vector_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

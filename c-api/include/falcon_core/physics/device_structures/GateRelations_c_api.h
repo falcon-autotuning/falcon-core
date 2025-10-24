@@ -41,8 +41,8 @@ bool GateRelations_equal(GateRelationsHandle a, GateRelationsHandle b);
 bool GateRelations_not_equal(GateRelationsHandle a, GateRelationsHandle b);
 
 // Serialization (from Song)
-const char*         GateRelations_to_json_string(GateRelationsHandle handle);
-GateRelationsHandle GateRelations_from_json_string(const char* json);
+StringHandle        GateRelations_to_json_string(GateRelationsHandle handle);
+GateRelationsHandle GateRelations_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

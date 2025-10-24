@@ -29,12 +29,11 @@ bool PairConnectionQuantity_equal(PairConnectionQuantityHandle a, PairConnection
     return *pair_a == *pair_b;
 }
 
-const char*      PairConnectionQuantity_to_json_string(PairConnectionQuantityHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      PairConnectionQuantity_to_json_string(PairConnectionQuantityHandle handle) {
+std::string json = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
-PairConnectionQuantityHandle PairConnectionQuantity_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>::from_json_string<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>>(std::string(json));
+PairConnectionQuantityHandle PairConnectionQuantity_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>::from_json_string<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>>(json->raw);
   return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,falcon_core::math::Quantity>(*ptr);
 }

@@ -6,6 +6,7 @@
 #include "falcon_core/generic/ListDouble_c_api.h"
 #include "falcon_core/generic/ListConnection_c_api.h"
 #include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* MapConnectionDoubleHandle;
@@ -28,8 +29,8 @@ ListPairConnectionDoubleHandle MapConnectionDouble_items(MapConnectionDoubleHand
 bool MapConnectionDouble_equal(MapConnectionDoubleHandle a, MapConnectionDoubleHandle b);
 bool MapConnectionDouble_not_equal(MapConnectionDoubleHandle a, MapConnectionDoubleHandle b);
 // Serialization (from Song)
-const char*      MapConnectionDouble_to_json_string(MapConnectionDoubleHandle handle);
-MapConnectionDoubleHandle MapConnectionDouble_from_json_string(const char* json);
+StringHandle      MapConnectionDouble_to_json_string(MapConnectionDoubleHandle handle);
+MapConnectionDoubleHandle MapConnectionDouble_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -9,9 +9,9 @@ class ImpedancesCAPI_Fixture : public ::testing::Test {
   ConnectionHandle conn1, conn2, conn3;
   ImpedanceHandle  imp1, imp2, imp3;
   void             SetUp() override {
-    conn1 = Connection_create_barrier_gate("a");
-    conn2 = Connection_create_ohmic("b");
-    conn3 = Connection_create_plunger_gate("c");
+    conn1 = Connection_create_barrier_gate(String_wrap("a"));
+    conn2 = Connection_create_ohmic(String_wrap("b"));
+    conn3 = Connection_create_plunger_gate(String_wrap("c"));
     imp1  = Impedance_create(conn1, 1.1, 2.2);
     imp2  = Impedance_create(conn2, 3.3, 4.4);
     imp3  = Impedance_create(conn3, 5.5, 6.6);
@@ -122,7 +122,7 @@ TEST_F(ImpedancesCAPI_Fixture, SerializationRoundTrip) {
   ListImpedanceHandle vec = ListImpedance_create_empty();
   ListImpedance_push_back(vec, imp1);
   ImpedancesHandle imps  = Impedances_create(vec);
-  const char*      json  = Impedances_to_json_string(imps);
+  StringHandle     json  = Impedances_to_json_string(imps);
   ImpedancesHandle imps2 = Impedances_from_json_string(json);
   EXPECT_TRUE(Impedances_equal(imps, imps2));
   Impedances_destroy(imps);

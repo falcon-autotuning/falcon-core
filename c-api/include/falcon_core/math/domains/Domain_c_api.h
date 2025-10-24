@@ -2,8 +2,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 #include <stdbool.h>
+
+#include "falcon_core/generic/String_c_api.h"
 typedef void* DomainHandle;
 
 // Constructors
@@ -34,8 +35,8 @@ bool   Domain_equal(DomainHandle handle, DomainHandle other);
 bool   Domain_not_equal(DomainHandle handle, DomainHandle other);
 
 // Serialization (from Song)
-const char*  Domain_to_json_string(DomainHandle handle);
-DomainHandle Domain_from_json_string(const char* json);
+StringHandle Domain_to_json_string(DomainHandle handle);
+DomainHandle Domain_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

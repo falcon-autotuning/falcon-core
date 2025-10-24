@@ -34,17 +34,15 @@ void   Connections_clear(ConnectionsHandle handle);
 const ConnectionHandle Connections_const_at(ConnectionsHandle handle,
                                             size_t            idx);
 ConnectionHandle       Connections_at(ConnectionsHandle handle, size_t idx);
-size_t                 Connections_items(ConnectionsHandle handle,
-                                         ConnectionHandle* out_buffer,
-                                         size_t            buffer_size);
+ListConnectionHandle   Connections_items(ConnectionsHandle handle);
 bool   Connections_contains(ConnectionsHandle handle, ConnectionHandle value);
 size_t Connections_index(ConnectionsHandle handle, ConnectionHandle value);
 bool   Connections_equal(ConnectionsHandle a, ConnectionsHandle b);
 bool   Connections_not_equal(ConnectionsHandle a, ConnectionsHandle b);
 
 // Serialization (from Song)
-const char*       Connections_to_json_string(ConnectionsHandle handle);
-ConnectionsHandle Connections_from_json_string(const char* json);
+StringHandle      Connections_to_json_string(ConnectionsHandle handle);
+ConnectionsHandle Connections_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <falcon_core/physics/device_structures/Connections.hpp>
 
+#include "falcon_core/generic/List.hpp"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 using namespace falcon_core::physics::device_structures;
 
@@ -81,16 +82,9 @@ ConnectionHandle Connections_at(ConnectionsHandle handle, size_t idx) {
   return static_cast<ConnectionHandle>(conn.get());
 }
 
-size_t Connections_items(ConnectionsHandle handle,
-                         ConnectionHandle* out_buffer,
-                         size_t            buffer_size) {
-  auto&  items   = static_cast<Connections*>(handle)->items();
-  size_t count   = items.size();
-  size_t to_copy = (buffer_size < count) ? buffer_size : count;
-  for (size_t i = 0; i < to_copy; ++i) {
-    out_buffer[i] = static_cast<ConnectionHandle>(items[i].get());
-  }
-  return to_copy;
+ListConnectionHandle Connections_items(ConnectionsHandle handle) {
+  auto items = static_cast<Connections*>(handle)->items();
+  return new falcon_core::generic::List<Connection>(items);
 }
 
 bool Connections_contains(ConnectionsHandle handle, ConnectionHandle value) {
@@ -112,14 +106,13 @@ bool Connections_not_equal(ConnectionsHandle a, ConnectionsHandle b) {
   return *(static_cast<Connections*>(a)) != *(static_cast<Connections*>(b));
 }
 
-const char* Connections_to_json_string(ConnectionsHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<Connections*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle Connections_to_json_string(ConnectionsHandle handle) {
+  std::string json = static_cast<Connections*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
 
-ConnectionsHandle Connections_from_json_string(const char* json) {
-  auto ptr = Connections::from_json_string<Connections>(std::string(json));
+ConnectionsHandle Connection_from_json_string(StringHandle json) {
+  auto ptr = Connections::from_json_string<Connections>(json->raw);
   return new Connections(*ptr);
 }
 }

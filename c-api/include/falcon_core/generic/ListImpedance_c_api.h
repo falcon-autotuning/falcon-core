@@ -4,6 +4,7 @@
 #endif
 #include "falcon_core/physics/device_structures/Impedance_c_api.h"
 #include <cstddef>
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* ListImpedanceHandle;
@@ -28,8 +29,8 @@ bool ListImpedance_equal(ListImpedanceHandle a, ListImpedanceHandle b);
 bool ListImpedance_not_equal(ListImpedanceHandle a, ListImpedanceHandle b);
 
 // Serialization (from Song)
-const char*      ListImpedance_to_json_string(ListImpedanceHandle handle);
-ListImpedanceHandle ListImpedance_from_json_string(const char* json);
+StringHandle      ListImpedance_to_json_string(ListImpedanceHandle handle);
+ListImpedanceHandle ListImpedance_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -9,11 +9,11 @@ class GateRelationsCAPI_Fixture : public ::testing::Test {
   ConnectionHandle  gate1, gate2, neighbor1, neighbor2, ohmic;
   ConnectionsHandle neighbors1, neighbors2, ohmic_neighbors;
   void              SetUp() override {
-    gate1     = Connection_create_barrier_gate("g1");
-    gate2     = Connection_create_barrier_gate("g2");
-    neighbor1 = Connection_create_screening_gate("n1");
-    neighbor2 = Connection_create_screening_gate("n2");
-    ohmic     = Connection_create_ohmic("o");
+    gate1 = Connection_create_barrier_gate(String_wrap("g1"));
+    gate2 = Connection_create_barrier_gate(String_wrap("g2"));
+    neighbor1 = Connection_create_screening_gate(String_wrap("n1"));
+    neighbor2 = Connection_create_screening_gate(String_wrap("n2"));
+    ohmic = Connection_create_ohmic(String_wrap("o"));
 
     neighbors1 = Connections_create_empty();
     Connections_push_back(neighbors1, neighbor1);
@@ -64,8 +64,8 @@ TEST_F(GateRelationsCAPI_Fixture, InitConstructor) {
   ListConnectionsHandle values = GateRelations_values(gr);
   ConnectionsHandle     val1   = ListConnections_at(values, 0);
   ConnectionsHandle     val2   = ListConnections_at(values, 1);
-  EXPECT_STREQ(Connection_name(Connections_at(val1, 0)), "n1");
-  EXPECT_STREQ(Connection_name(Connections_at(val2, 0)), "n2");
+  EXPECT_STREQ(Connection_name(Connections_at(val1, 0))->raw, "n1");
+  EXPECT_STREQ(Connection_name(Connections_at(val2, 0))->raw, "n2");
 
   ListConnections_destroy(values);
   GateRelations_destroy(gr);
@@ -80,7 +80,7 @@ TEST_F(GateRelationsCAPI_Fixture, InsertOrAssign) {
   ConnectionsHandle     conns  = GateRelations_at(gr, gate1);
   ListConnectionsHandle values = GateRelations_values(gr);
   ConnectionsHandle     val    = ListConnections_at(values, 0);
-  EXPECT_STREQ(Connection_name(Connections_at(val, 0)), "n1");
+  EXPECT_STREQ(Connection_name(Connections_at(val, 0))->raw, "n1");
 
   ListConnections_destroy(values);
   GateRelations_destroy(gr);
@@ -94,7 +94,7 @@ TEST_F(GateRelationsCAPI_Fixture, Insert) {
   ConnectionsHandle     conns  = GateRelations_at(gr, gate1);
   ListConnectionsHandle values = GateRelations_values(gr);
   ConnectionsHandle     val    = ListConnections_at(values, 0);
-  EXPECT_STREQ(Connection_name(Connections_at(val, 0)), "n1");
+  EXPECT_STREQ(Connection_name(Connections_at(val, 0))->raw, "n1");
 
   ListConnections_destroy(values);
   GateRelations_destroy(gr);
@@ -104,14 +104,14 @@ TEST_F(GateRelationsCAPI_Fixture, SerializationRoundTrip) {
   GateRelationsHandle gr = GateRelations_create_empty();
   GateRelations_insert_or_assign(gr, gate1, neighbors1);
 
-  const char*         json = GateRelations_to_json_string(gr);
+  StringHandle        json = GateRelations_to_json_string(gr);
   GateRelationsHandle gr2  = GateRelations_from_json_string(json);
 
   EXPECT_EQ(GateRelations_size(gr2), 1);
   ConnectionsHandle     conns  = GateRelations_at(gr, gate1);
   ListConnectionsHandle values = GateRelations_values(gr2);
   ConnectionsHandle     val    = ListConnections_at(values, 0);
-  EXPECT_STREQ(Connection_name(Connections_at(val, 0)), "n1");
+  EXPECT_STREQ(Connection_name(Connections_at(val, 0))->raw, "n1");
 
   ListConnections_destroy(values);
   GateRelations_destroy(gr);

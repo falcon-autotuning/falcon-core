@@ -7,9 +7,26 @@ ListLabelledDomainHandle ListLabelledDomain_create_empty() {
         falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>());
 }
 
+ListLabelledDomainHandle ListLabelledDomain_fill_value(size_t count, LabelledDomainHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::math::domains::LabelledDomain>(static_cast<falcon_core::math::domains::LabelledDomain*>(value), [](falcon_core::math::domains::LabelledDomain*) {} );
+    return new falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(
+        falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(count, stored_obj));
+}
+
 ListLabelledDomainHandle ListLabelledDomain_allocate(size_t count) {
     return new falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(
         falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(count));
+}
+
+ListLabelledDomainHandle ListLabelledDomain_create(const LabelledDomainHandle* data, size_t count) {
+    std::vector<falcon_core::math::domains::LabelledDomainSP> vec;
+        vec.reserve(count);
+    for (size_t i = 0; i < count; ++i) {
+        vec.push_back(std::shared_ptr<falcon_core::math::domains::LabelledDomain>(static_cast<falcon_core::math::domains::LabelledDomain*>(data[i]), [](falcon_core::math::domains::LabelledDomain*) {} ));
+    }
+
+    return new falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(
+        falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(vec));
 }
 
 void ListLabelledDomain_destroy(ListLabelledDomainHandle handle) {
@@ -32,6 +49,36 @@ void ListLabelledDomain_clear(ListLabelledDomainHandle handle) {
     static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(handle)->clear();
 }
 
+void ListLabelledDomain_push_back(ListLabelledDomainHandle handle, LabelledDomainHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::math::domains::LabelledDomain>(static_cast<falcon_core::math::domains::LabelledDomain*>(value), [](falcon_core::math::domains::LabelledDomain*) {} );
+    static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(handle)->push_back(stored_obj);
+}
+
+bool ListLabelledDomain_contains(ListLabelledDomainHandle handle, LabelledDomainHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::math::domains::LabelledDomain>(static_cast<falcon_core::math::domains::LabelledDomain*>(value), [](falcon_core::math::domains::LabelledDomain*) {} );
+    return static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(handle)->contains(stored_obj);
+}
+
+size_t ListLabelledDomain_index(ListLabelledDomainHandle handle, LabelledDomainHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::math::domains::LabelledDomain>(static_cast<falcon_core::math::domains::LabelledDomain*>(value), [](falcon_core::math::domains::LabelledDomain*) {} );
+    return static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(handle)->index(stored_obj);
+}
+
+size_t ListLabelledDomain_items(ListLabelledDomainHandle handle, LabelledDomainHandle* out_buffer, size_t buffer_size) {
+    auto list = static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(handle);
+    size_t n = std::min(buffer_size, list->items().size());
+    
+for (size_t i = 0; i < n; ++i) {
+    out_buffer[i] = new falcon_core::math::domains::LabelledDomain(*list->items()[i]);
+}
+    return n;
+}
+
+LabelledDomainHandle ListLabelledDomain_at(ListLabelledDomainHandle handle, size_t idx) {
+    auto obj = static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(handle)->at(idx);
+    return new falcon_core::math::domains::LabelledDomain(*obj);
+}
+
 bool ListLabelledDomain_equal(ListLabelledDomainHandle a, ListLabelledDomainHandle b) {
     auto listA = static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(a);
     auto listB = static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(b);
@@ -49,57 +96,11 @@ ListLabelledDomainHandle ListLabelledDomain_intersection(ListLabelledDomainHandl
     return new falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(*result);
 }
 
-ListLabelledDomainHandle ListLabelledDomain_fill_value(size_t count, LabelledDomainHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::math::domains::LabelledDomain>(static_cast<falcon_core::math::domains::LabelledDomain*>(value), [](falcon_core::math::domains::LabelledDomain*) {} );
-    return new falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(
-        falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(count, stored_obj));
+StringHandle      ListLabelledDomain_to_json_string(ListLabelledDomainHandle handle) {
+    std::string json = static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(handle)->to_json_string();
+    return String_create(json.c_str(), json.size());
 }
-
-ListLabelledDomainHandle ListLabelledDomain_create(const LabelledDomainHandle* data, size_t count) {
-    std::vector<falcon_core::math::domains::LabelledDomainSP> vec;
-    vec.reserve(count);
-    for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::math::domains::LabelledDomain>(static_cast<falcon_core::math::domains::LabelledDomain*>(data[i]), [](falcon_core::math::domains::LabelledDomain*) {} ));
-    }
-    return new falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(
-        falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(vec));
-}
-
-void ListLabelledDomain_push_back(ListLabelledDomainHandle handle, LabelledDomainHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::math::domains::LabelledDomain>(static_cast<falcon_core::math::domains::LabelledDomain*>(value), [](falcon_core::math::domains::LabelledDomain*) {} );
-    static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(handle)->push_back(stored_obj);
-}
-
-LabelledDomainHandle ListLabelledDomain_at(ListLabelledDomainHandle handle, size_t idx) {
-    auto obj = static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(handle)->at(idx);
-    return new falcon_core::math::domains::LabelledDomain(*obj);
-}
-
-size_t ListLabelledDomain_items(ListLabelledDomainHandle handle, LabelledDomainHandle* out_buffer, size_t buffer_size) {
-    auto list = static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(handle);
-    size_t n = std::min(buffer_size, list->items().size());
-    for (size_t i = 0; i < n; ++i) {
-        out_buffer[i] = new falcon_core::math::domains::LabelledDomain(*list->items()[i]);
-    }
-    return n;
-}
-
-bool ListLabelledDomain_contains(ListLabelledDomainHandle handle, LabelledDomainHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::math::domains::LabelledDomain>(static_cast<falcon_core::math::domains::LabelledDomain*>(value), [](falcon_core::math::domains::LabelledDomain*) {} );
-    return static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(handle)->contains(stored_obj);
-}
-
-size_t ListLabelledDomain_index(ListLabelledDomainHandle handle, LabelledDomainHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::math::domains::LabelledDomain>(static_cast<falcon_core::math::domains::LabelledDomain*>(value), [](falcon_core::math::domains::LabelledDomain*) {} );
-    return static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(handle)->index(stored_obj);
-}
-
-const char*      ListLabelledDomain_to_json_string(ListLabelledDomainHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>*>(handle)->to_json_string();
-  return json.c_str();
-}
-ListLabelledDomainHandle ListLabelledDomain_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>::from_json_string<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>>(std::string(json));
+ListLabelledDomainHandle ListLabelledDomain_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>::from_json_string<falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>>(json->raw);
   return new falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(*ptr);
 }

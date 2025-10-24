@@ -4,6 +4,7 @@
 #endif
 #include "falcon_core/generic/PairIntFloat_c_api.h"
 #include <cstddef>
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* ListPairIntFloatHandle;
@@ -28,8 +29,8 @@ bool ListPairIntFloat_equal(ListPairIntFloatHandle a, ListPairIntFloatHandle b);
 bool ListPairIntFloat_not_equal(ListPairIntFloatHandle a, ListPairIntFloatHandle b);
 
 // Serialization (from Song)
-const char*      ListPairIntFloat_to_json_string(ListPairIntFloatHandle handle);
-ListPairIntFloatHandle ListPairIntFloat_from_json_string(const char* json);
+StringHandle      ListPairIntFloat_to_json_string(ListPairIntFloatHandle handle);
+ListPairIntFloatHandle ListPairIntFloat_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

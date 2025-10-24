@@ -5,6 +5,7 @@
 #include "falcon_core/generic/PairIntInt_c_api.h"
 #include "falcon_core/generic/ListInt_c_api.h"
 #include "falcon_core/generic/ListPairIntInt_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* MapIntIntHandle;
@@ -27,8 +28,8 @@ ListPairIntIntHandle MapIntInt_items(MapIntIntHandle handle);
 bool MapIntInt_equal(MapIntIntHandle a, MapIntIntHandle b);
 bool MapIntInt_not_equal(MapIntIntHandle a, MapIntIntHandle b);
 // Serialization (from Song)
-const char*      MapIntInt_to_json_string(MapIntIntHandle handle);
-MapIntIntHandle MapIntInt_from_json_string(const char* json);
+StringHandle      MapIntInt_to_json_string(MapIntIntHandle handle);
+MapIntIntHandle MapIntInt_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

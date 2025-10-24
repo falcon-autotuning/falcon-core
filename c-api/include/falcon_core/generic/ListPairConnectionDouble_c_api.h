@@ -4,6 +4,7 @@
 #endif
 #include "falcon_core/generic/PairConnectionDouble_c_api.h"
 #include <cstddef>
+#include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
 typedef void* ListPairConnectionDoubleHandle;
@@ -28,8 +29,8 @@ bool ListPairConnectionDouble_equal(ListPairConnectionDoubleHandle a, ListPairCo
 bool ListPairConnectionDouble_not_equal(ListPairConnectionDoubleHandle a, ListPairConnectionDoubleHandle b);
 
 // Serialization (from Song)
-const char*      ListPairConnectionDouble_to_json_string(ListPairConnectionDoubleHandle handle);
-ListPairConnectionDoubleHandle ListPairConnectionDouble_from_json_string(const char* json);
+StringHandle      ListPairConnectionDouble_to_json_string(ListPairConnectionDoubleHandle handle);
+ListPairConnectionDoubleHandle ListPairConnectionDouble_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

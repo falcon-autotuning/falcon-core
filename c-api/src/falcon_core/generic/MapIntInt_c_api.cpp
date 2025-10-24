@@ -91,12 +91,11 @@ bool MapIntInt_not_equal(MapIntIntHandle a, MapIntIntHandle b) {
     return !MapIntInt_equal(a, b);
 }
 
-const char*      MapIntInt_to_json_string(MapIntIntHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::Map<int,int>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      MapIntInt_to_json_string(MapIntIntHandle handle) {
+std::string json = static_cast<falcon_core::generic::Map<int,int>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
-MapIntIntHandle MapIntInt_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::Map<int,int>::from_json_string<falcon_core::generic::Map<int,int>>(std::string(json));
+MapIntIntHandle MapIntInt_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::Map<int,int>::from_json_string<falcon_core::generic::Map<int,int>>(json->raw);
   return new falcon_core::generic::Map<int,int>(*ptr);
 }

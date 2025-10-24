@@ -8,9 +8,26 @@ ListPairConnectionDoubleHandle ListPairConnectionDouble_create_empty() {
         falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>());
 }
 
+ListPairConnectionDoubleHandle ListPairConnectionDouble_fill_value(size_t count, PairConnectionDoubleHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(value), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*) {} );
+    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(
+        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(count, stored_obj));
+}
+
 ListPairConnectionDoubleHandle ListPairConnectionDouble_allocate(size_t count) {
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(
         falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(count));
+}
+
+ListPairConnectionDoubleHandle ListPairConnectionDouble_create(const PairConnectionDoubleHandle* data, size_t count) {
+    std::vector<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, double>> vec;
+        vec.reserve(count);
+    for (size_t i = 0; i < count; ++i) {
+        vec.push_back(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(data[i]), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*) {} ));
+    }
+
+    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(
+        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(vec));
 }
 
 void ListPairConnectionDouble_destroy(ListPairConnectionDoubleHandle handle) {
@@ -33,6 +50,36 @@ void ListPairConnectionDouble_clear(ListPairConnectionDoubleHandle handle) {
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->clear();
 }
 
+void ListPairConnectionDouble_push_back(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(value), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*) {} );
+    static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->push_back(stored_obj);
+}
+
+bool ListPairConnectionDouble_contains(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(value), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*) {} );
+    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->contains(stored_obj);
+}
+
+size_t ListPairConnectionDouble_index(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle value) {
+    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(value), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*) {} );
+    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->index(stored_obj);
+}
+
+size_t ListPairConnectionDouble_items(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle* out_buffer, size_t buffer_size) {
+    auto list = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle);
+    size_t n = std::min(buffer_size, list->items().size());
+    
+for (size_t i = 0; i < n; ++i) {
+    out_buffer[i] = new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>(*list->items()[i]);
+}
+    return n;
+}
+
+PairConnectionDoubleHandle ListPairConnectionDouble_at(ListPairConnectionDoubleHandle handle, size_t idx) {
+    auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->at(idx);
+    return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>(*obj);
+}
+
 bool ListPairConnectionDouble_equal(ListPairConnectionDoubleHandle a, ListPairConnectionDoubleHandle b) {
     auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(a);
     auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(b);
@@ -50,57 +97,11 @@ ListPairConnectionDoubleHandle ListPairConnectionDouble_intersection(ListPairCon
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(*result);
 }
 
-ListPairConnectionDoubleHandle ListPairConnectionDouble_fill_value(size_t count, PairConnectionDoubleHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(value), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*) {} );
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(count, stored_obj));
+StringHandle      ListPairConnectionDouble_to_json_string(ListPairConnectionDoubleHandle handle) {
+    std::string json = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->to_json_string();
+    return String_create(json.c_str(), json.size());
 }
-
-ListPairConnectionDoubleHandle ListPairConnectionDouble_create(const PairConnectionDoubleHandle* data, size_t count) {
-    std::vector<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, double>> vec;
-    vec.reserve(count);
-    for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(data[i]), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*) {} ));
-    }
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(vec));
-}
-
-void ListPairConnectionDouble_push_back(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(value), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*) {} );
-    static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->push_back(stored_obj);
-}
-
-PairConnectionDoubleHandle ListPairConnectionDouble_at(ListPairConnectionDoubleHandle handle, size_t idx) {
-    auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->at(idx);
-    return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>(*obj);
-}
-
-size_t ListPairConnectionDouble_items(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle* out_buffer, size_t buffer_size) {
-    auto list = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle);
-    size_t n = std::min(buffer_size, list->items().size());
-    for (size_t i = 0; i < n; ++i) {
-        out_buffer[i] = new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>(*list->items()[i]);
-    }
-    return n;
-}
-
-bool ListPairConnectionDouble_contains(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(value), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*) {} );
-    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->contains(stored_obj);
-}
-
-size_t ListPairConnectionDouble_index(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle value) {
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(value), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*) {} );
-    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->index(stored_obj);
-}
-
-const char*      ListPairConnectionDouble_to_json_string(ListPairConnectionDoubleHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->to_json_string();
-  return json.c_str();
-}
-ListPairConnectionDoubleHandle ListPairConnectionDouble_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>>(std::string(json));
+ListPairConnectionDoubleHandle ListPairConnectionDouble_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>>(json->raw);
   return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(*ptr);
 }

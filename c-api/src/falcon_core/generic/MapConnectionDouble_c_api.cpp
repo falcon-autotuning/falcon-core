@@ -97,12 +97,11 @@ bool MapConnectionDouble_not_equal(MapConnectionDoubleHandle a, MapConnectionDou
     return !MapConnectionDouble_equal(a, b);
 }
 
-const char*      MapConnectionDouble_to_json_string(MapConnectionDoubleHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,double>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      MapConnectionDouble_to_json_string(MapConnectionDoubleHandle handle) {
+std::string json = static_cast<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,double>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
-MapConnectionDoubleHandle MapConnectionDouble_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,double>::from_json_string<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,double>>(std::string(json));
+MapConnectionDoubleHandle MapConnectionDouble_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,double>::from_json_string<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,double>>(json->raw);
   return new falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,double>(*ptr);
 }

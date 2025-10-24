@@ -25,12 +25,11 @@ bool PairFloatFloat_equal(PairFloatFloatHandle a, PairFloatFloatHandle b) {
     return *pair_a == *pair_b;
 }
 
-const char*      PairFloatFloat_to_json_string(PairFloatFloatHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::Pair<float,float>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      PairFloatFloat_to_json_string(PairFloatFloatHandle handle) {
+std::string json = static_cast<falcon_core::generic::Pair<float,float>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
-PairFloatFloatHandle PairFloatFloat_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::Pair<float,float>::from_json_string<falcon_core::generic::Pair<float,float>>(std::string(json));
+PairFloatFloatHandle PairFloatFloat_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::Pair<float,float>::from_json_string<falcon_core::generic::Pair<float,float>>(json->raw);
   return new falcon_core::generic::Pair<float,float>(*ptr);
 }

@@ -99,14 +99,13 @@ bool GateRelations_not_equal(GateRelationsHandle a, GateRelationsHandle b) {
   return *(static_cast<GateRelations*>(a)) != *(static_cast<GateRelations*>(b));
 }
 
-const char* GateRelations_to_json_string(GateRelationsHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<GateRelations*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle GateRelations_to_json_string(GateRelationsHandle handle) {
+  std::string json = static_cast<GateRelations*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
 
-GateRelationsHandle GateRelations_from_json_string(const char* json) {
-  auto ptr = GateRelations::from_json_string<GateRelations>(std::string(json));
+GateRelationsHandle GateRelations_from_json_string(StringHandle json) {
+  auto ptr = GateRelations::from_json_string<GateRelations>(json->raw);
   return new GateRelations(*ptr);
 }
 }

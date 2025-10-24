@@ -28,12 +28,11 @@ bool PairQuantityQuantity_equal(PairQuantityQuantityHandle a, PairQuantityQuanti
     return *pair_a == *pair_b;
 }
 
-const char*      PairQuantityQuantity_to_json_string(PairQuantityQuantityHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::Pair<falcon_core::math::Quantity,falcon_core::math::Quantity>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      PairQuantityQuantity_to_json_string(PairQuantityQuantityHandle handle) {
+std::string json = static_cast<falcon_core::generic::Pair<falcon_core::math::Quantity,falcon_core::math::Quantity>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
-PairQuantityQuantityHandle PairQuantityQuantity_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::Pair<falcon_core::math::Quantity,falcon_core::math::Quantity>::from_json_string<falcon_core::generic::Pair<falcon_core::math::Quantity,falcon_core::math::Quantity>>(std::string(json));
+PairQuantityQuantityHandle PairQuantityQuantity_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::Pair<falcon_core::math::Quantity,falcon_core::math::Quantity>::from_json_string<falcon_core::generic::Pair<falcon_core::math::Quantity,falcon_core::math::Quantity>>(json->raw);
   return new falcon_core::generic::Pair<falcon_core::math::Quantity,falcon_core::math::Quantity>(*ptr);
 }

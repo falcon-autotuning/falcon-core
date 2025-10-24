@@ -265,12 +265,11 @@ double FArrayInt_get_summed_diff_array_of_squares(FArrayIntHandle handle, FArray
     auto oarray = static_cast<falcon_core::generic::FArray<int>*>(other);
     return farray->get_sum_of_squares(std::make_shared<falcon_core::generic::FArray<int>>(*oarray));
 }
-const char*      FArrayInt_to_json_string(FArrayIntHandle handle) {
-  static thread_local std::string json;
-  json = static_cast<falcon_core::generic::FArray<int>*>(handle)->to_json_string();
-  return json.c_str();
+StringHandle      FArrayInt_to_json_string(FArrayIntHandle handle) {
+  std::string json = static_cast<falcon_core::generic::FArray<int>*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
-FArrayIntHandle FArrayInt_from_json_string(const char* json) {
-  auto ptr = falcon_core::generic::FArray<int>::from_json_string<falcon_core::generic::FArray<int>>(std::string(json));
+FArrayIntHandle FArrayInt_from_json_string(StringHandle json) {
+  auto ptr = falcon_core::generic::FArray<int>::from_json_string<falcon_core::generic::FArray<int>>(json->raw);
   return new falcon_core::generic::FArray<int>(*ptr);
 }
