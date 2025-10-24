@@ -13,6 +13,10 @@ void PairConnectionConnection_destroy(PairConnectionConnectionHandle handle);
 ConnectionHandle PairConnectionConnection_first(PairConnectionConnectionHandle handle);
 ConnectionHandle PairConnectionConnection_second(PairConnectionConnectionHandle handle);
 bool PairConnectionConnection_equal(PairConnectionConnectionHandle a, PairConnectionConnectionHandle b);
+// Serialization (from Song)
+const char*      PairConnectionConnection_to_json_string(PairConnectionConnectionHandle handle);
+PairConnectionConnectionHandle PairConnectionConnection_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

@@ -25,6 +25,11 @@ size_t ListFloat_index(ListFloatHandle handle, float value);
 ListFloatHandle ListFloat_intersection(ListFloatHandle handle, ListFloatHandle other);
 bool ListFloat_equal(ListFloatHandle a, ListFloatHandle b);
 bool ListFloat_not_equal(ListFloatHandle a, ListFloatHandle b);
+
+// Serialization (from Song)
+const char*      ListFloat_to_json_string(ListFloatHandle handle);
+ListFloatHandle ListFloat_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

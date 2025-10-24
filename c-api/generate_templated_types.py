@@ -7,6 +7,15 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--manifest", default="generated_template_manifest.txt")
 args = parser.parse_args()
 generated_file_manifest = Path.cwd() / str(args.manifest)
+c_primitives = [
+    "int",
+    "float",
+    "double",
+    "bool",
+    "char",
+    "size_t",
+    "StringHandle",
+]
 
 
 class Template(Enum):
@@ -38,6 +47,14 @@ class HeaderContext:
         self.name = name
         self.header_includes = header_includes
 
+    def mangled_name(self):
+        """The template name mixed with the mangling string"""
+        return self.temp.name + self.name
+
+    def chandle(self):
+        """The c handle for the mangled template class"""
+        return self.mangled_name() + "Handle"
+
     def __enter__(self):
         self.file = open(self.path, "w")
         self.file.write('#pragma once\n#ifdef __cplusplus\n    extern "C" {\n#endif\n')
@@ -51,6 +68,11 @@ class HeaderContext:
         return self.file
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        self.file.write(f"""
+// Serialization (from Song)
+const char*      {self.mangled_name()}_to_json_string({self.chandle()} handle);
+{self.chandle()} {self.mangled_name()}_from_json_string(const char* json);
+""")
         self.file.write("\n#ifdef __cplusplus\n}\n#endif")
         self.file.close()
 
@@ -76,6 +98,14 @@ class ImplementationContext:
         self.temp = temp
         self.name = name
         self.impl_includes = impl_includes
+
+    def mangled_name(self):
+        """The template name mixed with the mangling string"""
+        return self.temp.name + self.name
+
+    def chandle(self):
+        """The c handle for the mangled template class"""
+        return self.mangled_name() + "Handle"
 
     def remove_leftmost(self, path: Path):
         parts = Path(path).parts
@@ -191,6 +221,14 @@ class Entry:
             self.implementation_includes,
         )
 
+    def from_cstring(self, cstr: str, cppstr: str) -> str:
+        """Converts a cstring to a cpp string."""
+        return f"std::string {cppstr}({cstr}->raw, {cstr}->length);"
+
+    def to_cstring(self, cstr: str, cppstr: str) -> str:
+        """Converts a cpp string to a cstring."""
+        return f"StringHandle {cstr} = String_create({cppstr}.data(), {cppstr}.size());"
+
     def generate_list_header(self):
         c_type = self.combo[0]
         with self.edit_header() as f:
@@ -211,7 +249,8 @@ bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value);
 size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value);
 {self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other);
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
-bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);""")
+bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);
+""")
 
     def generate_pair_header(self):
         c_type_1 = self.combo[0]
@@ -226,7 +265,7 @@ bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);""")
 
     def generate_farray_header(self):
         c_type = self.combo[0]
-        # TODO: view and operator() and xtensor are not wrapped
+        # TODO: view and operator() are not wrapped
         with self.edit_header() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty();
@@ -235,30 +274,30 @@ bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);""")
 void {self.mangled_name()}_destroy({self.chandle()} handle);
 size_t {self.mangled_name()}_size({self.chandle()} handle);
 size_t {self.mangled_name()}_dimension({self.chandle()} handle);
-const size_t* {self.mangled_name()}_shape({self.chandle()} handle);
-{c_type}* {self.mangled_name()}_data({self.chandle()} handle);
-{self.chandle()} {self.mangled_name()}_plusequals_farray({self.chandle()} handle, {self.chandle()} other);
-{self.chandle()} {self.mangled_name()}_plusequals_double({self.chandle()} handle, const double other);
-{self.chandle()} {self.mangled_name()}_plusequals_int({self.chandle()} handle, const int other);
+size_t {self.mangled_name()}_shape({self.chandle()} handle, size_t* out_buffer, size_t ndim);
+size_t {self.mangled_name()}_data({self.chandle()} handle, {c_type}* out_buffer, size_t numdata);
+void {self.mangled_name()}_plusequals_farray({self.chandle()} handle, {self.chandle()} other);
+void {self.mangled_name()}_plusequals_double({self.chandle()} handle, const double other);
+void {self.mangled_name()}_plusequals_int({self.chandle()} handle, const int other);
 {self.chandle()} {self.mangled_name()}_plus_farray({self.chandle()} handle, {self.chandle()} other);
 {self.chandle()} {self.mangled_name()}_plus_double({self.chandle()} handle, const double other);
 {self.chandle()} {self.mangled_name()}_plus_int({self.chandle()} handle, const int other);
-{self.chandle()} {self.mangled_name()}_minusequals_farray({self.chandle()} handle, {self.chandle()} other);
-{self.chandle()} {self.mangled_name()}_minusequals_double({self.chandle()} handle, const double other);
-{self.chandle()} {self.mangled_name()}_minusequals_int({self.chandle()} handle, const int other);
+void {self.mangled_name()}_minusequals_farray({self.chandle()} handle, {self.chandle()} other);
+void {self.mangled_name()}_minusequals_double({self.chandle()} handle, const double other);
+void {self.mangled_name()}_minusequals_int({self.chandle()} handle, const int other);
 {self.chandle()} {self.mangled_name()}_minus_farray({self.chandle()} handle, {self.chandle()} other);
 {self.chandle()} {self.mangled_name()}_minus_double({self.chandle()} handle, const double other);
 {self.chandle()} {self.mangled_name()}_minus_int({self.chandle()} handle, const int other);
 {self.chandle()} {self.mangled_name()}_negation({self.chandle()} handle);
-{self.chandle()} {self.mangled_name()}_timesequals_farray({self.chandle()} handle, {self.chandle()} other);
-{self.chandle()} {self.mangled_name()}_timesequals_double({self.chandle()} handle, const double other);
-{self.chandle()} {self.mangled_name()}_timesequals_int({self.chandle()} handle, const int other);
+void {self.mangled_name()}_timesequals_farray({self.chandle()} handle, {self.chandle()} other);
+void {self.mangled_name()}_timesequals_double({self.chandle()} handle, const double other);
+void {self.mangled_name()}_timesequals_int({self.chandle()} handle, const int other);
 {self.chandle()} {self.mangled_name()}_times_farray({self.chandle()} handle, {self.chandle()} other);
 {self.chandle()} {self.mangled_name()}_times_double({self.chandle()} handle, const double other);
 {self.chandle()} {self.mangled_name()}_times_int({self.chandle()} handle, const int other);
-{self.chandle()} {self.mangled_name()}_dividesequals_farray({self.chandle()} handle, {self.chandle()} other);
-{self.chandle()} {self.mangled_name()}_dividesequals_double({self.chandle()} handle, const double other);
-{self.chandle()} {self.mangled_name()}_dividesequals_int({self.chandle()} handle, const int other);
+void {self.mangled_name()}_dividesequals_farray({self.chandle()} handle, {self.chandle()} other);
+void {self.mangled_name()}_dividesequals_double({self.chandle()} handle, const double other);
+void {self.mangled_name()}_dividesequals_int({self.chandle()} handle, const int other);
 {self.chandle()} {self.mangled_name()}_divides_farray({self.chandle()} handle, {self.chandle()} other);
 {self.chandle()} {self.mangled_name()}_divides_double({self.chandle()} handle, const double other);
 {self.chandle()} {self.mangled_name()}_divides_int({self.chandle()} handle, const int other);
@@ -277,7 +316,7 @@ void {self.mangled_name()}_remove_offset({self.chandle()} handle, const {c_type}
 {self.chandle()} {self.mangled_name()}_reshape({self.chandle()} handle, const size_t* shape, size_t ndims);
 ListListSizeTHandle {self.mangled_name()}_where({self.chandle()} handle, const {c_type} value);
 {self.chandle()} {self.mangled_name()}_flip({self.chandle()} handle, size_t axis);
-ListFArray{c_type}Handle {self.mangled_name()}_full_gradient({self.chandle()} handle);
+size_t {self.mangled_name()}_full_gradient({self.chandle()} handle, {self.chandle()}* out_buffer, size_t buffer_size);
 {self.chandle()} {self.mangled_name()}_gradient({self.chandle()} handle, size_t axis);
 double {self.mangled_name()}_get_sum_of_squares({self.chandle()} handle);
 double {self.mangled_name()}_get_summed_diff_int_of_squares({self.chandle()} handle, const int other);
@@ -313,7 +352,7 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
         c_type = self.combo[0]
         cpp_real = self.combo[1]
         cpp_stored = self.combo[2]
-        is_primitive = "Handle" not in c_type
+        is_primitive = c_type in c_primitives
         with self.edit_implementation() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty() {{
@@ -347,8 +386,8 @@ void {self.mangled_name()}_clear({self.chandle()} handle) {{
 }}
 
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<{cpp_real}>>*>(b);
+    auto listA = static_cast<falcon_core::generic::List<{cpp_real}>*>(a);
+    auto listB = static_cast<falcon_core::generic::List<{cpp_real}>*>(b);
     return *listA == *listB;
 }}
 
@@ -446,6 +485,16 @@ size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value) {{
     auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );
     return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->index(stored_obj);
 }}
+
+const char*      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->to_json_string();
+  return json.c_str();
+}}
+{self.chandle()} {self.mangled_name()}_from_json_string(const char* json) {{
+  auto ptr = falcon_core::generic::List<{cpp_real}>::from_json_string<falcon_core::generic::List<{cpp_real}>>(std::string(json));
+  return new falcon_core::generic::List<{cpp_real}>(*ptr);
+}}
 """)
 
     def generate_pair_implementation(self):
@@ -455,35 +504,40 @@ size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value) {{
         c_type_2 = self.combo[3]
         cpp_real_2 = self.combo[4]
         cpp_stored_2 = self.combo[5]
-        is_primitive_1 = c_type_1 == cpp_real_1
-        is_primitive_2 = c_type_2 == cpp_real_2
+        is_primitive_1 = c_type_1 in c_primitives
+        is_primitive_2 = c_type_2 in c_primitives
         with self.edit_implementation() as f:
-            if is_primitive_1 and is_primitive_2:
-                # Both primitive
-                create_body = f"return new falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>(first, second);"
-            elif is_primitive_1 and not is_primitive_2:
-                # First primitive, second complex
-                create_body = f"""auto second_obj = std::shared_ptr<{cpp_real_2}>(static_cast<{cpp_real_2}*>(second),[]({cpp_real_2}*) {{}});
-    return new falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>(first, second_obj);"""
-            elif not is_primitive_1 and is_primitive_2:
-                # First complex, second primitive
-                create_body = f"""auto first_obj = std::shared_ptr<{cpp_real_1}>(static_cast<{cpp_real_1}*>(first),[]({cpp_real_1}*) {{}});
-    return new falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>(first_obj, second);"""
+            if c_type_1 == "StringHandle":
+                first_create_adjustment = self.from_cstring("first", "first_obj")
+            elif is_primitive_1:
+                first_create_adjustment = "auto first_obj = first;"
             else:
-                # Both complex
-                create_body = f"""auto first_obj = std::shared_ptr<{cpp_real_1}>(static_cast<{cpp_real_1}*>(first),[]({cpp_real_1}*) {{}});
-    auto second_obj = std::shared_ptr<{cpp_real_2}>(static_cast<{cpp_real_2}*>(second),[]({cpp_real_2}*) {{}});
-    return new falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>(first_obj, second_obj);"""
-
+                first_create_adjustment = f"auto first_obj= std::shared_ptr<{cpp_real_1}>(static_cast<{cpp_real_1}*>(first),[]({cpp_real_1}*) {{}});"
+            if c_type_2 == "StringHandle":
+                second_create_adjustment = self.from_cstring("second", "second_obj")
+            elif is_primitive_2:
+                second_create_adjustment = "auto second_obj = second;"
+            else:
+                second_create_adjustment = f"auto second_obj= std::shared_ptr<{cpp_real_2}>(static_cast<{cpp_real_2}*>(second),[]({cpp_real_2}*) {{}});"
             # Generate first() function
-            if is_primitive_1:
+            if c_type_1 == "StringHandle":
+                first_return = f"""
+std::string cppstring = static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(handle)->first();
+{self.to_cstring("cstr", "cppstring")}
+return cstr;"""
+            elif is_primitive_1:
                 first_return = f"return static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(handle)->first();"
             else:
                 first_return = f"""auto pair = static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(handle);
     return new {cpp_real_1}(*pair->first());"""
 
             # Generate second() function
-            if is_primitive_2:
+            if c_type_2 == "StringHandle":
+                second_return = f"""
+std::string cppstring = static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(handle)->second();
+{self.to_cstring("cstr", "cppstring")}
+return cstr;"""
+            elif is_primitive_2:
                 second_return = f"return static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(handle)->second();"
             else:
                 second_return = f"""auto pair = static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(handle);
@@ -492,7 +546,9 @@ size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value) {{
             # Write the complete implementation
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create({c_type_1} first, {c_type_2} second) {{
-    {create_body}
+    {first_create_adjustment}
+    {second_create_adjustment}
+    return new falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>(first_obj, second_obj);
 }}
 
 void {self.mangled_name()}_destroy({self.chandle()} handle) {{
@@ -512,6 +568,16 @@ bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
     auto pair_b = static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(b);
     return *pair_a == *pair_b;
 }}
+
+const char*      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>*>(handle)->to_json_string();
+  return json.c_str();
+}}
+{self.chandle()} {self.mangled_name()}_from_json_string(const char* json) {{
+  auto ptr = falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>::from_json_string<falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>>(std::string(json));
+  return new falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>(*ptr);
+}}
 """)
 
     def generate_map_implementation(self):
@@ -524,8 +590,8 @@ bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
         key_name = self.combo[6]
         value_name = self.combo[7]
         name = self.combo[8]
-        is_primitive_key = cpp_key_type == c_key_type
-        is_primitive_value = cpp_value_type == c_value_type
+        is_primitive_key = c_key_type in c_primitives
+        is_primitive_value = c_value_type in c_primitives
         with self.edit_implementation() as f:
             if not is_primitive_key:
                 correct_key = f"""auto temp_key = *static_cast<{cpp_key_type}*>(key);
@@ -535,12 +601,14 @@ auto correct_key = std::make_shared<{cpp_key_type}>(temp_key);"""
             if not is_primitive_value:
                 correct_value = f"""auto temp_value = *static_cast<{cpp_value_type}*>(value);
 auto correct_value = std::make_shared<{cpp_value_type}>(temp_value);"""
+                at_return = f"""return new {cpp_value_type}(*static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->at(correct_key));"""
             else:
                 correct_value = """auto correct_value = value;"""
+                at_return = f"""return static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->at(correct_key);"""
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty() {{
-    return new std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>(
-            std::make_shared<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>());
+    return new falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>(
+            falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>());
 }}
 
 {self.chandle()} {self.mangled_name()}_create(const Pair{name}Handle* data, size_t count) {{
@@ -551,80 +619,90 @@ auto correct_value = std::make_shared<{cpp_value_type}>(temp_value);"""
                     std::shared_ptr<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>>*>(
             data[i]));
     }}
-    return new std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>(
-            std::make_shared<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>(vec));
+    return new falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>(
+            falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>(vec));
 }}
 
 void {self.mangled_name()}_destroy({self.chandle()} handle) {{
-    delete static_cast<std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>*>(handle);
+    delete static_cast<falcon_core::generic::Map<{cpp_key_type}, {cpp_value_type}>*>(handle);
 }}
 
 void {self.mangled_name()}_insert_or_assign({self.chandle()} handle, const {c_key_type} key, const {c_value_type} value) {{
     {correct_key}
     {correct_value}
-    (*static_cast<std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>*>(handle))->insert_or_assign(correct_key,correct_value);
+    static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->insert_or_assign(correct_key,correct_value);
 }}
 
 void {self.mangled_name()}_insert({self.chandle()} handle, const {c_key_type} key, const {c_value_type} value) {{
     {correct_key}
     {correct_value}
-    (*static_cast<std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>*>(handle))->insert(correct_key,correct_value);
+    static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->insert(correct_key,correct_value);
 }}
 
 {c_value_type} {self.mangled_name()}_at({self.chandle()} handle, const {c_key_type} key) {{
     {correct_key}
-    return (*static_cast<std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>*>(handle))->at(correct_key);
+    {at_return}
 }}
 
 void {self.mangled_name()}_erase({self.chandle()} handle, const {c_key_type} key) {{
     {correct_key}
-    return (*static_cast<std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>*>(handle))->erase(correct_key);
+    return static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->erase(correct_key);
 }}
 
 size_t {self.mangled_name()}_size({self.chandle()} handle) {{
-    return (*static_cast<std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>*>(handle))->size();
+    return static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->size();
 }}
 
 bool {self.mangled_name()}_empty({self.chandle()} handle) {{
-    return (*static_cast<std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>*>(handle))->empty();
+    return static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->empty();
 }}
 
 
 void {self.mangled_name()}_clear({self.chandle()} handle) {{
-    return (*static_cast<std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>*>(handle))->clear();
+    return static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->clear();
 }}
 
 bool {self.mangled_name()}_contains({self.chandle()} handle, {c_key_type} key) {{
     {correct_key}
-    return (*static_cast<std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>*>(handle))->contains(correct_key);
+    return static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->contains(correct_key);
 }}
 
 List{key_name}Handle {self.mangled_name()}_keys({self.chandle()} handle) {{
-    auto& map = *static_cast<std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>*>(handle);
+    auto map = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle);
     auto keys_sp = map->keys(); // shared_ptr<falcon_core::generic::List<Key>>
-    return new std::shared_ptr<falcon_core::generic::List<{cpp_key_type}>>(keys_sp);
+    return new falcon_core::generic::List<{cpp_key_type}>(*keys_sp);
 }}
 
 List{value_name}Handle {self.mangled_name()}_values({self.chandle()} handle) {{
-    auto& map = *static_cast<std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>*>(handle);
+    auto map = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle);
     auto values_sp = map->values(); // shared_ptr<falcon_core::generic::List<Value>>
-    return new std::shared_ptr<falcon_core::generic::List<{cpp_value_type}>>(values_sp);
+    return new falcon_core::generic::List<{cpp_value_type}>(*values_sp);
 }}
 
 ListPair{name}Handle {self.mangled_name()}_items({self.chandle()} handle) {{
-    auto& map = *static_cast<std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>*>(handle);
-    falcon_core::generic::List<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>> items_sp = map->items(); // shared_ptr<falcon_core::generic::List<falcon_core::generic::Pair<Key,Value>>>
-    return new std::shared_ptr<falcon_core::generic::List<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>>>(std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>>>(items_sp));
+    auto map = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle);
+    falcon_core::generic::List<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>> items_sp = map->items(); 
+    return new falcon_core::generic::List<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>>(items_sp);
 }}
 
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>*>(b);
+    auto listA = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(a);
+    auto listB = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(b);
     return *listA == *listB;
 }}
 
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
     return !{self.mangled_name()}_equal(a, b);
+}}
+
+const char*      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->to_json_string();
+  return json.c_str();
+}}
+{self.chandle()} {self.mangled_name()}_from_json_string(const char* json) {{
+  auto ptr = falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>::from_json_string<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>(std::string(json));
+  return new falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>(*ptr);
 }}
 """)
 
@@ -632,8 +710,279 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
         c_type = self.combo[0]
         cpp_type = self.combo[1]
         with self.edit_implementation() as f:
-            # TODO: do implementation
-            pass
+            f.write(f"""
+{self.chandle()} {self.mangled_name()}_create_empty() {{
+    return new falcon_core::generic::FArray<{cpp_type}>(falcon_core::generic::FArray<{cpp_type}>());
+}}
+
+{self.chandle()} {self.mangled_name()}_from_shape(const size_t* shape, size_t ndim) {{
+    std::vector<size_t> vec;
+    for (size_t i =0; i < ndim; ++i) {{
+        vec.push_back(shape[i]);
+    }}
+    return new falcon_core::generic::FArray<{cpp_type}>(falcon_core::generic::FArray<{cpp_type}>(vec));
+}}
+
+{self.chandle()} {self.mangled_name()}_from_data(const {c_type}* data, const size_t* shape, size_t ndim) {{
+  std::vector<std::vector<{cpp_type}>::size_type> shapeVec;
+  size_t                                      total_size = 1;
+  for (size_t i = 0; i < ndim; ++i) {{
+    shapeVec.push_back(shape[i]);
+    total_size *= shape[i];
+  }}
+  xt::xarray<{cpp_type}> arr =
+      xt::adapt(data, total_size, xt::no_ownership(), shapeVec);
+  return new falcon_core::generic::FArray<{cpp_type}>(
+      falcon_core::generic::FArray<{cpp_type}>(arr));
+}}
+void {self.mangled_name()}_destroy({self.chandle()} handle) {{
+    delete static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+}}
+size_t {self.mangled_name()}_size({self.chandle()} handle) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return farray->size();
+}}
+size_t {self.mangled_name()}_dimension({self.chandle()} handle) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return farray->dimension();
+}}
+size_t {self.mangled_name()}_shape({self.chandle()} handle, size_t* out_buffer, size_t ndim) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto shape = farray->shape();
+    size_t count   = shape.size();
+    size_t to_copy = (ndim < count) ? ndim : count;
+    for (size_t i = 0; i < to_copy; ++i) {{
+        out_buffer[i] = shape[i];
+    }}
+    return to_copy;
+}}
+size_t {self.mangled_name()}_data({self.chandle()} handle, {c_type}* out_buffer, size_t numdata) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    if (farray->size() > numdata) {{
+        throw std::runtime_error("Trying to store more datapoints than buffer allocated.");
+    }}
+    out_buffer = farray->xtensor().data();
+    return farray->size();
+}}
+void {self.mangled_name()}_plusequals_farray({self.chandle()} handle, {self.chandle()} other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
+    *farray += *oarray;
+}}
+void {self.mangled_name()}_plusequals_double({self.chandle()} handle, const double other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    *farray += other;
+}}
+void {self.mangled_name()}_plusequals_int({self.chandle()} handle, const int other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    *farray += other;
+}}
+{self.chandle()} {self.mangled_name()}_plus_farray({self.chandle()} handle, {self.chandle()} other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
+    return new falcon_core::generic::FArray<{cpp_type}>(
+        *(*farray +
+            std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray)));
+}}
+{self.chandle()} {self.mangled_name()}_plus_double({self.chandle()} handle, const double other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(*(*farray + other));
+}}
+{self.chandle()} {self.mangled_name()}_plus_int({self.chandle()} handle, const int other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(*(*farray + other));
+}}
+void {self.mangled_name()}_minusequals_farray({self.chandle()} handle, {self.chandle()} other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
+    *farray -= *oarray;
+}}
+void {self.mangled_name()}_minusequals_double({self.chandle()} handle, const double other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    *farray -= other;
+}}
+void {self.mangled_name()}_minusequals_int({self.chandle()} handle, const int other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    *farray -= other;
+}}
+{self.chandle()} {self.mangled_name()}_minus_farray({self.chandle()} handle, {self.chandle()} other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
+    return new falcon_core::generic::FArray<{cpp_type}>(
+        *(*farray -
+            std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray)));
+}}
+{self.chandle()} {self.mangled_name()}_minus_double({self.chandle()} handle, const double other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(*(*farray - other));
+}}
+{self.chandle()} {self.mangled_name()}_minus_int({self.chandle()} handle, const int other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(*(*farray - other));
+}}
+{self.chandle()} {self.mangled_name()}_negation({self.chandle()} handle) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(*(-*farray));
+}}
+void {self.mangled_name()}_timesequals_farray({self.chandle()} handle, {self.chandle()} other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
+    *farray *= *oarray;
+}}
+void {self.mangled_name()}_timesequals_double({self.chandle()} handle, const double other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    *farray *= other;
+}}
+void {self.mangled_name()}_timesequals_int({self.chandle()} handle, const int other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    *farray *= other;
+}}
+{self.chandle()} {self.mangled_name()}_times_farray({self.chandle()} handle, {self.chandle()} other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
+    return new falcon_core::generic::FArray<{cpp_type}>(
+        *(*farray *
+            std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray)));
+}}
+{self.chandle()} {self.mangled_name()}_times_double({self.chandle()} handle, const double other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(*(*farray * other));
+}}
+{self.chandle()} {self.mangled_name()}_times_int({self.chandle()} handle, const int other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(*(*farray * other));
+}}
+void {self.mangled_name()}_dividesequals_farray({self.chandle()} handle, {self.chandle()} other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
+    *farray /= *oarray;
+}}
+void {self.mangled_name()}_dividesequals_double({self.chandle()} handle, const double other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    *farray /= other;
+}}
+void {self.mangled_name()}_dividesequals_int({self.chandle()} handle, const int other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    *farray /= other;
+}}
+{self.chandle()} {self.mangled_name()}_divides_farray({self.chandle()} handle, {self.chandle()} other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
+    return new falcon_core::generic::FArray<{cpp_type}>(
+        *(*farray /
+            std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray)));
+}}
+{self.chandle()} {self.mangled_name()}_divides_double({self.chandle()} handle, const double other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(*(*farray / other));
+}}
+{self.chandle()} {self.mangled_name()}_divides_int({self.chandle()} handle, const int other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(*(*farray / other));
+}}
+{self.chandle()} {self.mangled_name()}_pow({self.chandle()} handle, const double other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(*farray ^ other);
+}}
+{self.chandle()} {self.mangled_name()}_abs({self.chandle()} handle) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(*farray->abs());
+}}
+{self.chandle()} {self.mangled_name()}_min({self.chandle()} handle) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(farray->min());
+}}
+{self.chandle()} {self.mangled_name()}_min_arraywise({self.chandle()} handle, {self.chandle()} other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
+    return new falcon_core::generic::FArray<{cpp_type}>(
+        *farray->min(std::shared_ptr<falcon_core::generic::FArray<{cpp_type}>>(oarray)));
+}}
+bool {self.mangled_name()}_equality({self.chandle()} handle, {self.chandle()} other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
+    return *farray == *oarray;
+}}
+bool {self.mangled_name()}_notequality({self.chandle()} handle, {self.chandle()} other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
+    return *farray != *oarray;
+}}
+bool {self.mangled_name()}_greaterthan({self.chandle()} handle, const {c_type} value) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return *farray > value;
+}}
+bool {self.mangled_name()}_lessthan({self.chandle()} handle, const {c_type} value) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return *farray < value;
+}}
+void {self.mangled_name()}_remove_offset({self.chandle()} handle, const {c_type} offset) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    farray->remove_offset(offset);
+}}
+{c_type} {self.mangled_name()}_sum({self.chandle()} handle) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return farray->sum();
+}}
+{self.chandle()} {self.mangled_name()}_reshape({self.chandle()} handle, const size_t* shape, size_t ndims) {{
+    std::vector<size_t> vec;
+    for (size_t i =0; i < ndims; ++i) {{
+        vec.push_back(shape[i]);
+    }}
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(*farray->reshape(vec));
+}}
+ListListSizeTHandle {self.mangled_name()}_where({self.chandle()} handle, const {c_type} value) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::List<falcon_core::generic::List<size_t>>(*farray->where(value));
+}}
+{self.chandle()} {self.mangled_name()}_flip({self.chandle()} handle, size_t axis) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(*farray->flip(axis));
+}}
+size_t {self.mangled_name()}_full_gradient({self.chandle()} handle, {self.chandle()}* out_buffer, size_t buffer_size) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto many_gradients = farray->gradient();
+    if (many_gradients->size() > buffer_size) {{
+        throw std::runtime_error("Trying to store more gradients than buffer allocated.");
+    }}
+    for (size_t i = 0; i < many_gradients->size(); ++i) {{
+        out_buffer[i] = many_gradients->items()[i].get();
+    }}
+    return many_gradients->size();
+}}
+{self.chandle()} {self.mangled_name()}_gradient({self.chandle()} handle, size_t axis) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<{cpp_type}>(*farray->gradient(axis));
+}}
+double {self.mangled_name()}_get_sum_of_squares({self.chandle()} handle) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return farray->get_sum_of_squares();
+}}
+double {self.mangled_name()}_get_summed_diff_int_of_squares({self.chandle()} handle, const int other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return farray->get_sum_of_squares(other);
+}}
+
+double {self.mangled_name()}_get_summed_diff_double_of_squares({self.chandle()} handle, const double other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return farray->get_sum_of_squares(other);
+}}
+double {self.mangled_name()}_get_summed_diff_array_of_squares({self.chandle()} handle, {self.chandle()} other) {{
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto oarray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
+    return farray->get_sum_of_squares(std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray));
+}}
+const char*      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle)->to_json_string();
+  return json.c_str();
+}}
+{self.chandle()} {self.mangled_name()}_from_json_string(const char* json) {{
+  auto ptr = falcon_core::generic::FArray<{cpp_type}>::from_json_string<falcon_core::generic::FArray<{cpp_type}>>(std::string(json));
+  return new falcon_core::generic::FArray<{cpp_type}>(*ptr);
+}}
+""")
 
 
 def add_to_manifest(manifest_path, header_path, implementation_path):
@@ -765,6 +1114,34 @@ registry: dict[str, Entry] = {
             "<cstddef>",
         ],
         ["<falcon_core/math/Quantity.hpp>"],
+        Path("generic"),
+    ),
+    "SizeTList": Entry(
+        Template.List,
+        [
+            "size_t",
+            "size_t",
+            "size_t",
+            "SizeT",
+        ],
+        [
+            "<cstddef>",
+        ],
+        [],
+        Path("generic"),
+    ),
+    "ListSizeTList": Entry(
+        Template.List,
+        [
+            "ListSizeTHandle",
+            "falcon_core::generic::List<size_t>",
+            "falcon_core::generic::ListSP<size_t>",
+            "ListSizeT",
+        ],
+        [
+            '"falcon_core/generic/ListSizeT_c_api.h"',
+        ],
+        [],
         Path("generic"),
     ),
     "ImpedanceList": Entry(
@@ -1044,6 +1421,24 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "StringDoublePair": Entry(
+        Template.Pair,
+        [
+            "StringHandle",
+            "std::string",
+            "std::string",
+            "double",
+            "double",
+            "double",
+            "StringDouble",
+        ],
+        [
+            "<cstddef>",
+            '"falcon_core/generic/String_c_api.h"',
+        ],
+        [],
+        Path("generic"),
+    ),
     "ConnectionConnectionPair": Entry(
         Template.Pair,
         [
@@ -1192,8 +1587,72 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "StringDoubleMap": Entry(
+        Template.Map,
+        [
+            "char*",
+            "std::string",
+            "std::string",
+            "double",
+            "double",
+            "double",
+            "String",
+            "Double",
+            "StringDouble",
+        ],
+        [
+            '"falcon_core/generic/PairStringDouble_c_api.h"',
+            '"falcon_core/generic/ListString_c_api.h"',
+            '"falcon_core/generic/ListDouble_c_api.h"',
+            '"falcon_core/generic/ListPairStringDouble_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "DoubleFArray": Entry(
+        Template.FArray,
+        [
+            "double",
+            "double",
+            "Double",
+        ],
+        [
+            "<cstddef>",
+            '"falcon_core/generic/ListListSizeT_c_api.h"',
+        ],
+        [
+            "<falcon_core/generic/FArray.hpp>",
+            "<xtensor/xadapt.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "IntFArray": Entry(
+        Template.FArray,
+        [
+            "int",
+            "int",
+            "Int",
+        ],
+        [
+            "<cstddef>",
+            '"falcon_core/generic/ListListSizeT_c_api.h"',
+        ],
+        [
+            "<falcon_core/generic/FArray.hpp>",
+            "<xtensor/xadapt.hpp>",
+        ],
+        Path("generic"),
+    ),
 }
 entry_queue: list[str] = [
+    "SizeTList",
+    "StringDoublePair",
+    "ListSizeTList",
+    "DoubleFArray",
+    "IntFArray",
     "IntList",
     "FloatList",
     "DoubleList",
@@ -1219,6 +1678,7 @@ entry_queue: list[str] = [
     "PairConnectionFloatList",
     "PairConnectionDoubleList",
     "PairConnectionConnectionsList",
+    "StringDoubleMap",
     "IntIntMap",
     "FloatFloatMap",
     "ConnectionFloatMap",

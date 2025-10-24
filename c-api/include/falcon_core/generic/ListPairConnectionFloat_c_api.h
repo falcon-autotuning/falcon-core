@@ -26,6 +26,11 @@ size_t ListPairConnectionFloat_index(ListPairConnectionFloatHandle handle, PairC
 ListPairConnectionFloatHandle ListPairConnectionFloat_intersection(ListPairConnectionFloatHandle handle, ListPairConnectionFloatHandle other);
 bool ListPairConnectionFloat_equal(ListPairConnectionFloatHandle a, ListPairConnectionFloatHandle b);
 bool ListPairConnectionFloat_not_equal(ListPairConnectionFloatHandle a, ListPairConnectionFloatHandle b);
+
+// Serialization (from Song)
+const char*      ListPairConnectionFloat_to_json_string(ListPairConnectionFloatHandle handle);
+ListPairConnectionFloatHandle ListPairConnectionFloat_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

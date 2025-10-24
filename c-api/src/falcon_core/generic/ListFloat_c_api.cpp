@@ -32,8 +32,8 @@ void ListFloat_clear(ListFloatHandle handle) {
 }
 
 bool ListFloat_equal(ListFloatHandle a, ListFloatHandle b) {
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<float>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<float>>*>(b);
+    auto listA = static_cast<falcon_core::generic::List<float>*>(a);
+    auto listB = static_cast<falcon_core::generic::List<float>*>(b);
     return *listA == *listB;
 }
 

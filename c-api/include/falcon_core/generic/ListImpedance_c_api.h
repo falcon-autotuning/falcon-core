@@ -26,6 +26,11 @@ size_t ListImpedance_index(ListImpedanceHandle handle, ImpedanceHandle value);
 ListImpedanceHandle ListImpedance_intersection(ListImpedanceHandle handle, ListImpedanceHandle other);
 bool ListImpedance_equal(ListImpedanceHandle a, ListImpedanceHandle b);
 bool ListImpedance_not_equal(ListImpedanceHandle a, ListImpedanceHandle b);
+
+// Serialization (from Song)
+const char*      ListImpedance_to_json_string(ListImpedanceHandle handle);
+ListImpedanceHandle ListImpedance_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

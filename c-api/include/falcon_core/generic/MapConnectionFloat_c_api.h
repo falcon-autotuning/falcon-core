@@ -27,6 +27,10 @@ ListFloatHandle MapConnectionFloat_values(MapConnectionFloatHandle handle);
 ListPairConnectionFloatHandle MapConnectionFloat_items(MapConnectionFloatHandle handle);
 bool MapConnectionFloat_equal(MapConnectionFloatHandle a, MapConnectionFloatHandle b);
 bool MapConnectionFloat_not_equal(MapConnectionFloatHandle a, MapConnectionFloatHandle b);
+// Serialization (from Song)
+const char*      MapConnectionFloat_to_json_string(MapConnectionFloatHandle handle);
+MapConnectionFloatHandle MapConnectionFloat_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

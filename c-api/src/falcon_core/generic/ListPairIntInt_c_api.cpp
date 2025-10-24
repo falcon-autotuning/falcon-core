@@ -33,8 +33,8 @@ void ListPairIntInt_clear(ListPairIntIntHandle handle) {
 }
 
 bool ListPairIntInt_equal(ListPairIntIntHandle a, ListPairIntIntHandle b) {
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::generic::Pair<int, int>>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::generic::Pair<int, int>>>*>(b);
+    auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, int>>*>(a);
+    auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, int>>*>(b);
     return *listA == *listB;
 }
 
@@ -92,4 +92,14 @@ bool ListPairIntInt_contains(ListPairIntIntHandle handle, PairIntIntHandle value
 size_t ListPairIntInt_index(ListPairIntIntHandle handle, PairIntIntHandle value) {
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<int, int>>(static_cast<falcon_core::generic::Pair<int, int>*>(value), [](falcon_core::generic::Pair<int, int>*) {} );
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, int>>*>(handle)->index(stored_obj);
+}
+
+const char*      ListPairIntInt_to_json_string(ListPairIntIntHandle handle) {
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, int>>*>(handle)->to_json_string();
+  return json.c_str();
+}
+ListPairIntIntHandle ListPairIntInt_from_json_string(const char* json) {
+  auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<int, int>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<int, int>>>(std::string(json));
+  return new falcon_core::generic::List<falcon_core::generic::Pair<int, int>>(*ptr);
 }

@@ -26,6 +26,11 @@ size_t ListPairIntInt_index(ListPairIntIntHandle handle, PairIntIntHandle value)
 ListPairIntIntHandle ListPairIntInt_intersection(ListPairIntIntHandle handle, ListPairIntIntHandle other);
 bool ListPairIntInt_equal(ListPairIntIntHandle a, ListPairIntIntHandle b);
 bool ListPairIntInt_not_equal(ListPairIntIntHandle a, ListPairIntIntHandle b);
+
+// Serialization (from Song)
+const char*      ListPairIntInt_to_json_string(ListPairIntIntHandle handle);
+ListPairIntIntHandle ListPairIntInt_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

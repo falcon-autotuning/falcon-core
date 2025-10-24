@@ -33,8 +33,8 @@ void ListPairFloatFloat_clear(ListPairFloatFloatHandle handle) {
 }
 
 bool ListPairFloatFloat_equal(ListPairFloatFloatHandle a, ListPairFloatFloatHandle b) {
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::generic::Pair<float, float>>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::generic::Pair<float, float>>>*>(b);
+    auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<float, float>>*>(a);
+    auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<float, float>>*>(b);
     return *listA == *listB;
 }
 
@@ -92,4 +92,14 @@ bool ListPairFloatFloat_contains(ListPairFloatFloatHandle handle, PairFloatFloat
 size_t ListPairFloatFloat_index(ListPairFloatFloatHandle handle, PairFloatFloatHandle value) {
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<float, float>>(static_cast<falcon_core::generic::Pair<float, float>*>(value), [](falcon_core::generic::Pair<float, float>*) {} );
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<float, float>>*>(handle)->index(stored_obj);
+}
+
+const char*      ListPairFloatFloat_to_json_string(ListPairFloatFloatHandle handle) {
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<float, float>>*>(handle)->to_json_string();
+  return json.c_str();
+}
+ListPairFloatFloatHandle ListPairFloatFloat_from_json_string(const char* json) {
+  auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<float, float>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<float, float>>>(std::string(json));
+  return new falcon_core::generic::List<falcon_core::generic::Pair<float, float>>(*ptr);
 }

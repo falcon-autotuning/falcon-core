@@ -34,8 +34,8 @@ void ListPairConnectionDouble_clear(ListPairConnectionDoubleHandle handle) {
 }
 
 bool ListPairConnectionDouble_equal(ListPairConnectionDoubleHandle a, ListPairConnectionDoubleHandle b) {
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>>*>(b);
+    auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(a);
+    auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(b);
     return *listA == *listB;
 }
 
@@ -93,4 +93,14 @@ bool ListPairConnectionDouble_contains(ListPairConnectionDoubleHandle handle, Pa
 size_t ListPairConnectionDouble_index(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle value) {
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(value), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*) {} );
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->index(stored_obj);
+}
+
+const char*      ListPairConnectionDouble_to_json_string(ListPairConnectionDoubleHandle handle) {
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->to_json_string();
+  return json.c_str();
+}
+ListPairConnectionDoubleHandle ListPairConnectionDouble_from_json_string(const char* json) {
+  auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>>(std::string(json));
+  return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(*ptr);
 }

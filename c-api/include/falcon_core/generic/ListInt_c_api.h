@@ -25,6 +25,11 @@ size_t ListInt_index(ListIntHandle handle, int value);
 ListIntHandle ListInt_intersection(ListIntHandle handle, ListIntHandle other);
 bool ListInt_equal(ListIntHandle a, ListIntHandle b);
 bool ListInt_not_equal(ListIntHandle a, ListIntHandle b);
+
+// Serialization (from Song)
+const char*      ListInt_to_json_string(ListIntHandle handle);
+ListIntHandle ListInt_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

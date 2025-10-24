@@ -394,16 +394,16 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   array_type&       xtensor() noexcept override { return _data; }
   const array_type& xtensor() const noexcept override { return _data; }
 
-  double get_sum_of_squares() const { return (*(this ^ 2))._data.sum(); }
+  double get_sum_of_squares() const { return (*this ^ 2)->sum(); }
   double get_sum_of_squares(const int other) const {
-    return ((*(this->_data - other) ^ 2))._data.sum();
+    return (*(*this - other) ^ 2).sum();
   }
   double get_sum_of_squares(const double other) const {
-    return ((*(this->_data - other) ^ 2))._data.sum();
+    return (*(*this - other) ^ 2).sum();
   }
   double get_sum_of_squares(
       const std::shared_ptr<generic::FArray<T>>& other) const {
-    return ((*(this->_data - other->_data) ^ 2))._data.sum();
+    return (*(*this - other) ^ 2).sum();
   }
 
  protected:

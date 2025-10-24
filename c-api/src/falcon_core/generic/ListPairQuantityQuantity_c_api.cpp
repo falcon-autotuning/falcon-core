@@ -34,8 +34,8 @@ void ListPairQuantityQuantity_clear(ListPairQuantityQuantityHandle handle) {
 }
 
 bool ListPairQuantityQuantity_equal(ListPairQuantityQuantityHandle a, ListPairQuantityQuantityHandle b) {
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>>*>(b);
+    auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>*>(a);
+    auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>*>(b);
     return *listA == *listB;
 }
 
@@ -93,4 +93,14 @@ bool ListPairQuantityQuantity_contains(ListPairQuantityQuantityHandle handle, Pa
 size_t ListPairQuantityQuantity_index(ListPairQuantityQuantityHandle handle, PairQuantityQuantityHandle value) {
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(static_cast<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*>(value), [](falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*) {} );
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>*>(handle)->index(stored_obj);
+}
+
+const char*      ListPairQuantityQuantity_to_json_string(ListPairQuantityQuantityHandle handle) {
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>*>(handle)->to_json_string();
+  return json.c_str();
+}
+ListPairQuantityQuantityHandle ListPairQuantityQuantity_from_json_string(const char* json) {
+  auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>>(std::string(json));
+  return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(*ptr);
 }

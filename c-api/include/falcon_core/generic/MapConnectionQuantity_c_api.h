@@ -27,6 +27,10 @@ ListQuantityHandle MapConnectionQuantity_values(MapConnectionQuantityHandle hand
 ListPairConnectionQuantityHandle MapConnectionQuantity_items(MapConnectionQuantityHandle handle);
 bool MapConnectionQuantity_equal(MapConnectionQuantityHandle a, MapConnectionQuantityHandle b);
 bool MapConnectionQuantity_not_equal(MapConnectionQuantityHandle a, MapConnectionQuantityHandle b);
+// Serialization (from Song)
+const char*      MapConnectionQuantity_to_json_string(MapConnectionQuantityHandle handle);
+MapConnectionQuantityHandle MapConnectionQuantity_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

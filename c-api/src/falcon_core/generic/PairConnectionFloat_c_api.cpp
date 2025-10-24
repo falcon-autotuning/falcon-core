@@ -3,8 +3,9 @@
 #include <falcon_core/physics/device_structures/Connection.hpp>
 
 PairConnectionFloatHandle PairConnectionFloat_create(ConnectionHandle first, float second) {
-    auto first_obj = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(first),[](falcon_core::physics::device_structures::Connection*) {});
-    return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>(first_obj, second);
+    auto first_obj= std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(first),[](falcon_core::physics::device_structures::Connection*) {});
+    auto second_obj = second;
+    return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>(first_obj, second_obj);
 }
 
 void PairConnectionFloat_destroy(PairConnectionFloatHandle handle) {
@@ -24,4 +25,14 @@ bool PairConnectionFloat_equal(PairConnectionFloatHandle a, PairConnectionFloatH
     auto pair_a = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>*>(a);
     auto pair_b = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>*>(b);
     return *pair_a == *pair_b;
+}
+
+const char*      PairConnectionFloat_to_json_string(PairConnectionFloatHandle handle) {
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,float>*>(handle)->to_json_string();
+  return json.c_str();
+}
+PairConnectionFloatHandle PairConnectionFloat_from_json_string(const char* json) {
+  auto ptr = falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,float>::from_json_string<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,float>>(std::string(json));
+  return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,float>(*ptr);
 }

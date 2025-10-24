@@ -33,8 +33,8 @@ void ListConnection_clear(ListConnectionHandle handle) {
 }
 
 bool ListConnection_equal(ListConnectionHandle a, ListConnectionHandle b) {
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>>*>(b);
+    auto listA = static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*>(a);
+    auto listB = static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*>(b);
     return *listA == *listB;
 }
 
@@ -92,4 +92,14 @@ bool ListConnection_contains(ListConnectionHandle handle, ConnectionHandle value
 size_t ListConnection_index(ListConnectionHandle handle, ConnectionHandle value) {
     auto stored_obj = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(value), [](falcon_core::physics::device_structures::Connection*) {} );
     return static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*>(handle)->index(stored_obj);
+}
+
+const char*      ListConnection_to_json_string(ListConnectionHandle handle) {
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*>(handle)->to_json_string();
+  return json.c_str();
+}
+ListConnectionHandle ListConnection_from_json_string(const char* json) {
+  auto ptr = falcon_core::generic::List<falcon_core::physics::device_structures::Connection>::from_json_string<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>>(std::string(json));
+  return new falcon_core::generic::List<falcon_core::physics::device_structures::Connection>(*ptr);
 }

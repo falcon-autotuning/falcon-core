@@ -26,6 +26,11 @@ size_t ListLabelledDomain_index(ListLabelledDomainHandle handle, LabelledDomainH
 ListLabelledDomainHandle ListLabelledDomain_intersection(ListLabelledDomainHandle handle, ListLabelledDomainHandle other);
 bool ListLabelledDomain_equal(ListLabelledDomainHandle a, ListLabelledDomainHandle b);
 bool ListLabelledDomain_not_equal(ListLabelledDomainHandle a, ListLabelledDomainHandle b);
+
+// Serialization (from Song)
+const char*      ListLabelledDomain_to_json_string(ListLabelledDomainHandle handle);
+ListLabelledDomainHandle ListLabelledDomain_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

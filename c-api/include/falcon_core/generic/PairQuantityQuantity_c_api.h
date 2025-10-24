@@ -13,6 +13,10 @@ void PairQuantityQuantity_destroy(PairQuantityQuantityHandle handle);
 QuantityHandle PairQuantityQuantity_first(PairQuantityQuantityHandle handle);
 QuantityHandle PairQuantityQuantity_second(PairQuantityQuantityHandle handle);
 bool PairQuantityQuantity_equal(PairQuantityQuantityHandle a, PairQuantityQuantityHandle b);
+// Serialization (from Song)
+const char*      PairQuantityQuantity_to_json_string(PairQuantityQuantityHandle handle);
+PairQuantityQuantityHandle PairQuantityQuantity_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

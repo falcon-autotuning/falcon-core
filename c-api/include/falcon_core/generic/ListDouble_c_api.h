@@ -25,6 +25,11 @@ size_t ListDouble_index(ListDoubleHandle handle, double value);
 ListDoubleHandle ListDouble_intersection(ListDoubleHandle handle, ListDoubleHandle other);
 bool ListDouble_equal(ListDoubleHandle a, ListDoubleHandle b);
 bool ListDouble_not_equal(ListDoubleHandle a, ListDoubleHandle b);
+
+// Serialization (from Song)
+const char*      ListDouble_to_json_string(ListDoubleHandle handle);
+ListDoubleHandle ListDouble_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

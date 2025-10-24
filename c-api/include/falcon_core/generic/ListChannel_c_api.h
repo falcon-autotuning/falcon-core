@@ -26,6 +26,11 @@ size_t ListChannel_index(ListChannelHandle handle, ChannelHandle value);
 ListChannelHandle ListChannel_intersection(ListChannelHandle handle, ListChannelHandle other);
 bool ListChannel_equal(ListChannelHandle a, ListChannelHandle b);
 bool ListChannel_not_equal(ListChannelHandle a, ListChannelHandle b);
+
+// Serialization (from Song)
+const char*      ListChannel_to_json_string(ListChannelHandle handle);
+ListChannelHandle ListChannel_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

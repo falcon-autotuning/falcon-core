@@ -32,8 +32,8 @@ void ListDouble_clear(ListDoubleHandle handle) {
 }
 
 bool ListDouble_equal(ListDoubleHandle a, ListDoubleHandle b) {
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<double>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<double>>*>(b);
+    auto listA = static_cast<falcon_core::generic::List<double>*>(a);
+    auto listB = static_cast<falcon_core::generic::List<double>*>(b);
     return *listA == *listB;
 }
 

@@ -26,6 +26,11 @@ size_t ListInstrumentPort_index(ListInstrumentPortHandle handle, InstrumentPortH
 ListInstrumentPortHandle ListInstrumentPort_intersection(ListInstrumentPortHandle handle, ListInstrumentPortHandle other);
 bool ListInstrumentPort_equal(ListInstrumentPortHandle a, ListInstrumentPortHandle b);
 bool ListInstrumentPort_not_equal(ListInstrumentPortHandle a, ListInstrumentPortHandle b);
+
+// Serialization (from Song)
+const char*      ListInstrumentPort_to_json_string(ListInstrumentPortHandle handle);
+ListInstrumentPortHandle ListInstrumentPort_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

@@ -33,8 +33,8 @@ void ListImpedance_clear(ListImpedanceHandle handle) {
 }
 
 bool ListImpedance_equal(ListImpedanceHandle a, ListImpedanceHandle b) {
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>>*>(b);
+    auto listA = static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>*>(a);
+    auto listB = static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>*>(b);
     return *listA == *listB;
 }
 
@@ -92,4 +92,14 @@ bool ListImpedance_contains(ListImpedanceHandle handle, ImpedanceHandle value) {
 size_t ListImpedance_index(ListImpedanceHandle handle, ImpedanceHandle value) {
     auto stored_obj = std::shared_ptr<falcon_core::physics::device_structures::Impedance>(static_cast<falcon_core::physics::device_structures::Impedance*>(value), [](falcon_core::physics::device_structures::Impedance*) {} );
     return static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>*>(handle)->index(stored_obj);
+}
+
+const char*      ListImpedance_to_json_string(ListImpedanceHandle handle) {
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>*>(handle)->to_json_string();
+  return json.c_str();
+}
+ListImpedanceHandle ListImpedance_from_json_string(const char* json) {
+  auto ptr = falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>::from_json_string<falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>>(std::string(json));
+  return new falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>(*ptr);
 }

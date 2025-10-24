@@ -26,6 +26,10 @@ ListIntHandle MapIntInt_values(MapIntIntHandle handle);
 ListPairIntIntHandle MapIntInt_items(MapIntIntHandle handle);
 bool MapIntInt_equal(MapIntIntHandle a, MapIntIntHandle b);
 bool MapIntInt_not_equal(MapIntIntHandle a, MapIntIntHandle b);
+// Serialization (from Song)
+const char*      MapIntInt_to_json_string(MapIntIntHandle handle);
+MapIntIntHandle MapIntInt_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

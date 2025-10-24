@@ -33,8 +33,8 @@ void ListChannel_clear(ListChannelHandle handle) {
 }
 
 bool ListChannel_equal(ListChannelHandle a, ListChannelHandle b) {
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>>*>(b);
+    auto listA = static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(a);
+    auto listB = static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(b);
     return *listA == *listB;
 }
 
@@ -92,4 +92,14 @@ bool ListChannel_contains(ListChannelHandle handle, ChannelHandle value) {
 size_t ListChannel_index(ListChannelHandle handle, ChannelHandle value) {
     auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value), [](falcon_core::autotuner_interfaces::names::Channel*) {} );
     return static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->index(stored_obj);
+}
+
+const char*      ListChannel_to_json_string(ListChannelHandle handle) {
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->to_json_string();
+  return json.c_str();
+}
+ListChannelHandle ListChannel_from_json_string(const char* json) {
+  auto ptr = falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>::from_json_string<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>>(std::string(json));
+  return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(*ptr);
 }

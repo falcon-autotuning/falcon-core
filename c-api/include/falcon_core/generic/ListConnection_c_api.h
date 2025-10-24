@@ -26,6 +26,11 @@ size_t ListConnection_index(ListConnectionHandle handle, ConnectionHandle value)
 ListConnectionHandle ListConnection_intersection(ListConnectionHandle handle, ListConnectionHandle other);
 bool ListConnection_equal(ListConnectionHandle a, ListConnectionHandle b);
 bool ListConnection_not_equal(ListConnectionHandle a, ListConnectionHandle b);
+
+// Serialization (from Song)
+const char*      ListConnection_to_json_string(ListConnectionHandle handle);
+ListConnectionHandle ListConnection_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

@@ -32,8 +32,8 @@ void ListInt_clear(ListIntHandle handle) {
 }
 
 bool ListInt_equal(ListIntHandle a, ListIntHandle b) {
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<int>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<int>>*>(b);
+    auto listA = static_cast<falcon_core::generic::List<int>*>(a);
+    auto listB = static_cast<falcon_core::generic::List<int>*>(b);
     return *listA == *listB;
 }
 

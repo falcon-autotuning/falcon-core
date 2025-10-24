@@ -33,8 +33,8 @@ void ListInstrumentPort_clear(ListInstrumentPortHandle handle) {
 }
 
 bool ListInstrumentPort_equal(ListInstrumentPortHandle a, ListInstrumentPortHandle b) {
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>>*>(b);
+    auto listA = static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>*>(a);
+    auto listB = static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>*>(b);
     return *listA == *listB;
 }
 
@@ -92,4 +92,14 @@ bool ListInstrumentPort_contains(ListInstrumentPortHandle handle, InstrumentPort
 size_t ListInstrumentPort_index(ListInstrumentPortHandle handle, InstrumentPortHandle value) {
     auto stored_obj = std::shared_ptr<falcon_core::instrument_interfaces::names::InstrumentPort>(static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(value), [](falcon_core::instrument_interfaces::names::InstrumentPort*) {} );
     return static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>*>(handle)->index(stored_obj);
+}
+
+const char*      ListInstrumentPort_to_json_string(ListInstrumentPortHandle handle) {
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>*>(handle)->to_json_string();
+  return json.c_str();
+}
+ListInstrumentPortHandle ListInstrumentPort_from_json_string(const char* json) {
+  auto ptr = falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>::from_json_string<falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>>(std::string(json));
+  return new falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>(*ptr);
 }

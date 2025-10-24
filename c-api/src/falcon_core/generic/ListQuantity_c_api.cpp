@@ -33,8 +33,8 @@ void ListQuantity_clear(ListQuantityHandle handle) {
 }
 
 bool ListQuantity_equal(ListQuantityHandle a, ListQuantityHandle b) {
-    auto& listA = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::math::Quantity>>*>(a);
-    auto& listB = *static_cast<std::shared_ptr<falcon_core::generic::List<falcon_core::math::Quantity>>*>(b);
+    auto listA = static_cast<falcon_core::generic::List<falcon_core::math::Quantity>*>(a);
+    auto listB = static_cast<falcon_core::generic::List<falcon_core::math::Quantity>*>(b);
     return *listA == *listB;
 }
 
@@ -92,4 +92,14 @@ bool ListQuantity_contains(ListQuantityHandle handle, QuantityHandle value) {
 size_t ListQuantity_index(ListQuantityHandle handle, QuantityHandle value) {
     auto stored_obj = std::shared_ptr<falcon_core::math::Quantity>(static_cast<falcon_core::math::Quantity*>(value), [](falcon_core::math::Quantity*) {} );
     return static_cast<falcon_core::generic::List<falcon_core::math::Quantity>*>(handle)->index(stored_obj);
+}
+
+const char*      ListQuantity_to_json_string(ListQuantityHandle handle) {
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::List<falcon_core::math::Quantity>*>(handle)->to_json_string();
+  return json.c_str();
+}
+ListQuantityHandle ListQuantity_from_json_string(const char* json) {
+  auto ptr = falcon_core::generic::List<falcon_core::math::Quantity>::from_json_string<falcon_core::generic::List<falcon_core::math::Quantity>>(std::string(json));
+  return new falcon_core::generic::List<falcon_core::math::Quantity>(*ptr);
 }

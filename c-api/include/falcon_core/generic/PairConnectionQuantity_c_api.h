@@ -14,6 +14,10 @@ void PairConnectionQuantity_destroy(PairConnectionQuantityHandle handle);
 ConnectionHandle PairConnectionQuantity_first(PairConnectionQuantityHandle handle);
 QuantityHandle PairConnectionQuantity_second(PairConnectionQuantityHandle handle);
 bool PairConnectionQuantity_equal(PairConnectionQuantityHandle a, PairConnectionQuantityHandle b);
+// Serialization (from Song)
+const char*      PairConnectionQuantity_to_json_string(PairConnectionQuantityHandle handle);
+PairConnectionQuantityHandle PairConnectionQuantity_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

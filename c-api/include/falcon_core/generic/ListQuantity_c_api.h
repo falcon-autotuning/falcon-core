@@ -26,6 +26,11 @@ size_t ListQuantity_index(ListQuantityHandle handle, QuantityHandle value);
 ListQuantityHandle ListQuantity_intersection(ListQuantityHandle handle, ListQuantityHandle other);
 bool ListQuantity_equal(ListQuantityHandle a, ListQuantityHandle b);
 bool ListQuantity_not_equal(ListQuantityHandle a, ListQuantityHandle b);
+
+// Serialization (from Song)
+const char*      ListQuantity_to_json_string(ListQuantityHandle handle);
+ListQuantityHandle ListQuantity_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

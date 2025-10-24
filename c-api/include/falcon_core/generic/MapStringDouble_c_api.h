@@ -1,0 +1,37 @@
+#pragma once
+#ifdef __cplusplus
+    extern "C" {
+#endif
+#include "falcon_core/generic/PairStringDouble_c_api.h"
+#include "falcon_core/generic/ListString_c_api.h"
+#include "falcon_core/generic/ListDouble_c_api.h"
+#include "falcon_core/generic/ListPairStringDouble_c_api.h"
+#include <cstddef>
+
+// Forward declarations for opaque handles
+typedef void* MapStringDoubleHandle;
+// Function declarations
+
+MapStringDoubleHandle MapStringDouble_create_empty();
+MapStringDoubleHandle MapStringDouble_create(const PairStringDoubleHandle* data, size_t count);
+void MapStringDouble_destroy(MapStringDoubleHandle handle);
+void MapStringDouble_insert_or_assign(MapStringDoubleHandle handle, const char* key, const double value);
+void MapStringDouble_insert(MapStringDoubleHandle handle, const char* key, const double value);
+double MapStringDouble_at(MapStringDoubleHandle handle, const char* key);
+void MapStringDouble_erase(MapStringDoubleHandle handle, const char* key);
+size_t MapStringDouble_size(MapStringDoubleHandle handle);
+bool MapStringDouble_empty(MapStringDoubleHandle handle);
+void MapStringDouble_clear(MapStringDoubleHandle handle);
+bool MapStringDouble_contains(MapStringDoubleHandle handle, const char* key);
+ListStringHandle MapStringDouble_keys(MapStringDoubleHandle handle);
+ListDoubleHandle MapStringDouble_values(MapStringDoubleHandle handle);
+ListPairStringDoubleHandle MapStringDouble_items(MapStringDoubleHandle handle);
+bool MapStringDouble_equal(MapStringDoubleHandle a, MapStringDoubleHandle b);
+bool MapStringDouble_not_equal(MapStringDoubleHandle a, MapStringDoubleHandle b);
+// Serialization (from Song)
+const char*      MapStringDouble_to_json_string(MapStringDoubleHandle handle);
+MapStringDoubleHandle MapStringDouble_from_json_string(const char* json);
+
+#ifdef __cplusplus
+}
+#endif

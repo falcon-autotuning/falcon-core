@@ -26,6 +26,10 @@ ListFloatHandle MapFloatFloat_values(MapFloatFloatHandle handle);
 ListPairFloatFloatHandle MapFloatFloat_items(MapFloatFloatHandle handle);
 bool MapFloatFloat_equal(MapFloatFloatHandle a, MapFloatFloatHandle b);
 bool MapFloatFloat_not_equal(MapFloatFloatHandle a, MapFloatFloatHandle b);
+// Serialization (from Song)
+const char*      MapFloatFloat_to_json_string(MapFloatFloatHandle handle);
+MapFloatFloatHandle MapFloatFloat_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

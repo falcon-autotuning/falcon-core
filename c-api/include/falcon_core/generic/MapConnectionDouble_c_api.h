@@ -27,6 +27,10 @@ ListDoubleHandle MapConnectionDouble_values(MapConnectionDoubleHandle handle);
 ListPairConnectionDoubleHandle MapConnectionDouble_items(MapConnectionDoubleHandle handle);
 bool MapConnectionDouble_equal(MapConnectionDoubleHandle a, MapConnectionDoubleHandle b);
 bool MapConnectionDouble_not_equal(MapConnectionDoubleHandle a, MapConnectionDoubleHandle b);
+// Serialization (from Song)
+const char*      MapConnectionDouble_to_json_string(MapConnectionDoubleHandle handle);
+MapConnectionDoubleHandle MapConnectionDouble_from_json_string(const char* json);
+
 #ifdef __cplusplus
 }
 #endif

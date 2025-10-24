@@ -3,8 +3,9 @@
 #include <falcon_core/physics/device_structures/Connection.hpp>
 
 PairConnectionDoubleHandle PairConnectionDouble_create(ConnectionHandle first, double second) {
-    auto first_obj = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(first),[](falcon_core::physics::device_structures::Connection*) {});
-    return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>(first_obj, second);
+    auto first_obj= std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(first),[](falcon_core::physics::device_structures::Connection*) {});
+    auto second_obj = second;
+    return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>(first_obj, second_obj);
 }
 
 void PairConnectionDouble_destroy(PairConnectionDoubleHandle handle) {
@@ -24,4 +25,14 @@ bool PairConnectionDouble_equal(PairConnectionDoubleHandle a, PairConnectionDoub
     auto pair_a = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(a);
     auto pair_b = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(b);
     return *pair_a == *pair_b;
+}
+
+const char*      PairConnectionDouble_to_json_string(PairConnectionDoubleHandle handle) {
+  static thread_local std::string json;
+  json = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,double>*>(handle)->to_json_string();
+  return json.c_str();
+}
+PairConnectionDoubleHandle PairConnectionDouble_from_json_string(const char* json) {
+  auto ptr = falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,double>::from_json_string<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,double>>(std::string(json));
+  return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,double>(*ptr);
 }
