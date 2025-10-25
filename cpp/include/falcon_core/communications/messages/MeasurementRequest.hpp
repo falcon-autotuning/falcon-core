@@ -1,14 +1,8 @@
 #pragma once
 
-#include <falcon_core/communications/messages/BaseMessage.hpp>
-#include <falcon_core/instrument_interfaces/Waveform.hpp>
-#include <falcon_core/instrument_interfaces/names/Ports.hpp>
-#include <falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp>
-#include <falcon_core/instrument_interfaces/port_transforms/PortTransforms.hpp>
-#include <falcon_core/math/discrete_spaces/DiscreteSpace.hpp>
-#include <falcon_core/math/domains/LabelledDomain.hpp>
-
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/communications/messages/BaseMessage.hpp"
+#include "falcon_core/instrument_interfaces/Waveform.hpp"
+#include "falcon_core/math/domains/LabelledDomain.hpp"
 
 namespace falcon_core {
 namespace communications {

@@ -9,6 +9,7 @@ extern "C" {
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/math/AxesInstrumentPort_c_api.h"
+#include "falcon_core/math/AxesLabelledControlArray_c_api.h"
 #include "falcon_core/math/AxesMapStringBool_c_api.h"
 #include "falcon_core/math/UnitSpace_c_api.h"
 #include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"

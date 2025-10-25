@@ -444,7 +444,7 @@ for (size_t i = 0; i < n; ++i) {{
         falcon_core::generic::List<{cpp_real}>(count));
 }}
 
-{self.chandle()} {self.mangled_name()}_create(const {c_type}* data, size_t count) {{
+{self.chandle()} {self.mangled_name()}_create({c_type}* data, size_t count) {{
     std::vector<{cpp_stored}> vec;
     {create_allocation}
     return new falcon_core::generic::List<{cpp_real}>(
@@ -1255,6 +1255,21 @@ registry: dict[str, Entry] = {
             "<cstddef>",
         ],
         ["<falcon_core/instrument_interfaces/names/InstrumentPort.hpp>"],
+        Path("generic"),
+    ),
+    "PortTransformList": Entry(
+        Options.List,
+        [
+            "PortTransformHandle",
+            "falcon_core::instrument_interfaces::port_transforma::PortTransform",
+            "falcon_core::instrument_interfaces::port_transforms::PortTransformSP",
+            "PortTransform",
+        ],
+        [
+            '"falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"',
+            "<cstddef>",
+        ],
+        ["<falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp>"],
         Path("generic"),
     ),
     "LabelledDomainList": Entry(
@@ -2569,6 +2584,7 @@ entry_queue: list[str] = [
     "GnameGroupMap",
     "MeasurementContextList",
     "MeasurementContextAxes",
+    "PortTransformList",
 ]
 
 
