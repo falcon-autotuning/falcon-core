@@ -77,7 +77,7 @@ class InterpretationContext : public generic::Song {
   const contexts::MeasurementContextSP get_independent_variable(
       int index) const;
   /**
-   * @brief Create a new interpGroove Quantum retation context with the given
+   * @brief Create a new interpretation context with the given
    * unit.
    * @param unit The physical unit to use
    * @return A new interpretation context with the same variables but a

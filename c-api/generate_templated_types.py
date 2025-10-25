@@ -1824,6 +1824,23 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "MeasurementContextList": Entry(
+        Options.List,
+        [
+            "MeasurementContextHandle",
+            "falcon_core::autotuner_interfaces::contexts::MeasurementContext",
+            "falcon_core::autotuner_interfaces::contexts::MeasurementContextSP",
+            "MeasurementContext",
+        ],
+        [
+            '"falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp>",
+        ],
+        Path("generic"),
+    ),
     "MapStringBoolList": Entry(
         Options.List,
         [
@@ -2438,6 +2455,25 @@ registry: dict[str, Entry] = {
         ],
         Path("math"),
     ),
+    "MeasurementContextAxes": Entry(
+        Options.Axes,
+        [
+            "MeasurementContextHandle",
+            "falcon_core::autotuner_interfaces::contexts::MeasurementContext",
+            "falcon_core::autotuner_interfaces::contexts::MeasurementContextSP",
+            "MeasurementContext",
+        ],
+        [
+            '"falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"',
+            '"falcon_core/generic/ListMeasurementContext_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp>",
+        ],
+        Path("math"),
+    ),
     "MapStringBoolAxes": Entry(
         Options.Axes,
         [
@@ -2531,6 +2567,8 @@ entry_queue: list[str] = [
     "GnameGroupPair",
     "PairGnameGroupList",
     "GnameGroupMap",
+    "MeasurementContextList",
+    "MeasurementContextAxes",
 ]
 
 

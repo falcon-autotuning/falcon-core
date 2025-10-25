@@ -144,3 +144,7 @@ include/falcon_core/generic/ListPairGnameGroup_c_api.h
 src/falcon_core/generic/ListPairGnameGroup_c_api.cpp
 include/falcon_core/generic/MapGnameGroup_c_api.h
 src/falcon_core/generic/MapGnameGroup_c_api.cpp
+include/falcon_core/generic/ListMeasurementContext_c_api.h
+src/falcon_core/generic/ListMeasurementContext_c_api.cpp
+include/falcon_core/math/AxesMeasurementContext_c_api.h
+src/falcon_core/math/AxesMeasurementContext_c_api.cpp
