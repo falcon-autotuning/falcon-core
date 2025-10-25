@@ -1650,6 +1650,44 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "PairChannelConnectionsList": Entry(
+        Options.List,
+        [
+            "PairChannelConnectionsHandle",
+            "falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>",
+            "falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>",
+            "PairChannelConnections",
+        ],
+        [
+            '"falcon_core/generic/PairChannelConnections_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/autotuner_interfaces/names/Channel.hpp>",
+            "<falcon_core/physics/device_structures/Connections.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "PairGnameGroupList": Entry(
+        Options.List,
+        [
+            "PairGnameGroupHandle",
+            "falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>",
+            "falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>",
+            "PairGnameGroup",
+        ],
+        [
+            '"falcon_core/generic/PairGnameGroup_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/autotuner_interfaces/names/Gname.hpp>",
+            "<falcon_core/physics/config/core/Group.hpp>",
+        ],
+        Path("generic"),
+    ),
     "PairStringDoubleList": Entry(
         Options.List,
         [
@@ -1905,6 +1943,48 @@ registry: dict[str, Entry] = {
         ["<falcon_core/physics/device_structures/Connections.hpp>"],
         Path("generic"),
     ),
+    "ChannelConnectionsPair": Entry(
+        Options.Pair,
+        [
+            "ChannelHandle",
+            "falcon_core::autotuner_interfaces::names::Channel",
+            "falcon_core::autotuner_interfaces::names::ChannelSP",
+            "ConnectionsHandle",
+            "falcon_core::physics::device_structures::Connections",
+            "falcon_core::physics::device_structures::ConnectionsSP",
+            "ChannelConnections",
+        ],
+        [
+            '"falcon_core/autotuner_interfaces/names/Channel_c_api.h"',
+            '"falcon_core/physics/device_structures/Connections_c_api.h"',
+        ],
+        [
+            "<falcon_core/physics/device_structures/Connections.hpp>",
+            "<falcon_core/autotuner_interfaces/names/Channel.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "GnameGroupPair": Entry(
+        Options.Pair,
+        [
+            "GnameHandle",
+            "falcon_core::autotuner_interfaces::names::Gname",
+            "falcon_core::autotuner_interfaces::names::GnameSP",
+            "GroupHandle",
+            "falcon_core::physics::config::core::Group",
+            "falcon_core::physics::config::core::GroupSP",
+            "GnameGroup",
+        ],
+        [
+            '"falcon_core/autotuner_interfaces/names/Gname_c_api.h"',
+            '"falcon_core/physics/config/core/Group_c_api.h"',
+        ],
+        [
+            "<falcon_core/autotuner_interfaces/names/Gname.hpp>",
+            "<falcon_core/physics/config/core/Group.hpp>",
+        ],
+        Path("generic"),
+    ),
     "ConnectionPairQuantityQuantityPair": Entry(
         Options.Pair,
         [
@@ -2044,6 +2124,58 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "ChannelConnectionsMap": Entry(
+        Options.Map,
+        [
+            "ChannelHandle",
+            "falcon_core::autotuner_interfaces::names::Channel",
+            "falcon_core::autotuner_interfaces::names::ChannelSP",
+            "ConnectionsHandle",
+            "falcon_core::physics::device_structures::Connections",
+            "falcon_core::physics::device_structures::ConnectionsSP",
+            "Channel",
+            "Connections",
+            "ChannelConnections",
+        ],
+        [
+            '"falcon_core/generic/PairChannelConnections_c_api.h"',
+            '"falcon_core/generic/ListChannel_c_api.h"',
+            '"falcon_core/generic/ListConnections_c_api.h"',
+            '"falcon_core/generic/ListPairChannelConnections_c_api.h"',
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/autotuner_interfaces/names/Channel.hpp>",
+            "<falcon_core/physics/device_structures/Connections.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "GnameGroupMap": Entry(
+        Options.Map,
+        [
+            "GnameHandle",
+            "falcon_core::autotuner_interfaces::names::Gname",
+            "falcon_core::autotuner_interfaces::names::GnameSP",
+            "GroupHandle",
+            "falcon_core::physics::config::core::Group",
+            "falcon_core::physics::config::core::GroupSP",
+            "Gname",
+            "Group",
+            "GnameGroup",
+        ],
+        [
+            '"falcon_core/generic/PairGnameGroup_c_api.h"',
+            '"falcon_core/generic/ListGname_c_api.h"',
+            '"falcon_core/generic/ListGroup_c_api.h"',
+            '"falcon_core/generic/ListPairGnameGroup_c_api.h"',
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/autotuner_interfaces/names/Gname.hpp>",
+            "<falcon_core/physics/config/core/Group.hpp>",
+        ],
+        Path("generic"),
+    ),
     "StringDoubleMap": Entry(
         Options.Map,
         [
@@ -2140,6 +2272,40 @@ registry: dict[str, Entry] = {
         ],
         [
             "<falcon_core/math/discrete_spaces/Discretizer.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "GnameList": Entry(
+        Options.List,
+        [
+            "GnameHandle",
+            "falcon_core::autotuner_interfaces::names::Gname",
+            "falcon_core::autotuner_interfaces::names::GnameSP",
+            "Gname",
+        ],
+        [
+            '"falcon_core/autotuner_interfaces/names/Gname_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/autotuner_interfaces/names/Gname.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "GroupList": Entry(
+        Options.List,
+        [
+            "GroupHandle",
+            "falcon_core::physics::config::core::Group",
+            "falcon_core::physics::config::core::GroupSP",
+            "Group",
+        ],
+        [
+            '"falcon_core/physics/config/core/Group_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/physics/config/core/Group.hpp>",
         ],
         Path("generic"),
     ),
@@ -2357,6 +2523,14 @@ entry_queue: list[str] = [
     "MapStringBoolList",
     "MapStringBoolAxes",
     "DotGateWithNeighborsList",
+    "GroupList",
+    "GnameList",
+    "ChannelConnectionsPair",
+    "PairChannelConnectionsList",
+    "ChannelConnectionsMap",
+    "GnameGroupPair",
+    "PairGnameGroupList",
+    "GnameGroupMap",
 ]
 
 
