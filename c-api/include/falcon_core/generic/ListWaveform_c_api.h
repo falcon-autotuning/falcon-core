@@ -13,7 +13,7 @@ typedef void* ListWaveformHandle;
 ListWaveformHandle ListWaveform_create_empty();
 ListWaveformHandle ListWaveform_allocate(size_t count);
 ListWaveformHandle ListWaveform_fill_value(size_t count, WaveformHandle value);
-ListWaveformHandle ListWaveform_create(const WaveformHandle* data, size_t count);
+ListWaveformHandle ListWaveform_create(WaveformHandle* data, size_t count);
 void ListWaveform_destroy(ListWaveformHandle handle);
 void ListWaveform_push_back(ListWaveformHandle handle, WaveformHandle value);
 size_t ListWaveform_size(ListWaveformHandle handle);

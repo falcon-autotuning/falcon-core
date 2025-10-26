@@ -12,7 +12,7 @@ typedef void* ListBoolHandle;
 ListBoolHandle ListBool_create_empty();
 ListBoolHandle ListBool_allocate(size_t count);
 ListBoolHandle ListBool_fill_value(size_t count, bool value);
-ListBoolHandle ListBool_create(const bool* data, size_t count);
+ListBoolHandle ListBool_create(bool* data, size_t count);
 void ListBool_destroy(ListBoolHandle handle);
 void ListBool_push_back(ListBoolHandle handle, bool value);
 size_t ListBool_size(ListBoolHandle handle);

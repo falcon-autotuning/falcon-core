@@ -12,7 +12,7 @@ typedef void* ListDoubleHandle;
 ListDoubleHandle ListDouble_create_empty();
 ListDoubleHandle ListDouble_allocate(size_t count);
 ListDoubleHandle ListDouble_fill_value(size_t count, double value);
-ListDoubleHandle ListDouble_create(const double* data, size_t count);
+ListDoubleHandle ListDouble_create(double* data, size_t count);
 void ListDouble_destroy(ListDoubleHandle handle);
 void ListDouble_push_back(ListDoubleHandle handle, double value);
 size_t ListDouble_size(ListDoubleHandle handle);

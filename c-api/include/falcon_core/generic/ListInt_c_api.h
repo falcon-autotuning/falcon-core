@@ -12,7 +12,7 @@ typedef void* ListIntHandle;
 ListIntHandle ListInt_create_empty();
 ListIntHandle ListInt_allocate(size_t count);
 ListIntHandle ListInt_fill_value(size_t count, int value);
-ListIntHandle ListInt_create(const int* data, size_t count);
+ListIntHandle ListInt_create(int* data, size_t count);
 void ListInt_destroy(ListIntHandle handle);
 void ListInt_push_back(ListIntHandle handle, int value);
 size_t ListInt_size(ListIntHandle handle);

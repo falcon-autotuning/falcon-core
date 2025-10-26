@@ -13,7 +13,7 @@ typedef void* ListConnectionHandle;
 ListConnectionHandle ListConnection_create_empty();
 ListConnectionHandle ListConnection_allocate(size_t count);
 ListConnectionHandle ListConnection_fill_value(size_t count, ConnectionHandle value);
-ListConnectionHandle ListConnection_create(const ConnectionHandle* data, size_t count);
+ListConnectionHandle ListConnection_create(ConnectionHandle* data, size_t count);
 void ListConnection_destroy(ListConnectionHandle handle);
 void ListConnection_push_back(ListConnectionHandle handle, ConnectionHandle value);
 size_t ListConnection_size(ListConnectionHandle handle);

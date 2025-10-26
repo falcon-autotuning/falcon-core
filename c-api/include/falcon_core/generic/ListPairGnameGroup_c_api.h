@@ -13,7 +13,7 @@ typedef void* ListPairGnameGroupHandle;
 ListPairGnameGroupHandle ListPairGnameGroup_create_empty();
 ListPairGnameGroupHandle ListPairGnameGroup_allocate(size_t count);
 ListPairGnameGroupHandle ListPairGnameGroup_fill_value(size_t count, PairGnameGroupHandle value);
-ListPairGnameGroupHandle ListPairGnameGroup_create(const PairGnameGroupHandle* data, size_t count);
+ListPairGnameGroupHandle ListPairGnameGroup_create(PairGnameGroupHandle* data, size_t count);
 void ListPairGnameGroup_destroy(ListPairGnameGroupHandle handle);
 void ListPairGnameGroup_push_back(ListPairGnameGroupHandle handle, PairGnameGroupHandle value);
 size_t ListPairGnameGroup_size(ListPairGnameGroupHandle handle);

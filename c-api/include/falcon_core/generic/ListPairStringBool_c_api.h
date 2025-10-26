@@ -13,7 +13,7 @@ typedef void* ListPairStringBoolHandle;
 ListPairStringBoolHandle ListPairStringBool_create_empty();
 ListPairStringBoolHandle ListPairStringBool_allocate(size_t count);
 ListPairStringBoolHandle ListPairStringBool_fill_value(size_t count, PairStringBoolHandle value);
-ListPairStringBoolHandle ListPairStringBool_create(const PairStringBoolHandle* data, size_t count);
+ListPairStringBoolHandle ListPairStringBool_create(PairStringBoolHandle* data, size_t count);
 void ListPairStringBool_destroy(ListPairStringBoolHandle handle);
 void ListPairStringBool_push_back(ListPairStringBoolHandle handle, PairStringBoolHandle value);
 size_t ListPairStringBool_size(ListPairStringBoolHandle handle);

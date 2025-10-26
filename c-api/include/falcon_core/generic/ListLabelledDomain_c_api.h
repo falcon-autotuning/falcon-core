@@ -13,7 +13,7 @@ typedef void* ListLabelledDomainHandle;
 ListLabelledDomainHandle ListLabelledDomain_create_empty();
 ListLabelledDomainHandle ListLabelledDomain_allocate(size_t count);
 ListLabelledDomainHandle ListLabelledDomain_fill_value(size_t count, LabelledDomainHandle value);
-ListLabelledDomainHandle ListLabelledDomain_create(const LabelledDomainHandle* data, size_t count);
+ListLabelledDomainHandle ListLabelledDomain_create(LabelledDomainHandle* data, size_t count);
 void ListLabelledDomain_destroy(ListLabelledDomainHandle handle);
 void ListLabelledDomain_push_back(ListLabelledDomainHandle handle, LabelledDomainHandle value);
 size_t ListLabelledDomain_size(ListLabelledDomainHandle handle);

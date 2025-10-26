@@ -13,7 +13,7 @@ typedef void* ListQuantityHandle;
 ListQuantityHandle ListQuantity_create_empty();
 ListQuantityHandle ListQuantity_allocate(size_t count);
 ListQuantityHandle ListQuantity_fill_value(size_t count, QuantityHandle value);
-ListQuantityHandle ListQuantity_create(const QuantityHandle* data, size_t count);
+ListQuantityHandle ListQuantity_create(QuantityHandle* data, size_t count);
 void ListQuantity_destroy(ListQuantityHandle handle);
 void ListQuantity_push_back(ListQuantityHandle handle, QuantityHandle value);
 size_t ListQuantity_size(ListQuantityHandle handle);

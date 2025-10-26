@@ -13,7 +13,7 @@ typedef void* ListControlArrayHandle;
 ListControlArrayHandle ListControlArray_create_empty();
 ListControlArrayHandle ListControlArray_allocate(size_t count);
 ListControlArrayHandle ListControlArray_fill_value(size_t count, ControlArrayHandle value);
-ListControlArrayHandle ListControlArray_create(const ControlArrayHandle* data, size_t count);
+ListControlArrayHandle ListControlArray_create(ControlArrayHandle* data, size_t count);
 void ListControlArray_destroy(ListControlArrayHandle handle);
 void ListControlArray_push_back(ListControlArrayHandle handle, ControlArrayHandle value);
 size_t ListControlArray_size(ListControlArrayHandle handle);

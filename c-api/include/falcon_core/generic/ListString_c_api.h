@@ -12,7 +12,7 @@ typedef void* ListStringHandle;
 ListStringHandle ListString_create_empty();
 ListStringHandle ListString_allocate(size_t count);
 ListStringHandle ListString_fill_value(size_t count, StringHandle value);
-ListStringHandle ListString_create(const StringHandle* data, size_t count);
+ListStringHandle ListString_create(StringHandle* data, size_t count);
 void ListString_destroy(ListStringHandle handle);
 void ListString_push_back(ListStringHandle handle, StringHandle value);
 size_t ListString_size(ListStringHandle handle);

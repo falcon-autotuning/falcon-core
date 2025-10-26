@@ -13,7 +13,7 @@ typedef void* ListPairStringDoubleHandle;
 ListPairStringDoubleHandle ListPairStringDouble_create_empty();
 ListPairStringDoubleHandle ListPairStringDouble_allocate(size_t count);
 ListPairStringDoubleHandle ListPairStringDouble_fill_value(size_t count, PairStringDoubleHandle value);
-ListPairStringDoubleHandle ListPairStringDouble_create(const PairStringDoubleHandle* data, size_t count);
+ListPairStringDoubleHandle ListPairStringDouble_create(PairStringDoubleHandle* data, size_t count);
 void ListPairStringDouble_destroy(ListPairStringDoubleHandle handle);
 void ListPairStringDouble_push_back(ListPairStringDoubleHandle handle, PairStringDoubleHandle value);
 size_t ListPairStringDouble_size(ListPairStringDoubleHandle handle);

@@ -13,7 +13,7 @@ typedef void* ListGnameHandle;
 ListGnameHandle ListGname_create_empty();
 ListGnameHandle ListGname_allocate(size_t count);
 ListGnameHandle ListGname_fill_value(size_t count, GnameHandle value);
-ListGnameHandle ListGname_create(const GnameHandle* data, size_t count);
+ListGnameHandle ListGname_create(GnameHandle* data, size_t count);
 void ListGname_destroy(ListGnameHandle handle);
 void ListGname_push_back(ListGnameHandle handle, GnameHandle value);
 size_t ListGname_size(ListGnameHandle handle);

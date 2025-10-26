@@ -13,7 +13,7 @@ typedef void* ListDotGateWithNeighborsHandle;
 ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create_empty();
 ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_allocate(size_t count);
 ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_fill_value(size_t count, DotGateWithNeighborsHandle value);
-ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create(const DotGateWithNeighborsHandle* data, size_t count);
+ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create(DotGateWithNeighborsHandle* data, size_t count);
 void ListDotGateWithNeighbors_destroy(ListDotGateWithNeighborsHandle handle);
 void ListDotGateWithNeighbors_push_back(ListDotGateWithNeighborsHandle handle, DotGateWithNeighborsHandle value);
 size_t ListDotGateWithNeighbors_size(ListDotGateWithNeighborsHandle handle);

@@ -13,7 +13,7 @@ typedef void* ListDiscretizerHandle;
 ListDiscretizerHandle ListDiscretizer_create_empty();
 ListDiscretizerHandle ListDiscretizer_allocate(size_t count);
 ListDiscretizerHandle ListDiscretizer_fill_value(size_t count, DiscretizerHandle value);
-ListDiscretizerHandle ListDiscretizer_create(const DiscretizerHandle* data, size_t count);
+ListDiscretizerHandle ListDiscretizer_create(DiscretizerHandle* data, size_t count);
 void ListDiscretizer_destroy(ListDiscretizerHandle handle);
 void ListDiscretizer_push_back(ListDiscretizerHandle handle, DiscretizerHandle value);
 size_t ListDiscretizer_size(ListDiscretizerHandle handle);

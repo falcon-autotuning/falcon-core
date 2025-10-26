@@ -13,7 +13,7 @@ typedef void* ListFArrayDoubleHandle;
 ListFArrayDoubleHandle ListFArrayDouble_create_empty();
 ListFArrayDoubleHandle ListFArrayDouble_allocate(size_t count);
 ListFArrayDoubleHandle ListFArrayDouble_fill_value(size_t count, FArrayDoubleHandle value);
-ListFArrayDoubleHandle ListFArrayDouble_create(const FArrayDoubleHandle* data, size_t count);
+ListFArrayDoubleHandle ListFArrayDouble_create(FArrayDoubleHandle* data, size_t count);
 void ListFArrayDouble_destroy(ListFArrayDoubleHandle handle);
 void ListFArrayDouble_push_back(ListFArrayDoubleHandle handle, FArrayDoubleHandle value);
 size_t ListFArrayDouble_size(ListFArrayDoubleHandle handle);

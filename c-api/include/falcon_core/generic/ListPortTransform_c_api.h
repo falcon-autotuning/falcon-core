@@ -13,7 +13,7 @@ typedef void* ListPortTransformHandle;
 ListPortTransformHandle ListPortTransform_create_empty();
 ListPortTransformHandle ListPortTransform_allocate(size_t count);
 ListPortTransformHandle ListPortTransform_fill_value(size_t count, PortTransformHandle value);
-ListPortTransformHandle ListPortTransform_create(const PortTransformHandle* data, size_t count);
+ListPortTransformHandle ListPortTransform_create(PortTransformHandle* data, size_t count);
 void ListPortTransform_destroy(ListPortTransformHandle handle);
 void ListPortTransform_push_back(ListPortTransformHandle handle, PortTransformHandle value);
 size_t ListPortTransform_size(ListPortTransformHandle handle);

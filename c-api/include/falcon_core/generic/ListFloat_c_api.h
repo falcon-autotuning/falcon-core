@@ -12,7 +12,7 @@ typedef void* ListFloatHandle;
 ListFloatHandle ListFloat_create_empty();
 ListFloatHandle ListFloat_allocate(size_t count);
 ListFloatHandle ListFloat_fill_value(size_t count, float value);
-ListFloatHandle ListFloat_create(const float* data, size_t count);
+ListFloatHandle ListFloat_create(float* data, size_t count);
 void ListFloat_destroy(ListFloatHandle handle);
 void ListFloat_push_back(ListFloatHandle handle, float value);
 size_t ListFloat_size(ListFloatHandle handle);

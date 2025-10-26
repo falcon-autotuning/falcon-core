@@ -12,7 +12,7 @@ typedef void* ListListSizeTHandle;
 ListListSizeTHandle ListListSizeT_create_empty();
 ListListSizeTHandle ListListSizeT_allocate(size_t count);
 ListListSizeTHandle ListListSizeT_fill_value(size_t count, ListSizeTHandle value);
-ListListSizeTHandle ListListSizeT_create(const ListSizeTHandle* data, size_t count);
+ListListSizeTHandle ListListSizeT_create(ListSizeTHandle* data, size_t count);
 void ListListSizeT_destroy(ListListSizeTHandle handle);
 void ListListSizeT_push_back(ListListSizeTHandle handle, ListSizeTHandle value);
 size_t ListListSizeT_size(ListListSizeTHandle handle);

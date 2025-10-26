@@ -13,7 +13,7 @@ typedef void* ListImpedanceHandle;
 ListImpedanceHandle ListImpedance_create_empty();
 ListImpedanceHandle ListImpedance_allocate(size_t count);
 ListImpedanceHandle ListImpedance_fill_value(size_t count, ImpedanceHandle value);
-ListImpedanceHandle ListImpedance_create(const ImpedanceHandle* data, size_t count);
+ListImpedanceHandle ListImpedance_create(ImpedanceHandle* data, size_t count);
 void ListImpedance_destroy(ListImpedanceHandle handle);
 void ListImpedance_push_back(ListImpedanceHandle handle, ImpedanceHandle value);
 size_t ListImpedance_size(ListImpedanceHandle handle);

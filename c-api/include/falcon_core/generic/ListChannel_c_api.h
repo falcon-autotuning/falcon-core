@@ -13,7 +13,7 @@ typedef void* ListChannelHandle;
 ListChannelHandle ListChannel_create_empty();
 ListChannelHandle ListChannel_allocate(size_t count);
 ListChannelHandle ListChannel_fill_value(size_t count, ChannelHandle value);
-ListChannelHandle ListChannel_create(const ChannelHandle* data, size_t count);
+ListChannelHandle ListChannel_create(ChannelHandle* data, size_t count);
 void ListChannel_destroy(ListChannelHandle handle);
 void ListChannel_push_back(ListChannelHandle handle, ChannelHandle value);
 size_t ListChannel_size(ListChannelHandle handle);

@@ -13,7 +13,7 @@ typedef void* ListPairConnectionDoubleHandle;
 ListPairConnectionDoubleHandle ListPairConnectionDouble_create_empty();
 ListPairConnectionDoubleHandle ListPairConnectionDouble_allocate(size_t count);
 ListPairConnectionDoubleHandle ListPairConnectionDouble_fill_value(size_t count, PairConnectionDoubleHandle value);
-ListPairConnectionDoubleHandle ListPairConnectionDouble_create(const PairConnectionDoubleHandle* data, size_t count);
+ListPairConnectionDoubleHandle ListPairConnectionDouble_create(PairConnectionDoubleHandle* data, size_t count);
 void ListPairConnectionDouble_destroy(ListPairConnectionDoubleHandle handle);
 void ListPairConnectionDouble_push_back(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle value);
 size_t ListPairConnectionDouble_size(ListPairConnectionDoubleHandle handle);

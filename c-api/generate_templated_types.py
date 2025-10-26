@@ -38,6 +38,7 @@ class Options(Enum):
     Pair = Template("Pair", 7)
     FArray = Template("FArray", 3)
     Axes = Template("Axes", 4)
+    LabelledArrays = Template("LabelledArrays", 4)
 
 
 class HeaderContext:
@@ -202,6 +203,8 @@ class Entry:
                 self.generate_farray_header()
             case Options.Axes.name:
                 self.generate_axes_header()
+            case Options.LabelledArrays.name:
+                self.generate_labelled_arrays_header()
             case _:
                 raise ValueError("Bad template")
 
@@ -217,6 +220,8 @@ class Entry:
                 self.generate_farray_implementation()
             case Options.Axes.name:
                 self.generate_axes_implementation()
+            case Options.LabelledArrays.name:
+                self.generate_labelled_arrays_implementation()
             case _:
                 raise ValueError("Bad template")
 
@@ -254,7 +259,7 @@ class Entry:
 {self.chandle()} {self.mangled_name()}_create_empty();
 {self.chandle()} {self.mangled_name()}_allocate(size_t count);
 {self.chandle()} {self.mangled_name()}_fill_value(size_t count, {c_type} value);
-{self.chandle()} {self.mangled_name()}_create(const {c_type}* data, size_t count);
+{self.chandle()} {self.mangled_name()}_create({c_type}* data, size_t count);
 void {self.mangled_name()}_destroy({self.chandle()} handle);
 void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value);
 size_t {self.mangled_name()}_size({self.chandle()} handle);
@@ -268,6 +273,59 @@ size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value);
 {self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other);
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);
+""")
+
+    def generate_labelled_arrays_header(self):
+        c_type = self.combo[0]
+        # cpp_type = self.combo[1]
+        with self.edit_header() as f:
+            f.write(f"""
+// Constructors
+{self.chandle()} {self.mangled_name()}_create(
+    List{c_type} arrays);
+
+// Destructor
+void {self.mangled_name()}_destroy(
+    {self.chandle()} handle);
+
+// Methods
+List{c_type} {self.mangled_name()}_arrays(
+    {self.chandle()} handle);
+ListAcquisitionContextHandle {self.mangled_name()}_labels(
+    {self.chandle()} handle);
+bool {self.mangled_name()}_isControlArrays(
+    {self.chandle()} handle);
+bool {self.mangled_name()}_isMeasuredArrays(
+    {self.chandle()} handle);
+void {self.mangled_name()}_push_back(
+    {self.chandle()} handle,
+    {c_type} value);
+size_t {self.mangled_name()}_size(
+    {self.chandle()} handle);
+bool {self.mangled_name()}_empty(
+    {self.chandle()} handle);
+void {self.mangled_name()}_erase_at(
+    {self.chandle()} handle, size_t idx);
+void {self.mangled_name()}_clear(
+    {self.chandle()} handle);
+{c_type} {self.mangled_name()}_at(
+    {self.chandle()} handle, size_t idx);
+bool {self.mangled_name()}_contains(
+    {self.chandle()} handle,
+    {c_type} value);
+size_t {self.mangled_name()}_index(
+    {self.chandle()} handle,
+    {c_type} value);
+{self.chandle()}
+{self.mangled_name()}_intersection(
+    {self.chandle()} handle,
+    {self.chandle()} other);
+bool {self.mangled_name()}_equal(
+    {self.chandle()} handle,
+    {self.chandle()} other);
+bool {self.mangled_name()}_not_equal(
+    {self.chandle()} handle,
+    {self.chandle()} other);
 """)
 
     def generate_axes_header(self):
@@ -525,6 +583,104 @@ StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) 
 }}
 """)
 
+    def generate_labelled_arrays_implementation(self):
+        c_type = self.combo[0]
+        cpp_type = self.combo[1]
+        with self.edit_implementation() as f:
+            f.write(f"""
+{self.chandle()} {self.mangled_name()}_create(
+    List{c_type} arrays) {{
+    auto list = static_cast<falcon_core::generic::List<{cpp_type}>*>(arrays);
+    return new falcon_core::math::arrays::LabelledArrays<{cpp_type}>(list->items());
+}}
+
+void {self.mangled_name()}_destroy({self.chandle()} handle) {{
+    delete static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle);
+}}
+
+List{c_type} {self.mangled_name()}_arrays(
+    {self.chandle()} handle) {{
+    return new falcon_core::generic::List<{cpp_type}>(static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->items());
+}}
+
+ListAcquisitionContextHandle {self.mangled_name()}_labels(
+    {self.chandle()} handle) {{
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(*static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->labels());
+}}
+
+bool {self.mangled_name()}_isControlArrays(
+    {self.chandle()} handle) {{
+    return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->isControlArrays();
+}}
+
+bool {self.mangled_name()}_isMeasuredArrays(
+    {self.chandle()} handle) {{
+    return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->isMeasuredArrays();
+}}
+
+{c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx) {{
+    auto obj = static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->at(idx);
+    return new {cpp_type}(*obj);
+}}
+
+{self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other) {{
+    auto listA = static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle);
+    auto listB = static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(other);
+    falcon_core::generic::ListSP<{cpp_type}> result = listA->intersection(std::make_shared<falcon_core::math::arrays::LabelledArrays<{cpp_type}>>(*listB));
+    return new falcon_core::math::arrays::LabelledArrays<{cpp_type}>(result->items());
+}}
+
+size_t {self.mangled_name()}_size({self.chandle()} handle) {{
+    return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->size();
+}}
+
+bool {self.mangled_name()}_empty({self.chandle()} handle) {{
+    return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->empty();
+}}
+
+void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx) {{
+    static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->erase_at(idx);
+}}
+
+void {self.mangled_name()}_clear({self.chandle()} handle) {{
+    static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->clear();
+}}
+
+void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value) {{
+    auto stored_obj = std::shared_ptr<{cpp_type}>(static_cast<{cpp_type}*>(value), []({cpp_type}*) {{}} );
+    static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->push_back(stored_obj);
+}}
+
+bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value) {{
+    auto stored_obj = std::shared_ptr<{cpp_type}>(static_cast<{cpp_type}*>(value), []({cpp_type}*) {{}} );
+    return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->contains(stored_obj);
+}}
+
+size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value) {{
+    auto stored_obj = std::shared_ptr<{cpp_type}>(static_cast<{cpp_type}*>(value), []({cpp_type}*) {{}} );
+    return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->index(stored_obj);
+}}
+
+bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other) {{
+    auto listA = static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle);
+    auto listB = static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(other);
+    return *listA == *listB;
+}}
+
+bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other) {{
+    return !{self.mangled_name()}_equal(handle, other);
+}}
+
+StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+    std::string json = static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->to_json_string();
+    return String_create(json.c_str(), json.size());
+}}
+{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
+  auto ptr = falcon_core::math::arrays::LabelledArrays<{cpp_type}>::from_json_string<falcon_core::math::arrays::LabelledArrays<{cpp_type}>>(json->raw);
+  return new falcon_core::math::arrays::LabelledArrays<{cpp_type}>(*ptr);
+}}
+""")
+
     def generate_axes_implementation(self):
         c_type = self.combo[0]
         cpp_real = self.combo[1]
@@ -659,10 +815,10 @@ StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) 
     def generate_pair_implementation(self):
         c_type_1 = self.combo[0]
         cpp_real_1 = self.combo[1]
-        cpp_stored_1 = self.combo[2]
+        # cpp_stored_1 = self.combo[2]
         c_type_2 = self.combo[3]
         cpp_real_2 = self.combo[4]
-        cpp_stored_2 = self.combo[5]
+        # cpp_stored_2 = self.combo[5]
         is_primitive_1 = c_type_1 in c_primitives
         is_primitive_2 = c_type_2 in c_primitives
         with self.edit_implementation() as f:
@@ -741,10 +897,10 @@ std::string json = static_cast<falcon_core::generic::Pair<{cpp_real_1},{cpp_real
     def generate_map_implementation(self):
         c_key_type = self.combo[0]
         cpp_key_type = self.combo[1]
-        cpp_stored_key_type = self.combo[2]
+        # cpp_stored_key_type = self.combo[2]
         c_value_type = self.combo[3]
         cpp_value_type = self.combo[4]
-        cpp_stored_value_type = self.combo[5]
+        # cpp_stored_value_type = self.combo[5]
         key_name = self.combo[6]
         value_name = self.combo[7]
         name = self.combo[8]
@@ -761,7 +917,12 @@ auto correct_key = std::make_shared<{cpp_key_type}>(temp_key);"""
             correct_value = (
                 "auto correct_value = std::string(value->raw, value->length);"
             )
-            at_return = "return String_wrap(static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->at(correct_key)"
+            at_return = f"""
+  auto string =
+      static_cast<falcon_core::generic::Map<{cpp_key_type}, {cpp_value_type}>*>(handle)
+          ->at(correct_key);
+  return String_create(string.data(), string.size());
+            """
         elif not is_primitive_value:
             correct_value = f"""auto temp_value = *static_cast<{cpp_value_type}*>(value);
 auto correct_value = std::make_shared<{cpp_value_type}>(temp_value);"""
@@ -1788,6 +1949,74 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "LabelledControlArrayList": Entry(
+        Options.List,
+        [
+            "LabelledControlArrayHandle",
+            "falcon_core::math::arrays::LabelledControlArray",
+            "falcon_core::math::arrays::LabelledControlArraySP",
+            "LabelledControlArray",
+        ],
+        [
+            '"falcon_core/math/arrays/LabelledControlArray_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/math/arrays/LabelledControlArray.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "LabelledControlArray1DList": Entry(
+        Options.List,
+        [
+            "LabelledControlArray1DHandle",
+            "falcon_core::math::arrays::LabelledControlArray1D",
+            "falcon_core::math::arrays::LabelledControlArray1DSP",
+            "LabelledControlArray1D",
+        ],
+        [
+            '"falcon_core/math/arrays/LabelledControlArray1D_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/math/arrays/LabelledControlArray1D.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "LabelledMeasuredArrayList": Entry(
+        Options.List,
+        [
+            "LabelledMeasuredArrayHandle",
+            "falcon_core::math::arrays::LabelledMeasuredArray",
+            "falcon_core::math::arrays::LabelledMeasuredArraySP",
+            "LabelledMeasuredArray",
+        ],
+        [
+            '"falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/math/arrays/LabelledMeasuredArray.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "LabelledMeasuredArray1DList": Entry(
+        Options.List,
+        [
+            "LabelledMeasuredArray1DHandle",
+            "falcon_core::math::arrays::LabelledMeasuredArray1D",
+            "falcon_core::math::arrays::LabelledMeasuredArray1DSP",
+            "LabelledMeasuredArray1D",
+        ],
+        [
+            '"falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/math/arrays/LabelledMeasuredArray1D.hpp>",
+        ],
+        Path("generic"),
+    ),
     "DotGateWithNeighborsList": Entry(
         Options.List,
         [
@@ -1853,6 +2082,23 @@ registry: dict[str, Entry] = {
         ],
         [
             "<falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "AcquisitionContextList": Entry(
+        Options.List,
+        [
+            "AcquisitionContextHandle",
+            "falcon_core::autotuner_interfaces::contexts::AcquisitionContext",
+            "falcon_core::autotuner_interfaces::contexts::AcquisitionContextSP",
+            "AcquisitionContext",
+        ],
+        [
+            '"falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp>",
         ],
         Path("generic"),
     ),
@@ -1928,6 +2174,23 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "PairStringStringList": Entry(
+        Options.List,
+        [
+            "PairStringStringHandle",
+            "falcon_core::generic::Pair<std::string, std::string>",
+            "falcon_core::generic::PairSP<std::string, std::string>",
+            "PairStringString",
+        ],
+        [
+            '"falcon_core/generic/PairStringString_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+        ],
+        Path("generic"),
+    ),
     "StringDoublePair": Entry(
         Options.Pair,
         [
@@ -1938,6 +2201,24 @@ registry: dict[str, Entry] = {
             "double",
             "double",
             "StringDouble",
+        ],
+        [
+            "<cstddef>",
+            '"falcon_core/generic/String_c_api.h"',
+        ],
+        [],
+        Path("generic"),
+    ),
+    "StringStringPair": Entry(
+        Options.Pair,
+        [
+            "StringHandle",
+            "std::string",
+            "std::string",
+            "StringHandle",
+            "std::string",
+            "std::string",
+            "StringString",
         ],
         [
             "<cstddef>",
@@ -2029,6 +2310,27 @@ registry: dict[str, Entry] = {
         [
             "<falcon_core/physics/device_structures/Connections.hpp>",
             "<falcon_core/autotuner_interfaces/names/Channel.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "MeasurementResponseMeasurementRequestPair": Entry(
+        Options.Pair,
+        [
+            "MeasurementResponseHandle",
+            "falcon_core::communications::messages::MeasurementResponse",
+            "falcon_core::communications::messages::MeasurementResponseSP",
+            "MeasurementRequestHandle",
+            "falcon_core::communications::messages::MeasurementRequest",
+            "falcon_core::communications::messages::MeasurementRequestSP",
+            "MeasurementResponseMeasurementRequest",
+        ],
+        [
+            '"falcon_core/communications/messages/MeasurementResponse_c_api.h"',
+            '"falcon_core/communications/messages/MeasurementRequest_c_api.h"',
+        ],
+        [
+            "<falcon_core/communications/messages/MeasurementResponse.hpp>",
+            "<falcon_core/communications/messages/MeasurementRequest.hpp>",
         ],
         Path("generic"),
     ),
@@ -2315,6 +2617,29 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "StringStringMap": Entry(
+        Options.Map,
+        [
+            "StringHandle",
+            "std::string",
+            "std::string",
+            "StringHandle",
+            "std::string",
+            "std::string",
+            "String",
+            "String",
+            "StringString",
+        ],
+        [
+            '"falcon_core/generic/ListPairStringString_c_api.h"',
+            '"falcon_core/generic/ListString_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+        ],
+        Path("generic"),
+    ),
     "StringBoolMap": Entry(
         Options.Map,
         [
@@ -2496,6 +2821,82 @@ registry: dict[str, Entry] = {
         ],
         Path("math"),
     ),
+    "LabelledControlArrayAxes": Entry(
+        Options.Axes,
+        [
+            "LabelledControlArrayHandle",
+            "falcon_core::math::arrays::LabelledControlArray",
+            "falcon_core::math::arrays::LabelledControlArraySP",
+            "LabelledControlArray",
+        ],
+        [
+            '"falcon_core/math/arrays/LabelledControlArray_c_api.h"',
+            '"falcon_core/generic/ListLabelledControlArray_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/math/arrays/LabelledControlArray.hpp>",
+        ],
+        Path("math"),
+    ),
+    "LabelledControlArray1DAxes": Entry(
+        Options.Axes,
+        [
+            "LabelledControlArray1DHandle",
+            "falcon_core::math::arrays::LabelledControlArray1D",
+            "falcon_core::math::arrays::LabelledControlArray1DSP",
+            "LabelledControlArray1D",
+        ],
+        [
+            '"falcon_core/math/arrays/LabelledControlArray1D_c_api.h"',
+            '"falcon_core/generic/ListLabelledControlArray1D_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/math/arrays/LabelledControlArray1D.hpp>",
+        ],
+        Path("math"),
+    ),
+    "LabelledMeasuredArrayAxes": Entry(
+        Options.Axes,
+        [
+            "LabelledMeasuredArrayHandle",
+            "falcon_core::math::arrays::LabelledMeasuredArray",
+            "falcon_core::math::arrays::LabelledMeasuredArraySP",
+            "LabelledMeasuredArray",
+        ],
+        [
+            '"falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"',
+            '"falcon_core/generic/ListLabelledMeasuredArray_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/math/arrays/LabelledMeasuredArray.hpp>",
+        ],
+        Path("math"),
+    ),
+    "LabelledMeasuredArray1DAxes": Entry(
+        Options.Axes,
+        [
+            "LabelledMeasuredArray1DHandle",
+            "falcon_core::math::arrays::LabelledMeasuredArray1D",
+            "falcon_core::math::arrays::LabelledMeasuredArray1DSP",
+            "LabelledMeasuredArray1D",
+        ],
+        [
+            '"falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h"',
+            '"falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/math/arrays/LabelledMeasuredArray1D.hpp>",
+        ],
+        Path("math"),
+    ),
     "ControlArray1DAxes": Entry(
         Options.Axes,
         [
@@ -2590,6 +2991,86 @@ registry: dict[str, Entry] = {
         ],
         Path("math"),
     ),
+    "LabelledControlArrayLabelledArrays": Entry(
+        Options.LabelledArrays,
+        [
+            "LabelledControlArrayHandle",
+            "falcon_core::math::arrays::LabelledControlArray",
+            "falcon_core::math::arrays::LabelledControlArraySP",
+            "LabelledControlArray",
+        ],
+        [
+            '"falcon_core/generic/ListLabelledControlArray_c_api.h"',
+            '"falcon_core/generic/ListAcquisitionContext_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/math/arrays/LabelledArrays.hpp>",
+            "<falcon_core/math/arrays/LabelledControlArray.hpp>",
+        ],
+        Path("math/arrays"),
+    ),
+    "LabelledControlArray1DLabelledArrays": Entry(
+        Options.LabelledArrays,
+        [
+            "LabelledControlArray1DHandle",
+            "falcon_core::math::arrays::LabelledControlArray1D",
+            "falcon_core::math::arrays::LabelledControlArray1DSP",
+            "LabelledControlArray1D",
+        ],
+        [
+            '"falcon_core/generic/ListLabelledControlArray1D_c_api.h"',
+            '"falcon_core/generic/ListAcquisitionContext_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/math/arrays/LabelledArrays.hpp>",
+            "<falcon_core/math/arrays/LabelledControlArray1D.hpp>",
+        ],
+        Path("math/arrays"),
+    ),
+    "LabelledMeasuredArrayLabelledArrays": Entry(
+        Options.LabelledArrays,
+        [
+            "LabelledMeasuredArrayHandle",
+            "falcon_core::math::arrays::LabelledMeasuredArray",
+            "falcon_core::math::arrays::LabelledMeasuredArraySP",
+            "LabelledMeasuredArray",
+        ],
+        [
+            '"falcon_core/generic/ListLabelledMeasuredArray_c_api.h"',
+            '"falcon_core/generic/ListAcquisitionContext_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/math/arrays/LabelledArrays.hpp>",
+            "<falcon_core/math/arrays/LabelledMeasuredArray.hpp>",
+        ],
+        Path("math/arrays"),
+    ),
+    "LabelledMeasuredArray1DLabelledArrays": Entry(
+        Options.LabelledArrays,
+        [
+            "LabelledMeasuredArray1DHandle",
+            "falcon_core::math::arrays::LabelledMeasuredArray1D",
+            "falcon_core::math::arrays::LabelledMeasuredArray1DSP",
+            "LabelledMeasuredArray1D",
+        ],
+        [
+            '"falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h"',
+            '"falcon_core/generic/ListAcquisitionContext_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/List.hpp>",
+            "<falcon_core/math/arrays/LabelledArrays.hpp>",
+            "<falcon_core/math/arrays/LabelledMeasuredArray1D.hpp>",
+        ],
+        Path("math/arrays"),
+    ),
 }
 entry_queue: list[str] = [
     "SizeTList",
@@ -2672,6 +3153,23 @@ entry_queue: list[str] = [
     "InstrumentPortPortTransformPair",
     "PairInstrumentPortPortTransformList",
     "InstrumentPortPortTransformMap",
+    "LabelledControlArrayList",
+    "LabelledControlArrayAxes",
+    "AcquisitionContextList",
+    "LabelledControlArrayLabelledArrays",
+    "LabelledControlArray1DList",
+    "LabelledControlArray1DAxes",
+    "LabelledControlArray1DLabelledArrays",
+    "LabelledMeasuredArrayList",
+    "LabelledMeasuredArrayAxes",
+    "LabelledMeasuredArrayLabelledArrays",
+    "LabelledMeasuredArray1DList",
+    "LabelledMeasuredArray1DAxes",
+    "LabelledMeasuredArray1DLabelledArrays",
+    "StringStringPair",
+    "PairStringStringList",
+    "StringStringMap",
+    "MeasurementResponseMeasurementRequestPair",
 ]
 
 

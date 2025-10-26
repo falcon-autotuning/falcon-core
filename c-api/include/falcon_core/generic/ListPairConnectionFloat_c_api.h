@@ -13,7 +13,7 @@ typedef void* ListPairConnectionFloatHandle;
 ListPairConnectionFloatHandle ListPairConnectionFloat_create_empty();
 ListPairConnectionFloatHandle ListPairConnectionFloat_allocate(size_t count);
 ListPairConnectionFloatHandle ListPairConnectionFloat_fill_value(size_t count, PairConnectionFloatHandle value);
-ListPairConnectionFloatHandle ListPairConnectionFloat_create(const PairConnectionFloatHandle* data, size_t count);
+ListPairConnectionFloatHandle ListPairConnectionFloat_create(PairConnectionFloatHandle* data, size_t count);
 void ListPairConnectionFloat_destroy(ListPairConnectionFloatHandle handle);
 void ListPairConnectionFloat_push_back(ListPairConnectionFloatHandle handle, PairConnectionFloatHandle value);
 size_t ListPairConnectionFloat_size(ListPairConnectionFloatHandle handle);
