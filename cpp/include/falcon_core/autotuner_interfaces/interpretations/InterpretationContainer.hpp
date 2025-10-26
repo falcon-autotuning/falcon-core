@@ -14,6 +14,7 @@ class InterpretationContainer
   physics::units::SymbolUnitSP _unit;
 
  protected:
+  InterpretationContainer() = default;
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
@@ -22,7 +23,6 @@ class InterpretationContainer
   }
 
  public:
-  InterpretationContainer() = default;
   /**
    * @brief A container for interpretations of the contents.
    * @param contexts The list of contexts.
@@ -186,6 +186,9 @@ class InterpretationContainer
     return result;
   }
 };
+template <typename Value>
+using InterpretationContainerSP =
+    std::shared_ptr<InterpretationContainer<Value>>;
 }  // namespace interpretations
 }  // namespace autotuner_interfaces
 }  // namespace falcon_core

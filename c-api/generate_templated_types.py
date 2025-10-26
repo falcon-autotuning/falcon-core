@@ -39,6 +39,7 @@ class Options(Enum):
     FArray = Template("FArray", 3)
     Axes = Template("Axes", 4)
     LabelledArrays = Template("LabelledArrays", 4)
+    InterpretationContainer = Template("InterpretationContainer", 4)
 
 
 class HeaderContext:
@@ -205,6 +206,8 @@ class Entry:
                 self.generate_axes_header()
             case Options.LabelledArrays.name:
                 self.generate_labelled_arrays_header()
+            case Options.InterpretationContainer.name:
+                self.generate_interpretation_container_header()
             case _:
                 raise ValueError("Bad template")
 
@@ -222,6 +225,8 @@ class Entry:
                 self.generate_axes_implementation()
             case Options.LabelledArrays.name:
                 self.generate_labelled_arrays_implementation()
+            case Options.InterpretationContainer.name:
+                self.generate_interpretation_container_implementation()
             case _:
                 raise ValueError("Bad template")
 
@@ -326,6 +331,50 @@ bool {self.mangled_name()}_equal(
 bool {self.mangled_name()}_not_equal(
     {self.chandle()} handle,
     {self.chandle()} other);
+""")
+
+    def generate_interpretation_container_header(self):
+        c_value_type = self.combo[3]
+        value_name = self.combo[7]
+        with self.edit_header() as f:
+            f.write(f"""
+SymbolUnitHandle {self.mangled_name()}_unit(
+     {self.chandle()} handle);
+ListInterpretationContextHandle {self.mangled_name()}_select_by_connection(
+    {self.chandle()} handle, ConnectionHandle connection);
+ListInterpretationContextHandle {self.mangled_name()}_select_by_connections(
+                    {self.chandle()} handle, ConnectionsHandle connections);
+ListInterpretationContextHandle {self.mangled_name()}_select_by_independent_connection(
+                    {self.chandle()} handle, ConnectionHandle connection);
+ListInterpretationContextHandle {self.mangled_name()}_select_by_dependent_connection(
+                    {self.chandle()} handle, ConnectionHandle connection);
+ListInterpretationContextHandle {self.mangled_name()}_select_contexts(
+    {self.chandle()} handle,
+    ListConnectionHandle                independent_connections,
+    ListConnectionHandle                dependent_connections);
+void {self.mangled_name()}_insert_or_assign({self.chandle()} handle,
+    const InterpretationContextHandle   key,
+    const {c_value_type} value);
+void {self.mangled_name()}_insert(
+    {self.chandle()} handle,
+    const InterpretationContextHandle   key,
+    const {c_value_type} value);
+double {self.mangled_name()}_at({self.chandle()} handle,
+    const InterpretationContextHandle   key);
+void {self.mangled_name()}_erase({self.chandle()} handle,
+    const InterpretationContextHandle   key);
+size_t {self.mangled_name()}_size({self.chandle()} handle);
+bool {self.mangled_name()}_empty({self.chandle()} handle);
+void {self.mangled_name()}_clear({self.chandle()} handle);
+bool {self.mangled_name()}_contains({self.chandle()} handle,
+    const InterpretationContextHandle   key);
+ListInterpretationContextHandle {self.mangled_name()}_keys(
+                    {self.chandle()} handle);
+List{value_name}Handle {self.mangled_name()}_values({self.chandle()} handle);
+ListPairInterpretationContext{value_name}Handle {self.mangled_name()}_items(
+                    {self.chandle()} handle);
+bool {self.mangled_name()}_equal({self.chandle()} handle,{self.chandle()} other);
+bool {self.mangled_name()}_not_equal({self.chandle()} handle,{self.chandle()} other);
 """)
 
     def generate_axes_header(self):
@@ -1645,6 +1694,24 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "PairInterpretationContextDoubleList": Entry(
+        Options.List,
+        [
+            "PairInterpretationContextDoubleHandle",
+            "falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>",
+            "falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>",
+            "PairInterpretationContextDouble",
+        ],
+        [
+            '"falcon_core/generic/PairInterpretationContextDouble_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>",
+        ],
+        Path("generic"),
+    ),
     "PairConnectionConnectionsList": Entry(
         Options.List,
         [
@@ -1770,6 +1837,25 @@ registry: dict[str, Entry] = {
         ],
         ['"falcon_core/physics/device_structures/Connection_c_api.h"'],
         ["<falcon_core/physics/device_structures/Connection.hpp>"],
+        Path("generic"),
+    ),
+    "InterpretationContextDoublePair": Entry(
+        Options.Pair,
+        [
+            "InterpretationContextHandle",
+            "falcon_core::autotuner_interfaces::interpretations::InterpretationContext",
+            "falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP",
+            "double",
+            "double",
+            "double",
+            "InterpretationContextDouble",
+        ],
+        [
+            '"falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"',
+        ],
+        [
+            "<falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>",
+        ],
         Path("generic"),
     ),
     "QuantityQuantityPair": Entry(
@@ -2082,6 +2168,23 @@ registry: dict[str, Entry] = {
         ],
         [
             "<falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "InterpretationContextList": Entry(
+        Options.List,
+        [
+            "InterpretationContextHandle",
+            "falcon_core::autotuner_interfaces::interpretations::InterpretationContext",
+            "falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP",
+            "InterpretationContext",
+        ],
+        [
+            '"falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>",
         ],
         Path("generic"),
     ),
@@ -2486,6 +2589,31 @@ registry: dict[str, Entry] = {
         [
             "<falcon_core/generic/Pair.hpp>",
             "<falcon_core/physics/device_structures/Connection.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "InterpretationContextDoubleMap": Entry(
+        Options.Map,
+        [
+            "InterpretationContextHandle",
+            "falcon_core::autotuner_interfaces::interpretations::InterpretationContext",
+            "falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP",
+            "double",
+            "double",
+            "double",
+            "InterpretationContext",
+            "Double",
+            "InterpretationContextDouble",
+        ],
+        [
+            '"falcon_core/generic/PairInterpretationContextDouble_c_api.h"',
+            '"falcon_core/generic/ListDouble_c_api.h"',
+            '"falcon_core/generic/ListInterpretationContext_c_api.h"',
+            '"falcon_core/generic/ListPairInterpretationContextDouble_c_api.h"',
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>",
         ],
         Path("generic"),
     ),
@@ -3170,6 +3298,10 @@ entry_queue: list[str] = [
     "PairStringStringList",
     "StringStringMap",
     "MeasurementResponseMeasurementRequestPair",
+    "InterpretationContextList",
+    "InterpretationContextDoublePair",
+    "PairInterpretationContextDoubleList",
+    "InterpretationContextDoubleMap",
 ]
 
 
