@@ -17,7 +17,7 @@ ListSizeTHandle ListSizeT_allocate(size_t count) {
         falcon_core::generic::List<size_t>(count));
 }
 
-ListSizeTHandle ListSizeT_create(const size_t* data, size_t count) {
+ListSizeTHandle ListSizeT_create(size_t* data, size_t count) {
     std::vector<size_t> vec;
     vec.insert(vec.end(), data, data + count);
     return new falcon_core::generic::List<size_t>(

@@ -18,7 +18,7 @@ ListPairStringDoubleHandle ListPairStringDouble_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>(count));
 }
 
-ListPairStringDoubleHandle ListPairStringDouble_create(const PairStringDoubleHandle* data, size_t count) {
+ListPairStringDoubleHandle ListPairStringDouble_create(PairStringDoubleHandle* data, size_t count) {
     std::vector<falcon_core::generic::PairSP<std::string, double>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

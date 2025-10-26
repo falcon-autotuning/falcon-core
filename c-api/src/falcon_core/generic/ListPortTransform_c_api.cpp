@@ -18,7 +18,7 @@ ListPortTransformHandle ListPortTransform_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::instrument_interfaces::port_transforms::PortTransform>(count));
 }
 
-ListPortTransformHandle ListPortTransform_create(const PortTransformHandle* data, size_t count) {
+ListPortTransformHandle ListPortTransform_create(PortTransformHandle* data, size_t count) {
     std::vector<falcon_core::instrument_interfaces::port_transforms::PortTransformSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

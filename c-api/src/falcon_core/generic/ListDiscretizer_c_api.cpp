@@ -18,7 +18,7 @@ ListDiscretizerHandle ListDiscretizer_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>(count));
 }
 
-ListDiscretizerHandle ListDiscretizer_create(const DiscretizerHandle* data, size_t count) {
+ListDiscretizerHandle ListDiscretizer_create(DiscretizerHandle* data, size_t count) {
     std::vector<falcon_core::math::discrete_spaces::DiscretizerSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

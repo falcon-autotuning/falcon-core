@@ -18,7 +18,7 @@ ListConnectionHandle ListConnection_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::physics::device_structures::Connection>(count));
 }
 
-ListConnectionHandle ListConnection_create(const ConnectionHandle* data, size_t count) {
+ListConnectionHandle ListConnection_create(ConnectionHandle* data, size_t count) {
     std::vector<falcon_core::physics::device_structures::ConnectionSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

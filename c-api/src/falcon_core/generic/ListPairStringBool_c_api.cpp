@@ -18,7 +18,7 @@ ListPairStringBoolHandle ListPairStringBool_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::generic::Pair<std::string, bool>>(count));
 }
 
-ListPairStringBoolHandle ListPairStringBool_create(const PairStringBoolHandle* data, size_t count) {
+ListPairStringBoolHandle ListPairStringBool_create(PairStringBoolHandle* data, size_t count) {
     std::vector<falcon_core::generic::PairSP<std::string, bool>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

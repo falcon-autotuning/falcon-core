@@ -18,7 +18,7 @@ ListDeviceVoltageStateHandle ListDeviceVoltageState_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>(count));
 }
 
-ListDeviceVoltageStateHandle ListDeviceVoltageState_create(const DeviceVoltageStateHandle* data, size_t count) {
+ListDeviceVoltageStateHandle ListDeviceVoltageState_create(DeviceVoltageStateHandle* data, size_t count) {
     std::vector<falcon_core::communications::voltage_states::DeviceVoltageStateSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

@@ -18,7 +18,7 @@ ListFArrayDoubleHandle ListFArrayDouble_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::generic::FArray<double>>(count));
 }
 
-ListFArrayDoubleHandle ListFArrayDouble_create(const FArrayDoubleHandle* data, size_t count) {
+ListFArrayDoubleHandle ListFArrayDouble_create(FArrayDoubleHandle* data, size_t count) {
     std::vector<falcon_core::generic::FArraySP<double>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

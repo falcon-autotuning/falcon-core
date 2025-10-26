@@ -18,7 +18,7 @@ ListImpedanceHandle ListImpedance_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>(count));
 }
 
-ListImpedanceHandle ListImpedance_create(const ImpedanceHandle* data, size_t count) {
+ListImpedanceHandle ListImpedance_create(ImpedanceHandle* data, size_t count) {
     std::vector<falcon_core::physics::device_structures::ImpedanceSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

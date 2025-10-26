@@ -1261,7 +1261,7 @@ registry: dict[str, Entry] = {
         Options.List,
         [
             "PortTransformHandle",
-            "falcon_core::instrument_interfaces::port_transforma::PortTransform",
+            "falcon_core::instrument_interfaces::port_transforms::PortTransform",
             "falcon_core::instrument_interfaces::port_transforms::PortTransformSP",
             "PortTransform",
         ],
@@ -1856,6 +1856,23 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "WaveformList": Entry(
+        Options.List,
+        [
+            "WaveformHandle",
+            "falcon_core::instrument_interfaces::Waveform",
+            "falcon_core::instrument_interfaces::WaveformSP",
+            "Waveform",
+        ],
+        [
+            '"falcon_core/instrument_interfaces/Waveform_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/instrument_interfaces/Waveform.hpp>",
+        ],
+        Path("generic"),
+    ),
     "MapStringBoolList": Entry(
         Options.List,
         [
@@ -1889,6 +1906,25 @@ registry: dict[str, Entry] = {
             "<falcon_core/generic/Pair.hpp>",
             "<falcon_core/physics/device_structures/Connection.hpp>",
             "<falcon_core/math/Quantity.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "PairInstrumentPortPortTransformList": Entry(
+        Options.List,
+        [
+            "PairInstrumentPortPortTransformHandle",
+            "falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>",
+            "falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>",
+            "PairInstrumentPortPortTransform",
+        ],
+        [
+            '"falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"',
+            "<cstddef>",
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/instrument_interfaces/names/InstrumentPort.hpp>",
+            "<falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp>",
         ],
         Path("generic"),
     ),
@@ -1993,6 +2029,27 @@ registry: dict[str, Entry] = {
         [
             "<falcon_core/physics/device_structures/Connections.hpp>",
             "<falcon_core/autotuner_interfaces/names/Channel.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "InstrumentPortPortTransformPair": Entry(
+        Options.Pair,
+        [
+            "InstrumentPortHandle",
+            "falcon_core::instrument_interfaces::names::InstrumentPort",
+            "falcon_core::instrument_interfaces::names::InstrumentPortSP",
+            "PortTransformHandle",
+            "falcon_core::instrument_interfaces::port_transforms::PortTransform",
+            "falcon_core::instrument_interfaces::port_transforms::PortTransformSP",
+            "InstrumentPortPortTransform",
+        ],
+        [
+            '"falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"',
+            '"falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"',
+        ],
+        [
+            "<falcon_core/instrument_interfaces/names/InstrumentPort.hpp>",
+            "<falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp>",
         ],
         Path("generic"),
     ),
@@ -2179,6 +2236,32 @@ registry: dict[str, Entry] = {
             "<falcon_core/generic/Pair.hpp>",
             "<falcon_core/autotuner_interfaces/names/Channel.hpp>",
             "<falcon_core/physics/device_structures/Connections.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "InstrumentPortPortTransformMap": Entry(
+        Options.Map,
+        [
+            "InstrumentPortHandle",
+            "falcon_core::instrument_interfaces::names::InstrumentPort",
+            "falcon_core::instrument_interfaces::names::InstrumentPortSP",
+            "PortTransformHandle",
+            "falcon_core::instrument_interfaces::port_transforms::PortTransform",
+            "falcon_core::instrument_interfaces::port_transforms::PortTransformSP",
+            "InstrumentPort",
+            "PortTransform",
+            "InstrumentPortPortTransform",
+        ],
+        [
+            '"falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"',
+            '"falcon_core/generic/ListInstrumentPort_c_api.h"',
+            '"falcon_core/generic/ListPortTransform_c_api.h"',
+            '"falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"',
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/instrument_interfaces/names/InstrumentPort.hpp>",
+            "<falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp>",
         ],
         Path("generic"),
     ),
@@ -2585,6 +2668,10 @@ entry_queue: list[str] = [
     "MeasurementContextList",
     "MeasurementContextAxes",
     "PortTransformList",
+    "WaveformList",
+    "InstrumentPortPortTransformPair",
+    "PairInstrumentPortPortTransformList",
+    "InstrumentPortPortTransformMap",
 ]
 
 

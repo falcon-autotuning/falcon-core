@@ -17,7 +17,7 @@ ListStringHandle ListString_allocate(size_t count) {
         falcon_core::generic::List<std::string>(count));
 }
 
-ListStringHandle ListString_create(const StringHandle* data, size_t count) {
+ListStringHandle ListString_create(StringHandle* data, size_t count) {
     std::vector<std::string> vec;
     
     vec.reserve(count);

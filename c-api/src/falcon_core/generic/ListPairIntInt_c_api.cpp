@@ -18,7 +18,7 @@ ListPairIntIntHandle ListPairIntInt_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::generic::Pair<int, int>>(count));
 }
 
-ListPairIntIntHandle ListPairIntInt_create(const PairIntIntHandle* data, size_t count) {
+ListPairIntIntHandle ListPairIntInt_create(PairIntIntHandle* data, size_t count) {
     std::vector<falcon_core::generic::PairSP<int, int>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

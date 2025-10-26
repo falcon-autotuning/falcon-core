@@ -18,7 +18,7 @@ ListLabelledDomainHandle ListLabelledDomain_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(count));
 }
 
-ListLabelledDomainHandle ListLabelledDomain_create(const LabelledDomainHandle* data, size_t count) {
+ListLabelledDomainHandle ListLabelledDomain_create(LabelledDomainHandle* data, size_t count) {
     std::vector<falcon_core::math::domains::LabelledDomainSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

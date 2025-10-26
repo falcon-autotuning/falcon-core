@@ -18,7 +18,7 @@ ListInstrumentPortHandle ListInstrumentPort_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>(count));
 }
 
-ListInstrumentPortHandle ListInstrumentPort_create(const InstrumentPortHandle* data, size_t count) {
+ListInstrumentPortHandle ListInstrumentPort_create(InstrumentPortHandle* data, size_t count) {
     std::vector<falcon_core::instrument_interfaces::names::InstrumentPortSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

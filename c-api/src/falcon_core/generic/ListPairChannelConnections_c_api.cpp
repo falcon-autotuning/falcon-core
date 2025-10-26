@@ -20,7 +20,7 @@ ListPairChannelConnectionsHandle ListPairChannelConnections_allocate(size_t coun
         falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(count));
 }
 
-ListPairChannelConnectionsHandle ListPairChannelConnections_create(const PairChannelConnectionsHandle* data, size_t count) {
+ListPairChannelConnectionsHandle ListPairChannelConnections_create(PairChannelConnectionsHandle* data, size_t count) {
     std::vector<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

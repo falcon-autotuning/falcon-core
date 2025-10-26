@@ -18,7 +18,7 @@ ListControlArrayHandle ListControlArray_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::math::arrays::ControlArray>(count));
 }
 
-ListControlArrayHandle ListControlArray_create(const ControlArrayHandle* data, size_t count) {
+ListControlArrayHandle ListControlArray_create(ControlArrayHandle* data, size_t count) {
     std::vector<falcon_core::math::arrays::ControlArraySP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

@@ -17,7 +17,7 @@ ListBoolHandle ListBool_allocate(size_t count) {
         falcon_core::generic::List<bool>(count));
 }
 
-ListBoolHandle ListBool_create(const bool* data, size_t count) {
+ListBoolHandle ListBool_create(bool* data, size_t count) {
     std::vector<bool> vec;
     vec.insert(vec.end(), data, data + count);
     return new falcon_core::generic::List<bool>(

@@ -18,7 +18,7 @@ ListQuantityHandle ListQuantity_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::math::Quantity>(count));
 }
 
-ListQuantityHandle ListQuantity_create(const QuantityHandle* data, size_t count) {
+ListQuantityHandle ListQuantity_create(QuantityHandle* data, size_t count) {
     std::vector<falcon_core::math::QuantitySP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

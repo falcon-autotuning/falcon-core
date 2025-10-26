@@ -18,7 +18,7 @@ ListMapStringBoolHandle ListMapStringBool_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>(count));
 }
 
-ListMapStringBoolHandle ListMapStringBool_create(const MapStringBoolHandle* data, size_t count) {
+ListMapStringBoolHandle ListMapStringBool_create(MapStringBoolHandle* data, size_t count) {
     std::vector<falcon_core::generic::MapSP<std::string, bool>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

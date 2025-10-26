@@ -18,7 +18,7 @@ ListGnameHandle ListGname_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>(count));
 }
 
-ListGnameHandle ListGname_create(const GnameHandle* data, size_t count) {
+ListGnameHandle ListGname_create(GnameHandle* data, size_t count) {
     std::vector<falcon_core::autotuner_interfaces::names::GnameSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

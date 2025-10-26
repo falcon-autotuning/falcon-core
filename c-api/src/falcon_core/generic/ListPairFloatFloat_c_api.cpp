@@ -18,7 +18,7 @@ ListPairFloatFloatHandle ListPairFloatFloat_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::generic::Pair<float, float>>(count));
 }
 
-ListPairFloatFloatHandle ListPairFloatFloat_create(const PairFloatFloatHandle* data, size_t count) {
+ListPairFloatFloatHandle ListPairFloatFloat_create(PairFloatFloatHandle* data, size_t count) {
     std::vector<falcon_core::generic::PairSP<float, float>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

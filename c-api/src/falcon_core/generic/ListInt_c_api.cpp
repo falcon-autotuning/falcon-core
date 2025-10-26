@@ -17,7 +17,7 @@ ListIntHandle ListInt_allocate(size_t count) {
         falcon_core::generic::List<int>(count));
 }
 
-ListIntHandle ListInt_create(const int* data, size_t count) {
+ListIntHandle ListInt_create(int* data, size_t count) {
     std::vector<int> vec;
     vec.insert(vec.end(), data, data + count);
     return new falcon_core::generic::List<int>(

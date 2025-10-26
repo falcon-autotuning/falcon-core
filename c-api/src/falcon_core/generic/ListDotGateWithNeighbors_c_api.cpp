@@ -18,7 +18,7 @@ ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::physics::config::geometries::DotGateWithNeighbors>(count));
 }
 
-ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create(const DotGateWithNeighborsHandle* data, size_t count) {
+ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create(DotGateWithNeighborsHandle* data, size_t count) {
     std::vector<falcon_core::physics::config::geometries::DotGateWithNeighborsSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

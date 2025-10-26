@@ -7,17 +7,19 @@ extern "C" {
 
 #include <stdbool.h>
 
+#include "falcon_core/generic/ListWaveform_c_api.h"
+#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 typedef void* MeasurementRequestHandle;
 
 // Constructors
 MeasurementRequestHandle MeasurementRequest_create(
-    StringHandle                        message,
-    StringHandle                        measurement_name,
-    ListWaveformHandle                  waveforms,
-    PortsHandle                         getters,
-    MapInstrumentPortPortTranformHandle meter_transforms,
-    LabelledDomainHandle                time_domain);
+    StringHandle                         message,
+    StringHandle                         measurement_name,
+    ListWaveformHandle                   waveforms,
+    PortsHandle                          getters,
+    MapInstrumentPortPortTransformHandle meter_transforms,
+    LabelledDomainHandle                 time_domain);
 
 // Destructor
 void MeasurementRequest_destroy(MeasurementRequestHandle handle);

@@ -150,3 +150,11 @@ include/falcon_core/math/AxesMeasurementContext_c_api.h
 src/falcon_core/math/AxesMeasurementContext_c_api.cpp
 include/falcon_core/generic/ListPortTransform_c_api.h
 src/falcon_core/generic/ListPortTransform_c_api.cpp
+include/falcon_core/generic/ListWaveform_c_api.h
+src/falcon_core/generic/ListWaveform_c_api.cpp
+include/falcon_core/generic/PairInstrumentPortPortTransform_c_api.h
+src/falcon_core/generic/PairInstrumentPortPortTransform_c_api.cpp
+include/falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h
+src/falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.cpp
+include/falcon_core/generic/MapInstrumentPortPortTransform_c_api.h
+src/falcon_core/generic/MapInstrumentPortPortTransform_c_api.cpp

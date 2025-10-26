@@ -18,7 +18,7 @@ ListControlArray1DHandle ListControlArray1D_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>(count));
 }
 
-ListControlArray1DHandle ListControlArray1D_create(const ControlArray1DHandle* data, size_t count) {
+ListControlArray1DHandle ListControlArray1D_create(ControlArray1DHandle* data, size_t count) {
     std::vector<falcon_core::math::arrays::ControlArray1DSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

@@ -18,7 +18,7 @@ ListPairSizeTSizeTHandle ListPairSizeTSizeT_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>(count));
 }
 
-ListPairSizeTSizeTHandle ListPairSizeTSizeT_create(const PairSizeTSizeTHandle* data, size_t count) {
+ListPairSizeTSizeTHandle ListPairSizeTSizeT_create(PairSizeTSizeTHandle* data, size_t count) {
     std::vector<falcon_core::generic::PairSP<size_t, size_t>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

@@ -18,7 +18,7 @@ ListMeasurementContextHandle ListMeasurementContext_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(count));
 }
 
-ListMeasurementContextHandle ListMeasurementContext_create(const MeasurementContextHandle* data, size_t count) {
+ListMeasurementContextHandle ListMeasurementContext_create(MeasurementContextHandle* data, size_t count) {
     std::vector<falcon_core::autotuner_interfaces::contexts::MeasurementContextSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

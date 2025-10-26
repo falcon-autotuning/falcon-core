@@ -18,7 +18,7 @@ ListChannelHandle ListChannel_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(count));
 }
 
-ListChannelHandle ListChannel_create(const ChannelHandle* data, size_t count) {
+ListChannelHandle ListChannel_create(ChannelHandle* data, size_t count) {
     std::vector<falcon_core::autotuner_interfaces::names::ChannelSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

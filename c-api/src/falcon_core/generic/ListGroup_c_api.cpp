@@ -18,7 +18,7 @@ ListGroupHandle ListGroup_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::physics::config::core::Group>(count));
 }
 
-ListGroupHandle ListGroup_create(const GroupHandle* data, size_t count) {
+ListGroupHandle ListGroup_create(GroupHandle* data, size_t count) {
     std::vector<falcon_core::physics::config::core::GroupSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

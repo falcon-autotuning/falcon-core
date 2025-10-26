@@ -20,7 +20,7 @@ ListPairGnameGroupHandle ListPairGnameGroup_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>(count));
 }
 
-ListPairGnameGroupHandle ListPairGnameGroup_create(const PairGnameGroupHandle* data, size_t count) {
+ListPairGnameGroupHandle ListPairGnameGroup_create(PairGnameGroupHandle* data, size_t count) {
     std::vector<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

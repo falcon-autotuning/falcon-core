@@ -19,7 +19,7 @@ ListPairQuantityQuantityHandle ListPairQuantityQuantity_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(count));
 }
 
-ListPairQuantityQuantityHandle ListPairQuantityQuantity_create(const PairQuantityQuantityHandle* data, size_t count) {
+ListPairQuantityQuantityHandle ListPairQuantityQuantity_create(PairQuantityQuantityHandle* data, size_t count) {
     std::vector<falcon_core::generic::PairSP<falcon_core::math::Quantity, falcon_core::math::Quantity>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

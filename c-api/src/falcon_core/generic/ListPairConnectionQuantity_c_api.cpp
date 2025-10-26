@@ -20,7 +20,7 @@ ListPairConnectionQuantityHandle ListPairConnectionQuantity_allocate(size_t coun
         falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>(count));
 }
 
-ListPairConnectionQuantityHandle ListPairConnectionQuantity_create(const PairConnectionQuantityHandle* data, size_t count) {
+ListPairConnectionQuantityHandle ListPairConnectionQuantity_create(PairConnectionQuantityHandle* data, size_t count) {
     std::vector<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

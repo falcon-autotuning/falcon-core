@@ -19,7 +19,7 @@ ListPairConnectionFloatHandle ListPairConnectionFloat_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>(count));
 }
 
-ListPairConnectionFloatHandle ListPairConnectionFloat_create(const PairConnectionFloatHandle* data, size_t count) {
+ListPairConnectionFloatHandle ListPairConnectionFloat_create(PairConnectionFloatHandle* data, size_t count) {
     std::vector<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, float>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {

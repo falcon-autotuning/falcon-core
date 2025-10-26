@@ -17,7 +17,7 @@ ListFloatHandle ListFloat_allocate(size_t count) {
         falcon_core::generic::List<float>(count));
 }
 
-ListFloatHandle ListFloat_create(const float* data, size_t count) {
+ListFloatHandle ListFloat_create(float* data, size_t count) {
     std::vector<float> vec;
     vec.insert(vec.end(), data, data + count);
     return new falcon_core::generic::List<float>(

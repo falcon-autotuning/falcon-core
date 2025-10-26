@@ -19,7 +19,7 @@ ListPairConnectionDoubleHandle ListPairConnectionDouble_allocate(size_t count) {
         falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(count));
 }
 
-ListPairConnectionDoubleHandle ListPairConnectionDouble_create(const PairConnectionDoubleHandle* data, size_t count) {
+ListPairConnectionDoubleHandle ListPairConnectionDouble_create(PairConnectionDoubleHandle* data, size_t count) {
     std::vector<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, double>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
