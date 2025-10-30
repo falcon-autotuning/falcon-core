@@ -1885,7 +1885,7 @@ registry: dict[str, Entry] = {
     "PairInterpretationContextQuantityList": Entry(
         Options.List,
         [
-            "PairInterpretationContextQuantityList",
+            "PairInterpretationContextQuantityHandle",
             "falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>",
             "falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>",
             "PairInterpretationContextQuantity",
@@ -2084,7 +2084,7 @@ registry: dict[str, Entry] = {
         ],
         [
             "<falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>",
-            "<falcon_core/math/Quantity.hpp>:",
+            "<falcon_core/math/Quantity.hpp>",
         ],
         Path("generic"),
     ),

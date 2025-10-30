@@ -27,16 +27,16 @@ target_include_directories(
          ${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux/include)
 target_link_libraries(
   ${CPP_LIB_NAME}
-  PRIVATE Boost::filesystem
-          Boost::system
-          Boost::uuid
-          xtl
-          xtensor
-          xsimd
-          yaml-cpp::yaml-cpp
-          hdf5::hdf5-shared
-          hdf5::hdf5_cpp-shared
-          cereal::cereal)
+  PUBLIC Boost::filesystem
+         Boost::system
+         Boost::uuid
+         xtl
+         xtensor
+         xsimd
+         yaml-cpp::yaml-cpp
+         hdf5::hdf5-shared
+         hdf5::hdf5_cpp-shared
+         cereal::cereal)
 target_link_libraries(${CPP_LIB_NAME} PUBLIC yaml-cpp::yaml-cpp)
 
 # ---- Optional test build ----

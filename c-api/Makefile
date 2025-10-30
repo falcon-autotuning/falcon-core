@@ -4,7 +4,7 @@ VCPKG_TOOLCHAIN := $(shell vcpkg integrate install --triplet=x64-linux-dynamic |
 CORE_ROOT := $(PWD)/../cpp
 CORE_BUILD_DIR := $(CORE_ROOT)/build
 VCPKG_INSTALLED := vcpkg_installed
-VCPKG_DEBUG_LIB := $(PWD)/vcpkg_installed/x64-linux-dynamic/debug/lib
+VCPKG_DEBUG_LIB := $(PWD)/build/vcpkg_installed/x64-linux-dynamic/debug/lib
 GENERATED_MANIFEST := generated_template_manifest.txt
 
 .PHONY: all build clean clean-all
