@@ -50,9 +50,24 @@ ListInterpretationContextHandle InterpretationContainerString_select_contexts(
     ListConnectionHandle                independent_connections,
     ListConnectionHandle                dependent_connections) {
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
-    auto independents= std::shared_ptr<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>>(static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*>(independent_connections), [](falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*) {} );
-    auto dependents= std::shared_ptr<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>>(static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*>(dependent_connections), [](falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*) {} );
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_contexts(independents, dependents));
+  auto independents = std::shared_ptr<falcon_core::generic::List<
+      falcon_core::physics::device_structures::Connection>>(
+      static_cast<falcon_core::generic::List<
+          falcon_core::physics::device_structures::Connection>*>(
+          independent_connections),
+      [](falcon_core::generic::List<
+          falcon_core::physics::device_structures::Connection>*) {});
+  auto dependents = std::shared_ptr<falcon_core::generic::List<
+      falcon_core::physics::device_structures::Connection>>(
+      static_cast<falcon_core::generic::List<
+          falcon_core::physics::device_structures::Connection>*>(
+          dependent_connections),
+      [](falcon_core::generic::List<
+          falcon_core::physics::device_structures::Connection>*) {});
+  return new falcon_core::generic::List<
+      falcon_core::autotuner_interfaces::interpretations::
+          InterpretationContext>(
+      that->select_contexts(independents, dependents)->items());
 }
 
 void InterpretationContainerString_insert_or_assign(InterpretationContainerStringHandle handle,

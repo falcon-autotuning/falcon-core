@@ -4,6 +4,7 @@
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/generic/Pair.hpp"
+#include "falcon_core/math/Quantity.hpp"
 
 namespace falcon_core {
 namespace autotuner_interfaces {
@@ -85,27 +86,30 @@ class InterpretationContainer
   const generic::ListSP<InterpretationContext> select_by_connections(
       const std::vector<physics::device_structures::ConnectionSP>& connections)
       const {
-    auto matching_contexts =
-        std::set<InterpretationContextSP>(this->begin(), this->end());
+    std::vector<InterpretationContextSP> matching_contexts;
+    for (const auto& pair_sp : *this) {
+      matching_contexts.push_back(pair_sp->first());
+    }
     for (const auto& connection : connections) {
-      auto contexts_with_connection = std::set<InterpretationContextSP>(
-          select_by_connection(connection)->items().begin(),
-          select_by_connection(connection)->items().end());
-      // Keep only contexts that match all connections so far
-      std::set<InterpretationContextSP> intersection;
-      std::set_intersection(matching_contexts.begin(),
-                            matching_contexts.end(),
-                            contexts_with_connection.begin(),
-                            contexts_with_connection.end(),
-                            std::inserter(intersection, intersection.begin()));
+      auto contexts_with_connection = select_by_connection(connection)->items();
+      std::vector<InterpretationContextSP> intersection;
+      for (const auto& ctx : matching_contexts) {
+        auto it = std::find_if(contexts_with_connection.begin(),
+                               contexts_with_connection.end(),
+                               [&](const InterpretationContextSP& other) {
+                                 return *ctx == *other;
+                               });
+        if (it != contexts_with_connection.end()) {
+          intersection.push_back(ctx);
+        }
+      }
       matching_contexts = std::move(intersection);
       if (matching_contexts.empty()) {
         return std::make_shared<generic::List<InterpretationContext>>();
       }
     }
     return std::make_shared<generic::List<InterpretationContext>>(
-        std::vector<InterpretationContextSP>(matching_contexts.begin(),
-                                             matching_contexts.end()));
+        matching_contexts);
   }
   const generic::ListSP<InterpretationContext> select_by_independent_connection(
       const physics::device_structures::ConnectionSP& connection) {
@@ -121,6 +125,8 @@ class InterpretationContainer
         }
       }
     }
+    throw std::runtime_error(
+        "InterpretationContainer: No independent_connections were matched.");
   }
   const generic::ListSP<InterpretationContext> select_by_dependent_connection(
       const physics::device_structures::ConnectionSP& connection) {
@@ -135,6 +141,8 @@ class InterpretationContainer
         }
       }
     }
+    throw std::runtime_error(
+        "InterpretationContainer: No dependent_connections were matched.");
   }
   const generic::ListSP<InterpretationContext> select_contexts(
       const generic::ListSP<physics::device_structures::Connection>&
@@ -142,25 +150,28 @@ class InterpretationContainer
       const generic::ListSP<physics::device_structures::Connection>&
           dependent_connections) {
     // Start with all contexts
-    std::set<InterpretationContext*> matching_contexts;
+    std::vector<InterpretationContextSP> matching_contexts;
     for (generic::PairSP<InterpretationContext, Value>& kv : this->items()) {
-      matching_contexts.insert(kv->first);
+      matching_contexts.push_back(kv->first());
     }
 
     // Process independent connections
     if (independent_connections && !independent_connections->empty()) {
       for (auto& connection : *independent_connections) {
-        std::set<InterpretationContext*> contexts =
-            select_by_independent_connection(connection);
-        std::set<InterpretationContext*> intersection;
-        std::set_intersection(
-            matching_contexts.begin(),
-            matching_contexts.end(),
-            contexts.begin(),
-            contexts.end(),
-            std::inserter(intersection, intersection.begin()));
+        auto  list_ptr = select_by_independent_connection(connection);
+        auto& items    = list_ptr->items();
+        std::vector<InterpretationContextSP> intersection;
+        for (const auto& ctx : matching_contexts) {
+          auto it = std::find_if(items.begin(),
+                                 items.end(),
+                                 [&](const InterpretationContextSP& other) {
+                                   return *ctx == *other;
+                                 });
+          if (it != items.end()) {
+            intersection.push_back(ctx);
+          }
+        }
         matching_contexts = std::move(intersection);
-
         // Early exit if no matches
         if (matching_contexts.empty()) {
           return generic::ListSP<InterpretationContext>();
@@ -171,17 +182,20 @@ class InterpretationContainer
     // Process dependent connections
     if (dependent_connections && !dependent_connections->empty()) {
       for (auto& connection : *dependent_connections) {
-        std::set<InterpretationContext*> contexts =
-            select_by_dependent_connection(connection);
-        std::set<InterpretationContext*> intersection;
-        std::set_intersection(
-            matching_contexts.begin(),
-            matching_contexts.end(),
-            contexts.begin(),
-            contexts.end(),
-            std::inserter(intersection, intersection.begin()));
+        auto  list_ptr = select_by_dependent_connection(connection);
+        auto& items    = list_ptr->items();
+        std::vector<InterpretationContextSP> intersection;
+        for (const auto& ctx : matching_contexts) {
+          auto it = std::find_if(items.begin(),
+                                 items.end(),
+                                 [&](const InterpretationContextSP& other) {
+                                   return *ctx == *other;
+                                 });
+          if (it != items.end()) {
+            intersection.push_back(ctx);
+          }
+        }
         matching_contexts = std::move(intersection);
-
         // Early exit if no matches
         if (matching_contexts.empty()) {
           return generic::ListSP<InterpretationContext>();
@@ -189,9 +203,9 @@ class InterpretationContainer
       }
     }
 
-    // Convert set to ListSP
+    // Convert vector to ListSP
     auto result = std::make_shared<generic::List<InterpretationContext>>(
-        matching_contexts.begin(), matching_contexts.end());
+        matching_contexts);
     return result;
   }
 };
@@ -201,3 +215,24 @@ using InterpretationContainerSP =
 }  // namespace interpretations
 }  // namespace autotuner_interfaces
 }  // namespace falcon_core
+CEREAL_REGISTER_TYPE(
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
+        double>)
+CEREAL_REGISTER_TYPE(
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
+        std::string>)
+CEREAL_REGISTER_TYPE(
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
+        falcon_core::math::Quantity>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
+        double>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
+        std::string>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
+        falcon_core::math::Quantity>)

@@ -29,6 +29,7 @@ class List : public generic::Song {
  public:
   using iterator       = typename Container::iterator;
   using const_iterator = typename Container::const_iterator;
+  List(iterator begin, iterator end) : _items(begin, end) {}
   /**
    * @brief List can be constructed in 5 different ways:
    *
