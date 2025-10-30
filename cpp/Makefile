@@ -115,3 +115,6 @@ clean:
 clean-all: clean
 	@echo "--- Cleaning vcpkg cache ---"
 	@rm -r $(VCPKG_INSTALLED)
+
+rebuild-dev: clean-all build-dev
+	@echo "--- Cleaning and building (dev)"

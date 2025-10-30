@@ -135,3 +135,6 @@ clean-all: clean
 debug-test:
 	LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$(CORE_BUILD_DIR):$$LD_LIBRARY_PATH \
 	gdb --args build/run_tests --gtest_filter="GateRelationsCAPI_Fixture.InitConstructor"
+
+rebuild-dev: clean-all build-dev
+	@echo "--- Cleaning and building (dev)"
