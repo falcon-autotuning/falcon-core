@@ -89,23 +89,11 @@ create-falcon-source:
 
 # Build an RPM given an existing spec in specs/<pkg>.spec
 fedora-build-%: rpmbuild-setup
-	@echo "=> Building $* from spec"; \
-	@if [ "$*" = "falcon-core-cpp" ] || [ "$*" = "falcon-core-cpp-dev" ]; then \
-	  echo "Building RPMs for falcon-core is intentionally skipped in the Fedora workflow; use the Arch PKGBUILD for development builds."; \
-	  exit 1; \
-	fi; \
-	if [ ! -f "$(SPECS_DIR)/$*.spec" ]; then \
-	  echo "Spec file $(SPECS_DIR)/$*.spec not found"; \
-	  exit 1; \
-	fi; \
-	cp -v "$(SPECS_DIR)/$*.spec" "$(RPMBUILD_SPECS)/"; \
-	case "$*" in \
-	  xtl) cp -v "$(SOURCES_DIR)/xtl-0.7.5.tar.gz" "$(RPMBUILD_SOURCES)/";; \
-	  xtensor) cp -v "$(SOURCES_DIR)/xtensor-0.25.0.tar.gz" "$(RPMBUILD_SOURCES)/";; \
-	  xsimd) cp -v "$(SOURCES_DIR)/xsimd-10.0.0.tar.gz" "$(RPMBUILD_SOURCES)/";; \
-	  xtensor-io) cp -v "$(SOURCES_DIR)/xtensor-0.13.0.tar.gz" "$(RPMBUILD_SOURCES)/";; \
-	  *) echo "No source mapping for $* - ensure its sources are in $(RPMBUILD_SOURCES)";; \
-	esac; \
+	@echo "=> Building $* from spec"
+	if [ "$*" = "falcon-core-cpp" ] || [ "$*" = "falcon-core-cpp-dev" ]; then echo "Building RPMs for falcon-core is intentionally skipped in the Fedora workflow; use the Arch PKGBUILD for development builds."; exit 1; fi
+	if [ ! -f "$(SPECS_DIR)/$*.spec" ]; then echo "Spec file $(SPECS_DIR)/$*.spec not found"; exit 1; fi
+	cp -v "$(SPECS_DIR)/$*.spec" "$(RPMBUILD_SPECS)/"
+	if [ "$*" = "xtl" ]; then cp -v "$(SOURCES_DIR)/xtl-0.7.5.tar.gz" "$(RPMBUILD_SOURCES)/"; elif [ "$*" = "xtensor" ]; then cp -v "$(SOURCES_DIR)/xtensor-0.25.0.tar.gz" "$(RPMBUILD_SOURCES)/"; elif [ "$*" = "xsimd" ]; then cp -v "$(SOURCES_DIR)/xsimd-10.0.0.tar.gz" "$(RPMBUILD_SOURCES)/"; elif [ "$*" = "xtensor-io" ]; then cp -v "$(SOURCES_DIR)/xtensor-0.13.0.tar.gz" "$(RPMBUILD_SOURCES)/"; else echo "No source mapping for $* - ensure its sources are in $(RPMBUILD_SOURCES)"; fi
 	rpmbuild -ba "$(RPMBUILD_SPECS)/$*.spec"
 
 # Install the first RPM found for a given package name
