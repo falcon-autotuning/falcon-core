@@ -7,7 +7,10 @@ namespace falcon_core {
 namespace physics {
 namespace config {
 namespace core {
-
+/**
+ * @brief This a graph representation of the connections between gates in a
+ * quantum dot device.
+ **/
 class Adjacency : public generic::FArray<int> {
   using Indexes = physics::device_structures::ConnectionsSP;
   Indexes _indexes;
