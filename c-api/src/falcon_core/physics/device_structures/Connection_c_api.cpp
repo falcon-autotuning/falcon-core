@@ -43,7 +43,7 @@ StringHandle Connection_name(ConnectionHandle handle) {
 }
 
 StringHandle Connection_type(ConnectionHandle handle) {
-  std::string type;
+  std::string type = static_cast<Connection*>(handle)->type();
   return String_create(type.c_str(), type.size());
 }
 
