@@ -118,33 +118,24 @@ class List : public generic::Song {
     _items.insert(pos, first, last);
   }
 
-  size_t     size() const { return _items.size(); }
-  bool       empty() const { return _items.empty(); }
-  const auto at(const size_t idx) const {
-    if (idx >= _items.size()) {
-      throw std::out_of_range("List: The index " + std::to_string(idx) +
-                              " exceeds the length of the array " +
-                              std::to_string(_items.size()));
-    }
-    return _items.at(idx);
+  size_t size() const { return _items.size(); }
+  bool   empty() const { return _items.empty(); }
+
+  const StoredValue& at(const size_t idx) const {
+    at_impl(idx, typename category::determine_bool_tag<Value>::type{});
   }
-  auto at(const size_t idx) {
-    if (idx >= _items.size()) {
-      throw std::out_of_range("List: The index " + std::to_string(idx) +
-                              " exceeds the length of the array " +
-                              std::to_string(_items.size()));
-    }
-    return _items.at(idx);
+  StoredValue& at(const size_t idx) {
+    at_impl(idx, typename category::determine_bool_tag<Value>::type{});
   }
-  auto             operator[](const size_t idx) { return at(idx); }
-  const auto       operator[](const size_t idx) const { return at(idx); }
-  const Container& items() const { return _items; }
-  Container&       items() { return _items; }
-  iterator         begin() { return _items.begin(); }
-  iterator         end() { return _items.end(); }
-  const_iterator   begin() const { return _items.begin(); }
-  const_iterator   end() const { return _items.end(); }
-  bool             contains(const StoredValue& value) const {
+  StoredValue&       operator[](const size_t idx) { return at(idx); }
+  const StoredValue& operator[](const size_t idx) const { return at(idx); }
+  const Container&   items() const { return _items; }
+  Container&         items() { return _items; }
+  iterator           begin() { return _items.begin(); }
+  iterator           end() { return _items.end(); }
+  const_iterator     begin() const { return _items.begin(); }
+  const_iterator     end() const { return _items.end(); }
+  bool               contains(const StoredValue& value) const {
     return contains_impl(value,
                          typename category::determine_tag<Value>::type{});
   }
@@ -218,6 +209,25 @@ class List : public generic::Song {
 
  protected:
   friend class cereal::access;
+  template <typename T>
+  StoredValue& at_impl(size_t idx, category::other_tag) {
+    if (idx >= _items.size()) {
+      throw std::out_of_range("List: The index " + std::to_string(idx) +
+                              " exceeds the length of the array " +
+                              std::to_string(_items.size()));
+    }
+    return _items.at(idx);
+  }
+  template <typename T>
+  StoredValue at_impl(size_t idx, category::bool_tag) {
+    if (idx >= _items.size()) {
+      throw std::out_of_range("List: The index " + std::to_string(idx) +
+                              " exceeds the length of the array " +
+                              std::to_string(_items.size()));
+    }
+    return _items.at(idx);
+  }
+
   template <typename T>
   void create_duplicates_impl(size_t                    count,
                               const std::shared_ptr<T>& item,
