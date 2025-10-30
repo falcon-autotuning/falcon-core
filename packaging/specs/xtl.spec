@@ -28,6 +28,8 @@ make DESTDIR=%{buildroot} install
 
 %files
 /usr/include/xtl
+/usr/share/cmake/xtl/*
+/usr/share/pkgconfig/xtl.pc
 
 %changelog
 * Thu Oct 30 2025 Packager <you@example.com> - 0.7.5-1
