@@ -28,6 +28,9 @@ make DESTDIR=%{buildroot} install
 
 %files
 /usr/include/xtensor
+/usr/include/xtensor.hpp
+/usr/share/cmake/xtensor/*
+/usr/share/pkgconfig/xtensor.pc
 
 %changelog
 * Thu Oct 30 2025 Packager <you@example.com> - 0.25.0-1
