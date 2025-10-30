@@ -95,6 +95,14 @@ fedora-build-%: rpmbuild-setup
 	cp -v "$(SPECS_DIR)/$*.spec" "$(RPMBUILD_SPECS)/"
 	if [ "$*" = "xtl" ]; then cp -v "$(SOURCES_DIR)/xtl-0.7.5.tar.gz" "$(RPMBUILD_SOURCES)/"; elif [ "$*" = "xtensor" ]; then cp -v "$(SOURCES_DIR)/xtensor-0.25.0.tar.gz" "$(RPMBUILD_SOURCES)/"; elif [ "$*" = "xsimd" ]; then cp -v "$(SOURCES_DIR)/xsimd-10.0.0.tar.gz" "$(RPMBUILD_SOURCES)/"; elif [ "$*" = "xtensor-io" ]; then cp -v "$(SOURCES_DIR)/xtensor-0.13.0.tar.gz" "$(RPMBUILD_SOURCES)/"; else echo "No source mapping for $* - ensure its sources are in $(RPMBUILD_SOURCES)"; fi
 	rpmbuild -ba "$(RPMBUILD_SPECS)/$*.spec"
+	@# If rpmbuild produced an RPM for this package, install it so subsequent packages can find it during configure/build.
+	@rpmfile=$$(find "$(RPMBUILD)/RPMS" -type f \( -name "$*.rpm" -o -name "$*-*.rpm" \) | head -n1); \
+	if [ -n "$$rpmfile" ]; then \
+	  echo "=> Installing built RPM $$rpmfile to satisfy build-time deps for later packages"; \
+	  sudo dnf install -y "$$rpmfile"; \
+	else \
+	  echo "=> No RPM produced for $* (nothing to install)"; \
+	fi
 
 # Install the first RPM found for a given package name
 fedora-install-%:
