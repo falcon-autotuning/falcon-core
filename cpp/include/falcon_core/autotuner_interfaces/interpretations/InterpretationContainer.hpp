@@ -3,6 +3,7 @@
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Map.hpp"
+#include "falcon_core/generic/Pair.hpp"
 
 namespace falcon_core {
 namespace autotuner_interfaces {
@@ -29,15 +30,15 @@ class InterpretationContainer
    * @throws std::invalid_argument if contexts have different units.
    */
   InterpretationContainer(
-      const generic::ListSP<InterpretationContext>& contexts) {
-    for (const auto& context : *contexts) {
+      const generic::MapSP<InterpretationContext, Value>& map) {
+    for (const generic::PairSP<InterpretationContext, Value>& context : *map) {
       if (!this->_unit) {
-        this->_unit = context->unit();
-      } else if (*this->_unit != *context->unit()) {
+        this->_unit = context->first()->unit();
+      } else if (*this->_unit != *context->first()->unit()) {
         throw std::invalid_argument(
             "All contexts must have the same unit in InterpretationContainer");
       }
-      this->insert({context, Value()});
+      this->insert(context->first(), context->second());
     }
   }
   /**
@@ -53,8 +54,10 @@ class InterpretationContainer
   const generic::ListSP<InterpretationContext> select_by_connection(
       const physics::device_structures::ConnectionSP& connection) const {
     auto results = std::make_shared<generic::List<InterpretationContext>>();
-    for (const auto& context : this->items()) {
+    for (const generic::PairSP<InterpretationContext, Value>& pair :
+         this->items().items()) {
       // Check independent variables
+      InterpretationContextSP context = pair->first();
       for (size_t i = 0; i < context->dimension(); ++i) {
         auto indep_var = context->get_independent_variable(i);
         if (indep_var->connection() == connection) {
@@ -63,7 +66,7 @@ class InterpretationContainer
         }
       }
       // Check dependent variables
-      for (const auto& dep_var : context->dependent_variables()) {
+      for (const auto& dep_var : *context->dependent_variables()) {
         if (dep_var->connection() == connection) {
           results->push_back(context);
           break;
@@ -106,7 +109,10 @@ class InterpretationContainer
   }
   const generic::ListSP<InterpretationContext> select_by_independent_connection(
       const physics::device_structures::ConnectionSP& connection) {
-    for (const auto& context : this->items()) {
+    for (const generic::PairSP<InterpretationContext, Value>& pair :
+         this->items().items()) {
+      // Check independent variables
+      InterpretationContextSP context = pair->first();
       for (int i = 0; i < context->dimension(); ++i) {
         auto indep_var = context->get_independent_variable(i);
         if (*indep_var->connection() == *connection) {
@@ -118,8 +124,11 @@ class InterpretationContainer
   }
   const generic::ListSP<InterpretationContext> select_by_dependent_connection(
       const physics::device_structures::ConnectionSP& connection) {
-    for (const auto& context : this->items()) {
-      for (const auto& dep_var : context->dependent_variables()) {
+    for (const generic::PairSP<InterpretationContext, Value>& pair :
+         this->items().items()) {
+      // Check independent variables
+      InterpretationContextSP context = pair->first();
+      for (const auto& dep_var : *context->dependent_variables()) {
         if (*dep_var->connection() == *connection) {
           return std::make_shared<generic::List<InterpretationContext>>(
               std::vector<InterpretationContextSP>{context});
@@ -134,8 +143,8 @@ class InterpretationContainer
           dependent_connections) {
     // Start with all contexts
     std::set<InterpretationContext*> matching_contexts;
-    for (auto& kv : this->items()) {
-      matching_contexts.insert(kv.first);
+    for (generic::PairSP<InterpretationContext, Value>& kv : this->items()) {
+      matching_contexts.insert(kv->first);
     }
 
     // Process independent connections

@@ -335,10 +335,10 @@ bool {self.mangled_name()}_not_equal(
 
     def generate_interpretation_container_header(self):
         c_value_type = self.combo[0]
-        value_name = self.combo[2]
+        # value_name = self.combo[2]
         with self.edit_header() as f:
             f.write(f"""
-{self.chandle()} {self.mangled_name()}_create(ListInterpretationContextHandle contexts);
+{self.chandle()} {self.mangled_name()}_create(MapInterpretationContext{self.name()}Handle map);
 SymbolUnitHandle {self.mangled_name()}_unit(
      {self.chandle()} handle);
 ListInterpretationContextHandle {self.mangled_name()}_select_by_connection(
@@ -371,8 +371,8 @@ bool {self.mangled_name()}_contains({self.chandle()} handle,
     const InterpretationContextHandle   key);
 ListInterpretationContextHandle {self.mangled_name()}_keys(
                     {self.chandle()} handle);
-List{value_name}Handle {self.mangled_name()}_values({self.chandle()} handle);
-ListPairInterpretationContext{value_name}Handle {self.mangled_name()}_items(
+List{self.name()}Handle {self.mangled_name()}_values({self.chandle()} handle);
+ListPairInterpretationContext{self.name()}Handle {self.mangled_name()}_items(
                     {self.chandle()} handle);
 bool {self.mangled_name()}_equal({self.chandle()} handle,{self.chandle()} other);
 bool {self.mangled_name()}_not_equal({self.chandle()} handle,{self.chandle()} other);
@@ -947,7 +947,7 @@ std::string json = static_cast<falcon_core::generic::Pair<{cpp_real_1},{cpp_real
     def generate_interpretation_container_implementation(self):
         c_value_type = self.combo[0]
         cpp_value_type = self.combo[1]
-        value_name = self.combo[2]
+        # value_name = self.combo[2]
         is_primitive = c_value_type in c_primitives
         if c_value_type == "StringHandle":
             set_proper_value = "auto value_obj= std::string(value->raw, value->length);"
@@ -955,126 +955,135 @@ std::string json = static_cast<falcon_core::generic::Pair<{cpp_real_1},{cpp_real
         elif not is_primitive:
             set_proper_value = f"""auto temp_value = *static_cast<{cpp_value_type}*>(value);
 auto value_obj= std::make_shared<{cpp_value_type}>(temp_value);"""
-            return_out_value = f"""return new {cpp_value_type}(out);"""
+            return_out_value = f"""return new {cpp_value_type}(*out);"""
         else:
             set_proper_value = """auto value_obj= value;"""
             return_out_value = "return out;"
-        with self.edit_header() as f:
+        with self.edit_implementation() as f:
             f.write(f"""
-{self.chandle()} {self.mangled_name()}_create(ListInterpretationContextHandle contexts) {{
-    auto list= std::shared_ptr<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::InterpretationContext>>(static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::InterpretationContext>*>(contexts), [](falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::InterpretationContext>*) {{}});
-    return falcon_core::autotuner_interfaces::containers::InterpretationContainer(list);
+{self.chandle()} {self.mangled_name()}_create(MapInterpretationContext{self.name()}Handle map) {{
+    auto real_map= std::shared_ptr<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, {cpp_value_type}>>(static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, {cpp_value_type}>*>(map), [](falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, {cpp_value_type}>*) {{}});
+    return new falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>(real_map);
 }}
 
 SymbolUnitHandle {self.mangled_name()}_unit(
      {self.chandle()} handle) {{
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
-    return new falcon_core::physics::units::SymbolUnit(this->unit());
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    return new falcon_core::physics::units::SymbolUnit(*that->unit());
 }}
 
 ListInterpretationContextHandle {self.mangled_name()}_select_by_connection(
     {self.chandle()} handle, ConnectionHandle connection) {{
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     auto conn = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(connection), [](falcon_core::physics::device_structures::Connection*) {{}} );
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::InterpretationContext>(*this->select_by_connection(*conn));
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_connection(conn));
 }}
 
 ListInterpretationContextHandle {self.mangled_name()}_select_by_connections(
                     {self.chandle()} handle, ConnectionsHandle connections) {{
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
-    auto conns = std::shared_ptr<falcon_core::physics::device_structures::Connections>(static_cast<falcon_core::physics::device_structures::Connections*>(connection), [](falcon_core::physics::device_structures::Connections*) {{}} );
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::InterpretationContext>(*this->select_by_connections(*conns));
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    auto conns = std::shared_ptr<falcon_core::physics::device_structures::Connections>(static_cast<falcon_core::physics::device_structures::Connections*>(connections), [](falcon_core::physics::device_structures::Connections*) {{}} );
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_connections(conns->items()));
 }}
 
 ListInterpretationContextHandle {self.mangled_name()}_select_by_independent_connection(
     {self.chandle()} handle, ConnectionHandle connection) {{
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     auto conn = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(connection), [](falcon_core::physics::device_structures::Connection*) {{}} );
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::InterpretationContext>(*this->select_by_independent_connection(*conn));
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_independent_connection(conn));
 }}
 
 ListInterpretationContextHandle {self.mangled_name()}_select_by_dependent_connection(
     {self.chandle()} handle, ConnectionHandle connection) {{
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     auto conn = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(connection), [](falcon_core::physics::device_structures::Connection*) {{}} );
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*this->select_by_dependent_connection(*conn));
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_dependent_connection(conn));
 }}
 
 ListInterpretationContextHandle {self.mangled_name()}_select_contexts(
     {self.chandle()} handle,
     ListConnectionHandle                independent_connections,
     ListConnectionHandle                dependent_connections) {{
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
-    auto independents= std::shared_ptr<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*>(independent_connections), [](falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*) {{}} );
-    auto dependents= std::shared_ptr<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*>(dependent_connections), [](falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*) {{}} );
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*this->select_contexts(independents, dependents));
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    auto independents= std::shared_ptr<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>>(static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*>(independent_connections), [](falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*) {{}} );
+    auto dependents= std::shared_ptr<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>>(static_cast<falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*>(dependent_connections), [](falcon_core::generic::List<falcon_core::physics::device_structures::Connection>*) {{}} );
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_contexts(independents, dependents));
 }}
 
 void {self.mangled_name()}_insert_or_assign({self.chandle()} handle,
     const InterpretationContextHandle   key,
     const {c_value_type} value) {{
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
-    auto context= shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
     {set_proper_value}
-    this->insert_or_assign(context, value_obj);
+    that->insert_or_assign(context, value_obj);
 }}
 
 void {self.mangled_name()}_insert(
     {self.chandle()} handle,
     const InterpretationContextHandle   key,
     const {c_value_type} value) {{
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
-    auto context= shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
     {set_proper_value}
-    this->insert_or_assign(context, value_obj);
+    that->insert_or_assign(context, value_obj);
 }}
 
 {c_value_type} {self.mangled_name()}_at({self.chandle()} handle,
-    const InterpretationContextHandle   key);
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
-    auto context= shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
-    auto out = this->at(context);
+    const InterpretationContextHandle   key) {{
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
+    auto out = that->at(context);
     {return_out_value}
 }}
 
 void {self.mangled_name()}_erase({self.chandle()} handle,
     const InterpretationContextHandle   key) {{
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
-    auto context= shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
-    return this->erase(context);
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
+    return that->erase(context);
 }}
 
 size_t {self.mangled_name()}_size({self.chandle()} handle) {{
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
-    this->size();
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    return that->size();
 }}
 
 bool {self.mangled_name()}_empty({self.chandle()} handle) {{
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
-    this->empty();
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    return that->empty();
 }}
 
 void {self.mangled_name()}_clear({self.chandle()} handle) {{
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
-    this->clear();
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    that->clear();
 }}
 
 bool {self.mangled_name()}_contains({self.chandle()} handle,
     const InterpretationContextHandle   key) {{
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
-    auto context= shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
-    return this->contains(context);
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
+    return that->contains(context);
 }}
 
 ListInterpretationContextHandle {self.mangled_name()}_keys(
                     {self.chandle()} handle) {{
-    auto this= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer*>(handle);
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::InterpretationContext>(*this->keys());
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->keys());
 }}
 
-List{value_name}Handle {self.mangled_name()}_values({self.chandle()} handle);
-ListPairInterpretationContext{value_name}Handle {self.mangled_name()}_items(
-                    {self.chandle()} handle);
+List{self.name()}Handle {self.mangled_name()}_values({self.chandle()} handle) {{
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    return new falcon_core::generic::List<{cpp_value_type}>(*that->values());
+}}
+
+ListPairInterpretationContext{self.name()}Handle {self.mangled_name()}_items(
+                    {self.chandle()} handle) {{
+    auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,{cpp_value_type}>> items_sp = that->items(); 
+    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,{cpp_value_type}>>(items_sp);
+}}
+
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
     auto listA = static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(a);
     auto listB = static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(b);
@@ -2873,6 +2882,57 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "InterpretationContextQuantityMap": Entry(
+        Options.Map,
+        [
+            "InterpretationContextHandle",
+            "falcon_core::autotuner_interfaces::interpretations::InterpretationContext",
+            "falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP",
+            "QuantityHandle",
+            "falcon_core::math::Quantity",
+            "falcon_core::math::QuantitySP",
+            "InterpretationContext",
+            "Quantity",
+            "InterpretationContextQuantity",
+        ],
+        [
+            '"falcon_core/generic/PairInterpretationContextQuantity_c_api.h"',
+            '"falcon_core/generic/ListQuantity_c_api.h"',
+            '"falcon_core/generic/ListInterpretationContext_c_api.h"',
+            '"falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"',
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/math/Quantity.hpp>",
+            "<falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "InterpretationContextStringMap": Entry(
+        Options.Map,
+        [
+            "InterpretationContextHandle",
+            "falcon_core::autotuner_interfaces::interpretations::InterpretationContext",
+            "falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP",
+            "StringHandle",
+            "std::string",
+            "std::string",
+            "InterpretationContext",
+            "String",
+            "InterpretationContextString",
+        ],
+        [
+            '"falcon_core/generic/PairInterpretationContextString_c_api.h"',
+            '"falcon_core/generic/ListString_c_api.h"',
+            '"falcon_core/generic/ListInterpretationContext_c_api.h"',
+            '"falcon_core/generic/ListPairInterpretationContextString_c_api.h"',
+        ],
+        [
+            "<falcon_core/generic/Pair.hpp>",
+            "<falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>",
+        ],
+        Path("generic"),
+    ),
     "ChannelConnectionsMap": Entry(
         Options.Map,
         [
@@ -3439,12 +3499,13 @@ registry: dict[str, Entry] = {
         ],
         [
             '"falcon_core/generic/ListConnection_c_api.h"',
-            '"falcon_core/physics/device_structures/SymbolUnit_c_api.h"',
+            '"falcon_core/physics/units/SymbolUnit_c_api.h"',
             '"falcon_core/physics/device_structures/Connections_c_api.h"',
             '"falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"',
-            '"falcon_core/generic/ListAcquisitionContext_c_api.h"',
+            '"falcon_core/generic/ListInterpretationContext_c_api.h"',
             '"falcon_core/generic/ListDouble_c_api.h"',
             '"falcon_core/generic/ListPairInterpretationContextDouble_c_api.h"',
+            '"falcon_core/generic/MapInterpretationContextDouble_c_api.h"',
             "<cstddef>",
         ],
         [
@@ -3466,12 +3527,13 @@ registry: dict[str, Entry] = {
         ],
         [
             '"falcon_core/generic/ListConnection_c_api.h"',
-            '"falcon_core/physics/device_structures/SymbolUnit_c_api.h"',
+            '"falcon_core/physics/units/SymbolUnit_c_api.h"',
             '"falcon_core/physics/device_structures/Connections_c_api.h"',
             '"falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"',
-            '"falcon_core/generic/ListAcquisitionContext_c_api.h"',
+            '"falcon_core/generic/ListInterpretationContext_c_api.h"',
             '"falcon_core/generic/ListString_c_api.h"',
             '"falcon_core/generic/ListPairInterpretationContextString_c_api.h"',
+            '"falcon_core/generic/MapInterpretationContextString_c_api.h"',
             "<cstddef>",
         ],
         [
@@ -3493,12 +3555,13 @@ registry: dict[str, Entry] = {
         ],
         [
             '"falcon_core/generic/ListConnection_c_api.h"',
-            '"falcon_core/physics/device_structures/SymbolUnit_c_api.h"',
+            '"falcon_core/physics/units/SymbolUnit_c_api.h"',
             '"falcon_core/physics/device_structures/Connections_c_api.h"',
             '"falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"',
-            '"falcon_core/generic/ListAcquisitionContext_c_api.h"',
+            '"falcon_core/generic/ListInterpretationContext_c_api.h"',
             '"falcon_core/generic/ListQuantity_c_api.h"',
             '"falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"',
+            '"falcon_core/generic/MapInterpretationContextQuantity_c_api.h"',
             "<cstddef>",
         ],
         [
@@ -3616,10 +3679,12 @@ entry_queue: list[str] = [
     "InterpretationContextDoubleMap",
     "DoubleInterpretationContainer",
     "InterpretationContextStringPair",
+    "InterpretationContextStringMap",
     "PairInterpretationContextStringList",
     "StringInterpretationContainer",
     "InterpretationContextQuantityPair",
     "PairInterpretationContextQuantityList",
+    "InterpretationContextQuantityMap",
     "QuantityInterpretationContainer",
 ]
 
