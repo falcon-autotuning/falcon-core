@@ -36,5 +36,5 @@ if [ -d coverage_html ]; then cp -r coverage_html %{buildroot}/usr/share/falcon-
 /usr/share/falcon-core-cpp-dev/coverage
 
 %changelog
-* Thu Oct 30 2025 Packager <you@example.com> - 1.0.0-1
+* Thu Oct 30 2025 Packager <daschug1@gmail.com> - 1.0.0-1
 - Initial dev RPM

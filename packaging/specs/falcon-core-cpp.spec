@@ -32,5 +32,5 @@ make DESTDIR=%{buildroot} install
 /usr/include/falcon_core_cpp
 
 %changelog
-* Thu Oct 30 2025 Packager <you@example.com> - 1.0.0-1
+* Thu Oct 30 2025 Packager <daschug1@gmail.com> - 1.0.0-1
 - Initial RPM

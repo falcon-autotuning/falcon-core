@@ -32,5 +32,5 @@ make DESTDIR=%{buildroot} install
 /usr/lib*/pkgconfig/xtensor-io.pc
 
 %changelog
-* Thu Oct 30 2025 Packager <you@example.com> - 0.13.0-1
+* Thu Oct 30 2025 Packager <daschug1@gmail.com> - 0.13.0-1
 - Initial RPM
