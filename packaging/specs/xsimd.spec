@@ -28,6 +28,8 @@ make DESTDIR=%{buildroot} install
 
 %files
 /usr/include/xsimd
+/usr/lib*/cmake/xsimd/*
+/usr/lib*/pkgconfig/xsimd.pc
 
 %changelog
 * Thu Oct 30 2025 Packager <you@example.com> - 10.0.0-1
