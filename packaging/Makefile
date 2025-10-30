@@ -84,7 +84,7 @@ $(SOURCES_DIR)/xtensor-0.13.0.tar.gz: | $(SOURCES_DIR)
 create-falcon-source:
 	@# Usage: make -C packaging create-falcon-source TAR=/path/to/out.tar.gz BRANCH=cpp-refactor
 	@if [ -z "$(TAR)" ]; then echo "Set TAR=/path/to/out.tar.gz"; exit 1; fi
-	@git archive --format=tar.gz --prefix=falcon-core-1.0.0/ ${BRANCH:-cpp-refactor} -o $(TAR)
+	@git archive --format=tar.gz --prefix=falcon-core-1.0.0/ $${BRANCH:-cpp-refactor} -o $(TAR)
 	@echo "Created $(TAR)"
 
 # Build an RPM given an existing spec in specs/<pkg>.spec
