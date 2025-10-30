@@ -58,7 +58,7 @@ arch-build-%:
 ####################
 # Fedora (rpmbuild) tasks
 ####################
-fedora-all: rpmbuild-setup $(SOURCES_DIR)/xtl-0.7.5.tar.gz $(SOURCES_DIR)/xtensor-0.25.0.tar.gz $(SOURCES_DIR)/xsimd-10.0.0.tar.gz $(SOURCES_DIR)/xtensor-0.13.0.tar.gz $(patsubst %,fedora-build-%, $(PACKAGES_FEDORA))
+fedora-all: rpmbuild-setup $(SOURCES_DIR)/xtl-0.7.5.tar.gz $(SOURCES_DIR)/xtensor-0.25.0.tar.gz $(SOURCES_DIR)/xsimd-10.0.0.tar.gz $(SOURCES_DIR)/xtensor-io-0.13.0.tar.gz $(patsubst %,fedora-build-%, $(PACKAGES_FEDORA))
 
 rpmbuild-setup:
 	@echo "=> Creating rpmbuild tree at $(RPMBUILD)"
@@ -77,7 +77,7 @@ $(SOURCES_DIR)/xtensor-0.25.0.tar.gz: | $(SOURCES_DIR)
 $(SOURCES_DIR)/xsimd-10.0.0.tar.gz: | $(SOURCES_DIR)
 	curl -L -o $@ $(UPSTREAM_URL_xsimd)
 
-$(SOURCES_DIR)/xtensor-0.13.0.tar.gz: | $(SOURCES_DIR)
+$(SOURCES_DIR)/xtensor-io-0.13.0.tar.gz: | $(SOURCES_DIR)
 	curl -L -o $@ $(UPSTREAM_URL_xtensor_io)
 
 # Create a falcon-core tarball via 'git archive' of the specified branch if needed.
@@ -93,7 +93,7 @@ fedora-build-%: rpmbuild-setup
 	if [ "$*" = "falcon-core-cpp" ] || [ "$*" = "falcon-core-cpp-dev" ]; then echo "Building RPMs for falcon-core is intentionally skipped in the Fedora workflow; use the Arch PKGBUILD for development builds."; exit 1; fi
 	if [ ! -f "$(SPECS_DIR)/$*.spec" ]; then echo "Spec file $(SPECS_DIR)/$*.spec not found"; exit 1; fi
 	cp -v "$(SPECS_DIR)/$*.spec" "$(RPMBUILD_SPECS)/"
-	if [ "$*" = "xtl" ]; then cp -v "$(SOURCES_DIR)/xtl-0.7.5.tar.gz" "$(RPMBUILD_SOURCES)/"; elif [ "$*" = "xtensor" ]; then cp -v "$(SOURCES_DIR)/xtensor-0.25.0.tar.gz" "$(RPMBUILD_SOURCES)/"; elif [ "$*" = "xsimd" ]; then cp -v "$(SOURCES_DIR)/xsimd-10.0.0.tar.gz" "$(RPMBUILD_SOURCES)/"; elif [ "$*" = "xtensor-io" ]; then cp -v "$(SOURCES_DIR)/xtensor-0.13.0.tar.gz" "$(RPMBUILD_SOURCES)/"; else echo "No source mapping for $* - ensure its sources are in $(RPMBUILD_SOURCES)"; fi
+	if [ "$*" = "xtl" ]; then cp -v "$(SOURCES_DIR)/xtl-0.7.5.tar.gz" "$(RPMBUILD_SOURCES)/"; elif [ "$*" = "xtensor" ]; then cp -v "$(SOURCES_DIR)/xtensor-0.25.0.tar.gz" "$(RPMBUILD_SOURCES)/"; elif [ "$*" = "xsimd" ]; then cp -v "$(SOURCES_DIR)/xsimd-10.0.0.tar.gz" "$(RPMBUILD_SOURCES)/"; elif [ "$*" = "xtensor-io" ]; then cp -v "$(SOURCES_DIR)/xtensor-io-0.13.0.tar.gz" "$(RPMBUILD_SOURCES)/"; else echo "No source mapping for $* - ensure its sources are in $(RPMBUILD_SOURCES)"; fi
 	rpmbuild -ba "$(RPMBUILD_SPECS)/$*.spec"
 	@# If rpmbuild produced an RPM for this package, install it so subsequent packages can find it during configure/build.
 	@rpmfile=$$(find "$(RPMBUILD)/RPMS" -type f \( -name "$*.rpm" -o -name "$*-*.rpm" \) | head -n1); \
