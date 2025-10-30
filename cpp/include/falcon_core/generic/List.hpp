@@ -121,11 +121,13 @@ class List : public generic::Song {
   size_t size() const { return _items.size(); }
   bool   empty() const { return _items.empty(); }
 
-  const StoredValue& at(const size_t idx) const {
-    at_impl(idx, typename category::determine_bool_tag<Value>::type{});
+  auto at(const size_t idx) const
+      -> decltype(at_impl(idx, typename category::determine_bool_tag<Value>::type{})) {
+    return at_impl(idx, typename category::determine_bool_tag<Value>::type{});
   }
-  StoredValue& at(const size_t idx) {
-    at_impl(idx, typename category::determine_bool_tag<Value>::type{});
+  auto at(const size_t idx)
+      -> decltype(at_impl(idx, typename category::determine_bool_tag<Value>::type{})) {
+    return at_impl(idx, typename category::determine_bool_tag<Value>::type{});
   }
   StoredValue&       operator[](const size_t idx) { return at(idx); }
   const StoredValue& operator[](const size_t idx) const { return at(idx); }
@@ -209,7 +211,6 @@ class List : public generic::Song {
 
  protected:
   friend class cereal::access;
-  template <typename T>
   StoredValue& at_impl(size_t idx, category::other_tag) {
     if (idx >= _items.size()) {
       throw std::out_of_range("List: The index " + std::to_string(idx) +
@@ -218,8 +219,23 @@ class List : public generic::Song {
     }
     return _items.at(idx);
   }
-  template <typename T>
+  const StoredValue& at_impl(size_t idx, category::other_tag) const {
+    if (idx >= _items.size()) {
+      throw std::out_of_range("List: The index " + std::to_string(idx) +
+                              " exceeds the length of the array " +
+                              std::to_string(_items.size()));
+    }
+    return _items.at(idx);
+  }
   StoredValue at_impl(size_t idx, category::bool_tag) {
+    if (idx >= _items.size()) {
+      throw std::out_of_range("List: The index " + std::to_string(idx) +
+                              " exceeds the length of the array " +
+                              std::to_string(_items.size()));
+    }
+    return _items.at(idx);
+  }
+  StoredValue at_impl(size_t idx, category::bool_tag) const {
     if (idx >= _items.size()) {
       throw std::out_of_range("List: The index " + std::to_string(idx) +
                               " exceeds the length of the array " +
