@@ -16,6 +16,8 @@ SHELL := /bin/bash
 # Directory containing this Makefile (packaging/)
 THIS_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 PACKAGES := falcon-core-cpp falcon-core-cpp-dev xtl xtensor xsimd xtensor-io
+# Full package list (kept for Arch PKGBUILDs)
+PACKAGES_FEDORA := xtl xtensor xsimd xtensor-io
 
 SOURCES_DIR := $(THIS_DIR)/sources
 SPECS_DIR := $(THIS_DIR)/specs
@@ -56,7 +58,7 @@ arch-build-%:
 ####################
 # Fedora (rpmbuild) tasks
 ####################
-fedora-all: rpmbuild-setup $(SOURCES_DIR)/xtl-0.7.5.tar.gz $(SOURCES_DIR)/xtensor-0.25.0.tar.gz $(SOURCES_DIR)/xsimd-10.0.0.tar.gz $(SOURCES_DIR)/xtensor-0.13.0.tar.gz $(patsubst %,fedora-build-%, $(PACKAGES))
+fedora-all: rpmbuild-setup $(SOURCES_DIR)/xtl-0.7.5.tar.gz $(SOURCES_DIR)/xtensor-0.25.0.tar.gz $(SOURCES_DIR)/xsimd-10.0.0.tar.gz $(SOURCES_DIR)/xtensor-0.13.0.tar.gz $(patsubst %,fedora-build-%, $(PACKAGES_FEDORA))
 
 rpmbuild-setup:
 	@echo "=> Creating rpmbuild tree at $(RPMBUILD)"
@@ -89,6 +91,11 @@ create-falcon-source:
 fedora-build-%: rpmbuild-setup
 	@pkg=$*; \
 	spec="$(SPECS_DIR)/$$pkg.spec"; \
+	# Prevent accidental attempts to build falcon-core RPMs here
+	if [ "$$pkg" = "falcon-core-cpp" ] || [ "$$pkg" = "falcon-core-cpp-dev" ]; then \
+	  echo "Building RPMs for falcon-core is intentionally skipped in the Fedora workflow; use the Arch PKGBUILD for development builds."; \
+	  exit 1; \
+	fi; \
 	if [ ! -f "$$spec" ]; then echo "Spec file $$spec not found"; exit 1; fi; \
 	echo "=> Building $$pkg from spec $$spec"; \
 	cp -v "$$spec" "$(RPMBUILD_SPECS)/"; \
@@ -97,13 +104,6 @@ fedora-build-%: rpmbuild-setup
 	  xtensor) cp -v "$(SOURCES_DIR)/xtensor-0.25.0.tar.gz" "$(RPMBUILD_SOURCES)/";; \
 	  xsimd) cp -v "$(SOURCES_DIR)/xsimd-10.0.0.tar.gz" "$(RPMBUILD_SOURCES)/";; \
 	  xtensor-io) cp -v "$(SOURCES_DIR)/xtensor-0.13.0.tar.gz" "$(RPMBUILD_SOURCES)/";; \
-	  falcon-core-cpp|falcon-core-cpp-dev) \
-	    if [ ! -f "$(SOURCES_DIR)/falcon-core-1.0.0.tar.gz" ]; then \
-	      echo "Falcon source tarball not found. Creating one via 'git archive' from current repo branch..."; \
-	      mkdir -p "$(SOURCES_DIR)"; \
-	      git archive --format=tar.gz --prefix=falcon-core-1.0.0/ ${BRANCH:-cpp-refactor} -o "$(SOURCES_DIR)/falcon-core-1.0.0.tar.gz" || { echo "git archive failed. You can create a tarball manually with create-falcon-source."; exit 1; }; \
-	    fi; \
-	    cp -v "$(SOURCES_DIR)/falcon-core-1.0.0.tar.gz" "$(RPMBUILD_SOURCES)/";; \
 	  *) echo "No source mapping for $$pkg - ensure its sources are in $(RPMBUILD_SOURCES)";; \
 	esac; \
 	rpmbuild -ba "$(RPMBUILD_SPECS)/$$pkg.spec"
