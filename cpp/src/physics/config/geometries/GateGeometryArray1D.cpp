@@ -253,7 +253,7 @@ DotGateWithNeighborsSP GateGeometryArray1D::right_barrier() const {
       (*lineararray())[lineararray()->size() - 2];
   device_structures::ConnectionSP plunger_gate =
       (*lineararray())[lineararray()->size() - 4];
-  return DotGateWithNeighbors::PlungerGateWithNeighbors(
+  return DotGateWithNeighbors::BarrierGateWithNeighbors(
       name, plunger_gate, reservoir_gate);
 }
 device_structures::ConnectionsSP GateGeometryArray1D::ohmics() const {
