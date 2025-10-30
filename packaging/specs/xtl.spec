@@ -6,6 +6,8 @@ Summary:        C++ implementation of common tools used in the xtensor ecosystem
 License:        BSD
 URL:            https://github.com/xtensor-stack/xtl
 Source0:        %{name}-%{version}.tar.gz
+%global debugsource_package %{nil}
+%global debug_package %{nil}
 
 BuildRequires:  cmake, gcc-c++
 %description

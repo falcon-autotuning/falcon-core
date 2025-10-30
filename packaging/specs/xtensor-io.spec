@@ -6,6 +6,8 @@ Summary:        IO functionalities for xtensor
 License:        BSD
 URL:            https://github.com/xtensor-stack/xtensor-io
 Source0:        %{name}-%{version}.tar.gz
+%global debugsource_package %{nil}
+%global debug_package %{nil}
 
 BuildRequires:  cmake, gcc-c++
 %description

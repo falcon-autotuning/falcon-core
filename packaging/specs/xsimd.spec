@@ -6,6 +6,8 @@ Summary:        C++ wrappers for SIMD intrinsics
 License:        BSD
 URL:            https://github.com/xtensor-stack/xsimd
 Source0:        %{name}-%{version}.tar.gz
+%global debugsource_package %{nil}
+%global debug_package %{nil}
 
 BuildRequires:  cmake, gcc-c++
 %description
