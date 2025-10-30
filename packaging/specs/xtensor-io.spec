@@ -28,6 +28,8 @@ make DESTDIR=%{buildroot} install
 
 %files
 /usr/include/xtensor-io
+/usr/lib*/cmake/xtensor-io/*
+/usr/lib*/pkgconfig/xtensor-io.pc
 
 %changelog
 * Thu Oct 30 2025 Packager <you@example.com> - 0.13.0-1
