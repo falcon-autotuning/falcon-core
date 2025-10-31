@@ -99,7 +99,7 @@ cov-html:
 
 # Usage: make coverage-term FILE=/path/to/source.cpp
 cov-term:
-	@llvm-cov show ./build/run_tests -instr-profile=run_tests.profdata $(FILE) \
+	@llvm-cov show ./build/lib$(C_API_TARGET).so -instr-profile=run_tests.profdata $(FILE) \
 	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
 	  -Xdemangler c++filt -Xdemangler -n 
 
@@ -115,10 +115,10 @@ coverage: run-all-tests cov-term
 subset-coverage-overview: subset-coverage
 	@llvm-cov report ./build/lib$(C_API_TARGET).so -instr-profile=run_tests.profdata \
 		-ignore-filename-regex='(cpp/include/)' \
-		-Xdemangler c++filt -Xdemangler -n                                                                     [15:00:01]
+		-Xdemangler c++filt -Xdemangler -n
 
 coverage-overview: coverage
-	@llvm-cov report ./build/lib$(C_API_TARGET).so -instr-profile=run_tests.profdata -ignore-filename-regex='(cpp/include/)' -Xdemangler c++filt -Xdemangler -n                                                                     [15:00:01]
+	@llvm-cov report ./build/lib$(C_API_TARGET).so -instr-profile=run_tests.profdata -ignore-filename-regex='(cpp/include/)' -Xdemangler c++filt -Xdemangler -n
 
 clean:
 	@echo "--- Cleaning build directory and compiled extension ---"

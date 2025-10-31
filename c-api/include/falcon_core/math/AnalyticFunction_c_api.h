@@ -12,10 +12,10 @@ extern "C" {
 typedef void* AnalyticFunctionHandle;
 
 // Constructors
-AnalyticFunctionHandle AnalyticFunction_create(StringHandle labels,
-                                               StringHandle expression);
+AnalyticFunctionHandle AnalyticFunction_create(ListStringHandle labels,
+                                               StringHandle     expression);
 AnalyticFunctionHandle AnalyticFunction_create_identity();
-AnalyticFunctionHandle AnalyticFunction_create_constant();
+AnalyticFunctionHandle AnalyticFunction_create_constant(double value);
 
 // Destructor
 void AnalyticFunction_destroy(AnalyticFunctionHandle handle);
