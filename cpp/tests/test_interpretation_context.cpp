@@ -59,27 +59,15 @@ TEST(InterpretationContextTest, JsonSerializeDeserialize) {
 }
 
 // New test that registers polymorphic types for cereal and uses ASSERT_NO_THROW
-// to ensure exceptions are surfaced (so coverage records the JSON archive instantiations).
+// to ensure exceptions are surfaced (so coverage records the JSON archive
+// instantiations).
 #include <cereal/types/memory.hpp>
-#include <cereal/types/vector.hpp>
-#include <cereal/types/string.hpp>
 #include <cereal/types/polymorphic.hpp>
+#include <cereal/types/string.hpp>
+#include <cereal/types/vector.hpp>
 
-// Register polymorphic Song-derived types used within InterpretationContext so
-// cereal can (de)serialize them via shared_ptr<Song>.
-CEREAL_REGISTER_TYPE(falcon_core::autotuner_interfaces::contexts::MeasurementContext)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                    falcon_core::autotuner_interfaces::contexts::MeasurementContext)
-
-CEREAL_REGISTER_TYPE(falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                    falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>)
-
-CEREAL_REGISTER_TYPE(falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                    falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>)
-
-TEST(InterpretationContextTest, JsonSerializeDeserialize_WithCerealRegistration) {
+TEST(InterpretationContextTest,
+     JsonSerializeDeserialize_WithCerealRegistration) {
   // Build valid MeasurementContext instances (non-null)
   auto       conn1 = Connection::PlungerGate("ind_conn");
   auto       conn2 = Connection::PlungerGate("dep_conn");
@@ -109,7 +97,8 @@ TEST(InterpretationContextTest, JsonSerializeDeserialize_WithCerealRegistration)
   // exercise JSONInputArchive instantiation via Song::from_json_string
   std::shared_ptr<InterpretationContext> other;
   ASSERT_NO_THROW(
-      other = InterpretationContext::from_json_string<InterpretationContext>(json));
+      other =
+          InterpretationContext::from_json_string<InterpretationContext>(json));
   ASSERT_NE(other, nullptr);
   EXPECT_NE(other->unit(), nullptr);
 
