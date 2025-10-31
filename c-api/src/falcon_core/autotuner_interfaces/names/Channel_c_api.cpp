@@ -6,8 +6,6 @@
 #include "falcon_core/generic/String_c_api.h"
 using namespace falcon_core::autotuner_interfaces::names;
 
-extern "C" {
-
 ChannelHandle Channel_create(StringHandle name) {
   if (!name) {
     throw std::invalid_argument("Channel_create: name cannot be null");
@@ -75,7 +73,3 @@ ChannelHandle Channel_from_json_string(StringHandle json) {
   auto        ptr = Channel::from_json_string<Channel>(json_str);
   return new Channel(*ptr);
 }
-
-#ifdef __cplusplus
-}
-#endif

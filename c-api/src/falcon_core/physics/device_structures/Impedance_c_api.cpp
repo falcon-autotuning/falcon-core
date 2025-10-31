@@ -3,8 +3,6 @@
 #include <falcon_core/physics/device_structures/Impedance.hpp>
 using namespace falcon_core::physics::device_structures;
 
-extern "C" {
-
 ImpedanceHandle Impedance_create(ConnectionHandle connection,
                                  double           resistance,
                                  double           capacitance) {
@@ -88,5 +86,4 @@ ImpedanceHandle Impedance_from_json_string(StringHandle json) {
   }
   auto ptr = Impedance::from_json_string<Impedance>(json->raw);
   return new Impedance(*ptr);
-}
 }

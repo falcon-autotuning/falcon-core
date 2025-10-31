@@ -7,8 +7,6 @@
 using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::physics::config::core;
 
-extern "C" {
-
 ConfigHandle Config_create(ConnectionsHandle        screening_gates,
                            ConnectionsHandle        plunger_gates,
                            ConnectionsHandle        ohmics,
@@ -1394,7 +1392,3 @@ ConfigHandle Config_from_json_string(StringHandle json) {
   ConfigSP    ptr      = Config::from_json_string<Config>(json_str);
   return new Config(*ptr);
 }
-
-#ifdef __cplusplus
-}
-#endif

@@ -6,8 +6,6 @@
 #include "falcon_core/generic/String_c_api.h"
 using namespace falcon_core::autotuner_interfaces::names;
 
-extern "C" {
-
 ChannelsHandle Channels_create_empty() { return new Channels(Channels()); }
 
 ChannelsHandle Channels_create(ListChannelHandle items) {
@@ -181,7 +179,3 @@ ChannelsHandle Channels_from_json_string(StringHandle json) {
   auto        ptr = Channels::from_json_string<Channels>(raw_json);
   return new Channels(*ptr);
 }
-
-#ifdef __cplusplus
-}
-#endif

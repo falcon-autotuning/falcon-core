@@ -6,8 +6,6 @@
 #include "falcon_core/generic/String_c_api.h"
 using namespace falcon_core::physics::device_structures;
 
-extern "C" {
-
 ConnectionHandle Connection_create_barrier_gate(StringHandle name) {
   if (!name) {
     throw std::invalid_argument(
@@ -167,5 +165,4 @@ ConnectionHandle Connection_from_json_string(StringHandle json) {
   }
   auto ptr = Connection::from_json_string<Connection>(json->raw);
   return new Connection(*ptr);
-}
 }

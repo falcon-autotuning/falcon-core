@@ -114,9 +114,13 @@ TEST_F(DotGateWithNeighborsTest, ThrowsOnNullRightNeighbor) {
 }
 
 TEST_F(DotGateWithNeighborsTest, BarrierGateVariant) {
+  ConnectionHandle left  = Connection_create_plunger_gate(String_wrap("left"));
+  ConnectionHandle right = Connection_create_plunger_gate(String_wrap("right"));
   DotGateWithNeighborsHandle barrier_handle =
       DotGateWithNeighbors_create_barriergatewithneighbors(name, left, right);
   EXPECT_TRUE(DotGateWithNeighbors_is_barrier_gate(barrier_handle));
   EXPECT_FALSE(DotGateWithNeighbors_is_plunger_gate(barrier_handle));
   DotGateWithNeighbors_destroy(barrier_handle);
+  Connection_destroy(left);
+  Connection_destroy(right);
 }

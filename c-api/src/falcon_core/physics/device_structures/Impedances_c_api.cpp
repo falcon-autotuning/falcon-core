@@ -5,8 +5,6 @@
 #include "falcon_core/generic/ListImpedance_c_api.h"
 using namespace falcon_core::physics::device_structures;
 
-extern "C" {
-
 ImpedancesHandle Impedances_create_empty() { return new Impedances(); }
 
 ImpedancesHandle Impedances_create(const ListImpedanceHandle items) {
@@ -174,5 +172,4 @@ ImpedancesHandle Impedances_from_json_string(StringHandle json) {
   }
   auto ptr = Impedances::from_json_string<Impedances>(json->raw);
   return new Impedances(*ptr);
-}
 }

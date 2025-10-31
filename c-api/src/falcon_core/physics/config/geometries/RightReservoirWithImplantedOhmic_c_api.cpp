@@ -7,8 +7,6 @@
 
 using namespace falcon_core::physics::config::geometries;
 
-extern "C" {
-
 RightReservoirWithImplantedOhmicHandle RightReservoirWithImplantedOhmic_create(
     StringHandle     name,
     ConnectionHandle right_neighbor,
@@ -158,7 +156,3 @@ RightReservoirWithImplantedOhmic_from_json_string(StringHandle json) {
       *RightReservoirWithImplantedOhmic::from_json_string<
           RightReservoirWithImplantedOhmic>(real_json));
 }
-
-#ifdef __cplusplus
-}
-#endif

@@ -8,8 +8,6 @@
 
 using namespace falcon_core::physics::config::geometries;
 
-extern "C" {
-
 GateGeometryArray1DHandle GateGeometryArray1D_create(
     ConnectionsHandle lineararray, ConnectionsHandle screening_gates) {
   if (!lineararray) {
@@ -251,7 +249,3 @@ GateGeometryArray1DHandle GateGeometryArray1D_from_json_string(
   return new GateGeometryArray1D(
       *GateGeometryArray1D::from_json_string<GateGeometryArray1D>(real_json));
 }
-
-#ifdef __cplusplus
-}
-#endif

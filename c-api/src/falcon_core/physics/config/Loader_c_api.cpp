@@ -6,8 +6,6 @@
 #include "falcon_core/generic/String_c_api.h"
 using namespace falcon_core::physics::config;
 
-extern "C" {
-
 LoaderHandle Loader_create(StringHandle config_path) {
   if (!config_path) {
     throw std::invalid_argument("Loader_create: config_path cannot be null");
@@ -31,7 +29,3 @@ ConfigHandle Loader_config(LoaderHandle handle) {
   Loader self = *static_cast<Loader*>(handle);
   return new falcon_core::physics::config::core::Config(*(self.config()));
 }
-
-#ifdef __cplusplus
-}
-#endif

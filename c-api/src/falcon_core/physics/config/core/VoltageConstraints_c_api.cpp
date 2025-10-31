@@ -7,8 +7,6 @@
 #include "falcon_core/generic/String_c_api.h"
 using namespace falcon_core::physics::config::core;
 
-extern "C" {
-
 VoltageConstraintsHandle VoltageConstraints_create(
     AdjacencyHandle        adjacency,
     double                 max_safe_diff,
@@ -118,7 +116,3 @@ VoltageConstraintsHandle VoltageConstraints_from_json_string(
   return new VoltageConstraints(
       *VoltageConstraints::from_json_string<VoltageConstraints>(json_str));
 }
-
-#ifdef __cplusplus
-}
-#endif

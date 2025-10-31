@@ -3,8 +3,6 @@
 #include <falcon_core/physics/units/SymbolUnit.hpp>
 using namespace falcon_core::physics::units;
 
-extern "C" {
-
 SymbolUnitHandle SymbolUnit_create_meter() {
   return new SymbolUnit(*SymbolUnit::Meter());
 }
@@ -303,5 +301,4 @@ StringHandle SymbolUnit_to_json_string(SymbolUnitHandle handle) {
 SymbolUnitHandle SymbolUnit_from_json_string(StringHandle json) {
   auto ptr = SymbolUnit::from_json_string<SymbolUnit>(json->raw);
   return new SymbolUnit(*ptr);
-}
 }

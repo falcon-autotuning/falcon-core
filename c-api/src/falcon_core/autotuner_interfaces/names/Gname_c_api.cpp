@@ -6,8 +6,6 @@
 #include "falcon_core/generic/String_c_api.h"
 using namespace falcon_core::autotuner_interfaces::names;
 
-extern "C" {
-
 GnameHandle Gname_create_from_num(int num) {
   return new falcon_core::autotuner_interfaces::names::Gname(num);
 }
@@ -77,7 +75,3 @@ GnameHandle Gname_from_json_string(StringHandle json) {
       *falcon_core::autotuner_interfaces::names::Gname::from_json_string<Gname>(
           json_str));
 }
-
-#ifdef __cplusplus
-}
-#endif

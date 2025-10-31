@@ -9,8 +9,6 @@
 
 using namespace falcon_core::physics::config::geometries;
 
-extern "C" {
-
 DotGatesWithNeighborsHandle DotGatesWithNeighbors_create_empty() {
   return new DotGatesWithNeighbors(DotGatesWithNeighbors());
 }
@@ -82,10 +80,10 @@ void DotGatesWithNeighbors_push_back(DotGatesWithNeighborsHandle handle,
     throw std::invalid_argument(
         "DotGatesWithNeighbors_push_back: value cannot be null");
   }
-  DotGatesWithNeighbors  self = *static_cast<DotGatesWithNeighbors*>(handle);
+  DotGatesWithNeighbors* self = static_cast<DotGatesWithNeighbors*>(handle);
   DotGateWithNeighborsSP real_value = std::make_shared<DotGateWithNeighbors>(
       *static_cast<DotGateWithNeighbors*>(value));
-  self.push_back(real_value);
+  self->push_back(real_value);
 }
 
 size_t DotGatesWithNeighbors_size(DotGatesWithNeighborsHandle handle) {
@@ -112,8 +110,8 @@ void DotGatesWithNeighbors_erase_at(DotGatesWithNeighborsHandle handle,
     throw std::invalid_argument(
         "DotGatesWithNeighbors_erase_at: handle cannot be null");
   }
-  DotGatesWithNeighbors self = *static_cast<DotGatesWithNeighbors*>(handle);
-  self.erase_at(idx);
+  DotGatesWithNeighbors* self = static_cast<DotGatesWithNeighbors*>(handle);
+  self->erase_at(idx);
 }
 
 void DotGatesWithNeighbors_clear(DotGatesWithNeighborsHandle handle) {
@@ -121,8 +119,8 @@ void DotGatesWithNeighbors_clear(DotGatesWithNeighborsHandle handle) {
     throw std::invalid_argument(
         "DotGatesWithNeighbors_clear: handle cannot be null");
   }
-  DotGatesWithNeighbors self = *static_cast<DotGatesWithNeighbors*>(handle);
-  self.clear();
+  DotGatesWithNeighbors* self = static_cast<DotGatesWithNeighbors*>(handle);
+  self->clear();
 }
 
 const DotGateWithNeighborsHandle DotGatesWithNeighbors_const_at(
@@ -239,6 +237,3 @@ DotGatesWithNeighborsHandle DotGatesWithNeighbors_from_json_string(
       DotGatesWithNeighbors::from_json_string<DotGatesWithNeighbors>(real_json)
           ->items());
 }
-#ifdef __cplusplus
-}
-#endif

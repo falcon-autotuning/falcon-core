@@ -7,8 +7,6 @@
 using namespace falcon_core::physics::config::core;
 using namespace falcon_core::physics::device_structures;
 
-extern "C" {
-
 GroupHandle Group_create(ChannelHandle     name,
                          int               num_dots,
                          ConnectionsHandle screening_gates,
@@ -387,7 +385,3 @@ GroupHandle Group_from_json_string(StringHandle json) {
   std::string json_str(json->raw);
   return new Group(*Group::from_json_string<Group>(json_str));
 }
-
-#ifdef __cplusplus
-}
-#endif

@@ -7,8 +7,6 @@
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 using namespace falcon_core::physics::device_structures;
 
-extern "C" {
-
 ConnectionsHandle Connections_create_empty() { return new Connections(); }
 
 ConnectionsHandle Connections_create(const ListConnectionHandle items) {
@@ -212,5 +210,4 @@ ConnectionsHandle Connections_from_json_string(StringHandle json) {
   }
   auto ptr = Connections::from_json_string<Connections>(json->raw);
   return new Connections(*ptr);
-}
 }

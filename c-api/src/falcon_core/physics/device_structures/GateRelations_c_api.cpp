@@ -4,8 +4,6 @@
 using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::generic;
 
-extern "C" {
-
 GateRelationsHandle GateRelations_create_empty() { return new GateRelations(); }
 
 GateRelationsHandle GateRelations_create(
@@ -193,5 +191,4 @@ GateRelationsHandle GateRelations_from_json_string(StringHandle json) {
   }
   auto ptr = GateRelations::from_json_string<GateRelations>(json->raw);
   return new GateRelations(*ptr);
-}
 }
