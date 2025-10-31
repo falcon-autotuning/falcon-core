@@ -4,6 +4,7 @@
 #include <memory>
 #include <stdexcept>
 #include <utility>
+#include <type_traits>
 
 #include "falcon_core/generic/CategoryTags.hpp"
 #include "falcon_core/generic/Song.hpp"
@@ -123,15 +124,19 @@ class List : public generic::Song {
   bool   empty() const { return _items.empty(); }
 
   auto at(const size_t idx) const
-      -> decltype(std::declval<const List<Value>&>().at_impl(
-          std::declval<size_t>(),
-          typename category::determine_bool_tag<Value>::type{})) {
+      -> std::conditional_t<
+          std::is_same<typename category::determine_bool_tag<Value>::type,
+                       category::bool_tag>::value,
+          StoredValue,
+          const StoredValue&> {
     return at_impl(idx, typename category::determine_bool_tag<Value>::type{});
   }
   auto at(const size_t idx)
-      -> decltype(std::declval<List<Value>&>().at_impl(
-          std::declval<size_t>(),
-          typename category::determine_bool_tag<Value>::type{})) {
+      -> std::conditional_t<
+          std::is_same<typename category::determine_bool_tag<Value>::type,
+                       category::bool_tag>::value,
+          StoredValue,
+          StoredValue&> {
     return at_impl(idx, typename category::determine_bool_tag<Value>::type{});
   }
   StoredValue&       operator[](const size_t idx) { return at(idx); }
