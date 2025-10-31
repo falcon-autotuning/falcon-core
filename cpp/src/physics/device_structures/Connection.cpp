@@ -23,18 +23,7 @@ ConnectionSP Connection::Ohmic(const std::string& name) {
 }
 const std::string& Connection::name() const { return _name; }
 const std::string  Connection::type() const {
-  switch (_type) {
-    case DeviceFeature::BarrierGate:
-      return "BarrierGate";
-    case DeviceFeature::PlungerGate:
-      return "PlungerGate";
-    case DeviceFeature::ReservoirGate:
-      return "ReservoirGate";
-    case DeviceFeature::ScreeningGate:
-      return "ScreeningGate";
-    default:  // DeviceFeature::Ohmic
-      return "Ohmic";
-  }
+  return DeviceFeatureNames.at(_type);
 }
 bool Connection::is_dot_gate() const {
   return is_barrier_gate() || is_plunger_gate();

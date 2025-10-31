@@ -32,7 +32,7 @@ class AdjacencyTest : public ::testing::Test {
 
 TEST_F(AdjacencyTest, IndexesReturnsExpected) {
   ConnectionsHandle idx = Adjacency_indexes(handle);
-  EXPECT_EQ(Connections_size(idx), 3);
+  EXPECT_EQ(Connections_size(idx), 4);
   Connections_destroy(idx);
 }
 

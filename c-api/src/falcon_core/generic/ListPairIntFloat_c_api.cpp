@@ -8,6 +8,10 @@ ListPairIntFloatHandle ListPairIntFloat_create_empty() {
 }
 
 ListPairIntFloatHandle ListPairIntFloat_fill_value(size_t count, PairIntFloatHandle value) {
+    
+    if (!value) {
+    throw std::invalid_argument("Null value passed to ListPairIntFloat_fill_value");
+    }
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(value), [](falcon_core::generic::Pair<int, float>*) {} );
     return new falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(
         falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(count, stored_obj));
@@ -21,6 +25,9 @@ ListPairIntFloatHandle ListPairIntFloat_allocate(size_t count) {
 ListPairIntFloatHandle ListPairIntFloat_create(PairIntFloatHandle* data, size_t count) {
     std::vector<falcon_core::generic::PairSP<int, float>> vec;
         vec.reserve(count);
+    if (!data) {
+    throw std::invalid_argument("Null data handle passed to ListPairIntFloat_create_allocation");
+    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(data[i]), [](falcon_core::generic::Pair<int, float>*) {} ));
     }
@@ -30,41 +37,83 @@ ListPairIntFloatHandle ListPairIntFloat_create(PairIntFloatHandle* data, size_t 
 }
 
 void ListPairIntFloat_destroy(ListPairIntFloatHandle handle) {
+    if (!handle) {
+    throw std::invalid_argument("Null handle passed to ListPairIntFloat_destroy");
+    }
     delete static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle);
 }
 
 size_t ListPairIntFloat_size(ListPairIntFloatHandle handle) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairIntFloat_size");
+}
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->size();
 }
 
 bool ListPairIntFloat_empty(ListPairIntFloatHandle handle) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairIntFloat_empty");
+}
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->empty();
 }
 
 void ListPairIntFloat_erase_at(ListPairIntFloatHandle handle, size_t idx) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairIntFloat_erase_at");
+}
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->erase_at(idx);
 }
 
 void ListPairIntFloat_clear(ListPairIntFloatHandle handle) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairIntFloat_clear");
+}
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->clear();
 }
 
 void ListPairIntFloat_push_back(ListPairIntFloatHandle handle, PairIntFloatHandle value) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairIntFloat_push_back");
+}
+    
+    if (!value) {
+    throw std::invalid_argument("Null value passed to ListPairIntFloat_fill_value");
+    }
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(value), [](falcon_core::generic::Pair<int, float>*) {} );
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->push_back(stored_obj);
 }
 
 bool ListPairIntFloat_contains(ListPairIntFloatHandle handle, PairIntFloatHandle value) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairIntFloat_contains");
+}
+    
+    if (!value) {
+    throw std::invalid_argument("Null value passed to ListPairIntFloat_fill_value");
+    }
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(value), [](falcon_core::generic::Pair<int, float>*) {} );
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->contains(stored_obj);
 }
 
 size_t ListPairIntFloat_index(ListPairIntFloatHandle handle, PairIntFloatHandle value) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairIntFloat_index");
+}
+    
+    if (!value) {
+    throw std::invalid_argument("Null value passed to ListPairIntFloat_fill_value");
+    }
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<int, float>>(static_cast<falcon_core::generic::Pair<int, float>*>(value), [](falcon_core::generic::Pair<int, float>*) {} );
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->index(stored_obj);
 }
 
 size_t ListPairIntFloat_items(ListPairIntFloatHandle handle, PairIntFloatHandle* out_buffer, size_t buffer_size) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairIntFloat_items");
+}
+if (!out_buffer) {
+throw std::invalid_argument("Null output buffer passed to ListPairIntFloat_items");
+}
     auto list = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     
@@ -75,21 +124,33 @@ for (size_t i = 0; i < n; ++i) {
 }
 
 PairIntFloatHandle ListPairIntFloat_at(ListPairIntFloatHandle handle, size_t idx) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairIntFloat_at");
+}
     auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->at(idx);
     return new falcon_core::generic::Pair<int, float>(*obj);
 }
 
 bool ListPairIntFloat_equal(ListPairIntFloatHandle a, ListPairIntFloatHandle b) {
+if (!a || !b) {
+throw std::invalid_argument("Null handle passed to ListPairIntFloat_equal");
+}
     auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(a);
     auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(b);
     return *listA == *listB;
 }
 
 bool ListPairIntFloat_not_equal(ListPairIntFloatHandle a, ListPairIntFloatHandle b) {
+if (!a || !b) {
+throw std::invalid_argument("Null handle passed to ListPairIntFloat_not_equal");
+}
     return !ListPairIntFloat_equal(a, b);
 }
 
 ListPairIntFloatHandle ListPairIntFloat_intersection(ListPairIntFloatHandle handle, ListPairIntFloatHandle other) {
+if (!handle || !other) {
+throw std::invalid_argument("Null handle passed to ListPairIntFloat_intersection");
+}
     auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle);
     auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(other);
     auto result = listA->intersection(std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>>(*listB));
@@ -97,10 +158,16 @@ ListPairIntFloatHandle ListPairIntFloat_intersection(ListPairIntFloatHandle hand
 }
 
 StringHandle      ListPairIntFloat_to_json_string(ListPairIntFloatHandle handle) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairIntFloat_to_json_string");
+}
     std::string json = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>*>(handle)->to_json_string();
     return String_create(json.c_str(), json.size());
 }
 ListPairIntFloatHandle ListPairIntFloat_from_json_string(StringHandle json) {
+if (!json) {
+throw std::invalid_argument("Null string handle passed to ListPairIntFloat_from_json_string");
+}
   auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<int, float>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<int, float>>>(json->raw);
   return new falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(*ptr);
 }

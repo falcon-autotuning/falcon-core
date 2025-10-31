@@ -13,8 +13,8 @@ class DotGateWithNeighborsTest : public ::testing::Test {
 
   void SetUp() override {
     name  = String_create("center", 6);
-    left  = Connection_create_plunger_gate(String_wrap("left"));
-    right = Connection_create_plunger_gate(String_wrap("right"));
+    left  = Connection_create_barrier_gate(String_wrap("left"));
+    right = Connection_create_barrier_gate(String_wrap("right"));
     handle =
         DotGateWithNeighbors_create_plungergatewithneighbors(name, left, right);
   }
@@ -73,7 +73,7 @@ TEST_F(DotGateWithNeighborsTest, Equality) {
 }
 
 TEST_F(DotGateWithNeighborsTest, InequalityDifferentLeft) {
-  ConnectionHandle left2 = Connection_create_plunger_gate(String_wrap("left2"));
+  ConnectionHandle left2 = Connection_create_barrier_gate(String_wrap("left2"));
   DotGateWithNeighborsHandle handle2 =
       DotGateWithNeighbors_create_plungergatewithneighbors(name, left2, right);
   EXPECT_FALSE(DotGateWithNeighbors_equal(handle, handle2));
@@ -84,7 +84,7 @@ TEST_F(DotGateWithNeighborsTest, InequalityDifferentLeft) {
 
 TEST_F(DotGateWithNeighborsTest, InequalityDifferentRight) {
   ConnectionHandle right2 =
-      Connection_create_plunger_gate(String_wrap("right2"));
+      Connection_create_barrier_gate(String_wrap("right2"));
   DotGateWithNeighborsHandle handle2 =
       DotGateWithNeighbors_create_plungergatewithneighbors(name, left, right2);
   EXPECT_FALSE(DotGateWithNeighbors_equal(handle, handle2));

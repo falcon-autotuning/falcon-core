@@ -26,7 +26,7 @@ std::vector<std::pair<size_t, size_t>> Adjacency::get_true_pairs() const {
   return true_pairs;
 }
 bool Adjacency::operator==(const Adjacency& other) const {
-  return (indexes() == other.indexes()) && (FArray::operator==(other));
+  return (*indexes() == *other.indexes()) && (FArray::operator==(other));
 }
 bool Adjacency::operator!=(const Adjacency& other) const {
   return !(*this == other);

@@ -38,7 +38,7 @@ DotGateWithNeighborsSP DotGateWithNeighbors::BarrierGateWithNeighbors(
   if (!(right_neighbor->is_reservoir_gate() ||
         right_neighbor->is_plunger_gate())) {
     throw std::invalid_argument(
-        "BarrierGateWithNeighbors: The left_neighbor can only be a "
+        "BarrierGateWithNeighbors: The right_neighbor can only be a "
         "ReservoirGate or a PlungerGate, not "
         "a " +
         right_neighbor->type());
@@ -56,10 +56,10 @@ DotGateWithNeighborsSP DotGateWithNeighbors::PlungerGateWithNeighbors(
   if (!(left_neighbor->is_barrier_gate() &&
         right_neighbor->is_barrier_gate())) {
     throw std::runtime_error(
-        "PlungerGateWithNeighbors: The left_neighbor can only be a "
+        "PlungerGateWithNeighbors: The neighbors can only be a "
         "BarrierGate, not "
-        "a " +
-        left_neighbor->type());
+        "on the left " +
+        left_neighbor->type() + " and on the right " + right_neighbor->type());
   }
   return std::make_shared<DotGateWithNeighbors>(
       DotGateWithNeighbors(name,

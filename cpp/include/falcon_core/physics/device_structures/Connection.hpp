@@ -12,6 +12,12 @@ enum class DeviceFeature {
   ScreeningGate,
   Ohmic
 };
+static const std::map<DeviceFeature, std::string> DeviceFeatureNames = {
+    {DeviceFeature::BarrierGate, "BarrierGate"},
+    {DeviceFeature::PlungerGate, "PlungerGate"},
+    {DeviceFeature::ReservoirGate, "ReservoirGate"},
+    {DeviceFeature::ScreeningGate, "ScreeningGate"},
+    {DeviceFeature::Ohmic, "Ohmic"}};
 class Connection : public virtual generic::Song {
   std::string   _name;
   DeviceFeature _type;

@@ -9,12 +9,13 @@
 #include "xtensor/xadapt.hpp"
 using namespace falcon_core::physics::config::core;
 
-extern "C" {
-
 AdjacencyHandle Adjacency_create(const int*        data,
                                  const size_t*     shape,
                                  size_t            ndim,
                                  ConnectionsHandle indexes) {
+  if (!indexes) {
+    throw std::invalid_argument("Adjacency_create: indexes cannot be null");
+  }
   falcon_core::physics::device_structures::ConnectionsSP real_indexes =
       std::make_shared<falcon_core::physics::device_structures::Connections>(
           *static_cast<falcon_core::physics::device_structures::Connections*>(
@@ -31,15 +32,25 @@ AdjacencyHandle Adjacency_create(const int*        data,
 }
 
 void Adjacency_destroy(AdjacencyHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Adjacency_destroy: handle cannot be null");
+  }
   delete static_cast<Adjacency*>(handle);
 }
 
 ConnectionsHandle Adjacency_indexes(AdjacencyHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Adjacency_indexes: handle cannot be null");
+  }
   Adjacency self = *static_cast<Adjacency*>(handle);
   return new falcon_core::physics::device_structures::Connections(
       *(self.indexes()));
 }
 ListPairSizeTSizeTHandle Adjacency_get_true_pairs(AdjacencyHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Adjacency_get_true_pairs: handle cannot be null");
+  }
   Adjacency self          = *static_cast<Adjacency*>(handle);
   auto      pairs         = self.get_true_pairs();
   auto      list_of_pairs = new falcon_core::generic::List<
@@ -54,11 +65,17 @@ ListPairSizeTSizeTHandle Adjacency_get_true_pairs(AdjacencyHandle handle) {
 }
 
 size_t Adjacency_size(AdjacencyHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Adjacency_size: handle cannot be null");
+  }
   Adjacency self = *static_cast<Adjacency*>(handle);
   return self.size();
 }
 
 size_t Adjacency_dimension(AdjacencyHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Adjacency_dimension: handle cannot be null");
+  }
   Adjacency self = *static_cast<Adjacency*>(handle);
   return self.dimension();
 }
@@ -66,6 +83,9 @@ size_t Adjacency_dimension(AdjacencyHandle handle) {
 size_t Adjacency_shape(AdjacencyHandle handle,
                        size_t*         out_buffer,
                        size_t          ndim) {
+  if (!handle) {
+    throw std::invalid_argument("Adjacency_shape: handle cannot be null");
+  }
   Adjacency self    = *static_cast<Adjacency*>(handle);
   auto      shape   = self.shape();
   size_t    count   = shape.size();
@@ -77,6 +97,9 @@ size_t Adjacency_shape(AdjacencyHandle handle,
 }
 
 size_t Adjacency_data(AdjacencyHandle handle, int* out_buffer, size_t numdata) {
+  if (!handle) {
+    throw std::invalid_argument("Adjacency_data: handle cannot be null");
+  }
   Adjacency self = *static_cast<Adjacency*>(handle);
   if (self.size() > numdata) {
     throw std::runtime_error(
@@ -88,6 +111,14 @@ size_t Adjacency_data(AdjacencyHandle handle, int* out_buffer, size_t numdata) {
 
 void Adjacency_timesequals_farray(AdjacencyHandle handle,
                                   FArrayIntHandle other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Adjacency_timesequals_farray: handle cannot be null");
+  }
+  if (!other) {
+    throw std::invalid_argument(
+        "Adjacency_timesequals_farray: other cannot be null");
+  }
   Adjacency                         self = *static_cast<Adjacency*>(handle);
   falcon_core::generic::FArray<int> oarray =
       *static_cast<falcon_core::generic::FArray<int>*>(other);
@@ -96,6 +127,13 @@ void Adjacency_timesequals_farray(AdjacencyHandle handle,
 
 AdjacencyHandle Adjacency_times_farray(AdjacencyHandle handle,
                                        FArrayIntHandle other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Adjacency_times_farray: handle cannot be null");
+  }
+  if (!other) {
+    throw std::invalid_argument("Adjacency_times_farray: other cannot be null");
+  }
   Adjacency                         self = *static_cast<Adjacency*>(handle);
   falcon_core::generic::FArray<int> oarray =
       *static_cast<falcon_core::generic::FArray<int>*>(other);
@@ -105,23 +143,41 @@ AdjacencyHandle Adjacency_times_farray(AdjacencyHandle handle,
 }
 
 bool Adjacency_equality(AdjacencyHandle handle, AdjacencyHandle other) {
+  if (!handle) {
+    throw std::invalid_argument("Adjacency_equality: handle cannot be null");
+  }
+  if (!other) {
+    throw std::invalid_argument("Adjacency_equality: other cannot be null");
+  }
   Adjacency self  = *static_cast<Adjacency*>(handle);
   Adjacency oself = *static_cast<Adjacency*>(other);
   return self == oself;
 }
 
 bool Adjacency_notequality(AdjacencyHandle handle, AdjacencyHandle other) {
+  if (!handle) {
+    throw std::invalid_argument("Adjacency_notequality: handle cannot be null");
+  }
+  if (!other) {
+    throw std::invalid_argument("Adjacency_notequality: other cannot be null");
+  }
   Adjacency self  = *static_cast<Adjacency*>(handle);
   Adjacency oself = *static_cast<Adjacency*>(other);
   return self != oself;
 }
 
 int Adjacency_sum(AdjacencyHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Adjacency_sum: handle cannot be null");
+  }
   Adjacency self = *static_cast<Adjacency*>(handle);
   return self.sum();
 }
 
 ListListSizeTHandle Adjacency_where(AdjacencyHandle handle, const int value) {
+  if (!handle) {
+    throw std::invalid_argument("Adjacency_where: handle cannot be null");
+  }
   Adjacency self = *static_cast<Adjacency*>(handle);
   auto      where_list =
       new falcon_core::generic::List<falcon_core::generic::List<size_t>>(
@@ -130,20 +186,27 @@ ListListSizeTHandle Adjacency_where(AdjacencyHandle handle, const int value) {
 }
 
 AdjacencyHandle Adjacency_flip(AdjacencyHandle handle, size_t axis) {
+  if (!handle) {
+    throw std::invalid_argument("Adjacency_flip: handle cannot be null");
+  }
   Adjacency self = *static_cast<Adjacency*>(handle);
   return new Adjacency(*self.flip(axis), self.indexes());
 }
 
 StringHandle Adjacency_to_json_string(AdjacencyHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Adjacency_to_json_string: handle cannot be null");
+  }
   std::string json = static_cast<Adjacency*>(handle)->to_json_string();
   return String_create(json.c_str(), json.size());
 }
 
 AdjacencyHandle Adjacency_from_json_string(StringHandle json) {
+  if (!json) {
+    throw std::invalid_argument(
+        "Adjacency_from_json_string: json cannot be null");
+  }
   auto ptr = Adjacency::from_json_string<Adjacency>(json->raw);
   return new Adjacency(*ptr);
 }
-
-#ifdef __cplusplus
-}
-#endif

@@ -7,18 +7,30 @@
 #include <falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>
 
 InterpretationContainerStringHandle InterpretationContainerString_create(MapInterpretationContextStringHandle map) {
+if (!map) {
+throw std::invalid_argument("Null map handle passed to InterpretationContainerString_create");
+}
     auto real_map= std::shared_ptr<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>>(static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(map), [](falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*) {});
     return new falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>(real_map);
 }
 
 SymbolUnitHandle InterpretationContainerString_unit(
      InterpretationContainerStringHandle handle) {
+     if (!handle) {
+     throw std::invalid_argument("Null handle passed to InterpretationContainerString_unit");
+     }
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     return new falcon_core::physics::units::SymbolUnit(*that->unit());
 }
 
 ListInterpretationContextHandle InterpretationContainerString_select_by_connection(
     InterpretationContainerStringHandle handle, ConnectionHandle connection) {
+    if (!handle) {
+    throw std::invalid_argument("Null handle passed to InterpretationContainerString_select_by_connection");
+    }
+    if (!connection) {
+    throw std::invalid_argument("Null connection handle passed to InterpretationContainerString_select_by_connection");
+    }
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     auto conn = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(connection), [](falcon_core::physics::device_structures::Connection*) {} );
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_connection(conn));
@@ -26,6 +38,12 @@ ListInterpretationContextHandle InterpretationContainerString_select_by_connecti
 
 ListInterpretationContextHandle InterpretationContainerString_select_by_connections(
                     InterpretationContainerStringHandle handle, ConnectionsHandle connections) {
+                    if (!handle) {
+                    throw std::invalid_argument("Null handle passed to InterpretationContainerString_select_by_connections");
+                    }
+                    if (!connections) {
+                    throw std::invalid_argument("Null connections handle passed to InterpretationContainerString_select_by_connections");
+                    }
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     auto conns = std::shared_ptr<falcon_core::physics::device_structures::Connections>(static_cast<falcon_core::physics::device_structures::Connections*>(connections), [](falcon_core::physics::device_structures::Connections*) {} );
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_connections(conns->items()));
@@ -33,6 +51,12 @@ ListInterpretationContextHandle InterpretationContainerString_select_by_connecti
 
 ListInterpretationContextHandle InterpretationContainerString_select_by_independent_connection(
     InterpretationContainerStringHandle handle, ConnectionHandle connection) {
+    if (!handle) {
+    throw std::invalid_argument("Null handle passed to InterpretationContainerString_select_by_independent_connection");
+    }
+    if (!connection) {
+    throw std::invalid_argument("Null connection handle passed to InterpretationContainerString_select_by_independent_connection");
+    }
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     auto conn = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(connection), [](falcon_core::physics::device_structures::Connection*) {} );
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_independent_connection(conn));
@@ -40,6 +64,12 @@ ListInterpretationContextHandle InterpretationContainerString_select_by_independ
 
 ListInterpretationContextHandle InterpretationContainerString_select_by_dependent_connection(
     InterpretationContainerStringHandle handle, ConnectionHandle connection) {
+    if (!handle) {
+    throw std::invalid_argument("Null handle passed to InterpretationContainerString_select_by_dependent_connection");
+    }
+    if (!connection) {
+    throw std::invalid_argument("Null connection handle passed to InterpretationContainerString_select_by_dependent_connection");
+    }
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     auto conn = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(connection), [](falcon_core::physics::device_structures::Connection*) {} );
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_dependent_connection(conn));
@@ -49,6 +79,15 @@ ListInterpretationContextHandle InterpretationContainerString_select_contexts(
     InterpretationContainerStringHandle handle,
     ListConnectionHandle                independent_connections,
     ListConnectionHandle                dependent_connections) {
+    if (!handle) {
+    throw std::invalid_argument("Null handle passed to InterpretationContainerString_select_contexts");
+    }
+    if (!independent_connections) {
+    throw std::invalid_argument("Null independent connections handle passed to InterpretationContainerString_select_contexts");
+    }
+    if (!dependent_connections) {
+    throw std::invalid_argument("Null dependent connections handle passed to InterpretationContainerString_select_contexts");
+    }
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
   auto independents = std::shared_ptr<falcon_core::generic::List<
       falcon_core::physics::device_structures::Connection>>(
@@ -73,9 +112,19 @@ ListInterpretationContextHandle InterpretationContainerString_select_contexts(
 void InterpretationContainerString_insert_or_assign(InterpretationContainerStringHandle handle,
     const InterpretationContextHandle   key,
     const StringHandle value) {
+    if (!handle) {
+    throw std::invalid_argument("Null handle passed to InterpretationContainerString_insert_or_assign");
+    }
+    if (!key) {
+    throw std::invalid_argument("Null key passed to InterpretationContainerString_insert_or_assign");
+    }
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {} );
-    auto value_obj= std::string(value->raw, value->length);
+    
+            if (!value) {
+            throw std::invalid_argument("Null string handle passed to InterpretationContainerString_create");
+                                        }
+            auto value_obj= std::string(value->raw, value->length);
     that->insert_or_assign(context, value_obj);
 }
 
@@ -83,14 +132,30 @@ void InterpretationContainerString_insert(
     InterpretationContainerStringHandle handle,
     const InterpretationContextHandle   key,
     const StringHandle value) {
+    if (!handle) {
+    throw std::invalid_argument("Null handle passed to InterpretationContainerString_insert");
+    }
+    if (!key) {
+    throw std::invalid_argument("Null key passed to InterpretationContainerString_insert");
+    }
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {} );
-    auto value_obj= std::string(value->raw, value->length);
+    
+            if (!value) {
+            throw std::invalid_argument("Null string handle passed to InterpretationContainerString_create");
+                                        }
+            auto value_obj= std::string(value->raw, value->length);
     that->insert_or_assign(context, value_obj);
 }
 
 StringHandle InterpretationContainerString_at(InterpretationContainerStringHandle handle,
     const InterpretationContextHandle   key) {
+    if (!handle) {
+    throw std::invalid_argument("Null handle passed to InterpretationContainerString_at");
+    }
+    if (!key) {
+    throw std::invalid_argument("Null key passed to InterpretationContainerString_at");
+    }
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {} );
     auto out = that->at(context);
@@ -99,28 +164,49 @@ StringHandle InterpretationContainerString_at(InterpretationContainerStringHandl
 
 void InterpretationContainerString_erase(InterpretationContainerStringHandle handle,
     const InterpretationContextHandle   key) {
+    if (!handle) {
+    throw std::invalid_argument("Null handle passed to InterpretationContainerString_erase");
+    }
+    if (!key) {
+    throw std::invalid_argument("Null key passed to InterpretationContainerString_erase");
+    }
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {} );
     return that->erase(context);
 }
 
 size_t InterpretationContainerString_size(InterpretationContainerStringHandle handle) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to InterpretationContainerString_size");
+}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     return that->size();
 }
 
 bool InterpretationContainerString_empty(InterpretationContainerStringHandle handle) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to InterpretationContainerString_empty");
+}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     return that->empty();
 }
 
 void InterpretationContainerString_clear(InterpretationContainerStringHandle handle) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to InterpretationContainerString_clear");
+}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     that->clear();
 }
 
 bool InterpretationContainerString_contains(InterpretationContainerStringHandle handle,
     const InterpretationContextHandle   key) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to InterpretationContainerString_contains");
+}
+if (!key) {
+throw std::invalid_argument("Null key passed to InterpretationContainerString_contains");
+}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {} );
     return that->contains(context);
@@ -128,37 +214,58 @@ bool InterpretationContainerString_contains(InterpretationContainerStringHandle 
 
 ListInterpretationContextHandle InterpretationContainerString_keys(
                     InterpretationContainerStringHandle handle) {
+                    if (!handle) {
+                    throw std::invalid_argument("Null handle passed to InterpretationContainerString_keys");
+                    }
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->keys());
 }
 
 ListStringHandle InterpretationContainerString_values(InterpretationContainerStringHandle handle) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to InterpretationContainerString_values");
+}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     return new falcon_core::generic::List<std::string>(*that->values());
 }
 
 ListPairInterpretationContextStringHandle InterpretationContainerString_items(
                     InterpretationContainerStringHandle handle) {
+                    if (!handle) {
+                    throw std::invalid_argument("Null handle passed to InterpretationContainerString_items");
+                    }
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle);
     falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>> items_sp = that->items(); 
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>>(items_sp);
 }
 
 bool InterpretationContainerString_equal(InterpretationContainerStringHandle a, InterpretationContainerStringHandle b) {
+if (!a || !b) {
+throw std::invalid_argument("Null handle passed to InterpretationContainerString_equal");
+}
     auto listA = static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(a);
     auto listB = static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(b);
     return *listA == *listB;
 }
 
 bool InterpretationContainerString_not_equal(InterpretationContainerStringHandle a, InterpretationContainerStringHandle b) {
+if (!a || !b) {
+throw std::invalid_argument("Null handle passed to InterpretationContainerString_not_equal");
+}
     return !InterpretationContainerString_equal(a, b);
 }
 
 StringHandle      InterpretationContainerString_to_json_string(InterpretationContainerStringHandle handle) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to InterpretationContainerString_to_json_string");
+}
 std::string json = static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>*>(handle)->to_json_string();
   return String_create(json.c_str(), json.size());
 }
 InterpretationContainerStringHandle InterpretationContainerString_from_json_string(StringHandle json) {
+if (!json) {
+throw std::invalid_argument("Null string handle passed to InterpretationContainerString_from_json_string");
+}
   auto ptr = falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>::from_json_string<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>>(json->raw);
   return new falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<std::string>(*ptr);
 }

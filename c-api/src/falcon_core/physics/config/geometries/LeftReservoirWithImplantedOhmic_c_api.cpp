@@ -13,6 +13,19 @@ LeftReservoirWithImplantedOhmicHandle LeftReservoirWithImplantedOhmic_create(
     StringHandle     name,
     ConnectionHandle right_neighbor,
     ConnectionHandle ohmic) {
+  if (!name) {
+    throw std::invalid_argument(
+        "LeftReservoirWithImplantedOhmic_create: Name cannot be null");
+  }
+  if (!right_neighbor) {
+    throw std::invalid_argument(
+        "LeftReservoirWithImplantedOhmic_create: right_neighbor cannot be "
+        "null");
+  }
+  if (!ohmic) {
+    throw std::invalid_argument(
+        "LeftReservoirWithImplantedOhmic_create: ohmic cannot be null");
+  }
   std::string real_name(name->raw, name->length);
   falcon_core::physics::device_structures::ConnectionSP right_conn =
       std::make_shared<falcon_core::physics::device_structures::Connection>(
@@ -27,11 +40,19 @@ LeftReservoirWithImplantedOhmicHandle LeftReservoirWithImplantedOhmic_create(
 
 void LeftReservoirWithImplantedOhmic_destroy(
     LeftReservoirWithImplantedOhmicHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "LeftReservoirWithImplantedOhmic_destroy: handle cannot be null");
+  }
   delete static_cast<LeftReservoirWithImplantedOhmic*>(handle);
 }
 
 StringHandle LeftReservoirWithImplantedOhmic_name(
     LeftReservoirWithImplantedOhmicHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "LeftReservoirWithImplantedOhmic_name: handle cannot be null");
+  }
   LeftReservoirWithImplantedOhmic self =
       *static_cast<LeftReservoirWithImplantedOhmic*>(handle);
   return String_create(self.name().c_str(), self.name().size());
@@ -39,6 +60,10 @@ StringHandle LeftReservoirWithImplantedOhmic_name(
 
 StringHandle LeftReservoirWithImplantedOhmic_type(
     LeftReservoirWithImplantedOhmicHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "LeftReservoirWithImplantedOhmic_type: handle cannot be null");
+  }
   LeftReservoirWithImplantedOhmic self =
       *static_cast<LeftReservoirWithImplantedOhmic*>(handle);
   return String_create(self.type().c_str(), self.type().size());
@@ -46,6 +71,10 @@ StringHandle LeftReservoirWithImplantedOhmic_type(
 
 ConnectionHandle LeftReservoirWithImplantedOhmic_ohmic(
     LeftReservoirWithImplantedOhmicHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "LeftReservoirWithImplantedOhmic_ohmic: handle cannot be null");
+  }
   LeftReservoirWithImplantedOhmic self =
       *static_cast<LeftReservoirWithImplantedOhmic*>(handle);
   return new falcon_core::physics::device_structures::Connection(
@@ -54,6 +83,11 @@ ConnectionHandle LeftReservoirWithImplantedOhmic_ohmic(
 
 ConnectionHandle LeftReservoirWithImplantedOhmic_right_neighbor(
     LeftReservoirWithImplantedOhmicHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "LeftReservoirWithImplantedOhmic_right_neighbor: handle cannot be "
+        "null");
+  }
   LeftReservoirWithImplantedOhmic self =
       *static_cast<LeftReservoirWithImplantedOhmic*>(handle);
   return new falcon_core::physics::device_structures::Connection(
@@ -63,6 +97,14 @@ ConnectionHandle LeftReservoirWithImplantedOhmic_right_neighbor(
 bool LeftReservoirWithImplantedOhmic_equal(
     LeftReservoirWithImplantedOhmicHandle a,
     LeftReservoirWithImplantedOhmicHandle b) {
+  if (!a) {
+    throw std::invalid_argument(
+        "LeftReservoirWithImplantedOhmic_equal: first handle cannot be null");
+  }
+  if (!b) {
+    throw std::invalid_argument(
+        "LeftReservoirWithImplantedOhmic_equal: second handle cannot be null");
+  }
   LeftReservoirWithImplantedOhmic self =
       *static_cast<LeftReservoirWithImplantedOhmic*>(a);
   LeftReservoirWithImplantedOhmic real_other =
@@ -73,6 +115,16 @@ bool LeftReservoirWithImplantedOhmic_equal(
 bool LeftReservoirWithImplantedOhmic_not_equal(
     LeftReservoirWithImplantedOhmicHandle a,
     LeftReservoirWithImplantedOhmicHandle b) {
+  if (!a) {
+    throw std::invalid_argument(
+        "LeftReservoirWithImplantedOhmic_not_equal: first handle cannot be "
+        "null");
+  }
+  if (!b) {
+    throw std::invalid_argument(
+        "LeftReservoirWithImplantedOhmic_not_equal: second handle cannot be "
+        "null");
+  }
   LeftReservoirWithImplantedOhmic self =
       *static_cast<LeftReservoirWithImplantedOhmic*>(a);
   LeftReservoirWithImplantedOhmic real_other =
@@ -82,6 +134,11 @@ bool LeftReservoirWithImplantedOhmic_not_equal(
 
 StringHandle LeftReservoirWithImplantedOhmic_to_json_string(
     LeftReservoirWithImplantedOhmicHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "LeftReservoirWithImplantedOhmic_to_json_string: handle cannot be "
+        "null");
+  }
   LeftReservoirWithImplantedOhmic self =
       *static_cast<LeftReservoirWithImplantedOhmic*>(handle);
   return String_create(self.to_json_string().c_str(),
@@ -90,6 +147,11 @@ StringHandle LeftReservoirWithImplantedOhmic_to_json_string(
 
 LeftReservoirWithImplantedOhmicHandle
 LeftReservoirWithImplantedOhmic_from_json_string(StringHandle json) {
+  if (!json) {
+    throw std::invalid_argument(
+        "LeftReservoirWithImplantedOhmic_from_json_string: json cannot be "
+        "null");
+  }
   std::string real_json(json->raw, json->length);
   return new LeftReservoirWithImplantedOhmic(
       *LeftReservoirWithImplantedOhmic::from_json_string<

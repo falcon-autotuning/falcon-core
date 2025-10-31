@@ -9,18 +9,35 @@ using namespace falcon_core::math;
 extern "C" {
 
 VectorHandle Vector_create(PointHandle start, PointHandle end) {
+  if (!start) {
+    throw std::invalid_argument("Vector_create: start cannot be null");
+  }
+  if (!end) {
+    throw std::invalid_argument("Vector_create: end cannot be null");
+  }
   PointSP real_start = std::make_shared<Point>(*static_cast<Point*>(start));
   PointSP real_end   = std::make_shared<Point>(*static_cast<Point*>(end));
   return new Vector(real_start, real_end);
 }
 
 VectorHandle Vector_create_from_end(PointHandle end) {
+  if (!end) {
+    throw std::invalid_argument("Vector_create_from_end: end cannot be null");
+  }
   PointSP real_end = std::make_shared<Point>(*static_cast<Point*>(end));
   return new Vector(real_end);
 }
 
 VectorHandle Vector_create_from_quantities(MapConnectionQuantityHandle start,
                                            MapConnectionQuantityHandle end) {
+  if (!start) {
+    throw std::invalid_argument(
+        "Vector_create_from_quantities: start cannot be null");
+  }
+  if (!end) {
+    throw std::invalid_argument(
+        "Vector_create_from_quantities: end cannot be null");
+  }
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, Quantity>
           real_start = std::make_shared<falcon_core::generic::Map<
@@ -42,6 +59,10 @@ VectorHandle Vector_create_from_quantities(MapConnectionQuantityHandle start,
 
 VectorHandle Vector_create_from_end_quantities(
     MapConnectionQuantityHandle end) {
+  if (!end) {
+    throw std::invalid_argument(
+        "Vector_create_from_end_quantities: end cannot be null");
+  }
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, Quantity>
           real_end = std::make_shared<falcon_core::generic::Map<
@@ -56,6 +77,18 @@ VectorHandle Vector_create_from_end_quantities(
 VectorHandle Vector_create_from_doubles(MapConnectionDoubleHandle start,
                                         MapConnectionDoubleHandle end,
                                         SymbolUnitHandle          unit) {
+  if (!start) {
+    throw std::invalid_argument(
+        "Vector_create_from_doubles: start cannot be null");
+  }
+  if (!end) {
+    throw std::invalid_argument(
+        "Vector_create_from_doubles: end cannot be null");
+  }
+  if (!unit) {
+    throw std::invalid_argument(
+        "Vector_create_from_doubles: unit cannot be null");
+  }
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, double>
           real_start = std::make_shared<falcon_core::generic::Map<
@@ -80,6 +113,14 @@ VectorHandle Vector_create_from_doubles(MapConnectionDoubleHandle start,
 
 VectorHandle Vector_create_from_end_doubles(MapConnectionDoubleHandle end,
                                             SymbolUnitHandle          unit) {
+  if (!end) {
+    throw std::invalid_argument(
+        "Vector_create_from_end_doubles: end cannot be null");
+  }
+  if (!unit) {
+    throw std::invalid_argument(
+        "Vector_create_from_end_doubles: unit cannot be null");
+  }
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, double>
           real_end = std::make_shared<falcon_core::generic::Map<
@@ -95,6 +136,10 @@ VectorHandle Vector_create_from_end_doubles(MapConnectionDoubleHandle end,
 }
 
 VectorHandle Vector_create_from_parent(MapConnectionQuantityHandle items) {
+  if (!items) {
+    throw std::invalid_argument(
+        "Vector_create_from_parent: items cannot be null");
+  }
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, Quantity>
           real_items = std::make_shared<falcon_core::generic::Map<
@@ -107,20 +152,32 @@ VectorHandle Vector_create_from_parent(MapConnectionQuantityHandle items) {
 }
 
 void Vector_destroy(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_destroy: handle cannot be null");
+  }
   delete static_cast<Vector*>(handle);
 }
 
 PointHandle Vector_endPoint(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_endPoint: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return new Point(*self.endPoint());
 }
 
 PointHandle Vector_startPoint(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_startPoint: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return new Point(*self.startPoint());
 }
 
 MapConnectionQuantityHandle Vector_end_quantities(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_end_quantities: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return new falcon_core::generic::
       Map<falcon_core::physics::device_structures::Connection, Quantity>(
@@ -128,6 +185,10 @@ MapConnectionQuantityHandle Vector_end_quantities(VectorHandle handle) {
 }
 
 MapConnectionQuantityHandle Vector_start_quantities(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Vector_start_quantities: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return new falcon_core::generic::
       Map<falcon_core::physics::device_structures::Connection, Quantity>(
@@ -135,6 +196,9 @@ MapConnectionQuantityHandle Vector_start_quantities(VectorHandle handle) {
 }
 
 MapConnectionDoubleHandle Vector_end_map(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_end_map: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return new falcon_core::generic::
       Map<falcon_core::physics::device_structures::Connection, double>(
@@ -142,6 +206,9 @@ MapConnectionDoubleHandle Vector_end_map(VectorHandle handle) {
 }
 
 MapConnectionDoubleHandle Vector_start_map(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_start_map: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return new falcon_core::generic::
       Map<falcon_core::physics::device_structures::Connection, double>(
@@ -149,23 +216,36 @@ MapConnectionDoubleHandle Vector_start_map(VectorHandle handle) {
 }
 
 ListConnectionHandle Vector_connections(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_connections: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return new falcon_core::generic::List<
       falcon_core::physics::device_structures::Connection>(*self.connections());
 }
 
 SymbolUnitHandle Vector_unit(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_unit: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return new falcon_core::physics::units::SymbolUnit(*self.unit());
 }
 
 ConnectionHandle Vector_principle_connection(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Vector_principle_connection: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return new falcon_core::physics::device_structures::Connection(
       *self.principle_connection());
 }
 
 double Vector_magnitude(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_magnitude: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return self.magnitude();
 }
@@ -173,6 +253,17 @@ double Vector_magnitude(VectorHandle handle) {
 void Vector_insert_or_assign(VectorHandle               handle,
                              ConnectionHandle           key,
                              PairQuantityQuantityHandle value) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Vector_insert_or_assign: handle cannot be null");
+  }
+  if (!key) {
+    throw std::invalid_argument("Vector_insert_or_assign: key cannot be null");
+  }
+  if (!value) {
+    throw std::invalid_argument(
+        "Vector_insert_or_assign: value cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   falcon_core::generic::PairSP<Quantity, Quantity> real_value =
       std::make_shared<falcon_core::generic::Pair<Quantity, Quantity>>(
@@ -187,6 +278,15 @@ void Vector_insert_or_assign(VectorHandle               handle,
 void Vector_insert(VectorHandle               handle,
                    ConnectionHandle           key,
                    PairQuantityQuantityHandle value) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_insert: handle cannot be null");
+  }
+  if (!key) {
+    throw std::invalid_argument("Vector_insert: key cannot be null");
+  }
+  if (!value) {
+    throw std::invalid_argument("Vector_insert: value cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   falcon_core::generic::PairSP<Quantity, Quantity> real_value =
       std::make_shared<falcon_core::generic::Pair<Quantity, Quantity>>(
@@ -200,6 +300,12 @@ void Vector_insert(VectorHandle               handle,
 
 PairQuantityQuantityHandle Vector_at(VectorHandle     handle,
                                      ConnectionHandle key) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_at: handle cannot be null");
+  }
+  if (!key) {
+    throw std::invalid_argument("Vector_at: key cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   falcon_core::physics::device_structures::ConnectionSP real_key =
       std::make_shared<falcon_core::physics::device_structures::Connection>(
@@ -209,6 +315,12 @@ PairQuantityQuantityHandle Vector_at(VectorHandle     handle,
 }
 
 void Vector_erase(VectorHandle handle, ConnectionHandle key) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_erase: handle cannot be null");
+  }
+  if (!key) {
+    throw std::invalid_argument("Vector_erase: key cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   falcon_core::physics::device_structures::ConnectionSP real_key =
       std::make_shared<falcon_core::physics::device_structures::Connection>(
@@ -217,21 +329,36 @@ void Vector_erase(VectorHandle handle, ConnectionHandle key) {
 }
 
 size_t Vector_size(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_size: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return self.size();
 }
 
 bool Vector_empty(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_empty: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return self.empty();
 }
 
 void Vector_clear(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_clear: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   self.clear();
 }
 
 bool Vector_contains(VectorHandle handle, ConnectionHandle key) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_contains: handle cannot be null");
+  }
+  if (!key) {
+    throw std::invalid_argument("Vector_contains: key cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   falcon_core::physics::device_structures::ConnectionSP real_key =
       std::make_shared<falcon_core::physics::device_structures::Connection>(
@@ -241,17 +368,26 @@ bool Vector_contains(VectorHandle handle, ConnectionHandle key) {
 }
 
 ListConnectionHandle Vector_keys(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_keys: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return new falcon_core::generic::List<
       falcon_core::physics::device_structures::Connection>(*self.keys());
 }
 ListPairQuantityQuantityHandle Vector_values(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_values: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return new falcon_core::generic::List<
       falcon_core::generic::Pair<Quantity, Quantity>>(*self.values());
 }
 
 ListPairConnectionPairQuantityQuantityHandle Vector_items(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_items: handle cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   return new falcon_core::generic::List<falcon_core::generic::Pair<
       falcon_core::physics::device_structures::Connection,
@@ -259,6 +395,12 @@ ListPairConnectionPairQuantityQuantityHandle Vector_items(VectorHandle handle) {
 }
 
 VectorHandle Vector_addition(VectorHandle handle, VectorHandle other) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_addition: handle cannot be null");
+  }
+  if (!other) {
+    throw std::invalid_argument("Vector_addition: other cannot be null");
+  }
   Vector   self      = *static_cast<Vector*>(handle);
   VectorSP other_vec = std::make_shared<Vector>(*static_cast<Vector*>(other));
   VectorSP result    = self + other_vec;
@@ -266,6 +408,12 @@ VectorHandle Vector_addition(VectorHandle handle, VectorHandle other) {
 }
 
 VectorHandle Vector_subtraction(VectorHandle handle, VectorHandle other) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_subtraction: handle cannot be null");
+  }
+  if (!other) {
+    throw std::invalid_argument("Vector_subtraction: other cannot be null");
+  }
   Vector   self      = *static_cast<Vector*>(handle);
   VectorSP other_vec = std::make_shared<Vector>(*static_cast<Vector*>(other));
   VectorSP result    = self - other_vec;
@@ -273,30 +421,48 @@ VectorHandle Vector_subtraction(VectorHandle handle, VectorHandle other) {
 }
 
 VectorHandle Vector_double_multiplication(VectorHandle handle, double scalar) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Vector_double_multiplication: handle cannot be null");
+  }
   Vector   self   = *static_cast<Vector*>(handle);
   VectorSP result = self * scalar;
   return new Vector(*result);
 }
 
 VectorHandle Vector_int_multiplication(VectorHandle handle, int scalar) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Vector_int_multiplication: handle cannot be null");
+  }
   Vector   self   = *static_cast<Vector*>(handle);
   VectorSP result = self * scalar;
   return new Vector(*result);
 }
 
 VectorHandle Vector_double_division(VectorHandle handle, double scalar) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Vector_double_division: handle cannot be null");
+  }
   Vector   self   = *static_cast<Vector*>(handle);
   VectorSP result = self / scalar;
   return new Vector(*result);
 }
 
 VectorHandle Vector_int_division(VectorHandle handle, double scalar) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_int_division: handle cannot be null");
+  }
   Vector   self   = *static_cast<Vector*>(handle);
   VectorSP result = self / scalar;
   return new Vector(*result);
 }
 
 VectorHandle Vector_negation(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_negation: handle cannot be null");
+  }
   Vector   self   = *static_cast<Vector*>(handle);
   VectorSP result = -self;
   return new Vector(*result);
@@ -304,6 +470,14 @@ VectorHandle Vector_negation(VectorHandle handle) {
 
 VectorHandle Vector_update_start_from_states(VectorHandle              handle,
                                              DeviceVoltageStatesHandle state) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Vector_update_start_from_states: handle cannot be null");
+  }
+  if (!state) {
+    throw std::invalid_argument(
+        "Vector_update_start_from_states: state cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   falcon_core::communications::voltage_states::DeviceVoltageStatesSP
       real_state = std::make_shared<
@@ -316,6 +490,18 @@ VectorHandle Vector_update_start_from_states(VectorHandle              handle,
 VectorHandle Vector_translate_doubles(VectorHandle              handle,
                                       MapConnectionDoubleHandle point,
                                       SymbolUnitHandle          unit) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Vector_translate_doubles: handle cannot be null");
+  }
+  if (!point) {
+    throw std::invalid_argument(
+        "Vector_translate_doubles: point cannot be null");
+  }
+  if (!unit) {
+    throw std::invalid_argument(
+        "Vector_translate_doubles: unit cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, double>
@@ -334,6 +520,14 @@ VectorHandle Vector_translate_doubles(VectorHandle              handle,
 
 VectorHandle Vector_translate_quantities(VectorHandle                handle,
                                          MapConnectionQuantityHandle point) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Vector_translate_quantities: handle cannot be null");
+  }
+  if (!point) {
+    throw std::invalid_argument(
+        "Vector_translate_quantities: point cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, Quantity>
@@ -348,6 +542,12 @@ VectorHandle Vector_translate_quantities(VectorHandle                handle,
 }
 
 VectorHandle Vector_translate(VectorHandle handle, PointHandle point) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_translate: handle cannot be null");
+  }
+  if (!point) {
+    throw std::invalid_argument("Vector_translate: point cannot be null");
+  }
   Vector  self       = *static_cast<Vector*>(handle);
   PointSP real_point = std::make_shared<Point>(*static_cast<Point*>(point));
   auto    result     = self.translate(real_point);
@@ -355,48 +555,76 @@ VectorHandle Vector_translate(VectorHandle handle, PointHandle point) {
 }
 
 VectorHandle Vector_translate_to_origin(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Vector_translate_to_origin: handle cannot be null");
+  }
   Vector self   = *static_cast<Vector*>(handle);
   auto   result = self.translate_to_origin();
   return new Vector(result);
 }
 
 VectorHandle Vector_double_extend(VectorHandle handle, double extension) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_double_extend: handle cannot be null");
+  }
   Vector self   = *static_cast<Vector*>(handle);
   auto   result = self.extend(extension);
   return new Vector(result);
 }
 
 VectorHandle Vector_int_extend(VectorHandle handle, int extension) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_int_extend: handle cannot be null");
+  }
   Vector self   = *static_cast<Vector*>(handle);
   auto   result = self.extend(extension);
   return new Vector(result);
 }
 
 VectorHandle Vector_double_shrink(VectorHandle handle, double extension) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_double_shrink: handle cannot be null");
+  }
   Vector self   = *static_cast<Vector*>(handle);
   auto   result = self.shrink(extension);
   return new Vector(result);
 }
 
 VectorHandle Vector_int_shrink(VectorHandle handle, int extension) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_int_shrink: handle cannot be null");
+  }
   Vector self   = *static_cast<Vector*>(handle);
   auto   result = self.shrink(extension);
   return new Vector(result);
 }
 
 VectorHandle Vector_unit_vector(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_unit_vector: handle cannot be null");
+  }
   Vector self   = *static_cast<Vector*>(handle);
   auto   result = self.unit_vector();
   return new Vector(result);
 }
 
 VectorHandle Vector_normalize(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_normalize: handle cannot be null");
+  }
   Vector self   = *static_cast<Vector*>(handle);
   auto   result = self.normalize();
   return new Vector(result);
 }
 
 VectorHandle Vector_project(VectorHandle handle, VectorHandle other) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_project: handle cannot be null");
+  }
+  if (!other) {
+    throw std::invalid_argument("Vector_project: other cannot be null");
+  }
   Vector   self      = *static_cast<Vector*>(handle);
   VectorSP other_vec = std::make_shared<Vector>(*static_cast<Vector*>(other));
   auto     result    = self.project(other_vec);
@@ -404,6 +632,12 @@ VectorHandle Vector_project(VectorHandle handle, VectorHandle other) {
 }
 
 void Vector_update_unit(VectorHandle handle, SymbolUnitHandle unit) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_update_unit: handle cannot be null");
+  }
+  if (!unit) {
+    throw std::invalid_argument("Vector_update_unit: unit cannot be null");
+  }
   Vector self = *static_cast<Vector*>(handle);
   falcon_core::physics::units::SymbolUnitSP real_unit =
       std::make_shared<falcon_core::physics::units::SymbolUnit>(
@@ -412,24 +646,42 @@ void Vector_update_unit(VectorHandle handle, SymbolUnitHandle unit) {
 }
 
 bool Vector_equal(VectorHandle a, VectorHandle b) {
+  if (!a) {
+    throw std::invalid_argument("Vector_equal: a cannot be null");
+  }
+  if (!b) {
+    throw std::invalid_argument("Vector_equal: b cannot be null");
+  }
   Vector self_a = *static_cast<Vector*>(a);
   Vector self_b = *static_cast<Vector*>(b);
   return self_a == self_b;
 }
 
 bool Vector_not_equal(VectorHandle a, VectorHandle b) {
+  if (!a) {
+    throw std::invalid_argument("Vector_not_equal: a cannot be null");
+  }
+  if (!b) {
+    throw std::invalid_argument("Vector_not_equal: b cannot be null");
+  }
   Vector self_a = *static_cast<Vector*>(a);
   Vector self_b = *static_cast<Vector*>(b);
   return self_a != self_b;
 }
 
 StringHandle Vector_to_json_string(VectorHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("Vector_to_json_string: handle cannot be null");
+  }
   Vector      self = *static_cast<Vector*>(handle);
   std::string json = self.to_json_string();
   return String_create(json.c_str(), json.size());
 }
 
 VectorHandle Vector_from_json_string(StringHandle json) {
+  if (!json) {
+    throw std::invalid_argument("Vector_from_json_string: json cannot be null");
+  }
   std::string raw_json = json->raw;
   auto        ptr      = Vector::from_json_string<Vector>(raw_json);
   return new Vector(*ptr);

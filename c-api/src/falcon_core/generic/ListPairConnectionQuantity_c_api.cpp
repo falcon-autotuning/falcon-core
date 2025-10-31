@@ -10,6 +10,10 @@ ListPairConnectionQuantityHandle ListPairConnectionQuantity_create_empty() {
 }
 
 ListPairConnectionQuantityHandle ListPairConnectionQuantity_fill_value(size_t count, PairConnectionQuantityHandle value) {
+    
+    if (!value) {
+    throw std::invalid_argument("Null value passed to ListPairConnectionQuantity_fill_value");
+    }
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>*>(value), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>*) {} );
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>(
         falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>(count, stored_obj));
@@ -23,6 +27,9 @@ ListPairConnectionQuantityHandle ListPairConnectionQuantity_allocate(size_t coun
 ListPairConnectionQuantityHandle ListPairConnectionQuantity_create(PairConnectionQuantityHandle* data, size_t count) {
     std::vector<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>> vec;
         vec.reserve(count);
+    if (!data) {
+    throw std::invalid_argument("Null data handle passed to ListPairConnectionQuantity_create_allocation");
+    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>*>(data[i]), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>*) {} ));
     }
@@ -32,41 +39,83 @@ ListPairConnectionQuantityHandle ListPairConnectionQuantity_create(PairConnectio
 }
 
 void ListPairConnectionQuantity_destroy(ListPairConnectionQuantityHandle handle) {
+    if (!handle) {
+    throw std::invalid_argument("Null handle passed to ListPairConnectionQuantity_destroy");
+    }
     delete static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(handle);
 }
 
 size_t ListPairConnectionQuantity_size(ListPairConnectionQuantityHandle handle) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairConnectionQuantity_size");
+}
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(handle)->size();
 }
 
 bool ListPairConnectionQuantity_empty(ListPairConnectionQuantityHandle handle) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairConnectionQuantity_empty");
+}
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(handle)->empty();
 }
 
 void ListPairConnectionQuantity_erase_at(ListPairConnectionQuantityHandle handle, size_t idx) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairConnectionQuantity_erase_at");
+}
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(handle)->erase_at(idx);
 }
 
 void ListPairConnectionQuantity_clear(ListPairConnectionQuantityHandle handle) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairConnectionQuantity_clear");
+}
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(handle)->clear();
 }
 
 void ListPairConnectionQuantity_push_back(ListPairConnectionQuantityHandle handle, PairConnectionQuantityHandle value) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairConnectionQuantity_push_back");
+}
+    
+    if (!value) {
+    throw std::invalid_argument("Null value passed to ListPairConnectionQuantity_fill_value");
+    }
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>*>(value), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>*) {} );
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(handle)->push_back(stored_obj);
 }
 
 bool ListPairConnectionQuantity_contains(ListPairConnectionQuantityHandle handle, PairConnectionQuantityHandle value) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairConnectionQuantity_contains");
+}
+    
+    if (!value) {
+    throw std::invalid_argument("Null value passed to ListPairConnectionQuantity_fill_value");
+    }
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>*>(value), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>*) {} );
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(handle)->contains(stored_obj);
 }
 
 size_t ListPairConnectionQuantity_index(ListPairConnectionQuantityHandle handle, PairConnectionQuantityHandle value) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairConnectionQuantity_index");
+}
+    
+    if (!value) {
+    throw std::invalid_argument("Null value passed to ListPairConnectionQuantity_fill_value");
+    }
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>*>(value), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>*) {} );
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(handle)->index(stored_obj);
 }
 
 size_t ListPairConnectionQuantity_items(ListPairConnectionQuantityHandle handle, PairConnectionQuantityHandle* out_buffer, size_t buffer_size) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairConnectionQuantity_items");
+}
+if (!out_buffer) {
+throw std::invalid_argument("Null output buffer passed to ListPairConnectionQuantity_items");
+}
     auto list = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     
@@ -77,21 +126,33 @@ for (size_t i = 0; i < n; ++i) {
 }
 
 PairConnectionQuantityHandle ListPairConnectionQuantity_at(ListPairConnectionQuantityHandle handle, size_t idx) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairConnectionQuantity_at");
+}
     auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(handle)->at(idx);
     return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>(*obj);
 }
 
 bool ListPairConnectionQuantity_equal(ListPairConnectionQuantityHandle a, ListPairConnectionQuantityHandle b) {
+if (!a || !b) {
+throw std::invalid_argument("Null handle passed to ListPairConnectionQuantity_equal");
+}
     auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(a);
     auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(b);
     return *listA == *listB;
 }
 
 bool ListPairConnectionQuantity_not_equal(ListPairConnectionQuantityHandle a, ListPairConnectionQuantityHandle b) {
+if (!a || !b) {
+throw std::invalid_argument("Null handle passed to ListPairConnectionQuantity_not_equal");
+}
     return !ListPairConnectionQuantity_equal(a, b);
 }
 
 ListPairConnectionQuantityHandle ListPairConnectionQuantity_intersection(ListPairConnectionQuantityHandle handle, ListPairConnectionQuantityHandle other) {
+if (!handle || !other) {
+throw std::invalid_argument("Null handle passed to ListPairConnectionQuantity_intersection");
+}
     auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(handle);
     auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(other);
     auto result = listA->intersection(std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>>(*listB));
@@ -99,10 +160,16 @@ ListPairConnectionQuantityHandle ListPairConnectionQuantity_intersection(ListPai
 }
 
 StringHandle      ListPairConnectionQuantity_to_json_string(ListPairConnectionQuantityHandle handle) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to ListPairConnectionQuantity_to_json_string");
+}
     std::string json = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>*>(handle)->to_json_string();
     return String_create(json.c_str(), json.size());
 }
 ListPairConnectionQuantityHandle ListPairConnectionQuantity_from_json_string(StringHandle json) {
+if (!json) {
+throw std::invalid_argument("Null string handle passed to ListPairConnectionQuantity_from_json_string");
+}
   auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>>(json->raw);
   return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>(*ptr);
 }

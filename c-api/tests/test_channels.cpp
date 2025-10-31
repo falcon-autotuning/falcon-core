@@ -60,7 +60,6 @@ TEST_F(ChannelsTest, PushBackAndEraseAt) {
   EXPECT_EQ(Channels_size(channels), 3);
   Channels_erase_at(channels, 2);
   EXPECT_EQ(Channels_size(channels), 2);
-  Channel_destroy(ch3);
 }
 
 TEST_F(ChannelsTest, Clear) {
