@@ -181,6 +181,12 @@ VectorSP Vector::operator-(const VectorSP& other) const {
   return std::make_shared<Vector>(new_start, new_end);
 }
 
+VectorSP Vector::operator*(int scalar) const {
+  auto new_start = startPoint()->operator*(scalar);
+  auto new_end   = endPoint()->operator*(scalar);
+  return std::make_shared<Vector>(new_start, new_end);
+}
+
 VectorSP Vector::operator*(double scalar) const {
   auto new_start = startPoint()->operator*(scalar);
   auto new_end   = endPoint()->operator*(scalar);
@@ -188,6 +194,12 @@ VectorSP Vector::operator*(double scalar) const {
 }
 
 VectorSP Vector::operator/(double scalar) const {
+  auto new_start = startPoint()->operator/(scalar);
+  auto new_end   = endPoint()->operator/(scalar);
+  return std::make_shared<Vector>(new_start, new_end);
+}
+
+VectorSP Vector::operator/(int scalar) const {
   auto new_start = startPoint()->operator/(scalar);
   auto new_end   = endPoint()->operator/(scalar);
   return std::make_shared<Vector>(new_start, new_end);

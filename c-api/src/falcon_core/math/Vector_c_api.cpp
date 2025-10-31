@@ -261,45 +261,45 @@ ListPairConnectionPairQuantityQuantityHandle Vector_items(VectorHandle handle) {
 VectorHandle Vector_addition(VectorHandle handle, VectorHandle other) {
   Vector   self      = *static_cast<Vector*>(handle);
   VectorSP other_vec = std::make_shared<Vector>(*static_cast<Vector*>(other));
-  auto     result    = self + other_vec;
-  return new Vector(result);
+  VectorSP result    = self + other_vec;
+  return new Vector(*result);
 }
 
 VectorHandle Vector_subtraction(VectorHandle handle, VectorHandle other) {
   Vector   self      = *static_cast<Vector*>(handle);
   VectorSP other_vec = std::make_shared<Vector>(*static_cast<Vector*>(other));
-  auto     result    = self - other_vec;
-  return new Vector(result);
+  VectorSP result    = self - other_vec;
+  return new Vector(*result);
 }
 
 VectorHandle Vector_double_multiplication(VectorHandle handle, double scalar) {
-  Vector self   = *static_cast<Vector*>(handle);
-  auto   result = self * scalar;
-  return new Vector(result);
+  Vector   self   = *static_cast<Vector*>(handle);
+  VectorSP result = self * scalar;
+  return new Vector(*result);
 }
 
 VectorHandle Vector_int_multiplication(VectorHandle handle, int scalar) {
-  Vector self   = *static_cast<Vector*>(handle);
-  auto   result = self * scalar;
-  return new Vector(result);
+  Vector   self   = *static_cast<Vector*>(handle);
+  VectorSP result = self * scalar;
+  return new Vector(*result);
 }
 
 VectorHandle Vector_double_division(VectorHandle handle, double scalar) {
-  Vector self   = *static_cast<Vector*>(handle);
-  auto   result = self / scalar;
-  return new Vector(result);
+  Vector   self   = *static_cast<Vector*>(handle);
+  VectorSP result = self / scalar;
+  return new Vector(*result);
 }
 
 VectorHandle Vector_int_division(VectorHandle handle, double scalar) {
-  Vector self   = *static_cast<Vector*>(handle);
-  auto   result = self / scalar;
-  return new Vector(result);
+  Vector   self   = *static_cast<Vector*>(handle);
+  VectorSP result = self / scalar;
+  return new Vector(*result);
 }
 
 VectorHandle Vector_negation(VectorHandle handle) {
-  Vector self   = *static_cast<Vector*>(handle);
-  auto   result = -self;
-  return new Vector(result);
+  Vector   self   = *static_cast<Vector*>(handle);
+  VectorSP result = -self;
+  return new Vector(*result);
 }
 
 VectorHandle Vector_update_start_from_states(VectorHandle              handle,
@@ -310,8 +310,8 @@ VectorHandle Vector_update_start_from_states(VectorHandle              handle,
           falcon_core::communications::voltage_states::DeviceVoltageStates>(
           *static_cast<falcon_core::communications::voltage_states::
                            DeviceVoltageStates*>(state));
-  auto result = self.update_start_from_states(real_state);
-  return new Vector(result);
+  VectorSP result = self.update_start_from_states(real_state);
+  return new Vector(*result);
 }
 VectorHandle Vector_translate_doubles(VectorHandle              handle,
                                       MapConnectionDoubleHandle point,
@@ -328,8 +328,8 @@ VectorHandle Vector_translate_doubles(VectorHandle              handle,
   falcon_core::physics::units::SymbolUnitSP real_unit =
       std::make_shared<falcon_core::physics::units::SymbolUnit>(
           *static_cast<falcon_core::physics::units::SymbolUnit*>(unit));
-  auto result = self.translate(real_point, real_unit);
-  return new Vector(result);
+  VectorSP result = self.translate(real_point, real_unit);
+  return new Vector(*result);
 }
 
 VectorHandle Vector_translate_quantities(VectorHandle                handle,
@@ -343,8 +343,8 @@ VectorHandle Vector_translate_quantities(VectorHandle                handle,
               *static_cast<falcon_core::generic::Map<
                   falcon_core::physics::device_structures::Connection,
                   Quantity>*>(point));
-  auto result = self.translate(real_point);
-  return new Vector(result);
+  VectorSP result = self.translate(real_point);
+  return new Vector(*result);
 }
 
 VectorHandle Vector_translate(VectorHandle handle, PointHandle point) {

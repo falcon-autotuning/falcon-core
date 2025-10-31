@@ -10,8 +10,10 @@ extern "C" {
 ImpedancesHandle Impedances_create_empty() { return new Impedances(); }
 
 ImpedancesHandle Impedances_create(const ListImpedanceHandle items) {
-  auto list_ptr = static_cast<falcon_core::generic::List<Impedance>*>(items);
-  return new Impedances(list_ptr->items());
+  falcon_core::generic::ListSP<Impedance> list =
+      std::make_shared<falcon_core::generic::List<Impedance>>(
+          *static_cast<falcon_core::generic::List<Impedance>*>(items));
+  return new Impedances(list->items());
 }
 
 void Impedances_destroy(ImpedancesHandle handle) {

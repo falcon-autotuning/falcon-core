@@ -41,15 +41,23 @@ TEST_F(RightReservoirWithImplantedOhmicTest, TypeGetter) {
 TEST_F(RightReservoirWithImplantedOhmicTest, OhmicGetter) {
   ConnectionHandle ohmic_result =
       RightReservoirWithImplantedOhmic_ohmic(handle);
-  EXPECT_EQ(Connection_name(ohmic_result), "ohmic");
+  StringHandle stringConnection_name = Connection_name(ohmic_result);
+  EXPECT_EQ(
+      std::string(stringConnection_name->raw, stringConnection_name->length),
+      "ohmic");
   Connection_destroy(ohmic_result);
+  String_destroy(stringConnection_name);
 }
 
 TEST_F(RightReservoirWithImplantedOhmicTest, LeftNeighborGetter) {
   ConnectionHandle left_result =
       RightReservoirWithImplantedOhmic_left_neighbor(handle);
-  EXPECT_EQ(Connection_name(left_result), "left");
+  StringHandle stringConnection_name = Connection_name(left_result);
+  EXPECT_EQ(
+      std::string(stringConnection_name->raw, stringConnection_name->length),
+      "left");
   Connection_destroy(left_result);
+  String_destroy(stringConnection_name);
 }
 
 TEST_F(RightReservoirWithImplantedOhmicTest, Equality) {

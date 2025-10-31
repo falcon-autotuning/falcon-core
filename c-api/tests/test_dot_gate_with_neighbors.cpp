@@ -41,14 +41,22 @@ TEST_F(DotGateWithNeighborsTest, TypeGetter) {
 
 TEST_F(DotGateWithNeighborsTest, LeftNeighborGetter) {
   ConnectionHandle left_result = DotGateWithNeighbors_left_neighbor(handle);
-  EXPECT_EQ(Connection_name(left_result), "left");
+  StringHandle     stringConnection_name = Connection_name(left_result);
+  EXPECT_EQ(
+      std::string(stringConnection_name->raw, stringConnection_name->length),
+      "left");
   Connection_destroy(left_result);
+  String_destroy(stringConnection_name);
 }
 
 TEST_F(DotGateWithNeighborsTest, RightNeighborGetter) {
   ConnectionHandle right_result = DotGateWithNeighbors_right_neighbor(handle);
-  EXPECT_EQ(Connection_name(right_result), "right");
+  StringHandle     stringConnection_name = Connection_name(right_result);
+  EXPECT_EQ(
+      std::string(stringConnection_name->raw, stringConnection_name->length),
+      "right");
   Connection_destroy(right_result);
+  String_destroy(stringConnection_name);
 }
 
 TEST_F(DotGateWithNeighborsTest, IsPlungerGate) {
