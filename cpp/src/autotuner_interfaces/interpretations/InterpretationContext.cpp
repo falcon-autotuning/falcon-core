@@ -49,7 +49,7 @@ InterpretationContext::get_independent_variable(int index) const {
   if (index < 0 || index >= dimension()) {
     throw std::out_of_range("Index out of range");
   }
-  return (*dependent_variables())[index];
+  return (*_independent_variables)[index];
 }
 const InterpretationContextSP InterpretationContext::with_unit(
     physics::units::SymbolUnitSP unit) const {

@@ -146,6 +146,15 @@ TEST(InterpretationContextTest, BehaviorOperations) {
   // dimension() should equal independent size
   EXPECT_EQ(ctx.dimension(), static_cast<int>(independent->size()));
 
+  // get_independent_variable success
+  auto got = ctx.get_independent_variable(0);
+  ASSERT_NE(got, nullptr);
+  EXPECT_EQ(got->instrument_type(), m_ind->instrument_type());
+
+  // get_independent_variable out-of-range checks
+  ASSERT_THROW(ctx.get_independent_variable(-1), std::out_of_range);
+  ASSERT_THROW(ctx.get_independent_variable(ctx.dimension()), std::out_of_range);
+
   // add_dependent_variable increases dependent size
   size_t before = ctx.dependent_variables()->size();
   ctx.add_dependent_variable(m_ind);
