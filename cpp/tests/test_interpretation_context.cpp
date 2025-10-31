@@ -22,7 +22,8 @@ TEST(InterpretationContextTest, JsonSerializeDeserialize) {
   // dependent is an empty list
   auto dependent = std::make_shared<List<MeasurementContext>>();
   // unit must be non-null to exercise unit serialization
-  auto unit = std::make_shared<SymbolUnit>();
+  // SymbolUnit has a protected default ctor; construct with a UnitSP instead
+  auto unit = std::make_shared<SymbolUnit>(Unit::Meter());
 
   InterpretationContext ctx(independent, dependent, unit);
 
