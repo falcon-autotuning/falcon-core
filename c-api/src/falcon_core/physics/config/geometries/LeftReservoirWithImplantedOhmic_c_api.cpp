@@ -1,4 +1,3 @@
-
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h"
 
 #include <falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic.hpp>
