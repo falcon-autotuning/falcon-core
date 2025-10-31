@@ -1,8 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/ListConnection_c_api.h"
-#include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/device_structures/Connections_c_api.h"
 

@@ -2,9 +2,7 @@
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h"
-#include "falcon_core/physics/device_structures/Connection.hpp"
-
-using namespace falcon_core::physics::device_structures;
+#include "falcon_core/physics/device_structures/Connection_c_api.h"
 
 class DotGateWithNeighborsTest : public ::testing::Test {
  protected:
@@ -15,16 +13,16 @@ class DotGateWithNeighborsTest : public ::testing::Test {
 
   void SetUp() override {
     name  = String_create("center", 6);
-    left  = new Connection(*Connection::PlungerGate("left"));
-    right = new Connection(*Connection::PlungerGate("right"));
+    left  = Connection_create_plunger_gate(String_wrap("left"));
+    right = Connection_create_plunger_gate(String_wrap("right"));
     handle =
         DotGateWithNeighbors_create_plungergatewithneighbors(name, left, right);
   }
 
   void TearDown() override {
     DotGateWithNeighbors_destroy(handle);
-    delete static_cast<Connection*>(left);
-    delete static_cast<Connection*>(right);
+    Connection_destroy(left);
+    Connection_destroy(right);
     String_destroy(name);
   }
 };
@@ -43,14 +41,14 @@ TEST_F(DotGateWithNeighborsTest, TypeGetter) {
 
 TEST_F(DotGateWithNeighborsTest, LeftNeighborGetter) {
   ConnectionHandle left_result = DotGateWithNeighbors_left_neighbor(handle);
-  EXPECT_EQ(static_cast<Connection*>(left_result)->name(), "left");
-  delete static_cast<Connection*>(left_result);
+  EXPECT_EQ(Connection_name(left_result), "left");
+  Connection_destroy(left_result);
 }
 
 TEST_F(DotGateWithNeighborsTest, RightNeighborGetter) {
   ConnectionHandle right_result = DotGateWithNeighbors_right_neighbor(handle);
-  EXPECT_EQ(static_cast<Connection*>(right_result)->name(), "right");
-  delete static_cast<Connection*>(right_result);
+  EXPECT_EQ(Connection_name(right_result), "right");
+  Connection_destroy(right_result);
 }
 
 TEST_F(DotGateWithNeighborsTest, IsPlungerGate) {
@@ -67,23 +65,24 @@ TEST_F(DotGateWithNeighborsTest, Equality) {
 }
 
 TEST_F(DotGateWithNeighborsTest, InequalityDifferentLeft) {
-  ConnectionHandle left2 = new Connection(*Connection::PlungerGate("left2"));
+  ConnectionHandle left2 = Connection_create_plunger_gate(String_wrap("left2"));
   DotGateWithNeighborsHandle handle2 =
       DotGateWithNeighbors_create_plungergatewithneighbors(name, left2, right);
   EXPECT_FALSE(DotGateWithNeighbors_equal(handle, handle2));
   EXPECT_TRUE(DotGateWithNeighbors_not_equal(handle, handle2));
   DotGateWithNeighbors_destroy(handle2);
-  delete static_cast<Connection*>(left2);
+  Connection_destroy(left2);
 }
 
 TEST_F(DotGateWithNeighborsTest, InequalityDifferentRight) {
-  ConnectionHandle right2 = new Connection(*Connection::PlungerGate("right2"));
+  ConnectionHandle right2 =
+      Connection_create_plunger_gate(String_wrap("right2"));
   DotGateWithNeighborsHandle handle2 =
       DotGateWithNeighbors_create_plungergatewithneighbors(name, left, right2);
   EXPECT_FALSE(DotGateWithNeighbors_equal(handle, handle2));
   EXPECT_TRUE(DotGateWithNeighbors_not_equal(handle, handle2));
   DotGateWithNeighbors_destroy(handle2);
-  delete static_cast<Connection*>(right2);
+  Connection_destroy(right2);
 }
 
 TEST_F(DotGateWithNeighborsTest, SerializationRoundTrip) {

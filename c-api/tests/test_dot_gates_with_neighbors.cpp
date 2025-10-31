@@ -19,15 +19,14 @@ class DotGatesWithNeighborsTest : public ::testing::Test {
 
   void SetUp() override {
     StringHandle     name = String_create("g", 1);
-    ConnectionHandle b1   = new Connection(*Connection::BarrierGate("b1"));
-    ConnectionHandle b2   = new Connection(*Connection::BarrierGate("b2"));
-    ConnectionHandle b3   = new Connection(*Connection::BarrierGate("b3"));
+    ConnectionHandle b1   = Connection_create_barrier_gate(String_wrap("b1"));
+    ConnectionHandle b2   = Connection_create_barrier_gate(String_wrap("b2"));
+    ConnectionHandle b3   = Connection_create_barrier_gate(String_wrap("b3"));
 
     gate1 = DotGateWithNeighbors_create_plungergatewithneighbors(name, b1, b2);
     gate2 = DotGateWithNeighbors_create_plungergatewithneighbors(name, b3, b2);
 
-    list = new falcon_core::generic::List<
-        falcon_core::physics::config::geometries::DotGateWithNeighbors>();
+    list = ListDotGateWithNeighbors_create_empty();
     ListDotGateWithNeighbors_push_back(list, gate1);
     ListDotGateWithNeighbors_push_back(list, gate2);
 

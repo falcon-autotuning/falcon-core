@@ -2,9 +2,7 @@
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h"
-#include "falcon_core/physics/device_structures/Connection.hpp"
-
-using namespace falcon_core::physics::device_structures;
+#include "falcon_core/physics/device_structures/Connection_c_api.h"
 
 class RightReservoirWithImplantedOhmicTest : public ::testing::Test {
  protected:
@@ -15,15 +13,15 @@ class RightReservoirWithImplantedOhmicTest : public ::testing::Test {
 
   void SetUp() override {
     name   = String_create("right", 5);
-    left   = new Connection(*Connection::BarrierGate("left"));
-    ohmic  = new Connection(*Connection::Ohmic("ohmic"));
+    left   = Connection_create_barrier_gate(String_wrap("left"));
+    ohmic  = Connection_create_ohmic(String_wrap("ohmic"));
     handle = RightReservoirWithImplantedOhmic_create(name, left, ohmic);
   }
 
   void TearDown() override {
     RightReservoirWithImplantedOhmic_destroy(handle);
-    delete static_cast<Connection*>(left);
-    delete static_cast<Connection*>(ohmic);
+    Connection_destroy(left);
+    Connection_destroy(ohmic);
     String_destroy(name);
   }
 };
@@ -43,15 +41,15 @@ TEST_F(RightReservoirWithImplantedOhmicTest, TypeGetter) {
 TEST_F(RightReservoirWithImplantedOhmicTest, OhmicGetter) {
   ConnectionHandle ohmic_result =
       RightReservoirWithImplantedOhmic_ohmic(handle);
-  EXPECT_EQ(static_cast<Connection*>(ohmic_result)->name(), "ohmic");
-  delete static_cast<Connection*>(ohmic_result);
+  EXPECT_EQ(Connection_name(ohmic_result), "ohmic");
+  Connection_destroy(ohmic_result);
 }
 
 TEST_F(RightReservoirWithImplantedOhmicTest, LeftNeighborGetter) {
   ConnectionHandle left_result =
       RightReservoirWithImplantedOhmic_left_neighbor(handle);
-  EXPECT_EQ(static_cast<Connection*>(left_result)->name(), "left");
-  delete static_cast<Connection*>(left_result);
+  EXPECT_EQ(Connection_name(left_result), "left");
+  Connection_destroy(left_result);
 }
 
 TEST_F(RightReservoirWithImplantedOhmicTest, Equality) {

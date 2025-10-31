@@ -2,9 +2,6 @@
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h"
-#include "falcon_core/physics/device_structures/Connection.hpp"
-
-using namespace falcon_core::physics::device_structures;
 
 class LeftReservoirWithImplantedOhmicTest : public ::testing::Test {
  protected:
@@ -15,15 +12,15 @@ class LeftReservoirWithImplantedOhmicTest : public ::testing::Test {
 
   void SetUp() override {
     name   = String_create("left", 4);
-    right  = new Connection(*Connection::BarrierGate("right"));
-    ohmic  = new Connection(*Connection::Ohmic("ohmic"));
+    right  = Connection_create_barrier_gate(String_wrap("right"));
+    ohmic  = Connection_create_ohmic(String_wrap("ohmic"));
     handle = LeftReservoirWithImplantedOhmic_create(name, right, ohmic);
   }
 
   void TearDown() override {
     LeftReservoirWithImplantedOhmic_destroy(handle);
-    delete static_cast<Connection*>(right);
-    delete static_cast<Connection*>(ohmic);
+    Connection_destroy(right);
+    Connection_destroy(ohmic);
     String_destroy(name);
   }
 };
@@ -42,15 +39,15 @@ TEST_F(LeftReservoirWithImplantedOhmicTest, TypeGetter) {
 
 TEST_F(LeftReservoirWithImplantedOhmicTest, OhmicGetter) {
   ConnectionHandle ohmic_result = LeftReservoirWithImplantedOhmic_ohmic(handle);
-  EXPECT_EQ(static_cast<Connection*>(ohmic_result)->name(), "ohmic");
-  delete static_cast<Connection*>(ohmic_result);
+  EXPECT_EQ(Connection_name(ohmic_result), "ohmic");
+  Connection_destroy(ohmic_result);
 }
 
 TEST_F(LeftReservoirWithImplantedOhmicTest, RightNeighborGetter) {
   ConnectionHandle right_result =
       LeftReservoirWithImplantedOhmic_right_neighbor(handle);
-  EXPECT_EQ(static_cast<Connection*>(right_result)->name(), "right");
-  delete static_cast<Connection*>(right_result);
+  EXPECT_EQ(Connection_name(right_result), "right");
+  Connection_destroy(right_result);
 }
 
 TEST_F(LeftReservoirWithImplantedOhmicTest, Equality) {
