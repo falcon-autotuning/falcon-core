@@ -2,6 +2,11 @@
 #include <string>
 #include <vector>
 
+#include <cereal/types/memory.hpp>
+#include <cereal/types/polymorphic.hpp>
+#include <cereal/types/string.hpp>
+#include <cereal/types/vector.hpp>
+
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
 #include "falcon_core/generic/List.hpp"
@@ -19,6 +24,25 @@ using namespace falcon_core::physics::units;
 using namespace falcon_core::math;
 using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::instrument_interfaces::names;
+
+// Register polymorphic Song-derived types that appear inside
+// InterpretationContext so cereal can (de)serialize them via shared_ptr<Song).
+CEREAL_REGISTER_TYPE(falcon_core::autotuner_interfaces::contexts::MeasurementContext)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::autotuner_interfaces::contexts::MeasurementContext)
+
+CEREAL_REGISTER_TYPE(
+    falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>)
+
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>)
 
 TEST(InterpretationContextTest, JsonSerializeDeserialize) {
   // Build valid MeasurementContext instances (non-null)
@@ -57,14 +81,6 @@ TEST(InterpretationContextTest, JsonSerializeDeserialize) {
   EXPECT_EQ(other->dependent_variables()->size(),
             ctx.dependent_variables()->size());
 }
-
-// New test that registers polymorphic types for cereal and uses ASSERT_NO_THROW
-// to ensure exceptions are surfaced (so coverage records the JSON archive
-// instantiations).
-#include <cereal/types/memory.hpp>
-#include <cereal/types/polymorphic.hpp>
-#include <cereal/types/string.hpp>
-#include <cereal/types/vector.hpp>
 
 TEST(InterpretationContextTest,
      JsonSerializeDeserialize_WithCerealRegistration) {
@@ -106,4 +122,47 @@ TEST(InterpretationContextTest,
   EXPECT_EQ(other->dimension(), ctx.dimension());
   EXPECT_EQ(other->dependent_variables()->size(),
             ctx.dependent_variables()->size());
+}
+
+// Additional behavior tests to increase coverage of simple methods.
+TEST(InterpretationContextTest, BehaviorOperations) {
+  auto conn1 = Connection::PlungerGate("ind_conn");
+  auto conn2 = Connection::PlungerGate("dep_conn");
+  Instrument instr = InstrumentTypes::VOLTAGE_SOURCE;
+
+  auto m_ind = std::make_shared<MeasurementContext>(conn1, instr);
+  auto m_dep = std::make_shared<MeasurementContext>(conn2, instr);
+
+  std::vector<std::shared_ptr<MeasurementContext>> indep_items{m_ind};
+  auto independent = std::make_shared<Axes<MeasurementContext>>(indep_items);
+
+  auto dependent = std::make_shared<List<MeasurementContext>>();
+  dependent->push_back(m_dep);
+
+  auto unit = std::make_shared<SymbolUnit>(Unit::Meter());
+
+  InterpretationContext ctx(independent, dependent, unit);
+
+  // dimension() should equal independent size
+  EXPECT_EQ(ctx.dimension(), static_cast<int>(independent->size()));
+
+  // add_dependent_variable increases dependent size
+  size_t before = ctx.dependent_variables()->size();
+  ctx.add_dependent_variable(m_ind);
+  EXPECT_EQ(ctx.dependent_variables()->size(), before + 1);
+
+  // replace_dependent_variable replaces element at index 0
+  ctx.replace_dependent_variable(0, m_ind);
+  EXPECT_EQ(ctx.dependent_variables()->size(), before + 1);
+
+  // replace_dependent_variable throws when out of range
+  ASSERT_THROW(ctx.replace_dependent_variable(100, m_ind), std::out_of_range);
+
+  // with_unit returns new InterpretationContext with changed unit
+  auto new_unit = std::make_shared<SymbolUnit>(Unit::Kilogram());
+  auto new_ctx = ctx.with_unit(new_unit);
+  ASSERT_NE(new_ctx, nullptr);
+  EXPECT_EQ(new_ctx->unit(), new_unit);
+  // original unchanged
+  EXPECT_NE(ctx.unit(), new_unit);
 }
