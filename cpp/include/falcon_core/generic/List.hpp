@@ -3,8 +3,8 @@
 #include <algorithm>
 #include <memory>
 #include <stdexcept>
-#include <utility>
 #include <type_traits>
+#include <utility>
 
 #include "falcon_core/generic/CategoryTags.hpp"
 #include "falcon_core/generic/Song.hpp"
@@ -123,20 +123,18 @@ class List : public generic::Song {
   size_t size() const { return _items.size(); }
   bool   empty() const { return _items.empty(); }
 
-  auto at(const size_t idx) const
-      -> std::conditional_t<
-          std::is_same<typename category::determine_bool_tag<Value>::type,
-                       category::bool_tag>::value,
-          StoredValue,
-          const StoredValue&> {
+  auto at(const size_t idx) const -> std::conditional_t<
+      std::is_same<typename category::determine_bool_tag<Value>::type,
+                   category::bool_tag>::value,
+      StoredValue,
+      const StoredValue&> {
     return at_impl(idx, typename category::determine_bool_tag<Value>::type{});
   }
-  auto at(const size_t idx)
-      -> std::conditional_t<
-          std::is_same<typename category::determine_bool_tag<Value>::type,
-                       category::bool_tag>::value,
-          StoredValue,
-          StoredValue&> {
+  auto at(const size_t idx) -> std::conditional_t<
+      std::is_same<typename category::determine_bool_tag<Value>::type,
+                   category::bool_tag>::value,
+      StoredValue,
+      StoredValue&> {
     return at_impl(idx, typename category::determine_bool_tag<Value>::type{});
   }
   StoredValue&       operator[](const size_t idx) { return at(idx); }
@@ -245,7 +243,7 @@ class List : public generic::Song {
     }
     return _items.at(idx);
   }
-  StoredValue at_impl(size_t idx, category::bool_tag) const {
+  const StoredValue at_impl(size_t idx, category::bool_tag) const {
     if (idx >= _items.size()) {
       throw std::out_of_range("List: The index " + std::to_string(idx) +
                               " exceeds the length of the array " +
