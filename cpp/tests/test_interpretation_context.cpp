@@ -1,13 +1,12 @@
-#include "gtest/gtest.h"
-
-#include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
-#include "falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp"
-#include "falcon_core/generic/List.hpp"
-#include "falcon_core/physics/units/SymbolUnit.hpp"
-#include "falcon_core/math/Axes.hpp"
-
 #include <memory>
 #include <string>
+
+#include "falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp"
+#include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
+#include "falcon_core/generic/List.hpp"
+#include "falcon_core/math/Axes.hpp"
+#include "falcon_core/physics/units/SymbolUnit.hpp"
+#include "gtest/gtest.h"
 
 using namespace falcon_core;
 using namespace falcon_core::autotuner_interfaces::interpretations;
