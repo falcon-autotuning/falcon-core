@@ -18,6 +18,9 @@ ListBoolHandle ListBool_allocate(size_t count) {
 }
 
 ListBoolHandle ListBool_create(bool* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListBool_create");
+}
     std::vector<bool> vec;
     vec.insert(vec.end(), data, data + count);
     return new falcon_core::generic::List<bool>(

@@ -18,6 +18,9 @@ ListSizeTHandle ListSizeT_allocate(size_t count) {
 }
 
 ListSizeTHandle ListSizeT_create(size_t* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListSizeT_create");
+}
     std::vector<size_t> vec;
     vec.insert(vec.end(), data, data + count);
     return new falcon_core::generic::List<size_t>(

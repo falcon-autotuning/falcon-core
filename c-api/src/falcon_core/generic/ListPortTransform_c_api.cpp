@@ -23,6 +23,9 @@ ListPortTransformHandle ListPortTransform_allocate(size_t count) {
 }
 
 ListPortTransformHandle ListPortTransform_create(PortTransformHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPortTransform_create");
+}
     std::vector<falcon_core::instrument_interfaces::port_transforms::PortTransformSP> vec;
         vec.reserve(count);
     if (!data) {

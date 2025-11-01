@@ -22,6 +22,9 @@ ListStringHandle ListString_allocate(size_t count) {
 }
 
 ListStringHandle ListString_create(StringHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListString_create");
+}
     std::vector<std::string> vec;
     
     if (!data) {{

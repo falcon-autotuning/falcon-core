@@ -40,7 +40,7 @@ ListStringHandle Ports_default_names(PortsHandle handle) {
   }
   Ports                                     self = *static_cast<Ports*>(handle);
   falcon_core::generic::ListSP<std::string> names = self.get_default_names();
-  return names.get();
+  return new falcon_core::generic::List<std::string>(names->items());
 }
 
 ListConnectionHandle Ports_get_psuedo_names(PortsHandle handle) {
@@ -52,7 +52,8 @@ ListConnectionHandle Ports_get_psuedo_names(PortsHandle handle) {
   falcon_core::generic::ListSP<
       falcon_core::physics::device_structures::Connection>
       names = self.get_pseudo_names();
-  return names.get();
+  return new falcon_core::generic::List<
+      falcon_core::physics::device_structures::Connection>(names->items());
 }
 
 ListStringHandle Ports__get_raw_names(PortsHandle handle) {
@@ -60,7 +61,8 @@ ListStringHandle Ports__get_raw_names(PortsHandle handle) {
     throw std::invalid_argument("Ports__get_raw_names: handle cannot be null");
   }
   Ports self = *static_cast<Ports*>(handle);
-  return self._get_raw_names().get();
+  return new falcon_core::generic::List<std::string>(
+      self._get_raw_names()->items());
 }
 
 ListStringHandle Ports__get_instrument_facing_names(PortsHandle handle) {
@@ -69,7 +71,8 @@ ListStringHandle Ports__get_instrument_facing_names(PortsHandle handle) {
         "Ports__get_instrument_facing_names: handle cannot be null");
   }
   Ports self = *static_cast<Ports*>(handle);
-  return self._get_instrument_facing_names().get();
+  return new falcon_core::generic::List<std::string>(
+      self._get_instrument_facing_names()->items());
 }
 
 InstrumentPortHandle Ports__get_psuedoname_matching_port(
@@ -87,7 +90,7 @@ InstrumentPortHandle Ports__get_psuedoname_matching_port(
       std::make_shared<falcon_core::physics::device_structures::Connection>(
           *static_cast<falcon_core::physics::device_structures::Connection*>(
               name));
-  return self._get_psuedoname_matching_port(real_name).get();
+  return new InstrumentPort(*self._get_psuedoname_matching_port(real_name));
 }
 
 InstrumentPortHandle Ports__get_instrument_type_matching_port(
@@ -102,7 +105,8 @@ InstrumentPortHandle Ports__get_instrument_type_matching_port(
   }
   Ports       self = *static_cast<Ports*>(handle);
   std::string real_type(type->raw, type->length);
-  return self._get_instrument_type_matching_port(real_type).get();
+  return new InstrumentPort(
+      *self._get_instrument_type_matching_port(real_type));
 }
 
 bool Ports_is_knobs(PortsHandle handle) {
@@ -190,7 +194,7 @@ const InstrumentPortHandle Ports_const_at(PortsHandle handle, size_t idx) {
     throw std::invalid_argument("Ports_const_at: handle cannot be null");
   }
   Ports self = *static_cast<Ports*>(handle);
-  return self.at(idx).get();
+  return new InstrumentPort(*self.at(idx));
 }
 
 InstrumentPortHandle Ports_at(PortsHandle handle, size_t idx) {
@@ -212,7 +216,7 @@ ListStringHandle Ports_items(PortsHandle handle) {
     std::string name = port->default_name();
     list_of_strings->push_back(name);
   }
-  return list_of_strings.get();
+  return new falcon_core::generic::List<std::string>(list_of_strings->items());
 }
 
 bool Ports_contains(PortsHandle handle, InstrumentPortHandle value) {

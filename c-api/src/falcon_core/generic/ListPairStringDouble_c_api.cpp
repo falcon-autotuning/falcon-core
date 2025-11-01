@@ -23,6 +23,9 @@ ListPairStringDoubleHandle ListPairStringDouble_allocate(size_t count) {
 }
 
 ListPairStringDoubleHandle ListPairStringDouble_create(PairStringDoubleHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairStringDouble_create");
+}
     std::vector<falcon_core::generic::PairSP<std::string, double>> vec;
         vec.reserve(count);
     if (!data) {

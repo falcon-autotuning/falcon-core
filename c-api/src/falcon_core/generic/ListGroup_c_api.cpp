@@ -23,6 +23,9 @@ ListGroupHandle ListGroup_allocate(size_t count) {
 }
 
 ListGroupHandle ListGroup_create(GroupHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListGroup_create");
+}
     std::vector<falcon_core::physics::config::core::GroupSP> vec;
         vec.reserve(count);
     if (!data) {

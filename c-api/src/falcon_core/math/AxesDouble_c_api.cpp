@@ -18,9 +18,9 @@ AxesDoubleHandle AxesDouble_create(ListDoubleHandle data) {
 if (!data) {
 throw std::invalid_argument("Null data handle passed to AxesDouble_create");
 }
-    auto list = static_cast<falcon_core::generic::List<double>*>(data);
+    auto list = *static_cast<falcon_core::generic::List<double>*>(data);
     return new falcon_core::math::Axes<double>(
-            std::shared_ptr<falcon_core::generic::List<double>>(list));
+            std::make_shared<falcon_core::generic::List<double>>(list));
 }
 
 void AxesDouble_destroy(AxesDoubleHandle handle) {

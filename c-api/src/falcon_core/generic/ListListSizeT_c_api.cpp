@@ -22,6 +22,9 @@ ListListSizeTHandle ListListSizeT_allocate(size_t count) {
 }
 
 ListListSizeTHandle ListListSizeT_create(ListSizeTHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListListSizeT_create");
+}
     std::vector<falcon_core::generic::ListSP<size_t>> vec;
         vec.reserve(count);
     if (!data) {

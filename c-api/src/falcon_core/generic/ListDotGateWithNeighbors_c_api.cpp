@@ -23,6 +23,9 @@ ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_allocate(size_t count) {
 }
 
 ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create(DotGateWithNeighborsHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListDotGateWithNeighbors_create");
+}
     std::vector<falcon_core::physics::config::geometries::DotGateWithNeighborsSP> vec;
         vec.reserve(count);
     if (!data) {

@@ -23,6 +23,9 @@ ListInstrumentPortHandle ListInstrumentPort_allocate(size_t count) {
 }
 
 ListInstrumentPortHandle ListInstrumentPort_create(InstrumentPortHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListInstrumentPort_create");
+}
     std::vector<falcon_core::instrument_interfaces::names::InstrumentPortSP> vec;
         vec.reserve(count);
     if (!data) {

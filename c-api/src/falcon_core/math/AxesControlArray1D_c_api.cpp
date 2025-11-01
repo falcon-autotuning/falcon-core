@@ -27,9 +27,9 @@ AxesControlArray1DHandle AxesControlArray1D_create(ListControlArray1DHandle data
 if (!data) {
 throw std::invalid_argument("Null data handle passed to AxesControlArray1D_create");
 }
-    auto list = static_cast<falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>*>(data);
+    auto list = *static_cast<falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>*>(data);
     return new falcon_core::math::Axes<falcon_core::math::arrays::ControlArray1D>(
-            std::shared_ptr<falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>>(list));
+            std::make_shared<falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>>(list));
 }
 
 void AxesControlArray1D_destroy(AxesControlArray1DHandle handle) {

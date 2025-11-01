@@ -75,14 +75,13 @@ InstrumentPortHandle InstrumentPort_create_knob(StringHandle     default_name,
             *static_cast<falcon_core::physics::device_structures::Connection*>(
                 psuedo_name));
   }
-  return InstrumentPort::Knob(
-             std::string(default_name->raw, default_name->length),
-             real_psuedo_name,
-             std::string(instrument_type->raw, instrument_type->length),
-             std::make_shared<falcon_core::physics::units::SymbolUnit>(
-                 *static_cast<falcon_core::physics::units::SymbolUnit*>(units)),
-             std::string(description->raw, description->length))
-      .get();
+  return new InstrumentPort(*InstrumentPort::Knob(
+      std::string(default_name->raw, default_name->length),
+      real_psuedo_name,
+      std::string(instrument_type->raw, instrument_type->length),
+      std::make_shared<falcon_core::physics::units::SymbolUnit>(
+          *static_cast<falcon_core::physics::units::SymbolUnit*>(units)),
+      std::string(description->raw, description->length)));
 }
 
 InstrumentPortHandle InstrumentPort_create_meter(StringHandle     default_name,
@@ -114,22 +113,21 @@ InstrumentPortHandle InstrumentPort_create_meter(StringHandle     default_name,
             *static_cast<falcon_core::physics::device_structures::Connection*>(
                 psuedo_name));
   }
-  return InstrumentPort::Meter(
-             std::string(default_name->raw, default_name->length),
-             real_psuedo_name,
-             std::string(instrument_type->raw, instrument_type->length),
-             std::make_shared<falcon_core::physics::units::SymbolUnit>(
-                 *static_cast<falcon_core::physics::units::SymbolUnit*>(units)),
-             std::string(description->raw, description->length))
-      .get();
+  return new InstrumentPort(*InstrumentPort::Meter(
+      std::string(default_name->raw, default_name->length),
+      real_psuedo_name,
+      std::string(instrument_type->raw, instrument_type->length),
+      std::make_shared<falcon_core::physics::units::SymbolUnit>(
+          *static_cast<falcon_core::physics::units::SymbolUnit*>(units)),
+      std::string(description->raw, description->length)));
 }
 
 InstrumentPortHandle InstrumentPort_create_timer() {
-  return InstrumentPort::Timer().get();
+  return new InstrumentPort(*InstrumentPort::Timer());
 }
 
 InstrumentPortHandle InstrumentPort_create_execution_clock() {
-  return InstrumentPort::ExecutionClock().get();
+  return new InstrumentPort(*InstrumentPort::ExecutionClock());
 }
 
 void InstrumentPort_destroy(InstrumentPortHandle handle) {
@@ -265,5 +263,5 @@ InstrumentPortHandle InstrumentPort_from_json_string(StringHandle json) {
         "InstrumentPort_from_json_string: json cannot be null");
   }
   auto ptr = InstrumentPort::from_json_string<InstrumentPort>(json->raw);
-  return ptr.get();
+  return new InstrumentPort(*ptr);
 }

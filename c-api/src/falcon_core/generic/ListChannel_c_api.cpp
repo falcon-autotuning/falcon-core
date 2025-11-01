@@ -23,6 +23,9 @@ ListChannelHandle ListChannel_allocate(size_t count) {
 }
 
 ListChannelHandle ListChannel_create(ChannelHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListChannel_create");
+}
     std::vector<falcon_core::autotuner_interfaces::names::ChannelSP> vec;
         vec.reserve(count);
     if (!data) {

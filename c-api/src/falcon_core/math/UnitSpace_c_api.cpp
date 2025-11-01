@@ -75,6 +75,10 @@ UnitSpaceHandle UnitSpace_create_cartesian2Dspace(AxesDoubleHandle deltas,
     throw std::invalid_argument(
         "UnitSpace_create_cartesian2Dspace: domain cannot be null");
   }
+  if (!deltas) {
+    throw std::invalid_argument(
+        "UnitSpace_create_cartesian2Dspace: deltas cannot be null");
+  }
   AxesSP<double> real_deltas =
       std::make_shared<Axes<double>>(*static_cast<Axes<double>*>(deltas));
   falcon_core::math::domains::DomainSP real_domain =
@@ -107,12 +111,16 @@ DomainHandle UnitSpace_domain(UnitSpaceHandle handle) {
   return new falcon_core::math::domains::Domain(*self.domain());
 }
 
-FArrayDoubleHandle UnitSpace_space(UnitSpaceHandle handle) {
+UnitSpaceHandle UnitSpace_space(UnitSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_space: handle cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
-  return new falcon_core::generic::FArray<double>(*self.space());
+  UnitSpace self      = *static_cast<UnitSpace*>(handle);
+  auto      space_ptr = self.space();
+  if (!space_ptr) {
+    throw std::runtime_error("UnitSpace_space: space() returned nullptr");
+  }
+  return new falcon_core::generic::FArray<double>(*space_ptr);
 }
 
 ListIntHandle UnitSpace_shape(UnitSpaceHandle handle) {
@@ -127,16 +135,16 @@ size_t UnitSpace_dimension(UnitSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_dimension: handle cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
-  return self.dimension();
+  UnitSpace* self = static_cast<UnitSpace*>(handle);
+  return self->dimension();
 }
 
 void UnitSpace_compile(UnitSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_compile: handle cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
-  self.compile();
+  UnitSpace* self = static_cast<UnitSpace*>(handle);
+  self->compile();
 }
 
 AxesControlArrayHandle UnitSpace_create_array(UnitSpaceHandle handle,

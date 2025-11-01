@@ -7,11 +7,11 @@
 using namespace falcon_core::math::discrete_spaces;
 
 DiscretizerHandle Discretizer_create_cartesian_discretizer(double delta) {
-  return Discretizer::CartesianDiscretizer(delta).get();
+  return new Discretizer(*Discretizer::CartesianDiscretizer(delta));
 }
 
 DiscretizerHandle Discretizer_create_polar_discretizer(double delta) {
-  return Discretizer::PolarDiscretizer(delta).get();
+  return new Discretizer(*Discretizer::PolarDiscretizer(delta));
 }
 
 void Discretizer_destroy(DiscretizerHandle handle) {

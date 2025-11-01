@@ -23,6 +23,9 @@ ListLabelledDomainHandle ListLabelledDomain_allocate(size_t count) {
 }
 
 ListLabelledDomainHandle ListLabelledDomain_create(LabelledDomainHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListLabelledDomain_create");
+}
     std::vector<falcon_core::math::domains::LabelledDomainSP> vec;
         vec.reserve(count);
     if (!data) {

@@ -27,9 +27,9 @@ AxesMeasurementContextHandle AxesMeasurementContext_create(ListMeasurementContex
 if (!data) {
 throw std::invalid_argument("Null data handle passed to AxesMeasurementContext_create");
 }
-    auto list = static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(data);
+    auto list = *static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(data);
     return new falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(
-            std::shared_ptr<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>>(list));
+            std::make_shared<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>>(list));
 }
 
 void AxesMeasurementContext_destroy(AxesMeasurementContextHandle handle) {

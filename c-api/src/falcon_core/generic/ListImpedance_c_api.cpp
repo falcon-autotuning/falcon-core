@@ -23,6 +23,9 @@ ListImpedanceHandle ListImpedance_allocate(size_t count) {
 }
 
 ListImpedanceHandle ListImpedance_create(ImpedanceHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListImpedance_create");
+}
     std::vector<falcon_core::physics::device_structures::ImpedanceSP> vec;
         vec.reserve(count);
     if (!data) {

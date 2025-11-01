@@ -25,6 +25,9 @@ ListPairChannelConnectionsHandle ListPairChannelConnections_allocate(size_t coun
 }
 
 ListPairChannelConnectionsHandle ListPairChannelConnections_create(PairChannelConnectionsHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairChannelConnections_create");
+}
     std::vector<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>> vec;
         vec.reserve(count);
     if (!data) {

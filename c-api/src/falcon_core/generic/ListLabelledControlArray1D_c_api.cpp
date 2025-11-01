@@ -23,6 +23,9 @@ ListLabelledControlArray1DHandle ListLabelledControlArray1D_allocate(size_t coun
 }
 
 ListLabelledControlArray1DHandle ListLabelledControlArray1D_create(LabelledControlArray1DHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListLabelledControlArray1D_create");
+}
     std::vector<falcon_core::math::arrays::LabelledControlArray1DSP> vec;
         vec.reserve(count);
     if (!data) {

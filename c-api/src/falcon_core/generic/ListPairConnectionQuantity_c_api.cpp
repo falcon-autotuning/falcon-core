@@ -25,6 +25,9 @@ ListPairConnectionQuantityHandle ListPairConnectionQuantity_allocate(size_t coun
 }
 
 ListPairConnectionQuantityHandle ListPairConnectionQuantity_create(PairConnectionQuantityHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairConnectionQuantity_create");
+}
     std::vector<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>> vec;
         vec.reserve(count);
     if (!data) {

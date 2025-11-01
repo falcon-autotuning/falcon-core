@@ -27,9 +27,9 @@ AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_create(ListCoupledLabe
 if (!data) {
 throw std::invalid_argument("Null data handle passed to AxesCoupledLabelledDomain_create");
 }
-    auto list = static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(data);
+    auto list = *static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(data);
     return new falcon_core::math::Axes<falcon_core::math::domains::CoupledLabelledDomain>(
-            std::shared_ptr<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>>(list));
+            std::make_shared<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>>(list));
 }
 
 void AxesCoupledLabelledDomain_destroy(AxesCoupledLabelledDomainHandle handle) {

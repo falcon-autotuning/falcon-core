@@ -27,9 +27,9 @@ AxesMapStringBoolHandle AxesMapStringBool_create(ListMapStringBoolHandle data) {
 if (!data) {
 throw std::invalid_argument("Null data handle passed to AxesMapStringBool_create");
 }
-    auto list = static_cast<falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>*>(data);
+    auto list = *static_cast<falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>*>(data);
     return new falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>(
-            std::shared_ptr<falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>>(list));
+            std::make_shared<falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>>(list));
 }
 
 void AxesMapStringBool_destroy(AxesMapStringBoolHandle handle) {

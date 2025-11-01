@@ -27,9 +27,9 @@ AxesLabelledControlArrayHandle AxesLabelledControlArray_create(ListLabelledContr
 if (!data) {
 throw std::invalid_argument("Null data handle passed to AxesLabelledControlArray_create");
 }
-    auto list = static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>*>(data);
+    auto list = *static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>*>(data);
     return new falcon_core::math::Axes<falcon_core::math::arrays::LabelledControlArray>(
-            std::shared_ptr<falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>>(list));
+            std::make_shared<falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>>(list));
 }
 
 void AxesLabelledControlArray_destroy(AxesLabelledControlArrayHandle handle) {

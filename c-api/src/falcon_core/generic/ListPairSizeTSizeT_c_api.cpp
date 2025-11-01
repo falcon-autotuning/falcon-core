@@ -23,6 +23,9 @@ ListPairSizeTSizeTHandle ListPairSizeTSizeT_allocate(size_t count) {
 }
 
 ListPairSizeTSizeTHandle ListPairSizeTSizeT_create(PairSizeTSizeTHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairSizeTSizeT_create");
+}
     std::vector<falcon_core::generic::PairSP<size_t, size_t>> vec;
         vec.reserve(count);
     if (!data) {

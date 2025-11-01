@@ -23,6 +23,9 @@ ListWaveformHandle ListWaveform_allocate(size_t count) {
 }
 
 ListWaveformHandle ListWaveform_create(WaveformHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListWaveform_create");
+}
     std::vector<falcon_core::instrument_interfaces::WaveformSP> vec;
         vec.reserve(count);
     if (!data) {

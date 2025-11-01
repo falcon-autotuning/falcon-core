@@ -146,16 +146,16 @@ bool Point_empty(PointHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Point_empty: handle cannot be null");
   }
-  Point self = *static_cast<Point*>(handle);
-  return self.empty();
+  Point* self = static_cast<Point*>(handle);
+  return self->empty();
 }
 
 void Point_clear(PointHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Point_clear: handle cannot be null");
   }
-  Point self = *static_cast<Point*>(handle);
-  self.clear();
+  Point* self = static_cast<Point*>(handle);
+  self->clear();
 }
 
 bool Point_contains(PointHandle handle, ConnectionHandle key) {
@@ -226,6 +226,9 @@ ListConnectionHandle Point_connections(PointHandle handle) {
 PointHandle Point_addition(PointHandle handle, PointHandle other) {
   if (!handle) {
     throw std::invalid_argument("Point_addition: handle cannot be null");
+  }
+  if (!other) {
+    throw std::invalid_argument("Point_addition: other cannot be null");
   }
   Point   self     = *static_cast<Point*>(handle);
   PointSP other_pt = std::make_shared<Point>(*static_cast<Point*>(other));

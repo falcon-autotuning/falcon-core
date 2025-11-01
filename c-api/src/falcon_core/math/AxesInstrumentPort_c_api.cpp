@@ -27,9 +27,9 @@ AxesInstrumentPortHandle AxesInstrumentPort_create(ListInstrumentPortHandle data
 if (!data) {
 throw std::invalid_argument("Null data handle passed to AxesInstrumentPort_create");
 }
-    auto list = static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>*>(data);
+    auto list = *static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>*>(data);
     return new falcon_core::math::Axes<falcon_core::instrument_interfaces::names::InstrumentPort>(
-            std::shared_ptr<falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>>(list));
+            std::make_shared<falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>>(list));
 }
 
 void AxesInstrumentPort_destroy(AxesInstrumentPortHandle handle) {

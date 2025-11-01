@@ -24,6 +24,9 @@ ListPairQuantityQuantityHandle ListPairQuantityQuantity_allocate(size_t count) {
 }
 
 ListPairQuantityQuantityHandle ListPairQuantityQuantity_create(PairQuantityQuantityHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairQuantityQuantity_create");
+}
     std::vector<falcon_core::generic::PairSP<falcon_core::math::Quantity, falcon_core::math::Quantity>> vec;
         vec.reserve(count);
     if (!data) {

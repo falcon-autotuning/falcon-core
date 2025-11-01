@@ -5,12 +5,12 @@
 class PointTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    ConnectionHandle conn = Connection_create_plunger_gate(String_wrap("A"));
-    QuantityHandle   qty  = Quantity_create(42.0);
-    SymbolUnitHandle unit = SymbolUnit_create_meter();
-    MapConnectionDoubleHandle map_cd = MapConnectionDouble_create_empty();
+    conn   = Connection_create_plunger_gate(String_wrap("A"));
+    qty    = Quantity_create(42.0);
+    unit   = SymbolUnit_create_meter();
+    map_cd = MapConnectionDouble_create_empty();
     MapConnectionDouble_insert(map_cd, conn, 1.0);
-    MapConnectionQuantityHandle map_cq = MapConnectionQuantity_create_empty();
+    map_cq = MapConnectionQuantity_create_empty();
     MapConnectionQuantity_insert(map_cq, conn, qty);
     point = Point_create(map_cd, unit);
   }

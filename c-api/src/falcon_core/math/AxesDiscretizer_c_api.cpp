@@ -27,9 +27,9 @@ AxesDiscretizerHandle AxesDiscretizer_create(ListDiscretizerHandle data) {
 if (!data) {
 throw std::invalid_argument("Null data handle passed to AxesDiscretizer_create");
 }
-    auto list = static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(data);
+    auto list = *static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(data);
     return new falcon_core::math::Axes<falcon_core::math::discrete_spaces::Discretizer>(
-            std::shared_ptr<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>>(list));
+            std::make_shared<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>>(list));
 }
 
 void AxesDiscretizer_destroy(AxesDiscretizerHandle handle) {

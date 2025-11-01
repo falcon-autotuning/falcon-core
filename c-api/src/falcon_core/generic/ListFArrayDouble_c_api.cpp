@@ -23,6 +23,9 @@ ListFArrayDoubleHandle ListFArrayDouble_allocate(size_t count) {
 }
 
 ListFArrayDoubleHandle ListFArrayDouble_create(FArrayDoubleHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListFArrayDouble_create");
+}
     std::vector<falcon_core::generic::FArraySP<double>> vec;
         vec.reserve(count);
     if (!data) {

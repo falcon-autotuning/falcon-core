@@ -253,7 +253,7 @@ InstrumentPortHandle LabelledDomain_port(LabelledDomainHandle handle) {
     throw std::invalid_argument("LabelledDomain_port: handle cannot be null");
   }
   const auto port = static_cast<LabelledDomain*>(handle)->port();
-  return static_cast<InstrumentPortHandle>(port.get());
+  return new falcon_core::instrument_interfaces::names::InstrumentPort(*port);
 }
 
 DomainHandle LabelledDomain_domain(LabelledDomainHandle handle) {
@@ -261,7 +261,7 @@ DomainHandle LabelledDomain_domain(LabelledDomainHandle handle) {
     throw std::invalid_argument("LabelledDomain_domain: handle cannot be null");
   }
   const auto domain = static_cast<LabelledDomain*>(handle)->domain();
-  return static_cast<DomainHandle>(domain.get());
+  return new Domain(*domain);
 }
 
 bool LabelledDomain_matching_port(LabelledDomainHandle handle,
@@ -358,7 +358,8 @@ LabelledDomainHandle LabelledDomain_intersection(LabelledDomainHandle handle,
   auto rhs = static_cast<LabelledDomain*>(other);
   auto result_ptr =
       *lhs & std::shared_ptr<LabelledDomain>(rhs, [](LabelledDomain*) {});
-  return result_ptr.get();
+  return new LabelledDomain(
+      *LabelledDomain::from_port_and_domain(lhs->port(), result_ptr));
 }
 
 LabelledDomainHandle LabelledDomain_union(LabelledDomainHandle handle,
@@ -373,7 +374,8 @@ LabelledDomainHandle LabelledDomain_union(LabelledDomainHandle handle,
   auto rhs = static_cast<LabelledDomain*>(other);
   auto result_ptr =
       *lhs | std::shared_ptr<LabelledDomain>(rhs, [](LabelledDomain*) {});
-  return result_ptr.get();
+  return new LabelledDomain(
+      *LabelledDomain::from_port_and_domain(lhs->port(), result_ptr));
 }
 
 bool LabelledDomain_is_empty(LabelledDomainHandle handle) {
@@ -407,7 +409,8 @@ LabelledDomainHandle LabelledDomain_shift(LabelledDomainHandle handle,
     throw std::invalid_argument("LabelledDomain_shift: handle cannot be null");
   }
   auto result_ptr = static_cast<LabelledDomain*>(handle)->shift(offset);
-  return result_ptr.get();
+  return new LabelledDomain(*LabelledDomain::from_port_and_domain(
+      static_cast<LabelledDomain*>(handle)->port(), result_ptr));
 }
 
 LabelledDomainHandle LabelledDomain_scale(LabelledDomainHandle handle,
@@ -416,7 +419,8 @@ LabelledDomainHandle LabelledDomain_scale(LabelledDomainHandle handle,
     throw std::invalid_argument("LabelledDomain_scale: handle cannot be null");
   }
   auto result_ptr = static_cast<LabelledDomain*>(handle)->scale(scale);
-  return result_ptr.get();
+  return new LabelledDomain(*LabelledDomain::from_port_and_domain(
+      static_cast<LabelledDomain*>(handle)->port(), result_ptr));
 }
 
 double LabelledDomain_transform(LabelledDomainHandle handle,

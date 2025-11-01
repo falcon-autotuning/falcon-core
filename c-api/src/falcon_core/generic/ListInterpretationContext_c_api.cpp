@@ -23,6 +23,9 @@ ListInterpretationContextHandle ListInterpretationContext_allocate(size_t count)
 }
 
 ListInterpretationContextHandle ListInterpretationContext_create(InterpretationContextHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListInterpretationContext_create");
+}
     std::vector<falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP> vec;
         vec.reserve(count);
     if (!data) {

@@ -23,6 +23,9 @@ ListPairStringBoolHandle ListPairStringBool_allocate(size_t count) {
 }
 
 ListPairStringBoolHandle ListPairStringBool_create(PairStringBoolHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairStringBool_create");
+}
     std::vector<falcon_core::generic::PairSP<std::string, bool>> vec;
         vec.reserve(count);
     if (!data) {

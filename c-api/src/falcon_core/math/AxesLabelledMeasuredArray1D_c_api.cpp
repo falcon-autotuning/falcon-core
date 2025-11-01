@@ -27,9 +27,9 @@ AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_create(ListLabelle
 if (!data) {
 throw std::invalid_argument("Null data handle passed to AxesLabelledMeasuredArray1D_create");
 }
-    auto list = static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(data);
+    auto list = *static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(data);
     return new falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>(
-            std::shared_ptr<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>>(list));
+            std::make_shared<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>>(list));
 }
 
 void AxesLabelledMeasuredArray1D_destroy(AxesLabelledMeasuredArray1DHandle handle) {

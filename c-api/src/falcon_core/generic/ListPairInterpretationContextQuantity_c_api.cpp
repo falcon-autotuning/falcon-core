@@ -26,6 +26,9 @@ ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantit
 }
 
 ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_create(PairInterpretationContextQuantityHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairInterpretationContextQuantity_create");
+}
     std::vector<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>> vec;
         vec.reserve(count);
     if (!data) {

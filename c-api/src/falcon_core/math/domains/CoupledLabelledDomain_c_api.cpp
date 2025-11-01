@@ -75,7 +75,7 @@ LabelledDomainHandle CoupledLabelledDomain_get_domain(
               falcon_core::instrument_interfaces::names::InstrumentPort*>(
               search));
   LabelledDomainSP result = self.get_domain(real_search);
-  return result.get();
+  return new LabelledDomain(*result);
 }
 
 CoupledLabelledDomainHandle CoupledLabelledDomain_intersection(
@@ -155,7 +155,7 @@ LabelledDomainHandle CoupledLabelledDomain_const_at(
         "CoupledLabelledDomain_const_at: handle cannot be null");
   }
   CoupledLabelledDomain self = *static_cast<CoupledLabelledDomain*>(handle);
-  return self.at(idx).get();
+  return new LabelledDomain(*(self.at(idx)));
 }
 
 LabelledDomainHandle CoupledLabelledDomain_at(
@@ -165,7 +165,7 @@ LabelledDomainHandle CoupledLabelledDomain_at(
         "CoupledLabelledDomain_at: handle cannot be null");
   }
   CoupledLabelledDomain self = *static_cast<CoupledLabelledDomain*>(handle);
-  return self.at(idx).get();
+  return new LabelledDomain(*(self.at(idx)));
 }
 
 ListLabelledDomainHandle CoupledLabelledDomain_items(

@@ -44,8 +44,8 @@ TEST_F(ListBoolTest, Allocate) {
 }
 
 TEST_F(ListBoolTest, CreateFromArray) {
-  bool arr[2] = {true, false};
-  auto handle = ListBool_create(arr, 2);
+  bool           arr[2] = {true, false};
+  ListBoolHandle handle = ListBool_create(arr, 2);
   EXPECT_EQ(ListBool_size(handle), 2);
   ListBool_destroy(handle);
   EXPECT_THROW(ListBool_create(nullptr, 2), std::invalid_argument);

@@ -43,11 +43,15 @@ void Quantity_convert_to(QuantityHandle handle, SymbolUnitHandle target_unit) {
   if (!handle) {
     throw std::invalid_argument("Quantity_convert_to: handle cannot be null");
   }
-  Quantity self = *static_cast<Quantity*>(handle);
+  if (!target_unit) {
+    throw std::invalid_argument(
+        "Quantity_convert_to: target_unit cannot be null");
+  }
+  Quantity* self = static_cast<Quantity*>(handle);
   falcon_core::physics::units::SymbolUnitSP real_target_unit =
       std::make_shared<falcon_core::physics::units::SymbolUnit>(
           *static_cast<falcon_core::physics::units::SymbolUnit*>(target_unit));
-  self.convert_to(real_target_unit);
+  self->convert_to(real_target_unit);
 }
 
 QuantityHandle Quantity_multiply_int(QuantityHandle handle, int other) {

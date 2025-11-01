@@ -24,6 +24,9 @@ ListPairConnectionConnectionsHandle ListPairConnectionConnections_allocate(size_
 }
 
 ListPairConnectionConnectionsHandle ListPairConnectionConnections_create(PairConnectionConnectionsHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairConnectionConnections_create");
+}
     std::vector<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connections>> vec;
         vec.reserve(count);
     if (!data) {

@@ -25,6 +25,9 @@ ListPairInstrumentPortPortTransformHandle ListPairInstrumentPortPortTransform_al
 }
 
 ListPairInstrumentPortPortTransformHandle ListPairInstrumentPortPortTransform_create(PairInstrumentPortPortTransformHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairInstrumentPortPortTransform_create");
+}
     std::vector<falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>> vec;
         vec.reserve(count);
     if (!data) {

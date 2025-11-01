@@ -23,6 +23,9 @@ ListQuantityHandle ListQuantity_allocate(size_t count) {
 }
 
 ListQuantityHandle ListQuantity_create(QuantityHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListQuantity_create");
+}
     std::vector<falcon_core::math::QuantitySP> vec;
         vec.reserve(count);
     if (!data) {

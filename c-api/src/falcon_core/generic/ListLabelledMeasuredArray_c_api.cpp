@@ -23,6 +23,9 @@ ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_allocate(size_t count)
 }
 
 ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_create(LabelledMeasuredArrayHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListLabelledMeasuredArray_create");
+}
     std::vector<falcon_core::math::arrays::LabelledMeasuredArraySP> vec;
         vec.reserve(count);
     if (!data) {

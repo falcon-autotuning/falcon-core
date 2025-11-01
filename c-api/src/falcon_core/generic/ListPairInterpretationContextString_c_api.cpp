@@ -24,6 +24,9 @@ ListPairInterpretationContextStringHandle ListPairInterpretationContextString_al
 }
 
 ListPairInterpretationContextStringHandle ListPairInterpretationContextString_create(PairInterpretationContextStringHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairInterpretationContextString_create");
+}
     std::vector<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>> vec;
         vec.reserve(count);
     if (!data) {

@@ -24,6 +24,9 @@ ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_al
 }
 
 ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_create(PairInterpretationContextDoubleHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairInterpretationContextDouble_create");
+}
     std::vector<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>> vec;
         vec.reserve(count);
     if (!data) {

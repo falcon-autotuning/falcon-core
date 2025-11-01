@@ -23,6 +23,9 @@ ListPairStringStringHandle ListPairStringString_allocate(size_t count) {
 }
 
 ListPairStringStringHandle ListPairStringString_create(PairStringStringHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairStringString_create");
+}
     std::vector<falcon_core::generic::PairSP<std::string, std::string>> vec;
         vec.reserve(count);
     if (!data) {

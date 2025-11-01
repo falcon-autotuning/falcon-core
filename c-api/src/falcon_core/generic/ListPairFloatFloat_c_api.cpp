@@ -23,6 +23,9 @@ ListPairFloatFloatHandle ListPairFloatFloat_allocate(size_t count) {
 }
 
 ListPairFloatFloatHandle ListPairFloatFloat_create(PairFloatFloatHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairFloatFloat_create");
+}
     std::vector<falcon_core::generic::PairSP<float, float>> vec;
         vec.reserve(count);
     if (!data) {

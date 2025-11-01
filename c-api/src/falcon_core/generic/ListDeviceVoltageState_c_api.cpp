@@ -23,6 +23,9 @@ ListDeviceVoltageStateHandle ListDeviceVoltageState_allocate(size_t count) {
 }
 
 ListDeviceVoltageStateHandle ListDeviceVoltageState_create(DeviceVoltageStateHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListDeviceVoltageState_create");
+}
     std::vector<falcon_core::communications::voltage_states::DeviceVoltageStateSP> vec;
         vec.reserve(count);
     if (!data) {

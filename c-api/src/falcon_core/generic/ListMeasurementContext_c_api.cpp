@@ -23,6 +23,9 @@ ListMeasurementContextHandle ListMeasurementContext_allocate(size_t count) {
 }
 
 ListMeasurementContextHandle ListMeasurementContext_create(MeasurementContextHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListMeasurementContext_create");
+}
     std::vector<falcon_core::autotuner_interfaces::contexts::MeasurementContextSP> vec;
         vec.reserve(count);
     if (!data) {

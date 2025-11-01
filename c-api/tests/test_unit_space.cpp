@@ -12,6 +12,8 @@ class UnitSpaceTest : public ::testing::Test {
   void SetUp() override {
     domain = Domain_create(0.0, 1.0);
     axes   = AxesDiscretizer_create_empty();
+    d1     = Discretizer_create_cartesian_discretizer(0.1);
+    d2     = Discretizer_create_cartesian_discretizer(0.2);
     AxesDiscretizer_push_back(axes, d1);
     AxesDiscretizer_push_back(axes, d2);
     double_list = ListDouble_create_empty();

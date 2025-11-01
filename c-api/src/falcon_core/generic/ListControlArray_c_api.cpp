@@ -23,6 +23,9 @@ ListControlArrayHandle ListControlArray_allocate(size_t count) {
 }
 
 ListControlArrayHandle ListControlArray_create(ControlArrayHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListControlArray_create");
+}
     std::vector<falcon_core::math::arrays::ControlArraySP> vec;
         vec.reserve(count);
     if (!data) {

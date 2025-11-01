@@ -23,6 +23,9 @@ ListPairIntIntHandle ListPairIntInt_allocate(size_t count) {
 }
 
 ListPairIntIntHandle ListPairIntInt_create(PairIntIntHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairIntInt_create");
+}
     std::vector<falcon_core::generic::PairSP<int, int>> vec;
         vec.reserve(count);
     if (!data) {

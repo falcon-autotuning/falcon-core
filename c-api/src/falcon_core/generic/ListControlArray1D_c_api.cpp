@@ -23,6 +23,9 @@ ListControlArray1DHandle ListControlArray1D_allocate(size_t count) {
 }
 
 ListControlArray1DHandle ListControlArray1D_create(ControlArray1DHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListControlArray1D_create");
+}
     std::vector<falcon_core::math::arrays::ControlArray1DSP> vec;
         vec.reserve(count);
     if (!data) {

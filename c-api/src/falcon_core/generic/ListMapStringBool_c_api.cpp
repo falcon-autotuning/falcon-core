@@ -23,6 +23,9 @@ ListMapStringBoolHandle ListMapStringBool_allocate(size_t count) {
 }
 
 ListMapStringBoolHandle ListMapStringBool_create(MapStringBoolHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListMapStringBool_create");
+}
     std::vector<falcon_core::generic::MapSP<std::string, bool>> vec;
         vec.reserve(count);
     if (!data) {

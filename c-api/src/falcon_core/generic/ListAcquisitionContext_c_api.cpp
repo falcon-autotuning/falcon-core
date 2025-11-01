@@ -23,6 +23,9 @@ ListAcquisitionContextHandle ListAcquisitionContext_allocate(size_t count) {
 }
 
 ListAcquisitionContextHandle ListAcquisitionContext_create(AcquisitionContextHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListAcquisitionContext_create");
+}
     std::vector<falcon_core::autotuner_interfaces::contexts::AcquisitionContextSP> vec;
         vec.reserve(count);
     if (!data) {

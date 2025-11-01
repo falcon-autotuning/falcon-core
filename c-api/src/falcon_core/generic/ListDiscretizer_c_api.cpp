@@ -23,6 +23,9 @@ ListDiscretizerHandle ListDiscretizer_allocate(size_t count) {
 }
 
 ListDiscretizerHandle ListDiscretizer_create(DiscretizerHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListDiscretizer_create");
+}
     std::vector<falcon_core::math::discrete_spaces::DiscretizerSP> vec;
         vec.reserve(count);
     if (!data) {

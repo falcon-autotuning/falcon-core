@@ -567,6 +567,9 @@ for (size_t i = 0; i < n; ++i) {{
 }}
 
 {self.chandle()} {self.mangled_name()}_create({c_type}* data, size_t count) {{
+if (!data) {{
+throw std::invalid_argument("Null data handle passed to {self.mangled_name()}_create");
+}}
     std::vector<{cpp_stored}> vec;
     {create_allocation}
     return new falcon_core::generic::List<{cpp_real}>(
@@ -926,9 +929,9 @@ for (size_t i = 0; i < n; ++i) {{
 if (!data) {{
 throw std::invalid_argument("Null data handle passed to {self.mangled_name()}_create");
 }}
-    auto list = static_cast<falcon_core::generic::List<{cpp_real}>*>(data);
+    auto list = *static_cast<falcon_core::generic::List<{cpp_real}>*>(data);
     return new falcon_core::math::Axes<{cpp_real}>(
-            std::shared_ptr<falcon_core::generic::List<{cpp_real}>>(list));
+            std::make_shared<falcon_core::generic::List<{cpp_real}>>(list));
 }}
 
 void {self.mangled_name()}_destroy({self.chandle()} handle) {{

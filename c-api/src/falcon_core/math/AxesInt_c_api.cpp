@@ -18,9 +18,9 @@ AxesIntHandle AxesInt_create(ListIntHandle data) {
 if (!data) {
 throw std::invalid_argument("Null data handle passed to AxesInt_create");
 }
-    auto list = static_cast<falcon_core::generic::List<int>*>(data);
+    auto list = *static_cast<falcon_core::generic::List<int>*>(data);
     return new falcon_core::math::Axes<int>(
-            std::shared_ptr<falcon_core::generic::List<int>>(list));
+            std::make_shared<falcon_core::generic::List<int>>(list));
 }
 
 void AxesInt_destroy(AxesIntHandle handle) {

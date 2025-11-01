@@ -25,6 +25,9 @@ ListPairGnameGroupHandle ListPairGnameGroup_allocate(size_t count) {
 }
 
 ListPairGnameGroupHandle ListPairGnameGroup_create(PairGnameGroupHandle* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListPairGnameGroup_create");
+}
     std::vector<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>> vec;
         vec.reserve(count);
     if (!data) {

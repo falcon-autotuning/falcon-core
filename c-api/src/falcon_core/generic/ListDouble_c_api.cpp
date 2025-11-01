@@ -18,6 +18,9 @@ ListDoubleHandle ListDouble_allocate(size_t count) {
 }
 
 ListDoubleHandle ListDouble_create(double* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListDouble_create");
+}
     std::vector<double> vec;
     vec.insert(vec.end(), data, data + count);
     return new falcon_core::generic::List<double>(

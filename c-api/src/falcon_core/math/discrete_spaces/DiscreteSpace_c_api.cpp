@@ -72,9 +72,8 @@ DiscreteSpaceHandle DiscreteSpace_create_cartesiandiscretespace(
   falcon_core::math::domains::DomainSP real_domain =
       std::make_shared<falcon_core::math::domains::Domain>(
           *static_cast<falcon_core::math::domains::Domain*>(domain));
-  return DiscreteSpace::CartesianDiscreteSpace(
-             real_divisions, real_axes, real_increasing, real_domain)
-      .get();
+  return new DiscreteSpace(*DiscreteSpace::CartesianDiscreteSpace(
+      real_divisions, real_axes, real_increasing, real_domain));
 }
 
 DiscreteSpaceHandle DiscreteSpace_create_cartesiandiscretespace1D(
@@ -107,9 +106,8 @@ DiscreteSpaceHandle DiscreteSpace_create_cartesiandiscretespace1D(
   falcon_core::math::domains::DomainSP real_domain =
       std::make_shared<falcon_core::math::domains::Domain>(
           *static_cast<falcon_core::math::domains::Domain*>(domain));
-  return DiscreteSpace::CartesianDiscreteSpace1D(
-             division, real_shared_domain, real_increasing, real_domain)
-      .get();
+  return new DiscreteSpace(*DiscreteSpace::CartesianDiscreteSpace1D(
+      division, real_shared_domain, real_increasing, real_domain));
 }
 
 void DiscreteSpace_destroy(DiscreteSpaceHandle handle) {
@@ -151,7 +149,7 @@ PortsHandle DiscreteSpace_knobs(DiscreteSpaceHandle handle) {
     throw std::invalid_argument("DiscreteSpace_knobs: handle cannot be null");
   }
   DiscreteSpace self = *static_cast<DiscreteSpace*>(handle);
-  return self.knobs().get();
+  return new falcon_core::instrument_interfaces::names::Ports(*(self.knobs()));
 }
 
 void DiscreteSpace_validate_unit_space_dimensionality_matches_knobs(

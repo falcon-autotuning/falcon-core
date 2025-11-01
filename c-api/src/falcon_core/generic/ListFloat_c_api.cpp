@@ -18,6 +18,9 @@ ListFloatHandle ListFloat_allocate(size_t count) {
 }
 
 ListFloatHandle ListFloat_create(float* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListFloat_create");
+}
     std::vector<float> vec;
     vec.insert(vec.end(), data, data + count);
     return new falcon_core::generic::List<float>(

@@ -31,7 +31,9 @@ ListDeviceVoltageStateHandle DeviceVoltageStates_states(
         "DeviceVoltageStates_states: handle cannot be null");
   }
   DeviceVoltageStates self = *static_cast<DeviceVoltageStates*>(handle);
-  return self.states().get();
+  return new falcon_core::generic::List<
+      falcon_core::communications::voltage_states::DeviceVoltageState>(
+      *self.states());
 }
 
 void DeviceVoltageStates_add_state(DeviceVoltageStatesHandle handle,
@@ -168,7 +170,8 @@ const DeviceVoltageStateHandle DeviceVoltageStates_const_at(
         "DeviceVoltageStates_const_at: handle cannot be null");
   }
   DeviceVoltageStates self = *static_cast<DeviceVoltageStates*>(handle);
-  return static_cast<DeviceVoltageStateHandle>(self.at(idx).get());
+  return new falcon_core::communications::voltage_states::DeviceVoltageState(
+      *(self.at(idx)));
 }
 
 DeviceVoltageStateHandle DeviceVoltageStates_at(

@@ -18,6 +18,9 @@ ListIntHandle ListInt_allocate(size_t count) {
 }
 
 ListIntHandle ListInt_create(int* data, size_t count) {
+if (!data) {
+throw std::invalid_argument("Null data handle passed to ListInt_create");
+}
     std::vector<int> vec;
     vec.insert(vec.end(), data, data + count);
     return new falcon_core::generic::List<int>(
