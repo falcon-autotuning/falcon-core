@@ -63,10 +63,8 @@ size_t Waveform_size(WaveformHandle handle);
 bool   Waveform_empty(WaveformHandle handle);
 void   Waveform_erase_at(WaveformHandle handle, size_t idx);
 void   Waveform_clear(WaveformHandle handle);
-PortTransformHandle Waveform_at(WaveformHandle handle, size_t idx);
-size_t              Waveform_items(WaveformHandle       handle,
-                                   PortTransformHandle* out_buffer,
-                                   size_t               buffer_size);
+PortTransformHandle     Waveform_at(WaveformHandle handle, size_t idx);
+ListPortTransformHandle Waveform_items(WaveformHandle handle);
 bool   Waveform_contains(WaveformHandle handle, PortTransformHandle value);
 size_t Waveform_index(WaveformHandle handle, PortTransformHandle value);
 WaveformHandle Waveform_intersection(WaveformHandle handle,

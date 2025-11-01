@@ -27,16 +27,14 @@ size_t                  PortTransforms_size(PortTransformsHandle handle);
 bool                    PortTransforms_empty(PortTransformsHandle handle);
 void PortTransforms_erase_at(PortTransformsHandle handle, size_t idx);
 void PortTransforms_clear(PortTransformsHandle handle);
-PortTransformHandle  PortTransforms_at(PortTransformsHandle handle, size_t idx);
-size_t               PortTransforms_items(PortTransformsHandle handle,
-                                          PortTransformHandle* out_buffer,
-                                          size_t               buffer_size);
-bool                 PortTransforms_contains(PortTransformsHandle handle,
+PortTransformHandle PortTransforms_at(PortTransformsHandle handle, size_t idx);
+ListPortTransformHandle PortTransforms_items(PortTransformsHandle handle);
+bool                    PortTransforms_contains(PortTransformsHandle handle,
+                                                PortTransformHandle  value);
+size_t                  PortTransforms_index(PortTransformsHandle handle,
                                              PortTransformHandle  value);
-size_t               PortTransforms_index(PortTransformsHandle handle,
-                                          PortTransformHandle  value);
-PortTransformsHandle PortTransforms_intersection(PortTransformsHandle handle,
-                                                 PortTransformsHandle other);
+PortTransformsHandle    PortTransforms_intersection(PortTransformsHandle handle,
+                                                    PortTransformsHandle other);
 bool PortTransforms_equal(PortTransformsHandle a, PortTransformsHandle b);
 bool PortTransforms_not_equal(PortTransformsHandle a, PortTransformsHandle b);
 
