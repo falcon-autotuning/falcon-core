@@ -15,6 +15,7 @@ const Instrument InstrumentTypes::HF_CURRENT_SOURCE{"hf_current_source"};
 const Instrument InstrumentTypes::THERMOMETER{"thermometer"};
 const Instrument InstrumentTypes::VOLTMETER{"voltmeter"};
 const Instrument InstrumentTypes::FPGA{"fpga"};
+const Instrument InstrumentTypes::CLOCK{"clock"};
 const Instrument InstrumentTypes::DISCRETE{"discrete"};
 }  // namespace names
 }  // namespace instrument_interfaces
