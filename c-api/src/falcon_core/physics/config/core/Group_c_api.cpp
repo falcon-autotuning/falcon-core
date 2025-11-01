@@ -352,9 +352,7 @@ bool Group_equal(GroupHandle handle, GroupHandle other) {
   if (!other) {
     throw std::invalid_argument("Group_equal: other cannot be null");
   }
-  Group self        = *static_cast<Group*>(handle);
-  Group other_group = *static_cast<Group*>(other);
-  return self == other_group;
+  return *(static_cast<Group*>(handle)) == *(static_cast<Group*>(other));
 }
 
 bool Group_not_equal(GroupHandle handle, GroupHandle other) {
@@ -364,24 +362,21 @@ bool Group_not_equal(GroupHandle handle, GroupHandle other) {
   if (!other) {
     throw std::invalid_argument("Group_not_equal: other cannot be null");
   }
-  Group self        = *static_cast<Group*>(handle);
-  Group other_group = *static_cast<Group*>(other);
-  return self != other_group;
+  return *(static_cast<Group*>(handle)) != *(static_cast<Group*>(other));
 }
 
 StringHandle Group_to_json_string(GroupHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Group_to_json_string: handle cannot be null");
   }
-  Group self = *static_cast<Group*>(handle);
-  return String_create(self.to_json_string().c_str(),
-                       self.to_json_string().size());
+  std::string json = static_cast<Group*>(handle)->to_json_string();
+  return String_create(json.c_str(), json.size());
 }
 
 GroupHandle Group_from_json_string(StringHandle json) {
   if (!json) {
     throw std::invalid_argument("Group_from_json_string: json cannot be null");
   }
-  std::string json_str(json->raw);
-  return new Group(*Group::from_json_string<Group>(json_str));
+  GroupSP ptr = Group::from_json_string<Group>(json->raw);
+  return new Group(*ptr);
 }

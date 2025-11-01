@@ -129,5 +129,6 @@ TEST_F(GroupTest, SerializationRoundTrip) {
   EXPECT_EQ(g2->name()->name(), "test");
   ASSERT_NE(g2->order(), nullptr);
   EXPECT_EQ(g2->order()->lineararray()->size(), 7);
+  EXPECT_EQ(*g2, g);
 }
 }  // namespace

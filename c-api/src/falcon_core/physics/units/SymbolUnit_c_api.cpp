@@ -228,21 +228,38 @@ SymbolUnitHandle SymbolUnit_create_watts_per_meter_kelvin() {
 }
 
 void SymbolUnit_destroy(SymbolUnitHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("SymbolUnit_destroy: handle cannot be null");
+  }
   delete static_cast<SymbolUnit*>(handle);
 }
 
 StringHandle SymbolUnit_symbol(SymbolUnitHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("SymbolUnit_symbol: handle cannot be null");
+  }
   std::string symbol = static_cast<SymbolUnit*>(handle)->symbol();
   return String_create(symbol.c_str(), symbol.size());
 }
 
 StringHandle SymbolUnit_name(SymbolUnitHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument("SymbolUnit_name: handle cannot be null");
+  }
   std::string name = static_cast<SymbolUnit*>(handle)->name();
   return String_create(name.c_str(), name.size());
 }
 
 SymbolUnitHandle SymbolUnit_multiplication(SymbolUnitHandle handle,
                                            SymbolUnitHandle other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "SymbolUnit_multiplication: handle cannot be null");
+  }
+  if (!other) {
+    throw std::invalid_argument(
+        "SymbolUnit_multiplication: other cannot be null");
+  }
   return new SymbolUnit(
       *(*static_cast<SymbolUnit*>(handle) *
         std::shared_ptr<SymbolUnit>(static_cast<SymbolUnit*>(other),
@@ -251,6 +268,12 @@ SymbolUnitHandle SymbolUnit_multiplication(SymbolUnitHandle handle,
 
 SymbolUnitHandle SymbolUnit_division(SymbolUnitHandle handle,
                                      SymbolUnitHandle other) {
+  if (!handle) {
+    throw std::invalid_argument("SymbolUnit_division: handle cannot be null");
+  }
+  if (!other) {
+    throw std::invalid_argument("SymbolUnit_division: other cannot be null");
+  }
   return new SymbolUnit(
       *(*static_cast<SymbolUnit*>(handle) /
         std::shared_ptr<SymbolUnit>(static_cast<SymbolUnit*>(other),
@@ -258,11 +281,22 @@ SymbolUnitHandle SymbolUnit_division(SymbolUnitHandle handle,
 }
 
 SymbolUnitHandle SymbolUnit_power(SymbolUnitHandle handle, int power) {
+  if (!handle) {
+    throw std::invalid_argument("SymbolUnit_power: handle cannot be null");
+  }
   return new SymbolUnit(*((*static_cast<SymbolUnit*>(handle)) ^ power));
 }
 
 SymbolUnitHandle SymbolUnit_with_prefix(SymbolUnitHandle handle,
                                         StringHandle     prefix) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "SymbolUnit_with_prefix: handle cannot be null");
+  }
+  if (!prefix) {
+    throw std::invalid_argument(
+        "SymbolUnit_with_prefix: prefix cannot be null");
+  }
   return new SymbolUnit(*static_cast<SymbolUnit*>(handle)->with_prefix(
       std::string(prefix->raw, prefix->length)));
 }
@@ -270,6 +304,14 @@ SymbolUnitHandle SymbolUnit_with_prefix(SymbolUnitHandle handle,
 double SymbolUnit_convert_value_to(SymbolUnitHandle handle,
                                    double           value,
                                    SymbolUnitHandle target) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "SymbolUnit_convert_value_to: handle cannot be null");
+  }
+  if (!target) {
+    throw std::invalid_argument(
+        "SymbolUnit_convert_value_to: target cannot be null");
+  }
   return static_cast<SymbolUnit*>(handle)->convert_value_to(
       value,
       std::shared_ptr<SymbolUnit>(static_cast<SymbolUnit*>(target),
@@ -278,27 +320,55 @@ double SymbolUnit_convert_value_to(SymbolUnitHandle handle,
 
 bool SymbolUnit_is_compatible_with(SymbolUnitHandle handle,
                                    SymbolUnitHandle other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "SymbolUnit_is_compatible_with: handle cannot be null");
+  }
+  if (!other) {
+    throw std::invalid_argument(
+        "SymbolUnit_is_compatible_with: other cannot be null");
+  }
   return static_cast<SymbolUnit*>(handle)->is_compatible_with(
       std::shared_ptr<SymbolUnit>(static_cast<SymbolUnit*>(other),
                                   [](SymbolUnit*) {}));
 }
 
 bool SymbolUnit_equal(SymbolUnitHandle handle, SymbolUnitHandle other) {
+  if (!handle) {
+    throw std::invalid_argument("SymbolUnit_equal: handle cannot be null");
+  }
+  if (!other) {
+    throw std::invalid_argument("SymbolUnit_equal: other cannot be null");
+  }
   return *(static_cast<SymbolUnit*>(handle)) ==
          *(static_cast<SymbolUnit*>(other));
 }
 
 bool SymbolUnit_not_equal(SymbolUnitHandle handle, SymbolUnitHandle other) {
+  if (!handle) {
+    throw std::invalid_argument("SymbolUnit_not_equal: handle cannot be null");
+  }
+  if (!other) {
+    throw std::invalid_argument("SymbolUnit_not_equal: other cannot be null");
+  }
   return *(static_cast<SymbolUnit*>(handle)) !=
          *(static_cast<SymbolUnit*>(other));
 }
 
 StringHandle SymbolUnit_to_json_string(SymbolUnitHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "SymbolUnit_to_json_string: handle cannot be null");
+  }
   std::string json = static_cast<SymbolUnit*>(handle)->to_json_string();
   return String_create(json.c_str(), json.size());
 }
 
 SymbolUnitHandle SymbolUnit_from_json_string(StringHandle json) {
+  if (!json) {
+    throw std::invalid_argument(
+        "SymbolUnit_from_json_string: json cannot be null");
+  }
   auto ptr = SymbolUnit::from_json_string<SymbolUnit>(json->raw);
   return new SymbolUnit(*ptr);
 }

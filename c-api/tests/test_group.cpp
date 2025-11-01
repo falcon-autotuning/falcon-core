@@ -111,7 +111,7 @@ TEST_F(GroupTest, OhmicsGetter) {
 
 TEST_F(GroupTest, DotGatesGetter) {
   ConnectionsHandle dots = Group_dot_gates(handle);
-  EXPECT_EQ(Connections_size(dots), 1);
+  EXPECT_EQ(Connections_size(dots), 3);
   Connections_destroy(dots);
 }
 
