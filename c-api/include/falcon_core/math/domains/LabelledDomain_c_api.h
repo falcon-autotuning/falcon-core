@@ -49,7 +49,7 @@ LabelledDomainHandle LabelledDomain_create_from_port(
     bool                 lesser_bound_contained  = true,
     bool                 greater_bound_contained = true);
 LabelledDomainHandle LabelledDomain_create_from_port_and_domain(
-    StringHandle instrument_type, DomainHandle domain);
+    InstrumentPortHandle port, DomainHandle domain);
 LabelledDomainHandle LabelledDomain_create_from_domain(
     DomainHandle     domain,
     StringHandle     default_name,

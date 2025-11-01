@@ -6,8 +6,6 @@
 #include "falcon_core/generic/String_c_api.h"
 using namespace falcon_core::math;
 
-extern "C" {
-
 UnitSpaceHandle UnitSpace_create(AxesDiscretizerHandle axes,
                                  DomainHandle          domain) {
   if (!axes) {
@@ -326,7 +324,3 @@ UnitSpaceHandle UnitSpace_from_json_string(StringHandle json) {
   std::string json_str = json->raw;
   return new UnitSpace(*UnitSpace::from_json_string<UnitSpace>(json_str));
 }
-
-#ifdef __cplusplus
-}
-#endif

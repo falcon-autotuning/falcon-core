@@ -6,8 +6,6 @@
 #include "falcon_core/generic/String_c_api.h"
 using namespace falcon_core::math;
 
-extern "C" {
-
 PointHandle Point_create_empty() { return new Point(); }
 
 PointHandle Point_create(MapConnectionDoubleHandle items,
@@ -329,7 +327,3 @@ PointHandle Point_from_json_string(StringHandle json) {
   std::string json_str = json->raw;
   return new Point(*Point::from_json_string<Point>(json_str));
 }
-
-#ifdef __cplusplus
-}
-#endif

@@ -1,6 +1,7 @@
 #pragma once
 #include <cstddef>
 
+#include "falcon_core/generic/ListConnection_c_api.h"
 #include "falcon_core/generic/ListInstrumentPort_c_api.h"
 #include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
@@ -20,7 +21,7 @@ void Ports_destroy(PortsHandle handle);
 // Methods
 ListInstrumentPortHandle Ports_ports(PortsHandle handle);
 ListStringHandle         Ports_default_names(PortsHandle handle);
-ConnectionHandle         Ports_get_psuedo_names(PortsHandle handle);
+ListConnectionHandle     Ports_get_psuedo_names(PortsHandle handle);
 ListStringHandle         Ports__get_raw_names(PortsHandle handle);
 ListStringHandle         Ports__get_instrument_facing_names(PortsHandle handle);
 InstrumentPortHandle     Ports__get_psuedoname_matching_port(PortsHandle handle,

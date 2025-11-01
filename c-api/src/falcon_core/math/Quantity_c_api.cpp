@@ -6,8 +6,6 @@
 #include "falcon_core/generic/String_c_api.h"
 using namespace falcon_core::math;
 
-extern "C" {
-
 QuantityHandle Quantity_create(double value, SymbolUnitHandle unit) {
   if (!unit) {
     throw std::invalid_argument("Quantity_create: unit cannot be null");
@@ -390,7 +388,3 @@ QuantityHandle Quantity_from_json_string(StringHandle json) {
   auto ptr = Quantity::from_json_string<Quantity>(json->raw);
   return new Quantity(*ptr);
 }
-
-#ifdef __cplusplus
-}
-#endif

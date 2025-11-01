@@ -3,8 +3,5 @@
 #include <falcon_core/math/Sign.hpp>
 using namespace falcon_core::math;
 
-extern "C" {
-
 int Sign_positive() { return static_cast<int>(Sign::POSITIVE); }
 int Sign_negative() { return static_cast<int>(Sign::NEGATIVE); }
-}

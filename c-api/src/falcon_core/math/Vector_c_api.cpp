@@ -6,8 +6,6 @@
 #include "falcon_core/generic/String_c_api.h"
 using namespace falcon_core::math;
 
-extern "C" {
-
 VectorHandle Vector_create(PointHandle start, PointHandle end) {
   if (!start) {
     throw std::invalid_argument("Vector_create: start cannot be null");
@@ -686,7 +684,3 @@ VectorHandle Vector_from_json_string(StringHandle json) {
   auto        ptr      = Vector::from_json_string<Vector>(raw_json);
   return new Vector(*ptr);
 }
-
-#ifdef __cplusplus
-}
-#endif
