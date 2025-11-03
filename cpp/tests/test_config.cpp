@@ -9,6 +9,8 @@
 
 #include "falcon_core/physics/config/Loader.hpp"
 #include "falcon_core/physics/config/core/Config.hpp"
+#include "falcon_core/physics/device_structures/Connection.hpp"
+#include "falcon_core/physics/device_structures/Impedance.hpp"
 
 namespace {
 using namespace falcon_core::physics::device_structures;
@@ -388,6 +390,13 @@ TEST_F(ConfigTest, SelectGroupNullptrThrows) {
 }
 TEST_F(ConfigTest, GetDotNumberNullptrThrows) {
   EXPECT_THROW(original_config.get_dot_number(nullptr), std::invalid_argument);
+}
+TEST_F(ConfigTest, GetNullImpedanceThrows) {
+  EXPECT_THROW(original_config.get_impedance(nullptr), std::invalid_argument);
+}
+TEST_F(ConfigTest, GetInvalidImpedanceThrows) {
+  auto bad_conn = Connection::ScreeningGate("nonsense");
+  EXPECT_THROW(original_config.get_impedance(bad_conn), std::invalid_argument);
 }
 TEST_F(ConfigTest, OhmicInChargeSensorNullptrThrows) {
   EXPECT_THROW(original_config.ohmic_in_charge_sensor(nullptr),
