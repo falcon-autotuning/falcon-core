@@ -71,6 +71,9 @@ class Group : public StandardConfigConnections {
   device_structures::ConnectionsSP get_all_channel_gates(
       const autotuner_interfaces::names::ChannelSP& channel) const;
 
+  bool operator==(const Group& other) const;
+  bool operator!=(const Group& other) const;
+
  protected:
   Group();
   friend class cereal::access;

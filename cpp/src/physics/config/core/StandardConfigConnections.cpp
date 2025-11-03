@@ -240,6 +240,15 @@ bool StandardConfigConnections::has_screening_gate(
   }
   return false;
 }
+bool StandardConfigConnections::operator==(
+    const StandardConfigConnections& other) const {
+  return (this->get_all_connections() == other.get_all_connections());
+}
+bool StandardConfigConnections::operator!=(
+    const StandardConfigConnections& other) const {
+  return !(*this == other);
+}
+
 }  // namespace core
 }  // namespace config
 }  // namespace physics
