@@ -27,3 +27,6 @@ LabelledDomainTest.*
 CoupledLabelledDomainTest.*
 DiscretizerTest.*
 DiscreteSpaceTest.*
+IncreasingAlignmentTest.*
+FArrayDoubleTest.*
+FArrayIntTest.*

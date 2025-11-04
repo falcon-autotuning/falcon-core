@@ -11,7 +11,7 @@ typedef void* FArrayIntHandle;
 // Function declarations
 
 FArrayIntHandle FArrayInt_create_empty();
-FArrayIntHandle FArrayInt_create_zeros();
+FArrayIntHandle FArrayInt_create_zeros(const size_t* shape, size_t ndim);
 FArrayIntHandle FArrayInt_from_shape(const size_t* shape, size_t ndim);
 FArrayIntHandle FArrayInt_from_data(const int* data, const size_t* shape, size_t ndim);
 void FArrayInt_destroy(FArrayIntHandle handle);
@@ -46,9 +46,9 @@ FArrayIntHandle FArrayInt_divides_double(FArrayIntHandle handle, const double ot
 FArrayIntHandle FArrayInt_divides_int(FArrayIntHandle handle, const int other);
 FArrayIntHandle FArrayInt_pow(FArrayIntHandle handle, const double other);
 FArrayIntHandle FArrayInt_abs(FArrayIntHandle handle);
-FArrayIntHandle FArrayInt_min(FArrayIntHandle handle);
+int FArrayInt_min(FArrayIntHandle handle);
 FArrayIntHandle FArrayInt_min_arraywise(FArrayIntHandle handle, FArrayIntHandle other);
-FArrayIntHandle FArrayInt_max(FArrayIntHandle handle);
+int FArrayInt_max(FArrayIntHandle handle);
 FArrayIntHandle FArrayInt_max_arraywise(FArrayIntHandle handle, FArrayIntHandle other);
 bool FArrayInt_equality(FArrayIntHandle handle, FArrayIntHandle other);
 bool FArrayInt_notequality(FArrayIntHandle handle, FArrayIntHandle other);

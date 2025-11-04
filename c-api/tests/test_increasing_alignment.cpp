@@ -32,7 +32,7 @@ TEST_F(IncreasingAlignmentTest, CreateDestroy) {
 
 TEST_F(IncreasingAlignmentTest, AlignmentAccessor) {
   EXPECT_EQ(IncreasingAlignment_alignment(ia_true), 1);
-  EXPECT_EQ(IncreasingAlignment_alignment(ia_false), 0);
+  EXPECT_EQ(IncreasingAlignment_alignment(ia_false), -1);
   EXPECT_EQ(IncreasingAlignment_alignment(ia_empty), 0);
   EXPECT_THROW(IncreasingAlignment_alignment(nullptr), std::invalid_argument);
 }

@@ -8,6 +8,9 @@ FArrayIntHandle FArrayInt_create_empty() {
 }
 
 FArrayIntHandle FArrayInt_create_zeros(const size_t* shape, size_t ndim) {
+if (!shape) {
+throw std::invalid_argument("Null shape passed to FArrayInt_create_zeros");
+}
     std::vector<size_t> vec;
     for (size_t i =0; i < ndim; ++i) {
         vec.push_back(shape[i]);
@@ -16,6 +19,9 @@ FArrayIntHandle FArrayInt_create_zeros(const size_t* shape, size_t ndim) {
 }
 
 FArrayIntHandle FArrayInt_from_shape(const size_t* shape, size_t ndim) {
+if (!shape) {
+throw std::invalid_argument("Null shape passed to FArrayInt_from_shape");
+}
     std::vector<size_t> vec;
     for (size_t i =0; i < ndim; ++i) {
         vec.push_back(shape[i]);
@@ -24,6 +30,12 @@ FArrayIntHandle FArrayInt_from_shape(const size_t* shape, size_t ndim) {
 }
 
 FArrayIntHandle FArrayInt_from_data(const int* data, const size_t* shape, size_t ndim) {
+if (!data) {
+throw std::invalid_argument("Null data passed to FArrayInt_from_data");
+}
+if (!shape) {
+throw std::invalid_argument("Null shape passed to FArrayInt_from_data");
+}
   std::vector<std::vector<int>::size_type> shapeVec;
   size_t                                      total_size = 1;
   for (size_t i = 0; i < ndim; ++i) {
@@ -62,6 +74,9 @@ size_t FArrayInt_shape(FArrayIntHandle handle, size_t* out_buffer, size_t ndim) 
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_shape");
 }
+if (!out_buffer) {
+throw std::invalid_argument("Null out_buffer passed to FArrayInt_shape");
+}
     auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
     auto shape = farray->shape();
     size_t count   = shape.size();
@@ -75,6 +90,9 @@ throw std::invalid_argument("Null handle passed to FArrayInt_shape");
 size_t FArrayInt_data(FArrayIntHandle handle, int* out_buffer, size_t numdata) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_data");
+}
+if (!out_buffer) {
+throw std::invalid_argument("Null out_buffer passed to FArrayInt_shape");
 }
     auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
     if (farray->size() > numdata) {
@@ -316,12 +334,12 @@ throw std::invalid_argument("Null handle passed to FArrayInt_abs");
     return new falcon_core::generic::FArray<int>(*farray->abs());
 }
 
-FArrayIntHandle FArrayInt_min(FArrayIntHandle handle) {
+int FArrayInt_min(FArrayIntHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_min");
 }
     auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(farray->min());
+    return farray->min();
 }
 
 FArrayIntHandle FArrayInt_min_arraywise(FArrayIntHandle handle, FArrayIntHandle other) {
@@ -331,7 +349,25 @@ throw std::invalid_argument("Null handle passed to FArrayInt_min_arraywise");
     auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
     return new falcon_core::generic::FArray<int>(
-        *farray->min(std::shared_ptr<falcon_core::generic::FArray<int>>(oarray)));
+    *farray->min(std::make_shared<falcon_core::generic::FArray<int>>(*oarray)));
+}
+
+int FArrayInt_max(FArrayIntHandle handle) {
+if (!handle) {
+throw std::invalid_argument("Null handle passed to FArrayInt_max");
+}
+    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    return farray->max();
+}
+
+FArrayIntHandle FArrayInt_max_arraywise(FArrayIntHandle handle, FArrayIntHandle other) {
+if (!handle || !other) {
+throw std::invalid_argument("Null handle passed to FArrayInt_max_arraywise");
+}
+    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
+    return new falcon_core::generic::FArray<int>(
+    *farray->max(std::make_shared<falcon_core::generic::FArray<int>>(*oarray)));
 }
 
 bool FArrayInt_equality(FArrayIntHandle handle, FArrayIntHandle other) {
@@ -416,13 +452,16 @@ size_t FArrayInt_full_gradient(FArrayIntHandle handle, FArrayIntHandle* out_buff
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_full_gradient");
 }
+if (!out_buffer) {
+throw std::invalid_argument("Null out_buffer passed to FArrayInt_full_gradient");
+}
     auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
     auto many_gradients = farray->gradient();
     if (many_gradients->size() > buffer_size) {
-        throw std::runtime_error("Trying to store more gradients than buffer allocated.");
+        throw std::runtime_error("Trying to store more int gradients than buffer allocated.");
     }
     for (size_t i = 0; i < many_gradients->size(); ++i) {
-        out_buffer[i] = many_gradients->items()[i].get();
+        out_buffer[i] = new falcon_core::generic::FArray<int>(*(many_gradients->items()[i]));
     }
     return many_gradients->size();
 }
