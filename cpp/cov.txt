@@ -57,7 +57,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 
 [----------] 24 tests from AnalyticFunctionTest
 [ RUN      ] AnalyticFunctionTest.ConstantFunctionEvaluate
-[       OK ] AnalyticFunctionTest.ConstantFunctionEvaluate (2 ms)
+[       OK ] AnalyticFunctionTest.ConstantFunctionEvaluate (3 ms)
 [ RUN      ] AnalyticFunctionTest.IdentityFunctionEvaluate
 [       OK ] AnalyticFunctionTest.IdentityFunctionEvaluate (1 ms)
 [ RUN      ] AnalyticFunctionTest.Serialization
@@ -81,7 +81,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] AnalyticFunctionTest.ZeroMaxTime
 [       OK ] AnalyticFunctionTest.ZeroMaxTime (0 ms)
 [ RUN      ] AnalyticFunctionTest.CustomEvaluation
-[       OK ] AnalyticFunctionTest.CustomEvaluation (0 ms)
+[       OK ] AnalyticFunctionTest.CustomEvaluation (1 ms)
 [ RUN      ] AnalyticFunctionTest.CustomDeltaEvaluation
 [       OK ] AnalyticFunctionTest.CustomDeltaEvaluation (0 ms)
 [ RUN      ] AnalyticFunctionTest.NullLabelsInput
@@ -103,8 +103,8 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] AnalyticFunctionTest.HardestPrompt
 [       OK ] AnalyticFunctionTest.HardestPrompt (1 ms)
 [ RUN      ] AnalyticFunctionTest.InequalityOperator
-[       OK ] AnalyticFunctionTest.InequalityOperator (0 ms)
-[----------] 24 tests from AnalyticFunctionTest (16 ms total)
+[       OK ] AnalyticFunctionTest.InequalityOperator (1 ms)
+[----------] 24 tests from AnalyticFunctionTest (17 ms total)
 
 [----------] 7 tests from AxesTest
 [ RUN      ] AxesTest.DefaultConstructor
@@ -171,7 +171,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 
 [----------] 93 tests from ConfigTest
 [ RUN      ] ConfigTest.JsonRoundTrip
-[       OK ] ConfigTest.JsonRoundTrip (4 ms)
+[       OK ] ConfigTest.JsonRoundTrip (5 ms)
 [ RUN      ] ConfigTest.BasicQueries
 [       OK ] ConfigTest.BasicQueries (0 ms)
 [ RUN      ] ConfigTest.Constructor_NullArgsThrow
@@ -356,7 +356,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] ConfigTest.GetIsolatedChannelDotGates_NoIsolatedGatesFound (0 ms)
 [ RUN      ] ConfigTest.GetGateDictWorks
 [       OK ] ConfigTest.GetGateDictWorks (0 ms)
-[----------] 93 tests from ConfigTest (31 ms total)
+[----------] 93 tests from ConfigTest (32 ms total)
 
 [----------] 1 test from ConfigLoaderTest
 [ RUN      ] ConfigLoaderTest.LoadConfigFromYaml
@@ -380,7 +380,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] ConfigManipulationsTest.ExtractOhmicsWorks (2 ms)
 [ RUN      ] ConfigManipulationsTest.ExtractOrderWorks
 [       OK ] ConfigManipulationsTest.ExtractOrderWorks (2 ms)
-[----------] 8 tests from ConfigManipulationsTest (20 ms total)
+[----------] 8 tests from ConfigManipulationsTest (19 ms total)
 
 [----------] 5 tests from ConnectionTest
 [ RUN      ] ConnectionTest.ConstructorsAndAccessors
@@ -1670,14 +1670,14 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] LoaderTest.ConstructorWithPathWorks
 [       OK ] LoaderTest.ConstructorWithPathWorks (6 ms)
 [ RUN      ] LoaderTest.ConstructorWithStringWorks
-[       OK ] LoaderTest.ConstructorWithStringWorks (7 ms)
+[       OK ] LoaderTest.ConstructorWithStringWorks (5 ms)
 [ RUN      ] LoaderTest.LoadConfigReturnsConfig
-[       OK ] LoaderTest.LoadConfigReturnsConfig (6 ms)
+[       OK ] LoaderTest.LoadConfigReturnsConfig (5 ms)
 [ RUN      ] LoaderTest.ConfigGetterWorks
-[       OK ] LoaderTest.ConfigGetterWorks (6 ms)
+[       OK ] LoaderTest.ConfigGetterWorks (5 ms)
 [ RUN      ] LoaderTest.ThrowsOnMissingFile
 [       OK ] LoaderTest.ThrowsOnMissingFile (0 ms)
-[----------] 5 tests from LoaderTest (27 ms total)
+[----------] 5 tests from LoaderTest (24 ms total)
 
 [----------] 10 tests from MapIntStringTest
 [ RUN      ] MapIntStringTest.DefaultConstructEmpty
@@ -1921,7 +1921,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] MeasuredArray1DTest.GradientAllAxes (0 ms)
 [ RUN      ] MeasuredArray1DTest.SerializationRoundTrip
 [       OK ] MeasuredArray1DTest.SerializationRoundTrip (0 ms)
-[----------] 45 tests from MeasuredArray1DTest (0 ms total)
+[----------] 45 tests from MeasuredArray1DTest (1 ms total)
 
 [----------] 6 tests from MeasurementRequestTest
 [ RUN      ] MeasurementRequestTest.ConstructorWorks
@@ -2028,7 +2028,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] PortTransformTest.ConstructorThrowsOnNullPort
 [       OK ] PortTransformTest.ConstructorThrowsOnNullPort (1 ms)
 [ RUN      ] PortTransformTest.ConstructorThrowsOnNullTransform
-[       OK ] PortTransformTest.ConstructorThrowsOnNullTransform (2 ms)
+[       OK ] PortTransformTest.ConstructorThrowsOnNullTransform (1 ms)
 [ RUN      ] PortTransformTest.ConstructorSucceeds
 [       OK ] PortTransformTest.ConstructorSucceeds (1 ms)
 [ RUN      ] PortTransformTest.ConstantTransformFactory
@@ -2629,7 +2629,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 
 [----------] 17 tests from WaveformTest
 [ RUN      ] WaveformTest.ConstructorWorks
-[       OK ] WaveformTest.ConstructorWorks (2 ms)
+[       OK ] WaveformTest.ConstructorWorks (1 ms)
 [ RUN      ] WaveformTest.ConstructorThrowsOnNullSpace
 [       OK ] WaveformTest.ConstructorThrowsOnNullSpace (1 ms)
 [ RUN      ] WaveformTest.ConstructorThrowsOnNullTransforms
@@ -2643,7 +2643,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] WaveformTest.CartesianIdentityWaveformWorks
 [       OK ] WaveformTest.CartesianIdentityWaveformWorks (2 ms)
 [ RUN      ] WaveformTest.CartesianIdentityWaveformNullptrs
-[       OK ] WaveformTest.CartesianIdentityWaveformNullptrs (2 ms)
+[       OK ] WaveformTest.CartesianIdentityWaveformNullptrs (3 ms)
 [ RUN      ] WaveformTest.CartesianWaveform2DWorks
 [       OK ] WaveformTest.CartesianWaveform2DWorks (1 ms)
 [ RUN      ] WaveformTest.CartesianWaveform2DNullptrs
@@ -2659,7 +2659,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] WaveformTest.CartesianIdentityWaveform1DWorks
 [       OK ] WaveformTest.CartesianIdentityWaveform1DWorks (2 ms)
 [ RUN      ] WaveformTest.CartesianIdentityWaveform1DNullptrs
-[       OK ] WaveformTest.CartesianIdentityWaveform1DNullptrs (1 ms)
+[       OK ] WaveformTest.CartesianIdentityWaveform1DNullptrs (2 ms)
 [ RUN      ] WaveformTest.SerializationRoundTrip
 [       OK ] WaveformTest.SerializationRoundTrip (2 ms)
 [----------] 17 tests from WaveformTest (32 ms total)
@@ -10326,53 +10326,40 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    86|       |    return std::make_shared<IsLabelled<T>>(*this / other, this->label());
    87|       |  }
    88|       |  /**
-   89|       |   * @brief Get the sum of squares of the data.
-   90|       |   */
-   91|       |  double get_sum_of_squares() const { return this->get_sum_of_squares(); }
-   92|       |  bool   operator>(const double value) const { return this > value; }
-   93|       |  bool   operator<(const double value) const { return this < value; }
-   94|       |  /**
-   95|       |   * @brief Remove an offset from the data.
-   96|       |   * @param offset The offset to remove.
-   97|       |   */
-   98|       |  void remove_offset(const double offset) {
-   99|       |    generic::IFArray<T>::remove_offset(offset);
-  100|       |  }
-  101|       |  /**
-  102|       |   * @brief Flip the data along the given axis.
-  103|       |   * @param axis The axis to flip.
-  104|       |   * @return A flipped IsLabelled.
-  105|       |   */
-  106|       |  std::shared_ptr<IsLabelled<T>> flip(size_t axis) const {
-  107|       |    return std::make_shared<IsLabelled<T>>(generic::IFArray<T>::flip(axis));
+   89|       |   * @brief Flip the data along the given axis.
+   90|       |   * @param axis The axis to flip.
+   91|       |   * @return A flipped IsLabelled.
+   92|       |   */
+   93|       |  std::shared_ptr<IsLabelled<T>> flip(size_t axis) const {
+   94|       |    return std::make_shared<IsLabelled<T>>(generic::IFArray<T>::flip(axis));
+   95|       |  }
+   96|       |  /**
+   97|       |   * @brief Return the gradient of the data along all axes.
+   98|       |   */
+   99|       |  generic::ListSP<std::shared_ptr<IsLabelled<T>>> gradient() const {
+  100|       |    auto grads = generic::IFArray<T>::gradient();
+  101|       |    auto list =
+  102|       |        std::make_shared<generic::List<std::shared_ptr<IsLabelled<T>>>>();
+  103|       |    for (const auto& grad : *grads) {
+  104|       |      list->push_back(std::make_shared<IsLabelled<T>>(std::make_shared<T>(grad),
+  105|       |                                                      this->label()));
+  106|       |    }
+  107|       |    return list;
   108|       |  }
   109|       |  /**
-  110|       |   * @brief Return the gradient of the data along all axes.
-  111|       |   */
-  112|       |  generic::ListSP<std::shared_ptr<IsLabelled<T>>> gradient() const {
-  113|       |    auto grads = generic::IFArray<T>::gradient();
-  114|       |    auto list =
-  115|       |        std::make_shared<generic::List<std::shared_ptr<IsLabelled<T>>>>();
-  116|       |    for (const auto& grad : *grads) {
-  117|       |      list->push_back(std::make_shared<IsLabelled<T>>(std::make_shared<T>(grad),
-  118|       |                                                      this->label()));
-  119|       |    }
-  120|       |    return list;
-  121|       |  }
-  122|       |  /**
-  123|       |   * @brief Return the gradient of the data along a given axis.
-  124|       |   * @param axis The axis to compute the gradient.
-  125|       |   * @return The gradient IsLabelled.
-  126|       |   */
-  127|       |  std::shared_ptr<IsLabelled<T>> gradient(size_t axis) const {
-  128|       |    auto grad = generic::IFArray<T>::gradient(axis);
-  129|       |    return std::make_shared<IsLabelled<T>>(std::make_shared<T>(*grad),
-  130|       |                                           this->label());
-  131|       |  }
-  132|       |};
-  133|       |}  // namespace arrays
-  134|       |}  // namespace math
-  135|       |}  // namespace falcon_core
+  110|       |   * @brief Return the gradient of the data along a given axis.
+  111|       |   * @param axis The axis to compute the gradient.
+  112|       |   * @return The gradient IsLabelled.
+  113|       |   */
+  114|       |  std::shared_ptr<IsLabelled<T>> gradient(size_t axis) const {
+  115|       |    auto grad = generic::IFArray<T>::gradient(axis);
+  116|       |    return std::make_shared<IsLabelled<T>>(std::make_shared<T>(*grad),
+  117|       |                                           this->label());
+  118|       |  }
+  119|       |};
+  120|       |}  // namespace arrays
+  121|       |}  // namespace math
+  122|       |}  // namespace falcon_core
 
 /home/daniel/work/wisc/playground/falcon-core/cpp/include/falcon_core/math/arrays/LabelledArrays.hpp:
     1|       |/**
