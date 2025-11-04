@@ -59,17 +59,13 @@ void HDF5Data::to_file(const std::string& path) const {
     H5::Group   sub_domain_group = domains_group.createGroup(dim_name);
 
     // Data
-    std::ostringstream data_stream;
     const auto&        arr   = (*_unit_domain)[i]->xtensor();
     std::string dataset_path = "/domains/dim" + std::to_string(i) + "/data";
     xt::dump_hdf5(file.getFileName(), dataset_path, arr);
-    std::string   data_str     = data_stream.str();
+    // prepare string dataspace/type for labels
     hsize_t       data_dims[1] = {1};
     H5::DataSpace data_space(1, data_dims);
     H5::StrType   str_type(H5::PredType::C_S1, H5T_VARIABLE);
-    H5::DataSet   data_dataset =
-        sub_domain_group.createDataSet("data", str_type, data_space);
-    data_dataset.write(data_str, str_type);
 
     // Labels
     const auto& domains   = (*_domain_labels)[i]->domains();
@@ -137,7 +133,7 @@ void HDF5Data::to_file(const std::string& path) const {
     H5::Attribute unit_attr =
         range_ds.createAttribute("unit", str_type, data_space);
     unit_attr.write(str_type, unit);
-    std::string   context = range->units()->to_json_string();
+    std::string   context = range->label()->to_json_string();
     H5::Attribute context_attr =
         range_ds.createAttribute("context", str_type, data_space);
     context_attr.write(str_type, context);
@@ -297,8 +293,7 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_file(const std::string& path) {
     H5::DataSet md_ds = metadata_group.openDataSet(key);
     std::string value;
     md_ds.read(value, str_type);
-    metadata_map[i].first  = key;
-    metadata_map[i].second = value;
+    metadata_map.emplace_back(std::move(key), std::move(value));
   }
   auto metadata = std::make_shared<HDF5Data::Metadata>(metadata_map);
 

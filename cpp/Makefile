@@ -77,7 +77,7 @@ run-subset-tests:
 
 # launches the interactive html for the entire coverage run
 cov-html:
-	@llvm-cov show ./build/run_tests -instr-profile=run_tests.profdata \
+	@llvm-cov show ./build/lib$(CPP_TARGET).so -instr-profile=run_tests.profdata \
 	  -format=html -output-dir=coverage_html \
 	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
 		-Xdemangler c++filt -Xdemangler -n

@@ -263,6 +263,14 @@ device_structures::ConnectionsSP GateGeometryArray1D::ohmics() const {
   std::vector<device_structures::ConnectionSP> tmp({left_ohmic, right_ohmic});
   return std::make_shared<device_structures::Connections>(tmp);
 }
+bool GateGeometryArray1D::operator==(const GateGeometryArray1D& other) const {
+  return (*this->lineararray() == *other.lineararray()) &&
+         (*this->screening_gates() == *other.screening_gates());
+}
+bool GateGeometryArray1D::operator!=(const GateGeometryArray1D& other) const {
+  return (*this == other);
+}
+
 }  // namespace geometries
 }  // namespace config
 }  // namespace physics

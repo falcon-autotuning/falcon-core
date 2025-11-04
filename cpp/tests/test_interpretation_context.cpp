@@ -113,6 +113,30 @@ TEST(InterpretationContextTest,
             ctx.dependent_variables()->size());
 }
 
+TEST(InterpretationContextTest, IndependentVarialblesGetter) {
+  auto       conn1 = Connection::PlungerGate("ind_conn");
+  auto       conn2 = Connection::PlungerGate("dep_conn");
+  Instrument instr = InstrumentTypes::VOLTAGE_SOURCE;
+
+  auto m_ind = std::make_shared<MeasurementContext>(conn1, instr);
+  auto m_dep = std::make_shared<MeasurementContext>(conn2, instr);
+
+  std::vector<std::shared_ptr<MeasurementContext>> indep_items{m_ind};
+  auto independent = std::make_shared<Axes<MeasurementContext>>(indep_items);
+
+  auto dependent = std::make_shared<List<MeasurementContext>>();
+  dependent->push_back(m_dep);
+
+  auto unit = std::make_shared<SymbolUnit>(Unit::Meter());
+
+  InterpretationContext ctx(independent, dependent, unit);
+
+  // EXPECT_EQ(ctx.dimension(), static_cast<int>(independent->size()));
+
+  auto got = ctx.independent_variables();
+  ASSERT_EQ(got, independent);
+}
+
 TEST(InterpretationContextTest, BehaviorOperations) {
   auto       conn1 = Connection::PlungerGate("ind_conn");
   auto       conn2 = Connection::PlungerGate("dep_conn");

@@ -128,6 +128,9 @@ class StandardConfigConnections : public generic::Song {
    */
   bool has_screening_gate(const device_structures::ConnectionSP& gate) const;
 
+  bool operator==(const StandardConfigConnections& other) const;
+  bool operator!=(const StandardConfigConnections& other) const;
+
  protected:
   StandardConfigConnections();
   friend class cereal::access;

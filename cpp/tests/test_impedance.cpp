@@ -15,6 +15,15 @@ TEST(ImpedanceTest, ValueConstructor) {
   EXPECT_DOUBLE_EQ(imp.capacitance(), 3.14);
 }
 
+TEST(ImpedanceTest, CreateConstructor) {
+  auto conn = Connection::PlungerGate("foo");
+  // Impedance imp(conn, 42.5, 3.14);
+  auto imp{Impedance::create(conn, 42.5, 3.14)};
+  EXPECT_EQ(imp->connection(), conn);
+  EXPECT_DOUBLE_EQ(imp->resistance(), 42.5);
+  EXPECT_DOUBLE_EQ(imp->capacitance(), 3.14);
+}
+
 TEST(ImpedanceTest, NullConnectionThrows) {
   EXPECT_THROW({ Impedance imp(nullptr, 1.0, 2.0); }, std::invalid_argument);
 }

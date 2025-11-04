@@ -1,7 +1,9 @@
 #include "falcon_core/physics/config/core/Group.hpp"
 
+#include <iostream>
 #include <stdexcept>
 
+#include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
 
 namespace falcon_core {
@@ -53,6 +55,18 @@ device_structures::ConnectionsSP Group::get_all_channel_gates(
   }
   return std::make_shared<device_structures::Connections>();
 }
+bool Group::operator==(const Group& other) const {
+  std::cout << "Monke:";
+  std::cout << (*this->name() == *other.name());
+  std::cout << (this->num_dots() == other.num_dots());
+  std::cout << (*this->order() == *other.order());
+
+  return (*this->name() == *other.name()) &&
+         (this->num_dots() == other.num_dots()) &&
+         (*this->order() == *other.order());
+}
+
+bool Group::operator!=(const Group& other) const { return !(*this == other); }
 }  // namespace core
 }  // namespace config
 }  // namespace physics

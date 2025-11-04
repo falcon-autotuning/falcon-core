@@ -114,6 +114,9 @@ class GateGeometryArray1D : public generic::Song {
    */
   device_structures::ConnectionsSP ohmics() const;
 
+  bool operator==(const GateGeometryArray1D& other) const;
+  bool operator!=(const GateGeometryArray1D& other) const;
+
  protected:
   GateGeometryArray1D();
   friend class cereal::access;
