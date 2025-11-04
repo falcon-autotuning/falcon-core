@@ -10,8 +10,8 @@
 #include "falcon_core/communications/messages/MeasurementRequest.hpp"
 #include "falcon_core/communications/messages/MeasurementResponse.hpp"
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates.hpp"
-#include "falcon_core/generic/Map.hpp"
 #include "falcon_core/generic/List.hpp"
+#include "falcon_core/generic/Map.hpp"
 #include "falcon_core/instrument_interfaces/Waveform.hpp"
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
@@ -25,30 +25,32 @@
 using namespace falcon_core;
 
 CEREAL_REGISTER_TYPE(falcon_core::communications::messages::MeasurementRequest)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                    falcon_core::communications::messages::MeasurementRequest)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::communications::messages::MeasurementRequest)
 CEREAL_REGISTER_TYPE(falcon_core::communications::messages::MeasurementResponse)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                    falcon_core::communications::messages::MeasurementResponse)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::communications::messages::MeasurementResponse)
 
 namespace {
 
 using communications::HDF5Data;
 using communications::HDF5DataSP;
-using communications::voltage_states::DeviceVoltageStates;
-using communications::voltage_states::DeviceVoltageStatesSP;
 using communications::messages::MeasurementRequest;
 using communications::messages::MeasurementResponse;
+using communications::voltage_states::DeviceVoltageStates;
+using communications::voltage_states::DeviceVoltageStatesSP;
 using math::Axes;
-using math::axes = math::Axes<int>;
-using math::arrays::ControlArray;
-using math::arrays::LabelledArrays;
-using math::arrays::LabelledMeasuredArray;
-using generic::Map;
+using axes = math::Axes<int>;
 using generic::List;
+using generic::Map;
 using instrument_interfaces::Waveform;
 using instrument_interfaces::names::Ports;
 using instrument_interfaces::port_transforms::PortTransform;
+using math::arrays::ControlArray;
+using math::arrays::LabelledArrays;
+using math::arrays::LabelledMeasuredArray;
 using math::domains::LabelledDomain;
 
 TEST(HDF5DataTest, FileRoundTripEmptyMetadata) {
@@ -58,9 +60,9 @@ TEST(HDF5DataTest, FileRoundTripEmptyMetadata) {
       std::make_shared<Axes<int>>(std::vector<int>{});  // empty shape
   auto unit_domain = std::make_shared<Axes<ControlArray>>(
       std::vector<std::shared_ptr<ControlArray>>{});  // empty
-  auto domain_labels = std::make_shared<
-      Axes<math::domains::CoupledLabelledDomain>>(
-      std::vector<std::shared_ptr<math::domains::CoupledLabelledDomain>>{});
+  auto domain_labels =
+      std::make_shared<Axes<math::domains::CoupledLabelledDomain>>(
+          std::vector<std::shared_ptr<math::domains::CoupledLabelledDomain>>{});
   auto ranges = LabelledArrays<LabelledMeasuredArray>::LabelledMeasuredArrays();
 
   // Empty metadata
@@ -95,21 +97,25 @@ TEST(HDF5DataTest, ToCommunicationsRoundTrip) {
   // Construct minimal MeasurementRequest and MeasurementResponse objects.
   // Use empty/placeholder containers so their serialization still works.
   auto waveforms = std::make_shared<List<Waveform>>();
-  auto getters = std::make_shared<instrument_interfaces::names::Ports>();
-  auto meter_transforms =
-      std::make_shared<Map<instrument_interfaces::names::InstrumentPort,
-                           instrument_interfaces::port_transforms::PortTransform>>();
+  auto getters   = std::make_shared<instrument_interfaces::names::Ports>();
+  auto meter_transforms = std::make_shared<
+      Map<instrument_interfaces::names::InstrumentPort,
+          instrument_interfaces::port_transforms::PortTransform>>();
   auto time_domain = std::make_shared<LabelledDomain>();
 
-  auto request = std::make_shared<MeasurementRequest>(
-      std::string("msg"), std::string("measurement_name"), waveforms, getters,
-      meter_transforms, time_domain);
+  auto request =
+      std::make_shared<MeasurementRequest>(std::string("msg"),
+                                           std::string("measurement_name"),
+                                           waveforms,
+                                           getters,
+                                           meter_transforms,
+                                           time_domain);
 
   auto arrays = LabelledArrays<LabelledMeasuredArray>::LabelledMeasuredArrays();
   auto response = std::make_shared<MeasurementResponse>(arrays);
 
-  // Put the serialized request/response into metadata as HDF5Data::from_communications
-  // would do internally.
+  // Put the serialized request/response into metadata as
+  // HDF5Data::from_communications would do internally.
   std::vector<std::pair<std::string, std::string>> md_init = {
       {"song_request", request->to_json_string()},
       {"song_response", response->to_json_string()},
@@ -120,10 +126,11 @@ TEST(HDF5DataTest, ToCommunicationsRoundTrip) {
       std::make_shared<Axes<int>>(std::vector<int>{});  // empty shape
   auto unit_domain = std::make_shared<Axes<ControlArray>>(
       std::vector<std::shared_ptr<ControlArray>>{});  // empty
-  auto domain_labels = std::make_shared<
-      Axes<math::domains::CoupledLabelledDomain>>(
-      std::vector<std::shared_ptr<math::domains::CoupledLabelledDomain>>{});
-  auto ranges_sp = LabelledArrays<LabelledMeasuredArray>::LabelledMeasuredArrays();
+  auto domain_labels =
+      std::make_shared<Axes<math::domains::CoupledLabelledDomain>>(
+          std::vector<std::shared_ptr<math::domains::CoupledLabelledDomain>>{});
+  auto ranges_sp =
+      LabelledArrays<LabelledMeasuredArray>::LabelledMeasuredArrays();
 
   HDF5Data hdf_with_meta(shape_axes,
                          unit_domain,
@@ -136,9 +143,9 @@ TEST(HDF5DataTest, ToCommunicationsRoundTrip) {
 
   // to_communications should deserialize the stored JSON strings back into
   // MeasurementResponse and MeasurementRequest objects.
-  auto pair = hdf_with_meta.to_communications();
+  auto pair         = hdf_with_meta.to_communications();
   auto got_response = pair.first;
-  auto got_request = pair.second;
+  auto got_request  = pair.second;
 
   ASSERT_NE(got_response, nullptr);
   ASSERT_NE(got_request, nullptr);
