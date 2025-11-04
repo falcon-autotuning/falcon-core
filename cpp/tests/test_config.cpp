@@ -1242,8 +1242,11 @@ class EmptyGateConfigTest : public ::testing::Test {
     auto empty_list = std::make_shared<Connections>();
     auto p_list = std::make_shared<Connections>(
         std::vector<ConnectionSP>{Connection::PlungerGate("P1")});
+    auto r_list = std::make_shared<Connections>(std::vector<ConnectionSP>{
+        Connection::ReservoirGate("R1"), Connection::ReservoirGate("R2")});
     auto o_list = std::make_shared<Connections>(std::vector<ConnectionSP>{
-        Connection::Ohmic("O1"), Connection::PlungerGate("P1"),
+        Connection::Ohmic("O1"), Connection::ReservoirGate("R1"),
+        Connection::PlungerGate("P1"), Connection::ReservoirGate("R2"),
         Connection::Ohmic("O2")});
     auto screening_gates_for_group = std::make_shared<Connections>(
         std::vector<ConnectionSP>{Connection::ScreeningGate("SG1"),
@@ -1255,7 +1258,7 @@ class EmptyGateConfigTest : public ::testing::Test {
         channel,
         1,
         screening_gates_for_group,
-        empty_list,
+        r_list,
         p_list,
         empty_list,
         o_list);
@@ -1270,14 +1273,16 @@ class EmptyGateConfigTest : public ::testing::Test {
     auto wiring = std::make_shared<Impedances>(std::vector<ImpedanceSP>{
         std::make_shared<Impedance>(Connection::PlungerGate("P1"), 1.0, 1.0),
         std::make_shared<Impedance>(Connection::Ohmic("O1"), 1.0, 1.0),
-        std::make_shared<Impedance>(Connection::Ohmic("O2"), 1.0, 1.0)});
-    auto adj_indexes = std::make_shared<Connections>(
-        std::vector<ConnectionSP>{Connection::PlungerGate("P1"),
-                                  Connection::Ohmic("O1"),
-                                  Connection::Ohmic("O2")});
+        std::make_shared<Impedance>(Connection::Ohmic("O2"), 1.0, 1.0),
+        std::make_shared<Impedance>(Connection::ReservoirGate("R1"), 1.0, 1.0),
+        std::make_shared<Impedance>(Connection::ReservoirGate("R2"), 1.0, 1.0)});
+    auto adj_indexes = std::make_shared<Connections>(std::vector<ConnectionSP>{
+        Connection::PlungerGate("P1"), Connection::Ohmic("O1"),
+        Connection::Ohmic("O2"), Connection::ReservoirGate("R1"),
+        Connection::ReservoirGate("R2")});
     auto adj         = std::make_shared<
         falcon_core::physics::config::core::Adjacency>(
-        xt::eye(3), adj_indexes);
+        xt::eye(5), adj_indexes);
     auto constraints =
         std::make_shared<falcon_core::physics::config::core::VoltageConstraints>(
             adj, 1.0, std::make_pair(-1.0, 1.0));
@@ -1287,7 +1292,7 @@ class EmptyGateConfigTest : public ::testing::Test {
                                                    p_list,
                                                    o_list,
                                                    empty_list,
-                                                   empty_list,
+                                                   r_list,
                                                    groups,
                                                    wiring,
                                                    constraints);
