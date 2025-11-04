@@ -200,22 +200,6 @@ QuantityHandle Quantity_power(QuantityHandle handle, int other) {
   return new Quantity(*(self ^ other));
 }
 
-QuantityHandle Quantity_add_int(QuantityHandle handle, int other) {
-  if (!handle) {
-    throw std::invalid_argument("Quantity_add_int: handle cannot be null");
-  }
-  Quantity self = *static_cast<Quantity*>(handle);
-  return new Quantity(*(self + other));
-}
-
-QuantityHandle Quantity_add_double(QuantityHandle handle, double other) {
-  if (!handle) {
-    throw std::invalid_argument("Quantity_add_double: handle cannot be null");
-  }
-  Quantity self = *static_cast<Quantity*>(handle);
-  return new Quantity(*(self + other));
-}
-
 QuantityHandle Quantity_add_quantity(QuantityHandle handle,
                                      QuantityHandle other) {
   if (!handle) {
@@ -227,26 +211,6 @@ QuantityHandle Quantity_add_quantity(QuantityHandle handle,
   Quantity   self  = *static_cast<Quantity*>(handle);
   QuantitySP oself = std::make_shared<Quantity>(*static_cast<Quantity*>(other));
   return new Quantity(*(self + oself));
-}
-
-QuantityHandle Quantity_add_equals_int(QuantityHandle handle, int other) {
-  if (!handle) {
-    throw std::invalid_argument(
-        "Quantity_add_equals_int: handle cannot be null");
-  }
-  Quantity self = *static_cast<Quantity*>(handle);
-  self += other;
-  return handle;
-}
-
-QuantityHandle Quantity_add_equals_double(QuantityHandle handle, double other) {
-  if (!handle) {
-    throw std::invalid_argument(
-        "Quantity_add_equals_double: handle cannot be null");
-  }
-  Quantity self = *static_cast<Quantity*>(handle);
-  self += other;
-  return handle;
 }
 
 QuantityHandle Quantity_add_equals_quantity(QuantityHandle handle,
@@ -265,23 +229,6 @@ QuantityHandle Quantity_add_equals_quantity(QuantityHandle handle,
   return handle;
 }
 
-QuantityHandle Quantity_subtract_int(QuantityHandle handle, int other) {
-  if (!handle) {
-    throw std::invalid_argument("Quantity_subtract_int: handle cannot be null");
-  }
-  Quantity self = *static_cast<Quantity*>(handle);
-  return new Quantity(*(self - other));
-}
-
-QuantityHandle Quantity_subtract_double(QuantityHandle handle, double other) {
-  if (!handle) {
-    throw std::invalid_argument(
-        "Quantity_subtract_double: handle cannot be null");
-  }
-  Quantity self = *static_cast<Quantity*>(handle);
-  return new Quantity(*(self - other));
-}
-
 QuantityHandle Quantity_subtract_quantity(QuantityHandle handle,
                                           QuantityHandle other) {
   if (!handle) {
@@ -295,27 +242,6 @@ QuantityHandle Quantity_subtract_quantity(QuantityHandle handle,
   Quantity   self  = *static_cast<Quantity*>(handle);
   QuantitySP oself = std::make_shared<Quantity>(*static_cast<Quantity*>(other));
   return new Quantity(*(self - oself));
-}
-
-QuantityHandle Quantity_subtract_equals_int(QuantityHandle handle, int other) {
-  if (!handle) {
-    throw std::invalid_argument(
-        "Quantity_subtract_equals_int: handle cannot be null");
-  }
-  Quantity self = *static_cast<Quantity*>(handle);
-  self -= other;
-  return handle;
-}
-
-QuantityHandle Quantity_subtract_equals_double(QuantityHandle handle,
-                                               double         other) {
-  if (!handle) {
-    throw std::invalid_argument(
-        "Quantity_subtract_equals_double: handle cannot be null");
-  }
-  Quantity self = *static_cast<Quantity*>(handle);
-  self -= other;
-  return handle;
 }
 
 QuantityHandle Quantity_subtract_equals_quantity(QuantityHandle handle,

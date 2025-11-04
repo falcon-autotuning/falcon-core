@@ -38,21 +38,12 @@ QuantityHandle Quantity_divide_equals_double(QuantityHandle handle,
 QuantityHandle Quantity_divide_equals_quantity(QuantityHandle handle,
                                                QuantityHandle other);
 QuantityHandle Quantity_power(QuantityHandle handle, int other);
-QuantityHandle Quantity_add_int(QuantityHandle handle, int other);
-QuantityHandle Quantity_add_double(QuantityHandle handle, double other);
 QuantityHandle Quantity_add_quantity(QuantityHandle handle,
                                      QuantityHandle other);
-QuantityHandle Quantity_add_equals_int(QuantityHandle handle, int other);
-QuantityHandle Quantity_add_equals_double(QuantityHandle handle, double other);
 QuantityHandle Quantity_add_equals_quantity(QuantityHandle handle,
                                             QuantityHandle other);
-QuantityHandle Quantity_subtract_int(QuantityHandle handle, int other);
-QuantityHandle Quantity_subtract_double(QuantityHandle handle, double other);
 QuantityHandle Quantity_subtract_quantity(QuantityHandle handle,
                                           QuantityHandle other);
-QuantityHandle Quantity_subtract_equals_int(QuantityHandle handle, int other);
-QuantityHandle Quantity_subtract_equals_double(QuantityHandle handle,
-                                               double         other);
 QuantityHandle Quantity_subtract_equals_quantity(QuantityHandle handle,
                                                  QuantityHandle other);
 QuantityHandle Quantity_negate(QuantityHandle handle);

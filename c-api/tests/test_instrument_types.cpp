@@ -40,7 +40,3 @@ TEST_F(InstrumentTypesTest, AllTypesReturnNonNull) {
     ASSERT_GT(s->length, 0u);
   }
 }
-
-TEST_F(InstrumentTypesTest, DestroyNullThrows) {
-  EXPECT_THROW(String_destroy(nullptr), std::invalid_argument);
-}

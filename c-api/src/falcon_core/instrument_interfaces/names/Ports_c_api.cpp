@@ -147,14 +147,14 @@ void Ports_push_back(PortsHandle handle, InstrumentPortHandle value) {
   if (!value) {
     throw std::invalid_argument("Ports_push_back: value cannot be null");
   }
-  Ports self = *static_cast<Ports*>(handle);
+  Ports* self = static_cast<Ports*>(handle);
   falcon_core::instrument_interfaces::names::InstrumentPortSP real_value =
       std::make_shared<
           falcon_core::instrument_interfaces::names::InstrumentPort>(
           *static_cast<
               falcon_core::instrument_interfaces::names::InstrumentPort*>(
               value));
-  self.push_back(real_value);
+  self->push_back(real_value);
 }
 
 size_t Ports_size(PortsHandle handle) {

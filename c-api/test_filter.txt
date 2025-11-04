@@ -1,0 +1,14 @@
+ListBoolTest.*
+ChannelTest.*
+ChannelsTest.*
+ConnectionTest.*
+GnameTest.*
+TimeTest.*
+AnalyticFunctionTest.*
+InstrumentPortTest.*
+InstrumentTypesTest.*
+PortsTest.*
+PortTransformTest.*
+PortTransformsTest.*
+SignTest.*
+QuantityTest.*

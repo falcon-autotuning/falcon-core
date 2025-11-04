@@ -50,28 +50,16 @@ TEST_F(QuantityTest, MultiplyDivideAddSubtractIntDouble) {
   auto q2 = Quantity_multiply_double(quantity, 2.0);
   auto q3 = Quantity_divide_int(quantity, 2);
   auto q4 = Quantity_divide_double(quantity, 2.0);
-  auto q5 = Quantity_add_int(quantity, 2);
-  auto q6 = Quantity_add_double(quantity, 2.0);
-  auto q7 = Quantity_subtract_int(quantity, 2);
-  auto q8 = Quantity_subtract_double(quantity, 2.0);
 
   Quantity_destroy(q1);
   Quantity_destroy(q2);
   Quantity_destroy(q3);
   Quantity_destroy(q4);
-  Quantity_destroy(q5);
-  Quantity_destroy(q6);
-  Quantity_destroy(q7);
-  Quantity_destroy(q8);
 
   EXPECT_THROW(Quantity_multiply_int(nullptr, 2), std::invalid_argument);
   EXPECT_THROW(Quantity_multiply_double(nullptr, 2.0), std::invalid_argument);
   EXPECT_THROW(Quantity_divide_int(nullptr, 2), std::invalid_argument);
   EXPECT_THROW(Quantity_divide_double(nullptr, 2.0), std::invalid_argument);
-  EXPECT_THROW(Quantity_add_int(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(Quantity_add_double(nullptr, 2.0), std::invalid_argument);
-  EXPECT_THROW(Quantity_subtract_int(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(Quantity_subtract_double(nullptr, 2.0), std::invalid_argument);
 }
 
 TEST_F(QuantityTest, MultiplyDivideAddSubtractQuantity) {
@@ -111,11 +99,7 @@ TEST_F(QuantityTest, MultiplyDivideAddSubtractEquals) {
   EXPECT_EQ(Quantity_divide_equals_double(quantity, 2.0), quantity);
   EXPECT_EQ(Quantity_divide_equals_quantity(quantity, other_quantity),
             quantity);
-  EXPECT_EQ(Quantity_add_equals_int(quantity, 2), quantity);
-  EXPECT_EQ(Quantity_add_equals_double(quantity, 2.0), quantity);
   EXPECT_EQ(Quantity_add_equals_quantity(quantity, other_quantity), quantity);
-  EXPECT_EQ(Quantity_subtract_equals_int(quantity, 2), quantity);
-  EXPECT_EQ(Quantity_subtract_equals_double(quantity, 2.0), quantity);
   EXPECT_EQ(Quantity_subtract_equals_quantity(quantity, other_quantity),
             quantity);
 
@@ -133,14 +117,9 @@ TEST_F(QuantityTest, MultiplyDivideAddSubtractEquals) {
                std::invalid_argument);
   EXPECT_THROW(Quantity_divide_equals_quantity(quantity, nullptr),
                std::invalid_argument);
-  EXPECT_THROW(Quantity_add_equals_int(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(Quantity_add_equals_double(nullptr, 2.0), std::invalid_argument);
   EXPECT_THROW(Quantity_add_equals_quantity(nullptr, other_quantity),
                std::invalid_argument);
   EXPECT_THROW(Quantity_add_equals_quantity(quantity, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_subtract_equals_int(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(Quantity_subtract_equals_double(nullptr, 2.0),
                std::invalid_argument);
   EXPECT_THROW(Quantity_subtract_equals_quantity(nullptr, other_quantity),
                std::invalid_argument);

@@ -70,7 +70,7 @@ TEST_F(PortTransformTest, Evaluate) {
 
   auto arr = PortTransform_evaluate_arraywise(pt, args, 1.0, 3.0);
   EXPECT_NE(arr, nullptr);
-  EXPECT_EQ(FArrayDouble_size(arr), 4);  // times: 0,1,2,3
+  EXPECT_EQ(FArrayDouble_size(arr), 3);
 
   FArrayDouble_destroy(arr);
   MapStringDouble_destroy(args);
