@@ -268,7 +268,7 @@ bool GateGeometryArray1D::operator==(const GateGeometryArray1D& other) const {
          (*this->screening_gates() == *other.screening_gates());
 }
 bool GateGeometryArray1D::operator!=(const GateGeometryArray1D& other) const {
-  return (*this != other);
+  return !(*this == other);
 }
 
 }  // namespace geometries

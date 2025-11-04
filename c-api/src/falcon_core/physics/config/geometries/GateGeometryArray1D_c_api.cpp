@@ -95,6 +95,10 @@ ConnectionsHandle GateGeometryArray1D_query_neighbors(
     throw std::invalid_argument(
         "GateGeometryArray1D_query_neighbors: handle cannot be null");
   }
+  if (!gate) {
+    throw std::invalid_argument(
+        "GateGeometryArray1D_query_neighbors: gate cannot be null");
+  }
   GateGeometryArray1D self = *static_cast<GateGeometryArray1D*>(handle);
   falcon_core::physics::device_structures::ConnectionSP real_gate =
       std::make_shared<falcon_core::physics::device_structures::Connection>(

@@ -46,3 +46,22 @@ TEST(ImpedanceTest, EqualityAndInequality) {
   Connection_destroy(conn1);
   Connection_destroy(conn2);
 }
+
+TEST(ImpedanceTest, NullHandlesThrow) {
+  ConnectionHandle conn = Connection_create_ohmic(String_wrap("baz"));
+  ImpedanceHandle  imp  = Impedance_create(conn, 1.0, 1.0);
+
+  EXPECT_THROW(Impedance_equal(nullptr, imp), std::invalid_argument);
+  EXPECT_THROW(Impedance_equal(imp, nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedance_not_equal(nullptr, imp), std::invalid_argument);
+  EXPECT_THROW(Impedance_not_equal(imp, nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedance_to_json_string(nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedance_from_json_string(nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedance_capacitance(nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedance_resistance(nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedance_connection(nullptr), std::invalid_argument);
+
+  Impedance_destroy(imp);
+  EXPECT_THROW(Impedance_destroy(nullptr), std::invalid_argument);
+  Connection_destroy(conn);
+}

@@ -146,3 +146,65 @@ TEST_F(GateGeometryArray1DTest, AppendCentralGateValid) {
   Connection_destroy(selected);
   Connection_destroy(right);
 }
+
+TEST_F(GateGeometryArray1DTest, NullptrThrows) {
+  ConnectionHandle left     = Connection_create_barrier_gate(String_wrap("B1"));
+  ConnectionHandle selected = Connection_create_plunger_gate(String_wrap("P1"));
+  ConnectionHandle right    = Connection_create_barrier_gate(String_wrap("B2"));
+
+  EXPECT_THROW(
+      GateGeometryArray1D_append_central_gate(nullptr, left, selected, right),
+      std::invalid_argument);
+  EXPECT_THROW(
+      GateGeometryArray1D_append_central_gate(handle, nullptr, selected, right),
+      std::invalid_argument);
+  EXPECT_THROW(
+      GateGeometryArray1D_append_central_gate(handle, left, nullptr, right),
+      std::invalid_argument);
+  EXPECT_THROW(
+      GateGeometryArray1D_append_central_gate(handle, left, selected, nullptr),
+      std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_all_dot_gates(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_central_dot_gates(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_left_reservoir(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_right_reservoir(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_left_barrier(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_right_barrier(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_lineararray(nullptr), std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_screening_gates(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_raw_central_gates(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_query_neighbors(nullptr, left),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_query_neighbors(handle, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_ohmics(nullptr), std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_equal(nullptr, handle),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_equal(handle, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_not_equal(nullptr, handle),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_not_equal(handle, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_to_json_string(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_from_json_string(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_destroy(nullptr), std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_create(nullptr, screening),
+               std::invalid_argument);
+  EXPECT_THROW(GateGeometryArray1D_create(linear, nullptr),
+               std::invalid_argument);
+
+  Connection_destroy(left);
+  Connection_destroy(selected);
+  Connection_destroy(right);
+}
