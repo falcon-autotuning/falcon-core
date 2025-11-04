@@ -36,6 +36,9 @@ class VectorTest : public ::testing::Test {
     v1 = std::make_shared<Vector>(start1, end1, unit);
     v2 = std::make_shared<Vector>(start2, end2, unit);
   }
+  struct VectorPublic : public falcon_core::math::Vector {
+    using falcon_core::math::Vector::Vector;  // inherit constructors as public
+  };
 };
 
 TEST_F(VectorTest, ConstructorStartEnd) {
@@ -203,6 +206,27 @@ TEST_F(VectorTest, TranslateToOrigin) {
   ASSERT_NE(origin, nullptr);
 }
 
+TEST_F(VectorTest, UpdateStartFromStatesValid) {
+  auto states = std::make_shared<
+      falcon_core::communications::voltage_states::DeviceVoltageStates>();
+
+  states->add_state(
+      std::make_shared<
+          falcon_core::communications::voltage_states::DeviceVoltageState>(
+          conn1, 5.0, unit));
+  states->add_state(
+      std::make_shared<
+          falcon_core::communications::voltage_states::DeviceVoltageState>(
+          conn2, 6.0, unit));
+
+  auto updated = v1->update_start_from_states(states);
+  ASSERT_NE(updated, nullptr);
+
+  EXPECT_DOUBLE_EQ((*updated->startPoint())[conn1] -> value(), 5.0);
+  EXPECT_DOUBLE_EQ((*updated->startPoint())[conn2] -> value(), 6.0);
+  EXPECT_DOUBLE_EQ((*updated->endPoint())[conn1] -> value(), 6.0);
+  EXPECT_DOUBLE_EQ((*updated->endPoint())[conn2] -> value(), 7.0);
+}
 TEST_F(VectorTest, UpdateStartFromStatesThrowsOnNull) {
   EXPECT_THROW(v1->update_start_from_states(nullptr), std::invalid_argument);
 }
@@ -276,4 +300,118 @@ TEST_F(VectorTest, NotEqualOperator) {
   ASSERT_TRUE(*v1 != *v2);
   ASSERT_FALSE(*v1 != *v1);
 }
+
+TEST_F(VectorTest, NullStartEndPointsWithUnit) {
+  EXPECT_THROW(std::make_shared<Vector>(nullptr, nullptr, unit),
+               std::invalid_argument);
+}
+
+TEST_F(VectorTest, ConstructorStartEndExtraEndConns) {
+  ConnectionSP conn1 =
+      std::make_shared<Connection>("A", DeviceFeature::BarrierGate);
+  ConnectionSP conn2 =
+      std::make_shared<Connection>("B", DeviceFeature::BarrierGate);
+  ConnectionSP conn3 =
+      std::make_shared<Connection>("C", DeviceFeature::BarrierGate);
+  MapSP<Connection, double> end1extra =
+      std::make_shared<Map<Connection, double>>(
+          std::vector<std::pair<ConnectionSP, double>>{
+              {conn1, 1.0}, {conn2, 2.0}, {conn3, 3.0}});
+  auto vec = std::make_shared<Vector>(start1, end1extra, unit);
+  ASSERT_EQ(vec->connections()->size(), 3);
+}
+
+TEST_F(VectorTest, DefaultConstructor) {
+  auto vec = std::make_shared<VectorPublic>();
+  ASSERT_NE(vec, nullptr);
+  ASSERT_NE(vec->unit(), nullptr);
+  ASSERT_NE(vec->connections(), nullptr);
+}
+
+TEST_F(VectorTest, ConstructorStartEndNullPointsThrows) {
+  // Use explicit PointSP() to avoid ambiguous nullptr overload resolution
+  EXPECT_THROW(std::make_shared<Vector>(PointSP(), PointSP()),
+               std::invalid_argument);
+}
+
+TEST_F(VectorTest, ConstructorStartHasExtraConnection) {
+  // Create a start map that has an extra connection not present in end
+  ConnectionSP conn3 =
+      std::make_shared<Connection>("C", DeviceFeature::BarrierGate);
+  auto start_extra = std::make_shared<Map<Connection, double>>(
+      std::vector<std::pair<ConnectionSP, double>>{
+          {conn1, 0.0}, {conn2, 1.0}, {conn3, 3.0}});
+  // end only contains conn1 and conn2 (use end1 from fixture)
+  auto vec = std::make_shared<Vector>(start_extra, end1, unit);
+  ASSERT_NE(vec, nullptr);
+  // conn3 should be present in resulting connections
+  EXPECT_TRUE(vec->connections()->contains(conn3));
+  EXPECT_EQ(vec->connections()->size(), 3);
+}
+
+TEST_F(VectorTest, EndMissingConnectionCreatesZeroQuantity) {
+  // start has conn2, end lacks conn2 -> end quantity for conn2 should be zero
+  auto start_map = std::make_shared<Map<Connection, double>>(
+      std::vector<std::pair<ConnectionSP, double>>{{conn1, 0.0}, {conn2, 1.0}});
+  auto end_map = std::make_shared<Map<Connection, double>>(
+      std::vector<std::pair<ConnectionSP, double>>{{conn1, 1.0}});
+  auto vec = std::make_shared<Vector>(start_map, end_map, unit);
+  ASSERT_NE(vec, nullptr);
+  auto pair = (*vec)[conn2];
+  EXPECT_DOUBLE_EQ(pair->second()->value(), 0.0);
+}
+
+TEST_F(VectorTest, ConstructFromPairMap) {
+  // Build a map<Connection, Pair<Quantity,Quantity>> and construct Vector from
+  // it
+  auto unit_local = SymbolUnit::Volt();
+  auto q01        = std::make_shared<Quantity>(0.0, unit_local);
+  auto q11        = std::make_shared<Quantity>(1.0, unit_local);
+  auto q02        = std::make_shared<Quantity>(0.0, unit_local);
+  auto q22        = std::make_shared<Quantity>(2.0, unit_local);
+
+  auto p1 = std::make_shared<falcon_core::generic::Pair<Quantity, Quantity>>(
+      q01, q11);
+  auto p2 = std::make_shared<falcon_core::generic::Pair<Quantity, Quantity>>(
+      q02, q22);
+
+  auto pair_map = std::make_shared<
+      Map<Connection, falcon_core::generic::Pair<Quantity, Quantity>>>();
+  pair_map->insert(conn1, p1);
+  pair_map->insert(conn2, p2);
+
+  auto vec = std::make_shared<Vector>(pair_map);
+  ASSERT_NE(vec, nullptr);
+  EXPECT_DOUBLE_EQ((*vec->startPoint())[conn1] -> value(), 0.0);
+  EXPECT_DOUBLE_EQ((*vec->endPoint())[conn2] -> value(), 2.0);
+}
+
+TEST_F(VectorTest, SinglePointConstructor) {
+  auto end_point = std::make_shared<Point>(end1, unit);
+  auto vec       = std::make_shared<Vector>(end_point);
+  ASSERT_NE(vec, nullptr);
+
+  EXPECT_EQ(*vec->endPoint(), *end_point);
+}
+
+TEST_F(VectorTest, IntegerMultiplyDivideOperators) {
+  auto v_mul_int = *v1 * 2;  // operator*(int)
+  auto v_div_int = *v1 / 2;  // operator/(int)
+  ASSERT_NE(v_mul_int, nullptr);
+  ASSERT_NE(v_div_int, nullptr);
+  EXPECT_DOUBLE_EQ((*v_mul_int->endPoint())[conn1] -> value(), 2.0);
+  EXPECT_DOUBLE_EQ((*v_div_int->endPoint())[conn2] -> value(), 1.0);
+}
+
+TEST_F(VectorTest, PrincipleConnectionChoosesLargestDifference) {
+  auto start_map = std::make_shared<Map<Connection, double>>(
+      std::vector<std::pair<ConnectionSP, double>>{{conn1, 0.0}, {conn2, 0.0}});
+  auto end_map = std::make_shared<Map<Connection, double>>(
+      std::vector<std::pair<ConnectionSP, double>>{{conn1, 1.0}, {conn2, 5.0}});
+  auto vec = std::make_shared<Vector>(start_map, end_map, unit);
+  ASSERT_NE(vec, nullptr);
+  // conn2 has larger difference (5.0) so principle_connection should pick conn2
+  EXPECT_EQ(vec->principle_connection(), conn2);
+}
+
 }  // namespace
