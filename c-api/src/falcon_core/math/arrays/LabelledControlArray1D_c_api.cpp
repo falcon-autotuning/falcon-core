@@ -461,7 +461,7 @@ void LabelledControlArray1D_timesequals_int(LabelledControlArray1DHandle handle,
   labelled_control_array->operator*=(other);
 }
 
-LabelledControlArray1DHandle ControlArray_times_double(
+LabelledControlArray1DHandle LabelledControlArray1D_times_double(
     LabelledControlArray1DHandle handle, const double other) {
   if (!handle) {
     throw std::invalid_argument(
@@ -483,8 +483,8 @@ LabelledControlArray1DHandle LabelledControlArray1D_times_int(
   return new LabelledControlArray1D(*labelled_control_array->operator*(other));
 }
 
-void ControlArray_dividesequals_double(LabelledControlArray1DHandle handle,
-                                       const double                 other) {
+void LabelledControlArray1D_dividesequals_double(
+    LabelledControlArray1DHandle handle, const double other) {
   if (!handle) {
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray1D_dividesequals_double");

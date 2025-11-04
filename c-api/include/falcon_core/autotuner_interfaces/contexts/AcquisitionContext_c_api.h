@@ -22,7 +22,8 @@ void AcquisitionContext_destroy(AcquisitionContextHandle handle);
 
 // Methods
 ConnectionHandle AcquisitionContext_connection(AcquisitionContextHandle handle);
-const char* AcquisitionContext_instrument_type(AcquisitionContextHandle handle);
+StringHandle     AcquisitionContext_instrument_type(
+        AcquisitionContextHandle handle);
 SymbolUnitHandle AcquisitionContext_units(AcquisitionContextHandle handle);
 AcquisitionContextHandle AcquisitionContext_division_unit(
     AcquisitionContextHandle handle, SymbolUnitHandle other);

@@ -89,12 +89,12 @@ void LabelledControlArray1D_timesequals_double(
     LabelledControlArray1DHandle handle, const double other);
 void LabelledControlArray1D_timesequals_int(LabelledControlArray1DHandle handle,
                                             const int                    other);
-LabelledControlArray1DHandle ControlArray_times_double(
+LabelledControlArray1DHandle LabelledControlArray1D_times_double(
     LabelledControlArray1DHandle handle, const double other);
 LabelledControlArray1DHandle LabelledControlArray1D_times_int(
     LabelledControlArray1DHandle handle, const int other);
-void ControlArray_dividesequals_double(LabelledControlArray1DHandle handle,
-                                       const double                 other);
+void LabelledControlArray1D_dividesequals_double(
+    LabelledControlArray1DHandle handle, const double other);
 void LabelledControlArray1D_dividesequals_int(
     LabelledControlArray1DHandle handle, const int other);
 LabelledControlArray1DHandle LabelledControlArray1D_divides_double(
