@@ -106,14 +106,10 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_pow(
     LabelledMeasuredArrayHandle handle, const double other);
 LabelledMeasuredArrayHandle LabelledMeasuredArray_abs(
     LabelledMeasuredArrayHandle handle);
-LabelledMeasuredArrayHandle LabelledMeasuredArray_min(
-    LabelledMeasuredArrayHandle handle);
 LabelledMeasuredArrayHandle LabelledMeasuredArray_min_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
 LabelledMeasuredArrayHandle LabelledMeasuredArray_min_control_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
-LabelledMeasuredArrayHandle LabelledMeasuredArray_max(
-    LabelledMeasuredArrayHandle handle);
 LabelledMeasuredArrayHandle LabelledMeasuredArray_max_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
 LabelledMeasuredArrayHandle LabelledMeasuredArray_max_control_array(

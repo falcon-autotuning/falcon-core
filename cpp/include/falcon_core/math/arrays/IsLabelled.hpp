@@ -86,19 +86,6 @@ class IsLabelled : public virtual generic::IFArray<T> {
     return std::make_shared<IsLabelled<T>>(*this / other, this->label());
   }
   /**
-   * @brief Get the sum of squares of the data.
-   */
-  double get_sum_of_squares() const { return this->get_sum_of_squares(); }
-  bool   operator>(const double value) const { return this > value; }
-  bool   operator<(const double value) const { return this < value; }
-  /**
-   * @brief Remove an offset from the data.
-   * @param offset The offset to remove.
-   */
-  void remove_offset(const double offset) {
-    generic::IFArray<T>::remove_offset(offset);
-  }
-  /**
    * @brief Flip the data along the given axis.
    * @param axis The axis to flip.
    * @return A flipped IsLabelled.

@@ -12,7 +12,7 @@ typedef void* AcquisitionContextHandle;
 
 // Constructors
 AcquisitionContextHandle AcquisitionContext_create(ConnectionHandle connection,
-                                                   const char* instrument_type,
+                                                   StringHandle instrument_type,
                                                    SymbolUnitHandle units);
 AcquisitionContextHandle AcquisitionContext_create_from_port(
     InstrumentPortHandle port);

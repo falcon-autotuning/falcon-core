@@ -1,0 +1,817 @@
+#include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
+
+#include <falcon_core/math/arrays/LabelledMeasuredArray.hpp>
+#include <stdexcept>
+#include <string>
+#include <xtensor/xadapt.hpp>
+
+#include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
+#include "falcon_core/generic/FArrayDouble_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
+using namespace falcon_core;
+using namespace falcon_core::math;
+using namespace falcon_core::math::arrays;
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_from_farray(
+    FArrayDoubleHandle farray, AcquisitionContextHandle label) {
+  if (!farray) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_from_farray");
+  }
+  generic::FArraySP<double> real_farray =
+      std::make_shared<generic::FArray<double>>(
+          *static_cast<generic::FArray<double>*>(farray));
+  autotuner_interfaces::contexts::AcquisitionContextSP real_label =
+      std::make_shared<autotuner_interfaces::contexts::AcquisitionContext>(
+          *static_cast<autotuner_interfaces::contexts::AcquisitionContext*>(
+              label));
+  return new LabelledMeasuredArray(real_farray, real_label);
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_from_controlarray(
+    MeasuredArrayHandle measuredarray, AcquisitionContextHandle label) {
+  if (!measuredarray) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_from_controlarray");
+  }
+  MeasuredArraySP real_measuredarray = std::make_shared<MeasuredArray>(
+      *static_cast<MeasuredArray*>(measuredarray));
+  autotuner_interfaces::contexts::AcquisitionContextSP real_label =
+      std::make_shared<autotuner_interfaces::contexts::AcquisitionContext>(
+          *static_cast<autotuner_interfaces::contexts::AcquisitionContext*>(
+              label));
+  return new LabelledMeasuredArray(real_measuredarray, real_label);
+}
+
+void LabelledMeasuredArray_destroy(LabelledMeasuredArrayHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_destroy");
+  }
+  delete static_cast<LabelledMeasuredArray*>(handle);
+}
+
+AcquisitionContextHandle LabelledMeasuredArray_label(
+    LabelledMeasuredArrayHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_label");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return new autotuner_interfaces::contexts::AcquisitionContext(
+      *(labelled_measured_array->label()));
+}
+
+ConnectionHandle LabelledMeasuredArray_connection(
+    LabelledMeasuredArrayHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_connection");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return new physics::device_structures::Connection(
+      *(labelled_measured_array->connection()));
+}
+
+StringHandle LabelledMeasuredArray_instrument_type(
+    LabelledMeasuredArrayHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_instrument_type");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  std::string instr_type = labelled_measured_array->instrument_type();
+  return String_create(instr_type.c_str(), instr_type.size());
+}
+
+SymbolUnitHandle LabelledMeasuredArray_units(
+    LabelledMeasuredArrayHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_units");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return new physics::units::SymbolUnit(*(labelled_measured_array->units()));
+}
+
+size_t LabelledMeasuredArray_size(LabelledMeasuredArrayHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_size");
+  }
+  auto labelled_measured_array = static_cast<LabelledMeasuredArray*>(handle);
+  return labelled_measured_array->size();
+}
+
+size_t LabelledMeasuredArray_dimension(LabelledMeasuredArrayHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_dimension");
+  }
+  auto labelled_measured_array = static_cast<LabelledMeasuredArray*>(handle);
+  return labelled_measured_array->dimension();
+}
+
+size_t LabelledMeasuredArray_shape(LabelledMeasuredArrayHandle handle,
+                                   size_t*                     out_buffer,
+                                   size_t                      ndim) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_shape");
+  }
+  auto   labelled_measured_array = static_cast<LabelledMeasuredArray*>(handle);
+  auto   shape                   = labelled_measured_array->shape();
+  size_t count                   = shape.size();
+  size_t to_copy                 = (ndim < count) ? ndim : count;
+  for (size_t i = 0; i < to_copy; ++i) {
+    out_buffer[i] = shape[i];
+  }
+  return to_copy;
+}
+
+size_t LabelledMeasuredArray_data(LabelledMeasuredArrayHandle handle,
+                                  double*                     out_buffer,
+                                  size_t                      numdata) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_data");
+  }
+  auto   labelled_measured_array = static_cast<LabelledMeasuredArray*>(handle);
+  auto   data                    = labelled_measured_array->data();
+  size_t count                   = labelled_measured_array->size();
+  size_t to_copy                 = (numdata < count) ? numdata : count;
+  for (size_t i = 0; i < to_copy; ++i) {
+    out_buffer[i] = data[i];
+  }
+  return to_copy;
+}
+
+void LabelledMeasuredArray_plusequals_farray(LabelledMeasuredArrayHandle handle,
+                                             FArrayDoubleHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_plusequals_farray");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  generic::FArray<double>* oarray =
+      static_cast<generic::FArray<double>*>(other);
+  labelled_measured_array->operator+=(*oarray);
+}
+
+void LabelledMeasuredArray_plusequals_double(LabelledMeasuredArrayHandle handle,
+                                             const double other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_plusequals_double");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  labelled_measured_array->operator+=(other);
+}
+
+void LabelledMeasuredArray_plusequals_int(LabelledMeasuredArrayHandle handle,
+                                          const int                   other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_plusequals_int");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  labelled_measured_array->operator+=(other);
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_control_array(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_plus_control_array");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  LabelledMeasuredArraySP oarray = std::make_shared<LabelledMeasuredArray>(
+      *static_cast<LabelledMeasuredArray*>(other));
+  return new LabelledMeasuredArray(*labelled_measured_array->operator+(oarray));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_plus_farray");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  generic::FArray<double>* oarray =
+      static_cast<generic::FArray<double>*>(other);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator+(
+      std::make_shared<generic::FArray<double>>(*oarray)));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_double(
+    LabelledMeasuredArrayHandle handle, const double other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_plus_double");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator+(other));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_int(
+    LabelledMeasuredArrayHandle handle, const int other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_plus_int");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator+(other));
+}
+
+void LabelledMeasuredArray_minusequals_control_array(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to "
+        "LabelledMeasuredArray_minusequals_control_array");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  LabelledMeasuredArray oarray = *static_cast<LabelledMeasuredArray*>(other);
+  labelled_measured_array->operator-=(oarray);
+}
+
+void LabelledMeasuredArray_minusequals_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_minusequals_farray");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  generic::FArray<double>* oarray =
+      static_cast<generic::FArray<double>*>(other);
+  labelled_measured_array->operator-=(generic::FArray<double>(*oarray));
+}
+
+void LabelledMeasuredArray_minusequals_double(
+    LabelledMeasuredArrayHandle handle, const double other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_minusequals_double");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  labelled_measured_array->operator-=(other);
+}
+
+void LabelledMeasuredArray_minusequals_int(LabelledMeasuredArrayHandle handle,
+                                           const int                   other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_minusequals_int");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  labelled_measured_array->operator-=(other);
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_control_array(
+    LabelledMeasuredArrayHandle handle, MeasuredArrayHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_minus_control_array");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  MeasuredArraySP oarray =
+      std::make_shared<MeasuredArray>(*static_cast<MeasuredArray*>(other));
+  return new LabelledMeasuredArray(*labelled_measured_array->operator-(oarray));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_minus_farray");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  generic::FArray<double>* oarray =
+      static_cast<generic::FArray<double>*>(other);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator-(
+      std::make_shared<generic::FArray<double>>(*oarray)));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_double(
+    LabelledMeasuredArrayHandle handle, const double other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_minus_double");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator-(other));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_int(
+    LabelledMeasuredArrayHandle handle, const int other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_minus_int");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator-(other));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_negation(
+    LabelledMeasuredArrayHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_negation");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return new LabelledMeasuredArray(*-*labelled_measured_array);
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_timesequals_measured_array(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to "
+        "LabelledMeasuredArray_timesequals_measured_array");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  LabelledMeasuredArray oarray = *static_cast<LabelledMeasuredArray*>(other);
+  labelled_measured_array->operator*=(oarray);
+  return handle;
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_timesequals_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_timesequals_farray");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  generic::FArray<double>* oarray =
+      static_cast<generic::FArray<double>*>(other);
+  labelled_measured_array->operator*=(generic::FArray<double>(*oarray));
+  return handle;
+}
+
+void MeasuredArray_timesequals_double(LabelledMeasuredArrayHandle handle,
+                                      const double                other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_timesequals_double");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  labelled_measured_array->operator*=(other);
+}
+
+void LabelledMeasuredArray_timesequals_int(LabelledMeasuredArrayHandle handle,
+                                           const int                   other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_timesequals_int");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  labelled_measured_array->operator*=(other);
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_times_measured_array(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_times_measured_array");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  LabelledMeasuredArraySP oarray = std::make_shared<LabelledMeasuredArray>(
+      *static_cast<LabelledMeasuredArray*>(other));
+  return new LabelledMeasuredArray(*labelled_measured_array->operator*(oarray));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_times_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_times_farray");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  generic::FArray<double>* oarray =
+      static_cast<generic::FArray<double>*>(other);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator*(
+      std::make_shared<generic::FArray<double>>(*oarray)));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_times_double(
+    LabelledMeasuredArrayHandle handle, const double other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_times_double");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator*(other));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_times_int(
+    LabelledMeasuredArrayHandle handle, const int other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_times_int");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator*(other));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_dividesequals_measured_array(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to "
+        "LabelledMeasuredArray_dividesequals_measured_array");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  LabelledMeasuredArray oarray = *static_cast<LabelledMeasuredArray*>(other);
+  labelled_measured_array->operator/=(oarray);
+  return handle;
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_dividesequals_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_dividesequals_farray");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  generic::FArray<double>* oarray =
+      static_cast<generic::FArray<double>*>(other);
+  labelled_measured_array->operator/=(generic::FArray<double>(*oarray));
+  return handle;
+}
+
+void LabelledMeasuredArray_dividesequals_double(
+    LabelledMeasuredArrayHandle handle, const double other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_dividesequals_double");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  labelled_measured_array->operator/=(other);
+}
+
+void LabelledMeasuredArray_dividesequals_int(LabelledMeasuredArrayHandle handle,
+                                             const int other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_dividesequals_int");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  labelled_measured_array->operator/=(other);
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_measured_array(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_divides_measured_array");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  LabelledMeasuredArraySP oarray = std::make_shared<LabelledMeasuredArray>(
+      *static_cast<LabelledMeasuredArray*>(other));
+  return new LabelledMeasuredArray(*labelled_measured_array->operator/(oarray));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_divides_farray");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  generic::FArray<double>* oarray =
+      static_cast<generic::FArray<double>*>(other);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator/(
+      std::make_shared<generic::FArray<double>>(*oarray)));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_double(
+    LabelledMeasuredArrayHandle handle, const double other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_divides_double");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator/(other));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_int(
+    LabelledMeasuredArrayHandle handle, const int other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_divides_int");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator/(other));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_pow(
+    LabelledMeasuredArrayHandle handle, const double other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_pow");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator^(other));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_abs(
+    LabelledMeasuredArrayHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_abs");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return new LabelledMeasuredArray(*labelled_measured_array->abs());
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_min_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_min_farray");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  generic::FArray<double>* oarray =
+      static_cast<generic::FArray<double>*>(other);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator-(
+      std::make_shared<generic::FArray<double>>(*oarray)));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_min_control_array(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_min_control_array");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  LabelledMeasuredArraySP oarray = std::make_shared<LabelledMeasuredArray>(
+      *static_cast<LabelledMeasuredArray*>(other));
+  return new LabelledMeasuredArray(*labelled_measured_array->operator-(oarray));
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_max_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_max_farray");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  generic::FArray<double>* oarray =
+      static_cast<generic::FArray<double>*>(other);
+  return new LabelledMeasuredArray(*labelled_measured_array->operator+(
+      std::make_shared<generic::FArray<double>>(*oarray)));
+}
+LabelledMeasuredArrayHandle LabelledMeasuredArray_max_control_array(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_max_control_array");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  LabelledMeasuredArraySP oarray = std::make_shared<LabelledMeasuredArray>(
+      *static_cast<LabelledMeasuredArray*>(other));
+  return new LabelledMeasuredArray(*labelled_measured_array->operator+(oarray));
+}
+bool LabelledMeasuredArray_equality(LabelledMeasuredArrayHandle handle,
+                                    LabelledMeasuredArrayHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_equality");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  LabelledMeasuredArray oarray = *static_cast<LabelledMeasuredArray*>(other);
+  return labelled_measured_array->operator==(oarray);
+}
+
+bool LabelledMeasuredArray_notequality(LabelledMeasuredArrayHandle handle,
+                                       LabelledMeasuredArrayHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_notequality");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  LabelledMeasuredArray oarray = *static_cast<LabelledMeasuredArray*>(other);
+  return labelled_measured_array->operator!=(oarray);
+}
+
+bool LabelledMeasuredArray_greaterthan(LabelledMeasuredArrayHandle handle,
+                                       const double                value) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_greaterhan");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return labelled_measured_array->operator>(value);
+}
+
+bool LabelledMeasuredArray_lessthan(LabelledMeasuredArrayHandle handle,
+                                    const double                value) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_lessthan");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return labelled_measured_array->operator<(value);
+}
+void LabelledMeasuredArray_remove_offset(LabelledMeasuredArrayHandle handle,
+                                         const double                offset) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_remove_offset");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  labelled_measured_array->remove_offset(offset);
+}
+
+double LabelledMeasuredArray_sum(LabelledMeasuredArrayHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_sum");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return labelled_measured_array->sum();
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_reshape(
+    LabelledMeasuredArrayHandle handle, const size_t* shape, size_t ndims) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_reshape");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  std::vector<size_t> new_shape(shape, shape + ndims);
+  return new LabelledMeasuredArray(
+      *labelled_measured_array->reshape(new_shape));
+}
+ListListSizeTHandle LabelledMeasuredArray_where(
+    LabelledMeasuredArrayHandle handle, const double value) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_where");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  auto indices = labelled_measured_array->where(value);
+  return new generic::List<generic::List<size_t>>(*indices);
+}
+LabelledMeasuredArrayHandle LabelledMeasuredArray_flip(
+    LabelledMeasuredArrayHandle handle, size_t axis) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_flip");
+  }
+  return new LabelledMeasuredArray(
+      *static_cast<LabelledMeasuredArray*>(handle)->flip(axis));
+}
+size_t LabelledMeasuredArray_full_gradient(
+    LabelledMeasuredArrayHandle  handle,
+    LabelledMeasuredArrayHandle* out_buffer,
+    size_t                       buffer_size) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_full_gradient");
+  }
+  auto labelled_measured_array = static_cast<LabelledMeasuredArray*>(handle);
+  generic::ListSP<generic::FArray<double>> gradients =
+      labelled_measured_array->gradient();
+  size_t count   = gradients->size();
+  size_t to_copy = (buffer_size < count) ? buffer_size : count;
+  for (size_t i = 0; i < to_copy; ++i) {
+    out_buffer[i] = new LabelledMeasuredArray(gradients->items()[i],
+                                              labelled_measured_array->label());
+  }
+  return to_copy;
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_gradient(
+    LabelledMeasuredArrayHandle handle, size_t axis) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_gradient");
+  }
+  auto labelled_measured_array = static_cast<LabelledMeasuredArray*>(handle);
+  return new LabelledMeasuredArray(labelled_measured_array->gradient(axis),
+                                   labelled_measured_array->label());
+}
+
+double LabelledMeasuredArray_get_sum_of_squares(
+    LabelledMeasuredArrayHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_get_sum_of_squares");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return labelled_measured_array->get_sum_of_squares();
+}
+
+double LabelledMeasuredArray_get_summed_diff_int_of_squares(
+    LabelledMeasuredArrayHandle handle, const int other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to "
+        "LabelledMeasuredArray_get_summed_diff_int_of_squares");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return labelled_measured_array->get_sum_of_squares(other);
+}
+
+double LabelledMeasuredArray_get_summed_diff_double_of_squares(
+    LabelledMeasuredArrayHandle handle, const double other) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to "
+        "LabelledMeasuredArray_get_summed_diff_double_of_squares");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return labelled_measured_array->get_sum_of_squares(other);
+}
+
+double LabelledMeasuredArray_get_summed_diff_array_of_squares(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other) {
+  if (!handle || !other) {
+    throw std::invalid_argument(
+        "Null handle passed to "
+        "LabelledMeasuredArray_get_summed_diff_array_of_squares");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  LabelledMeasuredArraySP oarray = std::make_shared<LabelledMeasuredArray>(
+      *static_cast<LabelledMeasuredArray*>(other));
+  return labelled_measured_array->get_sum_of_squares(oarray);
+}
+
+StringHandle LabelledMeasuredArray_to_json_string(
+    LabelledMeasuredArrayHandle handle) {
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_to_json_string");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  std::string json_str = labelled_measured_array->to_json_string();
+  return String_create(json_str.c_str(), json_str.size());
+}
+
+LabelledMeasuredArrayHandle LabelledMeasuredArray_from_json_string(
+    StringHandle json) {
+  if (!json) {
+    throw std::invalid_argument(
+        "Null string handle passed to LabelledMeasuredArray_from_json_string");
+  }
+  std::string raw_json(json->raw);
+  auto        ptr =
+      LabelledMeasuredArray::from_json_string<LabelledMeasuredArray>(raw_json);
+  return new LabelledMeasuredArray(*ptr);
+}
