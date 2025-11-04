@@ -30,3 +30,5 @@ DiscreteSpaceTest.*
 IncreasingAlignmentTest.*
 FArrayDoubleTest.*
 FArrayIntTest.*
+MeasuredArrayTest.*
+ControlArrayTest.*

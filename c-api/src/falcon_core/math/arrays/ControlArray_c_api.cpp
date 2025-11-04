@@ -1,6 +1,7 @@
 #include "falcon_core/math/arrays/ControlArray_c_api.h"
 
 #include <falcon_core/math/arrays/ControlArray.hpp>
+#include <stdexcept>
 #include <string>
 #include <xtensor/xadapt.hpp>
 
@@ -13,6 +14,12 @@ using namespace falcon_core::math::arrays;
 ControlArrayHandle ControlArray_from_data(const double* data,
                                           const size_t* shape,
                                           size_t        ndim) {
+  if (!data) {
+    throw std::invalid_argument("Null data passed to ControlArray_from_data");
+  }
+  if (!shape) {
+    throw std::invalid_argument("Null shape passed to ControlArray_from_data");
+  }
   std::vector<std::vector<double>::size_type> shapeVec;
   size_t                                      total_size = 1;
   for (size_t i = 0; i < ndim; ++i) {
@@ -445,20 +452,6 @@ double ControlArray_sum(ControlArrayHandle handle) {
   return control_array->sum();
 }
 
-ControlArrayHandle ControlArray_reshape(ControlArrayHandle handle,
-                                        const size_t*      shape,
-                                        size_t             ndims) {
-  if (!handle) {
-    throw std::invalid_argument("Null handle passed to ControlArray_reshape");
-  }
-  std::vector<std::vector<double>::size_type> vec;
-  for (size_t i = 0; i < ndims; ++i) {
-    vec.push_back(shape[i]);
-  }
-  auto control_array = static_cast<ControlArray*>(handle);
-  return new ControlArray(control_array->reshape(vec));
-}
-
 ListListSizeTHandle ControlArray_where(ControlArrayHandle handle,
                                        const double       value) {
   if (!handle) {
@@ -479,11 +472,15 @@ ControlArrayHandle ControlArray_flip(ControlArrayHandle handle, size_t axis) {
 }
 
 size_t ControlArray_full_gradient(ControlArrayHandle  handle,
-                                  ControlArrayHandle* out_buffer,
+                                  FArrayDoubleHandle* out_buffer,
                                   size_t              buffer_size) {
   if (!handle) {
     throw std::invalid_argument(
         "Null handle passed to ControlArray_full_gradient");
+  }
+  if (!out_buffer) {
+    throw std::invalid_argument(
+        "Null output buffer passed to ControlArray_full_gradient");
   }
   auto   control_array  = static_cast<ControlArray*>(handle);
   auto   many_gradients = control_array->gradient();
@@ -491,18 +488,18 @@ size_t ControlArray_full_gradient(ControlArrayHandle  handle,
                               ? buffer_size
                               : many_gradients->size();
   for (size_t i = 0; i < to_copy; ++i) {
-    out_buffer[i] = new ControlArray(many_gradients->items()[i]);
+    out_buffer[i] = new generic::FArray<double>(*many_gradients->items()[i]);
   }
   return to_copy;
 }
 
-ControlArrayHandle ControlArray_gradient(ControlArrayHandle handle,
+FArrayDoubleHandle ControlArray_gradient(ControlArrayHandle handle,
                                          size_t             axis) {
   if (!handle) {
     throw std::invalid_argument("Null handle passed to ControlArray_gradient");
   }
   auto control_array = static_cast<ControlArray*>(handle);
-  return new ControlArray(*control_array->gradient(axis));
+  return new generic::FArray<double>(*control_array->gradient(axis));
 }
 
 double ControlArray_get_sum_of_squares(ControlArrayHandle handle) {

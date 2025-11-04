@@ -14,8 +14,8 @@ class ControlArray1DTest : public ::testing::Test {
     data[2]  = 3.0;
     shape[0] = 3;
     ca       = ControlArray1D_from_data(data, shape, 1);
-    fa       = FArrayDouble_from_data(data, shape, 1);
-    ca2      = ControlArray1D_from_farray(fa);
+    fa = FArrayDouble_times_double(FArrayDouble_from_data(data, shape, 1), 2.0);
+    ca2 = ControlArray1D_from_farray(fa);
   }
   void TearDown() override {
     ControlArray1D_destroy(ca);
@@ -242,13 +242,11 @@ TEST_F(ControlArray1DTest, ComparisonOperators) {
   EXPECT_THROW(ControlArray1D_lessthan(nullptr, 0.5), std::invalid_argument);
 }
 
-TEST_F(ControlArray1DTest, OffsetSumReshapeWhereFlipGradient) {
+TEST_F(ControlArray1DTest, OffsetSumWhereFlipGradient) {
   ControlArray1D_remove_offset(ca, 1.0);
   EXPECT_DOUBLE_EQ(ControlArray1D_sum(ca), 6.0);
   size_t new_shape[1] = {3};
-  auto   reshaped     = ControlArray1D_reshape(ca, new_shape, 1);
-  ControlArray1D_destroy(reshaped);
-  auto where = ControlArray1D_where(ca, 2.0);
+  auto   where        = ControlArray1D_where(ca, 2.0);
   // ListListSizeT_destroy(where); // implement destroy if needed
   auto flipped = ControlArray1D_flip(ca, 0);
   ControlArray1D_destroy(flipped);
@@ -262,8 +260,6 @@ TEST_F(ControlArray1DTest, OffsetSumReshapeWhereFlipGradient) {
   EXPECT_THROW(ControlArray1D_remove_offset(nullptr, 1.0),
                std::invalid_argument);
   EXPECT_THROW(ControlArray1D_sum(nullptr), std::invalid_argument);
-  EXPECT_THROW(ControlArray1D_reshape(nullptr, new_shape, 1),
-               std::invalid_argument);
   EXPECT_THROW(ControlArray1D_where(nullptr, 2.0), std::invalid_argument);
   EXPECT_THROW(ControlArray1D_flip(nullptr, 0), std::invalid_argument);
   EXPECT_THROW(ControlArray1D_full_gradient(nullptr, grad_buffer, 3),

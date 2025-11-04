@@ -600,12 +600,16 @@ size_t MeasuredArray_full_gradient(MeasuredArrayHandle  handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_full_gradient");
   }
+  if (!out_buffer) {
+    throw std::invalid_argument(
+        "Null output buffer passed to MeasuredArray_full_gradient");
+  }
   MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
   auto           gradients      = measured_array->gradient();
   size_t         count          = gradients->size();
   size_t         to_copy        = (buffer_size < count) ? buffer_size : count;
   for (size_t i = 0; i < to_copy; ++i) {
-    out_buffer[i] = new MeasuredArray(gradients->items()[i]);
+    out_buffer[i] = new MeasuredArray(*gradients->items()[i]);
   }
   return to_copy;
 }

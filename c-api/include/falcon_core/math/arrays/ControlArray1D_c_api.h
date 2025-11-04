@@ -110,17 +110,14 @@ bool   ControlArray1D_lessthan(ControlArray1DHandle handle, const double value);
 void   ControlArray1D_remove_offset(ControlArray1DHandle handle,
                                     const double         offset);
 double ControlArray1D_sum(ControlArray1DHandle handle);
-ControlArray1DHandle ControlArray1D_reshape(ControlArray1DHandle handle,
-                                            const size_t*        shape,
-                                            size_t               ndims);
 ListListSizeTHandle  ControlArray1D_where(ControlArray1DHandle handle,
                                           const double         value);
 ControlArray1DHandle ControlArray1D_flip(ControlArray1DHandle handle,
                                          size_t               axis);
-size_t               ControlArray1D_full_gradient(ControlArray1DHandle  handle,
-                                                  ControlArray1DHandle* out_buffer,
-                                                  size_t                buffer_size);
-ControlArray1DHandle ControlArray1D_gradient(ControlArray1DHandle handle,
+size_t               ControlArray1D_full_gradient(ControlArray1DHandle handle,
+                                                  FArrayDoubleHandle*  out_buffer,
+                                                  size_t               buffer_size);
+FArrayDoubleHandle   ControlArray1D_gradient(ControlArray1DHandle handle,
                                              size_t               axis);
 double ControlArray1D_get_sum_of_squares(ControlArray1DHandle handle);
 double ControlArray1D_get_summed_diff_int_of_squares(
