@@ -379,6 +379,200 @@ TEST_F(ConfigTest, BasicQueries) {
   }
 }
 
+TEST_F(ConfigTest, Constructor_NullArgsThrow) {
+  using Config = falcon_core::physics::config::core::Config;
+  EXPECT_THROW(Config(original_config.screening_gates(),
+                      original_config.plunger_gates(),
+                      original_config.ohmics(),
+                      original_config.barrier_gates(),
+                      original_config.reservoir_gates(),
+                      nullptr,
+                      original_config.wiring_DC(),
+                      original_config.voltage_constraints()),
+               std::invalid_argument);
+  EXPECT_THROW(Config(original_config.screening_gates(),
+                      original_config.plunger_gates(),
+                      original_config.ohmics(),
+                      original_config.barrier_gates(),
+                      original_config.reservoir_gates(),
+                      original_config.groups(),
+                      nullptr,
+                      original_config.voltage_constraints()),
+               std::invalid_argument);
+  EXPECT_THROW(Config(original_config.screening_gates(),
+                      original_config.plunger_gates(),
+                      original_config.ohmics(),
+                      original_config.barrier_gates(),
+                      original_config.reservoir_gates(),
+                      original_config.groups(),
+                      original_config.wiring_DC(),
+                      nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(ConfigTest, Constructor_NoGroupsThrows) {
+  auto empty_groups = std::make_shared<
+      falcon_core::generic::Map<Gname,
+                                falcon_core::physics::config::core::Group>>();
+  EXPECT_THROW(
+      falcon_core::physics::config::core::Config(
+          original_config.screening_gates(),
+          original_config.plunger_gates(),
+          original_config.ohmics(),
+          original_config.barrier_gates(),
+          original_config.reservoir_gates(),
+          empty_groups,
+          original_config.wiring_DC(),
+          original_config.voltage_constraints()),
+      std::runtime_error);
+}
+
+TEST_F(ConfigTest, ImpedanceConsistency_ExtraImpedanceThrows) {
+  auto bad_wiring = std::make_shared<Impedances>(*original_config.wiring_DC());
+  bad_wiring->push_back(
+      std::make_shared<Impedance>(Connection::Ohmic("O99"), 1000.0, 1e-12));
+
+  EXPECT_THROW(
+      falcon_core::physics::config::core::Config(
+          original_config.screening_gates(),
+          original_config.plunger_gates(),
+          original_config.ohmics(),
+          original_config.barrier_gates(),
+          original_config.reservoir_gates(),
+          original_config.groups(),
+          bad_wiring,
+          original_config.voltage_constraints()),
+      std::runtime_error);
+}
+
+TEST_F(ConfigTest, ImpedanceConsistency_MissingImpedanceThrows) {
+  auto bad_wiring = std::make_shared<Impedances>(*original_config.wiring_DC());
+  bad_wiring->erase_at(0);  // remove one
+
+  EXPECT_THROW(
+      falcon_core::physics::config::core::Config(
+          original_config.screening_gates(),
+          original_config.plunger_gates(),
+          original_config.ohmics(),
+          original_config.barrier_gates(),
+          original_config.reservoir_gates(),
+          original_config.groups(),
+          bad_wiring,
+          original_config.voltage_constraints()),
+      std::runtime_error);
+}
+
+TEST_F(ConfigTest, HasChannel_NonExistentReturnsFalse) {
+  auto bad_channel = std::make_shared<Channel>("nonexistent");
+  EXPECT_FALSE(original_config.has_channel(bad_channel));
+}
+
+TEST_F(ConfigTest, HasGname_NonExistentReturnsFalse) {
+  auto bad_gname = std::make_shared<Gname>("nonexistent");
+  EXPECT_FALSE(original_config.has_gname(bad_gname));
+}
+
+TEST_F(ConfigTest, GetGname_InvalidChannelThrows) {
+  auto bad_channel = std::make_shared<Channel>("nonexistent");
+  EXPECT_THROW(original_config.get_gname(bad_channel), std::invalid_argument);
+}
+
+TEST_F(ConfigTest, GetGroupGates_InvalidGnameThrows) {
+  auto bad_gname = std::make_shared<Gname>("nonexistent");
+  EXPECT_THROW(original_config.get_group_barrier_gates(bad_gname),
+               std::invalid_argument);
+  EXPECT_THROW(original_config.get_group_plunger_gates(bad_gname),
+               std::invalid_argument);
+  EXPECT_THROW(original_config.get_group_reservoir_gates(bad_gname),
+               std::invalid_argument);
+  EXPECT_THROW(original_config.get_group_screening_gates(bad_gname),
+               std::invalid_argument);
+  EXPECT_THROW(original_config.get_group_dot_gates(bad_gname),
+               std::invalid_argument);
+  EXPECT_THROW(original_config.get_group_gates(bad_gname),
+               std::invalid_argument);
+}
+
+TEST_F(ConfigTest, GetChannelOhmics_ValidAndInvalid) {
+  auto ch1 = std::make_shared<Channel>("CH1");
+  auto ohmics = original_config.get_channel_ohmics(ch1);
+  ASSERT_NE(ohmics, nullptr);
+  ASSERT_EQ(ohmics->size(), 2);  // O1, O2
+  EXPECT_TRUE(ohmics->contains(Connection::Ohmic("O1")));
+  EXPECT_TRUE(ohmics->contains(Connection::Ohmic("O2")));
+
+  auto bad_channel = std::make_shared<Channel>("nonexistent");
+  EXPECT_THROW(original_config.get_channel_ohmics(bad_channel),
+               std::invalid_argument);
+}
+
+TEST_F(ConfigTest, GetChannelOrderNoOhmics_ReturnsGatesOnly) {
+  auto ch1   = std::make_shared<Channel>("CH1");
+  auto order = original_config.get_channel_order_no_ohmics(ch1);
+  ASSERT_NE(order, nullptr);
+  // original order: O1;R1;B1;P1;B2;P2;B3;R2;O2
+  // expected: R1;B1;P1;B2;P2;B3;R2
+  ASSERT_EQ(order->size(), 7);
+  for (const auto& conn : *order) {
+    EXPECT_FALSE(conn->is_ohmic());
+  }
+}
+
+TEST_F(ConfigTest, GetNumUniqueChannels_ReturnsCorrectCount) {
+  EXPECT_EQ(original_config.get_num_unique_channels(), 1);
+  EXPECT_EQ(two_channel_config.get_num_unique_channels(), 2);
+}
+
+TEST_F(ConfigTest, ReturnChannelsFromGate_SharedGate) {
+  auto shared_gate = Connection::ScreeningGate("SG2");
+  auto channels = two_channel_config.return_channels_from_gate(shared_gate);
+  ASSERT_NE(channels, nullptr);
+  ASSERT_EQ(channels->size(), 2);
+  EXPECT_TRUE(channels->contains(std::make_shared<Channel>("CH1")));
+  EXPECT_TRUE(channels->contains(std::make_shared<Channel>("CH2")));
+}
+
+TEST_F(ConfigTest, ReturnChannelFromGate_NonExistentGateThrows) {
+  auto bad_gate = Connection::ScreeningGate("nonexistent");
+  EXPECT_THROW(original_config.return_channel_from_gate(bad_gate),
+               std::invalid_argument);
+}
+
+TEST_F(ConfigTest, OhmicInChannel_TrueAndFalse) {
+  auto ch1  = std::make_shared<Channel>("CH1");
+  auto ch2  = std::make_shared<Channel>("CH2");
+  auto o1   = Connection::Ohmic("O1");
+  auto o3   = Connection::Ohmic("O3");
+
+  EXPECT_TRUE(two_channel_config.ohmic_in_channel(o1, ch1));
+  EXPECT_FALSE(two_channel_config.ohmic_in_channel(o3, ch1));
+  EXPECT_TRUE(two_channel_config.ohmic_in_channel(o3, ch2));
+  EXPECT_FALSE(two_channel_config.ohmic_in_channel(o1, ch2));
+}
+
+TEST_F(ConfigTest, GetDotChannelNeighbors_ValidGate) {
+  auto p1        = Connection::PlungerGate("P1");
+  auto neighbors = original_config.get_dot_channel_neighbors(p1);
+  ASSERT_NE(neighbors.first, nullptr);
+  ASSERT_NE(neighbors.second, nullptr);
+  EXPECT_EQ(neighbors.first->name(), "B1");
+  EXPECT_EQ(neighbors.second->name(), "B2");
+}
+
+TEST_F(ConfigTest, GetChargeSenseGroups_FindsOneDotGroup) {
+  auto charge_sense_groups = two_channel_config.get_charge_sense_groups();
+  ASSERT_NE(charge_sense_groups, nullptr);
+  ASSERT_EQ(charge_sense_groups->size(), 1);
+  EXPECT_EQ((*charge_sense_groups)[0]->name(), "group2");
+}
+
+TEST_F(ConfigTest, OhmicInChargeSensor_ReturnsTrueAndFalse) {
+  auto ohmic_in_cs = Connection::Ohmic("O3");  // In group2 (charge sensor)
+  EXPECT_TRUE(two_channel_config.ohmic_in_charge_sensor(ohmic_in_cs));
+  auto ohmic_not_in_cs = Connection::Ohmic("O1");  // In group1 (not cs)
+  EXPECT_FALSE(two_channel_config.ohmic_in_charge_sensor(ohmic_not_in_cs));
+}
+
 TEST_F(ConfigTest, HasChannelNullptrThrows) {
   EXPECT_THROW(original_config.has_channel(nullptr), std::invalid_argument);
 }
@@ -911,6 +1105,18 @@ TEST_F(ConfigTest, CheckGroupConsistency_ThrowsOnBarrierGate) {
                std::logic_error);
 }
 
+TEST_F(ConfigTest, CheckGroupConsistency_ThrowsOnOhmic) {
+  EXPECT_THROW(
+      MakeGroupGateTypeInconsistentConfig(
+          [](auto& group) {
+            group->ohmics()->push_back(
+                falcon_core::physics::device_structures::Connection::Ohmic(
+                    "O999"));
+          },
+          two_channel_config),
+      std::logic_error);
+}
+
 TEST_F(ConfigTest, GetSharedChannelBarrierGates_PushBackHappens_TwoChannel) {
   auto channel = std::make_shared<Channel>("CH1");
   auto result  = two_channel_config.get_shared_channel_barrier_gates(channel);
@@ -1026,6 +1232,76 @@ TEST_F(ConfigTest, GetGateDictWorks) {
     for (size_t i = 0; i < gates->size(); ++i)
       EXPECT_EQ((*mapped)[i]->name(), (*gates)[i]->name());
   }
+}
+
+class EmptyGateConfigTest : public ::testing::Test {
+ protected:
+  falcon_core::physics::config::core::Config config_with_empty_gate_lists;
+
+  EmptyGateConfigTest() {
+    auto empty_list = std::make_shared<Connections>();
+    auto p_list = std::make_shared<Connections>(
+        std::vector<ConnectionSP>{Connection::PlungerGate("P1")});
+    auto o_list = std::make_shared<Connections>(
+        std::vector<ConnectionSP>{Connection::Ohmic("O1")});
+
+    auto gname = std::make_shared<Gname>("g1");
+    auto channel = std::make_shared<Channel>("CH1");
+    auto group   = std::make_shared<falcon_core::physics::config::core::Group>(
+        channel,
+        1,
+        empty_list,
+        empty_list,
+        p_list,
+        empty_list,
+        o_list);
+    auto groups = std::make_shared<
+        falcon_core::generic::Map<Gname,
+                                  falcon_core::physics::config::core::Group>>(
+        std::vector<std::pair<std::shared_ptr<Gname>,
+                              std::shared_ptr<
+                                  falcon_core::physics::config::core::Group>>>{
+            {gname, group}});
+
+    auto wiring = std::make_shared<Impedances>(std::vector<ImpedanceSP>{
+        std::make_shared<Impedance>(Connection::PlungerGate("P1"), 1.0, 1.0),
+        std::make_shared<Impedance>(Connection::Ohmic("O1"), 1.0, 1.0)});
+    auto adj_indexes = std::make_shared<Connections>(
+        std::vector<ConnectionSP>{Connection::PlungerGate("P1"),
+                                  Connection::Ohmic("O1")});
+    auto adj         = std::make_shared<
+        falcon_core::physics::config::core::Adjacency>(
+        xt::eye(2), adj_indexes);
+    auto constraints =
+        std::make_shared<falcon_core::physics::config::core::VoltageConstraints>(
+            adj, 1.0, std::make_pair(-1.0, 1.0));
+
+    config_with_empty_gate_lists =
+        falcon_core::physics::config::core::Config(empty_list,
+                                                   p_list,
+                                                   o_list,
+                                                   empty_list,
+                                                   empty_list,
+                                                   groups,
+                                                   wiring,
+                                                   constraints);
+  }
+};
+
+TEST_F(EmptyGateConfigTest, GetGates_EmptyListThrows) {
+  EXPECT_THROW(config_with_empty_gate_lists.get_isolated_barrier_gates(),
+               std::runtime_error);
+  EXPECT_THROW(config_with_empty_gate_lists.get_isolated_reservoir_gates(),
+               std::runtime_error);
+  EXPECT_THROW(config_with_empty_gate_lists.get_isolated_screening_gates(),
+               std::runtime_error);
+
+  EXPECT_THROW(config_with_empty_gate_lists.get_shared_barrier_gates(),
+               std::runtime_error);
+  EXPECT_THROW(config_with_empty_gate_lists.get_shared_reservoir_gates(),
+               std::runtime_error);
+  EXPECT_THROW(config_with_empty_gate_lists.get_shared_screening_gates(),
+               std::runtime_error);
 }
 
 }  // namespace
