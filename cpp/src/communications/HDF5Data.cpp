@@ -133,7 +133,7 @@ void HDF5Data::to_file(const std::string& path) const {
     H5::Attribute unit_attr =
         range_ds.createAttribute("unit", str_type, data_space);
     unit_attr.write(str_type, unit);
-    std::string   context = range->units()->to_json_string();
+    std::string   context = range->label()->to_json_string();
     H5::Attribute context_attr =
         range_ds.createAttribute("context", str_type, data_space);
     context_attr.write(str_type, context);
