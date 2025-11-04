@@ -75,7 +75,7 @@ throw std::invalid_argument("Null handle passed to AxesMapStringBool_push_back")
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesMapStringBool_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::generic::Map<std::string, bool>>(static_cast<falcon_core::generic::Map<std::string, bool>*>(value), [](falcon_core::generic::Map<std::string, bool>*) {} );
+            auto stored_obj = std::make_shared<falcon_core::generic::Map<std::string, bool>>(*static_cast<falcon_core::generic::Map<std::string, bool>*>(value));
     static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,7 @@ throw std::invalid_argument("Null handle passed to AxesMapStringBool_contains");
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesMapStringBool_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::generic::Map<std::string, bool>>(static_cast<falcon_core::generic::Map<std::string, bool>*>(value), [](falcon_core::generic::Map<std::string, bool>*) {} );
+            auto stored_obj = std::make_shared<falcon_core::generic::Map<std::string, bool>>(*static_cast<falcon_core::generic::Map<std::string, bool>*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +99,7 @@ throw std::invalid_argument("Null handle passed to AxesMapStringBool_index");
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesMapStringBool_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::generic::Map<std::string, bool>>(static_cast<falcon_core::generic::Map<std::string, bool>*>(value), [](falcon_core::generic::Map<std::string, bool>*) {} );
+            auto stored_obj = std::make_shared<falcon_core::generic::Map<std::string, bool>>(*static_cast<falcon_core::generic::Map<std::string, bool>*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle)->index(stored_obj);
 }
 

@@ -33,14 +33,14 @@ class VectorTest : public ::testing::Test {
     MapConnectionQuantity_destroy(map_cq);
     Connection_destroy(conn);
   }
-  SymbolUnitHandle            unit   = nullptr;
-  MapConnectionDoubleHandle   map_cd = nullptr;
-  MapConnectionQuantityHandle map_cq = nullptr;
-  ConnectionHandle            conn   = nullptr;
-  QuantityHandle              qty    = nullptr;
-  PointHandle                 start  = nullptr;
-  PointHandle                 end    = nullptr;
-  VectorHandle                vector = nullptr;
+  SymbolUnitHandle            unit;
+  MapConnectionDoubleHandle   map_cd;
+  MapConnectionQuantityHandle map_cq;
+  ConnectionHandle            conn;
+  QuantityHandle              qty;
+  PointHandle                 start;
+  PointHandle                 end;
+  VectorHandle                vector;
 };
 
 TEST_F(VectorTest, CreateDestroy) {

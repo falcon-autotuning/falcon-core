@@ -899,7 +899,7 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
             if (!value) {{
             throw std::invalid_argument("Null value passed to {self.mangled_name()}_fill_value");
             }}
-            auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );"""
+            auto stored_obj = std::make_shared<{cpp_real}>(*static_cast<{cpp_real}*>(value));"""
             copy_to_out_buffer = f"""
 for (size_t i = 0; i < n; ++i) {{
     out_buffer[i] = new {cpp_real}(*list->items()[i]);

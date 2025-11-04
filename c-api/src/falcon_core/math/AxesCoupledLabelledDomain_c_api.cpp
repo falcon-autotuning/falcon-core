@@ -75,7 +75,7 @@ throw std::invalid_argument("Null handle passed to AxesCoupledLabelledDomain_pus
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesCoupledLabelledDomain_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::math::domains::CoupledLabelledDomain>(static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value), [](falcon_core::math::domains::CoupledLabelledDomain*) {} );
+            auto stored_obj = std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value));
     static_cast<falcon_core::math::Axes<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,7 @@ throw std::invalid_argument("Null handle passed to AxesCoupledLabelledDomain_con
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesCoupledLabelledDomain_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::math::domains::CoupledLabelledDomain>(static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value), [](falcon_core::math::domains::CoupledLabelledDomain*) {} );
+            auto stored_obj = std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +99,7 @@ throw std::invalid_argument("Null handle passed to AxesCoupledLabelledDomain_ind
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesCoupledLabelledDomain_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::math::domains::CoupledLabelledDomain>(static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value), [](falcon_core::math::domains::CoupledLabelledDomain*) {} );
+            auto stored_obj = std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->index(stored_obj);
 }
 

@@ -75,7 +75,7 @@ throw std::invalid_argument("Null handle passed to AxesInstrumentPort_push_back"
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesInstrumentPort_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::instrument_interfaces::names::InstrumentPort>(static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(value), [](falcon_core::instrument_interfaces::names::InstrumentPort*) {} );
+            auto stored_obj = std::make_shared<falcon_core::instrument_interfaces::names::InstrumentPort>(*static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(value));
     static_cast<falcon_core::math::Axes<falcon_core::instrument_interfaces::names::InstrumentPort>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,7 @@ throw std::invalid_argument("Null handle passed to AxesInstrumentPort_contains")
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesInstrumentPort_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::instrument_interfaces::names::InstrumentPort>(static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(value), [](falcon_core::instrument_interfaces::names::InstrumentPort*) {} );
+            auto stored_obj = std::make_shared<falcon_core::instrument_interfaces::names::InstrumentPort>(*static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::instrument_interfaces::names::InstrumentPort>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +99,7 @@ throw std::invalid_argument("Null handle passed to AxesInstrumentPort_index");
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesInstrumentPort_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::instrument_interfaces::names::InstrumentPort>(static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(value), [](falcon_core::instrument_interfaces::names::InstrumentPort*) {} );
+            auto stored_obj = std::make_shared<falcon_core::instrument_interfaces::names::InstrumentPort>(*static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::instrument_interfaces::names::InstrumentPort>*>(handle)->index(stored_obj);
 }
 

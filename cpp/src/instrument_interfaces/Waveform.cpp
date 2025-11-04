@@ -177,6 +177,9 @@ bool Waveform::operator!=(const Waveform& other) const {
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::Waveform)
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<bool>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::instrument_interfaces::port_transforms::PortTransforms,
     falcon_core::instrument_interfaces::Waveform)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     falcon_core::generic::List<bool>)
