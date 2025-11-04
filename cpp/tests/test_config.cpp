@@ -1293,10 +1293,13 @@ class EmptyGateConfigTest : public ::testing::Test {
         std::make_shared<falcon_core::physics::config::core::VoltageConstraints>(
             adj, 1.0, std::make_pair(-1.0, 1.0));
 
+    auto all_ohmics = std::make_shared<Connections>(
+        std::vector<ConnectionSP>{Connection::Ohmic("O1"),
+                                  Connection::Ohmic("O2")});
     config_with_empty_gate_lists =
         std::make_shared<falcon_core::physics::config::core::Config>(empty_list,
                                                    p_list,
-                                                   o_list,
+                                                   all_ohmics,
                                                    b_list,
                                                    r_list,
                                                    groups,
