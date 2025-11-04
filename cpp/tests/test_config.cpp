@@ -1242,9 +1242,9 @@ class EmptyGateConfigTest : public ::testing::Test {
     auto empty_list = std::make_shared<Connections>();
     auto p_list = std::make_shared<Connections>(
         std::vector<ConnectionSP>{Connection::PlungerGate("P1")});
-    auto o_list = std::make_shared<Connections>(
-        std::vector<ConnectionSP>{Connection::Ohmic("O1"),
-                                  Connection::Ohmic("O2")});
+    auto o_list = std::make_shared<Connections>(std::vector<ConnectionSP>{
+        Connection::Ohmic("O1"), Connection::PlungerGate("P1"),
+        Connection::Ohmic("O2")});
     auto screening_gates_for_group = std::make_shared<Connections>(
         std::vector<ConnectionSP>{Connection::ScreeningGate("SG1"),
                                   Connection::ScreeningGate("SG2")});
