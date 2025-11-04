@@ -25,6 +25,9 @@
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
+#include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
+#include "falcon_core/physics/units/SymbolUnit.hpp"
+
 #include <xtensor/xarray.hpp>
 #include "falcon_core/generic/FArray.hpp"
 
@@ -38,6 +41,36 @@ CEREAL_REGISTER_TYPE(falcon_core::communications::messages::MeasurementResponse)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
     falcon_core::communications::messages::MeasurementResponse)
+
+CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::InstrumentPort)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                    falcon_core::instrument_interfaces::names::InstrumentPort)
+
+CEREAL_REGISTER_TYPE(falcon_core::math::domains::LabelledDomain)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                    falcon_core::math::domains::LabelledDomain)
+
+CEREAL_REGISTER_TYPE(falcon_core::math::domains::CoupledLabelledDomain)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                    falcon_core::math::domains::CoupledLabelledDomain)
+
+CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                    falcon_core::math::arrays::ControlArray)
+
+CEREAL_REGISTER_TYPE(falcon_core::math::arrays::LabelledMeasuredArray)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::math::arrays::LabelledMeasuredArray)
+
+CEREAL_REGISTER_TYPE(falcon_core::autotuner_interfaces::contexts::AcquisitionContext)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::autotuner_interfaces::contexts::AcquisitionContext)
+
+CEREAL_REGISTER_TYPE(falcon_core::physics::units::SymbolUnit)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                    falcon_core::physics::units::SymbolUnit)
 
 namespace {
 
