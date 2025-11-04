@@ -293,8 +293,7 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_file(const std::string& path) {
     H5::DataSet md_ds = metadata_group.openDataSet(key);
     std::string value;
     md_ds.read(value, str_type);
-    metadata_map[i].first  = key;
-    metadata_map[i].second = value;
+    metadata_map.emplace_back(std::move(key), std::move(value));
   }
   auto metadata = std::make_shared<HDF5Data::Metadata>(metadata_map);
 
