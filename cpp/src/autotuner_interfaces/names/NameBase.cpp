@@ -6,6 +6,8 @@ namespace falcon_core {
 namespace autotuner_interfaces {
 namespace names {
 
+NameBase::NameBase(const std::string& name)
+    : _name(name), _num(-1), _index_string("") {}
 NameBase::NameBase(const std::string& name, const std::string& index_string)
     : _name(name), _index_string(index_string) {
   _num = std::stoi(name.substr(_index_string.length()));
