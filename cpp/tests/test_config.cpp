@@ -1243,7 +1243,8 @@ class EmptyGateConfigTest : public ::testing::Test {
     auto p_list = std::make_shared<Connections>(
         std::vector<ConnectionSP>{Connection::PlungerGate("P1")});
     auto o_list = std::make_shared<Connections>(
-        std::vector<ConnectionSP>{Connection::Ohmic("O1")});
+        std::vector<ConnectionSP>{Connection::Ohmic("O1"),
+                                  Connection::Ohmic("O2")});
     auto screening_gates_for_group = std::make_shared<Connections>(
         std::vector<ConnectionSP>{Connection::ScreeningGate("SG1"),
                                   Connection::ScreeningGate("SG2")});
@@ -1268,13 +1269,15 @@ class EmptyGateConfigTest : public ::testing::Test {
 
     auto wiring = std::make_shared<Impedances>(std::vector<ImpedanceSP>{
         std::make_shared<Impedance>(Connection::PlungerGate("P1"), 1.0, 1.0),
-        std::make_shared<Impedance>(Connection::Ohmic("O1"), 1.0, 1.0)});
+        std::make_shared<Impedance>(Connection::Ohmic("O1"), 1.0, 1.0),
+        std::make_shared<Impedance>(Connection::Ohmic("O2"), 1.0, 1.0)});
     auto adj_indexes = std::make_shared<Connections>(
         std::vector<ConnectionSP>{Connection::PlungerGate("P1"),
-                                  Connection::Ohmic("O1")});
+                                  Connection::Ohmic("O1"),
+                                  Connection::Ohmic("O2")});
     auto adj         = std::make_shared<
         falcon_core::physics::config::core::Adjacency>(
-        xt::eye(2), adj_indexes);
+        xt::eye(3), adj_indexes);
     auto constraints =
         std::make_shared<falcon_core::physics::config::core::VoltageConstraints>(
             adj, 1.0, std::make_pair(-1.0, 1.0));
