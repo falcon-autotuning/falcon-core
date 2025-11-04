@@ -124,3 +124,71 @@ TEST_F(DotGateWithNeighborsTest, BarrierGateVariant) {
   Connection_destroy(left);
   Connection_destroy(right);
 }
+
+TEST_F(DotGateWithNeighborsTest, DestructorThrowsOnNullptr) {
+  EXPECT_ANY_THROW(DotGateWithNeighbors_destroy(nullptr));
+}
+
+TEST_F(DotGateWithNeighborsTest, NameGetterWorksAfterSerialization) {
+  StringHandle               json = DotGateWithNeighbors_to_json_string(handle);
+  DotGateWithNeighborsHandle copy = DotGateWithNeighbors_from_json_string(json);
+  StringHandle               result = DotGateWithNeighbors_name(copy);
+  EXPECT_EQ(std::string(result->raw, result->length), "center");
+  DotGateWithNeighbors_destroy(copy);
+  String_destroy(result);
+  String_destroy(json);
+}
+
+TEST_F(DotGateWithNeighborsTest, TypeGetterWorksAfterSerialization) {
+  StringHandle               json = DotGateWithNeighbors_to_json_string(handle);
+  DotGateWithNeighborsHandle copy = DotGateWithNeighbors_from_json_string(json);
+  StringHandle               result = DotGateWithNeighbors_type(copy);
+  EXPECT_FALSE(std::string(result->raw, result->length).empty());
+  DotGateWithNeighbors_destroy(copy);
+  String_destroy(result);
+  String_destroy(json);
+}
+
+TEST_F(DotGateWithNeighborsTest, NullptrThrows) {
+  EXPECT_THROW(DotGateWithNeighbors_name(nullptr), std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_type(nullptr), std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_left_neighbor(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_right_neighbor(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_is_plunger_gate(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_is_barrier_gate(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_equal(nullptr, handle),
+               std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_equal(handle, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_not_equal(nullptr, handle),
+               std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_not_equal(handle, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_to_json_string(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_from_json_string(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_destroy(nullptr), std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_create_plungergatewithneighbors(
+                   nullptr, left, right),
+               std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_create_plungergatewithneighbors(
+                   name, nullptr, right),
+               std::invalid_argument);
+  EXPECT_THROW(
+      DotGateWithNeighbors_create_plungergatewithneighbors(name, left, nullptr),
+      std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_create_barriergatewithneighbors(
+                   nullptr, left, right),
+               std::invalid_argument);
+  EXPECT_THROW(DotGateWithNeighbors_create_barriergatewithneighbors(
+                   name, nullptr, right),
+               std::invalid_argument);
+  EXPECT_THROW(
+      DotGateWithNeighbors_create_barriergatewithneighbors(name, left, nullptr),
+      std::invalid_argument);
+}

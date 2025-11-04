@@ -20,3 +20,7 @@ SymbolUnitTest.*
 LeftReservoirWithImplantedOhmicTest.*
 RightReservoirWithImplantedOhmicTest.*
 GateGeometryArray1DTest.*
+DotGateWithNeighborsTest.*
+DotGatesWithNeighborsTest.*
+DomainTest.*
+LabelledDomainTest.*

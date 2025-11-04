@@ -113,8 +113,8 @@ bool Domain_is_empty(DomainHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Domain_is_empty: handle cannot be null");
   }
-  Domain self = *static_cast<Domain*>(handle);
-  return self.is_empty();
+  Domain* self = static_cast<Domain*>(handle);
+  return self->is_empty();
 }
 
 bool Domain_contains_domain(DomainHandle handle, DomainHandle other) {
@@ -126,9 +126,9 @@ bool Domain_contains_domain(DomainHandle handle, DomainHandle other) {
     throw std::invalid_argument(
         "Domain_contains_domain: second handle cannot be null");
   }
-  Domain   self       = *static_cast<Domain*>(handle);
+  Domain*  self       = static_cast<Domain*>(handle);
   DomainSP real_other = std::make_shared<Domain>(*static_cast<Domain*>(other));
-  return self.contains_domain(real_other);
+  return self->contains_domain(real_other);
 }
 
 DomainHandle Domain_shift(DomainHandle handle, double offset) {

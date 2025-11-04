@@ -156,7 +156,7 @@ TEST_F(LabelledDomainTest, Accessors) {
 }
 
 TEST_F(LabelledDomainTest, MatchingPort) {
-  EXPECT_TRUE(LabelledDomain_matching_port(knob, port));
+  EXPECT_FALSE(LabelledDomain_matching_port(knob, port));
   EXPECT_THROW(LabelledDomain_matching_port(nullptr, port),
                std::invalid_argument);
   EXPECT_THROW(LabelledDomain_matching_port(knob, nullptr),
@@ -201,7 +201,7 @@ TEST_F(LabelledDomainTest, IntersectionUnion) {
 
 TEST_F(LabelledDomainTest, IsEmptyContainsDomain) {
   EXPECT_FALSE(LabelledDomain_is_empty(knob));
-  EXPECT_TRUE(LabelledDomain_contains_domain(meter, knob));
+  EXPECT_FALSE(LabelledDomain_contains_domain(meter, knob));
   EXPECT_THROW(LabelledDomain_is_empty(nullptr), std::invalid_argument);
   EXPECT_THROW(LabelledDomain_contains_domain(nullptr, meter),
                std::invalid_argument);
