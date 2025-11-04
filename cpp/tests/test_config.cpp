@@ -1236,7 +1236,7 @@ TEST_F(ConfigTest, GetGateDictWorks) {
 
 class EmptyGateConfigTest : public ::testing::Test {
  protected:
-  falcon_core::physics::config::core::Config config_with_empty_gate_lists;
+  falcon_core::physics::config::core::ConfigSP config_with_empty_gate_lists;
 
   EmptyGateConfigTest() {
     auto empty_list = std::make_shared<Connections>();
@@ -1277,7 +1277,7 @@ class EmptyGateConfigTest : public ::testing::Test {
             adj, 1.0, std::make_pair(-1.0, 1.0));
 
     config_with_empty_gate_lists =
-        falcon_core::physics::config::core::Config(empty_list,
+        std::make_shared<falcon_core::physics::config::core::Config>(empty_list,
                                                    p_list,
                                                    o_list,
                                                    empty_list,
@@ -1289,18 +1289,18 @@ class EmptyGateConfigTest : public ::testing::Test {
 };
 
 TEST_F(EmptyGateConfigTest, GetGates_EmptyListThrows) {
-  EXPECT_THROW(config_with_empty_gate_lists.get_isolated_barrier_gates(),
+  EXPECT_THROW(config_with_empty_gate_lists->get_isolated_barrier_gates(),
                std::runtime_error);
-  EXPECT_THROW(config_with_empty_gate_lists.get_isolated_reservoir_gates(),
+  EXPECT_THROW(config_with_empty_gate_lists->get_isolated_reservoir_gates(),
                std::runtime_error);
-  EXPECT_THROW(config_with_empty_gate_lists.get_isolated_screening_gates(),
+  EXPECT_THROW(config_with_empty_gate_lists->get_isolated_screening_gates(),
                std::runtime_error);
 
-  EXPECT_THROW(config_with_empty_gate_lists.get_shared_barrier_gates(),
+  EXPECT_THROW(config_with_empty_gate_lists->get_shared_barrier_gates(),
                std::runtime_error);
-  EXPECT_THROW(config_with_empty_gate_lists.get_shared_reservoir_gates(),
+  EXPECT_THROW(config_with_empty_gate_lists->get_shared_reservoir_gates(),
                std::runtime_error);
-  EXPECT_THROW(config_with_empty_gate_lists.get_shared_screening_gates(),
+  EXPECT_THROW(config_with_empty_gate_lists->get_shared_screening_gates(),
                std::runtime_error);
 }
 
