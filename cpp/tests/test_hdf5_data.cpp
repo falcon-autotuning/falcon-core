@@ -25,6 +25,9 @@
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
+#include <xtensor/xarray.hpp>
+#include "falcon_core/generic/FArray.hpp"
+
 using namespace falcon_core;
 
 CEREAL_REGISTER_TYPE(falcon_core::communications::messages::MeasurementRequest)
@@ -164,6 +167,60 @@ TEST(HDF5DataTest, ToCommunicationsRoundTrip) {
   // Compare the JSON strings to ensure round-trip fidelity.
   EXPECT_EQ(got_response->to_json_string(), response->to_json_string());
   EXPECT_EQ(got_request->to_json_string(), request->to_json_string());
+}
+
+TEST(HDF5DataTest, FileRoundTripFull) {
+  using namespace falcon_core::physics::device_structures;
+  using namespace falcon_core::instrument_interfaces::names;
+
+  // shape: one axis with value 1
+  auto shape_axes = std::make_shared<Axes<int>>(std::vector<int>{1});
+
+  // unit_domain: one ControlArray containing a small xtensor
+  xt::xarray<double> ctrl_arr = {{0.0, 1.0}};  // 1 x 2
+  auto control_array = std::make_shared<math::arrays::ControlArray>(ctrl_arr);
+  auto unit_domain = std::make_shared<Axes<math::arrays::ControlArray>>(
+      std::vector<std::shared_ptr<math::arrays::ControlArray>>{control_array});
+
+  // domain_labels: one CoupledLabelledDomain with a single LabelledDomain from a port
+  auto pseudo_conn = Connection::PlungerGate("P1");
+  Instrument instr = InstrumentTypes::DC_VOLTAGE_SOURCE;
+  auto port = std::make_shared<InstrumentPort>("port", pseudo_conn, instr);
+  auto labelled = math::domains::LabelledDomain::from_port(std::make_pair(0.0, 1.0), port);
+  auto coupled =
+      std::make_shared<math::domains::CoupledLabelledDomain>(std::vector<math::domains::LabelledDomainSP>{labelled});
+  auto domain_labels = std::make_shared<Axes<math::domains::CoupledLabelledDomain>>(
+      std::vector<std::shared_ptr<math::domains::CoupledLabelledDomain>>{coupled});
+
+  // ranges: one LabelledMeasuredArray (simple measured array with a port)
+  xt::xarray<double> meas_arr = {{10.0, 20.0}};
+  auto farr = std::make_shared<generic::FArray<double>>(meas_arr);
+  auto lm = std::make_shared<math::arrays::LabelledMeasuredArray>(farr, port);
+  auto ranges = math::arrays::LabelledArrays<math::arrays::LabelledMeasuredArray>::LabelledMeasuredArrays(
+      std::vector<math::arrays::LabelledMeasuredArraySP>{lm});
+
+  // metadata
+  std::vector<std::pair<std::string, std::string>> md_init = {
+      {"author", "tester"}, {"description", "full roundtrip test"}};
+  auto metadata = std::make_shared<generic::Map<std::string, std::string>>(md_init);
+
+  HDF5Data hdf(shape_axes,
+               unit_domain,
+               domain_labels,
+               ranges,
+               metadata,
+               "full_test",
+               42,
+               123456);
+
+  // write and read back
+  const std::string tmp_path = "/tmp/test_hdf5_data_full.h5";
+  ASSERT_NO_THROW(hdf.to_file(tmp_path));
+  auto loaded = HDF5Data::from_file(tmp_path);
+  ASSERT_NE(loaded, nullptr);
+
+  // Compare JSON representations (Song serialization) to ensure fidelity
+  EXPECT_EQ(hdf.to_json_string(), loaded->to_json_string());
 }
 
 }  // namespace
