@@ -4,9 +4,15 @@ namespace falcon_core {
 namespace autotuner_interfaces {
 namespace names {
 Gname::Gname() : NameBase() {}
-Gname::Gname(const std::string& name) : NameBase(name) {
-  if (name.rfind("group", 0) == 0) {
-    new (this) NameBase(name, "group");
+Gname::Gname(const std::string& name)
+    : Gname(name.rfind("group", 0) == 0
+                ? Gname(std::stoi(name.substr(std::string("group").length())))
+                : Gname()) {
+  if (name.rfind("group", 0) != 0) {
+    // This is a hack to allow for non-standard gnames.
+    // The delegating constructor calls the default constructor,
+    // then we overwrite the name.
+    const_cast<std::string&>(this->name()) = name;
   }
 }
 Gname::Gname(const int& num) : NameBase(num, "group") {}
