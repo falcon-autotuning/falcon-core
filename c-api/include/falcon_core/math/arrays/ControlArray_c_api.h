@@ -12,7 +12,6 @@ extern "C" {
 typedef void* ControlArrayHandle;
 // Function declarations
 
-ControlArrayHandle ControlArray_from_shape(const size_t* shape, size_t ndim);
 ControlArrayHandle ControlArray_from_data(const double* data,
                                           const size_t* shape,
                                           size_t        ndim);
@@ -39,12 +38,10 @@ ControlArrayHandle ControlArray_plus_double(ControlArrayHandle handle,
                                             const double       other);
 ControlArrayHandle ControlArray_plus_int(ControlArrayHandle handle,
                                          const int          other);
-void ControlArray_minusequals_control_array(ControlArrayHandle handle,
-                                            ControlArrayHandle other);
-void ControlArray_minusequals_farray(ControlArrayHandle handle,
-                                     FArrayDoubleHandle other);
-void ControlArray_minusequals_double(ControlArrayHandle handle,
-                                     const double       other);
+void               ControlArray_minusequals_farray(ControlArrayHandle handle,
+                                                   FArrayDoubleHandle other);
+void               ControlArray_minusequals_double(ControlArrayHandle handle,
+                                                   const double       other);
 void ControlArray_minusequals_int(ControlArrayHandle handle, const int other);
 ControlArrayHandle ControlArray_minus_control_array(ControlArrayHandle handle,
                                                     ControlArrayHandle other);
@@ -72,12 +69,10 @@ ControlArrayHandle ControlArray_divides_int(ControlArrayHandle handle,
 ControlArrayHandle ControlArray_pow(ControlArrayHandle handle,
                                     const double       other);
 ControlArrayHandle ControlArray_abs(ControlArrayHandle handle);
-ControlArrayHandle ControlArray_min(ControlArrayHandle handle);
 ControlArrayHandle ControlArray_min_farray(ControlArrayHandle handle,
                                            FArrayDoubleHandle other);
 ControlArrayHandle ControlArray_min_control_array(ControlArrayHandle handle,
                                                   ControlArrayHandle other);
-ControlArrayHandle ControlArray_max(ControlArrayHandle handle);
 ControlArrayHandle ControlArray_max_farray(ControlArrayHandle handle,
                                            FArrayDoubleHandle other);
 ControlArrayHandle ControlArray_max_control_array(ControlArrayHandle handle,

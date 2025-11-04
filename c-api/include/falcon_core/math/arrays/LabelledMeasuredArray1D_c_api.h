@@ -30,7 +30,7 @@ double LabelledMeasuredArray1D_get_start(LabelledMeasuredArray1DHandle handle);
 double LabelledMeasuredArray1D_get_end(LabelledMeasuredArray1DHandle handle);
 bool   LabelledMeasuredArray1D_is_decreasing(
       LabelledMeasuredArray1DHandle handle);
-bool LabelledMeasuredArray1D_is_decreasing(
+bool LabelledMeasuredArray1D_is_increasing(
     LabelledMeasuredArray1DHandle handle);
 double LabelledMeasuredArray1D_get_distance(
     LabelledMeasuredArray1DHandle handle);
@@ -127,14 +127,10 @@ LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_pow(
     LabelledMeasuredArray1DHandle handle, const double other);
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_abs(
     LabelledMeasuredArray1DHandle handle);
-LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_min(
-    LabelledMeasuredArray1DHandle handle);
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_min_farray(
     LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other);
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_min_control_array(
     LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other);
-LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_max(
-    LabelledMeasuredArray1DHandle handle);
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_max_farray(
     LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other);
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_max_control_array(

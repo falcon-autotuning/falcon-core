@@ -13,8 +13,6 @@ extern "C" {
 typedef void* ControlArray1DHandle;
 
 // Constructors
-ControlArray1DHandle ControlArray1D_from_shape(const size_t* shape,
-                                               size_t        ndim);
 ControlArray1DHandle ControlArray1D_from_data(const double* data,
                                               const size_t* shape,
                                               size_t        ndim);
@@ -29,7 +27,7 @@ FArrayDoubleHandle ControlArray1D_as_1D(ControlArray1DHandle handle);
 double             ControlArray1D_get_start(ControlArray1DHandle handle);
 double             ControlArray1D_get_end(ControlArray1DHandle handle);
 bool               ControlArray1D_is_decreasing(ControlArray1DHandle handle);
-bool               ControlArray1D_is_decreasing(ControlArray1DHandle handle);
+bool               ControlArray1D_is_increasing(ControlArray1DHandle handle);
 double             ControlArray1D_get_distance(ControlArray1DHandle handle);
 double             ControlArray1D_get_mean(ControlArray1DHandle handle);
 double             ControlArray1D_get_std(ControlArray1DHandle handle);
@@ -60,8 +58,6 @@ ControlArray1DHandle ControlArray1D_plus_double(ControlArray1DHandle handle,
                                                 const double         other);
 ControlArray1DHandle ControlArray1D_plus_int(ControlArray1DHandle handle,
                                              const int            other);
-void ControlArray1D_minusequals_control_array(ControlArray1DHandle handle,
-                                              ControlArray1DHandle other);
 void ControlArray1D_minusequals_farray(ControlArray1DHandle handle,
                                        FArrayDoubleHandle   other);
 void ControlArray1D_minusequals_double(ControlArray1DHandle handle,
@@ -96,12 +92,10 @@ ControlArray1DHandle ControlArray1D_divides_int(ControlArray1DHandle handle,
 ControlArray1DHandle ControlArray1D_pow(ControlArray1DHandle handle,
                                         const double         other);
 ControlArray1DHandle ControlArray1D_abs(ControlArray1DHandle handle);
-ControlArray1DHandle ControlArray1D_min(ControlArray1DHandle handle);
 ControlArray1DHandle ControlArray1D_min_farray(ControlArray1DHandle handle,
                                                FArrayDoubleHandle   other);
 ControlArray1DHandle ControlArray1D_min_control_array(
     ControlArray1DHandle handle, ControlArray1DHandle other);
-ControlArray1DHandle ControlArray1D_max(ControlArray1DHandle handle);
 ControlArray1DHandle ControlArray1D_max_farray(ControlArray1DHandle handle,
                                                FArrayDoubleHandle   other);
 ControlArray1DHandle ControlArray1D_max_control_array(
@@ -138,7 +132,7 @@ double ControlArray1D_get_summed_diff_array_of_squares(
 
 // Serialization (from Song)
 StringHandle         ControlArray1D_to_json_string(ControlArray1DHandle handle);
-ControlArray1DHandle ControlArray_from_json_string(StringHandle json);
+ControlArray1DHandle ControlArray1D_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

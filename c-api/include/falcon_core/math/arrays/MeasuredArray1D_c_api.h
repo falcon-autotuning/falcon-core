@@ -13,8 +13,6 @@ extern "C" {
 typedef void* MeasuredArray1DHandle;
 
 // Constructors
-MeasuredArray1DHandle MeasuredArray1D_from_shape(const size_t* shape,
-                                                 size_t        ndim);
 MeasuredArray1DHandle MeasuredArray1D_from_data(const double* data,
                                                 const size_t* shape,
                                                 size_t        ndim);
@@ -29,7 +27,7 @@ FArrayDoubleHandle MeasuredArray1D_as_1D(MeasuredArray1DHandle handle);
 double             MeasuredArray1D_get_start(MeasuredArray1DHandle handle);
 double             MeasuredArray1D_get_end(MeasuredArray1DHandle handle);
 bool               MeasuredArray1D_is_decreasing(MeasuredArray1DHandle handle);
-bool               MeasuredArray1D_is_decreasing(MeasuredArray1DHandle handle);
+bool               MeasuredArray1D_is_increasing(MeasuredArray1DHandle handle);
 double             MeasuredArray1D_get_distance(MeasuredArray1DHandle handle);
 double             MeasuredArray1D_get_mean(MeasuredArray1DHandle handle);
 double             MeasuredArray1D_get_std(MeasuredArray1DHandle handle);
@@ -60,8 +58,6 @@ MeasuredArray1DHandle MeasuredArray1D_plus_double(MeasuredArray1DHandle handle,
                                                   const double          other);
 MeasuredArray1DHandle MeasuredArray1D_plus_int(MeasuredArray1DHandle handle,
                                                const int             other);
-void MeasuredArray1D_minusequals_control_array(MeasuredArray1DHandle handle,
-                                               MeasuredArray1DHandle other);
 void MeasuredArray1D_minusequals_farray(MeasuredArray1DHandle handle,
                                         FArrayDoubleHandle    other);
 void MeasuredArray1D_minusequals_double(MeasuredArray1DHandle handle,
@@ -77,8 +73,6 @@ MeasuredArray1DHandle MeasuredArray1D_minus_double(MeasuredArray1DHandle handle,
 MeasuredArray1DHandle MeasuredArray1D_minus_int(MeasuredArray1DHandle handle,
                                                 const int             other);
 MeasuredArray1DHandle MeasuredArray1D_negation(MeasuredArray1DHandle handle);
-MeasuredArray1DHandle MeasuredArray1D_timesequals_measured_array(
-    MeasuredArray1DHandle handle, MeasuredArray1DHandle other);
 MeasuredArray1DHandle MeasuredArray1D_timesequals_farray(
     MeasuredArray1DHandle handle, FArrayDoubleHandle other);
 void MeasuredArray1D_timesequals_double(MeasuredArray1DHandle handle,
@@ -93,8 +87,6 @@ MeasuredArray1DHandle MeasuredArray1D_times_double(MeasuredArray1DHandle handle,
                                                    const double          other);
 MeasuredArray1DHandle MeasuredArray1D_times_int(MeasuredArray1DHandle handle,
                                                 const int             other);
-MeasuredArray1DHandle MeasuredArray1D_dividesequals_measured_array(
-    MeasuredArray1DHandle handle, MeasuredArray1DHandle other);
 MeasuredArray1DHandle MeasuredArray1D_dividesequals_farray(
     MeasuredArray1DHandle handle, FArrayDoubleHandle other);
 void MeasuredArray1D_dividesequals_double(MeasuredArray1DHandle handle,
@@ -112,12 +104,10 @@ MeasuredArray1DHandle MeasuredArray1D_divides_int(MeasuredArray1DHandle handle,
 MeasuredArray1DHandle MeasuredArray1D_pow(MeasuredArray1DHandle handle,
                                           const double          other);
 MeasuredArray1DHandle MeasuredArray1D_abs(MeasuredArray1DHandle handle);
-MeasuredArray1DHandle MeasuredArray1D_min(MeasuredArray1DHandle handle);
 MeasuredArray1DHandle MeasuredArray1D_min_farray(MeasuredArray1DHandle handle,
                                                  FArrayDoubleHandle    other);
 MeasuredArray1DHandle MeasuredArray1D_min_control_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other);
-MeasuredArray1DHandle MeasuredArray1D_max(MeasuredArray1DHandle handle);
 MeasuredArray1DHandle MeasuredArray1D_max_farray(MeasuredArray1DHandle handle,
                                                  FArrayDoubleHandle    other);
 MeasuredArray1DHandle MeasuredArray1D_max_control_array(

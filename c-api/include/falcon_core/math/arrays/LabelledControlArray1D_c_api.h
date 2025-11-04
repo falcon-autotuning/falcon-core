@@ -30,7 +30,7 @@ FArrayDoubleHandle LabelledControlArray1D_as_1D(
 double LabelledControlArray1D_get_start(LabelledControlArray1DHandle handle);
 double LabelledControlArray1D_get_end(LabelledControlArray1DHandle handle);
 bool LabelledControlArray1D_is_decreasing(LabelledControlArray1DHandle handle);
-bool LabelledControlArray1D_is_decreasing(LabelledControlArray1DHandle handle);
+bool LabelledControlArray1D_is_increasing(LabelledControlArray1DHandle handle);
 double LabelledControlArray1D_get_distance(LabelledControlArray1DHandle handle);
 double LabelledControlArray1D_get_mean(LabelledControlArray1DHandle handle);
 double LabelledControlArray1D_get_std(LabelledControlArray1DHandle handle);
@@ -69,8 +69,6 @@ LabelledControlArray1DHandle LabelledControlArray1D_plus_double(
     LabelledControlArray1DHandle handle, const double other);
 LabelledControlArray1DHandle LabelledControlArray1D_plus_int(
     LabelledControlArray1DHandle handle, const int other);
-void LabelledControlArray1D_minusequals_control_array(
-    LabelledControlArray1DHandle handle, LabelledControlArray1DHandle other);
 void LabelledControlArray1D_minusequals_farray(
     LabelledControlArray1DHandle handle, FArrayDoubleHandle other);
 void LabelledControlArray1D_minusequals_double(
@@ -107,14 +105,10 @@ LabelledControlArray1DHandle LabelledControlArray1D_pow(
     LabelledControlArray1DHandle handle, const double other);
 LabelledControlArray1DHandle LabelledControlArray1D_abs(
     LabelledControlArray1DHandle handle);
-LabelledControlArray1DHandle LabelledControlArray1D_min(
-    LabelledControlArray1DHandle handle);
 LabelledControlArray1DHandle LabelledControlArray1D_min_farray(
     LabelledControlArray1DHandle handle, FArrayDoubleHandle other);
 LabelledControlArray1DHandle LabelledControlArray1D_min_control_array(
     LabelledControlArray1DHandle handle, LabelledControlArray1DHandle other);
-LabelledControlArray1DHandle LabelledControlArray1D_max(
-    LabelledControlArray1DHandle handle);
 LabelledControlArray1DHandle LabelledControlArray1D_max_farray(
     LabelledControlArray1DHandle handle, FArrayDoubleHandle other);
 LabelledControlArray1DHandle LabelledControlArray1D_max_control_array(

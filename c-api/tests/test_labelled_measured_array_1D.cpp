@@ -1,0 +1,406 @@
+#include <gtest/gtest.h>
+
+#include <cmath>
+
+#include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
+#include "falcon_core/generic/FArrayDouble_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h"
+#include "falcon_core/math/arrays/MeasuredArray_c_api.h"
+#include "falcon_core/physics/device_structures/Connection_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
+
+class LabelledMeasuredArray1DTest : public ::testing::Test {
+ protected:
+  void SetUp() override {
+    shape[0] = 6;
+    data[0]  = 1.0;
+    data[1]  = 2.0;
+    data[2]  = 3.0;
+    data[3]  = 4.0;
+    data[4]  = 5.0;
+    data[5]  = 6.0;
+    fa   = FArrayDouble_from_data(new double(data[0]), new size_t(shape[0]), 6);
+    ma   = MeasuredArray_from_data(data, shape, 1);
+    conn = Connection_create_barrier_gate(String_wrap("GATE1"));
+    label = AcquisitionContext_create(
+        conn, InstrumentTypes_voltmeter(), SymbolUnit_create_volt());
+    lma  = LabelledMeasuredArray1D_from_farray(fa, label);
+    lma2 = LabelledMeasuredArray1D_from_controlarray(ma, label);
+  }
+  void TearDown() override {
+    Connection_destroy(conn);
+    LabelledMeasuredArray1D_destroy(lma);
+    LabelledMeasuredArray1D_destroy(lma2);
+    FArrayDouble_destroy(fa);
+    MeasuredArray_destroy(ma);
+    AcquisitionContext_destroy(label);
+  }
+  double                        data[6];
+  size_t                        shape[1];
+  ConnectionHandle              conn;
+  FArrayDoubleHandle            fa;
+  MeasuredArrayHandle           ma;
+  AcquisitionContextHandle      label;
+  LabelledMeasuredArray1DHandle lma;
+  LabelledMeasuredArray1DHandle lma2;
+};
+
+TEST_F(LabelledMeasuredArray1DTest, CreateDestroy) {
+  auto lma3 = LabelledMeasuredArray1D_from_farray(fa, label);
+  LabelledMeasuredArray1D_destroy(lma3);
+  lma3 = LabelledMeasuredArray1D_from_controlarray(ma, label);
+  LabelledMeasuredArray1D_destroy(lma3);
+  EXPECT_THROW(LabelledMeasuredArray1D_from_farray(nullptr, label),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_from_controlarray(nullptr, label),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_destroy(nullptr), std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, Accessors) {
+  EXPECT_TRUE(LabelledMeasuredArray1D_is_1D(lma));
+  auto fa1 = LabelledMeasuredArray1D_as_1D(lma);
+  FArrayDouble_destroy(fa1);
+  EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_get_start(lma), 1.0);
+  EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_get_end(lma), 6.0);
+  EXPECT_FALSE(LabelledMeasuredArray1D_is_decreasing(lma));
+  EXPECT_TRUE(LabelledMeasuredArray1D_is_increasing(lma));
+  EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_get_distance(lma), 5.0);
+  EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_get_mean(lma), 3.5);
+  EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_get_std(lma),
+                   std::sqrt(35.0 / 6.0 - 3.5 * 3.5));
+  EXPECT_THROW(LabelledMeasuredArray1D_is_1D(nullptr), std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_as_1D(nullptr), std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_get_start(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_get_end(nullptr), std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_is_decreasing(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_is_increasing(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_get_distance(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_get_mean(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_get_std(nullptr), std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, ReverseAndClosestIndex) {
+  LabelledMeasuredArray1D_reverse(lma);
+  EXPECT_EQ(LabelledMeasuredArray1D_get_closest_index(lma, 2.0), 3);
+  EXPECT_THROW(LabelledMeasuredArray1D_reverse(nullptr), std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_get_closest_index(nullptr, 2.0),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, EvenDivisions) {
+  auto list = LabelledMeasuredArray1D_even_divisions(lma, 2);
+  // ListFArrayDouble_destroy(list); // implement destroy if needed
+  EXPECT_THROW(LabelledMeasuredArray1D_even_divisions(nullptr, 2),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, SizeAndShapeAndData) {
+  EXPECT_EQ(LabelledMeasuredArray1D_size(lma), 6);
+  EXPECT_EQ(LabelledMeasuredArray1D_dimension(lma), 1);
+  size_t out_shape[1];
+  EXPECT_EQ(LabelledMeasuredArray1D_shape(lma, out_shape, 1), 1);
+  EXPECT_EQ(out_shape[0], 6);
+  double out_data[6];
+  EXPECT_EQ(LabelledMeasuredArray1D_data(lma, out_data, 6), 6);
+  for (int i = 0; i < 6; ++i) EXPECT_EQ(out_data[i], data[i]);
+  EXPECT_THROW(LabelledMeasuredArray1D_size(nullptr), std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_dimension(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_shape(nullptr, out_shape, 1),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_data(nullptr, out_data, 6),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
+  LabelledMeasuredArray1D_plusequals_farray(lma, fa);
+  LabelledMeasuredArray1D_plusequals_double(lma, 1.0);
+  LabelledMeasuredArray1D_plusequals_int(lma, 1);
+  auto lma_plus_lma = LabelledMeasuredArray1D_plus_control_array(lma, lma2);
+  auto lma_plus_fa  = LabelledMeasuredArray1D_plus_farray(lma, fa);
+  auto lma_plus_d   = LabelledMeasuredArray1D_plus_double(lma, 1.0);
+  auto lma_plus_i   = LabelledMeasuredArray1D_plus_int(lma, 1);
+  LabelledMeasuredArray1D_destroy(lma_plus_lma);
+  LabelledMeasuredArray1D_destroy(lma_plus_fa);
+  LabelledMeasuredArray1D_destroy(lma_plus_d);
+  LabelledMeasuredArray1D_destroy(lma_plus_i);
+
+  LabelledMeasuredArray1D_minusequals_control_array(lma, lma2);
+  LabelledMeasuredArray1D_minusequals_farray(lma, fa);
+  LabelledMeasuredArray1D_minusequals_double(lma, 1.0);
+  LabelledMeasuredArray1D_minusequals_int(lma, 1);
+  auto lma_minus_ma = LabelledMeasuredArray1D_minus_control_array(lma, ma);
+  auto lma_minus_fa = LabelledMeasuredArray1D_minus_farray(lma, fa);
+  auto lma_minus_d  = LabelledMeasuredArray1D_minus_double(lma, 1.0);
+  auto lma_minus_i  = LabelledMeasuredArray1D_minus_int(lma, 1);
+  LabelledMeasuredArray1D_destroy(lma_minus_ma);
+  LabelledMeasuredArray1D_destroy(lma_minus_fa);
+  LabelledMeasuredArray1D_destroy(lma_minus_d);
+  LabelledMeasuredArray1D_destroy(lma_minus_i);
+
+  auto lma_neg = LabelledMeasuredArray1D_negation(lma);
+  LabelledMeasuredArray1D_destroy(lma_neg);
+
+  LabelledMeasuredArray1D_timesequals_measured_array(lma, lma2);
+  LabelledMeasuredArray1D_timesequals_farray(lma, fa);
+  MeasuredArray_timesequals_double(lma, 2.0);
+  LabelledMeasuredArray1D_timesequals_int(lma, 2);
+  auto lma_times_lma = LabelledMeasuredArray1D_times_measured_array(lma, lma2);
+  auto lma_times_fa  = LabelledMeasuredArray1D_times_farray(lma, fa);
+  auto lma_times_d   = LabelledMeasuredArray1D_times_double(lma, 2.0);
+  auto lma_times_i   = LabelledMeasuredArray1D_times_int(lma, 2);
+  LabelledMeasuredArray1D_destroy(lma_times_lma);
+  LabelledMeasuredArray1D_destroy(lma_times_fa);
+  LabelledMeasuredArray1D_destroy(lma_times_d);
+  LabelledMeasuredArray1D_destroy(lma_times_i);
+
+  LabelledMeasuredArray1D_dividesequals_measured_array(lma, lma2);
+  LabelledMeasuredArray1D_dividesequals_farray(lma, fa);
+  LabelledMeasuredArray1D_dividesequals_double(lma, 2.0);
+  LabelledMeasuredArray1D_dividesequals_int(lma, 2);
+  auto lma_div_lma = LabelledMeasuredArray1D_divides_measured_array(lma, lma2);
+  auto lma_div_fa  = LabelledMeasuredArray1D_divides_farray(lma, fa);
+  auto lma_div_d   = LabelledMeasuredArray1D_divides_double(lma, 2.0);
+  auto lma_div_i   = LabelledMeasuredArray1D_divides_int(lma, 2);
+  LabelledMeasuredArray1D_destroy(lma_div_lma);
+  LabelledMeasuredArray1D_destroy(lma_div_fa);
+  LabelledMeasuredArray1D_destroy(lma_div_d);
+  LabelledMeasuredArray1D_destroy(lma_div_i);
+
+  auto lma_pow = LabelledMeasuredArray1D_pow(lma, 2.0);
+  LabelledMeasuredArray1D_destroy(lma_pow);
+
+  auto lma_abs = LabelledMeasuredArray1D_abs(lma);
+  LabelledMeasuredArray1D_destroy(lma_abs);
+
+  auto lma_min_fa  = LabelledMeasuredArray1D_min_farray(lma, fa);
+  auto lma_min_lma = LabelledMeasuredArray1D_min_control_array(lma, lma2);
+  LabelledMeasuredArray1D_destroy(lma_min_fa);
+  LabelledMeasuredArray1D_destroy(lma_min_lma);
+
+  auto lma_max_fa  = LabelledMeasuredArray1D_max_farray(lma, fa);
+  auto lma_max_lma = LabelledMeasuredArray1D_max_control_array(lma, lma2);
+  LabelledMeasuredArray1D_destroy(lma_max_fa);
+  LabelledMeasuredArray1D_destroy(lma_max_lma);
+
+  EXPECT_THROW(LabelledMeasuredArray1D_plusequals_farray(nullptr, fa),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_plusequals_farray(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_plusequals_double(nullptr, 1.0),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_plusequals_int(nullptr, 1),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_plus_control_array(nullptr, lma2),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_plus_control_array(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_plus_farray(nullptr, fa),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_plus_farray(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_plus_double(nullptr, 1.0),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_plus_int(nullptr, 1),
+               std::invalid_argument);
+
+  EXPECT_THROW(LabelledMeasuredArray1D_minusequals_control_array(nullptr, lma2),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_minusequals_control_array(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_minusequals_farray(nullptr, fa),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_minusequals_farray(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_minusequals_double(nullptr, 1.0),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_minusequals_int(nullptr, 1),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_minus_control_array(nullptr, ma),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_minus_control_array(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_minus_farray(nullptr, fa),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_minus_farray(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_minus_double(nullptr, 1.0),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_minus_int(nullptr, 1),
+               std::invalid_argument);
+
+  EXPECT_THROW(LabelledMeasuredArray1D_negation(nullptr),
+               std::invalid_argument);
+
+  EXPECT_THROW(
+      LabelledMeasuredArray1D_timesequals_measured_array(nullptr, lma2),
+      std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_timesequals_measured_array(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_timesequals_farray(nullptr, fa),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_timesequals_farray(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(MeasuredArray_timesequals_double(nullptr, 2.0),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_timesequals_int(nullptr, 2),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_times_measured_array(nullptr, lma2),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_times_measured_array(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_times_farray(nullptr, fa),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_times_farray(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_times_double(nullptr, 2.0),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_times_int(nullptr, 2),
+               std::invalid_argument);
+
+  EXPECT_THROW(
+      LabelledMeasuredArray1D_dividesequals_measured_array(nullptr, lma2),
+      std::invalid_argument);
+  EXPECT_THROW(
+      LabelledMeasuredArray1D_dividesequals_measured_array(lma, nullptr),
+      std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_dividesequals_farray(nullptr, fa),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_dividesequals_farray(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_dividesequals_double(nullptr, 2.0),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_dividesequals_int(nullptr, 2),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_divides_measured_array(nullptr, lma2),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_divides_measured_array(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_divides_farray(nullptr, fa),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_divides_farray(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_divides_double(nullptr, 2.0),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_divides_int(nullptr, 2),
+               std::invalid_argument);
+
+  EXPECT_THROW(LabelledMeasuredArray1D_pow(nullptr, 2.0),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_abs(nullptr), std::invalid_argument);
+
+  EXPECT_THROW(LabelledMeasuredArray1D_min_farray(nullptr, fa),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_min_farray(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_min_control_array(nullptr, lma2),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_min_control_array(lma, nullptr),
+               std::invalid_argument);
+
+  EXPECT_THROW(LabelledMeasuredArray1D_max_farray(nullptr, fa),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_max_farray(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_max_control_array(nullptr, lma2),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_max_control_array(lma, nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, EqualityOperators) {
+  EXPECT_FALSE(LabelledMeasuredArray1D_equality(lma, lma2));
+  EXPECT_TRUE(LabelledMeasuredArray1D_notequality(lma, lma2));
+  EXPECT_THROW(LabelledMeasuredArray1D_equality(nullptr, lma2),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_equality(lma, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_notequality(nullptr, lma2),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_notequality(lma, nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, ComparisonOperators) {
+  EXPECT_TRUE(LabelledMeasuredArray1D_greaterthan(lma, 0.5));
+  EXPECT_FALSE(LabelledMeasuredArray1D_lessthan(lma, 0.5));
+  EXPECT_THROW(LabelledMeasuredArray1D_greaterthan(nullptr, 0.5),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_lessthan(nullptr, 0.5),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, OffsetSumReshapeWhereFlipGradient) {
+  LabelledMeasuredArray1D_remove_offset(lma, 1.0);
+  EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_sum(lma), 21.0);
+  size_t new_shape[1] = {6};
+  auto   reshaped     = LabelledMeasuredArray1D_reshape(lma, new_shape, 1);
+  LabelledMeasuredArray1D_destroy(reshaped);
+  auto where = LabelledMeasuredArray1D_where(lma, 2.0);
+  // ListListSizeT_destroy(where); // implement destroy if needed
+  auto flipped = LabelledMeasuredArray1D_flip(lma, 0);
+  LabelledMeasuredArray1D_destroy(flipped);
+  LabelledMeasuredArray1DHandle grad_buffer[1];
+  EXPECT_EQ(LabelledMeasuredArray1D_full_gradient(lma, grad_buffer, 1), 1);
+  for (size_t i = 0; i < 1; ++i) {
+    LabelledMeasuredArray1D_destroy(grad_buffer[i]);
+  }
+  auto grad = LabelledMeasuredArray1D_gradient(lma, 0);
+  LabelledMeasuredArray1D_destroy(grad);
+  EXPECT_THROW(LabelledMeasuredArray1D_remove_offset(nullptr, 1.0),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_sum(nullptr), std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_reshape(nullptr, new_shape, 1),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_where(nullptr, 2.0),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_flip(nullptr, 0), std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_full_gradient(nullptr, grad_buffer, 1),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_gradient(nullptr, 0),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, SumOfSquares) {
+  EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_get_sum_of_squares(lma), 91.0);
+  EXPECT_DOUBLE_EQ(
+      LabelledMeasuredArray1D_get_summed_diff_int_of_squares(lma, 1), 70.0);
+  EXPECT_DOUBLE_EQ(
+      LabelledMeasuredArray1D_get_summed_diff_double_of_squares(lma, 1.0),
+      70.0);
+  EXPECT_DOUBLE_EQ(
+      LabelledMeasuredArray1D_get_summed_diff_array_of_squares(lma, lma2), 0.0);
+  EXPECT_THROW(LabelledMeasuredArray1D_get_sum_of_squares(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(
+      LabelledMeasuredArray1D_get_summed_diff_int_of_squares(nullptr, 1),
+      std::invalid_argument);
+  EXPECT_THROW(
+      LabelledMeasuredArray1D_get_summed_diff_double_of_squares(nullptr, 1.0),
+      std::invalid_argument);
+  EXPECT_THROW(
+      LabelledMeasuredArray1D_get_summed_diff_array_of_squares(nullptr, lma2),
+      std::invalid_argument);
+  EXPECT_THROW(
+      LabelledMeasuredArray1D_get_summed_diff_array_of_squares(lma, nullptr),
+      std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, ToJsonFromJson) {
+  auto json = LabelledMeasuredArray1D_to_json_string(lma);
+  auto lma3 = LabelledMeasuredArray1D_from_json_string(json);
+  EXPECT_TRUE(LabelledMeasuredArray1D_equality(lma, lma3));
+  LabelledMeasuredArray1D_destroy(lma3);
+  String_destroy(json);
+  EXPECT_THROW(LabelledMeasuredArray1D_to_json_string(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledMeasuredArray1D_from_json_string(nullptr),
+               std::invalid_argument);
+}

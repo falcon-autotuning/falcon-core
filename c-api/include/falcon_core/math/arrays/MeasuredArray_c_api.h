@@ -12,7 +12,6 @@ extern "C" {
 typedef void* MeasuredArrayHandle;
 // Function declarations
 
-MeasuredArrayHandle MeasuredArray_from_shape(const size_t* shape, size_t ndim);
 MeasuredArrayHandle MeasuredArray_from_data(const double* data,
                                             const size_t* shape,
                                             size_t        ndim);
@@ -39,12 +38,10 @@ MeasuredArrayHandle MeasuredArray_plus_double(MeasuredArrayHandle handle,
                                               const double        other);
 MeasuredArrayHandle MeasuredArray_plus_int(MeasuredArrayHandle handle,
                                            const int           other);
-void MeasuredArray_minusequals_control_array(MeasuredArrayHandle handle,
-                                             MeasuredArrayHandle other);
-void MeasuredArray_minusequals_farray(MeasuredArrayHandle handle,
-                                      FArrayDoubleHandle  other);
-void MeasuredArray_minusequals_double(MeasuredArrayHandle handle,
-                                      const double        other);
+void                MeasuredArray_minusequals_farray(MeasuredArrayHandle handle,
+                                                     FArrayDoubleHandle  other);
+void                MeasuredArray_minusequals_double(MeasuredArrayHandle handle,
+                                                     const double        other);
 void MeasuredArray_minusequals_int(MeasuredArrayHandle handle, const int other);
 MeasuredArrayHandle MeasuredArray_minus_control_array(
     MeasuredArrayHandle handle, MeasuredArrayHandle other);
@@ -89,12 +86,10 @@ MeasuredArrayHandle MeasuredArray_divides_int(MeasuredArrayHandle handle,
 MeasuredArrayHandle MeasuredArray_pow(MeasuredArrayHandle handle,
                                       const double        other);
 MeasuredArrayHandle MeasuredArray_abs(MeasuredArrayHandle handle);
-MeasuredArrayHandle MeasuredArray_min(MeasuredArrayHandle handle);
 MeasuredArrayHandle MeasuredArray_min_farray(MeasuredArrayHandle handle,
                                              FArrayDoubleHandle  other);
 MeasuredArrayHandle MeasuredArray_min_control_array(MeasuredArrayHandle handle,
                                                     MeasuredArrayHandle other);
-MeasuredArrayHandle MeasuredArray_max(MeasuredArrayHandle handle);
 MeasuredArrayHandle MeasuredArray_max_farray(MeasuredArrayHandle handle,
                                              FArrayDoubleHandle  other);
 MeasuredArrayHandle MeasuredArray_max_control_array(MeasuredArrayHandle handle,
