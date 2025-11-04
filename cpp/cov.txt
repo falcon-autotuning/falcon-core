@@ -1,5 +1,5 @@
 Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.clean/googletest/src/gtest_main.cc
-[==========] Running 1218 tests from 77 test suites.
+[==========] Running 1227 tests from 77 test suites.
 [----------] Global test environment set-up.
 [----------] 16 tests from AcquisitionContextTest
 [ RUN      ] AcquisitionContextTest.ConstructorWithValidConnection
@@ -81,7 +81,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] AnalyticFunctionTest.ZeroMaxTime
 [       OK ] AnalyticFunctionTest.ZeroMaxTime (0 ms)
 [ RUN      ] AnalyticFunctionTest.CustomEvaluation
-[       OK ] AnalyticFunctionTest.CustomEvaluation (1 ms)
+[       OK ] AnalyticFunctionTest.CustomEvaluation (0 ms)
 [ RUN      ] AnalyticFunctionTest.CustomDeltaEvaluation
 [       OK ] AnalyticFunctionTest.CustomDeltaEvaluation (0 ms)
 [ RUN      ] AnalyticFunctionTest.NullLabelsInput
@@ -173,7 +173,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] ConfigTest.JsonRoundTrip
 [       OK ] ConfigTest.JsonRoundTrip (4 ms)
 [ RUN      ] ConfigTest.BasicQueries
-[       OK ] ConfigTest.BasicQueries (1 ms)
+[       OK ] ConfigTest.BasicQueries (0 ms)
 [ RUN      ] ConfigTest.Constructor_NullArgsThrow
 [       OK ] ConfigTest.Constructor_NullArgsThrow (0 ms)
 [ RUN      ] ConfigTest.Constructor_NoGroupsThrows
@@ -287,7 +287,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] ConfigTest.GetIsolatedChannelDotGatesNullptrThrows
 [       OK ] ConfigTest.GetIsolatedChannelDotGatesNullptrThrows (0 ms)
 [ RUN      ] ConfigTest.GetIsolatedChannelGatesNullptrThrows
-[       OK ] ConfigTest.GetIsolatedChannelGatesNullptrThrows (1 ms)
+[       OK ] ConfigTest.GetIsolatedChannelGatesNullptrThrows (0 ms)
 [ RUN      ] ConfigTest.SharedChannelGateFunctions_NullChannel
 [       OK ] ConfigTest.SharedChannelGateFunctions_NullChannel (0 ms)
 [ RUN      ] ConfigTest.SharedChannelGateFunctions_ValidChannel
@@ -356,12 +356,12 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] ConfigTest.GetIsolatedChannelDotGates_NoIsolatedGatesFound (0 ms)
 [ RUN      ] ConfigTest.GetGateDictWorks
 [       OK ] ConfigTest.GetGateDictWorks (0 ms)
-[----------] 93 tests from ConfigTest (36 ms total)
+[----------] 93 tests from ConfigTest (30 ms total)
 
 [----------] 1 test from ConfigLoaderTest
 [ RUN      ] ConfigLoaderTest.LoadConfigFromYaml
-[       OK ] ConfigLoaderTest.LoadConfigFromYaml (4 ms)
-[----------] 1 test from ConfigLoaderTest (4 ms total)
+[       OK ] ConfigLoaderTest.LoadConfigFromYaml (6 ms)
+[----------] 1 test from ConfigLoaderTest (6 ms total)
 
 [----------] 8 tests from ConfigManipulationsTest
 [ RUN      ] ConfigManipulationsTest.UnpackDeviceConfigWorks
@@ -380,7 +380,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] ConfigManipulationsTest.ExtractOhmicsWorks (2 ms)
 [ RUN      ] ConfigManipulationsTest.ExtractOrderWorks
 [       OK ] ConfigManipulationsTest.ExtractOrderWorks (2 ms)
-[----------] 8 tests from ConfigManipulationsTest (20 ms total)
+[----------] 8 tests from ConfigManipulationsTest (21 ms total)
 
 [----------] 5 tests from ConnectionTest
 [ RUN      ] ConnectionTest.ConstructorsAndAccessors
@@ -1015,7 +1015,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] HDF5DataTest.ToCommunicationsRoundTrip (0 ms)
 [ RUN      ] HDF5DataTest.FileRoundTripFull
 [       OK ] HDF5DataTest.FileRoundTripFull (2 ms)
-[----------] 3 tests from HDF5DataTest (4 ms total)
+[----------] 3 tests from HDF5DataTest (5 ms total)
 
 [----------] 5 tests from ImpedanceTest
 [ RUN      ] ImpedanceTest.ValueConstructor
@@ -1028,7 +1028,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] ImpedanceTest.SerializationRoundTrip (0 ms)
 [ RUN      ] ImpedanceTest.Equality
 [       OK ] ImpedanceTest.Equality (0 ms)
-[----------] 5 tests from ImpedanceTest (1 ms total)
+[----------] 5 tests from ImpedanceTest (0 ms total)
 
 [----------] 5 tests from ImpedancesTest
 [ RUN      ] ImpedancesTest.DefaultConstructor
@@ -1118,9 +1118,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] LabelledArraysTest.IsControlArraysAndIsMeasuredArrays
 [       OK ] LabelledArraysTest.IsControlArraysAndIsMeasuredArrays (0 ms)
 [ RUN      ] LabelledArraysTest.SerializationRoundTripMeasured
-[       OK ] LabelledArraysTest.SerializationRoundTripMeasured (0 ms)
+[       OK ] LabelledArraysTest.SerializationRoundTripMeasured (1 ms)
 [ RUN      ] LabelledArraysTest.SerializationRoundTripControl
-[       OK ] LabelledArraysTest.SerializationRoundTripControl (1 ms)
+[       OK ] LabelledArraysTest.SerializationRoundTripControl (0 ms)
 [ RUN      ] LabelledArraysTest.StaticConstructorsMeasured
 [       OK ] LabelledArraysTest.StaticConstructorsMeasured (0 ms)
 [ RUN      ] LabelledArraysTest.StaticConstructorsControl
@@ -1139,7 +1139,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] LabelledArraysTest.IsControlArraysHandlesNullptr (0 ms)
 [ RUN      ] LabelledArraysTest.IsMeasuredArraysHandlesNullptr
 [       OK ] LabelledArraysTest.IsMeasuredArraysHandlesNullptr (0 ms)
-[----------] 17 tests from LabelledArraysTest (7 ms total)
+[----------] 17 tests from LabelledArraysTest (5 ms total)
 
 [----------] 40 tests from LabelledControlArrayTest
 [ RUN      ] LabelledControlArrayTest.ControlArraySPConstructor
@@ -1222,7 +1222,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] LabelledControlArrayTest.InequalityOperator (0 ms)
 [ RUN      ] LabelledControlArrayTest.SubtractDoubleThrowsIfZero
 [       OK ] LabelledControlArrayTest.SubtractDoubleThrowsIfZero (0 ms)
-[----------] 40 tests from LabelledControlArrayTest (6 ms total)
+[----------] 40 tests from LabelledControlArrayTest (4 ms total)
 
 [----------] 38 tests from LabelledControlArray1DTest
 [ RUN      ] LabelledControlArray1DTest.ControlArraySPConstructor
@@ -1668,16 +1668,16 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 
 [----------] 5 tests from LoaderTest
 [ RUN      ] LoaderTest.ConstructorWithPathWorks
-[       OK ] LoaderTest.ConstructorWithPathWorks (6 ms)
+[       OK ] LoaderTest.ConstructorWithPathWorks (7 ms)
 [ RUN      ] LoaderTest.ConstructorWithStringWorks
-[       OK ] LoaderTest.ConstructorWithStringWorks (5 ms)
+[       OK ] LoaderTest.ConstructorWithStringWorks (6 ms)
 [ RUN      ] LoaderTest.LoadConfigReturnsConfig
 [       OK ] LoaderTest.LoadConfigReturnsConfig (5 ms)
 [ RUN      ] LoaderTest.ConfigGetterWorks
 [       OK ] LoaderTest.ConfigGetterWorks (5 ms)
 [ RUN      ] LoaderTest.ThrowsOnMissingFile
 [       OK ] LoaderTest.ThrowsOnMissingFile (0 ms)
-[----------] 5 tests from LoaderTest (24 ms total)
+[----------] 5 tests from LoaderTest (25 ms total)
 
 [----------] 10 tests from MapIntStringTest
 [ RUN      ] MapIntStringTest.DefaultConstructEmpty
@@ -2028,36 +2028,36 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] PortTransformTest.ConstructorThrowsOnNullPort
 [       OK ] PortTransformTest.ConstructorThrowsOnNullPort (1 ms)
 [ RUN      ] PortTransformTest.ConstructorThrowsOnNullTransform
-[       OK ] PortTransformTest.ConstructorThrowsOnNullTransform (2 ms)
+[       OK ] PortTransformTest.ConstructorThrowsOnNullTransform (1 ms)
 [ RUN      ] PortTransformTest.ConstructorSucceeds
 [       OK ] PortTransformTest.ConstructorSucceeds (1 ms)
 [ RUN      ] PortTransformTest.ConstantTransformFactory
-[       OK ] PortTransformTest.ConstantTransformFactory (3 ms)
+[       OK ] PortTransformTest.ConstantTransformFactory (2 ms)
 [ RUN      ] PortTransformTest.IdentityTransformFactory
-[       OK ] PortTransformTest.IdentityTransformFactory (4 ms)
+[       OK ] PortTransformTest.IdentityTransformFactory (2 ms)
 [ RUN      ] PortTransformTest.QuadraticTransformEvaluation
 [       OK ] PortTransformTest.QuadraticTransformEvaluation (1 ms)
 [ RUN      ] PortTransformTest.EqualityOperators
-[       OK ] PortTransformTest.EqualityOperators (2 ms)
+[       OK ] PortTransformTest.EqualityOperators (3 ms)
 [ RUN      ] PortTransformTest.SerializationRoundTrip
 [       OK ] PortTransformTest.SerializationRoundTrip (2 ms)
 [ RUN      ] PortTransformTest.ConstantTransformThrowsOnNullPort
 [       OK ] PortTransformTest.ConstantTransformThrowsOnNullPort (1 ms)
 [ RUN      ] PortTransformTest.IdentityTransformThrowsOnNullPort
 [       OK ] PortTransformTest.IdentityTransformThrowsOnNullPort (1 ms)
-[----------] 10 tests from PortTransformTest (24 ms total)
+[----------] 10 tests from PortTransformTest (20 ms total)
 
 [----------] 5 tests from PortTransformsTest
 [ RUN      ] PortTransformsTest.DefaultConstructor
-[       OK ] PortTransformsTest.DefaultConstructor (1 ms)
+[       OK ] PortTransformsTest.DefaultConstructor (0 ms)
 [ RUN      ] PortTransformsTest.ListSPConstructorAndNullThrows
-[       OK ] PortTransformsTest.ListSPConstructorAndNullThrows (1 ms)
+[       OK ] PortTransformsTest.ListSPConstructorAndNullThrows (0 ms)
 [ RUN      ] PortTransformsTest.VectorConstructor
-[       OK ] PortTransformsTest.VectorConstructor (1 ms)
+[       OK ] PortTransformsTest.VectorConstructor (0 ms)
 [ RUN      ] PortTransformsTest.TransformsGetter
 [       OK ] PortTransformsTest.TransformsGetter (1 ms)
 [ RUN      ] PortTransformsTest.SerializationRoundTrip
-[       OK ] PortTransformsTest.SerializationRoundTrip (1 ms)
+[       OK ] PortTransformsTest.SerializationRoundTrip (2 ms)
 [----------] 5 tests from PortTransformsTest (6 ms total)
 
 [----------] 13 tests from PortsTest
@@ -2087,7 +2087,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] PortsTest.GetPseudoNamesThrowsIfPortIsNullptr (0 ms)
 [ RUN      ] PortsTest.GetPseudoNamesThrowsIfPortIsNullptrInList
 [       OK ] PortsTest.GetPseudoNamesThrowsIfPortIsNullptrInList (0 ms)
-[----------] 13 tests from PortsTest (2 ms total)
+[----------] 13 tests from PortsTest (1 ms total)
 
 [----------] 7 tests from PrefixTest
 [ RUN      ] PrefixTest.GetSymbolWorks
@@ -2398,7 +2398,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] SymbolUnitTest.CustomCrash (0 ms)
 [ RUN      ] SymbolUnitTest.InequalityOperator
 [       OK ] SymbolUnitTest.InequalityOperator (0 ms)
-[----------] 38 tests from SymbolUnitTest (3 ms total)
+[----------] 38 tests from SymbolUnitTest (2 ms total)
 
 [----------] 4 tests from TimeTest
 [ RUN      ] TimeTest.DefaultConstructorSetsCurrentTime
@@ -2520,7 +2520,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] UnitSpaceTest.SerializationRoundTrip (0 ms)
 [----------] 19 tests from UnitSpaceTest (1 ms total)
 
-[----------] 36 tests from VectorTest
+[----------] 45 tests from VectorTest
 [ RUN      ] VectorTest.ConstructorStartEnd
 [       OK ] VectorTest.ConstructorStartEnd (0 ms)
 [ RUN      ] VectorTest.AdditionOperator
@@ -2563,6 +2563,8 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] VectorTest.TranslateWithNullQuantityMapThrows (0 ms)
 [ RUN      ] VectorTest.TranslateToOrigin
 [       OK ] VectorTest.TranslateToOrigin (0 ms)
+[ RUN      ] VectorTest.UpdateStartFromStatesValid
+[       OK ] VectorTest.UpdateStartFromStatesValid (0 ms)
 [ RUN      ] VectorTest.UpdateStartFromStatesThrowsOnNull
 [       OK ] VectorTest.UpdateStartFromStatesThrowsOnNull (0 ms)
 [ RUN      ] VectorTest.UnitVector
@@ -2589,11 +2591,27 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] VectorTest.PrincipleConnectionNullThrows (0 ms)
 [ RUN      ] VectorTest.NotEqualOperator
 [       OK ] VectorTest.NotEqualOperator (0 ms)
-[ RUN      ] VectorTest.NullStartEndPoints
-[       OK ] VectorTest.NullStartEndPoints (0 ms)
+[ RUN      ] VectorTest.NullStartEndPointsWithUnit
+[       OK ] VectorTest.NullStartEndPointsWithUnit (0 ms)
 [ RUN      ] VectorTest.ConstructorStartEndExtraEndConns
 [       OK ] VectorTest.ConstructorStartEndExtraEndConns (0 ms)
-[----------] 36 tests from VectorTest (7 ms total)
+[ RUN      ] VectorTest.DefaultConstructor
+[       OK ] VectorTest.DefaultConstructor (0 ms)
+[ RUN      ] VectorTest.ConstructorStartEndNullPointsThrows
+[       OK ] VectorTest.ConstructorStartEndNullPointsThrows (0 ms)
+[ RUN      ] VectorTest.ConstructorStartHasExtraConnection
+[       OK ] VectorTest.ConstructorStartHasExtraConnection (0 ms)
+[ RUN      ] VectorTest.EndMissingConnectionCreatesZeroQuantity
+[       OK ] VectorTest.EndMissingConnectionCreatesZeroQuantity (0 ms)
+[ RUN      ] VectorTest.ConstructFromPairMap
+[       OK ] VectorTest.ConstructFromPairMap (0 ms)
+[ RUN      ] VectorTest.SinglePointConstructor
+[       OK ] VectorTest.SinglePointConstructor (0 ms)
+[ RUN      ] VectorTest.IntegerMultiplyDivideOperators
+[       OK ] VectorTest.IntegerMultiplyDivideOperators (0 ms)
+[ RUN      ] VectorTest.PrincipleConnectionChoosesLargestDifference
+[       OK ] VectorTest.PrincipleConnectionChoosesLargestDifference (0 ms)
+[----------] 45 tests from VectorTest (8 ms total)
 
 [----------] 10 tests from VoltageConstraintsTest
 [ RUN      ] VoltageConstraintsTest.ConstructorValid
@@ -2649,28 +2667,28 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] WaveformTest.CartesianIdentityWaveformNullptrs
 [       OK ] WaveformTest.CartesianIdentityWaveformNullptrs (3 ms)
 [ RUN      ] WaveformTest.CartesianWaveform2DWorks
-[       OK ] WaveformTest.CartesianWaveform2DWorks (2 ms)
+[       OK ] WaveformTest.CartesianWaveform2DWorks (1 ms)
 [ RUN      ] WaveformTest.CartesianWaveform2DNullptrs
 [       OK ] WaveformTest.CartesianWaveform2DNullptrs (1 ms)
 [ RUN      ] WaveformTest.CartesianIdentityWaveform2DWorks
 [       OK ] WaveformTest.CartesianIdentityWaveform2DWorks (2 ms)
 [ RUN      ] WaveformTest.CartesianIdentityWaveform2DNullptrs
-[       OK ] WaveformTest.CartesianIdentityWaveform2DNullptrs (2 ms)
+[       OK ] WaveformTest.CartesianIdentityWaveform2DNullptrs (1 ms)
 [ RUN      ] WaveformTest.CartesianWaveform1DWorks
-[       OK ] WaveformTest.CartesianWaveform1DWorks (2 ms)
+[       OK ] WaveformTest.CartesianWaveform1DWorks (1 ms)
 [ RUN      ] WaveformTest.CartesianWaveform1DNullptrs
-[       OK ] WaveformTest.CartesianWaveform1DNullptrs (2 ms)
+[       OK ] WaveformTest.CartesianWaveform1DNullptrs (1 ms)
 [ RUN      ] WaveformTest.CartesianIdentityWaveform1DWorks
 [       OK ] WaveformTest.CartesianIdentityWaveform1DWorks (2 ms)
 [ RUN      ] WaveformTest.CartesianIdentityWaveform1DNullptrs
 [       OK ] WaveformTest.CartesianIdentityWaveform1DNullptrs (2 ms)
 [ RUN      ] WaveformTest.SerializationRoundTrip
 [       OK ] WaveformTest.SerializationRoundTrip (2 ms)
-[----------] 17 tests from WaveformTest (39 ms total)
+[----------] 17 tests from WaveformTest (34 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1218 tests from 77 test suites ran. (266 ms total)
-[  PASSED  ] 1218 tests.
+[==========] 1227 tests from 77 test suites ran. (253 ms total)
+[  PASSED  ] 1227 tests.
 /home/daniel/work/wisc/playground/falcon-core/cpp/include/cereal/types/xtensor.hpp:
     1|       |#pragma once
     2|       |
@@ -4785,7 +4803,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    69|       |   *   List o{ptr1, ptr2, ptr3};
    70|       |   *   @endcode
    71|       |   */
-   72|  6.74k|  List() : _items(std::vector<StoredValue>()) {}
+   72|  6.97k|  List() : _items(std::vector<StoredValue>()) {}
   ------------------
   | falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>::List():
   |   72|      8|  List() : _items(std::vector<StoredValue>()) {}
@@ -4835,13 +4853,15 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |   72|      4|  List() : _items(std::vector<StoredValue>()) {}
   ------------------
   | falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>::List():
-  |   72|     16|  List() : _items(std::vector<StoredValue>()) {}
+  |   72|     17|  List() : _items(std::vector<StoredValue>()) {}
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> >::List():
-  |   72|    473|  List() : _items(std::vector<StoredValue>()) {}
+  |   72|    555|  List() : _items(std::vector<StoredValue>()) {}
   ------------------
   | falcon_core::generic::List<falcon_core::instrument_interfaces::port_transforms::PortTransform>::List():
   |   72|     52|  List() : _items(std::vector<StoredValue>()) {}
+  ------------------
+  | Unexecuted instantiation: falcon_core::generic::List<bool>::List()
   ------------------
   | falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>::List():
   |   72|    169|  List() : _items(std::vector<StoredValue>()) {}
@@ -4850,16 +4870,16 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |   72|    187|  List() : _items(std::vector<StoredValue>()) {}
   ------------------
   | falcon_core::generic::List<falcon_core::physics::device_structures::Connection>::List():
-  |   72|  3.11k|  List() : _items(std::vector<StoredValue>()) {}
+  |   72|  3.19k|  List() : _items(std::vector<StoredValue>()) {}
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double> >::List():
-  |   72|    198|  List() : _items(std::vector<StoredValue>()) {}
+  |   72|    239|  List() : _items(std::vector<StoredValue>()) {}
   ------------------
   | falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>::List():
   |   72|    101|  List() : _items(std::vector<StoredValue>()) {}
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > >::List():
-  |   72|    112|  List() : _items(std::vector<StoredValue>()) {}
+  |   72|    141|  List() : _items(std::vector<StoredValue>()) {}
   ------------------
   | falcon_core::generic::List<falcon_core::generic::FArray<double> >::List():
   |   72|      9|  List() : _items(std::vector<StoredValue>()) {}
@@ -4957,11 +4977,11 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |   99|     16|  }
   ------------------
   | falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>::List(std::vector<std::shared_ptr<falcon_core::communications::voltage_states::DeviceVoltageState>, std::allocator<std::shared_ptr<falcon_core::communications::voltage_states::DeviceVoltageState> > > const&):
-  |   95|      2|  List(const Container& init) : _items() {
-  |   96|      3|    for (const auto& item : init) {
-  |   97|      3|      push_back(item);
-  |   98|      3|    }
-  |   99|      2|  }
+  |   95|      3|  List(const Container& init) : _items() {
+  |   96|      5|    for (const auto& item : init) {
+  |   97|      5|      push_back(item);
+  |   98|      5|    }
+  |   99|      3|  }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool> >::List(std::vector<std::shared_ptr<falcon_core::generic::Map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool> >, std::allocator<std::shared_ptr<falcon_core::generic::Map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool> > > > const&):
   |   95|      8|  List(const Container& init) : _items() {
@@ -5029,13 +5049,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   100|       |  static std::shared_ptr<List<Value>> create(const Container& init) {
   101|       |    return std::make_shared<List<Value>>(init);
   102|       |  }
-  103|  6.68k|  List<Value>(const List<Value>&)                = default;
+  103|  6.86k|  List<Value>(const List<Value>&)                = default;
   ------------------
   | falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>::List(falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext> const&):
   |  103|     22|  List<Value>(const List<Value>&)                = default;
   ------------------
   | falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>::List(falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState> const&):
-  |  103|      9|  List<Value>(const List<Value>&)                = default;
+  |  103|     10|  List<Value>(const List<Value>&)                = default;
   ------------------
   | falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>::List(falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort> const&):
   |  103|    126|  List<Value>(const List<Value>&)                = default;
@@ -5050,13 +5070,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  103|    222|  List<Value>(const List<Value>&)                = default;
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> >::List(falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> > const&):
-  |  103|    862|  List<Value>(const List<Value>&)                = default;
+  |  103|  1.02k|  List<Value>(const List<Value>&)                = default;
   ------------------
   | falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>::List(falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer> const&):
   |  103|     83|  List<Value>(const List<Value>&)                = default;
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > >::List(falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > > const&):
-  |  103|    112|  List<Value>(const List<Value>&)                = default;
+  |  103|    130|  List<Value>(const List<Value>&)                = default;
   ------------------
   | falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>::List(falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray> const&):
   |  103|      1|  List<Value>(const List<Value>&)                = default;
@@ -5086,9 +5106,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   ------------------
   105|       |  List<Value>& operator=(const List<Value>&)     = default;
   106|    331|  List<Value>& operator=(List<Value>&&) noexcept = default;
-  107|  33.7k|  void         push_back(const StoredValue& item) {
-  108|  33.7k|    push_back_impl(item, typename category::determine_tag<Value>::type{});
-  109|  33.7k|  }
+  107|  34.1k|  void         push_back(const StoredValue& item) {
+  108|  34.1k|    push_back_impl(item, typename category::determine_tag<Value>::type{});
+  109|  34.1k|  }
   ------------------
   | falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>::push_back(std::shared_ptr<falcon_core::autotuner_interfaces::contexts::MeasurementContext> const&):
   |  107|      9|  void         push_back(const StoredValue& item) {
@@ -5141,14 +5161,14 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  109|      6|  }
   ------------------
   | falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>::push_back(std::shared_ptr<falcon_core::communications::voltage_states::DeviceVoltageState> const&):
-  |  107|     17|  void         push_back(const StoredValue& item) {
-  |  108|     17|    push_back_impl(item, typename category::determine_tag<Value>::type{});
-  |  109|     17|  }
+  |  107|     21|  void         push_back(const StoredValue& item) {
+  |  108|     21|    push_back_impl(item, typename category::determine_tag<Value>::type{});
+  |  109|     21|  }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> >::push_back(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> > const&):
-  |  107|    923|  void         push_back(const StoredValue& item) {
-  |  108|    923|    push_back_impl(item, typename category::determine_tag<Value>::type{});
-  |  109|    923|  }
+  |  107|  1.08k|  void         push_back(const StoredValue& item) {
+  |  108|  1.08k|    push_back_impl(item, typename category::determine_tag<Value>::type{});
+  |  109|  1.08k|  }
   ------------------
   | falcon_core::generic::List<falcon_core::instrument_interfaces::port_transforms::PortTransform>::push_back(std::shared_ptr<falcon_core::instrument_interfaces::port_transforms::PortTransform> const&):
   |  107|     90|  void         push_back(const StoredValue& item) {
@@ -5171,9 +5191,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  109|    220|  }
   ------------------
   | falcon_core::generic::List<falcon_core::physics::device_structures::Connection>::push_back(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&):
-  |  107|  23.7k|  void         push_back(const StoredValue& item) {
-  |  108|  23.7k|    push_back_impl(item, typename category::determine_tag<Value>::type{});
-  |  109|  23.7k|  }
+  |  107|  23.8k|  void         push_back(const StoredValue& item) {
+  |  108|  23.8k|    push_back_impl(item, typename category::determine_tag<Value>::type{});
+  |  109|  23.8k|  }
   ------------------
   | falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>::push_back(std::shared_ptr<falcon_core::math::discrete_spaces::Discretizer> const&):
   |  107|    143|  void         push_back(const StoredValue& item) {
@@ -5186,14 +5206,14 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  109|    101|  }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > >::push_back(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > > const&):
-  |  107|    219|  void         push_back(const StoredValue& item) {
-  |  108|    219|    push_back_impl(item, typename category::determine_tag<Value>::type{});
-  |  109|    219|  }
+  |  107|    274|  void         push_back(const StoredValue& item) {
+  |  108|    274|    push_back_impl(item, typename category::determine_tag<Value>::type{});
+  |  109|    274|  }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double> >::push_back(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double> > const&):
-  |  107|    378|  void         push_back(const StoredValue& item) {
-  |  108|    378|    push_back_impl(item, typename category::determine_tag<Value>::type{});
-  |  109|    378|  }
+  |  107|    460|  void         push_back(const StoredValue& item) {
+  |  108|    460|    push_back_impl(item, typename category::determine_tag<Value>::type{});
+  |  109|    460|  }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::FArray<double> >::push_back(std::shared_ptr<falcon_core::generic::FArray<double> > const&):
   |  107|     16|  void         push_back(const StoredValue& item) {
@@ -5296,7 +5316,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  123|     66|  size_t size() const { return _items.size(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> >::size() const:
-  |  123|     30|  size_t size() const { return _items.size(); }
+  |  123|     33|  size_t size() const { return _items.size(); }
   ------------------
   | falcon_core::generic::List<double>::size() const:
   |  123|     38|  size_t size() const { return _items.size(); }
@@ -5331,13 +5351,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   | falcon_core::generic::List<falcon_core::physics::config::geometries::DotGateWithNeighbors>::size() const:
   |  123|     34|  size_t size() const { return _items.size(); }
   ------------------
-  124|    939|  bool   empty() const { return _items.empty(); }
+  124|  1.08k|  bool   empty() const { return _items.empty(); }
   ------------------
   | falcon_core::generic::List<falcon_core::instrument_interfaces::port_transforms::PortTransform>::empty() const:
   |  124|     14|  bool   empty() const { return _items.empty(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> >::empty() const:
-  |  124|    725|  bool   empty() const { return _items.empty(); }
+  |  124|    867|  bool   empty() const { return _items.empty(); }
   ------------------
   | falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>::empty() const:
   |  124|    198|  bool   empty() const { return _items.empty(); }
@@ -5443,9 +5463,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  139|      2|  }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> >::at(unsigned long):
-  |  137|     10|      StoredValue&> {
-  |  138|     10|    return at_impl(idx, typename category::determine_bool_tag<Value>::type{});
-  |  139|     10|  }
+  |  137|     12|      StoredValue&> {
+  |  138|     12|    return at_impl(idx, typename category::determine_bool_tag<Value>::type{});
+  |  139|     12|  }
   ------------------
   | falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>::at(unsigned long):
   |  137|      3|      StoredValue&> {
@@ -5506,7 +5526,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  142|     25|  const Container&   items() const { return _items; }
   ------------------
   | falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>::items() const:
-  |  142|      5|  const Container&   items() const { return _items; }
+  |  142|      6|  const Container&   items() const { return _items; }
   ------------------
   | falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>::items() const:
   |  142|     78|  const Container&   items() const { return _items; }
@@ -5543,7 +5563,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   | falcon_core::generic::List<falcon_core::physics::device_structures::Connection>::items():
   |  143|      3|  Container&         items() { return _items; }
   ------------------
-  144|  9.76k|  iterator           begin() { return _items.begin(); }
+  144|  10.4k|  iterator           begin() { return _items.begin(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::begin():
   |  144|     10|  iterator           begin() { return _items.begin(); }
@@ -5554,10 +5574,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   | Unexecuted instantiation: falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>::begin()
   ------------------
   | falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>::begin():
-  |  144|      1|  iterator           begin() { return _items.begin(); }
+  |  144|      2|  iterator           begin() { return _items.begin(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> >::begin():
-  |  144|  2.29k|  iterator           begin() { return _items.begin(); }
+  |  144|  2.74k|  iterator           begin() { return _items.begin(); }
   ------------------
   | falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>::begin():
   |  144|     72|  iterator           begin() { return _items.begin(); }
@@ -5569,13 +5589,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  144|     14|  iterator           begin() { return _items.begin(); }
   ------------------
   | falcon_core::generic::List<falcon_core::physics::device_structures::Connection>::begin():
-  |  144|  3.57k|  iterator           begin() { return _items.begin(); }
+  |  144|  3.65k|  iterator           begin() { return _items.begin(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, double> >::begin():
   |  144|     14|  iterator           begin() { return _items.begin(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double> >::begin():
-  |  144|    582|  iterator           begin() { return _items.begin(); }
+  |  144|    707|  iterator           begin() { return _items.begin(); }
   ------------------
   | falcon_core::generic::List<double>::begin():
   |  144|     49|  iterator           begin() { return _items.begin(); }
@@ -5584,7 +5604,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  144|      1|  iterator           begin() { return _items.begin(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > >::begin():
-  |  144|    254|  iterator           begin() { return _items.begin(); }
+  |  144|    316|  iterator           begin() { return _items.begin(); }
   ------------------
   | falcon_core::generic::List<int>::begin():
   |  144|     40|  iterator           begin() { return _items.begin(); }
@@ -5619,7 +5639,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connections> >::begin():
   |  144|     20|  iterator           begin() { return _items.begin(); }
   ------------------
-  145|  14.0k|  iterator           end() { return _items.end(); }
+  145|  15.4k|  iterator           end() { return _items.end(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::end():
   |  145|     18|  iterator           end() { return _items.end(); }
@@ -5630,10 +5650,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   | Unexecuted instantiation: falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>::end()
   ------------------
   | falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>::end():
-  |  145|      1|  iterator           end() { return _items.end(); }
+  |  145|      2|  iterator           end() { return _items.end(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> >::end():
-  |  145|  5.05k|  iterator           end() { return _items.end(); }
+  |  145|  6.05k|  iterator           end() { return _items.end(); }
   ------------------
   | falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>::end():
   |  145|     72|  iterator           end() { return _items.end(); }
@@ -5645,13 +5665,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  145|     14|  iterator           end() { return _items.end(); }
   ------------------
   | falcon_core::generic::List<falcon_core::physics::device_structures::Connection>::end():
-  |  145|  3.59k|  iterator           end() { return _items.end(); }
+  |  145|  3.67k|  iterator           end() { return _items.end(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, double> >::end():
   |  145|     32|  iterator           end() { return _items.end(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double> >::end():
-  |  145|  1.02k|  iterator           end() { return _items.end(); }
+  |  145|  1.23k|  iterator           end() { return _items.end(); }
   ------------------
   | falcon_core::generic::List<double>::end():
   |  145|     58|  iterator           end() { return _items.end(); }
@@ -5660,7 +5680,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  145|      1|  iterator           end() { return _items.end(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > >::end():
-  |  145|    722|  iterator           end() { return _items.end(); }
+  |  145|    901|  iterator           end() { return _items.end(); }
   ------------------
   | falcon_core::generic::List<int>::end():
   |  145|     40|  iterator           end() { return _items.end(); }
@@ -5695,13 +5715,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connections> >::end():
   |  145|     41|  iterator           end() { return _items.end(); }
   ------------------
-  146|  1.74k|  const_iterator     begin() const { return _items.begin(); }
+  146|  1.77k|  const_iterator     begin() const { return _items.begin(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> >::begin() const:
-  |  146|     75|  const_iterator     begin() const { return _items.begin(); }
+  |  146|     84|  const_iterator     begin() const { return _items.begin(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > >::begin() const:
-  |  146|    110|  const_iterator     begin() const { return _items.begin(); }
+  |  146|    128|  const_iterator     begin() const { return _items.begin(); }
   ------------------
   | falcon_core::generic::List<falcon_core::physics::device_structures::Connection>::begin() const:
   |  146|  1.55k|  const_iterator     begin() const { return _items.begin(); }
@@ -5709,13 +5729,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   | falcon_core::generic::List<falcon_core::physics::config::geometries::DotGateWithNeighbors>::begin() const:
   |  146|      8|  const_iterator     begin() const { return _items.begin(); }
   ------------------
-  147|  1.74k|  const_iterator     end() const { return _items.end(); }
+  147|  1.77k|  const_iterator     end() const { return _items.end(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> >::end() const:
-  |  147|     75|  const_iterator     end() const { return _items.end(); }
+  |  147|     84|  const_iterator     end() const { return _items.end(); }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > >::end() const:
-  |  147|    110|  const_iterator     end() const { return _items.end(); }
+  |  147|    128|  const_iterator     end() const { return _items.end(); }
   ------------------
   | falcon_core::generic::List<falcon_core::physics::device_structures::Connection>::end() const:
   |  147|  1.55k|  const_iterator     end() const { return _items.end(); }
@@ -5723,10 +5743,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   | falcon_core::generic::List<falcon_core::physics::config::geometries::DotGateWithNeighbors>::end() const:
   |  147|      8|  const_iterator     end() const { return _items.end(); }
   ------------------
-  148|  6.54k|  bool               contains(const StoredValue& value) const {
-  149|  6.54k|    return contains_impl(value,
-  150|  6.54k|                         typename category::determine_tag<Value>::type{});
-  151|  6.54k|  }
+  148|  6.60k|  bool               contains(const StoredValue& value) const {
+  149|  6.60k|    return contains_impl(value,
+  150|  6.60k|                         typename category::determine_tag<Value>::type{});
+  151|  6.60k|  }
   ------------------
   | falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>::contains(std::shared_ptr<falcon_core::autotuner_interfaces::contexts::AcquisitionContext> const&) const:
   |  148|     35|  bool               contains(const StoredValue& value) const {
@@ -5741,10 +5761,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  151|     23|  }
   ------------------
   | falcon_core::generic::List<falcon_core::physics::device_structures::Connection>::contains(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&) const:
-  |  148|  6.49k|  bool               contains(const StoredValue& value) const {
-  |  149|  6.49k|    return contains_impl(value,
-  |  150|  6.49k|                         typename category::determine_tag<Value>::type{});
-  |  151|  6.49k|  }
+  |  148|  6.54k|  bool               contains(const StoredValue& value) const {
+  |  149|  6.54k|    return contains_impl(value,
+  |  150|  6.54k|                         typename category::determine_tag<Value>::type{});
+  |  151|  6.54k|  }
   ------------------
   152|       |
   153|      4|  size_t index(const StoredValue& value) const {
@@ -6080,6 +6100,14 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  212|      2|    ar(cereal::base_class<generic::Song>(this), _items);
   |  213|      2|  }
   ------------------
+  | Unexecuted instantiation: void falcon_core::generic::List<bool>::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive&)
+  ------------------
+  | Unexecuted instantiation: void falcon_core::generic::List<bool>::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive&)
+  ------------------
+  | Unexecuted instantiation: void falcon_core::generic::List<bool>::serialize<cereal::BinaryOutputArchive>(cereal::BinaryOutputArchive&)
+  ------------------
+  | Unexecuted instantiation: void falcon_core::generic::List<bool>::serialize<cereal::BinaryInputArchive>(cereal::BinaryInputArchive&)
+  ------------------
   | void falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> >::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive&):
   |  211|      1|  void serialize(Archive& ar) {
   |  212|      1|    ar(cereal::base_class<generic::Song>(this), _items);
@@ -6273,14 +6301,14 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  229|      2|  }
   ------------------
   | falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> >::at_impl(unsigned long, falcon_core::generic::category::other_tag):
-  |  222|     10|  StoredValue& at_impl(size_t idx, category::other_tag) {
-  |  223|     10|    if (idx >= _items.size()) {
+  |  222|     12|  StoredValue& at_impl(size_t idx, category::other_tag) {
+  |  223|     12|    if (idx >= _items.size()) {
   |  224|      0|      throw std::out_of_range("List: The index " + std::to_string(idx) +
   |  225|      0|                              " exceeds the length of the array " +
   |  226|      0|                              std::to_string(_items.size()));
   |  227|      0|    }
-  |  228|     10|    return _items.at(idx);
-  |  229|     10|  }
+  |  228|     12|    return _items.at(idx);
+  |  229|     12|  }
   ------------------
   | falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>::at_impl(unsigned long, falcon_core::generic::category::other_tag):
   |  222|      3|  StoredValue& at_impl(size_t idx, category::other_tag) {
@@ -6523,10 +6551,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   277|       |    static_assert(sizeof(T) == 0, "Unsupported type for List");
   278|       |  }
   279|       |  template <typename T>
-  280|  33.1k|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
-  281|  33.1k|    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
-  282|  33.0k|    _items.push_back(item);
-  283|  33.0k|  }
+  280|  33.5k|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
+  281|  33.5k|    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
+  282|  33.5k|    _items.push_back(item);
+  283|  33.5k|  }
   ------------------
   | void falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>::push_back_impl<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(std::shared_ptr<falcon_core::autotuner_interfaces::contexts::MeasurementContext> const&, falcon_core::generic::category::song_tag):
   |  280|      9|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
@@ -6577,16 +6605,16 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  283|      6|  }
   ------------------
   | void falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>::push_back_impl<falcon_core::communications::voltage_states::DeviceVoltageState>(std::shared_ptr<falcon_core::communications::voltage_states::DeviceVoltageState> const&, falcon_core::generic::category::song_tag):
-  |  280|     17|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
-  |  281|     17|    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
-  |  282|     17|    _items.push_back(item);
-  |  283|     17|  }
+  |  280|     21|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
+  |  281|     21|    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
+  |  282|     21|    _items.push_back(item);
+  |  283|     21|  }
   ------------------
   | void falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> >::push_back_impl<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> >(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> > const&, falcon_core::generic::category::song_tag):
-  |  280|    923|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
-  |  281|    923|    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
-  |  282|    923|    _items.push_back(item);
-  |  283|    923|  }
+  |  280|  1.08k|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
+  |  281|  1.08k|    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
+  |  282|  1.08k|    _items.push_back(item);
+  |  283|  1.08k|  }
   ------------------
   | void falcon_core::generic::List<falcon_core::instrument_interfaces::port_transforms::PortTransform>::push_back_impl<falcon_core::instrument_interfaces::port_transforms::PortTransform>(std::shared_ptr<falcon_core::instrument_interfaces::port_transforms::PortTransform> const&, falcon_core::generic::category::song_tag):
   |  280|     90|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
@@ -6607,10 +6635,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  283|    224|  }
   ------------------
   | void falcon_core::generic::List<falcon_core::physics::device_structures::Connection>::push_back_impl<falcon_core::physics::device_structures::Connection>(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&, falcon_core::generic::category::song_tag):
-  |  280|  23.7k|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
-  |  281|  23.7k|    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
-  |  282|  23.7k|    _items.push_back(item);
-  |  283|  23.7k|  }
+  |  280|  23.8k|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
+  |  281|  23.8k|    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
+  |  282|  23.8k|    _items.push_back(item);
+  |  283|  23.8k|  }
   ------------------
   | void falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>::push_back_impl<falcon_core::math::discrete_spaces::Discretizer>(std::shared_ptr<falcon_core::math::discrete_spaces::Discretizer> const&, falcon_core::generic::category::song_tag):
   |  280|    143|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
@@ -6625,16 +6653,16 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  283|    101|  }
   ------------------
   | void falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > >::push_back_impl<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > >(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > > const&, falcon_core::generic::category::song_tag):
-  |  280|    219|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
-  |  281|    219|    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
-  |  282|    219|    _items.push_back(item);
-  |  283|    219|  }
+  |  280|    274|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
+  |  281|    274|    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
+  |  282|    274|    _items.push_back(item);
+  |  283|    274|  }
   ------------------
   | void falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double> >::push_back_impl<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double> >(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double> > const&, falcon_core::generic::category::song_tag):
-  |  280|    378|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
-  |  281|    378|    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
-  |  282|    378|    _items.push_back(item);
-  |  283|    378|  }
+  |  280|    460|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
+  |  281|    460|    if (!item) throw std::invalid_argument("List: Cannot push nullptr");
+  |  282|    460|    _items.push_back(item);
+  |  283|    460|  }
   ------------------
   | void falcon_core::generic::List<falcon_core::generic::FArray<double> >::push_back_impl<falcon_core::generic::FArray<double> >(std::shared_ptr<falcon_core::generic::FArray<double> > const&, falcon_core::generic::category::song_tag):
   |  280|     16|  void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
@@ -6728,17 +6756,17 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   292|       |  }
   293|       |  template <typename T>
   294|       |  bool contains_impl(const std::shared_ptr<T>& value,
-  295|  6.54k|                     category::song_tag) const {
-  296|  6.54k|    if (!value) {
+  295|  6.60k|                     category::song_tag) const {
+  296|  6.60k|    if (!value) {
   297|      0|      throw std::invalid_argument(
   298|      0|          "List: The value must be specified and not null to check if this "
   299|      0|          "list contains it.");
   300|      0|    }
   301|       |
-  302|  6.54k|    return std::any_of(
-  303|  30.1k|        _items.begin(), _items.end(), [&value](const StoredValue& item) {
-  304|  30.1k|          return *item == *value;
-  305|  30.1k|        });
+  302|  6.60k|    return std::any_of(
+  303|  30.2k|        _items.begin(), _items.end(), [&value](const StoredValue& item) {
+  304|  30.2k|          return *item == *value;
+  305|  30.2k|        });
   ------------------
   | falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>::contains_impl<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(std::shared_ptr<falcon_core::autotuner_interfaces::contexts::AcquisitionContext> const&, falcon_core::generic::category::song_tag) const::{lambda(std::shared_ptr<falcon_core::autotuner_interfaces::contexts::AcquisitionContext> const&)#1}::operator()(std::shared_ptr<falcon_core::autotuner_interfaces::contexts::AcquisitionContext> const&) const:
   |  303|     14|        _items.begin(), _items.end(), [&value](const StoredValue& item) {
@@ -6751,11 +6779,11 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  305|     25|        });
   ------------------
   | falcon_core::generic::List<falcon_core::physics::device_structures::Connection>::contains_impl<falcon_core::physics::device_structures::Connection>(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&, falcon_core::generic::category::song_tag) const::{lambda(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&)#1}::operator()(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&) const:
-  |  303|  30.1k|        _items.begin(), _items.end(), [&value](const StoredValue& item) {
-  |  304|  30.1k|          return *item == *value;
-  |  305|  30.1k|        });
+  |  303|  30.2k|        _items.begin(), _items.end(), [&value](const StoredValue& item) {
+  |  304|  30.2k|          return *item == *value;
+  |  305|  30.2k|        });
   ------------------
-  306|  6.54k|  }
+  306|  6.60k|  }
   ------------------
   | bool falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>::contains_impl<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(std::shared_ptr<falcon_core::autotuner_interfaces::contexts::AcquisitionContext> const&, falcon_core::generic::category::song_tag) const:
   |  295|     35|                     category::song_tag) const {
@@ -6786,18 +6814,18 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  306|     23|  }
   ------------------
   | bool falcon_core::generic::List<falcon_core::physics::device_structures::Connection>::contains_impl<falcon_core::physics::device_structures::Connection>(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&, falcon_core::generic::category::song_tag) const:
-  |  295|  6.49k|                     category::song_tag) const {
-  |  296|  6.49k|    if (!value) {
+  |  295|  6.54k|                     category::song_tag) const {
+  |  296|  6.54k|    if (!value) {
   |  297|      0|      throw std::invalid_argument(
   |  298|      0|          "List: The value must be specified and not null to check if this "
   |  299|      0|          "list contains it.");
   |  300|      0|    }
   |  301|       |
-  |  302|  6.49k|    return std::any_of(
-  |  303|  6.49k|        _items.begin(), _items.end(), [&value](const StoredValue& item) {
-  |  304|  6.49k|          return *item == *value;
-  |  305|  6.49k|        });
-  |  306|  6.49k|  }
+  |  302|  6.54k|    return std::any_of(
+  |  303|  6.54k|        _items.begin(), _items.end(), [&value](const StoredValue& item) {
+  |  304|  6.54k|          return *item == *value;
+  |  305|  6.54k|        });
+  |  306|  6.54k|  }
   ------------------
   307|       |  template <typename T>
   308|       |  bool contains_impl(const T& value, category::primitive_tag) const {
@@ -6965,7 +6993,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    23|       |  using const_iterator = typename Container::const_iterator;
    24|       |
    25|       | public:
-   26|    731|  Map() : _items(std::make_shared<Container>()) {}
+   26|    842|  Map() : _items(std::make_shared<Container>()) {}
   ------------------
   | Unexecuted instantiation: falcon_core::generic::Map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Map()
   ------------------
@@ -6976,18 +7004,19 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |   26|      9|  Map() : _items(std::make_shared<Container>()) {}
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::Map():
-  |   26|    100|  Map() : _items(std::make_shared<Container>()) {}
+  |   26|    110|  Map() : _items(std::make_shared<Container>()) {}
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::Map():
-  |   26|    373|  Map() : _items(std::make_shared<Container>()) {}
+  |   26|    445|  Map() : _items(std::make_shared<Container>()) {}
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, double>::Map():
   |   26|     39|  Map() : _items(std::make_shared<Container>()) {}
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::Map():
-  |   26|    112|  Map() : _items(std::make_shared<Container>()) {}
+  |   26|    140|  Map() : _items(std::make_shared<Container>()) {}
   ------------------
-  | Unexecuted instantiation: falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::Map()
+  | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::Map():
+  |   26|      1|  Map() : _items(std::make_shared<Container>()) {}
   ------------------
   | falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>::Map():
   |   26|     12|  Map() : _items(std::make_shared<Container>()) {}
@@ -7033,14 +7062,14 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    44|       |  }
    45|       |
    46|       |  void insert_or_assign(const typename ContainerItem::StoredT1& key,
-   47|     94|                        const typename ContainerItem::StoredT2& value) {
-   48|     94|    auto it = find(key);
-   49|     94|    if (it != _items->end()) {
+   47|    102|                        const typename ContainerItem::StoredT2& value) {
+   48|    102|    auto it = find(key);
+   49|    102|    if (it != _items->end()) {
    50|      0|      (*it)->second() = value;
-   51|     94|    } else {
-   52|     94|      _items->push_back(std::make_shared<Pair<Key, Value>>(key, value));
-   53|     94|    }
-   54|     94|  }
+   51|    102|    } else {
+   52|    102|      _items->push_back(std::make_shared<Pair<Key, Value>>(key, value));
+   53|    102|    }
+   54|    102|  }
   ------------------
   | falcon_core::generic::Map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::insert_or_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&):
   |   47|      6|                        const typename ContainerItem::StoredT2& value) {
@@ -7053,14 +7082,14 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |   54|      6|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::insert_or_assign(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&, std::shared_ptr<falcon_core::math::Quantity> const&):
-  |   47|     84|                        const typename ContainerItem::StoredT2& value) {
-  |   48|     84|    auto it = find(key);
-  |   49|     84|    if (it != _items->end()) {
+  |   47|     92|                        const typename ContainerItem::StoredT2& value) {
+  |   48|     92|    auto it = find(key);
+  |   49|     92|    if (it != _items->end()) {
   |   50|      0|      (*it)->second() = value;
-  |   51|     84|    } else {
-  |   52|     84|      _items->push_back(std::make_shared<Pair<Key, Value>>(key, value));
-  |   53|     84|    }
-  |   54|     84|  }
+  |   51|     92|    } else {
+  |   52|     92|      _items->push_back(std::make_shared<Pair<Key, Value>>(key, value));
+  |   53|     92|    }
+  |   54|     92|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connections>::insert_or_assign(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&, std::shared_ptr<falcon_core::physics::device_structures::Connections> const&):
   |   47|      4|                        const typename ContainerItem::StoredT2& value) {
@@ -7075,34 +7104,34 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    55|       |
    56|       |  std::pair<iterator, bool> insert(
    57|       |      const typename ContainerItem::StoredT1& key,
-   58|  1.12k|      const typename ContainerItem::StoredT2& value) {
-   59|  1.12k|    auto it = find(key);
-   60|  1.12k|    if (it != _items->end()) {
+   58|  1.33k|      const typename ContainerItem::StoredT2& value) {
+   59|  1.33k|    auto it = find(key);
+   60|  1.33k|    if (it != _items->end()) {
    61|      1|      return {it, false};
    62|      1|    }
-   63|  1.12k|    _items->push_back(std::make_shared<Pair<Key, Value>>(key, value));
-   64|  1.12k|    return {std::prev(_items->end()), true};
-   65|  1.12k|  }
+   63|  1.33k|    _items->push_back(std::make_shared<Pair<Key, Value>>(key, value));
+   64|  1.33k|    return {std::prev(_items->end()), true};
+   65|  1.33k|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::insert(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&, std::shared_ptr<falcon_core::math::Quantity> const&):
-  |   58|    839|      const typename ContainerItem::StoredT2& value) {
-  |   59|    839|    auto it = find(key);
-  |   60|    839|    if (it != _items->end()) {
+  |   58|    993|      const typename ContainerItem::StoredT2& value) {
+  |   59|    993|    auto it = find(key);
+  |   60|    993|    if (it != _items->end()) {
   |   61|      0|      return {it, false};
   |   62|      0|    }
-  |   63|    839|    _items->push_back(std::make_shared<Pair<Key, Value>>(key, value));
-  |   64|    839|    return {std::prev(_items->end()), true};
-  |   65|    839|  }
+  |   63|    993|    _items->push_back(std::make_shared<Pair<Key, Value>>(key, value));
+  |   64|    993|    return {std::prev(_items->end()), true};
+  |   65|    993|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::insert(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&, std::shared_ptr<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > const&):
-  |   58|    219|      const typename ContainerItem::StoredT2& value) {
-  |   59|    219|    auto it = find(key);
-  |   60|    219|    if (it != _items->end()) {
+  |   58|    274|      const typename ContainerItem::StoredT2& value) {
+  |   59|    274|    auto it = find(key);
+  |   60|    274|    if (it != _items->end()) {
   |   61|      0|      return {it, false};
   |   62|      0|    }
-  |   63|    219|    _items->push_back(std::make_shared<Pair<Key, Value>>(key, value));
-  |   64|    219|    return {std::prev(_items->end()), true};
-  |   65|    219|  }
+  |   63|    274|    _items->push_back(std::make_shared<Pair<Key, Value>>(key, value));
+  |   64|    274|    return {std::prev(_items->end()), true};
+  |   65|    274|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, double>::insert(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&, double const&):
   |   58|     52|      const typename ContainerItem::StoredT2& value) {
@@ -7183,27 +7212,27 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |   72|     62|        });
   |   73|     62|  }
   ------------------
-   74|  2.48k|  iterator find(const std::shared_ptr<Key>& key) {
-   75|  2.48k|    if (!key) return _items->end();
-   76|  2.48k|    return std::find_if(
-   77|  2.48k|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
-   78|  1.83k|          return v->first() && (*v->first() == *key);
-   79|  1.83k|        });
+   74|  2.90k|  iterator find(const std::shared_ptr<Key>& key) {
+   75|  2.90k|    if (!key) return _items->end();
+   76|  2.90k|    return std::find_if(
+   77|  2.90k|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
+   78|  2.17k|          return v->first() && (*v->first() == *key);
+   79|  2.17k|        });
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::find(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&)::{lambda(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> > const&)#1}::operator()(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> > const&) const:
-  |   77|  1.31k|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
-  |   78|  1.31k|          return v->first() && (*v->first() == *key);
-  |   79|  1.31k|        });
+  |   77|  1.57k|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
+  |   78|  1.57k|          return v->first() && (*v->first() == *key);
+  |   79|  1.57k|        });
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::find(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&)::{lambda(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > > const&)#1}::operator()(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > > const&) const:
-  |   77|    113|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
-  |   78|    113|          return v->first() && (*v->first() == *key);
-  |   79|    113|        });
+  |   77|    144|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
+  |   78|    144|          return v->first() && (*v->first() == *key);
+  |   79|    144|        });
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, double>::find(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&)::{lambda(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double> > const&)#1}::operator()(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double> > const&) const:
-  |   77|    204|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
-  |   78|    204|          return v->first() && (*v->first() == *key);
-  |   79|    204|        });
+  |   77|    246|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
+  |   78|    246|          return v->first() && (*v->first() == *key);
+  |   79|    246|        });
   ------------------
   | falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>::find(std::shared_ptr<falcon_core::autotuner_interfaces::names::Gname> const&)::{lambda(std::shared_ptr<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group> > const&)#1}::operator()(std::shared_ptr<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group> > const&) const:
   |   77|    156|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
@@ -7220,34 +7249,34 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |   78|     43|          return v->first() && (*v->first() == *key);
   |   79|     43|        });
   ------------------
-   80|  2.48k|  }
+   80|  2.90k|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::find(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&):
-  |   74|  1.48k|  iterator find(const std::shared_ptr<Key>& key) {
-  |   75|  1.48k|    if (!key) return _items->end();
-  |   76|  1.48k|    return std::find_if(
-  |   77|  1.48k|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
-  |   78|  1.48k|          return v->first() && (*v->first() == *key);
-  |   79|  1.48k|        });
-  |   80|  1.48k|  }
+  |   74|  1.76k|  iterator find(const std::shared_ptr<Key>& key) {
+  |   75|  1.76k|    if (!key) return _items->end();
+  |   76|  1.76k|    return std::find_if(
+  |   77|  1.76k|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
+  |   78|  1.76k|          return v->first() && (*v->first() == *key);
+  |   79|  1.76k|        });
+  |   80|  1.76k|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::find(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&):
-  |   74|    221|  iterator find(const std::shared_ptr<Key>& key) {
-  |   75|    221|    if (!key) return _items->end();
-  |   76|    221|    return std::find_if(
-  |   77|    221|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
-  |   78|    221|          return v->first() && (*v->first() == *key);
-  |   79|    221|        });
-  |   80|    221|  }
+  |   74|    277|  iterator find(const std::shared_ptr<Key>& key) {
+  |   75|    277|    if (!key) return _items->end();
+  |   76|    277|    return std::find_if(
+  |   77|    277|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
+  |   78|    277|          return v->first() && (*v->first() == *key);
+  |   79|    277|        });
+  |   80|    277|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, double>::find(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&):
-  |   74|    390|  iterator find(const std::shared_ptr<Key>& key) {
-  |   75|    390|    if (!key) return _items->end();
-  |   76|    390|    return std::find_if(
-  |   77|    390|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
-  |   78|    390|          return v->first() && (*v->first() == *key);
-  |   79|    390|        });
-  |   80|    390|  }
+  |   74|    472|  iterator find(const std::shared_ptr<Key>& key) {
+  |   75|    472|    if (!key) return _items->end();
+  |   76|    472|    return std::find_if(
+  |   77|    472|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
+  |   78|    472|          return v->first() && (*v->first() == *key);
+  |   79|    472|        });
+  |   80|    472|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>::find(std::shared_ptr<falcon_core::autotuner_interfaces::names::Gname> const&):
   |   74|    350|  iterator find(const std::shared_ptr<Key>& key) {
@@ -7282,51 +7311,51 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    84|       |          return v->first() == key;
    85|       |        });
    86|       |  }
-   87|    466|  const_iterator find(const std::shared_ptr<Key>& key) const {
-   88|    466|    if (!key) return _items->end();
-   89|    466|    return std::find_if(
-   90|    691|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
-   91|    691|          return v->first() && (*v->first() == *key);
-   92|    691|        });
+   87|    578|  const_iterator find(const std::shared_ptr<Key>& key) const {
+   88|    578|    if (!key) return _items->end();
+   89|    578|    return std::find_if(
+   90|    856|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
+   91|    856|          return v->first() && (*v->first() == *key);
+   92|    856|        });
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::find(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&) const::{lambda(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> > const&)#1}::operator()(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> > const&) const:
-  |   90|    653|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
-  |   91|    653|          return v->first() && (*v->first() == *key);
-  |   92|    653|        });
+  |   90|    810|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
+  |   91|    810|          return v->first() && (*v->first() == *key);
+  |   92|    810|        });
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::find(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&) const::{lambda(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > > const&)#1}::operator()(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > > const&) const:
-  |   90|     38|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
-  |   91|     38|          return v->first() && (*v->first() == *key);
-  |   92|     38|        });
+  |   90|     46|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
+  |   91|     46|          return v->first() && (*v->first() == *key);
+  |   92|     46|        });
   ------------------
-   93|    466|  }
+   93|    578|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::find(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&) const:
-  |   87|    438|  const_iterator find(const std::shared_ptr<Key>& key) const {
-  |   88|    438|    if (!key) return _items->end();
-  |   89|    438|    return std::find_if(
-  |   90|    438|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
-  |   91|    438|          return v->first() && (*v->first() == *key);
-  |   92|    438|        });
-  |   93|    438|  }
+  |   87|    544|  const_iterator find(const std::shared_ptr<Key>& key) const {
+  |   88|    544|    if (!key) return _items->end();
+  |   89|    544|    return std::find_if(
+  |   90|    544|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
+  |   91|    544|          return v->first() && (*v->first() == *key);
+  |   92|    544|        });
+  |   93|    544|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::find(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&) const:
-  |   87|     28|  const_iterator find(const std::shared_ptr<Key>& key) const {
-  |   88|     28|    if (!key) return _items->end();
-  |   89|     28|    return std::find_if(
-  |   90|     28|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
-  |   91|     28|          return v->first() && (*v->first() == *key);
-  |   92|     28|        });
-  |   93|     28|  }
+  |   87|     34|  const_iterator find(const std::shared_ptr<Key>& key) const {
+  |   88|     34|    if (!key) return _items->end();
+  |   89|     34|    return std::find_if(
+  |   90|     34|        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
+  |   91|     34|          return v->first() && (*v->first() == *key);
+  |   92|     34|        });
+  |   93|     34|  }
   ------------------
    94|       |
    95|       |  // at
    96|       |  typename ContainerItem::StoredT2 at(
-   97|    505|      const typename ContainerItem::StoredT1& key) {
-   98|    505|    iterator it = find(key);
-   99|    505|    if (it == _items->end()) throw std::out_of_range("Map: Key not found");
-  100|    504|    return (*it)->second();
-  101|    505|  }
+   97|    607|      const typename ContainerItem::StoredT1& key) {
+   98|    607|    iterator it = find(key);
+   99|    607|    if (it == _items->end()) throw std::out_of_range("Map: Key not found");
+  100|    606|    return (*it)->second();
+  101|    607|  }
   ------------------
   | falcon_core::generic::Map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::at(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&):
   |   97|      2|      const typename ContainerItem::StoredT1& key) {
@@ -7343,11 +7372,11 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  101|      7|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::at(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&):
-  |   97|    454|      const typename ContainerItem::StoredT1& key) {
-  |   98|    454|    iterator it = find(key);
-  |   99|    454|    if (it == _items->end()) throw std::out_of_range("Map: Key not found");
-  |  100|    454|    return (*it)->second();
-  |  101|    454|  }
+  |   97|    556|      const typename ContainerItem::StoredT1& key) {
+  |   98|    556|    iterator it = find(key);
+  |   99|    556|    if (it == _items->end()) throw std::out_of_range("Map: Key not found");
+  |  100|    556|    return (*it)->second();
+  |  101|    556|  }
   ------------------
   | falcon_core::generic::Map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool>::at(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&):
   |   97|      1|      const typename ContainerItem::StoredT1& key) {
@@ -7364,11 +7393,11 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  101|     41|  }
   ------------------
   102|       |  const typename ContainerItem::StoredT2 at(
-  103|     28|      const typename ContainerItem::StoredT1& key) const {
-  104|     28|    const_iterator it = find(key);
-  105|     28|    if (it == _items->end()) throw std::out_of_range("Map: Key not found");
-  106|     28|    return (*it)->second();
-  107|     28|  }
+  103|     34|      const typename ContainerItem::StoredT1& key) const {
+  104|     34|    const_iterator it = find(key);
+  105|     34|    if (it == _items->end()) throw std::out_of_range("Map: Key not found");
+  106|     34|    return (*it)->second();
+  107|     34|  }
   108|       |
   109|       |  typename ContainerItem::StoredT2& operator[](
   110|     29|      const typename ContainerItem::StoredT1& key) {
@@ -7414,13 +7443,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   127|       |  }
   128|       |
   129|       |  // size
-  130|     66|  std::size_t size() const { return _items->size(); }
+  130|     69|  std::size_t size() const { return _items->size(); }
   ------------------
   | falcon_core::generic::Map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, double>::size() const:
   |  130|     15|  std::size_t size() const { return _items->size(); }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::size() const:
-  |  130|     30|  std::size_t size() const { return _items->size(); }
+  |  130|     33|  std::size_t size() const { return _items->size(); }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::size() const:
   |  130|      9|  std::size_t size() const { return _items->size(); }
@@ -7436,30 +7465,30 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   136|       |  void clear() { _items->clear(); }
   137|       |
   138|       |  // iterators
-  139|    352|  iterator       begin() { return _items->begin(); }
+  139|    405|  iterator       begin() { return _items->begin(); }
   ------------------
   | falcon_core::generic::Map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::begin():
   |  139|      2|  iterator       begin() { return _items->begin(); }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, double>::begin():
-  |  139|    181|  iterator       begin() { return _items->begin(); }
+  |  139|    224|  iterator       begin() { return _items->begin(); }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::begin():
-  |  139|     79|  iterator       begin() { return _items->begin(); }
+  |  139|     89|  iterator       begin() { return _items->begin(); }
   ------------------
   | falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>::begin():
   |  139|     90|  iterator       begin() { return _items->begin(); }
   ------------------
-  140|    440|  iterator       end() { return _items->end(); }
+  140|    501|  iterator       end() { return _items->end(); }
   ------------------
   | falcon_core::generic::Map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::end():
   |  140|      2|  iterator       end() { return _items->end(); }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, double>::end():
-  |  140|    181|  iterator       end() { return _items->end(); }
+  |  140|    224|  iterator       end() { return _items->end(); }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::end():
-  |  140|    167|  iterator       end() { return _items->end(); }
+  |  140|    185|  iterator       end() { return _items->end(); }
   ------------------
   | falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>::end():
   |  140|     90|  iterator       end() { return _items->end(); }
@@ -7470,29 +7499,29 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   144|       |  const_iterator cend() const { return _items->cend(); }
   145|       |
   146|       |  // contains
-  147|    438|  bool contains(const typename ContainerItem::StoredT1& key) const {
-  148|    438|    return find(key) != _items->end();
-  149|    438|  }
+  147|    544|  bool contains(const typename ContainerItem::StoredT1& key) const {
+  148|    544|    return find(key) != _items->end();
+  149|    544|  }
   150|       |
   151|       |  /**
   152|       |   * @brief Return the keys of the Map.
   153|       |   */
-  154|    511|  const generic::ListSP<Key> keys() const {
-  155|    511|    generic::ListSP<Key> out = std::make_shared<generic::List<Key>>();
-  156|    869|    for (const ContainerItemSP pair : *_items) {
-  157|    869|      out->push_back(pair->first());
-  158|    869|    }
-  159|    511|    return out;
-  160|    511|  }
+  154|    563|  const generic::ListSP<Key> keys() const {
+  155|    563|    generic::ListSP<Key> out = std::make_shared<generic::List<Key>>();
+  156|    971|    for (const ContainerItemSP pair : *_items) {
+  157|    971|      out->push_back(pair->first());
+  158|    971|    }
+  159|    563|    return out;
+  160|    563|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::keys() const:
-  |  154|    223|  const generic::ListSP<Key> keys() const {
-  |  155|    223|    generic::ListSP<Key> out = std::make_shared<generic::List<Key>>();
-  |  156|    436|    for (const ContainerItemSP pair : *_items) {
-  |  157|    436|      out->push_back(pair->first());
-  |  158|    436|    }
-  |  159|    223|    return out;
-  |  160|    223|  }
+  |  154|    275|  const generic::ListSP<Key> keys() const {
+  |  155|    275|    generic::ListSP<Key> out = std::make_shared<generic::List<Key>>();
+  |  156|    538|    for (const ContainerItemSP pair : *_items) {
+  |  157|    538|      out->push_back(pair->first());
+  |  158|    538|    }
+  |  159|    275|    return out;
+  |  160|    275|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>::keys() const:
   |  154|    288|  const generic::ListSP<Key> keys() const {
@@ -7503,18 +7532,18 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  159|    288|    return out;
   |  160|    288|  }
   ------------------
-  161|    185|  const Container items() const { return *_items; }
+  161|    212|  const Container items() const { return *_items; }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::items() const:
-  |  161|     75|  const Container items() const { return *_items; }
+  |  161|     84|  const Container items() const { return *_items; }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::items() const:
-  |  161|    110|  const Container items() const { return *_items; }
+  |  161|    128|  const Container items() const { return *_items; }
   ------------------
-  162|    789|  Container       items() { return *_items; }
+  162|    939|  Container       items() { return *_items; }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::items():
-  |  162|    787|  Container       items() { return *_items; }
+  |  162|    937|  Container       items() { return *_items; }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::items():
   |  162|      2|  Container       items() { return *_items; }
@@ -7530,48 +7559,48 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   171|    654|    }
   172|    435|    return out;
   173|    435|  }
-  174|     12|  bool operator==(const Map<Key, Value>& other) const {
-  175|     12|    if (size() != other.size()) return false;
-  176|     12|    std::vector<size_t> unmatched_indexes(size());
-  177|     12|    std::iota(
-  178|     12|        unmatched_indexes.begin(), unmatched_indexes.end(), 0);  // 0..size()-1
+  174|     13|  bool operator==(const Map<Key, Value>& other) const {
+  175|     13|    if (size() != other.size()) return false;
+  176|     13|    std::vector<size_t> unmatched_indexes(size());
+  177|     13|    std::iota(
+  178|     13|        unmatched_indexes.begin(), unmatched_indexes.end(), 0);  // 0..size()-1
   179|       |
-  180|     19|    for (const PairSP<Key, Value>& pair : *_items) {
-  181|     19|      bool found = false;
-  182|     21|      for (auto it = unmatched_indexes.begin(); it != unmatched_indexes.end();
-  183|     20|           ++it) {
-  184|     20|        if (*pair == *other._items->at(*it)) {
-  185|     18|          unmatched_indexes.erase(it);  // Remove matched index
-  186|     18|          found = true;
-  187|     18|          break;
-  188|     18|        }
-  189|     20|      }
-  190|     19|      if (!found) return false;  // No match found for this pair
-  191|     19|    }
-  192|     11|    return unmatched_indexes.empty();  // All pairs matched
-  193|     12|  }
+  180|     21|    for (const PairSP<Key, Value>& pair : *_items) {
+  181|     21|      bool found = false;
+  182|     23|      for (auto it = unmatched_indexes.begin(); it != unmatched_indexes.end();
+  183|     22|           ++it) {
+  184|     22|        if (*pair == *other._items->at(*it)) {
+  185|     20|          unmatched_indexes.erase(it);  // Remove matched index
+  186|     20|          found = true;
+  187|     20|          break;
+  188|     20|        }
+  189|     22|      }
+  190|     21|      if (!found) return false;  // No match found for this pair
+  191|     21|    }
+  192|     12|    return unmatched_indexes.empty();  // All pairs matched
+  193|     13|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::operator==(falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> const&) const:
-  |  174|      5|  bool operator==(const Map<Key, Value>& other) const {
-  |  175|      5|    if (size() != other.size()) return false;
-  |  176|      5|    std::vector<size_t> unmatched_indexes(size());
-  |  177|      5|    std::iota(
-  |  178|      5|        unmatched_indexes.begin(), unmatched_indexes.end(), 0);  // 0..size()-1
+  |  174|      6|  bool operator==(const Map<Key, Value>& other) const {
+  |  175|      6|    if (size() != other.size()) return false;
+  |  176|      6|    std::vector<size_t> unmatched_indexes(size());
+  |  177|      6|    std::iota(
+  |  178|      6|        unmatched_indexes.begin(), unmatched_indexes.end(), 0);  // 0..size()-1
   |  179|       |
-  |  180|     10|    for (const PairSP<Key, Value>& pair : *_items) {
-  |  181|     10|      bool found = false;
-  |  182|     10|      for (auto it = unmatched_indexes.begin(); it != unmatched_indexes.end();
-  |  183|     10|           ++it) {
-  |  184|     10|        if (*pair == *other._items->at(*it)) {
-  |  185|     10|          unmatched_indexes.erase(it);  // Remove matched index
-  |  186|     10|          found = true;
-  |  187|     10|          break;
-  |  188|     10|        }
-  |  189|     10|      }
-  |  190|     10|      if (!found) return false;  // No match found for this pair
-  |  191|     10|    }
-  |  192|      5|    return unmatched_indexes.empty();  // All pairs matched
-  |  193|      5|  }
+  |  180|     12|    for (const PairSP<Key, Value>& pair : *_items) {
+  |  181|     12|      bool found = false;
+  |  182|     12|      for (auto it = unmatched_indexes.begin(); it != unmatched_indexes.end();
+  |  183|     12|           ++it) {
+  |  184|     12|        if (*pair == *other._items->at(*it)) {
+  |  185|     12|          unmatched_indexes.erase(it);  // Remove matched index
+  |  186|     12|          found = true;
+  |  187|     12|          break;
+  |  188|     12|        }
+  |  189|     12|      }
+  |  190|     12|      if (!found) return false;  // No match found for this pair
+  |  191|     12|    }
+  |  192|      6|    return unmatched_indexes.empty();  // All pairs matched
+  |  193|      6|  }
   ------------------
   | falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::operator==(falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > const&) const:
   |  174|      3|  bool operator==(const Map<Key, Value>& other) const {
@@ -7767,22 +7796,22 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    37|       |   * @param second The second value.
    38|       |   */
    39|       |  Pair(const StoredT1& first, const StoredT2& second)
-   40|  2.08k|      : _first(first), _second(second) {}
+   40|  2.43k|      : _first(first), _second(second) {}
   ------------------
   | falcon_core::generic::Pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::Pair(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&):
   |   40|      6|      : _first(first), _second(second) {}
   ------------------
   | falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::Pair(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&, std::shared_ptr<falcon_core::math::Quantity> const&):
-  |   40|    923|      : _first(first), _second(second) {}
+  |   40|  1.08k|      : _first(first), _second(second) {}
   ------------------
   | falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::Pair(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&, std::shared_ptr<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > const&):
-  |   40|    219|      : _first(first), _second(second) {}
+  |   40|    274|      : _first(first), _second(second) {}
   ------------------
   | falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>::Pair(std::shared_ptr<falcon_core::math::Quantity> const&, std::shared_ptr<falcon_core::math::Quantity> const&):
-  |   40|    219|      : _first(first), _second(second) {}
+  |   40|    274|      : _first(first), _second(second) {}
   ------------------
   | falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>::Pair(std::shared_ptr<falcon_core::physics::device_structures::Connection> const&, double const&):
-  |   40|    378|      : _first(first), _second(second) {}
+  |   40|    460|      : _first(first), _second(second) {}
   ------------------
   | falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>::Pair(std::shared_ptr<falcon_core::autotuner_interfaces::names::Gname> const&, std::shared_ptr<falcon_core::physics::config::core::Group> const&):
   |   40|    309|      : _first(first), _second(second) {}
@@ -7806,25 +7835,25 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    51|       |  /**
    52|       |   * @brief Get the stored first value.
    53|       |   */
-   54|  7.13k|  StoredT1& first() { return _first; }
+   54|  8.42k|  StoredT1& first() { return _first; }
   ------------------
   | falcon_core::generic::Pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::first():
   |   54|      8|  StoredT1& first() { return _first; }
   ------------------
   | falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::first():
-  |   54|  4.76k|  StoredT1& first() { return _first; }
+  |   54|  5.74k|  StoredT1& first() { return _first; }
   ------------------
   | falcon_core::generic::Pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, double>::first():
   |   54|      9|  StoredT1& first() { return _first; }
   ------------------
   | falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>::first():
-  |   54|    769|  StoredT1& first() { return _first; }
+  |   54|    939|  StoredT1& first() { return _first; }
   ------------------
   | falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::first():
-  |   54|    520|  StoredT1& first() { return _first; }
+  |   54|    634|  StoredT1& first() { return _first; }
   ------------------
   | falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>::first():
-  |   54|    142|  StoredT1& first() { return _first; }
+  |   54|    161|  StoredT1& first() { return _first; }
   ------------------
   | falcon_core::generic::Pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool>::first():
   |   54|      1|  StoredT1& first() { return _first; }
@@ -7841,7 +7870,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    55|       |  /**
    56|       |   * @brief Get the stored second value.
    57|       |   */
-   58|  2.59k|  StoredT2& second() { return _second; }
+   58|  2.91k|  StoredT2& second() { return _second; }
   ------------------
   | falcon_core::generic::Pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::second():
   |   58|      4|  StoredT2& second() { return _second; }
@@ -7850,16 +7879,16 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |   58|      9|  StoredT2& second() { return _second; }
   ------------------
   | falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>::second():
-  |   58|    373|  StoredT2& second() { return _second; }
+  |   58|    459|  StoredT2& second() { return _second; }
   ------------------
   | falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::second():
-  |   58|    990|  StoredT2& second() { return _second; }
+  |   58|  1.16k|  StoredT2& second() { return _second; }
   ------------------
   | falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::second():
-  |   58|    254|  StoredT2& second() { return _second; }
+  |   58|    297|  StoredT2& second() { return _second; }
   ------------------
   | falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>::second():
-  |   58|    114|  StoredT2& second() { return _second; }
+  |   58|    138|  StoredT2& second() { return _second; }
   ------------------
   | falcon_core::generic::Pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, bool>::second():
   |   58|      1|  StoredT2& second() { return _second; }
@@ -7871,18 +7900,18 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |   58|     14|  StoredT2& second() { return _second; }
   ------------------
    59|       |
-   60|     25|  bool operator==(const Pair<T1, T2>& other) const {
-   61|     25|    return operator_equal_impl(other,
-   62|     25|                               typename category::determine_tag<T1>::type{},
-   63|     25|                               typename category::determine_tag<T2>::type{});
-   64|     25|  }
+   60|     27|  bool operator==(const Pair<T1, T2>& other) const {
+   61|     27|    return operator_equal_impl(other,
+   62|     27|                               typename category::determine_tag<T1>::type{},
+   63|     27|                               typename category::determine_tag<T2>::type{});
+   64|     27|  }
   ------------------
   | falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::operator==(falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> const&) const:
-  |   60|     10|  bool operator==(const Pair<T1, T2>& other) const {
-  |   61|     10|    return operator_equal_impl(other,
-  |   62|     10|                               typename category::determine_tag<T1>::type{},
-  |   63|     10|                               typename category::determine_tag<T2>::type{});
-  |   64|     10|  }
+  |   60|     12|  bool operator==(const Pair<T1, T2>& other) const {
+  |   61|     12|    return operator_equal_impl(other,
+  |   62|     12|                               typename category::determine_tag<T1>::type{},
+  |   63|     12|                               typename category::determine_tag<T2>::type{});
+  |   64|     12|  }
   ------------------
   | falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::operator==(falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > const&) const:
   |   60|      6|  bool operator==(const Pair<T1, T2>& other) const {
@@ -8070,14 +8099,14 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    96|       |  template <typename U1, typename U2>
    97|       |  bool operator_equal_impl(const Pair<U1, U2>& other,
    98|       |                           category::song_tag,
-   99|     21|                           category::song_tag) const {
-  100|     21|    return (*_first == *other._first) && (*_second == *other._second);
-  101|     21|  }
+   99|     23|                           category::song_tag) const {
+  100|     23|    return (*_first == *other._first) && (*_second == *other._second);
+  101|     23|  }
   ------------------
   | bool falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>::operator_equal_impl<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>(falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> const&, falcon_core::generic::category::song_tag, falcon_core::generic::category::song_tag) const:
-  |   99|     10|                           category::song_tag) const {
-  |  100|     10|    return (*_first == *other._first) && (*_second == *other._second);
-  |  101|     10|  }
+  |   99|     12|                           category::song_tag) const {
+  |  100|     12|    return (*_first == *other._first) && (*_second == *other._second);
+  |  101|     12|  }
   ------------------
   | bool falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >::operator_equal_impl<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> >(falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > const&, falcon_core::generic::category::song_tag, falcon_core::generic::category::song_tag) const:
   |   99|      6|                           category::song_tag) const {
@@ -8145,13 +8174,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    47|       |
    48|       |class Song {
    49|       | public:
-   50|  59.2k|  virtual ~Song() = default;
+   50|  60.3k|  virtual ~Song() = default;
    51|       |  /**
    52|       |   * @brief cereal serialization interface.
    53|       |   * Override in derived classes.
    54|       |   */
    55|       |  template <class Archive>
-   56|  2.17k|  void serialize(Archive&) {}
+   56|  2.18k|  void serialize(Archive&) {}
   ------------------
   | void falcon_core::generic::Song::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive&):
   |   56|    584|  void serialize(Archive&) {}
@@ -14817,13 +14846,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   227|     32|  Unit() = default;  // or initialize _name with a default value
   228|       |  friend class cereal::access;
   229|       |  template <class Archive>
-  230|    410|  void serialize(Archive& ar) {
-  231|    410|    ar(cereal::base_class<Song>(this),
-  232|    410|       _scale_factor,
-  233|    410|       _offset,
-  234|    410|       _prefix,
-  235|    410|       _dimensions);
-  236|    410|  }
+  230|    416|  void serialize(Archive& ar) {
+  231|    416|    ar(cereal::base_class<Song>(this),
+  232|    416|       _scale_factor,
+  233|    416|       _offset,
+  234|    416|       _prefix,
+  235|    416|       _dimensions);
+  236|    416|  }
   ------------------
   | void falcon_core::physics::units::Unit::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive&):
   |  230|     31|  void serialize(Archive& ar) {
@@ -14835,13 +14864,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  236|     31|  }
   ------------------
   | void falcon_core::physics::units::Unit::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive&):
-  |  230|    377|  void serialize(Archive& ar) {
-  |  231|    377|    ar(cereal::base_class<Song>(this),
-  |  232|    377|       _scale_factor,
-  |  233|    377|       _offset,
-  |  234|    377|       _prefix,
-  |  235|    377|       _dimensions);
-  |  236|    377|  }
+  |  230|    383|  void serialize(Archive& ar) {
+  |  231|    383|    ar(cereal::base_class<Song>(this),
+  |  232|    383|       _scale_factor,
+  |  233|    383|       _offset,
+  |  234|    383|       _prefix,
+  |  235|    383|       _dimensions);
+  |  236|    383|  }
   ------------------
   | void falcon_core::physics::units::Unit::serialize<cereal::BinaryOutputArchive>(cereal::BinaryOutputArchive&):
   |  230|      1|  void serialize(Archive& ar) {
@@ -15893,20 +15922,20 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
     9|       |    const physics::device_structures::ConnectionSP& connection,
    10|       |    const double&                                   voltage,
    11|       |    const physics::units::SymbolUnitSP&             unit)
-   12|     32|    : math::Quantity(voltage, unit), _connection(connection) {
-   13|     32|  if (!connection) {
+   12|     34|    : math::Quantity(voltage, unit), _connection(connection) {
+   13|     34|  if (!connection) {
    14|      1|    throw std::invalid_argument(
    15|      1|        "DeviceVoltageState: The connection must not be null.");
    16|      1|  }
-   17|     32|}
+   17|     34|}
    18|       |
    19|       |DeviceVoltageState::DeviceVoltageState()
    20|      4|    : math::Quantity(), _connection(nullptr) {}
    21|       |
    22|       |const physics::device_structures::ConnectionSP& DeviceVoltageState::connection()
-   23|     33|    const {
-   24|     33|  return _connection;
-   25|     33|}
+   23|     35|    const {
+   24|     35|  return _connection;
+   25|     35|}
    26|       |
    27|      1|double DeviceVoltageState::voltage() const { return value(); }
    28|     12|bool   DeviceVoltageState::operator==(const DeviceVoltageState& other) const {
@@ -15947,23 +15976,23 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    17|      8|  return *states;
    18|      9|}
    19|       |DeviceVoltageStates::DeviceVoltageStates()
-   20|      8|    : generic::List<DeviceVoltageState>() {}
+   20|      9|    : generic::List<DeviceVoltageState>() {}
    21|       |
    22|       |DeviceVoltageStates::DeviceVoltageStates(
    23|       |    const generic::ListSP<DeviceVoltageState>& states)
    24|      9|    : generic::List<DeviceVoltageState>(dvs_check_and_deref(states)) {}
    25|       |
-   26|      2|const generic::ListSP<DeviceVoltageState> DeviceVoltageStates::states() const {
-   27|      2|  return std::make_shared<List<DeviceVoltageState>>(items());
-   28|      2|}
+   26|      3|const generic::ListSP<DeviceVoltageState> DeviceVoltageStates::states() const {
+   27|      3|  return std::make_shared<List<DeviceVoltageState>>(items());
+   28|      3|}
    29|       |
-   30|      6|void DeviceVoltageStates::add_state(const DeviceVoltageStateSP& state) {
-   31|      6|  if (!state) {
+   30|      8|void DeviceVoltageStates::add_state(const DeviceVoltageStateSP& state) {
+   31|      8|  if (!state) {
    32|      1|    throw std::invalid_argument(
    33|      1|        "DeviceVoltageState: The state to add must not be null.");
    34|      1|  }
-   35|      5|  push_back(state);
-   36|      5|}
+   35|      7|  push_back(state);
+   36|      7|}
    37|       |
    38|       |const DeviceVoltageStateSP DeviceVoltageStates::find_state(
    39|      4|    const physics::device_structures::ConnectionSP& connection) const {
@@ -15980,17 +16009,17 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    50|      1|  return nullptr;
    51|      3|}
    52|       |
-   53|      1|const math::PointSP DeviceVoltageStates::to_point() const {
-   54|      1|  generic::MapSP<physics::device_structures::Connection, math::Quantity>
-   55|      1|      rawPoint =
-   56|      1|          std::make_shared<generic::Map<physics::device_structures::Connection,
-   57|      1|                                        math::Quantity>>();
-   58|      1|  auto all_the_states = *states();
-   59|      2|  for (const DeviceVoltageStateSP& state : all_the_states) {
-   60|      2|    rawPoint->insert(state->connection(), state);
-   61|      2|  }
-   62|      1|  return std::make_shared<math::Point>(rawPoint);
-   63|      1|}
+   53|      2|const math::PointSP DeviceVoltageStates::to_point() const {
+   54|      2|  generic::MapSP<physics::device_structures::Connection, math::Quantity>
+   55|      2|      rawPoint =
+   56|      2|          std::make_shared<generic::Map<physics::device_structures::Connection,
+   57|      2|                                        math::Quantity>>();
+   58|      2|  auto all_the_states = *states();
+   59|      4|  for (const DeviceVoltageStateSP& state : all_the_states) {
+   60|      4|    rawPoint->insert(state->connection(), state);
+   61|      4|  }
+   62|      2|  return std::make_shared<math::Point>(rawPoint);
+   63|      2|}
    64|       |
    65|       |}  // namespace voltage_states
    66|       |}  // namespace communications
@@ -16013,21 +16042,21 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
     4|       |
     5|       |namespace falcon_core {
     6|       |namespace generic {
-    7|    550|std::string Song::to_json_string() const {
-    8|    550|  std::ostringstream oss;
-    9|    550|  to_json_stream(oss);
-   10|    550|  return oss.str();
-   11|    550|}
+    7|    556|std::string Song::to_json_string() const {
+    8|    556|  std::ostringstream oss;
+    9|    556|  to_json_stream(oss);
+   10|    556|  return oss.str();
+   11|    556|}
    12|       |
-   13|    553|void Song::to_json_stream(std::ostream& os) const {
-   14|    553|  cereal::JSONOutputArchive   archive(os);
-   15|    553|  std::shared_ptr<const Song> ptr(this, [](const Song*) {});
-   16|    553|  archive(ptr);
-   17|    553|}
+   13|    559|void Song::to_json_stream(std::ostream& os) const {
+   14|    559|  cereal::JSONOutputArchive   archive(os);
+   15|    559|  std::shared_ptr<const Song> ptr(this, [](const Song*) {});
+   16|    559|  archive(ptr);
+   17|    559|}
    18|       |
-   19|    234|bool Song::operator==(const Song& other) const {
-   20|    234|  return to_json_string() == other.to_json_string();
-   21|    234|}
+   19|    237|bool Song::operator==(const Song& other) const {
+   20|    237|  return to_json_string() == other.to_json_string();
+   21|    237|}
    22|     39|bool Song::operator!=(const Song& other) const { return !(*this == other); }
    23|       |
    24|       |}  // namespace generic
@@ -16215,9 +16244,12 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   177|       |}  // namespace instrument_interfaces
   178|       |}  // namespace falcon_core
   179|       |CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::Waveform)
-  180|       |CEREAL_REGISTER_POLYMORPHIC_RELATION(
-  181|       |    falcon_core::instrument_interfaces::port_transforms::PortTransforms,
-  182|       |    falcon_core::instrument_interfaces::Waveform)
+  180|       |CEREAL_REGISTER_TYPE(falcon_core::generic::List<bool>)
+  181|      0|CEREAL_REGISTER_POLYMORPHIC_RELATION(
+  182|      0|    falcon_core::instrument_interfaces::port_transforms::PortTransforms,
+  183|      0|    falcon_core::instrument_interfaces::Waveform)
+  184|       |CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+  185|       |                                     falcon_core::generic::List<bool>)
 
 /home/daniel/work/wisc/playground/falcon-core/cpp/src/instrument_interfaces/names/InstrumentPort.cpp:
     1|       |#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
@@ -16752,63 +16784,63 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    11|       |namespace math {
    12|       |
    13|       |Point::Point()
-   14|    109|    : generic::Map<physics::device_structures::Connection, Quantity>() {}
+   14|    128|    : generic::Map<physics::device_structures::Connection, Quantity>() {}
   ------------------
   | Unexecuted instantiation: falcon_core::math::Point::Point()
   ------------------
   | falcon_core::math::Point::Point():
-  |   14|    109|    : generic::Map<physics::device_structures::Connection, Quantity>() {}
+  |   14|    128|    : generic::Map<physics::device_structures::Connection, Quantity>() {}
   ------------------
    15|       |Point::Point(
    16|       |    const generic::MapSP<physics::device_structures::Connection, double>& init,
    17|       |    const physics::units::SymbolUnitSP&                                   unit)
-   18|    184|    : _unit(unit),
-   19|    184|      generic::Map<physics::device_structures::Connection, Quantity>() {
-   20|    184|  if (!init || !unit) {
+   18|    227|    : _unit(unit),
+   19|    227|      generic::Map<physics::device_structures::Connection, Quantity>() {
+   20|    227|  if (!init || !unit) {
    21|      3|    throw std::invalid_argument(
    22|      3|        "Point: The initial map and unit cannot be null.");
    23|      3|  }
-   24|    354|  for (const auto pair : *init) {
-   25|    354|    insert(pair->first(), std::make_shared<Quantity>(pair->second(), unit));
-   26|    354|  }
-   27|    181|}
+   24|    440|  for (const auto pair : *init) {
+   25|    440|    insert(pair->first(), std::make_shared<Quantity>(pair->second(), unit));
+   26|    440|  }
+   27|    224|}
   ------------------
   | Unexecuted instantiation: falcon_core::math::Point::Point(std::shared_ptr<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, double> > const&, std::shared_ptr<falcon_core::physics::units::SymbolUnit> const&)
   ------------------
   | falcon_core::math::Point::Point(std::shared_ptr<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, double> > const&, std::shared_ptr<falcon_core::physics::units::SymbolUnit> const&):
-  |   18|    184|    : _unit(unit),
-  |   19|    184|      generic::Map<physics::device_structures::Connection, Quantity>() {
-  |   20|    184|  if (!init || !unit) {
+  |   18|    227|    : _unit(unit),
+  |   19|    227|      generic::Map<physics::device_structures::Connection, Quantity>() {
+  |   20|    227|  if (!init || !unit) {
   |   21|      3|    throw std::invalid_argument(
   |   22|      3|        "Point: The initial map and unit cannot be null.");
   |   23|      3|  }
-  |   24|    354|  for (const auto pair : *init) {
-  |   25|    354|    insert(pair->first(), std::make_shared<Quantity>(pair->second(), unit));
-  |   26|    354|  }
-  |   27|    181|}
+  |   24|    440|  for (const auto pair : *init) {
+  |   25|    440|    insert(pair->first(), std::make_shared<Quantity>(pair->second(), unit));
+  |   26|    440|  }
+  |   27|    224|}
   ------------------
    28|       |Point::Point(const generic::MapSP<physics::device_structures::Connection,
    29|       |                                  Quantity>& init)
-   30|     80|    : generic::Map<physics::device_structures::Connection, Quantity>() {
-   31|     80|  if (!init) {
+   30|     90|    : generic::Map<physics::device_structures::Connection, Quantity>() {
+   31|     90|  if (!init) {
    32|      1|    throw std::invalid_argument("Point: The initial map cannot be null.");
    33|      1|  }
-   34|    156|  for (const auto pair : *init) {
-   35|    156|    insert(pair->first(), pair->second());
-   36|    156|  }
-   37|     79|}
+   34|    176|  for (const auto pair : *init) {
+   35|    176|    insert(pair->first(), pair->second());
+   36|    176|  }
+   37|     89|}
   ------------------
   | Unexecuted instantiation: falcon_core::math::Point::Point(std::shared_ptr<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> > const&)
   ------------------
   | falcon_core::math::Point::Point(std::shared_ptr<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity> > const&):
-  |   30|     80|    : generic::Map<physics::device_structures::Connection, Quantity>() {
-  |   31|     80|  if (!init) {
+  |   30|     90|    : generic::Map<physics::device_structures::Connection, Quantity>() {
+  |   31|     90|  if (!init) {
   |   32|      1|    throw std::invalid_argument("Point: The initial map cannot be null.");
   |   33|      1|  }
-  |   34|    156|  for (const auto pair : *init) {
-  |   35|    156|    insert(pair->first(), pair->second());
-  |   36|    156|  }
-  |   37|     79|}
+  |   34|    176|  for (const auto pair : *init) {
+  |   35|    176|    insert(pair->first(), pair->second());
+  |   36|    176|  }
+  |   37|     89|}
   ------------------
    38|       |void Point::insert_or_assign(
    39|       |    const physics::device_structures::ConnectionSP& key,
@@ -16826,20 +16858,20 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    51|      4|}
    52|       |std::pair<Point::iterator, bool> Point::insert(
    53|       |    const physics::device_structures::ConnectionSP& key,
-   54|    723|    const QuantitySP&                               value) {
-   55|    723|  if (!key || !value) {
+   54|    865|    const QuantitySP&                               value) {
+   55|    865|  if (!key || !value) {
    56|      2|    throw std::invalid_argument("Point: The key and value cannot be null.");
    57|      2|  }
    58|       |  // If default constructing an empty Point a unit can still be set by the first
    59|       |  // inserted entry.
-   60|    721|  if (items().empty()) {
-   61|    362|    _unit = value->unit();
-   62|    362|  }
-   63|    721|  value->convert_to(_unit);
-   64|    721|  return Map::insert(key, value);
-   65|    723|}
+   60|    863|  if (items().empty()) {
+   61|    433|    _unit = value->unit();
+   62|    433|  }
+   63|    863|  value->convert_to(_unit);
+   64|    863|  return Map::insert(key, value);
+   65|    865|}
    66|       |
-   67|    127|const physics::units::SymbolUnitSP Point::unit() const { return _unit; }
+   67|    155|const physics::units::SymbolUnitSP Point::unit() const { return _unit; }
    68|       |const generic::MapSP<physics::device_structures::Connection, Quantity>
    69|      1|Point::coordinates() const {
    70|      1|  auto map = std::make_shared<
@@ -16850,34 +16882,34 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    75|      1|  return map;
    76|      1|}
    77|       |const generic::ListSP<physics::device_structures::Connection>
-   78|    223|Point::connections() const {
-   79|    223|  return keys();
-   80|    223|}
+   78|    275|Point::connections() const {
+   79|    275|  return keys();
+   80|    275|}
    81|       |
-   82|     41|PointSP Point::operator+(const PointSP& other) const {
-   83|     41|  if (!other) {
+   82|     45|PointSP Point::operator+(const PointSP& other) const {
+   83|     45|  if (!other) {
    84|      1|    throw std::invalid_argument("Point: The other point cannot be null.");
    85|      1|  }
-   86|     40|  auto new_map = std::make_shared<
-   87|     40|      generic::Map<physics::device_structures::Connection, Quantity>>();
-   88|     80|  for (const auto& kv : items()) {
-   89|     80|    new_map->insert_or_assign(
-   90|     80|        kv->first(),
-   91|     80|        std::make_shared<Quantity>(*kv->second()));  // deep copy
-   92|     80|  }
-   93|     40|  PointSP result = std::make_shared<Point>(new_map);
-   94|     80|  for (const auto& kv : other->items()) {
-   95|     80|    auto it = result->find(kv->first());
-   96|     80|    if (it != result->end()) {
-   97|     79|      *(*it)->second() += kv->second();
-   98|     79|    } else {
+   86|     44|  auto new_map = std::make_shared<
+   87|     44|      generic::Map<physics::device_structures::Connection, Quantity>>();
+   88|     88|  for (const auto& kv : items()) {
+   89|     88|    new_map->insert_or_assign(
+   90|     88|        kv->first(),
+   91|     88|        std::make_shared<Quantity>(*kv->second()));  // deep copy
+   92|     88|  }
+   93|     44|  PointSP result = std::make_shared<Point>(new_map);
+   94|     88|  for (const auto& kv : other->items()) {
+   95|     88|    auto it = result->find(kv->first());
+   96|     88|    if (it != result->end()) {
+   97|     87|      *(*it)->second() += kv->second();
+   98|     87|    } else {
    99|      1|      result->insert_or_assign(
   100|      1|          kv->first(),
   101|      1|          std::make_shared<Quantity>(*kv->second()));  // deep copy
   102|      1|    }
-  103|     80|  }
-  104|     40|  return result;
-  105|     41|}
+  103|     88|  }
+  104|     44|  return result;
+  105|     45|}
   106|       |
   107|      5|PointSP Point::operator-(const PointSP& other) const {
   108|      5|  if (!other) {
@@ -16901,43 +16933,43 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   126|      4|  return result;
   127|      5|}
   128|       |
-  129|      9|PointSP Point::operator*(double scalar) const {
-  130|      9|  auto new_map = std::make_shared<
-  131|      9|      generic::Map<physics::device_structures::Connection, Quantity>>();
-  132|     18|  for (const auto& kv : items()) {
-  133|     18|    new_map->insert(kv->first(),
-  134|     18|                    std::make_shared<Quantity>(*kv->second()));  // deep copy
-  135|     18|  }
-  136|      9|  PointSP result = std::make_shared<Point>(new_map);
-  137|     18|  for (auto& kv : result->items()) {
-  138|     18|    *kv->second() *= scalar;
-  139|     18|  }
-  140|      9|  return result;
-  141|      9|}
+  129|     11|PointSP Point::operator*(double scalar) const {
+  130|     11|  auto new_map = std::make_shared<
+  131|     11|      generic::Map<physics::device_structures::Connection, Quantity>>();
+  132|     22|  for (const auto& kv : items()) {
+  133|     22|    new_map->insert(kv->first(),
+  134|     22|                    std::make_shared<Quantity>(*kv->second()));  // deep copy
+  135|     22|  }
+  136|     11|  PointSP result = std::make_shared<Point>(new_map);
+  137|     22|  for (auto& kv : result->items()) {
+  138|     22|    *kv->second() *= scalar;
+  139|     22|  }
+  140|     11|  return result;
+  141|     11|}
   142|       |
-  143|      9|PointSP Point::operator/(double scalar) const {
-  144|      9|  auto new_map = std::make_shared<
-  145|      9|      generic::Map<physics::device_structures::Connection, Quantity>>();
-  146|     18|  for (const auto& kv : items()) {
-  147|     18|    new_map->insert(kv->first(),
-  148|     18|                    std::make_shared<Quantity>(*kv->second()));  // deep copy
-  149|     18|  }
-  150|      9|  PointSP result = std::make_shared<Point>(new_map);
-  151|     18|  for (auto& kv : result->items()) {
-  152|     18|    *kv->second() /= scalar;
-  153|     18|  }
-  154|      9|  return result;
-  155|      9|}
+  143|     11|PointSP Point::operator/(double scalar) const {
+  144|     11|  auto new_map = std::make_shared<
+  145|     11|      generic::Map<physics::device_structures::Connection, Quantity>>();
+  146|     22|  for (const auto& kv : items()) {
+  147|     22|    new_map->insert(kv->first(),
+  148|     22|                    std::make_shared<Quantity>(*kv->second()));  // deep copy
+  149|     22|  }
+  150|     11|  PointSP result = std::make_shared<Point>(new_map);
+  151|     22|  for (auto& kv : result->items()) {
+  152|     22|    *kv->second() /= scalar;
+  153|     22|  }
+  154|     11|  return result;
+  155|     11|}
   156|       |
-  157|     12|PointSP Point::operator-() const {
-  158|     12|  auto new_map = std::make_shared<
-  159|     12|      generic::Map<physics::device_structures::Connection, Quantity>>();
-  160|     24|  for (const auto& kv : items()) {
-  161|     24|    new_map->insert(kv->first(),
-  162|     24|                    -*kv->second());  // negate value
-  163|     24|  }
-  164|     12|  return std::make_shared<Point>(new_map);
-  165|     12|}
+  157|     13|PointSP Point::operator-() const {
+  158|     13|  auto new_map = std::make_shared<
+  159|     13|      generic::Map<physics::device_structures::Connection, Quantity>>();
+  160|     26|  for (const auto& kv : items()) {
+  161|     26|    new_map->insert(kv->first(),
+  162|     26|                    -*kv->second());  // negate value
+  163|     26|  }
+  164|     13|  return std::make_shared<Point>(new_map);
+  165|     13|}
   166|       |
   167|      2|void Point::set_unit(physics::units::SymbolUnitSP unit) {
   168|      2|  if (!unit) {
@@ -16945,11 +16977,11 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   170|      1|  }
   171|      1|  _unit = unit;
   172|      1|}
-  173|      5|bool Point::operator==(const Point& other) const {
-  174|      5|  return (*unit() == *other.unit()) &&
-  175|      5|         (Map<physics::device_structures::Connection, Quantity>::operator==(
-  176|      5|             other));
-  177|      5|}
+  173|      6|bool Point::operator==(const Point& other) const {
+  174|      6|  return (*unit() == *other.unit()) &&
+  175|      6|         (Map<physics::device_structures::Connection, Quantity>::operator==(
+  176|      6|             other));
+  177|      6|}
   178|      1|bool Point::operator!=(const Point& other) const { return !(*this == other); }
   179|       |
   180|       |}  // namespace math
@@ -16984,23 +17016,23 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
     7|       |namespace math {
     8|       |
     9|       |Quantity::Quantity(double value, physics::units::SymbolUnitSP unit)
-   10|    710|    : _value(value), _unit(unit) {
-   11|    710|  if (!unit) {
+   10|    811|    : _value(value), _unit(unit) {
+   11|    811|  if (!unit) {
    12|      2|    throw std::invalid_argument("Quantity: The unit must not be null.");
    13|      2|  }
-   14|    710|}
+   14|    811|}
    15|       |
-   16|    266|double                       Quantity::value() const { return _value; }
-   17|    572|physics::units::SymbolUnitSP Quantity::unit() const { return _unit; }
+   16|    293|double                       Quantity::value() const { return _value; }
+   17|    661|physics::units::SymbolUnitSP Quantity::unit() const { return _unit; }
    18|       |
-   19|  1.25k|void Quantity::convert_to(physics::units::SymbolUnitSP target_unit) {
-   20|  1.25k|  if (!target_unit) {
+   19|  1.50k|void Quantity::convert_to(physics::units::SymbolUnitSP target_unit) {
+   20|  1.50k|  if (!target_unit) {
    21|      1|    throw std::invalid_argument(
    22|      1|        "Quantity: The conversion unit must not be null.");
    23|      1|  }
-   24|  1.25k|  _value = _unit->convert_value_to(_value, target_unit);
-   25|  1.25k|  _unit  = target_unit;
-   26|  1.25k|}
+   24|  1.50k|  _value = _unit->convert_value_to(_value, target_unit);
+   25|  1.50k|  _unit  = target_unit;
+   26|  1.50k|}
    27|       |
    28|      1|QuantitySP Quantity::operator*(const int& other) const {
    29|      1|  return std::make_shared<Quantity>(_value * other, _unit);
@@ -17020,10 +17052,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    43|      1|  _value *= other;
    44|      1|  return *this;
    45|      1|}
-   46|     19|Quantity& Quantity::operator*=(const double& other) {
-   47|     19|  _value *= other;
-   48|     19|  return *this;
-   49|     19|}
+   46|     23|Quantity& Quantity::operator*=(const double& other) {
+   47|     23|  _value *= other;
+   48|     23|  return *this;
+   49|     23|}
    50|      3|Quantity& Quantity::operator*=(const QuantitySP& other) {
    51|      3|  if (!other) {
    52|      2|    throw std::invalid_argument(
@@ -17052,10 +17084,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    75|      1|  _value /= other;
    76|      1|  return *this;
    77|      1|}
-   78|     19|Quantity& Quantity::operator/=(const double& other) {
-   79|     19|  _value /= other;
-   80|     19|  return *this;
-   81|     19|}
+   78|     23|Quantity& Quantity::operator/=(const double& other) {
+   79|     23|  _value /= other;
+   80|     23|  return *this;
+   81|     23|}
    82|      3|Quantity& Quantity::operator/=(const QuantitySP& other) {
    83|      3|  if (!other) {
    84|      2|    throw std::invalid_argument(
@@ -17096,19 +17128,19 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   119|      1|  _value += other;
   120|      1|  return *this;
   121|      1|}
-  122|     82|Quantity& Quantity::operator+=(const QuantitySP& other) {
-  123|     82|  if (!other) {
+  122|     90|Quantity& Quantity::operator+=(const QuantitySP& other) {
+  123|     90|  if (!other) {
   124|      2|    throw std::invalid_argument(
   125|      2|        "Quantity: The other quantity must not be null.");
   126|      2|  }
-  127|     80|  convert_to(other->unit());
-  128|     80|  _value += other->value();
-  129|     80|  return *this;
-  130|     82|}
+  127|     88|  convert_to(other->unit());
+  128|     88|  _value += other->value();
+  129|     88|  return *this;
+  130|     90|}
   131|       |
-  132|     26|QuantitySP Quantity::operator-() const {
-  133|     26|  return std::make_shared<Quantity>(-_value, _unit);
-  134|     26|}
+  132|     28|QuantitySP Quantity::operator-() const {
+  133|     28|  return std::make_shared<Quantity>(-_value, _unit);
+  134|     28|}
   135|       |
   136|      1|QuantitySP Quantity::operator-(const int& other) const {
   137|      1|  throw std::runtime_error(
@@ -17118,18 +17150,18 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   141|      1|  throw std::runtime_error(
   142|      1|      "Cannot subtract a scalar from a quantity with units.");
   143|      1|}
-  144|     17|QuantitySP Quantity::operator-(const QuantitySP& other) const {
-  145|     17|  if (!other) {
+  144|     20|QuantitySP Quantity::operator-(const QuantitySP& other) const {
+  145|     20|  if (!other) {
   146|      1|    throw std::invalid_argument(
   147|      1|        "Quantity: The other quantity must not be null.");
   148|      1|  }
-  149|     16|  if (!_unit->is_compatible_with(other->unit())) {
+  149|     19|  if (!_unit->is_compatible_with(other->unit())) {
   150|      1|    throw std::runtime_error("Incompatible units for subtraction.");
   151|      1|  }
-  152|     15|  double other_val_converted =
-  153|     15|      other->unit()->convert_value_to(other->value(), _unit);
-  154|     15|  return std::make_shared<Quantity>(_value - other_val_converted, _unit);
-  155|     16|}
+  152|     18|  double other_val_converted =
+  153|     18|      other->unit()->convert_value_to(other->value(), _unit);
+  154|     18|  return std::make_shared<Quantity>(_value - other_val_converted, _unit);
+  155|     19|}
   156|      1|Quantity& Quantity::operator-=(const int& other) {
   157|      1|  _value -= other;
   158|      1|  return *this;
@@ -17154,9 +17186,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   177|       |
   178|       |Quantity::Quantity()
   179|     11|    : _value(0.0), _unit(physics::units::SymbolUnit::Dimensionless()) {}
-  180|     36|bool Quantity::operator==(const Quantity& other) const {
-  181|     36|  return (value() == other.value()) && (*unit() == *other.unit());
-  182|     36|}
+  180|     38|bool Quantity::operator==(const Quantity& other) const {
+  181|     38|  return (value() == other.value()) && (*unit() == *other.unit());
+  182|     38|}
   183|      2|bool Quantity::operator!=(const Quantity& other) const {
   184|      2|  return !(*this == other);
   185|      2|}
@@ -17373,12 +17405,16 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    12|       |namespace math {
    13|       |
    14|       |Vector::Vector()
-   15|      1|    : _unit(physics::units::SymbolUnit::Dimensionless()),
-   16|      1|      _connections(std::make_shared<physics::device_structures::Connections>()),
-   17|      1|      generic::Map<physics::device_structures::Connection,
-   18|      1|                   generic::Pair<Quantity, Quantity>>() {}
+   15|      2|    : _unit(physics::units::SymbolUnit::Dimensionless()),
+   16|      2|      _connections(std::make_shared<physics::device_structures::Connections>()),
+   17|      2|      generic::Map<physics::device_structures::Connection,
+   18|      2|                   generic::Pair<Quantity, Quantity>>() {}
   ------------------
-  | Unexecuted instantiation: falcon_core::math::Vector::Vector()
+  | falcon_core::math::Vector::Vector():
+  |   15|      1|    : _unit(physics::units::SymbolUnit::Dimensionless()),
+  |   16|      1|      _connections(std::make_shared<physics::device_structures::Connections>()),
+  |   17|      1|      generic::Map<physics::device_structures::Connection,
+  |   18|      1|                   generic::Pair<Quantity, Quantity>>() {}
   ------------------
   | falcon_core::math::Vector::Vector():
   |   15|      1|    : _unit(physics::units::SymbolUnit::Dimensionless()),
@@ -17387,94 +17423,95 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |   18|      1|                   generic::Pair<Quantity, Quantity>>() {}
   ------------------
    19|       |Vector::Vector(const PointSP& start, const PointSP& end)
-   20|    111|    : _unit(end ? end->unit() : nullptr),
-   21|    111|      _connections(std::make_shared<physics::device_structures::Connections>()),
-   22|    111|      generic::Map<physics::device_structures::Connection,
-   23|    111|                   generic::Pair<Quantity, Quantity>>() {
-   24|    111|  if (!start || !end) {
-   25|      0|    throw std::invalid_argument(
-   26|      0|        "Vector: The start and end points must not be null.");
-   27|      0|  }
-   28|    111|  auto end_connections   = end->connections();
-   29|    111|  auto start_connections = start->connections();
-   30|    111|  for (const physics::device_structures::ConnectionSP& connection :
-   31|    219|       *end_connections) {
-   32|    219|    _connections->push_back(connection);
-   33|    219|  }
-   34|    111|  for (const physics::device_structures::ConnectionSP& connection :
-   35|    215|       *start_connections) {
-   36|    215|    if (!_connections->contains(connection)) {
-   37|      0|      _connections->push_back(connection);
-   38|      0|    }
-   39|    215|  }
-   40|    111|  for (const physics::device_structures::ConnectionSP connectionSP :
-   41|    219|       *_connections) {
-   42|    219|    QuantitySP first, second;
-   43|    219|    if (start->contains(connectionSP)) {
-   44|    215|      first = start->at(connectionSP);
-   45|    215|      first->convert_to(_unit);
-   46|    215|    } else {
-   47|      4|      first = std::make_shared<Quantity>(0.0, _unit);
-   48|      4|    }
-   49|    219|    if (end->contains(connectionSP)) {
-   50|    219|      second = end->at(connectionSP);
-   51|    219|      second->convert_to(_unit);
-   52|    219|    } else {
-   53|      0|      second = std::make_shared<Quantity>(0.0, _unit);
-   54|      0|    }
-   55|    219|    insert(connectionSP,
-   56|    219|           std::make_shared<generic::Pair<Quantity, Quantity>>(first, second));
-   57|    219|  }
-   58|    111|}
+   20|    138|    : _unit(end ? end->unit() : nullptr),
+   21|    138|      _connections(std::make_shared<physics::device_structures::Connections>()),
+   22|    138|      generic::Map<physics::device_structures::Connection,
+   23|    138|                   generic::Pair<Quantity, Quantity>>() {
+   24|    138|  if (!start || !end) {
+   25|      1|    throw std::invalid_argument(
+   26|      1|        "Vector: The start and end points must not be null.");
+   27|      1|  }
+   28|    137|  auto end_connections   = end->connections();
+   29|    137|  auto start_connections = start->connections();
+   30|    137|  for (const physics::device_structures::ConnectionSP& connection :
+   31|    270|       *end_connections) {
+   32|    270|    _connections->push_back(connection);
+   33|    270|  }
+   34|    137|  for (const physics::device_structures::ConnectionSP& connection :
+   35|    266|       *start_connections) {
+   36|    266|    if (!_connections->contains(connection)) {
+   37|      2|      _connections->push_back(connection);
+   38|      2|    }
+   39|    266|  }
+   40|    137|  for (const physics::device_structures::ConnectionSP connectionSP :
+   41|    272|       *_connections) {
+   42|    272|    QuantitySP first, second;
+   43|    272|    if (start->contains(connectionSP)) {
+   44|    266|      first = start->at(connectionSP);
+   45|    266|      first->convert_to(_unit);
+   46|    266|    } else {
+   47|      6|      first = std::make_shared<Quantity>(0.0, _unit);
+   48|      6|    }
+   49|    272|    if (end->contains(connectionSP)) {
+   50|    270|      second = end->at(connectionSP);
+   51|    270|      second->convert_to(_unit);
+   52|    270|    } else {
+   53|      2|      second = std::make_shared<Quantity>(0.0, _unit);
+   54|      2|    }
+   55|    272|    insert(connectionSP,
+   56|    272|           std::make_shared<generic::Pair<Quantity, Quantity>>(first, second));
+   57|    272|  }
+   58|    137|}
   ------------------
   | Unexecuted instantiation: falcon_core::math::Vector::Vector(std::shared_ptr<falcon_core::math::Point> const&, std::shared_ptr<falcon_core::math::Point> const&)
   ------------------
   | falcon_core::math::Vector::Vector(std::shared_ptr<falcon_core::math::Point> const&, std::shared_ptr<falcon_core::math::Point> const&):
-  |   20|    111|    : _unit(end ? end->unit() : nullptr),
-  |   21|    111|      _connections(std::make_shared<physics::device_structures::Connections>()),
-  |   22|    111|      generic::Map<physics::device_structures::Connection,
-  |   23|    111|                   generic::Pair<Quantity, Quantity>>() {
-  |   24|    111|  if (!start || !end) {
-  |   25|      0|    throw std::invalid_argument(
-  |   26|      0|        "Vector: The start and end points must not be null.");
-  |   27|      0|  }
-  |   28|    111|  auto end_connections   = end->connections();
-  |   29|    111|  auto start_connections = start->connections();
-  |   30|    111|  for (const physics::device_structures::ConnectionSP& connection :
-  |   31|    219|       *end_connections) {
-  |   32|    219|    _connections->push_back(connection);
-  |   33|    219|  }
-  |   34|    111|  for (const physics::device_structures::ConnectionSP& connection :
-  |   35|    215|       *start_connections) {
-  |   36|    215|    if (!_connections->contains(connection)) {
-  |   37|      0|      _connections->push_back(connection);
-  |   38|      0|    }
-  |   39|    215|  }
-  |   40|    111|  for (const physics::device_structures::ConnectionSP connectionSP :
-  |   41|    219|       *_connections) {
-  |   42|    219|    QuantitySP first, second;
-  |   43|    219|    if (start->contains(connectionSP)) {
-  |   44|    215|      first = start->at(connectionSP);
-  |   45|    215|      first->convert_to(_unit);
-  |   46|    215|    } else {
-  |   47|      4|      first = std::make_shared<Quantity>(0.0, _unit);
-  |   48|      4|    }
-  |   49|    219|    if (end->contains(connectionSP)) {
-  |   50|    219|      second = end->at(connectionSP);
-  |   51|    219|      second->convert_to(_unit);
-  |   52|    219|    } else {
-  |   53|      0|      second = std::make_shared<Quantity>(0.0, _unit);
-  |   54|      0|    }
-  |   55|    219|    insert(connectionSP,
-  |   56|    219|           std::make_shared<generic::Pair<Quantity, Quantity>>(first, second));
-  |   57|    219|  }
-  |   58|    111|}
+  |   20|    138|    : _unit(end ? end->unit() : nullptr),
+  |   21|    138|      _connections(std::make_shared<physics::device_structures::Connections>()),
+  |   22|    138|      generic::Map<physics::device_structures::Connection,
+  |   23|    138|                   generic::Pair<Quantity, Quantity>>() {
+  |   24|    138|  if (!start || !end) {
+  |   25|      1|    throw std::invalid_argument(
+  |   26|      1|        "Vector: The start and end points must not be null.");
+  |   27|      1|  }
+  |   28|    137|  auto end_connections   = end->connections();
+  |   29|    137|  auto start_connections = start->connections();
+  |   30|    137|  for (const physics::device_structures::ConnectionSP& connection :
+  |   31|    270|       *end_connections) {
+  |   32|    270|    _connections->push_back(connection);
+  |   33|    270|  }
+  |   34|    137|  for (const physics::device_structures::ConnectionSP& connection :
+  |   35|    266|       *start_connections) {
+  |   36|    266|    if (!_connections->contains(connection)) {
+  |   37|      2|      _connections->push_back(connection);
+  |   38|      2|    }
+  |   39|    266|  }
+  |   40|    137|  for (const physics::device_structures::ConnectionSP connectionSP :
+  |   41|    272|       *_connections) {
+  |   42|    272|    QuantitySP first, second;
+  |   43|    272|    if (start->contains(connectionSP)) {
+  |   44|    266|      first = start->at(connectionSP);
+  |   45|    266|      first->convert_to(_unit);
+  |   46|    266|    } else {
+  |   47|      6|      first = std::make_shared<Quantity>(0.0, _unit);
+  |   48|      6|    }
+  |   49|    272|    if (end->contains(connectionSP)) {
+  |   50|    270|      second = end->at(connectionSP);
+  |   51|    270|      second->convert_to(_unit);
+  |   52|    270|    } else {
+  |   53|      2|      second = std::make_shared<Quantity>(0.0, _unit);
+  |   54|      2|    }
+  |   55|    272|    insert(connectionSP,
+  |   56|    272|           std::make_shared<generic::Pair<Quantity, Quantity>>(first, second));
+  |   57|    272|  }
+  |   58|    137|}
   ------------------
-   59|      0|Vector::Vector(const PointSP& end) : Vector(std::make_shared<Point>(), end) {}
-  ------------------
-  | Unexecuted instantiation: falcon_core::math::Vector::Vector(std::shared_ptr<falcon_core::math::Point> const&)
+   59|      1|Vector::Vector(const PointSP& end) : Vector(std::make_shared<Point>(), end) {}
   ------------------
   | Unexecuted instantiation: falcon_core::math::Vector::Vector(std::shared_ptr<falcon_core::math::Point> const&)
+  ------------------
+  | falcon_core::math::Vector::Vector(std::shared_ptr<falcon_core::math::Point> const&):
+  |   59|      1|Vector::Vector(const PointSP& end) : Vector(std::make_shared<Point>(), end) {}
   ------------------
    60|       |
    61|       |Vector::Vector(
@@ -17509,14 +17546,14 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    75|       |    const generic::MapSP<physics::device_structures::Connection, double>& start,
    76|       |    const generic::MapSP<physics::device_structures::Connection, double>& end,
    77|       |    falcon_core::physics::units::SymbolUnitSP                             unit)
-   78|     81|    : Vector(std::make_shared<Point>(start, unit),
-   79|     81|             std::make_shared<Point>(end, unit)) {}
+   78|    102|    : Vector(std::make_shared<Point>(start, unit),
+   79|    102|             std::make_shared<Point>(end, unit)) {}
   ------------------
   | Unexecuted instantiation: falcon_core::math::Vector::Vector(std::shared_ptr<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, double> > const&, std::shared_ptr<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, double> > const&, std::shared_ptr<falcon_core::physics::units::SymbolUnit>)
   ------------------
   | falcon_core::math::Vector::Vector(std::shared_ptr<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, double> > const&, std::shared_ptr<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, double> > const&, std::shared_ptr<falcon_core::physics::units::SymbolUnit>):
-  |   78|     81|    : Vector(std::make_shared<Point>(start, unit),
-  |   79|     81|             std::make_shared<Point>(end, unit)) {}
+  |   78|    102|    : Vector(std::make_shared<Point>(start, unit),
+  |   79|    102|             std::make_shared<Point>(end, unit)) {}
   ------------------
    80|       |
    81|       |Vector::Vector(
@@ -17539,28 +17576,30 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   ------------------
    89|       |Vector::Vector(const generic::MapSP<physics::device_structures::Connection,
    90|       |                                    generic::Pair<Quantity, Quantity>> map)
-   91|      0|    : generic::Map<physics::device_structures::Connection,
-   92|      0|                   generic::Pair<Quantity, Quantity>>(*map) {}
+   91|      1|    : generic::Map<physics::device_structures::Connection,
+   92|      1|                   generic::Pair<Quantity, Quantity>>(*map) {}
   ------------------
   | Unexecuted instantiation: falcon_core::math::Vector::Vector(std::shared_ptr<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > >)
   ------------------
-  | Unexecuted instantiation: falcon_core::math::Vector::Vector(std::shared_ptr<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > >)
+  | falcon_core::math::Vector::Vector(std::shared_ptr<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity> > >):
+  |   91|      1|    : generic::Map<physics::device_structures::Connection,
+  |   92|      1|                   generic::Pair<Quantity, Quantity>>(*map) {}
   ------------------
    93|       |
-   94|     46|const PointSP Vector::endPoint() const {
-   95|     46|  PointSP result = std::make_shared<Point>();
-   96|     91|  for (const auto pair : items()) {
-   97|     91|    result->insert(pair->first(), pair->second()->second());
-   98|     91|  }
-   99|     46|  return result;
-  100|     46|}
-  101|     60|const PointSP Vector::startPoint() const {
-  102|     60|  PointSP result = std::make_shared<Point>();
-  103|    119|  for (const auto pair : items()) {
-  104|    119|    result->insert(pair->first(), pair->second()->first());
-  105|    119|  }
-  106|     60|  return result;
-  107|     60|}
+   94|     56|const PointSP Vector::endPoint() const {
+   95|     56|  PointSP result = std::make_shared<Point>();
+   96|    111|  for (const auto pair : items()) {
+   97|    111|    result->insert(pair->first(), pair->second()->second());
+   98|    111|  }
+   99|     56|  return result;
+  100|     56|}
+  101|     68|const PointSP Vector::startPoint() const {
+  102|     68|  PointSP result = std::make_shared<Point>();
+  103|    135|  for (const auto pair : items()) {
+  104|    135|    result->insert(pair->first(), pair->second()->first());
+  105|    135|  }
+  106|     68|  return result;
+  107|     68|}
   108|       |const generic::MapSP<physics::device_structures::Connection, Quantity>
   109|      1|Vector::end_quantities() const {
   110|      1|  generic::MapSP<physics::device_structures::Connection, Quantity> result =
@@ -17597,25 +17636,25 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   141|      2|  }
   142|      1|  return result;
   143|      1|}
-  144|     16|const physics::device_structures::ConnectionsSP& Vector::connections() const {
-  145|     16|  return _connections;
-  146|     16|}
-  147|      8|const falcon_core::physics::units::SymbolUnitSP& Vector::unit() const {
-  148|      8|  return _unit;
-  149|      8|}
+  144|     21|const physics::device_structures::ConnectionsSP& Vector::connections() const {
+  145|     21|  return _connections;
+  146|     21|}
+  147|      9|const falcon_core::physics::units::SymbolUnitSP& Vector::unit() const {
+  148|      9|  return _unit;
+  149|      9|}
   150|       |const physics::device_structures::ConnectionSP Vector::principle_connection()
-  151|      4|    const {
-  152|      4|  physics::device_structures::ConnectionSP big_conn = connections()->at(0);
-  153|      4|  double big_value = (*at(big_conn)->second() - at(big_conn)->first())->value();
-  154|      5|  for (const physics::device_structures::ConnectionSP& conn : *connections()) {
-  155|      5|    double temp = (*at(conn)->second() - at(conn)->first())->value();
-  156|      5|    if (temp > big_value) {
-  157|      0|      big_value = temp;
-  158|      0|      big_conn  = conn;
-  159|      0|    }
-  160|      5|  }
-  161|      4|  return big_conn;
-  162|      4|}
+  151|      5|    const {
+  152|      5|  physics::device_structures::ConnectionSP big_conn = connections()->at(0);
+  153|      5|  double big_value = (*at(big_conn)->second() - at(big_conn)->first())->value();
+  154|      7|  for (const physics::device_structures::ConnectionSP& conn : *connections()) {
+  155|      7|    double temp = (*at(conn)->second() - at(conn)->first())->value();
+  156|      7|    if (temp > big_value) {
+  157|      1|      big_value = temp;
+  158|      1|      big_conn  = conn;
+  159|      1|    }
+  160|      7|  }
+  161|      5|  return big_conn;
+  162|      5|}
   163|      3|const double Vector::magnitude() const {
   164|      3|  double sum = 0.0;
   165|      6|  for (const physics::device_structures::ConnectionSP& conn : *_connections) {
@@ -17637,11 +17676,11 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   181|      1|  return std::make_shared<Vector>(new_start, new_end);
   182|      1|}
   183|       |
-  184|      0|VectorSP Vector::operator*(int scalar) const {
-  185|      0|  auto new_start = startPoint()->operator*(scalar);
-  186|      0|  auto new_end   = endPoint()->operator*(scalar);
-  187|      0|  return std::make_shared<Vector>(new_start, new_end);
-  188|      0|}
+  184|      1|VectorSP Vector::operator*(int scalar) const {
+  185|      1|  auto new_start = startPoint()->operator*(scalar);
+  186|      1|  auto new_end   = endPoint()->operator*(scalar);
+  187|      1|  return std::make_shared<Vector>(new_start, new_end);
+  188|      1|}
   189|       |
   190|      4|VectorSP Vector::operator*(double scalar) const {
   191|      4|  auto new_start = startPoint()->operator*(scalar);
@@ -17655,26 +17694,26 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   199|      4|  return std::make_shared<Vector>(new_start, new_end);
   200|      4|}
   201|       |
-  202|      0|VectorSP Vector::operator/(int scalar) const {
-  203|      0|  auto new_start = startPoint()->operator/(scalar);
-  204|      0|  auto new_end   = endPoint()->operator/(scalar);
-  205|      0|  return std::make_shared<Vector>(new_start, new_end);
-  206|      0|}
+  202|      1|VectorSP Vector::operator/(int scalar) const {
+  203|      1|  auto new_start = startPoint()->operator/(scalar);
+  204|      1|  auto new_end   = endPoint()->operator/(scalar);
+  205|      1|  return std::make_shared<Vector>(new_start, new_end);
+  206|      1|}
   207|       |
   208|      1|VectorSP Vector::operator-() const {
   209|      1|  auto new_start = startPoint()->operator-();
   210|      1|  auto new_end   = endPoint()->operator-();
   211|      1|  return std::make_shared<Vector>(new_start, new_end);
   212|      1|}
-  213|     19|const VectorSP Vector::translate(const PointSP& point) const {
-  214|     19|  if (!point) {
+  213|     21|const VectorSP Vector::translate(const PointSP& point) const {
+  214|     21|  if (!point) {
   215|      1|    throw std::invalid_argument(
   216|      1|        "Vector: The other point to translate by should not be null.");
   217|      1|  }
-  218|     18|  PointSP startPoint = *this->startPoint() + point;
-  219|     18|  PointSP endPoint   = *this->endPoint() + point;
-  220|     18|  return std::make_shared<Vector>(startPoint, endPoint);
-  221|     19|}
+  218|     20|  PointSP startPoint = *this->startPoint() + point;
+  219|     20|  PointSP endPoint   = *this->endPoint() + point;
+  220|     20|  return std::make_shared<Vector>(startPoint, endPoint);
+  221|     21|}
   222|       |const VectorSP Vector::translate(
   223|       |    const generic::MapSP<physics::device_structures::Connection, double> point,
   224|      3|    const physics::units::SymbolUnitSP unit) const {
@@ -17695,17 +17734,17 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   239|      1|  PointSP adjustment = std::make_shared<Point>(point);
   240|      1|  return translate(adjustment);
   241|      2|}
-  242|      9|const VectorSP Vector::translate_to_origin() const {
-  243|      9|  return translate(-*startPoint());
-  244|      9|}
+  242|     10|const VectorSP Vector::translate_to_origin() const {
+  243|     10|  return translate(-*startPoint());
+  244|     10|}
   245|       |const VectorSP Vector::update_start_from_states(
-  246|      1|    const communications::voltage_states::DeviceVoltageStatesSP& state) const {
-  247|      1|  if (!state) {
+  246|      2|    const communications::voltage_states::DeviceVoltageStatesSP& state) const {
+  247|      2|  if (!state) {
   248|      1|    throw std::invalid_argument("Vector: The start state should not be null.");
   249|      1|  }
-  250|      0|  VectorSP originVector = translate_to_origin();
-  251|      0|  return originVector->translate(state->to_point());
-  252|      1|}
+  250|      1|  VectorSP originVector = translate_to_origin();
+  251|      1|  return originVector->translate(state->to_point());
+  252|      2|}
   253|      1|const VectorSP Vector::unit_vector() const {
   254|      1|  VectorSP origin = translate_to_origin();
   255|      1|  return *origin / magnitude();
@@ -23190,10 +23229,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    21|  2.52k|ConnectionSP Connection::Ohmic(const std::string& name) {
    22|  2.52k|  return std::make_shared<Connection>(name, DeviceFeature::Ohmic);
    23|  2.52k|}
-   24|  83.4k|const std::string& Connection::name() const { return _name; }
-   25|  15.8k|const std::string  Connection::type() const {
-   26|  15.8k|  return DeviceFeatureNames.at(_type);
-   27|  15.8k|}
+   24|  84.5k|const std::string& Connection::name() const { return _name; }
+   25|  16.4k|const std::string  Connection::type() const {
+   26|  16.4k|  return DeviceFeatureNames.at(_type);
+   27|  16.4k|}
    28|  2.82k|bool Connection::is_dot_gate() const {
    29|  2.82k|  return is_barrier_gate() || is_plunger_gate();
    30|  2.82k|}
@@ -23214,9 +23253,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    45|      3|bool Connection::operator<(const Connection& other) const {
    46|      3|  return _name < other._name;  // Compare based on name
    47|      3|}
-   48|  38.5k|bool Connection::operator==(const Connection& other) const {
-   49|  38.5k|  return (name() == other.name()) && (type() == other.type());
-   50|  38.5k|}
+   48|  39.1k|bool Connection::operator==(const Connection& other) const {
+   49|  39.1k|  return (name() == other.name()) && (type() == other.type());
+   50|  39.1k|}
    51|  3.09k|bool Connection::operator!=(const Connection& other) const {
    52|  3.09k|  return !(*this == other);
    53|  3.09k|}
@@ -23235,7 +23274,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
     4|       |namespace physics {
     5|       |namespace device_structures {
     6|       |
-    7|  2.88k|Connections::Connections() : generic::List<Connection>() {}
+    7|  2.91k|Connections::Connections() : generic::List<Connection>() {}
     8|       |Connections::Connections(size_t count, const ConnectionSP& value)
     9|      1|    : generic::List<Connection>(count, value) {}
    10|       |Connections::Connections(const std::vector<ConnectionSP>& vec)
@@ -23648,11 +23687,11 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    50|       |};
    51|       |
    52|     31|SymbolUnit::SymbolUnit() = default;
-   53|  1.23k|SymbolUnit::SymbolUnit(UnitSP unit) : _unit(unit) {
-   54|  1.23k|  auto results = this->_find_matching_common_unit();
-   55|  1.23k|  _symbol      = results.first;
-   56|  1.23k|  _name        = results.second;
-   57|  1.23k|}
+   53|  1.24k|SymbolUnit::SymbolUnit(UnitSP unit) : _unit(unit) {
+   54|  1.24k|  auto results = this->_find_matching_common_unit();
+   55|  1.24k|  _symbol      = results.first;
+   56|  1.24k|  _name        = results.second;
+   57|  1.24k|}
    58|    207|SymbolUnitSP SymbolUnit::Meter() {
    59|    207|  return std::make_shared<SymbolUnit>(Unit::Meter());
    60|    207|}
@@ -23692,9 +23731,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    94|      1|SymbolUnitSP SymbolUnit::Coulomb() {
    95|      1|  return std::make_shared<SymbolUnit>(Unit::Coulomb());
    96|      1|}
-   97|    270|SymbolUnitSP SymbolUnit::Volt() {
-   98|    270|  return std::make_shared<SymbolUnit>(Unit::Volt());
-   99|    270|}
+   97|    280|SymbolUnitSP SymbolUnit::Volt() {
+   98|    280|  return std::make_shared<SymbolUnit>(Unit::Volt());
+   99|    280|}
   100|      1|SymbolUnitSP SymbolUnit::Farad() {
   101|      1|  return std::make_shared<SymbolUnit>(Unit::Farad());
   102|      1|}
@@ -23728,9 +23767,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   130|      2|SymbolUnitSP SymbolUnit::Fahrenheit() {
   131|      2|  return std::make_shared<SymbolUnit>(Unit::Fahrenheit());
   132|      2|}
-  133|     16|SymbolUnitSP SymbolUnit::Dimensionless() {
-  134|     16|  return std::make_shared<SymbolUnit>(Unit::Dimensionless());
-  135|     16|}
+  133|     17|SymbolUnitSP SymbolUnit::Dimensionless() {
+  134|     17|  return std::make_shared<SymbolUnit>(Unit::Dimensionless());
+  135|     17|}
   136|      4|SymbolUnitSP SymbolUnit::Percent() {
   137|      4|  return std::make_shared<SymbolUnit>(Unit::Percent());
   138|      4|}
@@ -23822,17 +23861,17 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   224|      1|  return std::make_shared<SymbolUnit>(*Unit::Watt() /
   225|      1|                                      (*Unit::Meter() * Unit::Kelvin()));
   226|      1|}
-  227|  26.0k|const UnitSP SymbolUnit::unit() const { return _unit; }
+  227|  26.8k|const UnitSP SymbolUnit::unit() const { return _unit; }
   228|       |/*
   229|       | * @brief Get the name of the unit.
   230|       | * @return The name as a string.
   231|       | */
-  232|    257|const std::string SymbolUnit::symbol() const { return _symbol; }
+  232|    263|const std::string SymbolUnit::symbol() const { return _symbol; }
   233|       |/*
   234|       | * @brief Get the name of the unit.
   235|       | * @return The name as a string.
   236|       | */
-  237|    199|const std::string  SymbolUnit::name() const { return _name; }
+  237|    205|const std::string  SymbolUnit::name() const { return _name; }
   238|      5|const SymbolUnitSP SymbolUnit::operator*(const SymbolUnitSP& other) const {
   239|      5|  if (!other) {
   240|      1|    throw std::invalid_argument("SymbolUnit: Cannot multiple by null.");
@@ -23866,42 +23905,42 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   268|     42|  return std::make_shared<SymbolUnit>(unit()->with_prefix(prefix));
   269|     42|}
   270|       |const double SymbolUnit::convert_value_to(
-  271|  1.28k|    const double value, const SymbolUnitSP& target_unit) const {
-  272|  1.28k|  if (!target_unit) {
+  271|  1.53k|    const double value, const SymbolUnitSP& target_unit) const {
+  272|  1.53k|  if (!target_unit) {
   273|      1|    throw std::invalid_argument("SymbolUnit: Cannot convert to null.");
   274|      1|  }
-  275|  1.28k|  return unit()->convert_value_to(value, target_unit->unit());
-  276|  1.28k|}
-  277|     24|const bool SymbolUnit::is_compatible_with(const SymbolUnitSP& other) const {
-  278|     24|  if (!other) {
+  275|  1.53k|  return unit()->convert_value_to(value, target_unit->unit());
+  276|  1.53k|}
+  277|     27|const bool SymbolUnit::is_compatible_with(const SymbolUnitSP& other) const {
+  278|     27|  if (!other) {
   279|      1|    throw std::invalid_argument("SymbolUnit: Is not compatible with null.");
   280|      1|  }
-  281|     23|  return unit()->is_compatible_with(other->unit());
-  282|     24|}
+  281|     26|  return unit()->is_compatible_with(other->unit());
+  282|     27|}
   283|       |const std::pair<std::string, std::string>
-  284|  1.23k|SymbolUnit::_find_matching_common_unit() const {
-  285|  1.23k|  double tolerance = 1e-6;
-  286|  1.23k|  for (const std::tuple<UnitSP, std::string, std::string>& triplet :
-  287|  10.3k|       get_unit_symbols()) {
-  288|  10.3k|    if (unit()->dimensions().empty()) {
-  289|     22|      if (std::abs(unit()->scale_factor() - 0.01) <= tolerance) {
+  284|  1.24k|SymbolUnit::_find_matching_common_unit() const {
+  285|  1.24k|  double tolerance = 1e-6;
+  286|  1.24k|  for (const std::tuple<UnitSP, std::string, std::string>& triplet :
+  287|  10.4k|       get_unit_symbols()) {
+  288|  10.4k|    if (unit()->dimensions().empty()) {
+  289|     23|      if (std::abs(unit()->scale_factor() - 0.01) <= tolerance) {
   290|      4|        return {SI::UNIT_SYMBOL_PERCENT, SI::UNIT_SYMBOL_PERCENT};
-  291|     18|      } else if (std::abs(unit()->scale_factor() - (1 / (2 * PI))) <=
-  292|     18|                 tolerance) {
+  291|     19|      } else if (std::abs(unit()->scale_factor() - (1 / (2 * PI))) <=
+  292|     19|                 tolerance) {
   293|      2|        return {SI::UNIT_SYMBOL_RADIAN, SI::UNIT_SYMBOL_RADIAN};
-  294|     16|      } else {
-  295|     16|        return {SI::UNIT_SYMBOL, SI::UNIT_SYMBOL};  // Dimensionless
-  296|     16|      }
-  297|     22|    }
-  298|  10.3k|    if (std::get<0>(triplet)->dimensions() == unit()->dimensions()) {
-  299|  1.18k|      return {unit()->prefix() + std::get<1>(triplet),
-  300|  1.18k|              unit()->prefix() + std::get<2>(triplet)};
-  301|  1.18k|    }
-  302|  10.3k|  }
+  294|     17|      } else {
+  295|     17|        return {SI::UNIT_SYMBOL, SI::UNIT_SYMBOL};  // Dimensionless
+  296|     17|      }
+  297|     23|    }
+  298|  10.4k|    if (std::get<0>(triplet)->dimensions() == unit()->dimensions()) {
+  299|  1.19k|      return {unit()->prefix() + std::get<1>(triplet),
+  300|  1.19k|              unit()->prefix() + std::get<2>(triplet)};
+  301|  1.19k|    }
+  302|  10.4k|  }
   303|       |  // No exact match found, generate a custom symbol and name
   304|     30|  auto sym = _generate_symbol();
   305|     30|  return std::make_pair(sym, sym);
-  306|  1.23k|}
+  306|  1.24k|}
   307|     30|const std::string SymbolUnit::_generate_symbol() const {
   308|       |  // If dimensions are empty, return the appropriate SI unit symbol
   309|     30|  std::map<std::string, int> numerator, denominator;
@@ -23974,9 +24013,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   376|      7|  return numerator_str + "·" + denominator_str;
   377|     18|}
   378|       |const std::vector<std::tuple<UnitSP, std::string, std::string>>
-  379|  1.23k|SymbolUnit::get_unit_symbols() const {
-  380|  1.23k|  return Units_And_Names;
-  381|  1.23k|}
+  379|  1.24k|SymbolUnit::get_unit_symbols() const {
+  380|  1.24k|  return Units_And_Names;
+  381|  1.24k|}
   382|       |
   383|       |const std::map<std::string, std::string> SymbolUnit::get_dimension_symbols()
   384|     59|    const {
@@ -23994,10 +24033,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   396|      1|      "SymbolUnit: Custom dimensions are not supported. If you want to use one "
   397|      1|      "fix Constants.");
   398|     58|}
-  399|     99|bool SymbolUnit::operator==(const SymbolUnit& other) const {
-  400|     99|  return (*unit() == *other.unit()) && (symbol() == other.symbol()) &&
-  401|     99|         (name() == other.name());
-  402|     99|}
+  399|    102|bool SymbolUnit::operator==(const SymbolUnit& other) const {
+  400|    102|  return (*unit() == *other.unit()) && (symbol() == other.symbol()) &&
+  401|    102|         (name() == other.name());
+  402|    102|}
   403|       |
   404|      2|bool SymbolUnit::operator!=(const SymbolUnit& other) const {
   405|      2|  return !(*this == other);
@@ -24026,10 +24065,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    14|       |           double          scale_factor,
    15|       |           double          offset,
    16|       |           std::string     prefix)
-   17|  1.90k|    : _scale_factor(scale_factor),
-   18|  1.90k|      _dimensions(dimensions),
-   19|  1.90k|      _offset(offset),
-   20|  1.90k|      _prefix(prefix) {}
+   17|  1.91k|    : _scale_factor(scale_factor),
+   18|  1.91k|      _dimensions(dimensions),
+   19|  1.91k|      _offset(offset),
+   20|  1.91k|      _prefix(prefix) {}
    21|       |
    22|    255|UnitSP Unit::Meter() { return std::make_shared<Unit>(SI::DIMENSIONS_METER); }
    23|      6|UnitSP Unit::Kilogram() {
@@ -24050,7 +24089,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    38|      3|UnitSP Unit::Coulomb() {
    39|      3|  return std::make_shared<Unit>(SI::DIMENSIONS_COULOMB);
    40|      3|}
-   41|    546|UnitSP Unit::Volt() { return std::make_shared<Unit>(SI::DIMENSIONS_VOLT); }
+   41|    556|UnitSP Unit::Volt() { return std::make_shared<Unit>(SI::DIMENSIONS_VOLT); }
    42|      3|UnitSP Unit::Farad() { return std::make_shared<Unit>(SI::DIMENSIONS_FARAD); }
    43|      9|UnitSP Unit::Ohm() { return std::make_shared<Unit>(SI::DIMENSIONS_OHM); }
    44|      3|UnitSP Unit::Siemens() {
@@ -24083,9 +24122,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    71|      5|                                FAHRENHEIT_OFFSET,
    72|      5|                                SI::UNIT_SYMBOL);
    73|      5|}
-   74|     20|UnitSP Unit::Dimensionless() {
-   75|     20|  return std::make_shared<Unit>(SI::DIMENSIONS_DIMENSIONLESS);
-   76|     20|}
+   74|     21|UnitSP Unit::Dimensionless() {
+   75|     21|  return std::make_shared<Unit>(SI::DIMENSIONS_DIMENSIONLESS);
+   76|     21|}
    77|      7|UnitSP Unit::Percent() {
    78|      7|  return std::make_shared<Unit>(
    79|      7|      SI::DIMENSIONS_DIMENSIONLESS, 0.01, 0.0, SI::UNIT_SYMBOL);
@@ -24121,10 +24160,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   109|    104|  }
   110|     43|}
   111|       |
-  112|  2.95k|std::string     Unit::prefix() const { return this->_prefix; }
-  113|  34.2k|TotalDimensions Unit::dimensions() const { return this->_dimensions; }
-  114|  3.18k|double          Unit::scale_factor() const { return this->_scale_factor; }
-  115|  3.12k|double          Unit::offset() const { return this->_offset; }
+  112|  2.97k|std::string     Unit::prefix() const { return this->_prefix; }
+  113|  35.1k|TotalDimensions Unit::dimensions() const { return this->_dimensions; }
+  114|  3.69k|double          Unit::scale_factor() const { return this->_scale_factor; }
+  115|  3.63k|double          Unit::offset() const { return this->_offset; }
   116|       |
   117|     26|UnitSP Unit::operator/(const UnitSP& other) const {
   118|     26|  if (!other) {
@@ -24193,12 +24232,12 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   181|      6|  return oss.str();
   182|      6|}
   183|       |double Unit::convert_value_to(const double  value,
-  184|  1.29k|                              const UnitSP& target_unit) const {
-  185|  1.29k|  if (!target_unit) {
+  184|  1.54k|                              const UnitSP& target_unit) const {
+  185|  1.54k|  if (!target_unit) {
   186|      1|    throw std::invalid_argument(
   187|      1|        "Unit: The target to convert to cannot be null.");
   188|      1|  }
-  189|  1.28k|  if (dimensions() != target_unit->dimensions()) {
+  189|  1.54k|  if (dimensions() != target_unit->dimensions()) {
   190|      3|    throw std::invalid_argument(
   191|      3|        "Unit: Cannot convert between units with different dimensions. Our "
   192|      3|        "dimensions are " +
@@ -24208,18 +24247,18 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   196|      3|  }
   197|       |
   198|       |  // Convert from source unit to base SI unit
-  199|  1.28k|  double base_value = (value + offset()) * scale_factor();
+  199|  1.54k|  double base_value = (value + offset()) * scale_factor();
   200|       |
   201|       |  // Convert from base SI unit to target unit
-  202|  1.28k|  return (base_value - target_unit->offset()) / target_unit->scale_factor();
-  203|  1.28k|}
+  202|  1.54k|  return (base_value - target_unit->offset()) / target_unit->scale_factor();
+  203|  1.54k|}
   204|       |
-  205|     26|bool Unit::is_compatible_with(const UnitSP& other) const {
-  206|     26|  if (!other) {
+  205|     29|bool Unit::is_compatible_with(const UnitSP& other) const {
+  206|     29|  if (!other) {
   207|      1|    throw std::invalid_argument("Unit: The other cannot be null.");
   208|      1|  }
-  209|     25|  return dimensions() == other->dimensions();
-  210|     26|}
+  209|     28|  return dimensions() == other->dimensions();
+  210|     29|}
   211|       |
   212|       |}  // namespace units
   213|       |}  // namespace physics
@@ -24322,7 +24361,7 @@ src/communications/messages/VoltageStatesResponse.cpp                           
 src/communications/voltage_states/DeviceVoltageState.cpp                                    15                 1    93.33%           7                 1    85.71%          18                 0   100.00%           6                 1    83.33%
 src/communications/voltage_states/DeviceVoltageStates.cpp                                   26                 1    96.15%           8                 1    87.50%          42                 0   100.00%          16                 1    93.75%
 src/generic/Song.cpp                                                                         5                 0   100.00%           5                 0   100.00%          15                 0   100.00%           0                 0         -
-src/instrument_interfaces/Waveform.cpp                                                      74                 8    89.19%          14                 2    85.71%         131                20    84.73%          52                 9    82.69%
+src/instrument_interfaces/Waveform.cpp                                                      75                 9    88.00%          15                 3    80.00%         131                20    84.73%          52                 9    82.69%
 src/instrument_interfaces/names/InstrumentPort.cpp                                          55                 1    98.18%          19                 1    94.74%          94                 0   100.00%          22                 0   100.00%
 src/instrument_interfaces/names/Ports.cpp                                                   61                 2    96.72%          15                 1    93.33%         100                 2    98.00%          42                 2    95.24%
 src/instrument_interfaces/port_transforms/PortTransform.cpp                                 27                 1    96.30%           8                 1    87.50%          29                 0   100.00%          14                 1    92.86%
@@ -24331,7 +24370,7 @@ src/math/AnalyticFunction.cpp                                                   
 src/math/Point.cpp                                                                          76                 5    93.42%          21                 5    76.19%         143                 0   100.00%          56                 2    96.43%
 src/math/Quantity.cpp                                                                       76                 1    98.68%          35                 1    97.14%         165                 0   100.00%          28                 1    96.43%
 src/math/UnitSpace.cpp                                                                      89                 4    95.51%          18                 1    94.44%         145                 2    98.62%          56                 5    91.07%
-src/math/Vector.cpp                                                                        107                15    85.98%          43                 7    83.72%         254                25    90.16%          58                 9    84.48%
+src/math/Vector.cpp                                                                        107                 3    97.20%          43                 3    93.02%         254                 0   100.00%          58                 3    94.83%
 src/math/arrays/ControlArray.cpp                                                            74                 1    98.65%          28                 1    96.43%         152                 0   100.00%          28                 0   100.00%
 src/math/arrays/ControlArray1D.cpp                                                          60                 2    96.67%          29                 1    96.55%         119                 2    98.32%          18                 1    94.44%
 src/math/arrays/IncreasingAlignment.cpp                                                     11                 1    90.91%           6                 1    83.33%           9                 0   100.00%           2                 0   100.00%
@@ -24370,4 +24409,4 @@ src/physics/units/Prefix.cpp                                                    
 src/physics/units/SymbolUnit.cpp                                                           150                 1    99.33%          77                 1    98.70%         319                 0   100.00%          58                 3    94.83%
 src/physics/units/Unit.cpp                                                                  90                 2    97.78%          49                 1    97.96%         182                 0   100.00%          26                 1    96.15%
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TOTAL                                                                                     3538               197    94.43%        1257                96    92.36%        7124               256    96.41%        1833               172    90.62%
+TOTAL                                                                                     3539               186    94.74%        1258                93    92.61%        7124               231    96.76%        1833               166    90.94%
