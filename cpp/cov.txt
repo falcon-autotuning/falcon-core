@@ -1,5 +1,5 @@
 Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.clean/googletest/src/gtest_main.cc
-[==========] Running 1194 tests from 76 test suites.
+[==========] Running 1198 tests from 77 test suites.
 [----------] Global test environment set-up.
 [----------] 16 tests from AcquisitionContextTest
 [ RUN      ] AcquisitionContextTest.ConstructorWithValidConnection
@@ -83,7 +83,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] AnalyticFunctionTest.CustomEvaluation
 [       OK ] AnalyticFunctionTest.CustomEvaluation (1 ms)
 [ RUN      ] AnalyticFunctionTest.CustomDeltaEvaluation
-[       OK ] AnalyticFunctionTest.CustomDeltaEvaluation (0 ms)
+[       OK ] AnalyticFunctionTest.CustomDeltaEvaluation (1 ms)
 [ RUN      ] AnalyticFunctionTest.NullLabelsInput
 [       OK ] AnalyticFunctionTest.NullLabelsInput (0 ms)
 [ RUN      ] AnalyticFunctionTest.EmptyExpressionThrows
@@ -171,7 +171,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 
 [----------] 75 tests from ConfigTest
 [ RUN      ] ConfigTest.JsonRoundTrip
-[       OK ] ConfigTest.JsonRoundTrip (4 ms)
+[       OK ] ConfigTest.JsonRoundTrip (5 ms)
 [ RUN      ] ConfigTest.BasicQueries
 [       OK ] ConfigTest.BasicQueries (0 ms)
 [ RUN      ] ConfigTest.HasChannelNullptrThrows
@@ -320,7 +320,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] ConfigTest.GetIsolatedChannelDotGates_NoIsolatedGatesFound (0 ms)
 [ RUN      ] ConfigTest.GetGateDictWorks
 [       OK ] ConfigTest.GetGateDictWorks (0 ms)
-[----------] 75 tests from ConfigTest (26 ms total)
+[----------] 75 tests from ConfigTest (29 ms total)
 
 [----------] 1 test from ConfigLoaderTest
 [ RUN      ] ConfigLoaderTest.LoadConfigFromYaml
@@ -567,7 +567,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] CoupledLabelledDomainTest.SerializationRoundTrip (0 ms)
 [ RUN      ] CoupledLabelledDomainTest.EqualityOperators_DifferentDomainsSameSize
 [       OK ] CoupledLabelledDomainTest.EqualityOperators_DifferentDomainsSameSize (0 ms)
-[----------] 9 tests from CoupledLabelledDomainTest (2 ms total)
+[----------] 9 tests from CoupledLabelledDomainTest (1 ms total)
 
 [----------] 6 tests from DeviceVoltageStateTest
 [ RUN      ] DeviceVoltageStateTest.ConstructorAndGetters
@@ -603,7 +603,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] DeviceVoltageStatesTest.SerializationRoundTrip (0 ms)
 [ RUN      ] DeviceVoltageStatesTest.FindStateNullConnectionThrows
 [       OK ] DeviceVoltageStatesTest.FindStateNullConnectionThrows (0 ms)
-[----------] 9 tests from DeviceVoltageStatesTest (0 ms total)
+[----------] 9 tests from DeviceVoltageStatesTest (1 ms total)
 
 [----------] 20 tests from DiscreteSpaceTest
 [ RUN      ] DiscreteSpaceTest.ConstructorWorks
@@ -645,8 +645,8 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] DiscreteSpaceTest.GetProjectionThrowsOnKnobNotFound
 [       OK ] DiscreteSpaceTest.GetProjectionThrowsOnKnobNotFound (0 ms)
 [ RUN      ] DiscreteSpaceTest.GetProjectionWorks
-[       OK ] DiscreteSpaceTest.GetProjectionWorks (0 ms)
-[----------] 20 tests from DiscreteSpaceTest (4 ms total)
+[       OK ] DiscreteSpaceTest.GetProjectionWorks (1 ms)
+[----------] 20 tests from DiscreteSpaceTest (5 ms total)
 
 [----------] 9 tests from DiscretizerTest
 [ RUN      ] DiscretizerTest.ConstructorValid
@@ -849,7 +849,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] GateGeometryArray1DTest.ConstructorNullptrScreeningThrows
 [       OK ] GateGeometryArray1DTest.ConstructorNullptrScreeningThrows (0 ms)
 [ RUN      ] GateGeometryArray1DTest.Serialization
-[       OK ] GateGeometryArray1DTest.Serialization (0 ms)
+[       OK ] GateGeometryArray1DTest.Serialization (1 ms)
 [ RUN      ] GateGeometryArray1DTest.AppendCentralGateNullptrLeftThrows
 [       OK ] GateGeometryArray1DTest.AppendCentralGateNullptrLeftThrows (0 ms)
 [ RUN      ] GateGeometryArray1DTest.AppendCentralGateNullptrSelectedThrows
@@ -906,7 +906,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] GateGeometryArray1DTest.QueryNeighborsDotGate (0 ms)
 [ RUN      ] GateGeometryArray1DTest.AppendCentralGateThrowsIfRightNeighborNotPlunger
 [       OK ] GateGeometryArray1DTest.AppendCentralGateThrowsIfRightNeighborNotPlunger (0 ms)
-[----------] 37 tests from GateGeometryArray1DTest (1 ms total)
+[----------] 37 tests from GateGeometryArray1DTest (2 ms total)
 
 [----------] 9 tests from GateRelationsTest
 [ RUN      ] GateRelationsTest.DefaultConstructor
@@ -962,7 +962,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] GroupTest.GetAllChannelGates
 [       OK ] GroupTest.GetAllChannelGates (0 ms)
 [ RUN      ] GroupTest.SerializationRoundTrip
-Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
+Monke:111[       OK ] GroupTest.SerializationRoundTrip (0 ms)
 [----------] 11 tests from GroupTest (1 ms total)
 
 [----------] 2 tests from HasLeftNeighborTest
@@ -979,7 +979,7 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
 [       OK ] HDF5DataTest.ToCommunicationsRoundTrip (0 ms)
 [ RUN      ] HDF5DataTest.FileRoundTripFull
 [       OK ] HDF5DataTest.FileRoundTripFull (2 ms)
-[----------] 3 tests from HDF5DataTest (5 ms total)
+[----------] 3 tests from HDF5DataTest (4 ms total)
 
 [----------] 5 tests from ImpedanceTest
 [ RUN      ] ImpedanceTest.ValueConstructor
@@ -1082,9 +1082,9 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
 [ RUN      ] LabelledArraysTest.IsControlArraysAndIsMeasuredArrays
 [       OK ] LabelledArraysTest.IsControlArraysAndIsMeasuredArrays (0 ms)
 [ RUN      ] LabelledArraysTest.SerializationRoundTripMeasured
-[       OK ] LabelledArraysTest.SerializationRoundTripMeasured (1 ms)
+[       OK ] LabelledArraysTest.SerializationRoundTripMeasured (0 ms)
 [ RUN      ] LabelledArraysTest.SerializationRoundTripControl
-[       OK ] LabelledArraysTest.SerializationRoundTripControl (0 ms)
+[       OK ] LabelledArraysTest.SerializationRoundTripControl (1 ms)
 [ RUN      ] LabelledArraysTest.StaticConstructorsMeasured
 [       OK ] LabelledArraysTest.StaticConstructorsMeasured (0 ms)
 [ RUN      ] LabelledArraysTest.StaticConstructorsControl
@@ -1265,7 +1265,7 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
 [       OK ] LabelledControlArray1DTest.GradientAllAxes (0 ms)
 [ RUN      ] LabelledControlArray1DTest.SerializationRoundTrip
 [       OK ] LabelledControlArray1DTest.SerializationRoundTrip (0 ms)
-[----------] 38 tests from LabelledControlArray1DTest (3 ms total)
+[----------] 38 tests from LabelledControlArray1DTest (4 ms total)
 
 [----------] 14 tests from LabelledDomainTest
 [ RUN      ] LabelledDomainTest.ConstructorValid
@@ -1296,7 +1296,7 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
 [       OK ] LabelledDomainTest.MatchingPortFalse (0 ms)
 [ RUN      ] LabelledDomainTest.MatchingPortThrowsOnNull
 [       OK ] LabelledDomainTest.MatchingPortThrowsOnNull (0 ms)
-[----------] 14 tests from LabelledDomainTest (0 ms total)
+[----------] 14 tests from LabelledDomainTest (1 ms total)
 
 [----------] 52 tests from LabelledMeasuredArrayTest
 [ RUN      ] LabelledMeasuredArrayTest.MeasuredArraySPConstructor
@@ -1403,7 +1403,7 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
 [       OK ] LabelledMeasuredArrayTest.MaxLabelMismatchThrows (0 ms)
 [ RUN      ] LabelledMeasuredArrayTest.InequalityOperator
 [       OK ] LabelledMeasuredArrayTest.InequalityOperator (0 ms)
-[----------] 52 tests from LabelledMeasuredArrayTest (3 ms total)
+[----------] 52 tests from LabelledMeasuredArrayTest (4 ms total)
 
 [----------] 45 tests from LabelledMeasuredArray1DTest
 [ RUN      ] LabelledMeasuredArray1DTest.MeasuredArraySPConstructor
@@ -1634,7 +1634,7 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
 [ RUN      ] LoaderTest.ConstructorWithPathWorks
 [       OK ] LoaderTest.ConstructorWithPathWorks (7 ms)
 [ RUN      ] LoaderTest.ConstructorWithStringWorks
-[       OK ] LoaderTest.ConstructorWithStringWorks (5 ms)
+[       OK ] LoaderTest.ConstructorWithStringWorks (6 ms)
 [ RUN      ] LoaderTest.LoadConfigReturnsConfig
 [       OK ] LoaderTest.LoadConfigReturnsConfig (5 ms)
 [ RUN      ] LoaderTest.ConfigGetterWorks
@@ -1893,14 +1893,14 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
 [ RUN      ] MeasurementRequestTest.ThrowsOnNullWaveforms
 [       OK ] MeasurementRequestTest.ThrowsOnNullWaveforms (0 ms)
 [ RUN      ] MeasurementRequestTest.ThrowsOnNullGetters
-[       OK ] MeasurementRequestTest.ThrowsOnNullGetters (1 ms)
+[       OK ] MeasurementRequestTest.ThrowsOnNullGetters (0 ms)
 [ RUN      ] MeasurementRequestTest.ThrowsOnNullMeterTransforms
 [       OK ] MeasurementRequestTest.ThrowsOnNullMeterTransforms (0 ms)
 [ RUN      ] MeasurementRequestTest.ThrowsOnNullTimeDomain
 [       OK ] MeasurementRequestTest.ThrowsOnNullTimeDomain (0 ms)
 [ RUN      ] MeasurementRequestTest.SerializationRoundTrip
 [       OK ] MeasurementRequestTest.SerializationRoundTrip (1 ms)
-[----------] 6 tests from MeasurementRequestTest (6 ms total)
+[----------] 6 tests from MeasurementRequestTest (5 ms total)
 
 [----------] 5 tests from MeasurementResponseTest
 [ RUN      ] MeasurementResponseTest.ConstructorWorks
@@ -1913,7 +1913,7 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
 [       OK ] MeasurementResponseTest.EqualityOperators (0 ms)
 [ RUN      ] MeasurementResponseTest.SerializationRoundTrip
 [       OK ] MeasurementResponseTest.SerializationRoundTrip (0 ms)
-[----------] 5 tests from MeasurementResponseTest (1 ms total)
+[----------] 5 tests from MeasurementResponseTest (0 ms total)
 
 [----------] 7 tests from NameBaseTest
 [ RUN      ] NameBaseTest.ConstructFromString
@@ -1992,7 +1992,7 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
 [ RUN      ] PortTransformTest.ConstructorThrowsOnNullPort
 [       OK ] PortTransformTest.ConstructorThrowsOnNullPort (1 ms)
 [ RUN      ] PortTransformTest.ConstructorThrowsOnNullTransform
-[       OK ] PortTransformTest.ConstructorThrowsOnNullTransform (2 ms)
+[       OK ] PortTransformTest.ConstructorThrowsOnNullTransform (1 ms)
 [ RUN      ] PortTransformTest.ConstructorSucceeds
 [       OK ] PortTransformTest.ConstructorSucceeds (1 ms)
 [ RUN      ] PortTransformTest.ConstantTransformFactory
@@ -2002,14 +2002,14 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
 [ RUN      ] PortTransformTest.QuadraticTransformEvaluation
 [       OK ] PortTransformTest.QuadraticTransformEvaluation (2 ms)
 [ RUN      ] PortTransformTest.EqualityOperators
-[       OK ] PortTransformTest.EqualityOperators (3 ms)
+[       OK ] PortTransformTest.EqualityOperators (2 ms)
 [ RUN      ] PortTransformTest.SerializationRoundTrip
 [       OK ] PortTransformTest.SerializationRoundTrip (2 ms)
 [ RUN      ] PortTransformTest.ConstantTransformThrowsOnNullPort
 [       OK ] PortTransformTest.ConstantTransformThrowsOnNullPort (1 ms)
 [ RUN      ] PortTransformTest.IdentityTransformThrowsOnNullPort
 [       OK ] PortTransformTest.IdentityTransformThrowsOnNullPort (1 ms)
-[----------] 10 tests from PortTransformTest (21 ms total)
+[----------] 10 tests from PortTransformTest (19 ms total)
 
 [----------] 5 tests from PortTransformsTest
 [ RUN      ] PortTransformsTest.DefaultConstructor
@@ -2200,7 +2200,7 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
 [       OK ] SpacesTest.RaySpaceBasicFunctionality (0 ms)
 [ RUN      ] SpacesTest.RaySpaceSerializationRoundTrip
 [       OK ] SpacesTest.RaySpaceSerializationRoundTrip (0 ms)
-[----------] 10 tests from SpacesTest (1 ms total)
+[----------] 10 tests from SpacesTest (2 ms total)
 
 [----------] 29 tests from StandardConfigConnectionsTest
 [ RUN      ] StandardConfigConnectionsTest.ConstructorValid
@@ -2353,7 +2353,7 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
 [ RUN      ] SymbolUnitTest.PowerOperations
 [       OK ] SymbolUnitTest.PowerOperations (0 ms)
 [ RUN      ] SymbolUnitTest.AllStaticConstructors
-[       OK ] SymbolUnitTest.AllStaticConstructors (0 ms)
+[       OK ] SymbolUnitTest.AllStaticConstructors (1 ms)
 [ RUN      ] SymbolUnitTest.DimensionlessSymbols
 [       OK ] SymbolUnitTest.DimensionlessSymbols (0 ms)
 [ RUN      ] SymbolUnitTest.InvMeter
@@ -2362,7 +2362,18 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
 [       OK ] SymbolUnitTest.CustomCrash (0 ms)
 [ RUN      ] SymbolUnitTest.InequalityOperator
 [       OK ] SymbolUnitTest.InequalityOperator (0 ms)
-[----------] 38 tests from SymbolUnitTest (2 ms total)
+[----------] 38 tests from SymbolUnitTest (3 ms total)
+
+[----------] 4 tests from TimeTest
+[ RUN      ] TimeTest.DefaultConstructorSetsCurrentTime
+[       OK ] TimeTest.DefaultConstructorSetsCurrentTime (0 ms)
+[ RUN      ] TimeTest.ParameterConstructorAndAccessors
+[       OK ] TimeTest.ParameterConstructorAndAccessors (0 ms)
+[ RUN      ] TimeTest.ToStringFormat
+[       OK ] TimeTest.ToStringFormat (0 ms)
+[ RUN      ] TimeTest.JsonSerializationRoundTrip
+[       OK ] TimeTest.JsonSerializationRoundTrip (0 ms)
+[----------] 4 tests from TimeTest (0 ms total)
 
 [----------] 20 tests from UnitTest
 [ RUN      ] UnitTest.ConstructorWithDimensionsOnly
@@ -2592,34 +2603,34 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
 [ RUN      ] WaveformTest.CartesianWaveformWorks
 [       OK ] WaveformTest.CartesianWaveformWorks (1 ms)
 [ RUN      ] WaveformTest.CartesianWaveformNullptrs
-[       OK ] WaveformTest.CartesianWaveformNullptrs (2 ms)
+[       OK ] WaveformTest.CartesianWaveformNullptrs (1 ms)
 [ RUN      ] WaveformTest.CartesianIdentityWaveformWorks
-[       OK ] WaveformTest.CartesianIdentityWaveformWorks (2 ms)
+[       OK ] WaveformTest.CartesianIdentityWaveformWorks (1 ms)
 [ RUN      ] WaveformTest.CartesianIdentityWaveformNullptrs
 [       OK ] WaveformTest.CartesianIdentityWaveformNullptrs (2 ms)
 [ RUN      ] WaveformTest.CartesianWaveform2DWorks
-[       OK ] WaveformTest.CartesianWaveform2DWorks (1 ms)
+[       OK ] WaveformTest.CartesianWaveform2DWorks (2 ms)
 [ RUN      ] WaveformTest.CartesianWaveform2DNullptrs
-[       OK ] WaveformTest.CartesianWaveform2DNullptrs (1 ms)
+[       OK ] WaveformTest.CartesianWaveform2DNullptrs (2 ms)
 [ RUN      ] WaveformTest.CartesianIdentityWaveform2DWorks
 [       OK ] WaveformTest.CartesianIdentityWaveform2DWorks (2 ms)
 [ RUN      ] WaveformTest.CartesianIdentityWaveform2DNullptrs
 [       OK ] WaveformTest.CartesianIdentityWaveform2DNullptrs (1 ms)
 [ RUN      ] WaveformTest.CartesianWaveform1DWorks
-[       OK ] WaveformTest.CartesianWaveform1DWorks (1 ms)
+[       OK ] WaveformTest.CartesianWaveform1DWorks (2 ms)
 [ RUN      ] WaveformTest.CartesianWaveform1DNullptrs
 [       OK ] WaveformTest.CartesianWaveform1DNullptrs (1 ms)
 [ RUN      ] WaveformTest.CartesianIdentityWaveform1DWorks
 [       OK ] WaveformTest.CartesianIdentityWaveform1DWorks (2 ms)
 [ RUN      ] WaveformTest.CartesianIdentityWaveform1DNullptrs
-[       OK ] WaveformTest.CartesianIdentityWaveform1DNullptrs (2 ms)
+[       OK ] WaveformTest.CartesianIdentityWaveform1DNullptrs (1 ms)
 [ RUN      ] WaveformTest.SerializationRoundTrip
 [       OK ] WaveformTest.SerializationRoundTrip (2 ms)
 [----------] 17 tests from WaveformTest (34 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1194 tests from 76 test suites ran. (242 ms total)
-[  PASSED  ] 1194 tests.
+[==========] 1198 tests from 77 test suites ran. (248 ms total)
+[  PASSED  ] 1198 tests.
 /home/daniel/work/wisc/playground/falcon-core/cpp/include/cereal/types/xtensor.hpp:
     1|       |#pragma once
     2|       |
@@ -3408,13 +3419,19 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
    13|       | protected:
    14|       |  friend class cereal::access;
    15|       |  template <class Archive>
-   16|      0|  void serialize(Archive& ar) {
-   17|      0|    ar(cereal::base_class<generic::Song>(this), _micro_seconds_since_epoch);
-   18|      0|  }
+   16|      2|  void serialize(Archive& ar) {
+   17|      2|    ar(cereal::base_class<generic::Song>(this), _micro_seconds_since_epoch);
+   18|      2|  }
   ------------------
-  | Unexecuted instantiation: void falcon_core::communications::Time::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive&)
+  | void falcon_core::communications::Time::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive&):
+  |   16|      1|  void serialize(Archive& ar) {
+  |   17|      1|    ar(cereal::base_class<generic::Song>(this), _micro_seconds_since_epoch);
+  |   18|      1|  }
   ------------------
-  | Unexecuted instantiation: void falcon_core::communications::Time::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive&)
+  | void falcon_core::communications::Time::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive&):
+  |   16|      1|  void serialize(Archive& ar) {
+  |   17|      1|    ar(cereal::base_class<generic::Song>(this), _micro_seconds_since_epoch);
+  |   18|      1|  }
   ------------------
    19|       |
    20|       | public:
@@ -8095,7 +8112,7 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
    56|  2.17k|  void serialize(Archive&) {}
   ------------------
   | void falcon_core::generic::Song::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive&):
-  |   56|    583|  void serialize(Archive&) {}
+  |   56|    584|  void serialize(Archive&) {}
   ------------------
   | void falcon_core::generic::Song::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive&):
   |   56|  1.57k|  void serialize(Archive&) {}
@@ -15564,30 +15581,30 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
     3|       |#include <chrono>
     4|       |namespace falcon_core {
     5|       |namespace communications {
-    6|      0|Time::Time() {
-    7|      0|  auto now = std::chrono::system_clock::now();
-    8|      0|  auto us  = std::chrono::duration_cast<std::chrono::microseconds>(
-    9|      0|                now.time_since_epoch())
-   10|      0|                .count();
-   11|      0|  _micro_seconds_since_epoch = us;
-   12|      0|}
+    6|      2|Time::Time() {
+    7|      2|  auto now = std::chrono::system_clock::now();
+    8|      2|  auto us  = std::chrono::duration_cast<std::chrono::microseconds>(
+    9|      2|                now.time_since_epoch())
+   10|      2|                .count();
+   11|      2|  _micro_seconds_since_epoch = us;
+   12|      2|}
    13|       |
    14|       |Time::Time(long long micro_seconds_since_epoch)
-   15|      0|    : _micro_seconds_since_epoch(micro_seconds_since_epoch) {}
+   15|      3|    : _micro_seconds_since_epoch(micro_seconds_since_epoch) {}
    16|       |
-   17|      0|const long long Time::micro_seconds_since_epoch() const {
-   18|      0|  return _micro_seconds_since_epoch;
-   19|      0|}
+   17|      4|const long long Time::micro_seconds_since_epoch() const {
+   18|      4|  return _micro_seconds_since_epoch;
+   19|      4|}
    20|       |
-   21|      0|const long long Time::time() const { return _micro_seconds_since_epoch; }
+   21|      3|const long long Time::time() const { return _micro_seconds_since_epoch; }
    22|       |
-   23|      0|const std::string Time::to_string() const {
-   24|      0|  std::time_t sec = _micro_seconds_since_epoch / 1000000;
-   25|      0|  std::tm     tm  = *std::localtime(&sec);
-   26|      0|  char        buf[20];
-   27|      0|  std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &tm);
-   28|      0|  return std::string(buf);
-   29|      0|}
+   23|      1|const std::string Time::to_string() const {
+   24|      1|  std::time_t sec = _micro_seconds_since_epoch / 1000000;
+   25|      1|  std::tm     tm  = *std::localtime(&sec);
+   26|      1|  char        buf[20];
+   27|      1|  std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &tm);
+   28|      1|  return std::string(buf);
+   29|      1|}
    30|       |}  // namespace communications
    31|       |}  // namespace falcon_core
    32|       |CEREAL_REGISTER_TYPE(falcon_core::communications::Time)
@@ -15962,17 +15979,17 @@ Monke:111[       OK ] GroupTest.SerializationRoundTrip (1 ms)
     4|       |
     5|       |namespace falcon_core {
     6|       |namespace generic {
-    7|    549|std::string Song::to_json_string() const {
-    8|    549|  std::ostringstream oss;
-    9|    549|  to_json_stream(oss);
-   10|    549|  return oss.str();
-   11|    549|}
+    7|    550|std::string Song::to_json_string() const {
+    8|    550|  std::ostringstream oss;
+    9|    550|  to_json_stream(oss);
+   10|    550|  return oss.str();
+   11|    550|}
    12|       |
-   13|    552|void Song::to_json_stream(std::ostream& os) const {
-   14|    552|  cereal::JSONOutputArchive   archive(os);
-   15|    552|  std::shared_ptr<const Song> ptr(this, [](const Song*) {});
-   16|    552|  archive(ptr);
-   17|    552|}
+   13|    553|void Song::to_json_stream(std::ostream& os) const {
+   14|    553|  cereal::JSONOutputArchive   archive(os);
+   15|    553|  std::shared_ptr<const Song> ptr(this, [](const Song*) {});
+   16|    553|  archive(ptr);
+   17|    553|}
    18|       |
    19|    234|bool Song::operator==(const Song& other) const {
    20|    234|  return to_json_string() == other.to_json_string();
@@ -24175,7 +24192,7 @@ include/falcon_core/autotuner_interfaces/names/Channels.hpp                     
 include/falcon_core/autotuner_interfaces/names/Gname.hpp                                     1                 0   100.00%           1                 0   100.00%           3                 0   100.00%           0                 0         -
 include/falcon_core/autotuner_interfaces/names/NameBase.hpp                                  2                 0   100.00%           2                 0   100.00%           4                 0   100.00%           0                 0         -
 include/falcon_core/communications/HDF5Data.hpp                                              1                 0   100.00%           1                 0   100.00%          11                 0   100.00%           0                 0         -
-include/falcon_core/communications/Time.hpp                                                  1                 1     0.00%           1                 1     0.00%           3                 3     0.00%           0                 0         -
+include/falcon_core/communications/Time.hpp                                                  1                 0   100.00%           1                 0   100.00%           3                 0   100.00%           0                 0         -
 include/falcon_core/communications/messages/BaseMessage.hpp                                  1                 0   100.00%           1                 0   100.00%           3                 0   100.00%           0                 0         -
 include/falcon_core/communications/messages/MeasurementRequest.hpp                           1                 0   100.00%           1                 0   100.00%           8                 0   100.00%           0                 0         -
 include/falcon_core/communications/messages/MeasurementResponse.hpp                          1                 0   100.00%           1                 0   100.00%           3                 0   100.00%           0                 0         -
@@ -24247,7 +24264,7 @@ src/autotuner_interfaces/names/Channels.cpp                                     
 src/autotuner_interfaces/names/Gname.cpp                                                    10                 1    90.00%           7                 1    85.71%           8                 0   100.00%           0                 0         -
 src/autotuner_interfaces/names/NameBase.cpp                                                 17                 1    94.12%           7                 1    85.71%          24                 0   100.00%           4                 0   100.00%
 src/communications/HDF5Data.cpp                                                             72                10    86.11%           7                 3    57.14%         279                42    84.95%          28                 7    75.00%
-src/communications/Time.cpp                                                                  7                 7     0.00%           6                 6     0.00%          19                19     0.00%           0                 0         -
+src/communications/Time.cpp                                                                  7                 1    85.71%           6                 1    83.33%          19                 0   100.00%           0                 0         -
 src/communications/messages/BaseMessage.cpp                                                  7                 1    85.71%           6                 1    83.33%           9                 0   100.00%           0                 0         -
 src/communications/messages/MeasurementRequest.cpp                                          22                 1    95.45%           8                 1    87.50%          28                 0   100.00%           8                 0   100.00%
 src/communications/messages/MeasurementResponse.cpp                                         14                 3    78.57%           8                 3    62.50%          16                 0   100.00%           6                 2    66.67%
@@ -24305,4 +24322,4 @@ src/physics/units/Prefix.cpp                                                    
 src/physics/units/SymbolUnit.cpp                                                           150                 1    99.33%          77                 1    98.70%         319                 0   100.00%          58                 3    94.83%
 src/physics/units/Unit.cpp                                                                  90                 2    97.78%          49                 1    97.96%         182                 0   100.00%          26                 1    96.15%
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TOTAL                                                                                     3516               240    93.17%        1255               103    91.79%        7111               335    95.29%        1819               206    88.68%
+TOTAL                                                                                     3516               233    93.37%        1255                97    92.27%        7111               313    95.60%        1819               206    88.68%
