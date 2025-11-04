@@ -705,6 +705,9 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create(
     List{c_type} arrays) {{
+    if (!arrays) {{
+    throw std::invalid_argument("Null arrays handle passed to {self.mangled_name()}_create");
+    }}
     auto list = static_cast<falcon_core::generic::List<{cpp_type}>*>(arrays);
     return new falcon_core::math::arrays::LabelledArrays<{cpp_type}>(list->items());
 }}
@@ -896,7 +899,7 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
             if (!value) {{
             throw std::invalid_argument("Null value passed to {self.mangled_name()}_fill_value");
             }}
-            auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );"""
+            auto stored_obj = std::make_shared<{cpp_real}>(*static_cast<{cpp_real}*>(value));"""
             copy_to_out_buffer = f"""
 for (size_t i = 0; i < n; ++i) {{
     out_buffer[i] = new {cpp_real}(*list->items()[i]);

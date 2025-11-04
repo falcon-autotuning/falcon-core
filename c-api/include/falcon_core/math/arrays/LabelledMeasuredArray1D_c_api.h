@@ -94,8 +94,8 @@ LabelledMeasuredArray1D_timesequals_measured_array(
     LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other);
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_timesequals_farray(
     LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other);
-void MeasuredArray_timesequals_double(LabelledMeasuredArray1DHandle handle,
-                                      const double                  other);
+void LabelledMeasuredArray1D_timesequals_double(
+    LabelledMeasuredArray1DHandle handle, const double other);
 void LabelledMeasuredArray1D_timesequals_int(
     LabelledMeasuredArray1DHandle handle, const int other);
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_times_measured_array(

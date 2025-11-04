@@ -5,26 +5,38 @@
 class WaveformTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    domain = Domain_create(0, 1.0);
-    axes   = AxesCoupledLabelledDomain_create_empty();
+    default_name = String_wrap("voltage_meter1");
+    expression   = String_wrap("2x[0]+1");
+
+    domain      = Domain_create(0, 1.0);
+    domain_list = ListLabelledDomain_create_empty();
+    ListLabelledDomain_push_back(
+        domain_list,
+        LabelledDomain_create_from_domain(
+            domain,
+            default_name,
+            Connection_create_barrier_gate(default_name),
+            InstrumentTypes_voltmeter()));
+    labelled_domain = CoupledLabelledDomain_create(domain_list);
+    axes            = AxesCoupledLabelledDomain_create_empty();
     AxesCoupledLabelledDomain_push_back(
-        axes, CoupledLabelledDomain_create(String_wrap("A")));
-    increasing              = AxesMapStringBool_create_empty();
-    MapStringBoolHandle map = MapStringBool_create_empty();
-    MapStringBool_insert(map, String_wrap("A"), true);
+        axes, CoupledLabelledDomain_create(labelled_domain));
+    map = MapStringBool_create_empty();
+    MapStringBool_insert(map, default_name, true);
+    increasing = AxesMapStringBool_create_empty();
     AxesMapStringBool_push_back(increasing, map);
-    // Minimal setup for a valid Waveform
     discretizers = AxesDiscretizer_create_empty();
     AxesDiscretizer_push_back(discretizers,
                               Discretizer_create_cartesian_discretizer(0.1));
     unit_space = UnitSpace_create(discretizers, domain);
     space      = DiscreteSpace_create(unit_space, axes, map);
-    transforms = ListPortTransform_create_empty();
-    port       = InstrumentPort_create_port(String_wrap("P1"));
-    labels     = ListString_create_empty();
+
+    labels = ListString_create_empty();
     ListString_push_back(labels, String_wrap("x"));
-    analytic = AnalyticFunction_create(labels, String_wrap("2x[0]+1"));
-    pt       = PortTransform_create(port, analytic);
+    analytic   = AnalyticFunction_create(labels, expression);
+    port       = InstrumentPort_create_port(default_name);
+    pt         = PortTransform_create(port, analytic);
+    transforms = ListPortTransform_create_empty();
     ListPortTransform_push_back(transforms, pt);
 
     // For cartesianwaveform
@@ -32,6 +44,11 @@ class WaveformTest : public ::testing::Test {
     AxesInt_push_back(divisions, 2);
   }
   void TearDown() override {
+    MapStringBool_destroy(map);
+    String_destroy(expression);
+    String_destroy(default_name);
+    ListLabelledDomain_destroy(domain_list);
+    CoupledLabelledDomain_destroy(labelled_domain);
     DiscreteSpace_destroy(space);
     UnitSpace_destroy(unit_space);
     AxesDiscretizer_destroy(discretizers);
@@ -45,6 +62,11 @@ class WaveformTest : public ::testing::Test {
     AxesMapStringBool_destroy(increasing);
     Domain_destroy(domain);
   }
+  MapStringBoolHandle             map;
+  StringHandle                    expression;
+  StringHandle                    default_name;
+  ListLabelledDomainHandle        domain_list;
+  CoupledLabelledDomainHandle     labelled_domain;
   DiscreteSpaceHandle             space;
   UnitSpaceHandle                 unit_space;
   AxesDiscretizerHandle           discretizers;
@@ -205,11 +227,10 @@ TEST_F(WaveformTest, ToJsonFromJson) {
   auto w2 = Waveform_from_json_string(json);
   EXPECT_TRUE(Waveform_equal(w, w2));
 
-  Waveform_destroy(w2);
-  String_destroy(json);
-
   EXPECT_THROW(Waveform_to_json_string(nullptr), std::invalid_argument);
   EXPECT_THROW(Waveform_from_json_string(nullptr), std::invalid_argument);
 
+  Waveform_destroy(w2);
+  String_destroy(json);
   Waveform_destroy(w);
 }

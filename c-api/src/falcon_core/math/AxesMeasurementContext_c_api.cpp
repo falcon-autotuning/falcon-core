@@ -75,7 +75,7 @@ throw std::invalid_argument("Null handle passed to AxesMeasurementContext_push_b
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesMeasurementContext_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(static_cast<falcon_core::autotuner_interfaces::contexts::MeasurementContext*>(value), [](falcon_core::autotuner_interfaces::contexts::MeasurementContext*) {} );
+            auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(*static_cast<falcon_core::autotuner_interfaces::contexts::MeasurementContext*>(value));
     static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,7 @@ throw std::invalid_argument("Null handle passed to AxesMeasurementContext_contai
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesMeasurementContext_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(static_cast<falcon_core::autotuner_interfaces::contexts::MeasurementContext*>(value), [](falcon_core::autotuner_interfaces::contexts::MeasurementContext*) {} );
+            auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(*static_cast<falcon_core::autotuner_interfaces::contexts::MeasurementContext*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +99,7 @@ throw std::invalid_argument("Null handle passed to AxesMeasurementContext_index"
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesMeasurementContext_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(static_cast<falcon_core::autotuner_interfaces::contexts::MeasurementContext*>(value), [](falcon_core::autotuner_interfaces::contexts::MeasurementContext*) {} );
+            auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(*static_cast<falcon_core::autotuner_interfaces::contexts::MeasurementContext*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle)->index(stored_obj);
 }
 

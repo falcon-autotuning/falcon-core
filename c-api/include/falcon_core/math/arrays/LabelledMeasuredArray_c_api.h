@@ -74,8 +74,8 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_timesequals_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
 LabelledMeasuredArrayHandle LabelledMeasuredArray_timesequals_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
-void MeasuredArray_timesequals_double(LabelledMeasuredArrayHandle handle,
-                                      const double                other);
+void LabelledMeasuredArray_timesequals_double(
+    LabelledMeasuredArrayHandle handle, const double other);
 void LabelledMeasuredArray_timesequals_int(LabelledMeasuredArrayHandle handle,
                                            const int                   other);
 LabelledMeasuredArrayHandle LabelledMeasuredArray_times_measured_array(

@@ -6,6 +6,9 @@
 
 LabelledArraysLabelledMeasuredArrayHandle LabelledArraysLabelledMeasuredArray_create(
     ListLabelledMeasuredArrayHandle arrays) {
+    if (!arrays) {
+    throw std::invalid_argument("Null arrays handle passed to LabelledArraysLabelledMeasuredArray_create");
+    }
     auto list = static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>*>(arrays);
     return new falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledMeasuredArray>(list->items());
 }

@@ -4,7 +4,9 @@
 #include <string>
 
 #include "falcon_core/generic/String_c_api.h"
+using namespace falcon_core;
 using namespace falcon_core::math;
+using namespace falcon_core::physics;
 
 PointHandle Point_create_empty() { return new Point(); }
 
@@ -16,17 +18,12 @@ PointHandle Point_create(MapConnectionDoubleHandle items,
   if (!unit) {
     throw std::invalid_argument("Point_create: unit cannot be null");
   }
-  falcon_core::generic::
-      MapSP<falcon_core::physics::device_structures::Connection, double>
-          real_items = std::make_shared<falcon_core::generic::Map<
-              falcon_core::physics::device_structures::Connection,
-              double>>(
-              *static_cast<falcon_core::generic::Map<
-                  falcon_core::physics::device_structures::Connection,
-                  double>*>(items));
-  falcon_core::physics::units::SymbolUnitSP real_unit =
-      std::make_shared<falcon_core::physics::units::SymbolUnit>(
-          *static_cast<falcon_core::physics::units::SymbolUnit*>(unit));
+  generic::MapSP<device_structures::Connection, double> real_items =
+      std::make_shared<generic::Map<device_structures::Connection, double>>(
+          *static_cast<generic::Map<device_structures::Connection, double>*>(
+              items));
+  units::SymbolUnitSP real_unit = std::make_shared<units::SymbolUnit>(
+      *static_cast<units::SymbolUnit*>(unit));
   return new Point(real_items, real_unit);
 }
 
@@ -35,15 +32,10 @@ PointHandle Point_create_from_parent(MapConnectionQuantityHandle items) {
     throw std::invalid_argument(
         "Point_create_from_parent: items cannot be null");
   }
-  falcon_core::generic::MapSP<
-      falcon_core::physics::device_structures::Connection,
-      falcon_core::math::Quantity>
-      real_items = std::make_shared<falcon_core::generic::Map<
-          falcon_core::physics::device_structures::Connection,
-          falcon_core::math::Quantity>>(
-          *static_cast<falcon_core::generic::Map<
-              falcon_core::physics::device_structures::Connection,
-              falcon_core::math::Quantity>*>(items));
+  generic::MapSP<device_structures::Connection, Quantity> real_items =
+      std::make_shared<generic::Map<device_structures::Connection, Quantity>>(
+          *static_cast<generic::Map<device_structures::Connection, Quantity>*>(
+              items));
   return new Point(real_items);
 }
 
@@ -59,7 +51,7 @@ SymbolUnitHandle Point_unit(PointHandle handle) {
     throw std::invalid_argument("Point_unit: handle cannot be null");
   }
   Point self = *static_cast<Point*>(handle);
-  return new falcon_core::physics::units::SymbolUnit(*self.unit());
+  return new units::SymbolUnit(*self.unit());
 }
 
 void Point_insert_or_assign(PointHandle      handle,
@@ -77,11 +69,9 @@ void Point_insert_or_assign(PointHandle      handle,
   }
   Point self = *static_cast<Point*>(handle);
   self.insert_or_assign(
-      std::make_shared<falcon_core::physics::device_structures::Connection>(
-          *static_cast<falcon_core::physics::device_structures::Connection*>(
-              key)),
-      std::make_shared<falcon_core::math::Quantity>(
-          *static_cast<falcon_core::math::Quantity*>(value)));
+      std::make_shared<device_structures::Connection>(
+          *static_cast<device_structures::Connection*>(key)),
+      std::make_shared<Quantity>(*static_cast<Quantity*>(value)));
 }
 
 void Point_insert(PointHandle      handle,
@@ -97,12 +87,9 @@ void Point_insert(PointHandle      handle,
     throw std::invalid_argument("Point_insert: value cannot be null");
   }
   Point self = *static_cast<Point*>(handle);
-  self.insert(
-      std::make_shared<falcon_core::physics::device_structures::Connection>(
-          *static_cast<falcon_core::physics::device_structures::Connection*>(
-              key)),
-      std::make_shared<falcon_core::math::Quantity>(
-          *static_cast<falcon_core::math::Quantity*>(value)));
+  self.insert(std::make_shared<device_structures::Connection>(
+                  *static_cast<device_structures::Connection*>(key)),
+              std::make_shared<Quantity>(*static_cast<Quantity*>(value)));
 }
 
 QuantityHandle Point_at(PointHandle handle, ConnectionHandle key) {
@@ -113,11 +100,9 @@ QuantityHandle Point_at(PointHandle handle, ConnectionHandle key) {
     throw std::invalid_argument("Point_at: key cannot be null");
   }
   Point self  = *static_cast<Point*>(handle);
-  auto  value = self.at(
-      std::make_shared<falcon_core::physics::device_structures::Connection>(
-          *static_cast<falcon_core::physics::device_structures::Connection*>(
-              key)));
-  return new falcon_core::math::Quantity(*value);
+  auto  value = self.at(std::make_shared<device_structures::Connection>(
+      *static_cast<device_structures::Connection*>(key)));
+  return new Quantity(*value);
 }
 
 void Point_erase(PointHandle handle, ConnectionHandle key) {
@@ -128,10 +113,8 @@ void Point_erase(PointHandle handle, ConnectionHandle key) {
     throw std::invalid_argument("Point_erase: key cannot be null");
   }
   Point self = *static_cast<Point*>(handle);
-  self.erase(
-      std::make_shared<falcon_core::physics::device_structures::Connection>(
-          *static_cast<falcon_core::physics::device_structures::Connection*>(
-              key)));
+  self.erase(std::make_shared<device_structures::Connection>(
+      *static_cast<device_structures::Connection*>(key)));
 }
 
 size_t Point_size(PointHandle handle) {
@@ -166,10 +149,8 @@ bool Point_contains(PointHandle handle, ConnectionHandle key) {
     throw std::invalid_argument("Point_contains: key cannot be null");
   }
   Point self = *static_cast<Point*>(handle);
-  return self.contains(
-      std::make_shared<falcon_core::physics::device_structures::Connection>(
-          *static_cast<falcon_core::physics::device_structures::Connection*>(
-              key)));
+  return self.contains(std::make_shared<device_structures::Connection>(
+      *static_cast<device_structures::Connection*>(key)));
 }
 
 ListConnectionHandle Point_keys(PointHandle handle) {
@@ -178,8 +159,7 @@ ListConnectionHandle Point_keys(PointHandle handle) {
   }
   Point self = *static_cast<Point*>(handle);
   auto  keys = self.keys();
-  return new falcon_core::generic::List<
-      falcon_core::physics::device_structures::Connection>(*keys);
+  return new generic::List<device_structures::Connection>(*keys);
 }
 
 ListQuantityHandle Point_values(PointHandle handle) {
@@ -188,7 +168,7 @@ ListQuantityHandle Point_values(PointHandle handle) {
   }
   Point self   = *static_cast<Point*>(handle);
   auto  values = self.values();
-  return new falcon_core::generic::List<falcon_core::math::Quantity>(*values);
+  return new generic::List<Quantity>(*values);
 }
 
 ListPairConnectionQuantityHandle Point_items(PointHandle handle) {
@@ -197,9 +177,8 @@ ListPairConnectionQuantityHandle Point_items(PointHandle handle) {
   }
   Point self  = *static_cast<Point*>(handle);
   auto  items = self.items();
-  return new falcon_core::generic::List<falcon_core::generic::Pair<
-      falcon_core::physics::device_structures::Connection,
-      falcon_core::math::Quantity>>(items);
+  return new generic::List<
+      generic::Pair<device_structures::Connection, Quantity>>(items);
 }
 
 MapConnectionQuantityHandle Point_coordinates(PointHandle handle) {
@@ -208,9 +187,7 @@ MapConnectionQuantityHandle Point_coordinates(PointHandle handle) {
   }
   Point self   = *static_cast<Point*>(handle);
   auto  coords = self.coordinates();
-  return new falcon_core::generic::Map<
-      falcon_core::physics::device_structures::Connection,
-      falcon_core::math::Quantity>(*coords);
+  return new generic::Map<device_structures::Connection, Quantity>(*coords);
 }
 
 ListConnectionHandle Point_connections(PointHandle handle) {
@@ -219,8 +196,7 @@ ListConnectionHandle Point_connections(PointHandle handle) {
   }
   Point self  = *static_cast<Point*>(handle);
   auto  conns = self.connections();
-  return new falcon_core::generic::List<
-      falcon_core::physics::device_structures::Connection>(*conns);
+  return new generic::List<device_structures::Connection>(*conns);
 }
 
 PointHandle Point_addition(PointHandle handle, PointHandle other) {
@@ -283,10 +259,9 @@ void Point_set_unit(PointHandle handle, SymbolUnitHandle unit) {
   if (!unit) {
     throw std::invalid_argument("Point_set_unit: unit cannot be null");
   }
-  Point                                     self = *static_cast<Point*>(handle);
-  falcon_core::physics::units::SymbolUnitSP real_unit =
-      std::make_shared<falcon_core::physics::units::SymbolUnit>(
-          *static_cast<falcon_core::physics::units::SymbolUnit*>(unit));
+  Point               self      = *static_cast<Point*>(handle);
+  units::SymbolUnitSP real_unit = std::make_shared<units::SymbolUnit>(
+      *static_cast<units::SymbolUnit*>(unit));
   self.set_unit(real_unit);
 }
 

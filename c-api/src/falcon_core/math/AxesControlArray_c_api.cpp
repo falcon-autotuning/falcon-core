@@ -75,7 +75,7 @@ throw std::invalid_argument("Null handle passed to AxesControlArray_push_back");
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesControlArray_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::math::arrays::ControlArray>(static_cast<falcon_core::math::arrays::ControlArray*>(value), [](falcon_core::math::arrays::ControlArray*) {} );
+            auto stored_obj = std::make_shared<falcon_core::math::arrays::ControlArray>(*static_cast<falcon_core::math::arrays::ControlArray*>(value));
     static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,7 @@ throw std::invalid_argument("Null handle passed to AxesControlArray_contains");
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesControlArray_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::math::arrays::ControlArray>(static_cast<falcon_core::math::arrays::ControlArray*>(value), [](falcon_core::math::arrays::ControlArray*) {} );
+            auto stored_obj = std::make_shared<falcon_core::math::arrays::ControlArray>(*static_cast<falcon_core::math::arrays::ControlArray*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +99,7 @@ throw std::invalid_argument("Null handle passed to AxesControlArray_index");
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesControlArray_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::math::arrays::ControlArray>(static_cast<falcon_core::math::arrays::ControlArray*>(value), [](falcon_core::math::arrays::ControlArray*) {} );
+            auto stored_obj = std::make_shared<falcon_core::math::arrays::ControlArray>(*static_cast<falcon_core::math::arrays::ControlArray*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle)->index(stored_obj);
 }
 

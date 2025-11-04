@@ -4,7 +4,7 @@
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/arrays/MeasuredArray_c_api.h"
 
-class MeasuredArray1DTest : public ::testing::Test {
+class MeasuredArrayTest : public ::testing::Test {
  protected:
   void SetUp() override {
     shape[0] = 6;
@@ -15,8 +15,8 @@ class MeasuredArray1DTest : public ::testing::Test {
     data[4]  = 5.0;
     data[5]  = 6.0;
     ma       = MeasuredArray_from_data(data, shape, 1);
-    fa  = FArrayDouble_from_data(new double(data[0]), new size_t(shape[0]), 6);
-    ma2 = MeasuredArray_from_farray(fa);
+    fa       = FArrayDouble_from_data(data, shape, 6);
+    ma2      = MeasuredArray_from_farray(fa);
   }
   void TearDown() override {
     MeasuredArray_destroy(ma);
@@ -30,7 +30,7 @@ class MeasuredArray1DTest : public ::testing::Test {
   FArrayDoubleHandle  fa  = nullptr;
 };
 
-TEST_F(MeasuredArray1DTest, CreateDestroy) {
+TEST_F(MeasuredArrayTest, CreateDestroy) {
   auto ma3 = MeasuredArray_from_data(data, shape, 1);
   MeasuredArray_destroy(ma3);
   EXPECT_THROW(MeasuredArray_from_data(nullptr, shape, 1),
@@ -41,7 +41,7 @@ TEST_F(MeasuredArray1DTest, CreateDestroy) {
   EXPECT_THROW(MeasuredArray_destroy(nullptr), std::invalid_argument);
 }
 
-TEST_F(MeasuredArray1DTest, SizeDimensionShapeData) {
+TEST_F(MeasuredArrayTest, SizeDimensionShapeData) {
   EXPECT_EQ(MeasuredArray_size(ma), 6);
   EXPECT_EQ(MeasuredArray_dimension(ma), 1);
   size_t out_shape[1];
@@ -57,7 +57,7 @@ TEST_F(MeasuredArray1DTest, SizeDimensionShapeData) {
   EXPECT_THROW(MeasuredArray_data(nullptr, out_data, 6), std::invalid_argument);
 }
 
-TEST_F(MeasuredArray1DTest, ArithmeticOperators) {
+TEST_F(MeasuredArrayTest, ArithmeticOperators) {
   MeasuredArray_plusequals_farray(ma, fa);
   MeasuredArray_plusequals_double(ma, 1.0);
   MeasuredArray_plusequals_int(ma, 1);
@@ -225,7 +225,7 @@ TEST_F(MeasuredArray1DTest, ArithmeticOperators) {
                std::invalid_argument);
 }
 
-TEST_F(MeasuredArray1DTest, EqualityOperators) {
+TEST_F(MeasuredArrayTest, EqualityOperators) {
   EXPECT_FALSE(MeasuredArray_equality(ma, ma2));
   EXPECT_TRUE(MeasuredArray_notequality(ma, ma2));
   EXPECT_THROW(MeasuredArray_equality(nullptr, ma2), std::invalid_argument);
@@ -234,14 +234,14 @@ TEST_F(MeasuredArray1DTest, EqualityOperators) {
   EXPECT_THROW(MeasuredArray_notequality(ma, nullptr), std::invalid_argument);
 }
 
-TEST_F(MeasuredArray1DTest, ComparisonOperators) {
+TEST_F(MeasuredArrayTest, ComparisonOperators) {
   EXPECT_TRUE(MeasuredArray_greaterthan(ma, 0.5));
   EXPECT_FALSE(MeasuredArray_lessthan(ma, 0.5));
   EXPECT_THROW(MeasuredArray_greaterthan(nullptr, 0.5), std::invalid_argument);
   EXPECT_THROW(MeasuredArray_lessthan(nullptr, 0.5), std::invalid_argument);
 }
 
-TEST_F(MeasuredArray1DTest, OffsetSumReshapeWhereFlipGradient) {
+TEST_F(MeasuredArrayTest, OffsetSumReshapeWhereFlipGradient) {
   MeasuredArray_remove_offset(ma, 1.0);
   EXPECT_DOUBLE_EQ(MeasuredArray_sum(ma), 21.0);
   size_t new_shape[1] = {6};
@@ -270,7 +270,7 @@ TEST_F(MeasuredArray1DTest, OffsetSumReshapeWhereFlipGradient) {
   EXPECT_THROW(MeasuredArray_gradient(nullptr, 0), std::invalid_argument);
 }
 
-TEST_F(MeasuredArray1DTest, SumOfSquares) {
+TEST_F(MeasuredArrayTest, SumOfSquares) {
   EXPECT_DOUBLE_EQ(MeasuredArray_get_sum_of_squares(ma), 91.0);
   EXPECT_DOUBLE_EQ(MeasuredArray_get_summed_diff_int_of_squares(ma, 1), 70.0);
   EXPECT_DOUBLE_EQ(MeasuredArray_get_summed_diff_double_of_squares(ma, 1.0),
@@ -289,7 +289,7 @@ TEST_F(MeasuredArray1DTest, SumOfSquares) {
                std::invalid_argument);
 }
 
-TEST_F(MeasuredArray1DTest, ToJsonFromJson) {
+TEST_F(MeasuredArrayTest, ToJsonFromJson) {
   auto json = MeasuredArray_to_json_string(ma);
   auto ma3  = MeasuredArray_from_json_string(json);
   EXPECT_TRUE(MeasuredArray_equality(ma, ma3));

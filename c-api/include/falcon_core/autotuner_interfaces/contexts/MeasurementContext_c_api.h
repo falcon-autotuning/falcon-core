@@ -2,7 +2,6 @@
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
-#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -12,8 +11,7 @@ typedef void* MeasurementContextHandle;
 
 // Constructors
 MeasurementContextHandle MeasurementContext_create(ConnectionHandle connection,
-                                                   const char* instrument_type,
-                                                   SymbolUnitHandle units);
+                                                   const char* instrument_type);
 MeasurementContextHandle MeasurementContext_create_from_port(
     InstrumentPortHandle port);
 
@@ -22,11 +20,12 @@ void MeasurementContext_destroy(MeasurementContextHandle handle);
 
 // Methods
 ConnectionHandle MeasurementContext_connection(MeasurementContextHandle handle);
-const char* MeasurementContext_instrument_type(MeasurementContextHandle handle);
-bool        MeasurementContext_equal(MeasurementContextHandle a,
-                                     MeasurementContextHandle b);
-bool        MeasurementContext_not_equal(MeasurementContextHandle a,
-                                         MeasurementContextHandle b);
+StringHandle     MeasurementContext_instrument_type(
+        MeasurementContextHandle handle);
+bool MeasurementContext_equal(MeasurementContextHandle a,
+                              MeasurementContextHandle b);
+bool MeasurementContext_not_equal(MeasurementContextHandle a,
+                                  MeasurementContextHandle b);
 
 // Serialization (from Song)
 StringHandle MeasurementContext_to_json_string(MeasurementContextHandle handle);

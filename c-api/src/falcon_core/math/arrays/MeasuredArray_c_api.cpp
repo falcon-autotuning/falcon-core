@@ -13,6 +13,14 @@ using namespace falcon_core::math::arrays;
 MeasuredArrayHandle MeasuredArray_from_data(const double* data,
                                             const size_t* shape,
                                             size_t        ndim) {
+  if (!data) {
+    throw std::invalid_argument(
+        "Null data pointer passed to MeasuredArray_from_data");
+  }
+  if (!shape) {
+    throw std::invalid_argument(
+        "Null shape pointer passed to MeasuredArray_from_data");
+  }
   std::vector<std::vector<double>::size_type> shapeVec;
   size_t                                      total_size = 1;
   for (size_t i = 0; i < ndim; ++i) {

@@ -75,7 +75,7 @@ throw std::invalid_argument("Null handle passed to AxesLabelledControlArray_push
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesLabelledControlArray_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>(static_cast<falcon_core::math::arrays::LabelledControlArray*>(value), [](falcon_core::math::arrays::LabelledControlArray*) {} );
+            auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledControlArray>(*static_cast<falcon_core::math::arrays::LabelledControlArray*>(value));
     static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledControlArray>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,7 @@ throw std::invalid_argument("Null handle passed to AxesLabelledControlArray_cont
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesLabelledControlArray_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>(static_cast<falcon_core::math::arrays::LabelledControlArray*>(value), [](falcon_core::math::arrays::LabelledControlArray*) {} );
+            auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledControlArray>(*static_cast<falcon_core::math::arrays::LabelledControlArray*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledControlArray>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +99,7 @@ throw std::invalid_argument("Null handle passed to AxesLabelledControlArray_inde
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesLabelledControlArray_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>(static_cast<falcon_core::math::arrays::LabelledControlArray*>(value), [](falcon_core::math::arrays::LabelledControlArray*) {} );
+            auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledControlArray>(*static_cast<falcon_core::math::arrays::LabelledControlArray*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledControlArray>*>(handle)->index(stored_obj);
 }
 

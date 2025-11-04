@@ -18,6 +18,10 @@ LabelledControlArray1DHandle LabelledControlArray1D_from_farray(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray1D_from_farray");
   }
+  if (!label) {
+    throw std::invalid_argument(
+        "Null label handle passed to LabelledControlArray1D_from_farray");
+  }
   generic::FArraySP<double> real_farray =
       std::make_shared<generic::FArray<double>>(
           *static_cast<generic::FArray<double>*>(farray));
@@ -33,6 +37,10 @@ LabelledControlArray1DHandle LabelledControlArray1D_from_controlarray(
   if (!controlarray) {
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray1D_from_controlarray");
+  }
+  if (!label) {
+    throw std::invalid_argument(
+        "Null label handle passed to LabelledControlArray1D_from_controlarray");
   }
   ControlArraySP real_controlarray =
       std::make_shared<ControlArray>(*static_cast<ControlArray*>(controlarray));
@@ -461,7 +469,7 @@ void LabelledControlArray1D_timesequals_int(LabelledControlArray1DHandle handle,
   labelled_control_array->operator*=(other);
 }
 
-LabelledControlArray1DHandle ControlArray_times_double(
+LabelledControlArray1DHandle LabelledControlArray1D_times_double(
     LabelledControlArray1DHandle handle, const double other) {
   if (!handle) {
     throw std::invalid_argument(
@@ -483,8 +491,8 @@ LabelledControlArray1DHandle LabelledControlArray1D_times_int(
   return new LabelledControlArray1D(*labelled_control_array->operator*(other));
 }
 
-void ControlArray_dividesequals_double(LabelledControlArray1DHandle handle,
-                                       const double                 other) {
+void LabelledControlArray1D_dividesequals_double(
+    LabelledControlArray1DHandle handle, const double other) {
   if (!handle) {
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray1D_dividesequals_double");

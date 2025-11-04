@@ -22,7 +22,7 @@ InterpretationContextHandle InterpretationContext_create(
 void InterpretationContext_destroy(InterpretationContextHandle handle);
 
 // Methods
-AxesMeasurementContextHandle InterpretationContext_independant_variables(
+AxesMeasurementContextHandle InterpretationContext_independent_variables(
     InterpretationContextHandle handle);
 ListMeasurementContextHandle InterpretationContext_dependent_variables(
     InterpretationContextHandle handle);
@@ -34,7 +34,7 @@ void InterpretationContext_replace_dependent_variable(
     InterpretationContextHandle handle,
     int                         index,
     MeasurementContextHandle    variable);
-MeasurementContextHandle InterpretationContext_get_independant_variables(
+MeasurementContextHandle InterpretationContext_get_independent_variables(
     InterpretationContextHandle handle, int index);
 InterpretationContextHandle InterpretationContext_with_unit(
     InterpretationContextHandle handle, SymbolUnitHandle unit);

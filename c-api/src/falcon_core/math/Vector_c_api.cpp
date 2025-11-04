@@ -357,12 +357,12 @@ bool Vector_contains(VectorHandle handle, ConnectionHandle key) {
   if (!key) {
     throw std::invalid_argument("Vector_contains: key cannot be null");
   }
-  Vector self = *static_cast<Vector*>(handle);
+  Vector* self = static_cast<Vector*>(handle);
   falcon_core::physics::device_structures::ConnectionSP real_key =
       std::make_shared<falcon_core::physics::device_structures::Connection>(
           *static_cast<falcon_core::physics::device_structures::Connection*>(
               key));
-  return self.contains(real_key);
+  return self->contains(real_key);
 }
 
 ListConnectionHandle Vector_keys(VectorHandle handle) {

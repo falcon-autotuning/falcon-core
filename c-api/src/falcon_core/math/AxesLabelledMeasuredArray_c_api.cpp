@@ -75,7 +75,7 @@ throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray_pus
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesLabelledMeasuredArray_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledMeasuredArray>(static_cast<falcon_core::math::arrays::LabelledMeasuredArray*>(value), [](falcon_core::math::arrays::LabelledMeasuredArray*) {} );
+            auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray*>(value));
     static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,7 @@ throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray_con
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesLabelledMeasuredArray_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledMeasuredArray>(static_cast<falcon_core::math::arrays::LabelledMeasuredArray*>(value), [](falcon_core::math::arrays::LabelledMeasuredArray*) {} );
+            auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +99,7 @@ throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray_ind
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesLabelledMeasuredArray_fill_value");
             }
-            auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledMeasuredArray>(static_cast<falcon_core::math::arrays::LabelledMeasuredArray*>(value), [](falcon_core::math::arrays::LabelledMeasuredArray*) {} );
+            auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->index(stored_obj);
 }
 

@@ -370,8 +370,8 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_timesequals_farray(
   return handle;
 }
 
-void MeasuredArray_timesequals_double(LabelledMeasuredArrayHandle handle,
-                                      const double                other) {
+void LabelledMeasuredArray_timesequals_double(
+    LabelledMeasuredArrayHandle handle, const double other) {
   if (!handle) {
     throw std::invalid_argument(
         "Null handle passed to LabelledMeasuredArray_timesequals_double");
