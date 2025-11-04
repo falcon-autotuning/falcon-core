@@ -705,6 +705,9 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create(
     List{c_type} arrays) {{
+    if (!arrays) {{
+    throw std::invalid_argument("Null arrays handle passed to {self.mangled_name()}_create");
+    }}
     auto list = static_cast<falcon_core::generic::List<{cpp_type}>*>(arrays);
     return new falcon_core::math::arrays::LabelledArrays<{cpp_type}>(list->items());
 }}
