@@ -10,6 +10,23 @@ namespace falcon_core {
 namespace physics {
 namespace config {
 namespace core {
+
+namespace {
+device_structures::ConnectionsSP extract_ohmics(
+    const device_structures::ConnectionsSP& order) {
+  if (!order) {
+    return std::make_shared<device_structures::Connections>();
+  }
+  auto ohmics = std::make_shared<device_structures::Connections>();
+  for (const auto& conn : *order) {
+    if (conn->is_ohmic()) {
+      ohmics->push_back(conn);
+    }
+  }
+  return ohmics;
+}
+}  // namespace
+
 Group::Group() = default;
 Group::Group(const autotuner_interfaces::names::ChannelSP& name,
              const int&                                    num_dots,
@@ -18,12 +35,11 @@ Group::Group(const autotuner_interfaces::names::ChannelSP& name,
              const device_structures::ConnectionsSP&       plunger_gates,
              const device_structures::ConnectionsSP&       barrier_gates,
              const device_structures::ConnectionsSP&       order)
-    : StandardConfigConnections(
-          screening_gates,
-          reservoir_gates,
-          plunger_gates,
-          barrier_gates,
-          std::make_shared<device_structures::Connections>()),
+    : StandardConfigConnections(screening_gates,
+                                reservoir_gates,
+                                plunger_gates,
+                                barrier_gates,
+                                extract_ohmics(order)),
       _name(name),
       _num_dots(num_dots),
       _order(std::make_shared<geometries::GateGeometryArray1D>(
@@ -33,7 +49,7 @@ Group::Group(const autotuner_interfaces::names::ChannelSP& name,
   }
 }
 const device_structures::ConnectionsSP Group::ohmics() const {
-  return _order->ohmics();
+  return StandardConfigConnections::ohmics();
 }
 const autotuner_interfaces::names::ChannelSP& Group::name() const {
   return _name;

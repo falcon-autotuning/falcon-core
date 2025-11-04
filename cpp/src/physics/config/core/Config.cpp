@@ -418,7 +418,10 @@ autotuner_interfaces::names::ChannelSP Config::return_channel_from_gate(
 bool Config::ohmic_in_channel(
     const device_structures::ConnectionSP&        ohmic,
     const autotuner_interfaces::names::ChannelSP& channel) const {
-  if (!has_channel(channel) || !ohmic || !ohmic->is_ohmic()) return false;
+  if (!ohmic) {
+    throw std::invalid_argument("Config: The ohmic must not be null.");
+  }
+  if (!has_channel(channel) || !ohmic->is_ohmic()) return false;
   auto gname = get_gname(channel);
   auto group = select_group(gname);
   return group->has_ohmic(ohmic);
