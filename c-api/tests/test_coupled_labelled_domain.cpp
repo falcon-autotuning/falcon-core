@@ -17,7 +17,7 @@ class CoupledLabelledDomainTest : public ::testing::Test {
     unit   = SymbolUnit_create_volt();
     conn   = Connection_create_plunger_gate(String_wrap("A"));
     domain = Domain_create(0.0, 1.0, true, false);
-    port   = InstrumentPort_create_port(name, conn, type, unit, desc);
+    port   = InstrumentPort_create_knob(name, conn, type, unit, desc);
 
     ldom = LabelledDomain_create_primitive_knob(
         name, 0.0, 1.0, conn, type, true, false, unit, desc);

@@ -24,3 +24,6 @@ DotGateWithNeighborsTest.*
 DotGatesWithNeighborsTest.*
 DomainTest.*
 LabelledDomainTest.*
+CoupledLabelledDomainTest.*
+DiscretizerTest.*
+DiscreteSpaceTest.*
