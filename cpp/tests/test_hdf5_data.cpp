@@ -22,6 +22,10 @@
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 
+#include "falcon_core/physics/device_structures/Connection.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentTypes.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+
 using namespace falcon_core;
 
 CEREAL_REGISTER_TYPE(falcon_core::communications::messages::MeasurementRequest)
@@ -101,7 +105,15 @@ TEST(HDF5DataTest, ToCommunicationsRoundTrip) {
   auto meter_transforms = std::make_shared<
       Map<instrument_interfaces::names::InstrumentPort,
           instrument_interfaces::port_transforms::PortTransform>>();
-  auto time_domain = std::make_shared<LabelledDomain>();
+
+  // Build a valid LabelledDomain using the public factory
+  using namespace falcon_core::physics::device_structures;
+  using namespace falcon_core::instrument_interfaces::names;
+  auto pseudo_conn = Connection::PlungerGate("P1");
+  Instrument instr = InstrumentTypes::DC_VOLTAGE_SOURCE;
+  auto port = std::make_shared<InstrumentPort>("port", pseudo_conn, instr);
+  auto time_domain =
+      math::domains::LabelledDomain::from_port(std::make_pair(0.0, 1.0), port);
 
   auto request =
       std::make_shared<MeasurementRequest>(std::string("msg"),
