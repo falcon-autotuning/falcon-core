@@ -276,4 +276,29 @@ TEST_F(VectorTest, NotEqualOperator) {
   ASSERT_TRUE(*v1 != *v2);
   ASSERT_FALSE(*v1 != *v1);
 }
+
+TEST_F(VectorTest, NullStartEndPointsWithUnit) {
+  EXPECT_THROW(std::make_shared<Vector>(nullptr, nullptr, unit),
+               std::invalid_argument);
+}
+TEST_F(VectorTest, NullStartEndPoints) {
+  EXPECT_THROW(std::make_shared<Vector>(nullptr, nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(VectorTest, ConstructorStartEndExtraEndConns) {
+  ConnectionSP conn1 =
+      std::make_shared<Connection>("A", DeviceFeature::BarrierGate);
+  ConnectionSP conn2 =
+      std::make_shared<Connection>("B", DeviceFeature::BarrierGate);
+  ConnectionSP conn3 =
+      std::make_shared<Connection>("C", DeviceFeature::BarrierGate);
+  MapSP<Connection, double> end1extra =
+      std::make_shared<Map<Connection, double>>(
+          std::vector<std::pair<ConnectionSP, double>>{
+              {conn1, 1.0}, {conn2, 2.0}, {conn3, 3.0}});
+  auto vec = std::make_shared<Vector>(start1, end1extra, unit);
+  ASSERT_EQ(vec->connections()->size(), 3);
+}
+
 }  // namespace
