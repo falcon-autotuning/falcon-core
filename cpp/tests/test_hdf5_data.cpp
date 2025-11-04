@@ -13,6 +13,8 @@
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/instrument_interfaces/Waveform.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentTypes.hpp"
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/math/Axes.hpp"
@@ -21,10 +23,7 @@
 #include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 #include "falcon_core/math/domains/LabelledDomain.hpp"
-
 #include "falcon_core/physics/device_structures/Connection.hpp"
-#include "falcon_core/instrument_interfaces/names/InstrumentTypes.hpp"
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 
 using namespace falcon_core;
 
@@ -109,8 +108,8 @@ TEST(HDF5DataTest, ToCommunicationsRoundTrip) {
   // Build a valid LabelledDomain using the public factory
   using namespace falcon_core::physics::device_structures;
   using namespace falcon_core::instrument_interfaces::names;
-  auto pseudo_conn = Connection::PlungerGate("P1");
-  Instrument instr = InstrumentTypes::DC_VOLTAGE_SOURCE;
+  auto       pseudo_conn = Connection::PlungerGate("P1");
+  Instrument instr       = InstrumentTypes::DC_VOLTAGE_SOURCE;
   auto port = std::make_shared<InstrumentPort>("port", pseudo_conn, instr);
   auto time_domain =
       math::domains::LabelledDomain::from_port(std::make_pair(0.0, 1.0), port);
