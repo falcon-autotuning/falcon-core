@@ -38,6 +38,7 @@ NameBaseSP NameBase::operator-(const NameBaseSP& other) const {
 }  // namespace names
 }  // namespace autotuner_interfaces
 }  // namespace falcon_core
+CEREAL_REGISTER_TYPE(falcon_core::autotuner_interfaces::names::NameBase)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
     falcon_core::autotuner_interfaces::names::NameBase)

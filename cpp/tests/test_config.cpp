@@ -1244,13 +1244,16 @@ class EmptyGateConfigTest : public ::testing::Test {
         std::vector<ConnectionSP>{Connection::PlungerGate("P1")});
     auto o_list = std::make_shared<Connections>(
         std::vector<ConnectionSP>{Connection::Ohmic("O1")});
+    auto screening_gates_for_group = std::make_shared<Connections>(
+        std::vector<ConnectionSP>{Connection::ScreeningGate("SG1"),
+                                  Connection::ScreeningGate("SG2")});
 
     auto gname = std::make_shared<Gname>("g1");
     auto channel = std::make_shared<Channel>("CH1");
     auto group   = std::make_shared<falcon_core::physics::config::core::Group>(
         channel,
         1,
-        empty_list,
+        screening_gates_for_group,
         empty_list,
         p_list,
         empty_list,
