@@ -12,6 +12,14 @@ using namespace falcon_core::math::arrays;
 ControlArray1DHandle ControlArray1D_from_data(const double* data,
                                               const size_t* shape,
                                               size_t        ndim) {
+  if (!data) {
+    throw std::invalid_argument(
+        "Null data pointer passed to ControlArray1D_from_data");
+  }
+  if (!shape) {
+    throw std::invalid_argument(
+        "Null shape pointer passed to ControlArray1D_from_data");
+  }
   for (size_t i = 0; i < ndim; ++i) {
     if (shape[i] == 0) {
       throw std::invalid_argument(

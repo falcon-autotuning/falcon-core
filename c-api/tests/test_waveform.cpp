@@ -5,12 +5,22 @@
 class WaveformTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    domain = Domain_create(0, 1.0);
-    axes   = AxesCoupledLabelledDomain_create_empty();
+    domain       = Domain_create(0, 1.0);
+    default_name = String_wrap("A");
+    domain_list  = ListLabelledDomain_create_empty();
+    ListLabelledDomain_push_back(
+        domain_list,
+        LabelledDomain_create_from_domain(
+            domain,
+            default_name,
+            Connection_create_barrier_gate(default_name),
+            InstrumentTypes_voltmeter()));
+    labelled_domain = CoupledLabelledDomain_create(domain_list);
+    axes            = AxesCoupledLabelledDomain_create_empty();
     AxesCoupledLabelledDomain_push_back(
-        axes, CoupledLabelledDomain_create(String_wrap("A")));
-    increasing              = AxesMapStringBool_create_empty();
-    MapStringBoolHandle map = MapStringBool_create_empty();
+        axes, CoupledLabelledDomain_create(labelled_domain));
+    increasing = AxesMapStringBool_create_empty();
+    map        = MapStringBool_create_empty();
     MapStringBool_insert(map, String_wrap("A"), true);
     AxesMapStringBool_push_back(increasing, map);
     // Minimal setup for a valid Waveform
@@ -32,6 +42,10 @@ class WaveformTest : public ::testing::Test {
     AxesInt_push_back(divisions, 2);
   }
   void TearDown() override {
+    MapStringBool_destroy(map);
+    String_destroy(default_name);
+    ListLabelledDomain_destroy(domain_list);
+    CoupledLabelledDomain_destroy(labelled_domain);
     DiscreteSpace_destroy(space);
     UnitSpace_destroy(unit_space);
     AxesDiscretizer_destroy(discretizers);
@@ -45,6 +59,10 @@ class WaveformTest : public ::testing::Test {
     AxesMapStringBool_destroy(increasing);
     Domain_destroy(domain);
   }
+  MapStringBoolHandle             map;
+  StringHandle                    default_name;
+  ListLabelledDomainHandle        domain_list;
+  CoupledLabelledDomainHandle     labelled_domain;
   DiscreteSpaceHandle             space;
   UnitSpaceHandle                 unit_space;
   AxesDiscretizerHandle           discretizers;

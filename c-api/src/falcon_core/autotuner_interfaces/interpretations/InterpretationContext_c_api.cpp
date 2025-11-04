@@ -150,6 +150,10 @@ InterpretationContextHandle InterpretationContext_with_unit(
   if (!handle) {
     throw std::invalid_argument("Null handle passed to InterpretationContext");
   }
+  if (!unit) {
+    throw std::invalid_argument(
+        "Null handle passed to InterpretationContext_with_unit: unit");
+  }
   InterpretationContext* context = static_cast<InterpretationContext*>(handle);
   physics::units::SymbolUnitSP symbol_unit =
       std::make_shared<physics::units::SymbolUnit>(

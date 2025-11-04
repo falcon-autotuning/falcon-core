@@ -8,14 +8,14 @@
 class ControlArray1DTest : public ::testing::Test {
  protected:
   void SetUp() override {
+    shape[0] = 3;
     data[0]  = 1.0;
     data[1]  = 2.0;
     data[2]  = 3.0;
     shape[0] = 3;
     ca       = ControlArray1D_from_data(data, shape, 1);
-    fa       = FArrayDouble_from_data(
-        new double(data[0]), std::vector<size_t>{3}.data(), 1);
-    ca2 = ControlArray1D_from_farray(fa);
+    fa       = FArrayDouble_from_data(data, shape, 1);
+    ca2      = ControlArray1D_from_farray(fa);
   }
   void TearDown() override {
     ControlArray1D_destroy(ca);

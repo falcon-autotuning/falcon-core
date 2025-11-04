@@ -20,10 +20,10 @@ class LabelledControlArray1DTest : public ::testing::Test {
     data[3]  = 4.0;
     data[4]  = 5.0;
     data[5]  = 6.0;
-    fa   = FArrayDouble_from_data(new double(data[0]), new size_t(shape[0]), 6);
-    ca   = ControlArray_from_data(data, shape, 1);
-    conn = Connection_create_barrier_gate(String_wrap("GATE1"));
-    label = AcquisitionContext_create(
+    fa       = FArrayDouble_from_data(data, shape, 1);
+    ca       = ControlArray_from_data(data, shape, 1);
+    conn     = Connection_create_barrier_gate(String_wrap("GATE1"));
+    label    = AcquisitionContext_create(
         conn, InstrumentTypes_voltmeter(), SymbolUnit_create_volt());
     lca  = LabelledControlArray1D_from_farray(fa, label);
     lca2 = LabelledControlArray1D_from_controlarray(ca, label);

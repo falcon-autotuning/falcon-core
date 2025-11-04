@@ -144,7 +144,7 @@ double MeasuredArray1D_get_summed_diff_array_of_squares(
 
 // Serialization (from Song)
 StringHandle MeasuredArray1D_to_json_string(MeasuredArray1DHandle handle);
-MeasuredArray1DHandle MeasuredArray_from_json_string(StringHandle json);
+MeasuredArray1DHandle MeasuredArray1D_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

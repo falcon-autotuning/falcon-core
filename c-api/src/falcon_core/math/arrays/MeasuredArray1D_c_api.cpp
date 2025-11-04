@@ -12,6 +12,14 @@ using namespace falcon_core::math::arrays;
 MeasuredArray1DHandle MeasuredArray1D_from_data(const double* data,
                                                 const size_t* shape,
                                                 size_t        ndim) {
+  if (!data) {
+    throw std::invalid_argument(
+        "Null data pointer passed to MeasuredArray1D_from_data");
+  }
+  if (!shape) {
+    throw std::invalid_argument(
+        "Null shape pointer passed to MeasuredArray1D_from_data");
+  }
   for (size_t i = 0; i < ndim; ++i) {
     if (shape[i] == 0) {
       throw std::invalid_argument(

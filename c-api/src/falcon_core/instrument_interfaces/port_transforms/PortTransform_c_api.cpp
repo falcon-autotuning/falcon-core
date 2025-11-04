@@ -60,7 +60,7 @@ InstrumentPortHandle PortTransform_port(PortTransformHandle handle) {
     throw std::invalid_argument("PortTransform_port: handle cannot be null");
   }
   const auto port = static_cast<PortTransform*>(handle)->port();
-  return static_cast<InstrumentPortHandle>(port.get());
+  return new InstrumentPort(*port);
 }
 
 ListStringHandle PortTransform_labels(PortTransformHandle handle) {

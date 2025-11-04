@@ -23,8 +23,7 @@ class ControlArrayTest : public ::testing::Test {
     for (int i = 0; i < 6; ++i) data1d[i] = data2d[i];
     ca1d = ControlArray_from_data(data1d, shape1d, 1);
 
-    fa2d = FArrayDouble_from_data(
-        new double(data2d[0]), new size_t(shape2d[0]), 2);
+    fa2d   = FArrayDouble_from_data(data2d, shape2d, 2);
     ca2d_2 = ControlArray_from_farray(fa2d);
   }
   void TearDown() override {
