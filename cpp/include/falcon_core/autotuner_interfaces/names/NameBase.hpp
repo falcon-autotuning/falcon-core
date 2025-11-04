@@ -11,6 +11,7 @@ class NameBase : public generic::Song {
   std::string _index_string;
 
  public:
+  NameBase(const std::string& name);
   NameBase(const std::string& name, const std::string& index_string);
   NameBase(const int& num, const std::string& index_string);
   /**
