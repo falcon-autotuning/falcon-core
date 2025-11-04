@@ -59,17 +59,13 @@ void HDF5Data::to_file(const std::string& path) const {
     H5::Group   sub_domain_group = domains_group.createGroup(dim_name);
 
     // Data
-    std::ostringstream data_stream;
     const auto&        arr   = (*_unit_domain)[i]->xtensor();
     std::string dataset_path = "/domains/dim" + std::to_string(i) + "/data";
     xt::dump_hdf5(file.getFileName(), dataset_path, arr);
-    std::string   data_str     = data_stream.str();
+    // prepare string dataspace/type for labels
     hsize_t       data_dims[1] = {1};
     H5::DataSpace data_space(1, data_dims);
     H5::StrType   str_type(H5::PredType::C_S1, H5T_VARIABLE);
-    H5::DataSet   data_dataset =
-        sub_domain_group.createDataSet("data", str_type, data_space);
-    data_dataset.write(data_str, str_type);
 
     // Labels
     const auto& domains   = (*_domain_labels)[i]->domains();
