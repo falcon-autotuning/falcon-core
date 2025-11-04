@@ -2,7 +2,7 @@
 
 #include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
-class SymbolUnitCAPI_Fixture : public ::testing::Test {
+class SymbolUnitTest : public ::testing::Test {
  protected:
   SymbolUnitHandle meter, second, volt, kilometer, millimeter, dimensionless,
       percent, celsius, fahrenheit, joule, ohm;
@@ -34,7 +34,7 @@ class SymbolUnitCAPI_Fixture : public ::testing::Test {
   }
 };
 
-TEST_F(SymbolUnitCAPI_Fixture, StaticConstructors) {
+TEST_F(SymbolUnitTest, StaticConstructors) {
   EXPECT_TRUE(meter != nullptr);
   EXPECT_TRUE(second != nullptr);
   EXPECT_TRUE(volt != nullptr);
@@ -48,12 +48,12 @@ TEST_F(SymbolUnitCAPI_Fixture, StaticConstructors) {
   EXPECT_TRUE(ohm != nullptr);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, Properties) {
+TEST_F(SymbolUnitTest, Properties) {
   EXPECT_STREQ(SymbolUnit_symbol(meter)->raw, "m");
   EXPECT_STRNE(SymbolUnit_name(meter)->raw, "");
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, OperatorMultiplyWorks) {
+TEST_F(SymbolUnitTest, OperatorMultiplyWorks) {
   SymbolUnitHandle result = SymbolUnit_multiplication(meter, second);
   EXPECT_TRUE(result != nullptr);
   EXPECT_NE(std::string(SymbolUnit_symbol(result)->raw).find("m·s"),
@@ -61,7 +61,7 @@ TEST_F(SymbolUnitCAPI_Fixture, OperatorMultiplyWorks) {
   SymbolUnit_destroy(result);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, OperatorDivideWorks) {
+TEST_F(SymbolUnitTest, OperatorDivideWorks) {
   SymbolUnitHandle result = SymbolUnit_division(meter, second);
   EXPECT_TRUE(result != nullptr);
   EXPECT_NE(std::string(SymbolUnit_symbol(result)->raw).find("m/s"),
@@ -69,7 +69,7 @@ TEST_F(SymbolUnitCAPI_Fixture, OperatorDivideWorks) {
   SymbolUnit_destroy(result);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, OperatorPowerWorks) {
+TEST_F(SymbolUnitTest, OperatorPowerWorks) {
   SymbolUnitHandle area = SymbolUnit_power(meter, 2);
   EXPECT_TRUE(area != nullptr);
   EXPECT_NE(std::string(SymbolUnit_symbol(area)->raw).find("m^2"),
@@ -77,7 +77,7 @@ TEST_F(SymbolUnitCAPI_Fixture, OperatorPowerWorks) {
   SymbolUnit_destroy(area);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, WithPrefixWorks) {
+TEST_F(SymbolUnitTest, WithPrefixWorks) {
   SymbolUnitHandle km = SymbolUnit_with_prefix(meter, String_wrap("k"));
   EXPECT_TRUE(km != nullptr);
   EXPECT_NE(std::string(SymbolUnit_symbol(km)->raw).find("km"),
@@ -85,40 +85,40 @@ TEST_F(SymbolUnitCAPI_Fixture, WithPrefixWorks) {
   SymbolUnit_destroy(km);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, WithPrefixInvalidThrows) {
+TEST_F(SymbolUnitTest, WithPrefixInvalidThrows) {
   EXPECT_ANY_THROW(SymbolUnit_with_prefix(meter, String_wrap("invalid")));
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, ConvertValueToWorks) {
+TEST_F(SymbolUnitTest, ConvertValueToWorks) {
   double val = SymbolUnit_convert_value_to(meter, 1.0, millimeter);
   EXPECT_NEAR(val, 1000.0, 1e-9);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, ConvertValueToNullptrThrows) {
+TEST_F(SymbolUnitTest, ConvertValueToNullptrThrows) {
   EXPECT_ANY_THROW(SymbolUnit_convert_value_to(meter, 1.0, nullptr));
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, ConvertValueToIncompatibleThrows) {
+TEST_F(SymbolUnitTest, ConvertValueToIncompatibleThrows) {
   EXPECT_ANY_THROW(SymbolUnit_convert_value_to(meter, 1.0, second));
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, IsCompatibleWithWorks) {
+TEST_F(SymbolUnitTest, IsCompatibleWithWorks) {
   EXPECT_TRUE(SymbolUnit_is_compatible_with(meter, millimeter));
   EXPECT_FALSE(SymbolUnit_is_compatible_with(meter, second));
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, IsCompatibleWithNullptrThrows) {
+TEST_F(SymbolUnitTest, IsCompatibleWithNullptrThrows) {
   EXPECT_ANY_THROW(SymbolUnit_is_compatible_with(meter, nullptr));
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, SerializationRoundTrip) {
+TEST_F(SymbolUnitTest, SerializationRoundTrip) {
   StringHandle     json = SymbolUnit_to_json_string(meter);
   SymbolUnitHandle m2   = SymbolUnit_from_json_string(json);
   EXPECT_TRUE(SymbolUnit_equal(meter, m2));
   SymbolUnit_destroy(m2);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, EqualityAndInequality) {
+TEST_F(SymbolUnitTest, EqualityAndInequality) {
   SymbolUnitHandle m1 = SymbolUnit_create_meter();
   SymbolUnitHandle m2 = SymbolUnit_create_meter();
   SymbolUnitHandle s  = SymbolUnit_create_second();
@@ -129,7 +129,7 @@ TEST_F(SymbolUnitCAPI_Fixture, EqualityAndInequality) {
   SymbolUnit_destroy(s);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, AllStaticConstructors) {
+TEST_F(SymbolUnitTest, AllStaticConstructors) {
   EXPECT_TRUE(SymbolUnit_create_meter() != nullptr);
   EXPECT_TRUE(SymbolUnit_create_kilogram() != nullptr);
   EXPECT_TRUE(SymbolUnit_create_second() != nullptr);

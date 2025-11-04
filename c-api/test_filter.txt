@@ -12,3 +12,11 @@ PortTransformTest.*
 PortTransformsTest.*
 SignTest.*
 QuantityTest.*
+ConnectionsTest.*
+GateRelationsTest.*
+ImpedanceTest.*
+ImpedancesTest.*
+SymbolUnitTest.*
+LeftReservoirWithImplantedOhmicTest.*
+RightReservoirWithImplantedOhmicTest.*
+GateGeometryArray1DTest.*

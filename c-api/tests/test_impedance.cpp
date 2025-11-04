@@ -3,7 +3,7 @@
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/device_structures/Impedance_c_api.h"
 
-TEST(ImpedanceCAPI_Constructors, ValueConstructor) {
+TEST(ImpedanceTest, ValueConstructor) {
   ConnectionHandle conn = Connection_create_plunger_gate(String_wrap("foo"));
   ImpedanceHandle  imp  = Impedance_create(conn, 42.5, 3.14);
   EXPECT_TRUE(Connection_equal(Impedance_connection(imp), conn));
@@ -13,11 +13,11 @@ TEST(ImpedanceCAPI_Constructors, ValueConstructor) {
   Connection_destroy(conn);
 }
 
-TEST(ImpedanceCAPI_Constructors, NullConnectionThrows) {
+TEST(ImpedanceTest, NullConnectionThrows) {
   EXPECT_ANY_THROW(Impedance_create(nullptr, 1.0, 2.0));
 }
 
-TEST(ImpedanceCAPI_Serialization, SerializationRoundTrip) {
+TEST(ImpedanceTest, SerializationRoundTrip) {
   ConnectionHandle conn = Connection_create_ohmic(String_wrap("bar"));
   ImpedanceHandle  imp  = Impedance_create(conn, 10.0, 5.0);
   StringHandle     json = Impedance_to_json_string(imp);
@@ -31,7 +31,7 @@ TEST(ImpedanceCAPI_Serialization, SerializationRoundTrip) {
   Connection_destroy(conn);
 }
 
-TEST(ImpedanceCAPI_Comparison, EqualityAndInequality) {
+TEST(ImpedanceTest, EqualityAndInequality) {
   ConnectionHandle conn1 = Connection_create_plunger_gate(String_wrap("foo"));
   ImpedanceHandle  imp1  = Impedance_create(conn1, 42.5, 3.14);
 

@@ -4,7 +4,7 @@
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/device_structures/Connections_c_api.h"
 
-class ConnectionsCAPI_Fixture : public ::testing::Test {
+class ConnectionsTest : public ::testing::Test {
  protected:
   ConnectionHandle barrier, plunger, reservoir, screening, ohmic;
   void             SetUp() override {
@@ -23,13 +23,18 @@ class ConnectionsCAPI_Fixture : public ::testing::Test {
   }
 };
 
-TEST(ConnectionsCAPI_Constructors, DefaultConstructor) {
+TEST_F(ConnectionsTest, DefaultConstructor) {
   ConnectionsHandle c = Connections_create_empty();
   EXPECT_EQ(Connections_size(c), 0);
   Connections_destroy(c);
+  EXPECT_THROW(Connections_destroy(nullptr), std::invalid_argument);
 }
 
-TEST_F(ConnectionsCAPI_Fixture, CountValueConstructor) {
+TEST_F(ConnectionsTest, CreateNull) {
+  EXPECT_THROW(Connections_create(nullptr), std::invalid_argument);
+}
+
+TEST_F(ConnectionsTest, CountValueConstructor) {
   ConnectionsHandle c = Connections_create_empty();
   Connections_push_back(c, barrier);
   Connections_push_back(c, barrier);
@@ -40,7 +45,7 @@ TEST_F(ConnectionsCAPI_Fixture, CountValueConstructor) {
   Connections_destroy(c);
 }
 
-TEST_F(ConnectionsCAPI_Fixture, VectorConstructor) {
+TEST_F(ConnectionsTest, VectorConstructor) {
   ConnectionsHandle c = Connections_create_empty();
   Connections_push_back(c, barrier);
   Connections_push_back(c, ohmic);
@@ -50,7 +55,7 @@ TEST_F(ConnectionsCAPI_Fixture, VectorConstructor) {
   Connections_destroy(c);
 }
 
-TEST_F(ConnectionsCAPI_Fixture, TypeChecks) {
+TEST_F(ConnectionsTest, TypeChecks) {
   ConnectionsHandle gates = Connections_create_empty();
   Connections_push_back(gates, screening);
   Connections_push_back(gates, screening);
@@ -109,9 +114,18 @@ TEST_F(ConnectionsCAPI_Fixture, TypeChecks) {
   EXPECT_FALSE(Connections_is_gates(mixed));
   EXPECT_FALSE(Connections_is_ohmics(mixed));
   Connections_destroy(mixed);
+
+  // Nullptr coverage for all type checks
+  EXPECT_THROW(Connections_is_gates(nullptr), std::invalid_argument);
+  EXPECT_THROW(Connections_is_ohmics(nullptr), std::invalid_argument);
+  EXPECT_THROW(Connections_is_dot_gates(nullptr), std::invalid_argument);
+  EXPECT_THROW(Connections_is_plunger_gates(nullptr), std::invalid_argument);
+  EXPECT_THROW(Connections_is_barrier_gates(nullptr), std::invalid_argument);
+  EXPECT_THROW(Connections_is_reservoir_gates(nullptr), std::invalid_argument);
+  EXPECT_THROW(Connections_is_screening_gates(nullptr), std::invalid_argument);
 }
 
-TEST_F(ConnectionsCAPI_Fixture, Methods_PushBackEraseClearContainsIndex) {
+TEST_F(ConnectionsTest, Methods_PushBackEraseClearContainsIndex) {
   ConnectionsHandle c = Connections_create_empty();
   Connections_push_back(c, barrier);
   Connections_push_back(c, plunger);
@@ -120,7 +134,6 @@ TEST_F(ConnectionsCAPI_Fixture, Methods_PushBackEraseClearContainsIndex) {
   EXPECT_FALSE(Connections_empty(c));
   EXPECT_TRUE(Connections_contains(c, plunger));
   EXPECT_EQ(Connections_index(c, plunger), 1);
-
   Connections_erase_at(c, 1);
   EXPECT_EQ(Connections_size(c), 2);
   EXPECT_FALSE(Connections_contains(c, plunger));
@@ -128,14 +141,27 @@ TEST_F(ConnectionsCAPI_Fixture, Methods_PushBackEraseClearContainsIndex) {
   EXPECT_EQ(Connections_size(c), 0);
   EXPECT_TRUE(Connections_empty(c));
   Connections_destroy(c);
+
+  // Nullptr coverage for methods
+  EXPECT_THROW(Connections_push_back(nullptr, barrier), std::invalid_argument);
+  EXPECT_THROW(Connections_push_back(c, nullptr), std::invalid_argument);
+  EXPECT_THROW(Connections_erase_at(nullptr, 0), std::invalid_argument);
+  EXPECT_THROW(Connections_clear(nullptr), std::invalid_argument);
+  EXPECT_THROW(Connections_contains(nullptr, plunger), std::invalid_argument);
+  EXPECT_THROW(Connections_contains(c, nullptr), std::invalid_argument);
+  EXPECT_THROW(Connections_index(nullptr, plunger), std::invalid_argument);
+  EXPECT_THROW(Connections_index(c, nullptr), std::invalid_argument);
+  EXPECT_THROW(Connections_size(nullptr), std::invalid_argument);
+  EXPECT_THROW(Connections_empty(nullptr), std::invalid_argument);
+  EXPECT_THROW(Connections_at(nullptr, 0), std::invalid_argument);
+  EXPECT_THROW(Connections_items(nullptr), std::invalid_argument);
 }
 
-TEST_F(ConnectionsCAPI_Fixture, Items_Buffer) {
+TEST_F(ConnectionsTest, Items_Buffer) {
   ConnectionsHandle c = Connections_create_empty();
   Connections_push_back(c, barrier);
   Connections_push_back(c, plunger);
   Connections_push_back(c, ohmic);
-
   ListConnectionHandle handle = Connections_items(c);
   EXPECT_TRUE(Connection_equal(ListConnection_at(handle, 0), barrier));
   EXPECT_TRUE(Connection_equal(ListConnection_at(handle, 1), plunger));
@@ -143,68 +169,86 @@ TEST_F(ConnectionsCAPI_Fixture, Items_Buffer) {
   Connections_destroy(c);
 }
 
-TEST_F(ConnectionsCAPI_Fixture, EqualityAndInequality) {
+TEST_F(ConnectionsTest, EqualityAndInequality) {
   ConnectionsHandle c1 = Connections_create_empty();
   Connections_push_back(c1, barrier);
   Connections_push_back(c1, plunger);
-
   ConnectionsHandle c2 = Connections_create_empty();
   Connections_push_back(c2, barrier);
   Connections_push_back(c2, plunger);
-
   ConnectionsHandle c3 = Connections_create_empty();
   Connections_push_back(c3, barrier);
-
   EXPECT_TRUE(Connections_equal(c1, c2));
   EXPECT_TRUE(Connections_not_equal(c1, c3));
   Connections_destroy(c1);
   Connections_destroy(c2);
   Connections_destroy(c3);
+
+  // Nullptr coverage for equality
+  EXPECT_THROW(Connections_equal(nullptr, c3), std::invalid_argument);
+  EXPECT_THROW(Connections_equal(c1, nullptr), std::invalid_argument);
+  EXPECT_THROW(Connections_not_equal(nullptr, c3), std::invalid_argument);
+  EXPECT_THROW(Connections_not_equal(c1, nullptr), std::invalid_argument);
 }
 
-TEST_F(ConnectionsCAPI_Fixture, SerializationRoundTrip) {
+TEST_F(ConnectionsTest, SerializationRoundTrip) {
   ConnectionsHandle c = Connections_create_empty();
   Connections_push_back(c, plunger);
   Connections_push_back(c, ohmic);
-
   StringHandle      json = Connections_to_json_string(c);
   ConnectionsHandle c2   = Connections_from_json_string(json);
-
   EXPECT_EQ(Connections_size(c2), 2);
   EXPECT_STREQ(Connection_name(Connections_at(c2, 0))->raw, "p");
   EXPECT_STREQ(Connection_name(Connections_at(c2, 1))->raw, "o");
   EXPECT_TRUE(Connections_equal(c, c2));
-
   Connections_destroy(c);
   Connections_destroy(c2);
+
+  // Nullptr coverage for serialization
+  EXPECT_THROW(Connections_to_json_string(nullptr), std::invalid_argument);
+  EXPECT_THROW(Connections_from_json_string(nullptr), std::invalid_argument);
 }
 
-TEST_F(ConnectionsCAPI_Fixture, IntersectionThrowsOnNullptr) {
+TEST_F(ConnectionsTest, IntersectionThrowsOnNullptr) {
   ConnectionsHandle c1 = Connections_create_empty();
   Connections_push_back(c1, barrier);
   ConnectionsHandle null_ptr = NULL;
   EXPECT_THROW(Connections_intersection(c1, null_ptr), std::invalid_argument);
+  EXPECT_THROW(Connections_intersection(nullptr, c1), std::invalid_argument);
   Connections_destroy(c1);
 }
 
-TEST_F(ConnectionsCAPI_Fixture, IntersectionNormalCase) {
+TEST_F(ConnectionsTest, IntersectionNormalCase) {
   ConnectionHandle  a  = Connection_create_barrier_gate(String_wrap("a"));
   ConnectionHandle  b  = Connection_create_barrier_gate(String_wrap("b"));
   ConnectionsHandle c1 = Connections_create_empty();
   Connections_push_back(c1, a);
   Connections_push_back(c1, b);
-
   ConnectionsHandle c2 = Connections_create_empty();
   Connections_push_back(c2, a);
-
   ConnectionsHandle result = Connections_intersection(c1, c2);
   ASSERT_NE(result, nullptr);
   ASSERT_EQ(Connections_size(result), 1);
   EXPECT_TRUE(Connection_equal(Connections_at(result, 0), a));
-
   Connection_destroy(a);
   Connection_destroy(b);
   Connections_destroy(c1);
   Connections_destroy(c2);
   Connections_destroy(result);
+}
+
+TEST_F(ConnectionsTest, CreateWithNullItemsThrows) {
+  EXPECT_THROW(Connections_create(nullptr), std::invalid_argument);
+}
+
+TEST_F(ConnectionsTest, CreateFromListConnectionHandle) {
+  ListConnectionHandle list = ListConnection_create_empty();
+  ListConnection_push_back(list, barrier);
+  ListConnection_push_back(list, plunger);
+  ConnectionsHandle c = Connections_create(list);
+  EXPECT_EQ(Connections_size(c), 2);
+  EXPECT_TRUE(Connection_equal(Connections_at(c, 0), barrier));
+  EXPECT_TRUE(Connection_equal(Connections_at(c, 1), plunger));
+  Connections_destroy(c);
+  ListConnection_destroy(list);
 }

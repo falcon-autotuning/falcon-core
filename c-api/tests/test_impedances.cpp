@@ -4,7 +4,7 @@
 #include "falcon_core/physics/device_structures/Impedance_c_api.h"
 #include "falcon_core/physics/device_structures/Impedances_c_api.h"
 
-class ImpedancesCAPI_Fixture : public ::testing::Test {
+class ImpedancesTest : public ::testing::Test {
  protected:
   ConnectionHandle conn1, conn2, conn3;
   ImpedanceHandle  imp1, imp2, imp3;
@@ -26,14 +26,14 @@ class ImpedancesCAPI_Fixture : public ::testing::Test {
   }
 };
 
-TEST_F(ImpedancesCAPI_Fixture, DefaultConstructor) {
+TEST_F(ImpedancesTest, DefaultConstructor) {
   ImpedancesHandle imps = Impedances_create_empty();
   EXPECT_EQ(Impedances_size(imps), 0);
   EXPECT_TRUE(Impedances_empty(imps));
   Impedances_destroy(imps);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, VectorConstructor) {
+TEST_F(ImpedancesTest, VectorConstructor) {
   ListImpedanceHandle vec = ListImpedance_create_empty();
   ListImpedance_push_back(vec, imp1);
   ListImpedance_push_back(vec, imp2);
@@ -45,7 +45,7 @@ TEST_F(ImpedancesCAPI_Fixture, VectorConstructor) {
   ListImpedance_destroy(vec);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, PushBackAndAt) {
+TEST_F(ImpedancesTest, PushBackAndAt) {
   ImpedancesHandle imps = Impedances_create_empty();
   Impedances_push_back(imps, imp1);
   Impedances_push_back(imps, imp2);
@@ -55,7 +55,7 @@ TEST_F(ImpedancesCAPI_Fixture, PushBackAndAt) {
   Impedances_destroy(imps);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, EraseAtAndClear) {
+TEST_F(ImpedancesTest, EraseAtAndClear) {
   ImpedancesHandle imps = Impedances_create_empty();
   Impedances_push_back(imps, imp1);
   Impedances_push_back(imps, imp2);
@@ -70,7 +70,7 @@ TEST_F(ImpedancesCAPI_Fixture, EraseAtAndClear) {
   Impedances_destroy(imps);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, ContainsAndIndex) {
+TEST_F(ImpedancesTest, ContainsAndIndex) {
   ImpedancesHandle imps = Impedances_create_empty();
   Impedances_push_back(imps, imp1);
   Impedances_push_back(imps, imp2);
@@ -80,7 +80,7 @@ TEST_F(ImpedancesCAPI_Fixture, ContainsAndIndex) {
   Impedances_destroy(imps);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, ItemsBuffer) {
+TEST_F(ImpedancesTest, ItemsBuffer) {
   ImpedancesHandle imps = Impedances_create_empty();
   Impedances_push_back(imps, imp1);
   Impedances_push_back(imps, imp2);
@@ -92,7 +92,7 @@ TEST_F(ImpedancesCAPI_Fixture, ItemsBuffer) {
   Impedances_destroy(imps);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, EqualityAndInequality) {
+TEST_F(ImpedancesTest, EqualityAndInequality) {
   ListImpedanceHandle vec1 = ListImpedance_create_empty();
   ListImpedance_push_back(vec1, imp1);
   ListImpedance_push_back(vec1, imp2);
@@ -118,7 +118,7 @@ TEST_F(ImpedancesCAPI_Fixture, EqualityAndInequality) {
   ListImpedance_destroy(vec3);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, SerializationRoundTrip) {
+TEST_F(ImpedancesTest, SerializationRoundTrip) {
   ListImpedanceHandle vec = ListImpedance_create_empty();
   ListImpedance_push_back(vec, imp1);
   ImpedancesHandle imps  = Impedances_create(vec);
@@ -130,7 +130,7 @@ TEST_F(ImpedancesCAPI_Fixture, SerializationRoundTrip) {
   ListImpedance_destroy(vec);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, EqualityDifferentElements) {
+TEST_F(ImpedancesTest, EqualityDifferentElements) {
   ListImpedanceHandle vec1 = ListImpedance_create_empty();
   ListImpedance_push_back(vec1, imp1);
   ImpedancesHandle imps1 = Impedances_create(vec1);
