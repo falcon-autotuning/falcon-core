@@ -15,7 +15,7 @@ namespace core {
 class VoltageConstraints : public generic::Song {
   generic::FArray<double> _matrix;
   AdjacencySP             _adjacency;
-  std::pair<float, float> _limits;
+  generic::FArray<double> _limits;
 
  public:
   VoltageConstraints(const AdjacencySP         adjacency,
@@ -28,17 +28,17 @@ class VoltageConstraints : public generic::Song {
   /**
    * @brief The constraint matrix.
    */
-  generic::FArray<double>& matrix();
+  const generic::FArray<double>& matrix();
   /**
    * @brief The adjacency matrix used to understand the device layout.
    */
-  AdjacencySP adjacency() const;
+  const AdjacencySP adjacency() const;
   /**
-   * @brief The (min,max) safe voltage limits for each constraint.
+   * @brief The y axis vector safe voltage limits for each constraint.
    */
-  std::pair<float, float> limits() const;
-  bool                    operator==(const VoltageConstraints& other) const;
-  bool                    operator!=(const VoltageConstraints& other) const;
+  const generic::FArray<double>& limits() const;
+  bool operator==(const VoltageConstraints& other) const;
+  bool operator!=(const VoltageConstraints& other) const;
 
  protected:
   VoltageConstraints();

@@ -33,3 +33,4 @@ FArrayIntTest.*
 MeasuredArrayTest.*
 ControlArrayTest.*
 AdjacencyTest.*
+VoltageConstraintsTest.*
