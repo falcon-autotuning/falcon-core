@@ -61,3 +61,6 @@ MeasurementResponseTest.*
 PointTest.*
 VectorTest.*
 UnitSpaceTest.*
+AcquisitionContextTest.*
+MeasurementContextTest.*
+ListStringTest.*

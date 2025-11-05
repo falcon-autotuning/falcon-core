@@ -14,7 +14,7 @@ ListGnameHandle ListGname_fill_value(size_t count, GnameHandle value) {
     }
     auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Gname>(static_cast<falcon_core::autotuner_interfaces::names::Gname*>(value), [](falcon_core::autotuner_interfaces::names::Gname*) {} );
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListGnameHandle ListGname_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListGname_create");
 }
     std::vector<falcon_core::autotuner_interfaces::names::GnameSP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListGname_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::autotuner_interfaces::names::Gname>(static_cast<falcon_core::autotuner_interfaces::names::Gname*>(data[i]), [](falcon_core::autotuner_interfaces::names::Gname*) {} ));
     }

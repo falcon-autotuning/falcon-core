@@ -16,7 +16,7 @@ ListPairChannelConnectionsHandle ListPairChannelConnections_fill_value(size_t co
     }
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>*>(value), [](falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>*) {} );
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListPairChannelConnectionsHandle ListPairChannelConnections_allocate(size_t count) {
@@ -30,9 +30,6 @@ throw std::invalid_argument("Null data handle passed to ListPairChannelConnectio
 }
     std::vector<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListPairChannelConnections_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>*>(data[i]), [](falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>*) {} ));
     }

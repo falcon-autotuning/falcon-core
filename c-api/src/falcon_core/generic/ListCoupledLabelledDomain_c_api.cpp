@@ -14,7 +14,7 @@ ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_fill_value(size_t coun
     }
     auto stored_obj = std::shared_ptr<falcon_core::math::domains::CoupledLabelledDomain>(static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value), [](falcon_core::math::domains::CoupledLabelledDomain*) {} );
     return new falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>(
-        falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListCoupledLabelledDomai
 }
     std::vector<falcon_core::math::domains::CoupledLabelledDomainSP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListCoupledLabelledDomain_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::math::domains::CoupledLabelledDomain>(static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(data[i]), [](falcon_core::math::domains::CoupledLabelledDomain*) {} ));
     }

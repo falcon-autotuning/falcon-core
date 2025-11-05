@@ -2,6 +2,7 @@
 
 #include "falcon_core/communications/HDF5Data_c_api.h"
 #include "falcon_core/generic/MapStringString_c_api.h"
+#include "falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/AxesControlArray_c_api.h"
 #include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
@@ -176,4 +177,188 @@ TEST_F(HDF5DataTest, ToJsonFromJson) {
   String_destroy(json);
   EXPECT_THROW(HDF5Data_to_json_string(nullptr), std::invalid_argument);
   EXPECT_THROW(HDF5Data_from_json_string(nullptr), std::invalid_argument);
+}
+
+TEST_F(HDF5DataTest, ToFileAndCreateFromFile) {
+  StringHandle filename = String_wrap("test_hdf5_data.h5");
+  HDF5Data_to_file(hdf5, filename);
+  auto h2 = HDF5Data_create_from_file(filename);
+  EXPECT_TRUE(HDF5Data_equal(hdf5, h2));
+  HDF5Data_destroy(h2);
+  std::remove("test_hdf5_data.h5");
+  String_destroy(filename);
+
+  EXPECT_THROW(HDF5Data_to_file(nullptr, String_wrap("file.h5")),
+               std::invalid_argument);
+  EXPECT_THROW(HDF5Data_to_file(hdf5, nullptr), std::invalid_argument);
+
+  EXPECT_THROW(HDF5Data_create_from_file(nullptr), std::invalid_argument);
+}
+
+TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
+  // Construct a valid MeasurementRequest (copy from MeasurementRequestTest
+  // setup)
+  StringHandle             msg          = String_wrap("msg");
+  StringHandle             name         = String_wrap("measurement");
+  DomainHandle             domain       = Domain_create(0, 1.0);
+  StringHandle             default_name = String_wrap("A");
+  ListLabelledDomainHandle domain_list  = ListLabelledDomain_create_empty();
+  ListLabelledDomain_push_back(domain_list,
+                               LabelledDomain_create_from_domain(
+                                   domain,
+                                   default_name,
+                                   Connection_create_barrier_gate(default_name),
+                                   InstrumentTypes_voltmeter()));
+  CoupledLabelledDomainHandle labelled_domain =
+      CoupledLabelledDomain_create(domain_list);
+  AxesCoupledLabelledDomainHandle axes =
+      AxesCoupledLabelledDomain_create_empty();
+  AxesCoupledLabelledDomain_push_back(
+      axes, CoupledLabelledDomain_create(labelled_domain));
+  AxesMapStringBoolHandle increasing = AxesMapStringBool_create_empty();
+  MapStringBoolHandle     map        = MapStringBool_create_empty();
+  MapStringBool_insert(map, String_wrap("A"), true);
+  AxesMapStringBool_push_back(increasing, map);
+  AxesDiscretizerHandle discretizers = AxesDiscretizer_create_empty();
+  AxesDiscretizer_push_back(discretizers,
+                            Discretizer_create_cartesian_discretizer(0.1));
+  UnitSpaceHandle         unit_space = UnitSpace_create(discretizers, domain);
+  DiscreteSpaceHandle     space = DiscreteSpace_create(unit_space, axes, map);
+  ListPortTransformHandle transforms = ListPortTransform_create_empty();
+  InstrumentPortHandle    port = InstrumentPort_create_meter(String_wrap("P1"));
+  ListStringHandle        labels = ListString_create_empty();
+  ListString_push_back(labels, String_wrap("x"));
+  AnalyticFunctionHandle analytic =
+      AnalyticFunction_create(labels, String_wrap("2x[0]+1"));
+  PortTransformHandle pt = PortTransform_create(port, analytic);
+  ListPortTransform_push_back(transforms, pt);
+  WaveformHandle     waveform  = Waveform_create(space, transforms);
+  ListWaveformHandle waveforms = ListWaveform_create_empty();
+  ListWaveform_push_back(waveforms, waveform);
+  PortsHandle getters = Ports_create_empty();
+  Ports_push_back(getters, port);
+  MapInstrumentPortPortTransformHandle meter_transforms =
+      MapInstrumentPortPortTransform_create_empty();
+  MapInstrumentPortPortTransform_insert(meter_transforms, port, pt);
+  LabelledDomainHandle time_domain =
+      LabelledDomain_create_from_port(0.0,
+                                      1.0,
+                                      InstrumentTypes_clock(),
+                                      InstrumentPort_create_execution_clock());
+  MeasurementRequestHandle request = MeasurementRequest_create(
+      msg, name, waveforms, getters, meter_transforms, time_domain);
+
+  // Minimal valid MeasurementResponse
+  ListLabelledMeasuredArrayHandle measured_arrays =
+      ListLabelledMeasuredArray_create_empty();
+  LabelledArraysLabelledMeasuredArrayHandle ranges =
+      LabelledArraysLabelledMeasuredArray_create(measured_arrays);
+  MeasurementResponseHandle response = MeasurementResponse_create(ranges);
+
+  DeviceVoltageStatesHandle voltage_states = DeviceVoltageStates_create_empty();
+  int8_t                    session_id[16] = {0};
+  StringHandle              title          = String_wrap("title");
+  int                       unique_id      = 42;
+  int                       timestamp      = 123456;
+
+  // Create HDF5Data from communications
+  auto hdf5 = HDF5Data_create_from_communications(request,
+                                                  response,
+                                                  voltage_states,
+                                                  session_id,
+                                                  title,
+                                                  unique_id,
+                                                  timestamp);
+
+  // Convert back to communications
+  auto comm_pair = HDF5Data_to_communications(hdf5);
+  ASSERT_NE(comm_pair, nullptr);
+  EXPECT_NE(PairMeasurementResponseMeasurementRequest_first(comm_pair),
+            nullptr);
+  EXPECT_NE(PairMeasurementResponseMeasurementRequest_second(comm_pair),
+            nullptr);
+
+  // Cleanup
+  HDF5Data_destroy(hdf5);
+  DeviceVoltageStates_destroy(voltage_states);
+  MeasurementRequest_destroy(request);
+  MeasurementResponse_destroy(response);
+  String_destroy(title);
+  ListLabelledMeasuredArray_destroy(measured_arrays);
+  LabelledArraysLabelledMeasuredArray_destroy(ranges);
+  // Destroy all MeasurementRequest construction resources
+  MeasurementRequest_destroy(request);
+  String_destroy(msg);
+  String_destroy(name);
+  Waveform_destroy(waveform);
+  ListWaveform_destroy(waveforms);
+  InstrumentPort_destroy(port);
+  Ports_destroy(getters);
+  PortTransform_destroy(pt);
+  ListPortTransform_destroy(transforms);
+  MapInstrumentPortPortTransform_destroy(meter_transforms);
+  LabelledDomain_destroy(time_domain);
+  MapStringBool_destroy(map);
+  String_destroy(default_name);
+  ListLabelledDomain_destroy(domain_list);
+  CoupledLabelledDomain_destroy(labelled_domain);
+  DiscreteSpace_destroy(space);
+  UnitSpace_destroy(unit_space);
+  AxesDiscretizer_destroy(discretizers);
+  ListString_destroy(labels);
+  AnalyticFunction_destroy(analytic);
+  AxesCoupledLabelledDomain_destroy(axes);
+  AxesMapStringBool_destroy(increasing);
+  Domain_destroy(domain);
+
+  // Error case
+  EXPECT_THROW(HDF5Data_to_communications(nullptr), std::invalid_argument);
+}
+
+TEST_F(HDF5DataTest, FromJsonStringInvalid) {
+  StringHandle invalid_json = String_wrap("{not valid json}");
+  EXPECT_THROW(HDF5Data_from_json_string(invalid_json), std::exception);
+  String_destroy(invalid_json);
+}
+
+TEST_F(HDF5DataTest, ComplexDataStructures) {
+  // Add more axes, labels, metadata
+  AxesInt_push_back(shape, 3);
+  AxesControlArray_push_back(unit_domain, ControlArray_from_farray(farray));
+  AxesCoupledLabelledDomain_push_back(domain_labels,
+                                      CoupledLabelledDomain_create_empty());
+  MapStringString_insert(
+      metadata, String_wrap("another"), String_wrap("entry"));
+
+  auto h    = HDF5Data_create(shape,
+                           unit_domain,
+                           domain_labels,
+                           ranges,
+                           metadata,
+                           measurement_title,
+                           unique_id,
+                           timestamp);
+  auto json = HDF5Data_to_json_string(h);
+  auto h2   = HDF5Data_from_json_string(json);
+  EXPECT_TRUE(HDF5Data_equal(h, h2));
+  HDF5Data_destroy(h);
+  HDF5Data_destroy(h2);
+  String_destroy(json);
+}
+
+TEST_F(HDF5DataTest, UniqueIdTimestamp) {
+  auto h    = HDF5Data_create(shape,
+                           unit_domain,
+                           domain_labels,
+                           ranges,
+                           metadata,
+                           measurement_title,
+                           999,
+                           888);
+  auto json = HDF5Data_to_json_string(h);
+  auto h2   = HDF5Data_from_json_string(json);
+  EXPECT_TRUE(HDF5Data_equal(h, h2));
+  HDF5Data_destroy(h);
+  HDF5Data_destroy(h2);
+  String_destroy(json);
 }

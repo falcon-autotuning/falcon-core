@@ -14,7 +14,7 @@ ListControlArrayHandle ListControlArray_fill_value(size_t count, ControlArrayHan
     }
     auto stored_obj = std::shared_ptr<falcon_core::math::arrays::ControlArray>(static_cast<falcon_core::math::arrays::ControlArray*>(value), [](falcon_core::math::arrays::ControlArray*) {} );
     return new falcon_core::generic::List<falcon_core::math::arrays::ControlArray>(
-        falcon_core::generic::List<falcon_core::math::arrays::ControlArray>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListControlArrayHandle ListControlArray_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListControlArray_create"
 }
     std::vector<falcon_core::math::arrays::ControlArraySP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListControlArray_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::math::arrays::ControlArray>(static_cast<falcon_core::math::arrays::ControlArray*>(data[i]), [](falcon_core::math::arrays::ControlArray*) {} ));
     }

@@ -14,7 +14,7 @@ ListLabelledDomainHandle ListLabelledDomain_fill_value(size_t count, LabelledDom
     }
     auto stored_obj = std::shared_ptr<falcon_core::math::domains::LabelledDomain>(static_cast<falcon_core::math::domains::LabelledDomain*>(value), [](falcon_core::math::domains::LabelledDomain*) {} );
     return new falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(
-        falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListLabelledDomainHandle ListLabelledDomain_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListLabelledDomain_creat
 }
     std::vector<falcon_core::math::domains::LabelledDomainSP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListLabelledDomain_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::math::domains::LabelledDomain>(static_cast<falcon_core::math::domains::LabelledDomain*>(data[i]), [](falcon_core::math::domains::LabelledDomain*) {} ));
     }

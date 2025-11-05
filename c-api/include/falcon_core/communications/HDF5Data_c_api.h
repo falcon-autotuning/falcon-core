@@ -1,4 +1,7 @@
 #pragma once
+#include <cstdint>
+
+#include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -25,6 +28,14 @@ HDF5DataHandle HDF5Data_create(AxesIntHandle                   shape,
                                int                   unique_id,
                                int                   timestamp);
 HDF5DataHandle HDF5Data_create_from_file(StringHandle path);
+HDF5DataHandle HDF5Data_create_from_communications(
+    MeasurementRequestHandle  request,
+    MeasurementResponseHandle response,
+    DeviceVoltageStatesHandle device_voltage_states,
+    int8_t                    session_id[16],
+    StringHandle              measurement_title,
+    int                       unique_id,
+    int                       timestamp);
 
 // Destructor
 void HDF5Data_destroy(HDF5DataHandle handle);

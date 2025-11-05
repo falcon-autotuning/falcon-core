@@ -15,7 +15,7 @@ ListPairConnectionFloatHandle ListPairConnectionFloat_fill_value(size_t count, P
     }
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>*>(value), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>*) {} );
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListPairConnectionFloatHandle ListPairConnectionFloat_allocate(size_t count) {
@@ -29,9 +29,6 @@ throw std::invalid_argument("Null data handle passed to ListPairConnectionFloat_
 }
     std::vector<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, float>> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListPairConnectionFloat_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>(static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>*>(data[i]), [](falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>*) {} ));
     }

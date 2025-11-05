@@ -13,7 +13,7 @@ ListStringHandle ListString_fill_value(size_t count, StringHandle value) {
     }
     std::string stored_obj(value->raw, value->length);
     return new falcon_core::generic::List<std::string>(
-        falcon_core::generic::List<std::string>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListStringHandle ListString_allocate(size_t count) {
@@ -27,9 +27,6 @@ throw std::invalid_argument("Null data handle passed to ListString_create");
 }
     std::vector<std::string> vec;
     
-    if (!data) {{
-    throw std::invalid_argument("Null data handle passed to {self.mangled_name()}_create_allocation");
-    }}
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(data[i]->raw);

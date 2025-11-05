@@ -14,7 +14,7 @@ ListInstrumentPortHandle ListInstrumentPort_fill_value(size_t count, InstrumentP
     }
     auto stored_obj = std::shared_ptr<falcon_core::instrument_interfaces::names::InstrumentPort>(static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(value), [](falcon_core::instrument_interfaces::names::InstrumentPort*) {} );
     return new falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>(
-        falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListInstrumentPortHandle ListInstrumentPort_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListInstrumentPort_creat
 }
     std::vector<falcon_core::instrument_interfaces::names::InstrumentPortSP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListInstrumentPort_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::instrument_interfaces::names::InstrumentPort>(static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(data[i]), [](falcon_core::instrument_interfaces::names::InstrumentPort*) {} ));
     }

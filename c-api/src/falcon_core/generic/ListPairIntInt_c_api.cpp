@@ -14,7 +14,7 @@ ListPairIntIntHandle ListPairIntInt_fill_value(size_t count, PairIntIntHandle va
     }
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<int, int>>(static_cast<falcon_core::generic::Pair<int, int>*>(value), [](falcon_core::generic::Pair<int, int>*) {} );
     return new falcon_core::generic::List<falcon_core::generic::Pair<int, int>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<int, int>>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListPairIntIntHandle ListPairIntInt_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListPairIntInt_create");
 }
     std::vector<falcon_core::generic::PairSP<int, int>> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListPairIntInt_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::generic::Pair<int, int>>(static_cast<falcon_core::generic::Pair<int, int>*>(data[i]), [](falcon_core::generic::Pair<int, int>*) {} ));
     }

@@ -13,7 +13,7 @@ class AcquisitionContextTest : public ::testing::Test {
     unit       = SymbolUnit_create_volt();
     instr_type = String_wrap("oscilloscope");
     ctx        = AcquisitionContext_create(conn, instr_type, unit);
-    port       = InstrumentPort_create_port(String_wrap("P1"));
+    port       = InstrumentPort_create_port(String_wrap("P1"), conn);
     ctx2       = AcquisitionContext_create_from_port(port);
   }
   void TearDown() override {
@@ -24,12 +24,12 @@ class AcquisitionContextTest : public ::testing::Test {
     String_destroy(instr_type);
     InstrumentPort_destroy(port);
   }
-  ConnectionHandle         conn       = nullptr;
-  SymbolUnitHandle         unit       = nullptr;
-  StringHandle             instr_type = nullptr;
-  AcquisitionContextHandle ctx        = nullptr;
-  AcquisitionContextHandle ctx2       = nullptr;
-  InstrumentPortHandle     port       = nullptr;
+  ConnectionHandle         conn;
+  SymbolUnitHandle         unit;
+  StringHandle             instr_type;
+  AcquisitionContextHandle ctx;
+  AcquisitionContextHandle ctx2;
+  InstrumentPortHandle     port;
 };
 
 TEST_F(AcquisitionContextTest, CreateDestroy) {

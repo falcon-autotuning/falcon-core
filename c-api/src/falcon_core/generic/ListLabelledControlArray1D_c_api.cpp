@@ -14,7 +14,7 @@ ListLabelledControlArray1DHandle ListLabelledControlArray1D_fill_value(size_t co
     }
     auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledControlArray1D>(static_cast<falcon_core::math::arrays::LabelledControlArray1D*>(value), [](falcon_core::math::arrays::LabelledControlArray1D*) {} );
     return new falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray1D>(
-        falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray1D>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListLabelledControlArray1DHandle ListLabelledControlArray1D_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListLabelledControlArray
 }
     std::vector<falcon_core::math::arrays::LabelledControlArray1DSP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListLabelledControlArray1D_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::math::arrays::LabelledControlArray1D>(static_cast<falcon_core::math::arrays::LabelledControlArray1D*>(data[i]), [](falcon_core::math::arrays::LabelledControlArray1D*) {} ));
     }

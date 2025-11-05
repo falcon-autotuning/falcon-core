@@ -77,6 +77,57 @@ HDF5DataHandle HDF5Data_create_from_file(StringHandle path) {
   return new HDF5Data(*HDF5Data::from_file(path_str));
 }
 
+HDF5DataHandle HDF5Data_create_from_communications(
+    MeasurementRequestHandle  request,
+    MeasurementResponseHandle response,
+    DeviceVoltageStatesHandle device_voltage_states,
+    int8_t                    session_id[16],
+    StringHandle              measurement_title,
+    int                       unique_id,
+    int                       timestamp) {
+  if (!request) {
+    throw std::invalid_argument(
+        "Null handle passed to HDF5Data_create_from_communications: request");
+  }
+  if (!response) {
+    throw std::invalid_argument(
+        "Null handle passed to HDF5Data_create_from_communications: response");
+  }
+  if (!device_voltage_states) {
+    throw std::invalid_argument(
+        "Null handle passed to "
+        "HDF5Data_create_from_communications: "
+        "device_voltage_states");
+  }
+  if (!measurement_title) {
+    throw std::invalid_argument(
+        "Null handle passed to "
+        "HDF5Data_create_from_communications: "
+        "measurement_title");
+  }
+  messages::MeasurementRequestSP real_request =
+      std::make_shared<messages::MeasurementRequest>(
+          *static_cast<messages::MeasurementRequest*>(request));
+  messages::MeasurementResponseSP real_response =
+      std::make_shared<messages::MeasurementResponse>(
+          *static_cast<messages::MeasurementResponse*>(response));
+  voltage_states::DeviceVoltageStatesSP real_device_voltage_states =
+      std::make_shared<voltage_states::DeviceVoltageStates>(
+          *static_cast<voltage_states::DeviceVoltageStates*>(
+              device_voltage_states));
+  std::string measurement_title_str =
+      std::string(measurement_title->raw, measurement_title->length);
+  boost::uuids::uuid session_uuid;
+  std::memcpy(&session_uuid.data[0], session_id, 16);
+  return new HDF5Data(*HDF5Data::from_communications(real_request,
+                                                     real_response,
+                                                     real_device_voltage_states,
+                                                     session_uuid,
+                                                     measurement_title_str,
+                                                     unique_id,
+                                                     timestamp));
+}
+
 void HDF5Data_destroy(HDF5DataHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Null handle passed to HDF5Data_destroy");

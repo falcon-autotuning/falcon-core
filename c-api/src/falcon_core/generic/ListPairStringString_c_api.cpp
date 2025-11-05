@@ -14,7 +14,7 @@ ListPairStringStringHandle ListPairStringString_fill_value(size_t count, PairStr
     }
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<std::string, std::string>>(static_cast<falcon_core::generic::Pair<std::string, std::string>*>(value), [](falcon_core::generic::Pair<std::string, std::string>*) {} );
     return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListPairStringStringHandle ListPairStringString_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListPairStringString_cre
 }
     std::vector<falcon_core::generic::PairSP<std::string, std::string>> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListPairStringString_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::generic::Pair<std::string, std::string>>(static_cast<falcon_core::generic::Pair<std::string, std::string>*>(data[i]), [](falcon_core::generic::Pair<std::string, std::string>*) {} ));
     }

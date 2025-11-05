@@ -9,7 +9,7 @@ ListBoolHandle ListBool_create_empty() {
 ListBoolHandle ListBool_fill_value(size_t count, bool value) {
     auto stored_obj = value;
     return new falcon_core::generic::List<bool>(
-        falcon_core::generic::List<bool>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListBoolHandle ListBool_allocate(size_t count) {

@@ -14,7 +14,7 @@ ListQuantityHandle ListQuantity_fill_value(size_t count, QuantityHandle value) {
     }
     auto stored_obj = std::shared_ptr<falcon_core::math::Quantity>(static_cast<falcon_core::math::Quantity*>(value), [](falcon_core::math::Quantity*) {} );
     return new falcon_core::generic::List<falcon_core::math::Quantity>(
-        falcon_core::generic::List<falcon_core::math::Quantity>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListQuantityHandle ListQuantity_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListQuantity_create");
 }
     std::vector<falcon_core::math::QuantitySP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListQuantity_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::math::Quantity>(static_cast<falcon_core::math::Quantity*>(data[i]), [](falcon_core::math::Quantity*) {} ));
     }

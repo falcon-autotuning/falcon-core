@@ -14,7 +14,7 @@ ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_fill_value(size_t count,
     }
     auto stored_obj = std::shared_ptr<falcon_core::physics::config::geometries::DotGateWithNeighbors>(static_cast<falcon_core::physics::config::geometries::DotGateWithNeighbors*>(value), [](falcon_core::physics::config::geometries::DotGateWithNeighbors*) {} );
     return new falcon_core::generic::List<falcon_core::physics::config::geometries::DotGateWithNeighbors>(
-        falcon_core::generic::List<falcon_core::physics::config::geometries::DotGateWithNeighbors>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListDotGateWithNeighbors
 }
     std::vector<falcon_core::physics::config::geometries::DotGateWithNeighborsSP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListDotGateWithNeighbors_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::physics::config::geometries::DotGateWithNeighbors>(static_cast<falcon_core::physics::config::geometries::DotGateWithNeighbors*>(data[i]), [](falcon_core::physics::config::geometries::DotGateWithNeighbors*) {} ));
     }

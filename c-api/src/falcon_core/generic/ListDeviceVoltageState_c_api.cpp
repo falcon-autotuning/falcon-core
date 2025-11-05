@@ -14,7 +14,7 @@ ListDeviceVoltageStateHandle ListDeviceVoltageState_fill_value(size_t count, Dev
     }
     auto stored_obj = std::shared_ptr<falcon_core::communications::voltage_states::DeviceVoltageState>(static_cast<falcon_core::communications::voltage_states::DeviceVoltageState*>(value), [](falcon_core::communications::voltage_states::DeviceVoltageState*) {} );
     return new falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>(
-        falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListDeviceVoltageStateHandle ListDeviceVoltageState_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListDeviceVoltageState_c
 }
     std::vector<falcon_core::communications::voltage_states::DeviceVoltageStateSP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListDeviceVoltageState_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::communications::voltage_states::DeviceVoltageState>(static_cast<falcon_core::communications::voltage_states::DeviceVoltageState*>(data[i]), [](falcon_core::communications::voltage_states::DeviceVoltageState*) {} ));
     }

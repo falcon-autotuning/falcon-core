@@ -9,7 +9,7 @@ ListIntHandle ListInt_create_empty() {
 ListIntHandle ListInt_fill_value(size_t count, int value) {
     auto stored_obj = value;
     return new falcon_core::generic::List<int>(
-        falcon_core::generic::List<int>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListIntHandle ListInt_allocate(size_t count) {

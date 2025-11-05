@@ -14,7 +14,7 @@ ListConnectionsHandle ListConnections_fill_value(size_t count, ConnectionsHandle
     }
     auto stored_obj = std::shared_ptr<falcon_core::physics::device_structures::Connections>(static_cast<falcon_core::physics::device_structures::Connections*>(value), [](falcon_core::physics::device_structures::Connections*) {} );
     return new falcon_core::generic::List<falcon_core::physics::device_structures::Connections>(
-        falcon_core::generic::List<falcon_core::physics::device_structures::Connections>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListConnectionsHandle ListConnections_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListConnections_create")
 }
     std::vector<falcon_core::physics::device_structures::ConnectionsSP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListConnections_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::physics::device_structures::Connections>(static_cast<falcon_core::physics::device_structures::Connections*>(data[i]), [](falcon_core::physics::device_structures::Connections*) {} ));
     }

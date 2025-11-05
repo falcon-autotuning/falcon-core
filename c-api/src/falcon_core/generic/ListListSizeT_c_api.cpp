@@ -13,7 +13,7 @@ ListListSizeTHandle ListListSizeT_fill_value(size_t count, ListSizeTHandle value
     }
     auto stored_obj = std::shared_ptr<falcon_core::generic::List<size_t>>(static_cast<falcon_core::generic::List<size_t>*>(value), [](falcon_core::generic::List<size_t>*) {} );
     return new falcon_core::generic::List<falcon_core::generic::List<size_t>>(
-        falcon_core::generic::List<falcon_core::generic::List<size_t>>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListListSizeTHandle ListListSizeT_allocate(size_t count) {
@@ -27,9 +27,6 @@ throw std::invalid_argument("Null data handle passed to ListListSizeT_create");
 }
     std::vector<falcon_core::generic::ListSP<size_t>> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListListSizeT_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::generic::List<size_t>>(static_cast<falcon_core::generic::List<size_t>*>(data[i]), [](falcon_core::generic::List<size_t>*) {} ));
     }

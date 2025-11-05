@@ -14,7 +14,7 @@ ListPairFloatFloatHandle ListPairFloatFloat_fill_value(size_t count, PairFloatFl
     }
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<float, float>>(static_cast<falcon_core::generic::Pair<float, float>*>(value), [](falcon_core::generic::Pair<float, float>*) {} );
     return new falcon_core::generic::List<falcon_core::generic::Pair<float, float>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<float, float>>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListPairFloatFloatHandle ListPairFloatFloat_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListPairFloatFloat_creat
 }
     std::vector<falcon_core::generic::PairSP<float, float>> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListPairFloatFloat_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::generic::Pair<float, float>>(static_cast<falcon_core::generic::Pair<float, float>*>(data[i]), [](falcon_core::generic::Pair<float, float>*) {} ));
     }

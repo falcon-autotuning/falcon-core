@@ -14,7 +14,7 @@ ListAcquisitionContextHandle ListAcquisitionContext_fill_value(size_t count, Acq
     }
     auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(static_cast<falcon_core::autotuner_interfaces::contexts::AcquisitionContext*>(value), [](falcon_core::autotuner_interfaces::contexts::AcquisitionContext*) {} );
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListAcquisitionContextHandle ListAcquisitionContext_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListAcquisitionContext_c
 }
     std::vector<falcon_core::autotuner_interfaces::contexts::AcquisitionContextSP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListAcquisitionContext_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(static_cast<falcon_core::autotuner_interfaces::contexts::AcquisitionContext*>(data[i]), [](falcon_core::autotuner_interfaces::contexts::AcquisitionContext*) {} ));
     }

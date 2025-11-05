@@ -14,7 +14,7 @@ ListInterpretationContextHandle ListInterpretationContext_fill_value(size_t coun
     }
     auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(value), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {} );
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListInterpretationContextHandle ListInterpretationContext_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListInterpretationContex
 }
     std::vector<falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListInterpretationContext_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(data[i]), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {} ));
     }

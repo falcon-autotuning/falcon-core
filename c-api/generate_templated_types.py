@@ -516,9 +516,6 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
 """
             stored_out_value = "return String_create(obj.data(), obj.size());"
             create_allocation = """
-    if (!data) {{
-    throw std::invalid_argument("Null data handle passed to {self.mangled_name()}_create_allocation");
-    }}
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(data[i]->raw);
@@ -541,9 +538,6 @@ for (size_t i = 0; i < n; ++i) {{
 }}"""
             stored_out_value = f"return new {cpp_real}(*obj);"
             create_allocation = f"""    vec.reserve(count);
-    if (!data) {{
-    throw std::invalid_argument("Null data handle passed to {self.mangled_name()}_create_allocation");
-    }}
     for (size_t i = 0; i < count; ++i) {{
         vec.push_back(std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(data[i]), []({cpp_real}*) {{}} ));
     }}
@@ -558,7 +552,7 @@ for (size_t i = 0; i < n; ++i) {{
 {self.chandle()} {self.mangled_name()}_fill_value(size_t count, {c_type} value) {{
     {stored_fill_value}
     return new falcon_core::generic::List<{cpp_real}>(
-        falcon_core::generic::List<{cpp_real}>(count, stored_obj));
+        count, stored_obj);
 }}
 
 {self.chandle()} {self.mangled_name()}_allocate(size_t count) {{

@@ -14,7 +14,7 @@ ListGroupHandle ListGroup_fill_value(size_t count, GroupHandle value) {
     }
     auto stored_obj = std::shared_ptr<falcon_core::physics::config::core::Group>(static_cast<falcon_core::physics::config::core::Group*>(value), [](falcon_core::physics::config::core::Group*) {} );
     return new falcon_core::generic::List<falcon_core::physics::config::core::Group>(
-        falcon_core::generic::List<falcon_core::physics::config::core::Group>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListGroupHandle ListGroup_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListGroup_create");
 }
     std::vector<falcon_core::physics::config::core::GroupSP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListGroup_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::physics::config::core::Group>(static_cast<falcon_core::physics::config::core::Group*>(data[i]), [](falcon_core::physics::config::core::Group*) {} ));
     }

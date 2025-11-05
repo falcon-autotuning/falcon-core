@@ -9,7 +9,7 @@ ListFloatHandle ListFloat_create_empty() {
 ListFloatHandle ListFloat_fill_value(size_t count, float value) {
     auto stored_obj = value;
     return new falcon_core::generic::List<float>(
-        falcon_core::generic::List<float>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListFloatHandle ListFloat_allocate(size_t count) {

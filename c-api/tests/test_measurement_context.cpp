@@ -9,9 +9,10 @@ class MeasurementContextTest : public ::testing::Test {
  protected:
   void SetUp() override {
     conn = Connection_create_barrier_gate(String_wrap("A"));
-    port = InstrumentPort_create_port(String_wrap("P1"));
-    mc   = MeasurementContext_create(conn, "oscilloscope");
-    mc2  = MeasurementContext_create_from_port(port);
+    port = InstrumentPort_create_port(
+        String_wrap("P1"), Connection_create_plunger_gate(String_wrap("G1")));
+    mc  = MeasurementContext_create(conn, "oscilloscope");
+    mc2 = MeasurementContext_create_from_port(port);
   }
   void TearDown() override {
     MeasurementContext_destroy(mc);
@@ -19,10 +20,10 @@ class MeasurementContextTest : public ::testing::Test {
     Connection_destroy(conn);
     InstrumentPort_destroy(port);
   }
-  ConnectionHandle         conn = nullptr;
-  InstrumentPortHandle     port = nullptr;
-  MeasurementContextHandle mc   = nullptr;
-  MeasurementContextHandle mc2  = nullptr;
+  ConnectionHandle         conn;
+  InstrumentPortHandle     port;
+  MeasurementContextHandle mc;
+  MeasurementContextHandle mc2;
 };
 
 TEST_F(MeasurementContextTest, CreateDestroy) {

@@ -14,7 +14,7 @@ ListImpedanceHandle ListImpedance_fill_value(size_t count, ImpedanceHandle value
     }
     auto stored_obj = std::shared_ptr<falcon_core::physics::device_structures::Impedance>(static_cast<falcon_core::physics::device_structures::Impedance*>(value), [](falcon_core::physics::device_structures::Impedance*) {} );
     return new falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>(
-        falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListImpedanceHandle ListImpedance_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListImpedance_create");
 }
     std::vector<falcon_core::physics::device_structures::ImpedanceSP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListImpedance_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::physics::device_structures::Impedance>(static_cast<falcon_core::physics::device_structures::Impedance*>(data[i]), [](falcon_core::physics::device_structures::Impedance*) {} ));
     }

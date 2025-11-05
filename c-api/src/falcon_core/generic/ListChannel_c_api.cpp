@@ -14,7 +14,7 @@ ListChannelHandle ListChannel_fill_value(size_t count, ChannelHandle value) {
     }
     auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value), [](falcon_core::autotuner_interfaces::names::Channel*) {} );
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListChannelHandle ListChannel_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListChannel_create");
 }
     std::vector<falcon_core::autotuner_interfaces::names::ChannelSP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListChannel_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(data[i]), [](falcon_core::autotuner_interfaces::names::Channel*) {} ));
     }

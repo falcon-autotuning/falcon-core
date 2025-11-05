@@ -9,7 +9,7 @@ ListDoubleHandle ListDouble_create_empty() {
 ListDoubleHandle ListDouble_fill_value(size_t count, double value) {
     auto stored_obj = value;
     return new falcon_core::generic::List<double>(
-        falcon_core::generic::List<double>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListDoubleHandle ListDouble_allocate(size_t count) {

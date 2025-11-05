@@ -14,7 +14,7 @@ ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_fill_value(size_t coun
     }
     auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledMeasuredArray>(static_cast<falcon_core::math::arrays::LabelledMeasuredArray*>(value), [](falcon_core::math::arrays::LabelledMeasuredArray*) {} );
     return new falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>(
-        falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListLabelledMeasuredArra
 }
     std::vector<falcon_core::math::arrays::LabelledMeasuredArraySP> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListLabelledMeasuredArray_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::math::arrays::LabelledMeasuredArray>(static_cast<falcon_core::math::arrays::LabelledMeasuredArray*>(data[i]), [](falcon_core::math::arrays::LabelledMeasuredArray*) {} ));
     }

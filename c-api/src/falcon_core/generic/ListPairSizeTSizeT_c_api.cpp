@@ -14,7 +14,7 @@ ListPairSizeTSizeTHandle ListPairSizeTSizeT_fill_value(size_t count, PairSizeTSi
     }
     auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<size_t, size_t>>(static_cast<falcon_core::generic::Pair<size_t, size_t>*>(value), [](falcon_core::generic::Pair<size_t, size_t>*) {} );
     return new falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>(count, stored_obj));
+        count, stored_obj);
 }
 
 ListPairSizeTSizeTHandle ListPairSizeTSizeT_allocate(size_t count) {
@@ -28,9 +28,6 @@ throw std::invalid_argument("Null data handle passed to ListPairSizeTSizeT_creat
 }
     std::vector<falcon_core::generic::PairSP<size_t, size_t>> vec;
         vec.reserve(count);
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to ListPairSizeTSizeT_create_allocation");
-    }
     for (size_t i = 0; i < count; ++i) {
         vec.push_back(std::shared_ptr<falcon_core::generic::Pair<size_t, size_t>>(static_cast<falcon_core::generic::Pair<size_t, size_t>*>(data[i]), [](falcon_core::generic::Pair<size_t, size_t>*) {} ));
     }
