@@ -109,3 +109,49 @@ TEST_F(VoltageConstraintsTest, InequalityDifferentAdjacency) {
   Adjacency_destroy(adj2);
   Connections_destroy(indexes2);
 }
+
+TEST_F(VoltageConstraintsTest, CreateThrowsOnNullArguments) {
+  EXPECT_THROW(VoltageConstraints_create(nullptr, max_safe_diff, bounds),
+               std::invalid_argument);
+  EXPECT_THROW(VoltageConstraints_create(adjacency, max_safe_diff, nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(VoltageConstraintsTest, DestroyThrowsOnNullHandle) {
+  EXPECT_THROW(VoltageConstraints_destroy(nullptr), std::invalid_argument);
+}
+
+TEST_F(VoltageConstraintsTest, MatrixThrowsOnNullHandle) {
+  EXPECT_THROW(VoltageConstraints_matrix(nullptr), std::invalid_argument);
+}
+TEST_F(VoltageConstraintsTest, AdjacencyThrowsOnNullHandle) {
+  EXPECT_THROW(VoltageConstraints_adjacency(nullptr), std::invalid_argument);
+}
+
+TEST_F(VoltageConstraintsTest, LimitsThrowsOnNullHandle) {
+  EXPECT_THROW(VoltageConstraints_limits(nullptr), std::invalid_argument);
+}
+
+TEST_F(VoltageConstraintsTest, EqualityThrowsOnNullHandle) {
+  EXPECT_THROW(VoltageConstraints_equal(handle, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(VoltageConstraints_equal(nullptr, handle),
+               std::invalid_argument);
+}
+
+TEST_F(VoltageConstraintsTest, InequalityThrowsOnNullHandle) {
+  EXPECT_THROW(VoltageConstraints_not_equal(handle, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(VoltageConstraints_not_equal(nullptr, handle),
+               std::invalid_argument);
+}
+
+TEST_F(VoltageConstraintsTest, ToJsonStringThrowsOnNullHandle) {
+  EXPECT_THROW(VoltageConstraints_to_json_string(nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(VoltageConstraintsTest, FromJsonStringThrowsOnNullJson) {
+  EXPECT_THROW(VoltageConstraints_from_json_string(nullptr),
+               std::invalid_argument);
+}
