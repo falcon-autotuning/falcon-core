@@ -255,30 +255,6 @@ DeviceVoltageStateHandle DeviceVoltageState_power(
       self.connection(), result->value(), self.unit());
 }
 
-DeviceVoltageStateHandle DeviceVoltageState_add_int(
-    DeviceVoltageStateHandle handle, int other) {
-  if (!handle) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_add_int: handle cannot be null");
-  }
-  DeviceVoltageState self = *static_cast<DeviceVoltageState*>(handle);
-  falcon_core::math::QuantitySP result = self + other;
-  return new DeviceVoltageState(
-      self.connection(), result->value(), self.unit());
-}
-
-DeviceVoltageStateHandle DeviceVoltageState_add_double(
-    DeviceVoltageStateHandle handle, double other) {
-  if (!handle) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_add_double: handle cannot be null");
-  }
-  DeviceVoltageState self = *static_cast<DeviceVoltageState*>(handle);
-  falcon_core::math::QuantitySP result = self + other;
-  return new DeviceVoltageState(
-      self.connection(), result->value(), self.unit());
-}
-
 DeviceVoltageStateHandle DeviceVoltageState_add_quantity(
     DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other) {
   if (!handle) {
@@ -297,26 +273,6 @@ DeviceVoltageStateHandle DeviceVoltageState_add_quantity(
       self.connection(), result->value(), self.unit());
 }
 
-DeviceVoltageStateHandle DeviceVoltageState_add_equals_int(
-    DeviceVoltageStateHandle handle, int other) {
-  if (!handle) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_add_equals_int: handle cannot be null");
-  }
-  (*static_cast<DeviceVoltageState*>(handle)) += other;
-  return handle;
-}
-
-DeviceVoltageStateHandle DeviceVoltageState_add_equals_double(
-    DeviceVoltageStateHandle handle, double other) {
-  if (!handle) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_add_equals_double: handle cannot be null");
-  }
-  (*static_cast<DeviceVoltageState*>(handle)) += other;
-  return handle;
-}
-
 DeviceVoltageStateHandle DeviceVoltageState_add_equals_quantity(
     DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other) {
   if (!handle) {
@@ -331,30 +287,6 @@ DeviceVoltageStateHandle DeviceVoltageState_add_equals_quantity(
       std::make_shared<DeviceVoltageState>(
           *static_cast<DeviceVoltageState*>(other));
   return handle;
-}
-
-DeviceVoltageStateHandle DeviceVoltageState_subtract_int(
-    DeviceVoltageStateHandle handle, int other) {
-  if (!handle) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_subtract_int: handle cannot be null");
-  }
-  DeviceVoltageState self = *static_cast<DeviceVoltageState*>(handle);
-  falcon_core::math::QuantitySP result = self - other;
-  return new DeviceVoltageState(
-      self.connection(), result->value(), self.unit());
-}
-
-DeviceVoltageStateHandle DeviceVoltageState_subtract_double(
-    DeviceVoltageStateHandle handle, double other) {
-  if (!handle) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_subtract_double: handle cannot be null");
-  }
-  DeviceVoltageState self = *static_cast<DeviceVoltageState*>(handle);
-  falcon_core::math::QuantitySP result = self - other;
-  return new DeviceVoltageState(
-      self.connection(), result->value(), self.unit());
 }
 
 DeviceVoltageStateHandle DeviceVoltageState_subtract_quantity(
@@ -373,26 +305,6 @@ DeviceVoltageStateHandle DeviceVoltageState_subtract_quantity(
   falcon_core::math::QuantitySP result = self - other_quantity;
   return new DeviceVoltageState(
       self.connection(), result->value(), self.unit());
-}
-
-DeviceVoltageStateHandle DeviceVoltageState_subtract_equals_int(
-    DeviceVoltageStateHandle handle, int other) {
-  if (!handle) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_subtract_equals_int: handle cannot be null");
-  }
-  (*static_cast<DeviceVoltageState*>(handle)) -= other;
-  return handle;
-}
-
-DeviceVoltageStateHandle DeviceVoltageState_subtract_equals_double(
-    DeviceVoltageStateHandle handle, double other) {
-  if (!handle) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_subtract_equals_double: handle cannot be null");
-  }
-  (*static_cast<DeviceVoltageState*>(handle)) -= other;
-  return handle;
 }
 
 DeviceVoltageStateHandle DeviceVoltageState_subtract_equals_quantity(

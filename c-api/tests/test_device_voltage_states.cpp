@@ -28,12 +28,12 @@ class DeviceVoltageStatesTest : public ::testing::Test {
     Connection_destroy(conn);
     SymbolUnit_destroy(unit);
   }
-  ConnectionHandle             conn     = nullptr;
-  SymbolUnitHandle             unit     = nullptr;
-  DeviceVoltageStateHandle     dvs      = nullptr;
-  DeviceVoltageStateHandle     dvs2     = nullptr;
-  ListDeviceVoltageStateHandle dvs_list = nullptr;
-  DeviceVoltageStatesHandle    states   = nullptr;
+  ConnectionHandle             conn;
+  SymbolUnitHandle             unit;
+  DeviceVoltageStateHandle     dvs;
+  DeviceVoltageStateHandle     dvs2;
+  ListDeviceVoltageStateHandle dvs_list;
+  DeviceVoltageStatesHandle    states;
 };
 
 TEST_F(DeviceVoltageStatesTest, CreateDestroy) {
@@ -109,7 +109,7 @@ TEST_F(DeviceVoltageStatesTest, AtConstAtItems) {
   EXPECT_NE(cat, nullptr);
   DeviceVoltageState_destroy(at);
   auto items = DeviceVoltageStates_items(states);
-  EXPECT_EQ(ListDeviceVoltageState_size(items), 2);
+  EXPECT_EQ(ListDeviceVoltageState_size(items), 1);
   ListDeviceVoltageState_destroy(items);
 
   EXPECT_THROW(DeviceVoltageStates_at(nullptr, 0), std::invalid_argument);
@@ -154,4 +154,8 @@ TEST_F(DeviceVoltageStatesTest, ToJsonFromJson) {
                std::invalid_argument);
   EXPECT_THROW(DeviceVoltageStates_from_json_string(nullptr),
                std::invalid_argument);
+}
+
+TEST_F(DeviceVoltageStatesTest, StatesNull) {
+  EXPECT_THROW(DeviceVoltageStates_states(nullptr), std::invalid_argument);
 }

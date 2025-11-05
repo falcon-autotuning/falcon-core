@@ -51,28 +51,12 @@ DeviceVoltageStateHandle DeviceVoltageState_divide_equals_quantity(
     DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other);
 DeviceVoltageStateHandle DeviceVoltageState_power(
     DeviceVoltageStateHandle handle, int other);
-DeviceVoltageStateHandle DeviceVoltageState_add_int(
-    DeviceVoltageStateHandle handle, int other);
-DeviceVoltageStateHandle DeviceVoltageState_add_double(
-    DeviceVoltageStateHandle handle, double other);
 DeviceVoltageStateHandle DeviceVoltageState_add_quantity(
     DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other);
-DeviceVoltageStateHandle DeviceVoltageState_add_equals_int(
-    DeviceVoltageStateHandle handle, int other);
-DeviceVoltageStateHandle DeviceVoltageState_add_equals_double(
-    DeviceVoltageStateHandle handle, double other);
 DeviceVoltageStateHandle DeviceVoltageState_add_equals_quantity(
     DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other);
-DeviceVoltageStateHandle DeviceVoltageState_subtract_int(
-    DeviceVoltageStateHandle handle, int other);
-DeviceVoltageStateHandle DeviceVoltageState_subtract_double(
-    DeviceVoltageStateHandle handle, double other);
 DeviceVoltageStateHandle DeviceVoltageState_subtract_quantity(
     DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other);
-DeviceVoltageStateHandle DeviceVoltageState_subtract_equals_int(
-    DeviceVoltageStateHandle handle, int other);
-DeviceVoltageStateHandle DeviceVoltageState_subtract_equals_double(
-    DeviceVoltageStateHandle handle, double other);
 DeviceVoltageStateHandle DeviceVoltageState_subtract_equals_quantity(
     DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other);
 DeviceVoltageStateHandle DeviceVoltageState_negate(

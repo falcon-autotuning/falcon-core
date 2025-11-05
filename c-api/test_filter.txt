@@ -52,3 +52,8 @@ LabelledArraysLabelledControlArrayTest.*
 LabelledArraysLabelledMeasuredArrayTest.*
 LabelledArraysLabelledMeasuredArray1DTest.*
 LabelledArraysLabelledControlArray1DTest.*
+StandardRequestTest.*
+StandardResponseTest.*
+VoltageStatesResponseTest.*
+DeviceVoltageStateTest.*
+DeviceVoltageStatesTest.*

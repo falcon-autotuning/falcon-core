@@ -66,11 +66,7 @@ TEST_F(DeviceVoltageStateTest, Arithmetic) {
   auto d1 = DeviceVoltageState_divide_int(dvs, 2);
   auto d2 = DeviceVoltageState_divide_double(dvs, 2.0);
   auto d3 = DeviceVoltageState_divide_quantity(dvs, dvs2);
-  auto a1 = DeviceVoltageState_add_int(dvs, 2);
-  auto a2 = DeviceVoltageState_add_double(dvs, 2.0);
   auto a3 = DeviceVoltageState_add_quantity(dvs, dvs2);
-  auto s1 = DeviceVoltageState_subtract_int(dvs, 2);
-  auto s2 = DeviceVoltageState_subtract_double(dvs, 2.0);
   auto s3 = DeviceVoltageState_subtract_quantity(dvs, dvs2);
   auto p  = DeviceVoltageState_power(dvs, 2);
   auto n  = DeviceVoltageState_negate(dvs);
@@ -82,11 +78,7 @@ TEST_F(DeviceVoltageStateTest, Arithmetic) {
   DeviceVoltageState_destroy(d1);
   DeviceVoltageState_destroy(d2);
   DeviceVoltageState_destroy(d3);
-  DeviceVoltageState_destroy(a1);
-  DeviceVoltageState_destroy(a2);
   DeviceVoltageState_destroy(a3);
-  DeviceVoltageState_destroy(s1);
-  DeviceVoltageState_destroy(s2);
   DeviceVoltageState_destroy(s3);
   DeviceVoltageState_destroy(p);
   DeviceVoltageState_destroy(n);
@@ -108,16 +100,9 @@ TEST_F(DeviceVoltageStateTest, Arithmetic) {
                std::invalid_argument);
   EXPECT_THROW(DeviceVoltageState_divide_quantity(dvs, nullptr),
                std::invalid_argument);
-  EXPECT_THROW(DeviceVoltageState_add_int(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(DeviceVoltageState_add_double(nullptr, 2.0),
-               std::invalid_argument);
   EXPECT_THROW(DeviceVoltageState_add_quantity(nullptr, dvs2),
                std::invalid_argument);
   EXPECT_THROW(DeviceVoltageState_add_quantity(dvs, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(DeviceVoltageState_subtract_int(nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(DeviceVoltageState_subtract_double(nullptr, 2.0),
                std::invalid_argument);
   EXPECT_THROW(DeviceVoltageState_subtract_quantity(nullptr, dvs2),
                std::invalid_argument);
@@ -135,11 +120,7 @@ TEST_F(DeviceVoltageStateTest, ArithmeticEquals) {
   EXPECT_EQ(DeviceVoltageState_divide_equals_int(dvs, 2), dvs);
   EXPECT_EQ(DeviceVoltageState_divide_equals_double(dvs, 2.0), dvs);
   EXPECT_EQ(DeviceVoltageState_divide_equals_quantity(dvs, dvs2), dvs);
-  EXPECT_EQ(DeviceVoltageState_add_equals_int(dvs, 2), dvs);
-  EXPECT_EQ(DeviceVoltageState_add_equals_double(dvs, 2.0), dvs);
   EXPECT_EQ(DeviceVoltageState_add_equals_quantity(dvs, dvs2), dvs);
-  EXPECT_EQ(DeviceVoltageState_subtract_equals_int(dvs, 2), dvs);
-  EXPECT_EQ(DeviceVoltageState_subtract_equals_double(dvs, 2.0), dvs);
   EXPECT_EQ(DeviceVoltageState_subtract_equals_quantity(dvs, dvs2), dvs);
 
   EXPECT_THROW(DeviceVoltageState_multiply_equals_int(nullptr, 2),
@@ -158,17 +139,9 @@ TEST_F(DeviceVoltageStateTest, ArithmeticEquals) {
                std::invalid_argument);
   EXPECT_THROW(DeviceVoltageState_divide_equals_quantity(dvs, nullptr),
                std::invalid_argument);
-  EXPECT_THROW(DeviceVoltageState_add_equals_int(nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(DeviceVoltageState_add_equals_double(nullptr, 2.0),
-               std::invalid_argument);
   EXPECT_THROW(DeviceVoltageState_add_equals_quantity(nullptr, dvs2),
                std::invalid_argument);
   EXPECT_THROW(DeviceVoltageState_add_equals_quantity(dvs, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(DeviceVoltageState_subtract_equals_int(nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(DeviceVoltageState_subtract_equals_double(nullptr, 2.0),
                std::invalid_argument);
   EXPECT_THROW(DeviceVoltageState_subtract_equals_quantity(nullptr, dvs2),
                std::invalid_argument);
