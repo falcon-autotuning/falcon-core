@@ -552,6 +552,8 @@ class Config : public StandardConfigConnections {
    * @brief Returns the gate relations in the config.
    */
   device_structures::GateRelationsSP generate_gate_relations() const;
+  bool                               operator==(const Config& other) const;
+  bool                               operator!=(const Config& other) const;
 
  protected:
   Config();

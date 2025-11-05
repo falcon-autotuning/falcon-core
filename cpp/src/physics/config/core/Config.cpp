@@ -1189,6 +1189,15 @@ device_structures::ConnectionsSP Config::get_shared_channel_gates(
   }
   return outs;
 }
+
+bool Config::operator==(const Config& other) const {
+  return StandardConfigConnections::operator==(other) &&
+         (*_groups == *other._groups) && (*_wiring_DC == *other._wiring_DC) &&
+         (*_voltage_constraints == *other._voltage_constraints) &&
+         (*_channels == *other._channels);
+}
+
+bool Config::operator!=(const Config& other) const { return !(*this == other); }
 }  // namespace core
 }  // namespace config
 }  // namespace physics

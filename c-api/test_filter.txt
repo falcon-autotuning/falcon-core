@@ -34,3 +34,6 @@ MeasuredArrayTest.*
 ControlArrayTest.*
 AdjacencyTest.*
 VoltageConstraintsTest.*
+GroupTest.*
+ConfigTest.*
+
