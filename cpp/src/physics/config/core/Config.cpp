@@ -1194,7 +1194,8 @@ bool Config::operator==(const Config& other) const {
   return StandardConfigConnections::operator==(other) &&
          (*_groups == *other._groups) && (*_wiring_DC == *other._wiring_DC) &&
          (*_voltage_constraints == *other._voltage_constraints) &&
-         (*_channels == *other._channels);
+         (*_channels == *other._channels) &&
+         (_num_unique_channels == other._num_unique_channels);
 }
 
 bool Config::operator!=(const Config& other) const { return !(*this == other); }

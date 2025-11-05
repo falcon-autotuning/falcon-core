@@ -51,6 +51,9 @@ class Channels : public generic::List<Channel> {
   Channels();
   Channels(const std::vector<std::shared_ptr<Channel>>& vec);
 
+  bool operator==(const Channels& other) const;
+  bool operator!=(const Channels& other) const;
+
  protected:
   friend class cereal::access;
   template <class Archive>

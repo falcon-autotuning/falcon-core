@@ -242,7 +242,11 @@ bool StandardConfigConnections::has_screening_gate(
 }
 bool StandardConfigConnections::operator==(
     const StandardConfigConnections& other) const {
-  return (this->get_all_connections() == other.get_all_connections());
+  return (*screening_gates() == *other.screening_gates()) &&
+         (*reservoir_gates() == *other.reservoir_gates()) &&
+         (*plunger_gates() == *other.plunger_gates()) &&
+         (*barrier_gates() == *other.barrier_gates()) &&
+         (*ohmics() == *other.ohmics());
 }
 bool StandardConfigConnections::operator!=(
     const StandardConfigConnections& other) const {
