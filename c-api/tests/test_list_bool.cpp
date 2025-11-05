@@ -112,8 +112,11 @@ TEST_F(ListBoolTest, EqualNotEqualIntersection) {
   ListBool_destroy(h2);
   ListBool_destroy(h3);
   EXPECT_THROW(ListBool_equal(nullptr, h2), std::invalid_argument);
+  EXPECT_THROW(ListBool_equal(h1, nullptr), std::invalid_argument);
   EXPECT_THROW(ListBool_not_equal(h1, nullptr), std::invalid_argument);
+  EXPECT_THROW(ListBool_not_equal(nullptr, h2), std::invalid_argument);
   EXPECT_THROW(ListBool_intersection(nullptr, h2), std::invalid_argument);
+  EXPECT_THROW(ListBool_intersection(h1, nullptr), std::invalid_argument);
 }
 
 TEST_F(ListBoolTest, ToJsonFromJson) {
