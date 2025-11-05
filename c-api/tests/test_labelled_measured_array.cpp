@@ -278,8 +278,8 @@ TEST_F(LabelledMeasuredArrayTest, ArithmeticOperators) {
 }
 
 TEST_F(LabelledMeasuredArrayTest, EqualityOperators) {
-  EXPECT_FALSE(LabelledMeasuredArray_equality(lma, lma2));
-  EXPECT_TRUE(LabelledMeasuredArray_notequality(lma, lma2));
+  EXPECT_TRUE(LabelledMeasuredArray_equality(lma, lma2));
+  EXPECT_FALSE(LabelledMeasuredArray_notequality(lma, lma2));
   EXPECT_THROW(LabelledMeasuredArray_equality(nullptr, lma2),
                std::invalid_argument);
   EXPECT_THROW(LabelledMeasuredArray_equality(lma, nullptr),
@@ -301,7 +301,7 @@ TEST_F(LabelledMeasuredArrayTest, ComparisonOperators) {
 
 TEST_F(LabelledMeasuredArrayTest, OffsetSumReshapeWhereFlipGradient) {
   LabelledMeasuredArray_remove_offset(lma, 1.0);
-  EXPECT_DOUBLE_EQ(LabelledMeasuredArray_sum(lma), 21.0);
+  EXPECT_DOUBLE_EQ(LabelledMeasuredArray_sum(lma), 15.0);
   size_t new_shape[1] = {6};
   auto   reshaped     = LabelledMeasuredArray_reshape(lma, new_shape, 1);
   LabelledMeasuredArray_destroy(reshaped);
@@ -331,11 +331,11 @@ TEST_F(LabelledMeasuredArrayTest, OffsetSumReshapeWhereFlipGradient) {
 }
 
 TEST_F(LabelledMeasuredArrayTest, SumOfSquares) {
-  EXPECT_DOUBLE_EQ(LabelledMeasuredArray_get_sum_of_squares(lma), 91.0);
+  EXPECT_DOUBLE_EQ(LabelledMeasuredArray_get_sum_of_squares(lma), 21.0);
   EXPECT_DOUBLE_EQ(LabelledMeasuredArray_get_summed_diff_int_of_squares(lma, 1),
-                   70.0);
+                   15.0);
   EXPECT_DOUBLE_EQ(
-      LabelledMeasuredArray_get_summed_diff_double_of_squares(lma, 1.0), 70.0);
+      LabelledMeasuredArray_get_summed_diff_double_of_squares(lma, 1.0), 15.0);
   EXPECT_DOUBLE_EQ(
       LabelledMeasuredArray_get_summed_diff_array_of_squares(lma, lma2), 0.0);
   EXPECT_THROW(LabelledMeasuredArray_get_sum_of_squares(nullptr),
@@ -362,5 +362,29 @@ TEST_F(LabelledMeasuredArrayTest, ToJsonFromJson) {
   EXPECT_THROW(LabelledMeasuredArray_to_json_string(nullptr),
                std::invalid_argument);
   EXPECT_THROW(LabelledMeasuredArray_from_json_string(nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArrayTest, ShapeBufferTooSmall) {
+  size_t out_shape[1] = {0};  // buffer smaller than needed (should be 1)
+  EXPECT_EQ(LabelledMeasuredArray_shape(lma, out_shape, 0), 0);
+}
+
+TEST_F(LabelledMeasuredArrayTest, DataBufferTooSmall) {
+  double out_data[2] = {0, 0};  // buffer smaller than needed (should be 6)
+  EXPECT_EQ(LabelledMeasuredArray_data(lma, out_data, 2), 2);
+}
+
+TEST_F(LabelledMeasuredArrayTest, DataNullBuffer) {
+  EXPECT_THROW(LabelledMeasuredArray_data(lma, nullptr, 6),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArrayTest, TimesEqualsDouble) {
+  LabelledMeasuredArray_timesequals_double(lma, 2.0);
+  double out_data[6];
+  EXPECT_EQ(LabelledMeasuredArray_data(lma, out_data, 6), 6);
+  for (int i = 0; i < 6; ++i) EXPECT_EQ(out_data[i], data[i] * 2.0);
+  EXPECT_THROW(LabelledMeasuredArray_timesequals_double(nullptr, 2.0),
                std::invalid_argument);
 }

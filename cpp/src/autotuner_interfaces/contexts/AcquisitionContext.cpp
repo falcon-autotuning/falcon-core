@@ -87,6 +87,14 @@ const bool AcquisitionContext::match_instrument_type(
   return instrument_type() == other;
 }
 
+bool AcquisitionContext::operator==(const AcquisitionContext& other) const {
+  return BaseContext::operator==(other) && *units() == *(other.units());
+}
+
+bool AcquisitionContext::operator!=(const AcquisitionContext& other) const {
+  return !(*this == other);
+}
+
 }  // namespace contexts
 }  // namespace autotuner_interfaces
 }  // namespace falcon_core

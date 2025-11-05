@@ -22,9 +22,6 @@ class IsLabelled : public virtual generic::IFArray<T> {
   }
   const physics::units::SymbolUnitSP units() const { return label()->units(); }
 
-  bool operator==(const std::shared_ptr<IsLabelled<T>>& other) const {
-    return (*this == *other && label() == other->label());
-  }
   std::shared_ptr<IsLabelled<T>> operator+(
       const std::shared_ptr<IsLabelled<T>>& other) const {
     if (label() == other->label()) {

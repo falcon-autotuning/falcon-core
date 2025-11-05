@@ -134,6 +134,8 @@ class MeasuredArray : public generic::FArray<double> {
    * @return A vector of FArray gradients (one for each axis).
    */
   generic::ListSP<generic::FArray<double>> gradient() const;
+  bool operator==(const MeasuredArray& other) const;
+  bool operator!=(const MeasuredArray& other) const;
 };
 using MeasuredArraySP = std::shared_ptr<MeasuredArray>;
 }  // namespace arrays

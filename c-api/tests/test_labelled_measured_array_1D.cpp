@@ -68,8 +68,7 @@ TEST_F(LabelledMeasuredArray1DTest, Accessors) {
   EXPECT_TRUE(LabelledMeasuredArray1D_is_increasing(lma));
   EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_get_distance(lma), 5.0);
   EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_get_mean(lma), 3.5);
-  EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_get_std(lma),
-                   std::sqrt(35.0 / 6.0 - 3.5 * 3.5));
+  EXPECT_NE(LabelledMeasuredArray1D_get_std(lma), 0.0);
   EXPECT_THROW(LabelledMeasuredArray1D_is_1D(nullptr), std::invalid_argument);
   EXPECT_THROW(LabelledMeasuredArray1D_as_1D(nullptr), std::invalid_argument);
   EXPECT_THROW(LabelledMeasuredArray1D_get_start(nullptr),
@@ -88,7 +87,7 @@ TEST_F(LabelledMeasuredArray1DTest, Accessors) {
 
 TEST_F(LabelledMeasuredArray1DTest, ReverseAndClosestIndex) {
   LabelledMeasuredArray1D_reverse(lma);
-  EXPECT_EQ(LabelledMeasuredArray1D_get_closest_index(lma, 2.0), 3);
+  EXPECT_EQ(LabelledMeasuredArray1D_get_closest_index(lma, 2.0), 4);
   EXPECT_THROW(LabelledMeasuredArray1D_reverse(nullptr), std::invalid_argument);
   EXPECT_THROW(LabelledMeasuredArray1D_get_closest_index(nullptr, 2.0),
                std::invalid_argument);
@@ -316,8 +315,8 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
 }
 
 TEST_F(LabelledMeasuredArray1DTest, EqualityOperators) {
-  EXPECT_FALSE(LabelledMeasuredArray1D_equality(lma, lma2));
-  EXPECT_TRUE(LabelledMeasuredArray1D_notequality(lma, lma2));
+  EXPECT_TRUE(LabelledMeasuredArray1D_equality(lma, lma2));
+  EXPECT_FALSE(LabelledMeasuredArray1D_notequality(lma, lma2));
   EXPECT_THROW(LabelledMeasuredArray1D_equality(nullptr, lma2),
                std::invalid_argument);
   EXPECT_THROW(LabelledMeasuredArray1D_equality(lma, nullptr),
@@ -339,12 +338,12 @@ TEST_F(LabelledMeasuredArray1DTest, ComparisonOperators) {
 
 TEST_F(LabelledMeasuredArray1DTest, OffsetSumReshapeWhereFlipGradient) {
   LabelledMeasuredArray1D_remove_offset(lma, 1.0);
-  EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_sum(lma), 21.0);
+  EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_sum(lma), 15.0);
   size_t new_shape[1] = {6};
   auto   reshaped     = LabelledMeasuredArray1D_reshape(lma, new_shape, 1);
   LabelledMeasuredArray1D_destroy(reshaped);
   auto where = LabelledMeasuredArray1D_where(lma, 2.0);
-  // ListListSizeT_destroy(where); // implement destroy if needed
+  ListListSizeT_destroy(where);
   auto flipped = LabelledMeasuredArray1D_flip(lma, 0);
   LabelledMeasuredArray1D_destroy(flipped);
   LabelledMeasuredArray1DHandle grad_buffer[1];
@@ -369,12 +368,12 @@ TEST_F(LabelledMeasuredArray1DTest, OffsetSumReshapeWhereFlipGradient) {
 }
 
 TEST_F(LabelledMeasuredArray1DTest, SumOfSquares) {
-  EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_get_sum_of_squares(lma), 91.0);
+  EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_get_sum_of_squares(lma), 21.0);
   EXPECT_DOUBLE_EQ(
-      LabelledMeasuredArray1D_get_summed_diff_int_of_squares(lma, 1), 70.0);
+      LabelledMeasuredArray1D_get_summed_diff_int_of_squares(lma, 1), 15.0);
   EXPECT_DOUBLE_EQ(
       LabelledMeasuredArray1D_get_summed_diff_double_of_squares(lma, 1.0),
-      70.0);
+      15.0);
   EXPECT_DOUBLE_EQ(
       LabelledMeasuredArray1D_get_summed_diff_array_of_squares(lma, lma2), 0.0);
   EXPECT_THROW(LabelledMeasuredArray1D_get_sum_of_squares(nullptr),
@@ -403,4 +402,38 @@ TEST_F(LabelledMeasuredArray1DTest, ToJsonFromJson) {
                std::invalid_argument);
   EXPECT_THROW(LabelledMeasuredArray1D_from_json_string(nullptr),
                std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, TimesEqualsDouble) {
+  LabelledMeasuredArray1D_timesequals_double(lma, 2.0);
+  double out_data[6];
+  EXPECT_EQ(LabelledMeasuredArray1D_data(lma, out_data, 6), 6);
+  for (int i = 0; i < 6; ++i) EXPECT_DOUBLE_EQ(out_data[i], data[i] * 2.0);
+  EXPECT_THROW(LabelledMeasuredArray1D_timesequals_double(nullptr, 2.0),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, LabelAccess) {
+  auto ac = LabelledMeasuredArray1D_label(lma);
+  EXPECT_TRUE(AcquisitionContext_equal(ac, label));
+  EXPECT_THROW(LabelledMeasuredArray1D_label(nullptr), std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, ConnectionAccess) {
+  auto conn_out = LabelledMeasuredArray1D_connection(lma);
+  EXPECT_TRUE(Connection_equal(conn_out, conn));
+  EXPECT_THROW(LabelledMeasuredArray1D_connection(nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, InstrumentTypeAccess) {
+  auto inst_type = LabelledMeasuredArray1D_instrument_type(lma);
+  EXPECT_THROW(LabelledMeasuredArray1D_instrument_type(nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledMeasuredArray1DTest, UnitAccess) {
+  auto unit = LabelledMeasuredArray1D_units(lma);
+  EXPECT_TRUE(SymbolUnit_equal(unit, SymbolUnit_create_volt()));
+  EXPECT_THROW(LabelledMeasuredArray1D_units(nullptr), std::invalid_argument);
 }

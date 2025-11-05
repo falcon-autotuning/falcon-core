@@ -87,6 +87,8 @@ MeasuredArray1DHandle MeasuredArray1D_times_double(MeasuredArray1DHandle handle,
                                                    const double          other);
 MeasuredArray1DHandle MeasuredArray1D_times_int(MeasuredArray1DHandle handle,
                                                 const int             other);
+MeasuredArray1DHandle MeasuredArray1D_dividesequals_measured_array(
+    MeasuredArray1DHandle handle, FArrayDoubleHandle other);
 MeasuredArray1DHandle MeasuredArray1D_dividesequals_farray(
     MeasuredArray1DHandle handle, FArrayDoubleHandle other);
 void MeasuredArray1D_dividesequals_double(MeasuredArray1DHandle handle,

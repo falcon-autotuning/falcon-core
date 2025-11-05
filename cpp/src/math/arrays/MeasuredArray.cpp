@@ -190,6 +190,12 @@ generic::FArraySP<double> MeasuredArray::gradient(size_t axis) const {
 generic::ListSP<generic::FArray<double>> MeasuredArray::gradient() const {
   return generic::FArray<double>::gradient();
 }
+bool MeasuredArray::operator==(const MeasuredArray& other) const {
+  return generic::FArray<double>::operator==(other);
+}
+bool MeasuredArray::operator!=(const MeasuredArray& other) const {
+  return generic::FArray<double>::operator!=(other);
+}
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core

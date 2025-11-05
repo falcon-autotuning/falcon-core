@@ -72,6 +72,8 @@ class AcquisitionContext : public BaseContext {
    */
   const bool match_instrument_type(
       instrument_interfaces::names::Instrument other) const;
+  bool operator==(const AcquisitionContext& other) const;
+  bool operator!=(const AcquisitionContext& other) const;
 };
 using AcquisitionContextSP = std::shared_ptr<AcquisitionContext>;
 }  // namespace contexts

@@ -140,6 +140,10 @@ size_t LabelledMeasuredArray_data(LabelledMeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledMeasuredArray_data");
   }
+  if (!out_buffer) {
+    throw std::invalid_argument(
+        "Null output buffer passed to LabelledMeasuredArray_data");
+  }
   auto   labelled_measured_array = static_cast<LabelledMeasuredArray*>(handle);
   auto   data                    = labelled_measured_array->data();
   size_t count                   = labelled_measured_array->size();

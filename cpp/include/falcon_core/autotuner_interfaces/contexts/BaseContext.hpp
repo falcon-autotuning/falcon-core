@@ -33,6 +33,9 @@ class BaseContext : public generic::Song {
    */
   const instrument_interfaces::names::Instrument instrument_type() const;
 
+  bool operator==(const BaseContext& other) const;
+  bool operator!=(const BaseContext& other) const;
+
  protected:
   friend class cereal::access;
   BaseContext();

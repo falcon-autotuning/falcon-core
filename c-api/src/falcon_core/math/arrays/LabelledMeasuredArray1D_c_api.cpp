@@ -106,7 +106,7 @@ bool LabelledMeasuredArray1D_is_increasing(
         "Null handle passed to LabelledMeasuredArray1D_is_decreasing");
   }
   auto labelled_measured_array = static_cast<LabelledMeasuredArray1D*>(handle);
-  return labelled_measured_array->is_decreasing();
+  return labelled_measured_array->is_increasing();
 }
 
 double LabelledMeasuredArray1D_get_distance(

@@ -30,6 +30,13 @@ const instrument_interfaces::names::Instrument BaseContext::instrument_type()
     const {
   return _instrument_type;
 }
+bool BaseContext::operator==(const BaseContext& other) const {
+  return (*_connection == *other._connection) &&
+         (_instrument_type == other._instrument_type);
+}
+bool BaseContext::operator!=(const BaseContext& other) const {
+  return !(*this == other);
+}
 }  // namespace contexts
 }  // namespace autotuner_interfaces
 }  // namespace falcon_core

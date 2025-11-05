@@ -37,4 +37,7 @@ VoltageConstraintsTest.*
 GroupTest.*
 ConfigTest.*
 LoaderTest.*
+MeasuredArray1DTest.*
+LabelledMeasuredArrayTest.*
+LabelledMeasuredArray1DTest.*
 
