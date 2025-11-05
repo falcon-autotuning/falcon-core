@@ -1,4 +1,8 @@
 ListBoolTest.*
+ListIntTest.*
+ListDoubleTest.*
+ListFloatTest.*
+ListSizeTTest.*
 ChannelTest.*
 ChannelsTest.*
 ConnectionTest.*
