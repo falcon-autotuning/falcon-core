@@ -41,13 +41,13 @@ VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
   }
   this->_limits = *generic::FArray<double>::zeros({H, 1});
   std::fill(this->_limits.data(),
-            this->_limits.data() + adjacency->size(),
+            this->_limits.data() + adjacency->shape()[0],
             std::abs(bounds.second));
-  std::fill(this->_limits.data() + adjacency->size(),
-            this->_limits.data() + 2 * adjacency->size(),
+  std::fill(this->_limits.data() + adjacency->shape()[0],
+            this->_limits.data() + 2 * adjacency->shape()[0],
             std::abs(bounds.first));
-  std::fill(this->_limits.data() + 2 * adjacency->size(),
-            this->_limits.data() + 2 * adjacency->size() + pairs.size(),
+  std::fill(this->_limits.data() + 2 * adjacency->shape()[0],
+            this->_limits.data() + 2 * adjacency->shape()[0] + pairs.size(),
             max_safe_diff);
 }
 const generic::FArray<double>& VoltageConstraints::matrix() const {
