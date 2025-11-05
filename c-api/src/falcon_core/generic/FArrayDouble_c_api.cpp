@@ -96,9 +96,13 @@ throw std::invalid_argument("Null out_buffer passed to FArrayDouble_shape");
 }
     auto farray = static_cast<falcon_core::generic::FArray<double>*>(handle);
     if (farray->size() > numdata) {
-        throw std::runtime_error("Trying to store more datapoints than buffer allocated.");
+    throw std::runtime_error(
+        std::string("Trying to store more datapoints than buffer allocated.") +
+        "The buffer has " + std::to_string(numdata) +
+        " elements, but the FArray has " + std::to_string(farray->size()) +
+        " elements.");
     }
-    out_buffer = farray->xtensor().data();
+    memcpy(out_buffer, farray->data(), farray->size() * sizeof(double));
     return farray->size();
 }
  

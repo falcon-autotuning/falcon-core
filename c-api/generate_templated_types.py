@@ -1769,9 +1769,13 @@ throw std::invalid_argument("Null out_buffer passed to {self.mangled_name()}_sha
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     if (farray->size() > numdata) {{
-        throw std::runtime_error("Trying to store more datapoints than buffer allocated.");
+    throw std::runtime_error(
+        std::string("Trying to store more datapoints than buffer allocated.") +
+        "The buffer has " + std::to_string(numdata) +
+        " elements, but the FArray has " + std::to_string(farray->size()) +
+        " elements.");
     }}
-    out_buffer = farray->xtensor().data();
+    memcpy(out_buffer, farray->data(), farray->size() * sizeof({c_type}));
     return farray->size();
 }}
  

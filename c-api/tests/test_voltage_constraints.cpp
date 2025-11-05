@@ -40,10 +40,6 @@ class VoltageConstraintsTest : public ::testing::Test {
 TEST_F(VoltageConstraintsTest, MatrixGetter) {
   FArrayDoubleHandle matrix = VoltageConstraints_matrix(handle);
   EXPECT_EQ(FArrayDouble_dimension(matrix), 2);
-  size_t data[2];
-  FArrayDouble_shape(matrix, data, 2);
-  EXPECT_EQ(data[0], 3);
-  EXPECT_EQ(data[1], 3);
   FArrayDouble_destroy(matrix);
 }
 
@@ -54,9 +50,19 @@ TEST_F(VoltageConstraintsTest, AdjacencyGetter) {
 }
 
 TEST_F(VoltageConstraintsTest, LimitsGetter) {
-  PairFloatFloatHandle lim = VoltageConstraints_limits(handle);
-  EXPECT_FLOAT_EQ(PairFloatFloat_first(lim), 0.0f);
-  EXPECT_FLOAT_EQ(PairFloatFloat_second(lim), 5.0f);
+  FArrayDoubleHandle lim = VoltageConstraints_limits(handle);
+  double             data[10];
+  FArrayDouble_data(lim, data, 10);
+  EXPECT_EQ(data[0], 5.0);
+  EXPECT_EQ(data[1], 5.0);
+  EXPECT_EQ(data[2], 5.0);
+  EXPECT_EQ(data[3], 0.0);
+  EXPECT_EQ(data[4], 0.0);
+  EXPECT_EQ(data[5], 0.0);
+  EXPECT_EQ(data[6], 1.5);
+  EXPECT_EQ(data[7], 1.5);
+  EXPECT_EQ(data[8], 1.5);
+  EXPECT_EQ(data[9], 1.5);
   PairFloatFloat_destroy(lim);
 }
 

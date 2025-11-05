@@ -47,7 +47,7 @@ VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
             this->_limits.data() + 2 * adjacency->shape()[0],
             std::abs(bounds.first));
   std::fill(this->_limits.data() + 2 * adjacency->shape()[0],
-            this->_limits.data() + 2 * adjacency->shape()[0] + pairs.size(),
+            this->_limits.data() + 2 * adjacency->shape()[0] + 2 * pairs.size(),
             max_safe_diff);
 }
 const generic::FArray<double>& VoltageConstraints::matrix() const {
@@ -62,7 +62,7 @@ const generic::FArray<double>& VoltageConstraints::limits() const {
 }
 
 bool VoltageConstraints::operator==(const VoltageConstraints& other) const {
-  return (limits() == other.limits()) && (adjacency() == other.adjacency()) &&
+  return (limits() == other.limits()) && (*adjacency() == *other.adjacency()) &&
          (matrix() == other.matrix());
 }
 
