@@ -38,6 +38,52 @@ TEST(DotGateWithNeighborsTest, ConstructorWithNullRightNeighborThrows) {
       std::invalid_argument);
 }
 
+TEST(DotGateWithNeighborsTest,
+     BarrierConstructorWithNonReservoirPlungerNeighbor) {
+  auto neighbor = Connection::BarrierGate("neighbor");
+  EXPECT_THROW(
+      {
+        DotGateWithNeighbors::BarrierGateWithNeighbors(
+            "B1", neighbor, neighbor);
+      },
+      std::invalid_argument);
+  auto reservoir = Connection::ReservoirGate("reservoir");
+  EXPECT_THROW(
+      {
+        DotGateWithNeighbors::BarrierGateWithNeighbors(
+            "B1", reservoir, neighbor);
+      },
+      std::invalid_argument);
+  EXPECT_THROW(
+      {
+        DotGateWithNeighbors::BarrierGateWithNeighbors(
+            "B1", neighbor, reservoir);
+      },
+      std::invalid_argument);
+}
+
+TEST(DotGateWithNeighborsTest,
+     PlungerConstructorWithNonReservoirBarrierNeighbor) {
+  auto neighbor = Connection::PlungerGate("neighbor");
+  EXPECT_THROW(
+      {
+        DotGateWithNeighbors::PlungerGateWithNeighbors(
+            "P1", neighbor, neighbor);
+      },
+      std::invalid_argument);
+  auto barrier = Connection::BarrierGate("reservoir");
+  EXPECT_THROW(
+      {
+        DotGateWithNeighbors::PlungerGateWithNeighbors("P1", barrier, neighbor);
+      },
+      std::invalid_argument);
+  EXPECT_THROW(
+      {
+        DotGateWithNeighbors::PlungerGateWithNeighbors("P1", neighbor, barrier);
+      },
+      std::invalid_argument);
+}
+
 TEST(DotGateWithNeighborsTest, SerializationRoundTripJson) {
   auto                 left  = Connection::PlungerGate("left");
   auto                 right = Connection::PlungerGate("right");

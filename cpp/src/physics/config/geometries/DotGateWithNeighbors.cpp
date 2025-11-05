@@ -55,7 +55,7 @@ DotGateWithNeighborsSP DotGateWithNeighbors::PlungerGateWithNeighbors(
     device_structures::ConnectionSP right_neighbor) {
   if (!(left_neighbor->is_barrier_gate() &&
         right_neighbor->is_barrier_gate())) {
-    throw std::runtime_error(
+    throw std::invalid_argument(
         "PlungerGateWithNeighbors: The neighbors can only be a "
         "BarrierGate, not "
         "on the left " +

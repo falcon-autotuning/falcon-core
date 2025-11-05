@@ -1,5 +1,5 @@
 Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.clean/googletest/src/gtest_main.cc
-[==========] Running 1227 tests from 77 test suites.
+[==========] Running 1229 tests from 77 test suites.
 [----------] Global test environment set-up.
 [----------] 16 tests from AcquisitionContextTest
 [ RUN      ] AcquisitionContextTest.ConstructorWithValidConnection
@@ -61,7 +61,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] AnalyticFunctionTest.IdentityFunctionEvaluate
 [       OK ] AnalyticFunctionTest.IdentityFunctionEvaluate (1 ms)
 [ RUN      ] AnalyticFunctionTest.Serialization
-[       OK ] AnalyticFunctionTest.Serialization (0 ms)
+[       OK ] AnalyticFunctionTest.Serialization (1 ms)
 [ RUN      ] AnalyticFunctionTest.BadMapThrows
 [       OK ] AnalyticFunctionTest.BadMapThrows (0 ms)
 [ RUN      ] AnalyticFunctionTest.NullMapInput
@@ -81,9 +81,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] AnalyticFunctionTest.ZeroMaxTime
 [       OK ] AnalyticFunctionTest.ZeroMaxTime (0 ms)
 [ RUN      ] AnalyticFunctionTest.CustomEvaluation
-[       OK ] AnalyticFunctionTest.CustomEvaluation (0 ms)
+[       OK ] AnalyticFunctionTest.CustomEvaluation (1 ms)
 [ RUN      ] AnalyticFunctionTest.CustomDeltaEvaluation
-[       OK ] AnalyticFunctionTest.CustomDeltaEvaluation (0 ms)
+[       OK ] AnalyticFunctionTest.CustomDeltaEvaluation (1 ms)
 [ RUN      ] AnalyticFunctionTest.NullLabelsInput
 [       OK ] AnalyticFunctionTest.NullLabelsInput (0 ms)
 [ RUN      ] AnalyticFunctionTest.EmptyExpressionThrows
@@ -104,7 +104,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] AnalyticFunctionTest.HardestPrompt (1 ms)
 [ RUN      ] AnalyticFunctionTest.InequalityOperator
 [       OK ] AnalyticFunctionTest.InequalityOperator (0 ms)
-[----------] 24 tests from AnalyticFunctionTest (16 ms total)
+[----------] 24 tests from AnalyticFunctionTest (18 ms total)
 
 [----------] 7 tests from AxesTest
 [ RUN      ] AxesTest.DefaultConstructor
@@ -171,9 +171,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 
 [----------] 93 tests from ConfigTest
 [ RUN      ] ConfigTest.JsonRoundTrip
-[       OK ] ConfigTest.JsonRoundTrip (4 ms)
+[       OK ] ConfigTest.JsonRoundTrip (6 ms)
 [ RUN      ] ConfigTest.BasicQueries
-[       OK ] ConfigTest.BasicQueries (0 ms)
+[       OK ] ConfigTest.BasicQueries (1 ms)
 [ RUN      ] ConfigTest.Constructor_NullArgsThrow
 [       OK ] ConfigTest.Constructor_NullArgsThrow (0 ms)
 [ RUN      ] ConfigTest.Constructor_NoGroupsThrows
@@ -356,7 +356,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] ConfigTest.GetIsolatedChannelDotGates_NoIsolatedGatesFound (0 ms)
 [ RUN      ] ConfigTest.GetGateDictWorks
 [       OK ] ConfigTest.GetGateDictWorks (0 ms)
-[----------] 93 tests from ConfigTest (30 ms total)
+[----------] 93 tests from ConfigTest (34 ms total)
 
 [----------] 1 test from ConfigLoaderTest
 [ RUN      ] ConfigLoaderTest.LoadConfigFromYaml
@@ -501,7 +501,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] ControlArrayTest.DetermineAlignmentsThrowsIfNoAlignment (0 ms)
 [ RUN      ] ControlArrayTest.DetermineAlignmentsThrowsIfMultipleAlignments
 [       OK ] ControlArrayTest.DetermineAlignmentsThrowsIfMultipleAlignments (0 ms)
-[----------] 43 tests from ControlArrayTest (2 ms total)
+[----------] 43 tests from ControlArrayTest (1 ms total)
 
 [----------] 39 tests from ControlArray1DTest
 [ RUN      ] ControlArray1DTest.XtArrayConstructor
@@ -603,7 +603,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] CoupledLabelledDomainTest.SerializationRoundTrip (0 ms)
 [ RUN      ] CoupledLabelledDomainTest.EqualityOperators_DifferentDomainsSameSize
 [       OK ] CoupledLabelledDomainTest.EqualityOperators_DifferentDomainsSameSize (0 ms)
-[----------] 9 tests from CoupledLabelledDomainTest (2 ms total)
+[----------] 9 tests from CoupledLabelledDomainTest (1 ms total)
 
 [----------] 6 tests from DeviceVoltageStateTest
 [ RUN      ] DeviceVoltageStateTest.ConstructorAndGetters
@@ -639,7 +639,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] DeviceVoltageStatesTest.SerializationRoundTrip (0 ms)
 [ RUN      ] DeviceVoltageStatesTest.FindStateNullConnectionThrows
 [       OK ] DeviceVoltageStatesTest.FindStateNullConnectionThrows (0 ms)
-[----------] 9 tests from DeviceVoltageStatesTest (1 ms total)
+[----------] 9 tests from DeviceVoltageStatesTest (0 ms total)
 
 [----------] 20 tests from DiscreteSpaceTest
 [ RUN      ] DiscreteSpaceTest.ConstructorWorks
@@ -754,13 +754,17 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] DomainTest.IsEmpty_GreaterBoundNotContained (0 ms)
 [----------] 23 tests from DomainTest (0 ms total)
 
-[----------] 9 tests from DotGateWithNeighborsTest
+[----------] 11 tests from DotGateWithNeighborsTest
 [ RUN      ] DotGateWithNeighborsTest.ConstructorWithValidNeighbors
 [       OK ] DotGateWithNeighborsTest.ConstructorWithValidNeighbors (0 ms)
 [ RUN      ] DotGateWithNeighborsTest.ConstructorWithNullLeftNeighborThrows
 [       OK ] DotGateWithNeighborsTest.ConstructorWithNullLeftNeighborThrows (0 ms)
 [ RUN      ] DotGateWithNeighborsTest.ConstructorWithNullRightNeighborThrows
 [       OK ] DotGateWithNeighborsTest.ConstructorWithNullRightNeighborThrows (0 ms)
+[ RUN      ] DotGateWithNeighborsTest.BarrierConstructorWithNonReservoirPlungerNeighbor
+[       OK ] DotGateWithNeighborsTest.BarrierConstructorWithNonReservoirPlungerNeighbor (0 ms)
+[ RUN      ] DotGateWithNeighborsTest.PlungerConstructorWithNonReservoirBarrierNeighbor
+[       OK ] DotGateWithNeighborsTest.PlungerConstructorWithNonReservoirBarrierNeighbor (0 ms)
 [ RUN      ] DotGateWithNeighborsTest.SerializationRoundTripJson
 [       OK ] DotGateWithNeighborsTest.SerializationRoundTripJson (0 ms)
 [ RUN      ] DotGateWithNeighborsTest.ConstructorWithNonDotGateThrows
@@ -773,7 +777,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] DotGateWithNeighborsTest.EqualityOperatorFalseForDifferentLeft (0 ms)
 [ RUN      ] DotGateWithNeighborsTest.EqualityOperatorFalseForDifferentRight
 [       OK ] DotGateWithNeighborsTest.EqualityOperatorFalseForDifferentRight (0 ms)
-[----------] 9 tests from DotGateWithNeighborsTest (0 ms total)
+[----------] 11 tests from DotGateWithNeighborsTest (0 ms total)
 
 [----------] 12 tests from DotGatesWithNeighborsTest
 [ RUN      ] DotGatesWithNeighborsTest.DefaultConstructor
@@ -998,7 +1002,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] GroupTest.GetAllChannelGates
 [       OK ] GroupTest.GetAllChannelGates (0 ms)
 [ RUN      ] GroupTest.SerializationRoundTrip
-[       OK ] GroupTest.SerializationRoundTrip (1 ms)
+[       OK ] GroupTest.SerializationRoundTrip (0 ms)
 [----------] 11 tests from GroupTest (1 ms total)
 
 [----------] 2 tests from HasLeftNeighborTest
@@ -1015,7 +1019,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] HDF5DataTest.ToCommunicationsRoundTrip (0 ms)
 [ RUN      ] HDF5DataTest.FileRoundTripFull
 [       OK ] HDF5DataTest.FileRoundTripFull (2 ms)
-[----------] 3 tests from HDF5DataTest (5 ms total)
+[----------] 3 tests from HDF5DataTest (4 ms total)
 
 [----------] 5 tests from ImpedanceTest
 [ RUN      ] ImpedanceTest.ValueConstructor
@@ -1118,7 +1122,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] LabelledArraysTest.IsControlArraysAndIsMeasuredArrays
 [       OK ] LabelledArraysTest.IsControlArraysAndIsMeasuredArrays (0 ms)
 [ RUN      ] LabelledArraysTest.SerializationRoundTripMeasured
-[       OK ] LabelledArraysTest.SerializationRoundTripMeasured (1 ms)
+[       OK ] LabelledArraysTest.SerializationRoundTripMeasured (0 ms)
 [ RUN      ] LabelledArraysTest.SerializationRoundTripControl
 [       OK ] LabelledArraysTest.SerializationRoundTripControl (0 ms)
 [ RUN      ] LabelledArraysTest.StaticConstructorsMeasured
@@ -1139,7 +1143,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] LabelledArraysTest.IsControlArraysHandlesNullptr (0 ms)
 [ RUN      ] LabelledArraysTest.IsMeasuredArraysHandlesNullptr
 [       OK ] LabelledArraysTest.IsMeasuredArraysHandlesNullptr (0 ms)
-[----------] 17 tests from LabelledArraysTest (5 ms total)
+[----------] 17 tests from LabelledArraysTest (4 ms total)
 
 [----------] 40 tests from LabelledControlArrayTest
 [ RUN      ] LabelledControlArrayTest.ControlArraySPConstructor
@@ -1300,8 +1304,8 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] LabelledControlArray1DTest.GradientAllAxes
 [       OK ] LabelledControlArray1DTest.GradientAllAxes (0 ms)
 [ RUN      ] LabelledControlArray1DTest.SerializationRoundTrip
-[       OK ] LabelledControlArray1DTest.SerializationRoundTrip (0 ms)
-[----------] 38 tests from LabelledControlArray1DTest (3 ms total)
+[       OK ] LabelledControlArray1DTest.SerializationRoundTrip (1 ms)
+[----------] 38 tests from LabelledControlArray1DTest (5 ms total)
 
 [----------] 14 tests from LabelledDomainTest
 [ RUN      ] LabelledDomainTest.ConstructorValid
@@ -1668,13 +1672,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 
 [----------] 5 tests from LoaderTest
 [ RUN      ] LoaderTest.ConstructorWithPathWorks
-[       OK ] LoaderTest.ConstructorWithPathWorks (7 ms)
+[       OK ] LoaderTest.ConstructorWithPathWorks (6 ms)
 [ RUN      ] LoaderTest.ConstructorWithStringWorks
 [       OK ] LoaderTest.ConstructorWithStringWorks (6 ms)
 [ RUN      ] LoaderTest.LoadConfigReturnsConfig
-[       OK ] LoaderTest.LoadConfigReturnsConfig (5 ms)
+[       OK ] LoaderTest.LoadConfigReturnsConfig (6 ms)
 [ RUN      ] LoaderTest.ConfigGetterWorks
-[       OK ] LoaderTest.ConfigGetterWorks (5 ms)
+[       OK ] LoaderTest.ConfigGetterWorks (6 ms)
 [ RUN      ] LoaderTest.ThrowsOnMissingFile
 [       OK ] LoaderTest.ThrowsOnMissingFile (0 ms)
 [----------] 5 tests from LoaderTest (25 ms total)
@@ -1730,7 +1734,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] MapConnectionDoubleTest.EqualityOperators (0 ms)
 [ RUN      ] MapConnectionDoubleTest.SerializationAndEquality
 [       OK ] MapConnectionDoubleTest.SerializationAndEquality (0 ms)
-[----------] 11 tests from MapConnectionDoubleTest (0 ms total)
+[----------] 11 tests from MapConnectionDoubleTest (1 ms total)
 
 [----------] 1 test from MapConnectionConnectionTest
 [ RUN      ] MapConnectionConnectionTest.AtThrowsIfNotFound
@@ -1929,14 +1933,14 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] MeasurementRequestTest.ThrowsOnNullWaveforms
 [       OK ] MeasurementRequestTest.ThrowsOnNullWaveforms (0 ms)
 [ RUN      ] MeasurementRequestTest.ThrowsOnNullGetters
-[       OK ] MeasurementRequestTest.ThrowsOnNullGetters (0 ms)
+[       OK ] MeasurementRequestTest.ThrowsOnNullGetters (1 ms)
 [ RUN      ] MeasurementRequestTest.ThrowsOnNullMeterTransforms
 [       OK ] MeasurementRequestTest.ThrowsOnNullMeterTransforms (0 ms)
 [ RUN      ] MeasurementRequestTest.ThrowsOnNullTimeDomain
-[       OK ] MeasurementRequestTest.ThrowsOnNullTimeDomain (0 ms)
+[       OK ] MeasurementRequestTest.ThrowsOnNullTimeDomain (1 ms)
 [ RUN      ] MeasurementRequestTest.SerializationRoundTrip
-[       OK ] MeasurementRequestTest.SerializationRoundTrip (1 ms)
-[----------] 6 tests from MeasurementRequestTest (5 ms total)
+[       OK ] MeasurementRequestTest.SerializationRoundTrip (2 ms)
+[----------] 6 tests from MeasurementRequestTest (7 ms total)
 
 [----------] 5 tests from MeasurementResponseTest
 [ RUN      ] MeasurementResponseTest.ConstructorWorks
@@ -2022,13 +2026,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] PointTest.SubtractionWithDisjointConnections (0 ms)
 [ RUN      ] PointTest.InsertOrAssignSetsUnitOnEmptyPoint
 [       OK ] PointTest.InsertOrAssignSetsUnitOnEmptyPoint (0 ms)
-[----------] 19 tests from PointTest (2 ms total)
+[----------] 19 tests from PointTest (1 ms total)
 
 [----------] 10 tests from PortTransformTest
 [ RUN      ] PortTransformTest.ConstructorThrowsOnNullPort
-[       OK ] PortTransformTest.ConstructorThrowsOnNullPort (1 ms)
+[       OK ] PortTransformTest.ConstructorThrowsOnNullPort (2 ms)
 [ RUN      ] PortTransformTest.ConstructorThrowsOnNullTransform
-[       OK ] PortTransformTest.ConstructorThrowsOnNullTransform (1 ms)
+[       OK ] PortTransformTest.ConstructorThrowsOnNullTransform (2 ms)
 [ RUN      ] PortTransformTest.ConstructorSucceeds
 [       OK ] PortTransformTest.ConstructorSucceeds (1 ms)
 [ RUN      ] PortTransformTest.ConstantTransformFactory
@@ -2036,7 +2040,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] PortTransformTest.IdentityTransformFactory
 [       OK ] PortTransformTest.IdentityTransformFactory (2 ms)
 [ RUN      ] PortTransformTest.QuadraticTransformEvaluation
-[       OK ] PortTransformTest.QuadraticTransformEvaluation (1 ms)
+[       OK ] PortTransformTest.QuadraticTransformEvaluation (3 ms)
 [ RUN      ] PortTransformTest.EqualityOperators
 [       OK ] PortTransformTest.EqualityOperators (3 ms)
 [ RUN      ] PortTransformTest.SerializationRoundTrip
@@ -2045,7 +2049,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] PortTransformTest.ConstantTransformThrowsOnNullPort (1 ms)
 [ RUN      ] PortTransformTest.IdentityTransformThrowsOnNullPort
 [       OK ] PortTransformTest.IdentityTransformThrowsOnNullPort (1 ms)
-[----------] 10 tests from PortTransformTest (20 ms total)
+[----------] 10 tests from PortTransformTest (23 ms total)
 
 [----------] 5 tests from PortTransformsTest
 [ RUN      ] PortTransformsTest.DefaultConstructor
@@ -2053,12 +2057,12 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] PortTransformsTest.ListSPConstructorAndNullThrows
 [       OK ] PortTransformsTest.ListSPConstructorAndNullThrows (0 ms)
 [ RUN      ] PortTransformsTest.VectorConstructor
-[       OK ] PortTransformsTest.VectorConstructor (0 ms)
+[       OK ] PortTransformsTest.VectorConstructor (1 ms)
 [ RUN      ] PortTransformsTest.TransformsGetter
 [       OK ] PortTransformsTest.TransformsGetter (1 ms)
 [ RUN      ] PortTransformsTest.SerializationRoundTrip
-[       OK ] PortTransformsTest.SerializationRoundTrip (2 ms)
-[----------] 5 tests from PortTransformsTest (6 ms total)
+[       OK ] PortTransformsTest.SerializationRoundTrip (1 ms)
+[----------] 5 tests from PortTransformsTest (5 ms total)
 
 [----------] 13 tests from PortsTest
 [ RUN      ] PortsTest.ListSPConstructorAndNullptrThrows
@@ -2236,7 +2240,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] SpacesTest.RaySpaceBasicFunctionality (0 ms)
 [ RUN      ] SpacesTest.RaySpaceSerializationRoundTrip
 [       OK ] SpacesTest.RaySpaceSerializationRoundTrip (0 ms)
-[----------] 10 tests from SpacesTest (1 ms total)
+[----------] 10 tests from SpacesTest (2 ms total)
 
 [----------] 29 tests from StandardConfigConnectionsTest
 [ RUN      ] StandardConfigConnectionsTest.ConstructorValid
@@ -2389,7 +2393,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] SymbolUnitTest.PowerOperations
 [       OK ] SymbolUnitTest.PowerOperations (0 ms)
 [ RUN      ] SymbolUnitTest.AllStaticConstructors
-[       OK ] SymbolUnitTest.AllStaticConstructors (1 ms)
+[       OK ] SymbolUnitTest.AllStaticConstructors (0 ms)
 [ RUN      ] SymbolUnitTest.DimensionlessSymbols
 [       OK ] SymbolUnitTest.DimensionlessSymbols (0 ms)
 [ RUN      ] SymbolUnitTest.InvMeter
@@ -2538,7 +2542,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] VectorTest.UnitConversion
 [       OK ] VectorTest.UnitConversion (0 ms)
 [ RUN      ] VectorTest.SerializationRoundTrip
-[       OK ] VectorTest.SerializationRoundTrip (1 ms)
+[       OK ] VectorTest.SerializationRoundTrip (0 ms)
 [ RUN      ] VectorTest.EndQuantities
 [       OK ] VectorTest.EndQuantities (0 ms)
 [ RUN      ] VectorTest.StartQuantities
@@ -2611,7 +2615,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] VectorTest.IntegerMultiplyDivideOperators (0 ms)
 [ RUN      ] VectorTest.PrincipleConnectionChoosesLargestDifference
 [       OK ] VectorTest.PrincipleConnectionChoosesLargestDifference (0 ms)
-[----------] 45 tests from VectorTest (8 ms total)
+[----------] 45 tests from VectorTest (7 ms total)
 
 [----------] 10 tests from VoltageConstraintsTest
 [ RUN      ] VoltageConstraintsTest.ConstructorValid
@@ -2665,7 +2669,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] WaveformTest.CartesianIdentityWaveformWorks
 [       OK ] WaveformTest.CartesianIdentityWaveformWorks (2 ms)
 [ RUN      ] WaveformTest.CartesianIdentityWaveformNullptrs
-[       OK ] WaveformTest.CartesianIdentityWaveformNullptrs (3 ms)
+[       OK ] WaveformTest.CartesianIdentityWaveformNullptrs (2 ms)
 [ RUN      ] WaveformTest.CartesianWaveform2DWorks
 [       OK ] WaveformTest.CartesianWaveform2DWorks (1 ms)
 [ RUN      ] WaveformTest.CartesianWaveform2DNullptrs
@@ -2684,11 +2688,11 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] WaveformTest.CartesianIdentityWaveform1DNullptrs (2 ms)
 [ RUN      ] WaveformTest.SerializationRoundTrip
 [       OK ] WaveformTest.SerializationRoundTrip (2 ms)
-[----------] 17 tests from WaveformTest (34 ms total)
+[----------] 17 tests from WaveformTest (32 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1227 tests from 77 test suites ran. (253 ms total)
-[  PASSED  ] 1227 tests.
+[==========] 1229 tests from 77 test suites ran. (258 ms total)
+[  PASSED  ] 1229 tests.
 /home/daniel/work/wisc/playground/falcon-core/cpp/include/cereal/types/xtensor.hpp:
     1|       |#pragma once
     2|       |
@@ -22457,47 +22461,47 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    26|       |DotGateWithNeighborsSP DotGateWithNeighbors::BarrierGateWithNeighbors(
    27|       |    std::string                     name,
    28|       |    device_structures::ConnectionSP left_neighbor,
-   29|    869|    device_structures::ConnectionSP right_neighbor) {
-   30|    869|  if (!(left_neighbor->is_reservoir_gate() ||
-   31|    869|        left_neighbor->is_plunger_gate())) {
-   32|      0|    throw std::invalid_argument(
-   33|      0|        "BarrierGateWithNeighbors: The left_neighbor can only be a "
-   34|      0|        "ReservoirGate or a PlungerGate, not "
-   35|      0|        "a " +
-   36|      0|        left_neighbor->type());
-   37|      0|  }
-   38|    869|  if (!(right_neighbor->is_reservoir_gate() ||
-   39|    869|        right_neighbor->is_plunger_gate())) {
-   40|      0|    throw std::invalid_argument(
-   41|      0|        "BarrierGateWithNeighbors: The right_neighbor can only be a "
-   42|      0|        "ReservoirGate or a PlungerGate, not "
-   43|      0|        "a " +
-   44|      0|        right_neighbor->type());
-   45|      0|  }
+   29|    872|    device_structures::ConnectionSP right_neighbor) {
+   30|    872|  if (!(left_neighbor->is_reservoir_gate() ||
+   31|    872|        left_neighbor->is_plunger_gate())) {
+   32|      2|    throw std::invalid_argument(
+   33|      2|        "BarrierGateWithNeighbors: The left_neighbor can only be a "
+   34|      2|        "ReservoirGate or a PlungerGate, not "
+   35|      2|        "a " +
+   36|      2|        left_neighbor->type());
+   37|      2|  }
+   38|    870|  if (!(right_neighbor->is_reservoir_gate() ||
+   39|    870|        right_neighbor->is_plunger_gate())) {
+   40|      1|    throw std::invalid_argument(
+   41|      1|        "BarrierGateWithNeighbors: The right_neighbor can only be a "
+   42|      1|        "ReservoirGate or a PlungerGate, not "
+   43|      1|        "a " +
+   44|      1|        right_neighbor->type());
+   45|      1|  }
    46|    869|  return std::make_shared<DotGateWithNeighbors>(
    47|    869|      DotGateWithNeighbors(name,
    48|    869|                           device_structures::DeviceFeature::BarrierGate,
    49|    869|                           left_neighbor,
    50|    869|                           right_neighbor));
-   51|    869|}
+   51|    870|}
    52|       |DotGateWithNeighborsSP DotGateWithNeighbors::PlungerGateWithNeighbors(
    53|       |    std::string                     name,
    54|       |    device_structures::ConnectionSP left_neighbor,
-   55|    539|    device_structures::ConnectionSP right_neighbor) {
-   56|    539|  if (!(left_neighbor->is_barrier_gate() &&
-   57|    539|        right_neighbor->is_barrier_gate())) {
-   58|      0|    throw std::runtime_error(
-   59|      0|        "PlungerGateWithNeighbors: The neighbors can only be a "
-   60|      0|        "BarrierGate, not "
-   61|      0|        "on the left " +
-   62|      0|        left_neighbor->type() + " and on the right " + right_neighbor->type());
-   63|      0|  }
+   55|    542|    device_structures::ConnectionSP right_neighbor) {
+   56|    542|  if (!(left_neighbor->is_barrier_gate() &&
+   57|    542|        right_neighbor->is_barrier_gate())) {
+   58|      3|    throw std::invalid_argument(
+   59|      3|        "PlungerGateWithNeighbors: The neighbors can only be a "
+   60|      3|        "BarrierGate, not "
+   61|      3|        "on the left " +
+   62|      3|        left_neighbor->type() + " and on the right " + right_neighbor->type());
+   63|      3|  }
    64|    539|  return std::make_shared<DotGateWithNeighbors>(
    65|    539|      DotGateWithNeighbors(name,
    66|    539|                           device_structures::DeviceFeature::PlungerGate,
    67|    539|                           left_neighbor,
    68|    539|                           right_neighbor));
-   69|    539|}
+   69|    542|}
    70|     14|bool DotGateWithNeighbors::operator==(const DotGateWithNeighbors& other) const {
    71|     14|  return Connection::operator==(other) &&
    72|     14|         (*left_neighbor() == *other.left_neighbor()) &&
@@ -23214,9 +23218,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   | falcon_core::physics::device_structures::Connection::Connection(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, falcon_core::physics::device_structures::DeviceFeature const&):
   |    8|  16.3k|    : _name(name), _type(type) {}
   ------------------
-    9|  4.55k|ConnectionSP Connection::BarrierGate(const std::string& name) {
-   10|  4.55k|  return std::make_shared<Connection>(name, DeviceFeature::BarrierGate);
-   11|  4.55k|}
+    9|  4.56k|ConnectionSP Connection::BarrierGate(const std::string& name) {
+   10|  4.56k|  return std::make_shared<Connection>(name, DeviceFeature::BarrierGate);
+   11|  4.56k|}
    12|  3.47k|ConnectionSP Connection::PlungerGate(const std::string& name) {
    13|  3.47k|  return std::make_shared<Connection>(name, DeviceFeature::PlungerGate);
    14|  3.47k|}
@@ -23239,9 +23243,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    31|  9.47k|bool Connection::is_barrier_gate() const {
    32|  9.47k|  return _type == DeviceFeature::BarrierGate;
    33|  9.47k|}
-   34|  4.85k|bool Connection::is_plunger_gate() const {
-   35|  4.85k|  return _type == DeviceFeature::PlungerGate;
-   36|  4.85k|}
+   34|  4.86k|bool Connection::is_plunger_gate() const {
+   35|  4.86k|  return _type == DeviceFeature::PlungerGate;
+   36|  4.86k|}
    37|  3.77k|bool Connection::is_reservoir_gate() const {
    38|  3.77k|  return _type == DeviceFeature::ReservoirGate;
    39|  3.77k|}
@@ -24392,7 +24396,7 @@ src/physics/config/core/Config.cpp                                              
 src/physics/config/core/Group.cpp                                                           43                 2    95.35%          13                 2    84.62%          57                 1    98.25%          26                 7    73.08%
 src/physics/config/core/StandardConfigConnections.cpp                                      127                 3    97.64%          26                 3    88.46%         209                 6    97.13%          80                 0   100.00%
 src/physics/config/core/VoltageConstraints.cpp                                              24                 1    95.83%           9                 1    88.89%          44                 0   100.00%          12                 1    91.67%
-src/physics/config/geometries/DotGateWithNeighbors.cpp                                      33                 6    81.82%           9                 3    66.67%          56                18    67.86%          20                 5    75.00%
+src/physics/config/geometries/DotGateWithNeighbors.cpp                                      33                 3    90.91%           9                 3    66.67%          56                 0   100.00%          20                 1    95.00%
 src/physics/config/geometries/DotGatesWithNeighbors.cpp                                     19                 1    94.74%           9                 1    88.89%          36                 0   100.00%           6                 0   100.00%
 src/physics/config/geometries/GateGeometryArray1D.cpp                                      116                 2    98.28%          21                 2    90.48%         240                 3    98.75%          80                 5    93.75%
 src/physics/config/geometries/HasImplantedOhmic.cpp                                         10                 1    90.00%           4                 1    75.00%          14                 0   100.00%           4                 0   100.00%
@@ -24409,4 +24413,4 @@ src/physics/units/Prefix.cpp                                                    
 src/physics/units/SymbolUnit.cpp                                                           150                 1    99.33%          77                 1    98.70%         319                 0   100.00%          58                 3    94.83%
 src/physics/units/Unit.cpp                                                                  90                 2    97.78%          49                 1    97.96%         182                 0   100.00%          26                 1    96.15%
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TOTAL                                                                                     3539               186    94.74%        1258                93    92.61%        7124               231    96.76%        1833               166    90.94%
+TOTAL                                                                                     3539               183    94.83%        1258                93    92.61%        7124               213    97.01%        1833               162    91.16%
