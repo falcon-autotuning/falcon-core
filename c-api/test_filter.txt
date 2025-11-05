@@ -44,4 +44,7 @@ ControlArrayTest.*
 ControlArray1DTest.*
 LabelledControlArrayTest.*
 LabelledControlArray1DTest.*
-
+LabelledArraysLabelledControlArrayTest.*
+LabelledArraysLabelledMeasuredArrayTest.*
+LabelledArraysLabelledMeasuredArray1DTest.*
+LabelledArraysLabelledControlArray1DTest.*

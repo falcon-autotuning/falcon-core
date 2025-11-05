@@ -34,23 +34,6 @@ bool MeasurementResponse::operator!=(const MeasurementResponse& other) const {
 }  // namespace communications
 }  // namespace falcon_core
 
-CEREAL_REGISTER_TYPE(falcon_core::math::arrays::LabelledArrays<
-                     falcon_core::math::arrays::LabelledMeasuredArray>)
-CEREAL_REGISTER_TYPE(falcon_core::math::arrays::LabelledArrays<
-                     falcon_core::math::arrays::LabelledControlArray>)
-CEREAL_REGISTER_TYPE(falcon_core::generic::List<
-                     falcon_core::math::arrays::LabelledMeasuredArray>)
-CEREAL_REGISTER_TYPE(
-    falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::List<
-        falcon_core::math::arrays::LabelledMeasuredArray>,
-    falcon_core::math::arrays::LabelledArrays<
-        falcon_core::math::arrays::LabelledMeasuredArray>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>,
-    falcon_core::math::arrays::LabelledArrays<
-        falcon_core::math::arrays::LabelledControlArray>)
 CEREAL_REGISTER_TYPE(falcon_core::communications::messages::MeasurementResponse)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::communications::messages::BaseMessage,

@@ -397,9 +397,13 @@ TEST_F(LabelledControlArray1DTest, AllowUnits) {
 TEST_F(LabelledControlArray1DTest, FromControlArrayNullptrCheck) {
   EXPECT_THROW(LabelledControlArray1D_from_controlarray(nullptr, label),
                std::invalid_argument);
+  EXPECT_THROW(LabelledControlArray1D_from_controlarray(ca, nullptr),
+               std::invalid_argument);
 }
 
 TEST_F(LabelledControlArray1DTest, FromFArrayNullptrCheck) {
   EXPECT_THROW(LabelledControlArray1D_from_farray(nullptr, label),
+               std::invalid_argument);
+  EXPECT_THROW(LabelledControlArray1D_from_farray(fa, nullptr),
                std::invalid_argument);
 }
