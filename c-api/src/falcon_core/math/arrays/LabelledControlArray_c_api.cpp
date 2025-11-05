@@ -469,7 +469,7 @@ LabelledControlArrayHandle LabelledControlArray_min_farray(
       static_cast<LabelledControlArray*>(handle);
   generic::FArray<double>* oarray =
       static_cast<generic::FArray<double>*>(other);
-  return new LabelledControlArray(*labelled_control_array->operator-(
+  return new LabelledControlArray(*labelled_control_array->min(
       std::make_shared<generic::FArray<double>>(*oarray)));
 }
 
@@ -483,7 +483,7 @@ LabelledControlArrayHandle LabelledControlArray_min_control_array(
       static_cast<LabelledControlArray*>(handle);
   LabelledControlArraySP oarray = std::make_shared<LabelledControlArray>(
       *static_cast<LabelledControlArray*>(other));
-  return new LabelledControlArray(*labelled_control_array->operator-(oarray));
+  return new LabelledControlArray(*labelled_control_array->min(oarray));
 }
 
 LabelledControlArrayHandle LabelledControlArray_max_farray(
@@ -496,7 +496,7 @@ LabelledControlArrayHandle LabelledControlArray_max_farray(
       static_cast<LabelledControlArray*>(handle);
   generic::FArray<double>* oarray =
       static_cast<generic::FArray<double>*>(other);
-  return new LabelledControlArray(*labelled_control_array->operator+(
+  return new LabelledControlArray(*labelled_control_array->max(
       std::make_shared<generic::FArray<double>>(*oarray)));
 }
 
@@ -510,7 +510,7 @@ LabelledControlArrayHandle LabelledControlArray_max_control_array(
       static_cast<LabelledControlArray*>(handle);
   LabelledControlArraySP oarray = std::make_shared<LabelledControlArray>(
       *static_cast<LabelledControlArray*>(other));
-  return new LabelledControlArray(*labelled_control_array->operator+(oarray));
+  return new LabelledControlArray(*labelled_control_array->max(oarray));
 }
 
 bool LabelledControlArray_equality(LabelledControlArrayHandle handle,
@@ -612,10 +612,9 @@ LabelledControlArrayHandle LabelledControlArray_flip(
   return new LabelledControlArray(*labelled_control_array->flip(axis));
 }
 
-size_t LabelledControlArray_full_gradient(
-    LabelledControlArrayHandle  handle,
-    LabelledControlArrayHandle* out_buffer,
-    size_t                      buffer_size) {
+size_t LabelledControlArray_full_gradient(LabelledControlArrayHandle handle,
+                                          FArrayDoubleHandle*        out_buffer,
+                                          size_t buffer_size) {
   if (!handle) {
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_full_gradient");
@@ -626,13 +625,12 @@ size_t LabelledControlArray_full_gradient(
   size_t count     = gradients->size();
   size_t to_copy   = (buffer_size < count) ? buffer_size : count;
   for (size_t i = 0; i < to_copy; ++i) {
-    out_buffer[i] = new LabelledControlArray(gradients->items()[i],
-                                             labelled_control_array->label());
+    out_buffer[i] = new generic::FArray<double>(*gradients->items()[i]);
   }
   return to_copy;
 }
 
-LabelledControlArrayHandle LabelledControlArray_gradient(
+FArrayDoubleHandle LabelledControlArray_gradient(
     LabelledControlArrayHandle handle, size_t axis) {
   if (!handle) {
     throw std::invalid_argument(
@@ -640,8 +638,7 @@ LabelledControlArrayHandle LabelledControlArray_gradient(
   }
   LabelledControlArray* labelled_control_array =
       static_cast<LabelledControlArray*>(handle);
-  return new LabelledControlArray(labelled_control_array->gradient(axis),
-                                  labelled_control_array->label());
+  return new generic::FArray<double>(*labelled_control_array->gradient(axis));
 }
 
 double LabelledControlArray_get_sum_of_squares(

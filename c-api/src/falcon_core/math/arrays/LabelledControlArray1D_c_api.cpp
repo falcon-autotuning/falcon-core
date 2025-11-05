@@ -705,10 +705,9 @@ LabelledControlArray1DHandle LabelledControlArray1D_flip(
   return new LabelledControlArray1D(*labelled_control_array->flip(axis));
 }
 
-size_t LabelledControlArray1D_full_gradient(
-    LabelledControlArray1DHandle  handle,
-    LabelledControlArray1DHandle* out_buffer,
-    size_t                        buffer_size) {
+size_t LabelledControlArray1D_full_gradient(LabelledControlArray1DHandle handle,
+                                            FArrayDoubleHandle* out_buffer,
+                                            size_t              buffer_size) {
   if (!handle || !out_buffer) {
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray1D_full_gradient");
@@ -717,21 +716,19 @@ size_t LabelledControlArray1D_full_gradient(
   auto   gradients              = labelled_control_array->gradient();
   size_t to_copy                = std::min(buffer_size, gradients->size());
   for (size_t i = 0; i < to_copy; ++i) {
-    out_buffer[i] = new LabelledControlArray1D((*gradients)[i],
-                                               labelled_control_array->label());
+    out_buffer[i] = new generic::FArray<double>(*gradients->items()[i]);
   }
   return to_copy;
 }
 
-LabelledControlArray1DHandle LabelledControlArray1D_gradient(
+FArrayDoubleHandle LabelledControlArray1D_gradient(
     LabelledControlArray1DHandle handle, size_t axis) {
   if (!handle) {
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray1D_gradient");
   }
   auto labelled_control_array = static_cast<LabelledControlArray1D*>(handle);
-  return new LabelledControlArray1D(labelled_control_array->gradient(axis),
-                                    labelled_control_array->label());
+  return new generic::FArray<double>(*labelled_control_array->gradient(axis));
 }
 
 double LabelledControlArray1D_get_sum_of_squares(

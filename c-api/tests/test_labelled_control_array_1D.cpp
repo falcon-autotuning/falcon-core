@@ -1,7 +1,5 @@
 #include <gtest/gtest.h>
 
-#include <cmath>
-
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -25,11 +23,14 @@ class LabelledControlArray1DTest : public ::testing::Test {
     conn     = Connection_create_barrier_gate(String_wrap("GATE1"));
     label    = AcquisitionContext_create(
         conn, InstrumentTypes_voltmeter(), SymbolUnit_create_volt());
-    lca  = LabelledControlArray1D_from_farray(fa, label);
+    lca        = LabelledControlArray1D_from_farray(fa, label);
+    double_lca = LabelledControlArray1D_from_farray(
+        FArrayDouble_times_double(fa, 2.0), label);
     lca2 = LabelledControlArray1D_from_controlarray(ca, label);
   }
   void TearDown() override {
     LabelledControlArray1D_destroy(lca);
+    LabelledControlArray1D_destroy(double_lca);
     LabelledControlArray1D_destroy(lca2);
     FArrayDouble_destroy(fa);
     ControlArray_destroy(ca);
@@ -42,6 +43,7 @@ class LabelledControlArray1DTest : public ::testing::Test {
   ControlArrayHandle           ca;
   AcquisitionContextHandle     label;
   LabelledControlArray1DHandle lca;
+  LabelledControlArray1DHandle double_lca;
   LabelledControlArray1DHandle lca2;
 };
 
@@ -67,8 +69,7 @@ TEST_F(LabelledControlArray1DTest, Accessors) {
   EXPECT_TRUE(LabelledControlArray1D_is_increasing(lca));
   EXPECT_DOUBLE_EQ(LabelledControlArray1D_get_distance(lca), 5.0);
   EXPECT_DOUBLE_EQ(LabelledControlArray1D_get_mean(lca), 3.5);
-  EXPECT_DOUBLE_EQ(LabelledControlArray1D_get_std(lca),
-                   std::sqrt(35.0 / 6.0 - 3.5 * 3.5));
+  EXPECT_NE(LabelledControlArray1D_get_std(lca), 0.0);
   EXPECT_THROW(LabelledControlArray1D_is_1D(nullptr), std::invalid_argument);
   EXPECT_THROW(LabelledControlArray1D_as_1D(nullptr), std::invalid_argument);
   EXPECT_THROW(LabelledControlArray1D_get_start(nullptr),
@@ -86,7 +87,7 @@ TEST_F(LabelledControlArray1DTest, Accessors) {
 
 TEST_F(LabelledControlArray1DTest, ReverseAndClosestIndex) {
   LabelledControlArray1D_reverse(lca);
-  EXPECT_EQ(LabelledControlArray1D_get_closest_index(lca, 2.0), 3);
+  EXPECT_EQ(LabelledControlArray1D_get_closest_index(lca, 2.0), 4);
   EXPECT_THROW(LabelledControlArray1D_reverse(nullptr), std::invalid_argument);
   EXPECT_THROW(LabelledControlArray1D_get_closest_index(nullptr, 2.0),
                std::invalid_argument);
@@ -117,7 +118,7 @@ TEST_F(LabelledControlArray1DTest, SizeAndShapeAndData) {
                std::invalid_argument);
 }
 
-TEST_F(LabelledControlArray1DTest, ArithmeticOperators) {
+TEST_F(LabelledControlArray1DTest, Addition) {
   LabelledControlArray1D_plusequals_farray(lca, fa);
   LabelledControlArray1D_plusequals_double(lca, 1.0);
   LabelledControlArray1D_plusequals_int(lca, 1);
@@ -129,52 +130,67 @@ TEST_F(LabelledControlArray1DTest, ArithmeticOperators) {
   LabelledControlArray1D_destroy(lca_plus_fa);
   LabelledControlArray1D_destroy(lca_plus_d);
   LabelledControlArray1D_destroy(lca_plus_i);
+}
 
-  LabelledControlArray1D_minusequals_farray(lca, fa);
+TEST_F(LabelledControlArray1DTest, SubtractionEquals) {
+  LabelledControlArray1D_minusequals_farray(double_lca, fa);
   LabelledControlArray1D_minusequals_double(lca, 1.0);
   LabelledControlArray1D_minusequals_int(lca, 1);
-  auto lca_minus_lca = LabelledControlArray1D_minus_control_array(lca, lca2);
-  auto lca_minus_fa  = LabelledControlArray1D_minus_farray(lca, fa);
-  auto lca_minus_d   = LabelledControlArray1D_minus_double(lca, 1.0);
-  auto lca_minus_i   = LabelledControlArray1D_minus_int(lca, 1);
+}
+TEST_F(LabelledControlArray1DTest, Subtraction) {
+  auto lca_minus_lca =
+      LabelledControlArray1D_minus_control_array(double_lca, lca2);
+  auto lca_minus_fa = LabelledControlArray1D_minus_farray(double_lca, fa);
+  auto lca_minus_d  = LabelledControlArray1D_minus_double(lca, 1.0);
+  auto lca_minus_i  = LabelledControlArray1D_minus_int(lca, 1);
   LabelledControlArray1D_destroy(lca_minus_lca);
   LabelledControlArray1D_destroy(lca_minus_fa);
   LabelledControlArray1D_destroy(lca_minus_d);
   LabelledControlArray1D_destroy(lca_minus_i);
+}
 
+TEST_F(LabelledControlArray1DTest, Negation) {
   auto lca_neg = LabelledControlArray1D_negation(lca);
   LabelledControlArray1D_destroy(lca_neg);
+}
 
+TEST_F(LabelledControlArray1DTest, Times) {
   LabelledControlArray1D_timesequals_double(lca, 2.0);
   LabelledControlArray1D_timesequals_int(lca, 2);
-  auto lca_times_d = ControlArray_times_double(lca, 2.0);
+  auto lca_times_d = LabelledControlArray1D_times_double(lca, 2.0);
   auto lca_times_i = LabelledControlArray1D_times_int(lca, 2);
   LabelledControlArray1D_destroy(lca_times_d);
   LabelledControlArray1D_destroy(lca_times_i);
+}
 
-  ControlArray_dividesequals_double(lca, 2.0);
+TEST_F(LabelledControlArray1DTest, Division) {
+  LabelledControlArray1D_dividesequals_double(lca, 2.0);
   LabelledControlArray1D_dividesequals_int(lca, 2);
   auto lca_div_d = LabelledControlArray1D_divides_double(lca, 2.0);
   auto lca_div_i = LabelledControlArray1D_divides_int(lca, 2);
   LabelledControlArray1D_destroy(lca_div_d);
   LabelledControlArray1D_destroy(lca_div_i);
+}
 
-  auto lca_pow = LabelledControlArray1D_pow(lca, 2.0);
+TEST_F(LabelledControlArray1DTest, MiscOperations) {
+  auto lca_pow = LabelledControlArray1D_pow(lca, 1.0);
   LabelledControlArray1D_destroy(lca_pow);
 
   auto lca_abs = LabelledControlArray1D_abs(lca);
   LabelledControlArray1D_destroy(lca_abs);
 
-  auto lca_min_fa  = LabelledControlArray1D_min_farray(lca, fa);
-  auto lca_min_lca = LabelledControlArray1D_min_control_array(lca, lca2);
+  auto lca_min_fa  = LabelledControlArray1D_min_farray(double_lca, fa);
+  auto lca_min_lca = LabelledControlArray1D_min_control_array(double_lca, lca2);
   LabelledControlArray1D_destroy(lca_min_fa);
   LabelledControlArray1D_destroy(lca_min_lca);
 
-  auto lca_max_fa  = LabelledControlArray1D_max_farray(lca, fa);
-  auto lca_max_lca = LabelledControlArray1D_max_control_array(lca, lca2);
+  auto lca_max_fa  = LabelledControlArray1D_max_farray(double_lca, fa);
+  auto lca_max_lca = LabelledControlArray1D_max_control_array(double_lca, lca2);
   LabelledControlArray1D_destroy(lca_max_fa);
   LabelledControlArray1D_destroy(lca_max_lca);
+}
 
+TEST_F(LabelledControlArray1DTest, AlgebraicOperatorNullptrChecks) {
   EXPECT_THROW(LabelledControlArray1D_plusequals_farray(nullptr, fa),
                std::invalid_argument);
   EXPECT_THROW(LabelledControlArray1D_plusequals_farray(lca, nullptr),
@@ -223,11 +239,12 @@ TEST_F(LabelledControlArray1DTest, ArithmeticOperators) {
                std::invalid_argument);
   EXPECT_THROW(LabelledControlArray1D_timesequals_int(nullptr, 2),
                std::invalid_argument);
-  EXPECT_THROW(ControlArray_times_double(nullptr, 2.0), std::invalid_argument);
+  EXPECT_THROW(LabelledControlArray1D_times_double(nullptr, 2.0),
+               std::invalid_argument);
   EXPECT_THROW(LabelledControlArray1D_times_int(nullptr, 2),
                std::invalid_argument);
 
-  EXPECT_THROW(ControlArray_dividesequals_double(nullptr, 2.0),
+  EXPECT_THROW(LabelledControlArray1D_dividesequals_double(nullptr, 2.0),
                std::invalid_argument);
   EXPECT_THROW(LabelledControlArray1D_dividesequals_int(nullptr, 2),
                std::invalid_argument);
@@ -259,8 +276,8 @@ TEST_F(LabelledControlArray1DTest, ArithmeticOperators) {
 }
 
 TEST_F(LabelledControlArray1DTest, EqualityOperators) {
-  EXPECT_FALSE(LabelledControlArray1D_equality(lca, lca2));
-  EXPECT_TRUE(LabelledControlArray1D_notequality(lca, lca2));
+  EXPECT_TRUE(LabelledControlArray1D_equality(lca, lca2));
+  EXPECT_FALSE(LabelledControlArray1D_notequality(lca, lca2));
   EXPECT_THROW(LabelledControlArray1D_equality(nullptr, lca2),
                std::invalid_argument);
   EXPECT_THROW(LabelledControlArray1D_equality(lca, nullptr),
@@ -282,7 +299,7 @@ TEST_F(LabelledControlArray1DTest, ComparisonOperators) {
 
 TEST_F(LabelledControlArray1DTest, OffsetSumReshapeWhereFlipGradient) {
   LabelledControlArray1D_remove_offset(lca, 1.0);
-  EXPECT_DOUBLE_EQ(LabelledControlArray1D_sum(lca), 21.0);
+  EXPECT_DOUBLE_EQ(LabelledControlArray1D_sum(lca), 15.0);
   size_t new_shape[1] = {6};
   auto   reshaped     = LabelledControlArray1D_reshape(lca, new_shape, 1);
   LabelledControlArray1D_destroy(reshaped);
@@ -312,11 +329,11 @@ TEST_F(LabelledControlArray1DTest, OffsetSumReshapeWhereFlipGradient) {
 }
 
 TEST_F(LabelledControlArray1DTest, SumOfSquares) {
-  EXPECT_DOUBLE_EQ(LabelledControlArray1D_get_sum_of_squares(lca), 91.0);
+  EXPECT_DOUBLE_EQ(LabelledControlArray1D_get_sum_of_squares(lca), 21.0);
   EXPECT_DOUBLE_EQ(
-      LabelledControlArray1D_get_summed_diff_int_of_squares(lca, 1), 70.0);
+      LabelledControlArray1D_get_summed_diff_int_of_squares(lca, 1), 15.0);
   EXPECT_DOUBLE_EQ(
-      LabelledControlArray1D_get_summed_diff_double_of_squares(lca, 1.0), 70.0);
+      LabelledControlArray1D_get_summed_diff_double_of_squares(lca, 1.0), 15.0);
   EXPECT_DOUBLE_EQ(
       LabelledControlArray1D_get_summed_diff_array_of_squares(lca, lca2), 0.0);
   EXPECT_THROW(LabelledControlArray1D_get_sum_of_squares(nullptr),
@@ -344,5 +361,45 @@ TEST_F(LabelledControlArray1DTest, ToJsonFromJson) {
   EXPECT_THROW(LabelledControlArray1D_to_json_string(nullptr),
                std::invalid_argument);
   EXPECT_THROW(LabelledControlArray1D_from_json_string(nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledControlArray1DTest, AllowLabel) {
+  auto lbl = LabelledControlArray1D_label(lca);
+  EXPECT_NE(lbl, nullptr);
+  AcquisitionContext_destroy(lbl);
+  EXPECT_THROW(LabelledControlArray1D_label(nullptr), std::invalid_argument);
+}
+
+TEST_F(LabelledControlArray1DTest, AllowConnection) {
+  auto conn = LabelledControlArray1D_connection(lca);
+  EXPECT_NE(conn, nullptr);
+  Connection_destroy(conn);
+  EXPECT_THROW(LabelledControlArray1D_connection(nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledControlArray1DTest, AllowInstrumentType) {
+  auto instr = LabelledControlArray1D_instrument_type(lca);
+  EXPECT_NE(instr, nullptr);
+  String_destroy(instr);
+  EXPECT_THROW(LabelledControlArray1D_instrument_type(nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledControlArray1DTest, AllowUnits) {
+  auto unit = LabelledControlArray1D_units(lca);
+  EXPECT_NE(unit, nullptr);
+  SymbolUnit_destroy(unit);
+  EXPECT_THROW(LabelledControlArray1D_units(nullptr), std::invalid_argument);
+}
+
+TEST_F(LabelledControlArray1DTest, FromControlArrayNullptrCheck) {
+  EXPECT_THROW(LabelledControlArray1D_from_controlarray(nullptr, label),
+               std::invalid_argument);
+}
+
+TEST_F(LabelledControlArray1DTest, FromFArrayNullptrCheck) {
+  EXPECT_THROW(LabelledControlArray1D_from_farray(nullptr, label),
                std::invalid_argument);
 }

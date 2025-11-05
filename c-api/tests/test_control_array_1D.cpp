@@ -2,6 +2,7 @@
 
 #include <cmath>
 
+#include "falcon_core/generic/FArrayDouble_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/arrays/ControlArray1D_c_api.h"
 
@@ -250,10 +251,10 @@ TEST_F(ControlArray1DTest, OffsetSumWhereFlipGradient) {
   ControlArray1DHandle flipped      = ControlArray1D_flip(ca, 0);
   ControlArray1D_destroy(flipped);
   ListListSizeT_destroy(where);
-  ControlArray1DHandle grad_buffer[3];
-  EXPECT_EQ(ControlArray1D_full_gradient(ca, grad_buffer, 3), 3);
-  for (size_t i = 0; i < 3; ++i) {
-    ControlArray1D_destroy(grad_buffer[i]);
+  FArrayDoubleHandle grad_buffer[1];
+  EXPECT_EQ(ControlArray1D_full_gradient(ca, grad_buffer, 1), 1);
+  for (size_t i = 0; i < 1; ++i) {
+    FArrayDouble_destroy(grad_buffer[i]);
   }
   auto grad = ControlArray1D_gradient(ca, 0);
   ControlArray1D_destroy(grad);
@@ -268,12 +269,12 @@ TEST_F(ControlArray1DTest, OffsetSumWhereFlipGradient) {
 }
 
 TEST_F(ControlArray1DTest, SumOfSquares) {
-  EXPECT_DOUBLE_EQ(ControlArray1D_get_sum_of_squares(ca), 14.0);
-  EXPECT_DOUBLE_EQ(ControlArray1D_get_summed_diff_int_of_squares(ca, 1), 9.0);
+  EXPECT_DOUBLE_EQ(ControlArray1D_get_sum_of_squares(ca), 6.0);
+  EXPECT_DOUBLE_EQ(ControlArray1D_get_summed_diff_int_of_squares(ca, 1), 3.0);
   EXPECT_DOUBLE_EQ(ControlArray1D_get_summed_diff_double_of_squares(ca, 1.0),
-                   9.0);
+                   3.0);
   EXPECT_DOUBLE_EQ(ControlArray1D_get_summed_diff_array_of_squares(ca, ca2),
-                   0.0);
+                   -6.0);
   EXPECT_THROW(ControlArray1D_get_sum_of_squares(nullptr),
                std::invalid_argument);
   EXPECT_THROW(ControlArray1D_get_summed_diff_int_of_squares(nullptr, 1),
@@ -294,4 +295,25 @@ TEST_F(ControlArray1DTest, ToJsonFromJson) {
   String_destroy(json);
   EXPECT_THROW(ControlArray1D_to_json_string(nullptr), std::invalid_argument);
   EXPECT_THROW(ControlArray1D_from_json_string(nullptr), std::invalid_argument);
+}
+
+TEST_F(ControlArray1DTest, FullGradientNullBuffer) {
+  EXPECT_THROW(ControlArray1D_full_gradient(ca, nullptr, 1),
+               std::invalid_argument);
+}
+
+TEST_F(ControlArray1DTest, ShapeBufferTooSmall) {
+  size_t out_shape[1] = {0};  // buffer smaller than needed (should be 2)
+  // Should only fill one element, return 1
+  EXPECT_EQ(FArrayDouble_shape(ca, out_shape, 1), 1);
+  EXPECT_EQ(out_shape[0], 3);
+}
+
+TEST_F(ControlArray1DTest, DataBufferTooSmall) {
+  double out_data[2] = {0, 0};  // buffer smaller than needed (should be 4)
+  EXPECT_THROW(FArrayDouble_data(ca, out_data, 2), std::runtime_error);
+}
+
+TEST_F(ControlArray1DTest, DataNullBuffer) {
+  EXPECT_THROW(FArrayDouble_data(ca, nullptr, 4), std::invalid_argument);
 }

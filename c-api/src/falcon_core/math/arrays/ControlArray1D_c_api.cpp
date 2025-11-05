@@ -593,20 +593,6 @@ double ControlArray1D_sum(ControlArray1DHandle handle) {
   return control_array->sum();
 }
 
-ControlArray1DHandle ControlArray1D_reshape(ControlArray1DHandle handle,
-                                            const size_t*        shape,
-                                            size_t               ndims) {
-  if (!handle) {
-    throw std::invalid_argument("Null handle passed to ControlArray1D_reshape");
-  }
-  ControlArray1D*     control_array = static_cast<ControlArray1D*>(handle);
-  std::vector<size_t> shapeVec;
-  for (size_t i = 0; i < ndims; ++i) {
-    shapeVec.push_back(shape[i]);
-  }
-  return new ControlArray1D(*control_array->reshape(shapeVec));
-}
-
 ListListSizeTHandle ControlArray1D_where(ControlArray1DHandle handle,
                                          const double         value) {
   if (!handle) {
@@ -639,13 +625,19 @@ size_t ControlArray1D_full_gradient(ControlArray1DHandle handle,
     throw std::invalid_argument(
         "Null handle passed to ControlArray1D_full_gradient");
   }
+  if (!out_buffer) {
+    throw std::invalid_argument(
+        "Null output buffer passed to ControlArray1D_full_gradient");
+  }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   generic::ListSP<generic::FArray<double>> gradients =
       control_array->gradient();
-  for (size_t i = 0; i < buffer_size; ++i) {
+  size_t count   = gradients->size();
+  size_t to_copy = (buffer_size < count) ? buffer_size : count;
+  for (size_t i = 0; i < to_copy; ++i) {
     out_buffer[i] = new generic::FArray<double>(*gradients->items()[i]);
   }
-  return gradients->size();
+  return to_copy;
 }
 
 FArrayDoubleHandle ControlArray1D_gradient(ControlArray1DHandle handle,

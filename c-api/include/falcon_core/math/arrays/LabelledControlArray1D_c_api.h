@@ -130,11 +130,10 @@ ListListSizeTHandle LabelledControlArray1D_where(
     LabelledControlArray1DHandle handle, const double value);
 LabelledControlArray1DHandle LabelledControlArray1D_flip(
     LabelledControlArray1DHandle handle, size_t axis);
-size_t LabelledControlArray1D_full_gradient(
-    LabelledControlArray1DHandle  handle,
-    LabelledControlArray1DHandle* out_buffer,
-    size_t                        buffer_size);
-LabelledControlArray1DHandle LabelledControlArray1D_gradient(
+size_t LabelledControlArray1D_full_gradient(LabelledControlArray1DHandle handle,
+                                            FArrayDoubleHandle* out_buffer,
+                                            size_t              buffer_size);
+FArrayDoubleHandle LabelledControlArray1D_gradient(
     LabelledControlArray1DHandle handle, size_t axis);
 double LabelledControlArray1D_get_sum_of_squares(
     LabelledControlArray1DHandle handle);

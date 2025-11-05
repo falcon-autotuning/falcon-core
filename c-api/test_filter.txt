@@ -40,4 +40,8 @@ LoaderTest.*
 MeasuredArray1DTest.*
 LabelledMeasuredArrayTest.*
 LabelledMeasuredArray1DTest.*
+ControlArrayTest.*
+ControlArray1DTest.*
+LabelledControlArrayTest.*
+LabelledControlArray1DTest.*
 
