@@ -1,5 +1,5 @@
 Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.clean/googletest/src/gtest_main.cc
-[==========] Running 1229 tests from 77 test suites.
+[==========] Running 1226 tests from 77 test suites.
 [----------] Global test environment set-up.
 [----------] 16 tests from AcquisitionContextTest
 [ RUN      ] AcquisitionContextTest.ConstructorWithValidConnection
@@ -61,7 +61,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] AnalyticFunctionTest.IdentityFunctionEvaluate
 [       OK ] AnalyticFunctionTest.IdentityFunctionEvaluate (1 ms)
 [ RUN      ] AnalyticFunctionTest.Serialization
-[       OK ] AnalyticFunctionTest.Serialization (1 ms)
+[       OK ] AnalyticFunctionTest.Serialization (0 ms)
 [ RUN      ] AnalyticFunctionTest.BadMapThrows
 [       OK ] AnalyticFunctionTest.BadMapThrows (0 ms)
 [ RUN      ] AnalyticFunctionTest.NullMapInput
@@ -83,7 +83,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] AnalyticFunctionTest.CustomEvaluation
 [       OK ] AnalyticFunctionTest.CustomEvaluation (1 ms)
 [ RUN      ] AnalyticFunctionTest.CustomDeltaEvaluation
-[       OK ] AnalyticFunctionTest.CustomDeltaEvaluation (1 ms)
+[       OK ] AnalyticFunctionTest.CustomDeltaEvaluation (0 ms)
 [ RUN      ] AnalyticFunctionTest.NullLabelsInput
 [       OK ] AnalyticFunctionTest.NullLabelsInput (0 ms)
 [ RUN      ] AnalyticFunctionTest.EmptyExpressionThrows
@@ -104,7 +104,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] AnalyticFunctionTest.HardestPrompt (1 ms)
 [ RUN      ] AnalyticFunctionTest.InequalityOperator
 [       OK ] AnalyticFunctionTest.InequalityOperator (0 ms)
-[----------] 24 tests from AnalyticFunctionTest (18 ms total)
+[----------] 24 tests from AnalyticFunctionTest (16 ms total)
 
 [----------] 7 tests from AxesTest
 [ RUN      ] AxesTest.DefaultConstructor
@@ -171,9 +171,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 
 [----------] 93 tests from ConfigTest
 [ RUN      ] ConfigTest.JsonRoundTrip
-[       OK ] ConfigTest.JsonRoundTrip (6 ms)
+[       OK ] ConfigTest.JsonRoundTrip (5 ms)
 [ RUN      ] ConfigTest.BasicQueries
-[       OK ] ConfigTest.BasicQueries (1 ms)
+[       OK ] ConfigTest.BasicQueries (0 ms)
 [ RUN      ] ConfigTest.Constructor_NullArgsThrow
 [       OK ] ConfigTest.Constructor_NullArgsThrow (0 ms)
 [ RUN      ] ConfigTest.Constructor_NoGroupsThrows
@@ -356,16 +356,16 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] ConfigTest.GetIsolatedChannelDotGates_NoIsolatedGatesFound (0 ms)
 [ RUN      ] ConfigTest.GetGateDictWorks
 [       OK ] ConfigTest.GetGateDictWorks (0 ms)
-[----------] 93 tests from ConfigTest (34 ms total)
+[----------] 93 tests from ConfigTest (28 ms total)
 
 [----------] 1 test from ConfigLoaderTest
 [ RUN      ] ConfigLoaderTest.LoadConfigFromYaml
-[       OK ] ConfigLoaderTest.LoadConfigFromYaml (6 ms)
-[----------] 1 test from ConfigLoaderTest (6 ms total)
+[       OK ] ConfigLoaderTest.LoadConfigFromYaml (4 ms)
+[----------] 1 test from ConfigLoaderTest (4 ms total)
 
 [----------] 8 tests from ConfigManipulationsTest
 [ RUN      ] ConfigManipulationsTest.UnpackDeviceConfigWorks
-[       OK ] ConfigManipulationsTest.UnpackDeviceConfigWorks (3 ms)
+[       OK ] ConfigManipulationsTest.UnpackDeviceConfigWorks (2 ms)
 [ RUN      ] ConfigManipulationsTest.ExtractStandardConfigConnectionsWorks
 [       OK ] ConfigManipulationsTest.ExtractStandardConfigConnectionsWorks (2 ms)
 [ RUN      ] ConfigManipulationsTest.ExtractBarrierGatesWorks
@@ -380,7 +380,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] ConfigManipulationsTest.ExtractOhmicsWorks (2 ms)
 [ RUN      ] ConfigManipulationsTest.ExtractOrderWorks
 [       OK ] ConfigManipulationsTest.ExtractOrderWorks (2 ms)
-[----------] 8 tests from ConfigManipulationsTest (21 ms total)
+[----------] 8 tests from ConfigManipulationsTest (19 ms total)
 
 [----------] 5 tests from ConnectionTest
 [ RUN      ] ConnectionTest.ConstructorsAndAccessors
@@ -682,7 +682,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] DiscreteSpaceTest.GetProjectionThrowsOnKnobNotFound (0 ms)
 [ RUN      ] DiscreteSpaceTest.GetProjectionWorks
 [       OK ] DiscreteSpaceTest.GetProjectionWorks (0 ms)
-[----------] 20 tests from DiscreteSpaceTest (5 ms total)
+[----------] 20 tests from DiscreteSpaceTest (4 ms total)
 
 [----------] 9 tests from DiscretizerTest
 [ RUN      ] DiscretizerTest.ConstructorValid
@@ -1304,8 +1304,8 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] LabelledControlArray1DTest.GradientAllAxes
 [       OK ] LabelledControlArray1DTest.GradientAllAxes (0 ms)
 [ RUN      ] LabelledControlArray1DTest.SerializationRoundTrip
-[       OK ] LabelledControlArray1DTest.SerializationRoundTrip (1 ms)
-[----------] 38 tests from LabelledControlArray1DTest (5 ms total)
+[       OK ] LabelledControlArray1DTest.SerializationRoundTrip (0 ms)
+[----------] 38 tests from LabelledControlArray1DTest (3 ms total)
 
 [----------] 14 tests from LabelledDomainTest
 [ RUN      ] LabelledDomainTest.ConstructorValid
@@ -1336,7 +1336,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] LabelledDomainTest.MatchingPortFalse (0 ms)
 [ RUN      ] LabelledDomainTest.MatchingPortThrowsOnNull
 [       OK ] LabelledDomainTest.MatchingPortThrowsOnNull (0 ms)
-[----------] 14 tests from LabelledDomainTest (1 ms total)
+[----------] 14 tests from LabelledDomainTest (0 ms total)
 
 [----------] 52 tests from LabelledMeasuredArrayTest
 [ RUN      ] LabelledMeasuredArrayTest.MeasuredArraySPConstructor
@@ -1674,14 +1674,14 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] LoaderTest.ConstructorWithPathWorks
 [       OK ] LoaderTest.ConstructorWithPathWorks (6 ms)
 [ RUN      ] LoaderTest.ConstructorWithStringWorks
-[       OK ] LoaderTest.ConstructorWithStringWorks (6 ms)
+[       OK ] LoaderTest.ConstructorWithStringWorks (5 ms)
 [ RUN      ] LoaderTest.LoadConfigReturnsConfig
-[       OK ] LoaderTest.LoadConfigReturnsConfig (6 ms)
+[       OK ] LoaderTest.LoadConfigReturnsConfig (5 ms)
 [ RUN      ] LoaderTest.ConfigGetterWorks
-[       OK ] LoaderTest.ConfigGetterWorks (6 ms)
+[       OK ] LoaderTest.ConfigGetterWorks (5 ms)
 [ RUN      ] LoaderTest.ThrowsOnMissingFile
 [       OK ] LoaderTest.ThrowsOnMissingFile (0 ms)
-[----------] 5 tests from LoaderTest (25 ms total)
+[----------] 5 tests from LoaderTest (23 ms total)
 
 [----------] 10 tests from MapIntStringTest
 [ RUN      ] MapIntStringTest.DefaultConstructEmpty
@@ -1734,7 +1734,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] MapConnectionDoubleTest.EqualityOperators (0 ms)
 [ RUN      ] MapConnectionDoubleTest.SerializationAndEquality
 [       OK ] MapConnectionDoubleTest.SerializationAndEquality (0 ms)
-[----------] 11 tests from MapConnectionDoubleTest (1 ms total)
+[----------] 11 tests from MapConnectionDoubleTest (0 ms total)
 
 [----------] 1 test from MapConnectionConnectionTest
 [ RUN      ] MapConnectionConnectionTest.AtThrowsIfNotFound
@@ -1933,14 +1933,14 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] MeasurementRequestTest.ThrowsOnNullWaveforms
 [       OK ] MeasurementRequestTest.ThrowsOnNullWaveforms (0 ms)
 [ RUN      ] MeasurementRequestTest.ThrowsOnNullGetters
-[       OK ] MeasurementRequestTest.ThrowsOnNullGetters (1 ms)
+[       OK ] MeasurementRequestTest.ThrowsOnNullGetters (0 ms)
 [ RUN      ] MeasurementRequestTest.ThrowsOnNullMeterTransforms
 [       OK ] MeasurementRequestTest.ThrowsOnNullMeterTransforms (0 ms)
 [ RUN      ] MeasurementRequestTest.ThrowsOnNullTimeDomain
-[       OK ] MeasurementRequestTest.ThrowsOnNullTimeDomain (1 ms)
+[       OK ] MeasurementRequestTest.ThrowsOnNullTimeDomain (0 ms)
 [ RUN      ] MeasurementRequestTest.SerializationRoundTrip
-[       OK ] MeasurementRequestTest.SerializationRoundTrip (2 ms)
-[----------] 6 tests from MeasurementRequestTest (7 ms total)
+[       OK ] MeasurementRequestTest.SerializationRoundTrip (1 ms)
+[----------] 6 tests from MeasurementRequestTest (5 ms total)
 
 [----------] 5 tests from MeasurementResponseTest
 [ RUN      ] MeasurementResponseTest.ConstructorWorks
@@ -2030,9 +2030,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 
 [----------] 10 tests from PortTransformTest
 [ RUN      ] PortTransformTest.ConstructorThrowsOnNullPort
-[       OK ] PortTransformTest.ConstructorThrowsOnNullPort (2 ms)
+[       OK ] PortTransformTest.ConstructorThrowsOnNullPort (1 ms)
 [ RUN      ] PortTransformTest.ConstructorThrowsOnNullTransform
-[       OK ] PortTransformTest.ConstructorThrowsOnNullTransform (2 ms)
+[       OK ] PortTransformTest.ConstructorThrowsOnNullTransform (1 ms)
 [ RUN      ] PortTransformTest.ConstructorSucceeds
 [       OK ] PortTransformTest.ConstructorSucceeds (1 ms)
 [ RUN      ] PortTransformTest.ConstantTransformFactory
@@ -2040,16 +2040,16 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] PortTransformTest.IdentityTransformFactory
 [       OK ] PortTransformTest.IdentityTransformFactory (2 ms)
 [ RUN      ] PortTransformTest.QuadraticTransformEvaluation
-[       OK ] PortTransformTest.QuadraticTransformEvaluation (3 ms)
+[       OK ] PortTransformTest.QuadraticTransformEvaluation (2 ms)
 [ RUN      ] PortTransformTest.EqualityOperators
-[       OK ] PortTransformTest.EqualityOperators (3 ms)
+[       OK ] PortTransformTest.EqualityOperators (2 ms)
 [ RUN      ] PortTransformTest.SerializationRoundTrip
 [       OK ] PortTransformTest.SerializationRoundTrip (2 ms)
 [ RUN      ] PortTransformTest.ConstantTransformThrowsOnNullPort
 [       OK ] PortTransformTest.ConstantTransformThrowsOnNullPort (1 ms)
 [ RUN      ] PortTransformTest.IdentityTransformThrowsOnNullPort
 [       OK ] PortTransformTest.IdentityTransformThrowsOnNullPort (1 ms)
-[----------] 10 tests from PortTransformTest (23 ms total)
+[----------] 10 tests from PortTransformTest (19 ms total)
 
 [----------] 5 tests from PortTransformsTest
 [ RUN      ] PortTransformsTest.DefaultConstructor
@@ -2057,9 +2057,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [ RUN      ] PortTransformsTest.ListSPConstructorAndNullThrows
 [       OK ] PortTransformsTest.ListSPConstructorAndNullThrows (0 ms)
 [ RUN      ] PortTransformsTest.VectorConstructor
-[       OK ] PortTransformsTest.VectorConstructor (1 ms)
+[       OK ] PortTransformsTest.VectorConstructor (0 ms)
 [ RUN      ] PortTransformsTest.TransformsGetter
-[       OK ] PortTransformsTest.TransformsGetter (1 ms)
+[       OK ] PortTransformsTest.TransformsGetter (0 ms)
 [ RUN      ] PortTransformsTest.SerializationRoundTrip
 [       OK ] PortTransformsTest.SerializationRoundTrip (1 ms)
 [----------] 5 tests from PortTransformsTest (5 ms total)
@@ -2110,7 +2110,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] PrefixTest.PrefixMultiplicationThrowsOnInvalidPrefix (0 ms)
 [----------] 7 tests from PrefixTest (0 ms total)
 
-[----------] 38 tests from QuantityTest
+[----------] 35 tests from QuantityTest
 [ RUN      ] QuantityTest.Construction
 [       OK ] QuantityTest.Construction (0 ms)
 [ RUN      ] QuantityTest.ConstructionNullUnitThrows
@@ -2135,8 +2135,6 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] QuantityTest.Power (0 ms)
 [ RUN      ] QuantityTest.NegationAndAbs
 [       OK ] QuantityTest.NegationAndAbs (0 ms)
-[ RUN      ] QuantityTest.CompoundAssignmentOperators
-[       OK ] QuantityTest.CompoundAssignmentOperators (0 ms)
 [ RUN      ] QuantityTest.CompoundAssignmentNullptrThrows
 [       OK ] QuantityTest.CompoundAssignmentNullptrThrows (0 ms)
 [ RUN      ] QuantityTest.ConvertToNullptrThrows
@@ -2171,8 +2169,6 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] QuantityTest.AddIntThrows (0 ms)
 [ RUN      ] QuantityTest.AddDoubleThrows
 [       OK ] QuantityTest.AddDoubleThrows (0 ms)
-[ RUN      ] QuantityTest.AddAssignByDouble
-[       OK ] QuantityTest.AddAssignByDouble (0 ms)
 [ RUN      ] QuantityTest.AddAssignByQuantity
 [       OK ] QuantityTest.AddAssignByQuantity (0 ms)
 [ RUN      ] QuantityTest.AddAssignByQuantityNullptrThrows
@@ -2185,9 +2181,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] QuantityTest.SubtractIntThrows (0 ms)
 [ RUN      ] QuantityTest.SubtractDoubleThrows
 [       OK ] QuantityTest.SubtractDoubleThrows (0 ms)
-[ RUN      ] QuantityTest.SubtractAssignByInt
-[       OK ] QuantityTest.SubtractAssignByInt (0 ms)
-[----------] 38 tests from QuantityTest (3 ms total)
+[----------] 35 tests from QuantityTest (3 ms total)
 
 [----------] 6 tests from RightReservoirWithImplantedOhmicTest
 [ RUN      ] RightReservoirWithImplantedOhmicTest.ConstructorWorks
@@ -2240,7 +2234,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] SpacesTest.RaySpaceBasicFunctionality (0 ms)
 [ RUN      ] SpacesTest.RaySpaceSerializationRoundTrip
 [       OK ] SpacesTest.RaySpaceSerializationRoundTrip (0 ms)
-[----------] 10 tests from SpacesTest (2 ms total)
+[----------] 10 tests from SpacesTest (1 ms total)
 
 [----------] 29 tests from StandardConfigConnectionsTest
 [ RUN      ] StandardConfigConnectionsTest.ConstructorValid
@@ -2655,7 +2649,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 
 [----------] 17 tests from WaveformTest
 [ RUN      ] WaveformTest.ConstructorWorks
-[       OK ] WaveformTest.ConstructorWorks (2 ms)
+[       OK ] WaveformTest.ConstructorWorks (1 ms)
 [ RUN      ] WaveformTest.ConstructorThrowsOnNullSpace
 [       OK ] WaveformTest.ConstructorThrowsOnNullSpace (1 ms)
 [ RUN      ] WaveformTest.ConstructorThrowsOnNullTransforms
@@ -2688,11 +2682,11 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 [       OK ] WaveformTest.CartesianIdentityWaveform1DNullptrs (2 ms)
 [ RUN      ] WaveformTest.SerializationRoundTrip
 [       OK ] WaveformTest.SerializationRoundTrip (2 ms)
-[----------] 17 tests from WaveformTest (32 ms total)
+[----------] 17 tests from WaveformTest (33 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1229 tests from 77 test suites ran. (258 ms total)
-[  PASSED  ] 1229 tests.
+[==========] 1226 tests from 77 test suites ran. (233 ms total)
+[  PASSED  ] 1226 tests.
 /home/daniel/work/wisc/playground/falcon-core/cpp/include/cereal/types/xtensor.hpp:
     1|       |#pragma once
     2|       |
@@ -2702,18 +2696,18 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
     6|       |namespace cereal {
     7|       |// Save for xt::xarray
     8|       |template <class Archive, class T>
-    9|     35|void save(Archive& ar, const xt::xarray<T>& arr) {
-   10|     35|  std::vector<size_t> shape(arr.shape().begin(), arr.shape().end());
-   11|     35|  std::vector<T>      flat(arr.begin(), arr.end());
-   12|     35|  ar(shape, flat);
-   13|     35|}
+    9|     37|void save(Archive& ar, const xt::xarray<T>& arr) {
+   10|     37|  std::vector<size_t> shape(arr.shape().begin(), arr.shape().end());
+   11|     37|  std::vector<T>      flat(arr.begin(), arr.end());
+   12|     37|  ar(shape, flat);
+   13|     37|}
   ------------------
   | void cereal::save<cereal::JSONOutputArchive, double>(cereal::JSONOutputArchive&, xt::xarray_container<xt::uvector<double, std::allocator<double> >, (xt::layout_type)1, xt::svector<xt::uvector<double, std::allocator<double> >::size_type, 4ul, std::allocator<std::vector<double, std::allocator<double> >::size_type>, true>, xt::xtensor_expression_tag> const&):
-  |    9|     31|void save(Archive& ar, const xt::xarray<T>& arr) {
-  |   10|     31|  std::vector<size_t> shape(arr.shape().begin(), arr.shape().end());
-  |   11|     31|  std::vector<T>      flat(arr.begin(), arr.end());
-  |   12|     31|  ar(shape, flat);
-  |   13|     31|}
+  |    9|     33|void save(Archive& ar, const xt::xarray<T>& arr) {
+  |   10|     33|  std::vector<size_t> shape(arr.shape().begin(), arr.shape().end());
+  |   11|     33|  std::vector<T>      flat(arr.begin(), arr.end());
+  |   12|     33|  ar(shape, flat);
+  |   13|     33|}
   ------------------
   | Unexecuted instantiation: void cereal::save<cereal::BinaryOutputArchive, double>(cereal::BinaryOutputArchive&, xt::xarray_container<xt::uvector<double, std::allocator<double> >, (xt::layout_type)1, xt::svector<xt::uvector<double, std::allocator<double> >::size_type, 4ul, std::allocator<std::vector<double, std::allocator<double> >::size_type>, true>, xt::xtensor_expression_tag> const&)
   ------------------
@@ -2729,22 +2723,22 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    14|       |
    15|       |// Load for xt::xarray
    16|       |template <class Archive, class T>
-   17|     33|void load(Archive& ar, xt::xarray<T>& arr) {
-   18|     33|  std::vector<size_t> shape;
-   19|     33|  std::vector<T>      flat;
-   20|     33|  ar(shape, flat);
-   21|     33|  arr = xt::xarray<T>::from_shape(shape);
-   22|     33|  std::copy(flat.begin(), flat.end(), arr.begin());
-   23|     33|}
+   17|     35|void load(Archive& ar, xt::xarray<T>& arr) {
+   18|     35|  std::vector<size_t> shape;
+   19|     35|  std::vector<T>      flat;
+   20|     35|  ar(shape, flat);
+   21|     35|  arr = xt::xarray<T>::from_shape(shape);
+   22|     35|  std::copy(flat.begin(), flat.end(), arr.begin());
+   23|     35|}
   ------------------
   | void cereal::load<cereal::JSONInputArchive, double>(cereal::JSONInputArchive&, xt::xarray_container<xt::uvector<double, std::allocator<double> >, (xt::layout_type)1, xt::svector<xt::uvector<double, std::allocator<double> >::size_type, 4ul, std::allocator<std::vector<double, std::allocator<double> >::size_type>, true>, xt::xtensor_expression_tag>&):
-  |   17|     29|void load(Archive& ar, xt::xarray<T>& arr) {
-  |   18|     29|  std::vector<size_t> shape;
-  |   19|     29|  std::vector<T>      flat;
-  |   20|     29|  ar(shape, flat);
-  |   21|     29|  arr = xt::xarray<T>::from_shape(shape);
-  |   22|     29|  std::copy(flat.begin(), flat.end(), arr.begin());
-  |   23|     29|}
+  |   17|     31|void load(Archive& ar, xt::xarray<T>& arr) {
+  |   18|     31|  std::vector<size_t> shape;
+  |   19|     31|  std::vector<T>      flat;
+  |   20|     31|  ar(shape, flat);
+  |   21|     31|  arr = xt::xarray<T>::from_shape(shape);
+  |   22|     31|  std::copy(flat.begin(), flat.end(), arr.begin());
+  |   23|     31|}
   ------------------
   | Unexecuted instantiation: void cereal::load<cereal::BinaryInputArchive, double>(cereal::BinaryInputArchive&, xt::xarray_container<xt::uvector<double, std::allocator<double> >, (xt::layout_type)1, xt::svector<xt::uvector<double, std::allocator<double> >::size_type, 4ul, std::allocator<std::vector<double, std::allocator<double> >::size_type>, true>, xt::xtensor_expression_tag>&)
   ------------------
@@ -3970,13 +3964,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    24|       |  using reference       = T&;
    25|       |  using const_reference = const T&;
    26|       |
-   27|    248|  FArray() = default;
+   27|    460|  FArray() = default;
   ------------------
   | falcon_core::generic::FArray<double>::FArray():
   |   27|     26|  FArray() = default;
   ------------------
   | falcon_core::generic::FArray<double>::FArray():
-  |   27|    218|  FArray() = default;
+  |   27|    430|  FArray() = default;
   ------------------
   | falcon_core::generic::FArray<int>::FArray():
   |   27|      3|  FArray() = default;
@@ -4005,10 +3999,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   ------------------
    30|       |  explicit FArray(const std::vector<size_t>& shape) : _data(shape) {}
    31|       |
-   32|  1.39k|  FArray(const FArray&)                   = default;
+   32|    978|  FArray(const FArray&)                   = default;
   ------------------
   | falcon_core::generic::FArray<double>::FArray(falcon_core::generic::FArray<double> const&):
-  |   32|    902|  FArray(const FArray&)                   = default;
+  |   32|    484|  FArray(const FArray&)                   = default;
   ------------------
   | falcon_core::generic::FArray<double>::FArray(falcon_core::generic::FArray<double> const&):
   |   32|    452|  FArray(const FArray&)                   = default;
@@ -4017,7 +4011,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |   32|     42|  FArray(const FArray&)                   = default;
   ------------------
    33|     90|  FArray(FArray&&) noexcept               = default;
-   34|       |  FArray<T>& operator=(const FArray&)     = default;
+   34|    418|  FArray<T>& operator=(const FArray&)     = default;
    35|       |  FArray<T>& operator=(FArray&&) noexcept = default;
    36|       |
    37|    460|  static std::shared_ptr<FArray<T>> zeros(const std::vector<size_t>& shape) {
@@ -4039,9 +4033,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    42|       |  }
    43|       |
    44|       |  template <typename... Args>
-   45|  43.7k|  decltype(auto) operator()(Args&&... args) {
-   46|  43.7k|    return _data(std::forward<Args>(args)...);
-   47|  43.7k|  }
+   45|  12.5k|  decltype(auto) operator()(Args&&... args) {
+   46|  12.5k|    return _data(std::forward<Args>(args)...);
+   47|  12.5k|  }
   ------------------
   | decltype(auto) falcon_core::generic::FArray<int>::operator()<unsigned long&, unsigned long&>(unsigned long&, unsigned long&):
   |   45|    705|  decltype(auto) operator()(Args&&... args) {
@@ -4049,14 +4043,14 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |   47|    705|  }
   ------------------
   | decltype(auto) falcon_core::generic::FArray<double>::operator()<unsigned long&, unsigned long&>(unsigned long&, unsigned long&):
-  |   45|  21.5k|  decltype(auto) operator()(Args&&... args) {
-  |   46|  21.5k|    return _data(std::forward<Args>(args)...);
-  |   47|  21.5k|  }
+  |   45|  5.95k|  decltype(auto) operator()(Args&&... args) {
+  |   46|  5.95k|    return _data(std::forward<Args>(args)...);
+  |   47|  5.95k|  }
   ------------------
   | decltype(auto) falcon_core::generic::FArray<double>::operator()<unsigned long, unsigned long&>(unsigned long&&, unsigned long&):
-  |   45|  21.5k|  decltype(auto) operator()(Args&&... args) {
-  |   46|  21.5k|    return _data(std::forward<Args>(args)...);
-  |   47|  21.5k|  }
+  |   45|  5.94k|  decltype(auto) operator()(Args&&... args) {
+  |   46|  5.94k|    return _data(std::forward<Args>(args)...);
+  |   47|  5.94k|  }
   ------------------
    48|       |  template <typename... Args>
    49|  9.66k|  decltype(auto) operator()(Args&&... args) const {
@@ -4077,9 +4071,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   ------------------
    54|       |
    55|       |  [[nodiscard]] const xt::dynamic_shape<size_t>& shape()
-   56|  14.6k|      const noexcept override {
-   57|  14.6k|    return _data.shape();
-   58|  14.6k|  }
+   56|  16.1k|      const noexcept override {
+   57|  16.1k|    return _data.shape();
+   58|  16.1k|  }
   ------------------
   | falcon_core::generic::FArray<double>::shape() const:
   |   56|  1.01k|      const noexcept override {
@@ -4087,17 +4081,16 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |   58|  1.01k|  }
   ------------------
   | falcon_core::generic::FArray<int>::shape() const:
-  |   56|  13.6k|      const noexcept override {
-  |   57|  13.6k|    return _data.shape();
-  |   58|  13.6k|  }
+  |   56|  15.1k|      const noexcept override {
+  |   57|  15.1k|    return _data.shape();
+  |   58|  15.1k|  }
   ------------------
-   59|  1.11k|  [[nodiscard]] size_t size() const noexcept override { return _data.size(); }
+   59|     72|  [[nodiscard]] size_t size() const noexcept override { return _data.size(); }
   ------------------
   | falcon_core::generic::FArray<double>::size() const:
-  |   59|     71|  [[nodiscard]] size_t size() const noexcept override { return _data.size(); }
+  |   59|     72|  [[nodiscard]] size_t size() const noexcept override { return _data.size(); }
   ------------------
-  | falcon_core::generic::FArray<int>::size() const:
-  |   59|  1.04k|  [[nodiscard]] size_t size() const noexcept override { return _data.size(); }
+  | Unexecuted instantiation: falcon_core::generic::FArray<int>::size() const
   ------------------
    60|      1|  [[nodiscard]] size_t dimension() const noexcept override {
    61|      1|    return _data.dimension();
@@ -4110,17 +4103,17 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |   61|      1|    return _data.dimension();
   |   62|      1|  }
   ------------------
-   63|    837|  [[nodiscard]] T*       data() noexcept override { return _data.data(); }
+   63|  1.25k|  [[nodiscard]] T*       data() noexcept override { return _data.data(); }
   ------------------
   | falcon_core::generic::FArray<double>::data():
-  |   63|    837|  [[nodiscard]] T*       data() noexcept override { return _data.data(); }
+  |   63|  1.25k|  [[nodiscard]] T*       data() noexcept override { return _data.data(); }
   ------------------
   | Unexecuted instantiation: falcon_core::generic::FArray<int>::data()
   ------------------
-   64|      1|  [[nodiscard]] const T* data() const noexcept override { return _data.data(); }
+   64|      3|  [[nodiscard]] const T* data() const noexcept override { return _data.data(); }
   ------------------
   | falcon_core::generic::FArray<double>::data() const:
-  |   64|      1|  [[nodiscard]] const T* data() const noexcept override { return _data.data(); }
+  |   64|      3|  [[nodiscard]] const T* data() const noexcept override { return _data.data(); }
   ------------------
   | Unexecuted instantiation: falcon_core::generic::FArray<int>::data() const
   ------------------
@@ -4213,17 +4206,17 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   111|     17|    return std::make_shared<FArray<T>>(result);
   112|     22|  }
   113|       |  FArray<T>& operator-=(const FArray<T>& other) {
-  114|       |    _data -= other._data;
+  114|       |    _data = _data - other._data;
   115|       |    return *this;
   116|       |  }
   117|       |  FArray<T>& operator-=(const double other) {
   118|       |    auto ones = xt::ones_like(_data) * other;
-  119|       |    _data -= ones;
+  119|       |    _data     = _data - ones;
   120|       |    return *this;
   121|       |  }
   122|       |  FArray<T>& operator-=(const int other) {
   123|       |    auto ones = xt::ones_like(_data) * other;
-  124|       |    _data -= ones;
+  124|       |    _data     = _data - ones;
   125|       |    return *this;
   126|       |  }
   127|      9|  std::shared_ptr<FArray<T>> operator-() const {
@@ -4392,275 +4385,282 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   |  263|      1|  operator const array_type&() const override { return _data; }
   ------------------
   264|       |
-  265|     40|  bool operator==(const FArray<T>& other) const { return _data == other._data; }
+  265|     49|  bool operator==(const FArray<T>& other) const {
+  266|     49|    return xtensor() == other.xtensor();
+  267|     49|  }
   ------------------
   | falcon_core::generic::FArray<double>::operator==(falcon_core::generic::FArray<double> const&) const:
-  |  265|     36|  bool operator==(const FArray<T>& other) const { return _data == other._data; }
+  |  265|     45|  bool operator==(const FArray<T>& other) const {
+  |  266|     45|    return xtensor() == other.xtensor();
+  |  267|     45|  }
   ------------------
   | falcon_core::generic::FArray<int>::operator==(falcon_core::generic::FArray<int> const&) const:
-  |  265|      4|  bool operator==(const FArray<T>& other) const { return _data == other._data; }
+  |  265|      4|  bool operator==(const FArray<T>& other) const {
+  |  266|      4|    return xtensor() == other.xtensor();
+  |  267|      4|  }
   ------------------
-  266|     11|  bool operator!=(const FArray<T>& other) const { return !(*this == other); }
-  267|       |  /**
-  268|       |   * @brief Check if any of the data is greater than the value.
-  269|       |   * @param value The value to compare to.
-  270|       |   * @return True if any of the data is greater than the value, False otherwise.
-  271|       |   */
-  272|      2|  bool operator>(const T& value) const override {
-  273|      2|    return xt::any(_data > value);
-  274|      2|  }
+  268|     11|  bool operator!=(const FArray<T>& other) const { return !(*this == other); }
+  269|       |  /**
+  270|       |   * @brief Check if any of the data is greater than the value.
+  271|       |   * @param value The value to compare to.
+  272|       |   * @return True if any of the data is greater than the value, False otherwise.
+  273|       |   */
+  274|      2|  bool operator>(const T& value) const override {
+  275|      2|    return xt::any(_data > value);
+  276|      2|  }
   ------------------
   | falcon_core::generic::FArray<double>::operator>(double const&) const:
-  |  272|      2|  bool operator>(const T& value) const override {
-  |  273|      2|    return xt::any(_data > value);
-  |  274|      2|  }
+  |  274|      2|  bool operator>(const T& value) const override {
+  |  275|      2|    return xt::any(_data > value);
+  |  276|      2|  }
   ------------------
   | Unexecuted instantiation: falcon_core::generic::FArray<int>::operator>(int const&) const
   ------------------
-  275|       |
-  276|       |  /**
-  277|       |   * @brief Check if any of the data is less than the value.
-  278|       |   * @param value The value to compare to.
-  279|       |   * @return True if any of the data is less than the value, False otherwise.
-  280|       |   */
-  281|      2|  bool operator<(const T& value) const override {
-  282|      2|    return xt::any(_data < value);
-  283|      2|  }
+  277|       |
+  278|       |  /**
+  279|       |   * @brief Check if any of the data is less than the value.
+  280|       |   * @param value The value to compare to.
+  281|       |   * @return True if any of the data is less than the value, False otherwise.
+  282|       |   */
+  283|      2|  bool operator<(const T& value) const override {
+  284|      2|    return xt::any(_data < value);
+  285|      2|  }
   ------------------
   | falcon_core::generic::FArray<double>::operator<(double const&) const:
-  |  281|      2|  bool operator<(const T& value) const override {
-  |  282|      2|    return xt::any(_data < value);
-  |  283|      2|  }
+  |  283|      2|  bool operator<(const T& value) const override {
+  |  284|      2|    return xt::any(_data < value);
+  |  285|      2|  }
   ------------------
   | Unexecuted instantiation: falcon_core::generic::FArray<int>::operator<(int const&) const
   ------------------
-  284|       |
-  285|       |  /**
-  286|       |   * @brief Remove the offset from the data.
-  287|       |   * @param offset The offset to remove.
-  288|       |   */
-  289|      2|  void remove_offset(const T& offset) override { _data -= offset; }
+  286|       |
+  287|       |  /**
+  288|       |   * @brief Remove the offset from the data.
+  289|       |   * @param offset The offset to remove.
+  290|       |   */
+  291|      2|  void remove_offset(const T& offset) override { _data -= offset; }
   ------------------
   | falcon_core::generic::FArray<double>::remove_offset(double const&):
-  |  289|      1|  void remove_offset(const T& offset) override { _data -= offset; }
+  |  291|      1|  void remove_offset(const T& offset) override { _data -= offset; }
   ------------------
   | falcon_core::generic::FArray<int>::remove_offset(int const&):
-  |  289|      1|  void remove_offset(const T& offset) override { _data -= offset; }
+  |  291|      1|  void remove_offset(const T& offset) override { _data -= offset; }
   ------------------
-  290|       |
-  291|       |  /**
-  292|       |   * @brief Return the sum of the data.
-  293|       |   * @return The sum of the data.
-  294|       |   */
-  295|      2|  T sum() const override { return xt::sum(_data)(); }
+  292|       |
+  293|       |  /**
+  294|       |   * @brief Return the sum of the data.
+  295|       |   * @return The sum of the data.
+  296|       |   */
+  297|      2|  T sum() const override { return xt::sum(_data)(); }
   ------------------
   | falcon_core::generic::FArray<double>::sum() const:
-  |  295|      1|  T sum() const override { return xt::sum(_data)(); }
+  |  297|      1|  T sum() const override { return xt::sum(_data)(); }
   ------------------
   | falcon_core::generic::FArray<int>::sum() const:
-  |  295|      1|  T sum() const override { return xt::sum(_data)(); }
+  |  297|      1|  T sum() const override { return xt::sum(_data)(); }
   ------------------
-  296|       |
-  297|       |  /**
-  298|       |   * @brief Return a new Array with the given shape.
-  299|       |   * @param shape The new shape.
-  300|       |   * @return A reshaped FArray.
-  301|       |   */
-  302|      9|  std::shared_ptr<FArray<T>> reshape(const std::vector<size_t>& shape) const {
-  303|      9|    return std::make_shared<FArray<T>>(xt::reshape_view(_data, shape));
-  304|      9|  }
-  305|       |
-  306|       |  /**
-  307|       |   * @brief Return the indices of the data where the value is.
-  308|       |   * @param value The value to search for.
-  309|       |   * @return Indices where the value matches.
-  310|       |   */
-  311|      3|  ListSP<List<size_t>> where(const T& value) const override {
-  312|      3|    auto mask    = xt::equal(_data, value);
-  313|      3|    auto indices = std::make_shared<List<List<size_t>>>();
-  314|     36|    for (size_t i = 0; i < _data.size(); ++i) {
-  315|     33|      if (mask.flat(i)) {
-  316|      6|        auto idx      = xt::unravel_index(i, _data.shape());
-  317|      6|        auto idx_list = std::make_shared<List<size_t>>();
-  318|     12|        for (auto v : idx) idx_list->push_back(static_cast<size_t>(v));
-  319|      6|        indices->push_back(idx_list);
-  320|      6|      }
-  321|     33|    }
-  322|      3|    return indices;
-  323|      3|  }
+  298|       |
+  299|       |  /**
+  300|       |   * @brief Return a new Array with the given shape.
+  301|       |   * @param shape The new shape.
+  302|       |   * @return A reshaped FArray.
+  303|       |   */
+  304|      9|  std::shared_ptr<FArray<T>> reshape(const std::vector<size_t>& shape) const {
+  305|      9|    return std::make_shared<FArray<T>>(xt::reshape_view(_data, shape));
+  306|      9|  }
+  307|       |
+  308|       |  /**
+  309|       |   * @brief Return the indices of the data where the value is.
+  310|       |   * @param value The value to search for.
+  311|       |   * @return Indices where the value matches.
+  312|       |   */
+  313|      3|  ListSP<List<size_t>> where(const T& value) const override {
+  314|      3|    auto mask    = xt::equal(_data, value);
+  315|      3|    auto indices = std::make_shared<List<List<size_t>>>();
+  316|     36|    for (size_t i = 0; i < _data.size(); ++i) {
+  317|     33|      if (mask.flat(i)) {
+  318|      6|        auto idx      = xt::unravel_index(i, _data.shape());
+  319|      6|        auto idx_list = std::make_shared<List<size_t>>();
+  320|     12|        for (auto v : idx) idx_list->push_back(static_cast<size_t>(v));
+  321|      6|        indices->push_back(idx_list);
+  322|      6|      }
+  323|     33|    }
+  324|      3|    return indices;
+  325|      3|  }
   ------------------
   | falcon_core::generic::FArray<double>::where(double const&) const:
-  |  311|      1|  ListSP<List<size_t>> where(const T& value) const override {
-  |  312|      1|    auto mask    = xt::equal(_data, value);
-  |  313|      1|    auto indices = std::make_shared<List<List<size_t>>>();
-  |  314|      5|    for (size_t i = 0; i < _data.size(); ++i) {
-  |  315|      4|      if (mask.flat(i)) {
-  |  316|      1|        auto idx      = xt::unravel_index(i, _data.shape());
-  |  317|      1|        auto idx_list = std::make_shared<List<size_t>>();
-  |  318|      2|        for (auto v : idx) idx_list->push_back(static_cast<size_t>(v));
-  |  319|      1|        indices->push_back(idx_list);
-  |  320|      1|      }
-  |  321|      4|    }
-  |  322|      1|    return indices;
-  |  323|      1|  }
+  |  313|      1|  ListSP<List<size_t>> where(const T& value) const override {
+  |  314|      1|    auto mask    = xt::equal(_data, value);
+  |  315|      1|    auto indices = std::make_shared<List<List<size_t>>>();
+  |  316|      5|    for (size_t i = 0; i < _data.size(); ++i) {
+  |  317|      4|      if (mask.flat(i)) {
+  |  318|      1|        auto idx      = xt::unravel_index(i, _data.shape());
+  |  319|      1|        auto idx_list = std::make_shared<List<size_t>>();
+  |  320|      2|        for (auto v : idx) idx_list->push_back(static_cast<size_t>(v));
+  |  321|      1|        indices->push_back(idx_list);
+  |  322|      1|      }
+  |  323|      4|    }
+  |  324|      1|    return indices;
+  |  325|      1|  }
   ------------------
   | falcon_core::generic::FArray<int>::where(int const&) const:
-  |  311|      2|  ListSP<List<size_t>> where(const T& value) const override {
-  |  312|      2|    auto mask    = xt::equal(_data, value);
-  |  313|      2|    auto indices = std::make_shared<List<List<size_t>>>();
-  |  314|     31|    for (size_t i = 0; i < _data.size(); ++i) {
-  |  315|     29|      if (mask.flat(i)) {
-  |  316|      5|        auto idx      = xt::unravel_index(i, _data.shape());
-  |  317|      5|        auto idx_list = std::make_shared<List<size_t>>();
-  |  318|     10|        for (auto v : idx) idx_list->push_back(static_cast<size_t>(v));
-  |  319|      5|        indices->push_back(idx_list);
-  |  320|      5|      }
-  |  321|     29|    }
-  |  322|      2|    return indices;
-  |  323|      2|  }
+  |  313|      2|  ListSP<List<size_t>> where(const T& value) const override {
+  |  314|      2|    auto mask    = xt::equal(_data, value);
+  |  315|      2|    auto indices = std::make_shared<List<List<size_t>>>();
+  |  316|     31|    for (size_t i = 0; i < _data.size(); ++i) {
+  |  317|     29|      if (mask.flat(i)) {
+  |  318|      5|        auto idx      = xt::unravel_index(i, _data.shape());
+  |  319|      5|        auto idx_list = std::make_shared<List<size_t>>();
+  |  320|     10|        for (auto v : idx) idx_list->push_back(static_cast<size_t>(v));
+  |  321|      5|        indices->push_back(idx_list);
+  |  322|      5|      }
+  |  323|     29|    }
+  |  324|      2|    return indices;
+  |  325|      2|  }
   ------------------
-  324|       |
-  325|       |  /**
-  326|       |   * @brief Flip the data along the given axis.
-  327|       |   * @param axis The axis to flip.
-  328|       |   * @return A flipped FArray.
-  329|       |   */
-  330|      9|  std::shared_ptr<FArray<T>> flip(size_t axis) const {
-  331|      9|    return std::make_shared<FArray<T>>(xt::flip(_data, axis));
-  332|      9|  }
-  333|       |
-  334|       |  /**
-  335|       |   * @brief Return the gradient of the data along all axes.
-  336|       |   *
-  337|       |   * Computes the gradient for each axis of the array using finite differences:
-  338|       |   * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
-  339|       |   * - For boundary points, uses forward (first element) or backward (last
-  340|       |   * element) difference.
-  341|       |   *
-  342|       |   * @return A vector of FArray gradients (one for each axis).
-  343|       |   */
-  344|      9|  ListSP<FArray<T>> gradient() const {
-  345|      9|    auto   grads = std::make_shared<List<FArray<T>>>();
-  346|      9|    size_t ndim  = _data.dimension();
-  347|     25|    for (size_t axis = 0; axis < ndim; ++axis) {
-  348|     16|      grads->push_back(gradient(axis));
-  349|     16|    }
-  350|      9|    return grads;
-  351|      9|  }
-  352|       |
-  353|       |  /**
-  354|       |   * @brief Return the gradient of the data along a given axis.
-  355|       |   *
-  356|       |   * Computes the gradient along the specified axis using finite differences:
-  357|       |   * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
-  358|       |   * - For boundary points, uses forward (first element) or backward (last
-  359|       |   * element) difference.
-  360|       |   *
-  361|       |   * @param axis The axis to compute the gradient.
-  362|       |   * @return The gradient FArray.
-  363|       |   */
-  364|    844|  std::shared_ptr<FArray<T>> gradient(size_t axis) const {
-  365|    844|    auto          shape = _data.shape();
-  366|    844|    xt::xarray<T> grad  = xt::zeros<T>(shape);
-  367|       |
-  368|       |    // Iterate over all indices, compute finite difference along axis
-  369|    844|    xt::xindex idx(shape.size(), 0);
-  370|    844|    auto       total = _data.size();
-  371|  4.66k|    for (size_t flat = 0; flat < total; ++flat) {
-  372|  3.82k|      auto unravel = xt::unravel_index(flat, shape);
-  373|  3.82k|      idx.clear();
-  374|  5.75k|      for (auto v : unravel) idx.push_back(static_cast<unsigned long>(v));
-  375|       |
-  376|  3.82k|      xt::xindex idx_prev = idx;
-  377|  3.82k|      xt::xindex idx_next = idx;
-  378|       |
-  379|  3.82k|      if (idx[axis] == 0) {
-  380|  1.32k|        idx_next[axis]  = 1;
-  381|  1.32k|        grad.flat(flat) = _data[idx_next] - _data[idx];
-  382|  2.49k|      } else if (idx[axis] == shape[axis] - 1) {
-  383|  1.32k|        idx_prev[axis]  = shape[axis] - 2;
-  384|  1.32k|        grad.flat(flat) = _data[idx] - _data[idx_prev];
-  385|  1.32k|      } else {
-  386|  1.17k|        idx_prev[axis]  = idx[axis] - 1;
-  387|  1.17k|        idx_next[axis]  = idx[axis] + 1;
-  388|  1.17k|        grad.flat(flat) = (_data[idx_next] - _data[idx_prev]) / 2;
-  389|  1.17k|      }
-  390|  3.82k|    }
-  391|    844|    return std::make_shared<FArray<T>>(grad);
-  392|    844|  }
-  393|       |
-  394|  1.73k|  array_type&       xtensor() noexcept override { return _data; }
+  326|       |
+  327|       |  /**
+  328|       |   * @brief Flip the data along the given axis.
+  329|       |   * @param axis The axis to flip.
+  330|       |   * @return A flipped FArray.
+  331|       |   */
+  332|      9|  std::shared_ptr<FArray<T>> flip(size_t axis) const {
+  333|      9|    return std::make_shared<FArray<T>>(xt::flip(_data, axis));
+  334|      9|  }
+  335|       |
+  336|       |  /**
+  337|       |   * @brief Return the gradient of the data along all axes.
+  338|       |   *
+  339|       |   * Computes the gradient for each axis of the array using finite differences:
+  340|       |   * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+  341|       |   * - For boundary points, uses forward (first element) or backward (last
+  342|       |   * element) difference.
+  343|       |   *
+  344|       |   * @return A vector of FArray gradients (one for each axis).
+  345|       |   */
+  346|      9|  ListSP<FArray<T>> gradient() const {
+  347|      9|    auto   grads = std::make_shared<List<FArray<T>>>();
+  348|      9|    size_t ndim  = _data.dimension();
+  349|     25|    for (size_t axis = 0; axis < ndim; ++axis) {
+  350|     16|      grads->push_back(gradient(axis));
+  351|     16|    }
+  352|      9|    return grads;
+  353|      9|  }
+  354|       |
+  355|       |  /**
+  356|       |   * @brief Return the gradient of the data along a given axis.
+  357|       |   *
+  358|       |   * Computes the gradient along the specified axis using finite differences:
+  359|       |   * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+  360|       |   * - For boundary points, uses forward (first element) or backward (last
+  361|       |   * element) difference.
+  362|       |   *
+  363|       |   * @param axis The axis to compute the gradient.
+  364|       |   * @return The gradient FArray.
+  365|       |   */
+  366|    844|  std::shared_ptr<FArray<T>> gradient(size_t axis) const {
+  367|    844|    auto          shape = _data.shape();
+  368|    844|    xt::xarray<T> grad  = xt::zeros<T>(shape);
+  369|       |
+  370|       |    // Iterate over all indices, compute finite difference along axis
+  371|    844|    xt::xindex idx(shape.size(), 0);
+  372|    844|    auto       total = _data.size();
+  373|  4.66k|    for (size_t flat = 0; flat < total; ++flat) {
+  374|  3.82k|      auto unravel = xt::unravel_index(flat, shape);
+  375|  3.82k|      idx.clear();
+  376|  5.75k|      for (auto v : unravel) idx.push_back(static_cast<unsigned long>(v));
+  377|       |
+  378|  3.82k|      xt::xindex idx_prev = idx;
+  379|  3.82k|      xt::xindex idx_next = idx;
+  380|       |
+  381|  3.82k|      if (idx[axis] == 0) {
+  382|  1.32k|        idx_next[axis]  = 1;
+  383|  1.32k|        grad.flat(flat) = _data[idx_next] - _data[idx];
+  384|  2.49k|      } else if (idx[axis] == shape[axis] - 1) {
+  385|  1.32k|        idx_prev[axis]  = shape[axis] - 2;
+  386|  1.32k|        grad.flat(flat) = _data[idx] - _data[idx_prev];
+  387|  1.32k|      } else {
+  388|  1.17k|        idx_prev[axis]  = idx[axis] - 1;
+  389|  1.17k|        idx_next[axis]  = idx[axis] + 1;
+  390|  1.17k|        grad.flat(flat) = (_data[idx_next] - _data[idx_prev]) / 2;
+  391|  1.17k|      }
+  392|  3.82k|    }
+  393|    844|    return std::make_shared<FArray<T>>(grad);
+  394|    844|  }
+  395|       |
+  396|  1.73k|  array_type&       xtensor() noexcept override { return _data; }
   ------------------
   | falcon_core::generic::FArray<double>::xtensor():
-  |  394|  1.72k|  array_type&       xtensor() noexcept override { return _data; }
+  |  396|  1.72k|  array_type&       xtensor() noexcept override { return _data; }
   ------------------
   | falcon_core::generic::FArray<int>::xtensor():
-  |  394|     10|  array_type&       xtensor() noexcept override { return _data; }
+  |  396|     10|  array_type&       xtensor() noexcept override { return _data; }
   ------------------
-  395|      1|  const array_type& xtensor() const noexcept override { return _data; }
+  397|     99|  const array_type& xtensor() const noexcept override { return _data; }
   ------------------
   | falcon_core::generic::FArray<double>::xtensor() const:
-  |  395|      1|  const array_type& xtensor() const noexcept override { return _data; }
+  |  397|     91|  const array_type& xtensor() const noexcept override { return _data; }
   ------------------
-  | Unexecuted instantiation: falcon_core::generic::FArray<int>::xtensor() const
+  | falcon_core::generic::FArray<int>::xtensor() const:
+  |  397|      8|  const array_type& xtensor() const noexcept override { return _data; }
   ------------------
-  396|       |
-  397|       |  double get_sum_of_squares() const { return (*this ^ 2)->sum(); }
-  398|       |  double get_sum_of_squares(const int other) const {
-  399|       |    return (*(*this - other) ^ 2).sum();
-  400|       |  }
-  401|       |  double get_sum_of_squares(const double other) const {
-  402|       |    return (*(*this - other) ^ 2).sum();
-  403|       |  }
-  404|       |  double get_sum_of_squares(
-  405|       |      const std::shared_ptr<generic::FArray<T>>& other) const {
-  406|       |    return (*(*this - other) ^ 2).sum();
-  407|       |  }
-  408|       |
-  409|       | protected:
-  410|       |  friend class cereal::access;
-  411|       |  template <class Archive>
-  412|     68|  void serialize(Archive& ar) {
-  413|     68|    ar(cereal::base_class<generic::Song>(this), _data);
-  414|     68|  }
+  398|       |
+  399|       |  double get_sum_of_squares() const { return (*this ^ 2)->sum(); }
+  400|       |  double get_sum_of_squares(const int other) const {
+  401|       |    return (*(*this - other) ^ 2).sum();
+  402|       |  }
+  403|       |  double get_sum_of_squares(const double other) const {
+  404|       |    return (*(*this - other) ^ 2).sum();
+  405|       |  }
+  406|       |  double get_sum_of_squares(
+  407|       |      const std::shared_ptr<generic::FArray<T>>& other) const {
+  408|       |    return (*(*this - other) ^ 2).sum();
+  409|       |  }
+  410|       |
+  411|       | protected:
+  412|       |  friend class cereal::access;
+  413|       |  template <class Archive>
+  414|     72|  void serialize(Archive& ar) {
+  415|     72|    ar(cereal::base_class<generic::Song>(this), _data);
+  416|     72|  }
   ------------------
   | void falcon_core::generic::FArray<double>::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive&):
-  |  412|     29|  void serialize(Archive& ar) {
-  |  413|     29|    ar(cereal::base_class<generic::Song>(this), _data);
-  |  414|     29|  }
+  |  414|     31|  void serialize(Archive& ar) {
+  |  415|     31|    ar(cereal::base_class<generic::Song>(this), _data);
+  |  416|     31|  }
   ------------------
   | void falcon_core::generic::FArray<double>::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive&):
-  |  412|     31|  void serialize(Archive& ar) {
-  |  413|     31|    ar(cereal::base_class<generic::Song>(this), _data);
-  |  414|     31|  }
+  |  414|     33|  void serialize(Archive& ar) {
+  |  415|     33|    ar(cereal::base_class<generic::Song>(this), _data);
+  |  416|     33|  }
   ------------------
   | Unexecuted instantiation: void falcon_core::generic::FArray<double>::serialize<cereal::BinaryOutputArchive>(cereal::BinaryOutputArchive&)
   ------------------
   | Unexecuted instantiation: void falcon_core::generic::FArray<double>::serialize<cereal::BinaryInputArchive>(cereal::BinaryInputArchive&)
   ------------------
   | void falcon_core::generic::FArray<int>::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive&):
-  |  412|      4|  void serialize(Archive& ar) {
-  |  413|      4|    ar(cereal::base_class<generic::Song>(this), _data);
-  |  414|      4|  }
+  |  414|      4|  void serialize(Archive& ar) {
+  |  415|      4|    ar(cereal::base_class<generic::Song>(this), _data);
+  |  416|      4|  }
   ------------------
   | void falcon_core::generic::FArray<int>::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive&):
-  |  412|      4|  void serialize(Archive& ar) {
-  |  413|      4|    ar(cereal::base_class<generic::Song>(this), _data);
-  |  414|      4|  }
+  |  414|      4|  void serialize(Archive& ar) {
+  |  415|      4|    ar(cereal::base_class<generic::Song>(this), _data);
+  |  416|      4|  }
   ------------------
   | Unexecuted instantiation: void falcon_core::generic::FArray<int>::serialize<cereal::BinaryOutputArchive>(cereal::BinaryOutputArchive&)
   ------------------
   | Unexecuted instantiation: void falcon_core::generic::FArray<int>::serialize<cereal::BinaryInputArchive>(cereal::BinaryInputArchive&)
   ------------------
-  415|       |
-  416|       | private:
-  417|       |  array_type _data;
-  418|       |};
-  419|       |template <typename T>
-  420|       |using FArraySP = std::shared_ptr<FArray<T>>;
-  421|       |
-  422|       |}  // namespace generic
-  423|       |}  // namespace falcon_core
+  417|       |
+  418|       | private:
+  419|       |  array_type _data;
+  420|       |};
+  421|       |template <typename T>
+  422|       |using FArraySP = std::shared_ptr<FArray<T>>;
+  423|       |
+  424|       |}  // namespace generic
+  425|       |}  // namespace falcon_core
 
 /home/daniel/work/wisc/playground/falcon-core/cpp/include/falcon_core/generic/FArrayProtocol.hpp:
     1|       |#pragma once
@@ -4680,10 +4680,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    15|       |  using reference       = T&;
    16|       |  using const_reference = const T&;
    17|       |
-   18|  4.45k|  virtual ~IFArray() = default;
+   18|  4.24k|  virtual ~IFArray() = default;
   ------------------
   | falcon_core::generic::IFArray<double>::~IFArray():
-  |   18|  4.15k|  virtual ~IFArray() = default;
+  |   18|  3.94k|  virtual ~IFArray() = default;
   ------------------
   | falcon_core::generic::IFArray<int>::~IFArray():
   |   18|    299|  virtual ~IFArray() = default;
@@ -8178,7 +8178,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    47|       |
    48|       |class Song {
    49|       | public:
-   50|  60.3k|  virtual ~Song() = default;
+   50|  60.0k|  virtual ~Song() = default;
    51|       |  /**
    52|       |   * @brief cereal serialization interface.
    53|       |   * Override in derived classes.
@@ -8187,10 +8187,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    56|  2.18k|  void serialize(Archive&) {}
   ------------------
   | void falcon_core::generic::Song::serialize<cereal::JSONInputArchive>(cereal::JSONInputArchive&):
-  |   56|    584|  void serialize(Archive&) {}
+  |   56|    586|  void serialize(Archive&) {}
   ------------------
   | void falcon_core::generic::Song::serialize<cereal::JSONOutputArchive>(cereal::JSONOutputArchive&):
-  |   56|  1.57k|  void serialize(Archive&) {}
+  |   56|  1.58k|  void serialize(Archive&) {}
   ------------------
   | void falcon_core::generic::Song::serialize<cereal::BinaryOutputArchive>(cereal::BinaryOutputArchive&):
   |   56|      9|  void serialize(Archive&) {}
@@ -13155,7 +13155,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    15|       |class VoltageConstraints : public generic::Song {
    16|       |  generic::FArray<double> _matrix;
    17|       |  AdjacencySP             _adjacency;
-   18|       |  std::pair<float, float> _limits;
+   18|       |  generic::FArray<double> _limits;
    19|       |
    20|       | public:
    21|       |  VoltageConstraints(const AdjacencySP         adjacency,
@@ -13168,17 +13168,17 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    28|       |  /**
    29|       |   * @brief The constraint matrix.
    30|       |   */
-   31|       |  generic::FArray<double>& matrix();
+   31|       |  const generic::FArray<double>& matrix();
    32|       |  /**
    33|       |   * @brief The adjacency matrix used to understand the device layout.
    34|       |   */
-   35|       |  AdjacencySP adjacency() const;
+   35|       |  const AdjacencySP adjacency() const;
    36|       |  /**
-   37|       |   * @brief The (min,max) safe voltage limits for each constraint.
+   37|       |   * @brief The y axis vector safe voltage limits for each constraint.
    38|       |   */
-   39|       |  std::pair<float, float> limits() const;
-   40|       |  bool                    operator==(const VoltageConstraints& other) const;
-   41|       |  bool                    operator!=(const VoltageConstraints& other) const;
+   39|       |  const generic::FArray<double>& limits() const;
+   40|       |  bool operator==(const VoltageConstraints& other) const;
+   41|       |  bool operator!=(const VoltageConstraints& other) const;
    42|       |
    43|       | protected:
    44|       |  VoltageConstraints();
@@ -17020,14 +17020,14 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
     7|       |namespace math {
     8|       |
     9|       |Quantity::Quantity(double value, physics::units::SymbolUnitSP unit)
-   10|    811|    : _value(value), _unit(unit) {
-   11|    811|  if (!unit) {
+   10|    793|    : _value(value), _unit(unit) {
+   11|    793|  if (!unit) {
    12|      2|    throw std::invalid_argument("Quantity: The unit must not be null.");
    13|      2|  }
-   14|    811|}
+   14|    793|}
    15|       |
-   16|    293|double                       Quantity::value() const { return _value; }
-   17|    661|physics::units::SymbolUnitSP Quantity::unit() const { return _unit; }
+   16|    287|double                       Quantity::value() const { return _value; }
+   17|    659|physics::units::SymbolUnitSP Quantity::unit() const { return _unit; }
    18|       |
    19|  1.50k|void Quantity::convert_to(physics::units::SymbolUnitSP target_unit) {
    20|  1.50k|  if (!target_unit) {
@@ -17052,10 +17052,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    39|      1|  return std::make_shared<Quantity>(_value * other->value(),
    40|      1|                                    *_unit * other->unit());
    41|      2|}
-   42|      1|Quantity& Quantity::operator*=(const int& other) {
-   43|      1|  _value *= other;
-   44|      1|  return *this;
-   45|      1|}
+   42|      0|Quantity& Quantity::operator*=(const int& other) {
+   43|      0|  _value *= other;
+   44|      0|  return *this;
+   45|      0|}
    46|     23|Quantity& Quantity::operator*=(const double& other) {
    47|     23|  _value *= other;
    48|     23|  return *this;
@@ -17088,10 +17088,10 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    75|      1|  _value /= other;
    76|      1|  return *this;
    77|      1|}
-   78|     23|Quantity& Quantity::operator/=(const double& other) {
-   79|     23|  _value /= other;
-   80|     23|  return *this;
-   81|     23|}
+   78|     22|Quantity& Quantity::operator/=(const double& other) {
+   79|     22|  _value /= other;
+   80|     22|  return *this;
+   81|     22|}
    82|      3|Quantity& Quantity::operator/=(const QuantitySP& other) {
    83|      3|  if (!other) {
    84|      2|    throw std::invalid_argument(
@@ -17124,86 +17124,84 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   111|      2|      other->unit()->convert_value_to(other->value(), _unit);
   112|      2|  return std::make_shared<Quantity>(_value + other_val_converted, _unit);
   113|      3|}
-  114|      1|Quantity& Quantity::operator+=(const int& other) {
-  115|      1|  _value += other;
-  116|      1|  return *this;
-  117|      1|}
-  118|      1|Quantity& Quantity::operator+=(const double& other) {
-  119|      1|  _value += other;
-  120|      1|  return *this;
-  121|      1|}
-  122|     90|Quantity& Quantity::operator+=(const QuantitySP& other) {
-  123|     90|  if (!other) {
-  124|      2|    throw std::invalid_argument(
-  125|      2|        "Quantity: The other quantity must not be null.");
-  126|      2|  }
-  127|     88|  convert_to(other->unit());
-  128|     88|  _value += other->value();
-  129|     88|  return *this;
-  130|     90|}
-  131|       |
-  132|     28|QuantitySP Quantity::operator-() const {
-  133|     28|  return std::make_shared<Quantity>(-_value, _unit);
-  134|     28|}
-  135|       |
-  136|      1|QuantitySP Quantity::operator-(const int& other) const {
-  137|      1|  throw std::runtime_error(
-  138|      1|      "Cannot subtract a scalar from a quantity with units.");
-  139|      1|}
-  140|      1|QuantitySP Quantity::operator-(const double& other) const {
-  141|      1|  throw std::runtime_error(
-  142|      1|      "Cannot subtract a scalar from a quantity with units.");
-  143|      1|}
-  144|     20|QuantitySP Quantity::operator-(const QuantitySP& other) const {
-  145|     20|  if (!other) {
-  146|      1|    throw std::invalid_argument(
-  147|      1|        "Quantity: The other quantity must not be null.");
-  148|      1|  }
-  149|     19|  if (!_unit->is_compatible_with(other->unit())) {
-  150|      1|    throw std::runtime_error("Incompatible units for subtraction.");
-  151|      1|  }
-  152|     18|  double other_val_converted =
-  153|     18|      other->unit()->convert_value_to(other->value(), _unit);
-  154|     18|  return std::make_shared<Quantity>(_value - other_val_converted, _unit);
-  155|     19|}
-  156|      1|Quantity& Quantity::operator-=(const int& other) {
-  157|      1|  _value -= other;
-  158|      1|  return *this;
-  159|      1|}
-  160|      1|Quantity& Quantity::operator-=(const double& other) {
-  161|      1|  _value -= other;
-  162|      1|  return *this;
-  163|      1|}
-  164|      8|Quantity& Quantity::operator-=(const QuantitySP& other) {
-  165|      8|  if (!other) {
-  166|      1|    throw std::invalid_argument(
-  167|      1|        "Quantity: The other quantity must not be null.");
-  168|      1|  }
-  169|      7|  convert_to(other->unit());
-  170|      7|  _value -= other->value();
-  171|      7|  return *this;
-  172|      8|}
-  173|       |
-  174|      1|QuantitySP Quantity::abs() const {
-  175|      1|  return std::make_shared<Quantity>(std::abs(_value), _unit);
-  176|      1|}
-  177|       |
-  178|       |Quantity::Quantity()
-  179|     11|    : _value(0.0), _unit(physics::units::SymbolUnit::Dimensionless()) {}
-  180|     38|bool Quantity::operator==(const Quantity& other) const {
-  181|     38|  return (value() == other.value()) && (*unit() == *other.unit());
-  182|     38|}
-  183|      2|bool Quantity::operator!=(const Quantity& other) const {
-  184|      2|  return !(*this == other);
-  185|      2|}
-  186|       |
-  187|       |}  // namespace math
-  188|       |}  // namespace falcon_core
-  189|       |
-  190|       |// Cereal registration
-  191|       |CEREAL_REGISTER_TYPE(falcon_core::math::Quantity)
-  192|       |CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-  193|       |                                     falcon_core::math::Quantity)
+  114|      0|Quantity& Quantity::operator+=(const int& other) {
+  115|      0|  throw std::runtime_error("Cannot add a scalar to a quantity with units.");
+  116|      0|}
+  117|      0|Quantity& Quantity::operator+=(const double& other) {
+  118|      0|  throw std::runtime_error("Cannot add a scalar to a quantity with units.");
+  119|      0|}
+  120|     90|Quantity& Quantity::operator+=(const QuantitySP& other) {
+  121|     90|  if (!other) {
+  122|      2|    throw std::invalid_argument(
+  123|      2|        "Quantity: The other quantity must not be null.");
+  124|      2|  }
+  125|     88|  convert_to(other->unit());
+  126|     88|  _value += other->value();
+  127|     88|  return *this;
+  128|     90|}
+  129|       |
+  130|     28|QuantitySP Quantity::operator-() const {
+  131|     28|  return std::make_shared<Quantity>(-_value, _unit);
+  132|     28|}
+  133|       |
+  134|      1|QuantitySP Quantity::operator-(const int& other) const {
+  135|      1|  throw std::runtime_error(
+  136|      1|      "Cannot subtract a scalar from a quantity with units.");
+  137|      1|}
+  138|      1|QuantitySP Quantity::operator-(const double& other) const {
+  139|      1|  throw std::runtime_error(
+  140|      1|      "Cannot subtract a scalar from a quantity with units.");
+  141|      1|}
+  142|     20|QuantitySP Quantity::operator-(const QuantitySP& other) const {
+  143|     20|  if (!other) {
+  144|      1|    throw std::invalid_argument(
+  145|      1|        "Quantity: The other quantity must not be null.");
+  146|      1|  }
+  147|     19|  if (!_unit->is_compatible_with(other->unit())) {
+  148|      1|    throw std::runtime_error("Incompatible units for subtraction.");
+  149|      1|  }
+  150|     18|  double other_val_converted =
+  151|     18|      other->unit()->convert_value_to(other->value(), _unit);
+  152|     18|  return std::make_shared<Quantity>(_value - other_val_converted, _unit);
+  153|     19|}
+  154|      0|Quantity& Quantity::operator-=(const int& other) {
+  155|      0|  throw std::runtime_error(
+  156|      0|      "Cannot subtract a scalar from a quantity with units.");
+  157|      0|}
+  158|      0|Quantity& Quantity::operator-=(const double& other) {
+  159|      0|  throw std::runtime_error(
+  160|      0|      "Cannot subtract a scalar from a quantity with units.");
+  161|      0|}
+  162|      8|Quantity& Quantity::operator-=(const QuantitySP& other) {
+  163|      8|  if (!other) {
+  164|      1|    throw std::invalid_argument(
+  165|      1|        "Quantity: The other quantity must not be null.");
+  166|      1|  }
+  167|      7|  convert_to(other->unit());
+  168|      7|  _value -= other->value();
+  169|      7|  return *this;
+  170|      8|}
+  171|       |
+  172|      1|QuantitySP Quantity::abs() const {
+  173|      1|  return std::make_shared<Quantity>(std::abs(_value), _unit);
+  174|      1|}
+  175|       |
+  176|       |Quantity::Quantity()
+  177|     11|    : _value(0.0), _unit(physics::units::SymbolUnit::Dimensionless()) {}
+  178|     38|bool Quantity::operator==(const Quantity& other) const {
+  179|     38|  return (value() == other.value()) && (*unit() == *other.unit());
+  180|     38|}
+  181|      2|bool Quantity::operator!=(const Quantity& other) const {
+  182|      2|  return !(*this == other);
+  183|      2|}
+  184|       |
+  185|       |}  // namespace math
+  186|       |}  // namespace falcon_core
+  187|       |
+  188|       |// Cereal registration
+  189|       |CEREAL_REGISTER_TYPE(falcon_core::math::Quantity)
+  190|       |CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+  191|       |                                     falcon_core::math::Quantity)
 
 /home/daniel/work/wisc/playground/falcon-core/cpp/src/math/UnitSpace.cpp:
     1|       |#include "falcon_core/math/UnitSpace.hpp"
@@ -17820,249 +17818,253 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
 /home/daniel/work/wisc/playground/falcon-core/cpp/src/math/arrays/ControlArray.cpp:
     1|       |#include "falcon_core/math/arrays/ControlArray.hpp"
     2|       |
-    3|       |#include <stdexcept>
-    4|       |
-    5|       |#include "falcon_core/math/arrays/IncreasingAlignment.hpp"
-    6|       |namespace falcon_core {
-    7|       |namespace math {
-    8|       |namespace arrays {
-    9|     19|ControlArray::ControlArray() : FArray<double>() {
-   10|     19|  _principle_dimension = 0;
-   11|     19|  _alignment = std::make_shared<IncreasingAlignment>(IncreasingAlignment(true));
-   12|     19|}
+    3|       |#include <cereal/types/polymorphic.hpp>
+    4|       |#include <stdexcept>
+    5|       |
+    6|       |#include "falcon_core/math/arrays/IncreasingAlignment.hpp"
+    7|       |namespace falcon_core {
+    8|       |namespace math {
+    9|       |namespace arrays {
+   10|     19|ControlArray::ControlArray() : FArray<double>() {
+   11|     19|  _principle_dimension = 0;
+   12|     19|  _alignment = std::make_shared<IncreasingAlignment>(IncreasingAlignment(true));
+   13|     19|}
   ------------------
   | falcon_core::math::arrays::ControlArray::ControlArray():
-  |    9|     18|ControlArray::ControlArray() : FArray<double>() {
-  |   10|     18|  _principle_dimension = 0;
-  |   11|     18|  _alignment = std::make_shared<IncreasingAlignment>(IncreasingAlignment(true));
-  |   12|     18|}
+  |   10|     18|ControlArray::ControlArray() : FArray<double>() {
+  |   11|     18|  _principle_dimension = 0;
+  |   12|     18|  _alignment = std::make_shared<IncreasingAlignment>(IncreasingAlignment(true));
+  |   13|     18|}
   ------------------
   | falcon_core::math::arrays::ControlArray::ControlArray():
-  |    9|      1|ControlArray::ControlArray() : FArray<double>() {
-  |   10|      1|  _principle_dimension = 0;
-  |   11|      1|  _alignment = std::make_shared<IncreasingAlignment>(IncreasingAlignment(true));
-  |   12|      1|}
+  |   10|      1|ControlArray::ControlArray() : FArray<double>() {
+  |   11|      1|  _principle_dimension = 0;
+  |   12|      1|  _alignment = std::make_shared<IncreasingAlignment>(IncreasingAlignment(true));
+  |   13|      1|}
   ------------------
-   13|       |ControlArray::ControlArray(const xt::xarray<double>& arr)
-   14|    556|    : FArray<double>(arr) {
-   15|    556|  _principle_dimension = 0;
-   16|    556|  _alignment           = _determine_alignments();
-   17|    556|}
-  ------------------
-  | falcon_core::math::arrays::ControlArray::ControlArray(xt::xarray_container<xt::uvector<double, std::allocator<double> >, (xt::layout_type)1, xt::svector<unsigned long, 4ul, std::allocator<unsigned long>, true>, xt::xtensor_expression_tag> const&):
-  |   14|    268|    : FArray<double>(arr) {
-  |   15|    268|  _principle_dimension = 0;
-  |   16|    268|  _alignment           = _determine_alignments();
-  |   17|    268|}
+   14|       |ControlArray::ControlArray(const xt::xarray<double>& arr)
+   15|    556|    : FArray<double>(arr) {
+   16|    556|  _principle_dimension = 0;
+   17|    556|  _alignment           = _determine_alignments();
+   18|    556|}
   ------------------
   | falcon_core::math::arrays::ControlArray::ControlArray(xt::xarray_container<xt::uvector<double, std::allocator<double> >, (xt::layout_type)1, xt::svector<unsigned long, 4ul, std::allocator<unsigned long>, true>, xt::xtensor_expression_tag> const&):
-  |   14|    288|    : FArray<double>(arr) {
-  |   15|    288|  _principle_dimension = 0;
-  |   16|    288|  _alignment           = _determine_alignments();
-  |   17|    288|}
+  |   15|    268|    : FArray<double>(arr) {
+  |   16|    268|  _principle_dimension = 0;
+  |   17|    268|  _alignment           = _determine_alignments();
+  |   18|    268|}
   ------------------
-   18|       |ControlArray::ControlArray(const generic::FArraySP<double>& arr)
-   19|     36|    : FArray<double>(arr ? *arr : generic::FArray<double>()) {
-   20|     36|  if (!arr) {
-   21|      2|    throw std::invalid_argument("ControlArray: input array must not be null.");
-   22|      2|  }
-   23|     34|  _principle_dimension = 0;
-   24|     34|  _alignment           = _determine_alignments();
-   25|     34|}
+  | falcon_core::math::arrays::ControlArray::ControlArray(xt::xarray_container<xt::uvector<double, std::allocator<double> >, (xt::layout_type)1, xt::svector<unsigned long, 4ul, std::allocator<unsigned long>, true>, xt::xtensor_expression_tag> const&):
+  |   15|    288|    : FArray<double>(arr) {
+  |   16|    288|  _principle_dimension = 0;
+  |   17|    288|  _alignment           = _determine_alignments();
+  |   18|    288|}
   ------------------
-  | falcon_core::math::arrays::ControlArray::ControlArray(std::shared_ptr<falcon_core::generic::FArray<double> > const&):
-  |   19|      2|    : FArray<double>(arr ? *arr : generic::FArray<double>()) {
-  |   20|      2|  if (!arr) {
-  |   21|      1|    throw std::invalid_argument("ControlArray: input array must not be null.");
-  |   22|      1|  }
-  |   23|      1|  _principle_dimension = 0;
-  |   24|      1|  _alignment           = _determine_alignments();
-  |   25|      1|}
+   19|       |ControlArray::ControlArray(const generic::FArraySP<double>& arr)
+   20|     36|    : FArray<double>(arr ? *arr : generic::FArray<double>()) {
+   21|     36|  if (!arr) {
+   22|      2|    throw std::invalid_argument("ControlArray: input array must not be null.");
+   23|      2|  }
+   24|     34|  _principle_dimension = 0;
+   25|     34|  _alignment           = _determine_alignments();
+   26|     34|}
   ------------------
   | falcon_core::math::arrays::ControlArray::ControlArray(std::shared_ptr<falcon_core::generic::FArray<double> > const&):
-  |   19|     34|    : FArray<double>(arr ? *arr : generic::FArray<double>()) {
-  |   20|     34|  if (!arr) {
-  |   21|      1|    throw std::invalid_argument("ControlArray: input array must not be null.");
-  |   22|      1|  }
-  |   23|     33|  _principle_dimension = 0;
-  |   24|     33|  _alignment           = _determine_alignments();
-  |   25|     33|}
+  |   20|      2|    : FArray<double>(arr ? *arr : generic::FArray<double>()) {
+  |   21|      2|  if (!arr) {
+  |   22|      1|    throw std::invalid_argument("ControlArray: input array must not be null.");
+  |   23|      1|  }
+  |   24|      1|  _principle_dimension = 0;
+  |   25|      1|  _alignment           = _determine_alignments();
+  |   26|      1|}
   ------------------
-   26|       |ControlArray::ControlArray(xt::xarray<double>&& arr) noexcept
-   27|      1|    : FArray<double>(arr) {
-   28|      1|  _principle_dimension = 0;
-   29|      1|  _alignment           = _determine_alignments();
-   30|      1|}
+  | falcon_core::math::arrays::ControlArray::ControlArray(std::shared_ptr<falcon_core::generic::FArray<double> > const&):
+  |   20|     34|    : FArray<double>(arr ? *arr : generic::FArray<double>()) {
+  |   21|     34|  if (!arr) {
+  |   22|      1|    throw std::invalid_argument("ControlArray: input array must not be null.");
+  |   23|      1|  }
+  |   24|     33|  _principle_dimension = 0;
+  |   25|     33|  _alignment           = _determine_alignments();
+  |   26|     33|}
+  ------------------
+   27|       |ControlArray::ControlArray(xt::xarray<double>&& arr) noexcept
+   28|      1|    : FArray<double>(arr) {
+   29|      1|  _principle_dimension = 0;
+   30|      1|  _alignment           = _determine_alignments();
+   31|      1|}
   ------------------
   | Unexecuted instantiation: falcon_core::math::arrays::ControlArray::ControlArray(xt::xarray_container<xt::uvector<double, std::allocator<double> >, (xt::layout_type)1, xt::svector<unsigned long, 4ul, std::allocator<unsigned long>, true>, xt::xtensor_expression_tag>&&)
   ------------------
   | falcon_core::math::arrays::ControlArray::ControlArray(xt::xarray_container<xt::uvector<double, std::allocator<double> >, (xt::layout_type)1, xt::svector<unsigned long, 4ul, std::allocator<unsigned long>, true>, xt::xtensor_expression_tag>&&):
-  |   27|      1|    : FArray<double>(arr) {
-  |   28|      1|  _principle_dimension = 0;
-  |   29|      1|  _alignment           = _determine_alignments();
-  |   30|      1|}
+  |   28|      1|    : FArray<double>(arr) {
+  |   29|      1|  _principle_dimension = 0;
+  |   30|      1|  _alignment           = _determine_alignments();
+  |   31|      1|}
   ------------------
-   31|      2|ControlArraySP ControlArray::operator+(const double other) const {
-   32|      2|  return std::make_shared<ControlArray>(
-   33|      2|      generic::FArray<double>::operator+(other));
-   34|      2|}
-   35|       |
-   36|      1|ControlArraySP ControlArray::operator+(const int other) const {
-   37|      1|  return std::make_shared<ControlArray>(
-   38|      1|      generic::FArray<double>::operator+(other));
-   39|      1|}
-   40|       |
-   41|      4|ControlArraySP ControlArray::operator+(const ControlArraySP& other) const {
-   42|      4|  if (!other) {
-   43|      1|    throw std::invalid_argument(
-   44|      1|        "ControlArray: The other array cannot be null.");
-   45|      1|  }
-   46|      3|  if (other->principle_dimension() != principle_dimension()) {
-   47|      1|    throw std::invalid_argument(
-   48|      1|        "ControlArray: The other array cannot have a different "
-   49|      1|        "principle_dimension.");
-   50|      1|  }
-   51|      2|  return std::make_shared<ControlArray>(
-   52|      2|      generic::FArray<double>::operator+(other));
-   53|      3|}
-   54|       |
-   55|       |ControlArraySP ControlArray::operator+(
-   56|      2|    const generic::FArraySP<double>& other) const {
-   57|      2|  if (!other) {
-   58|      1|    throw std::invalid_argument(
-   59|      1|        "ControlArray: The other array cannot be null.");
-   60|      1|  }
-   61|      1|  return ControlArray::operator+(std::make_shared<ControlArray>(other));
-   62|      2|}
-   63|       |
-   64|      1|ControlArraySP ControlArray::operator-(const double other) const {
-   65|      1|  return std::make_shared<ControlArray>(
-   66|      1|      generic::FArray<double>::operator-(other));
-   67|      1|}
-   68|       |
-   69|      1|ControlArraySP ControlArray::operator-(const int other) const {
-   70|      1|  return std::make_shared<ControlArray>(
-   71|      1|      generic::FArray<double>::operator-(other));
-   72|      1|}
-   73|       |
-   74|      4|ControlArraySP ControlArray::operator-(const ControlArraySP& other) const {
-   75|      4|  if (!other) {
-   76|      1|    throw std::invalid_argument(
-   77|      1|        "ControlArray: The other array cannot be null.");
-   78|      1|  }
-   79|      3|  if (other->principle_dimension() != principle_dimension()) {
-   80|      1|    throw std::invalid_argument(
-   81|      1|        "ControlArray: The other array cannot have a different "
-   82|      1|        "principle_dimension.");
-   83|      1|  }
-   84|      2|  return std::make_shared<ControlArray>(
-   85|      2|      generic::FArray<double>::operator-(other));
-   86|      3|}
-   87|       |
-   88|       |ControlArraySP ControlArray::operator-(
-   89|      2|    const generic::FArraySP<double>& other) const {
-   90|      2|  if (!other) {
-   91|      1|    throw std::invalid_argument(
-   92|      1|        "ControlArray: The other array cannot be null.");
-   93|      1|  }
-   94|      1|  return ControlArray::operator-(std::make_shared<ControlArray>(other));
-   95|      2|}
-   96|       |
-   97|      1|ControlArraySP ControlArray::operator-() const {
-   98|      1|  return std::make_shared<ControlArray>(generic::FArray<double>::operator-());
-   99|      1|}
-  100|       |
-  101|      2|ControlArraySP ControlArray::operator*(const double other) const {
-  102|      2|  return std::make_shared<ControlArray>(
-  103|      2|      generic::FArray<double>::operator*(other));
-  104|      2|}
-  105|       |
-  106|      6|ControlArraySP ControlArray::operator*(const int other) const {
-  107|      6|  return std::make_shared<ControlArray>(
-  108|      6|      generic::FArray<double>::operator*(other));
-  109|      6|}
-  110|       |
-  111|      1|ControlArraySP ControlArray::operator/(const double other) const {
-  112|      1|  return std::make_shared<ControlArray>(
-  113|      1|      generic::FArray<double>::operator/(other));
-  114|      1|}
-  115|       |
-  116|      1|ControlArraySP ControlArray::operator/(const int other) const {
-  117|      1|  return std::make_shared<ControlArray>(
-  118|      1|      generic::FArray<double>::operator/(other));
-  119|      1|}
-  120|       |
-  121|      1|ControlArraySP ControlArray::operator^(const double other) const {
-  122|      1|  return std::make_shared<ControlArray>(
-  123|      1|      generic::FArray<double>::operator^(other));
-  124|      1|}
-  125|       |
-  126|      1|ControlArraySP ControlArray::abs() const {
-  127|      1|  return std::make_shared<ControlArray>(generic::FArray<double>::abs());
-  128|      1|}
-  129|       |
-  130|      4|ControlArraySP ControlArray::min(const ControlArraySP& other) const {
-  131|      4|  if (!other) {
-  132|      1|    throw std::invalid_argument(
-  133|      1|        "ControlArray: The other array cannot be null.");
-  134|      1|  }
-  135|      3|  if (other->principle_dimension() != principle_dimension()) {
-  136|      1|    throw std::invalid_argument(
-  137|      1|        "ControlArray: The other array cannot have a different "
-  138|      1|        "principle_dimension.");
-  139|      1|  }
-  140|      2|  return std::make_shared<ControlArray>(generic::FArray<double>::min(other));
-  141|      3|}
-  142|       |
-  143|      2|ControlArraySP ControlArray::min(const generic::FArraySP<double>& other) const {
-  144|      2|  if (!other) {
-  145|      1|    throw std::invalid_argument(
-  146|      1|        "ControlArray: The other array cannot be null.");
-  147|      1|  }
-  148|      1|  return ControlArray::min(std::make_shared<ControlArray>(other));
-  149|      2|}
-  150|       |
-  151|      5|ControlArraySP ControlArray::max(const ControlArraySP& other) const {
-  152|      5|  if (!other) {
-  153|      2|    throw std::invalid_argument(
-  154|      2|        "ControlArray: The other array cannot be null.");
-  155|      2|  }
-  156|      3|  if (other->principle_dimension() != principle_dimension()) {
-  157|      1|    throw std::invalid_argument(
-  158|      1|        "ControlArray: The other array cannot have a different "
-  159|      1|        "principle_dimension.");
-  160|      1|  }
-  161|      2|  return std::make_shared<ControlArray>(generic::FArray<double>::max(other));
-  162|      3|}
-  163|       |
-  164|      2|ControlArraySP ControlArray::max(const generic::FArraySP<double>& other) const {
-  165|      2|  if (!other) {
-  166|      1|    throw std::invalid_argument(
-  167|      1|        "ControlArray: The other array cannot be null.");
-  168|      1|  }
-  169|      1|  return ControlArray::max(std::make_shared<ControlArray>(other));
-  170|      2|}
-  171|       |
-  172|      1|ControlArraySP ControlArray::reshape(const std::vector<size_t>& shape) const {
-  173|      1|  return std::make_shared<ControlArray>(
-  174|      1|      generic::FArray<double>::reshape(shape));
-  175|      1|}
-  176|       |
-  177|      1|ControlArraySP ControlArray::flip(size_t axis) const {
-  178|      1|  return std::make_shared<ControlArray>(generic::FArray<double>::flip(axis));
-  179|      1|}
-  180|    821|generic::FArraySP<double> ControlArray::gradient(size_t axis) const {
-  181|    821|  return generic::FArray<double>::gradient(axis);
-  182|    821|}
-  183|      1|generic::ListSP<generic::FArray<double>> ControlArray::gradient() const {
-  184|      1|  return generic::FArray<double>::gradient();
-  185|      1|}
-  186|       |}  // namespace arrays
-  187|       |}  // namespace math
-  188|       |}  // namespace falcon_core
-  189|       |CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray)
-  190|       |CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::FArray<double>,
-  191|       |                                     falcon_core::math::arrays::ControlArray)
+   32|      2|ControlArraySP ControlArray::operator+(const double other) const {
+   33|      2|  return std::make_shared<ControlArray>(
+   34|      2|      generic::FArray<double>::operator+(other));
+   35|      2|}
+   36|       |
+   37|      1|ControlArraySP ControlArray::operator+(const int other) const {
+   38|      1|  return std::make_shared<ControlArray>(
+   39|      1|      generic::FArray<double>::operator+(other));
+   40|      1|}
+   41|       |
+   42|      4|ControlArraySP ControlArray::operator+(const ControlArraySP& other) const {
+   43|      4|  if (!other) {
+   44|      1|    throw std::invalid_argument(
+   45|      1|        "ControlArray: The other array cannot be null.");
+   46|      1|  }
+   47|      3|  if (other->principle_dimension() != principle_dimension()) {
+   48|      1|    throw std::invalid_argument(
+   49|      1|        "ControlArray: The other array cannot have a different "
+   50|      1|        "principle_dimension.");
+   51|      1|  }
+   52|      2|  return std::make_shared<ControlArray>(
+   53|      2|      generic::FArray<double>::operator+(other));
+   54|      3|}
+   55|       |
+   56|       |ControlArraySP ControlArray::operator+(
+   57|      2|    const generic::FArraySP<double>& other) const {
+   58|      2|  if (!other) {
+   59|      1|    throw std::invalid_argument(
+   60|      1|        "ControlArray: The other array cannot be null.");
+   61|      1|  }
+   62|      1|  return ControlArray::operator+(std::make_shared<ControlArray>(other));
+   63|      2|}
+   64|       |
+   65|      1|ControlArraySP ControlArray::operator-(const double other) const {
+   66|      1|  return std::make_shared<ControlArray>(
+   67|      1|      generic::FArray<double>::operator-(other));
+   68|      1|}
+   69|       |
+   70|      1|ControlArraySP ControlArray::operator-(const int other) const {
+   71|      1|  return std::make_shared<ControlArray>(
+   72|      1|      generic::FArray<double>::operator-(other));
+   73|      1|}
+   74|       |
+   75|      4|ControlArraySP ControlArray::operator-(const ControlArraySP& other) const {
+   76|      4|  if (!other) {
+   77|      1|    throw std::invalid_argument(
+   78|      1|        "ControlArray: The other array cannot be null.");
+   79|      1|  }
+   80|      3|  if (other->principle_dimension() != principle_dimension()) {
+   81|      1|    throw std::invalid_argument(
+   82|      1|        "ControlArray: The other array cannot have a different "
+   83|      1|        "principle_dimension.");
+   84|      1|  }
+   85|      2|  return std::make_shared<ControlArray>(
+   86|      2|      generic::FArray<double>::operator-(other));
+   87|      3|}
+   88|       |
+   89|       |ControlArraySP ControlArray::operator-(
+   90|      2|    const generic::FArraySP<double>& other) const {
+   91|      2|  if (!other) {
+   92|      1|    throw std::invalid_argument(
+   93|      1|        "ControlArray: The other array cannot be null.");
+   94|      1|  }
+   95|      1|  return ControlArray::operator-(std::make_shared<ControlArray>(other));
+   96|      2|}
+   97|       |
+   98|      1|ControlArraySP ControlArray::operator-() const {
+   99|      1|  return std::make_shared<ControlArray>(generic::FArray<double>::operator-());
+  100|      1|}
+  101|       |
+  102|      2|ControlArraySP ControlArray::operator*(const double other) const {
+  103|      2|  return std::make_shared<ControlArray>(
+  104|      2|      generic::FArray<double>::operator*(other));
+  105|      2|}
+  106|       |
+  107|      6|ControlArraySP ControlArray::operator*(const int other) const {
+  108|      6|  return std::make_shared<ControlArray>(
+  109|      6|      generic::FArray<double>::operator*(other));
+  110|      6|}
+  111|       |
+  112|      1|ControlArraySP ControlArray::operator/(const double other) const {
+  113|      1|  return std::make_shared<ControlArray>(
+  114|      1|      generic::FArray<double>::operator/(other));
+  115|      1|}
+  116|       |
+  117|      1|ControlArraySP ControlArray::operator/(const int other) const {
+  118|      1|  return std::make_shared<ControlArray>(
+  119|      1|      generic::FArray<double>::operator/(other));
+  120|      1|}
+  121|       |
+  122|      1|ControlArraySP ControlArray::operator^(const double other) const {
+  123|      1|  return std::make_shared<ControlArray>(
+  124|      1|      generic::FArray<double>::operator^(other));
+  125|      1|}
+  126|       |
+  127|      1|ControlArraySP ControlArray::abs() const {
+  128|      1|  return std::make_shared<ControlArray>(generic::FArray<double>::abs());
+  129|      1|}
+  130|       |
+  131|      4|ControlArraySP ControlArray::min(const ControlArraySP& other) const {
+  132|      4|  if (!other) {
+  133|      1|    throw std::invalid_argument(
+  134|      1|        "ControlArray: The other array cannot be null.");
+  135|      1|  }
+  136|      3|  if (other->principle_dimension() != principle_dimension()) {
+  137|      1|    throw std::invalid_argument(
+  138|      1|        "ControlArray: The other array cannot have a different "
+  139|      1|        "principle_dimension.");
+  140|      1|  }
+  141|      2|  return std::make_shared<ControlArray>(generic::FArray<double>::min(other));
+  142|      3|}
+  143|       |
+  144|      2|ControlArraySP ControlArray::min(const generic::FArraySP<double>& other) const {
+  145|      2|  if (!other) {
+  146|      1|    throw std::invalid_argument(
+  147|      1|        "ControlArray: The other array cannot be null.");
+  148|      1|  }
+  149|      1|  return ControlArray::min(std::make_shared<ControlArray>(other));
+  150|      2|}
+  151|       |
+  152|      5|ControlArraySP ControlArray::max(const ControlArraySP& other) const {
+  153|      5|  if (!other) {
+  154|      2|    throw std::invalid_argument(
+  155|      2|        "ControlArray: The other array cannot be null.");
+  156|      2|  }
+  157|      3|  if (other->principle_dimension() != principle_dimension()) {
+  158|      1|    throw std::invalid_argument(
+  159|      1|        "ControlArray: The other array cannot have a different "
+  160|      1|        "principle_dimension.");
+  161|      1|  }
+  162|      2|  return std::make_shared<ControlArray>(generic::FArray<double>::max(other));
+  163|      3|}
+  164|       |
+  165|      2|ControlArraySP ControlArray::max(const generic::FArraySP<double>& other) const {
+  166|      2|  if (!other) {
+  167|      1|    throw std::invalid_argument(
+  168|      1|        "ControlArray: The other array cannot be null.");
+  169|      1|  }
+  170|      1|  return ControlArray::max(std::make_shared<ControlArray>(other));
+  171|      2|}
+  172|       |
+  173|      1|ControlArraySP ControlArray::reshape(const std::vector<size_t>& shape) const {
+  174|      1|  return std::make_shared<ControlArray>(
+  175|      1|      generic::FArray<double>::reshape(shape));
+  176|      1|}
+  177|       |
+  178|      1|ControlArraySP ControlArray::flip(size_t axis) const {
+  179|      1|  return std::make_shared<ControlArray>(generic::FArray<double>::flip(axis));
+  180|      1|}
+  181|    821|generic::FArraySP<double> ControlArray::gradient(size_t axis) const {
+  182|    821|  return generic::FArray<double>::gradient(axis);
+  183|    821|}
+  184|      1|generic::ListSP<generic::FArray<double>> ControlArray::gradient() const {
+  185|      1|  return generic::FArray<double>::gradient();
+  186|      1|}
+  187|       |}  // namespace arrays
+  188|       |}  // namespace math
+  189|       |}  // namespace falcon_core
+  190|       |CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray)
+  191|       |CEREAL_REGISTER_TYPE(falcon_core::generic::FArray<double>)
+  192|      0|CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+  193|      0|                                     falcon_core::generic::FArray<double>)
+  194|       |CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::FArray<double>,
+  195|       |                                     falcon_core::math::arrays::ControlArray)
 
 /home/daniel/work/wisc/playground/falcon-core/cpp/src/math/arrays/ControlArray1D.cpp:
     1|       |#include "falcon_core/math/arrays/ControlArray1D.hpp"
@@ -22344,7 +22346,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    10|       |VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
    11|       |                                       double                    max_safe_diff,
    12|       |                                       std::pair<double, double> bounds)
-   13|    210|    : _adjacency(adjacency), _limits(bounds) {
+   13|    210|    : _adjacency(adjacency) {
    14|    210|  if (!adjacency) {
    15|      1|    throw std::invalid_argument(
    16|      1|        "VoltageConstraints: The adjacency matrix needs to not be null.");
@@ -22355,46 +22357,46 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    21|       |  // The second n rows are for the negative identity comparison for each gate.
    22|       |  // The next rows are for the pairs of connected gates, one row for each pair.
    23|       |  // Since each can be positive or negative
-   24|    209|  size_t                  H      = 2 * adjacency->size() + 2 * pairs.size();
-   25|    209|  size_t                  W      = adjacency->size();
-   26|    209|  generic::FArray<double> matrix = *generic::FArray<double>::zeros({H, W});
+   24|    209|  size_t H      = 2 * adjacency->shape()[0] + 2 * pairs.size();
+   25|    209|  size_t W      = adjacency->shape()[0];
+   26|    209|  this->_matrix = *generic::FArray<double>::zeros({H, W});
    27|       |  // Fill identity block
-   28|  17.6k|  for (size_t i = 0; i < W; ++i) {
-   29|  17.4k|    matrix(i, i)     = 1;
-   30|  17.4k|    matrix(W + i, i) = -1;
-   31|  17.4k|  }
+   28|  2.07k|  for (size_t i = 0; i < W; ++i) {
+   29|  1.86k|    this->_matrix(i, i)     = 1;
+   30|  1.86k|    this->_matrix(W + i, i) = -1;
+   31|  1.86k|  }
    32|       |  // Fill pairMatrix block directly into matrix
    33|  2.24k|  for (size_t i = 0; i < pairs.size(); ++i) {
-   34|  2.03k|    size_t row         = 2 * W + 2 * i;
-   35|  2.03k|    size_t a           = pairs[i].first;
-   36|  2.03k|    size_t b           = pairs[i].second;
-   37|  2.03k|    matrix(row, a)     = 1;
-   38|  2.03k|    matrix(row, b)     = -1;
-   39|  2.03k|    matrix(row + 1, a) = -1;
-   40|  2.03k|    matrix(row + 1, b) = 1;
+   34|  2.03k|    size_t row                = 2 * W + 2 * i;
+   35|  2.03k|    size_t a                  = pairs[i].first;
+   36|  2.03k|    size_t b                  = pairs[i].second;
+   37|  2.03k|    this->_matrix(row, a)     = 1;
+   38|  2.03k|    this->_matrix(row, b)     = -1;
+   39|  2.03k|    this->_matrix(row + 1, a) = -1;
+   40|  2.03k|    this->_matrix(row + 1, b) = 1;
    41|  2.03k|  }
-   42|    209|  generic::FArray<double> limits = *generic::FArray<double>::zeros({H, 1});
-   43|    209|  std::fill(
-   44|    209|      limits.data(), limits.data() + 2 * adjacency->size(), bounds.second);
-   45|    209|  std::fill(limits.data() + 2 * adjacency->size(),
-   46|    209|            limits.data() + 2 * adjacency->size() + pairs.size(),
-   47|    209|            max_safe_diff);
-   48|    209|}
-   49|      5|const generic::FArray<double>& VoltageConstraints::matrix() const {
-   50|      5|  return _matrix;
-   51|      5|}
-   52|       |/**
-   53|       | * @brief The constraint matrix.
-   54|       | */
-   55|      3|generic::FArray<double>& VoltageConstraints::matrix() { return _matrix; }
-   56|       |/**
-   57|       | * @brief The adjacency matrix used to understand the device layout.
-   58|       | */
-   59|    226|AdjacencySP VoltageConstraints::adjacency() const { return _adjacency; }
-   60|       |/**
-   61|       | * @brief The (min,max) safe voltage limits for each constraint.
-   62|       | */
-   63|     20|std::pair<float, float> VoltageConstraints::limits() const { return _limits; }
+   42|    209|  this->_limits = *generic::FArray<double>::zeros({H, 1});
+   43|    209|  std::fill(this->_limits.data(),
+   44|    209|            this->_limits.data() + adjacency->shape()[0],
+   45|    209|            std::abs(bounds.second));
+   46|    209|  std::fill(this->_limits.data() + adjacency->shape()[0],
+   47|    209|            this->_limits.data() + 2 * adjacency->shape()[0],
+   48|    209|            std::abs(bounds.first));
+   49|    209|  std::fill(this->_limits.data() + 2 * adjacency->shape()[0],
+   50|    209|            this->_limits.data() + 2 * adjacency->shape()[0] + pairs.size(),
+   51|    209|            max_safe_diff);
+   52|    209|}
+   53|      5|const generic::FArray<double>& VoltageConstraints::matrix() const {
+   54|      5|  return _matrix;
+   55|      5|}
+   56|      3|const generic::FArray<double>& VoltageConstraints::matrix() { return _matrix; }
+   57|       |
+   58|    222|const AdjacencySP VoltageConstraints::adjacency() const { return _adjacency; }
+   59|       |
+   60|     21|const generic::FArray<double>& VoltageConstraints::limits() const {
+   61|     21|  return _limits;
+   62|     21|}
+   63|       |
    64|      8|bool VoltageConstraints::operator==(const VoltageConstraints& other) const {
    65|      8|  return (limits() == other.limits()) && (adjacency() == other.adjacency()) &&
    66|      8|         (matrix() == other.matrix());
@@ -22856,7 +22858,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   268|      1|         (*this->screening_gates() == *other.screening_gates());
   269|      1|}
   270|      0|bool GateGeometryArray1D::operator!=(const GateGeometryArray1D& other) const {
-  271|      0|  return (*this == other);
+  271|      0|  return !(*this == other);
   272|      0|}
   273|       |
   274|       |}  // namespace geometries
@@ -23563,11 +23565,11 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    60|     10|}
    61|  1.65k|static std::string trim(const std::string& s) {
    62|  1.65k|  auto wsfront = std::find_if_not(s.begin(), s.end(), [](int c) {
-   63|  1.11k|    return std::isspace(static_cast<unsigned char>(c));
-   64|  1.11k|  });
+   63|  1.10k|    return std::isspace(static_cast<unsigned char>(c));
+   64|  1.10k|  });
    65|  1.65k|  auto wsback  = std::find_if_not(s.rbegin(), s.rend(), [](int c) {
-   66|  1.11k|                  return std::isspace(static_cast<unsigned char>(c));
-   67|  1.11k|                }).base();
+   66|  1.10k|                  return std::isspace(static_cast<unsigned char>(c));
+   67|  1.10k|                }).base();
    68|  1.65k|  return (wsback <= wsfront ? std::string() : std::string(wsfront, wsback));
    69|  1.65k|}
    70|       |
@@ -23595,15 +23597,15 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    92|      3|    oss << "}";
    93|      3|    throw std::out_of_range(oss.str());
    94|      3|  }
-   95|  1.10k|  return symbol_to_power.at(prefix_symbol);
+   95|  1.09k|  return symbol_to_power.at(prefix_symbol);
    96|  1.10k|}
    97|       |
-   98|    552|bool Prefix::is_valid(std::string prefix_symbol) {
-   99|    552|  prefix_symbol = trim(prefix_symbol);
-  100|    552|  return std::find(std::begin(falcon_core::SI::ALL_PREFIXES),
-  101|    552|                   std::end(falcon_core::SI::ALL_PREFIXES),
-  102|    552|                   prefix_symbol) != std::end(falcon_core::SI::ALL_PREFIXES);
-  103|    552|}
+   98|    549|bool Prefix::is_valid(std::string prefix_symbol) {
+   99|    549|  prefix_symbol = trim(prefix_symbol);
+  100|    549|  return std::find(std::begin(falcon_core::SI::ALL_PREFIXES),
+  101|    549|                   std::end(falcon_core::SI::ALL_PREFIXES),
+  102|    549|                   prefix_symbol) != std::end(falcon_core::SI::ALL_PREFIXES);
+  103|    549|}
   104|       |
   105|       |std::pair<double, std::string> Prefix::prefix_multiplication(
   106|      6|    std::string first_prefix, std::string second_prefix, double scale_factor) {
@@ -23691,20 +23693,20 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    50|       |};
    51|       |
    52|     31|SymbolUnit::SymbolUnit() = default;
-   53|  1.24k|SymbolUnit::SymbolUnit(UnitSP unit) : _unit(unit) {
-   54|  1.24k|  auto results = this->_find_matching_common_unit();
-   55|  1.24k|  _symbol      = results.first;
-   56|  1.24k|  _name        = results.second;
-   57|  1.24k|}
-   58|    207|SymbolUnitSP SymbolUnit::Meter() {
-   59|    207|  return std::make_shared<SymbolUnit>(Unit::Meter());
-   60|    207|}
+   53|  1.22k|SymbolUnit::SymbolUnit(UnitSP unit) : _unit(unit) {
+   54|  1.22k|  auto results = this->_find_matching_common_unit();
+   55|  1.22k|  _symbol      = results.first;
+   56|  1.22k|  _name        = results.second;
+   57|  1.22k|}
+   58|    195|SymbolUnitSP SymbolUnit::Meter() {
+   59|    195|  return std::make_shared<SymbolUnit>(Unit::Meter());
+   60|    195|}
    61|      1|SymbolUnitSP SymbolUnit::Kilogram() {
    62|      1|  return std::make_shared<SymbolUnit>(Unit::Kilogram());
    63|      1|}
-   64|    132|SymbolUnitSP SymbolUnit::Second() {
-   65|    132|  return std::make_shared<SymbolUnit>(Unit::Second());
-   66|    132|}
+   64|    123|SymbolUnitSP SymbolUnit::Second() {
+   65|    123|  return std::make_shared<SymbolUnit>(Unit::Second());
+   66|    123|}
    67|      7|SymbolUnitSP SymbolUnit::Ampere() {
    68|      7|  return std::make_shared<SymbolUnit>(Unit::Ampere());
    69|      7|}
@@ -23735,9 +23737,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    94|      1|SymbolUnitSP SymbolUnit::Coulomb() {
    95|      1|  return std::make_shared<SymbolUnit>(Unit::Coulomb());
    96|      1|}
-   97|    280|SymbolUnitSP SymbolUnit::Volt() {
-   98|    280|  return std::make_shared<SymbolUnit>(Unit::Volt());
-   99|    280|}
+   97|    277|SymbolUnitSP SymbolUnit::Volt() {
+   98|    277|  return std::make_shared<SymbolUnit>(Unit::Volt());
+   99|    277|}
   100|      1|SymbolUnitSP SymbolUnit::Farad() {
   101|      1|  return std::make_shared<SymbolUnit>(Unit::Farad());
   102|      1|}
@@ -23865,12 +23867,12 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   224|      1|  return std::make_shared<SymbolUnit>(*Unit::Watt() /
   225|      1|                                      (*Unit::Meter() * Unit::Kelvin()));
   226|      1|}
-  227|  26.8k|const UnitSP SymbolUnit::unit() const { return _unit; }
+  227|  26.6k|const UnitSP SymbolUnit::unit() const { return _unit; }
   228|       |/*
   229|       | * @brief Get the name of the unit.
   230|       | * @return The name as a string.
   231|       | */
-  232|    263|const std::string SymbolUnit::symbol() const { return _symbol; }
+  232|    261|const std::string SymbolUnit::symbol() const { return _symbol; }
   233|       |/*
   234|       | * @brief Get the name of the unit.
   235|       | * @return The name as a string.
@@ -23905,9 +23907,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   264|      5|const SymbolUnitSP SymbolUnit::operator^(const int power) const {
   265|      5|  return std::make_shared<SymbolUnit>(*unit() ^ power);
   266|      5|}
-  267|     42|const SymbolUnitSP SymbolUnit::with_prefix(const std::string prefix) const {
-  268|     42|  return std::make_shared<SymbolUnit>(unit()->with_prefix(prefix));
-  269|     42|}
+  267|     39|const SymbolUnitSP SymbolUnit::with_prefix(const std::string prefix) const {
+  268|     39|  return std::make_shared<SymbolUnit>(unit()->with_prefix(prefix));
+  269|     39|}
   270|       |const double SymbolUnit::convert_value_to(
   271|  1.53k|    const double value, const SymbolUnitSP& target_unit) const {
   272|  1.53k|  if (!target_unit) {
@@ -23922,11 +23924,11 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   281|     26|  return unit()->is_compatible_with(other->unit());
   282|     27|}
   283|       |const std::pair<std::string, std::string>
-  284|  1.24k|SymbolUnit::_find_matching_common_unit() const {
-  285|  1.24k|  double tolerance = 1e-6;
-  286|  1.24k|  for (const std::tuple<UnitSP, std::string, std::string>& triplet :
-  287|  10.4k|       get_unit_symbols()) {
-  288|  10.4k|    if (unit()->dimensions().empty()) {
+  284|  1.22k|SymbolUnit::_find_matching_common_unit() const {
+  285|  1.22k|  double tolerance = 1e-6;
+  286|  1.22k|  for (const std::tuple<UnitSP, std::string, std::string>& triplet :
+  287|  10.3k|       get_unit_symbols()) {
+  288|  10.3k|    if (unit()->dimensions().empty()) {
   289|     23|      if (std::abs(unit()->scale_factor() - 0.01) <= tolerance) {
   290|      4|        return {SI::UNIT_SYMBOL_PERCENT, SI::UNIT_SYMBOL_PERCENT};
   291|     19|      } else if (std::abs(unit()->scale_factor() - (1 / (2 * PI))) <=
@@ -23936,15 +23938,15 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   295|     17|        return {SI::UNIT_SYMBOL, SI::UNIT_SYMBOL};  // Dimensionless
   296|     17|      }
   297|     23|    }
-  298|  10.4k|    if (std::get<0>(triplet)->dimensions() == unit()->dimensions()) {
-  299|  1.19k|      return {unit()->prefix() + std::get<1>(triplet),
-  300|  1.19k|              unit()->prefix() + std::get<2>(triplet)};
-  301|  1.19k|    }
-  302|  10.4k|  }
+  298|  10.3k|    if (std::get<0>(triplet)->dimensions() == unit()->dimensions()) {
+  299|  1.16k|      return {unit()->prefix() + std::get<1>(triplet),
+  300|  1.16k|              unit()->prefix() + std::get<2>(triplet)};
+  301|  1.16k|    }
+  302|  10.3k|  }
   303|       |  // No exact match found, generate a custom symbol and name
   304|     30|  auto sym = _generate_symbol();
   305|     30|  return std::make_pair(sym, sym);
-  306|  1.24k|}
+  306|  1.22k|}
   307|     30|const std::string SymbolUnit::_generate_symbol() const {
   308|       |  // If dimensions are empty, return the appropriate SI unit symbol
   309|     30|  std::map<std::string, int> numerator, denominator;
@@ -24017,9 +24019,9 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   376|      7|  return numerator_str + "·" + denominator_str;
   377|     18|}
   378|       |const std::vector<std::tuple<UnitSP, std::string, std::string>>
-  379|  1.24k|SymbolUnit::get_unit_symbols() const {
-  380|  1.24k|  return Units_And_Names;
-  381|  1.24k|}
+  379|  1.22k|SymbolUnit::get_unit_symbols() const {
+  380|  1.22k|  return Units_And_Names;
+  381|  1.22k|}
   382|       |
   383|       |const std::map<std::string, std::string> SymbolUnit::get_dimension_symbols()
   384|     59|    const {
@@ -24069,16 +24071,16 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    14|       |           double          scale_factor,
    15|       |           double          offset,
    16|       |           std::string     prefix)
-   17|  1.91k|    : _scale_factor(scale_factor),
-   18|  1.91k|      _dimensions(dimensions),
-   19|  1.91k|      _offset(offset),
-   20|  1.91k|      _prefix(prefix) {}
+   17|  1.88k|    : _scale_factor(scale_factor),
+   18|  1.88k|      _dimensions(dimensions),
+   19|  1.88k|      _offset(offset),
+   20|  1.88k|      _prefix(prefix) {}
    21|       |
-   22|    255|UnitSP Unit::Meter() { return std::make_shared<Unit>(SI::DIMENSIONS_METER); }
+   22|    243|UnitSP Unit::Meter() { return std::make_shared<Unit>(SI::DIMENSIONS_METER); }
    23|      6|UnitSP Unit::Kilogram() {
    24|      6|  return std::make_shared<Unit>(SI::DIMENSIONS_KILOGRAM);
    25|      6|}
-   26|    150|UnitSP Unit::Second() { return std::make_shared<Unit>(SI::DIMENSIONS_SECOND); }
+   26|    141|UnitSP Unit::Second() { return std::make_shared<Unit>(SI::DIMENSIONS_SECOND); }
    27|    217|UnitSP Unit::Ampere() { return std::make_shared<Unit>(SI::DIMENSIONS_AMPERE); }
    28|      6|UnitSP Unit::Kelvin() { return std::make_shared<Unit>(SI::DIMENSIONS_KELVIN); }
    29|      4|UnitSP Unit::Mole() { return std::make_shared<Unit>(SI::DIMENSIONS_MOLE); }
@@ -24093,7 +24095,7 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
    38|      3|UnitSP Unit::Coulomb() {
    39|      3|  return std::make_shared<Unit>(SI::DIMENSIONS_COULOMB);
    40|      3|}
-   41|    556|UnitSP Unit::Volt() { return std::make_shared<Unit>(SI::DIMENSIONS_VOLT); }
+   41|    553|UnitSP Unit::Volt() { return std::make_shared<Unit>(SI::DIMENSIONS_VOLT); }
    42|      3|UnitSP Unit::Farad() { return std::make_shared<Unit>(SI::DIMENSIONS_FARAD); }
    43|      9|UnitSP Unit::Ohm() { return std::make_shared<Unit>(SI::DIMENSIONS_OHM); }
    44|      3|UnitSP Unit::Siemens() {
@@ -24164,8 +24166,8 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   109|    104|  }
   110|     43|}
   111|       |
-  112|  2.97k|std::string     Unit::prefix() const { return this->_prefix; }
-  113|  35.1k|TotalDimensions Unit::dimensions() const { return this->_dimensions; }
+  112|  2.91k|std::string     Unit::prefix() const { return this->_prefix; }
+  113|  34.8k|TotalDimensions Unit::dimensions() const { return this->_dimensions; }
   114|  3.69k|double          Unit::scale_factor() const { return this->_scale_factor; }
   115|  3.63k|double          Unit::offset() const { return this->_offset; }
   116|       |
@@ -24199,8 +24201,8 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   144|      8|                                this->_prefix);
   145|      8|}
   146|       |
-  147|    549|UnitSP Unit::with_prefix(const std::string prefix) const {
-  148|    549|  if (!Prefix::is_valid(prefix)) {
+  147|    546|UnitSP Unit::with_prefix(const std::string prefix) const {
+  148|    546|  if (!Prefix::is_valid(prefix)) {
   149|      2|    std::ostringstream oss;
   150|      2|    std::copy(std::begin(falcon_core::SI::ALL_PREFIXES),
   151|      2|              std::end(falcon_core::SI::ALL_PREFIXES),
@@ -24208,13 +24210,13 @@ Running main() from /home/daniel/vcpkg/buildtrees/gtest/src/v1.17.0-0c449efaff.c
   153|      2|    throw std::invalid_argument("Invalid prefix: " + prefix +
   154|      2|                                ". The valid prefixes are: " + oss.str());
   155|      2|  }
-  156|    547|  int    current_prefix_value = Prefix::get_value(this->prefix());
-  157|    547|  int    new_prefix_value     = Prefix::get_value(prefix);
-  158|    547|  double scale_adjustment =
-  159|    547|      pow(10, (double)current_prefix_value - (double)new_prefix_value);
-  160|    547|  return std::make_shared<Unit>(
-  161|    547|      dimensions(), scale_factor() / scale_adjustment, offset(), prefix);
-  162|    549|}
+  156|    544|  int    current_prefix_value = Prefix::get_value(this->prefix());
+  157|    544|  int    new_prefix_value     = Prefix::get_value(prefix);
+  158|    544|  double scale_adjustment =
+  159|    544|      pow(10, (double)current_prefix_value - (double)new_prefix_value);
+  160|    544|  return std::make_shared<Unit>(
+  161|    544|      dimensions(), scale_factor() / scale_adjustment, offset(), prefix);
+  162|    546|}
   163|    280|UnitSP Unit::get_milli() const { return with_prefix(SI::MILLI_SYMBOL); }
   164|      4|UnitSP Unit::get_micro() const { return with_prefix(SI::MICRO_SYMBOL); }
   165|    200|UnitSP Unit::get_nano() const { return with_prefix(SI::NANO_SYMBOL); }
@@ -24292,7 +24294,7 @@ include/falcon_core/communications/messages/StandardResponse.hpp                
 include/falcon_core/communications/messages/VoltageStatesResponse.hpp                        1                 0   100.00%           1                 0   100.00%           3                 0   100.00%           0                 0         -
 include/falcon_core/communications/voltage_states/DeviceVoltageState.hpp                     1                 0   100.00%           1                 0   100.00%           3                 0   100.00%           0                 0         -
 include/falcon_core/communications/voltage_states/DeviceVoltageStates.hpp                    1                 0   100.00%           1                 0   100.00%           3                 0   100.00%           0                 0         -
-include/falcon_core/generic/FArray.hpp                                                      93                 1    98.92%          54                 1    98.15%         214                 1    99.53%          28                 0   100.00%
+include/falcon_core/generic/FArray.hpp                                                      94                 1    98.94%          55                 1    98.18%         217                 1    99.54%          28                 0   100.00%
 include/falcon_core/generic/FArrayProtocol.hpp                                               1                 0   100.00%           1                 0   100.00%           1                 0   100.00%           0                 0         -
 include/falcon_core/generic/List.hpp                                                        98                 9    90.82%          36                 0   100.00%         159                24    84.91%          43                 9    79.07%
 include/falcon_core/generic/Map.hpp                                                         66                 6    90.91%          24                 0   100.00%         117                 3    97.44%          38                 8    78.95%
@@ -24372,10 +24374,10 @@ src/instrument_interfaces/port_transforms/PortTransform.cpp                     
 src/instrument_interfaces/port_transforms/PortTransforms.cpp                                11                 1    90.91%           6                 1    83.33%          11                 0   100.00%           2                 0   100.00%
 src/math/AnalyticFunction.cpp                                                               52                 1    98.08%          15                 1    93.33%         122                 0   100.00%          26                 1    96.15%
 src/math/Point.cpp                                                                          76                 5    93.42%          21                 5    76.19%         143                 0   100.00%          56                 2    96.43%
-src/math/Quantity.cpp                                                                       76                 1    98.68%          35                 1    97.14%         165                 0   100.00%          28                 1    96.43%
+src/math/Quantity.cpp                                                                       76                 6    92.11%          35                 6    82.86%         163                18    88.96%          28                 1    96.43%
 src/math/UnitSpace.cpp                                                                      89                 4    95.51%          18                 1    94.44%         145                 2    98.62%          56                 5    91.07%
 src/math/Vector.cpp                                                                        107                 3    97.20%          43                 3    93.02%         254                 0   100.00%          58                 3    94.83%
-src/math/arrays/ControlArray.cpp                                                            74                 1    98.65%          28                 1    96.43%         152                 0   100.00%          28                 0   100.00%
+src/math/arrays/ControlArray.cpp                                                            75                 2    97.33%          29                 2    93.10%         152                 0   100.00%          28                 0   100.00%
 src/math/arrays/ControlArray1D.cpp                                                          60                 2    96.67%          29                 1    96.55%         119                 2    98.32%          18                 1    94.44%
 src/math/arrays/IncreasingAlignment.cpp                                                     11                 1    90.91%           6                 1    83.33%           9                 0   100.00%           2                 0   100.00%
 src/math/arrays/LabelledControlArray.cpp                                                    80                 1    98.75%          32                 1    96.88%         167                 0   100.00%          32                 1    96.88%
@@ -24395,7 +24397,7 @@ src/physics/config/core/Adjacency.cpp                                           
 src/physics/config/core/Config.cpp                                                         463                40    91.36%          85                 7    91.76%        1045                58    94.45%         410                48    88.29%
 src/physics/config/core/Group.cpp                                                           43                 2    95.35%          13                 2    84.62%          57                 1    98.25%          26                 7    73.08%
 src/physics/config/core/StandardConfigConnections.cpp                                      127                 3    97.64%          26                 3    88.46%         209                 6    97.13%          80                 0   100.00%
-src/physics/config/core/VoltageConstraints.cpp                                              24                 1    95.83%           9                 1    88.89%          44                 0   100.00%          12                 1    91.67%
+src/physics/config/core/VoltageConstraints.cpp                                              23                 1    95.65%           9                 1    88.89%          50                 0   100.00%          12                 1    91.67%
 src/physics/config/geometries/DotGateWithNeighbors.cpp                                      33                 3    90.91%           9                 3    66.67%          56                 0   100.00%          20                 1    95.00%
 src/physics/config/geometries/DotGatesWithNeighbors.cpp                                     19                 1    94.74%           9                 1    88.89%          36                 0   100.00%           6                 0   100.00%
 src/physics/config/geometries/GateGeometryArray1D.cpp                                      116                 2    98.28%          21                 2    90.48%         240                 3    98.75%          80                 5    93.75%
@@ -24413,4 +24415,4 @@ src/physics/units/Prefix.cpp                                                    
 src/physics/units/SymbolUnit.cpp                                                           150                 1    99.33%          77                 1    98.70%         319                 0   100.00%          58                 3    94.83%
 src/physics/units/Unit.cpp                                                                  90                 2    97.78%          49                 1    97.96%         182                 0   100.00%          26                 1    96.15%
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-TOTAL                                                                                     3539               183    94.83%        1258                93    92.61%        7124               213    97.01%        1833               162    91.16%
+TOTAL                                                                                     3540               189    94.66%        1260                99    92.14%        7131               231    96.76%        1833               162    91.16%

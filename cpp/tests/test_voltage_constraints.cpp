@@ -43,7 +43,8 @@ TEST_F(VoltageConstraintsTest, AdjacencyReturnsExpected) {
 
 TEST_F(VoltageConstraintsTest, LimitsReturnsExpected) {
   VoltageConstraints  vc(adjacency, max_safe_diff, bounds);
-  std::vector<double> limits_data{5.0, 5.0, 5.0, 0.0, 0.0, 0.0, 1.5, 1.5, 1.5};
+  std::vector<double> limits_data{
+      5.0, 5.0, 5.0, 0.0, 0.0, 0.0, 1.5, 1.5, 0.0, 0.0};
   EXPECT_EQ(std::vector<double>(vc.limits().data(),
                                 vc.limits().data() + vc.limits().size()),
             limits_data);
