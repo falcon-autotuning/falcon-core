@@ -87,3 +87,8 @@ TEST_F(MeasurementResponseTest, ToJsonFromJson) {
   EXPECT_THROW(MeasurementResponse_from_json_string(nullptr),
                std::invalid_argument);
 }
+
+TEST_F(MeasurementResponseTest, Messages) {
+  EXPECT_NO_THROW(MeasurementResponse_message(resp));
+  EXPECT_THROW(MeasurementResponse_message(nullptr), std::invalid_argument);
+}

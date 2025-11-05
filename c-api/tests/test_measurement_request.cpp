@@ -101,32 +101,31 @@ class MeasurementRequestTest : public ::testing::Test {
     AxesMapStringBool_destroy(increasing);
     Domain_destroy(domain);
   }
-  StringHandle                         msg              = nullptr;
-  StringHandle                         name             = nullptr;
-  WaveformHandle                       waveform         = nullptr;
-  ListWaveformHandle                   waveforms        = nullptr;
-  InstrumentPortHandle                 port             = nullptr;
-  PortsHandle                          getters          = nullptr;
-  PortTransformHandle                  pt               = nullptr;
-  ListPortTransformHandle              transforms       = nullptr;
-  MapInstrumentPortPortTransformHandle meter_transforms = nullptr;
-  LabelledDomainHandle                 time_domain      = nullptr;
-  MeasurementRequestHandle             req              = nullptr;
-  MeasurementRequestHandle             req2             = nullptr;
-  // Waveform construction handles
-  MapStringBoolHandle             map             = nullptr;
-  StringHandle                    default_name    = nullptr;
-  ListLabelledDomainHandle        domain_list     = nullptr;
-  CoupledLabelledDomainHandle     labelled_domain = nullptr;
-  DiscreteSpaceHandle             space           = nullptr;
-  UnitSpaceHandle                 unit_space      = nullptr;
-  AxesDiscretizerHandle           discretizers    = nullptr;
-  ListStringHandle                labels          = nullptr;
-  AnalyticFunctionHandle          analytic        = nullptr;
-  AxesIntHandle                   divisions       = nullptr;
-  AxesCoupledLabelledDomainHandle axes            = nullptr;
-  AxesMapStringBoolHandle         increasing      = nullptr;
-  DomainHandle                    domain          = nullptr;
+  StringHandle                         msg;
+  StringHandle                         name;
+  WaveformHandle                       waveform;
+  ListWaveformHandle                   waveforms;
+  InstrumentPortHandle                 port;
+  PortsHandle                          getters;
+  PortTransformHandle                  pt;
+  ListPortTransformHandle              transforms;
+  MapInstrumentPortPortTransformHandle meter_transforms;
+  LabelledDomainHandle                 time_domain;
+  MeasurementRequestHandle             req;
+  MeasurementRequestHandle             req2;
+  MapStringBoolHandle                  map;
+  StringHandle                         default_name;
+  ListLabelledDomainHandle             domain_list;
+  CoupledLabelledDomainHandle          labelled_domain;
+  DiscreteSpaceHandle                  space;
+  UnitSpaceHandle                      unit_space;
+  AxesDiscretizerHandle                discretizers;
+  ListStringHandle                     labels;
+  AnalyticFunctionHandle               analytic;
+  AxesIntHandle                        divisions;
+  AxesCoupledLabelledDomainHandle      axes;
+  AxesMapStringBoolHandle              increasing;
+  DomainHandle                         domain;
 };
 
 TEST_F(MeasurementRequestTest, CreateDestroy) {

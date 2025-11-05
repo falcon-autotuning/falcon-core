@@ -57,3 +57,4 @@ StandardResponseTest.*
 VoltageStatesResponseTest.*
 DeviceVoltageStateTest.*
 DeviceVoltageStatesTest.*
+MeasurementResponseTest.*
