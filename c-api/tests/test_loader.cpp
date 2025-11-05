@@ -101,3 +101,15 @@ TEST_F(LoaderTest, ThrowsOnMissingFile) {
   EXPECT_THROW(Loader_create(bad_path), std::runtime_error);
   String_destroy(bad_path);
 }
+
+TEST_F(LoaderTest, ThrowsOnNullPath) {
+  EXPECT_THROW(Loader_create(nullptr), std::invalid_argument);
+}
+
+TEST_F(LoaderTest, DestroyThrowsOnNullHandle) {
+  EXPECT_THROW(Loader_destroy(nullptr), std::invalid_argument);
+}
+
+TEST_F(LoaderTest, ConfigThrowsOnNullHandle) {
+  EXPECT_THROW(Loader_config(nullptr), std::invalid_argument);
+}
