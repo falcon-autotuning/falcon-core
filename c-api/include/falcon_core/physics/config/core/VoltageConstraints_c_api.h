@@ -8,7 +8,6 @@ extern "C" {
 #include <stdbool.h>
 
 #include "falcon_core/generic/PairDoubleDouble_c_api.h"
-#include "falcon_core/generic/PairFloatFloat_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 typedef void* VoltageConstraintsHandle;
 
@@ -24,11 +23,11 @@ void VoltageConstraints_destroy(VoltageConstraintsHandle handle);
 // Methods
 FArrayDoubleHandle VoltageConstraints_matrix(VoltageConstraintsHandle handle);
 AdjacencyHandle VoltageConstraints_adjacency(VoltageConstraintsHandle handle);
-PairFloatFloatHandle VoltageConstraints_limits(VoltageConstraintsHandle handle);
-bool                 VoltageConstraints_equal(VoltageConstraintsHandle a,
-                                              VoltageConstraintsHandle b);
-bool                 VoltageConstraints_not_equal(VoltageConstraintsHandle a,
-                                                  VoltageConstraintsHandle b);
+FArrayDoubleHandle VoltageConstraints_limits(VoltageConstraintsHandle handle);
+bool               VoltageConstraints_equal(VoltageConstraintsHandle a,
+                                            VoltageConstraintsHandle b);
+bool               VoltageConstraints_not_equal(VoltageConstraintsHandle a,
+                                                VoltageConstraintsHandle b);
 
 // Serialization (from Song)
 StringHandle VoltageConstraints_to_json_string(VoltageConstraintsHandle handle);

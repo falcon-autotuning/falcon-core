@@ -24,9 +24,9 @@ class ControlArray1DTest : public ::testing::Test {
   }
   double               data[3];
   size_t               shape[1];
-  ControlArray1DHandle ca  = nullptr;
-  ControlArray1DHandle ca2 = nullptr;
-  FArrayDoubleHandle   fa  = nullptr;
+  ControlArray1DHandle ca;
+  ControlArray1DHandle ca2;
+  FArrayDoubleHandle   fa;
 };
 
 TEST_F(ControlArray1DTest, CreateDestroy) {
@@ -76,8 +76,8 @@ TEST_F(ControlArray1DTest, ReverseAndClosestIndex) {
 }
 
 TEST_F(ControlArray1DTest, EvenDivisions) {
-  auto list = ControlArray1D_even_divisions(ca, 2);
-  // ListFArrayDouble_destroy(list); // implement destroy if needed
+  auto list = ControlArray1D_even_divisions(ca, 3);
+  ListFArrayDouble_destroy(list);
   EXPECT_THROW(ControlArray1D_even_divisions(nullptr, 2),
                std::invalid_argument);
 }
@@ -244,12 +244,12 @@ TEST_F(ControlArray1DTest, ComparisonOperators) {
 
 TEST_F(ControlArray1DTest, OffsetSumWhereFlipGradient) {
   ControlArray1D_remove_offset(ca, 1.0);
-  EXPECT_DOUBLE_EQ(ControlArray1D_sum(ca), 6.0);
-  size_t new_shape[1] = {3};
-  auto   where        = ControlArray1D_where(ca, 2.0);
-  // ListListSizeT_destroy(where); // implement destroy if needed
-  auto flipped = ControlArray1D_flip(ca, 0);
+  EXPECT_DOUBLE_EQ(ControlArray1D_sum(ca), 3.0);
+  size_t               new_shape[1] = {3};
+  ListListSizeTHandle  where        = ControlArray1D_where(ca, 2.0);
+  ControlArray1DHandle flipped      = ControlArray1D_flip(ca, 0);
   ControlArray1D_destroy(flipped);
+  ListListSizeT_destroy(where);
   ControlArray1DHandle grad_buffer[3];
   EXPECT_EQ(ControlArray1D_full_gradient(ca, grad_buffer, 3), 3);
   for (size_t i = 0; i < 3; ++i) {

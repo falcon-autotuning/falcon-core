@@ -56,16 +56,13 @@ AdjacencyHandle VoltageConstraints_adjacency(VoltageConstraintsHandle handle) {
   return new Adjacency(*self.adjacency());
 }
 
-PairFloatFloatHandle VoltageConstraints_limits(
-    VoltageConstraintsHandle handle) {
+FArrayDoubleHandle VoltageConstraints_limits(VoltageConstraintsHandle handle) {
   if (!handle) {
     throw std::invalid_argument(
         "VoltageConstraints_limits: handle cannot be null");
   }
   VoltageConstraints self = *static_cast<VoltageConstraints*>(handle);
-  return new falcon_core::generic::Pair<float, float>(
-      static_cast<float>(self.limits().first),
-      static_cast<float>(self.limits().second));
+  return new falcon_core::generic::FArray<double>(self.limits());
 }
 
 bool VoltageConstraints_equal(VoltageConstraintsHandle a,
