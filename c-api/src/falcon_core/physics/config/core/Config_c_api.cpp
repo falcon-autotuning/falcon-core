@@ -814,7 +814,7 @@ ConnectionsHandle Config_get_shared_gates(ConfigHandle handle) {
   return new Connections(*(self.get_shared_gates()));
 }
 
-ConnectionsHandle Config_get_chared_channel_barrier_gates(
+ConnectionsHandle Config_get_shared_channel_barrier_gates(
     ConfigHandle handle, ChannelHandle channel) {
   if (!handle) {
     throw std::invalid_argument(

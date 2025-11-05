@@ -110,7 +110,7 @@ ConnectionsHandle Config_get_shared_reservoir_gates(ConfigHandle handle);
 ConnectionsHandle Config_get_shared_screening_gates(ConfigHandle handle);
 ConnectionsHandle Config_get_shared_dot_gates(ConfigHandle handle);
 ConnectionsHandle Config_get_shared_gates(ConfigHandle handle);
-ConnectionsHandle Config_get_chared_channel_barrier_gates(
+ConnectionsHandle Config_get_shared_channel_barrier_gates(
     ConfigHandle handle, ChannelHandle channel);
 ConnectionsHandle Config_get_shared_channel_plunger_gates(
     ConfigHandle handle, ChannelHandle channel);

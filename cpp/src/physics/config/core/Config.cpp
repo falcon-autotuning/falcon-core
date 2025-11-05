@@ -603,8 +603,10 @@ device_structures::ConnectionsSP Config::get_isolated_reservoir_gates() const {
 device_structures::ConnectionsSP Config::get_isolated_screening_gates() const {
   std::vector<device_structures::ConnectionSP> gates;
   for (const auto& group : *groups()) {
-    auto connection = group->second()->get_screening_gate();
-    if (connection) gates.push_back(connection);
+    auto connections = group->second()->screening_gates();
+    for (const auto& conn : *connections) {
+      gates.push_back(conn);
+    }
   }
   if (gates.empty()) {
     throw std::runtime_error(
