@@ -26,7 +26,9 @@ ImpedanceHandle Impedances_at(ImpedancesHandle handle, size_t idx);
 size_t          Impedances_items(ImpedancesHandle handle,
                                  ImpedanceHandle* out_buffer,
                                  size_t           buffer_size);
-bool   Impedances_contains(ImpedancesHandle handle, ImpedanceHandle value);
+bool Impedances_contains(ImpedancesHandle handle, ImpedanceHandle value);
+ImpedancesHandle Impedances_intersection(ImpedancesHandle a,
+                                         ImpedancesHandle b);
 size_t Impedances_index(ImpedancesHandle handle, ImpedanceHandle value);
 bool   Impedances_equal(ImpedancesHandle a, ImpedancesHandle b);
 bool   Impedances_not_equal(ImpedancesHandle a, ImpedancesHandle b);

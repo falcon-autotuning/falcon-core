@@ -4,6 +4,7 @@
 #include <string>
 #include <xtensor/xadapt.hpp>
 
+#include "falcon_core/generic/FArrayDouble_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 using namespace falcon_core;
 using namespace falcon_core::math;
@@ -631,9 +632,9 @@ ControlArray1DHandle ControlArray1D_flip(ControlArray1DHandle handle,
   return new ControlArray1D(*control_array->flip(axis));
 }
 
-size_t ControlArray1D_full_gradient(ControlArray1DHandle  handle,
-                                    ControlArray1DHandle* out_buffer,
-                                    size_t                buffer_size) {
+size_t ControlArray1D_full_gradient(ControlArray1DHandle handle,
+                                    FArrayDoubleHandle*  out_buffer,
+                                    size_t               buffer_size) {
   if (!handle) {
     throw std::invalid_argument(
         "Null handle passed to ControlArray1D_full_gradient");
@@ -642,19 +643,19 @@ size_t ControlArray1D_full_gradient(ControlArray1DHandle  handle,
   generic::ListSP<generic::FArray<double>> gradients =
       control_array->gradient();
   for (size_t i = 0; i < buffer_size; ++i) {
-    out_buffer[i] = new ControlArray1D(*gradients->items()[i]);
+    out_buffer[i] = new generic::FArray<double>(*gradients->items()[i]);
   }
   return gradients->size();
 }
 
-ControlArray1DHandle ControlArray1D_gradient(ControlArray1DHandle handle,
-                                             size_t               axis) {
+FArrayDoubleHandle ControlArray1D_gradient(ControlArray1DHandle handle,
+                                           size_t               axis) {
   if (!handle) {
     throw std::invalid_argument(
         "Null handle passed to ControlArray1D_gradient");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
-  return new ControlArray1D(*control_array->gradient(axis));
+  return new generic::FArray<double>(*control_array->gradient(axis));
 }
 
 double ControlArray1D_get_sum_of_squares(ControlArray1DHandle handle) {

@@ -84,16 +84,13 @@ bool ControlArray_greaterthan(ControlArrayHandle handle, const double value);
 bool ControlArray_lessthan(ControlArrayHandle handle, const double value);
 void ControlArray_remove_offset(ControlArrayHandle handle, const double offset);
 double              ControlArray_sum(ControlArrayHandle handle);
-ControlArrayHandle  ControlArray_reshape(ControlArrayHandle handle,
-                                         const size_t*      shape,
-                                         size_t             ndims);
 ListListSizeTHandle ControlArray_where(ControlArrayHandle handle,
                                        const double       value);
 ControlArrayHandle  ControlArray_flip(ControlArrayHandle handle, size_t axis);
 size_t              ControlArray_full_gradient(ControlArrayHandle  handle,
-                                               ControlArrayHandle* out_buffer,
+                                               FArrayDoubleHandle* out_buffer,
                                                size_t              buffer_size);
-ControlArrayHandle  ControlArray_gradient(ControlArrayHandle handle,
+FArrayDoubleHandle  ControlArray_gradient(ControlArrayHandle handle,
                                           size_t             axis);
 double              ControlArray_get_sum_of_squares(ControlArrayHandle handle);
 double ControlArray_get_summed_diff_int_of_squares(ControlArrayHandle handle,

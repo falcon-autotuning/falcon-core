@@ -24,7 +24,7 @@ class DiscreteSpaceTest : public ::testing::Test {
     desc = String_wrap("desc");
     unit = SymbolUnit_create_volt();
     conn = Connection_create_plunger_gate(String_wrap("A"));
-    port = InstrumentPort_create_port(name, conn, type, unit, desc);
+    port = InstrumentPort_create_knob(name, conn, type, unit, desc);
 
     ldom = LabelledDomain_create_primitive_knob(
         name, 0.0, 1.0, conn, type, true, false, unit, desc);
@@ -36,7 +36,7 @@ class DiscreteSpaceTest : public ::testing::Test {
     AxesCoupledLabelledDomain_push_back(axes_cldom, cldom);
 
     map_str_bool = MapStringBool_create_empty();
-    MapStringBool_insert(map_str_bool, String_wrap("x"), true);
+    MapStringBool_insert(map_str_bool, Connection_name(conn), true);
 
     axes_map_str_bool = AxesMapStringBool_create_empty();
     AxesMapStringBool_push_back(axes_map_str_bool, map_str_bool);

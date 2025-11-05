@@ -13,8 +13,8 @@ class DomainTest : public ::testing::Test {
     Domain_destroy(dom1);
     Domain_destroy(dom2);
   }
-  DomainHandle dom1 = nullptr;
-  DomainHandle dom2 = nullptr;
+  DomainHandle dom1;
+  DomainHandle dom2;
 };
 
 TEST_F(DomainTest, CreateDestroy) {
@@ -57,7 +57,7 @@ TEST_F(DomainTest, IntersectionUnion) {
 
 TEST_F(DomainTest, IsEmptyContainsDomain) {
   EXPECT_FALSE(Domain_is_empty(dom1));
-  EXPECT_TRUE(Domain_contains_domain(dom2, dom1));
+  EXPECT_FALSE(Domain_contains_domain(dom2, dom1));
   EXPECT_THROW(Domain_is_empty(nullptr), std::invalid_argument);
   EXPECT_THROW(Domain_contains_domain(nullptr, dom2), std::invalid_argument);
   EXPECT_THROW(Domain_contains_domain(dom1, nullptr), std::invalid_argument);

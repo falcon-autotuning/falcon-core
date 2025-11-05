@@ -212,7 +212,7 @@ bool DotGatesWithNeighbors_not_equal(DotGatesWithNeighborsHandle a,
   }
   DotGatesWithNeighbors self       = *static_cast<DotGatesWithNeighbors*>(a);
   DotGatesWithNeighbors real_other = *static_cast<DotGatesWithNeighbors*>(b);
-  return self == real_other;
+  return self != real_other;
 }
 
 StringHandle DotGatesWithNeighbors_to_json_string(

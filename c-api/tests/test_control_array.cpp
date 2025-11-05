@@ -7,23 +7,23 @@
 class ControlArrayTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    // 2D array: shape = [2, 3], data = {1,2,3,4,5,6}
     shape2d[0] = 2;
     shape2d[1] = 3;
     data2d[0]  = 1.0;
     data2d[1]  = 2.0;
     data2d[2]  = 3.0;
-    data2d[3]  = 4.0;
-    data2d[4]  = 5.0;
-    data2d[5]  = 6.0;
+    data2d[3]  = 1.0;
+    data2d[4]  = 2.0;
+    data2d[5]  = 3.0;
     ca2d       = ControlArray_from_data(data2d, shape2d, 2);
 
     // 1D array for some tests
-    shape1d[0] = 6;
-    for (int i = 0; i < 6; ++i) data1d[i] = data2d[i];
+    shape1d[0] = 3;
+    for (int i = 0; i < 3; ++i) data1d[i] = data2d[i];
     ca1d = ControlArray_from_data(data1d, shape1d, 1);
 
-    fa2d   = FArrayDouble_from_data(data2d, shape2d, 2);
+    fa2d = FArrayDouble_times_double(FArrayDouble_from_data(data2d, shape2d, 2),
+                                     2.0);
     ca2d_2 = ControlArray_from_farray(fa2d);
   }
   void TearDown() override {
@@ -36,10 +36,10 @@ class ControlArrayTest : public ::testing::Test {
   size_t             shape2d[2];
   double             data1d[6];
   size_t             shape1d[1];
-  ControlArrayHandle ca2d   = nullptr;
-  ControlArrayHandle ca1d   = nullptr;
-  ControlArrayHandle ca2d_2 = nullptr;
-  FArrayDoubleHandle fa2d   = nullptr;
+  ControlArrayHandle ca2d;
+  ControlArrayHandle ca1d;
+  ControlArrayHandle ca2d_2;
+  FArrayDoubleHandle fa2d;
 };
 
 TEST_F(ControlArrayTest, CreateDestroy) {
@@ -211,41 +211,37 @@ TEST_F(ControlArrayTest, ComparisonOperators) {
   EXPECT_THROW(ControlArray_lessthan(nullptr, 0.5), std::invalid_argument);
 }
 
-TEST_F(ControlArrayTest, OffsetSumReshapeWhereFlipGradient) {
+TEST_F(ControlArrayTest, OffsetSumWhereFlipGradient) {
   ControlArray_remove_offset(ca2d, 1.0);
-  EXPECT_DOUBLE_EQ(ControlArray_sum(ca2d), 21.0);
-  size_t new_shape[2] = {3, 2};
-  auto   reshaped     = ControlArray_reshape(ca2d, new_shape, 2);
-  ControlArray_destroy(reshaped);
-  auto where = ControlArray_where(ca2d, 2.0);
-  // ListListSizeT_destroy(where); // implement destroy if needed
+  EXPECT_DOUBLE_EQ(ControlArray_sum(ca2d), 6.0);
+  auto where   = ControlArray_where(ca2d, 2.0);
   auto flipped = ControlArray_flip(ca2d, 0);
   ControlArray_destroy(flipped);
-  ControlArrayHandle grad_buffer[2];
+  FArrayDoubleHandle grad_buffer[2];
   EXPECT_EQ(ControlArray_full_gradient(ca2d, grad_buffer, 2), 2);
   for (size_t i = 0; i < 2; ++i) {
-    ControlArray_destroy(grad_buffer[i]);
+    FArrayDouble_destroy(grad_buffer[i]);
   }
   auto grad = ControlArray_gradient(ca2d, 0);
-  ControlArray_destroy(grad);
+  FArrayDouble_destroy(grad);
   EXPECT_THROW(ControlArray_remove_offset(nullptr, 1.0), std::invalid_argument);
   EXPECT_THROW(ControlArray_sum(nullptr), std::invalid_argument);
-  EXPECT_THROW(ControlArray_reshape(nullptr, new_shape, 2),
-               std::invalid_argument);
   EXPECT_THROW(ControlArray_where(nullptr, 2.0), std::invalid_argument);
   EXPECT_THROW(ControlArray_flip(nullptr, 0), std::invalid_argument);
   EXPECT_THROW(ControlArray_full_gradient(nullptr, grad_buffer, 2),
+               std::invalid_argument);
+  EXPECT_THROW(ControlArray_full_gradient(ca2d, nullptr, 2),
                std::invalid_argument);
   EXPECT_THROW(ControlArray_gradient(nullptr, 0), std::invalid_argument);
 }
 
 TEST_F(ControlArrayTest, SumOfSquares) {
-  EXPECT_DOUBLE_EQ(ControlArray_get_sum_of_squares(ca2d), 91.0);
-  EXPECT_DOUBLE_EQ(ControlArray_get_summed_diff_int_of_squares(ca2d, 1), 70.0);
+  EXPECT_DOUBLE_EQ(ControlArray_get_sum_of_squares(ca2d), 12.0);
+  EXPECT_DOUBLE_EQ(ControlArray_get_summed_diff_int_of_squares(ca2d, 1), 6);
   EXPECT_DOUBLE_EQ(ControlArray_get_summed_diff_double_of_squares(ca2d, 1.0),
-                   70.0);
+                   6);
   EXPECT_DOUBLE_EQ(ControlArray_get_summed_diff_array_of_squares(ca2d, ca2d_2),
-                   0.0);
+                   -12);
   EXPECT_THROW(ControlArray_get_sum_of_squares(nullptr), std::invalid_argument);
   EXPECT_THROW(ControlArray_get_summed_diff_int_of_squares(nullptr, 1),
                std::invalid_argument);
@@ -265,4 +261,26 @@ TEST_F(ControlArrayTest, ToJsonFromJson) {
   String_destroy(json);
   EXPECT_THROW(ControlArray_to_json_string(nullptr), std::invalid_argument);
   EXPECT_THROW(ControlArray_from_json_string(nullptr), std::invalid_argument);
+}
+
+TEST_F(ControlArrayTest, ShapeBufferTooSmall) {
+  size_t out_shape[1] = {0};  // buffer smaller than needed (should be 2)
+  // Should only fill one element, return 1
+  EXPECT_EQ(FArrayDouble_shape(ca2d, out_shape, 1), 1);
+  EXPECT_EQ(out_shape[0], 2);
+}
+
+TEST_F(ControlArrayTest, FullGradientBufferTooSmall) {
+  FArrayDoubleHandle grads[1];  // buffer smaller than needed
+  // Should throw or error if more gradients than buffer
+  EXPECT_THROW(FArrayDouble_full_gradient(ca2d, grads, 1), std::runtime_error);
+}
+
+TEST_F(ControlArrayTest, DataBufferTooSmall) {
+  double out_data[2] = {0, 0};  // buffer smaller than needed (should be 4)
+  EXPECT_THROW(FArrayDouble_data(ca2d, out_data, 2), std::runtime_error);
+}
+
+TEST_F(ControlArrayTest, DataNullBuffer) {
+  EXPECT_THROW(FArrayDouble_data(ca2d, nullptr, 4), std::invalid_argument);
 }

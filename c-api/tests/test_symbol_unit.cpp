@@ -2,7 +2,7 @@
 
 #include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
-class SymbolUnitCAPI_Fixture : public ::testing::Test {
+class SymbolUnitTest : public ::testing::Test {
  protected:
   SymbolUnitHandle meter, second, volt, kilometer, millimeter, dimensionless,
       percent, celsius, fahrenheit, joule, ohm;
@@ -34,7 +34,7 @@ class SymbolUnitCAPI_Fixture : public ::testing::Test {
   }
 };
 
-TEST_F(SymbolUnitCAPI_Fixture, StaticConstructors) {
+TEST_F(SymbolUnitTest, StaticConstructors) {
   EXPECT_TRUE(meter != nullptr);
   EXPECT_TRUE(second != nullptr);
   EXPECT_TRUE(volt != nullptr);
@@ -48,12 +48,12 @@ TEST_F(SymbolUnitCAPI_Fixture, StaticConstructors) {
   EXPECT_TRUE(ohm != nullptr);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, Properties) {
+TEST_F(SymbolUnitTest, Properties) {
   EXPECT_STREQ(SymbolUnit_symbol(meter)->raw, "m");
   EXPECT_STRNE(SymbolUnit_name(meter)->raw, "");
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, OperatorMultiplyWorks) {
+TEST_F(SymbolUnitTest, OperatorMultiplyWorks) {
   SymbolUnitHandle result = SymbolUnit_multiplication(meter, second);
   EXPECT_TRUE(result != nullptr);
   EXPECT_NE(std::string(SymbolUnit_symbol(result)->raw).find("m·s"),
@@ -61,7 +61,7 @@ TEST_F(SymbolUnitCAPI_Fixture, OperatorMultiplyWorks) {
   SymbolUnit_destroy(result);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, OperatorDivideWorks) {
+TEST_F(SymbolUnitTest, OperatorDivideWorks) {
   SymbolUnitHandle result = SymbolUnit_division(meter, second);
   EXPECT_TRUE(result != nullptr);
   EXPECT_NE(std::string(SymbolUnit_symbol(result)->raw).find("m/s"),
@@ -69,7 +69,7 @@ TEST_F(SymbolUnitCAPI_Fixture, OperatorDivideWorks) {
   SymbolUnit_destroy(result);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, OperatorPowerWorks) {
+TEST_F(SymbolUnitTest, OperatorPowerWorks) {
   SymbolUnitHandle area = SymbolUnit_power(meter, 2);
   EXPECT_TRUE(area != nullptr);
   EXPECT_NE(std::string(SymbolUnit_symbol(area)->raw).find("m^2"),
@@ -77,7 +77,7 @@ TEST_F(SymbolUnitCAPI_Fixture, OperatorPowerWorks) {
   SymbolUnit_destroy(area);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, WithPrefixWorks) {
+TEST_F(SymbolUnitTest, WithPrefixWorks) {
   SymbolUnitHandle km = SymbolUnit_with_prefix(meter, String_wrap("k"));
   EXPECT_TRUE(km != nullptr);
   EXPECT_NE(std::string(SymbolUnit_symbol(km)->raw).find("km"),
@@ -85,40 +85,44 @@ TEST_F(SymbolUnitCAPI_Fixture, WithPrefixWorks) {
   SymbolUnit_destroy(km);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, WithPrefixInvalidThrows) {
+TEST_F(SymbolUnitTest, WithPrefixInvalidThrows) {
   EXPECT_ANY_THROW(SymbolUnit_with_prefix(meter, String_wrap("invalid")));
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, ConvertValueToWorks) {
+TEST_F(SymbolUnitTest, ConvertValueToWorks) {
   double val = SymbolUnit_convert_value_to(meter, 1.0, millimeter);
   EXPECT_NEAR(val, 1000.0, 1e-9);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, ConvertValueToNullptrThrows) {
+TEST_F(SymbolUnitTest, ConvertValueToNullptrThrows) {
   EXPECT_ANY_THROW(SymbolUnit_convert_value_to(meter, 1.0, nullptr));
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, ConvertValueToIncompatibleThrows) {
+TEST_F(SymbolUnitTest, ConvertValueToIncompatibleThrows) {
   EXPECT_ANY_THROW(SymbolUnit_convert_value_to(meter, 1.0, second));
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, IsCompatibleWithWorks) {
+TEST_F(SymbolUnitTest, IsCompatibleWithWorks) {
   EXPECT_TRUE(SymbolUnit_is_compatible_with(meter, millimeter));
   EXPECT_FALSE(SymbolUnit_is_compatible_with(meter, second));
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, IsCompatibleWithNullptrThrows) {
+TEST_F(SymbolUnitTest, IsCompatibleWithNullptrThrows) {
   EXPECT_ANY_THROW(SymbolUnit_is_compatible_with(meter, nullptr));
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, SerializationRoundTrip) {
+TEST_F(SymbolUnitTest, SerializationRoundTrip) {
   StringHandle     json = SymbolUnit_to_json_string(meter);
   SymbolUnitHandle m2   = SymbolUnit_from_json_string(json);
   EXPECT_TRUE(SymbolUnit_equal(meter, m2));
   SymbolUnit_destroy(m2);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, EqualityAndInequality) {
+TEST_F(SymbolUnitTest, DestructorThrowsOnNullptr) {
+  EXPECT_ANY_THROW(SymbolUnit_destroy(nullptr));
+}
+
+TEST_F(SymbolUnitTest, EqualityAndInequality) {
   SymbolUnitHandle m1 = SymbolUnit_create_meter();
   SymbolUnitHandle m2 = SymbolUnit_create_meter();
   SymbolUnitHandle s  = SymbolUnit_create_second();
@@ -129,61 +133,95 @@ TEST_F(SymbolUnitCAPI_Fixture, EqualityAndInequality) {
   SymbolUnit_destroy(s);
 }
 
-TEST_F(SymbolUnitCAPI_Fixture, AllStaticConstructors) {
-  EXPECT_TRUE(SymbolUnit_create_meter() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_kilogram() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_second() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_ampere() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_kelvin() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_mole() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_candela() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_hertz() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_newton() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_pascal() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_joule() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_watt() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_coulomb() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_volt() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_farad() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_ohm() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_siemens() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_weber() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_tesla() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_henry() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_minute() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_hour() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_electronvolt() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_celsius() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_fahrenheit() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_dimensionless() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_percent() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_radian() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_kilometer() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_millimeter() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_millivolt() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_kilovolt() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_milliampere() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_microampere() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_nanoampere() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_picoampere() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_millisecond() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_microsecond() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_nanosecond() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_picosecond() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_milliohm() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_kiloohm() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_megaohm() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_millihertz() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_kilohertz() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_megahertz() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_gigahertz() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_meters_per_second() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_meters_per_second_squared() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_newton_meter() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_newtons_per_meter() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_volts_per_meter() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_volts_per_second() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_amperes_per_meter() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_volts_per_ampere() != nullptr);
-  EXPECT_TRUE(SymbolUnit_create_watts_per_meter_kelvin() != nullptr);
+TEST_F(SymbolUnitTest, StaticConstructorsNotNull) {
+  SymbolUnitHandle units[] = {SymbolUnit_create_meter(),
+                              SymbolUnit_create_kilogram(),
+                              SymbolUnit_create_second(),
+                              SymbolUnit_create_ampere(),
+                              SymbolUnit_create_kelvin(),
+                              SymbolUnit_create_mole(),
+                              SymbolUnit_create_candela(),
+                              SymbolUnit_create_hertz(),
+                              SymbolUnit_create_newton(),
+                              SymbolUnit_create_pascal(),
+                              SymbolUnit_create_joule(),
+                              SymbolUnit_create_watt(),
+                              SymbolUnit_create_coulomb(),
+                              SymbolUnit_create_volt(),
+                              SymbolUnit_create_farad(),
+                              SymbolUnit_create_ohm(),
+                              SymbolUnit_create_siemens(),
+                              SymbolUnit_create_weber(),
+                              SymbolUnit_create_tesla(),
+                              SymbolUnit_create_henry(),
+                              SymbolUnit_create_minute(),
+                              SymbolUnit_create_hour(),
+                              SymbolUnit_create_electronvolt(),
+                              SymbolUnit_create_celsius(),
+                              SymbolUnit_create_fahrenheit(),
+                              SymbolUnit_create_dimensionless(),
+                              SymbolUnit_create_percent(),
+                              SymbolUnit_create_radian(),
+                              SymbolUnit_create_kilometer(),
+                              SymbolUnit_create_millimeter(),
+                              SymbolUnit_create_millivolt(),
+                              SymbolUnit_create_kilovolt(),
+                              SymbolUnit_create_milliampere(),
+                              SymbolUnit_create_microampere(),
+                              SymbolUnit_create_nanoampere(),
+                              SymbolUnit_create_picoampere(),
+                              SymbolUnit_create_millisecond(),
+                              SymbolUnit_create_microsecond(),
+                              SymbolUnit_create_nanosecond(),
+                              SymbolUnit_create_picosecond(),
+                              SymbolUnit_create_milliohm(),
+                              SymbolUnit_create_kiloohm(),
+                              SymbolUnit_create_megaohm(),
+                              SymbolUnit_create_millihertz(),
+                              SymbolUnit_create_kilohertz(),
+                              SymbolUnit_create_megahertz(),
+                              SymbolUnit_create_gigahertz(),
+                              SymbolUnit_create_meters_per_second(),
+                              SymbolUnit_create_meters_per_second_squared(),
+                              SymbolUnit_create_newton_meter(),
+                              SymbolUnit_create_newtons_per_meter(),
+                              SymbolUnit_create_volts_per_meter(),
+                              SymbolUnit_create_volts_per_second(),
+                              SymbolUnit_create_amperes_per_meter(),
+                              SymbolUnit_create_volts_per_ampere(),
+                              SymbolUnit_create_watts_per_meter_kelvin()};
+
+  for (auto unit : units) {
+    EXPECT_TRUE(unit != nullptr);
+    SymbolUnit_destroy(unit);
+  }
+}
+
+TEST_F(SymbolUnitTest, NullHandlesThrow) {
+  EXPECT_THROW(SymbolUnit_equal(nullptr, meter), std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_equal(meter, nullptr), std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_not_equal(nullptr, meter), std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_not_equal(meter, nullptr), std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_to_json_string(nullptr), std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_from_json_string(nullptr), std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_symbol(nullptr), std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_name(nullptr), std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_multiplication(nullptr, meter),
+               std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_multiplication(meter, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_division(nullptr, meter), std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_division(meter, nullptr), std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_power(nullptr, 2), std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_with_prefix(nullptr, String_wrap("k")),
+               std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_with_prefix(meter, nullptr), std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_convert_value_to(nullptr, 1.0, meter),
+               std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_convert_value_to(meter, 1.0, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_is_compatible_with(nullptr, meter),
+               std::invalid_argument);
+  EXPECT_THROW(SymbolUnit_is_compatible_with(meter, nullptr),
+               std::invalid_argument);
 }

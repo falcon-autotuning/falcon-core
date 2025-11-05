@@ -84,3 +84,57 @@ TEST_F(LeftReservoirWithImplantedOhmicTest, ThrowsOnNullOhmic) {
   EXPECT_THROW(LeftReservoirWithImplantedOhmic_create(name, right, nullptr),
                std::invalid_argument);
 }
+
+TEST_F(LeftReservoirWithImplantedOhmicTest, ThrowsOnNullName) {
+  EXPECT_THROW(LeftReservoirWithImplantedOhmic_create(nullptr, right, ohmic),
+               std::invalid_argument);
+}
+
+TEST_F(LeftReservoirWithImplantedOhmicTest, DestructorThrowsOnNullptr) {
+  EXPECT_ANY_THROW(LeftReservoirWithImplantedOhmic_destroy(nullptr));
+}
+
+TEST_F(LeftReservoirWithImplantedOhmicTest, NameGetterWorksAfterSerialization) {
+  StringHandle json = LeftReservoirWithImplantedOhmic_to_json_string(handle);
+  LeftReservoirWithImplantedOhmicHandle copy =
+      LeftReservoirWithImplantedOhmic_from_json_string(json);
+  StringHandle result = LeftReservoirWithImplantedOhmic_name(copy);
+  EXPECT_EQ(std::string(result->raw, result->length), "left");
+  String_destroy(result);
+  LeftReservoirWithImplantedOhmic_destroy(copy);
+  String_destroy(json);
+}
+
+TEST_F(LeftReservoirWithImplantedOhmicTest, TypeGetterWorksAfterSerialization) {
+  StringHandle json = LeftReservoirWithImplantedOhmic_to_json_string(handle);
+  LeftReservoirWithImplantedOhmicHandle copy =
+      LeftReservoirWithImplantedOhmic_from_json_string(json);
+  StringHandle result = LeftReservoirWithImplantedOhmic_type(copy);
+  EXPECT_FALSE(std::string(result->raw, result->length).empty());
+  String_destroy(result);
+  LeftReservoirWithImplantedOhmic_destroy(copy);
+  String_destroy(json);
+}
+
+TEST_F(LeftReservoirWithImplantedOhmicTest, NullptrThrows) {
+  EXPECT_THROW(LeftReservoirWithImplantedOhmic_name(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LeftReservoirWithImplantedOhmic_type(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LeftReservoirWithImplantedOhmic_ohmic(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LeftReservoirWithImplantedOhmic_right_neighbor(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LeftReservoirWithImplantedOhmic_equal(nullptr, handle),
+               std::invalid_argument);
+  EXPECT_THROW(LeftReservoirWithImplantedOhmic_equal(handle, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LeftReservoirWithImplantedOhmic_not_equal(nullptr, handle),
+               std::invalid_argument);
+  EXPECT_THROW(LeftReservoirWithImplantedOhmic_not_equal(handle, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LeftReservoirWithImplantedOhmic_to_json_string(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(LeftReservoirWithImplantedOhmic_from_json_string(nullptr),
+               std::invalid_argument);
+}

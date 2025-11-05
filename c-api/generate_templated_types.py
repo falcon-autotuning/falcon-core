@@ -417,7 +417,7 @@ bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);""")
         with self.edit_header() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty();
-{self.chandle()} {self.mangled_name()}_create_zeros();
+{self.chandle()} {self.mangled_name()}_create_zeros(const size_t* shape, size_t ndim);
 {self.chandle()} {self.mangled_name()}_from_shape(const size_t* shape, size_t ndim);
 {self.chandle()} {self.mangled_name()}_from_data(const {c_type}* data, const size_t* shape, size_t ndim);
 void {self.mangled_name()}_destroy({self.chandle()} handle);
@@ -452,9 +452,9 @@ void {self.mangled_name()}_dividesequals_int({self.chandle()} handle, const int 
 {self.chandle()} {self.mangled_name()}_divides_int({self.chandle()} handle, const int other);
 {self.chandle()} {self.mangled_name()}_pow({self.chandle()} handle, const double other);
 {self.chandle()} {self.mangled_name()}_abs({self.chandle()} handle);
-{self.chandle()} {self.mangled_name()}_min({self.chandle()} handle);
+{c_type} {self.mangled_name()}_min({self.chandle()} handle);
 {self.chandle()} {self.mangled_name()}_min_arraywise({self.chandle()} handle, {self.chandle()} other);
-{self.chandle()} {self.mangled_name()}_max({self.chandle()} handle);
+{c_type} {self.mangled_name()}_max({self.chandle()} handle);
 {self.chandle()} {self.mangled_name()}_max_arraywise({self.chandle()} handle, {self.chandle()} other);
 bool {self.mangled_name()}_equality({self.chandle()} handle, {self.chandle()} other);
 bool {self.mangled_name()}_notequality({self.chandle()} handle, {self.chandle()} other);
@@ -1681,6 +1681,9 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
 }}
 
 {self.chandle()} {self.mangled_name()}_create_zeros(const size_t* shape, size_t ndim) {{
+if (!shape) {{
+throw std::invalid_argument("Null shape passed to {self.mangled_name()}_create_zeros");
+}}
     std::vector<size_t> vec;
     for (size_t i =0; i < ndim; ++i) {{
         vec.push_back(shape[i]);
@@ -1689,6 +1692,9 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
 }}
 
 {self.chandle()} {self.mangled_name()}_from_shape(const size_t* shape, size_t ndim) {{
+if (!shape) {{
+throw std::invalid_argument("Null shape passed to {self.mangled_name()}_from_shape");
+}}
     std::vector<size_t> vec;
     for (size_t i =0; i < ndim; ++i) {{
         vec.push_back(shape[i]);
@@ -1697,6 +1703,12 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
 }}
 
 {self.chandle()} {self.mangled_name()}_from_data(const {c_type}* data, const size_t* shape, size_t ndim) {{
+if (!data) {{
+throw std::invalid_argument("Null data passed to {self.mangled_name()}_from_data");
+}}
+if (!shape) {{
+throw std::invalid_argument("Null shape passed to {self.mangled_name()}_from_data");
+}}
   std::vector<std::vector<{cpp_type}>::size_type> shapeVec;
   size_t                                      total_size = 1;
   for (size_t i = 0; i < ndim; ++i) {{
@@ -1735,6 +1747,9 @@ size_t {self.mangled_name()}_shape({self.chandle()} handle, size_t* out_buffer, 
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_shape");
 }}
+if (!out_buffer) {{
+throw std::invalid_argument("Null out_buffer passed to {self.mangled_name()}_shape");
+}}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto shape = farray->shape();
     size_t count   = shape.size();
@@ -1748,6 +1763,9 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_shape")
 size_t {self.mangled_name()}_data({self.chandle()} handle, {c_type}* out_buffer, size_t numdata) {{
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_data");
+}}
+if (!out_buffer) {{
+throw std::invalid_argument("Null out_buffer passed to {self.mangled_name()}_shape");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     if (farray->size() > numdata) {{
@@ -1989,12 +2007,12 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_abs");
     return new falcon_core::generic::FArray<{cpp_type}>(*farray->abs());
 }}
 
-{self.chandle()} {self.mangled_name()}_min({self.chandle()} handle) {{
+{c_type} {self.mangled_name()}_min({self.chandle()} handle) {{
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_min");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
-    return new falcon_core::generic::FArray<{cpp_type}>(farray->min());
+    return farray->min();
 }}
 
 {self.chandle()} {self.mangled_name()}_min_arraywise({self.chandle()} handle, {self.chandle()} other) {{
@@ -2004,7 +2022,25 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_min_arr
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
     return new falcon_core::generic::FArray<{cpp_type}>(
-        *farray->min(std::shared_ptr<falcon_core::generic::FArray<{cpp_type}>>(oarray)));
+    *farray->min(std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray)));
+}}
+
+{c_type} {self.mangled_name()}_max({self.chandle()} handle) {{
+if (!handle) {{
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_max");
+}}
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return farray->max();
+}}
+
+{self.chandle()} {self.mangled_name()}_max_arraywise({self.chandle()} handle, {self.chandle()} other) {{
+if (!handle || !other) {{
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_max_arraywise");
+}}
+    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
+    return new falcon_core::generic::FArray<{cpp_type}>(
+    *farray->max(std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray)));
 }}
 
 bool {self.mangled_name()}_equality({self.chandle()} handle, {self.chandle()} other) {{
@@ -2089,13 +2125,16 @@ size_t {self.mangled_name()}_full_gradient({self.chandle()} handle, {self.chandl
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_full_gradient");
 }}
+if (!out_buffer) {{
+throw std::invalid_argument("Null out_buffer passed to {self.mangled_name()}_full_gradient");
+}}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto many_gradients = farray->gradient();
     if (many_gradients->size() > buffer_size) {{
-        throw std::runtime_error("Trying to store more gradients than buffer allocated.");
+        throw std::runtime_error("Trying to store more {cpp_type} gradients than buffer allocated.");
     }}
     for (size_t i = 0; i < many_gradients->size(); ++i) {{
-        out_buffer[i] = many_gradients->items()[i].get();
+        out_buffer[i] = new falcon_core::generic::FArray<{cpp_type}>(*(many_gradients->items()[i]));
     }}
     return many_gradients->size();
 }}

@@ -81,13 +81,13 @@ build-dev: generate_types
 
 # check coverage of entire module
 run-all-tests:
-	@LLVM_PROFILE_FILE="run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$(CORE_BUILD_DIR):$$LD_LIBRARY_PATH ./build/run_tests
-	@llvm-profdata merge -sparse run_tests.profraw -o run_tests.profdata
+	@LLVM_PROFILE_FILE="run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$(CORE_BUILD_DIR):$$LD_LIBRARY_PATH ./${C_API_BUILD_DIR}/run_tests
+	@llvm-profdata merge -sparse ${C_API_BUILD_DIR}/run_tests.profraw -o ${C_API_BUILD_DIR}/run_tests.profdata
 
 #check coverage of all the modles listed in the test_filter.txt
 run-subset-tests:
-	@LLVM_PROFILE_FILE="build/run_tests.profraw" ./build/run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
-	@llvm-profdata merge -sparse run_tests.profraw -o run_tests.profdata
+	@LLVM_PROFILE_FILE="build/run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$(CORE_BUILD_DIR):$$LD_LIBRARY_PATH ./${C_API_BUILD_DIR}/run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
+	@llvm-profdata merge -sparse ${C_API_BUILD_DIR}/run_tests.profraw -o ${C_API_BUILD_DIR}/run_tests.profdata
 
 # launches the interactive html for the entire coverage run
 cov-html:
@@ -99,7 +99,7 @@ cov-html:
 
 # Usage: make coverage-term FILE=/path/to/source.cpp
 cov-term:
-	@llvm-cov show ./build/lib$(C_API_TARGET).so -instr-profile=run_tests.profdata $(FILE) \
+	@llvm-cov show ./${C_API_BUILD_DIR}/lib$(C_API_TARGET).so -instr-profile=${C_API_BUILD_DIR}/run_tests.profdata $(FILE) \
 	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
 	  -Xdemangler c++filt -Xdemangler -n 
 
@@ -113,12 +113,12 @@ subset-coverage: run-subset-tests cov-term
 coverage: run-all-tests cov-term
 
 subset-coverage-overview: subset-coverage
-	@llvm-cov report ./build/lib$(C_API_TARGET).so -instr-profile=run_tests.profdata \
+	@llvm-cov report ./${C_API_BUILD_DIR}/lib$(C_API_TARGET).so -instr-profile=${C_API_BUILD_DIR}/run_tests.profdata \
 		-ignore-filename-regex='(cpp/include/)' \
 		-Xdemangler c++filt -Xdemangler -n
 
 coverage-overview: coverage
-	@llvm-cov report ./build/lib$(C_API_TARGET).so -instr-profile=run_tests.profdata -ignore-filename-regex='(cpp/include/)' -Xdemangler c++filt -Xdemangler -n
+	@llvm-cov report ./${C_API_BUILD_DIR}/lib$(C_API_TARGET).so -instr-profile=${C_API_BUILD_DIR}/run_tests.profdata -ignore-filename-regex='(cpp/include/)' -Xdemangler c++filt -Xdemangler -n
 
 clean:
 	@echo "--- Cleaning build directory and compiled extension ---"

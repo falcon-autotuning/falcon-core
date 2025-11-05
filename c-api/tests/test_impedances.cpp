@@ -4,7 +4,7 @@
 #include "falcon_core/physics/device_structures/Impedance_c_api.h"
 #include "falcon_core/physics/device_structures/Impedances_c_api.h"
 
-class ImpedancesCAPI_Fixture : public ::testing::Test {
+class ImpedancesTest : public ::testing::Test {
  protected:
   ConnectionHandle conn1, conn2, conn3;
   ImpedanceHandle  imp1, imp2, imp3;
@@ -26,14 +26,14 @@ class ImpedancesCAPI_Fixture : public ::testing::Test {
   }
 };
 
-TEST_F(ImpedancesCAPI_Fixture, DefaultConstructor) {
+TEST_F(ImpedancesTest, DefaultConstructor) {
   ImpedancesHandle imps = Impedances_create_empty();
   EXPECT_EQ(Impedances_size(imps), 0);
   EXPECT_TRUE(Impedances_empty(imps));
   Impedances_destroy(imps);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, VectorConstructor) {
+TEST_F(ImpedancesTest, VectorConstructor) {
   ListImpedanceHandle vec = ListImpedance_create_empty();
   ListImpedance_push_back(vec, imp1);
   ListImpedance_push_back(vec, imp2);
@@ -45,7 +45,7 @@ TEST_F(ImpedancesCAPI_Fixture, VectorConstructor) {
   ListImpedance_destroy(vec);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, PushBackAndAt) {
+TEST_F(ImpedancesTest, PushBackAndAt) {
   ImpedancesHandle imps = Impedances_create_empty();
   Impedances_push_back(imps, imp1);
   Impedances_push_back(imps, imp2);
@@ -55,7 +55,7 @@ TEST_F(ImpedancesCAPI_Fixture, PushBackAndAt) {
   Impedances_destroy(imps);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, EraseAtAndClear) {
+TEST_F(ImpedancesTest, EraseAtAndClear) {
   ImpedancesHandle imps = Impedances_create_empty();
   Impedances_push_back(imps, imp1);
   Impedances_push_back(imps, imp2);
@@ -70,7 +70,7 @@ TEST_F(ImpedancesCAPI_Fixture, EraseAtAndClear) {
   Impedances_destroy(imps);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, ContainsAndIndex) {
+TEST_F(ImpedancesTest, ContainsAndIndex) {
   ImpedancesHandle imps = Impedances_create_empty();
   Impedances_push_back(imps, imp1);
   Impedances_push_back(imps, imp2);
@@ -80,7 +80,7 @@ TEST_F(ImpedancesCAPI_Fixture, ContainsAndIndex) {
   Impedances_destroy(imps);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, ItemsBuffer) {
+TEST_F(ImpedancesTest, ItemsBuffer) {
   ImpedancesHandle imps = Impedances_create_empty();
   Impedances_push_back(imps, imp1);
   Impedances_push_back(imps, imp2);
@@ -92,7 +92,7 @@ TEST_F(ImpedancesCAPI_Fixture, ItemsBuffer) {
   Impedances_destroy(imps);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, EqualityAndInequality) {
+TEST_F(ImpedancesTest, EqualityAndInequality) {
   ListImpedanceHandle vec1 = ListImpedance_create_empty();
   ListImpedance_push_back(vec1, imp1);
   ListImpedance_push_back(vec1, imp2);
@@ -118,7 +118,7 @@ TEST_F(ImpedancesCAPI_Fixture, EqualityAndInequality) {
   ListImpedance_destroy(vec3);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, SerializationRoundTrip) {
+TEST_F(ImpedancesTest, SerializationRoundTrip) {
   ListImpedanceHandle vec = ListImpedance_create_empty();
   ListImpedance_push_back(vec, imp1);
   ImpedancesHandle imps  = Impedances_create(vec);
@@ -130,7 +130,7 @@ TEST_F(ImpedancesCAPI_Fixture, SerializationRoundTrip) {
   ListImpedance_destroy(vec);
 }
 
-TEST_F(ImpedancesCAPI_Fixture, EqualityDifferentElements) {
+TEST_F(ImpedancesTest, EqualityDifferentElements) {
   ListImpedanceHandle vec1 = ListImpedance_create_empty();
   ListImpedance_push_back(vec1, imp1);
   ImpedancesHandle imps1 = Impedances_create(vec1);
@@ -145,4 +145,75 @@ TEST_F(ImpedancesCAPI_Fixture, EqualityDifferentElements) {
   Impedances_destroy(imps2);
   ListImpedance_destroy(vec1);
   ListImpedance_destroy(vec2);
+}
+
+TEST_F(ImpedancesTest, Intersection) {
+  ListImpedanceHandle vec1 = ListImpedance_create_empty();
+  ListImpedance_push_back(vec1, imp1);
+  ListImpedance_push_back(vec1, imp2);
+  ImpedancesHandle imps1 = Impedances_create(vec1);
+
+  ListImpedanceHandle vec2 = ListImpedance_create_empty();
+  ListImpedance_push_back(vec2, imp2);
+  ListImpedance_push_back(vec2, imp3);
+  ImpedancesHandle imps2 = Impedances_create(vec2);
+
+  ImpedancesHandle intersection = Impedances_intersection(imps1, imps2);
+  EXPECT_EQ(Impedances_size(intersection), 1);
+  EXPECT_TRUE(Impedance_equal(Impedances_at(intersection, 0), imp2));
+
+  Impedances_destroy(imps1);
+  Impedances_destroy(imps2);
+  Impedances_destroy(intersection);
+  ListImpedance_destroy(vec1);
+  ListImpedance_destroy(vec2);
+}
+
+TEST_F(ImpedancesTest, SmallBufferItems) {
+  ListImpedanceHandle vec = ListImpedance_create_empty();
+  ListImpedance_push_back(vec, imp1);
+  ListImpedance_push_back(vec, imp2);
+  ImpedancesHandle imps = Impedances_create(vec);
+
+  ImpedanceHandle buffer[1];
+  size_t          n = Impedances_items(imps, buffer, 1);
+  EXPECT_EQ(n, 1);
+  EXPECT_TRUE(Impedance_equal(buffer[0], imp1));
+
+  Impedances_destroy(imps);
+  ListImpedance_destroy(vec);
+}
+
+TEST_F(ImpedancesTest, NullHandlesThrow) {
+  ListImpedanceHandle vec = ListImpedance_create_empty();
+  ListImpedance_push_back(vec, imp1);
+  ImpedancesHandle imps = Impedances_create(vec);
+
+  EXPECT_THROW(Impedances_destroy(nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedances_create(nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedances_equal(nullptr, imps), std::invalid_argument);
+  EXPECT_THROW(Impedances_equal(imps, nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedances_not_equal(nullptr, imps), std::invalid_argument);
+  EXPECT_THROW(Impedances_not_equal(imps, nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedances_to_json_string(nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedances_from_json_string(nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedances_size(nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedances_empty(nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedances_at(nullptr, 0), std::invalid_argument);
+  EXPECT_THROW(Impedances_const_at(nullptr, 0), std::invalid_argument);
+  EXPECT_THROW(Impedances_push_back(nullptr, imp1), std::invalid_argument);
+  EXPECT_THROW(Impedances_erase_at(nullptr, 0), std::invalid_argument);
+  EXPECT_THROW(Impedances_clear(nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedances_contains(nullptr, imp1), std::invalid_argument);
+  EXPECT_THROW(Impedances_contains(imps, nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedances_index(nullptr, imp1), std::invalid_argument);
+  EXPECT_THROW(Impedances_index(imps, nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedances_items(imps, nullptr, 0), std::invalid_argument);
+  EXPECT_THROW(Impedances_items(nullptr, nullptr, 0), std::invalid_argument);
+  EXPECT_THROW(Impedances_push_back(imps, nullptr), std::invalid_argument);
+  EXPECT_THROW(Impedances_intersection(nullptr, imps), std::invalid_argument);
+  EXPECT_THROW(Impedances_intersection(imps, nullptr), std::invalid_argument);
+
+  Impedances_destroy(imps);
+  ListImpedance_destroy(vec);
 }

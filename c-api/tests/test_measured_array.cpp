@@ -15,7 +15,7 @@ class MeasuredArrayTest : public ::testing::Test {
     data[4]  = 5.0;
     data[5]  = 6.0;
     ma       = MeasuredArray_from_data(data, shape, 1);
-    fa       = FArrayDouble_from_data(data, shape, 6);
+    fa       = FArrayDouble_from_data(data, shape, 1);
     ma2      = MeasuredArray_from_farray(fa);
   }
   void TearDown() override {
@@ -25,9 +25,9 @@ class MeasuredArrayTest : public ::testing::Test {
   }
   double              data[6];
   size_t              shape[1];
-  MeasuredArrayHandle ma  = nullptr;
-  MeasuredArrayHandle ma2 = nullptr;
-  FArrayDoubleHandle  fa  = nullptr;
+  MeasuredArrayHandle ma;
+  MeasuredArrayHandle ma2;
+  FArrayDoubleHandle  fa;
 };
 
 TEST_F(MeasuredArrayTest, CreateDestroy) {
@@ -57,7 +57,7 @@ TEST_F(MeasuredArrayTest, SizeDimensionShapeData) {
   EXPECT_THROW(MeasuredArray_data(nullptr, out_data, 6), std::invalid_argument);
 }
 
-TEST_F(MeasuredArrayTest, ArithmeticOperators) {
+TEST_F(MeasuredArrayTest, Addition) {
   MeasuredArray_plusequals_farray(ma, fa);
   MeasuredArray_plusequals_double(ma, 1.0);
   MeasuredArray_plusequals_int(ma, 1);
@@ -69,7 +69,9 @@ TEST_F(MeasuredArrayTest, ArithmeticOperators) {
   MeasuredArray_destroy(ma_plus_fa);
   MeasuredArray_destroy(ma_plus_d);
   MeasuredArray_destroy(ma_plus_i);
+}
 
+TEST_F(MeasuredArrayTest, Subtraction) {
   MeasuredArray_minusequals_farray(ma, fa);
   MeasuredArray_minusequals_double(ma, 1.0);
   MeasuredArray_minusequals_int(ma, 1);
@@ -81,10 +83,14 @@ TEST_F(MeasuredArrayTest, ArithmeticOperators) {
   MeasuredArray_destroy(ma_minus_fa);
   MeasuredArray_destroy(ma_minus_d);
   MeasuredArray_destroy(ma_minus_i);
+}
 
+TEST_F(MeasuredArrayTest, Negation) {
   auto ma_neg = MeasuredArray_negation(ma);
   MeasuredArray_destroy(ma_neg);
+}
 
+TEST_F(MeasuredArrayTest, Multiplication) {
   MeasuredArray_timesequals_measured_array(ma, ma2);
   MeasuredArray_timesequals_farray(ma, fa);
   MeasuredArray_timesequals_double(ma, 2.0);
@@ -97,7 +103,9 @@ TEST_F(MeasuredArrayTest, ArithmeticOperators) {
   MeasuredArray_destroy(ma_times_fa);
   MeasuredArray_destroy(ma_times_d);
   MeasuredArray_destroy(ma_times_i);
+}
 
+TEST_F(MeasuredArrayTest, Division) {
   MeasuredArray_dividesequals_measured_array(ma, ma2);
   MeasuredArray_dividesequals_farray(ma, fa);
   MeasuredArray_dividesequals_double(ma, 2.0);
@@ -110,7 +118,9 @@ TEST_F(MeasuredArrayTest, ArithmeticOperators) {
   MeasuredArray_destroy(ma_div_fa);
   MeasuredArray_destroy(ma_div_d);
   MeasuredArray_destroy(ma_div_i);
+}
 
+TEST_F(MeasuredArrayTest, Operations) {
   auto ma_pow = MeasuredArray_pow(ma, 2.0);
   MeasuredArray_destroy(ma_pow);
 
@@ -126,7 +136,9 @@ TEST_F(MeasuredArrayTest, ArithmeticOperators) {
   auto ma_max_ma = MeasuredArray_max_control_array(ma, ma2);
   MeasuredArray_destroy(ma_max_fa);
   MeasuredArray_destroy(ma_max_ma);
+}
 
+TEST_F(MeasuredArrayTest, ArithmeticOperatorsInvalidArgs) {
   EXPECT_THROW(MeasuredArray_plusequals_farray(nullptr, fa),
                std::invalid_argument);
   EXPECT_THROW(MeasuredArray_plusequals_farray(ma, nullptr),
@@ -226,8 +238,8 @@ TEST_F(MeasuredArrayTest, ArithmeticOperators) {
 }
 
 TEST_F(MeasuredArrayTest, EqualityOperators) {
-  EXPECT_FALSE(MeasuredArray_equality(ma, ma2));
-  EXPECT_TRUE(MeasuredArray_notequality(ma, ma2));
+  EXPECT_TRUE(MeasuredArray_equality(ma, ma2));
+  EXPECT_FALSE(MeasuredArray_notequality(ma, ma2));
   EXPECT_THROW(MeasuredArray_equality(nullptr, ma2), std::invalid_argument);
   EXPECT_THROW(MeasuredArray_equality(ma, nullptr), std::invalid_argument);
   EXPECT_THROW(MeasuredArray_notequality(nullptr, ma2), std::invalid_argument);
@@ -243,12 +255,11 @@ TEST_F(MeasuredArrayTest, ComparisonOperators) {
 
 TEST_F(MeasuredArrayTest, OffsetSumReshapeWhereFlipGradient) {
   MeasuredArray_remove_offset(ma, 1.0);
-  EXPECT_DOUBLE_EQ(MeasuredArray_sum(ma), 21.0);
+  EXPECT_DOUBLE_EQ(MeasuredArray_sum(ma), 15.0);
   size_t new_shape[1] = {6};
   auto   reshaped     = MeasuredArray_reshape(ma, new_shape, 1);
   MeasuredArray_destroy(reshaped);
-  auto where = MeasuredArray_where(ma, 2.0);
-  // ListListSizeT_destroy(where); // implement destroy if needed
+  auto where   = MeasuredArray_where(ma, 2.0);
   auto flipped = MeasuredArray_flip(ma, 0);
   MeasuredArray_destroy(flipped);
   MeasuredArrayHandle grad_buffer[1];
@@ -267,14 +278,16 @@ TEST_F(MeasuredArrayTest, OffsetSumReshapeWhereFlipGradient) {
   EXPECT_THROW(MeasuredArray_flip(nullptr, 0), std::invalid_argument);
   EXPECT_THROW(MeasuredArray_full_gradient(nullptr, grad_buffer, 1),
                std::invalid_argument);
+  EXPECT_THROW(MeasuredArray_full_gradient(ma, nullptr, 1),
+               std::invalid_argument);
   EXPECT_THROW(MeasuredArray_gradient(nullptr, 0), std::invalid_argument);
 }
 
 TEST_F(MeasuredArrayTest, SumOfSquares) {
-  EXPECT_DOUBLE_EQ(MeasuredArray_get_sum_of_squares(ma), 91.0);
-  EXPECT_DOUBLE_EQ(MeasuredArray_get_summed_diff_int_of_squares(ma, 1), 70.0);
+  EXPECT_DOUBLE_EQ(MeasuredArray_get_sum_of_squares(ma), 21.0);
+  EXPECT_DOUBLE_EQ(MeasuredArray_get_summed_diff_int_of_squares(ma, 1), 15.0);
   EXPECT_DOUBLE_EQ(MeasuredArray_get_summed_diff_double_of_squares(ma, 1.0),
-                   70.0);
+                   15.0);
   EXPECT_DOUBLE_EQ(MeasuredArray_get_summed_diff_array_of_squares(ma, ma2),
                    0.0);
   EXPECT_THROW(MeasuredArray_get_sum_of_squares(nullptr),
@@ -297,4 +310,13 @@ TEST_F(MeasuredArrayTest, ToJsonFromJson) {
   String_destroy(json);
   EXPECT_THROW(MeasuredArray_to_json_string(nullptr), std::invalid_argument);
   EXPECT_THROW(MeasuredArray_from_json_string(nullptr), std::invalid_argument);
+}
+
+TEST_F(MeasuredArrayTest, DataBufferTooSmall) {
+  double out_data[2] = {0, 0};  // buffer smaller than needed (should be 4)
+  EXPECT_THROW(FArrayDouble_data(ma, out_data, 2), std::runtime_error);
+}
+
+TEST_F(MeasuredArrayTest, DataNullBuffer) {
+  EXPECT_THROW(FArrayDouble_data(ma, nullptr, 4), std::invalid_argument);
 }

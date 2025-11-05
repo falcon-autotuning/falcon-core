@@ -4,7 +4,7 @@
 #include "falcon_core/physics/device_structures/Connections_c_api.h"
 #include "falcon_core/physics/device_structures/GateRelations_c_api.h"
 
-class GateRelationsCAPI_Fixture : public ::testing::Test {
+class GateRelationsTest : public ::testing::Test {
  protected:
   ConnectionHandle  gate1, gate2, neighbor1, neighbor2, ohmic;
   ConnectionsHandle neighbors1, neighbors2, ohmic_neighbors;
@@ -37,14 +37,14 @@ class GateRelationsCAPI_Fixture : public ::testing::Test {
   }
 };
 
-TEST(GateRelationsCAPI_Constructors, DefaultConstructor) {
+TEST_F(GateRelationsTest, DefaultConstructor) {
   GateRelationsHandle gr = GateRelations_create_empty();
   EXPECT_EQ(GateRelations_size(gr), 0);
   EXPECT_TRUE(GateRelations_empty(gr));
   GateRelations_destroy(gr);
 }
 
-TEST_F(GateRelationsCAPI_Fixture, InitConstructor) {
+TEST_F(GateRelationsTest, InitConstructor) {
   ListPairConnectionConnectionsHandle init =
       ListPairConnectionConnections_create_empty();
   PairConnectionConnectionsHandle pair1 =
@@ -72,7 +72,7 @@ TEST_F(GateRelationsCAPI_Fixture, InitConstructor) {
   ListPairConnectionConnections_destroy(init);
 }
 
-TEST_F(GateRelationsCAPI_Fixture, InsertOrAssign) {
+TEST_F(GateRelationsTest, InsertOrAssign) {
   GateRelationsHandle gr = GateRelations_create_empty();
   GateRelations_insert_or_assign(gr, gate1, neighbors1);
   EXPECT_EQ(GateRelations_size(gr), 1);
@@ -86,7 +86,7 @@ TEST_F(GateRelationsCAPI_Fixture, InsertOrAssign) {
   GateRelations_destroy(gr);
 }
 
-TEST_F(GateRelationsCAPI_Fixture, Insert) {
+TEST_F(GateRelationsTest, Insert) {
   GateRelationsHandle gr = GateRelations_create_empty();
   GateRelations_insert(gr, gate1, neighbors1);
   EXPECT_EQ(GateRelations_size(gr), 1);
@@ -100,7 +100,7 @@ TEST_F(GateRelationsCAPI_Fixture, Insert) {
   GateRelations_destroy(gr);
 }
 
-TEST_F(GateRelationsCAPI_Fixture, SerializationRoundTrip) {
+TEST_F(GateRelationsTest, SerializationRoundTrip) {
   GateRelationsHandle gr = GateRelations_create_empty();
   GateRelations_insert_or_assign(gr, gate1, neighbors1);
 
@@ -118,33 +118,32 @@ TEST_F(GateRelationsCAPI_Fixture, SerializationRoundTrip) {
   GateRelations_destroy(gr2);
 }
 
-TEST_F(GateRelationsCAPI_Fixture, InsertOrAssignThrowsOnNonGateKey) {
+TEST_F(GateRelationsTest, InsertOrAssignThrowsOnNonGateKey) {
   GateRelationsHandle gr = GateRelations_create_empty();
   // Should throw or handle error gracefully
   EXPECT_ANY_THROW(GateRelations_insert_or_assign(gr, ohmic, neighbors1));
   GateRelations_destroy(gr);
 }
 
-TEST_F(GateRelationsCAPI_Fixture, InsertOrAssignThrowsOnNonGatesValue) {
+TEST_F(GateRelationsTest, InsertOrAssignThrowsOnNonGatesValue) {
   GateRelationsHandle gr = GateRelations_create_empty();
   EXPECT_ANY_THROW(GateRelations_insert_or_assign(gr, gate1, ohmic_neighbors));
   GateRelations_destroy(gr);
 }
 
-TEST_F(GateRelationsCAPI_Fixture, InsertThrowsOnNonGateKey) {
+TEST_F(GateRelationsTest, InsertThrowsOnNonGateKey) {
   GateRelationsHandle gr = GateRelations_create_empty();
   EXPECT_ANY_THROW(GateRelations_insert(gr, ohmic, neighbors1));
   GateRelations_destroy(gr);
 }
 
-TEST_F(GateRelationsCAPI_Fixture, InsertThrowsOnNonGatesValue) {
+TEST_F(GateRelationsTest, InsertThrowsOnNonGatesValue) {
   GateRelationsHandle gr = GateRelations_create_empty();
   EXPECT_ANY_THROW(GateRelations_insert(gr, gate1, ohmic_neighbors));
   GateRelations_destroy(gr);
 }
 
-TEST_F(GateRelationsCAPI_Fixture,
-       Methods_EraseClearContainsKeysValuesItemsEquality) {
+TEST_F(GateRelationsTest, Methods_EraseClearContainsKeysValuesItemsEquality) {
   GateRelationsHandle gr = GateRelations_create_empty();
   GateRelations_insert_or_assign(gr, gate1, neighbors1);
   GateRelations_insert_or_assign(gr, gate2, neighbors2);
@@ -184,4 +183,62 @@ TEST_F(GateRelationsCAPI_Fixture,
 
   GateRelations_destroy(gr);
   GateRelations_destroy(gr2);
+}
+
+TEST_F(GateRelationsTest, NullptrCoverage) {
+  // GateRelations_create
+  EXPECT_THROW(GateRelations_create(nullptr), std::invalid_argument);
+
+  // GateRelations_destroy
+  EXPECT_THROW(GateRelations_destroy(nullptr), std::invalid_argument);
+
+  // GateRelations_insert_or_assign
+  GateRelationsHandle gr = GateRelations_create_empty();
+  EXPECT_THROW(GateRelations_insert_or_assign(nullptr, gate1, neighbors1),
+               std::invalid_argument);
+  EXPECT_THROW(GateRelations_insert_or_assign(gr, nullptr, neighbors1),
+               std::invalid_argument);
+  EXPECT_THROW(GateRelations_insert_or_assign(gr, gate1, nullptr),
+               std::invalid_argument);
+
+  // GateRelations_insert
+  EXPECT_THROW(GateRelations_insert(nullptr, gate1, neighbors1),
+               std::invalid_argument);
+  EXPECT_THROW(GateRelations_insert(gr, nullptr, neighbors1),
+               std::invalid_argument);
+  EXPECT_THROW(GateRelations_insert(gr, gate1, nullptr), std::invalid_argument);
+
+  // GateRelations_at
+  EXPECT_THROW(GateRelations_at(nullptr, gate1), std::invalid_argument);
+  EXPECT_THROW(GateRelations_at(gr, nullptr), std::invalid_argument);
+
+  // GateRelations_erase
+  EXPECT_THROW(GateRelations_erase(nullptr, gate1), std::invalid_argument);
+  EXPECT_THROW(GateRelations_erase(gr, nullptr), std::invalid_argument);
+
+  // GateRelations_size, empty, clear
+  EXPECT_THROW(GateRelations_size(nullptr), std::invalid_argument);
+  EXPECT_THROW(GateRelations_empty(nullptr), std::invalid_argument);
+  EXPECT_THROW(GateRelations_clear(nullptr), std::invalid_argument);
+
+  // GateRelations_contains
+  EXPECT_THROW(GateRelations_contains(nullptr, gate1), std::invalid_argument);
+  EXPECT_THROW(GateRelations_contains(gr, nullptr), std::invalid_argument);
+
+  // GateRelations_keys, values, items
+  EXPECT_THROW(GateRelations_keys(nullptr), std::invalid_argument);
+  EXPECT_THROW(GateRelations_values(nullptr), std::invalid_argument);
+  EXPECT_THROW(GateRelations_items(nullptr), std::invalid_argument);
+
+  // GateRelations_equal, not_equal
+  EXPECT_THROW(GateRelations_equal(nullptr, gr), std::invalid_argument);
+  EXPECT_THROW(GateRelations_equal(gr, nullptr), std::invalid_argument);
+  EXPECT_THROW(GateRelations_not_equal(nullptr, gr), std::invalid_argument);
+  EXPECT_THROW(GateRelations_not_equal(gr, nullptr), std::invalid_argument);
+
+  // GateRelations_to_json_string, from_json_string
+  EXPECT_THROW(GateRelations_to_json_string(nullptr), std::invalid_argument);
+  EXPECT_THROW(GateRelations_from_json_string(nullptr), std::invalid_argument);
+
+  GateRelations_destroy(gr);
 }

@@ -121,3 +121,53 @@ TEST_F(DotGatesWithNeighborsTest, CreateEmpty) {
   EXPECT_TRUE(DotGatesWithNeighbors_empty(empty));
   DotGatesWithNeighbors_destroy(empty);
 }
+
+TEST_F(DotGatesWithNeighborsTest, DestructorThrowsOnNullptr) {
+  EXPECT_ANY_THROW(DotGatesWithNeighbors_destroy(nullptr));
+}
+
+TEST_F(DotGatesWithNeighborsTest, NullHandlesThrow) {
+  EXPECT_THROW(DotGatesWithNeighbors_destroy(nullptr), std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_create(nullptr), std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_equal(nullptr, gates),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_equal(gates, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_not_equal(nullptr, gates),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_not_equal(gates, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_to_json_string(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_from_json_string(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_size(nullptr), std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_empty(nullptr), std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_at(nullptr, 0), std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_const_at(nullptr, 0),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_push_back(nullptr, gate1),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_erase_at(nullptr, 0),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_clear(nullptr), std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_contains(nullptr, gate1),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_contains(gates, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_index(nullptr, gate1),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_index(gates, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_items(nullptr), std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_intersection(nullptr, gates),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_intersection(gates, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_is_plunger_gates(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_is_barrier_gates(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(DotGatesWithNeighbors_push_back(gates, nullptr),
+               std::invalid_argument);
+}

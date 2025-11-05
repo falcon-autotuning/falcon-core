@@ -11,7 +11,7 @@ typedef void* FArrayDoubleHandle;
 // Function declarations
 
 FArrayDoubleHandle FArrayDouble_create_empty();
-FArrayDoubleHandle FArrayDouble_create_zeros();
+FArrayDoubleHandle FArrayDouble_create_zeros(const size_t* shape, size_t ndim);
 FArrayDoubleHandle FArrayDouble_from_shape(const size_t* shape, size_t ndim);
 FArrayDoubleHandle FArrayDouble_from_data(const double* data, const size_t* shape, size_t ndim);
 void FArrayDouble_destroy(FArrayDoubleHandle handle);
@@ -46,9 +46,9 @@ FArrayDoubleHandle FArrayDouble_divides_double(FArrayDoubleHandle handle, const 
 FArrayDoubleHandle FArrayDouble_divides_int(FArrayDoubleHandle handle, const int other);
 FArrayDoubleHandle FArrayDouble_pow(FArrayDoubleHandle handle, const double other);
 FArrayDoubleHandle FArrayDouble_abs(FArrayDoubleHandle handle);
-FArrayDoubleHandle FArrayDouble_min(FArrayDoubleHandle handle);
+double FArrayDouble_min(FArrayDoubleHandle handle);
 FArrayDoubleHandle FArrayDouble_min_arraywise(FArrayDoubleHandle handle, FArrayDoubleHandle other);
-FArrayDoubleHandle FArrayDouble_max(FArrayDoubleHandle handle);
+double FArrayDouble_max(FArrayDoubleHandle handle);
 FArrayDoubleHandle FArrayDouble_max_arraywise(FArrayDoubleHandle handle, FArrayDoubleHandle other);
 bool FArrayDouble_equality(FArrayDoubleHandle handle, FArrayDoubleHandle other);
 bool FArrayDouble_notequality(FArrayDoubleHandle handle, FArrayDoubleHandle other);

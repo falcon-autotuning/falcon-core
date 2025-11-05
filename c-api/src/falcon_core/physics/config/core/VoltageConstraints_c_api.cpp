@@ -76,9 +76,9 @@ bool VoltageConstraints_equal(VoltageConstraintsHandle a,
   if (!b) {
     throw std::invalid_argument("VoltageConstraints_equal: b cannot be null");
   }
-  VoltageConstraints self_a = *static_cast<VoltageConstraints*>(a);
-  VoltageConstraints self_b = *static_cast<VoltageConstraints*>(b);
-  return self_a == self_b;
+  VoltageConstraints* self_a = static_cast<VoltageConstraints*>(a);
+  VoltageConstraints* self_b = static_cast<VoltageConstraints*>(b);
+  return *self_a == *self_b;
 }
 bool VoltageConstraints_not_equal(VoltageConstraintsHandle a,
                                   VoltageConstraintsHandle b) {
@@ -90,9 +90,9 @@ bool VoltageConstraints_not_equal(VoltageConstraintsHandle a,
     throw std::invalid_argument(
         "VoltageConstraints_not_equal: b cannot be null");
   }
-  VoltageConstraints self_a = *static_cast<VoltageConstraints*>(a);
-  VoltageConstraints self_b = *static_cast<VoltageConstraints*>(b);
-  return self_a != self_b;
+  VoltageConstraints* self_a = static_cast<VoltageConstraints*>(a);
+  VoltageConstraints* self_b = static_cast<VoltageConstraints*>(b);
+  return *self_a != *self_b;
 }
 
 StringHandle VoltageConstraints_to_json_string(

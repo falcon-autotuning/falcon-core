@@ -16,6 +16,12 @@ AdjacencyHandle Adjacency_create(const int*        data,
   if (!indexes) {
     throw std::invalid_argument("Adjacency_create: indexes cannot be null");
   }
+  if (!data) {
+    throw std::invalid_argument("Adjacency_create: data cannot be null");
+  }
+  if (!shape) {
+    throw std::invalid_argument("Adjacency_create: shape cannot be null");
+  }
   falcon_core::physics::device_structures::ConnectionsSP real_indexes =
       std::make_shared<falcon_core::physics::device_structures::Connections>(
           *static_cast<falcon_core::physics::device_structures::Connections*>(
@@ -100,13 +106,16 @@ size_t Adjacency_data(AdjacencyHandle handle, int* out_buffer, size_t numdata) {
   if (!handle) {
     throw std::invalid_argument("Adjacency_data: handle cannot be null");
   }
-  Adjacency self = *static_cast<Adjacency*>(handle);
-  if (self.size() > numdata) {
+  if (!out_buffer) {
+    throw std::invalid_argument("Adjacency_data: out_buffer cannot be null");
+  }
+  Adjacency* self = static_cast<Adjacency*>(handle);
+  if (self->size() > numdata) {
     throw std::runtime_error(
         "Trying to store more datapoints than buffer allocated.");
   }
-  out_buffer = self.xtensor().data();
-  return self.size();
+  memcpy(out_buffer, self->data(), self->size() * sizeof(int));
+  return self->size();
 }
 
 void Adjacency_timesequals_farray(AdjacencyHandle handle,

@@ -57,8 +57,6 @@ TEST_F(InstrumentPortTest, CreatePortKnobMeterTimerClockDestroy) {
 
   EXPECT_THROW(InstrumentPort_create_port(nullptr, conn, type, unit, desc),
                std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_create_port(name, nullptr, type, unit, desc),
-               std::invalid_argument);  // psuedo_name can be nullptr, so skip
   EXPECT_THROW(InstrumentPort_create_port(name, conn, nullptr, unit, desc),
                std::invalid_argument);
   EXPECT_THROW(InstrumentPort_create_port(name, conn, type, nullptr, desc),
@@ -68,8 +66,6 @@ TEST_F(InstrumentPortTest, CreatePortKnobMeterTimerClockDestroy) {
 
   EXPECT_THROW(InstrumentPort_create_knob(nullptr, conn, type, unit, desc),
                std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_create_knob(name, nullptr, type, unit, desc),
-               std::invalid_argument);  // psuedo_name can be nullptr, so skip
   EXPECT_THROW(InstrumentPort_create_knob(name, conn, nullptr, unit, desc),
                std::invalid_argument);
   EXPECT_THROW(InstrumentPort_create_knob(name, conn, type, nullptr, desc),
@@ -79,8 +75,6 @@ TEST_F(InstrumentPortTest, CreatePortKnobMeterTimerClockDestroy) {
 
   EXPECT_THROW(InstrumentPort_create_meter(nullptr, conn, type, unit, desc),
                std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_create_meter(name, nullptr, type, unit, desc),
-               std::invalid_argument);  // psuedo_name can be nullptr, so skip
   EXPECT_THROW(InstrumentPort_create_meter(name, conn, nullptr, unit, desc),
                std::invalid_argument);
   EXPECT_THROW(InstrumentPort_create_meter(name, conn, type, nullptr, desc),

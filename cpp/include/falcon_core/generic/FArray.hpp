@@ -111,17 +111,17 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     return std::make_shared<FArray<T>>(result);
   }
   FArray<T>& operator-=(const FArray<T>& other) {
-    _data -= other._data;
+    _data = _data - other._data;
     return *this;
   }
   FArray<T>& operator-=(const double other) {
     auto ones = xt::ones_like(_data) * other;
-    _data -= ones;
+    _data     = _data - ones;
     return *this;
   }
   FArray<T>& operator-=(const int other) {
     auto ones = xt::ones_like(_data) * other;
-    _data -= ones;
+    _data     = _data - ones;
     return *this;
   }
   std::shared_ptr<FArray<T>> operator-() const {
@@ -262,7 +262,9 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   operator array_type&() override { return _data; }
   operator const array_type&() const override { return _data; }
 
-  bool operator==(const FArray<T>& other) const { return _data == other._data; }
+  bool operator==(const FArray<T>& other) const {
+    return xtensor() == other.xtensor();
+  }
   bool operator!=(const FArray<T>& other) const { return !(*this == other); }
   /**
    * @brief Check if any of the data is greater than the value.

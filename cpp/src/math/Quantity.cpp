@@ -112,12 +112,10 @@ QuantitySP Quantity::operator+(const QuantitySP& other) const {
   return std::make_shared<Quantity>(_value + other_val_converted, _unit);
 }
 Quantity& Quantity::operator+=(const int& other) {
-  _value += other;
-  return *this;
+  throw std::runtime_error("Cannot add a scalar to a quantity with units.");
 }
 Quantity& Quantity::operator+=(const double& other) {
-  _value += other;
-  return *this;
+  throw std::runtime_error("Cannot add a scalar to a quantity with units.");
 }
 Quantity& Quantity::operator+=(const QuantitySP& other) {
   if (!other) {
@@ -154,12 +152,12 @@ QuantitySP Quantity::operator-(const QuantitySP& other) const {
   return std::make_shared<Quantity>(_value - other_val_converted, _unit);
 }
 Quantity& Quantity::operator-=(const int& other) {
-  _value -= other;
-  return *this;
+  throw std::runtime_error(
+      "Cannot subtract a scalar from a quantity with units.");
 }
 Quantity& Quantity::operator-=(const double& other) {
-  _value -= other;
-  return *this;
+  throw std::runtime_error(
+      "Cannot subtract a scalar from a quantity with units.");
 }
 Quantity& Quantity::operator-=(const QuantitySP& other) {
   if (!other) {

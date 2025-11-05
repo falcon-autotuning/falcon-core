@@ -77,12 +77,46 @@ TEST_F(RightReservoirWithImplantedOhmicTest, SerializationRoundTrip) {
   String_destroy(json);
 }
 
-TEST_F(RightReservoirWithImplantedOhmicTest, ThrowsOnNullLeftNeighbor) {
+TEST_F(RightReservoirWithImplantedOhmicTest, ThrowsOnNullCreate) {
   EXPECT_THROW(RightReservoirWithImplantedOhmic_create(name, nullptr, ohmic),
+               std::invalid_argument);
+  EXPECT_THROW(RightReservoirWithImplantedOhmic_create(name, left, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(RightReservoirWithImplantedOhmic_create(nullptr, left, ohmic),
                std::invalid_argument);
 }
 
-TEST_F(RightReservoirWithImplantedOhmicTest, ThrowsOnNullOhmic) {
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_create(name, left, nullptr),
+TEST_F(RightReservoirWithImplantedOhmicTest, DestructorThrowsOnNull) {
+  EXPECT_THROW(RightReservoirWithImplantedOhmic_destroy(nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(RightReservoirWithImplantedOhmicTest, ThrowsOnNullHandleInGetters) {
+  EXPECT_THROW(RightReservoirWithImplantedOhmic_name(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(RightReservoirWithImplantedOhmic_type(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(RightReservoirWithImplantedOhmic_ohmic(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(RightReservoirWithImplantedOhmic_left_neighbor(nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(RightReservoirWithImplantedOhmicTest, ThrowsOnNullHandleInEquality) {
+  EXPECT_THROW(RightReservoirWithImplantedOhmic_equal(nullptr, handle),
+               std::invalid_argument);
+  EXPECT_THROW(RightReservoirWithImplantedOhmic_equal(handle, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(RightReservoirWithImplantedOhmic_not_equal(nullptr, handle),
+               std::invalid_argument);
+  EXPECT_THROW(RightReservoirWithImplantedOhmic_not_equal(handle, nullptr),
+               std::invalid_argument);
+}
+
+TEST_F(RightReservoirWithImplantedOhmicTest,
+       ThrowsOnNullHandleInSerialization) {
+  EXPECT_THROW(RightReservoirWithImplantedOhmic_to_json_string(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(RightReservoirWithImplantedOhmic_from_json_string(nullptr),
                std::invalid_argument);
 }

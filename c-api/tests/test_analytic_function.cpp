@@ -14,8 +14,8 @@ class AnalyticFunctionTest : public ::testing::Test {
     StringHandle raw_labels[2] = {label_x_str, label_y_str};
     label_x                    = ListString_create(&label_x_str, 1);
     label_xy                   = ListString_create(raw_labels, 2);
-    expr_x1                    = String_wrap("x+1");
-    expr_xy                    = String_wrap("x+y");
+    expr_x1                    = String_wrap("x[0]+1");
+    expr_xy                    = String_wrap("x[0]+x[1]");
     args_x                     = MapStringDouble_create_empty();
     MapStringDouble_insert(args_x, String_wrap("x"), 2.0);
   }
@@ -72,7 +72,7 @@ TEST_F(AnalyticFunctionTest, Evaluate) {
 TEST_F(AnalyticFunctionTest, EvaluateArraywise) {
   auto handle = AnalyticFunction_create(label_x, expr_x1);
   auto arr    = AnalyticFunction_evaluate_arraywise(handle, args_x, 1.0, 3.0);
-  EXPECT_EQ(FArrayDouble_size(arr), 4);
+  EXPECT_EQ(FArrayDouble_size(arr), 3);
   FArrayDouble_destroy(arr);
   AnalyticFunction_destroy(handle);
   EXPECT_THROW(AnalyticFunction_evaluate_arraywise(nullptr, args_x, 1.0, 3.0),
