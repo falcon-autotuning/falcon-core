@@ -58,3 +58,6 @@ VoltageStatesResponseTest.*
 DeviceVoltageStateTest.*
 DeviceVoltageStatesTest.*
 MeasurementResponseTest.*
+PointTest.*
+VectorTest.*
+UnitSpaceTest.*

@@ -6,8 +6,8 @@ class PointTest : public ::testing::Test {
  protected:
   void SetUp() override {
     conn   = Connection_create_plunger_gate(String_wrap("A"));
-    qty    = Quantity_create(42.0);
-    unit   = SymbolUnit_create_meter();
+    unit   = SymbolUnit_create_volt();
+    qty    = Quantity_create(42.0, unit);
     map_cd = MapConnectionDouble_create_empty();
     MapConnectionDouble_insert(map_cd, conn, 1.0);
     map_cq = MapConnectionQuantity_create_empty();
@@ -57,14 +57,22 @@ TEST_F(PointTest, Unit) {
 
 TEST_F(PointTest, InsertOrAssignInsertAtErase) {
   auto p = Point_create_empty();
+  EXPECT_TRUE(Point_empty(p));
   Point_insert_or_assign(p, conn, qty);
+  EXPECT_FALSE(Point_empty(p));
+  EXPECT_EQ(Point_size(p), 1);
+  std::cout << "Inserted or assigned quantity." << std::endl;
   Point_insert(p, conn, qty);
+  std::cout << "Inserted quantity." << std::endl;
+  EXPECT_EQ(Point_size(p), 1);
   auto q = Point_at(p, conn);
   EXPECT_NE(q, nullptr);
   Point_erase(p, conn);
   Point_destroy(p);
   Quantity_destroy(q);
+}
 
+TEST_F(PointTest, InsertOrAssignInsertAtEraseNullptr) {
   EXPECT_THROW(Point_insert_or_assign(nullptr, conn, qty),
                std::invalid_argument);
   EXPECT_THROW(Point_insert_or_assign(point, nullptr, qty),

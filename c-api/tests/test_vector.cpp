@@ -20,7 +20,7 @@ class VectorTest : public ::testing::Test {
     MapConnectionQuantity_insert(map_cq, conn, qty);
 
     start  = Point_create(map_cd, unit);
-    end    = Point_create(map_cd, unit);
+    end    = Point_create(map_cq, unit);
     vector = Vector_create(start, end);
   }
   void TearDown() override {
@@ -165,7 +165,7 @@ TEST_F(VectorTest, InsertOrAssignInsertAtErase) {
   EXPECT_THROW(Vector_erase(vector, nullptr), std::invalid_argument);
 }
 
-TEST_F(VectorTest, SizeEmptyClearContainsKeysValuesItems) {
+TEST_F(VectorTest, SizeEmptyClear) {
   EXPECT_GE(Vector_size(vector), 0);
   EXPECT_FALSE(Vector_empty(vector));
   Vector_clear(vector);
@@ -173,7 +173,9 @@ TEST_F(VectorTest, SizeEmptyClearContainsKeysValuesItems) {
   EXPECT_THROW(Vector_size(nullptr), std::invalid_argument);
   EXPECT_THROW(Vector_empty(nullptr), std::invalid_argument);
   EXPECT_THROW(Vector_clear(nullptr), std::invalid_argument);
+}
 
+TEST_F(VectorTest, ContainsKeysValuesItems) {
   EXPECT_TRUE(Vector_contains(vector, conn));
   EXPECT_THROW(Vector_contains(nullptr, conn), std::invalid_argument);
   EXPECT_THROW(Vector_contains(vector, nullptr), std::invalid_argument);
@@ -283,7 +285,7 @@ TEST_F(VectorTest,
   EXPECT_THROW(Vector_project(nullptr, vector), std::invalid_argument);
   EXPECT_THROW(Vector_project(vector, nullptr), std::invalid_argument);
 
-  auto new_unit = SymbolUnit_create_millimeter();
+  auto new_unit = SymbolUnit_create_millivolt();
   Vector_update_unit(vector, new_unit);
   SymbolUnit_destroy(new_unit);
   EXPECT_THROW(Vector_update_unit(nullptr, unit), std::invalid_argument);

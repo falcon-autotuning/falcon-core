@@ -93,17 +93,16 @@ TEST_F(UnitSpaceTest, CreateCartesian2Dspace) {
 TEST_F(UnitSpaceTest, AxesDomainSpaceShapeDimensionCompile) {
   auto axes  = UnitSpace_axes(unitspace);
   auto dom   = UnitSpace_domain(unitspace);
-  auto space = UnitSpace_space(unitspace);
   auto shape = UnitSpace_shape(unitspace);
   EXPECT_GE(UnitSpace_dimension(unitspace), 0);
   UnitSpace_compile(unitspace);
+  FArrayDoubleHandle space = UnitSpace_space(unitspace);
   AxesDiscretizer_destroy(axes);
   Domain_destroy(dom);
-  FArrayDouble_destroy(space);
   ListInt_destroy(shape);
+  FArrayDouble_destroy(space);
   EXPECT_THROW(UnitSpace_axes(nullptr), std::invalid_argument);
   EXPECT_THROW(UnitSpace_domain(nullptr), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_space(nullptr), std::invalid_argument);
   EXPECT_THROW(UnitSpace_shape(nullptr), std::invalid_argument);
   EXPECT_THROW(UnitSpace_dimension(nullptr), std::invalid_argument);
   EXPECT_THROW(UnitSpace_compile(nullptr), std::invalid_argument);
@@ -176,4 +175,14 @@ TEST_F(UnitSpaceTest, ToJsonFromJson) {
   String_destroy(json);
   EXPECT_THROW(UnitSpace_to_json_string(nullptr), std::invalid_argument);
   EXPECT_THROW(UnitSpace_from_json_string(nullptr), std::invalid_argument);
+}
+
+TEST_F(UnitSpaceTest, SpaceCollection) {
+  EXPECT_THROW(UnitSpace_space(nullptr), std::invalid_argument);
+  EXPECT_THROW(UnitSpace_space(unitspace), std::runtime_error);
+}
+
+TEST_F(UnitSpaceTest, ItemsBufferTooSmall) {
+  DiscretizerHandle out[0];
+  EXPECT_THROW(UnitSpace_items(unitspace, out, 0), std::runtime_error);
 }

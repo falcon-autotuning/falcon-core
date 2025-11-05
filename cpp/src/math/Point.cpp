@@ -44,9 +44,9 @@ void Point::insert_or_assign(
   // If default constructing an empty Point a unit can still be set by the first
   // inserted entry.
   if (items().empty()) {
-    _unit = value->unit();
+    this->_unit = value->unit();
   }
-  value->convert_to(_unit);
+  value->convert_to(this->unit());
   Map::insert_or_assign(key, value);
 }
 std::pair<Point::iterator, bool> Point::insert(
@@ -58,9 +58,9 @@ std::pair<Point::iterator, bool> Point::insert(
   // If default constructing an empty Point a unit can still be set by the first
   // inserted entry.
   if (items().empty()) {
-    _unit = value->unit();
+    this->_unit = value->unit();
   }
-  value->convert_to(_unit);
+  value->convert_to(this->_unit);
   return Map::insert(key, value);
 }
 

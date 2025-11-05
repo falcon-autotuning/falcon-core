@@ -346,8 +346,8 @@ void Vector_clear(VectorHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Vector_clear: handle cannot be null");
   }
-  Vector self = *static_cast<Vector*>(handle);
-  self.clear();
+  Vector* self = static_cast<Vector*>(handle);
+  self->clear();
 }
 
 bool Vector_contains(VectorHandle handle, ConnectionHandle key) {
@@ -636,11 +636,11 @@ void Vector_update_unit(VectorHandle handle, SymbolUnitHandle unit) {
   if (!unit) {
     throw std::invalid_argument("Vector_update_unit: unit cannot be null");
   }
-  Vector self = *static_cast<Vector*>(handle);
+  Vector*                                   self = static_cast<Vector*>(handle);
   falcon_core::physics::units::SymbolUnitSP real_unit =
       std::make_shared<falcon_core::physics::units::SymbolUnit>(
           *static_cast<falcon_core::physics::units::SymbolUnit*>(unit));
-  self.update_unit(real_unit);
+  self->update_unit(real_unit);
 }
 
 bool Vector_equal(VectorHandle a, VectorHandle b) {

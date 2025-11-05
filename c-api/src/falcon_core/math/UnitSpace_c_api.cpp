@@ -170,12 +170,12 @@ void UnitSpace_push_back(UnitSpaceHandle handle, DiscretizerHandle value) {
   if (!value) {
     throw std::invalid_argument("UnitSpace_push_back: value cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
+  UnitSpace* self = static_cast<UnitSpace*>(handle);
   falcon_core::math::discrete_spaces::DiscretizerSP real_value =
       std::make_shared<falcon_core::math::discrete_spaces::Discretizer>(
           *static_cast<falcon_core::math::discrete_spaces::Discretizer*>(
               value));
-  self.push_back(real_value);
+  self->push_back(real_value);
 }
 
 size_t UnitSpace_size(UnitSpaceHandle handle) {
@@ -206,8 +206,8 @@ void UnitSpace_clear(UnitSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_clear: handle cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
-  self.clear();
+  UnitSpace* self = static_cast<UnitSpace*>(handle);
+  self->clear();
 }
 
 DiscretizerHandle UnitSpace_at(UnitSpaceHandle handle, size_t idx) {

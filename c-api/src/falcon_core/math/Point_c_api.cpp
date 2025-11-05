@@ -67,8 +67,8 @@ void Point_insert_or_assign(PointHandle      handle,
   if (!value) {
     throw std::invalid_argument("Point_insert_or_assign: value cannot be null");
   }
-  Point self = *static_cast<Point*>(handle);
-  self.insert_or_assign(
+  Point* self = static_cast<Point*>(handle);
+  self->insert_or_assign(
       std::make_shared<device_structures::Connection>(
           *static_cast<device_structures::Connection*>(key)),
       std::make_shared<Quantity>(*static_cast<Quantity*>(value)));
@@ -86,10 +86,10 @@ void Point_insert(PointHandle      handle,
   if (!value) {
     throw std::invalid_argument("Point_insert: value cannot be null");
   }
-  Point self = *static_cast<Point*>(handle);
-  self.insert(std::make_shared<device_structures::Connection>(
-                  *static_cast<device_structures::Connection*>(key)),
-              std::make_shared<Quantity>(*static_cast<Quantity*>(value)));
+  Point* self = static_cast<Point*>(handle);
+  self->insert(std::make_shared<device_structures::Connection>(
+                   *static_cast<device_structures::Connection*>(key)),
+               std::make_shared<Quantity>(*static_cast<Quantity*>(value)));
 }
 
 QuantityHandle Point_at(PointHandle handle, ConnectionHandle key) {
