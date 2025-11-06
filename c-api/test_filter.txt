@@ -94,3 +94,4 @@ ListPairInterpretationContextStringTest.*
 ListPairConnectionPairQuantityQuantityTest.*
 ListListSizeTTest.*
 ListMeasurementContextTest.*
+ListLabelledMeasuredArrayTest.*
