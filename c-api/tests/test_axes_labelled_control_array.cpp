@@ -109,29 +109,32 @@ TEST_F(AxesLabelledControlArrayTest, CreateDestroy) {
 }
 
 TEST_F(AxesLabelledControlArrayTest, AccessorsAndMutators) {
-  // FIXME: SOMETHING IS WRONG HERE WITH SETTING UP LABELLED CONTROL ARRAYS,
-  // SEGFAULT EXPECT_EQ(AxesLabelledControlArray_size(axes), 2u);
-  // LabelledControlArrayHandle     arr[2] = {ca2d, ca1d};
-  // ListLabelledControlArrayHandle handle =
-  //     ListLabelledControlArray_create(arr, 2);
+  EXPECT_EQ(AxesLabelledControlArray_size(axes), 2u);
+  LabelledControlArrayHandle     arr[2] = {ca2d, ca1d};
+  ListLabelledControlArrayHandle handle =
+      ListLabelledControlArray_create(arr, 2);
   // ListLabelledControlArrayHandle out1[1] = {handle};
-  // LabelledControlArrayHandle     out[1]  = {
-  //     ControlArray_from_data(data2d, shape2d, 2)};
-  // auto h2 = AxesLabelledControlArray_create_raw(out, 1);
-  // if (h2) AxesLabelledControlArray_destroy(h2);
-  // ListLabelledControlArray_destroy(handle);
+  auto label = AcquisitionContext_create(
+      Connection_create_plunger_gate(String_wrap("A")),
+      InstrumentTypes_voltmeter(),
+      SymbolUnit_create_volt());
+  auto lca = LabelledControlArray_from_controlarray(
+      ControlArray_from_data(data2d, shape2d, 2), label);
+  LabelledControlArrayHandle out[1] = {lca};
+  auto                       h2 = AxesLabelledControlArray_create_raw(out, 1);
+  if (h2) AxesLabelledControlArray_destroy(h2);
+  ListLabelledControlArray_destroy(handle);
   //
-  // AxesLabelledControlArray_push_back(
-  //     axes, ControlArray_from_data(data2d, shape2d, 2));
-  // LabelledControlArrayHandle out2[3];
-  // EXPECT_EQ(AxesLabelledControlArray_items(axes, out2, 3), 3u);
-  // for (size_t i = 0; i < 3; ++i) {
-  //   LabelledControlArray_destroy(out2[i]);
-  // }
-  //
-  // AxesLabelledControlArray_erase_at(axes, 2);
-  // AxesLabelledControlArray_clear(axes);
-  // EXPECT_TRUE(AxesLabelledControlArray_empty(axes));
+  AxesLabelledControlArray_push_back(axes, lca);
+  LabelledControlArrayHandle out2[3];
+  EXPECT_EQ(AxesLabelledControlArray_items(axes, out2, 3), 3u);
+  for (size_t i = 0; i < 3; ++i) {
+    LabelledControlArray_destroy(out2[i]);
+  }
+
+  AxesLabelledControlArray_erase_at(axes, 2);
+  AxesLabelledControlArray_clear(axes);
+  EXPECT_TRUE(AxesLabelledControlArray_empty(axes));
 }
 
 TEST_F(AxesLabelledControlArrayTest, ContainsIndexEquality) {
