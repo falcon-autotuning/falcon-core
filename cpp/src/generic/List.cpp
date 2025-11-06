@@ -135,6 +135,16 @@ CEREAL_REGISTER_TYPE(
         falcon_core::communications::voltage_states::DeviceVoltageState>);
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<
                      falcon_core::math::domains::CoupledLabelledDomain>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::math::arrays::ControlArray>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::physics::device_structures::Connection>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::physics::device_structures::Connections>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::autotuner_interfaces::names::Channel>);
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -280,3 +290,18 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LDVS);
 using LCLD = falcon_core::generic::List<
     falcon_core::math::domains::CoupledLabelledDomain>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LCLD);
+using LCArr =
+    falcon_core::generic::List<falcon_core::math::arrays::ControlArray>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LCArr);
+using LCArr1D =
+    falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LCArr1D);
+using LConnection = falcon_core::generic::List<
+    falcon_core::physics::device_structures::Connection>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LConnection);
+using LConnections = falcon_core::generic::List<
+    falcon_core::physics::device_structures::Connections>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LConnections);
+using LChannel = falcon_core::generic::List<
+    falcon_core::autotuner_interfaces::names::Channel>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LChannel);

@@ -109,3 +109,8 @@ ListDotGateWithNeighborsTest.*
 ListDiscretizerTest.*
 ListDeviceVoltageStateTest.*
 ListCoupledLabelledDomainTest.*
+ListControlArrayTest.*
+ListControlArray1DTest.*
+ListConnectionTest.*
+ListConnectionsTest.*
+ListChannelTest.*
