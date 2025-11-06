@@ -28,7 +28,7 @@ LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_from_farray(
   return new LabelledMeasuredArray1D(real_farray, real_label);
 }
 
-LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_from_controlarray(
+LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_from_measured_array(
     MeasuredArrayHandle measuredarray, AcquisitionContextHandle label) {
   if (!measuredarray) {
     throw std::invalid_argument(

@@ -76,6 +76,9 @@ AxesDiscretizerTest.*
 AxesControlArrayTest.*
 AxesControlArray1DTest.*
 AxesLabelledControlArrayTest.*
+AxesLabelledControlArray1DTest.*
+AxesLabelledMeasuredArrayTest.*
+AxesLabelledMeasuredArray1DTest.*
 ListPairStringBoolTest.*
 ListPairStringDoubleTest.*
 ListPairStringStringTest.*

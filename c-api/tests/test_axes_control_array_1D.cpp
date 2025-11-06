@@ -10,12 +10,12 @@
 class AxesControlArray1DTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    shape[0] = 3;
-    data[0] = 1.0;
-    data[1] = 2.0;
-    data[2] = 3.0;
-    shape[0] = 3;
-    axes = AxesControlArray1D_create_empty();
+    shape[0]   = 3;
+    data[0]    = 1.0;
+    data[1]    = 2.0;
+    data[2]    = 3.0;
+    shape[0]   = 3;
+    axes       = AxesControlArray1D_create_empty();
     auto item1 = track_ca1d(ControlArray1D_from_data(data, shape, 1));
     auto item2 = track_ca1d(ControlArray1D_from_data(data, shape, 1));
     AxesControlArray1D_push_back(axes, item1);
@@ -70,7 +70,6 @@ TEST_F(AxesControlArray1DTest, CreateDestroy) {
 TEST_F(AxesControlArray1DTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesControlArray1D_size(axes), 2u);
 
-  // ListControlArray1DHandle out1[1] = {ListControlArray_create_empty()};
   ControlArray1DHandle out[1] = {ControlArray1D_from_data(data, shape, 1)};
   auto                 h2     = AxesControlArray1D_create_raw(out, 1);
   if (h2) AxesControlArray1D_destroy(h2);

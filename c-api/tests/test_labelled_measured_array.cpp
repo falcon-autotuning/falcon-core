@@ -24,7 +24,7 @@ class LabelledMeasuredArrayTest : public ::testing::Test {
     label    = AcquisitionContext_create(
         conn, InstrumentTypes_voltmeter(), SymbolUnit_create_volt());
     lma  = LabelledMeasuredArray_from_farray(fa, label);
-    lma2 = LabelledMeasuredArray_from_controlarray(ma, label);
+    lma2 = LabelledMeasuredArray_from_measured_array(ma, label);
   }
   void TearDown() override {
     Connection_destroy(conn);
@@ -47,11 +47,11 @@ class LabelledMeasuredArrayTest : public ::testing::Test {
 TEST_F(LabelledMeasuredArrayTest, CreateDestroy) {
   auto lma3 = LabelledMeasuredArray_from_farray(fa, label);
   LabelledMeasuredArray_destroy(lma3);
-  lma3 = LabelledMeasuredArray_from_controlarray(ma, label);
+  lma3 = LabelledMeasuredArray_from_measured_array(ma, label);
   LabelledMeasuredArray_destroy(lma3);
   EXPECT_THROW(LabelledMeasuredArray_from_farray(nullptr, label),
                std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray_from_controlarray(nullptr, label),
+  EXPECT_THROW(LabelledMeasuredArray_from_measured_array(nullptr, label),
                std::invalid_argument);
   EXPECT_THROW(LabelledMeasuredArray_destroy(nullptr), std::invalid_argument);
 }
