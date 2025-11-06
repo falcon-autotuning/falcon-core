@@ -119,3 +119,8 @@ ListAcquisitionContextTest.*
 PairStringStringTest.*
 PairStringDoubleTest.*
 PairStringBoolTest.*
+PairSizeTSizeTTest.*
+PairDoubleDoubleTest.*
+PairFloatFloatTest.*
+PairIntIntTest.*
+PairIntFloatTest.*
