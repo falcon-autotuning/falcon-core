@@ -54,6 +54,9 @@ CEREAL_REGISTER_TYPE(
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<falcon_core::generic::Pair<
                          falcon_core::autotuner_interfaces::names::Gname,
                          falcon_core::physics::config::core::Group>>)
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<falcon_core::generic::Pair<
+                         falcon_core::physics::device_structures::Connection,
+                         double>>);
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -118,3 +121,7 @@ using LPGG = falcon_core::generic::List<
     falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname,
                                falcon_core::physics::config::core::Group>>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPGG);
+using LPCD = falcon_core::generic::List<falcon_core::generic::Pair<
+    falcon_core::physics::device_structures::Connection,
+    double>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPCD);
