@@ -30,6 +30,8 @@ CEREAL_REGISTER_TYPE(
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<
                      falcon_core::generic::Pair<falcon_core::math::Quantity,
                                                 falcon_core::math::Quantity>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::generic::Pair<int, int>>)
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -71,3 +73,5 @@ using LPQQ = falcon_core::generic::List<
     falcon_core::generic::Pair<falcon_core::math::Quantity,
                                falcon_core::math::Quantity>>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPQQ);
+using LPII = falcon_core::generic::List<falcon_core::generic::Pair<int, int>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPII);
