@@ -2,6 +2,7 @@
 
 #include "falcon_core/autotuner_interfaces/names/Gname.hpp"
 #include "falcon_core/generic/FArray.hpp"
+#include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/math/Quantity.hpp"
 
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<int>);
@@ -14,6 +15,9 @@ CEREAL_REGISTER_TYPE(
     falcon_core::generic::List<falcon_core::generic::FArray<double>>);
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<
                      falcon_core::autotuner_interfaces::names::Gname>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<
+        falcon_core::instrument_interfaces::port_transforms::PortTransform>);
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -35,3 +39,7 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
     falcon_core::generic::List<
         falcon_core::autotuner_interfaces::names::Gname>);
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::generic::Song,
+    falcon_core::generic::List<
+        falcon_core::instrument_interfaces::port_transforms::PortTransform>);
