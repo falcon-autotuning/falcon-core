@@ -47,6 +47,16 @@ class AxesLabelledControlArrayTest : public ::testing::Test {
   }
 
   void TearDown() override {
+    // Avoid double-free: if an item is contained in axes/axes2 then axes destroy
+    // will own its destruction, so skip destroying those items here.
+    std::vector<LabelledControlArrayHandle> remaining;
+    for (auto h : created_items) {
+      bool owned_by_axes = false;
+      if (axes && AxesLabelledControlArray_contains(axes, h)) owned_by_axes = true;
+      if (axes2 && AxesLabelledControlArray_contains(axes2, h)) owned_by_axes = true;
+      if (!owned_by_axes) remaining.push_back(h);
+    }
+
     if (axes) {
       AxesLabelledControlArray_destroy(axes);
       axes = nullptr;
@@ -55,7 +65,8 @@ class AxesLabelledControlArrayTest : public ::testing::Test {
       AxesLabelledControlArray_destroy(axes2);
       axes2 = nullptr;
     }
-    for (auto h : created_items) {
+
+    for (auto h : remaining) {
       LabelledControlArray_destroy(h);
     }
     created_items.clear();
