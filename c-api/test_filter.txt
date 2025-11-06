@@ -72,6 +72,7 @@ AxesIntTest.*
 AxesDoubleTest.*
 AxesCoupledLabelledDomainTest.*
 AxesInstrumentPortTest.*
+AxesDiscretizerTest.*
 ListPairStringBoolTest.*
 ListPairStringDoubleTest.*
 ListPairStringStringTest.*
