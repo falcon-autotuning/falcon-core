@@ -66,3 +66,4 @@ MeasurementContextTest.*
 ListStringTest.*
 ListQuantityTest.*
 ListFArrayDoubleTest.*
+ListGnameTest.*
