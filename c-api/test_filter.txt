@@ -81,3 +81,4 @@ ListPairConnectionConnectionsTest.*
 ListPairGnameGroupTest.*
 ListPairConnectionDoubleTest.*
 ListPairConnectionQuantityTest.*
+ListPairConnectionFloatTest.*

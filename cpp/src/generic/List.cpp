@@ -60,6 +60,9 @@ CEREAL_REGISTER_TYPE(falcon_core::generic::List<falcon_core::generic::Pair<
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<falcon_core::generic::Pair<
                          falcon_core::physics::device_structures::Connection,
                          falcon_core::math::Quantity>>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<falcon_core::generic::Pair<
+                         falcon_core::physics::device_structures::Connection,
+                         float>>);
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -132,3 +135,7 @@ using LPCQ = falcon_core::generic::List<falcon_core::generic::Pair<
     falcon_core::physics::device_structures::Connection,
     falcon_core::math::Quantity>>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPCQ);
+using LPCF = falcon_core::generic::List<falcon_core::generic::Pair<
+    falcon_core::physics::device_structures::Connection,
+    float>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPCF);
