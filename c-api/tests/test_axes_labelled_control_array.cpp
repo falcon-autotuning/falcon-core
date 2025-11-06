@@ -1,38 +1,42 @@
 #include <gtest/gtest.h>
 
+#include <vector>
+
 #include "falcon_core/generic/ListLabelledControlArray_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/AxesLabelledControlArray_c_api.h"
 #include "falcon_core/math/arrays/ControlArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
+
 class AxesLabelledControlArrayTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    shape2d[0]     = 2;
-    shape2d[1]     = 3;
-    data2d[0]      = 1.0;
-    data2d[1]      = 2.0;
-    data2d[2]      = 3.0;
-    data2d[3]      = 1.0;
-    data2d[4]      = 2.0;
-    data2d[5]      = 3.0;
-    axes           = AxesLabelledControlArray_create_empty();
+    shape2d[0] = 2;
+    shape2d[1] = 3;
+    data2d[0] = 1.0;
+    data2d[1] = 2.0;
+    data2d[2] = 3.0;
+    data2d[3] = 1.0;
+    data2d[4] = 2.0;
+    data2d[5] = 3.0;
+    axes = AxesLabelledControlArray_create_empty();
+
     auto pre_item1 = ControlArray_from_data(data2d, shape2d, 2);
     auto pre_item2 = ControlArray_from_data(data2d, shape2d, 2);
 
-    ca1d = LabelledControlArray_from_controlarray(
+    ca1d = track_labelled_control_array(LabelledControlArray_from_controlarray(
         pre_item1,
         AcquisitionContext_create(
             Connection_create_plunger_gate(String_wrap("A")),
             InstrumentTypes_voltmeter(),
-            SymbolUnit_create_volt()));
+            SymbolUnit_create_volt())));
 
-    ca2d = LabelledControlArray_from_controlarray(
+    ca2d = track_labelled_control_array(LabelledControlArray_from_controlarray(
         pre_item2,
         AcquisitionContext_create(
             Connection_create_plunger_gate(String_wrap("A")),
             InstrumentTypes_voltmeter(),
-            SymbolUnit_create_volt()));
+            SymbolUnit_create_volt())));
 
     AxesLabelledControlArray_push_back(axes, ca1d);
     AxesLabelledControlArray_push_back(axes, ca2d);
@@ -41,7 +45,26 @@ class AxesLabelledControlArrayTest : public ::testing::Test {
     AxesLabelledControlArray_push_back(axes2, ca1d);
     AxesLabelledControlArray_push_back(axes2, ca2d);
   }
-  void TearDown() override { AxesLabelledControlArray_destroy(axes); }
+
+  void TearDown() override {
+    if (axes) {
+      AxesLabelledControlArray_destroy(axes);
+      axes = nullptr;
+    }
+    if (axes2) {
+      AxesLabelledControlArray_destroy(axes2);
+      axes2 = nullptr;
+    }
+    for (auto h : created_items) {
+      LabelledControlArray_destroy(h);
+    }
+    created_items.clear();
+  }
+
+  LabelledControlArrayHandle track_labelled_control_array(LabelledControlArrayHandle h) {
+    created_items.push_back(h);
+    return h;
+  }
 
   AxesLabelledControlArrayHandle axes  = nullptr;
   AxesLabelledControlArrayHandle axes2 = nullptr;
@@ -54,6 +77,8 @@ class AxesLabelledControlArrayTest : public ::testing::Test {
   LabelledControlArrayHandle     ca1d;
   LabelledControlArrayHandle     ca2d_2;
   FArrayDoubleHandle             fa2d;
+
+  std::vector<LabelledControlArrayHandle> created_items;
 };
 
 TEST_F(AxesLabelledControlArrayTest, CreateDestroy) {
@@ -66,6 +91,7 @@ TEST_F(AxesLabelledControlArrayTest, CreateDestroy) {
   ListLabelledControlArrayHandle handle =
       ListLabelledControlArray_create(arr, 2);
   EXPECT_NO_THROW(AxesLabelledControlArray_create(handle));
+  ListLabelledControlArray_destroy(handle);
 }
 
 TEST_F(AxesLabelledControlArrayTest, AccessorsAndMutators) {
@@ -77,11 +103,17 @@ TEST_F(AxesLabelledControlArrayTest, AccessorsAndMutators) {
   LabelledControlArrayHandle     out[1]  = {
       ControlArray_from_data(data2d, shape2d, 2)};
   auto h2 = AxesLabelledControlArray_create_raw(out, 1);
+  if (h2) AxesLabelledControlArray_destroy(h2);
+  ListLabelledControlArray_destroy(handle);
 
   AxesLabelledControlArray_push_back(
       axes, ControlArray_from_data(data2d, shape2d, 2));
   LabelledControlArrayHandle out2[3];
-  AxesLabelledControlArray_items(axes, out2, 3);
+  EXPECT_EQ(AxesLabelledControlArray_items(axes, out2, 3), 3u);
+  for (size_t i = 0; i < 3; ++i) {
+    LabelledControlArray_destroy(out2[i]);
+  }
+
   AxesLabelledControlArray_erase_at(axes, 2);
   AxesLabelledControlArray_clear(axes);
   EXPECT_TRUE(AxesLabelledControlArray_empty(axes));

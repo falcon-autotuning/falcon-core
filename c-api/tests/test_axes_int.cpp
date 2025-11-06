@@ -17,7 +17,16 @@ class AxesIntTest : public ::testing::Test {
     raw_arr[1] = 20;
     raw        = raw_arr;
   }
-  void TearDown() override { AxesInt_destroy(axes); }
+  void TearDown() override {
+    if (axes) {
+      AxesInt_destroy(axes);
+      axes = nullptr;
+    }
+    if (axes2) {
+      AxesInt_destroy(axes2);
+      axes2 = nullptr;
+    }
+  }
 
   AxesIntHandle axes  = nullptr;
   AxesIntHandle axes2 = nullptr;

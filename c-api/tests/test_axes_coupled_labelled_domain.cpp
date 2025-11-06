@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
 
+#include <vector>
+
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
@@ -7,9 +9,9 @@
 class AxesCoupledLabelledDomainTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    axes       = AxesCoupledLabelledDomain_create_empty();
-    auto item1 = CoupledLabelledDomain_create_empty();
-    auto item2 = CoupledLabelledDomain_create_empty();
+    axes = AxesCoupledLabelledDomain_create_empty();
+    auto item1 = track_item(CoupledLabelledDomain_create_empty());
+    auto item2 = track_item(CoupledLabelledDomain_create_empty());
     AxesCoupledLabelledDomain_push_back(axes, item1);
     AxesCoupledLabelledDomain_push_back(axes, item2);
 
@@ -17,11 +19,32 @@ class AxesCoupledLabelledDomainTest : public ::testing::Test {
     AxesCoupledLabelledDomain_push_back(axes2, item1);
     AxesCoupledLabelledDomain_push_back(axes2, item2);
   }
-  void TearDown() override { AxesCoupledLabelledDomain_destroy(axes); }
+
+  void TearDown() override {
+    if (axes) {
+      AxesCoupledLabelledDomain_destroy(axes);
+      axes = nullptr;
+    }
+    if (axes2) {
+      AxesCoupledLabelledDomain_destroy(axes2);
+      axes2 = nullptr;
+    }
+    for (auto h : created_items) {
+      CoupledLabelledDomain_destroy(h);
+    }
+    created_items.clear();
+  }
+
+  CoupledLabelledDomainHandle track_item(CoupledLabelledDomainHandle h) {
+    created_items.push_back(h);
+    return h;
+  }
 
   AxesCoupledLabelledDomainHandle axes  = nullptr;
   AxesCoupledLabelledDomainHandle axes2 = nullptr;
   CoupledLabelledDomainHandle     rawbuffer[2];
+
+  std::vector<CoupledLabelledDomainHandle> created_items;
 };
 
 TEST_F(AxesCoupledLabelledDomainTest, CreateDestroy) {
@@ -40,11 +63,16 @@ TEST_F(AxesCoupledLabelledDomainTest, AccessorsAndMutators) {
 
   CoupledLabelledDomainHandle out[1] = {CoupledLabelledDomain_create_empty()};
   auto                        h2 = AxesCoupledLabelledDomain_create_raw(out, 1);
+  if (h2) AxesCoupledLabelledDomain_destroy(h2);
 
   AxesCoupledLabelledDomain_push_back(axes,
                                       CoupledLabelledDomain_create_empty());
   CoupledLabelledDomainHandle out2[3];
-  AxesCoupledLabelledDomain_items(axes, out2, 3);
+  EXPECT_EQ(AxesCoupledLabelledDomain_items(axes, out2, 3), 3u);
+  for (size_t i = 0; i < 3; ++i) {
+    CoupledLabelledDomain_destroy(out2[i]);
+  }
+
   AxesCoupledLabelledDomain_erase_at(axes, 2);
   AxesCoupledLabelledDomain_clear(axes);
   EXPECT_TRUE(AxesCoupledLabelledDomain_empty(axes));
