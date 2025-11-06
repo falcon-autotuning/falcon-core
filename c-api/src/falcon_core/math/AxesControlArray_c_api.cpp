@@ -16,7 +16,7 @@ AxesControlArrayHandle AxesControlArray_create_raw(const ControlArrayHandle* dat
                 }
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::math::arrays::ControlArray>(static_cast<falcon_core::math::arrays::ControlArray*>(data[i]), [](falcon_core::math::arrays::ControlArray*) {} ));
+        vec.push_back(std::make_shared<falcon_core::math::arrays::ControlArray>(*static_cast<falcon_core::math::arrays::ControlArray*>(data[i])));
     }
 
     return new falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>(

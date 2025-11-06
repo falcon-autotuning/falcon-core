@@ -918,7 +918,7 @@ for (size_t i = 0; i < n; ++i) {{
                 }}
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {{
-        vec.push_back(std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(data[i]), []({cpp_real}*) {{}} ));
+        vec.push_back(std::make_shared<{cpp_real}>(*static_cast<{cpp_real}*>(data[i])));
     }}
 """
         with self.edit_implementation() as f:

@@ -16,7 +16,7 @@ AxesDiscretizerHandle AxesDiscretizer_create_raw(const DiscretizerHandle* data, 
                 }
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::math::discrete_spaces::Discretizer>(static_cast<falcon_core::math::discrete_spaces::Discretizer*>(data[i]), [](falcon_core::math::discrete_spaces::Discretizer*) {} ));
+        vec.push_back(std::make_shared<falcon_core::math::discrete_spaces::Discretizer>(*static_cast<falcon_core::math::discrete_spaces::Discretizer*>(data[i])));
     }
 
     return new falcon_core::math::Axes<falcon_core::math::discrete_spaces::Discretizer>(

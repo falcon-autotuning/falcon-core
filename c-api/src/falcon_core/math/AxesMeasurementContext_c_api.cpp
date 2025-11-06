@@ -16,7 +16,7 @@ AxesMeasurementContextHandle AxesMeasurementContext_create_raw(const Measurement
                 }
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(static_cast<falcon_core::autotuner_interfaces::contexts::MeasurementContext*>(data[i]), [](falcon_core::autotuner_interfaces::contexts::MeasurementContext*) {} ));
+        vec.push_back(std::make_shared<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(*static_cast<falcon_core::autotuner_interfaces::contexts::MeasurementContext*>(data[i])));
     }
 
     return new falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(

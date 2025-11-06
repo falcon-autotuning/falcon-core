@@ -69,6 +69,7 @@ ListFArrayDoubleTest.*
 ListGnameTest.*
 ListPortTransformTest.*
 AxesIntTest.*
+AxesDoubleTest.*
 AxesCoupledLabelledDomainTest.*
 AxesInstrumentPortTest.*
 ListPairStringBoolTest.*
