@@ -15,7 +15,7 @@ typedef void* LabelledMeasuredArrayHandle;
 // Constructors
 LabelledMeasuredArrayHandle LabelledMeasuredArray_from_farray(
     FArrayDoubleHandle farray, AcquisitionContextHandle label);
-LabelledMeasuredArrayHandle LabelledMeasuredArray_from_controlarray(
+LabelledMeasuredArrayHandle LabelledMeasuredArray_from_measured_array(
     MeasuredArrayHandle measuredarray, AcquisitionContextHandle label);
 
 // Destructor
