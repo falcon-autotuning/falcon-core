@@ -38,15 +38,13 @@ TEST_F(AxesCoupledLabelledDomainTest, CreateDestroy) {
 TEST_F(AxesCoupledLabelledDomainTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesCoupledLabelledDomain_size(axes), 2u);
 
-  CoupledLabelledDomainHandle out[4];
-
-  out[0]  = CoupledLabelledDomain_create_empty();
-  auto h2 = AxesCoupledLabelledDomain_create_raw(out, 2);
+  CoupledLabelledDomainHandle out[1] = {CoupledLabelledDomain_create_empty()};
+  auto                        h2 = AxesCoupledLabelledDomain_create_raw(out, 1);
 
   AxesCoupledLabelledDomain_push_back(axes,
                                       CoupledLabelledDomain_create_empty());
-  CoupledLabelledDomainHandle out2[2];
-  AxesCoupledLabelledDomain_items(axes, out2, 2);
+  CoupledLabelledDomainHandle out2[3];
+  AxesCoupledLabelledDomain_items(axes, out2, 3);
   AxesCoupledLabelledDomain_erase_at(axes, 2);
   AxesCoupledLabelledDomain_clear(axes);
   EXPECT_TRUE(AxesCoupledLabelledDomain_empty(axes));
