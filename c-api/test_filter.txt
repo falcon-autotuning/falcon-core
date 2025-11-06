@@ -117,3 +117,5 @@ ListConnectionsTest.*
 ListChannelTest.*
 ListAcquisitionContextTest.*
 PairStringStringTest.*
+PairStringDoubleTest.*
+PairStringBoolTest.*

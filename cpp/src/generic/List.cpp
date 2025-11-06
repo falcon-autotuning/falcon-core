@@ -151,7 +151,6 @@ CEREAL_REGISTER_TYPE(
         falcon_core::autotuner_interfaces::contexts::AcquisitionContext>);
 CEREAL_REGISTER_TYPE(
     falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>);
-)
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
