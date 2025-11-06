@@ -71,6 +71,7 @@ ListPortTransformTest.*
 AxesIntTest.*
 AxesDoubleTest.*
 AxesCoupledLabelledDomainTest.*
+AxesInstrumentPortTest.*
 ListPairStringBoolTest.*
 ListPairStringDoubleTest.*
 ListPairStringStringTest.*
