@@ -2,6 +2,7 @@
 
 #include "falcon_core/autotuner_interfaces/names/Gname.hpp"
 #include "falcon_core/generic/FArray.hpp"
+#include "falcon_core/generic/Pair.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/math/Quantity.hpp"
 
@@ -18,6 +19,23 @@ CEREAL_REGISTER_TYPE(falcon_core::generic::List<
 CEREAL_REGISTER_TYPE(
     falcon_core::generic::List<
         falcon_core::instrument_interfaces::port_transforms::PortTransform>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::generic::Pair<std::string, bool>>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::generic::Pair<std::string, double>>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::generic::Pair<std::string, std::string>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::generic::Pair<falcon_core::math::Quantity,
+                                                falcon_core::math::Quantity>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::generic::Pair<int, int>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::generic::Pair<int, float>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::generic::Pair<float, float>>);
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -43,3 +61,26 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
     falcon_core::generic::List<
         falcon_core::instrument_interfaces::port_transforms::PortTransform>);
+using LPSB =
+    falcon_core::generic::List<falcon_core::generic::Pair<std::string, bool>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPSB);
+using LPSD =
+    falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPSD);
+using LPSS = falcon_core::generic::List<
+    falcon_core::generic::Pair<std::string, std::string>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPSS);
+using LPSTST =
+    falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPSTST);
+using LPQQ = falcon_core::generic::List<
+    falcon_core::generic::Pair<falcon_core::math::Quantity,
+                               falcon_core::math::Quantity>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPQQ);
+using LPII = falcon_core::generic::List<falcon_core::generic::Pair<int, int>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPII);
+using LPIF = falcon_core::generic::List<falcon_core::generic::Pair<int, float>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPIF);
+using LPFF =
+    falcon_core::generic::List<falcon_core::generic::Pair<float, float>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPFF);
