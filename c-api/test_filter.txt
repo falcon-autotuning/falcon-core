@@ -76,3 +76,5 @@ ListPairQuantityQuantityTest.*
 ListPairIntIntTest.*
 ListPairIntFloatTest.*
 ListPairFloatFloatTest.*
+ListPairChannelConnectionsTest.*
+ListPairConnectionConnectionsTest.*
