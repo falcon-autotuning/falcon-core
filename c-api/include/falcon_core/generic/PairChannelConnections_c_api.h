@@ -15,6 +15,7 @@ void PairChannelConnections_destroy(PairChannelConnectionsHandle handle);
 ChannelHandle PairChannelConnections_first(PairChannelConnectionsHandle handle);
 ConnectionsHandle PairChannelConnections_second(PairChannelConnectionsHandle handle);
 bool PairChannelConnections_equal(PairChannelConnectionsHandle a, PairChannelConnectionsHandle b);
+bool PairChannelConnections_not_equal(PairChannelConnectionsHandle a, PairChannelConnectionsHandle b);
 // Serialization (from Song)
 StringHandle      PairChannelConnections_to_json_string(PairChannelConnectionsHandle handle);
 PairChannelConnectionsHandle PairChannelConnections_from_json_string(StringHandle json);

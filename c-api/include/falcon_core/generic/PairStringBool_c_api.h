@@ -15,6 +15,7 @@ void PairStringBool_destroy(PairStringBoolHandle handle);
 StringHandle PairStringBool_first(PairStringBoolHandle handle);
 bool PairStringBool_second(PairStringBoolHandle handle);
 bool PairStringBool_equal(PairStringBoolHandle a, PairStringBoolHandle b);
+bool PairStringBool_not_equal(PairStringBoolHandle a, PairStringBoolHandle b);
 // Serialization (from Song)
 StringHandle      PairStringBool_to_json_string(PairStringBoolHandle handle);
 PairStringBoolHandle PairStringBool_from_json_string(StringHandle json);

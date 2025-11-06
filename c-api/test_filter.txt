@@ -114,3 +114,5 @@ ListControlArray1DTest.*
 ListConnectionTest.*
 ListConnectionsTest.*
 ListChannelTest.*
+ListAcquisitionContextTest.*
+PairStringStringTest.*

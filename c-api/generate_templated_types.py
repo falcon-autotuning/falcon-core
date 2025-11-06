@@ -415,7 +415,8 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);
 void {self.mangled_name()}_destroy({self.chandle()} handle);
 {c_type_1} {self.mangled_name()}_first({self.chandle()} handle);
 {c_type_2} {self.mangled_name()}_second({self.chandle()} handle);
-bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);""")
+bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
+bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);""")
 
     def generate_farray_header(self):
         c_type = self.combo[0]

@@ -14,6 +14,7 @@ void PairSizeTSizeT_destroy(PairSizeTSizeTHandle handle);
 size_t PairSizeTSizeT_first(PairSizeTSizeTHandle handle);
 size_t PairSizeTSizeT_second(PairSizeTSizeTHandle handle);
 bool PairSizeTSizeT_equal(PairSizeTSizeTHandle a, PairSizeTSizeTHandle b);
+bool PairSizeTSizeT_not_equal(PairSizeTSizeTHandle a, PairSizeTSizeTHandle b);
 // Serialization (from Song)
 StringHandle      PairSizeTSizeT_to_json_string(PairSizeTSizeTHandle handle);
 PairSizeTSizeTHandle PairSizeTSizeT_from_json_string(StringHandle json);
