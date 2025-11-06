@@ -104,3 +104,7 @@ ListInterpretationContextTest.*
 ListInstrumentPortTest.*
 ListImpedanceTest.*
 ListGroupTest.*
+ListDotGateWithNeighborsTest.*
+ListDiscretizerTest.*
+ListDeviceVoltageStateTest.*
+ListCoupledLabelledDomainTest.*
