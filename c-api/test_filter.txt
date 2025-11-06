@@ -82,3 +82,4 @@ ListPairGnameGroupTest.*
 ListPairConnectionDoubleTest.*
 ListPairConnectionQuantityTest.*
 ListPairConnectionFloatTest.*
+ListPairInstrumentPortPortTransformTest.*
