@@ -70,3 +70,4 @@ ListGnameTest.*
 ListPortTransformTest.*
 ListPairStringBoolTest.*
 ListPairStringDoubleTest.*
+ListPairStringStringTest.*
