@@ -18,11 +18,7 @@ ListPairGnameGroupHandle ListPairGnameGroup_fill_value(size_t count, PairGnameGr
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>(
         count, stored_obj);
 }
-
-ListPairGnameGroupHandle ListPairGnameGroup_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>(count));
-}
+ 
 
 ListPairGnameGroupHandle ListPairGnameGroup_create(PairGnameGroupHandle* data, size_t count) {
 if (!data) {

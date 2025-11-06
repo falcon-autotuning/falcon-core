@@ -16,11 +16,7 @@ ListDiscretizerHandle ListDiscretizer_fill_value(size_t count, DiscretizerHandle
     return new falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>(
         count, stored_obj);
 }
-
-ListDiscretizerHandle ListDiscretizer_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>(
-        falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>(count));
-}
+ 
 
 ListDiscretizerHandle ListDiscretizer_create(DiscretizerHandle* data, size_t count) {
 if (!data) {

@@ -11,11 +11,11 @@ ListIntHandle ListInt_fill_value(size_t count, int value) {
     return new falcon_core::generic::List<int>(
         count, stored_obj);
 }
-
-ListIntHandle ListInt_allocate(size_t count) {
+ ListIntHandle ListInt_allocate(size_t count) {
     return new falcon_core::generic::List<int>(
         falcon_core::generic::List<int>(count));
 }
+
 
 ListIntHandle ListInt_create(int* data, size_t count) {
 if (!data) {

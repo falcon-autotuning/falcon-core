@@ -16,11 +16,7 @@ ListLabelledDomainHandle ListLabelledDomain_fill_value(size_t count, LabelledDom
     return new falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(
         count, stored_obj);
 }
-
-ListLabelledDomainHandle ListLabelledDomain_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(
-        falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>(count));
-}
+ 
 
 ListLabelledDomainHandle ListLabelledDomain_create(LabelledDomainHandle* data, size_t count) {
 if (!data) {

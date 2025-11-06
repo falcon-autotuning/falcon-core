@@ -16,11 +16,7 @@ ListConnectionsHandle ListConnections_fill_value(size_t count, ConnectionsHandle
     return new falcon_core::generic::List<falcon_core::physics::device_structures::Connections>(
         count, stored_obj);
 }
-
-ListConnectionsHandle ListConnections_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::physics::device_structures::Connections>(
-        falcon_core::generic::List<falcon_core::physics::device_structures::Connections>(count));
-}
+ 
 
 ListConnectionsHandle ListConnections_create(ConnectionsHandle* data, size_t count) {
 if (!data) {

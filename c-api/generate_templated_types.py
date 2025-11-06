@@ -259,10 +259,16 @@ class Entry:
 
     def generate_list_header(self):
         c_type = self.combo[0]
+        if c_type == "StringHandle" or (c_type in c_primitives):
+            allocate_signature = (
+                f"{self.chandle()} {self.mangled_name()}_allocate(size_t count);"
+            )
+        else:
+            allocate_signature = ""
         with self.edit_header() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty();
-{self.chandle()} {self.mangled_name()}_allocate(size_t count);
+{allocate_signature}
 {self.chandle()} {self.mangled_name()}_fill_value(size_t count, {c_type} value);
 {self.chandle()} {self.mangled_name()}_create({c_type}* data, size_t count);
 void {self.mangled_name()}_destroy({self.chandle()} handle);
@@ -514,6 +520,11 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
         out_buffer[i] = String_create(str.data(), str.size());
     }
 """
+            from_allocate = f"""{self.chandle()} {self.mangled_name()}_allocate(size_t count) {{
+    return new falcon_core::generic::List<{cpp_real}>(
+        falcon_core::generic::List<{cpp_real}>(count));
+}}
+"""
             stored_out_value = "return String_create(obj.data(), obj.size());"
             create_allocation = """
     vec.reserve(count);
@@ -526,7 +537,13 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
             copy_to_out_buffer = "std::copy_n(list->items().begin(), n, out_buffer);"
             stored_out_value = "return obj;"
             create_allocation = "vec.insert(vec.end(), data, data + count);"
+            from_allocate = f"""{self.chandle()} {self.mangled_name()}_allocate(size_t count) {{
+    return new falcon_core::generic::List<{cpp_real}>(
+        falcon_core::generic::List<{cpp_real}>(count));
+}}
+"""
         else:
+            from_allocate = ""
             stored_fill_value = f"""
     if (!value) {{
     throw std::invalid_argument("Null value passed to {self.mangled_name()}_fill_value");
@@ -554,11 +571,7 @@ for (size_t i = 0; i < n; ++i) {{
     return new falcon_core::generic::List<{cpp_real}>(
         count, stored_obj);
 }}
-
-{self.chandle()} {self.mangled_name()}_allocate(size_t count) {{
-    return new falcon_core::generic::List<{cpp_real}>(
-        falcon_core::generic::List<{cpp_real}>(count));
-}}
+ {from_allocate}
 
 {self.chandle()} {self.mangled_name()}_create({c_type}* data, size_t count) {{
 if (!data) {{

@@ -11,11 +11,11 @@ ListBoolHandle ListBool_fill_value(size_t count, bool value) {
     return new falcon_core::generic::List<bool>(
         count, stored_obj);
 }
-
-ListBoolHandle ListBool_allocate(size_t count) {
+ ListBoolHandle ListBool_allocate(size_t count) {
     return new falcon_core::generic::List<bool>(
         falcon_core::generic::List<bool>(count));
 }
+
 
 ListBoolHandle ListBool_create(bool* data, size_t count) {
 if (!data) {

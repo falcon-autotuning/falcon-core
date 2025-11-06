@@ -11,7 +11,7 @@ typedef void* ListPairIntIntHandle;
 // Function declarations
 
 ListPairIntIntHandle ListPairIntInt_create_empty();
-ListPairIntIntHandle ListPairIntInt_allocate(size_t count);
+
 ListPairIntIntHandle ListPairIntInt_fill_value(size_t count, PairIntIntHandle value);
 ListPairIntIntHandle ListPairIntInt_create(PairIntIntHandle* data, size_t count);
 void ListPairIntInt_destroy(ListPairIntIntHandle handle);

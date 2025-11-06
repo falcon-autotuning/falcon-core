@@ -16,11 +16,7 @@ ListPairStringBoolHandle ListPairStringBool_fill_value(size_t count, PairStringB
     return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, bool>>(
         count, stored_obj);
 }
-
-ListPairStringBoolHandle ListPairStringBool_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, bool>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<std::string, bool>>(count));
-}
+ 
 
 ListPairStringBoolHandle ListPairStringBool_create(PairStringBoolHandle* data, size_t count) {
 if (!data) {

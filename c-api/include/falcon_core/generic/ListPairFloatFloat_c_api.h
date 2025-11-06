@@ -11,7 +11,7 @@ typedef void* ListPairFloatFloatHandle;
 // Function declarations
 
 ListPairFloatFloatHandle ListPairFloatFloat_create_empty();
-ListPairFloatFloatHandle ListPairFloatFloat_allocate(size_t count);
+
 ListPairFloatFloatHandle ListPairFloatFloat_fill_value(size_t count, PairFloatFloatHandle value);
 ListPairFloatFloatHandle ListPairFloatFloat_create(PairFloatFloatHandle* data, size_t count);
 void ListPairFloatFloat_destroy(ListPairFloatFloatHandle handle);

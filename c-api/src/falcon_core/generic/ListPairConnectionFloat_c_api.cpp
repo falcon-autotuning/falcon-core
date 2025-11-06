@@ -17,11 +17,7 @@ ListPairConnectionFloatHandle ListPairConnectionFloat_fill_value(size_t count, P
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>(
         count, stored_obj);
 }
-
-ListPairConnectionFloatHandle ListPairConnectionFloat_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>(count));
-}
+ 
 
 ListPairConnectionFloatHandle ListPairConnectionFloat_create(PairConnectionFloatHandle* data, size_t count) {
 if (!data) {

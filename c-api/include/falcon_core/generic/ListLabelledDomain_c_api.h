@@ -11,7 +11,7 @@ typedef void* ListLabelledDomainHandle;
 // Function declarations
 
 ListLabelledDomainHandle ListLabelledDomain_create_empty();
-ListLabelledDomainHandle ListLabelledDomain_allocate(size_t count);
+
 ListLabelledDomainHandle ListLabelledDomain_fill_value(size_t count, LabelledDomainHandle value);
 ListLabelledDomainHandle ListLabelledDomain_create(LabelledDomainHandle* data, size_t count);
 void ListLabelledDomain_destroy(ListLabelledDomainHandle handle);

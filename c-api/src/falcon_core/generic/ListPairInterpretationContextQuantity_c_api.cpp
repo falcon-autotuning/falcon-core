@@ -19,11 +19,7 @@ ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantit
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>(
         count, stored_obj);
 }
-
-ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>(count));
-}
+ 
 
 ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_create(PairInterpretationContextQuantityHandle* data, size_t count) {
 if (!data) {

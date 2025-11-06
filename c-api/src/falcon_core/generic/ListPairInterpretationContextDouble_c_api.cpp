@@ -17,11 +17,7 @@ ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_fi
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>(
         count, stored_obj);
 }
-
-ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>(count));
-}
+ 
 
 ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_create(PairInterpretationContextDoubleHandle* data, size_t count) {
 if (!data) {

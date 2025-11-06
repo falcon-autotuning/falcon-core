@@ -16,11 +16,7 @@ ListQuantityHandle ListQuantity_fill_value(size_t count, QuantityHandle value) {
     return new falcon_core::generic::List<falcon_core::math::Quantity>(
         count, stored_obj);
 }
-
-ListQuantityHandle ListQuantity_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::math::Quantity>(
-        falcon_core::generic::List<falcon_core::math::Quantity>(count));
-}
+ 
 
 ListQuantityHandle ListQuantity_create(QuantityHandle* data, size_t count) {
 if (!data) {

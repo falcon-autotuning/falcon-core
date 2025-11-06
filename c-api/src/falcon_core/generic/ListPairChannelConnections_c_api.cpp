@@ -18,11 +18,7 @@ ListPairChannelConnectionsHandle ListPairChannelConnections_fill_value(size_t co
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(
         count, stored_obj);
 }
-
-ListPairChannelConnectionsHandle ListPairChannelConnections_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(count));
-}
+ 
 
 ListPairChannelConnectionsHandle ListPairChannelConnections_create(PairChannelConnectionsHandle* data, size_t count) {
 if (!data) {

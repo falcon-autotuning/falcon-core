@@ -10,7 +10,7 @@ typedef void* ListListSizeTHandle;
 // Function declarations
 
 ListListSizeTHandle ListListSizeT_create_empty();
-ListListSizeTHandle ListListSizeT_allocate(size_t count);
+
 ListListSizeTHandle ListListSizeT_fill_value(size_t count, ListSizeTHandle value);
 ListListSizeTHandle ListListSizeT_create(ListSizeTHandle* data, size_t count);
 void ListListSizeT_destroy(ListListSizeTHandle handle);

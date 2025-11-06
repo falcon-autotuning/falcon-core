@@ -11,7 +11,7 @@ typedef void* ListConnectionHandle;
 // Function declarations
 
 ListConnectionHandle ListConnection_create_empty();
-ListConnectionHandle ListConnection_allocate(size_t count);
+
 ListConnectionHandle ListConnection_fill_value(size_t count, ConnectionHandle value);
 ListConnectionHandle ListConnection_create(ConnectionHandle* data, size_t count);
 void ListConnection_destroy(ListConnectionHandle handle);

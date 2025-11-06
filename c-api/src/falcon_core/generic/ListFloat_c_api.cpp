@@ -11,11 +11,11 @@ ListFloatHandle ListFloat_fill_value(size_t count, float value) {
     return new falcon_core::generic::List<float>(
         count, stored_obj);
 }
-
-ListFloatHandle ListFloat_allocate(size_t count) {
+ ListFloatHandle ListFloat_allocate(size_t count) {
     return new falcon_core::generic::List<float>(
         falcon_core::generic::List<float>(count));
 }
+
 
 ListFloatHandle ListFloat_create(float* data, size_t count) {
 if (!data) {

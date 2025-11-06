@@ -16,11 +16,7 @@ ListGnameHandle ListGname_fill_value(size_t count, GnameHandle value) {
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>(
         count, stored_obj);
 }
-
-ListGnameHandle ListGname_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>(count));
-}
+ 
 
 ListGnameHandle ListGname_create(GnameHandle* data, size_t count) {
 if (!data) {

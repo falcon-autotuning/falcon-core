@@ -11,7 +11,7 @@ typedef void* ListGnameHandle;
 // Function declarations
 
 ListGnameHandle ListGname_create_empty();
-ListGnameHandle ListGname_allocate(size_t count);
+
 ListGnameHandle ListGname_fill_value(size_t count, GnameHandle value);
 ListGnameHandle ListGname_create(GnameHandle* data, size_t count);
 void ListGname_destroy(ListGnameHandle handle);

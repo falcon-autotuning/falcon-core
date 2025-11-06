@@ -15,11 +15,11 @@ ListStringHandle ListString_fill_value(size_t count, StringHandle value) {
     return new falcon_core::generic::List<std::string>(
         count, stored_obj);
 }
-
-ListStringHandle ListString_allocate(size_t count) {
+ ListStringHandle ListString_allocate(size_t count) {
     return new falcon_core::generic::List<std::string>(
         falcon_core::generic::List<std::string>(count));
 }
+
 
 ListStringHandle ListString_create(StringHandle* data, size_t count) {
 if (!data) {

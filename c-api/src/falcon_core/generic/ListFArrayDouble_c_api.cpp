@@ -16,11 +16,7 @@ ListFArrayDoubleHandle ListFArrayDouble_fill_value(size_t count, FArrayDoubleHan
     return new falcon_core::generic::List<falcon_core::generic::FArray<double>>(
         count, stored_obj);
 }
-
-ListFArrayDoubleHandle ListFArrayDouble_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::FArray<double>>(
-        falcon_core::generic::List<falcon_core::generic::FArray<double>>(count));
-}
+ 
 
 ListFArrayDoubleHandle ListFArrayDouble_create(FArrayDoubleHandle* data, size_t count) {
 if (!data) {

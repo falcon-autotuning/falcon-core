@@ -16,11 +16,7 @@ ListInstrumentPortHandle ListInstrumentPort_fill_value(size_t count, InstrumentP
     return new falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>(
         count, stored_obj);
 }
-
-ListInstrumentPortHandle ListInstrumentPort_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>(
-        falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>(count));
-}
+ 
 
 ListInstrumentPortHandle ListInstrumentPort_create(InstrumentPortHandle* data, size_t count) {
 if (!data) {

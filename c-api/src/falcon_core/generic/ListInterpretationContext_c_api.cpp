@@ -16,11 +16,7 @@ ListInterpretationContextHandle ListInterpretationContext_fill_value(size_t coun
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(
         count, stored_obj);
 }
-
-ListInterpretationContextHandle ListInterpretationContext_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(count));
-}
+ 
 
 ListInterpretationContextHandle ListInterpretationContext_create(InterpretationContextHandle* data, size_t count) {
 if (!data) {

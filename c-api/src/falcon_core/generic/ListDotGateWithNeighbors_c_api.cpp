@@ -16,11 +16,7 @@ ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_fill_value(size_t count,
     return new falcon_core::generic::List<falcon_core::physics::config::geometries::DotGateWithNeighbors>(
         count, stored_obj);
 }
-
-ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::physics::config::geometries::DotGateWithNeighbors>(
-        falcon_core::generic::List<falcon_core::physics::config::geometries::DotGateWithNeighbors>(count));
-}
+ 
 
 ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create(DotGateWithNeighborsHandle* data, size_t count) {
 if (!data) {

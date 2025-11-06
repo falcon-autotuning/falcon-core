@@ -16,11 +16,7 @@ ListChannelHandle ListChannel_fill_value(size_t count, ChannelHandle value) {
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(
         count, stored_obj);
 }
-
-ListChannelHandle ListChannel_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(count));
-}
+ 
 
 ListChannelHandle ListChannel_create(ChannelHandle* data, size_t count) {
 if (!data) {

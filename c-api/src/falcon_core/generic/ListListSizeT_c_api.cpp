@@ -15,11 +15,7 @@ ListListSizeTHandle ListListSizeT_fill_value(size_t count, ListSizeTHandle value
     return new falcon_core::generic::List<falcon_core::generic::List<size_t>>(
         count, stored_obj);
 }
-
-ListListSizeTHandle ListListSizeT_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::List<size_t>>(
-        falcon_core::generic::List<falcon_core::generic::List<size_t>>(count));
-}
+ 
 
 ListListSizeTHandle ListListSizeT_create(ListSizeTHandle* data, size_t count) {
 if (!data) {

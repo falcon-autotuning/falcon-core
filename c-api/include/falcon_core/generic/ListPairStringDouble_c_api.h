@@ -11,7 +11,7 @@ typedef void* ListPairStringDoubleHandle;
 // Function declarations
 
 ListPairStringDoubleHandle ListPairStringDouble_create_empty();
-ListPairStringDoubleHandle ListPairStringDouble_allocate(size_t count);
+
 ListPairStringDoubleHandle ListPairStringDouble_fill_value(size_t count, PairStringDoubleHandle value);
 ListPairStringDoubleHandle ListPairStringDouble_create(PairStringDoubleHandle* data, size_t count);
 void ListPairStringDouble_destroy(ListPairStringDoubleHandle handle);

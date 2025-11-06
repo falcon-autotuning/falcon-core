@@ -16,11 +16,7 @@ ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_fill_value(size_t coun
     return new falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>(
         count, stored_obj);
 }
-
-ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>(
-        falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>(count));
-}
+ 
 
 ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_create(CoupledLabelledDomainHandle* data, size_t count) {
 if (!data) {

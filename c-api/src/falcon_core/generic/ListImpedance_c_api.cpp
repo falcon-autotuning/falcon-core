@@ -16,11 +16,7 @@ ListImpedanceHandle ListImpedance_fill_value(size_t count, ImpedanceHandle value
     return new falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>(
         count, stored_obj);
 }
-
-ListImpedanceHandle ListImpedance_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>(
-        falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>(count));
-}
+ 
 
 ListImpedanceHandle ListImpedance_create(ImpedanceHandle* data, size_t count) {
 if (!data) {

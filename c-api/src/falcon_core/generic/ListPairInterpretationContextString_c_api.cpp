@@ -17,11 +17,7 @@ ListPairInterpretationContextStringHandle ListPairInterpretationContextString_fi
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>>(
         count, stored_obj);
 }
-
-ListPairInterpretationContextStringHandle ListPairInterpretationContextString_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>>(count));
-}
+ 
 
 ListPairInterpretationContextStringHandle ListPairInterpretationContextString_create(PairInterpretationContextStringHandle* data, size_t count) {
 if (!data) {

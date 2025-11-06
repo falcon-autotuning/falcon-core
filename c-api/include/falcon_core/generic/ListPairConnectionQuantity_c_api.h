@@ -11,7 +11,7 @@ typedef void* ListPairConnectionQuantityHandle;
 // Function declarations
 
 ListPairConnectionQuantityHandle ListPairConnectionQuantity_create_empty();
-ListPairConnectionQuantityHandle ListPairConnectionQuantity_allocate(size_t count);
+
 ListPairConnectionQuantityHandle ListPairConnectionQuantity_fill_value(size_t count, PairConnectionQuantityHandle value);
 ListPairConnectionQuantityHandle ListPairConnectionQuantity_create(PairConnectionQuantityHandle* data, size_t count);
 void ListPairConnectionQuantity_destroy(ListPairConnectionQuantityHandle handle);

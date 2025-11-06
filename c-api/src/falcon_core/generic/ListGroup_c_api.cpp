@@ -16,11 +16,7 @@ ListGroupHandle ListGroup_fill_value(size_t count, GroupHandle value) {
     return new falcon_core::generic::List<falcon_core::physics::config::core::Group>(
         count, stored_obj);
 }
-
-ListGroupHandle ListGroup_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::physics::config::core::Group>(
-        falcon_core::generic::List<falcon_core::physics::config::core::Group>(count));
-}
+ 
 
 ListGroupHandle ListGroup_create(GroupHandle* data, size_t count) {
 if (!data) {

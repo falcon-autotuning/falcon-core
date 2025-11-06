@@ -16,11 +16,7 @@ ListDeviceVoltageStateHandle ListDeviceVoltageState_fill_value(size_t count, Dev
     return new falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>(
         count, stored_obj);
 }
-
-ListDeviceVoltageStateHandle ListDeviceVoltageState_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>(
-        falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>(count));
-}
+ 
 
 ListDeviceVoltageStateHandle ListDeviceVoltageState_create(DeviceVoltageStateHandle* data, size_t count) {
 if (!data) {

@@ -11,7 +11,7 @@ typedef void* ListQuantityHandle;
 // Function declarations
 
 ListQuantityHandle ListQuantity_create_empty();
-ListQuantityHandle ListQuantity_allocate(size_t count);
+
 ListQuantityHandle ListQuantity_fill_value(size_t count, QuantityHandle value);
 ListQuantityHandle ListQuantity_create(QuantityHandle* data, size_t count);
 void ListQuantity_destroy(ListQuantityHandle handle);

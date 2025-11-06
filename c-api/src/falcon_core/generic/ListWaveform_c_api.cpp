@@ -16,11 +16,7 @@ ListWaveformHandle ListWaveform_fill_value(size_t count, WaveformHandle value) {
     return new falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>(
         count, stored_obj);
 }
-
-ListWaveformHandle ListWaveform_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>(
-        falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>(count));
-}
+ 
 
 ListWaveformHandle ListWaveform_create(WaveformHandle* data, size_t count) {
 if (!data) {

@@ -16,11 +16,7 @@ ListPairStringDoubleHandle ListPairStringDouble_fill_value(size_t count, PairStr
     return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>(
         count, stored_obj);
 }
-
-ListPairStringDoubleHandle ListPairStringDouble_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>(count));
-}
+ 
 
 ListPairStringDoubleHandle ListPairStringDouble_create(PairStringDoubleHandle* data, size_t count) {
 if (!data) {

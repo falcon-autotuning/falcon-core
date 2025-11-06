@@ -11,11 +11,11 @@ ListDoubleHandle ListDouble_fill_value(size_t count, double value) {
     return new falcon_core::generic::List<double>(
         count, stored_obj);
 }
-
-ListDoubleHandle ListDouble_allocate(size_t count) {
+ ListDoubleHandle ListDouble_allocate(size_t count) {
     return new falcon_core::generic::List<double>(
         falcon_core::generic::List<double>(count));
 }
+
 
 ListDoubleHandle ListDouble_create(double* data, size_t count) {
 if (!data) {

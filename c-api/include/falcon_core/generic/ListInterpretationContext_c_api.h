@@ -11,7 +11,7 @@ typedef void* ListInterpretationContextHandle;
 // Function declarations
 
 ListInterpretationContextHandle ListInterpretationContext_create_empty();
-ListInterpretationContextHandle ListInterpretationContext_allocate(size_t count);
+
 ListInterpretationContextHandle ListInterpretationContext_fill_value(size_t count, InterpretationContextHandle value);
 ListInterpretationContextHandle ListInterpretationContext_create(InterpretationContextHandle* data, size_t count);
 void ListInterpretationContext_destroy(ListInterpretationContextHandle handle);

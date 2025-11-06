@@ -64,3 +64,4 @@ UnitSpaceTest.*
 AcquisitionContextTest.*
 MeasurementContextTest.*
 ListStringTest.*
+ListQuantityTest.*

@@ -11,7 +11,7 @@ typedef void* ListDeviceVoltageStateHandle;
 // Function declarations
 
 ListDeviceVoltageStateHandle ListDeviceVoltageState_create_empty();
-ListDeviceVoltageStateHandle ListDeviceVoltageState_allocate(size_t count);
+
 ListDeviceVoltageStateHandle ListDeviceVoltageState_fill_value(size_t count, DeviceVoltageStateHandle value);
 ListDeviceVoltageStateHandle ListDeviceVoltageState_create(DeviceVoltageStateHandle* data, size_t count);
 void ListDeviceVoltageState_destroy(ListDeviceVoltageStateHandle handle);

@@ -11,7 +11,7 @@ typedef void* ListGroupHandle;
 // Function declarations
 
 ListGroupHandle ListGroup_create_empty();
-ListGroupHandle ListGroup_allocate(size_t count);
+
 ListGroupHandle ListGroup_fill_value(size_t count, GroupHandle value);
 ListGroupHandle ListGroup_create(GroupHandle* data, size_t count);
 void ListGroup_destroy(ListGroupHandle handle);

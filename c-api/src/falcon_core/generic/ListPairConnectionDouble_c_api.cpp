@@ -17,11 +17,7 @@ ListPairConnectionDoubleHandle ListPairConnectionDouble_fill_value(size_t count,
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(
         count, stored_obj);
 }
-
-ListPairConnectionDoubleHandle ListPairConnectionDouble_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(count));
-}
+ 
 
 ListPairConnectionDoubleHandle ListPairConnectionDouble_create(PairConnectionDoubleHandle* data, size_t count) {
 if (!data) {

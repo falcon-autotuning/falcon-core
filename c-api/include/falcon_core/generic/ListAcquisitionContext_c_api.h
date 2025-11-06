@@ -11,7 +11,7 @@ typedef void* ListAcquisitionContextHandle;
 // Function declarations
 
 ListAcquisitionContextHandle ListAcquisitionContext_create_empty();
-ListAcquisitionContextHandle ListAcquisitionContext_allocate(size_t count);
+
 ListAcquisitionContextHandle ListAcquisitionContext_fill_value(size_t count, AcquisitionContextHandle value);
 ListAcquisitionContextHandle ListAcquisitionContext_create(AcquisitionContextHandle* data, size_t count);
 void ListAcquisitionContext_destroy(ListAcquisitionContextHandle handle);

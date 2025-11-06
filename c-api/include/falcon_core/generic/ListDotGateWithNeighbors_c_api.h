@@ -11,7 +11,7 @@ typedef void* ListDotGateWithNeighborsHandle;
 // Function declarations
 
 ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create_empty();
-ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_allocate(size_t count);
+
 ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_fill_value(size_t count, DotGateWithNeighborsHandle value);
 ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create(DotGateWithNeighborsHandle* data, size_t count);
 void ListDotGateWithNeighbors_destroy(ListDotGateWithNeighborsHandle handle);

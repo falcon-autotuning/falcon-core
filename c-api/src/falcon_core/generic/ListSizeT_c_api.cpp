@@ -11,11 +11,11 @@ ListSizeTHandle ListSizeT_fill_value(size_t count, size_t value) {
     return new falcon_core::generic::List<size_t>(
         count, stored_obj);
 }
-
-ListSizeTHandle ListSizeT_allocate(size_t count) {
+ ListSizeTHandle ListSizeT_allocate(size_t count) {
     return new falcon_core::generic::List<size_t>(
         falcon_core::generic::List<size_t>(count));
 }
+
 
 ListSizeTHandle ListSizeT_create(size_t* data, size_t count) {
 if (!data) {

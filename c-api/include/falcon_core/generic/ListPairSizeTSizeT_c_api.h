@@ -11,7 +11,7 @@ typedef void* ListPairSizeTSizeTHandle;
 // Function declarations
 
 ListPairSizeTSizeTHandle ListPairSizeTSizeT_create_empty();
-ListPairSizeTSizeTHandle ListPairSizeTSizeT_allocate(size_t count);
+
 ListPairSizeTSizeTHandle ListPairSizeTSizeT_fill_value(size_t count, PairSizeTSizeTHandle value);
 ListPairSizeTSizeTHandle ListPairSizeTSizeT_create(PairSizeTSizeTHandle* data, size_t count);
 void ListPairSizeTSizeT_destroy(ListPairSizeTSizeTHandle handle);

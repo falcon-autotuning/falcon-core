@@ -16,11 +16,7 @@ ListPortTransformHandle ListPortTransform_fill_value(size_t count, PortTransform
     return new falcon_core::generic::List<falcon_core::instrument_interfaces::port_transforms::PortTransform>(
         count, stored_obj);
 }
-
-ListPortTransformHandle ListPortTransform_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::instrument_interfaces::port_transforms::PortTransform>(
-        falcon_core::generic::List<falcon_core::instrument_interfaces::port_transforms::PortTransform>(count));
-}
+ 
 
 ListPortTransformHandle ListPortTransform_create(PortTransformHandle* data, size_t count) {
 if (!data) {

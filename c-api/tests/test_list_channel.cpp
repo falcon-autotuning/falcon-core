@@ -55,12 +55,6 @@ TEST_F(ListChannelTest, FillValue) {
   EXPECT_THROW(ListChannel_fill_value(1, nullptr), std::invalid_argument);
 }
 
-TEST_F(ListChannelTest, Allocate) {
-  auto handle = ListChannel_allocate(5);
-  EXPECT_EQ(ListChannel_size(handle), 5);
-  ListChannel_destroy(handle);
-}
-
 TEST_F(ListChannelTest, CreateFromArray) {
   ChannelHandle arr[2] = {track_channel(1), track_channel(2)};
   auto          handle = ListChannel_create(arr, 2);

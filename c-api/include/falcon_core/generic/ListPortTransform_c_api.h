@@ -11,7 +11,7 @@ typedef void* ListPortTransformHandle;
 // Function declarations
 
 ListPortTransformHandle ListPortTransform_create_empty();
-ListPortTransformHandle ListPortTransform_allocate(size_t count);
+
 ListPortTransformHandle ListPortTransform_fill_value(size_t count, PortTransformHandle value);
 ListPortTransformHandle ListPortTransform_create(PortTransformHandle* data, size_t count);
 void ListPortTransform_destroy(ListPortTransformHandle handle);

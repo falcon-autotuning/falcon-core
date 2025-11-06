@@ -18,11 +18,7 @@ ListPairConnectionQuantityHandle ListPairConnectionQuantity_fill_value(size_t co
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>(
         count, stored_obj);
 }
-
-ListPairConnectionQuantityHandle ListPairConnectionQuantity_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>(count));
-}
+ 
 
 ListPairConnectionQuantityHandle ListPairConnectionQuantity_create(PairConnectionQuantityHandle* data, size_t count) {
 if (!data) {

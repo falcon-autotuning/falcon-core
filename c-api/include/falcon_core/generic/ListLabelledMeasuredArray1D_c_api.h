@@ -11,7 +11,7 @@ typedef void* ListLabelledMeasuredArray1DHandle;
 // Function declarations
 
 ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_create_empty();
-ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_allocate(size_t count);
+
 ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_fill_value(size_t count, LabelledMeasuredArray1DHandle value);
 ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_create(LabelledMeasuredArray1DHandle* data, size_t count);
 void ListLabelledMeasuredArray1D_destroy(ListLabelledMeasuredArray1DHandle handle);

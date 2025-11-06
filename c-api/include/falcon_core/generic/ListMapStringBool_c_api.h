@@ -11,7 +11,7 @@ typedef void* ListMapStringBoolHandle;
 // Function declarations
 
 ListMapStringBoolHandle ListMapStringBool_create_empty();
-ListMapStringBoolHandle ListMapStringBool_allocate(size_t count);
+
 ListMapStringBoolHandle ListMapStringBool_fill_value(size_t count, MapStringBoolHandle value);
 ListMapStringBoolHandle ListMapStringBool_create(MapStringBoolHandle* data, size_t count);
 void ListMapStringBool_destroy(ListMapStringBoolHandle handle);

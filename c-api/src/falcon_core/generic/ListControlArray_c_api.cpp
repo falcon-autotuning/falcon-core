@@ -16,11 +16,7 @@ ListControlArrayHandle ListControlArray_fill_value(size_t count, ControlArrayHan
     return new falcon_core::generic::List<falcon_core::math::arrays::ControlArray>(
         count, stored_obj);
 }
-
-ListControlArrayHandle ListControlArray_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::math::arrays::ControlArray>(
-        falcon_core::generic::List<falcon_core::math::arrays::ControlArray>(count));
-}
+ 
 
 ListControlArrayHandle ListControlArray_create(ControlArrayHandle* data, size_t count) {
 if (!data) {

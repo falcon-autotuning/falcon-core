@@ -16,11 +16,7 @@ ListAcquisitionContextHandle ListAcquisitionContext_fill_value(size_t count, Acq
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(
         count, stored_obj);
 }
-
-ListAcquisitionContextHandle ListAcquisitionContext_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(count));
-}
+ 
 
 ListAcquisitionContextHandle ListAcquisitionContext_create(AcquisitionContextHandle* data, size_t count) {
 if (!data) {

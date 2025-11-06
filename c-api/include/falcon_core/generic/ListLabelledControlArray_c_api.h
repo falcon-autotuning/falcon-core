@@ -11,7 +11,7 @@ typedef void* ListLabelledControlArrayHandle;
 // Function declarations
 
 ListLabelledControlArrayHandle ListLabelledControlArray_create_empty();
-ListLabelledControlArrayHandle ListLabelledControlArray_allocate(size_t count);
+
 ListLabelledControlArrayHandle ListLabelledControlArray_fill_value(size_t count, LabelledControlArrayHandle value);
 ListLabelledControlArrayHandle ListLabelledControlArray_create(LabelledControlArrayHandle* data, size_t count);
 void ListLabelledControlArray_destroy(ListLabelledControlArrayHandle handle);

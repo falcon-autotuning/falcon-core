@@ -11,7 +11,7 @@ typedef void* ListWaveformHandle;
 // Function declarations
 
 ListWaveformHandle ListWaveform_create_empty();
-ListWaveformHandle ListWaveform_allocate(size_t count);
+
 ListWaveformHandle ListWaveform_fill_value(size_t count, WaveformHandle value);
 ListWaveformHandle ListWaveform_create(WaveformHandle* data, size_t count);
 void ListWaveform_destroy(ListWaveformHandle handle);

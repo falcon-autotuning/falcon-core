@@ -11,7 +11,7 @@ typedef void* ListInstrumentPortHandle;
 // Function declarations
 
 ListInstrumentPortHandle ListInstrumentPort_create_empty();
-ListInstrumentPortHandle ListInstrumentPort_allocate(size_t count);
+
 ListInstrumentPortHandle ListInstrumentPort_fill_value(size_t count, InstrumentPortHandle value);
 ListInstrumentPortHandle ListInstrumentPort_create(InstrumentPortHandle* data, size_t count);
 void ListInstrumentPort_destroy(ListInstrumentPortHandle handle);

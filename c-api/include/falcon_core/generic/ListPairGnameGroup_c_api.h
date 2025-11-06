@@ -11,7 +11,7 @@ typedef void* ListPairGnameGroupHandle;
 // Function declarations
 
 ListPairGnameGroupHandle ListPairGnameGroup_create_empty();
-ListPairGnameGroupHandle ListPairGnameGroup_allocate(size_t count);
+
 ListPairGnameGroupHandle ListPairGnameGroup_fill_value(size_t count, PairGnameGroupHandle value);
 ListPairGnameGroupHandle ListPairGnameGroup_create(PairGnameGroupHandle* data, size_t count);
 void ListPairGnameGroup_destroy(ListPairGnameGroupHandle handle);

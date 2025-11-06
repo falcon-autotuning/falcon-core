@@ -16,11 +16,7 @@ ListPairStringStringHandle ListPairStringString_fill_value(size_t count, PairStr
     return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>(
         count, stored_obj);
 }
-
-ListPairStringStringHandle ListPairStringString_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>(count));
-}
+ 
 
 ListPairStringStringHandle ListPairStringString_create(PairStringStringHandle* data, size_t count) {
 if (!data) {

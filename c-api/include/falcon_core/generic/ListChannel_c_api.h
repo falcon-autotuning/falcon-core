@@ -11,7 +11,7 @@ typedef void* ListChannelHandle;
 // Function declarations
 
 ListChannelHandle ListChannel_create_empty();
-ListChannelHandle ListChannel_allocate(size_t count);
+
 ListChannelHandle ListChannel_fill_value(size_t count, ChannelHandle value);
 ListChannelHandle ListChannel_create(ChannelHandle* data, size_t count);
 void ListChannel_destroy(ListChannelHandle handle);

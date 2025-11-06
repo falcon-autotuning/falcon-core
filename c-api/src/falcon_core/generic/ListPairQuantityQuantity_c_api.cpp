@@ -17,11 +17,7 @@ ListPairQuantityQuantityHandle ListPairQuantityQuantity_fill_value(size_t count,
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(
         count, stored_obj);
 }
-
-ListPairQuantityQuantityHandle ListPairQuantityQuantity_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(count));
-}
+ 
 
 ListPairQuantityQuantityHandle ListPairQuantityQuantity_create(PairQuantityQuantityHandle* data, size_t count) {
 if (!data) {

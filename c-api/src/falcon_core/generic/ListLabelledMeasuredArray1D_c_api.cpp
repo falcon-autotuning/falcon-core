@@ -16,11 +16,7 @@ ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_fill_value(size_t 
     return new falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>(
         count, stored_obj);
 }
-
-ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>(
-        falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>(count));
-}
+ 
 
 ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_create(LabelledMeasuredArray1DHandle* data, size_t count) {
 if (!data) {

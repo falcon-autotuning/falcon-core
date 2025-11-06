@@ -16,11 +16,7 @@ ListLabelledControlArrayHandle ListLabelledControlArray_fill_value(size_t count,
     return new falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>(
         count, stored_obj);
 }
-
-ListLabelledControlArrayHandle ListLabelledControlArray_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>(
-        falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>(count));
-}
+ 
 
 ListLabelledControlArrayHandle ListLabelledControlArray_create(LabelledControlArrayHandle* data, size_t count) {
 if (!data) {

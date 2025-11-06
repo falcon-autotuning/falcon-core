@@ -16,11 +16,7 @@ ListMapStringBoolHandle ListMapStringBool_fill_value(size_t count, MapStringBool
     return new falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>(
         count, stored_obj);
 }
-
-ListMapStringBoolHandle ListMapStringBool_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>(
-        falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>(count));
-}
+ 
 
 ListMapStringBoolHandle ListMapStringBool_create(MapStringBoolHandle* data, size_t count) {
 if (!data) {

@@ -16,11 +16,7 @@ ListPairSizeTSizeTHandle ListPairSizeTSizeT_fill_value(size_t count, PairSizeTSi
     return new falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>(
         count, stored_obj);
 }
-
-ListPairSizeTSizeTHandle ListPairSizeTSizeT_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>(count));
-}
+ 
 
 ListPairSizeTSizeTHandle ListPairSizeTSizeT_create(PairSizeTSizeTHandle* data, size_t count) {
 if (!data) {

@@ -11,7 +11,7 @@ typedef void* ListPairStringBoolHandle;
 // Function declarations
 
 ListPairStringBoolHandle ListPairStringBool_create_empty();
-ListPairStringBoolHandle ListPairStringBool_allocate(size_t count);
+
 ListPairStringBoolHandle ListPairStringBool_fill_value(size_t count, PairStringBoolHandle value);
 ListPairStringBoolHandle ListPairStringBool_create(PairStringBoolHandle* data, size_t count);
 void ListPairStringBool_destroy(ListPairStringBoolHandle handle);

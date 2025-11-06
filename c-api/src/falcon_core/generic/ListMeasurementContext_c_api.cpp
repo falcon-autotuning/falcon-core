@@ -16,11 +16,7 @@ ListMeasurementContextHandle ListMeasurementContext_fill_value(size_t count, Mea
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(
         count, stored_obj);
 }
-
-ListMeasurementContextHandle ListMeasurementContext_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(count));
-}
+ 
 
 ListMeasurementContextHandle ListMeasurementContext_create(MeasurementContextHandle* data, size_t count) {
 if (!data) {

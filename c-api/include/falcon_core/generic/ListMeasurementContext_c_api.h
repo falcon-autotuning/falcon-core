@@ -11,7 +11,7 @@ typedef void* ListMeasurementContextHandle;
 // Function declarations
 
 ListMeasurementContextHandle ListMeasurementContext_create_empty();
-ListMeasurementContextHandle ListMeasurementContext_allocate(size_t count);
+
 ListMeasurementContextHandle ListMeasurementContext_fill_value(size_t count, MeasurementContextHandle value);
 ListMeasurementContextHandle ListMeasurementContext_create(MeasurementContextHandle* data, size_t count);
 void ListMeasurementContext_destroy(ListMeasurementContextHandle handle);

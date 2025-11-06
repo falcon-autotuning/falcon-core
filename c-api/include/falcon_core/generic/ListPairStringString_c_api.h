@@ -11,7 +11,7 @@ typedef void* ListPairStringStringHandle;
 // Function declarations
 
 ListPairStringStringHandle ListPairStringString_create_empty();
-ListPairStringStringHandle ListPairStringString_allocate(size_t count);
+
 ListPairStringStringHandle ListPairStringString_fill_value(size_t count, PairStringStringHandle value);
 ListPairStringStringHandle ListPairStringString_create(PairStringStringHandle* data, size_t count);
 void ListPairStringString_destroy(ListPairStringStringHandle handle);

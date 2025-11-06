@@ -11,7 +11,7 @@ typedef void* ListPairConnectionDoubleHandle;
 // Function declarations
 
 ListPairConnectionDoubleHandle ListPairConnectionDouble_create_empty();
-ListPairConnectionDoubleHandle ListPairConnectionDouble_allocate(size_t count);
+
 ListPairConnectionDoubleHandle ListPairConnectionDouble_fill_value(size_t count, PairConnectionDoubleHandle value);
 ListPairConnectionDoubleHandle ListPairConnectionDouble_create(PairConnectionDoubleHandle* data, size_t count);
 void ListPairConnectionDouble_destroy(ListPairConnectionDoubleHandle handle);

@@ -16,11 +16,7 @@ ListPairIntFloatHandle ListPairIntFloat_fill_value(size_t count, PairIntFloatHan
     return new falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(
         count, stored_obj);
 }
-
-ListPairIntFloatHandle ListPairIntFloat_allocate(size_t count) {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<int, float>>(count));
-}
+ 
 
 ListPairIntFloatHandle ListPairIntFloat_create(PairIntFloatHandle* data, size_t count) {
 if (!data) {
