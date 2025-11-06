@@ -90,3 +90,5 @@ ListPairConnectionFloatTest.*
 ListPairInstrumentPortPortTransformTest.*
 ListPairInterpretationContextDoubleTest.*
 ListPairInterpretationContextQuantityTest.*
+ListPairInterpretationContextStringTest.*
+ListPairConnectionPairQuantityQuantityTest.*
