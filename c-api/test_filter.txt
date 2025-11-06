@@ -75,3 +75,4 @@ ListPairSizeTSizeTTest.*
 ListPairQuantityQuantityTest.*
 ListPairIntIntTest.*
 ListPairIntFloatTest.*
+ListPairFloatFloatTest.*
