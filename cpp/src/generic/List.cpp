@@ -15,6 +15,7 @@
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 #include "falcon_core/physics/config/core/Group.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
+#include "falcon_core/physics/device_structures/Impedance.hpp"
 
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<int>);
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<float>);
@@ -114,6 +115,13 @@ CEREAL_REGISTER_TYPE(
 CEREAL_REGISTER_TYPE(
     falcon_core::generic::List<falcon_core::autotuner_interfaces::
                                    interpretations::InterpretationContext>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<
+        falcon_core::instrument_interfaces::names::InstrumentPort>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::physics::device_structures::Impedance>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::physics::config::core::Group>);
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -237,3 +245,12 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LLD);
 using LIC = falcon_core::generic::List<
     falcon_core::autotuner_interfaces::interpretations::InterpretationContext>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LIC);
+using LIP = falcon_core::generic::List<
+    falcon_core::instrument_interfaces::names::InstrumentPort>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LIP);
+using LImpedance = falcon_core::generic::List<
+    falcon_core::physics::device_structures::Impedance>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LImpedance);
+using LGroup =
+    falcon_core::generic::List<falcon_core::physics::config::core::Group>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LGroup);

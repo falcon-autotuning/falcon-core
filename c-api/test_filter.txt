@@ -102,3 +102,6 @@ ListLabelledControlArrayTest.*
 ListLabelledControlArray1DTest.*
 ListLabelledDomainTest.*
 ListInterpretationContextTest.*
+ListInstrumentPortTest.*
+ListImpedanceTest.*
+ListGroupTest.*
