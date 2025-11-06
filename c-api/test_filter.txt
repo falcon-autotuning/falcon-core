@@ -93,3 +93,11 @@ ListPairInterpretationContextDoubleTest.*
 ListPairInterpretationContextQuantityTest.*
 ListPairInterpretationContextStringTest.*
 ListPairConnectionPairQuantityQuantityTest.*
+ListListSizeTTest.*
+ListMeasurementContextTest.*
+ListLabelledMeasuredArrayTest.*
+ListLabelledMeasuredArray1DTest.*
+ListLabelledControlArrayTest.*
+ListLabelledControlArray1DTest.*
+ListLabelledDomainTest.*
+ListInterpretationContextTest.*

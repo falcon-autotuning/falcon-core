@@ -8,6 +8,11 @@
 #include "falcon_core/generic/Pair.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/math/Quantity.hpp"
+#include "falcon_core/math/arrays/LabelledControlArray.hpp"
+#include "falcon_core/math/arrays/LabelledControlArray1D.hpp"
+#include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
+#include "falcon_core/math/arrays/LabelledMeasuredArray1D.hpp"
+#include "falcon_core/math/domains/LabelledDomain.hpp"
 #include "falcon_core/physics/config/core/Group.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
 
@@ -89,6 +94,26 @@ CEREAL_REGISTER_TYPE(
         falcon_core::physics::device_structures::Connection,
         falcon_core::generic::Pair<falcon_core::math::Quantity,
                                    falcon_core::math::Quantity>>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::generic::List<size_t>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<
+        falcon_core::autotuner_interfaces::contexts::MeasurementContext>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::math::arrays::LabelledMeasuredArray>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::math::arrays::LabelledMeasuredArray1D>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::math::arrays::LabelledControlArray>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::math::arrays::LabelledControlArray1D>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::autotuner_interfaces::
+                                   interpretations::InterpretationContext>);
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -186,3 +211,29 @@ using LPCPQQ = falcon_core::generic::List<falcon_core::generic::Pair<
     falcon_core::generic::Pair<falcon_core::math::Quantity,
                                falcon_core::math::Quantity>>>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPCPQQ);
+using LMSB =
+    falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LMSB);
+using LLST = falcon_core::generic::List<falcon_core::generic::List<size_t>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LLST);
+using LMC = falcon_core::generic::List<
+    falcon_core::autotuner_interfaces::contexts::MeasurementContext>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LMC);
+using LMA = falcon_core::generic::List<
+    falcon_core::math::arrays::LabelledMeasuredArray>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LMA);
+using LMA1D = falcon_core::generic::List<
+    falcon_core::math::arrays::LabelledMeasuredArray1D>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LMA1D);
+using LCA =
+    falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LCA);
+using LCA1D = falcon_core::generic::List<
+    falcon_core::math::arrays::LabelledControlArray1D>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LCA1D);
+using LLD =
+    falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LLD);
+using LIC = falcon_core::generic::List<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LIC);
