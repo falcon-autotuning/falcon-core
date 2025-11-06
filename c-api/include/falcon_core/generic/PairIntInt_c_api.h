@@ -13,6 +13,7 @@ void PairIntInt_destroy(PairIntIntHandle handle);
 int PairIntInt_first(PairIntIntHandle handle);
 int PairIntInt_second(PairIntIntHandle handle);
 bool PairIntInt_equal(PairIntIntHandle a, PairIntIntHandle b);
+bool PairIntInt_not_equal(PairIntIntHandle a, PairIntIntHandle b);
 // Serialization (from Song)
 StringHandle      PairIntInt_to_json_string(PairIntIntHandle handle);
 PairIntIntHandle PairIntInt_from_json_string(StringHandle json);

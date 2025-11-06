@@ -15,6 +15,7 @@ void PairGnameGroup_destroy(PairGnameGroupHandle handle);
 GnameHandle PairGnameGroup_first(PairGnameGroupHandle handle);
 GroupHandle PairGnameGroup_second(PairGnameGroupHandle handle);
 bool PairGnameGroup_equal(PairGnameGroupHandle a, PairGnameGroupHandle b);
+bool PairGnameGroup_not_equal(PairGnameGroupHandle a, PairGnameGroupHandle b);
 // Serialization (from Song)
 StringHandle      PairGnameGroup_to_json_string(PairGnameGroupHandle handle);
 PairGnameGroupHandle PairGnameGroup_from_json_string(StringHandle json);

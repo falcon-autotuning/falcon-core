@@ -13,6 +13,7 @@ void PairDoubleDouble_destroy(PairDoubleDoubleHandle handle);
 double PairDoubleDouble_first(PairDoubleDoubleHandle handle);
 double PairDoubleDouble_second(PairDoubleDoubleHandle handle);
 bool PairDoubleDouble_equal(PairDoubleDoubleHandle a, PairDoubleDoubleHandle b);
+bool PairDoubleDouble_not_equal(PairDoubleDoubleHandle a, PairDoubleDoubleHandle b);
 // Serialization (from Song)
 StringHandle      PairDoubleDouble_to_json_string(PairDoubleDoubleHandle handle);
 PairDoubleDoubleHandle PairDoubleDouble_from_json_string(StringHandle json);

@@ -14,6 +14,7 @@ void PairConnectionFloat_destroy(PairConnectionFloatHandle handle);
 ConnectionHandle PairConnectionFloat_first(PairConnectionFloatHandle handle);
 float PairConnectionFloat_second(PairConnectionFloatHandle handle);
 bool PairConnectionFloat_equal(PairConnectionFloatHandle a, PairConnectionFloatHandle b);
+bool PairConnectionFloat_not_equal(PairConnectionFloatHandle a, PairConnectionFloatHandle b);
 // Serialization (from Song)
 StringHandle      PairConnectionFloat_to_json_string(PairConnectionFloatHandle handle);
 PairConnectionFloatHandle PairConnectionFloat_from_json_string(StringHandle json);

@@ -8,7 +8,7 @@ class WaveformTest : public ::testing::Test {
     default_name = String_wrap("voltage_meter1");
     expression   = String_wrap("2x[0]+1");
 
-    domain      = Domain_create(0, 1.0);
+    domain      = Domain_create(0.0, 1.0);
     domain_list = ListLabelledDomain_create_empty();
     ListLabelledDomain_push_back(
         domain_list,
@@ -19,8 +19,7 @@ class WaveformTest : public ::testing::Test {
             InstrumentTypes_voltmeter()));
     labelled_domain = CoupledLabelledDomain_create(domain_list);
     axes            = AxesCoupledLabelledDomain_create_empty();
-    AxesCoupledLabelledDomain_push_back(
-        axes, CoupledLabelledDomain_create(labelled_domain));
+    AxesCoupledLabelledDomain_push_back(axes, labelled_domain);
     map = MapStringBool_create_empty();
     MapStringBool_insert(map, default_name, true);
     increasing = AxesMapStringBool_create_empty();
@@ -29,12 +28,14 @@ class WaveformTest : public ::testing::Test {
     AxesDiscretizer_push_back(discretizers,
                               Discretizer_create_cartesian_discretizer(0.1));
     unit_space = UnitSpace_create(discretizers, domain);
-    space      = DiscreteSpace_create(unit_space, axes, map);
-
-    labels = ListString_create_empty();
-    ListString_push_back(labels, String_wrap("x"));
-    analytic   = AnalyticFunction_create(labels, expression);
-    port       = InstrumentPort_create_port(default_name);
+    space      = DiscreteSpace_create(unit_space, axes, increasing);
+    labels     = ListString_create_empty();
+    ListString_push_back(labels, default_name);
+    analytic = AnalyticFunction_create(labels, expression);
+    port =
+        InstrumentPort_create_knob(default_name,
+                                   Connection_create_barrier_gate(default_name),
+                                   InstrumentTypes_voltmeter());
     pt         = PortTransform_create(port, analytic);
     transforms = ListPortTransform_create_empty();
     ListPortTransform_push_back(transforms, pt);

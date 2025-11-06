@@ -4,14 +4,18 @@
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
 #include "falcon_core/autotuner_interfaces/names/Channel.hpp"
 #include "falcon_core/autotuner_interfaces/names/Gname.hpp"
+#include "falcon_core/communications/voltage_states/DeviceVoltageState.hpp"
 #include "falcon_core/generic/FArray.hpp"
 #include "falcon_core/generic/Pair.hpp"
+#include "falcon_core/instrument_interfaces/Waveform.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/math/arrays/LabelledControlArray.hpp"
 #include "falcon_core/math/arrays/LabelledControlArray1D.hpp"
 #include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
 #include "falcon_core/math/arrays/LabelledMeasuredArray1D.hpp"
+#include "falcon_core/math/discrete_spaces/Discretizer.hpp"
+#include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 #include "falcon_core/physics/config/core/Group.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
@@ -122,6 +126,31 @@ CEREAL_REGISTER_TYPE(falcon_core::generic::List<
                      falcon_core::physics::device_structures::Impedance>);
 CEREAL_REGISTER_TYPE(
     falcon_core::generic::List<falcon_core::physics::config::core::Group>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<
+        falcon_core::physics::config::geometries::DotGateWithNeighbors>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::math::discrete_spaces::Discretizer>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<
+        falcon_core::communications::voltage_states::DeviceVoltageState>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::math::domains::CoupledLabelledDomain>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::math::arrays::ControlArray>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::physics::device_structures::Connection>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::physics::device_structures::Connections>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<
+                     falcon_core::autotuner_interfaces::names::Channel>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<
+        falcon_core::autotuner_interfaces::contexts::AcquisitionContext>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>);
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -254,3 +283,37 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LImpedance);
 using LGroup =
     falcon_core::generic::List<falcon_core::physics::config::core::Group>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LGroup);
+using LDotGateWithNeighbors = falcon_core::generic::List<
+    falcon_core::physics::config::geometries::DotGateWithNeighbors>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
+                                     LDotGateWithNeighbors);
+using LDiscretizer =
+    falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LDiscretizer);
+using LDVS = falcon_core::generic::List<
+    falcon_core::communications::voltage_states::DeviceVoltageState>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LDVS);
+using LCLD = falcon_core::generic::List<
+    falcon_core::math::domains::CoupledLabelledDomain>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LCLD);
+using LCArr =
+    falcon_core::generic::List<falcon_core::math::arrays::ControlArray>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LCArr);
+using LCArr1D =
+    falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LCArr1D);
+using LConnection = falcon_core::generic::List<
+    falcon_core::physics::device_structures::Connection>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LConnection);
+using LConnections = falcon_core::generic::List<
+    falcon_core::physics::device_structures::Connections>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LConnections);
+using LChannel = falcon_core::generic::List<
+    falcon_core::autotuner_interfaces::names::Channel>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LChannel);
+using LAC = falcon_core::generic::List<
+    falcon_core::autotuner_interfaces::contexts::AcquisitionContext>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LAC);
+using LWaveform =
+    falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LWaveform);

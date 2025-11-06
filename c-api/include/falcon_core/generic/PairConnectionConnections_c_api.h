@@ -14,6 +14,7 @@ void PairConnectionConnections_destroy(PairConnectionConnectionsHandle handle);
 ConnectionHandle PairConnectionConnections_first(PairConnectionConnectionsHandle handle);
 ConnectionsHandle PairConnectionConnections_second(PairConnectionConnectionsHandle handle);
 bool PairConnectionConnections_equal(PairConnectionConnectionsHandle a, PairConnectionConnectionsHandle b);
+bool PairConnectionConnections_not_equal(PairConnectionConnectionsHandle a, PairConnectionConnectionsHandle b);
 // Serialization (from Song)
 StringHandle      PairConnectionConnections_to_json_string(PairConnectionConnectionsHandle handle);
 PairConnectionConnectionsHandle PairConnectionConnections_from_json_string(StringHandle json);

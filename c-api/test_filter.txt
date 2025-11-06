@@ -106,3 +106,16 @@ ListInterpretationContextTest.*
 ListInstrumentPortTest.*
 ListImpedanceTest.*
 ListGroupTest.*
+ListDotGateWithNeighborsTest.*
+ListDiscretizerTest.*
+ListDeviceVoltageStateTest.*
+ListCoupledLabelledDomainTest.*
+ListControlArrayTest.*
+ListControlArray1DTest.*
+ListConnectionTest.*
+ListConnectionsTest.*
+ListChannelTest.*
+ListAcquisitionContextTest.*
+PairStringStringTest.*
+PairStringDoubleTest.*
+PairStringBoolTest.*

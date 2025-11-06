@@ -14,6 +14,7 @@ void PairQuantityQuantity_destroy(PairQuantityQuantityHandle handle);
 QuantityHandle PairQuantityQuantity_first(PairQuantityQuantityHandle handle);
 QuantityHandle PairQuantityQuantity_second(PairQuantityQuantityHandle handle);
 bool PairQuantityQuantity_equal(PairQuantityQuantityHandle a, PairQuantityQuantityHandle b);
+bool PairQuantityQuantity_not_equal(PairQuantityQuantityHandle a, PairQuantityQuantityHandle b);
 // Serialization (from Song)
 StringHandle      PairQuantityQuantity_to_json_string(PairQuantityQuantityHandle handle);
 PairQuantityQuantityHandle PairQuantityQuantity_from_json_string(StringHandle json);
