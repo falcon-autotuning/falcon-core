@@ -1,23 +1,26 @@
 #include <gtest/gtest.h>
 
+#include <vector>
+
 #include "falcon_core/generic/ListControlArray_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/AxesControlArray_c_api.h"
 #include "falcon_core/math/arrays/ControlArray_c_api.h"
+
 class AxesControlArrayTest : public ::testing::Test {
  protected:
   void SetUp() override {
     shape2d[0] = 2;
     shape2d[1] = 3;
-    data2d[0]  = 1.0;
-    data2d[1]  = 2.0;
-    data2d[2]  = 3.0;
-    data2d[3]  = 1.0;
-    data2d[4]  = 2.0;
-    data2d[5]  = 3.0;
-    axes       = AxesControlArray_create_empty();
-    auto item1 = ControlArray_from_data(data2d, shape2d, 2);
-    auto item2 = ControlArray_from_data(data2d, shape2d, 2);
+    data2d[0] = 1.0;
+    data2d[1] = 2.0;
+    data2d[2] = 3.0;
+    data2d[3] = 1.0;
+    data2d[4] = 2.0;
+    data2d[5] = 3.0;
+    axes = AxesControlArray_create_empty();
+    auto item1 = track_ca(ControlArray_from_data(data2d, shape2d, 2));
+    auto item2 = track_ca(ControlArray_from_data(data2d, shape2d, 2));
     AxesControlArray_push_back(axes, item1);
     AxesControlArray_push_back(axes, item2);
 
@@ -25,7 +28,26 @@ class AxesControlArrayTest : public ::testing::Test {
     AxesControlArray_push_back(axes2, item1);
     AxesControlArray_push_back(axes2, item2);
   }
-  void TearDown() override { AxesControlArray_destroy(axes); }
+
+  void TearDown() override {
+    if (axes) {
+      AxesControlArray_destroy(axes);
+      axes = nullptr;
+    }
+    if (axes2) {
+      AxesControlArray_destroy(axes2);
+      axes2 = nullptr;
+    }
+    for (auto h : created_items) {
+      ControlArray_destroy(h);
+    }
+    created_items.clear();
+  }
+
+  ControlArrayHandle track_ca(ControlArrayHandle h) {
+    created_items.push_back(h);
+    return h;
+  }
 
   AxesControlArrayHandle axes  = nullptr;
   AxesControlArrayHandle axes2 = nullptr;
@@ -38,6 +60,8 @@ class AxesControlArrayTest : public ::testing::Test {
   ControlArrayHandle     ca1d;
   ControlArrayHandle     ca2d_2;
   FArrayDoubleHandle     fa2d;
+
+  std::vector<ControlArrayHandle> created_items;
 };
 
 TEST_F(AxesControlArrayTest, CreateDestroy) {
@@ -55,10 +79,15 @@ TEST_F(AxesControlArrayTest, AccessorsAndMutators) {
   // ListControlArrayHandle out1[1] = {ListControlArray_create_empty()};
   ControlArrayHandle out[1] = {ControlArray_from_data(data2d, shape2d, 2)};
   auto               h2     = AxesControlArray_create_raw(out, 1);
+  if (h2) AxesControlArray_destroy(h2);
 
   AxesControlArray_push_back(axes, ControlArray_from_data(data2d, shape2d, 2));
   ControlArrayHandle out2[3];
-  AxesControlArray_items(axes, out2, 3);
+  EXPECT_EQ(AxesControlArray_items(axes, out2, 3), 3u);
+  for (size_t i = 0; i < 3; ++i) {
+    ControlArray_destroy(out2[i]);
+  }
+
   AxesControlArray_erase_at(axes, 2);
   AxesControlArray_clear(axes);
   EXPECT_TRUE(AxesControlArray_empty(axes));

@@ -1,20 +1,23 @@
 #include <gtest/gtest.h>
 
+#include <vector>
+
 #include "falcon_core/generic/ListControlArray1D_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/AxesControlArray1D_c_api.h"
 #include "falcon_core/math/arrays/ControlArray1D_c_api.h"
+
 class AxesControlArray1DTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    shape[0]   = 3;
-    data[0]    = 1.0;
-    data[1]    = 2.0;
-    data[2]    = 3.0;
-    shape[0]   = 3;
-    axes       = AxesControlArray1D_create_empty();
-    auto item1 = ControlArray1D_from_data(data, shape, 1);
-    auto item2 = ControlArray1D_from_data(data, shape, 1);
+    shape[0] = 3;
+    data[0] = 1.0;
+    data[1] = 2.0;
+    data[2] = 3.0;
+    shape[0] = 3;
+    axes = AxesControlArray1D_create_empty();
+    auto item1 = track_ca1d(ControlArray1D_from_data(data, shape, 1));
+    auto item2 = track_ca1d(ControlArray1D_from_data(data, shape, 1));
     AxesControlArray1D_push_back(axes, item1);
     AxesControlArray1D_push_back(axes, item2);
 
@@ -22,7 +25,26 @@ class AxesControlArray1DTest : public ::testing::Test {
     AxesControlArray1D_push_back(axes2, item1);
     AxesControlArray1D_push_back(axes2, item2);
   }
-  void TearDown() override { AxesControlArray1D_destroy(axes); }
+
+  void TearDown() override {
+    if (axes) {
+      AxesControlArray1D_destroy(axes);
+      axes = nullptr;
+    }
+    if (axes2) {
+      AxesControlArray1D_destroy(axes2);
+      axes2 = nullptr;
+    }
+    for (auto h : created_items) {
+      ControlArray1D_destroy(h);
+    }
+    created_items.clear();
+  }
+
+  ControlArray1DHandle track_ca1d(ControlArray1DHandle h) {
+    created_items.push_back(h);
+    return h;
+  }
 
   AxesControlArray1DHandle axes  = nullptr;
   AxesControlArray1DHandle axes2 = nullptr;
@@ -32,6 +54,8 @@ class AxesControlArray1DTest : public ::testing::Test {
   ControlArray1DHandle     ca;
   ControlArray1DHandle     ca2;
   FArrayDoubleHandle       fa;
+
+  std::vector<ControlArray1DHandle> created_items;
 };
 
 TEST_F(AxesControlArray1DTest, CreateDestroy) {
@@ -49,10 +73,14 @@ TEST_F(AxesControlArray1DTest, AccessorsAndMutators) {
   // ListControlArray1DHandle out1[1] = {ListControlArray_create_empty()};
   ControlArray1DHandle out[1] = {ControlArray1D_from_data(data, shape, 1)};
   auto                 h2     = AxesControlArray1D_create_raw(out, 1);
+  if (h2) AxesControlArray1D_destroy(h2);
 
   AxesControlArray1D_push_back(axes, ControlArray1D_from_data(data, shape, 1));
   ControlArray1DHandle out2[3];
-  AxesControlArray1D_items(axes, out2, 3);
+  EXPECT_EQ(AxesControlArray1D_items(axes, out2, 3), 3u);
+  for (size_t i = 0; i < 3; ++i) {
+    ControlArray1D_destroy(out2[i]);
+  }
   AxesControlArray1D_erase_at(axes, 2);
   AxesControlArray1D_clear(axes);
   EXPECT_TRUE(AxesControlArray1D_empty(axes));
