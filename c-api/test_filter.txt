@@ -74,3 +74,4 @@ ListPairStringStringTest.*
 ListPairSizeTSizeTTest.*
 ListPairQuantityQuantityTest.*
 ListPairIntIntTest.*
+ListPairIntFloatTest.*
