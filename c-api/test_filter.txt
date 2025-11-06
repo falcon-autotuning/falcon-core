@@ -68,3 +68,6 @@ ListQuantityTest.*
 ListFArrayDoubleTest.*
 ListGnameTest.*
 ListPortTransformTest.*
+AxesIntTest.*
+AxesCoupledLabelledDomainTest.*
+AxesInstrumentPortTest.*
