@@ -80,4 +80,10 @@ ListPairQuantityQuantityTest.*
 ListPairIntIntTest.*
 ListPairIntFloatTest.*
 ListPairFloatFloatTest.*
-
+ListPairChannelConnectionsTest.*
+ListPairConnectionConnectionsTest.*
+ListPairGnameGroupTest.*
+ListPairConnectionDoubleTest.*
+ListPairConnectionQuantityTest.*
+ListPairConnectionFloatTest.*
+ListPairInstrumentPortPortTransformTest.*
