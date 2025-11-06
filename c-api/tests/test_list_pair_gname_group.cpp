@@ -49,7 +49,7 @@ class ListPairGnameGroupTest : public ::testing::Test {
     ListConnectionHandle p1       = ListConnection_create(p1raw, 1);
     ConnectionHandle     p2raw[1] = {
         Connection_create_plunger_gate(String_wrap("P2"))};
-    ListConnectionHandle p2       = ListConnection_create(p2raw, 2);
+    ListConnectionHandle p2       = ListConnection_create(p2raw, 1);
     ConnectionHandle     o1raw[7] = {
         Connection_create_ohmic(String_wrap("O1")),
         Connection_create_reservoir_gate(String_wrap("R1")),
