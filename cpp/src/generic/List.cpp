@@ -111,6 +111,9 @@ CEREAL_REGISTER_TYPE(falcon_core::generic::List<
                      falcon_core::math::arrays::LabelledControlArray1D>);
 CEREAL_REGISTER_TYPE(
     falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::autotuner_interfaces::
+                                   interpretations::InterpretationContext>);
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -231,3 +234,6 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LCA1D);
 using LLD =
     falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LLD);
+using LIC = falcon_core::generic::List<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LIC);
