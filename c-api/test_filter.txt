@@ -125,3 +125,11 @@ PairFloatFloatTest.*
 PairIntIntTest.*
 PairIntFloatTest.*
 PairChannelConnectionsTest.*
+PairConnectionConnectionsTest.*
+PairConnectionConnectionTest.*
+PairConnectionQuantityTest.*
+PairQuantityQuantityTest.*
+PairConnectionPairQuantityQuantityTest.*
+PairGnameGroupTest.*
+PairInstrumentPortPortTransformTest.*
+PairInterpretationContextQuantityTest.*
