@@ -11,8 +11,8 @@ class InterpretationContextTest : public ::testing::Test {
   void SetUp() override {
     conn = Connection_create_barrier_gate(String_wrap("A"));
     unit = SymbolUnit_create_volt();
-    mc1  = MeasurementContext_create(conn, "oscilloscope");
-    mc2  = MeasurementContext_create(conn, "multimeter");
+    mc1  = MeasurementContext_create(conn, String_wrap("oscilloscope"));
+    mc2  = MeasurementContext_create(conn, String_wrap("multimeter"));
     axes = AxesMeasurementContext_create_empty();
     AxesMeasurementContext_push_back(axes, mc1);
     AxesMeasurementContext_push_back(axes, mc2);
@@ -67,7 +67,7 @@ TEST_F(InterpretationContextTest, Accessors) {
 }
 
 TEST_F(InterpretationContextTest, DependentVariableOps) {
-  auto mc3 = MeasurementContext_create(conn, "voltmeter");
+  auto mc3 = MeasurementContext_create(conn, String_wrap("voltmeter"));
   InterpretationContext_dependent_variable(ctx, mc3);
   InterpretationContext_replace_dependent_variable(ctx, 0, mc3);
   MeasurementContext_destroy(mc3);

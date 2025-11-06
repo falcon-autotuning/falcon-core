@@ -1,5 +1,7 @@
 #include "falcon_core/generic/List.hpp"
 
+#include "falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp"
+#include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
 #include "falcon_core/autotuner_interfaces/names/Channel.hpp"
 #include "falcon_core/autotuner_interfaces/names/Gname.hpp"
 #include "falcon_core/generic/FArray.hpp"
@@ -67,6 +69,11 @@ CEREAL_REGISTER_TYPE(
     falcon_core::generic::List<falcon_core::generic::Pair<
         falcon_core::instrument_interfaces::names::InstrumentPort,
         falcon_core::instrument_interfaces::port_transforms::PortTransform>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<
+        falcon_core::generic::Pair<falcon_core::autotuner_interfaces::
+                                       interpretations::InterpretationContext,
+                                   double>>);
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -147,3 +154,7 @@ using LPIPT = falcon_core::generic::List<falcon_core::generic::Pair<
     falcon_core::instrument_interfaces::names::InstrumentPort,
     falcon_core::instrument_interfaces::port_transforms::PortTransform>>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPIPT);
+using LPIIC = falcon_core::generic::List<falcon_core::generic::Pair<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
+    double>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPIIC);

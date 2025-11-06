@@ -10,7 +10,7 @@ using namespace falcon_core::autotuner_interfaces;
 using namespace falcon_core::autotuner_interfaces::contexts;
 
 MeasurementContextHandle MeasurementContext_create(
-    ConnectionHandle connection, const char* instrument_type) {
+    ConnectionHandle connection, StringHandle instrument_type) {
   if (!connection) {
     throw std::invalid_argument(
         "MeasurementContext_create: connection handle cannot be null");
@@ -22,8 +22,9 @@ MeasurementContextHandle MeasurementContext_create(
   physics::device_structures::ConnectionSP real_connection =
       std::make_shared<physics::device_structures::Connection>(
           *static_cast<physics::device_structures::Connection*>(connection));
-  return new MeasurementContext(
-      MeasurementContext(real_connection, std::string(instrument_type)));
+  return new MeasurementContext(MeasurementContext(
+      real_connection,
+      std::string(instrument_type->raw, instrument_type->length)));
 }
 
 MeasurementContextHandle MeasurementContext_create_from_port(
