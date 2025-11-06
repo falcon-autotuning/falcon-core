@@ -80,3 +80,4 @@ ListPairChannelConnectionsTest.*
 ListPairConnectionConnectionsTest.*
 ListPairGnameGroupTest.*
 ListPairConnectionDoubleTest.*
+ListPairConnectionQuantityTest.*
