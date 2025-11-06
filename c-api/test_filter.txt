@@ -78,3 +78,4 @@ ListPairIntFloatTest.*
 ListPairFloatFloatTest.*
 ListPairChannelConnectionsTest.*
 ListPairConnectionConnectionsTest.*
+ListPairGnameGroupTest.*

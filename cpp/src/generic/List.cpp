@@ -6,6 +6,7 @@
 #include "falcon_core/generic/Pair.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/math/Quantity.hpp"
+#include "falcon_core/physics/config/core/Group.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
 
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<int>);
@@ -50,6 +51,9 @@ CEREAL_REGISTER_TYPE(
     falcon_core::generic::List<falcon_core::generic::Pair<
         falcon_core::physics::device_structures::Connection,
         falcon_core::physics::device_structures::Connections>>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::List<falcon_core::generic::Pair<
+                         falcon_core::autotuner_interfaces::names::Gname,
+                         falcon_core::physics::config::core::Group>>)
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -110,3 +114,7 @@ using LPCoCo = falcon_core::generic::List<falcon_core::generic::Pair<
     falcon_core::physics::device_structures::Connection,
     falcon_core::physics::device_structures::Connections>>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPCoCo);
+using LPGG = falcon_core::generic::List<
+    falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname,
+                               falcon_core::physics::config::core::Group>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPGG);
