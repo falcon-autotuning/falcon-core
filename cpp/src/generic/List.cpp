@@ -25,6 +25,8 @@ CEREAL_REGISTER_TYPE(falcon_core::generic::List<
                      falcon_core::generic::Pair<std::string, double>>);
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<
                      falcon_core::generic::Pair<std::string, std::string>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>);
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -59,3 +61,6 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPSD);
 using LPSS = falcon_core::generic::List<
     falcon_core::generic::Pair<std::string, std::string>>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPSS);
+using LPSTST =
+    falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPSTST);

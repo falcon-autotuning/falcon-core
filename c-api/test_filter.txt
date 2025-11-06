@@ -71,3 +71,4 @@ ListPortTransformTest.*
 ListPairStringBoolTest.*
 ListPairStringDoubleTest.*
 ListPairStringStringTest.*
+ListPairSizeTSizeTTest.*
