@@ -11,7 +11,7 @@ class MeasurementContextTest : public ::testing::Test {
     conn = Connection_create_barrier_gate(String_wrap("A"));
     port = InstrumentPort_create_port(
         String_wrap("P1"), Connection_create_plunger_gate(String_wrap("G1")));
-    mc  = MeasurementContext_create(conn, "oscilloscope");
+    mc  = MeasurementContext_create(conn, String_wrap("oscilloscope"));
     mc2 = MeasurementContext_create_from_port(port);
   }
   void TearDown() override {
@@ -27,11 +27,11 @@ class MeasurementContextTest : public ::testing::Test {
 };
 
 TEST_F(MeasurementContextTest, CreateDestroy) {
-  auto m = MeasurementContext_create(conn, "multimeter");
+  auto m = MeasurementContext_create(conn, String_wrap("multimeter"));
   MeasurementContext_destroy(m);
   auto m2 = MeasurementContext_create_from_port(port);
   MeasurementContext_destroy(m2);
-  EXPECT_THROW(MeasurementContext_create(nullptr, "oscilloscope"),
+  EXPECT_THROW(MeasurementContext_create(nullptr, String_wrap("oscilloscope")),
                std::invalid_argument);
   EXPECT_THROW(MeasurementContext_create(conn, nullptr), std::invalid_argument);
   EXPECT_THROW(MeasurementContext_create_from_port(nullptr),

@@ -10,8 +10,8 @@ extern "C" {
 typedef void* MeasurementContextHandle;
 
 // Constructors
-MeasurementContextHandle MeasurementContext_create(ConnectionHandle connection,
-                                                   const char* instrument_type);
+MeasurementContextHandle MeasurementContext_create(
+    ConnectionHandle connection, StringHandle instrument_type);
 MeasurementContextHandle MeasurementContext_create_from_port(
     InstrumentPortHandle port);
 
