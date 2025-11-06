@@ -79,6 +79,11 @@ CEREAL_REGISTER_TYPE(
         falcon_core::generic::Pair<falcon_core::autotuner_interfaces::
                                        interpretations::InterpretationContext,
                                    falcon_core::math::Quantity>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<
+        falcon_core::generic::Pair<falcon_core::autotuner_interfaces::
+                                       interpretations::InterpretationContext,
+                                   std::string>>);
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -166,3 +171,8 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPIIC);
 using LPICQ = falcon_core::generic::List<falcon_core::generic::Pair<
     falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
     falcon_core::math::Quantity>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPICQ);
+using LPICS = falcon_core::generic::List<falcon_core::generic::Pair<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
+    std::string>>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LPICS);
