@@ -93,6 +93,9 @@ CEREAL_REGISTER_TYPE(
     falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>);
 CEREAL_REGISTER_TYPE(
     falcon_core::generic::List<falcon_core::generic::List<size_t>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<
+        falcon_core::autotuner_interfaces::contexts::MeasurementContext>);
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::generic::List<int>);
@@ -195,3 +198,6 @@ using LMSB =
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LMSB);
 using LLST = falcon_core::generic::List<falcon_core::generic::List<size_t>>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LLST);
+using LMC = falcon_core::generic::List<
+    falcon_core::autotuner_interfaces::contexts::MeasurementContext>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, LMC);
