@@ -16,7 +16,7 @@ AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_create_raw(const Coupl
                 }
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::math::domains::CoupledLabelledDomain>(static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(data[i]), [](falcon_core::math::domains::CoupledLabelledDomain*) {} ));
+        vec.push_back(std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(data[i])));
     }
 
     return new falcon_core::math::Axes<falcon_core::math::domains::CoupledLabelledDomain>(

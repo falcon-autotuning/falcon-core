@@ -16,7 +16,7 @@ AxesLabelledControlArrayHandle AxesLabelledControlArray_create_raw(const Labelle
                 }
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>(static_cast<falcon_core::math::arrays::LabelledControlArray*>(data[i]), [](falcon_core::math::arrays::LabelledControlArray*) {} ));
+        vec.push_back(std::make_shared<falcon_core::math::arrays::LabelledControlArray>(*static_cast<falcon_core::math::arrays::LabelledControlArray*>(data[i])));
     }
 
     return new falcon_core::math::Axes<falcon_core::math::arrays::LabelledControlArray>(

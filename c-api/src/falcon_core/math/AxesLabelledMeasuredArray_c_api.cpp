@@ -16,7 +16,7 @@ AxesLabelledMeasuredArrayHandle AxesLabelledMeasuredArray_create_raw(const Label
                 }
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::math::arrays::LabelledMeasuredArray>(static_cast<falcon_core::math::arrays::LabelledMeasuredArray*>(data[i]), [](falcon_core::math::arrays::LabelledMeasuredArray*) {} ));
+        vec.push_back(std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray*>(data[i])));
     }
 
     return new falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray>(

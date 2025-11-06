@@ -16,7 +16,7 @@ AxesMapStringBoolHandle AxesMapStringBool_create_raw(const MapStringBoolHandle* 
                 }
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::generic::Map<std::string, bool>>(static_cast<falcon_core::generic::Map<std::string, bool>*>(data[i]), [](falcon_core::generic::Map<std::string, bool>*) {} ));
+        vec.push_back(std::make_shared<falcon_core::generic::Map<std::string, bool>>(*static_cast<falcon_core::generic::Map<std::string, bool>*>(data[i])));
     }
 
     return new falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>(

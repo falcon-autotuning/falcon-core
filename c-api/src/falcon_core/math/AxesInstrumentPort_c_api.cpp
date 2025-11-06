@@ -16,7 +16,7 @@ AxesInstrumentPortHandle AxesInstrumentPort_create_raw(const InstrumentPortHandl
                 }
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::instrument_interfaces::names::InstrumentPort>(static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(data[i]), [](falcon_core::instrument_interfaces::names::InstrumentPort*) {} ));
+        vec.push_back(std::make_shared<falcon_core::instrument_interfaces::names::InstrumentPort>(*static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(data[i])));
     }
 
     return new falcon_core::math::Axes<falcon_core::instrument_interfaces::names::InstrumentPort>(
