@@ -69,3 +69,4 @@ ListFArrayDoubleTest.*
 ListGnameTest.*
 ListPortTransformTest.*
 ListPairStringBoolTest.*
+ListPairStringDoubleTest.*
