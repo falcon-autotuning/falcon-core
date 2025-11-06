@@ -95,3 +95,4 @@ ListPairConnectionPairQuantityQuantityTest.*
 ListListSizeTTest.*
 ListMeasurementContextTest.*
 ListLabelledMeasuredArrayTest.*
+ListLabelledMeasuredArray1DTest.*
