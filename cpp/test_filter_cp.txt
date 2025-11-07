@@ -49,6 +49,7 @@ PointTest.*
 VectorTest.*
 ControlArrayTest.*
 ControlArray1DTest.*
+MeasuredArrayTest.* <<<
 LabelledControlArrayTest.*
 LabelledControlArray1DTest.*
 LabelledMeasuredArrayTest.*
@@ -64,10 +65,7 @@ PortTransformsTest.*
 DiscreteSpaceTest.*
 WaveformTest.*
 MeasurementRequestTest.*
+MeasurementResponseTest.* <<<
 ConfigManipulationsTest.*
 LoaderTest.*
 InterpretationContextTest.*
-MeasuredArrayTest.*
-MeasurementResponseTest.*
-MeasurementContextTest.*
-InterpretationContainerTest.*

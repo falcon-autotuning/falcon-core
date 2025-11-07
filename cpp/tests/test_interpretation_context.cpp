@@ -95,6 +95,12 @@ TEST(InterpretationContextTest,
   auto unit = std::make_shared<SymbolUnit>(Unit::Meter());
 
   InterpretationContext ctx(independent, dependent, unit);
+  EXPECT_THROW(InterpretationContext(nullptr, dependent, unit),
+               std::invalid_argument);
+  EXPECT_THROW(InterpretationContext(independent, nullptr, unit),
+               std::invalid_argument);
+  EXPECT_THROW(InterpretationContext(independent, dependent, nullptr),
+               std::invalid_argument);
 
   std::string json;
   ASSERT_NO_THROW(json = ctx.to_json_string());
@@ -131,7 +137,7 @@ TEST(InterpretationContextTest, IndependentVarialblesGetter) {
 
   InterpretationContext ctx(independent, dependent, unit);
 
-  // EXPECT_EQ(ctx.dimension(), static_cast<int>(independent->size()));
+  EXPECT_EQ(ctx.dimension(), static_cast<int>(independent->size()));
 
   auto got = ctx.independent_variables();
   ASSERT_EQ(got, independent);
@@ -167,15 +173,19 @@ TEST(InterpretationContextTest, BehaviorOperations) {
 
   size_t before = ctx.dependent_variables()->size();
   ctx.add_dependent_variable(m_ind);
+  EXPECT_THROW(ctx.add_dependent_variable(nullptr), std::invalid_argument);
   EXPECT_EQ(ctx.dependent_variables()->size(), before + 1);
 
   ctx.replace_dependent_variable(0, m_ind);
+  EXPECT_THROW(ctx.replace_dependent_variable(0, nullptr),
+               std::invalid_argument);
   EXPECT_EQ(ctx.dependent_variables()->size(), before + 1);
 
   ASSERT_THROW(ctx.replace_dependent_variable(100, m_ind), std::out_of_range);
 
   auto new_unit = std::make_shared<SymbolUnit>(Unit::Kilogram());
   auto new_ctx  = ctx.with_unit(new_unit);
+  EXPECT_THROW(ctx.with_unit(nullptr), std::invalid_argument);
   ASSERT_NE(new_ctx, nullptr);
   EXPECT_EQ(new_ctx->unit(), new_unit);
   EXPECT_NE(ctx.unit(), new_unit);

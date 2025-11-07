@@ -4,7 +4,6 @@
 #include <memory>
 #include <stdexcept>
 #include <type_traits>
-#include <utility>
 
 #include "falcon_core/generic/CategoryTags.hpp"
 #include "falcon_core/generic/Song.hpp"
@@ -92,7 +91,7 @@ class List : public generic::Song {
                                                  const StoredValue& value) {
     return std::make_shared<List<Value>>(count, value);
   }
-  List(const Container& init) : _items() {
+  List(const Container& init) : _items(std::vector<StoredValue>()) {
     for (const auto& item : init) {
       push_back(item);
     }
@@ -105,7 +104,8 @@ class List : public generic::Song {
   List<Value>& operator=(const List<Value>&)     = default;
   List<Value>& operator=(List<Value>&&) noexcept = default;
   void         push_back(const StoredValue& item) {
-    push_back_impl(item, typename category::determine_tag<Value>::type{});
+    push_back_impl<Value>(item,
+                          typename category::determine_tag<Value>::type{});
   }
   void insert(iterator pos, const_iterator first, const_iterator last)
   // FIXME: Might be broken for single items in list
@@ -288,7 +288,7 @@ class List : public generic::Song {
   template <typename T>
   void push_back_impl(const T& item, category::other_tag) {
     // Handle or static_assert if not supported
-    static_assert(sizeof(T) == 0, "Unsupported type for List");
+    throw std::runtime_error("Unsupported type for tag.");
   }
   template <typename T>
   bool contains_impl(const std::shared_ptr<T>& value,

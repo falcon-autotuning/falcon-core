@@ -31,14 +31,6 @@ class MeasuredArray : public generic::FArray<double> {
   MeasuredArray(MeasuredArray&&) noexcept            = default;
   MeasuredArray& operator=(const MeasuredArray&)     = default;
   MeasuredArray& operator=(MeasuredArray&&) noexcept = default;
-  static std::shared_ptr<MeasuredArray> zeros(
-      const std::vector<size_t>& shape) {
-    return std::make_shared<MeasuredArray>(xt::zeros<double>(shape));
-  }
-  static std::shared_ptr<MeasuredArray> empty(
-      const std::vector<size_t>& shape) {
-    return std::make_shared<MeasuredArray>(xt::empty<double>(shape));
-  }
   // Arithmetic operators
   std::shared_ptr<MeasuredArray> operator+(const double other) const;
 

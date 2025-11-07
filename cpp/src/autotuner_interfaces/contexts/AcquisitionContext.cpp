@@ -21,29 +21,19 @@ AcquisitionContext::AcquisitionContext(
 
 AcquisitionContext::AcquisitionContext(
     const instrument_interfaces::names::InstrumentPortSP& port)
-    : BaseContext(port) {
-  if (!port) {
-    throw std::invalid_argument(
-        "AcquisitionContext: The port must not be null.");
-  }
-  _units = port->units();
-}
+    : BaseContext(port), _units(port->units()) {}
 
-AcquisitionContext::AcquisitionContext(const BaseContextSP& measurement_context,
-                                       const physics::units::SymbolUnitSP& unit)
-    : BaseContext(
-          measurement_context ? measurement_context->connection() : nullptr,
-          measurement_context ? measurement_context->instrument_type()
-                              : instrument_interfaces::names::Instrument{}) {
+AcquisitionContextSP AcquisitionContext::from_context(
+    const BaseContextSP&                measurement_context,
+    const physics::units::SymbolUnitSP& unit) {
   if (!measurement_context) {
     throw std::invalid_argument(
         "AcquisitionContext: The measurement_context must not be null.");
   }
-  if (!unit) {
-    throw std::invalid_argument(
-        "AcquisitionContext: The units must not be null.");
-  }
-  _units = unit;
+  return std::make_shared<AcquisitionContext>(
+      measurement_context->connection(),
+      measurement_context->instrument_type(),
+      unit);
 }
 
 const physics::units::SymbolUnitSP AcquisitionContext::units() const {

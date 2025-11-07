@@ -41,8 +41,9 @@ class AcquisitionContext : public BaseContext {
    * @param measurement_context The base measurement context.
    * @param units The measurement units.
    */
-  AcquisitionContext(const BaseContextSP&                measurement_context,
-                     const physics::units::SymbolUnitSP& unit);
+  static std::shared_ptr<AcquisitionContext> from_context(
+      const BaseContextSP&                measurement_context,
+      const physics::units::SymbolUnitSP& unit);
   /**
    * @brief Returns the units of the context.
    */

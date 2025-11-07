@@ -1,14 +1,11 @@
-
 #include <gtest/gtest.h>
 
 #include <stdexcept>
 #include <xtensor/xarray.hpp>
 
-#include "falcon_core/generic/FArray.hpp"
 #include "falcon_core/math/arrays/MeasuredArray.hpp"
 namespace {
 using namespace falcon_core;
-using namespace generic;
 using namespace math::arrays;
 
 class MeasuredArrayTest : public ::testing::Test {
@@ -29,13 +26,13 @@ TEST_F(MeasuredArrayTest, XtArrayConstructor) {
 }
 
 TEST_F(MeasuredArrayTest, FArraySPConstructor) {
-  auto          farr = std::make_shared<FArray<double>>(arr1);
+  auto          farr = std::make_shared<generic::FArray<double>>(arr1);
   MeasuredArray ma(farr);
   EXPECT_EQ(ma.shape(), arr1.shape());
 }
 
 TEST_F(MeasuredArrayTest, FArraySPConstructorNullThrows) {
-  FArraySP<double> dummy;
+  generic::FArraySP<double> dummy;
   EXPECT_THROW(MeasuredArray varname(dummy), std::invalid_argument);
 }
 
@@ -43,13 +40,6 @@ TEST_F(MeasuredArrayTest, MoveXtArrayConstructor) {
   xt::xarray<double> arr = {{9.0, 10.0}, {11.0, 12.0}};
   MeasuredArray      ma(std::move(arr));
   EXPECT_EQ(ma.shape().size(), 2);
-}
-
-TEST_F(MeasuredArrayTest, ZerosAndEmptyStatic) {
-  auto zeros = MeasuredArray::zeros({2, 2});
-  EXPECT_EQ(zeros->size(), 4);
-  auto empty = MeasuredArray::empty({2, 2});
-  EXPECT_EQ(empty->size(), 4);
 }
 
 TEST_F(MeasuredArrayTest, ArithmeticAddDouble) {
@@ -75,13 +65,13 @@ TEST_F(MeasuredArrayTest, ArithmeticAddMeasuredArrayNullThrows) {
 }
 
 TEST_F(MeasuredArrayTest, ArithmeticAddFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr   = std::make_shared<generic::FArray<double>>(arr1);
   auto result = ma1->operator+(farr);
   EXPECT_EQ(result->shape(), ma1->shape());
 }
 
 TEST_F(MeasuredArrayTest, ArithmeticAddFArraySPNullThrows) {
-  EXPECT_THROW(ma1->operator+((FArraySP<double>)nullptr),
+  EXPECT_THROW(ma1->operator+((generic::FArraySP<double>)nullptr),
                std::invalid_argument);
 }
 
@@ -108,13 +98,13 @@ TEST_F(MeasuredArrayTest, ArithmeticSubMeasuredArrayNullThrows) {
 }
 
 TEST_F(MeasuredArrayTest, ArithmeticSubFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr   = std::make_shared<generic::FArray<double>>(arr1);
   auto result = ma1->operator-(farr);
   EXPECT_EQ(result->shape(), ma1->shape());
 }
 
 TEST_F(MeasuredArrayTest, ArithmeticSubFArraySPNullThrows) {
-  EXPECT_THROW(ma1->operator-((FArraySP<double>)nullptr),
+  EXPECT_THROW(ma1->operator-((generic::FArraySP<double>)nullptr),
                std::invalid_argument);
 }
 
@@ -147,13 +137,13 @@ TEST_F(MeasuredArrayTest, ArithmeticMulMeasuredArrayNullThrows) {
 }
 
 TEST_F(MeasuredArrayTest, ArithmeticMulFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr   = std::make_shared<generic::FArray<double>>(arr1);
   auto result = ma1->operator*(farr);
   EXPECT_EQ(result->shape(), ma1->shape());
 }
 
 TEST_F(MeasuredArrayTest, ArithmeticMulFArraySPNullThrows) {
-  EXPECT_THROW(ma1->operator*((FArraySP<double>)nullptr),
+  EXPECT_THROW(ma1->operator*((generic::FArraySP<double>)nullptr),
                std::invalid_argument);
 }
 
@@ -180,13 +170,13 @@ TEST_F(MeasuredArrayTest, ArithmeticDivMeasuredArrayNullThrows) {
 }
 
 TEST_F(MeasuredArrayTest, ArithmeticDivFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr   = std::make_shared<generic::FArray<double>>(arr1);
   auto result = ma1->operator/(farr);
   EXPECT_EQ(result->shape(), ma1->shape());
 }
 
 TEST_F(MeasuredArrayTest, ArithmeticDivFArraySPNullThrows) {
-  EXPECT_THROW(ma1->operator/((FArraySP<double>)nullptr),
+  EXPECT_THROW(ma1->operator/((generic::FArraySP<double>)nullptr),
                std::invalid_argument);
 }
 
@@ -212,13 +202,14 @@ TEST_F(MeasuredArrayTest, MinMeasuredArrayNullThrows) {
 }
 
 TEST_F(MeasuredArrayTest, MinFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr   = std::make_shared<generic::FArray<double>>(arr1);
   auto result = ma1->min(farr);
   EXPECT_EQ(result->shape(), ma1->shape());
 }
 
 TEST_F(MeasuredArrayTest, MinFArraySPNullThrows) {
-  EXPECT_THROW(ma1->min((FArraySP<double>)nullptr), std::invalid_argument);
+  EXPECT_THROW(ma1->min((generic::FArraySP<double>)nullptr),
+               std::invalid_argument);
 }
 
 TEST_F(MeasuredArrayTest, MaxMeasuredArray) {
@@ -231,13 +222,14 @@ TEST_F(MeasuredArrayTest, MaxMeasuredArrayNullThrows) {
 }
 
 TEST_F(MeasuredArrayTest, MaxFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr   = std::make_shared<generic::FArray<double>>(arr1);
   auto result = ma1->max(farr);
   EXPECT_EQ(result->shape(), ma1->shape());
 }
 
 TEST_F(MeasuredArrayTest, MaxFArraySPNullThrows) {
-  EXPECT_THROW(ma1->max((FArraySP<double>)nullptr), std::invalid_argument);
+  EXPECT_THROW(ma1->max((generic::FArraySP<double>)nullptr),
+               std::invalid_argument);
 }
 
 TEST_F(MeasuredArrayTest, Reshape) {

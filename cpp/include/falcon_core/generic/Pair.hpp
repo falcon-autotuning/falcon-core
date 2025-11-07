@@ -51,6 +51,14 @@ class Pair : public generic::Song {
   /**
    * @brief Get the stored first value.
    */
+  const StoredT1& first() const { return _first; }
+  /**
+   * @brief Get the stored second value.
+   */
+  const StoredT2& second() const { return _second; }
+  /**
+   * @brief Get the stored first value.
+   */
   StoredT1& first() { return _first; }
   /**
    * @brief Get the stored second value.

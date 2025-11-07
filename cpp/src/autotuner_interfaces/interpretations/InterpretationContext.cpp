@@ -21,7 +21,20 @@ InterpretationContext::InterpretationContext(
     const physics::units::SymbolUnitSP& unit)
     : _independent_variables(independent_variables),
       _dependent_variables(dependent_variables),
-      _unit(unit) {}
+      _unit(unit) {
+  if (!independent_variables) {
+    throw std::invalid_argument(
+        "InterpretationContext: Independent variables must not be null.");
+  }
+  if (!dependent_variables) {
+    throw std::invalid_argument(
+        "InterpretationContext: Dependent variables must not be null.");
+  }
+  if (!unit) {
+    throw std::invalid_argument(
+        "InterpretationContext: Unit must not be null.");
+  }
+}
 const math::AxesSP<autotuner_interfaces::contexts::MeasurementContext>
 InterpretationContext::independent_variables() const {
   return _independent_variables;
@@ -34,17 +47,23 @@ const physics::units::SymbolUnitSP InterpretationContext::unit() const {
   return _unit;
 }
 const int InterpretationContext::dimension() const {
-  return _independent_variables->size();
+  return independent_variables()->size();
 }
 void InterpretationContext::add_dependent_variable(
     const autotuner_interfaces::contexts::MeasurementContextSP&
         dependent_variable) {
-  _dependent_variables->push_back(dependent_variable);
+  if (!dependent_variable) {
+    throw std::invalid_argument("Dependent variable must not be null.");
+  }
+  dependent_variables()->push_back(dependent_variable);
 }
 void InterpretationContext::replace_dependent_variable(
     int index,
     const autotuner_interfaces::contexts::MeasurementContextSP&
         dependent_variable) {
+  if (!dependent_variable) {
+    throw std::invalid_argument("Dependent variable must not be null.");
+  }
   if (index < 0 || index >= _dependent_variables->size()) {
     throw std::out_of_range("Index out of range");
   }
@@ -60,6 +79,9 @@ InterpretationContext::get_independent_variable(int index) const {
 }
 const InterpretationContextSP InterpretationContext::with_unit(
     physics::units::SymbolUnitSP unit) const {
+  if (!unit) {
+    throw std::invalid_argument("Unit must not be null.");
+  }
   return std::make_shared<InterpretationContext>(
       _independent_variables, _dependent_variables, unit);
 }

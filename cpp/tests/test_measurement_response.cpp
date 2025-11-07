@@ -18,7 +18,7 @@ class MeasurementResponseTest : public ::testing::Test {
 
   void SetUp() override {
     // Create a dummy MeasuredArray with shape [2]
-    auto base_array = MeasuredArray::zeros({2});
+    auto base_array = falcon_core::generic::FArray<double>::zeros({2});
     // Create a dummy InstrumentPort for AcquisitionContext
     auto port = std::make_shared<
         falcon_core::instrument_interfaces::names::InstrumentPort>(

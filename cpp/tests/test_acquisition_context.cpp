@@ -32,24 +32,22 @@ TEST(AcquisitionContextTest, ConstructorWithValidPort) {
 }
 
 TEST(AcquisitionContextTest, ConstructorWithNullPortThrows) {
-  EXPECT_THROW(
-      { AcquisitionContext ctx(static_cast<InstrumentPortSP>(nullptr)); },
-      std::invalid_argument);
+  EXPECT_THROW(AcquisitionContext ctx(nullptr), std::invalid_argument);
 }
 
 TEST(AcquisitionContextTest, ConstructorWithValidMeasurementContext) {
-  auto               conn  = Connection::PlungerGate("a");
-  Instrument         instr = InstrumentTypes::VOLTAGE_SOURCE;
-  auto               unit  = SymbolUnit::Ampere();
-  auto               base  = std::make_shared<BaseContext>(conn, instr);
-  AcquisitionContext ctx(base, unit);
-  EXPECT_EQ(ctx.units(), unit);
+  auto                 conn  = Connection::PlungerGate("a");
+  Instrument           instr = InstrumentTypes::VOLTAGE_SOURCE;
+  auto                 unit  = SymbolUnit::Ampere();
+  auto                 base  = std::make_shared<BaseContext>(conn, instr);
+  AcquisitionContextSP ctx   = AcquisitionContext::from_context(base, unit);
+  EXPECT_EQ(ctx->units(), unit);
 }
 
 TEST(AcquisitionContextTest, ConstructorWithNullMeasurementContextThrows) {
   auto unit = SymbolUnit::Ampere();
-  EXPECT_THROW(
-      { AcquisitionContext ctx(nullptr, unit); }, std::invalid_argument);
+  EXPECT_THROW(AcquisitionContext::from_context(nullptr, unit),
+               std::invalid_argument);
 }
 
 TEST(AcquisitionContextTest, OperatorDivideWithNullUnitThrows) {
@@ -96,8 +94,8 @@ TEST(AcquisitionContextTest,
   auto       conn  = Connection::PlungerGate("a");
   Instrument instr = InstrumentTypes::VOLTAGE_SOURCE;
   auto       base  = std::make_shared<BaseContext>(conn, instr);
-  EXPECT_THROW(
-      { AcquisitionContext ctx(base, nullptr); }, std::invalid_argument);
+  EXPECT_THROW(AcquisitionContext::from_context(base, nullptr),
+               std::invalid_argument);
 }
 
 // Test match_instrument_type (covers return branch)

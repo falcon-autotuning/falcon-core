@@ -72,7 +72,7 @@ run-all-tests:
 
 #check coverage of all the modles listed in the test_filter.txt
 run-subset-tests:
-	@LLVM_PROFILE_FILE="$(BUILD_DIR)/run_tests.profraw" ./$(BUILD_DIR)/run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
+	@LLVM_PROFILE_FILE="$(BUILD_DIR)/run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(BUILD_DIR)/run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
 	@llvm-profdata merge -sparse $(BUILD_DIR)/run_tests.profraw -o $(BUILD_DIR)/run_tests.profdata
 
 # launches the interactive html for the entire coverage run

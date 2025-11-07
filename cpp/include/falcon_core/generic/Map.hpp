@@ -47,10 +47,9 @@ class Map : public virtual generic::Song {
                         const typename ContainerItem::StoredT2& value) {
     auto it = find(key);
     if (it != _items->end()) {
-      (*it)->second() = value;
-    } else {
-      _items->push_back(std::make_shared<Pair<Key, Value>>(key, value));
+      erase(key);
     }
+    _items->push_back(std::make_shared<Pair<Key, Value>>(key, value));
   }
 
   std::pair<iterator, bool> insert(
@@ -152,11 +151,11 @@ class Map : public virtual generic::Song {
    * @brief Return the keys of the Map.
    */
   const generic::ListSP<Key> keys() const {
-    generic::ListSP<Key> out = std::make_shared<generic::List<Key>>();
-    for (const ContainerItemSP pair : *_items) {
-      out->push_back(pair->first());
+    generic::List<Key> out = generic::List<Key>();
+    for (const ContainerItemSP& pair : items()) {
+      out.push_back(pair->first());
     }
-    return out;
+    return std::make_shared<generic::List<Key>>(out);
   }
   const Container items() const { return *_items; }
   Container       items() { return *_items; }
@@ -165,11 +164,11 @@ class Map : public virtual generic::Song {
    * @brief Return the values of the Map.
    */
   const generic::ListSP<Value> values() const {
-    generic::ListSP<Value> out = std::make_shared<generic::List<Value>>();
-    for (const ContainerItemSP pair : *_items) {
-      out->push_back(pair->second());
+    generic::List<Value> out = generic::List<Value>();
+    for (const ContainerItemSP& pair : *_items) {
+      out.push_back(pair->second());
     }
-    return out;
+    return std::make_shared<generic::List<Value>>(out);
   }
   bool operator==(const Map<Key, Value>& other) const {
     if (size() != other.size()) return false;
