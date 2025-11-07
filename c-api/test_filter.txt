@@ -145,3 +145,6 @@ PairConnectionDoubleTest.*
 PairConnectionFloatTest.*
 PairInterpretationContextDoubleTest.*
 PairInterpretationContextStringTest.*
+MapIntIntTest.*
+MapFloatFloatTest.*
+MapStringBoolTest.*
