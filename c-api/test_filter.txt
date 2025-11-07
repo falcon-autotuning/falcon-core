@@ -139,3 +139,4 @@ PairInterpretationContextQuantityTest.*
 PairMeasurementResponseMeasurementRequestTest.*
 ListMapStringBoolTest.*
 WaveformTest.*
+MeasurementRequestTest.*

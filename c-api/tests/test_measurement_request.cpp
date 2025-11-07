@@ -13,35 +13,31 @@
 class MeasurementRequestTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    msg  = String_wrap("msg");
-    name = String_wrap("measurement");
-
-    // --- Waveform construction pattern ---
+    msg          = String_wrap("msg");
+    name         = String_wrap("measurement");
     domain       = Domain_create(0, 1.0);
     default_name = String_wrap("A");
-    domain_list  = ListLabelledDomain_create_empty();
+    port         = InstrumentPort_create_knob(
+        default_name, Connection_create_barrier_gate(default_name));
+    getter = InstrumentPort_create_meter(
+        String_wrap("ohm1"), Connection_create_ohmic(String_wrap("ohm1")));
+    domain_list = ListLabelledDomain_create_empty();
     ListLabelledDomain_push_back(
-        domain_list,
-        LabelledDomain_create_from_domain(
-            domain,
-            default_name,
-            Connection_create_barrier_gate(default_name),
-            InstrumentTypes_voltmeter()));
+        domain_list, LabelledDomain_create_from_port_and_domain(port, domain));
     labelled_domain = CoupledLabelledDomain_create(domain_list);
     axes            = AxesCoupledLabelledDomain_create_empty();
     AxesCoupledLabelledDomain_push_back(
         axes, CoupledLabelledDomain_create(labelled_domain));
     increasing = AxesMapStringBool_create_empty();
     map        = MapStringBool_create_empty();
-    MapStringBool_insert(map, String_wrap("A"), true);
+    MapStringBool_insert(map, default_name, true);
     AxesMapStringBool_push_back(increasing, map);
     discretizers = AxesDiscretizer_create_empty();
     AxesDiscretizer_push_back(discretizers,
                               Discretizer_create_cartesian_discretizer(0.1));
     unit_space = UnitSpace_create(discretizers, domain);
-    space      = DiscreteSpace_create(unit_space, axes, map);
+    space      = DiscreteSpace_create(unit_space, axes, increasing);
     transforms = ListPortTransform_create_empty();
-    port       = InstrumentPort_create_meter(String_wrap("P1"));
     labels     = ListString_create_empty();
     ListString_push_back(labels, String_wrap("x"));
     analytic = AnalyticFunction_create(labels, String_wrap("2x[0]+1"));
@@ -53,7 +49,7 @@ class MeasurementRequestTest : public ::testing::Test {
     ListWaveform_push_back(waveforms, waveform);
 
     getters = Ports_create_empty();
-    Ports_push_back(getters, port);
+    Ports_push_back(getters, getter);
 
     meter_transforms = MapInstrumentPortPortTransform_create_empty();
     MapInstrumentPortPortTransform_insert(meter_transforms, port, pt);
@@ -96,12 +92,13 @@ class MeasurementRequestTest : public ::testing::Test {
     AxesDiscretizer_destroy(discretizers);
     ListString_destroy(labels);
     AnalyticFunction_destroy(analytic);
-    AxesInt_destroy(divisions);
     AxesCoupledLabelledDomain_destroy(axes);
     AxesMapStringBool_destroy(increasing);
     Domain_destroy(domain);
+    InstrumentPort_destroy(getter);
   }
   StringHandle                         msg;
+  InstrumentPortHandle                 getter;
   StringHandle                         name;
   WaveformHandle                       waveform;
   ListWaveformHandle                   waveforms;
@@ -122,7 +119,6 @@ class MeasurementRequestTest : public ::testing::Test {
   AxesDiscretizerHandle                discretizers;
   ListStringHandle                     labels;
   AnalyticFunctionHandle               analytic;
-  AxesIntHandle                        divisions;
   AxesCoupledLabelledDomainHandle      axes;
   AxesMapStringBoolHandle              increasing;
   DomainHandle                         domain;
