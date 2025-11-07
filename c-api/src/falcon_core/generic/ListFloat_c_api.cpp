@@ -2,8 +2,7 @@
 #include "falcon_core/generic/ListFloat_c_api.h"
 
 ListFloatHandle ListFloat_create_empty() {
-    return new falcon_core::generic::List<float>(
-        falcon_core::generic::List<float>());
+    return new falcon_core::generic::List<float>();
 }
 
 ListFloatHandle ListFloat_fill_value(size_t count, float value) {
@@ -12,8 +11,7 @@ ListFloatHandle ListFloat_fill_value(size_t count, float value) {
         count, stored_obj);
 }
  ListFloatHandle ListFloat_allocate(size_t count) {
-    return new falcon_core::generic::List<float>(
-        falcon_core::generic::List<float>(count));
+    return new falcon_core::generic::List<float>(count);
 }
 
 
@@ -23,8 +21,7 @@ throw std::invalid_argument("Null data handle passed to ListFloat_create");
 }
     std::vector<float> vec;
     vec.insert(vec.end(), data, data + count);
-    return new falcon_core::generic::List<float>(
-        falcon_core::generic::List<float>(vec));
+    return new falcon_core::generic::List<float>(vec);
 }
 
 void ListFloat_destroy(ListFloatHandle handle) {

@@ -3,8 +3,7 @@
 #include <falcon_core/math/domains/CoupledLabelledDomain.hpp>
 
 ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_create_empty() {
-    return new falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>(
-        falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>());
+    return new falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>();
 }
 
 ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_fill_value(size_t count, CoupledLabelledDomainHandle value) {
@@ -12,7 +11,8 @@ ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_fill_value(size_t coun
     if (!value) {
     throw std::invalid_argument("Null value passed to ListCoupledLabelledDomain_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::domains::CoupledLabelledDomain>(static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value), [](falcon_core::math::domains::CoupledLabelledDomain*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value));
+    
     return new falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>(
         count, stored_obj);
 }
@@ -25,11 +25,10 @@ throw std::invalid_argument("Null data handle passed to ListCoupledLabelledDomai
     std::vector<falcon_core::math::domains::CoupledLabelledDomainSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::math::domains::CoupledLabelledDomain>(static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(data[i]), [](falcon_core::math::domains::CoupledLabelledDomain*) {} ));
+        vec.push_back(std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>(
-        falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>(vec));
+    return new falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>(vec);
 }
 
 void ListCoupledLabelledDomain_destroy(ListCoupledLabelledDomainHandle handle) {
@@ -75,7 +74,8 @@ throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_pus
     if (!value) {
     throw std::invalid_argument("Null value passed to ListCoupledLabelledDomain_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::domains::CoupledLabelledDomain>(static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value), [](falcon_core::math::domains::CoupledLabelledDomain*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,8 @@ throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_con
     if (!value) {
     throw std::invalid_argument("Null value passed to ListCoupledLabelledDomain_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::domains::CoupledLabelledDomain>(static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value), [](falcon_core::math::domains::CoupledLabelledDomain*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +100,8 @@ throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_ind
     if (!value) {
     throw std::invalid_argument("Null value passed to ListCoupledLabelledDomain_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::domains::CoupledLabelledDomain>(static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value), [](falcon_core::math::domains::CoupledLabelledDomain*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->index(stored_obj);
 }
 

@@ -18,6 +18,7 @@ typedef void* InterpretationContainerQuantityHandle;
 // Function declarations
 
 InterpretationContainerQuantityHandle InterpretationContainerQuantity_create(MapInterpretationContextQuantityHandle map);
+void InterpretationContainerQuantity_destroy(InterpretationContainerQuantityHandle handle);
 SymbolUnitHandle InterpretationContainerQuantity_unit(
      InterpretationContainerQuantityHandle handle);
 ListInterpretationContextHandle InterpretationContainerQuantity_select_by_connection(

@@ -5,8 +5,7 @@
 #include <falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>
 
 MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_create_empty() {
-    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>(
-            falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>());
+    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>(); 
 }
 
 MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_create(const PairInterpretationContextQuantityHandle* data, size_t count) {
@@ -16,12 +15,11 @@ throw std::invalid_argument("Null data pointer passed to MapInterpretationContex
     std::vector<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(*reinterpret_cast<
-                    std::shared_ptr<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>>*>(
-            data[i]));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>>
+        (*static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(
+            data[i])));
     }
-    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>(
-            falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>(vec));
+    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>(vec);
 }
 
 void MapInterpretationContextQuantity_destroy(MapInterpretationContextQuantityHandle handle) {

@@ -3,8 +3,7 @@
 #include <falcon_core/generic/Pair.hpp>
 
 ListPairSizeTSizeTHandle ListPairSizeTSizeT_create_empty() {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>());
+    return new falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>();
 }
 
 ListPairSizeTSizeTHandle ListPairSizeTSizeT_fill_value(size_t count, PairSizeTSizeTHandle value) {
@@ -12,7 +11,8 @@ ListPairSizeTSizeTHandle ListPairSizeTSizeT_fill_value(size_t count, PairSizeTSi
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairSizeTSizeT_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<size_t, size_t>>(static_cast<falcon_core::generic::Pair<size_t, size_t>*>(value), [](falcon_core::generic::Pair<size_t, size_t>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<size_t, size_t>>(*static_cast<falcon_core::generic::Pair<size_t, size_t>*>(value));
+    
     return new falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>(
         count, stored_obj);
 }
@@ -25,11 +25,10 @@ throw std::invalid_argument("Null data handle passed to ListPairSizeTSizeT_creat
     std::vector<falcon_core::generic::PairSP<size_t, size_t>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::generic::Pair<size_t, size_t>>(static_cast<falcon_core::generic::Pair<size_t, size_t>*>(data[i]), [](falcon_core::generic::Pair<size_t, size_t>*) {} ));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<size_t, size_t>>(*static_cast<falcon_core::generic::Pair<size_t, size_t>*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>(vec));
+    return new falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>(vec);
 }
 
 void ListPairSizeTSizeT_destroy(ListPairSizeTSizeTHandle handle) {
@@ -75,7 +74,8 @@ throw std::invalid_argument("Null handle passed to ListPairSizeTSizeT_push_back"
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairSizeTSizeT_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<size_t, size_t>>(static_cast<falcon_core::generic::Pair<size_t, size_t>*>(value), [](falcon_core::generic::Pair<size_t, size_t>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<size_t, size_t>>(*static_cast<falcon_core::generic::Pair<size_t, size_t>*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,8 @@ throw std::invalid_argument("Null handle passed to ListPairSizeTSizeT_contains")
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairSizeTSizeT_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<size_t, size_t>>(static_cast<falcon_core::generic::Pair<size_t, size_t>*>(value), [](falcon_core::generic::Pair<size_t, size_t>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<size_t, size_t>>(*static_cast<falcon_core::generic::Pair<size_t, size_t>*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +100,8 @@ throw std::invalid_argument("Null handle passed to ListPairSizeTSizeT_index");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairSizeTSizeT_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<size_t, size_t>>(static_cast<falcon_core::generic::Pair<size_t, size_t>*>(value), [](falcon_core::generic::Pair<size_t, size_t>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<size_t, size_t>>(*static_cast<falcon_core::generic::Pair<size_t, size_t>*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>*>(handle)->index(stored_obj);
 }
 

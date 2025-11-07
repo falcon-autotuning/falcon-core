@@ -3,8 +3,7 @@
 #include <falcon_core/generic/Pair.hpp>
 
 MapStringBoolHandle MapStringBool_create_empty() {
-    return new falcon_core::generic::Map<std::string,bool>(
-            falcon_core::generic::Map<std::string,bool>());
+    return new falcon_core::generic::Map<std::string,bool>(); 
 }
 
 MapStringBoolHandle MapStringBool_create(const PairStringBoolHandle* data, size_t count) {
@@ -14,12 +13,11 @@ throw std::invalid_argument("Null data pointer passed to MapStringBool_create");
     std::vector<falcon_core::generic::PairSP<std::string,bool>> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(*reinterpret_cast<
-                    std::shared_ptr<falcon_core::generic::Pair<std::string,bool>>*>(
-            data[i]));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<std::string,bool>>
+        (*static_cast<falcon_core::generic::Pair<std::string,bool>*>(
+            data[i])));
     }
-    return new falcon_core::generic::Map<std::string,bool>(
-            falcon_core::generic::Map<std::string,bool>(vec));
+    return new falcon_core::generic::Map<std::string,bool>(vec);
 }
 
 void MapStringBool_destroy(MapStringBoolHandle handle) {

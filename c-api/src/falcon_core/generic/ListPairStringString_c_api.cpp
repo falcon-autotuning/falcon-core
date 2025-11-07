@@ -3,8 +3,7 @@
 #include <falcon_core/generic/Pair.hpp>
 
 ListPairStringStringHandle ListPairStringString_create_empty() {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>());
+    return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>();
 }
 
 ListPairStringStringHandle ListPairStringString_fill_value(size_t count, PairStringStringHandle value) {
@@ -12,7 +11,8 @@ ListPairStringStringHandle ListPairStringString_fill_value(size_t count, PairStr
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairStringString_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<std::string, std::string>>(static_cast<falcon_core::generic::Pair<std::string, std::string>*>(value), [](falcon_core::generic::Pair<std::string, std::string>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<std::string, std::string>>(*static_cast<falcon_core::generic::Pair<std::string, std::string>*>(value));
+    
     return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>(
         count, stored_obj);
 }
@@ -25,11 +25,10 @@ throw std::invalid_argument("Null data handle passed to ListPairStringString_cre
     std::vector<falcon_core::generic::PairSP<std::string, std::string>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::generic::Pair<std::string, std::string>>(static_cast<falcon_core::generic::Pair<std::string, std::string>*>(data[i]), [](falcon_core::generic::Pair<std::string, std::string>*) {} ));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<std::string, std::string>>(*static_cast<falcon_core::generic::Pair<std::string, std::string>*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>(vec));
+    return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>(vec);
 }
 
 void ListPairStringString_destroy(ListPairStringStringHandle handle) {
@@ -75,7 +74,8 @@ throw std::invalid_argument("Null handle passed to ListPairStringString_push_bac
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairStringString_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<std::string, std::string>>(static_cast<falcon_core::generic::Pair<std::string, std::string>*>(value), [](falcon_core::generic::Pair<std::string, std::string>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<std::string, std::string>>(*static_cast<falcon_core::generic::Pair<std::string, std::string>*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,8 @@ throw std::invalid_argument("Null handle passed to ListPairStringString_contains
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairStringString_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<std::string, std::string>>(static_cast<falcon_core::generic::Pair<std::string, std::string>*>(value), [](falcon_core::generic::Pair<std::string, std::string>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<std::string, std::string>>(*static_cast<falcon_core::generic::Pair<std::string, std::string>*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +100,8 @@ throw std::invalid_argument("Null handle passed to ListPairStringString_index");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairStringString_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<std::string, std::string>>(static_cast<falcon_core::generic::Pair<std::string, std::string>*>(value), [](falcon_core::generic::Pair<std::string, std::string>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<std::string, std::string>>(*static_cast<falcon_core::generic::Pair<std::string, std::string>*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>*>(handle)->index(stored_obj);
 }
 

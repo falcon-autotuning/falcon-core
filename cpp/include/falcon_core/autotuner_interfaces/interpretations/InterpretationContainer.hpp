@@ -1,10 +1,12 @@
 #pragma once
 
+#include <stdexcept>
+
+#include "falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/generic/Pair.hpp"
-#include "falcon_core/math/Quantity.hpp"
 
 namespace falcon_core {
 namespace autotuner_interfaces {
@@ -32,6 +34,9 @@ class InterpretationContainer
    */
   InterpretationContainer(
       const generic::MapSP<InterpretationContext, Value>& map) {
+    if (!map) {
+      throw std::invalid_argument("The map needs to not be null.");
+    }
     for (const generic::PairSP<InterpretationContext, Value>& context : *map) {
       if (!this->_unit) {
         this->_unit = context->first()->unit();
@@ -54,21 +59,27 @@ class InterpretationContainer
    */
   const generic::ListSP<InterpretationContext> select_by_connection(
       const physics::device_structures::ConnectionSP& connection) const {
-    auto results = std::make_shared<generic::List<InterpretationContext>>();
-    for (const generic::PairSP<InterpretationContext, Value>& pair :
-         this->items().items()) {
+    if (!connection) {
+      throw std::invalid_argument("The connection needs to not be null.");
+    }
+    generic::ListSP<InterpretationContext> results =
+        std::make_shared<generic::List<InterpretationContext>>();
+    for (const InterpretationContextSP& context : *this->keys()) {
       // Check independent variables
-      InterpretationContextSP context = pair->first();
+      if (!context) {
+        continue;
+      }
       for (size_t i = 0; i < context->dimension(); ++i) {
-        auto indep_var = context->get_independent_variable(i);
-        if (indep_var->connection() == connection) {
+        contexts::MeasurementContextSP indep_var =
+            context->get_independent_variable(i);
+        if (*indep_var->connection() == *connection) {
           results->push_back(context);
           goto next_context;
         }
       }
       // Check dependent variables
       for (const auto& dep_var : *context->dependent_variables()) {
-        if (dep_var->connection() == connection) {
+        if (*dep_var->connection() == *connection) {
           results->push_back(context);
           break;
         }
@@ -88,6 +99,10 @@ class InterpretationContainer
       const {
     std::vector<InterpretationContextSP> matching_contexts;
     for (const auto& pair_sp : *this) {
+      if (!pair_sp) {
+        throw std::invalid_argument(
+            "Each connection must not be null in teh vector.");
+      }
       matching_contexts.push_back(pair_sp->first());
     }
     for (const auto& connection : connections) {
@@ -113,6 +128,9 @@ class InterpretationContainer
   }
   const generic::ListSP<InterpretationContext> select_by_independent_connection(
       const physics::device_structures::ConnectionSP& connection) {
+    if (!connection) {
+      throw std::invalid_argument("The connection must not be null.");
+    }
     for (const generic::PairSP<InterpretationContext, Value>& pair :
          this->items().items()) {
       // Check independent variables
@@ -130,6 +148,9 @@ class InterpretationContainer
   }
   const generic::ListSP<InterpretationContext> select_by_dependent_connection(
       const physics::device_structures::ConnectionSP& connection) {
+    if (!connection) {
+      throw std::invalid_argument("The connection must not be null.");
+    }
     for (const generic::PairSP<InterpretationContext, Value>& pair :
          this->items().items()) {
       // Check independent variables
@@ -149,6 +170,14 @@ class InterpretationContainer
           independent_connections,
       const generic::ListSP<physics::device_structures::Connection>&
           dependent_connections) {
+    if (!independent_connections) {
+      throw std::invalid_argument(
+          "The independent connections must not be null.");
+    }
+    if (!independent_connections) {
+      throw std::invalid_argument(
+          "The dependent connections must not be null.");
+    }
     // Start with all contexts
     std::vector<InterpretationContextSP> matching_contexts;
     for (generic::PairSP<InterpretationContext, Value>& kv : this->items()) {
@@ -215,24 +244,3 @@ using InterpretationContainerSP =
 }  // namespace interpretations
 }  // namespace autotuner_interfaces
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(
-    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
-        double>)
-CEREAL_REGISTER_TYPE(
-    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
-        std::string>)
-CEREAL_REGISTER_TYPE(
-    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
-        falcon_core::math::Quantity>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
-        double>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
-        std::string>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
-        falcon_core::math::Quantity>)

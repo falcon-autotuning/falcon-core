@@ -5,7 +5,14 @@
 namespace falcon_core {
 namespace autotuner_interfaces {
 namespace interpretations {
-InterpretationContext::InterpretationContext() = default;
+InterpretationContext::InterpretationContext()
+    : _independent_variables(
+          std::make_shared<math::Axes<
+              autotuner_interfaces::contexts::MeasurementContext>>()),
+      _dependent_variables(
+          std::make_shared<generic::List<
+              autotuner_interfaces::contexts::MeasurementContext>>()),
+      _unit(nullptr) {}
 InterpretationContext::InterpretationContext(
     const math::AxesSP<autotuner_interfaces::contexts::MeasurementContext>&
         independent_variables,

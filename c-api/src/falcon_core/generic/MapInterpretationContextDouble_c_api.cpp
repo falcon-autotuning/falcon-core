@@ -4,8 +4,7 @@
 #include <falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>
 
 MapInterpretationContextDoubleHandle MapInterpretationContextDouble_create_empty() {
-    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,double>(
-            falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,double>());
+    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,double>(); 
 }
 
 MapInterpretationContextDoubleHandle MapInterpretationContextDouble_create(const PairInterpretationContextDoubleHandle* data, size_t count) {
@@ -15,12 +14,11 @@ throw std::invalid_argument("Null data pointer passed to MapInterpretationContex
     std::vector<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,double>> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(*reinterpret_cast<
-                    std::shared_ptr<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,double>>*>(
-            data[i]));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,double>>
+        (*static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,double>*>(
+            data[i])));
     }
-    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,double>(
-            falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,double>(vec));
+    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,double>(vec);
 }
 
 void MapInterpretationContextDouble_destroy(MapInterpretationContextDoubleHandle handle) {

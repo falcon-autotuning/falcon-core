@@ -5,8 +5,7 @@
 #include <falcon_core/physics/config/core/Group.hpp>
 
 MapGnameGroupHandle MapGnameGroup_create_empty() {
-    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>(
-            falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>());
+    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>(); 
 }
 
 MapGnameGroupHandle MapGnameGroup_create(const PairGnameGroupHandle* data, size_t count) {
@@ -16,12 +15,11 @@ throw std::invalid_argument("Null data pointer passed to MapGnameGroup_create");
     std::vector<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(*reinterpret_cast<
-                    std::shared_ptr<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>>*>(
-            data[i]));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>>
+        (*static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>*>(
+            data[i])));
     }
-    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>(
-            falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>(vec));
+    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>(vec);
 }
 
 void MapGnameGroup_destroy(MapGnameGroupHandle handle) {

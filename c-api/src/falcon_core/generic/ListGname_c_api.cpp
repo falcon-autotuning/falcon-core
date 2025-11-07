@@ -3,8 +3,7 @@
 #include <falcon_core/autotuner_interfaces/names/Gname.hpp>
 
 ListGnameHandle ListGname_create_empty() {
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>());
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>();
 }
 
 ListGnameHandle ListGname_fill_value(size_t count, GnameHandle value) {
@@ -12,7 +11,8 @@ ListGnameHandle ListGname_fill_value(size_t count, GnameHandle value) {
     if (!value) {
     throw std::invalid_argument("Null value passed to ListGname_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Gname>(static_cast<falcon_core::autotuner_interfaces::names::Gname*>(value), [](falcon_core::autotuner_interfaces::names::Gname*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::names::Gname>(*static_cast<falcon_core::autotuner_interfaces::names::Gname*>(value));
+    
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>(
         count, stored_obj);
 }
@@ -25,11 +25,10 @@ throw std::invalid_argument("Null data handle passed to ListGname_create");
     std::vector<falcon_core::autotuner_interfaces::names::GnameSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::autotuner_interfaces::names::Gname>(static_cast<falcon_core::autotuner_interfaces::names::Gname*>(data[i]), [](falcon_core::autotuner_interfaces::names::Gname*) {} ));
+        vec.push_back(std::make_shared<falcon_core::autotuner_interfaces::names::Gname>(*static_cast<falcon_core::autotuner_interfaces::names::Gname*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>(vec));
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>(vec);
 }
 
 void ListGname_destroy(ListGnameHandle handle) {
@@ -75,7 +74,8 @@ throw std::invalid_argument("Null handle passed to ListGname_push_back");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListGname_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Gname>(static_cast<falcon_core::autotuner_interfaces::names::Gname*>(value), [](falcon_core::autotuner_interfaces::names::Gname*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::names::Gname>(*static_cast<falcon_core::autotuner_interfaces::names::Gname*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,8 @@ throw std::invalid_argument("Null handle passed to ListGname_contains");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListGname_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Gname>(static_cast<falcon_core::autotuner_interfaces::names::Gname*>(value), [](falcon_core::autotuner_interfaces::names::Gname*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::names::Gname>(*static_cast<falcon_core::autotuner_interfaces::names::Gname*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +100,8 @@ throw std::invalid_argument("Null handle passed to ListGname_index");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListGname_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Gname>(static_cast<falcon_core::autotuner_interfaces::names::Gname*>(value), [](falcon_core::autotuner_interfaces::names::Gname*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::names::Gname>(*static_cast<falcon_core::autotuner_interfaces::names::Gname*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>*>(handle)->index(stored_obj);
 }
 

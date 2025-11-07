@@ -3,8 +3,7 @@
 #include <falcon_core/math/Quantity.hpp>
 
 ListQuantityHandle ListQuantity_create_empty() {
-    return new falcon_core::generic::List<falcon_core::math::Quantity>(
-        falcon_core::generic::List<falcon_core::math::Quantity>());
+    return new falcon_core::generic::List<falcon_core::math::Quantity>();
 }
 
 ListQuantityHandle ListQuantity_fill_value(size_t count, QuantityHandle value) {
@@ -12,7 +11,8 @@ ListQuantityHandle ListQuantity_fill_value(size_t count, QuantityHandle value) {
     if (!value) {
     throw std::invalid_argument("Null value passed to ListQuantity_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::Quantity>(static_cast<falcon_core::math::Quantity*>(value), [](falcon_core::math::Quantity*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::Quantity>(*static_cast<falcon_core::math::Quantity*>(value));
+    
     return new falcon_core::generic::List<falcon_core::math::Quantity>(
         count, stored_obj);
 }
@@ -25,11 +25,10 @@ throw std::invalid_argument("Null data handle passed to ListQuantity_create");
     std::vector<falcon_core::math::QuantitySP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::math::Quantity>(static_cast<falcon_core::math::Quantity*>(data[i]), [](falcon_core::math::Quantity*) {} ));
+        vec.push_back(std::make_shared<falcon_core::math::Quantity>(*static_cast<falcon_core::math::Quantity*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::math::Quantity>(
-        falcon_core::generic::List<falcon_core::math::Quantity>(vec));
+    return new falcon_core::generic::List<falcon_core::math::Quantity>(vec);
 }
 
 void ListQuantity_destroy(ListQuantityHandle handle) {
@@ -75,7 +74,8 @@ throw std::invalid_argument("Null handle passed to ListQuantity_push_back");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListQuantity_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::Quantity>(static_cast<falcon_core::math::Quantity*>(value), [](falcon_core::math::Quantity*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::Quantity>(*static_cast<falcon_core::math::Quantity*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::math::Quantity>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,8 @@ throw std::invalid_argument("Null handle passed to ListQuantity_contains");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListQuantity_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::Quantity>(static_cast<falcon_core::math::Quantity*>(value), [](falcon_core::math::Quantity*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::Quantity>(*static_cast<falcon_core::math::Quantity*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::math::Quantity>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +100,8 @@ throw std::invalid_argument("Null handle passed to ListQuantity_index");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListQuantity_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::Quantity>(static_cast<falcon_core::math::Quantity*>(value), [](falcon_core::math::Quantity*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::Quantity>(*static_cast<falcon_core::math::Quantity*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::math::Quantity>*>(handle)->index(stored_obj);
 }
 

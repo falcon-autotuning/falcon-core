@@ -3,8 +3,7 @@
 #include <falcon_core/generic/Pair.hpp>
 
 MapStringDoubleHandle MapStringDouble_create_empty() {
-    return new falcon_core::generic::Map<std::string,double>(
-            falcon_core::generic::Map<std::string,double>());
+    return new falcon_core::generic::Map<std::string,double>(); 
 }
 
 MapStringDoubleHandle MapStringDouble_create(const PairStringDoubleHandle* data, size_t count) {
@@ -14,12 +13,11 @@ throw std::invalid_argument("Null data pointer passed to MapStringDouble_create"
     std::vector<falcon_core::generic::PairSP<std::string,double>> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(*reinterpret_cast<
-                    std::shared_ptr<falcon_core::generic::Pair<std::string,double>>*>(
-            data[i]));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<std::string,double>>
+        (*static_cast<falcon_core::generic::Pair<std::string,double>*>(
+            data[i])));
     }
-    return new falcon_core::generic::Map<std::string,double>(
-            falcon_core::generic::Map<std::string,double>(vec));
+    return new falcon_core::generic::Map<std::string,double>(vec);
 }
 
 void MapStringDouble_destroy(MapStringDoubleHandle handle) {

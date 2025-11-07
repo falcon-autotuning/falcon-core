@@ -67,17 +67,17 @@ build-dev:
 
 # check coverage of entire module
 run-all-tests:
-	@LLVM_PROFILE_FILE="run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./build/run_tests
-	@llvm-profdata merge -sparse run_tests.profraw -o run_tests.profdata
+	@LLVM_PROFILE_FILE="$(BUILD_DIR)/run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(BUILD_DIR)/run_tests
+	@llvm-profdata merge -sparse $(BUILD_DIR)/run_tests.profraw -o $(BUILD_DIR)/run_tests.profdata
 
 #check coverage of all the modles listed in the test_filter.txt
 run-subset-tests:
-	@LLVM_PROFILE_FILE="build/run_tests.profraw" ./build/run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
-	@llvm-profdata merge -sparse run_tests.profraw -o run_tests.profdata
+	@LLVM_PROFILE_FILE="$(BUILD_DIR)/run_tests.profraw" ./$(BUILD_DIR)/run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
+	@llvm-profdata merge -sparse $(BUILD_DIR)/run_tests.profraw -o $(BUILD_DIR)/run_tests.profdata
 
 # launches the interactive html for the entire coverage run
 cov-html:
-	@llvm-cov show ./build/lib$(CPP_TARGET).so -instr-profile=run_tests.profdata \
+	@llvm-cov show ./$(BUILD_DIR)/lib$(CPP_TARGET).so -instr-profile=$(BUILD_DIR)/run_tests.profdata \
 	  -format=html -output-dir=coverage_html \
 	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
 		-Xdemangler c++filt -Xdemangler -n
@@ -85,7 +85,7 @@ cov-html:
 
 # Usage: make coverage-term FILE=/path/to/source.cpp
 cov-term:
-	@llvm-cov show ./build/lib$(CPP_TARGET).so -instr-profile=run_tests.profdata $(FILE) \
+	@llvm-cov show ./$(BUILD_DIR)/lib$(CPP_TARGET).so -instr-profile=$(BUILD_DIR)/run_tests.profdata $(FILE) \
 	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
 	  -Xdemangler c++filt -Xdemangler -n 
 
@@ -99,12 +99,12 @@ subset-coverage: run-subset-tests cov-term
 coverage: run-all-tests cov-term
 
 subset-coverage-overview: subset-coverage
-	@llvm-cov report ./build/lib$(CPP_TARGET).so -instr-profile=run_tests.profdata \
+	@llvm-cov report ./$(BUILD_DIR)/lib$(CPP_TARGET).so -instr-profile=$(BUILD_DIR)/run_tests.profdata \
 		-ignore-filename-regex='(vcpkg_installed|tests/)' \
 		-Xdemangler c++filt -Xdemangler -n
 
 coverage-overview: coverage
-	@llvm-cov report ./build/lib$(CPP_TARGET).so -instr-profile=run_tests.profdata -ignore-filename-regex='(vcpkg_installed|tests/)' -Xdemangler c++filt -Xdemangler -n
+	@llvm-cov report ./$(BUILD_DIR)/lib$(CPP_TARGET).so -instr-profile=$(BUILD_DIR)/run_tests.profdata -ignore-filename-regex='(vcpkg_installed|tests/)' -Xdemangler c++filt -Xdemangler -n
 
 # Clean up build artifacts
 clean:

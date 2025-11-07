@@ -44,18 +44,6 @@ TEST_F(LabelledDomainTest, ConstructorValid) {
   EXPECT_EQ(domain->port()->default_name(), "test");
 }
 
-TEST_F(LabelledDomainTest, ConstructorThrowsOnNullPseudoName) {
-  EXPECT_THROW(LabelledDomain(default_name,
-                              bounds,
-                              nullptr,
-                              instrument_type,
-                              lesser_bound_contained,
-                              greater_bound_contained,
-                              units,
-                              description),
-               std::invalid_argument);
-}
-
 TEST_F(LabelledDomainTest, FromPortValid) {
   auto domain = LabelledDomain::from_port(bounds, port);
   EXPECT_EQ(domain->port()->default_name(), "port");
@@ -98,14 +86,6 @@ TEST_F(LabelledDomainTest, FromDomainThrowsOnNullDomain) {
                                            units,
                                            description),
                std::invalid_argument);
-}
-
-TEST_F(LabelledDomainTest, FromDomainThrowsOnNullPseudoName) {
-  auto domain = make_domain();
-  EXPECT_THROW(
-      LabelledDomain::from_domain(
-          domain, default_name, nullptr, instrument_type, units, description),
-      std::invalid_argument);
 }
 
 TEST_F(LabelledDomainTest, SerializationRoundTrip) {

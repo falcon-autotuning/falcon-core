@@ -345,6 +345,7 @@ bool {self.mangled_name()}_not_equal(
         with self.edit_header() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create(MapInterpretationContext{self.name()}Handle map);
+void {self.mangled_name()}_destroy({self.chandle()} handle);
 SymbolUnitHandle {self.mangled_name()}_unit(
      {self.chandle()} handle);
 ListInterpretationContextHandle {self.mangled_name()}_select_by_connection(
@@ -522,8 +523,7 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
     }
 """
             from_allocate = f"""{self.chandle()} {self.mangled_name()}_allocate(size_t count) {{
-    return new falcon_core::generic::List<{cpp_real}>(
-        falcon_core::generic::List<{cpp_real}>(count));
+    return new falcon_core::generic::List<{cpp_real}>(count);
 }}
 """
             stored_out_value = "return String_create(obj.data(), obj.size());"
@@ -539,8 +539,7 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
             stored_out_value = "return obj;"
             create_allocation = "vec.insert(vec.end(), data, data + count);"
             from_allocate = f"""{self.chandle()} {self.mangled_name()}_allocate(size_t count) {{
-    return new falcon_core::generic::List<{cpp_real}>(
-        falcon_core::generic::List<{cpp_real}>(count));
+    return new falcon_core::generic::List<{cpp_real}>(count);
 }}
 """
         else:
@@ -549,7 +548,8 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
     if (!value) {{
     throw std::invalid_argument("Null value passed to {self.mangled_name()}_fill_value");
     }}
-    auto stored_obj = std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(value), []({cpp_real}*) {{}} );"""
+    auto stored_obj = std::make_shared<{cpp_real}>(*static_cast<{cpp_real}*>(value));
+    """
             copy_to_out_buffer = f"""
 for (size_t i = 0; i < n; ++i) {{
     out_buffer[i] = new {cpp_real}(*list->items()[i]);
@@ -557,14 +557,13 @@ for (size_t i = 0; i < n; ++i) {{
             stored_out_value = f"return new {cpp_real}(*obj);"
             create_allocation = f"""    vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {{
-        vec.push_back(std::shared_ptr<{cpp_real}>(static_cast<{cpp_real}*>(data[i]), []({cpp_real}*) {{}} ));
+        vec.push_back(std::make_shared<{cpp_real}>(*static_cast<{cpp_real}*>(data[i]))); 
     }}
 """
         with self.edit_implementation() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty() {{
-    return new falcon_core::generic::List<{cpp_real}>(
-        falcon_core::generic::List<{cpp_real}>());
+    return new falcon_core::generic::List<{cpp_real}>();
 }}
 
 {self.chandle()} {self.mangled_name()}_fill_value(size_t count, {c_type} value) {{
@@ -580,8 +579,7 @@ throw std::invalid_argument("Null data handle passed to {self.mangled_name()}_cr
 }}
     std::vector<{cpp_stored}> vec;
     {create_allocation}
-    return new falcon_core::generic::List<{cpp_real}>(
-        falcon_core::generic::List<{cpp_real}>(vec));
+    return new falcon_core::generic::List<{cpp_real}>(vec);
 }}
 
 void {self.mangled_name()}_destroy({self.chandle()} handle) {{
@@ -1091,7 +1089,7 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
                 if (!first) {{
                 throw std::invalid_argument("Null value passed to {self.mangled_name()}_create");
                 }}
-                auto first_obj= std::shared_ptr<{cpp_real_1}>(static_cast<{cpp_real_1}*>(first),[]({cpp_real_1}*) {{}});"""
+                auto first_obj= std::make_shared<{cpp_real_1}>(*static_cast<{cpp_real_1}*>(first));"""
             if c_type_2 == "StringHandle":
                 second_create_adjustment = f"""
                 if (!second) {{
@@ -1105,7 +1103,7 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
                 if (!second) {{
                 throw std::invalid_argument("Null value passed to {self.mangled_name()}_create");
                 }}
-                auto second_obj= std::shared_ptr<{cpp_real_2}>(static_cast<{cpp_real_2}*>(second),[]({cpp_real_2}*) {{}});"""
+                auto second_obj= std::make_shared<{cpp_real_2}>(*static_cast<{cpp_real_2}*>(second));"""
             # Generate first() function
             if c_type_1 == "StringHandle":
                 first_return = f"""
@@ -1223,8 +1221,15 @@ auto value_obj= std::make_shared<{cpp_value_type}>(temp_value);"""
 if (!map) {{
 throw std::invalid_argument("Null map handle passed to {self.mangled_name()}_create");
 }}
-    auto real_map= std::shared_ptr<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, {cpp_value_type}>>(static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, {cpp_value_type}>*>(map), [](falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, {cpp_value_type}>*) {{}});
+    auto real_map= std::make_shared<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, {cpp_value_type}>>(*static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, {cpp_value_type}>*>(map));
     return new falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>(real_map);
+}}
+
+void {self.mangled_name()}_destroy({self.chandle()} handle) {{
+if (!handle) {{
+throw std::invalid_argument("Null map handle passed to {self.mangled_name()}_destroy");
+}}
+    delete static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
 }}
 
 SymbolUnitHandle {self.mangled_name()}_unit(
@@ -1245,7 +1250,7 @@ ListInterpretationContextHandle {self.mangled_name()}_select_by_connection(
     throw std::invalid_argument("Null connection handle passed to {self.mangled_name()}_select_by_connection");
     }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
-    auto conn = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(connection), [](falcon_core::physics::device_structures::Connection*) {{}} );
+    auto conn = std::make_shared<falcon_core::physics::device_structures::Connection>(*static_cast<falcon_core::physics::device_structures::Connection*>(connection));
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_connection(conn));
 }}
 
@@ -1258,7 +1263,7 @@ ListInterpretationContextHandle {self.mangled_name()}_select_by_connections(
                     throw std::invalid_argument("Null connections handle passed to {self.mangled_name()}_select_by_connections");
                     }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
-    auto conns = std::shared_ptr<falcon_core::physics::device_structures::Connections>(static_cast<falcon_core::physics::device_structures::Connections*>(connections), [](falcon_core::physics::device_structures::Connections*) {{}} );
+    auto conns = std::make_shared<falcon_core::physics::device_structures::Connections>(*static_cast<falcon_core::physics::device_structures::Connections*>(connections));
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_connections(conns->items()));
 }}
 
@@ -1271,7 +1276,7 @@ ListInterpretationContextHandle {self.mangled_name()}_select_by_independent_conn
     throw std::invalid_argument("Null connection handle passed to {self.mangled_name()}_select_by_independent_connection");
     }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
-    auto conn = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(connection), [](falcon_core::physics::device_structures::Connection*) {{}} );
+    auto conn = std::make_shared<falcon_core::physics::device_structures::Connection>(*static_cast<falcon_core::physics::device_structures::Connection*>(connection));
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_independent_connection(conn));
 }}
 
@@ -1284,7 +1289,7 @@ ListInterpretationContextHandle {self.mangled_name()}_select_by_dependent_connec
     throw std::invalid_argument("Null connection handle passed to {self.mangled_name()}_select_by_dependent_connection");
     }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
-    auto conn = std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(connection), [](falcon_core::physics::device_structures::Connection*) {{}} );
+    auto conn = std::make_shared<falcon_core::physics::device_structures::Connection>(*static_cast<falcon_core::physics::device_structures::Connection*>(connection));
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_dependent_connection(conn));
 }}
 
@@ -1302,20 +1307,16 @@ ListInterpretationContextHandle {self.mangled_name()}_select_contexts(
     throw std::invalid_argument("Null dependent connections handle passed to {self.mangled_name()}_select_contexts");
     }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
-  auto independents = std::shared_ptr<falcon_core::generic::List<
+  auto independents = std::make_shared<falcon_core::generic::List<
       falcon_core::physics::device_structures::Connection>>(
-      static_cast<falcon_core::generic::List<
+      *static_cast<falcon_core::generic::List<
           falcon_core::physics::device_structures::Connection>*>(
-          independent_connections),
-      [](falcon_core::generic::List<
-          falcon_core::physics::device_structures::Connection>*) {{}});
-  auto dependents = std::shared_ptr<falcon_core::generic::List<
+          independent_connections));
+  auto dependents = std::make_shared<falcon_core::generic::List<
       falcon_core::physics::device_structures::Connection>>(
-      static_cast<falcon_core::generic::List<
+      *static_cast<falcon_core::generic::List<
           falcon_core::physics::device_structures::Connection>*>(
-          dependent_connections),
-      [](falcon_core::generic::List<
-          falcon_core::physics::device_structures::Connection>*) {{}});
+          dependent_connections));
   return new falcon_core::generic::List<
       falcon_core::autotuner_interfaces::interpretations::
           InterpretationContext>(
@@ -1332,7 +1333,7 @@ void {self.mangled_name()}_insert_or_assign({self.chandle()} handle,
     throw std::invalid_argument("Null key passed to {self.mangled_name()}_insert_or_assign");
     }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
-    auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
+    auto context= std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key)); 
     {set_proper_value}
     that->insert_or_assign(context, value_obj);
 }}
@@ -1348,7 +1349,7 @@ void {self.mangled_name()}_insert(
     throw std::invalid_argument("Null key passed to {self.mangled_name()}_insert");
     }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
-    auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
+    auto context= std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key)); 
     {set_proper_value}
     that->insert_or_assign(context, value_obj);
 }}
@@ -1362,7 +1363,7 @@ void {self.mangled_name()}_insert(
     throw std::invalid_argument("Null key passed to {self.mangled_name()}_at");
     }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
-    auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
+    auto context= std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key)); 
     auto out = that->at(context);
     {return_out_value}
 }}
@@ -1376,7 +1377,7 @@ void {self.mangled_name()}_erase({self.chandle()} handle,
     throw std::invalid_argument("Null key passed to {self.mangled_name()}_erase");
     }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
-    auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
+    auto context= std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key)); 
     return that->erase(context);
 }}
 
@@ -1413,7 +1414,7 @@ if (!key) {{
 throw std::invalid_argument("Null key passed to {self.mangled_name()}_contains");
 }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
-    auto context= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {{}} );
+    auto context= std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key)); 
     return that->contains(context);
 }}
 
@@ -1529,8 +1530,7 @@ auto correct_value = std::make_shared<{cpp_value_type}>(temp_value);"""
         with self.edit_implementation() as f:
             f.write(f"""
 {self.chandle()} {self.mangled_name()}_create_empty() {{
-    return new falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>(
-            falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>());
+    return new falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>(); 
 }}
 
 {self.chandle()} {self.mangled_name()}_create(const Pair{name}Handle* data, size_t count) {{
@@ -1540,12 +1540,11 @@ throw std::invalid_argument("Null data pointer passed to {self.mangled_name()}_c
     std::vector<falcon_core::generic::PairSP<{cpp_key_type},{cpp_value_type}>> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {{
-        vec.push_back(*reinterpret_cast<
-                    std::shared_ptr<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>>*>(
-            data[i]));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>>
+        (*static_cast<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>*>(
+            data[i])));
     }}
-    return new falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>(
-            falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>(vec));
+    return new falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>(vec);
 }}
 
 void {self.mangled_name()}_destroy({self.chandle()} handle) {{

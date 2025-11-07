@@ -2,8 +2,7 @@
 #include "falcon_core/generic/ListInt_c_api.h"
 
 ListIntHandle ListInt_create_empty() {
-    return new falcon_core::generic::List<int>(
-        falcon_core::generic::List<int>());
+    return new falcon_core::generic::List<int>();
 }
 
 ListIntHandle ListInt_fill_value(size_t count, int value) {
@@ -12,8 +11,7 @@ ListIntHandle ListInt_fill_value(size_t count, int value) {
         count, stored_obj);
 }
  ListIntHandle ListInt_allocate(size_t count) {
-    return new falcon_core::generic::List<int>(
-        falcon_core::generic::List<int>(count));
+    return new falcon_core::generic::List<int>(count);
 }
 
 
@@ -23,8 +21,7 @@ throw std::invalid_argument("Null data handle passed to ListInt_create");
 }
     std::vector<int> vec;
     vec.insert(vec.end(), data, data + count);
-    return new falcon_core::generic::List<int>(
-        falcon_core::generic::List<int>(vec));
+    return new falcon_core::generic::List<int>(vec);
 }
 
 void ListInt_destroy(ListIntHandle handle) {

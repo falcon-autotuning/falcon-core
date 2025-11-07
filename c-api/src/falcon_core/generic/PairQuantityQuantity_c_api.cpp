@@ -7,12 +7,12 @@ PairQuantityQuantityHandle PairQuantityQuantity_create(QuantityHandle first, Qua
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairQuantityQuantity_create");
                 }
-                auto first_obj= std::shared_ptr<falcon_core::math::Quantity>(static_cast<falcon_core::math::Quantity*>(first),[](falcon_core::math::Quantity*) {});
+                auto first_obj= std::make_shared<falcon_core::math::Quantity>(*static_cast<falcon_core::math::Quantity*>(first));
     
                 if (!second) {
                 throw std::invalid_argument("Null value passed to PairQuantityQuantity_create");
                 }
-                auto second_obj= std::shared_ptr<falcon_core::math::Quantity>(static_cast<falcon_core::math::Quantity*>(second),[](falcon_core::math::Quantity*) {});
+                auto second_obj= std::make_shared<falcon_core::math::Quantity>(*static_cast<falcon_core::math::Quantity*>(second));
     return new falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>(first_obj, second_obj);
 }
 

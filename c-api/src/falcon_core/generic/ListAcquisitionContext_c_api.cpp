@@ -3,8 +3,7 @@
 #include <falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp>
 
 ListAcquisitionContextHandle ListAcquisitionContext_create_empty() {
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>());
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>();
 }
 
 ListAcquisitionContextHandle ListAcquisitionContext_fill_value(size_t count, AcquisitionContextHandle value) {
@@ -12,7 +11,8 @@ ListAcquisitionContextHandle ListAcquisitionContext_fill_value(size_t count, Acq
     if (!value) {
     throw std::invalid_argument("Null value passed to ListAcquisitionContext_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(static_cast<falcon_core::autotuner_interfaces::contexts::AcquisitionContext*>(value), [](falcon_core::autotuner_interfaces::contexts::AcquisitionContext*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(*static_cast<falcon_core::autotuner_interfaces::contexts::AcquisitionContext*>(value));
+    
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(
         count, stored_obj);
 }
@@ -25,11 +25,10 @@ throw std::invalid_argument("Null data handle passed to ListAcquisitionContext_c
     std::vector<falcon_core::autotuner_interfaces::contexts::AcquisitionContextSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(static_cast<falcon_core::autotuner_interfaces::contexts::AcquisitionContext*>(data[i]), [](falcon_core::autotuner_interfaces::contexts::AcquisitionContext*) {} ));
+        vec.push_back(std::make_shared<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(*static_cast<falcon_core::autotuner_interfaces::contexts::AcquisitionContext*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(vec));
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(vec);
 }
 
 void ListAcquisitionContext_destroy(ListAcquisitionContextHandle handle) {
@@ -75,7 +74,8 @@ throw std::invalid_argument("Null handle passed to ListAcquisitionContext_push_b
     if (!value) {
     throw std::invalid_argument("Null value passed to ListAcquisitionContext_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(static_cast<falcon_core::autotuner_interfaces::contexts::AcquisitionContext*>(value), [](falcon_core::autotuner_interfaces::contexts::AcquisitionContext*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(*static_cast<falcon_core::autotuner_interfaces::contexts::AcquisitionContext*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,8 @@ throw std::invalid_argument("Null handle passed to ListAcquisitionContext_contai
     if (!value) {
     throw std::invalid_argument("Null value passed to ListAcquisitionContext_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(static_cast<falcon_core::autotuner_interfaces::contexts::AcquisitionContext*>(value), [](falcon_core::autotuner_interfaces::contexts::AcquisitionContext*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(*static_cast<falcon_core::autotuner_interfaces::contexts::AcquisitionContext*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +100,8 @@ throw std::invalid_argument("Null handle passed to ListAcquisitionContext_index"
     if (!value) {
     throw std::invalid_argument("Null value passed to ListAcquisitionContext_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(static_cast<falcon_core::autotuner_interfaces::contexts::AcquisitionContext*>(value), [](falcon_core::autotuner_interfaces::contexts::AcquisitionContext*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(*static_cast<falcon_core::autotuner_interfaces::contexts::AcquisitionContext*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>*>(handle)->index(stored_obj);
 }
 

@@ -2,8 +2,7 @@
 #include "falcon_core/generic/ListString_c_api.h"
 
 ListStringHandle ListString_create_empty() {
-    return new falcon_core::generic::List<std::string>(
-        falcon_core::generic::List<std::string>());
+    return new falcon_core::generic::List<std::string>();
 }
 
 ListStringHandle ListString_fill_value(size_t count, StringHandle value) {
@@ -16,8 +15,7 @@ ListStringHandle ListString_fill_value(size_t count, StringHandle value) {
         count, stored_obj);
 }
  ListStringHandle ListString_allocate(size_t count) {
-    return new falcon_core::generic::List<std::string>(
-        falcon_core::generic::List<std::string>(count));
+    return new falcon_core::generic::List<std::string>(count);
 }
 
 
@@ -32,8 +30,7 @@ throw std::invalid_argument("Null data handle passed to ListString_create");
         vec.push_back(data[i]->raw);
     }
 
-    return new falcon_core::generic::List<std::string>(
-        falcon_core::generic::List<std::string>(vec));
+    return new falcon_core::generic::List<std::string>(vec);
 }
 
 void ListString_destroy(ListStringHandle handle) {

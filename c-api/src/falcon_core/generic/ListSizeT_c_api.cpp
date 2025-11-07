@@ -2,8 +2,7 @@
 #include "falcon_core/generic/ListSizeT_c_api.h"
 
 ListSizeTHandle ListSizeT_create_empty() {
-    return new falcon_core::generic::List<size_t>(
-        falcon_core::generic::List<size_t>());
+    return new falcon_core::generic::List<size_t>();
 }
 
 ListSizeTHandle ListSizeT_fill_value(size_t count, size_t value) {
@@ -12,8 +11,7 @@ ListSizeTHandle ListSizeT_fill_value(size_t count, size_t value) {
         count, stored_obj);
 }
  ListSizeTHandle ListSizeT_allocate(size_t count) {
-    return new falcon_core::generic::List<size_t>(
-        falcon_core::generic::List<size_t>(count));
+    return new falcon_core::generic::List<size_t>(count);
 }
 
 
@@ -23,8 +21,7 @@ throw std::invalid_argument("Null data handle passed to ListSizeT_create");
 }
     std::vector<size_t> vec;
     vec.insert(vec.end(), data, data + count);
-    return new falcon_core::generic::List<size_t>(
-        falcon_core::generic::List<size_t>(vec));
+    return new falcon_core::generic::List<size_t>(vec);
 }
 
 void ListSizeT_destroy(ListSizeTHandle handle) {

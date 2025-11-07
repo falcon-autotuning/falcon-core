@@ -8,12 +8,12 @@ PairMeasurementResponseMeasurementRequestHandle PairMeasurementResponseMeasureme
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairMeasurementResponseMeasurementRequest_create");
                 }
-                auto first_obj= std::shared_ptr<falcon_core::communications::messages::MeasurementResponse>(static_cast<falcon_core::communications::messages::MeasurementResponse*>(first),[](falcon_core::communications::messages::MeasurementResponse*) {});
+                auto first_obj= std::make_shared<falcon_core::communications::messages::MeasurementResponse>(*static_cast<falcon_core::communications::messages::MeasurementResponse*>(first));
     
                 if (!second) {
                 throw std::invalid_argument("Null value passed to PairMeasurementResponseMeasurementRequest_create");
                 }
-                auto second_obj= std::shared_ptr<falcon_core::communications::messages::MeasurementRequest>(static_cast<falcon_core::communications::messages::MeasurementRequest*>(second),[](falcon_core::communications::messages::MeasurementRequest*) {});
+                auto second_obj= std::make_shared<falcon_core::communications::messages::MeasurementRequest>(*static_cast<falcon_core::communications::messages::MeasurementRequest*>(second));
     return new falcon_core::generic::Pair<falcon_core::communications::messages::MeasurementResponse, falcon_core::communications::messages::MeasurementRequest>(first_obj, second_obj);
 }
 

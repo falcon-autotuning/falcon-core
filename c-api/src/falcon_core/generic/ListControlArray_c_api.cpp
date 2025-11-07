@@ -3,8 +3,7 @@
 #include <falcon_core/math/arrays/ControlArray.hpp>
 
 ListControlArrayHandle ListControlArray_create_empty() {
-    return new falcon_core::generic::List<falcon_core::math::arrays::ControlArray>(
-        falcon_core::generic::List<falcon_core::math::arrays::ControlArray>());
+    return new falcon_core::generic::List<falcon_core::math::arrays::ControlArray>();
 }
 
 ListControlArrayHandle ListControlArray_fill_value(size_t count, ControlArrayHandle value) {
@@ -12,7 +11,8 @@ ListControlArrayHandle ListControlArray_fill_value(size_t count, ControlArrayHan
     if (!value) {
     throw std::invalid_argument("Null value passed to ListControlArray_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::ControlArray>(static_cast<falcon_core::math::arrays::ControlArray*>(value), [](falcon_core::math::arrays::ControlArray*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::ControlArray>(*static_cast<falcon_core::math::arrays::ControlArray*>(value));
+    
     return new falcon_core::generic::List<falcon_core::math::arrays::ControlArray>(
         count, stored_obj);
 }
@@ -25,11 +25,10 @@ throw std::invalid_argument("Null data handle passed to ListControlArray_create"
     std::vector<falcon_core::math::arrays::ControlArraySP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::math::arrays::ControlArray>(static_cast<falcon_core::math::arrays::ControlArray*>(data[i]), [](falcon_core::math::arrays::ControlArray*) {} ));
+        vec.push_back(std::make_shared<falcon_core::math::arrays::ControlArray>(*static_cast<falcon_core::math::arrays::ControlArray*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::math::arrays::ControlArray>(
-        falcon_core::generic::List<falcon_core::math::arrays::ControlArray>(vec));
+    return new falcon_core::generic::List<falcon_core::math::arrays::ControlArray>(vec);
 }
 
 void ListControlArray_destroy(ListControlArrayHandle handle) {
@@ -75,7 +74,8 @@ throw std::invalid_argument("Null handle passed to ListControlArray_push_back");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListControlArray_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::ControlArray>(static_cast<falcon_core::math::arrays::ControlArray*>(value), [](falcon_core::math::arrays::ControlArray*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::ControlArray>(*static_cast<falcon_core::math::arrays::ControlArray*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::math::arrays::ControlArray>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,8 @@ throw std::invalid_argument("Null handle passed to ListControlArray_contains");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListControlArray_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::ControlArray>(static_cast<falcon_core::math::arrays::ControlArray*>(value), [](falcon_core::math::arrays::ControlArray*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::ControlArray>(*static_cast<falcon_core::math::arrays::ControlArray*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::math::arrays::ControlArray>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +100,8 @@ throw std::invalid_argument("Null handle passed to ListControlArray_index");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListControlArray_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::ControlArray>(static_cast<falcon_core::math::arrays::ControlArray*>(value), [](falcon_core::math::arrays::ControlArray*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::ControlArray>(*static_cast<falcon_core::math::arrays::ControlArray*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::math::arrays::ControlArray>*>(handle)->index(stored_obj);
 }
 

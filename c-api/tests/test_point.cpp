@@ -61,9 +61,7 @@ TEST_F(PointTest, InsertOrAssignInsertAtErase) {
   Point_insert_or_assign(p, conn, qty);
   EXPECT_FALSE(Point_empty(p));
   EXPECT_EQ(Point_size(p), 1);
-  std::cout << "Inserted or assigned quantity." << std::endl;
   Point_insert(p, conn, qty);
-  std::cout << "Inserted quantity." << std::endl;
   EXPECT_EQ(Point_size(p), 1);
   auto q = Point_at(p, conn);
   EXPECT_NE(q, nullptr);

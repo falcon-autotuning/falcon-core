@@ -8,12 +8,12 @@ PairInstrumentPortPortTransformHandle PairInstrumentPortPortTransform_create(Ins
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairInstrumentPortPortTransform_create");
                 }
-                auto first_obj= std::shared_ptr<falcon_core::instrument_interfaces::names::InstrumentPort>(static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(first),[](falcon_core::instrument_interfaces::names::InstrumentPort*) {});
+                auto first_obj= std::make_shared<falcon_core::instrument_interfaces::names::InstrumentPort>(*static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(first));
     
                 if (!second) {
                 throw std::invalid_argument("Null value passed to PairInstrumentPortPortTransform_create");
                 }
-                auto second_obj= std::shared_ptr<falcon_core::instrument_interfaces::port_transforms::PortTransform>(static_cast<falcon_core::instrument_interfaces::port_transforms::PortTransform*>(second),[](falcon_core::instrument_interfaces::port_transforms::PortTransform*) {});
+                auto second_obj= std::make_shared<falcon_core::instrument_interfaces::port_transforms::PortTransform>(*static_cast<falcon_core::instrument_interfaces::port_transforms::PortTransform*>(second));
     return new falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>(first_obj, second_obj);
 }
 

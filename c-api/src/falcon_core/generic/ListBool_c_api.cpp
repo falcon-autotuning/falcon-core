@@ -2,8 +2,7 @@
 #include "falcon_core/generic/ListBool_c_api.h"
 
 ListBoolHandle ListBool_create_empty() {
-    return new falcon_core::generic::List<bool>(
-        falcon_core::generic::List<bool>());
+    return new falcon_core::generic::List<bool>();
 }
 
 ListBoolHandle ListBool_fill_value(size_t count, bool value) {
@@ -12,8 +11,7 @@ ListBoolHandle ListBool_fill_value(size_t count, bool value) {
         count, stored_obj);
 }
  ListBoolHandle ListBool_allocate(size_t count) {
-    return new falcon_core::generic::List<bool>(
-        falcon_core::generic::List<bool>(count));
+    return new falcon_core::generic::List<bool>(count);
 }
 
 
@@ -23,8 +21,7 @@ throw std::invalid_argument("Null data handle passed to ListBool_create");
 }
     std::vector<bool> vec;
     vec.insert(vec.end(), data, data + count);
-    return new falcon_core::generic::List<bool>(
-        falcon_core::generic::List<bool>(vec));
+    return new falcon_core::generic::List<bool>(vec);
 }
 
 void ListBool_destroy(ListBoolHandle handle) {

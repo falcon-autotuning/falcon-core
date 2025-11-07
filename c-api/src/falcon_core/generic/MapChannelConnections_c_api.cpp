@@ -5,8 +5,7 @@
 #include <falcon_core/physics/device_structures/Connections.hpp>
 
 MapChannelConnectionsHandle MapChannelConnections_create_empty() {
-    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Channel,falcon_core::physics::device_structures::Connections>(
-            falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Channel,falcon_core::physics::device_structures::Connections>());
+    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Channel,falcon_core::physics::device_structures::Connections>(); 
 }
 
 MapChannelConnectionsHandle MapChannelConnections_create(const PairChannelConnectionsHandle* data, size_t count) {
@@ -16,12 +15,11 @@ throw std::invalid_argument("Null data pointer passed to MapChannelConnections_c
     std::vector<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::names::Channel,falcon_core::physics::device_structures::Connections>> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(*reinterpret_cast<
-                    std::shared_ptr<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel,falcon_core::physics::device_structures::Connections>>*>(
-            data[i]));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel,falcon_core::physics::device_structures::Connections>>
+        (*static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel,falcon_core::physics::device_structures::Connections>*>(
+            data[i])));
     }
-    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Channel,falcon_core::physics::device_structures::Connections>(
-            falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Channel,falcon_core::physics::device_structures::Connections>(vec));
+    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Channel,falcon_core::physics::device_structures::Connections>(vec);
 }
 
 void MapChannelConnections_destroy(MapChannelConnectionsHandle handle) {

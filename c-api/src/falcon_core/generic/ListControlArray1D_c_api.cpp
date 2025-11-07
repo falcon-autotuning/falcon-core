@@ -3,8 +3,7 @@
 #include <falcon_core/math/arrays/ControlArray1D.hpp>
 
 ListControlArray1DHandle ListControlArray1D_create_empty() {
-    return new falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>(
-        falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>());
+    return new falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>();
 }
 
 ListControlArray1DHandle ListControlArray1D_fill_value(size_t count, ControlArray1DHandle value) {
@@ -12,7 +11,8 @@ ListControlArray1DHandle ListControlArray1D_fill_value(size_t count, ControlArra
     if (!value) {
     throw std::invalid_argument("Null value passed to ListControlArray1D_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::ControlArray1D>(static_cast<falcon_core::math::arrays::ControlArray1D*>(value), [](falcon_core::math::arrays::ControlArray1D*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::ControlArray1D>(*static_cast<falcon_core::math::arrays::ControlArray1D*>(value));
+    
     return new falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>(
         count, stored_obj);
 }
@@ -25,11 +25,10 @@ throw std::invalid_argument("Null data handle passed to ListControlArray1D_creat
     std::vector<falcon_core::math::arrays::ControlArray1DSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::math::arrays::ControlArray1D>(static_cast<falcon_core::math::arrays::ControlArray1D*>(data[i]), [](falcon_core::math::arrays::ControlArray1D*) {} ));
+        vec.push_back(std::make_shared<falcon_core::math::arrays::ControlArray1D>(*static_cast<falcon_core::math::arrays::ControlArray1D*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>(
-        falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>(vec));
+    return new falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>(vec);
 }
 
 void ListControlArray1D_destroy(ListControlArray1DHandle handle) {
@@ -75,7 +74,8 @@ throw std::invalid_argument("Null handle passed to ListControlArray1D_push_back"
     if (!value) {
     throw std::invalid_argument("Null value passed to ListControlArray1D_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::ControlArray1D>(static_cast<falcon_core::math::arrays::ControlArray1D*>(value), [](falcon_core::math::arrays::ControlArray1D*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::ControlArray1D>(*static_cast<falcon_core::math::arrays::ControlArray1D*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,8 @@ throw std::invalid_argument("Null handle passed to ListControlArray1D_contains")
     if (!value) {
     throw std::invalid_argument("Null value passed to ListControlArray1D_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::ControlArray1D>(static_cast<falcon_core::math::arrays::ControlArray1D*>(value), [](falcon_core::math::arrays::ControlArray1D*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::ControlArray1D>(*static_cast<falcon_core::math::arrays::ControlArray1D*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +100,8 @@ throw std::invalid_argument("Null handle passed to ListControlArray1D_index");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListControlArray1D_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::ControlArray1D>(static_cast<falcon_core::math::arrays::ControlArray1D*>(value), [](falcon_core::math::arrays::ControlArray1D*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::ControlArray1D>(*static_cast<falcon_core::math::arrays::ControlArray1D*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>*>(handle)->index(stored_obj);
 }
 

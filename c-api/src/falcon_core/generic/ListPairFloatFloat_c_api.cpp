@@ -3,8 +3,7 @@
 #include <falcon_core/generic/Pair.hpp>
 
 ListPairFloatFloatHandle ListPairFloatFloat_create_empty() {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<float, float>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<float, float>>());
+    return new falcon_core::generic::List<falcon_core::generic::Pair<float, float>>();
 }
 
 ListPairFloatFloatHandle ListPairFloatFloat_fill_value(size_t count, PairFloatFloatHandle value) {
@@ -12,7 +11,8 @@ ListPairFloatFloatHandle ListPairFloatFloat_fill_value(size_t count, PairFloatFl
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairFloatFloat_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<float, float>>(static_cast<falcon_core::generic::Pair<float, float>*>(value), [](falcon_core::generic::Pair<float, float>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<float, float>>(*static_cast<falcon_core::generic::Pair<float, float>*>(value));
+    
     return new falcon_core::generic::List<falcon_core::generic::Pair<float, float>>(
         count, stored_obj);
 }
@@ -25,11 +25,10 @@ throw std::invalid_argument("Null data handle passed to ListPairFloatFloat_creat
     std::vector<falcon_core::generic::PairSP<float, float>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::generic::Pair<float, float>>(static_cast<falcon_core::generic::Pair<float, float>*>(data[i]), [](falcon_core::generic::Pair<float, float>*) {} ));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<float, float>>(*static_cast<falcon_core::generic::Pair<float, float>*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::generic::Pair<float, float>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<float, float>>(vec));
+    return new falcon_core::generic::List<falcon_core::generic::Pair<float, float>>(vec);
 }
 
 void ListPairFloatFloat_destroy(ListPairFloatFloatHandle handle) {
@@ -75,7 +74,8 @@ throw std::invalid_argument("Null handle passed to ListPairFloatFloat_push_back"
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairFloatFloat_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<float, float>>(static_cast<falcon_core::generic::Pair<float, float>*>(value), [](falcon_core::generic::Pair<float, float>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<float, float>>(*static_cast<falcon_core::generic::Pair<float, float>*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<float, float>>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,8 @@ throw std::invalid_argument("Null handle passed to ListPairFloatFloat_contains")
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairFloatFloat_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<float, float>>(static_cast<falcon_core::generic::Pair<float, float>*>(value), [](falcon_core::generic::Pair<float, float>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<float, float>>(*static_cast<falcon_core::generic::Pair<float, float>*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<float, float>>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +100,8 @@ throw std::invalid_argument("Null handle passed to ListPairFloatFloat_index");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairFloatFloat_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<float, float>>(static_cast<falcon_core::generic::Pair<float, float>*>(value), [](falcon_core::generic::Pair<float, float>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<float, float>>(*static_cast<falcon_core::generic::Pair<float, float>*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<float, float>>*>(handle)->index(stored_obj);
 }
 
