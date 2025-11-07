@@ -140,3 +140,4 @@ PairMeasurementResponseMeasurementRequestTest.*
 ListMapStringBoolTest.*
 WaveformTest.*
 MeasurementRequestTest.*
+ListWaveformTest.*
