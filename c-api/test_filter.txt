@@ -148,3 +148,10 @@ PairInterpretationContextStringTest.*
 MapIntIntTest.*
 MapFloatFloatTest.*
 MapStringBoolTest.*
+MapStringDoubleTest.*
+MapStringStringTest.*
+MapInterpretationContextStringTest.*
+MapInterpretationContextQuantityTest.*
+MapInterpretationContextDoubleTest.*
+MapConnectionDoubleTest.*
+MapConnectionFloatTest.*
