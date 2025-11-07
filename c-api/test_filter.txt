@@ -155,3 +155,7 @@ MapInterpretationContextQuantityTest.*
 MapInterpretationContextDoubleTest.*
 MapConnectionDoubleTest.*
 MapConnectionFloatTest.*
+MapGnameGroupTest.*
+MapChannelConnectionsTest.*
+MapConnectionQuantityTest.*
+MapInstrumentPortPortTransformTest.*

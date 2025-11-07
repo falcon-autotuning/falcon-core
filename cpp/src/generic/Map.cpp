@@ -1,7 +1,12 @@
 #include "falcon_core/generic/Map.hpp"
 
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
+#include "falcon_core/autotuner_interfaces/names/Channel.hpp"
+#include "falcon_core/autotuner_interfaces/names/Gname.hpp"
+#include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/math/Quantity.hpp"
+#include "falcon_core/physics/config/core/Group.hpp"
+#include "falcon_core/physics/device_structures/Connections.hpp"
 
 CEREAL_REGISTER_TYPE(falcon_core::generic::Map<int, int>);
 CEREAL_REGISTER_TYPE(falcon_core::generic::Map<float, float>);
@@ -26,6 +31,19 @@ CEREAL_REGISTER_TYPE(falcon_core::generic::Map<
 CEREAL_REGISTER_TYPE(falcon_core::generic::Map<
                      falcon_core::physics::device_structures::Connection,
                      double>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::Map<
+                     falcon_core::autotuner_interfaces::names::Channel,
+                     falcon_core::physics::device_structures::Connections>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname,
+                              falcon_core::physics::config::core::Group>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::Map<
+                     falcon_core::physics::device_structures::Connection,
+                     falcon_core::math::Quantity>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::Map<
+        falcon_core::instrument_interfaces::names::InstrumentPort,
+        falcon_core::instrument_interfaces::port_transforms::PortTransform>);
 
 using MII = falcon_core::generic::Map<int, int>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MII);
@@ -55,3 +73,19 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MCnF);
 using MCnD = falcon_core::generic::
     Map<falcon_core::physics::device_structures::Connection, double>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MCnD);
+using MCC = falcon_core::generic::Map<
+    falcon_core::autotuner_interfaces::names::Channel,
+    falcon_core::physics::device_structures::Connections>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MCC);
+using MGG =
+    falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname,
+                              falcon_core::physics::config::core::Group>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MGG);
+using MCnQ = falcon_core::generic::Map<
+    falcon_core::physics::device_structures::Connection,
+    falcon_core::math::Quantity>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MCnQ);
+using MIPT = falcon_core::generic::Map<
+    falcon_core::instrument_interfaces::names::InstrumentPort,
+    falcon_core::instrument_interfaces::port_transforms::PortTransform>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MIPT);
