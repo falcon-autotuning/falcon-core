@@ -4,6 +4,7 @@
 
 #include <cereal/types/polymorphic.hpp>
 
+#include "falcon_core/generic/Map.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/arrays/ControlArray.hpp"
 #include "falcon_core/math/arrays/ControlArray1D.hpp"
@@ -13,7 +14,6 @@
 #include "falcon_core/math/arrays/LabelledMeasuredArray1D.hpp"
 #include "falcon_core/math/discrete_spaces/Discretizer.hpp"
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
-
 CEREAL_REGISTER_TYPE(falcon_core::math::Axes<int>)
 CEREAL_REGISTER_TYPE(falcon_core::math::Axes<double>)
 CEREAL_REGISTER_TYPE(
@@ -34,3 +34,5 @@ CEREAL_REGISTER_TYPE(
     falcon_core::math::Axes<falcon_core::math::arrays::LabelledControlArray1D>)
 CEREAL_REGISTER_TYPE(
     falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>)
+CEREAL_REGISTER_TYPE(
+    falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>)

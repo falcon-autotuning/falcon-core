@@ -79,6 +79,7 @@ AxesLabelledControlArrayTest.*
 AxesLabelledControlArray1DTest.*
 AxesLabelledMeasuredArrayTest.*
 AxesLabelledMeasuredArray1DTest.*
+AxesMapStringBoolTest.*
 ListPairStringBoolTest.*
 ListPairStringDoubleTest.*
 ListPairStringStringTest.*
@@ -159,5 +160,3 @@ MapGnameGroupTest.*
 MapChannelConnectionsTest.*
 MapConnectionQuantityTest.*
 MapInstrumentPortPortTransformTest.*
-InterpretationContextTest.*
-InterpretationContainerDoubleTest.*
