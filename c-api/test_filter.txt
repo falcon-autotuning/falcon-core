@@ -141,3 +141,7 @@ ListMapStringBoolTest.*
 WaveformTest.*
 MeasurementRequestTest.*
 ListWaveformTest.*
+PairConnectionDoubleTest.*
+PairConnectionFloatTest.*
+PairInterpretationContextDoubleTest.*
+PairInterpretationContextStringTest.*

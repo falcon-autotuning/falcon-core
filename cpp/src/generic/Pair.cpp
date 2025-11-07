@@ -56,6 +56,20 @@ CEREAL_REGISTER_TYPE(
     falcon_core::generic::Pair<
         falcon_core::communications::messages::MeasurementResponse,
         falcon_core::communications::messages::MeasurementRequest>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::Pair<
+                     falcon_core::physics::device_structures::Connection,
+                     float>);
+CEREAL_REGISTER_TYPE(falcon_core::generic::Pair<
+                     falcon_core::physics::device_structures::Connection,
+                     double>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::Pair<falcon_core::autotuner_interfaces::
+                                   interpretations::InterpretationContext,
+                               double>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::Pair<falcon_core::autotuner_interfaces::
+                                   interpretations::InterpretationContext,
+                               std::string>);
 
 using PSS = falcon_core::generic::Pair<std::string, std::string>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PSS);
@@ -115,3 +129,17 @@ using PMRMR = falcon_core::generic::Pair<
     falcon_core::communications::messages::MeasurementResponse,
     falcon_core::communications::messages::MeasurementRequest>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PMRMR);
+using PCnF = falcon_core::generic::
+    Pair<falcon_core::physics::device_structures::Connection, float>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PCnF);
+using PCnD = falcon_core::generic::
+    Pair<falcon_core::physics::device_structures::Connection, double>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PCnD);
+using PICD = falcon_core::generic::Pair<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
+    double>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PICD);
+using PICS = falcon_core::generic::Pair<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
+    std::string>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PICS);
