@@ -160,5 +160,3 @@ MapGnameGroupTest.*
 MapChannelConnectionsTest.*
 MapConnectionQuantityTest.*
 MapInstrumentPortPortTransformTest.*
-InterpretationContextTest.*
-InterpretationContainerDoubleTest.*

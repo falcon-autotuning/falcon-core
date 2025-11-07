@@ -44,152 +44,111 @@ class AxesMapStringBoolTest : public ::testing::Test {
 
 TEST_F(AxesMapStringBoolTest, CreateEmpty) {
   auto handle = AxesMapStringBool_create_empty();
-  // EXPECT_TRUE(AxesMapStringBool_empty(handle));
-  // EXPECT_EQ(AxesMapStringBool_size(handle), 0);
-  // AxesMapStringBool_destroy(handle);
-  // EXPECT_THROW(AxesMapStringBool_destroy(nullptr), std::invalid_argument);
+  EXPECT_TRUE(AxesMapStringBool_empty(handle));
+  EXPECT_EQ(AxesMapStringBool_size(handle), 0);
+  AxesMapStringBool_destroy(handle);
+  EXPECT_THROW(AxesMapStringBool_destroy(nullptr), std::invalid_argument);
 }
 
-// TEST_F(AxesMapStringBoolTest, CreateFromArray) {
-//   MapStringBoolHandle     arr[2]      = {sh1, sh2};
-//   ListMapStringBoolHandle handle      = MapStringBool_create(arr, 2);
-//   AxesMapStringBoolHandle real_handle = AxesMapStringBool_create(handle);
-//   EXPECT_EQ(ListMapStringBool_size(handle), 2);
-//   EXPECT_THROW(ListMapStringBool_create(nullptr, 2), std::invalid_argument);
-//   ListMapStringBool_destroy(handle);
-// }
+TEST_F(AxesMapStringBoolTest, CreateDestroy) {
+  auto h = AxesMapStringBool_create_empty();
+  AxesMapStringBool_destroy(h);
+  EXPECT_THROW(AxesMapStringBool_create(nullptr), std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_destroy(nullptr), std::invalid_argument);
+  StringHandle         str3     = String_wrap("key3");
+  PairStringBoolHandle pair3[1] = {PairStringBool_create(str3, true)};
 
-// TEST_F(AxesMapStringBoolTest, SizeEmptyInvalid) {
-//   auto handle = ListMapStringBool_create_empty();
-//   EXPECT_EQ(ListMapStringBool_size(handle), 0);
-//   ListMapStringBool_destroy(handle);
-//   EXPECT_THROW(ListMapStringBool_size(nullptr), std::invalid_argument);
-// }
+  MapStringBoolHandle map_pair3[1] = {MapStringBool_create(pair3, 1)};
+  //
+  auto h1 = AxesMapStringBool_create_raw(map_pair3, 1);
+}
 //
-// TEST_F(AxesMapStringBoolTest, EmptyInvalid) {
-//   auto handle = ListMapStringBool_create_empty();
-//   EXPECT_TRUE(ListMapStringBool_empty(handle));
-//   ListMapStringBool_destroy(handle);
-//   EXPECT_THROW(ListMapStringBool_empty(nullptr), std::invalid_argument);
-// }
-//
-// TEST_F(AxesMapStringBoolTest, EraseAtClear) {
-//   auto handle = ListMapStringBool_fill_value(2, sh1);
-//   ListMapStringBool_erase_at(handle, 0);
-//   EXPECT_EQ(ListMapStringBool_size(handle), 1);
-//   ListMapStringBool_clear(handle);
-//   EXPECT_TRUE(ListMapStringBool_empty(handle));
-//   ListMapStringBool_destroy(handle);
-//   EXPECT_THROW(ListMapStringBool_erase_at(nullptr, 0),
-//   std::invalid_argument); EXPECT_THROW(ListMapStringBool_clear(nullptr),
-//   std::invalid_argument);
-// }
+TEST_F(AxesMapStringBoolTest, AccessorsAndMutators) {
+  MapStringBoolHandle rawbuffer[1];
+  EXPECT_NO_THROW(AxesMapStringBool_items(sh1, rawbuffer, 1));
+  StringHandle         str3     = String_wrap("key3");
+  PairStringBoolHandle pair3[1] = {PairStringBool_create(str3, true)};
 
-// TEST_F(AxesMapStringBoolTest, PushBackContainsIndex) {
-//   auto handle = AxesMapStringBool_create_empty();
-//   AxesMapStringBool_push_back(handle, sh1);
-//   EXPECT_TRUE(AxesMapStringBool_contains(handle, sh1));
-//   EXPECT_EQ(AxesMapStringBool_index(handle, sh1), 0);
-//   AxesMapStringBool_destroy(handle);
-//   EXPECT_THROW(AxesMapStringBool_push_back(nullptr, sh1),
-//                std::invalid_argument);
-//   EXPECT_THROW(AxesMapStringBool_contains(nullptr, sh1),
-//   std::invalid_argument); EXPECT_THROW(AxesMapStringBool_index(nullptr,
-//   sh1), std::invalid_argument);
-// }
-//
-// TEST_F(AxesMapStringBoolTest, ItemsAt) {
-//   MapStringBoolHandle arr[2]     = {sh1, sh2};
-//   auto                pre_handle = ListMapStringBool_create(arr, 2);
-//   auto                handle     = AxesMapStringBool_create(pre_handle);
-//
-//   MapStringBoolHandle out[2];
-//   EXPECT_EQ(ListMapStringBool_items(handle, out, 2), 2);
-//   ListMapStringBool_destroy(handle);
-//   EXPECT_THROW(ListMapStringBool_items(nullptr, out, 2),
-//   std::invalid_argument); EXPECT_THROW(ListMapStringBool_items(handle,
-//   nullptr, 2),
-//                std::invalid_argument);
-//   EXPECT_THROW(ListMapStringBool_at(nullptr, 0), std::invalid_argument);
-// }
-//
-// TEST_F(AxesMapStringBoolTest, EqualNotEqualIntersection) {
-//   MapStringBoolHandle arr[2] = {sh1, sh2};
-//   auto                ph1    = ListMapStringBool_create(arr, 2);
-//   auto                ph2    = ListMapStringBool_create(arr, 2);
-//   auto                h1     = AxesMapStringBool_create(ph1);
-//   auto                h2     = AxesMapStringBool_create(ph2);
-//   EXPECT_TRUE(AxesMapStringBool_equal(h1, h2));
-//   EXPECT_FALSE(AxesMapStringBool_not_equal(h1, h2));
-//   auto h3 = ListMapStringBool_intersection(h1, h2);
-//   EXPECT_EQ(ListMapStringBool_size(h3), 2);
-//   AxesMapStringBool_destroy(h1);
-//   AxesMapStringBool_destroy(h2);
-//   AxesMapStringBool_destroy(h3);
-//   EXPECT_THROW(AxesMapStringBool_equal(nullptr, h2),
-//   std::invalid_argument); EXPECT_THROW(AxesMapStringBool_equal(h1,
-//   nullptr), std::invalid_argument);
-//   EXPECT_THROW(AxesMapStringBool_not_equal(h1, nullptr),
-//   std::invalid_argument); EXPECT_THROW(AxesMapStringBool_not_equal(nullptr,
-//   h2), std::invalid_argument);
-//   EXPECT_THROW(AxesMapStringBool_intersection(nullptr, h2),
-//                std::invalid_argument);
-//   EXPECT_THROW(AxesMapStringBool_intersection(h1, nullptr),
-//                std::invalid_argument);
-// }
-//
-// TEST_F(AxesMapStringBoolTest, ToJsonFromJson) {
-//   MapStringBoolHandle arr[1]  = {sh1};
-//   auto                handle  = ListMapStringBool_create(arr, 1);
-//   auto                json    = ListMapStringBool_to_json_string(handle);
-//   auto                handle2 = ListMapStringBool_from_json_string(json);
-//   EXPECT_TRUE(ListMapStringBool_equal(handle, handle2));
-//   ListMapStringBool_destroy(handle);
-//   ListMapStringBool_destroy(handle2);
-//   String_destroy(json);
-//   EXPECT_THROW(ListMapStringBool_to_json_string(nullptr),
-//                std::invalid_argument);
-//   EXPECT_THROW(ListMapStringBool_from_json_string(nullptr),
-//                std::invalid_argument);
-// }
-//
-// TEST_F(AxesMapStringBoolTest, FillValueNull) {
-//   EXPECT_THROW(ListMapStringBool_fill_value(3, nullptr),
-//   std::invalid_argument);
-// }
-//
-// TEST_F(AxesMapStringBoolTest, PushBackNull) {
-//   auto handle = ListMapStringBool_create_empty();
-//   EXPECT_THROW(ListMapStringBool_push_back(handle, nullptr),
-//                std::invalid_argument);
-//   ListMapStringBool_destroy(handle);
-// }
-//
-// TEST_F(AxesMapStringBoolTest, ContainsNull) {
-//   auto handle = ListMapStringBool_create_empty();
-//   EXPECT_THROW(ListMapStringBool_contains(handle, nullptr),
-//                std::invalid_argument);
-//   ListMapStringBool_destroy(handle);
-// }
-//
-// TEST_F(AxesMapStringBoolTest, IndexNull) {
-//   auto handle = ListMapStringBool_create_empty();
-//   EXPECT_THROW(ListMapStringBool_index(handle, nullptr),
-//   std::invalid_argument); ListMapStringBool_destroy(handle);
-// }
-//
-// TEST_F(AxesMapStringBoolTest, CreateNullArray) {
-//   EXPECT_THROW(ListMapStringBool_create(nullptr, 2),
-//   std::invalid_argument);
-// }
-//
-// TEST_F(AxesMapStringBoolTest, At) {
-//   MapStringBoolHandle arr[2] = {sh1, sh2};
-//   auto                handle = ListMapStringBool_create(arr, 2);
-//   auto                at0    = ListMapStringBool_at(handle, 0);
-//   auto                at1    = ListMapStringBool_at(handle, 1);
-//   destroy_string(at0);
-//   destroy_string(at1);
-//   ListMapStringBool_destroy(handle);
-//   EXPECT_THROW(ListMapStringBool_at(nullptr, 0), std::invalid_argument);
-// }
+  MapStringBoolHandle map_pair3[1] = {MapStringBool_create(pair3, 1)};
+
+  ListMapStringBoolHandle list_map_pair3 =
+      ListMapStringBool_create(map_pair3, 1);
+
+  AxesMapStringBoolHandle sh3 = AxesMapStringBool_create(list_map_pair3);
+  AxesMapStringBool_erase_at(sh3, 0);
+}
+
+TEST_F(AxesMapStringBoolTest, CanClear) {
+  MapStringBoolHandle rawbuffer[1];
+  EXPECT_NO_THROW(AxesMapStringBool_items(sh1, rawbuffer, 1));
+  StringHandle         str3     = String_wrap("key3");
+  PairStringBoolHandle pair3[1] = {PairStringBool_create(str3, true)};
+
+  MapStringBoolHandle map_pair3[1] = {MapStringBool_create(pair3, 1)};
+
+  ListMapStringBoolHandle list_map_pair3 =
+      ListMapStringBool_create(map_pair3, 1);
+
+  AxesMapStringBoolHandle sh3 = AxesMapStringBool_create(list_map_pair3);
+  AxesMapStringBool_clear(sh3);
+}
+
+TEST_F(AxesMapStringBoolTest, ContainsIndexEquality) {
+  EXPECT_NO_THROW(
+      AxesMapStringBool_contains(sh1, AxesMapStringBool_at(sh1, 0)));
+
+  EXPECT_NO_THROW(AxesMapStringBool_index(sh1, AxesMapStringBool_at(sh1, 0)));
+  EXPECT_NO_THROW(AxesMapStringBool_equal(sh1, sh2));
+}
+
+TEST_F(AxesMapStringBoolTest, SerializationRoundTrip) {
+  EXPECT_THROW(AxesMapStringBool_from_json_string(nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_to_json_string(nullptr),
+               std::invalid_argument);
+  EXPECT_NO_THROW({
+    auto json   = AxesMapStringBool_to_json_string(sh1);
+    auto loaded = AxesMapStringBool_from_json_string(json);
+    AxesMapStringBool_destroy(loaded);
+    String_destroy(json);
+  });
+}
+
+TEST_F(AxesMapStringBoolTest, EqualityWorks) {
+  EXPECT_THROW(AxesMapStringBool_equal(sh1, nullptr), std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_not_equal(nullptr, sh1),
+               std::invalid_argument);
+  EXPECT_NO_THROW(AxesMapStringBool_equal(sh1, sh1));
+  EXPECT_NO_THROW(AxesMapStringBool_not_equal(sh1, sh2));
+}
+
+TEST_F(AxesMapStringBoolTest, Intersection) {
+  EXPECT_THROW(AxesMapStringBool_intersection(nullptr, sh2),
+               std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_intersection(sh1, nullptr),
+               std::invalid_argument);
+  EXPECT_NO_THROW(AxesMapStringBool_intersection(sh1, sh2));
+}
+
+TEST_F(AxesMapStringBoolTest, MiscNullChecks) {
+  EXPECT_THROW(AxesMapStringBool_destroy(nullptr), std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_push_back(nullptr, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_push_back(sh1, nullptr),
+               std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_size(nullptr), std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_empty(nullptr), std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_erase_at(nullptr, 0), std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_clear(nullptr), std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_push_back(nullptr, 0), std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_contains(nullptr, 0), std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_contains(sh1, nullptr), std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_index(nullptr, 0), std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_index(sh1, nullptr), std::invalid_argument);
+  MapStringBoolHandle rawbuffer[2];
+  EXPECT_THROW(AxesMapStringBool_items(nullptr, rawbuffer, 2),
+               std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_items(sh1, nullptr, 2), std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_at(nullptr, 0), std::invalid_argument);
+  EXPECT_THROW(AxesMapStringBool_create_raw(nullptr, 2), std::invalid_argument);
+}
