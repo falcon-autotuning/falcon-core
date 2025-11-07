@@ -18,6 +18,7 @@ typedef void* InterpretationContainerDoubleHandle;
 // Function declarations
 
 InterpretationContainerDoubleHandle InterpretationContainerDouble_create(MapInterpretationContextDoubleHandle map);
+void InterpretationContainerDouble_destroy(InterpretationContainerDoubleHandle handle);
 SymbolUnitHandle InterpretationContainerDouble_unit(
      InterpretationContainerDoubleHandle handle);
 ListInterpretationContextHandle InterpretationContainerDouble_select_by_connection(

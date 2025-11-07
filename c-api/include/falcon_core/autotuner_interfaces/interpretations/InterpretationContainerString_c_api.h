@@ -18,6 +18,7 @@ typedef void* InterpretationContainerStringHandle;
 // Function declarations
 
 InterpretationContainerStringHandle InterpretationContainerString_create(MapInterpretationContextStringHandle map);
+void InterpretationContainerString_destroy(InterpretationContainerStringHandle handle);
 SymbolUnitHandle InterpretationContainerString_unit(
      InterpretationContainerStringHandle handle);
 ListInterpretationContextHandle InterpretationContainerString_select_by_connection(
