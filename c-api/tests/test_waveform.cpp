@@ -5,39 +5,33 @@
 class WaveformTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    default_name = String_wrap("voltage_meter1");
-    expression   = String_wrap("2x[0]+1");
-
-    domain      = Domain_create(0.0, 1.0);
+    domain       = Domain_create(0, 1.0);
+    default_name = String_wrap("A");
+    port         = InstrumentPort_create_knob(
+        default_name, Connection_create_barrier_gate(default_name));
+    getter = InstrumentPort_create_meter(
+        String_wrap("ohm1"), Connection_create_ohmic(String_wrap("ohm1")));
     domain_list = ListLabelledDomain_create_empty();
     ListLabelledDomain_push_back(
-        domain_list,
-        LabelledDomain_create_from_domain(
-            domain,
-            default_name,
-            Connection_create_barrier_gate(default_name),
-            InstrumentTypes_voltmeter()));
+        domain_list, LabelledDomain_create_from_port_and_domain(port, domain));
     labelled_domain = CoupledLabelledDomain_create(domain_list);
     axes            = AxesCoupledLabelledDomain_create_empty();
-    AxesCoupledLabelledDomain_push_back(axes, labelled_domain);
-    map = MapStringBool_create_empty();
-    MapStringBool_insert(map, default_name, true);
+    AxesCoupledLabelledDomain_push_back(
+        axes, CoupledLabelledDomain_create(labelled_domain));
     increasing = AxesMapStringBool_create_empty();
+    map        = MapStringBool_create_empty();
+    MapStringBool_insert(map, default_name, true);
     AxesMapStringBool_push_back(increasing, map);
     discretizers = AxesDiscretizer_create_empty();
     AxesDiscretizer_push_back(discretizers,
                               Discretizer_create_cartesian_discretizer(0.1));
     unit_space = UnitSpace_create(discretizers, domain);
     space      = DiscreteSpace_create(unit_space, axes, increasing);
-    labels     = ListString_create_empty();
-    ListString_push_back(labels, default_name);
-    analytic = AnalyticFunction_create(labels, expression);
-    port =
-        InstrumentPort_create_knob(default_name,
-                                   Connection_create_barrier_gate(default_name),
-                                   InstrumentTypes_voltmeter());
-    pt         = PortTransform_create(port, analytic);
     transforms = ListPortTransform_create_empty();
+    labels     = ListString_create_empty();
+    ListString_push_back(labels, String_wrap("x"));
+    analytic = AnalyticFunction_create(labels, String_wrap("2x[0]+1"));
+    pt       = PortTransform_create(port, analytic);
     ListPortTransform_push_back(transforms, pt);
 
     // For cartesianwaveform
@@ -46,7 +40,6 @@ class WaveformTest : public ::testing::Test {
   }
   void TearDown() override {
     MapStringBool_destroy(map);
-    String_destroy(expression);
     String_destroy(default_name);
     ListLabelledDomain_destroy(domain_list);
     CoupledLabelledDomain_destroy(labelled_domain);
@@ -62,9 +55,10 @@ class WaveformTest : public ::testing::Test {
     AxesCoupledLabelledDomain_destroy(axes);
     AxesMapStringBool_destroy(increasing);
     Domain_destroy(domain);
+    InstrumentPort_destroy(getter);
   }
   MapStringBoolHandle             map;
-  StringHandle                    expression;
+  InstrumentPortHandle            getter;
   StringHandle                    default_name;
   ListLabelledDomainHandle        domain_list;
   CoupledLabelledDomainHandle     labelled_domain;
@@ -105,6 +99,9 @@ TEST_F(WaveformTest, CreateDestroy) {
                std::invalid_argument);
   EXPECT_THROW(Waveform_create_cartesianwaveform(
                    divisions, axes, increasing, nullptr, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform_create_cartesianwaveform(
+                   divisions, axes, increasing, transforms, nullptr),
                std::invalid_argument);
 
   auto w3 = Waveform_create_cartesianidentitywaveform(
@@ -234,4 +231,102 @@ TEST_F(WaveformTest, ToJsonFromJson) {
   Waveform_destroy(w2);
   String_destroy(json);
   Waveform_destroy(w);
+}
+
+TEST_F(WaveformTest, CartesianWaveformVariants) {
+  AxesIntHandle divisions2D = AxesInt_create_empty();
+  AxesInt_push_back(divisions2D, 2);
+  AxesInt_push_back(divisions2D, 2);
+  AxesCoupledLabelledDomainHandle axes2D =
+      AxesCoupledLabelledDomain_create_empty();
+  AxesCoupledLabelledDomain_push_back(
+      axes2D, CoupledLabelledDomain_create(labelled_domain));
+  StringHandle         other_name = String_wrap("B");
+  InstrumentPortHandle other_port = InstrumentPort_create_knob(
+      other_name, Connection_create_barrier_gate(default_name));
+  ListLabelledDomainHandle other_domain_list =
+      ListLabelledDomain_create_empty();
+  ListLabelledDomain_push_back(
+      other_domain_list,
+      LabelledDomain_create_from_port_and_domain(other_port, domain));
+  CoupledLabelledDomainHandle other_labelled_domain =
+      CoupledLabelledDomain_create(other_domain_list);
+  AxesCoupledLabelledDomain_push_back(
+      axes2D, CoupledLabelledDomain_create(other_labelled_domain));
+  AxesMapStringBoolHandle increasing2D = AxesMapStringBool_create_empty();
+  AxesMapStringBool_push_back(increasing2D, map);
+  MapStringBoolHandle other_map = MapStringBool_create_empty();
+  MapStringBool_insert(other_map, other_name, true);
+  AxesMapStringBool_push_back(increasing2D, other_map);
+  // 2D waveform creation/destruction
+  auto w2d = Waveform_create_cartesianwaveform2D(
+      divisions2D, axes2D, increasing2D, transforms, domain);
+  Waveform_destroy(w2d);
+
+  EXPECT_THROW(Waveform_create_cartesianwaveform2D(
+                   nullptr, axes2D, increasing2D, transforms, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform_create_cartesianwaveform2D(
+                   divisions2D, nullptr, increasing2D, transforms, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform_create_cartesianwaveform2D(
+                   divisions2D, axes2D, nullptr, transforms, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform_create_cartesianwaveform2D(
+                   divisions2D, axes2D, increasing2D, nullptr, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform_create_cartesianwaveform2D(
+                   divisions2D, axes2D, increasing2D, transforms, nullptr),
+               std::invalid_argument);
+
+  // 2D identity waveform creation/destruction
+  auto w2d_id = Waveform_create_cartesianidentitywaveform2D(
+      divisions2D, axes2D, increasing2D, domain);
+  Waveform_destroy(w2d_id);
+
+  EXPECT_THROW(Waveform_create_cartesianidentitywaveform2D(
+                   nullptr, axes2D, increasing2D, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform_create_cartesianidentitywaveform2D(
+                   divisions2D, nullptr, increasing2D, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform_create_cartesianidentitywaveform2D(
+                   divisions2D, axes2D, nullptr, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform_create_cartesianidentitywaveform2D(
+                   divisions2D, axes2D, increasing2D, nullptr),
+               std::invalid_argument);
+
+  // 1D waveform creation/destruction
+  auto w1d = Waveform_create_cartesianwaveform1D(
+      2, labelled_domain, map, transforms, domain);
+  Waveform_destroy(w1d);
+
+  EXPECT_THROW(
+      Waveform_create_cartesianwaveform1D(2, nullptr, map, transforms, domain),
+      std::invalid_argument);
+  EXPECT_THROW(Waveform_create_cartesianwaveform1D(
+                   2, labelled_domain, nullptr, transforms, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform_create_cartesianwaveform1D(
+                   2, labelled_domain, map, nullptr, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform_create_cartesianwaveform1D(
+                   2, labelled_domain, map, transforms, nullptr),
+               std::invalid_argument);
+
+  // 1D identity waveform creation/destruction
+  auto w1d_id = Waveform_create_cartesianidentitywaveform1D(
+      2, labelled_domain, map, domain);
+  Waveform_destroy(w1d_id);
+
+  EXPECT_THROW(
+      Waveform_create_cartesianidentitywaveform1D(2, nullptr, map, domain),
+      std::invalid_argument);
+  EXPECT_THROW(Waveform_create_cartesianidentitywaveform1D(
+                   2, labelled_domain, nullptr, domain),
+               std::invalid_argument);
+  EXPECT_THROW(Waveform_create_cartesianidentitywaveform1D(
+                   2, labelled_domain, map, nullptr),
+               std::invalid_argument);
 }

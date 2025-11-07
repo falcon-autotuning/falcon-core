@@ -53,6 +53,10 @@ WaveformHandle Waveform_create_cartesianwaveform(
         "Waveform_create_cartesianwaveform: transforms "
         "cannot be null");
   }
+  if (!domain) {
+    throw std::invalid_argument(
+        "Waveform_create_cartesianwaveform: domain cannot be null");
+  }
   math::AxesSP<int> self_divisions = std::make_shared<math::Axes<int>>(
       *static_cast<math::Axes<int>*>(divisions));
   math::AxesSP<math::domains::CoupledLabelledDomain> self_axes =
@@ -135,6 +139,10 @@ WaveformHandle Waveform_create_cartesianwaveform2D(
         "Waveform_create_cartesianwaveform2D: transforms "
         "cannot be null");
   }
+  if (!domain) {
+    throw std::invalid_argument(
+        "Waveform_create_cartesianwaveform2D: domain cannot be null");
+  }
   math::AxesSP<int> self_divisions = std::make_shared<math::Axes<int>>(
       *static_cast<math::Axes<int>*>(divisions));
   math::AxesSP<math::domains::CoupledLabelledDomain> self_axes =
@@ -178,6 +186,10 @@ WaveformHandle Waveform_create_cartesianidentitywaveform2D(
         "Waveform_create_cartesianidentitywaveform2D: increasing cannot be "
         "null");
   }
+  if (!domain) {
+    throw std::invalid_argument(
+        "Waveform_create_cartesianidentitywaveform2D: domain cannot be null");
+  }
   math::AxesSP<int> self_divisions = std::make_shared<math::Axes<int>>(
       *static_cast<math::Axes<int>*>(divisions));
   math::AxesSP<math::domains::CoupledLabelledDomain> self_axes =
@@ -212,6 +224,10 @@ WaveformHandle Waveform_create_cartesianwaveform1D(
     throw std::invalid_argument(
         "Waveform_create_cartesianwaveform1D: transforms cannot be null");
   }
+  if (!domain) {
+    throw std::invalid_argument(
+        "Waveform_create_cartesianwaveform1D: domain cannot be null");
+  }
   math::domains::CoupledLabelledDomainSP self_shared_domain =
       std::make_shared<math::domains::CoupledLabelledDomain>(
           *static_cast<math::domains::CoupledLabelledDomain*>(shared_domain));
@@ -245,6 +261,10 @@ WaveformHandle Waveform_create_cartesianidentitywaveform1D(
     throw std::invalid_argument(
         "Waveform_create_cartesianidentitywaveform1D: increasing cannot be "
         "null");
+  }
+  if (!domain) {
+    throw std::invalid_argument(
+        "Waveform_create_cartesianidentitywaveform1D: domain cannot be null");
   }
   math::domains::CoupledLabelledDomainSP self_shared_domain =
       std::make_shared<math::domains::CoupledLabelledDomain>(
