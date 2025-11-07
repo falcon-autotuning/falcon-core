@@ -79,6 +79,7 @@ AxesLabelledControlArrayTest.*
 AxesLabelledControlArray1DTest.*
 AxesLabelledMeasuredArrayTest.*
 AxesLabelledMeasuredArray1DTest.*
+AxesMapStringBoolTest.*
 ListPairStringBoolTest.*
 ListPairStringDoubleTest.*
 ListPairStringStringTest.*
