@@ -8,12 +8,12 @@ PairChannelConnectionsHandle PairChannelConnections_create(ChannelHandle first, 
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairChannelConnections_create");
                 }
-                auto first_obj= std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(first),[](falcon_core::autotuner_interfaces::names::Channel*) {});
+                auto first_obj= std::make_shared<falcon_core::autotuner_interfaces::names::Channel>(*static_cast<falcon_core::autotuner_interfaces::names::Channel*>(first));
     
                 if (!second) {
                 throw std::invalid_argument("Null value passed to PairChannelConnections_create");
                 }
-                auto second_obj= std::shared_ptr<falcon_core::physics::device_structures::Connections>(static_cast<falcon_core::physics::device_structures::Connections*>(second),[](falcon_core::physics::device_structures::Connections*) {});
+                auto second_obj= std::make_shared<falcon_core::physics::device_structures::Connections>(*static_cast<falcon_core::physics::device_structures::Connections*>(second));
     return new falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>(first_obj, second_obj);
 }
 

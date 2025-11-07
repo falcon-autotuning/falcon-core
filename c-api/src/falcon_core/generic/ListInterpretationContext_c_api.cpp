@@ -3,8 +3,7 @@
 #include <falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>
 
 ListInterpretationContextHandle ListInterpretationContext_create_empty() {
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>());
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>();
 }
 
 ListInterpretationContextHandle ListInterpretationContext_fill_value(size_t count, InterpretationContextHandle value) {
@@ -12,7 +11,8 @@ ListInterpretationContextHandle ListInterpretationContext_fill_value(size_t coun
     if (!value) {
     throw std::invalid_argument("Null value passed to ListInterpretationContext_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(value), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(value));
+    
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(
         count, stored_obj);
 }
@@ -25,11 +25,10 @@ throw std::invalid_argument("Null data handle passed to ListInterpretationContex
     std::vector<falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(data[i]), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {} ));
+        vec.push_back(std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(vec));
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(vec);
 }
 
 void ListInterpretationContext_destroy(ListInterpretationContextHandle handle) {
@@ -75,7 +74,8 @@ throw std::invalid_argument("Null handle passed to ListInterpretationContext_pus
     if (!value) {
     throw std::invalid_argument("Null value passed to ListInterpretationContext_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(value), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,8 @@ throw std::invalid_argument("Null handle passed to ListInterpretationContext_con
     if (!value) {
     throw std::invalid_argument("Null value passed to ListInterpretationContext_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(value), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +100,8 @@ throw std::invalid_argument("Null handle passed to ListInterpretationContext_ind
     if (!value) {
     throw std::invalid_argument("Null value passed to ListInterpretationContext_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(value), [](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>*>(handle)->index(stored_obj);
 }
 

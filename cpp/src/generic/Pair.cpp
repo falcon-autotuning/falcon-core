@@ -3,6 +3,8 @@
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
 #include "falcon_core/autotuner_interfaces/names/Channel.hpp"
 #include "falcon_core/autotuner_interfaces/names/Gname.hpp"
+#include "falcon_core/communications/messages/MeasurementRequest.hpp"
+#include "falcon_core/communications/messages/MeasurementResponse.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/math/AnalyticFunction.hpp"
@@ -50,6 +52,10 @@ CEREAL_REGISTER_TYPE(
     falcon_core::generic::Pair<
         falcon_core::instrument_interfaces::names::InstrumentPort,
         falcon_core::instrument_interfaces::port_transforms::PortTransform>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::Pair<
+        falcon_core::communications::messages::MeasurementResponse,
+        falcon_core::communications::messages::MeasurementRequest>);
 
 using PSS = falcon_core::generic::Pair<std::string, std::string>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PSS);
@@ -105,3 +111,7 @@ using PIPPT = falcon_core::generic::Pair<
     falcon_core::instrument_interfaces::names::InstrumentPort,
     falcon_core::instrument_interfaces::port_transforms::PortTransform>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PIPPT);
+using PMRMR = falcon_core::generic::Pair<
+    falcon_core::communications::messages::MeasurementResponse,
+    falcon_core::communications::messages::MeasurementRequest>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PMRMR);

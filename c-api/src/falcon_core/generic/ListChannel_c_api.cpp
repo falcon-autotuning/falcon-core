@@ -3,8 +3,7 @@
 #include <falcon_core/autotuner_interfaces/names/Channel.hpp>
 
 ListChannelHandle ListChannel_create_empty() {
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>());
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>();
 }
 
 ListChannelHandle ListChannel_fill_value(size_t count, ChannelHandle value) {
@@ -12,7 +11,8 @@ ListChannelHandle ListChannel_fill_value(size_t count, ChannelHandle value) {
     if (!value) {
     throw std::invalid_argument("Null value passed to ListChannel_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value), [](falcon_core::autotuner_interfaces::names::Channel*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::names::Channel>(*static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value));
+    
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(
         count, stored_obj);
 }
@@ -25,11 +25,10 @@ throw std::invalid_argument("Null data handle passed to ListChannel_create");
     std::vector<falcon_core::autotuner_interfaces::names::ChannelSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(data[i]), [](falcon_core::autotuner_interfaces::names::Channel*) {} ));
+        vec.push_back(std::make_shared<falcon_core::autotuner_interfaces::names::Channel>(*static_cast<falcon_core::autotuner_interfaces::names::Channel*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(
-        falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(vec));
+    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>(vec);
 }
 
 void ListChannel_destroy(ListChannelHandle handle) {
@@ -75,7 +74,8 @@ throw std::invalid_argument("Null handle passed to ListChannel_push_back");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListChannel_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value), [](falcon_core::autotuner_interfaces::names::Channel*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::names::Channel>(*static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,8 @@ throw std::invalid_argument("Null handle passed to ListChannel_contains");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListChannel_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value), [](falcon_core::autotuner_interfaces::names::Channel*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::names::Channel>(*static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +100,8 @@ throw std::invalid_argument("Null handle passed to ListChannel_index");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListChannel_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value), [](falcon_core::autotuner_interfaces::names::Channel*) {} );
+    auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::names::Channel>(*static_cast<falcon_core::autotuner_interfaces::names::Channel*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>*>(handle)->index(stored_obj);
 }
 

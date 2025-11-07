@@ -3,8 +3,7 @@
 #include <falcon_core/math/arrays/LabelledControlArray.hpp>
 
 ListLabelledControlArrayHandle ListLabelledControlArray_create_empty() {
-    return new falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>(
-        falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>());
+    return new falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>();
 }
 
 ListLabelledControlArrayHandle ListLabelledControlArray_fill_value(size_t count, LabelledControlArrayHandle value) {
@@ -12,7 +11,8 @@ ListLabelledControlArrayHandle ListLabelledControlArray_fill_value(size_t count,
     if (!value) {
     throw std::invalid_argument("Null value passed to ListLabelledControlArray_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>(static_cast<falcon_core::math::arrays::LabelledControlArray*>(value), [](falcon_core::math::arrays::LabelledControlArray*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledControlArray>(*static_cast<falcon_core::math::arrays::LabelledControlArray*>(value));
+    
     return new falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>(
         count, stored_obj);
 }
@@ -25,11 +25,10 @@ throw std::invalid_argument("Null data handle passed to ListLabelledControlArray
     std::vector<falcon_core::math::arrays::LabelledControlArraySP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>(static_cast<falcon_core::math::arrays::LabelledControlArray*>(data[i]), [](falcon_core::math::arrays::LabelledControlArray*) {} ));
+        vec.push_back(std::make_shared<falcon_core::math::arrays::LabelledControlArray>(*static_cast<falcon_core::math::arrays::LabelledControlArray*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>(
-        falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>(vec));
+    return new falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>(vec);
 }
 
 void ListLabelledControlArray_destroy(ListLabelledControlArrayHandle handle) {
@@ -75,7 +74,8 @@ throw std::invalid_argument("Null handle passed to ListLabelledControlArray_push
     if (!value) {
     throw std::invalid_argument("Null value passed to ListLabelledControlArray_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>(static_cast<falcon_core::math::arrays::LabelledControlArray*>(value), [](falcon_core::math::arrays::LabelledControlArray*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledControlArray>(*static_cast<falcon_core::math::arrays::LabelledControlArray*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,8 @@ throw std::invalid_argument("Null handle passed to ListLabelledControlArray_cont
     if (!value) {
     throw std::invalid_argument("Null value passed to ListLabelledControlArray_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>(static_cast<falcon_core::math::arrays::LabelledControlArray*>(value), [](falcon_core::math::arrays::LabelledControlArray*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledControlArray>(*static_cast<falcon_core::math::arrays::LabelledControlArray*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +100,8 @@ throw std::invalid_argument("Null handle passed to ListLabelledControlArray_inde
     if (!value) {
     throw std::invalid_argument("Null value passed to ListLabelledControlArray_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>(static_cast<falcon_core::math::arrays::LabelledControlArray*>(value), [](falcon_core::math::arrays::LabelledControlArray*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledControlArray>(*static_cast<falcon_core::math::arrays::LabelledControlArray*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>*>(handle)->index(stored_obj);
 }
 

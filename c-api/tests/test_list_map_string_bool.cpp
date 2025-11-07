@@ -8,10 +8,8 @@
 
 class ListMapStringBoolTest : public ::testing::Test {
  protected:
-  void destroy_string(MapStringBoolHandle sh) { MapStringBool_destroy(sh); }
   void TearDown() override {
-    for (auto sh : created_strings) destroy_string(sh);
-    created_strings.clear();
+    for (auto sh : created_strings) MapStringBool_destroy(sh);
   }
   std::vector<MapStringBoolHandle> created_strings;
   MapStringBoolHandle track_quantity(const MapStringBoolHandle& s) {
@@ -170,8 +168,8 @@ TEST_F(ListMapStringBoolTest, At) {
   auto                handle = ListMapStringBool_create(arr, 2);
   auto                at0    = ListMapStringBool_at(handle, 0);
   auto                at1    = ListMapStringBool_at(handle, 1);
-  destroy_string(at0);
-  destroy_string(at1);
+  ListMapStringBool_destroy(at0);
+  ListMapStringBool_destroy(at1);
   ListMapStringBool_destroy(handle);
   EXPECT_THROW(ListMapStringBool_at(nullptr, 0), std::invalid_argument);
 }

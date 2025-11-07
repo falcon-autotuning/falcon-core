@@ -7,7 +7,7 @@ PairConnectionDoubleHandle PairConnectionDouble_create(ConnectionHandle first, d
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairConnectionDouble_create");
                 }
-                auto first_obj= std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(first),[](falcon_core::physics::device_structures::Connection*) {});
+                auto first_obj= std::make_shared<falcon_core::physics::device_structures::Connection>(*static_cast<falcon_core::physics::device_structures::Connection*>(first));
     auto second_obj = second;
     return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>(first_obj, second_obj);
 }

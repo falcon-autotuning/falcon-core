@@ -3,8 +3,7 @@
 #include <falcon_core/generic/Pair.hpp>
 
 MapFloatFloatHandle MapFloatFloat_create_empty() {
-    return new falcon_core::generic::Map<float,float>(
-            falcon_core::generic::Map<float,float>());
+    return new falcon_core::generic::Map<float,float>(); 
 }
 
 MapFloatFloatHandle MapFloatFloat_create(const PairFloatFloatHandle* data, size_t count) {
@@ -14,12 +13,11 @@ throw std::invalid_argument("Null data pointer passed to MapFloatFloat_create");
     std::vector<falcon_core::generic::PairSP<float,float>> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(*reinterpret_cast<
-                    std::shared_ptr<falcon_core::generic::Pair<float,float>>*>(
-            data[i]));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<float,float>>
+        (*static_cast<falcon_core::generic::Pair<float,float>*>(
+            data[i])));
     }
-    return new falcon_core::generic::Map<float,float>(
-            falcon_core::generic::Map<float,float>(vec));
+    return new falcon_core::generic::Map<float,float>(vec);
 }
 
 void MapFloatFloat_destroy(MapFloatFloatHandle handle) {

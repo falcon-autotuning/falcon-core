@@ -8,12 +8,12 @@ PairConnectionQuantityHandle PairConnectionQuantity_create(ConnectionHandle firs
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairConnectionQuantity_create");
                 }
-                auto first_obj= std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(first),[](falcon_core::physics::device_structures::Connection*) {});
+                auto first_obj= std::make_shared<falcon_core::physics::device_structures::Connection>(*static_cast<falcon_core::physics::device_structures::Connection*>(first));
     
                 if (!second) {
                 throw std::invalid_argument("Null value passed to PairConnectionQuantity_create");
                 }
-                auto second_obj= std::shared_ptr<falcon_core::math::Quantity>(static_cast<falcon_core::math::Quantity*>(second),[](falcon_core::math::Quantity*) {});
+                auto second_obj= std::make_shared<falcon_core::math::Quantity>(*static_cast<falcon_core::math::Quantity*>(second));
     return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>(first_obj, second_obj);
 }
 

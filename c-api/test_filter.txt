@@ -136,3 +136,5 @@ PairConnectionPairQuantityQuantityTest.*
 PairGnameGroupTest.*
 PairInstrumentPortPortTransformTest.*
 PairInterpretationContextQuantityTest.*
+PairMeasurementResponseMeasurementRequestTest.*
+ListMapStringBoolTest.*

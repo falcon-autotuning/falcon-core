@@ -2,8 +2,7 @@
 #include "falcon_core/generic/ListDouble_c_api.h"
 
 ListDoubleHandle ListDouble_create_empty() {
-    return new falcon_core::generic::List<double>(
-        falcon_core::generic::List<double>());
+    return new falcon_core::generic::List<double>();
 }
 
 ListDoubleHandle ListDouble_fill_value(size_t count, double value) {
@@ -12,8 +11,7 @@ ListDoubleHandle ListDouble_fill_value(size_t count, double value) {
         count, stored_obj);
 }
  ListDoubleHandle ListDouble_allocate(size_t count) {
-    return new falcon_core::generic::List<double>(
-        falcon_core::generic::List<double>(count));
+    return new falcon_core::generic::List<double>(count);
 }
 
 
@@ -23,8 +21,7 @@ throw std::invalid_argument("Null data handle passed to ListDouble_create");
 }
     std::vector<double> vec;
     vec.insert(vec.end(), data, data + count);
-    return new falcon_core::generic::List<double>(
-        falcon_core::generic::List<double>(vec));
+    return new falcon_core::generic::List<double>(vec);
 }
 
 void ListDouble_destroy(ListDoubleHandle handle) {

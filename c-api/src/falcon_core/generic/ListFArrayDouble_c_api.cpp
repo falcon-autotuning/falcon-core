@@ -3,8 +3,7 @@
 #include <falcon_core/generic/FArray.hpp>
 
 ListFArrayDoubleHandle ListFArrayDouble_create_empty() {
-    return new falcon_core::generic::List<falcon_core::generic::FArray<double>>(
-        falcon_core::generic::List<falcon_core::generic::FArray<double>>());
+    return new falcon_core::generic::List<falcon_core::generic::FArray<double>>();
 }
 
 ListFArrayDoubleHandle ListFArrayDouble_fill_value(size_t count, FArrayDoubleHandle value) {
@@ -12,7 +11,8 @@ ListFArrayDoubleHandle ListFArrayDouble_fill_value(size_t count, FArrayDoubleHan
     if (!value) {
     throw std::invalid_argument("Null value passed to ListFArrayDouble_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::FArray<double>>(static_cast<falcon_core::generic::FArray<double>*>(value), [](falcon_core::generic::FArray<double>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::FArray<double>>(*static_cast<falcon_core::generic::FArray<double>*>(value));
+    
     return new falcon_core::generic::List<falcon_core::generic::FArray<double>>(
         count, stored_obj);
 }
@@ -25,11 +25,10 @@ throw std::invalid_argument("Null data handle passed to ListFArrayDouble_create"
     std::vector<falcon_core::generic::FArraySP<double>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::generic::FArray<double>>(static_cast<falcon_core::generic::FArray<double>*>(data[i]), [](falcon_core::generic::FArray<double>*) {} ));
+        vec.push_back(std::make_shared<falcon_core::generic::FArray<double>>(*static_cast<falcon_core::generic::FArray<double>*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::generic::FArray<double>>(
-        falcon_core::generic::List<falcon_core::generic::FArray<double>>(vec));
+    return new falcon_core::generic::List<falcon_core::generic::FArray<double>>(vec);
 }
 
 void ListFArrayDouble_destroy(ListFArrayDoubleHandle handle) {
@@ -75,7 +74,8 @@ throw std::invalid_argument("Null handle passed to ListFArrayDouble_push_back");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListFArrayDouble_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::FArray<double>>(static_cast<falcon_core::generic::FArray<double>*>(value), [](falcon_core::generic::FArray<double>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::FArray<double>>(*static_cast<falcon_core::generic::FArray<double>*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::generic::FArray<double>>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,8 @@ throw std::invalid_argument("Null handle passed to ListFArrayDouble_contains");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListFArrayDouble_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::FArray<double>>(static_cast<falcon_core::generic::FArray<double>*>(value), [](falcon_core::generic::FArray<double>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::FArray<double>>(*static_cast<falcon_core::generic::FArray<double>*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::generic::FArray<double>>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +100,8 @@ throw std::invalid_argument("Null handle passed to ListFArrayDouble_index");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListFArrayDouble_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::FArray<double>>(static_cast<falcon_core::generic::FArray<double>*>(value), [](falcon_core::generic::FArray<double>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::FArray<double>>(*static_cast<falcon_core::generic::FArray<double>*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::generic::FArray<double>>*>(handle)->index(stored_obj);
 }
 

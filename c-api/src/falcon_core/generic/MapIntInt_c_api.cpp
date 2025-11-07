@@ -3,8 +3,7 @@
 #include <falcon_core/generic/Pair.hpp>
 
 MapIntIntHandle MapIntInt_create_empty() {
-    return new falcon_core::generic::Map<int,int>(
-            falcon_core::generic::Map<int,int>());
+    return new falcon_core::generic::Map<int,int>(); 
 }
 
 MapIntIntHandle MapIntInt_create(const PairIntIntHandle* data, size_t count) {
@@ -14,12 +13,11 @@ throw std::invalid_argument("Null data pointer passed to MapIntInt_create");
     std::vector<falcon_core::generic::PairSP<int,int>> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(*reinterpret_cast<
-                    std::shared_ptr<falcon_core::generic::Pair<int,int>>*>(
-            data[i]));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<int,int>>
+        (*static_cast<falcon_core::generic::Pair<int,int>*>(
+            data[i])));
     }
-    return new falcon_core::generic::Map<int,int>(
-            falcon_core::generic::Map<int,int>(vec));
+    return new falcon_core::generic::Map<int,int>(vec);
 }
 
 void MapIntInt_destroy(MapIntIntHandle handle) {

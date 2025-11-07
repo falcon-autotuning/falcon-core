@@ -8,12 +8,12 @@ PairGnameGroupHandle PairGnameGroup_create(GnameHandle first, GroupHandle second
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairGnameGroup_create");
                 }
-                auto first_obj= std::shared_ptr<falcon_core::autotuner_interfaces::names::Gname>(static_cast<falcon_core::autotuner_interfaces::names::Gname*>(first),[](falcon_core::autotuner_interfaces::names::Gname*) {});
+                auto first_obj= std::make_shared<falcon_core::autotuner_interfaces::names::Gname>(*static_cast<falcon_core::autotuner_interfaces::names::Gname*>(first));
     
                 if (!second) {
                 throw std::invalid_argument("Null value passed to PairGnameGroup_create");
                 }
-                auto second_obj= std::shared_ptr<falcon_core::physics::config::core::Group>(static_cast<falcon_core::physics::config::core::Group*>(second),[](falcon_core::physics::config::core::Group*) {});
+                auto second_obj= std::make_shared<falcon_core::physics::config::core::Group>(*static_cast<falcon_core::physics::config::core::Group*>(second));
     return new falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>(first_obj, second_obj);
 }
 

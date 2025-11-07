@@ -27,9 +27,8 @@ LabelledDomain::LabelledDomain(
           units,
           description,
           type)) {
-  if (!psuedo_name || !units) {
-    throw std::invalid_argument(
-        "LabelledDomain: The psuedo name and the units must not be null.");
+  if (!units) {
+    throw std::invalid_argument("LabelledDomain: The units must not be null.");
   }
 }
 const std::shared_ptr<LabelledDomain> LabelledDomain::from_port(
@@ -40,6 +39,17 @@ const std::shared_ptr<LabelledDomain> LabelledDomain::from_port(
   if (!port) {
     throw std::invalid_argument(
         "LabelledDomain: The instrument port must not be null.");
+  }
+  if (port->instrument_facing_name() == port->instrument_type()) {
+    return std::make_shared<LabelledDomain>(port->default_name(),
+                                            bounds,
+                                            nullptr,
+                                            port->instrument_type(),
+                                            lesser_bound_contained,
+                                            greater_bound_contained,
+                                            port->units(),
+                                            port->description(),
+                                            port->type());
   }
   return std::make_shared<LabelledDomain>(port->default_name(),
                                           bounds,

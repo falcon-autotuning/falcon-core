@@ -4,8 +4,7 @@
 #include <falcon_core/physics/device_structures/Connection.hpp>
 
 MapConnectionFloatHandle MapConnectionFloat_create_empty() {
-    return new falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>(
-            falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>());
+    return new falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>(); 
 }
 
 MapConnectionFloatHandle MapConnectionFloat_create(const PairConnectionFloatHandle* data, size_t count) {
@@ -15,12 +14,11 @@ throw std::invalid_argument("Null data pointer passed to MapConnectionFloat_crea
     std::vector<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection,float>> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(*reinterpret_cast<
-                    std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,float>>*>(
-            data[i]));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,float>>
+        (*static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,float>*>(
+            data[i])));
     }
-    return new falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>(
-            falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>(vec));
+    return new falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>(vec);
 }
 
 void MapConnectionFloat_destroy(MapConnectionFloatHandle handle) {

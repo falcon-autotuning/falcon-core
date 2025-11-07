@@ -41,16 +41,14 @@ LabelledDomainHandle LabelledDomain_create_primitive_knob(
   return new LabelledDomain(LabelledDomain(
       std::string(default_name->raw, default_name->length),
       std::pair<double, double>(min_val, max_val),
-      std::shared_ptr<falcon_core::physics::device_structures::Connection>(
-          static_cast<falcon_core::physics::device_structures::Connection*>(
-              psuedo_name),
-          [](falcon_core::physics::device_structures::Connection*) {}),
+      std::make_shared<falcon_core::physics::device_structures::Connection>(
+          *static_cast<falcon_core::physics::device_structures::Connection*>(
+              psuedo_name)),
       std::string(instrument_type->raw, instrument_type->length),
       lesser_bound_contained,
       greater_bound_contained,
-      std::shared_ptr<falcon_core::physics::units::SymbolUnit>(
-          static_cast<falcon_core::physics::units::SymbolUnit*>(units),
-          [](falcon_core::physics::units::SymbolUnit*) {}),
+      std::make_shared<falcon_core::physics::units::SymbolUnit>(
+          *static_cast<falcon_core::physics::units::SymbolUnit*>(units)),
       std::string(description->raw, description->length),
       falcon_core::instrument_interfaces::names::PortType::Knob));
 }
@@ -89,16 +87,14 @@ LabelledDomainHandle LabelledDomain_create_primitive_meter(
   return new LabelledDomain(LabelledDomain(
       std::string(default_name->raw, default_name->length),
       std::pair<double, double>(min_val, max_val),
-      std::shared_ptr<falcon_core::physics::device_structures::Connection>(
-          static_cast<falcon_core::physics::device_structures::Connection*>(
-              psuedo_name),
-          [](falcon_core::physics::device_structures::Connection*) {}),
+      std::make_shared<falcon_core::physics::device_structures::Connection>(
+          *static_cast<falcon_core::physics::device_structures::Connection*>(
+              psuedo_name)),
       std::string(instrument_type->raw, instrument_type->length),
       lesser_bound_contained,
       greater_bound_contained,
-      std::shared_ptr<falcon_core::physics::units::SymbolUnit>(
-          static_cast<falcon_core::physics::units::SymbolUnit*>(units),
-          [](falcon_core::physics::units::SymbolUnit*) {}),
+      std::make_shared<falcon_core::physics::units::SymbolUnit>(
+          *static_cast<falcon_core::physics::units::SymbolUnit*>(units)),
       std::string(description->raw, description->length),
       falcon_core::instrument_interfaces::names::PortType::Meter));
 }
@@ -143,9 +139,8 @@ LabelledDomainHandle LabelledDomain_create_primitive_port(
       std::string(instrument_type->raw, instrument_type->length),
       lesser_bound_contained,
       greater_bound_contained,
-      std::shared_ptr<falcon_core::physics::units::SymbolUnit>(
-          static_cast<falcon_core::physics::units::SymbolUnit*>(units),
-          [](falcon_core::physics::units::SymbolUnit*) {}),
+      std::make_shared<falcon_core::physics::units::SymbolUnit>(
+          *static_cast<falcon_core::physics::units::SymbolUnit*>(units)),
       std::string(description->raw, description->length),
       falcon_core::instrument_interfaces::names::PortType::InstrumentPort));
 }
@@ -167,11 +162,11 @@ LabelledDomainHandle LabelledDomain_create_from_port(
   }
   return new LabelledDomain(*LabelledDomain::from_port(
       std::pair<double, double>(min_val, max_val),
-      std::shared_ptr<
+      std::make_shared<
           falcon_core::instrument_interfaces::names::InstrumentPort>(
-          static_cast<
-              falcon_core::instrument_interfaces::names::InstrumentPort*>(port),
-          [](falcon_core::instrument_interfaces::names::InstrumentPort*) {}),
+          *static_cast<
+              falcon_core::instrument_interfaces::names::InstrumentPort*>(
+              port)),
       lesser_bound_contained,
       greater_bound_contained));
 }

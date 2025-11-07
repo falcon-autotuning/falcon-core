@@ -7,12 +7,12 @@ PairConnectionConnectionsHandle PairConnectionConnections_create(ConnectionHandl
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairConnectionConnections_create");
                 }
-                auto first_obj= std::shared_ptr<falcon_core::physics::device_structures::Connection>(static_cast<falcon_core::physics::device_structures::Connection*>(first),[](falcon_core::physics::device_structures::Connection*) {});
+                auto first_obj= std::make_shared<falcon_core::physics::device_structures::Connection>(*static_cast<falcon_core::physics::device_structures::Connection*>(first));
     
                 if (!second) {
                 throw std::invalid_argument("Null value passed to PairConnectionConnections_create");
                 }
-                auto second_obj= std::shared_ptr<falcon_core::physics::device_structures::Connections>(static_cast<falcon_core::physics::device_structures::Connections*>(second),[](falcon_core::physics::device_structures::Connections*) {});
+                auto second_obj= std::make_shared<falcon_core::physics::device_structures::Connections>(*static_cast<falcon_core::physics::device_structures::Connections*>(second));
     return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connections>(first_obj, second_obj);
 }
 

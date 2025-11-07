@@ -4,8 +4,7 @@
 #include <falcon_core/math/Quantity.hpp>
 
 ListPairQuantityQuantityHandle ListPairQuantityQuantity_create_empty() {
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>());
+    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>();
 }
 
 ListPairQuantityQuantityHandle ListPairQuantityQuantity_fill_value(size_t count, PairQuantityQuantityHandle value) {
@@ -13,7 +12,8 @@ ListPairQuantityQuantityHandle ListPairQuantityQuantity_fill_value(size_t count,
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairQuantityQuantity_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(static_cast<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*>(value), [](falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(*static_cast<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*>(value));
+    
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(
         count, stored_obj);
 }
@@ -26,11 +26,10 @@ throw std::invalid_argument("Null data handle passed to ListPairQuantityQuantity
     std::vector<falcon_core::generic::PairSP<falcon_core::math::Quantity, falcon_core::math::Quantity>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(static_cast<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*>(data[i]), [](falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*) {} ));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(*static_cast<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(
-        falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(vec));
+    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(vec);
 }
 
 void ListPairQuantityQuantity_destroy(ListPairQuantityQuantityHandle handle) {
@@ -76,7 +75,8 @@ throw std::invalid_argument("Null handle passed to ListPairQuantityQuantity_push
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairQuantityQuantity_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(static_cast<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*>(value), [](falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(*static_cast<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>*>(handle)->push_back(stored_obj);
 }
 
@@ -88,7 +88,8 @@ throw std::invalid_argument("Null handle passed to ListPairQuantityQuantity_cont
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairQuantityQuantity_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(static_cast<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*>(value), [](falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(*static_cast<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>*>(handle)->contains(stored_obj);
 }
 
@@ -100,7 +101,8 @@ throw std::invalid_argument("Null handle passed to ListPairQuantityQuantity_inde
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairQuantityQuantity_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(static_cast<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*>(value), [](falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*) {} );
+    auto stored_obj = std::make_shared<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>(*static_cast<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::math::Quantity, falcon_core::math::Quantity>>*>(handle)->index(stored_obj);
 }
 

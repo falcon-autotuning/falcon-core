@@ -4,8 +4,7 @@
 #include <falcon_core/physics/device_structures/Connection.hpp>
 
 MapConnectionDoubleHandle MapConnectionDouble_create_empty() {
-    return new falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,double>(
-            falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,double>());
+    return new falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,double>(); 
 }
 
 MapConnectionDoubleHandle MapConnectionDouble_create(const PairConnectionDoubleHandle* data, size_t count) {
@@ -15,12 +14,11 @@ throw std::invalid_argument("Null data pointer passed to MapConnectionDouble_cre
     std::vector<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection,double>> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(*reinterpret_cast<
-                    std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,double>>*>(
-            data[i]));
+        vec.push_back(std::make_shared<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,double>>
+        (*static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,double>*>(
+            data[i])));
     }
-    return new falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,double>(
-            falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,double>(vec));
+    return new falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,double>(vec);
 }
 
 void MapConnectionDouble_destroy(MapConnectionDoubleHandle handle) {

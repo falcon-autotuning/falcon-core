@@ -7,7 +7,7 @@ PairInterpretationContextDoubleHandle PairInterpretationContextDouble_create(Int
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairInterpretationContextDouble_create");
                 }
-                auto first_obj= std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(first),[](falcon_core::autotuner_interfaces::interpretations::InterpretationContext*) {});
+                auto first_obj= std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(first));
     auto second_obj = second;
     return new falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>(first_obj, second_obj);
 }

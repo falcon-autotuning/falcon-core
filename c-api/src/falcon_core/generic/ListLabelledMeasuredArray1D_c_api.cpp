@@ -3,8 +3,7 @@
 #include <falcon_core/math/arrays/LabelledMeasuredArray1D.hpp>
 
 ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_create_empty() {
-    return new falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>(
-        falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>());
+    return new falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>();
 }
 
 ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_fill_value(size_t count, LabelledMeasuredArray1DHandle value) {
@@ -12,7 +11,8 @@ ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_fill_value(size_t 
     if (!value) {
     throw std::invalid_argument("Null value passed to ListLabelledMeasuredArray1D_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledMeasuredArray1D>(static_cast<falcon_core::math::arrays::LabelledMeasuredArray1D*>(value), [](falcon_core::math::arrays::LabelledMeasuredArray1D*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray1D>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray1D*>(value));
+    
     return new falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>(
         count, stored_obj);
 }
@@ -25,11 +25,10 @@ throw std::invalid_argument("Null data handle passed to ListLabelledMeasuredArra
     std::vector<falcon_core::math::arrays::LabelledMeasuredArray1DSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::shared_ptr<falcon_core::math::arrays::LabelledMeasuredArray1D>(static_cast<falcon_core::math::arrays::LabelledMeasuredArray1D*>(data[i]), [](falcon_core::math::arrays::LabelledMeasuredArray1D*) {} ));
+        vec.push_back(std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray1D>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray1D*>(data[i]))); 
     }
 
-    return new falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>(
-        falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>(vec));
+    return new falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>(vec);
 }
 
 void ListLabelledMeasuredArray1D_destroy(ListLabelledMeasuredArray1DHandle handle) {
@@ -75,7 +74,8 @@ throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray1D_p
     if (!value) {
     throw std::invalid_argument("Null value passed to ListLabelledMeasuredArray1D_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledMeasuredArray1D>(static_cast<falcon_core::math::arrays::LabelledMeasuredArray1D*>(value), [](falcon_core::math::arrays::LabelledMeasuredArray1D*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray1D>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray1D*>(value));
+    
     static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle)->push_back(stored_obj);
 }
 
@@ -87,7 +87,8 @@ throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray1D_c
     if (!value) {
     throw std::invalid_argument("Null value passed to ListLabelledMeasuredArray1D_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledMeasuredArray1D>(static_cast<falcon_core::math::arrays::LabelledMeasuredArray1D*>(value), [](falcon_core::math::arrays::LabelledMeasuredArray1D*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray1D>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray1D*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle)->contains(stored_obj);
 }
 
@@ -99,7 +100,8 @@ throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray1D_i
     if (!value) {
     throw std::invalid_argument("Null value passed to ListLabelledMeasuredArray1D_fill_value");
     }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledMeasuredArray1D>(static_cast<falcon_core::math::arrays::LabelledMeasuredArray1D*>(value), [](falcon_core::math::arrays::LabelledMeasuredArray1D*) {} );
+    auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray1D>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray1D*>(value));
+    
     return static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle)->index(stored_obj);
 }
 
