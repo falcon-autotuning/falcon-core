@@ -4,6 +4,7 @@
 
 #include <cereal/types/polymorphic.hpp>
 
+#include "falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp"
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/arrays/ControlArray.hpp"
@@ -18,6 +19,9 @@ CEREAL_REGISTER_TYPE(falcon_core::math::Axes<int>)
 CEREAL_REGISTER_TYPE(falcon_core::math::Axes<double>)
 CEREAL_REGISTER_TYPE(
     falcon_core::math::Axes<falcon_core::math::domains::CoupledLabelledDomain>)
+CEREAL_REGISTER_TYPE(
+    falcon_core::math::Axes<
+        falcon_core::autotuner_interfaces::contexts::MeasurementContext>)
 CEREAL_REGISTER_TYPE(falcon_core::math::Axes<
                      falcon_core::instrument_interfaces::names::InstrumentPort>)
 CEREAL_REGISTER_TYPE(
