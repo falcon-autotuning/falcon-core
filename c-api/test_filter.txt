@@ -162,3 +162,5 @@ MapConnectionQuantityTest.*
 MapInstrumentPortPortTransformTest.*
 InterpretationContextTest.*
 InterpretationContainerDoubleTest.*
+InterpretationContainerStringTest.*
+InterpretationContainerQuantityTest.*
