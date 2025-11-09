@@ -198,17 +198,29 @@ TEST_F(HDF5DataTest, ToFileAndCreateFromFile) {
 TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
   // Construct a valid MeasurementRequest (copy from MeasurementRequestTest
   // setup)
-  StringHandle             msg          = String_wrap("msg");
-  StringHandle             name         = String_wrap("measurement");
-  DomainHandle             domain       = Domain_create(0, 1.0);
-  StringHandle             default_name = String_wrap("A");
-  ListLabelledDomainHandle domain_list  = ListLabelledDomain_create_empty();
-  ListLabelledDomain_push_back(domain_list,
-                               LabelledDomain_create_from_domain(
-                                   domain,
-                                   default_name,
-                                   Connection_create_barrier_gate(default_name),
-                                   InstrumentTypes_voltmeter()));
+  double             data1[3]     = {1.0, 2.0, 3.0};
+  size_t             shape1[1]    = {3};
+  FArrayDoubleHandle farray1      = FArrayDouble_from_data(data1, shape1, 1);
+  LabelledMeasuredArrayHandle sh1 = LabelledMeasuredArray_from_farray(
+      farray1,
+      AcquisitionContext_create(
+          Connection_create_plunger_gate(String_wrap("A")),
+          InstrumentTypes_voltmeter(),
+          SymbolUnit_create_volt()));
+  ListLabelledMeasuredArrayHandle lch =
+      ListLabelledMeasuredArray_create_empty();
+  ListLabelledMeasuredArray_push_back(lch, sh1);
+  StringHandle         msg          = String_wrap("msg");
+  StringHandle         name         = String_wrap("measurement");
+  DomainHandle         domain       = Domain_create(0, 1.0);
+  StringHandle         default_name = String_wrap("A");
+  InstrumentPortHandle port         = InstrumentPort_create_knob(
+      default_name, Connection_create_barrier_gate(default_name));
+  InstrumentPortHandle getter = InstrumentPort_create_meter(
+      String_wrap("ohm1"), Connection_create_ohmic(String_wrap("ohm1")));
+  ListLabelledDomainHandle domain_list = ListLabelledDomain_create_empty();
+  ListLabelledDomain_push_back(
+      domain_list, LabelledDomain_create_from_port_and_domain(port, domain));
   CoupledLabelledDomainHandle labelled_domain =
       CoupledLabelledDomain_create(domain_list);
   AxesCoupledLabelledDomainHandle axes =
@@ -217,43 +229,44 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
       axes, CoupledLabelledDomain_create(labelled_domain));
   AxesMapStringBoolHandle increasing = AxesMapStringBool_create_empty();
   MapStringBoolHandle     map        = MapStringBool_create_empty();
-  MapStringBool_insert(map, String_wrap("A"), true);
+  MapStringBool_insert(map, default_name, true);
   AxesMapStringBool_push_back(increasing, map);
   AxesDiscretizerHandle discretizers = AxesDiscretizer_create_empty();
   AxesDiscretizer_push_back(discretizers,
                             Discretizer_create_cartesian_discretizer(0.1));
-  UnitSpaceHandle         unit_space = UnitSpace_create(discretizers, domain);
-  DiscreteSpaceHandle     space = DiscreteSpace_create(unit_space, axes, map);
+  UnitSpaceHandle unit_space = UnitSpace_create(discretizers, domain);
+  UnitSpace_compile(unit_space);
+  DiscreteSpaceHandle space =
+      DiscreteSpace_create(unit_space, axes, increasing);
   ListPortTransformHandle transforms = ListPortTransform_create_empty();
-  InstrumentPortHandle    port = InstrumentPort_create_meter(String_wrap("P1"));
-  ListStringHandle        labels = ListString_create_empty();
+  ListStringHandle        labels     = ListString_create_empty();
   ListString_push_back(labels, String_wrap("x"));
   AnalyticFunctionHandle analytic =
       AnalyticFunction_create(labels, String_wrap("2x[0]+1"));
   PortTransformHandle pt = PortTransform_create(port, analytic);
   ListPortTransform_push_back(transforms, pt);
+
   WaveformHandle     waveform  = Waveform_create(space, transforms);
   ListWaveformHandle waveforms = ListWaveform_create_empty();
   ListWaveform_push_back(waveforms, waveform);
+
   PortsHandle getters = Ports_create_empty();
-  Ports_push_back(getters, port);
+  Ports_push_back(getters, getter);
+
   MapInstrumentPortPortTransformHandle meter_transforms =
       MapInstrumentPortPortTransform_create_empty();
   MapInstrumentPortPortTransform_insert(meter_transforms, port, pt);
+
   LabelledDomainHandle time_domain =
       LabelledDomain_create_from_port(0.0,
                                       1.0,
                                       InstrumentTypes_clock(),
                                       InstrumentPort_create_execution_clock());
+
   MeasurementRequestHandle request = MeasurementRequest_create(
       msg, name, waveforms, getters, meter_transforms, time_domain);
-
-  // Minimal valid MeasurementResponse
-  ListLabelledMeasuredArrayHandle measured_arrays =
-      ListLabelledMeasuredArray_create_empty();
-  LabelledArraysLabelledMeasuredArrayHandle ranges =
-      LabelledArraysLabelledMeasuredArray_create(measured_arrays);
-  MeasurementResponseHandle response = MeasurementResponse_create(ranges);
+  MeasurementResponseHandle response = MeasurementResponse_create(
+      LabelledArraysLabelledMeasuredArray_create(lch));
 
   DeviceVoltageStatesHandle voltage_states = DeviceVoltageStates_create_empty();
   int8_t                    session_id[16] = {0};
