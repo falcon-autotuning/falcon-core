@@ -13,30 +13,39 @@ jobs:
       image: archlinux:latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install dependencies
+      - name: Create build user
+        run: |
+          useradd -m builduser
+          echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          chown -R builduser:builduser .
+      - name: Install dependencies and AUR packages
         run: |
           pacman -Syu --noconfirm
           pacman -S --noconfirm base-devel git cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib
-          git clone https://aur.archlinux.org/highfive.git
-          cd highfive
-          makepkg -si --noconfirm --needed
-          cd ..
-          git clone https://aur.archlinux.org/exprtk.git
-          cd exprtk
-          makepkg -si --noconfirm --needed
-          cd ..
+          sudo -u builduser bash -c "
+            git clone https://aur.archlinux.org/highfive.git
+            cd highfive
+            makepkg -si --noconfirm --needed
+            cd ..
+            git clone https://aur.archlinux.org/exprtk.git
+            cd exprtk
+            makepkg -si --noconfirm --needed
+            cd ..
+          "
       - name: Build and test PKGBUILDs
         run: |
-          cd packaging/xtl
-          makepkg -si --noconfirm --syncdeps --cleanbuild
-          cd ../xsimd
-          makepkg -si --noconfirm --syncdeps --cleanbuild
-          cd ../xtensor
-          makepkg -si --noconfirm --syncdeps --cleanbuild
-          cd ../xtensor-io
-          makepkg -si --noconfirm --syncdeps --cleanbuild
-          cd ../.. # back to root if needed
-          makepkg -si --noconfirm --syncdeps --cleanbuild
+          sudo -u builduser bash -c "
+            cd packaging/xtl
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xsimd
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor-io
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../.. # back to root if needed
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+          "
       - name: Upload coverage reports
         uses: actions/upload-artifact@v4
         with:

@@ -35,7 +35,7 @@ build() {
 
 check() {
   cd "$srcdir/falcon-core" || exit
-  make run-all-tests
+  make test
   make coverage-html
 }
 package() {
