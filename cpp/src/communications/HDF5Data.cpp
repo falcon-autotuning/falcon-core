@@ -315,25 +315,25 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_communications(
     const int&                                   unique_id,
     const int&                                   timestamp) {
   // Compile all waveforms in the request
-  for (const instrument_interfaces::WaveformSP& wave : *request->waveforms()) {
+  generic::List<instrument_interfaces::Waveform> waveforms =
+      *request->waveforms();
+  for (const instrument_interfaces::WaveformSP& wave : waveforms) {
     wave->space()->space()->compile();
   }
 
   // Find a valid waveform
-  instrument_interfaces::WaveformSP              valid_waveform;
-  generic::List<instrument_interfaces::Waveform> waveforms =
-      *request->waveforms();
-
-  for (const instrument_interfaces::WaveformSP waveform : waveforms) {
-    std::cout
-        << std::string("The space shape is ") +
-               std::to_string(waveform->space()->space()->space()->shape()[0]) +
-               "," +
-               std::to_string(waveform->space()->space()->space()->shape()[1])
-        << std::endl;
-    std::cout << std::string("The axes size is ") +
-                     std::to_string(waveform->space()->axes()->size())
-              << std::endl;
+  instrument_interfaces::WaveformSP valid_waveform;
+  for (const instrument_interfaces::WaveformSP& waveform : waveforms) {
+    // std::cout
+    //     << std::string("The space shape is ") +
+    //            std::to_string(waveform->space()->space()->space()->shape()[0])
+    //            +
+    //            "," +
+    //            std::to_string(waveform->space()->space()->space()->shape()[1])
+    //     << std::endl;
+    // std::cout << std::string("The axes size is ") +
+    //                  std::to_string(waveform->space()->axes()->size())
+    //           << std::endl;
     if (waveform->space()->space()->space()->shape()[1] ==
         waveform->space()->axes()->size()) {
       valid_waveform = waveform;

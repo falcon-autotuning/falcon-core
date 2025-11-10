@@ -225,8 +225,7 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
       CoupledLabelledDomain_create(domain_list);
   AxesCoupledLabelledDomainHandle axes =
       AxesCoupledLabelledDomain_create_empty();
-  AxesCoupledLabelledDomain_push_back(
-      axes, CoupledLabelledDomain_create(labelled_domain));
+  AxesCoupledLabelledDomain_push_back(axes, labelled_domain);
   AxesMapStringBoolHandle increasing = AxesMapStringBool_create_empty();
   MapStringBoolHandle     map        = MapStringBool_create_empty();
   MapStringBool_insert(map, default_name, true);
@@ -234,8 +233,7 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
   AxesDiscretizerHandle discretizers = AxesDiscretizer_create_empty();
   AxesDiscretizer_push_back(discretizers,
                             Discretizer_create_cartesian_discretizer(0.1));
-  UnitSpaceHandle unit_space = UnitSpace_create(discretizers, domain);
-  UnitSpace_compile(unit_space);
+  UnitSpaceHandle     unit_space = UnitSpace_create(discretizers, domain);
   DiscreteSpaceHandle space =
       DiscreteSpace_create(unit_space, axes, increasing);
   ListPortTransformHandle transforms = ListPortTransform_create_empty();
@@ -297,10 +295,6 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
   MeasurementRequest_destroy(request);
   MeasurementResponse_destroy(response);
   String_destroy(title);
-  ListLabelledMeasuredArray_destroy(measured_arrays);
-  LabelledArraysLabelledMeasuredArray_destroy(ranges);
-  // Destroy all MeasurementRequest construction resources
-  MeasurementRequest_destroy(request);
   String_destroy(msg);
   String_destroy(name);
   Waveform_destroy(waveform);

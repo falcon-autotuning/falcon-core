@@ -30,7 +30,7 @@ class UnitSpace : public math::Axes<discrete_spaces::Discretizer> {
    * @brief Store the computed discrete ranges.
    * @throws std::runtime_error if the discretizer is not supported.
    */
-  void make_discrete_axes() const;
+  void make_discrete_axes();
 
  public:
   /**

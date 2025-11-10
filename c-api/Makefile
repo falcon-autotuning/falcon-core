@@ -81,12 +81,12 @@ build-dev: generate_types
 
 # check coverage of entire module
 run-all-tests:
-	@LLVM_PROFILE_FILE="run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$(CORE_BUILD_DIR):$$LD_LIBRARY_PATH ./${C_API_BUILD_DIR}/run_tests
+	@LLVM_PROFILE_FILE="$(C_API_BUILD_DIR)/run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$(CORE_BUILD_DIR):$$LD_LIBRARY_PATH ./${C_API_BUILD_DIR}/run_tests
 	@llvm-profdata merge -sparse ${C_API_BUILD_DIR}/run_tests.profraw -o ${C_API_BUILD_DIR}/run_tests.profdata
 
 #check coverage of all the modles listed in the test_filter.txt
 run-subset-tests:
-	@LLVM_PROFILE_FILE="build/run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$(CORE_BUILD_DIR):$$LD_LIBRARY_PATH ./${C_API_BUILD_DIR}/run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
+	@LLVM_PROFILE_FILE="#$(C_API_BUILD_DIR)/run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$(CORE_BUILD_DIR):$$LD_LIBRARY_PATH ./${C_API_BUILD_DIR}/run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
 	@llvm-profdata merge -sparse ${C_API_BUILD_DIR}/run_tests.profraw -o ${C_API_BUILD_DIR}/run_tests.profdata
 
 # launches the interactive html for the entire coverage run

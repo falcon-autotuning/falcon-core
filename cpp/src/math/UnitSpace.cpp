@@ -75,14 +75,16 @@ const AxesSP<discrete_spaces::Discretizer> UnitSpace::axes() const {
 const domains::DomainSP&         UnitSpace::domain() const { return _domain; }
 const generic::FArraySP<double>& UnitSpace::space() const { return _space; }
 const generic::ListSP<int>       UnitSpace::shape() const {
-  generic::ListSP<int> shape = std::make_shared<List<int>>();
-  for (const arrays::ControlArray1DSP& array : *_ranges) {
-    shape->push_back(array->size());
+  generic::ListSP<int>               shape = std::make_shared<List<int>>();
+  math::Axes<arrays::ControlArray1D> ranges = *this->_ranges;
+  for (const arrays::ControlArray1DSP& array : ranges) {
+    int size = array->size();
+    shape->push_back(size);
   }
   return shape;
 }
 const int UnitSpace::dimension() const { return this->size(); }
-void      UnitSpace::make_discrete_axes() const {
+void      UnitSpace::make_discrete_axes() {
   for (const discrete_spaces::DiscretizerSP& disc : items()) {
     double factor = 1.0;
     if (disc->is_cartesian()) {
@@ -104,7 +106,18 @@ void      UnitSpace::make_discrete_axes() const {
                                   : bounds.second;
 
     auto arr = xt::arange<double>(lower_bound, upper_bound, delta);
-    _ranges->push_back(std::make_shared<arrays::ControlArray1D>(arr));
+    std::cout << "Preparing to push_back an array with a lower_bound " +
+                     std::to_string(lower_bound) + " an upper_bound " +
+                     std::to_string(upper_bound) + " with a delta of " +
+                     std::to_string(delta)
+              << std::endl;
+    std::cout << "The array has " + std::to_string(arr.size()) + " entries"
+              << std::endl;
+    arrays::ControlArray1DSP new_range =
+        std::make_shared<arrays::ControlArray1D>(arr);
+    std::cout << "The range has size " + std::to_string(new_range->size())
+              << std::endl;
+    _ranges->push_back(new_range);
   }
 }
 
@@ -144,31 +157,43 @@ const AxesSP<arrays::ControlArray> UnitSpace::create_array(
 void UnitSpace::compile() {
   // Collect xtensor arrays from _ranges, reversed
   std::vector<xt::xarray<double>> grids;
-  for (int i = _ranges->size() - 1; i >= 0; --i) {
+  int                             range_num = _ranges->size();
+  for (int i = range_num - 1; i >= 0; --i) {
     grids.push_back(_ranges->at(i)->xtensor());
   }
   std::vector<xt::xarray<double>> mesh = meshgrid_xt(grids);
 
   // Flatten each broadcasted array and stack as rows
-  std::vector<xt::xarray<double>> flat;
+  std::vector<xt::xarray<double>> flat = std::vector<xt::xarray<double>>();
   for (const auto& arr : mesh) {
-    flat.push_back(xt::flatten(arr));
+    xt::xarray<double> flat_array = xt::flatten(arr);
+    // std::cout << "In flattening the range has size " +
+    //                  std::to_string(flat_array.size())
+    //           << std::endl;
+    flat.push_back(flat_array);
   }
 
   // Manually stack as rows (N x M, N = number of ranges, M = number of points)
-  size_t             N     = flat.size();
-  size_t             M     = flat[0].size();
-  xt::xarray<double> space = xt::zeros<double>({N, M});
+  size_t N = flat.size();
+  size_t M = flat[0].size();
+  std::cout << "N is " + std::to_string(N) + " and M is " + std::to_string(M)
+            << std::endl;
+  xt::xarray<double> space = xt::zeros<double>({M, N});
   for (size_t i = 0; i < N; ++i) {
     for (size_t j = 0; j < M; ++j) {
-      space(i, j) = flat[i](j);
+      space(j, i) = flat[i](j);
     }
   }
+  // std::cout << "space shape: ";
+  // for (auto s : space.shape()) std::cout << s << " ";
+  // std::cout << std::endl;
 
   // Reverse columns to match Python's [:, ::-1]
-  auto reversed = xt::view(space, xt::all(), xt::range(M - 1, -1, -1));
-
-  // Assign to _space (assuming BaseArray accepts xt::xarray<double>)
+  auto reversed = xt::flip(space, 0);
+  // std::cout << std::string("The reversed shape is ") +
+  //                  std::to_string(reversed.shape()[0]) + "," +
+  //                  std::to_string(reversed.shape()[1])
+  //           << std::endl;
   _space = std::make_shared<generic::FArray<double>>(reversed);
 }
 bool UnitSpace::operator==(const UnitSpace& other) const {
