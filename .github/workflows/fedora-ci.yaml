@@ -12,7 +12,7 @@ jobs:
     container:
       image: fedora:latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install dependencies
         run: |
           dnf install -y rpm-build ninja-build clang ccache python3 cmake boost-devel hdf5-devel yaml-cpp-devel xtensor-devel xtl-devel
@@ -57,7 +57,7 @@ jobs:
           rpmbuild -ba ~/rpmbuild/SPECS/falcon-core-cpp.spec
           dnf install -y ~/rpmbuild/RPMS/x86_64/falcon-core-cpp-*.rpm
       - name: Upload coverage reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-reports
           path: |
