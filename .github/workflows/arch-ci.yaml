@@ -22,7 +22,7 @@ jobs:
         run: |
           pacman -Syu --noconfirm
           pacman -S --noconfirm base-devel git cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib
-          sudo -u builduser bash -c "
+          runuser -u builduser -- bash -c "
             git clone https://aur.archlinux.org/highfive.git
             cd highfive
             makepkg -si --noconfirm --needed
@@ -34,7 +34,7 @@ jobs:
           "
       - name: Build and test PKGBUILDs
         run: |
-          sudo -u builduser bash -c "
+          runuser -u builduser -- bash -c "
             cd packaging/xtl
             makepkg -si --noconfirm --syncdeps --cleanbuild
             cd ../xsimd
