@@ -2,9 +2,9 @@ name: Arch Linux CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, new-dev]
   pull_request:
-    branches: [main]
+    branches: [main, new-dev]
 
 jobs:
   build-and-test-arch:
