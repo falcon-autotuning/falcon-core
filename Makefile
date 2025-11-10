@@ -2,13 +2,13 @@
 
 # Build both C++ and C API (release)
 build:
-  $(MAKE) -C cpp build USE_VCPKG=$(USE_VCPKG)
-  $(MAKE) -C c-api build USE_VCPKG=$(USE_VCPKG)
+	$(MAKE) -C cpp build USE_VCPKG=$(USE_VCPKG)
+	$(MAKE) -C c-api build USE_VCPKG=$(USE_VCPKG)
 
 # Build both C++ and C API (dev/tests/coverage)
 build-dev:
-  $(MAKE) -C cpp build-dev USE_VCPKG=$(USE_VCPKG)
-  $(MAKE) -C c-api build-dev USE_VCPKG=$(USE_VCPKG)
+	$(MAKE) -C cpp build-dev USE_VCPKG=$(USE_VCPKG)
+	$(MAKE) -C c-api build-dev USE_VCPKG=$(USE_VCPKG)
 
 # Run all tests in both cpp and c-api
 test: test-cpp test-c-api
