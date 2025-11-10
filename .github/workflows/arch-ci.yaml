@@ -16,7 +16,8 @@ jobs:
       - name: Install dependencies
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel git cereal hdf5 boost bzip2 expat exprtk highfive nlohmann-json openssl python sqlite yaml-cpp zlib
+          pacman -S --noconfirm base-devel git cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib
+          aur -S highfive exprtk
       - name: Build and test PKGBUILDs
         run: |
           cd packaging/xtl
