@@ -1,3 +1,13 @@
+USE_VCPKG ?= 1
+
+ifeq ($(USE_VCPKG),1)
+  TOOLCHAIN_ARG = -DCMAKE_TOOLCHAIN_FILE=$(VCPKG_TOOLCHAIN) \
+                  -DVCPKG_TARGET_TRIPLET=x64-linux-dynamic \
+                  -DVCPKG_INSTALLED_DIR=$(PWD)/vcpkg_installed
+else
+  TOOLCHAIN_ARG =
+endif
+
 # Makefile to simplify the CMake build process for falcon-core with vcpkg
 
 .PHONY: all build build-part install test clean setup-vcpkg clean-all
@@ -23,7 +33,6 @@ build:
 	@echo "--- Configuring and Building C++ Extension (release, no tests) ---"
 	@mkdir -p $(BUILD_DIR)
 	@cmake -G Ninja \
-		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 		-DCMAKE_C_COMPILER=clang \
 		-DCMAKE_CXX_COMPILER=clang++ \
 		-DCMAKE_C_COMPILER_LAUNCHER=ccache \
@@ -31,14 +40,10 @@ build:
 		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
 		-DCMAKE_C_FLAGS="-O2" \
 		-DCMAKE_CXX_FLAGS="-g -O2" \
-  	-DCMAKE_TOOLCHAIN_FILE=$(VCPKG_TOOLCHAIN) \
-		-DVCPKG_TARGET_TRIPLET=x64-linux-dynamic \
-   	-DVCPKG_INSTALLED_DIR=$(PWD)/vcpkg_installed \
+		$(TOOLCHAIN_ARG) \
 		-DCPP_TARGET=$(CPP_TARGET) \
 		-DBUILD_TESTS=OFF \
 		. -S . -B $(BUILD_DIR)
-	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
-	@ninja -C $(BUILD_DIR) -d stats
 	@echo "--- Build complete ---"
 
 build-dev:
@@ -54,9 +59,7 @@ build-dev:
 		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
 		-DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" \
 		-DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping" \
-  	-DCMAKE_TOOLCHAIN_FILE=$(VCPKG_TOOLCHAIN) \
-   	-DVCPKG_INSTALLED_DIR=$(PWD)/vcpkg_installed \
-		-DVCPKG_TARGET_TRIPLET=x64-linux-dynamic \
+		$(TOOLCHAIN_ARG) \
 		-DCPP_TARGET=$(CPP_TARGET) \
 		-DBUILD_TESTS=ON \
 		. -S . -B $(BUILD_DIR)

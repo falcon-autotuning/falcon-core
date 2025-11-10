@@ -71,4 +71,3 @@ MeasuredArrayTest.*
 MeasurementResponseTest.*
 MeasurementContextTest.*
 InterpretationContainerTest.*
-InterpretationContextTest.*

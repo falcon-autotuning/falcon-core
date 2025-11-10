@@ -1,0 +1,38 @@
+name: Arch Linux CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test-arch:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm base-devel git cereal hdf5 boost bzip2 expat exprtk highfive nlohmann-json openssl python sqlite yaml-cpp zlib
+      - name: Build and test PKGBUILDs
+        run: |
+          cd packaging/xtl
+          makepkg -si --noconfirm --syncdeps --cleanbuild
+          cd ../xsimd
+          makepkg -si --noconfirm --syncdeps --cleanbuild
+          cd ../xtensor
+          makepkg -si --noconfirm --syncdeps --cleanbuild
+          cd ../xtensor-io
+          makepkg -si --noconfirm --syncdeps --cleanbuild
+          cd ../.. # back to root if needed
+          makepkg -si --noconfirm --syncdeps --cleanbuild
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-reports
+          path: |
+            cpp/cpp-coverage-report.txt
+            c-api/c-api-coverage-report.txt

@@ -23,8 +23,6 @@ These are the dependencies that this is known to work with.
 * highfive@3.1.1
 * nlohmann-json@3.12.0
 * openssl@3.5.2
-* openssl@3.5.2
-* pybind11@3.0.1
 * python3@3.12.9
 * sqlite3@3.50.4
 * xsimd@13.2.0

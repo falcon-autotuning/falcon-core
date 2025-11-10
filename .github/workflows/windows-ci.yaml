@@ -1,0 +1,31 @@
+name: Windows CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: choco install ninja ccache python
+      - name: Install vcpkg
+        run: |
+          git clone https://github.com/microsoft/vcpkg.git
+          .\vcpkg\bootstrap-vcpkg.bat
+          echo "$PWD\vcpkg" | Out-File -FilePath $env:GITHUB_PATH -Append
+      - name: Build (dev)
+        run: make build-dev
+      - name: Run tests
+        run: make test
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-reports
+          path: |
+            cpp/cpp-coverage-report.txt
+            c-api/c-api-coverage-report.txt

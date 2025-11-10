@@ -1,3 +1,14 @@
+USE_VCPKG ?= 1
+
+ifeq ($(USE_VCPKG),1)
+  TOOLCHAIN_ARG = -DCMAKE_TOOLCHAIN_FILE=$(VCPKG_TOOLCHAIN) \
+									-DVCPKG_TARGET_TRIPLET=x64-linux-dynamic \
+									-DVCPKG_INSTALLED_DIR=$(PWD)/vcpkg_installed \
+									-DCMAKE_PREFIX_PATH="$(CORE_BUILD_DIR);$(VCPKG_INSTALLED)/x64-linux-dynamic"
+else
+  TOOLCHAIN_ARG = -DCMAKE_PREFIX_PATH="$(CORE_BUILD_DIR)"
+endif
+
 C_API_BUILD_DIR := build
 C_API_TARGET := falcon_core_c_api
 VCPKG_TOOLCHAIN := $(shell vcpkg integrate install --triplet=x64-linux-dynamic | grep -o '/.*\.cmake' | head -n1)
@@ -31,23 +42,18 @@ build: generate_types
 	@echo "--- Configuring and Building C API with Ninja ---"
 	@mkdir -p $(C_API_BUILD_DIR)
 	@cmake -G Ninja \
-		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 		-DCMAKE_C_COMPILER=clang \
 		-DCMAKE_CXX_COMPILER=clang++ \
 		-DCMAKE_C_COMPILER_LAUNCHER=ccache \
 		-DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
 		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
-		-DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" \
-		-DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping" \
-  	-DCMAKE_TOOLCHAIN_FILE=$(VCPKG_TOOLCHAIN) \
-   	-DVCPKG_INSTALLED_DIR=$(PWD)/vcpkg_installed \
-		-DVCPKG_TARGET_TRIPLET=x64-linux \
-		-DCMAKE_PREFIX_PATH="$(CORE_BUILD_DIR);$(VCPKG_INSTALLED)/x64-linux" \
+		-DCMAKE_C_FLAGS="-O2" \
+		-DCMAKE_CXX_FLAGS="-g -O2" \
+		$(TOOLCHAIN_ARG) \
    	-DC_API_TARGET=$(C_API_TARGET) \
 		-DCORE_ROOT=$(CORE_ROOT) \
+		-DBUILD_TESTS=OFF \
    	-S . -B $(C_API_BUILD_DIR)
-	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
-	@ninja -C $(C_API_BUILD_DIR) -d stats
 	@echo "--- Build complete. C API library is now in $(C_API_BUILD_DIR) ---"
 
 build-dev: generate_types 
@@ -67,9 +73,7 @@ build-dev: generate_types
 		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
 		-DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" \
 		-DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping" \
-  	-DCMAKE_TOOLCHAIN_FILE=$(VCPKG_TOOLCHAIN) \
-		-DVCPKG_TARGET_TRIPLET=x64-linux-dynamic \
-		-DCMAKE_PREFIX_PATH="$(CORE_BUILD_DIR);$(VCPKG_INSTALLED)/x64-linux-dynamic" \
+		$(TOOLCHAIN_ARG) \
    	-DC_API_TARGET=$(C_API_TARGET) \
 		-DCORE_ROOT=$(CORE_ROOT) \
 		-DBUILD_TESTS=ON \
