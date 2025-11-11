@@ -55,6 +55,9 @@ jobs:
           cp packaging/specs/falcon-core-cpp-dev.spec ~/rpmbuild/SPECS/
           # Assumes your source is in the repo root and the spec expects falcon-core-cpp-dev-1.0.0/
           tar czf ~/rpmbuild/SOURCES/falcon-core-cpp-dev-1.0.0.tar.gz --transform 's,^.,falcon-core-cpp-dev-1.0.0,' .
+          dnf install -y cereal-devel
+          dnf install -y hdf5 hdf5-devel
+          dnf install -y gtest gtest-devel
           rpmbuild -ba ~/rpmbuild/SPECS/falcon-core-cpp-dev.spec
           dnf install -y ~/rpmbuild/RPMS/*/falcon-core-cpp-dev-*.rpm
 

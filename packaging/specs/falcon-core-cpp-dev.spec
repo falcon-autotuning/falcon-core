@@ -5,10 +5,10 @@ Summary:        Falcon Core C++ development package with tests and coverage
 
 License:        MIT
 URL:            https://github.com/falcon-autotuning/falcon-core
-Source0:        git+https://github.com/falcon-autotuning/falcon-core.git#new-dev
+Source0:        %{name}-%{version}.tar.gz
 
-BuildRequires:  cmake, gcc-c++, make, boost-devel, hdf5-devel, yaml-cpp-devel, openssl-devel, sqlite-devel, zlib-devel, gcovr
-Requires:       
+BuildRequires:  cmake, gcc-c++, make, boost-devel, cereal-devel, hdf5-devel, yaml-cpp-devel, openssl-devel, sqlite-devel, zlib-devel, gcovr
+Requires:       xtl, xtensor, xsimd, yaml-cpp, hdf5, boost
 
 %description
 Development build of Falcon Core C++ with tests and coverage artifacts.
@@ -17,7 +17,7 @@ Development build of Falcon Core C++ with tests and coverage artifacts.
 %setup -q -n falcon-core-cpp-dev-1.0.0
 
 %build
-cd "%{_builddir}/%{name}-%{version}/cpp" || exit
+cd "cpp" || exit
 make build-dev USE_VCPKG=0
 make run-all-tests
 mkdir coverage
