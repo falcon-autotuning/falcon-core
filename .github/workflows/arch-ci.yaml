@@ -93,7 +93,7 @@ jobs:
       - name: Build falcon-core-cpp-dev
         run: |
           cd cpp
-          runuser -u builduser -- env PATH=/usr/bin:$PATH CC=/usr/bin/clang CXX=/usr/bin/clang++ USE_VCPKG=0 make build-dev
+          runuser -u builduser -- env PATH=/usr/bin:$PATH clang=/usr/bin/clang clang++=/usr/bin/clang++ USE_VCPKG=0 make build-dev
 
       - name: Test falcon-core-cpp-dev
         run: |
