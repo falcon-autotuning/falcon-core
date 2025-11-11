@@ -18,6 +18,13 @@ jobs:
           useradd -m builduser
           echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           chown -R builduser:builduser .
+      - name: Setup SSH for builduser
+        run: |
+          install -d -m 700 /home/builduser/.ssh
+          echo "${{ secrets.FALCON_SSH_KEY }}" > /home/builduser/.ssh/id_rsa
+          chmod 600 /home/builduser/.ssh/id_rsa
+          ssh-keyscan github.com >> /home/builduser/.ssh/known_hosts
+          chown -R builduser:builduser /home/builduser/.ssh
       - name: Install dependencies and AUR packages
         run: |
           pacman -Syu --noconfirm
