@@ -58,6 +58,8 @@ jobs:
           dnf install -y cereal-devel
           dnf install -y hdf5 hdf5-devel
           dnf install -y gtest gtest-devel
+          dnf install -y boost boost-devel
+
           rpmbuild -ba ~/rpmbuild/SPECS/falcon-core-cpp-dev.spec
           dnf install -y ~/rpmbuild/RPMS/*/falcon-core-cpp-dev-*.rpm
 
