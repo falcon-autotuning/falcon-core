@@ -13,6 +13,7 @@ jobs:
       image: archlinux:latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Create build user
         run: |
           useradd -m builduser
