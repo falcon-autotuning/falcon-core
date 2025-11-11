@@ -14,7 +14,7 @@ BuildRequires:  cmake, gcc-c++
 xsimd - header-only exprtk wrappers.
 
 %prep
-%setup -q -n exprtk0.0.2 
+%setup -q -n exprtk-0.0.2 
 
 %build
 mkdir -p build
