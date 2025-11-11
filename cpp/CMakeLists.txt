@@ -47,11 +47,12 @@ find_package(yaml-cpp CONFIG REQUIRED)
 get_target_property(YAML_CPP_INCLUDE_DIR yaml-cpp::yaml-cpp
                     INTERFACE_INCLUDE_DIRECTORIES)
 message(STATUS "yaml-cpp include dir: ${YAML_CPP_INCLUDE_DIR}")
-
-find_package(hdf5 CONFIG REQUIRED)
-get_target_property(HDF5_INCLUDE_DIR ${HDF5_TARGET}
+if(USE_VCPKG)
+  find_package(hdf5 CONFIG REQUIRED)
+  get_target_property(HDF5_INCLUDE_DIR ${HDF5_TARGET}
                     INTERFACE_INCLUDE_DIRECTORIES)
-message(STATUS "hdf5 include dir: ${HDF5_INCLUDE_DIR}")
+  message(STATUS "hdf5 include dir: ${HDF5_INCLUDE_DIR}")
+endif()
 
 find_package(Boost REQUIRED COMPONENTS filesystem)
 get_target_property(BOOST_INCLUDE_DIR ${BOOST_FILESYSTEM_TARGET}
