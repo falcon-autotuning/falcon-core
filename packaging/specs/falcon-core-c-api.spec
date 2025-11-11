@@ -17,7 +17,7 @@ Development build of Falcon Core C with tests and coverage artifacts.
 %setup -q -n falcon-core-c-api-1.0.0
 
 %build
-cd "%{_sourcedir}/falcon-core/c-api" || exit
+cd "%{_builddir}/%{name}-%{version}/c-api" || exit
 make build-dev USE_VCPKG=0
 
 %install
