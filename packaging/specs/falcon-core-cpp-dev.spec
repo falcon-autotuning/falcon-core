@@ -17,7 +17,7 @@ Development build of Falcon Core C++ with tests and coverage artifacts.
 %setup -q -n falcon-core-cpp-dev-1.0.0
 
 %build
-cd "%{_sourcedir}/falcon-core/cpp" || exit
+cd "%{_builddir}/%{name}-%{version}/cpp" || exit
 make build-dev USE_VCPKG=0
 make run-all-tests
 mkdir coverage
