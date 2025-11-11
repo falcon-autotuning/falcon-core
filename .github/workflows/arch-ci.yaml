@@ -14,11 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create build user
-        run: |
-          useradd -m builduser
-          echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          chown -R builduser:builduser .
       - name: Cache pacman packages
         uses: actions/cache@v4
         with:
@@ -61,39 +56,34 @@ jobs:
       - name: Install AUR packages
         run: |
           mkdir -p packaging
-          chown builduser:builduser packaging
-          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
-              if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
-              if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
-              cd packaging/highfive
-              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                sudo pacman -U --noconfirm ./*.pkg.tar.zst
-              else
-                makepkg -si --noconfirm --needed
-              fi
-              cd ../exprtk
-              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                sudo pacman -U --noconfirm ./*.pkg.tar.zst
-              else
-                makepkg -si --noconfirm --needed
-              fi
-            "
+          if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
+          if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
+          cd packaging/highfive
+          if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+            sudo pacman -U --noconfirm ./*.pkg.tar.zst
+          else
+            makepkg -si --noconfirm --needed
+          fi
+          cd ../exprtk
+          if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+            sudo pacman -U --noconfirm ./*.pkg.tar.zst
+          else
+            makepkg -si --noconfirm --needed
+          fi
       - name: Build and test PKGBUILDs
         run: |
-          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
-            cd packaging/xtl
-            makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xsimd
-            makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xtensor
-            makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xtensor-io
-            makepkg -si --noconfirm --syncdeps --cleanbuild
-          "
+          cd packaging/xtl
+          makepkg -si --noconfirm --syncdeps --cleanbuild
+          cd ../xsimd
+          makepkg -si --noconfirm --syncdeps --cleanbuild
+          cd ../xtensor
+          makepkg -si --noconfirm --syncdeps --cleanbuild
+          cd ../xtensor-io
+          makepkg -si --noconfirm --syncdeps --cleanbuild
       - name: Build falcon-core-cpp-dev
         run: |
           cd cpp
-          runuser -u builduser -- env PATH=/usr/bin:$PATH clang=/usr/bin/clang clang++=/usr/bin/clang++ USE_VCPKG=0 make build-dev
+          CC=clang CXX=clang++ USE_VCPKG=0 make build-dev
 
       - name: Test falcon-core-cpp-dev
         run: |
@@ -113,14 +103,14 @@ jobs:
       - name: Build falcon-core-c-api-dev
         run: |
           cd c-api
-          runuser -u builduser -- env PATH=/usr/bin:$PATH CC=/usr/bin/clang CXX=/usr/bin/clang++ USE_VCPKG=0 make build-dev
+          CC=clang CXX=clang++ USE_VCPKG=0 make build-dev
 
       - name: Test falcon-core-c-api-dev
         run: |
           cd c-api
           make run-all-tests
           mkdir -p coverage
-          runuser -u builduser -- env PATH=/usr/bin:$PATH USE_VCPKG=0 make coverage-overview > coverage/falcon-core-c-api.txt
+          make coverage-overview > coverage/falcon-core-c-api.txt
 
       - name: Install falcon-core-c-api-dev artifacts
         run: |
