@@ -78,11 +78,17 @@ jobs:
           install -d /usr/share/falcon-core-cpp-dev/coverage
           cp -r cpp/build/coverage/* /usr/share/falcon-core-cpp-dev/coverage/
       - name: Build falcon-core-c-api-dev
+        env:
+          CC: /usr/bin/clang
+          CXX: /usr/bin/clang++
         run: |
           cd c-api
           make build-dev USE_VCPKG=0
 
       - name: Test falcon-core-c-api-dev
+        env:
+          CC: /usr/bin/clang
+          CXX: /usr/bin/clang++
         run: |
           cd c-api
           make run-all-tests
@@ -90,6 +96,9 @@ jobs:
           make coverage-overview > coverage/falcon-core-c-api.txt
 
       - name: Install falcon-core-c-api-dev artifacts
+        env:
+          CC: /usr/bin/clang
+          CXX: /usr/bin/clang++
         run: |
           install -Dm755 cpp/build/libfalcon_core_c_api.so /usr/lib/libfalcon_core_c_api.so
           install -d /usr/include/falcon-core-c-api-dev
