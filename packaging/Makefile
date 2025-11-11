@@ -15,7 +15,7 @@ SHELL := /bin/bash
 
 # Directory containing this Makefile (packaging/)
 THIS_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-PACKAGES := falcon-core-cpp falcon-core-cpp-dev xtl xtensor xsimd xtensor-io
+PACKAGES := falcon-core-cpp falcon-core-cpp-dev xtl xtensor xsimd xtensor-io falcon-core-c-api falcon-core-c-api-dev
 # Full package list (kept for Arch PKGBUILDs)
 PACKAGES_FEDORA := xtl xtensor xsimd xtensor-io
 

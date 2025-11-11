@@ -14,7 +14,7 @@ Requires:       falcon-core-cpp
 Development build of Falcon Core C++ with tests and coverage artifacts.
 
 %prep
-%setup -q -n falcon-core-1.0.0
+%setup -q -n falcon-core-cpp-dev-1.0.0
 
 %build
 mkdir -p build
@@ -36,5 +36,7 @@ if [ -d coverage_html ]; then cp -r coverage_html %{buildroot}/usr/share/falcon-
 /usr/share/falcon-core-cpp-dev/coverage
 
 %changelog
+* Tue Nov 11 2025 Packager <tylerkovach1@gmail.com> - 1.0.0-2
+- Changed the setup to a proper package name
 * Thu Oct 30 2025 Packager <daschug1@gmail.com> - 1.0.0-1
 - Initial dev RPM

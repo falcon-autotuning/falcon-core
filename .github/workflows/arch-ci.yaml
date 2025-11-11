@@ -45,12 +45,13 @@ jobs:
             makepkg -si --noconfirm --syncdeps --cleanbuild
             cd ../falcon-core-cpp-dev
             makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ..
+            cd ../falcon-core-c-api-dev
+            makepkg -si --noconfirm --syncdeps --cleanbuild
           "
       - name: Upload coverage reports
         uses: actions/upload-artifact@v4
         with:
           name: coverage-reports
           path: |
-            cpp/cpp-coverage-report.txt
-            c-api/c-api-coverage-report.txt
+            cpp/coverage/falcon-core-cpp.txt
+            c-api/coverage/falcon-core-c-api.txt
