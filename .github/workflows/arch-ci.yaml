@@ -39,36 +39,6 @@ jobs:
         run: |
           pacman -Syu --noconfirm
           pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm ccache
-          runuser -u builduser -- bash -c "
-            git clone https://aur.archlinux.org/highfive.git
-            cd packaging/highfive
-            if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-              sudo pacman -U --noconfirm ./*.pkg.tar.zst
-            else
-              makepkg -si --noconfirm --needed
-            fi
-            cd ..
-            git clone https://aur.archlinux.org/exprtk.git
-            cd packaging/exptrk
-            if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-              sudo pacman -U --noconfirm ./*.pkg.tar.zst
-            else
-              makepkg -si --noconfirm --needed
-            fi
-          "
-
-      # - name: Setup SSH for builduser
-      #   run: |
-      #     install -d -m 700 /home/builduser/.ssh
-      #     printf "%s" "${{ secrets.FALCON_SSH_KEY }}" > /home/builduser/.ssh/id_ed25519
-      #     chmod 600 /home/builduser/.ssh/id_ed25519
-      #     ssh-keyscan github.com >> /home/builduser/.ssh/known_hosts
-      #     echo -e "Host github.com\n  IdentityFile ~/.ssh/id_ed25519\n  IdentitiesOnly yes" > /home/builduser/.ssh/config
-      #     chmod 600 /home/builduser/.ssh/config
-      #     chown -R builduser:builduser /home/builduser/.ssh
-      #     head -5 /home/builduser/.ssh/id_ed25519
-      #     tail -5 /home/builduser/.ssh/id_ed25519
-      #     runuser -u builduser -- ssh -vT git@github.com || true
       - name: Cache ccache
         uses: actions/cache@v4
         with:
@@ -77,9 +47,29 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-ccache-${{ github.ref }}-
             ${{ runner.os }}-ccache-
+      - name: Install AUR packages
+        run: |
+          mkdir -p packaging
+          chown builduser:builduser packaging
+          runuser -u builduser -- env PATH=/usr/bin:$PATH CC=/usr/bin/clang CXX=/usr/bin/clang++ -- bash -c "
+            git clone https://aur.archlinux.org/highfive.git packaging/highfive
+            git clone https://aur.archlinux.org/exprtk.git packaging/exprtk
+            cd packaging/highfive
+            if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+              sudo pacman -U --noconfirm ./*.pkg.tar.zst
+            else
+              makepkg -si --noconfirm --needed
+            fi
+            cd ../exprtk
+            if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+              sudo pacman -U --noconfirm ./*.pkg.tar.zst
+            else
+              makepkg -si --noconfirm --needed
+            fi
+          "
       - name: Build and test PKGBUILDs
         run: |
-          runuser -u builduser -- bash -c "
+          runuser -u builduser -- env PATH=/usr/bin:$PATH CC=/usr/bin/clang CXX=/usr/bin/clang++ -- bash -c "
             cd packaging/xtl
             makepkg -si --noconfirm --syncdeps --cleanbuild
             cd ../xsimd
