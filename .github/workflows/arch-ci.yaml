@@ -93,7 +93,7 @@ jobs:
       - name: Build falcon-core-cpp-dev
         run: |
           cd cpp
-          runuser -u builduser -- env PATH=/usr/bin:$PATH CC=/usr/bin/clang CXX=/usr/bin/clang++ USE_VCPKG=0 make build-dev
+          runuser -u builduser -- env PATH=/usr/bin:$PATH USE_VCPKG=0 make build-dev
 
       - name: Test falcon-core-cpp-dev
         run: |
@@ -112,17 +112,14 @@ jobs:
       - name: Build falcon-core-c-api-dev
         run: |
           cd c-api
-          runuser -u builduser -- env CC=/usr/bin/clang CXX=/usr/bin/clang++ make build-dev USE_VCPKG=0
+          runuser -u builduser -- env PATH=/usr/bin:$PATH USE_VCPKG=0 make build-dev
 
       - name: Test falcon-core-c-api-dev
-        env:
-          CC: /usr/bin/clang
-          CXX: /usr/bin/clang++
         run: |
           cd c-api
           make run-all-tests
           mkdir -p coverage
-          make coverage-overview > coverage/falcon-core-c-api.txt
+          runuser -u builduser -- env PATH=/usr/bin:$PATH USE_VCPKG=0 make coverage-overview > coverage/falcon-core-c-api.txt
 
       - name: Install falcon-core-c-api-dev artifacts
         run: |
