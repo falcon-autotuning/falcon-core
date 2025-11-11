@@ -16,7 +16,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          dnf install -y rpm-build ninja-build clang ccache python3 cmake boost-devel hdf5-devel yaml-cpp-devel
+          dnf install -y rpm-build ninja-build clang ccache python3 cmake boost-devel hdf5-devel yaml-cpp-devel gcovr openssl-devel sqlite-devel
 
       - name: Prepare RPM build dirs
         run: |
