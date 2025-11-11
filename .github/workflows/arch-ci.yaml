@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies and AUR packages
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja
+          pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm
           runuser -u builduser -- bash -c "
             git clone https://aur.archlinux.org/highfive.git
             cd highfive
