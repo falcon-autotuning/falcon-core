@@ -32,6 +32,15 @@ jobs:
             makepkg -si --noconfirm --needed
             cd ..
           "
+      - name: Setup SSH for builduser
+        run: |
+          install -d -m 700 /home/builduser/.ssh
+          echo "${{ secrets.FALCON_SSH_KEY }}" > /home/builduser/.ssh/id_ed25519
+          chmod 600 /home/builduser/.ssh/id_ed25519
+          ssh-keyscan github.com >> /home/builduser/.ssh/known_hosts
+          echo -e "Host github.com\n  IdentityFile ~/.ssh/id_ed25519\n  IdentitiesOnly yes" > /home/builduser/.ssh/config
+          chmod 600 /home/builduser/.ssh/config
+          chown -R builduser:builduser /home/builduser/.ssh
       - name: Build and test PKGBUILDs
         run: |
           runuser -u builduser -- bash -c "

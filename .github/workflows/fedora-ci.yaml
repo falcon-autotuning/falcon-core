@@ -58,6 +58,14 @@ jobs:
           rpmbuild -ba ~/rpmbuild/SPECS/falcon-core-cpp-dev.spec
           dnf install -y ~/rpmbuild/RPMS/*/falcon-core-cpp-dev-*.rpm
 
+      - name: Build and install falcon-core-c-api-dev
+        run: |
+          cp packaging/specs/falcon-core-c-api-dev.spec ~/rpmbuild/SPECS/
+          # Assumes your source is in the repo root and the spec expects falcon-core-cpp-dev-1.0.0/
+          tar czf ~/rpmbuild/SOURCES/falcon-core-c-api-dev-1.0.0.tar.gz --transform 's,^.,falcon-core-c-api-dev-1.0.0,' .
+          rpmbuild -ba ~/rpmbuild/SPECS/falcon-core-c-api-dev.spec
+          dnf install -y ~/rpmbuild/RPMS/*/falcon-core-c-api-dev-*.rpm
+
       - name: Upload coverage reports
         uses: actions/upload-artifact@v4
         with:
