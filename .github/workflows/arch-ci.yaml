@@ -69,13 +69,13 @@ jobs:
               if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
                 sudo pacman -U --noconfirm ./*.pkg.tar.zst
               else
-                makepkg -si --noconfirm --needed --pkgdest "$(pwd)"
+                PKGDEST="$(pwd)" makepkg -si --noconfirm --needed
               fi
               cd ../exprtk
               if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
                 sudo pacman -U --noconfirm ./*.pkg.tar.zst
               else
-                makepkg -si --noconfirm --needed --pkgdest "$(pwd)"
+                PKGDEST="$(pwd)" makepkg -si --noconfirm --needed
               fi
             "
       - name: Build and test PKGBUILDs
