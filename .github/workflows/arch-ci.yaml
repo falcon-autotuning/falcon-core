@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies and AUR packages
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm
+          pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm ccache
           runuser -u builduser -- bash -c "
             git clone https://aur.archlinux.org/highfive.git
             cd highfive
@@ -46,6 +46,14 @@ jobs:
       #     head -5 /home/builduser/.ssh/id_ed25519
       #     tail -5 /home/builduser/.ssh/id_ed25519
       #     runuser -u builduser -- ssh -vT git@github.com || true
+      - name: Cache ccache
+        uses: actions/cache@v4
+        with:
+          path: ~/.ccache
+          key: ${{ runner.os }}-ccache-${{ github.ref }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-ccache-${{ github.ref }}-
+            ${{ runner.os }}-ccache-
       - name: Build and test PKGBUILDs
         run: |
           runuser -u builduser -- bash -c "
@@ -59,11 +67,17 @@ jobs:
             makepkg -si --noconfirm --syncdeps --cleanbuild
           "
       - name: Build falcon-core-cpp-dev
+        env:
+          CC: /usr/bin/clang
+          CXX: /usr/bin/clang++
         run: |
           cd cpp
           make build-dev USE_VCPKG=0
 
       - name: Test falcon-core-cpp-dev
+        env:
+          CC: /usr/bin/clang
+          CXX: /usr/bin/clang++
         run: |
           cd cpp
           make run-all-tests
@@ -71,6 +85,9 @@ jobs:
           make coverage-overview > coverage/falcon-core-cpp.txt
 
       - name: Install falcon-core-cpp-dev artifacts
+        env:
+          CC: /usr/bin/clang
+          CXX: /usr/bin/clang++
         run: |
           install -Dm755 cpp/build/libfalcon_core_cpp.so /usr/lib/libfalcon_core_cpp.so
           install -d /usr/include/falcon-core-cpp-dev
