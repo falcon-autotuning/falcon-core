@@ -10,6 +10,7 @@ VCPKG_DEBUG_LIB := $(PWD)/vcpkg_installed/x64-linux-dynamic/debug/lib
 VCPKG_TOOLCHAIN := $(shell vcpkg integrate install --triplet=x64-linux-dynamic | grep -o '/.*\.cmake' | head -n1)
 
 USE_VCPKG ?= 1
+USE_COMPILE_COMMANDS ?= 1
 
 ifeq ($(USE_VCPKG),1)
   TOOLCHAIN_ARG = -DCMAKE_TOOLCHAIN_FILE=$(VCPKG_TOOLCHAIN) \
@@ -68,7 +69,9 @@ build-dev:
 		-DBUILD_TESTS=ON \
 		-DUSE_VCPKG=$(USE_VCPKG) \
 		. -S . -B $(BUILD_DIR)
-	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
+	@if [ "$(USE_COMPILE_COMMANDS)" = "1" ]; then \
+		if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi; \
+	fi
 	@LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH \
 	ninja -C $(BUILD_DIR) -d stats
 	@echo "--- Build complete ---"
