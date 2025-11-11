@@ -1,36 +1,38 @@
 Name:           falcon-core-cpp
 Version:        1.0.0
 Release:        1%{?dist}
-Summary:        Falcon Core C++ shared library
+Summary:        Falcon Core C++ development package with tests and coverage
 
 License:        MIT
 URL:            https://github.com/falcon-autotuning/falcon-core
 Source0:        %{name}-%{version}.tar.gz
 
-BuildRequires:  cmake, gcc-c++, make, boost-devel, hdf5-devel, yaml-cpp-devel, openssl-devel, sqlite-devel, zlib-devel
-Requires:       boost, hdf5, yaml-cpp, openssl, sqlite, zlib
+BuildRequires:  cmake, gcc-c++, make, boost-devel, hdf5-devel, yaml-cpp-devel, openssl-devel, sqlite-devel, zlib-devel, gcovr
+Requires:       
 
 %description
-Falcon Core C++ shared library.
+Development build of Falcon Core C++ with tests and coverage artifacts.
 
 %prep
-%setup -q -n falcon-core-1.0.0
+%setup -q -n falcon-core-cpp-1.0.0
 
 %build
-mkdir -p build
-cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=RelWithDebInfo
-make -j$(nproc)
+cd "%{_sourcedir}/falcon-core/cpp" || exit
+make build-dev USE_VCPKG=0
 
 %install
-cd build
-make DESTDIR=%{buildroot} install
+install -Dm755 build/libfalcon_core_cpp.so "%{_sourcedir}/usr/lib/libfalcon_core_cpp.so"
+install -d "%{_sourcedir}/usr/include/falcon-core-cpp"
+cp -r include/falcon_core/* "%{_sourcedir}/usr/include/falcon-core-cpp/"
 
 %files
 %license LICENSE
 /usr/lib/libfalcon_core_cpp.so*
 /usr/include/falcon_core_cpp
+/usr/share/falcon-core-cpp/coverage
 
 %changelog
+* Tue Nov 11 2025 Packager <tylerkovach1@gmail.com> - 1.0.0-2
+- Changed the setup to a proper package name
 * Thu Oct 30 2025 Packager <daschug1@gmail.com> - 1.0.0-1
-- Initial RPM
+- Initial dev RPM

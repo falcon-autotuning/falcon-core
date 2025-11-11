@@ -8,7 +8,7 @@ URL:            https://github.com/falcon-autotuning/falcon-core
 Source0:        %{name}-%{version}.tar.gz
 
 BuildRequires:  cmake, gcc-c++, make, boost-devel, hdf5-devel, yaml-cpp-devel, openssl-devel, sqlite-devel, zlib-devel, gcovr
-Requires:       falcon-core-cpp
+Requires:       
 
 %description
 Development build of Falcon Core C++ with tests and coverage artifacts.
@@ -17,22 +17,24 @@ Development build of Falcon Core C++ with tests and coverage artifacts.
 %setup -q -n falcon-core-cpp-dev-1.0.0
 
 %build
-mkdir -p build
-cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DFALCON_BUILD_TESTS=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo
-make -j$(nproc)
+cd "%{_sourcedir}/falcon-core/cpp" || exit
+make build-dev USE_VCPKG=0
+make run-all-tests
+mkdir coverage
+make coverage-overview >coverage/falcon-core-cpp.txt
 
 %install
-cd build
-make DESTDIR=%{buildroot} install
-# Place tests/coverage into a share directory for inspection
-install -d %{buildroot}/usr/share/falcon-core-cpp-dev/coverage
-if [ -d coverage_html ]; then cp -r coverage_html %{buildroot}/usr/share/falcon-core-cpp-dev/coverage/; fi
+install -Dm755 build/libfalcon_core_cpp.so "%{_sourcedir}/usr/lib/libfalcon_core_cpp.so"
+install -d "%{_sourcedir}/usr/include/falcon-core-cpp-dev"
+cp -r include/falcon_core/* "%{_sourcedir}/usr/include/falcon-core-cpp-dev/"
+# Optionally install coverage reports or test binaries
+install -d "%{_sourcedir}/usr/share/falcon-core-cpp-dev/coverage"
+cp -r build/coverage/* "%{_sourcedir}/usr/share/falcon-core-cpp-dev/coverage/"
 
 %files
 %license LICENSE
 /usr/lib/libfalcon_core_cpp.so*
-/usr/include/falcon_core_cpp
+/usr/include/falcon_core_cpp_dev
 /usr/share/falcon-core-cpp-dev/coverage
 
 %changelog
