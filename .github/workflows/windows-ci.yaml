@@ -1,11 +1,9 @@
 name: Windows CI
-
 on:
   push:
     branches: [main, new-dev]
   pull_request:
     branches: [main, new-dev]
-
 jobs:
   build-and-test-windows:
     runs-on: windows-latest
@@ -18,6 +16,8 @@ jobs:
           git clone https://github.com/microsoft/vcpkg.git
           .\vcpkg\bootstrap-vcpkg.bat
           echo "$PWD\vcpkg" | Out-File -FilePath $env:GITHUB_PATH -Append
+      - name: Install vcpkg dependencies
+        run: .\vcpkg\vcpkg.exe install --triplet x64-windows
       - name: Build (dev)
         run: make build-dev
       - name: Run tests
