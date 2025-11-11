@@ -35,7 +35,7 @@ jobs:
           key: ${{ runner.os }}-aur-${{ hashFiles('packaging/highfive/PKGBUILD', 'packaging/exprtk/PKGBUILD') }}
           restore-keys: |
             ${{ runner.os }}-aur-
-      - name: Install dependencies and AUR packages
+      - name: Install dependencies
         run: |
           pacman -Syu --noconfirm
           pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm ccache
@@ -51,7 +51,7 @@ jobs:
         run: |
           mkdir -p packaging
           chown builduser:builduser packaging
-          runuser -u builduser -- env PATH=/usr/bin:$PATH CC=/usr/bin/clang CXX=/usr/bin/clang++ -- bash -c "
+          runuser -u builduser -- env PATH=/usr/bin:$PATH CC=/usr/bin/clang CXX=/usr/bin/clang++ bash -c "
             git clone https://aur.archlinux.org/highfive.git packaging/highfive
             git clone https://aur.archlinux.org/exprtk.git packaging/exprtk
             cd packaging/highfive
@@ -69,7 +69,7 @@ jobs:
           "
       - name: Build and test PKGBUILDs
         run: |
-          runuser -u builduser -- env PATH=/usr/bin:$PATH CC=/usr/bin/clang CXX=/usr/bin/clang++ -- bash -c "
+          runuser -u builduser -- env PATH=/usr/bin:$PATH CC=/usr/bin/clang CXX=/usr/bin/clang++ bash -c "
             cd packaging/xtl
             makepkg -si --noconfirm --syncdeps --cleanbuild
             cd ../xsimd
