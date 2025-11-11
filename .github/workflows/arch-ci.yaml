@@ -80,14 +80,16 @@ jobs:
             "
       - name: Build and test PKGBUILDs
         run: |
-          cd packaging/xtl
-          makepkg -si --noconfirm --syncdeps --cleanbuild
-          cd ../xsimd
-          makepkg -si --noconfirm --syncdeps --cleanbuild
-          cd ../xtensor
-          makepkg -si --noconfirm --syncdeps --cleanbuild
-          cd ../xtensor-io
-          makepkg -si --noconfirm --syncdeps --cleanbuild
+          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
+            cd packaging/xtl
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xsimd
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor-io
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+          "
       - name: Build falcon-core-cpp-dev
         run: |
           cd cpp
