@@ -26,19 +26,35 @@ jobs:
           key: ${{ runner.os }}-pacman-${{ hashFiles('**/PKGBUILD') }}
           restore-keys: |
             ${{ runner.os }}-pacman-
+      - name: Cache AUR packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            packaging/highfive/*.pkg.tar.zst
+            packaging/exprtk/*.pkg.tar.zst
+          key: ${{ runner.os }}-aur-${{ hashFiles('packaging/highfive/PKGBUILD', 'packaging/exprtk/PKGBUILD') }}
+          restore-keys: |
+            ${{ runner.os }}-aur-
       - name: Install dependencies and AUR packages
         run: |
           pacman -Syu --noconfirm
           pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm ccache
           runuser -u builduser -- bash -c "
             git clone https://aur.archlinux.org/highfive.git
-            cd highfive
-            makepkg -si --noconfirm --needed
+            cd packaging/highfive
+            if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+              sudo pacman -U --noconfirm ./*.pkg.tar.zst
+            else
+              makepkg -si --noconfirm --needed
+            fi
             cd ..
             git clone https://aur.archlinux.org/exprtk.git
-            cd exprtk
-            makepkg -si --noconfirm --needed
-            cd ..
+            cd packaging/exptrk
+            if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+              sudo pacman -U --noconfirm ./*.pkg.tar.zst
+            else
+              makepkg -si --noconfirm --needed
+            fi
           "
 
       # - name: Setup SSH for builduser
@@ -76,7 +92,7 @@ jobs:
       - name: Build falcon-core-cpp-dev
         run: |
           cd cpp
-          runuser -u builduser -- env CC=/usr/bin/clang CXX=/usr/bin/clang++ make build-dev USE_VCPKG=0
+          runuser -u builduser -- env PATH=/usr/bin:$PATH CC=/usr/bin/clang CXX=/usr/bin/clang++ USE_VCPKG=0 make build-dev
 
       - name: Test falcon-core-cpp-dev
         run: |

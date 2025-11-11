@@ -5,13 +5,14 @@
 # Variables
 BUILD_DIR := build
 CPP_TARGET := falcon_core_cpp
-VCPKG_INSTALLED := vcpkg_installed
-VCPKG_DEBUG_LIB := $(PWD)/vcpkg_installed/x64-linux-dynamic/debug/lib
-VCPKG_TOOLCHAIN := $(shell vcpkg integrate install --triplet=x64-linux-dynamic | grep -o '/.*\.cmake' | head -n1)
 
 USE_VCPKG ?= 1
 
 ifeq ($(USE_VCPKG),1)
+	VCPKG_INSTALLED = vcpkg_installed
+	VCPKG_DEBUG_LIB = $(PWD)/vcpkg_installed/x64-linux-dynamic/debug/lib
+	VCPKG_TOOLCHAIN = $(shell vcpkg integrate install --triplet=x64-linux-dynamic | grep -o '/.*\.cmake' | head -n1)
+
   TOOLCHAIN_ARG = -DCMAKE_TOOLCHAIN_FILE=$(VCPKG_TOOLCHAIN) \
                   -DVCPKG_TARGET_TRIPLET=x64-linux-dynamic \
                   -DVCPKG_INSTALLED_DIR=$(PWD)/vcpkg_installed
