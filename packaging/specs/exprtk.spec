@@ -16,12 +16,6 @@ xsimd - header-only exprtk wrappers.
 %prep
 %setup -q -n exprtk-0.0.2 
 
-%build
-mkdir -p build
-cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=/usr
-make -j$(nproc)
-
 %install
 cd build
 make DESTDIR=%{buildroot} install
