@@ -62,7 +62,7 @@ jobs:
         run: |
           mkdir -p packaging
           chown builduser:builduser packaging
-          runuser -u builduser -- env PATH=/usr/bin:$PATH CC=/usr/bin/clang CXX=/usr/bin/clang++ bash -c "
+          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
             git clone https://aur.archlinux.org/highfive.git packaging/highfive
             git clone https://aur.archlinux.org/exprtk.git packaging/exprtk
             cd packaging/highfive
@@ -80,7 +80,7 @@ jobs:
           "
       - name: Build and test PKGBUILDs
         run: |
-          runuser -u builduser -- env PATH=/usr/bin:$PATH CC=/usr/bin/clang CXX=/usr/bin/clang++ bash -c "
+          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
             cd packaging/xtl
             makepkg -si --noconfirm --syncdeps --cleanbuild
             cd ../xsimd
