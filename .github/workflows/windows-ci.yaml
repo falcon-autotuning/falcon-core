@@ -9,19 +9,91 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Install dependencies
-        run: choco install ninja ccache python
+        run: choco install ninja ccache python llvm
+
+      - name: Add LLVM to PATH
+        run: echo "C:\Program Files\LLVM\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
+
       - name: Install vcpkg
         run: |
           git clone https://github.com/microsoft/vcpkg.git
           .\vcpkg\bootstrap-vcpkg.bat
-          echo "$PWD\vcpkg" | Out-File -FilePath $env:GITHUB_PATH -Append
-      - name: Install vcpkg dependencies
-        run: .\vcpkg\vcpkg.exe install --triplet x64-windows
-      - name: Build (dev)
-        run: make build-dev
-      - name: Run tests
-        run: make test
+
+      # Install vcpkg dependencies for cpp
+      - name: Install vcpkg dependencies for cpp
+        run: ..\vcpkg\vcpkg.exe install --triplet x64-windows
+        working-directory: cpp
+
+      # Build and test cpp
+      - name: Configure CMake for cpp (with coverage)
+        run: >
+          cmake -S . -B build -G Ninja
+            -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake
+            -DVCPKG_TARGET_TRIPLET=x64-windows
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+            -DCMAKE_BUILD_TYPE=Debug
+            -DCMAKE_C_COMPILER=clang
+            -DCMAKE_CXX_COMPILER=clang++
+            -DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping"
+            -DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping"
+            -DBUILD_TESTS=ON
+            -DUSE_VCPKG=1
+        working-directory: cpp
+
+      - name: Build cpp
+        run: cmake --build build --config Debug
+        working-directory: cpp
+
+      - name: Test cpp and generate coverage
+        shell: pwsh
+        run: |
+          $env:PATH = "$env:GITHUB_WORKSPACE\cpp\build;$env:PATH"
+          # Run tests with profile output
+          $env:LLVM_PROFILE_FILE="$env:GITHUB_WORKSPACE\cpp\build\falcon_core_cpp_run_tests.profraw"
+          .\build\falcon_core_cpp_run_tests.exe
+          # Merge profile data
+          llvm-profdata merge -sparse build\falcon_core_cpp_run_tests.profraw -o build\falcon_core_cpp_run_tests.profdata
+          # Generate coverage report (text summary)
+          llvm-cov report .\build\falcon_core_cpp_run_tests.exe -instr-profile=build\falcon_core_cpp_run_tests.profdata | Out-File -Encoding utf8 cpp-coverage-report.txt
+        working-directory: cpp
+
+      # Install vcpkg dependencies for c-api
+      - name: Install vcpkg dependencies for c-api
+        run: ..\vcpkg\vcpkg.exe install --triplet x64-windows
+        working-directory: c-api
+
+      # Build and test c-api
+      - name: Configure CMake for c-api (with coverage)
+        run: >
+          cmake -S . -B build -G Ninja
+            -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake
+            -DVCPKG_TARGET_TRIPLET=x64-windows
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+            -DCMAKE_BUILD_TYPE=Debug
+            -DCMAKE_C_COMPILER=clang
+            -DCMAKE_CXX_COMPILER=clang++
+            -DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping"
+            -DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping"
+            -DBUILD_TESTS=ON
+            -DUSE_VCPKG=1
+        working-directory: c-api
+
+      - name: Build c-api
+        run: cmake --build build --config Debug
+        working-directory: c-api
+
+      - name: Test c-api and generate coverage
+        shell: pwsh
+        run: |
+          $env:PATH = "$env:GITHUB_WORKSPACE\c-api\build;$env:PATH"
+          $env:LLVM_PROFILE_FILE="$env:GITHUB_WORKSPACE\c-api\build\falcon_core_c_api_run_tests.profraw"
+          .\build\falcon_core_c_api_run_tests.exe
+          llvm-profdata merge -sparse build\falcon_core_c_api_run_tests.profraw -o build\falcon_core_c_api_run_tests.profdata
+          llvm-cov report .\build\falcon_core_c_api_run_tests.exe -instr-profile=build\falcon_core_c_api_run_tests.profdata | Out-File -Encoding utf8 c-api-coverage-report.txt
+        working-directory: c-api
+
       - name: Upload coverage reports
         uses: actions/upload-artifact@v4
         with:
