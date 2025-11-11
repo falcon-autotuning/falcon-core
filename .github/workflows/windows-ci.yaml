@@ -28,18 +28,7 @@ jobs:
 
       # Build and test cpp
       - name: Configure CMake for cpp (with coverage)
-        run: |
-          cmake -S . -B build -G Ninja `
-          -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake `
-          -DVCPKG_TARGET_TRIPLET=x64-windows `
-          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON `
-          -DCMAKE_BUILD_TYPE=Debug `
-          -DCMAKE_C_COMPILER=clang `
-          -DCMAKE_CXX_COMPILER=clang++ `
-          -DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" `
-          -DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping" `
-          -DBUILD_TESTS=ON `
-          -DUSE_VCPKG=1
+        run: cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" -DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping" -DBUILD_TESTS=ON -DUSE_VCPKG=1
         working-directory: cpp
 
       - name: Build cpp
@@ -66,18 +55,7 @@ jobs:
 
       # Build and test c-api
       - name: Configure CMake for c-api (with coverage)
-        run: |
-          cmake -S . -B build -G Ninja `
-          -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake `
-          -DVCPKG_TARGET_TRIPLET=x64-windows `
-          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON `
-          -DCMAKE_BUILD_TYPE=Debug `
-          -DCMAKE_C_COMPILER=clang `
-          -DCMAKE_CXX_COMPILER=clang++ `
-          -DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" `
-          -DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping" `
-          -DBUILD_TESTS=ON `
-          -DUSE_VCPKG=1
+        run: cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" -DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping" -DBUILD_TESTS=ON -DUSE_VCPKG=1
         working-directory: c-api
 
       - name: Build c-api
