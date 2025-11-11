@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies and AUR packages
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib
+          pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja
           runuser -u builduser -- bash -c "
             git clone https://aur.archlinux.org/highfive.git
             cd highfive
@@ -34,18 +34,18 @@ jobs:
             cd ..
           "
 
-      - name: Setup SSH for builduser
-        run: |
-          install -d -m 700 /home/builduser/.ssh
-          printf "%s" "${{ secrets.FALCON_SSH_KEY }}" > /home/builduser/.ssh/id_ed25519
-          chmod 600 /home/builduser/.ssh/id_ed25519
-          ssh-keyscan github.com >> /home/builduser/.ssh/known_hosts
-          echo -e "Host github.com\n  IdentityFile ~/.ssh/id_ed25519\n  IdentitiesOnly yes" > /home/builduser/.ssh/config
-          chmod 600 /home/builduser/.ssh/config
-          chown -R builduser:builduser /home/builduser/.ssh
-          head -5 /home/builduser/.ssh/id_ed25519
-          tail -5 /home/builduser/.ssh/id_ed25519
-          runuser -u builduser -- ssh -vT git@github.com || true
+      # - name: Setup SSH for builduser
+      #   run: |
+      #     install -d -m 700 /home/builduser/.ssh
+      #     printf "%s" "${{ secrets.FALCON_SSH_KEY }}" > /home/builduser/.ssh/id_ed25519
+      #     chmod 600 /home/builduser/.ssh/id_ed25519
+      #     ssh-keyscan github.com >> /home/builduser/.ssh/known_hosts
+      #     echo -e "Host github.com\n  IdentityFile ~/.ssh/id_ed25519\n  IdentitiesOnly yes" > /home/builduser/.ssh/config
+      #     chmod 600 /home/builduser/.ssh/config
+      #     chown -R builduser:builduser /home/builduser/.ssh
+      #     head -5 /home/builduser/.ssh/id_ed25519
+      #     tail -5 /home/builduser/.ssh/id_ed25519
+      #     runuser -u builduser -- ssh -vT git@github.com || true
       - name: Build and test PKGBUILDs
         run: |
           runuser -u builduser -- bash -c "
