@@ -33,6 +33,7 @@ jobs:
             makepkg -si --noconfirm --needed
             cd ..
           "
+
       - name: Setup SSH for builduser
         run: |
           install -d -m 700 /home/builduser/.ssh
