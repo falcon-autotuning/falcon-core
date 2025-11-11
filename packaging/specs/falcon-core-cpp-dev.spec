@@ -7,8 +7,8 @@ License:        MIT
 URL:            https://github.com/falcon-autotuning/falcon-core
 Source0:        %{name}-%{version}.tar.gz
 
-BuildRequires:  cmake, gcc-c++, make, boost-devel,cereal-devel, hdf5-devel, yaml-cpp-devel, openssl-devel, sqlite-devel, zlib-devel, gcovr
-Requires:       xtl, xtensor, xsimd, yaml-cpp, hdf5, boost
+BuildRequires:  cmake, gcc-c++, make, boost-devel, cereal, hdf5-devel, yaml-cpp-devel, openssl-devel, sqlite-devel, zlib-devel, gcovr
+Requires:       xtl, xtensor, xsimd, yaml-cpp, hdf5, boost, cereal
 
 %description
 Development build of Falcon Core C++ with tests and coverage artifacts.
