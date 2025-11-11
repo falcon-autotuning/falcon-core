@@ -8,7 +8,7 @@ URL:            https://github.com/falcon-autotuning/falcon-core
 Source0:        %{name}-%{version}.tar.gz
 
 BuildRequires:  cmake, gcc-c++, make, boost-devel, hdf5-devel, yaml-cpp-devel, openssl-devel, sqlite-devel, zlib-devel, gcovr
-Requires:       falcon-core-cpp-dev
+Requires:       cereal, xtl, xtensor, xsimd, yaml-cpp, hdf5, boost, falcon-core-cpp-dev
 
 %description
 Development build of Falcon Core C with tests and coverage artifacts.
