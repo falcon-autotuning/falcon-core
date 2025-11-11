@@ -19,6 +19,13 @@ jobs:
           useradd -m builduser
           echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           chown -R builduser:builduser .
+      - name: Cache pacman packages
+        uses: actions/cache@v4
+        with:
+          path: /var/cache/pacman/pkg
+          key: ${{ runner.os }}-pacman-${{ hashFiles('**/PKGBUILD') }}
+          restore-keys: |
+            ${{ runner.os }}-pacman-
       - name: Install dependencies and AUR packages
         run: |
           pacman -Syu --noconfirm
@@ -67,17 +74,11 @@ jobs:
             makepkg -si --noconfirm --syncdeps --cleanbuild
           "
       - name: Build falcon-core-cpp-dev
-        env:
-          CC: /usr/bin/clang
-          CXX: /usr/bin/clang++
         run: |
           cd cpp
-          make build-dev USE_VCPKG=0
+          runuser -u builduser -- env CC=/usr/bin/clang CXX=/usr/bin/clang++ make build-dev USE_VCPKG=0
 
       - name: Test falcon-core-cpp-dev
-        env:
-          CC: /usr/bin/clang
-          CXX: /usr/bin/clang++
         run: |
           cd cpp
           make run-all-tests
@@ -85,9 +86,6 @@ jobs:
           make coverage-overview > coverage/falcon-core-cpp.txt
 
       - name: Install falcon-core-cpp-dev artifacts
-        env:
-          CC: /usr/bin/clang
-          CXX: /usr/bin/clang++
         run: |
           install -Dm755 cpp/build/libfalcon_core_cpp.so /usr/lib/libfalcon_core_cpp.so
           install -d /usr/include/falcon-core-cpp-dev
@@ -95,12 +93,9 @@ jobs:
           install -d /usr/share/falcon-core-cpp-dev/coverage
           cp -r cpp/build/coverage/* /usr/share/falcon-core-cpp-dev/coverage/
       - name: Build falcon-core-c-api-dev
-        env:
-          CC: /usr/bin/clang
-          CXX: /usr/bin/clang++
         run: |
           cd c-api
-          make build-dev USE_VCPKG=0
+          runuser -u builduser -- env CC=/usr/bin/clang CXX=/usr/bin/clang++ make build-dev USE_VCPKG=0
 
       - name: Test falcon-core-c-api-dev
         env:
@@ -113,9 +108,6 @@ jobs:
           make coverage-overview > coverage/falcon-core-c-api.txt
 
       - name: Install falcon-core-c-api-dev artifacts
-        env:
-          CC: /usr/bin/clang
-          CXX: /usr/bin/clang++
         run: |
           install -Dm755 cpp/build/libfalcon_core_c_api.so /usr/lib/libfalcon_core_c_api.so
           install -d /usr/include/falcon-core-c-api-dev
