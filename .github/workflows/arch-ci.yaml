@@ -39,6 +39,11 @@ jobs:
         run: |
           pacman -Syu --noconfirm
           pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm ccache
+      - name: Set clang as default compiler for makepkg
+        run: |
+          sed -i 's|^CC=.*|CC=/usr/bin/clang|' /etc/makepkg.conf
+          sed -i 's|^CXX=.*|CXX=/usr/bin/clang++|' /etc/makepkg.conf
+          grep -E '^CC=|^CXX=' /etc/makepkg.conf
       - name: Cache ccache
         uses: actions/cache@v4
         with:
