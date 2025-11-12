@@ -57,13 +57,6 @@ jobs:
           rpmbuild -ba ~/rpmbuild/SPECS/exprtk.spec
           dnf install -y ~/rpmbuild/RPMS/*/exprtk-*.rpm
           ln -s /usr/include/exprtk/exprtk.hpp /usr/include/exprtk.hpp
-      - name: Build and install boost
-        run: |
-          cp packaging/specs/boost.spec ~/rpmbuild/SPECS/
-          curl -L -o ~/rpmbuild/SOURCES/boost_1_88_0.tar.bz2 https://boostorg.jfrog.io/artifactory/main/release/1.88.0/source/boost_1_88_0.tar.bz2
-          rpmbuild -ba ~/rpmbuild/SPECS/boost.spec
-          dnf install -y ~/rpmbuild/RPMS/*/boost-*.rpm
-          ln -s /usr/include/boost /usr/include/boost
 
       - name: Build and install highfive
         run: |
@@ -84,11 +77,11 @@ jobs:
         run: |
           set -e
           # Install build deps needed for bootstrapping and building Boost
-          dnf install -y gcc-c++ gcc make python3 bzip2 tar perl
+          dnf install -y gcc-c++ gcc make python3 bzip2 tar perl which
           mkdir -p ~/rpmbuild/SPECS ~/rpmbuild/SOURCES
           cp packaging/specs/boost.spec ~/rpmbuild/SPECS/
 
-          curl -L -o ~/rpmbuild/SOURCES/boost_1.88.0.tar.gz https://github.com/boostorg/boost/releases/download/boost-1.88.0/boost-1.88.0-b2-nodocs.tar.gz
+          curl -L -o ~/rpmbuild/SOURCES/boost-1.88.0.tar.gz https://github.com/boostorg/boost/releases/download/boost-1.88.0/boost-1.88.0-b2-nodocs.tar.gz
           echo "HOME=$HOME USER=$USER"
           ls -l ~/rpmbuild/SPECS ~/rpmbuild/SOURCES
           rpmbuild --define "_topdir $HOME/rpmbuild" -ba ~/rpmbuild/SPECS/boost.spec
