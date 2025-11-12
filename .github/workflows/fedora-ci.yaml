@@ -53,9 +53,10 @@ jobs:
       - name: Build and install exprtk
         run: |
           cp packaging/specs/exprtk.spec ~/rpmbuild/SPECS/
-          curl -L -o ~/rpmbuild/SOURCES/exprtk-0.0.3.tar.gz https://github.com/ArashPartow/exprtk/archive/refs/tags/0.0.3.tar.gz
+          curl -L -o ~/rpmbuild/SOURCES/exprtk-0.0.2.tar.gz https://github.com/ArashPartow/exprtk/archive/refs/tags/0.0.2.tar.gz
           rpmbuild -ba ~/rpmbuild/SPECS/exprtk.spec
           dnf install -y ~/rpmbuild/RPMS/*/exprtk-*.rpm
+          ln -s /usr/include/exprtk/exprtk.hpp /usr/include/exprtk.hpp
 
       - name: Build and install highfive
         run: |
