@@ -53,8 +53,9 @@ jobs:
           "@ | Out-File -Encoding utf8 CMakePresets.json
         shell: pwsh
         working-directory: cpp
-      - name: List files in cpp/
-        run: ls -l
+      - name: List files in cpp/ (detailed)
+        run: Get-ChildItem -Force | Format-List
+        shell: pwsh
         working-directory: cpp
       - name: Show CMakePresets.json
         run: cat CMakePresets.json
