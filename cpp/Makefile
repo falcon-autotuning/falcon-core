@@ -4,7 +4,8 @@
 
 # Variables
 BUILD_DIR := build
-CPP_TARGET := falcon_core_cpp
+CC ?= clang
+CXX ?= clang++
 
 USE_VCPKG ?= 1
 
@@ -37,16 +38,9 @@ build:
 	@echo "--- Configuring and Building C++ Extension (release, no tests) ---"
 	@mkdir -p $(BUILD_DIR)
 	@$(VCPKG_ENV) cmake -G Ninja \
-		-DCMAKE_C_COMPILER=clang \
-		-DCMAKE_CXX_COMPILER=clang++ \
-		-DCMAKE_C_COMPILER_LAUNCHER=ccache \
-		-DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
-		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
-		-DCMAKE_C_FLAGS="-O2" \
-		-DCMAKE_CXX_FLAGS="-g -O2" \
+		-DCMAKE_C_COMPILER=${CC} \
+		-DCMAKE_CXX_COMPILER=${CXX} \
 		$(TOOLCHAIN_ARG) \
-		-DCPP_TARGET=$(CPP_TARGET) \
-		-DBUILD_TESTS=OFF \
 		-DUSE_VCPKG=$(USE_VCPKG) \
 		. -S . -B $(BUILD_DIR)
 	@echo "--- Build complete ---"
@@ -56,47 +50,57 @@ build-dev:
 	@mkdir -p $(BUILD_DIR)
 	@LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH \
 	$(VCPKG_ENV) cmake -G Ninja \
-		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-		-DCMAKE_C_COMPILER=clang \
-		-DCMAKE_CXX_COMPILER=clang++ \
-		-DCMAKE_C_COMPILER_LAUNCHER=ccache \
-		-DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
-		-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
-		-DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" \
-		-DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping" \
+		-DCMAKE_C_COMPILER=${CC} \
+		-DCMAKE_CXX_COMPILER=${CXX} \
 		$(TOOLCHAIN_ARG) \
-		-DCPP_TARGET=$(CPP_TARGET) \
-		-DBUILD_TESTS=ON \
 		-DUSE_VCPKG=$(USE_VCPKG) \
+		-DFALCON_CORE_DEV=ON \
 		. -S . -B $(BUILD_DIR)
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
 	@LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH \
 	ninja -C $(BUILD_DIR) -d stats
 	@echo "--- Build complete ---"
 
-# check coverage of entire module
+# Detect compiler for coverage tools
+COVERAGE_TOOL := $(shell $(CXX) --version | grep -qi clang && echo llvm-cov || echo gcov)
+PROFDATA_TOOL := $(shell $(CXX) --version | grep -qi clang && echo llvm-profdata || echo gcov-tool)
+
 run-all-tests:
+ifeq ($(COVERAGE_TOOL),llvm-cov)
 	@LLVM_PROFILE_FILE="$(BUILD_DIR)/falcon_core_cpp_run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(BUILD_DIR)/falcon_core_cpp_run_tests
 	@llvm-profdata merge -sparse $(BUILD_DIR)/falcon_core_cpp_run_tests.profraw -o $(BUILD_DIR)/falcon_core_cpp_run_tests.profdata
+else
+	@GCOV_PREFIX="$(BUILD_DIR)" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(BUILD_DIR)/falcon_core_cpp_run_tests
+endif
 
-#check coverage of all the modles listed in the test_filter.txt
 run-subset-tests:
+ifeq ($(COVERAGE_TOOL),llvm-cov)
 	@LLVM_PROFILE_FILE="$(BUILD_DIR)/falcon_core_cpp_run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(BUILD_DIR)/falcon_core_cpp_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
 	@llvm-profdata merge -sparse $(BUILD_DIR)/falcon_core_cpp_run_tests.profraw -o $(BUILD_DIR)/falcon_core_cpp_run_tests.profdata
+else
+	@LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(BUILD_DIR)/falcon_core_cpp_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
+endif
 
-# launches the interactive html for the entire coverage run
 cov-html:
+ifeq ($(COVERAGE_TOOL),llvm-cov)
 	@llvm-cov show ./$(BUILD_DIR)/lib$(CPP_TARGET).so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
 	  -format=html -output-dir=coverage_html \
 	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
-		-Xdemangler c++filt -Xdemangler -n
+	  -Xdemangler c++filt -Xdemangler -n
 	@xdg-open coverage_html/index.html
+else
+	@gcovr -r . --html --html-details -o coverage_html/index.html
+	@xdg-open coverage_html/index.html
+endif
 
-# Usage: make coverage-term FILE=/path/to/source.cpp
 cov-term:
+ifeq ($(COVERAGE_TOOL),llvm-cov)
 	@llvm-cov show ./$(BUILD_DIR)/lib$(CPP_TARGET).so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata $(FILE) \
 	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
-	  -Xdemangler c++filt -Xdemangler -n 
+	  -Xdemangler c++filt -Xdemangler -n
+else
+	@gcovr src/ . --txt -f $(FILE)
+endif
 
 # Usage: make subset-coverage-html
 subset-coverage-html: run-subset-tests cov-html 
@@ -108,18 +112,27 @@ subset-coverage: run-subset-tests cov-term
 coverage: run-all-tests cov-term
 
 subset-coverage-overview: subset-coverage
+ifeq ($(COVERAGE_TOOL),llvm-cov)
 	@llvm-cov report ./$(BUILD_DIR)/lib$(CPP_TARGET).so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
 		-ignore-filename-regex='(vcpkg_installed|tests/)' \
 		-Xdemangler c++filt -Xdemangler -n
+else
+	@gcovr src/ . --txt --exclude 'vcpkg_installed|tests/'
+endif
 
 coverage-overview: coverage
-	@llvm-cov report ./$(BUILD_DIR)/lib$(CPP_TARGET).so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata -ignore-filename-regex='(vcpkg_installed|tests/)' -Xdemangler c++filt -Xdemangler -n
+ifeq ($(COVERAGE_TOOL),llvm-cov)
+	@llvm-cov report ./$(BUILD_DIR)/lib$(CPP_TARGET).so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
+		-ignore-filename-regex='(vcpkg_installed|tests/)' \
+		-Xdemangler c++filt -Xdemangler -n
+else
+	@gcovr src/ . --txt --exclude 'vcpkg_installed|tests/'
+endif
 
 # Clean up build artifacts
 clean:
 	@echo "--- Cleaning build directory and compiled extension ---"
 	@rm -rf $(BUILD_DIR)
-	@rm -rf ./coverage_html/
 
 clean-all: clean
 	@echo "--- Cleaning vcpkg cache ---"
