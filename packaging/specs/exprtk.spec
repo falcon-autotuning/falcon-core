@@ -1,5 +1,5 @@
 Name:           exprtk
-Version:        0.0.3
+Version:        0.0.2
 Release:        1%{?dist}
 Summary:        C++ Mathematical Expression Library
 
@@ -14,7 +14,7 @@ BuildRequires:  cmake
 xsimd - header-only exprtk wrappers.
 
 %prep
-%setup -q -n exprtk-0.0.3
+%setup -q -n exprtk-0.0.2 
 
 %build
 
@@ -23,8 +23,8 @@ mkdir -p %{buildroot}%{_includedir}/exprtk
 cp -a exprtk.hpp %{buildroot}%{_includedir}/exprtk/
 
 %files
-%{_includedir}/exprtk.hpp
+%{_includedir}/exprtk/exprtk.hpp
 
 %changelog
-* Thu Oct 30 2025 Packager <daschug1@gmail.com> - 0.0.3-1 
+* Thu Oct 30 2025 Packager <daschug1@gmail.com> - 0.0.2 
 - Initial RPM
