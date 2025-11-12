@@ -5,13 +5,54 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-set(CPP_LIB_NAME
-    falcon_core_cpp
-    CACHE STRING "falcon_core_cpp")
+set(C_API_TARGET "falcon_core_c_api")
+option(FALCON_CORE_DEV "Dev mode generates coverage and testing" OFF)
+if(FALCON_CORE_DEV)
+  set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+endif()
+
+# Detect compiler and set coverage flags
+if(CMAKE_C_COMPILER_ID MATCHES "Clang")
+  if(FALCON_CORE_DEV)
+    message("Clang detected. In dev mode so coverage will be built.")
+    set(C_FLAGS "-O0 -fprofile-instr-generate -fcoverage-mapping")
+  else()
+    message("Clang detected.")
+    set(C_FLAGS "-O2")
+  endif()
+elseif(CMAKE_C_COMPILER_ID MATCHES "GNU")
+  message("GNU detected. In dev mode so coverage will be built.")
+  set(C_FLAGS "-O0 -fprofile-arcs -ftest-coverage")
+else()
+  message("GNU detected.")
+  set(C_FLAGS "-O2")
+endif()
+if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  if(FALCON_CORE_DEV)
+    set(CPP_FLAGS "-g -O0 -fprofile-instr-generate -fcoverage-mapping")
+  else()
+    set(CPP_FLAGS "-g -O2")
+  endif()
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+  set(CPP_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
+else()
+  set(CPP_FLAGS "-g -O2")
+endif()
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${C_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g ${CPP_FLAGS}")
+find_program(CCACHE_PROGRAM ccache)
+if(CCACHE_PROGRAM)
+  message("Ccache was found. Making use of caching.")
+  set(CMAKE_C_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
+  set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
+endif()
+set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
+
 option(USE_VCPKG "Use vcpkg for dependencies" ON)
 set(BOOST_FILESYSTEM_TARGET Boost::filesystem)
 if(USE_VCPKG)
-  # Don't add manual include dirs or link dirs; vcpkg toolchain handles it
+  # TODO: Add windows support here Don't add manual include dirs or link dirs;
+  # vcpkg toolchain handles it
   set(VCPKG_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux/include")
   set(RPATH
       "${CMAKE_SOURCE_DIR}/build/vcpkg_installed/x64-linux-dynamic/debug/lib;$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>"
@@ -95,9 +136,7 @@ set_target_properties(
              SUFFIX ".so")
 
 # ---- Optional test build ----
-option(BUILD_TESTS "Build and enable C++ tests" ON)
-
-if(BUILD_TESTS)
+if(FALCON_CORE_DEV)
   find_package(GTest CONFIG REQUIRED)
   enable_testing()
   file(GLOB RUN_TESTS_SOURCES tests/test_*.cpp)

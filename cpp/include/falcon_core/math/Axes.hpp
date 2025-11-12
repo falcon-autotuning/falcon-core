@@ -84,8 +84,7 @@ class Axes : public generic::List<Value> {
   }
   bool operator_equal_impl(const Axes<Value>& other,
                            generic::category::other_tag) const {
-    // Handle or static_assert if not supported
-    static_assert(sizeof(Value) == 0, "Unsupported type for List");
+    throw std::runtime_error("Unsupported type for Axes");
   }
 };
 template <typename V>

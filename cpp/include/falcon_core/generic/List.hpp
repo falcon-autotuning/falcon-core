@@ -314,7 +314,7 @@ class List : public generic::Song {
   template <typename T>
   bool contains_impl(const T& value, category::other_tag) const {
     // Handle or static_assert if not supported
-    static_assert(sizeof(T) == 0, "Unsupported type for List");
+    throw std::runtime_error("Unsupported type for List");
   }
   template <typename T>
   size_t index_impl(const std::shared_ptr<T>& value, category::song_tag) const {
@@ -343,7 +343,7 @@ class List : public generic::Song {
   template <typename T>
   size_t index_impl(const T& value, category::other_tag) const {
     // Handle or static_assert if not supported
-    static_assert(sizeof(T) == 0, "Unsupported type for List");
+    throw std::runtime_error("Unsupported type for List");
   }
   bool operator_equal_impl(const List<Value>& other, category::song_tag) const {
     if (size() != other.size()) {
@@ -374,8 +374,7 @@ class List : public generic::Song {
   }
   bool operator_equal_impl(const List<Value>& other,
                            category::other_tag) const {
-    // Handle or static_assert if not supported
-    static_assert(sizeof(Value) == 0, "Unsupported type for List");
+    throw std::runtime_error("Unsupported type for List");
   }
 };
 template <typename Value>
