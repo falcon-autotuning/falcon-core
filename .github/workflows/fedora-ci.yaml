@@ -85,7 +85,7 @@ jobs:
           echo "HOME=$HOME USER=$USER"
           ls -l ~/rpmbuild/SPECS ~/rpmbuild/SOURCES
           rpmbuild --define "_topdir $HOME/rpmbuild" -ba ~/rpmbuild/SPECS/boost.spec
-          RPMS=$(find ~/rpmbuild/RPMS -type f \( -name "boost-*.rpm" -o -name "boost-filesystem-*.rpm" -o -name "boost-system-*.rpm" -o -name "boost-uuid-*.rpm" \) )
+          RPMS=$(find ~/rpmbuild/RPMS -type f -name "boost-*.rpm")
           if [ -n "$RPMS" ]; then
             dnf install -y $RPMS
           else
