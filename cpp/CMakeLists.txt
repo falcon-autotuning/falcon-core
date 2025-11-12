@@ -51,12 +51,6 @@ set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
 option(USE_VCPKG "Use vcpkg for dependencies" ON)
 set(BOOST_FILESYSTEM_TARGET Boost::filesystem)
 if(USE_VCPKG)
-  # TODO: Add windows support
-  # Don't add manual include dirs or link dirs; vcpkg toolchain handles it
-  set(VCPKG_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux/include")
-  set(VCPKG_RPATH
-      "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux-dynamic/debug/lib;${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux-dynamic/lib"
-  )
   set(HDF5_TARGET hdf5::hdf5-shared)
   set(HDF5_CPP_TARGET hdf5::hdf5_cpp-shared)
   set(BOOST_SYSTEM_TARGET Boost::system)
@@ -118,8 +112,7 @@ add_library(${CPP_LIB_NAME} SHARED ${FALCON_CORE_SOURCES})
 target_include_directories(
   ${CPP_LIB_NAME}
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-         $<INSTALL_INTERFACE:include>
-         $<$<BOOL:${USE_VCPKG}>:${VCPKG_INCLUDE_DIR}>)
+         $<INSTALL_INTERFACE:include>)
 target_link_libraries(
   ${CPP_LIB_NAME}
   PUBLIC ${BOOST_FILESYSTEM_TARGET}
@@ -143,9 +136,7 @@ if(FALCON_CORE_DEV)
   add_executable(falcon_core_cpp_run_tests ${RUN_TESTS_SOURCES})
   set_target_properties(
     falcon_core_cpp_run_tests
-    PROPERTIES BUILD_RPATH "$<$<BOOL:${USE_VCPKG}>:${VCPKG_RPATH}>"
-               INSTALL_RPATH "$<$<BOOL:${USE_VCPKG}>:${VCPKG_RPATH}>"
-               SKIP_BUILD_RPATH FALSE
+    PROPERTIES SKIP_BUILD_RPATH FALSE
                SKIP_INSTALL_RPATH FALSE
                BUILD_WITH_INSTALL_RPATH FALSE)
   if(USE_VCPKG)

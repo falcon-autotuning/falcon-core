@@ -28,24 +28,25 @@ jobs:
 
       # Build and test cpp
       - name: Configure CMake for cpp (with coverage)
-        run: cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" -DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping" -DBUILD_TESTS=ON -DUSE_VCPKG=1
+        run: cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DUSE_VCPKG=1 -DFALCON_CORE_DEV=ON
         working-directory: cpp
 
       - name: Build cpp
         run: cmake --build build --config Debug
         working-directory: cpp
 
-      - name: Test cpp and generate coverage
+      - name: Test falcon-core-cpp-dev (with coverage)
         shell: pwsh
         run: |
-          $env:PATH = "$env:GITHUB_WORKSPACE\cpp\build;$env:PATH"
-          # Run tests with profile output
-          $env:LLVM_PROFILE_FILE="$env:GITHUB_WORKSPACE\cpp\build\falcon_core_cpp_run_tests.profraw"
-          .\build\falcon_core_cpp_run_tests.exe
-          # Merge profile data
-          llvm-profdata merge -sparse build\falcon_core_cpp_run_tests.profraw -o build\falcon_core_cpp_run_tests.profdata
-          # Generate coverage report (text summary)
-          llvm-cov report .\build\falcon_core_cpp_run_tests.exe -instr-profile=build\falcon_core_cpp_run_tests.profdata | Out-File -Encoding utf8 cpp-coverage-report.txt
+          $ErrorActionPreference = "Stop"
+          $buildDir = "build"
+          $coverageDir = "coverage"
+          New-Item -ItemType Directory -Force -Path $coverageDir | Out-Null
+          $env:PATH = "$env:GITHUB_WORKSPACE\cpp\$buildDir;$env:PATH"
+          $env:LLVM_PROFILE_FILE = "$env:GITHUB_WORKSPACE\cpp\$buildDir\falcon_core_cpp_run_tests.profraw"
+          .\$buildDir\falcon_core_cpp_run_tests.exe
+          llvm-profdata merge -sparse $buildDir\falcon_core_cpp_run_tests.profraw -o $buildDir\falcon_core_cpp_run_tests.profdata
+          llvm-cov report .\$buildDir\falcon_core_cpp_run_tests.exe -instr-profile=$buildDir\falcon_core_cpp_run_tests.profdata | Out-File -Encoding utf8 $coverageDir\falcon-core-cpp.txt
         working-directory: cpp
 
       # Install vcpkg dependencies for c-api
@@ -55,21 +56,25 @@ jobs:
 
       # Build and test c-api
       - name: Configure CMake for c-api (with coverage)
-        run: cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_FLAGS="-O0 -fprofile-instr-generate -fcoverage-mapping" -DCMAKE_CXX_FLAGS="-g -O0 -fprofile-instr-generate -fcoverage-mapping" -DBUILD_TESTS=ON -DUSE_VCPKG=1
+        run: cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++  -DUSE_VCPKG=1 -DFALCON_CORE_DEV=ON -DCORE_ROOT=..\cpp
         working-directory: c-api
 
       - name: Build c-api
         run: cmake --build build --config Debug
         working-directory: c-api
 
-      - name: Test c-api and generate coverage
+      - name: Test falcon-core-c-api-dev (with coverage)
         shell: pwsh
         run: |
-          $env:PATH = "$env:GITHUB_WORKSPACE\c-api\build;$env:PATH"
-          $env:LLVM_PROFILE_FILE="$env:GITHUB_WORKSPACE\c-api\build\falcon_core_c_api_run_tests.profraw"
-          .\build\falcon_core_c_api_run_tests.exe
-          llvm-profdata merge -sparse build\falcon_core_c_api_run_tests.profraw -o build\falcon_core_c_api_run_tests.profdata
-          llvm-cov report .\build\falcon_core_c_api_run_tests.exe -instr-profile=build\falcon_core_c_api_run_tests.profdata | Out-File -Encoding utf8 c-api-coverage-report.txt
+          $ErrorActionPreference = "Stop"
+          $buildDir = "build"
+          $coverageDir = "coverage"
+          New-Item -ItemType Directory -Force -Path $coverageDir | Out-Null
+          $env:PATH = "$env:GITHUB_WORKSPACE\c-api\$buildDir;$env:PATH"
+          $env:LLVM_PROFILE_FILE = "$env:GITHUB_WORKSPACE\c-api\$buildDir\falcon_core_c_api_run_tests.profraw"
+          .\$buildDir\falcon_core_c_api_run_tests.exe
+          llvm-profdata merge -sparse $buildDir\falcon_core_c_api_run_tests.profraw -o $buildDir\falcon_core_c_api_run_tests.profdata
+          llvm-cov report .\$buildDir\falcon_core_c_api_run_tests.exe -instr-profile=$buildDir\falcon_core_c_api_run_tests.profdata | Out-File -Encoding utf8 $coverageDir\falcon-core-c-api.txt
         working-directory: c-api
 
       - name: Upload coverage reports
@@ -77,5 +82,5 @@ jobs:
         with:
           name: coverage-reports
           path: |
-            cpp/cpp-coverage-report.txt
-            c-api/c-api-coverage-report.txt
+            cpp/coverage/*
+            c-api/coverage/*
