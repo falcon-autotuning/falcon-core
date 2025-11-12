@@ -139,3 +139,69 @@ jobs:
           path: |
             cpp/coverage/*
             c-api/coverage/*
+
+      - name: Check cpp coverage report
+        run: |
+          report="cpp/coverage/falcon-core-cpp.txt"
+
+          # Check for PASSED line
+          if ! grep -qE '\[  PASSED  \] [0-9]+ tests\.' "$report"; then
+            echo "❌ PASSED line not found in $report"
+            exit 1
+          fi
+
+          # Extract the TOTAL line
+          total_line=$(grep '^TOTAL' "$report")
+          if [ -z "$total_line" ]; then
+            echo "❌ TOTAL line not found in $report"
+            exit 1
+          fi
+
+          # Extract all percentages from the TOTAL line
+          percentages=($(echo "$total_line" | grep -oE '[0-9]+\.[0-9]+%'))
+
+          # Check each percentage is > 90%
+          for pct in "${percentages[@]}"; do
+            pct_num=$(echo "$pct" | tr -d '%')
+            pct_int=${pct_num%.*}
+            if (( $(echo "$pct_num < 90.0" | bc -l) )); then
+              echo "❌ Coverage percent $pct is less than 90%"
+              exit 1
+            fi
+          done
+
+          echo "✅ All cpp coverage checks passed."
+        shell: bash
+
+      - name: Check c-api coverage report
+        run: |
+          report="c-api/coverage/falcon-core-c-api.txt"
+
+          # Check for PASSED line
+          if ! grep -qE '\[  PASSED  \] [0-9]+ tests\.' "$report"; then
+            echo "❌ PASSED line not found in $report"
+            exit 1
+          fi
+
+          # Extract the TOTAL line
+          total_line=$(grep '^TOTAL' "$report")
+          if [ -z "$total_line" ]; then
+            echo "❌ TOTAL line not found in $report"
+            exit 1
+          fi
+
+          # Extract all percentages from the TOTAL line
+          percentages=($(echo "$total_line" | grep -oE '[0-9]+\.[0-9]+%'))
+
+          # Check each percentage is > 90%
+          for pct in "${percentages[@]}"; do
+            pct_num=$(echo "$pct" | tr -d '%')
+            pct_int=${pct_num%.*}
+            if (( $(echo "$pct_num < 90.0" | bc -l) )); then
+              echo "❌ Coverage percent $pct is less than 90%"
+              exit 1
+            fi
+          done
+
+          echo "✅ All c-api coverage checks passed."
+        shell: bash

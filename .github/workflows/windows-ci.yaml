@@ -67,13 +67,11 @@ jobs:
         working-directory: cpp
 
       - name: Configure CMake for cpp (with coverage)
-        run: cmake --preset=DEV
+        run: cmake --preset DEV
         working-directory: cpp
 
       - name: Build cpp
-        run: |
-          New-Item -ItemType Directory -Force -Path build
-          cmake --build build
+        run: cmake --build --preset DEV
         working-directory: cpp
 
       - name: Test falcon-core-cpp-dev (with coverage)
@@ -129,9 +127,7 @@ jobs:
         working-directory: c-api
 
       - name: Build c-api
-        run: |
-          New-Item -ItemType Directory -Force -Path build
-          cmake --build build
+        run: cmake --build --preset DEV
         working-directory: c-api
 
       - name: Test falcon-core-c-api-dev (with coverage)
