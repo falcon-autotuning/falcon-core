@@ -43,6 +43,7 @@ build:
 		$(TOOLCHAIN_ARG) \
 		-DUSE_VCPKG=$(USE_VCPKG) \
 		. -S . -B $(BUILD_DIR)
+	ninja -C $(BUILD_DIR)
 	@echo "--- Build complete ---"
 
 build-dev:

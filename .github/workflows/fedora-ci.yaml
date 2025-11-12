@@ -2,9 +2,9 @@ name: Fedora CI
 
 on:
   push:
-    branches: [main, new-dev]
+    branches: [main]
   pull_request:
-    branches: [main, new-dev]
+    branches: [main]
 
 jobs:
   build-and-test-fedora:

@@ -53,6 +53,7 @@ build: generate_types
 		-DCORE_ROOT=$(CORE_ROOT) \
 		-DUSE_VCPKG=$(USE_VCPKG) \
    	-S . -B $(C_API_BUILD_DIR)
+	@ninja -C $(C_API_BUILD_DIR)
 	@echo "--- Build complete. C API library is now in $(C_API_BUILD_DIR) ---"
 
 build-dev: generate_types 
