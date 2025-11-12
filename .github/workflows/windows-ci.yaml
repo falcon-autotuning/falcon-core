@@ -54,8 +54,12 @@ jobs:
         shell: pwsh
         working-directory: cpp
 
+      - name: Configure CMake for cpp (with coverage)
+        run: cmake --preset=DEV
+        working-directory: cpp
+
       - name: Build cpp
-        run: cmake --build --preset DEV
+        run: cmake --build --preset=DEV
         working-directory: cpp
 
       - name: Test falcon-core-cpp-dev (with coverage)
@@ -106,8 +110,12 @@ jobs:
         shell: pwsh
         working-directory: c-api
 
+      - name: Configure CMake for c-api (with coverage)
+        run: cmake --preset=DEV
+        working-directory: c-api
+
       - name: Build c-api
-        run: cmake -B build --preset DEV
+        run: cmake -B build --preset=DEV
         working-directory: c-api
 
       - name: Test falcon-core-c-api-dev (with coverage)
