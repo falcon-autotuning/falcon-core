@@ -19,22 +19,25 @@ jobs:
           useradd -m builduser
           echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           chown -R builduser:builduser .
+
       - name: Cache pacman packages
         uses: actions/cache@v4
         with:
           path: /var/cache/pacman/pkg
-          key: ${{ runner.os }}-pacman-${{ hashFiles('**/PKGBUILD') }}
+          key: ${{ runner.os }}-pacman-${{ github.ref }}
           restore-keys: |
             ${{ runner.os }}-pacman-
+
       - name: Cache AUR packages
         uses: actions/cache@v4
         with:
           path: |
             packaging/highfive/*.pkg.tar.zst
             packaging/exprtk/*.pkg.tar.zst
-          key: ${{ runner.os }}-aur-${{ hashFiles('packaging/highfive/PKGBUILD', 'packaging/exprtk/PKGBUILD') }}
+          key: ${{ runner.os }}-aur-${{ github.ref }}
           restore-keys: |
             ${{ runner.os }}-aur-
+
       - name: Install dependencies
         run: |
           pacman -Syu --noconfirm
@@ -93,7 +96,7 @@ jobs:
       - name: Build falcon-core-cpp-dev
         run: |
           cd cpp
-          CC=clang CXX=clang++ USE_VCPKG=0 make build-dev
+          CC=/usr/bin/clang CXX=/usr/bin/clang++ USE_VCPKG=0 make build-dev
 
       - name: Test falcon-core-cpp-dev
         run: |
