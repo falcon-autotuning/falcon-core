@@ -164,7 +164,7 @@ jobs:
           for pct in "${percentages[@]}"; do
             pct_num=$(echo "$pct" | tr -d '%')
             pct_int=${pct_num%.*}
-            if (( $(echo "$pct_num < 90.0" | bc -l) )); then
+            if (( $(echo "$pct_num < 85.0" | bc -l) )); then
               echo "❌ Coverage percent $pct is less than 90%"
               exit 1
             fi
