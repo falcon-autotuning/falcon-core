@@ -42,7 +42,7 @@ jobs:
                 "name": "DEV",
                 "displayName": "Development build with coverage (Clang, vcpkg, Debug)",
                 "generator": "Ninja",
-                "binaryDir": "${sourceDir}/build",
+                "binaryDir": "build",
                 "cacheVariables": {
                   "CMAKE_TOOLCHAIN_FILE": "../vcpkg/scripts/buildsystems/vcpkg.cmake",
                   "VCPKG_TARGET_TRIPLET": "x64-windows",
@@ -104,7 +104,7 @@ jobs:
                 "name": "DEV",
                 "displayName": "Development build with coverage (Clang, vcpkg, Debug)",
                 "generator": "Ninja",
-                "binaryDir": "${sourceDir}/build",
+                "binaryDir": "build",
                 "cacheVariables": {
                   "CMAKE_TOOLCHAIN_FILE": "../vcpkg/scripts/buildsystems/vcpkg.cmake",
                   "VCPKG_TARGET_TRIPLET": "x64-windows",
