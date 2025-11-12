@@ -64,7 +64,7 @@ files needed to develop applications using Boost.
 %install
 rm -rf %{buildroot}
 ./b2 install --prefix=%{buildroot}%{_prefix} --libdir=%{buildroot}%{_libdir} --with-filesystem --with-system \
---with-uuid variant=release link=shared threading=multi
+--with-uuid --with-atomic variant=release link=shared threading=multi
 
 find %{buildroot}%{_libdir}/cmake -name "*.cmake" -print0 | xargs -0 sed -i "s|%{buildroot}||g"
 
