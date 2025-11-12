@@ -150,7 +150,7 @@ endif
 coverage-overview: coverage
 ifeq ($(COVERAGE_TOOL),llvm-cov)
 	@llvm-cov report ./$(C_API_BUILD_DIR)/libfalcon_core_c_api.so -instr-profile=$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profdata \
-		-ignore-filename-regex='(vcpkg_installed|tests/)' \
+		-ignore-filename-regex='(vcpkg_installed|tests/|cpp/)' \
 		-Xdemangler c++filt -Xdemangler -n
 else
 	@gcovr src/ . --txt --exclude 'vcpkg_installed|tests/'
