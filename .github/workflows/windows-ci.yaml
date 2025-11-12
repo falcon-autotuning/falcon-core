@@ -16,6 +16,11 @@ jobs:
       - name: Add LLVM to PATH
         run: echo "C:\Program Files\LLVM\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
 
+      - name: Install latest CMake
+        uses: jwlawson/actions-setup-cmake@v1
+        with:
+          cmake-version: "3.27.7" # or any version >= 3.21
+
       - name: Install vcpkg
         run: |
           git clone https://github.com/microsoft/vcpkg.git
