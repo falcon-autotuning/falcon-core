@@ -8,6 +8,7 @@ CC ?= clang
 CXX ?= clang++
 
 USE_VCPKG ?= 1
+USE_COMPILE_COMMANDS ?= 1
 
 ifeq ($(USE_VCPKG),1)
 	VCPKG_INSTALLED = vcpkg_installed
@@ -56,7 +57,9 @@ build-dev:
 		-DUSE_VCPKG=$(USE_VCPKG) \
 		-DFALCON_CORE_DEV=ON \
 		. -S . -B $(BUILD_DIR)
-	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
+	@if [ "$(USE_COMPILE_COMMANDS)" = "1" ]; then \
+		if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi; \
+	fi
 	@LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH \
 	ninja -C $(BUILD_DIR) -d stats
 	@echo "--- Build complete ---"

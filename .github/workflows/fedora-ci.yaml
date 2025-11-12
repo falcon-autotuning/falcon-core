@@ -50,6 +50,20 @@ jobs:
           rpmbuild -ba ~/rpmbuild/SPECS/xtensor-io.spec
           dnf install -y ~/rpmbuild/RPMS/*/xtensor-io-*.rpm
 
+      - name: Build and install exprtk
+        run: |
+          cp packaging/specs/exprtk.spec ~/rpmbuild/SPECS/
+          curl -L -o ~/rpmbuild/SOURCES/exprtk-0.0.3.tar.gz https://github.com/ArashPartow/exprtk/archive/refs/tags/0.0.3.tar.gz
+          rpmbuild -ba ~/rpmbuild/SPECS/exprtk.spec
+          dnf install -y ~/rpmbuild/RPMS/*/exprtk-*.rpm
+
+      - name: Build and install highfive
+        run: |
+          cp packaging/specs/highfive.spec ~/rpmbuild/SPECS/
+          curl -L -o ~/rpmbuild/SOURCES/highfive-3.1.1.tar.gz https://github.com/highfive-devs/highfive/archive/v3.1.1.tar.gz
+          rpmbuild -ba ~/rpmbuild/SPECS/highfive.spec
+          dnf install -y ~/rpmbuild/RPMS/*/highfive-*.rpm
+
       - name: Build and install falcon-core-cpp-dev
         run: |
           cp packaging/specs/falcon-core-cpp-dev.spec ~/rpmbuild/SPECS/
@@ -58,6 +72,8 @@ jobs:
           dnf install -y cereal-devel
           dnf install -y hdf5 hdf5-devel
           dnf install -y gtest gtest-devel
+          dnf install -y boost boost-devel
+          ln -s /usr/include/boost/uuid/uuid.hpp /usr/include/boost/uuid.hpp
           rpmbuild -ba ~/rpmbuild/SPECS/falcon-core-cpp-dev.spec
           dnf install -y ~/rpmbuild/RPMS/*/falcon-core-cpp-dev-*.rpm
 

@@ -18,7 +18,7 @@ Development build of Falcon Core C++ with tests and coverage artifacts.
 
 %build
 cd "cpp" || exit
-make build-dev USE_VCPKG=0
+make build-dev USE_VCPKG=0 USE_COMPILE_COMMANDS=0
 make run-all-tests
 mkdir coverage
 make coverage-overview >coverage/falcon-core-cpp.txt
