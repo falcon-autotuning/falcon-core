@@ -116,7 +116,7 @@ jobs:
       - name: Build falcon-core-c-api-dev
         run: |
           cd c-api
-          CC=clang CXX=clang++ USE_VCPKG=0 make build-dev
+          CC=/usr/bin/clang CXX=/usr/bin/clang++ USE_VCPKG=0 make build-dev
 
       - name: Test falcon-core-c-api-dev
         run: |

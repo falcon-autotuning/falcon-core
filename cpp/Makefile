@@ -1,4 +1,4 @@
-# Makefile to simplify the CMake build process for falcon-core with vcpkg
+# Makefile to simplify the CMake build process for falcon-core-cpp 
 
 .PHONY: all build build-part install test clean setup-vcpkg clean-all
 
@@ -8,7 +8,6 @@ CC ?= clang
 CXX ?= clang++
 
 USE_VCPKG ?= 1
-USE_COMPILE_COMMANDS ?= 1
 
 ifeq ($(USE_VCPKG),1)
 	VCPKG_INSTALLED = vcpkg_installed
@@ -49,6 +48,8 @@ build:
 build-dev:
 	@echo "--- Configuring and Building C++ Extension (dev, tests, coverage) ---"
 	@mkdir -p $(BUILD_DIR)
+	@echo "CC=$(CC)" > $(BUILD_DIR)/compiler.env
+	@echo "CXX=$(CXX)" >> $(BUILD_DIR)/compiler.env
 	@LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH \
 	$(VCPKG_ENV) cmake -G Ninja \
 		-DCMAKE_C_COMPILER=${CC} \
@@ -57,16 +58,20 @@ build-dev:
 		-DUSE_VCPKG=$(USE_VCPKG) \
 		-DFALCON_CORE_DEV=ON \
 		. -S . -B $(BUILD_DIR)
-	@if [ "$(USE_COMPILE_COMMANDS)" = "1" ]; then \
-		if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi; \
-	fi
+	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi;
 	@LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH \
 	ninja -C $(BUILD_DIR) -d stats
 	@echo "--- Build complete ---"
 
+define LOAD_COMPILER_ENV
+  if [ -f $(BUILD_DIR)/compiler.env ]; then . $(BUILD_DIR)/compiler.env; fi
+endef
 # Detect compiler for coverage tools
-COVERAGE_TOOL := $(shell $(CXX) --version | grep -qi clang && echo llvm-cov || echo gcov)
-PROFDATA_TOOL := $(shell $(CXX) --version | grep -qi clang && echo llvm-profdata || echo gcov-tool)
+COVERAGE_TOOL = $(shell [ -f $(BUILD_DIR)/compiler.env ] && . $(BUILD_DIR)/compiler.env; \
+	[ "$$(basename $${CXX:-clang++})" = "clang++" ] && echo llvm-cov || echo gcov)
+
+PROFDATA_TOOL = $(shell [ -f $(BUILD_DIR)/compiler.env ] && . $(BUILD_DIR)/compiler.env; \
+	[ "$$(basename $${CXX:-clang++})" = "clang++" ] && echo llvm-profdata || echo gcov-tool)
 
 run-all-tests:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
@@ -86,7 +91,7 @@ endif
 
 cov-html:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@llvm-cov show ./$(BUILD_DIR)/lib$(CPP_TARGET).so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
+	@llvm-cov show ./$(BUILD_DIR)/libfalcon_core_cpp.so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
 	  -format=html -output-dir=coverage_html \
 	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
 	  -Xdemangler c++filt -Xdemangler -n
@@ -98,7 +103,7 @@ endif
 
 cov-term:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@llvm-cov show ./$(BUILD_DIR)/lib$(CPP_TARGET).so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata $(FILE) \
+	@llvm-cov show ./$(BUILD_DIR)/libfalcon_core_cpp.so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata $(FILE) \
 	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
 	  -Xdemangler c++filt -Xdemangler -n
 else
@@ -116,7 +121,7 @@ coverage: run-all-tests cov-term
 
 subset-coverage-overview: subset-coverage
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@llvm-cov report ./$(BUILD_DIR)/lib$(CPP_TARGET).so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
+	@llvm-cov report ./$(BUILD_DIR)/libfalcon_core_cpp.so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
 		-ignore-filename-regex='(vcpkg_installed|tests/)' \
 		-Xdemangler c++filt -Xdemangler -n
 else
@@ -125,7 +130,7 @@ endif
 
 coverage-overview: coverage
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@llvm-cov report ./$(BUILD_DIR)/lib$(CPP_TARGET).so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
+	@llvm-cov report ./$(BUILD_DIR)/libfalcon_core_cpp.so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
 		-ignore-filename-regex='(vcpkg_installed|tests/)' \
 		-Xdemangler c++filt -Xdemangler -n
 else
