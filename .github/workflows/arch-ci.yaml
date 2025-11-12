@@ -127,7 +127,7 @@ jobs:
 
       - name: Install falcon-core-c-api-dev artifacts
         run: |
-          install -Dm755 cpp/build/libfalcon_core_c_api.so /usr/lib/libfalcon_core_c_api.so
+          install -Dm755 c-api/build/libfalcon_core_c_api.so /usr/lib/libfalcon_core_c_api.so
           install -d /usr/include/falcon-core-c-api-dev
           cp -r c-api/include/falcon_core/* /usr/include/falcon-core-c-api-dev/
           install -d /usr/share/falcon-core-c-api-dev/coverage

@@ -27,12 +27,35 @@ jobs:
         working-directory: cpp
 
       # Build and test cpp
-      - name: Configure CMake for cpp (with coverage)
-        run: cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DUSE_VCPKG=1 -DFALCON_CORE_DEV=ON
+      - name: Generate CMakePresets.json for DEV build (cpp)
+        run: |
+          @"
+          {
+            "version": 3,
+            "configurePresets": [
+              {
+                "name": "DEV",
+                "displayName": "Development build with coverage (Clang, vcpkg, Debug)",
+                "generator": "Ninja",
+                "binaryDir": "${sourceDir}/build",
+                "cacheVariables": {
+                  "CMAKE_TOOLCHAIN_FILE": "../vcpkg/scripts/buildsystems/vcpkg.cmake",
+                  "VCPKG_TARGET_TRIPLET": "x64-windows",
+                  "CMAKE_BUILD_TYPE": "Debug",
+                  "CMAKE_C_COMPILER": "clang",
+                  "CMAKE_CXX_COMPILER": "clang++",
+                  "USE_VCPKG": "1",
+                  "FALCON_CORE_DEV": "ON"
+                }
+              }
+            ]
+          }
+          "@ | Out-File -Encoding utf8 CMakePresets.json
+        shell: pwsh
         working-directory: cpp
 
       - name: Build cpp
-        run: cmake --build build --config Debug
+        run: cmake --build --preset DEV
         working-directory: cpp
 
       - name: Test falcon-core-cpp-dev (with coverage)
@@ -55,12 +78,36 @@ jobs:
         working-directory: c-api
 
       # Build and test c-api
-      - name: Configure CMake for c-api (with coverage)
-        run: cmake -S . -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++  -DUSE_VCPKG=1 -DFALCON_CORE_DEV=ON -DCORE_ROOT=..\cpp
+      - name: Generate CMakePresets.json for DEV build
+        run: |
+          @"
+          {
+            "version": 3,
+            "configurePresets": [
+              {
+                "name": "DEV",
+                "displayName": "Development build with coverage (Clang, vcpkg, Debug)",
+                "generator": "Ninja",
+                "binaryDir": "${sourceDir}/build",
+                "cacheVariables": {
+                  "CMAKE_TOOLCHAIN_FILE": "../vcpkg/scripts/buildsystems/vcpkg.cmake",
+                  "VCPKG_TARGET_TRIPLET": "x64-windows",
+                  "CMAKE_BUILD_TYPE": "Debug",
+                  "CMAKE_C_COMPILER": "clang",
+                  "CMAKE_CXX_COMPILER": "clang++",
+                  "USE_VCPKG": "1",
+                  "FALCON_CORE_DEV": "ON",
+                  "CORE_ROOT": "../cpp"
+                }
+              }
+            ]
+          }
+          "@ | Out-File -Encoding utf8 CMakePresets.json
+        shell: pwsh
         working-directory: c-api
 
       - name: Build c-api
-        run: cmake --build build --config Debug
+        run: cmake -B build --preset DEV
         working-directory: c-api
 
       - name: Test falcon-core-c-api-dev (with coverage)
