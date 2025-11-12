@@ -111,7 +111,7 @@ jobs:
           install -d /usr/include/falcon-core-cpp-dev
           cp -r cpp/include/falcon_core/* /usr/include/falcon-core-cpp-dev/
           install -d /usr/share/falcon-core-cpp-dev/coverage
-          cp -r cpp/build/coverage/* /usr/share/falcon-core-cpp-dev/coverage/
+          cp -r cpp/coverage/* /usr/share/falcon-core-cpp-dev/coverage/
 
       - name: Build falcon-core-c-api-dev
         run: |
@@ -127,15 +127,15 @@ jobs:
 
       - name: Install falcon-core-c-api-dev artifacts
         run: |
-          install -Dm755 cpp/build/libfalcon_core_c_api.so /usr/lib/libfalcon_core_c_api.so
+          install -Dm755 c-api/build/libfalcon_core_c_api.so /usr/lib/libfalcon_core_c_api.so
           install -d /usr/include/falcon-core-c-api-dev
           cp -r c-api/include/falcon_core/* /usr/include/falcon-core-c-api-dev/
           install -d /usr/share/falcon-core-c-api-dev/coverage
-          cp -r c-api/build/coverage/* /usr/share/falcon-core-c-api-dev/coverage/
+          cp -r c-api/coverage/* /usr/share/falcon-core-c-api-dev/coverage/
       - name: Upload coverage reports
         uses: actions/upload-artifact@v4
         with:
           name: coverage-reports
           path: |
-            cpp/coverage/falcon-core-cpp.txt
-            c-api/coverage/falcon-core-c-api.txt
+            cpp/coverage/*
+            c-api/coverage/*
