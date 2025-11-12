@@ -60,10 +60,37 @@ jobs:
 
       - name: Build and install highfive
         run: |
+          set -e
+          dnf install -y cmake gcc-c++ make bzip2 tar hdf5-devel
+          mkdir -p ~/rpmbuild/SPECS ~/rpmbuild/SOURCES
           cp packaging/specs/highfive.spec ~/rpmbuild/SPECS/
           curl -L -o ~/rpmbuild/SOURCES/highfive-3.1.1.tar.gz https://github.com/highfive-devs/highfive/archive/v3.1.1.tar.gz
-          rpmbuild -ba ~/rpmbuild/SPECS/highfive.spec
-          dnf install -y ~/rpmbuild/RPMS/*/highfive-*.rpm
+          rpmbuild --define "_topdir $HOME/rpmbuild" -ba ~/rpmbuild/SPECS/highfive.spec
+          rpmfile=$(find ~/rpmbuild/RPMS -type f -name "highfive-*.rpm" | head -n1)
+          if [ -n "$rpmfile" ]; then
+            dnf install -y "$rpmfile"
+          else
+            echo "No RPM produced for highfive; see rpmbuild output above" >&2
+            exit 1
+          fi
+      - name: Build and install boost (filesystem, system, uuid)
+        run: |
+          set -e
+          # Install build deps needed for bootstrapping and building Boost
+          dnf install -y gcc-c++ gcc make python3 bzip2 tar perl
+          mkdir -p ~/rpmbuild/SPECS ~/rpmbuild/SOURCES
+          cp packaging/specs/boost.spec ~/rpmbuild/SPECS/
+          curl -L -o ~/rpmbuild/SOURCES/boost_1_88_0.tar.bz2 https://boostorg.jfrog.io/artifactory/main/release/1.88.0/source/boost_1_88_0.tar.bz2
+          echo "HOME=$HOME USER=$USER"
+          ls -l ~/rpmbuild/SPECS ~/rpmbuild/SOURCES
+          rpmbuild --define "_topdir $HOME/rpmbuild" -ba ~/rpmbuild/SPECS/boost.spec
+          RPMS=$(find ~/rpmbuild/RPMS -type f \( -name "boost-*.rpm" -o -name "boost-filesystem-*.rpm" -o -name "boost-system-*.rpm" -o -name "boost-uuid-*.rpm" \) )
+          if [ -n "$RPMS" ]; then
+            dnf install -y $RPMS
+          else
+            echo "No Boost RPMs produced; check rpmbuild output" >&2
+            exit 1
+          fi
 
       - name: Build and install falcon-core-cpp-dev
         run: |
