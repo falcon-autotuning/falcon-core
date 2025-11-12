@@ -53,6 +53,12 @@ jobs:
           "@ | Out-File -Encoding utf8 CMakePresets.json
         shell: pwsh
         working-directory: cpp
+      - name: List files in cpp/
+        run: ls -l
+        working-directory: cpp
+      - name: Show CMakePresets.json
+        run: cat CMakePresets.json
+        working-directory: cpp
 
       - name: Configure CMake for cpp (with coverage)
         run: cmake --preset=DEV
