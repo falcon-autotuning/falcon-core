@@ -4,7 +4,7 @@
 #endif
 #include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
 #include "falcon_core/generic/ListDiscretizer_c_api.h"
-#include <cstddef>
+#include <stddef.h>
 #include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles

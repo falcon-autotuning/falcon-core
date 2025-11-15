@@ -5,7 +5,7 @@
 #include "falcon_core/generic/ListPairStringDouble_c_api.h"
 #include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/ListDouble_c_api.h"
-#include <cstddef>
+#include <stddef.h>
 #include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles

@@ -4,7 +4,7 @@
 #endif
 #include "falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h"
 #include "falcon_core/generic/ListAcquisitionContext_c_api.h"
-#include <cstddef>
+#include <stddef.h>
 #include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles

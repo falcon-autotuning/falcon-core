@@ -4,7 +4,7 @@
 #endif
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon_core/generic/ListInstrumentPort_c_api.h"
-#include <cstddef>
+#include <stddef.h>
 #include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles

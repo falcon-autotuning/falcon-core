@@ -1,5 +1,5 @@
 #pragma once
-#include <cstddef>
+#include <stddef.h>
 
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
 #include "falcon_core/generic/ListConnection_c_api.h"

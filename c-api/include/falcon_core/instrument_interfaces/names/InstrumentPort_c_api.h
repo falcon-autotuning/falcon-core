@@ -1,5 +1,5 @@
 #pragma once
-#include <cstddef>
+#include <stddef.h>
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h"

@@ -4,7 +4,7 @@
 #endif
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"
 #include "falcon_core/generic/ListMeasurementContext_c_api.h"
-#include <cstddef>
+#include <stddef.h>
 #include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles

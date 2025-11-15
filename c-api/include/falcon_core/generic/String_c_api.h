@@ -2,7 +2,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include <cstddef>
+#include <stddef.h>
 struct string {
   char*  raw;
   size_t length;

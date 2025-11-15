@@ -1,7 +1,0 @@
-%module @SUBMODULE_NAME@
-
-
-%include "falcon_core_all.i"
-%include "add_song_deserializers.i"
-%shared_ptr(@CPP_CLASS@)
-%add_song_deserializers(@CPP_CLASS@);
