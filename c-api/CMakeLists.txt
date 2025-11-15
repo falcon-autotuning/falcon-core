@@ -113,7 +113,7 @@ if(USE_VCPKG)
   message(STATUS "Boost uuid include dir: ${BOOST_INCLUDE_DIR}")
 endif()
 
-file(GLOB_RECURSE C_API_SOURCES "src/*.cpp")
+file(GLOB_RECURSE C_API_SOURCES "src/*.cpp" "src/*.c")
 
 add_library(${C_API_LIB_NAME} SHARED ${C_API_SOURCES})
 

@@ -4,6 +4,7 @@
 #endif
 #include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
 #include <stddef.h>
+#include <stdbool.h>
 #include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles

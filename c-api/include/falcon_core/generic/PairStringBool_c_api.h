@@ -3,6 +3,7 @@
     extern "C" {
 #endif
 #include <stddef.h>
+#include <stdbool.h>
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 

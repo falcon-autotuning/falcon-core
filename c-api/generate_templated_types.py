@@ -2237,7 +2237,7 @@ registry: dict[str, Entry] = {
             "int",
             "Int",
         ],
-        ["<stddef.h>"],
+        ["<stddef.h>", "<stdbool.h>"],
         [],
         Path("generic"),
     ),
@@ -2249,7 +2249,7 @@ registry: dict[str, Entry] = {
             "float",
             "Float",
         ],
-        ["<stddef.h>"],
+        ["<stddef.h>", "<stdbool.h>"],
         [],
         Path("generic"),
     ),
@@ -2261,7 +2261,7 @@ registry: dict[str, Entry] = {
             "double",
             "Double",
         ],
-        ["<stddef.h>"],
+        ["<stddef.h>", "<stdbool.h>"],
         [],
         Path("generic"),
     ),
@@ -2276,6 +2276,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/physics/device_structures/Connection_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         ["<falcon_core/physics/device_structures/Connection.hpp>"],
         Path("generic"),
@@ -2291,6 +2292,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/autotuner_interfaces/names/Channel_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         ["<falcon_core/autotuner_interfaces/names/Channel.hpp>"],
         Path("generic"),
@@ -2306,6 +2308,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         ["<falcon_core/instrument_interfaces/names/InstrumentPort.hpp>"],
         Path("generic"),
@@ -2321,6 +2324,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         ["<falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp>"],
         Path("generic"),
@@ -2336,6 +2340,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/math/domains/LabelledDomain_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         ["<falcon_core/math/domains/LabelledDomain.hpp>"],
         Path("generic"),
@@ -2351,6 +2356,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/math/Quantity_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         ["<falcon_core/math/Quantity.hpp>"],
         Path("generic"),
@@ -2365,6 +2371,7 @@ registry: dict[str, Entry] = {
         ],
         [
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [],
         Path("generic"),
@@ -2394,6 +2401,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/physics/device_structures/Impedance_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         ["<falcon_core/physics/device_structures/Impedance.hpp>"],
         Path("generic"),
@@ -2409,6 +2417,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         ["<falcon_core/communications/voltage_states/DeviceVoltageState.hpp>"],
         Path("generic"),
@@ -2423,6 +2432,7 @@ registry: dict[str, Entry] = {
         ],
         [
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [],
         Path("generic"),
@@ -2438,6 +2448,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/physics/device_structures/Connections_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         ["<falcon_core/physics/device_structures/Connections.hpp>"],
         Path("generic"),
@@ -2452,6 +2463,7 @@ registry: dict[str, Entry] = {
         ],
         [
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [],
         Path("generic"),
@@ -2467,6 +2479,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairIntInt_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         ["<falcon_core/generic/Pair.hpp>"],
         Path("generic"),
@@ -2482,6 +2495,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairFloatFloat_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         ["<falcon_core/generic/Pair.hpp>"],
         Path("generic"),
@@ -2497,6 +2511,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairIntFloat_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         ["<falcon_core/generic/Pair.hpp>"],
         Path("generic"),
@@ -2512,6 +2527,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairConnectionFloat_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -2530,6 +2546,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairConnectionDouble_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -2548,6 +2565,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairInterpretationContextDouble_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -2566,6 +2584,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairInterpretationContextString_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -2584,6 +2603,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairInterpretationContextQuantity_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -2604,6 +2624,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairConnectionConnections_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -2622,6 +2643,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairConnectionQuantity_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -2826,6 +2848,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairQuantityQuantity_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -2844,6 +2867,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairChannelConnections_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -2863,6 +2887,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairGnameGroup_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -2882,6 +2907,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairStringDouble_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -2899,6 +2925,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairStringBool_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -2916,6 +2943,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairSizeTSizeT_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -2933,6 +2961,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/FArrayDouble_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/FArray.hpp>",
@@ -2950,6 +2979,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/math/arrays/ControlArray_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/math/arrays/ControlArray.hpp>",
@@ -2967,6 +2997,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/math/arrays/LabelledControlArray_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/math/arrays/LabelledControlArray.hpp>",
@@ -2984,6 +3015,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/math/arrays/LabelledControlArray1D_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/math/arrays/LabelledControlArray1D.hpp>",
@@ -3001,6 +3033,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/math/arrays/LabelledMeasuredArray.hpp>",
@@ -3018,6 +3051,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/math/arrays/LabelledMeasuredArray1D.hpp>",
@@ -3035,6 +3069,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp>",
@@ -3052,6 +3087,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/math/arrays/ControlArray1D_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/math/arrays/ControlArray1D.hpp>",
@@ -3069,6 +3105,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/math/domains/CoupledLabelledDomain_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/math/domains/CoupledLabelledDomain.hpp>",
@@ -3086,6 +3123,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp>",
@@ -3103,6 +3141,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>",
@@ -3120,6 +3159,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp>",
@@ -3137,6 +3177,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/instrument_interfaces/Waveform_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/instrument_interfaces/Waveform.hpp>",
@@ -3154,6 +3195,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/MapStringBool_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Map.hpp>",
@@ -3171,6 +3213,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairConnectionPairQuantityQuantity_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -3190,6 +3233,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -3209,6 +3253,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/PairStringString_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -3228,6 +3273,7 @@ registry: dict[str, Entry] = {
         ],
         [
             "<stddef.h>",
+            "<stdbool.h>",
             '"falcon_core/generic/String_c_api.h"',
         ],
         [],
@@ -3246,6 +3292,7 @@ registry: dict[str, Entry] = {
         ],
         [
             "<stddef.h>",
+            "<stdbool.h>",
             '"falcon_core/generic/String_c_api.h"',
         ],
         [],
@@ -3264,6 +3311,7 @@ registry: dict[str, Entry] = {
         ],
         [
             "<stddef.h>",
+            "<stdbool.h>",
             '"falcon_core/generic/String_c_api.h"',
         ],
         [],
@@ -3282,6 +3330,7 @@ registry: dict[str, Entry] = {
         ],
         [
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [],
         Path("generic"),
@@ -3711,6 +3760,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/generic/ListString_c_api.h"',
             '"falcon_core/generic/ListDouble_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -3734,6 +3784,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/generic/ListPairStringString_c_api.h"',
             '"falcon_core/generic/ListString_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -3758,6 +3809,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/generic/ListString_c_api.h"',
             '"falcon_core/generic/ListBool_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/Pair.hpp>",
@@ -3773,6 +3825,7 @@ registry: dict[str, Entry] = {
         ],
         [
             "<stddef.h>",
+            "<stdbool.h>",
             '"falcon_core/generic/ListListSizeT_c_api.h"',
         ],
         [
@@ -3790,6 +3843,7 @@ registry: dict[str, Entry] = {
         ],
         [
             "<stddef.h>",
+            "<stdbool.h>",
             '"falcon_core/generic/ListListSizeT_c_api.h"',
         ],
         [
@@ -3809,6 +3863,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/math/discrete_spaces/Discretizer_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/math/discrete_spaces/Discretizer.hpp>",
@@ -3826,6 +3881,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/autotuner_interfaces/names/Gname_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/autotuner_interfaces/names/Gname.hpp>",
@@ -3843,6 +3899,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/physics/config/core/Group_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/physics/config/core/Group.hpp>",
@@ -3860,6 +3917,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/ListDouble_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -3877,6 +3935,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/ListInt_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -3895,6 +3954,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/math/discrete_spaces/Discretizer_c_api.h"',
             '"falcon_core/generic/ListDiscretizer_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -3914,6 +3974,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/math/arrays/ControlArray_c_api.h"',
             '"falcon_core/generic/ListControlArray_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -3933,6 +3994,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/math/arrays/LabelledControlArray_c_api.h"',
             '"falcon_core/generic/ListLabelledControlArray_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -3952,6 +4014,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/math/arrays/LabelledControlArray1D_c_api.h"',
             '"falcon_core/generic/ListLabelledControlArray1D_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -3971,6 +4034,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"',
             '"falcon_core/generic/ListLabelledMeasuredArray_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -3990,6 +4054,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h"',
             '"falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -4009,6 +4074,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/math/arrays/ControlArray1D_c_api.h"',
             '"falcon_core/generic/ListControlArray1D_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -4028,6 +4094,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"',
             '"falcon_core/generic/ListInstrumentPort_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -4047,6 +4114,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/math/domains/CoupledLabelledDomain_c_api.h"',
             '"falcon_core/generic/ListCoupledLabelledDomain_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -4066,6 +4134,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"',
             '"falcon_core/generic/ListMeasurementContext_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -4084,6 +4153,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/generic/ListMapStringBool_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -4103,6 +4173,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/generic/ListLabelledControlArray_c_api.h"',
             '"falcon_core/generic/ListAcquisitionContext_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -4123,6 +4194,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/generic/ListLabelledControlArray1D_c_api.h"',
             '"falcon_core/generic/ListAcquisitionContext_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -4143,6 +4215,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/generic/ListLabelledMeasuredArray_c_api.h"',
             '"falcon_core/generic/ListAcquisitionContext_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -4163,6 +4236,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h"',
             '"falcon_core/generic/ListAcquisitionContext_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -4189,6 +4263,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/generic/ListPairInterpretationContextDouble_c_api.h"',
             '"falcon_core/generic/MapInterpretationContextDouble_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -4217,6 +4292,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/generic/ListPairInterpretationContextString_c_api.h"',
             '"falcon_core/generic/MapInterpretationContextString_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",
@@ -4245,6 +4321,7 @@ registry: dict[str, Entry] = {
             '"falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"',
             '"falcon_core/generic/MapInterpretationContextQuantity_c_api.h"',
             "<stddef.h>",
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/generic/List.hpp>",

@@ -11,6 +11,7 @@
 #include "falcon_core/generic/ListPairInterpretationContextString_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextString_c_api.h"
 #include <stddef.h>
+#include <stdbool.h>
 #include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
