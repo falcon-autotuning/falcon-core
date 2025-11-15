@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/ListConnection_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/device_structures/Connections_c_api.h"
@@ -27,11 +28,15 @@ TEST_F(ConnectionsTest, DefaultConstructor) {
   ConnectionsHandle c = Connections_create_empty();
   EXPECT_EQ(Connections_size(c), 0);
   Connections_destroy(c);
-  EXPECT_THROW(Connections_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Connections_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ConnectionsTest, CreateNull) {
-  EXPECT_THROW(Connections_create(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Connections_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ConnectionsTest, CountValueConstructor) {
@@ -116,13 +121,27 @@ TEST_F(ConnectionsTest, TypeChecks) {
   Connections_destroy(mixed);
 
   // Nullptr coverage for all type checks
-  EXPECT_THROW(Connections_is_gates(nullptr), std::invalid_argument);
-  EXPECT_THROW(Connections_is_ohmics(nullptr), std::invalid_argument);
-  EXPECT_THROW(Connections_is_dot_gates(nullptr), std::invalid_argument);
-  EXPECT_THROW(Connections_is_plunger_gates(nullptr), std::invalid_argument);
-  EXPECT_THROW(Connections_is_barrier_gates(nullptr), std::invalid_argument);
-  EXPECT_THROW(Connections_is_reservoir_gates(nullptr), std::invalid_argument);
-  EXPECT_THROW(Connections_is_screening_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Connections_is_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_is_ohmics(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_is_dot_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_is_plunger_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_is_barrier_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_is_reservoir_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_is_screening_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ConnectionsTest, Methods_PushBackEraseClearContainsIndex) {
@@ -143,18 +162,42 @@ TEST_F(ConnectionsTest, Methods_PushBackEraseClearContainsIndex) {
   Connections_destroy(c);
 
   // Nullptr coverage for methods
-  EXPECT_THROW(Connections_push_back(nullptr, barrier), std::invalid_argument);
-  EXPECT_THROW(Connections_push_back(c, nullptr), std::invalid_argument);
-  EXPECT_THROW(Connections_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(Connections_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(Connections_contains(nullptr, plunger), std::invalid_argument);
-  EXPECT_THROW(Connections_contains(c, nullptr), std::invalid_argument);
-  EXPECT_THROW(Connections_index(nullptr, plunger), std::invalid_argument);
-  EXPECT_THROW(Connections_index(c, nullptr), std::invalid_argument);
-  EXPECT_THROW(Connections_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(Connections_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(Connections_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(Connections_items(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Connections_push_back(nullptr, barrier);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_push_back(c, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_contains(nullptr, plunger);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_contains(c, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_index(nullptr, plunger);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_index(c, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ConnectionsTest, Items_Buffer) {
@@ -185,10 +228,18 @@ TEST_F(ConnectionsTest, EqualityAndInequality) {
   Connections_destroy(c3);
 
   // Nullptr coverage for equality
-  EXPECT_THROW(Connections_equal(nullptr, c3), std::invalid_argument);
-  EXPECT_THROW(Connections_equal(c1, nullptr), std::invalid_argument);
-  EXPECT_THROW(Connections_not_equal(nullptr, c3), std::invalid_argument);
-  EXPECT_THROW(Connections_not_equal(c1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Connections_equal(nullptr, c3);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_equal(c1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_not_equal(nullptr, c3);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_not_equal(c1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ConnectionsTest, SerializationRoundTrip) {
@@ -205,16 +256,24 @@ TEST_F(ConnectionsTest, SerializationRoundTrip) {
   Connections_destroy(c2);
 
   // Nullptr coverage for serialization
-  EXPECT_THROW(Connections_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(Connections_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Connections_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ConnectionsTest, IntersectionThrowsOnNullptr) {
   ConnectionsHandle c1 = Connections_create_empty();
   Connections_push_back(c1, barrier);
   ConnectionsHandle null_ptr = NULL;
-  EXPECT_THROW(Connections_intersection(c1, null_ptr), std::invalid_argument);
-  EXPECT_THROW(Connections_intersection(nullptr, c1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Connections_intersection(c1, null_ptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Connections_intersection(nullptr, c1);
+  EXPECT_EQ(get_last_error_code(), 1);
   Connections_destroy(c1);
 }
 
@@ -238,7 +297,9 @@ TEST_F(ConnectionsTest, IntersectionNormalCase) {
 }
 
 TEST_F(ConnectionsTest, CreateWithNullItemsThrows) {
-  EXPECT_THROW(Connections_create(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Connections_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ConnectionsTest, CreateFromListConnectionHandle) {

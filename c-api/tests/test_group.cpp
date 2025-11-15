@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -244,173 +245,241 @@ TEST_F(GroupTest, EqualityAndInequality) {
 }
 
 TEST_F(GroupTest, CreateThrowsOnNullArguments) {
-  EXPECT_THROW(
-      Group_create(
-          nullptr, num_dots, screening, reservoir, plunger, barrier, order),
-      std::invalid_argument);
-  EXPECT_THROW(
-      Group_create(
-          channel, num_dots, nullptr, reservoir, plunger, barrier, order),
-      std::invalid_argument);
-  EXPECT_THROW(
-      Group_create(
-          channel, num_dots, screening, nullptr, plunger, barrier, order),
-      std::invalid_argument);
-  EXPECT_THROW(
-      Group_create(
-          channel, num_dots, screening, reservoir, nullptr, barrier, order),
-      std::invalid_argument);
-  EXPECT_THROW(
-      Group_create(
-          channel, num_dots, screening, reservoir, plunger, nullptr, order),
-      std::invalid_argument);
-  EXPECT_THROW(
-      Group_create(
-          channel, num_dots, screening, reservoir, plunger, barrier, nullptr),
-      std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_create(          nullptr, num_dots, screening, reservoir, plunger, barrier, order);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Group_create(          channel, num_dots, nullptr, reservoir, plunger, barrier, order);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Group_create(          channel, num_dots, screening, nullptr, plunger, barrier, order);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Group_create(          channel, num_dots, screening, reservoir, nullptr, barrier, order);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Group_create(          channel, num_dots, screening, reservoir, plunger, nullptr, order);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Group_create(          channel, num_dots, screening, reservoir, plunger, barrier, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, DestroyThrowsOnNullHandle) {
-  EXPECT_THROW(Group_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, NameThrowsOnNullHandle) {
-  EXPECT_THROW(Group_name(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_name(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, NumDotsThrowsOnNullHandle) {
-  EXPECT_THROW(Group_num_dots(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_num_dots(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, OrderThrowsOnNullHandle) {
-  EXPECT_THROW(Group_order(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_order(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, HasChannelThrowsOnNullHandle) {
-  EXPECT_THROW(Group_has_channel(nullptr, channel), std::invalid_argument);
-  EXPECT_THROW(Group_has_channel(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_has_channel(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Group_has_channel(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, IsChargeSensorThrowsOnNullHandle) {
-  EXPECT_THROW(Group_is_charge_sensor(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_is_charge_sensor(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, GetAllChannelGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Group_get_all_channel_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_get_all_channel_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, ScreeningGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Group_screening_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_screening_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, ReservoirGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Group_reservoir_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_reservoir_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, PlungerGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Group_plunger_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_plunger_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, BarrierGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Group_barrier_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_barrier_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, OhmicsThrowsOnNullHandle) {
-  EXPECT_THROW(Group_ohmics(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_ohmics(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, DotGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Group_dot_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_dot_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, OhmicThrowsOnNullHandle) {
-  EXPECT_THROW(Group_get_ohmic(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_get_ohmic(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, BarrierGateThrowsOnNullHandle) {
-  EXPECT_THROW(Group_get_barrier_gate(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_get_barrier_gate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, PlungerGateThrowsOnNullHandle) {
-  EXPECT_THROW(Group_get_plunger_gate(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_get_plunger_gate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, ReservoirGateThrowsOnNullHandle) {
-  EXPECT_THROW(Group_get_reservoir_gate(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_get_reservoir_gate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, ScreeningGateThrowsOnNullHandle) {
-  EXPECT_THROW(Group_get_screening_gate(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_get_screening_gate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, DotGateThrowsOnNullHandle) {
-  EXPECT_THROW(Group_get_dot_gate(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_get_dot_gate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, GateThrowsOnNullHandle) {
-  EXPECT_THROW(Group_get_gate(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_get_gate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, AllGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Group_get_all_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_get_all_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, AllConnectionsThrowsOnNullHandle) {
-  EXPECT_THROW(Group_get_all_connections(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_get_all_connections(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, HasOhmicThrowsOnNullHandle) {
-  EXPECT_THROW(Group_has_ohmic(nullptr, String_wrap("O1")),
-               std::invalid_argument);
-  EXPECT_THROW(Group_has_ohmic(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_has_ohmic(nullptr, String_wrap("O1"));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Group_has_ohmic(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, HasGateThrowsOnNullHandle) {
-  EXPECT_THROW(Group_has_gate(nullptr, String_wrap("G1")),
-               std::invalid_argument);
-  EXPECT_THROW(Group_has_gate(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_has_gate(nullptr, String_wrap("G1"));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Group_has_gate(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, HasBarrierGateThrowsOnNullHandle) {
-  EXPECT_THROW(Group_has_barrier_gate(nullptr, String_wrap("B1")),
-               std::invalid_argument);
-  EXPECT_THROW(Group_has_barrier_gate(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_has_barrier_gate(nullptr, String_wrap("B1"));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Group_has_barrier_gate(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, HasPlungerGateThrowsOnNullHandle) {
-  EXPECT_THROW(Group_has_plunger_gate(nullptr, String_wrap("P1")),
-               std::invalid_argument);
-  EXPECT_THROW(Group_has_plunger_gate(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_has_plunger_gate(nullptr, String_wrap("P1"));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Group_has_plunger_gate(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, HasReservoirGateThrowsOnNullHandle) {
-  EXPECT_THROW(Group_has_reservoir_gate(nullptr, String_wrap("R1")),
-               std::invalid_argument);
-  EXPECT_THROW(Group_has_reservoir_gate(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_has_reservoir_gate(nullptr, String_wrap("R1"));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Group_has_reservoir_gate(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, HasScreeningGateThrowsOnNullHandle) {
-  EXPECT_THROW(Group_has_screening_gate(nullptr, String_wrap("S1")),
-               std::invalid_argument);
-  EXPECT_THROW(Group_has_screening_gate(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_has_screening_gate(nullptr, String_wrap("S1"));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Group_has_screening_gate(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, EqualityThrowsOnNullHandle) {
-  EXPECT_THROW(Group_equal(nullptr, handle), std::invalid_argument);
-  EXPECT_THROW(Group_equal(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_equal(nullptr, handle);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Group_equal(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, InequalityThrowsOnNullHandle) {
-  EXPECT_THROW(Group_not_equal(nullptr, handle), std::invalid_argument);
-  EXPECT_THROW(Group_not_equal(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_not_equal(nullptr, handle);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Group_not_equal(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, ToJsonStringThrowsOnNullHandle) {
-  EXPECT_THROW(Group_to_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GroupTest, FromJsonStringThrowsOnNullJson) {
-  EXPECT_THROW(Group_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Group_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

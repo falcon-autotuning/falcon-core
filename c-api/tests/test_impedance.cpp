@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/device_structures/Impedance_c_api.h"
 
@@ -14,7 +15,9 @@ TEST(ImpedanceTest, ValueConstructor) {
 }
 
 TEST(ImpedanceTest, NullConnectionThrows) {
-  EXPECT_ANY_THROW(Impedance_create(nullptr, 1.0, 2.0));
+  set_last_error(0, nullptr);
+  Impedance_create(nullptr, 1.0, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST(ImpedanceTest, SerializationRoundTrip) {
@@ -51,17 +54,37 @@ TEST(ImpedanceTest, NullHandlesThrow) {
   ConnectionHandle conn = Connection_create_ohmic(String_wrap("baz"));
   ImpedanceHandle  imp  = Impedance_create(conn, 1.0, 1.0);
 
-  EXPECT_THROW(Impedance_equal(nullptr, imp), std::invalid_argument);
-  EXPECT_THROW(Impedance_equal(imp, nullptr), std::invalid_argument);
-  EXPECT_THROW(Impedance_not_equal(nullptr, imp), std::invalid_argument);
-  EXPECT_THROW(Impedance_not_equal(imp, nullptr), std::invalid_argument);
-  EXPECT_THROW(Impedance_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(Impedance_from_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(Impedance_capacitance(nullptr), std::invalid_argument);
-  EXPECT_THROW(Impedance_resistance(nullptr), std::invalid_argument);
-  EXPECT_THROW(Impedance_connection(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Impedance_equal(nullptr, imp);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Impedance_equal(imp, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Impedance_not_equal(nullptr, imp);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Impedance_not_equal(imp, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Impedance_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Impedance_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Impedance_capacitance(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Impedance_resistance(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Impedance_connection(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   Impedance_destroy(imp);
-  EXPECT_THROW(Impedance_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Impedance_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Connection_destroy(conn);
 }

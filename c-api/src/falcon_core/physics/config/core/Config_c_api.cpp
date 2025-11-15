@@ -3,10 +3,12 @@
 #include <falcon_core/physics/config/core/Config.hpp>
 #include <string>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::physics::config::core;
 
+extern "C" {
 ConfigHandle Config_create(ConnectionsHandle        screening_gates,
                            ConnectionsHandle        plunger_gates,
                            ConnectionsHandle        ohmics,
@@ -15,6 +17,8 @@ ConfigHandle Config_create(ConnectionsHandle        screening_gates,
                            MapGnameGroupHandle      groups,
                            ImpedancesHandle         wiring_DC,
                            VoltageConstraintsHandle constraints) {
+  FALCON_C_API_BEGIN
+
   if (!screening_gates) {
     throw std::invalid_argument(
         "Config_create: screening_gates cannot be null");
@@ -72,34 +76,42 @@ ConfigHandle Config_create(ConnectionsHandle        screening_gates,
                     real_groups,
                     real_wiring_DC,
                     real_constraints);
+  FALCON_C_API_END(nullptr)
 }
 
 void Config_destroy(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_destroy: handle cannot be null");
   }
   delete static_cast<Config*>(handle);
+  FALCON_C_API_END()
 }
 
 int Config_num_unique_channels(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_num_unique_channels: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return self.num_unique_channels();
+  FALCON_C_API_END(0)
 }
 
 VoltageConstraintsHandle Config_voltage_constraints(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_voltage_constraints: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new VoltageConstraints(*self.voltage_constraints());
+  FALCON_C_API_END(nullptr)
 }
 
 MapGnameGroupHandle Config_groups(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_groups: handle cannot be null");
   }
@@ -107,27 +119,33 @@ MapGnameGroupHandle Config_groups(ConfigHandle handle) {
   return new falcon_core::generic::
       Map<falcon_core::autotuner_interfaces::names::Gname, Group>(
           *self.groups());
+  FALCON_C_API_END(nullptr)
 }
 
 ImpedancesHandle Config_wiring_DC(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_wiring_DC: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Impedances(*self.wiring_DC());
+  FALCON_C_API_END(nullptr)
 }
 
 ChannelsHandle Config_channels(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_channels: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new falcon_core::autotuner_interfaces::names::Channels(
       *self.channels());
+  FALCON_C_API_END(nullptr)
 }
 
 ImpedanceHandle Config_get_impedance(ConfigHandle     handle,
                                      ConnectionHandle connection) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_get_impedance: handle cannot be null");
   }
@@ -141,9 +159,11 @@ ImpedanceHandle Config_get_impedance(ConfigHandle     handle,
           *static_cast<falcon_core::physics::device_structures::Connection*>(
               connection));
   return new Impedance(*self.get_impedance(real_connection));
+  FALCON_C_API_END(nullptr)
 }
 
 ListGnameHandle Config_get_all_gnames(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_get_all_gnames: handle cannot be null");
   }
@@ -151,17 +171,21 @@ ListGnameHandle Config_get_all_gnames(ConfigHandle handle) {
   return new falcon_core::generic::List<
       falcon_core::autotuner_interfaces::names::Gname>(
       *(self.get_all_gnames()));
+  FALCON_C_API_END(nullptr)
 }
 
 ListGroupHandle Config_get_all_groups(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_get_all_groups: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new falcon_core::generic::List<Group>(*(self.get_all_groups()));
+  FALCON_C_API_END(nullptr)
 }
 
 bool Config_has_channel(ConfigHandle handle, ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_has_channel: handle cannot be null");
   }
@@ -174,9 +198,11 @@ bool Config_has_channel(ConfigHandle handle, ChannelHandle channel) {
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return self.has_channel(real_channel);
+  FALCON_C_API_END(false)
 }
 
 bool Config_has_gname(ConfigHandle handle, GnameHandle gname) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_has_gname: handle cannot be null");
   }
@@ -189,9 +215,11 @@ bool Config_has_gname(ConfigHandle handle, GnameHandle gname) {
           *static_cast<falcon_core::autotuner_interfaces::names::Gname*>(
               gname));
   return self.has_gname(real_gname);
+  FALCON_C_API_END(false)
 }
 
 GroupHandle Config_select_group(ConfigHandle handle, GnameHandle gname) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_select_group: handle cannot be null");
   }
@@ -204,8 +232,10 @@ GroupHandle Config_select_group(ConfigHandle handle, GnameHandle gname) {
           *static_cast<falcon_core::autotuner_interfaces::names::Gname*>(
               gname));
   return new Group(*self.select_group(real_gname));
+  FALCON_C_API_END(nullptr)
 }
 int Config_get_dot_number(ConfigHandle handle, ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_get_dot_number: handle cannot be null");
   }
@@ -219,9 +249,11 @@ int Config_get_dot_number(ConfigHandle handle, ChannelHandle channel) {
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return self.get_dot_number(real_channel);
+  FALCON_C_API_END(0)
 }
 
 ListGnameHandle Config_get_charge_sense_groups(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_charge_sense_groups: handle cannot be null");
@@ -230,10 +262,12 @@ ListGnameHandle Config_get_charge_sense_groups(ConfigHandle handle) {
   return new falcon_core::generic::List<
       falcon_core::autotuner_interfaces::names::Gname>(
       *(self.get_charge_sense_groups()));
+  FALCON_C_API_END(nullptr)
 }
 
 bool Config_ohmic_in_charge_sensor(ConfigHandle     handle,
                                    ConnectionHandle ohmic) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_ohmic_in_charge_sensor: handle cannot be null");
@@ -248,10 +282,12 @@ bool Config_ohmic_in_charge_sensor(ConfigHandle     handle,
           *static_cast<falcon_core::physics::device_structures::Connection*>(
               ohmic));
   return self.ohmic_in_charge_sensor(real_ohmic);
+  FALCON_C_API_END(false)
 }
 
 ConnectionHandle Config_get_associated_ohmic(ConfigHandle     handle,
                                              ConnectionHandle reservoir_gate) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_associated_ohmic: handle cannot be null");
@@ -266,9 +302,11 @@ ConnectionHandle Config_get_associated_ohmic(ConfigHandle     handle,
           *static_cast<falcon_core::physics::device_structures::Connection*>(
               reservoir_gate));
   return new Connection(*self.get_associated_ohmic(real_reservoir_gate));
+  FALCON_C_API_END(nullptr)
 }
 
 ChannelsHandle Config_get_current_channels(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_current_channels: handle cannot be null");
@@ -276,9 +314,11 @@ ChannelsHandle Config_get_current_channels(ConfigHandle handle) {
   Config self = *static_cast<Config*>(handle);
   return new falcon_core::autotuner_interfaces::names::Channels(
       *self.get_current_channels());
+  FALCON_C_API_END(nullptr)
 }
 
 GnameHandle Config_get_gname(ConfigHandle handle, ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_get_gname: handle cannot be null");
   }
@@ -292,10 +332,12 @@ GnameHandle Config_get_gname(ConfigHandle handle, ChannelHandle channel) {
               channel));
   return new falcon_core::autotuner_interfaces::names::Gname(
       *self.get_gname(real_channel));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_group_barrier_gates(ConfigHandle handle,
                                                  GnameHandle  gname) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_group_barrier_gates: handle cannot be null");
@@ -310,10 +352,12 @@ ConnectionsHandle Config_get_group_barrier_gates(ConfigHandle handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Gname*>(
               gname));
   return new Connections(*(self.get_group_barrier_gates(real_gname)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_group_plunger_gates(ConfigHandle handle,
                                                  GnameHandle  gname) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_group_plunger_gates: handle cannot be null");
@@ -328,10 +372,12 @@ ConnectionsHandle Config_get_group_plunger_gates(ConfigHandle handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Gname*>(
               gname));
   return new Connections(*(self.get_group_plunger_gates(real_gname)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_group_reservoir_gates(ConfigHandle handle,
                                                    GnameHandle  gname) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_group_reservoir_gates: handle cannot be null");
@@ -346,10 +392,12 @@ ConnectionsHandle Config_get_group_reservoir_gates(ConfigHandle handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Gname*>(
               gname));
   return new Connections(*(self.get_group_reservoir_gates(real_gname)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_group_screening_gates(ConfigHandle handle,
                                                    GnameHandle  gname) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_group_screening_gates: handle cannot be null");
@@ -364,10 +412,12 @@ ConnectionsHandle Config_get_group_screening_gates(ConfigHandle handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Gname*>(
               gname));
   return new Connections(*(self.get_group_screening_gates(real_gname)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_group_dot_gates(ConfigHandle handle,
                                              GnameHandle  gname) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_group_dot_gates: handle cannot be null");
@@ -382,10 +432,12 @@ ConnectionsHandle Config_get_group_dot_gates(ConfigHandle handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Gname*>(
               gname));
   return new Connections(*(self.get_group_dot_gates(real_gname)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_group_gates(ConfigHandle handle,
                                          GnameHandle  gname) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_group_gates: handle cannot be null");
@@ -399,10 +451,12 @@ ConnectionsHandle Config_get_group_gates(ConfigHandle handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Gname*>(
               gname));
   return new Connections(*(self.get_group_gates(real_gname)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_channel_barrier_gates(ConfigHandle  handle,
                                                    ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_channel_barrier_gates: handle cannot be null");
@@ -417,10 +471,12 @@ ConnectionsHandle Config_get_channel_barrier_gates(ConfigHandle  handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return new Connections(*(self.get_channel_barrier_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_channel_plunger_gates(ConfigHandle  handle,
                                                    ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_channel_plunger_gates: handle cannot be null");
@@ -435,10 +491,12 @@ ConnectionsHandle Config_get_channel_plunger_gates(ConfigHandle  handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return new Connections(*(self.get_channel_plunger_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_channel_reservoir_gates(ConfigHandle  handle,
                                                      ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_channel_reservoir_gates: handle cannot be null");
@@ -453,10 +511,12 @@ ConnectionsHandle Config_get_channel_reservoir_gates(ConfigHandle  handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return new Connections(*(self.get_channel_reservoir_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_channel_screening_gates(ConfigHandle  handle,
                                                      ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_channel_screening_gates: handle cannot be null");
@@ -471,10 +531,12 @@ ConnectionsHandle Config_get_channel_screening_gates(ConfigHandle  handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return new Connections(*(self.get_channel_screening_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_channel_dot_gates(ConfigHandle  handle,
                                                ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_channel_dot_gates: handle cannot be null");
@@ -489,10 +551,12 @@ ConnectionsHandle Config_get_channel_dot_gates(ConfigHandle  handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return new Connections(*(self.get_channel_dot_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_channel_gates(ConfigHandle  handle,
                                            ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_channel_gates: handle cannot be null");
@@ -507,10 +571,12 @@ ConnectionsHandle Config_get_channel_gates(ConfigHandle  handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return new Connections(*(self.get_channel_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_channel_ohmics(ConfigHandle  handle,
                                             ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_channel_ohmics: handle cannot be null");
@@ -525,10 +591,12 @@ ConnectionsHandle Config_get_channel_ohmics(ConfigHandle  handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return new Connections(*(self.get_channel_ohmics(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_channel_order_no_ohmics(ConfigHandle  handle,
                                                      ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_channel_order_no_ohmics: handle cannot be null");
@@ -543,19 +611,23 @@ ConnectionsHandle Config_get_channel_order_no_ohmics(ConfigHandle  handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return new Connections(*(self.get_channel_order_no_ohmics(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 int Config_get_num_unique_channels(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_num_unique_channels: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return self.num_unique_channels();
+  FALCON_C_API_END(0)
 }
 
 ChannelsHandle Config_return_channels_from_gate(ConfigHandle     handle,
                                                 ConnectionHandle gate) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_return_channels_from_gate: handle cannot be null");
@@ -571,10 +643,12 @@ ChannelsHandle Config_return_channels_from_gate(ConfigHandle     handle,
               gate));
   return new falcon_core::autotuner_interfaces::names::Channels(
       *(self.return_channels_from_gate(real_gate)));
+  FALCON_C_API_END(nullptr)
 }
 
 ChannelHandle Config_return_channel_from_gate(ConfigHandle     handle,
                                               ConnectionHandle gate) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_return_channel_from_gate: handle cannot be null");
@@ -590,11 +664,13 @@ ChannelHandle Config_return_channel_from_gate(ConfigHandle     handle,
               gate));
   return new falcon_core::autotuner_interfaces::names::Channel(
       *self.return_channel_from_gate(real_gate));
+  FALCON_C_API_END(nullptr)
 }
 
 bool Config_ohmic_in_channel(ConfigHandle     handle,
                              ConnectionHandle ohmic,
                              ChannelHandle    channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_ohmic_in_channel: handle cannot be null");
@@ -617,10 +693,12 @@ bool Config_ohmic_in_channel(ConfigHandle     handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return self.ohmic_in_channel(real_ohmic, real_channel);
+  FALCON_C_API_END(false)
 }
 
 PairConnectionConnectionHandle Config_get_dot_channel_neighbors(
     ConfigHandle handle, ConnectionHandle dot_gate) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_dot_channel_neighbors: handle cannot be null");
@@ -637,9 +715,11 @@ PairConnectionConnectionHandle Config_get_dot_channel_neighbors(
   auto neighbors = self.get_dot_channel_neighbors(real_dot_gate);
   return new std::pair<Connection, Connection>(*(neighbors.first),
                                                *(neighbors.second));
+  FALCON_C_API_END(nullptr)
 }
 
 MapChannelConnectionsHandle Config_get_barrier_gate_dict(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_barrier_gate_dict: handle cannot be null");
@@ -648,9 +728,11 @@ MapChannelConnectionsHandle Config_get_barrier_gate_dict(ConfigHandle handle) {
   return new falcon_core::generic::
       Map<falcon_core::autotuner_interfaces::names::Channel, Connections>(
           *(self.get_barrier_gate_dict()));
+  FALCON_C_API_END(nullptr)
 }
 
 MapChannelConnectionsHandle Config_get_plunger_gate_dict(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_plunger_gate_dict: handle cannot be null");
@@ -659,10 +741,12 @@ MapChannelConnectionsHandle Config_get_plunger_gate_dict(ConfigHandle handle) {
   return new falcon_core::generic::
       Map<falcon_core::autotuner_interfaces::names::Channel, Connections>(
           *(self.get_plunger_gate_dict()));
+  FALCON_C_API_END(nullptr)
 }
 
 MapChannelConnectionsHandle Config_get_reservoir_gate_dict(
     ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_reservoir_gate_dict: handle cannot be null");
@@ -671,10 +755,12 @@ MapChannelConnectionsHandle Config_get_reservoir_gate_dict(
   return new falcon_core::generic::
       Map<falcon_core::autotuner_interfaces::names::Channel, Connections>(
           *(self.get_reservoir_gate_dict()));
+  FALCON_C_API_END(nullptr)
 }
 
 MapChannelConnectionsHandle Config_get_screening_gate_dict(
     ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_screening_gate_dict: handle cannot be null");
@@ -683,9 +769,11 @@ MapChannelConnectionsHandle Config_get_screening_gate_dict(
   return new falcon_core::generic::
       Map<falcon_core::autotuner_interfaces::names::Channel, Connections>(
           *(self.get_screening_gate_dict()));
+  FALCON_C_API_END(nullptr)
 }
 
 MapChannelConnectionsHandle Config_get_dot_gate_dict(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_dot_gate_dict: handle cannot be null");
@@ -694,9 +782,11 @@ MapChannelConnectionsHandle Config_get_dot_gate_dict(ConfigHandle handle) {
   return new falcon_core::generic::
       Map<falcon_core::autotuner_interfaces::names::Channel, Connections>(
           *(self.get_dot_gate_dict()));
+  FALCON_C_API_END(nullptr)
 }
 
 MapChannelConnectionsHandle Config_get_gate_dict(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_get_gate_dict: handle cannot be null");
   }
@@ -704,118 +794,144 @@ MapChannelConnectionsHandle Config_get_gate_dict(ConfigHandle handle) {
   return new falcon_core::generic::
       Map<falcon_core::autotuner_interfaces::names::Channel, Connections>(
           *(self.get_gate_dict()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_isolated_barrier_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_barrier_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.get_isolated_barrier_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_isolated_plunger_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_plunger_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.get_isolated_plunger_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_isolated_reservoir_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_reservoir_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.get_isolated_reservoir_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_isolated_screening_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_screening_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.get_isolated_screening_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_isolated_dot_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_dot_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.get_isolated_dot_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_isolated_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.get_isolated_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_shared_barrier_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_shared_barrier_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.get_shared_barrier_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_shared_plunger_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_shared_plunger_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.get_shared_plunger_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_shared_reservoir_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_shared_reservoir_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.get_shared_reservoir_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_shared_screening_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_shared_screening_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.get_shared_screening_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_shared_dot_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_shared_dot_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.get_shared_dot_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_shared_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_shared_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.get_shared_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_shared_channel_barrier_gates(
     ConfigHandle handle, ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_shared_channel_barrier_gates: handle cannot be null");
@@ -831,10 +947,12 @@ ConnectionsHandle Config_get_shared_channel_barrier_gates(
               channel));
   return new Connections(
       *(self.get_shared_channel_barrier_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_shared_channel_plunger_gates(
     ConfigHandle handle, ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_shared_channel_plunger_gates: handle cannot be null");
@@ -850,10 +968,12 @@ ConnectionsHandle Config_get_shared_channel_plunger_gates(
               channel));
   return new Connections(
       *(self.get_shared_channel_plunger_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_shared_channel_reservoir_gates(
     ConfigHandle handle, ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_shared_channel_reservoir_gates: handle cannot be null");
@@ -869,10 +989,12 @@ ConnectionsHandle Config_get_shared_channel_reservoir_gates(
               channel));
   return new Connections(
       *(self.get_shared_channel_reservoir_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_shared_channel_screening_gates(
     ConfigHandle handle, ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_shared_channel_screening_gates: handle cannot be null");
@@ -888,10 +1010,12 @@ ConnectionsHandle Config_get_shared_channel_screening_gates(
               channel));
   return new Connections(
       *(self.get_shared_channel_screening_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_shared_channel_dot_gates(ConfigHandle  handle,
                                                       ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_shared_channel_dot_gates: handle cannot be null");
@@ -906,10 +1030,12 @@ ConnectionsHandle Config_get_shared_channel_dot_gates(ConfigHandle  handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return new Connections(*(self.get_shared_channel_dot_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_shared_channel_gates(ConfigHandle  handle,
                                                   ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_shared_channel_gates: handle cannot be null");
@@ -924,10 +1050,12 @@ ConnectionsHandle Config_get_shared_channel_gates(ConfigHandle  handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return new Connections(*(self.get_shared_channel_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_isolated_channel_barrier_gates(
     ConfigHandle handle, ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_channel_barrier_gates: handle cannot be null");
@@ -943,10 +1071,12 @@ ConnectionsHandle Config_get_isolated_channel_barrier_gates(
               channel));
   return new Connections(
       *(self.get_isolated_channel_barrier_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_isolated_channel_plunger_gates(
     ConfigHandle handle, ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_channel_plunger_gates: handle cannot be null");
@@ -962,10 +1092,12 @@ ConnectionsHandle Config_get_isolated_channel_plunger_gates(
               channel));
   return new Connections(
       *(self.get_isolated_channel_plunger_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_isolated_channel_reservoir_gates(
     ConfigHandle handle, ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_channel_reservoir_gates: handle cannot be null");
@@ -981,10 +1113,12 @@ ConnectionsHandle Config_get_isolated_channel_reservoir_gates(
               channel));
   return new Connections(
       *(self.get_isolated_channel_reservoir_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_isolated_channel_screening_gates(
     ConfigHandle handle, ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_channel_screening_gates: handle cannot be null");
@@ -1000,10 +1134,12 @@ ConnectionsHandle Config_get_isolated_channel_screening_gates(
               channel));
   return new Connections(
       *(self.get_isolated_channel_screening_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_isolated_channel_dot_gates(ConfigHandle  handle,
                                                         ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_channel_dot_gates: handle cannot be null");
@@ -1018,10 +1154,12 @@ ConnectionsHandle Config_get_isolated_channel_dot_gates(ConfigHandle  handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return new Connections(*(self.get_isolated_channel_dot_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_isolated_channel_gates(ConfigHandle  handle,
                                                     ChannelHandle channel) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_channel_gates: handle cannot be null");
@@ -1036,10 +1174,12 @@ ConnectionsHandle Config_get_isolated_channel_gates(ConfigHandle  handle,
           *static_cast<falcon_core::autotuner_interfaces::names::Channel*>(
               channel));
   return new Connections(*(self.get_isolated_channel_gates(real_channel)));
+  FALCON_C_API_END(nullptr)
 }
 
 MapChannelConnectionsHandle Config_get_isolated_barrier_gates_by_channel(
     ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_barrier_gates_by_channel: handle cannot be null");
@@ -1048,10 +1188,12 @@ MapChannelConnectionsHandle Config_get_isolated_barrier_gates_by_channel(
   return new falcon_core::generic::
       Map<falcon_core::autotuner_interfaces::names::Channel, Connections>(
           *(self.get_isolated_barrier_gates_by_channel()));
+  FALCON_C_API_END(nullptr)
 }
 
 MapChannelConnectionsHandle Config_get_isolated_plunger_gates_by_channel(
     ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_plunger_gates_by_channel: handle cannot be null");
@@ -1060,10 +1202,12 @@ MapChannelConnectionsHandle Config_get_isolated_plunger_gates_by_channel(
   return new falcon_core::generic::
       Map<falcon_core::autotuner_interfaces::names::Channel, Connections>(
           *(self.get_isolated_plunger_gates_by_channel()));
+  FALCON_C_API_END(nullptr)
 }
 
 MapChannelConnectionsHandle Config_get_isolated_reservoir_gates_by_channel(
     ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_reservoir_gates_by_channel: handle cannot be "
@@ -1073,10 +1217,12 @@ MapChannelConnectionsHandle Config_get_isolated_reservoir_gates_by_channel(
   return new falcon_core::generic::
       Map<falcon_core::autotuner_interfaces::names::Channel, Connections>(
           *(self.get_isolated_reservoir_gates_by_channel()));
+  FALCON_C_API_END(nullptr)
 }
 
 MapChannelConnectionsHandle Config_get_isolated_screening_gates_by_channel(
     ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_screening_gates_by_channel: handle cannot be "
@@ -1086,10 +1232,12 @@ MapChannelConnectionsHandle Config_get_isolated_screening_gates_by_channel(
   return new falcon_core::generic::
       Map<falcon_core::autotuner_interfaces::names::Channel, Connections>(
           *(self.get_isolated_screening_gates_by_channel()));
+  FALCON_C_API_END(nullptr)
 }
 
 MapChannelConnectionsHandle Config_get_isolated_dot_gates_by_channel(
     ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_dot_gates_by_channel: handle cannot be null");
@@ -1098,10 +1246,12 @@ MapChannelConnectionsHandle Config_get_isolated_dot_gates_by_channel(
   return new falcon_core::generic::
       Map<falcon_core::autotuner_interfaces::names::Channel, Connections>(
           *(self.get_isolated_dot_gates_by_channel()));
+  FALCON_C_API_END(nullptr)
 }
 
 MapChannelConnectionsHandle Config_get_isolated_gates_by_channel(
     ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_isolated_gates_by_channel: handle cannot be null");
@@ -1110,145 +1260,179 @@ MapChannelConnectionsHandle Config_get_isolated_gates_by_channel(
   return new falcon_core::generic::
       Map<falcon_core::autotuner_interfaces::names::Channel, Connections>(
           *(self.get_isolated_gates_by_channel()));
+  FALCON_C_API_END(nullptr)
 }
 
 GateRelationsHandle Config_generate_gate_relations(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_generate_gate_relations: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new GateRelations(*(self.generate_gate_relations()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_screening_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_screening_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.screening_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_reservoir_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_reservoir_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.reservoir_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_plunger_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_plunger_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.plunger_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_barrier_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_barrier_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.barrier_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_ohmics(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_ohmics: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.ohmics()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_dot_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_dot_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.dot_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionHandle Config_get_ohmic(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_get_ohmic: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connection(*self.get_ohmic());
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionHandle Config_get_barrier_gate(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_barrier_gate: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connection(*self.get_barrier_gate());
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionHandle Config_get_plunger_gate(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_plunger_gate: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connection(*self.get_plunger_gate());
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionHandle Config_get_reservoir_gate(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_reservoir_gate: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connection(*self.get_reservoir_gate());
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionHandle Config_get_screening_gate(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_screening_gate: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connection(*self.get_screening_gate());
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionHandle Config_get_dot_gate(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_get_dot_gate: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connection(*self.get_dot_gate());
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionHandle Config_get_gate(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_get_gate: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connection(*self.get_gate());
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_all_gates(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_get_all_gates: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.get_all_gates()));
+  FALCON_C_API_END(nullptr)
 }
 
 ConnectionsHandle Config_get_all_connections(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_get_all_connections: handle cannot be null");
   }
   Config self = *static_cast<Config*>(handle);
   return new Connections(*(self.get_all_connections()));
+  FALCON_C_API_END(nullptr)
 }
 
 bool Config_has_ohmic(ConfigHandle handle, ConnectionHandle ohmic) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_has_ohmic: handle cannot be null");
   }
@@ -1261,9 +1445,11 @@ bool Config_has_ohmic(ConfigHandle handle, ConnectionHandle ohmic) {
           *static_cast<falcon_core::physics::device_structures::Connection*>(
               ohmic));
   return self.has_ohmic(real_ohmic);
+  FALCON_C_API_END(false)
 }
 
 bool Config_has_gate(ConfigHandle handle, ConnectionHandle gate) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_has_gate: handle cannot be null");
   }
@@ -1276,10 +1462,12 @@ bool Config_has_gate(ConfigHandle handle, ConnectionHandle gate) {
           *static_cast<falcon_core::physics::device_structures::Connection*>(
               gate));
   return self.has_gate(real_gate);
+  FALCON_C_API_END(false)
 }
 
 bool Config_has_barrier_gate(ConfigHandle     handle,
                              ConnectionHandle barrier_gate) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_has_barrier_gate: handle cannot be null");
@@ -1295,10 +1483,12 @@ bool Config_has_barrier_gate(ConfigHandle     handle,
           *static_cast<falcon_core::physics::device_structures::Connection*>(
               barrier_gate));
   return self.has_barrier_gate(real_barrier_gate);
+  FALCON_C_API_END(false)
 }
 
 bool Config_has_plunger_gate(ConfigHandle     handle,
                              ConnectionHandle plunger_gate) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_has_plunger_gate: handle cannot be null");
@@ -1313,10 +1503,12 @@ bool Config_has_plunger_gate(ConfigHandle     handle,
           *static_cast<falcon_core::physics::device_structures::Connection*>(
               plunger_gate));
   return self.has_plunger_gate(real_plunger_gate);
+  FALCON_C_API_END(false)
 }
 
 bool Config_has_reservoir_gate(ConfigHandle     handle,
                                ConnectionHandle reservoir_gate) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_has_reservoir_gate: handle cannot be null");
@@ -1331,10 +1523,12 @@ bool Config_has_reservoir_gate(ConfigHandle     handle,
           *static_cast<falcon_core::physics::device_structures::Connection*>(
               reservoir_gate));
   return self.has_reservoir_gate(real_reservoir_gate);
+  FALCON_C_API_END(false)
 }
 
 bool Config_has_screening_gate(ConfigHandle     handle,
                                ConnectionHandle screening_gate) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
         "Config_has_screening_gate: handle cannot be null");
@@ -1349,9 +1543,11 @@ bool Config_has_screening_gate(ConfigHandle     handle,
           *static_cast<falcon_core::physics::device_structures::Connection*>(
               screening_gate));
   return self.has_screening_gate(real_screening_gate);
+  FALCON_C_API_END(false)
 }
 
 bool Config_equal(ConfigHandle handle, ConfigHandle other) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_equal: handle cannot be null");
   }
@@ -1361,9 +1557,11 @@ bool Config_equal(ConfigHandle handle, ConfigHandle other) {
   Config* self         = static_cast<Config*>(handle);
   Config* other_config = static_cast<Config*>(other);
   return *self == *other_config;
+  FALCON_C_API_END(false)
 }
 
 bool Config_not_equal(ConfigHandle handle, ConfigHandle other) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_not_equal: handle cannot be null");
   }
@@ -1373,22 +1571,28 @@ bool Config_not_equal(ConfigHandle handle, ConfigHandle other) {
   Config self{*static_cast<Config*>(handle)};
   Config other_config{*static_cast<Config*>(other)};
   return self != other_config;
+  FALCON_C_API_END(false)
 }
 
 StringHandle Config_to_json_string(ConfigHandle handle) {
+  FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Config_to_json_string: handle cannot be null");
   }
   Config*     self = static_cast<Config*>(handle);
   std::string json = self->to_json_string();
   return String_wrap(json.data());
+  FALCON_C_API_END(nullptr)
 }
 
 ConfigHandle Config_from_json_string(StringHandle json) {
+  FALCON_C_API_BEGIN
   if (!json) {
     throw std::invalid_argument("Config_from_json_string: json cannot be null");
   }
   std::string json_str = std::string(json->raw, json->length);
   ConfigSP    ptr      = Config::from_json_string<Config>(json_str);
   return new Config(*ptr);
+  FALCON_C_API_END(nullptr)
+}
 }

@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/ListPairSizeTSizeT_c_api.h"
@@ -90,43 +92,59 @@ TEST_F(AdjacencyTest, SerializationRoundTrip) {
 TEST_F(AdjacencyTest, CreateThrowsOnNullIndexes) {
   int    data[1]  = {0};
   size_t shape[1] = {1};
-  EXPECT_THROW(Adjacency_create(data, shape, 1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_create(data, shape, 1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, DestroyThrowsOnNullHandle) {
-  EXPECT_THROW(Adjacency_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, IndexesThrowsOnNullHandle) {
-  EXPECT_THROW(Adjacency_indexes(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_indexes(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, GetTruePairsThrowsOnNullHandle) {
-  EXPECT_THROW(Adjacency_get_true_pairs(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_get_true_pairs(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, SizeThrowsOnNullHandle) {
-  EXPECT_THROW(Adjacency_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, DimensionThrowsOnNullHandle) {
-  EXPECT_THROW(Adjacency_dimension(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_dimension(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, ShapeThrowsOnNullHandle) {
   size_t buf[1];
-  EXPECT_THROW(Adjacency_shape(nullptr, buf, 1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_shape(nullptr, buf, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, DataThrowsOnNullHandle) {
   int buf[1];
-  EXPECT_THROW(Adjacency_data(nullptr, buf, 1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_data(nullptr, buf, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, TimesequalsFarrayThrowsOnNullHandle) {
-  EXPECT_THROW(Adjacency_timesequals_farray(nullptr, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_timesequals_farray(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, TimesequalsFarrayThrowsOnNullOther) {
@@ -135,15 +153,23 @@ TEST_F(AdjacencyTest, TimesequalsFarrayThrowsOnNullOther) {
   size_t            shape[1] = {1};
   ConnectionsHandle idx      = Connections_create_empty();
   AdjacencyHandle   h        = Adjacency_create(data, shape, 1, idx);
-  EXPECT_THROW(Adjacency_create(nullptr, shape, 1, idx), std::invalid_argument);
-  EXPECT_THROW(Adjacency_create(data, nullptr, 1, idx), std::invalid_argument);
-  EXPECT_THROW(Adjacency_timesequals_farray(h, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_create(nullptr, shape, 1, idx);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Adjacency_create(data, nullptr, 1, idx);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Adjacency_timesequals_farray(h, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Adjacency_destroy(h);
   Connection_destroy(idx);
 }
 
 TEST_F(AdjacencyTest, TimesFarrayThrowsOnNullHandle) {
-  EXPECT_THROW(Adjacency_times_farray(nullptr, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_times_farray(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, TimesFarrayThrowsOnNullOther) {
@@ -151,13 +177,17 @@ TEST_F(AdjacencyTest, TimesFarrayThrowsOnNullOther) {
   size_t            shape[1] = {1};
   ConnectionsHandle idx      = Connections_create_empty();
   AdjacencyHandle   h        = Adjacency_create(data, shape, 1, idx);
-  EXPECT_THROW(Adjacency_times_farray(h, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_times_farray(h, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Adjacency_destroy(h);
   Connection_destroy(idx);
 }
 
 TEST_F(AdjacencyTest, EqualityThrowsOnNullHandle) {
-  EXPECT_THROW(Adjacency_equality(nullptr, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_equality(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, EqualityThrowsOnNullOther) {
@@ -165,13 +195,17 @@ TEST_F(AdjacencyTest, EqualityThrowsOnNullOther) {
   size_t            shape[1] = {1};
   ConnectionsHandle idx      = Connections_create_empty();
   AdjacencyHandle   h        = Adjacency_create(data, shape, 1, idx);
-  EXPECT_THROW(Adjacency_equality(h, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_equality(h, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Adjacency_destroy(h);
   Connection_destroy(idx);
 }
 
 TEST_F(AdjacencyTest, NotequalityThrowsOnNullHandle) {
-  EXPECT_THROW(Adjacency_notequality(nullptr, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_notequality(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, NotequalityThrowsOnNullOther) {
@@ -179,35 +213,49 @@ TEST_F(AdjacencyTest, NotequalityThrowsOnNullOther) {
   size_t            shape[1] = {1};
   ConnectionsHandle idx      = Connections_create_empty();
   AdjacencyHandle   h        = Adjacency_create(data, shape, 1, idx);
-  EXPECT_THROW(Adjacency_notequality(h, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_notequality(h, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Adjacency_destroy(h);
   Connection_destroy(idx);
 }
 
 TEST_F(AdjacencyTest, SumThrowsOnNullHandle) {
-  EXPECT_THROW(Adjacency_sum(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_sum(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, WhereThrowsOnNullHandle) {
-  EXPECT_THROW(Adjacency_where(nullptr, 1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_where(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, FlipThrowsOnNullHandle) {
-  EXPECT_THROW(Adjacency_flip(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_flip(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, ToJsonStringThrowsOnNullHandle) {
-  EXPECT_THROW(Adjacency_to_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, FromJsonStringThrowsOnNullJson) {
-  EXPECT_THROW(Adjacency_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, DataReturnsExpected) {
   int    buf[9];
   size_t n = Adjacency_data(handle, buf, 9);
-  EXPECT_THROW(Adjacency_data(handle, nullptr, 8), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Adjacency_data(handle, nullptr, 8);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_EQ(n, 9);
   for (int i = 0; i < 9; ++i) {
     EXPECT_EQ(buf[i], matrix_data[i]);
@@ -216,7 +264,9 @@ TEST_F(AdjacencyTest, DataReturnsExpected) {
 
 TEST_F(AdjacencyTest, DataThrowsIfBufferTooSmall) {
   int buf[3] = {0};
-  EXPECT_THROW(Adjacency_data(handle, buf, 3), std::runtime_error);
+  set_last_error(0, nullptr);
+  Adjacency_data(handle, buf, 3);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AdjacencyTest, TimesequalsFarrayWorks) {

@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h"
@@ -78,45 +79,59 @@ TEST_F(RightReservoirWithImplantedOhmicTest, SerializationRoundTrip) {
 }
 
 TEST_F(RightReservoirWithImplantedOhmicTest, ThrowsOnNullCreate) {
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_create(name, nullptr, ohmic),
-               std::invalid_argument);
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_create(name, left, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_create(nullptr, left, ohmic),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  RightReservoirWithImplantedOhmic_create(name, nullptr, ohmic);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  RightReservoirWithImplantedOhmic_create(name, left, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  RightReservoirWithImplantedOhmic_create(nullptr, left, ohmic);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(RightReservoirWithImplantedOhmicTest, DestructorThrowsOnNull) {
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  RightReservoirWithImplantedOhmic_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(RightReservoirWithImplantedOhmicTest, ThrowsOnNullHandleInGetters) {
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_name(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_type(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_ohmic(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_left_neighbor(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  RightReservoirWithImplantedOhmic_name(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  RightReservoirWithImplantedOhmic_type(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  RightReservoirWithImplantedOhmic_ohmic(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  RightReservoirWithImplantedOhmic_left_neighbor(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(RightReservoirWithImplantedOhmicTest, ThrowsOnNullHandleInEquality) {
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_equal(nullptr, handle),
-               std::invalid_argument);
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_equal(handle, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_not_equal(nullptr, handle),
-               std::invalid_argument);
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_not_equal(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  RightReservoirWithImplantedOhmic_equal(nullptr, handle);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  RightReservoirWithImplantedOhmic_equal(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  RightReservoirWithImplantedOhmic_not_equal(nullptr, handle);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  RightReservoirWithImplantedOhmic_not_equal(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(RightReservoirWithImplantedOhmicTest,
        ThrowsOnNullHandleInSerialization) {
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(RightReservoirWithImplantedOhmic_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  RightReservoirWithImplantedOhmic_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  RightReservoirWithImplantedOhmic_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

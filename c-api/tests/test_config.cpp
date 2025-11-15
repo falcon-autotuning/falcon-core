@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/physics/config/core/Adjacency_c_api.h"
@@ -385,589 +386,756 @@ TEST_F(ConfigTest, EqualityAndInequality) {
 }
 
 TEST_F(ConfigTest, CreateThrowsOnNullArgs) {
-  EXPECT_THROW(Config_create(nullptr,
-                             plunger_gates,
-                             ohmics,
-                             barrier_gates,
-                             reservoir_gates,
-                             groups,
-                             wiring_DC,
-                             constraints),
-               std::invalid_argument);
-  EXPECT_THROW(Config_create(screening_gates,
-                             nullptr,
-                             ohmics,
-                             barrier_gates,
-                             reservoir_gates,
-                             groups,
-                             wiring_DC,
-                             constraints),
-               std::invalid_argument);
-  EXPECT_THROW(Config_create(screening_gates,
-                             plunger_gates,
-                             nullptr,
-                             barrier_gates,
-                             reservoir_gates,
-                             groups,
-                             wiring_DC,
-                             constraints),
-               std::invalid_argument);
-  EXPECT_THROW(Config_create(screening_gates,
-                             plunger_gates,
-                             ohmics,
-                             nullptr,
-                             reservoir_gates,
-                             groups,
-                             wiring_DC,
-                             constraints),
-               std::invalid_argument);
-  EXPECT_THROW(Config_create(screening_gates,
-                             plunger_gates,
-                             ohmics,
-                             barrier_gates,
-                             nullptr,
-                             groups,
-                             wiring_DC,
-                             constraints),
-               std::invalid_argument);
-  EXPECT_THROW(Config_create(screening_gates,
-                             plunger_gates,
-                             ohmics,
-                             barrier_gates,
-                             reservoir_gates,
-                             nullptr,
-                             wiring_DC,
-                             constraints),
-               std::invalid_argument);
-  EXPECT_THROW(Config_create(screening_gates,
-                             plunger_gates,
-                             ohmics,
-                             barrier_gates,
-                             reservoir_gates,
-                             groups,
-                             nullptr,
-                             constraints),
-               std::invalid_argument);
-  EXPECT_THROW(Config_create(screening_gates,
-                             plunger_gates,
-                             ohmics,
-                             barrier_gates,
-                             reservoir_gates,
-                             groups,
-                             wiring_DC,
-                             nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_create(nullptr,                             plunger_gates,                             ohmics,                             barrier_gates,                             reservoir_gates,                             groups,                             wiring_DC,                             constraints);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_create(screening_gates,                             nullptr,                             ohmics,                             barrier_gates,                             reservoir_gates,                             groups,                             wiring_DC,                             constraints);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_create(screening_gates,                             plunger_gates,                             nullptr,                             barrier_gates,                             reservoir_gates,                             groups,                             wiring_DC,                             constraints);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_create(screening_gates,                             plunger_gates,                             ohmics,                             nullptr,                             reservoir_gates,                             groups,                             wiring_DC,                             constraints);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_create(screening_gates,                             plunger_gates,                             ohmics,                             barrier_gates,                             nullptr,                             groups,                             wiring_DC,                             constraints);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_create(screening_gates,                             plunger_gates,                             ohmics,                             barrier_gates,                             reservoir_gates,                             nullptr,                             wiring_DC,                             constraints);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_create(screening_gates,                             plunger_gates,                             ohmics,                             barrier_gates,                             reservoir_gates,                             groups,                             nullptr,                             constraints);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_create(screening_gates,                             plunger_gates,                             ohmics,                             barrier_gates,                             reservoir_gates,                             groups,                             wiring_DC,                             nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, DestroyThrowsOnNullHandle) {
-  EXPECT_THROW(Config_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, NumUniqueChannelsThrowsOnNullHandle) {
-  EXPECT_THROW(Config_num_unique_channels(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_num_unique_channels(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GroupsThrowsOnNullHandle) {
-  EXPECT_THROW(Config_groups(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_groups(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetAllGroupsThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_all_groups(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_all_groups(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, SelectGroupThrowsOnNullHandle) {
   GnameHandle gname = Gname_create(String_wrap("group1"));
-  EXPECT_THROW(Config_select_group(nullptr, gname), std::invalid_argument);
-  EXPECT_THROW(Config_select_group(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_select_group(nullptr, gname);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_select_group(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Gname_destroy(gname);
 }
 TEST_F(ConfigTest, GetDotNumberThrowsOnNullHandle) {
   GnameHandle gname = Gname_create(String_wrap("group1"));
-  EXPECT_THROW(Config_get_dot_number(nullptr, gname), std::invalid_argument);
-  EXPECT_THROW(Config_get_dot_number(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_dot_number(nullptr, gname);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_dot_number(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Gname_destroy(gname);
 }
 TEST_F(ConfigTest, GetChargeSenseGroupsThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_charge_sense_groups(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_charge_sense_groups(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, OhmicInChargeSensorThrowsOnNullHandle) {
   ConnectionHandle conn = Connection_create_ohmic(String_wrap("O1"));
-  EXPECT_THROW(Config_ohmic_in_charge_sensor(nullptr, conn),
-               std::invalid_argument);
-  EXPECT_THROW(Config_ohmic_in_charge_sensor(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_ohmic_in_charge_sensor(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_ohmic_in_charge_sensor(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Connection_destroy(conn);
 }
 TEST_F(ConfigTest, GetAssociatedOhmicThrowsOnNullHandle) {
   ConnectionHandle conn = Connection_create_reservoir_gate(String_wrap("R1"));
-  EXPECT_THROW(Config_get_associated_ohmic(nullptr, conn),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_associated_ohmic(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_associated_ohmic(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_associated_ohmic(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetCurrentChannelsThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_current_channels(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_current_channels(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetGnameThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_gname(nullptr, channel), std::invalid_argument);
-  EXPECT_THROW(Config_get_gname(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_gname(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_gname(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetGroupBarrierGatesThrowsOnNullHandle) {
   GnameHandle gname = Gname_create(String_wrap("group1"));
-  EXPECT_THROW(Config_get_group_barrier_gates(nullptr, gname),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_group_barrier_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_group_barrier_gates(nullptr, gname);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_group_barrier_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Gname_destroy(gname);
 }
 TEST_F(ConfigTest, GetGroupPlungerGatesThrowsOnNullHandle) {
   GnameHandle gname = Gname_create(String_wrap("group1"));
-  EXPECT_THROW(Config_get_group_plunger_gates(nullptr, gname),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_group_plunger_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_group_plunger_gates(nullptr, gname);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_group_plunger_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Gname_destroy(gname);
 }
 TEST_F(ConfigTest, GetGroupReservoirGatesThrowsOnNullHandle) {
   GnameHandle gname = Gname_create(String_wrap("group1"));
-  EXPECT_THROW(Config_get_group_reservoir_gates(nullptr, gname),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_group_reservoir_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_group_reservoir_gates(nullptr, gname);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_group_reservoir_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Gname_destroy(gname);
 }
 TEST_F(ConfigTest, GetGroupScreeningGatesThrowsOnNullHandle) {
   GnameHandle gname = Gname_create(String_wrap("group1"));
-  EXPECT_THROW(Config_get_group_screening_gates(nullptr, gname),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_group_screening_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_group_screening_gates(nullptr, gname);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_group_screening_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Gname_destroy(gname);
 }
 TEST_F(ConfigTest, GetGroupDotGatesThrowsOnNullHandle) {
   GnameHandle gname = Gname_create(String_wrap("group1"));
-  EXPECT_THROW(Config_get_group_dot_gates(nullptr, gname),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_group_dot_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_group_dot_gates(nullptr, gname);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_group_dot_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Gname_destroy(gname);
 }
 TEST_F(ConfigTest, GetGroupGatesThrowsOnNullHandle) {
   GnameHandle gname = Gname_create(String_wrap("group1"));
-  EXPECT_THROW(Config_get_group_gates(nullptr, gname), std::invalid_argument);
-  EXPECT_THROW(Config_get_group_gates(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_group_gates(nullptr, gname);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_group_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Gname_destroy(gname);
 }
 TEST_F(ConfigTest, GetChannelBarrierGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_channel_barrier_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_channel_barrier_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_channel_barrier_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_channel_barrier_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetChannelPlungerGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_channel_plunger_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_channel_plunger_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_channel_plunger_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_channel_plunger_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetChannelReservoirGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_channel_reservoir_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_channel_reservoir_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_channel_reservoir_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_channel_reservoir_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetChannelScreeningGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_channel_screening_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_channel_screening_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_channel_screening_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_channel_screening_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetChannelDotGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_channel_dot_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_channel_dot_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_channel_dot_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_channel_dot_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetChannelGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_channel_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_channel_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_channel_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_channel_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetChannelOhmicsThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_channel_ohmics(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_channel_ohmics(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_channel_ohmics(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_channel_ohmics(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetChannelOrderNoOhmicsThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_channel_order_no_ohmics(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_channel_order_no_ohmics(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_channel_order_no_ohmics(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_channel_order_no_ohmics(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetNumUniqueChannelsThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_num_unique_channels(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_num_unique_channels(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, ReturnChannelsFromGateThrowsOnNullHandle) {
   ConnectionHandle conn = Connection_create_plunger_gate(String_wrap("P1"));
-  EXPECT_THROW(Config_return_channels_from_gate(nullptr, conn),
-               std::invalid_argument);
-  EXPECT_THROW(Config_return_channels_from_gate(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_return_channels_from_gate(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_return_channels_from_gate(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Connection_destroy(conn);
 }
 TEST_F(ConfigTest, ReturnChannelFromGateThrowsOnNullHandle) {
   ConnectionHandle conn = Connection_create_plunger_gate(String_wrap("P1"));
-  EXPECT_THROW(Config_return_channel_from_gate(nullptr, conn),
-               std::invalid_argument);
-  EXPECT_THROW(Config_return_channel_from_gate(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_return_channel_from_gate(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_return_channel_from_gate(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Connection_destroy(conn);
 }
 TEST_F(ConfigTest, OhmicInChannelThrowsOnNullHandle) {
   ConnectionHandle conn = Connection_create_ohmic(String_wrap("O1"));
   ChannelHandle    ch   = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_ohmic_in_channel(nullptr, conn, ch),
-               std::invalid_argument);
-  EXPECT_THROW(Config_ohmic_in_channel(handle, nullptr, ch),
-               std::invalid_argument);
-  EXPECT_THROW(Config_ohmic_in_channel(handle, conn, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_ohmic_in_channel(nullptr, conn, ch);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_ohmic_in_channel(handle, nullptr, ch);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_ohmic_in_channel(handle, conn, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Connection_destroy(conn);
   Channel_destroy(ch);
 }
 TEST_F(ConfigTest, GetDotChannelNeighborsThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_dot_channel_neighbors(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_dot_channel_neighbors(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_dot_channel_neighbors(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_dot_channel_neighbors(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetBarrierGateDictThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_barrier_gate_dict(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_barrier_gate_dict(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetPlungerGateDictThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_plunger_gate_dict(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_plunger_gate_dict(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetReservoirGateDictThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_reservoir_gate_dict(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_reservoir_gate_dict(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetScreeningGateDictThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_screening_gate_dict(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_screening_gate_dict(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetDotGateDictThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_dot_gate_dict(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_dot_gate_dict(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetGateDictThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_gate_dict(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_gate_dict(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetIsolatedBarrierGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_isolated_barrier_gates(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_barrier_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetIsolatedPlungerGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_isolated_plunger_gates(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_plunger_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetIsolatedReservoirGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_isolated_reservoir_gates(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_reservoir_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetIsolatedScreeningGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_isolated_screening_gates(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_screening_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetIsolatedDotGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_isolated_dot_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_dot_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetIsolatedGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_isolated_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetSharedBarrierGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_shared_barrier_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_shared_barrier_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetSharedPlungerGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_shared_plunger_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_shared_plunger_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetSharedReservoirGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_shared_reservoir_gates(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_shared_reservoir_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetSharedScreeningGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_shared_screening_gates(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_shared_screening_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetSharedDotGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_shared_dot_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_shared_dot_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetSharedGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_shared_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_shared_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetSharedChannelBarrierGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_shared_channel_barrier_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_shared_channel_barrier_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_shared_channel_barrier_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_shared_channel_barrier_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetSharedChannelPlungerGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_shared_channel_plunger_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_shared_channel_plunger_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_shared_channel_plunger_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_shared_channel_plunger_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetSharedChannelReservoirGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_shared_channel_reservoir_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_shared_channel_reservoir_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_shared_channel_reservoir_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_shared_channel_reservoir_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetSharedChannelScreeningGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_shared_channel_screening_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_shared_channel_screening_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_shared_channel_screening_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_shared_channel_screening_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetSharedChannelDotGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_shared_channel_dot_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_shared_channel_dot_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_shared_channel_dot_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_shared_channel_dot_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetSharedChannelGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_shared_channel_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_shared_channel_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_shared_channel_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_shared_channel_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetIsolatedChannelBarrierGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_isolated_channel_barrier_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_isolated_channel_barrier_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_channel_barrier_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_isolated_channel_barrier_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetIsolatedChannelPlungerGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_isolated_channel_plunger_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_isolated_channel_plunger_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_channel_plunger_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_isolated_channel_plunger_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetIsolatedChannelReservoirGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_isolated_channel_reservoir_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_isolated_channel_reservoir_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_channel_reservoir_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_isolated_channel_reservoir_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetIsolatedChannelScreeningGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_isolated_channel_screening_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_isolated_channel_screening_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_channel_screening_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_isolated_channel_screening_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetIsolatedChannelDotGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_isolated_channel_dot_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_isolated_channel_dot_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_channel_dot_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_isolated_channel_dot_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetIsolatedChannelGatesThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_get_isolated_channel_gates(nullptr, channel),
-               std::invalid_argument);
-  EXPECT_THROW(Config_get_isolated_channel_gates(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_channel_gates(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_isolated_channel_gates(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 
 TEST_F(ConfigTest, GetIsolatedBarrierGatesByChannelThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_isolated_barrier_gates_by_channel(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_barrier_gates_by_channel(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetIsolatedPlungerGatesByChannelThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_isolated_plunger_gates_by_channel(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_plunger_gates_by_channel(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetIsolatedReservoirGatesByChannelThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_isolated_reservoir_gates_by_channel(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_reservoir_gates_by_channel(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetIsolatedScreeningGatesByChannelThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_isolated_screening_gates_by_channel(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_screening_gates_by_channel(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetIsolatedDotGatesByChannelThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_isolated_dot_gates_by_channel(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_dot_gates_by_channel(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetIsolatedGatesByChannelThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_isolated_gates_by_channel(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_isolated_gates_by_channel(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GenerateGateRelationsThrowsOnNullHandle) {
-  EXPECT_THROW(Config_generate_gate_relations(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_generate_gate_relations(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, ScreeningGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_screening_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_screening_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, PlungerGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_plunger_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_plunger_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, OhmicsThrowsOnNullHandle) {
-  EXPECT_THROW(Config_ohmics(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_ohmics(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, BarrierGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_barrier_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_barrier_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, ReservoirGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_reservoir_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_reservoir_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, DotGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_dot_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_dot_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetOhmicThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_ohmic(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_ohmic(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetBarrierGateThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_barrier_gate(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_barrier_gate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetPlungerGateThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_plunger_gate(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_plunger_gate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetReservoirGateThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_reservoir_gate(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_reservoir_gate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetScreeningGateThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_screening_gate(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_screening_gate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetDotGateThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_dot_gate(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_dot_gate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetGateThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_gate(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_gate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetAllGatesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_all_gates(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_all_gates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, GetAllConnectionsThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_all_connections(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_all_connections(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, WiringDCThrowsOnNullHandle) {
-  EXPECT_THROW(Config_wiring_DC(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_wiring_DC(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, ChannelsThrowsOnNullHandle) {
-  EXPECT_THROW(Config_channels(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_channels(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, VoltageConstraintsThrowsOnNullHandle) {
-  EXPECT_THROW(Config_voltage_constraints(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_voltage_constraints(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, EqualThrowsOnNullHandle) {
-  EXPECT_THROW(Config_equal(nullptr, handle), std::invalid_argument);
-  EXPECT_THROW(Config_equal(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_equal(nullptr, handle);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_equal(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, NotEqualThrowsOnNullHandle) {
-  EXPECT_THROW(Config_not_equal(nullptr, handle), std::invalid_argument);
-  EXPECT_THROW(Config_not_equal(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_not_equal(nullptr, handle);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_not_equal(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, ToJsonStringThrowsOnNullHandle) {
-  EXPECT_THROW(Config_to_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, FromJsonStringThrowsOnNullHandle) {
-  EXPECT_THROW(Config_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, HasReservoirGateThrowsOnNullHandle) {
   ConnectionHandle conn = Connection_create_reservoir_gate(String_wrap("R1"));
-  EXPECT_THROW(Config_has_reservoir_gate(nullptr, conn), std::invalid_argument);
-  EXPECT_THROW(Config_has_reservoir_gate(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_has_reservoir_gate(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_has_reservoir_gate(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Connection_destroy(conn);
 }
 TEST_F(ConfigTest, HasPlungerGateThrowsOnNullHandle) {
   ConnectionHandle conn = Connection_create_plunger_gate(String_wrap("P1"));
-  EXPECT_THROW(Config_has_plunger_gate(nullptr, conn), std::invalid_argument);
-  EXPECT_THROW(Config_has_plunger_gate(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_has_plunger_gate(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_has_plunger_gate(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Connection_destroy(conn);
 }
 TEST_F(ConfigTest, HasScreeningGateThrowsOnNullHandle) {
   ConnectionHandle conn = Connection_create_screening_gate(String_wrap("SG1"));
-  EXPECT_THROW(Config_has_screening_gate(nullptr, conn), std::invalid_argument);
-  EXPECT_THROW(Config_has_screening_gate(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_has_screening_gate(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_has_screening_gate(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Connection_destroy(conn);
 }
 TEST_F(ConfigTest, HasBarrierGateThrowsOnNullHandle) {
   ConnectionHandle conn = Connection_create_barrier_gate(String_wrap("B1"));
-  EXPECT_THROW(Config_has_barrier_gate(nullptr, conn), std::invalid_argument);
-  EXPECT_THROW(Config_has_barrier_gate(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_has_barrier_gate(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_has_barrier_gate(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Connection_destroy(conn);
 }
 TEST_F(ConfigTest, HasOhmicThrowsOnNullHandle) {
   ConnectionHandle conn = Connection_create_ohmic(String_wrap("O1"));
-  EXPECT_THROW(Config_has_ohmic(nullptr, conn), std::invalid_argument);
-  EXPECT_THROW(Config_has_ohmic(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_has_ohmic(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_has_ohmic(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Connection_destroy(conn);
 }
 TEST_F(ConfigTest, HasGateThrowsOnNullHandle) {
   ConnectionHandle conn = Connection_create_plunger_gate(String_wrap("P1"));
-  EXPECT_THROW(Config_has_gate(nullptr, conn), std::invalid_argument);
-  EXPECT_THROW(Config_has_gate(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_has_gate(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_has_gate(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Connection_destroy(conn);
 }
 TEST_F(ConfigTest, HasGnameThrowsOnNullHandle) {
   GnameHandle gname = Gname_create(String_wrap("group1"));
-  EXPECT_THROW(Config_has_gname(nullptr, gname), std::invalid_argument);
-  EXPECT_THROW(Config_has_gname(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_has_gname(nullptr, gname);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_has_gname(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Gname_destroy(gname);
 }
 TEST_F(ConfigTest, HasChannelThrowsOnNullHandle) {
   ChannelHandle channel = Channel_create(String_wrap("CH1"));
-  EXPECT_THROW(Config_has_channel(nullptr, channel), std::invalid_argument);
-  EXPECT_THROW(Config_has_channel(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_has_channel(nullptr, channel);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_has_channel(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(channel);
 }
 TEST_F(ConfigTest, GetImpedanceThrowsOnNullHandle) {
   ConnectionHandle conn = Connection_create_ohmic(String_wrap("O1"));
-  EXPECT_THROW(Config_get_impedance(nullptr, conn), std::invalid_argument);
-  EXPECT_THROW(Config_get_impedance(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_impedance(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Config_get_impedance(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Connection_destroy(conn);
 }
 TEST_F(ConfigTest, GetAllGnamesThrowsOnNullHandle) {
-  EXPECT_THROW(Config_get_all_gnames(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Config_get_all_gnames(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 // Happy path for all "getter" and "has_*" functions

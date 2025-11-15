@@ -1,4 +1,7 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <boost/filesystem.hpp>
 #include <fstream>
@@ -98,18 +101,26 @@ TEST_F(LoaderTest, LoaderConfigReturnsConfig) {
 
 TEST_F(LoaderTest, ThrowsOnMissingFile) {
   StringHandle bad_path = String_create("/tmp/nonexistent_config.yaml", 27);
-  EXPECT_THROW(Loader_create(bad_path), std::runtime_error);
+  set_last_error(0, nullptr);
+  Loader_create(bad_path);
+  EXPECT_EQ(get_last_error_code(), 1);
   String_destroy(bad_path);
 }
 
 TEST_F(LoaderTest, ThrowsOnNullPath) {
-  EXPECT_THROW(Loader_create(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Loader_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LoaderTest, DestroyThrowsOnNullHandle) {
-  EXPECT_THROW(Loader_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Loader_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LoaderTest, ConfigThrowsOnNullHandle) {
-  EXPECT_THROW(Loader_config(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Loader_config(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

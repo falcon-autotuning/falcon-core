@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h"
@@ -102,15 +103,15 @@ TEST_F(DotGateWithNeighborsTest, SerializationRoundTrip) {
 }
 
 TEST_F(DotGateWithNeighborsTest, ThrowsOnNullLeftNeighbor) {
-  EXPECT_THROW(DotGateWithNeighbors_create_plungergatewithneighbors(
-                   name, nullptr, right),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_create_plungergatewithneighbors(                   name, nullptr, right);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DotGateWithNeighborsTest, ThrowsOnNullRightNeighbor) {
-  EXPECT_THROW(
-      DotGateWithNeighbors_create_plungergatewithneighbors(name, left, nullptr),
-      std::invalid_argument);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_create_plungergatewithneighbors(name, left, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DotGateWithNeighborsTest, BarrierGateVariant) {
@@ -126,7 +127,9 @@ TEST_F(DotGateWithNeighborsTest, BarrierGateVariant) {
 }
 
 TEST_F(DotGateWithNeighborsTest, DestructorThrowsOnNullptr) {
-  EXPECT_ANY_THROW(DotGateWithNeighbors_destroy(nullptr));
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DotGateWithNeighborsTest, NameGetterWorksAfterSerialization) {
@@ -150,45 +153,61 @@ TEST_F(DotGateWithNeighborsTest, TypeGetterWorksAfterSerialization) {
 }
 
 TEST_F(DotGateWithNeighborsTest, NullptrThrows) {
-  EXPECT_THROW(DotGateWithNeighbors_name(nullptr), std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_type(nullptr), std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_left_neighbor(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_right_neighbor(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_is_plunger_gate(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_is_barrier_gate(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_equal(nullptr, handle),
-               std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_equal(handle, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_not_equal(nullptr, handle),
-               std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_not_equal(handle, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_from_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_destroy(nullptr), std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_create_plungergatewithneighbors(
-                   nullptr, left, right),
-               std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_create_plungergatewithneighbors(
-                   name, nullptr, right),
-               std::invalid_argument);
-  EXPECT_THROW(
-      DotGateWithNeighbors_create_plungergatewithneighbors(name, left, nullptr),
-      std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_create_barriergatewithneighbors(
-                   nullptr, left, right),
-               std::invalid_argument);
-  EXPECT_THROW(DotGateWithNeighbors_create_barriergatewithneighbors(
-                   name, nullptr, right),
-               std::invalid_argument);
-  EXPECT_THROW(
-      DotGateWithNeighbors_create_barriergatewithneighbors(name, left, nullptr),
-      std::invalid_argument);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_name(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_type(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_left_neighbor(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_right_neighbor(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_is_plunger_gate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_is_barrier_gate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_equal(nullptr, handle);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_equal(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_not_equal(nullptr, handle);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_not_equal(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_create_plungergatewithneighbors(                   nullptr, left, right);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_create_plungergatewithneighbors(                   name, nullptr, right);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_create_plungergatewithneighbors(name, left, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_create_barriergatewithneighbors(                   nullptr, left, right);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_create_barriergatewithneighbors(                   name, nullptr, right);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DotGateWithNeighbors_create_barriergatewithneighbors(name, left, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
@@ -86,7 +87,9 @@ TEST_F(SymbolUnitTest, WithPrefixWorks) {
 }
 
 TEST_F(SymbolUnitTest, WithPrefixInvalidThrows) {
-  EXPECT_ANY_THROW(SymbolUnit_with_prefix(meter, String_wrap("invalid")));
+  set_last_error(0, nullptr);
+  SymbolUnit_with_prefix(meter, String_wrap("invalid"));
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(SymbolUnitTest, ConvertValueToWorks) {
@@ -95,11 +98,15 @@ TEST_F(SymbolUnitTest, ConvertValueToWorks) {
 }
 
 TEST_F(SymbolUnitTest, ConvertValueToNullptrThrows) {
-  EXPECT_ANY_THROW(SymbolUnit_convert_value_to(meter, 1.0, nullptr));
+  set_last_error(0, nullptr);
+  SymbolUnit_convert_value_to(meter, 1.0, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(SymbolUnitTest, ConvertValueToIncompatibleThrows) {
-  EXPECT_ANY_THROW(SymbolUnit_convert_value_to(meter, 1.0, second));
+  set_last_error(0, nullptr);
+  SymbolUnit_convert_value_to(meter, 1.0, second);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(SymbolUnitTest, IsCompatibleWithWorks) {
@@ -108,7 +115,9 @@ TEST_F(SymbolUnitTest, IsCompatibleWithWorks) {
 }
 
 TEST_F(SymbolUnitTest, IsCompatibleWithNullptrThrows) {
-  EXPECT_ANY_THROW(SymbolUnit_is_compatible_with(meter, nullptr));
+  set_last_error(0, nullptr);
+  SymbolUnit_is_compatible_with(meter, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(SymbolUnitTest, SerializationRoundTrip) {
@@ -119,7 +128,9 @@ TEST_F(SymbolUnitTest, SerializationRoundTrip) {
 }
 
 TEST_F(SymbolUnitTest, DestructorThrowsOnNullptr) {
-  EXPECT_ANY_THROW(SymbolUnit_destroy(nullptr));
+  set_last_error(0, nullptr);
+  SymbolUnit_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(SymbolUnitTest, EqualityAndInequality) {
@@ -198,30 +209,61 @@ TEST_F(SymbolUnitTest, StaticConstructorsNotNull) {
 }
 
 TEST_F(SymbolUnitTest, NullHandlesThrow) {
-  EXPECT_THROW(SymbolUnit_equal(nullptr, meter), std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_equal(meter, nullptr), std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_not_equal(nullptr, meter), std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_not_equal(meter, nullptr), std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_from_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_symbol(nullptr), std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_name(nullptr), std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_multiplication(nullptr, meter),
-               std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_multiplication(meter, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_division(nullptr, meter), std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_division(meter, nullptr), std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_power(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_with_prefix(nullptr, String_wrap("k")),
-               std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_with_prefix(meter, nullptr), std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_convert_value_to(nullptr, 1.0, meter),
-               std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_convert_value_to(meter, 1.0, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_is_compatible_with(nullptr, meter),
-               std::invalid_argument);
-  EXPECT_THROW(SymbolUnit_is_compatible_with(meter, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  SymbolUnit_equal(nullptr, meter);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_equal(meter, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_not_equal(nullptr, meter);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_not_equal(meter, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_symbol(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_name(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_multiplication(nullptr, meter);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_multiplication(meter, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_division(nullptr, meter);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_division(meter, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_power(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_with_prefix(nullptr, String_wrap("k"));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_with_prefix(meter, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_convert_value_to(nullptr, 1.0, meter);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_convert_value_to(meter, 1.0, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_is_compatible_with(nullptr, meter);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  SymbolUnit_is_compatible_with(meter, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
