@@ -2,8 +2,8 @@
 #include <string.h>
 #include <threads.h>
 
-thread_local int  last_error_code     = 0;
-thread_local char last_error_msg[256] = {0};
+int  last_error_code     = 0;
+char last_error_msg[256] = {0};
 
 void set_last_error(int code, const char* msg) {
   last_error_code = code;

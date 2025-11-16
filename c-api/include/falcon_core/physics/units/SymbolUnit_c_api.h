@@ -83,7 +83,6 @@ double           SymbolUnit_convert_value_to(SymbolUnitHandle handle,
                                              SymbolUnitHandle target);
 bool             SymbolUnit_is_compatible_with(SymbolUnitHandle handle,
                                                SymbolUnitHandle other);
-StringHandle     SymbolUnit_str(SymbolUnitHandle handle);
 bool SymbolUnit_equal(SymbolUnitHandle handle, SymbolUnitHandle other);
 bool SymbolUnit_not_equal(SymbolUnitHandle handle, SymbolUnitHandle other);
 

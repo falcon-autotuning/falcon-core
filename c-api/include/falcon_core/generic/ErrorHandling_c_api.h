@@ -10,8 +10,8 @@
   return return_value;
 
 // Declare the thread-local variables as extern
-extern thread_local int  last_error_code;
-extern thread_local char last_error_msg[256];
+extern int  last_error_code;
+extern char last_error_msg[256];
 
 #ifdef __cplusplus
 extern "C" {
