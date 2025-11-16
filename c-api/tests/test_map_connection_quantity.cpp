@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/MapConnectionQuantity_c_api.h"
 #include "falcon_core/generic/PairConnectionQuantity_c_api.h"
@@ -33,8 +34,12 @@ class MapConnectionQuantityTest : public ::testing::Test {
 };
 
 TEST_F(MapConnectionQuantityTest, CreateDestroy) {
-  EXPECT_THROW(MapConnectionQuantity_create(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapConnectionQuantityTest, InsertAssignAccessErase) {
@@ -44,36 +49,36 @@ TEST_F(MapConnectionQuantityTest, InsertAssignAccessErase) {
   MapConnectionQuantity_erase(map, PairConnectionQuantity_first(p1));
   EXPECT_FALSE(
       MapConnectionQuantity_contains(map, PairConnectionQuantity_first(p1)));
-  EXPECT_THROW(
-      MapConnectionQuantity_insert_or_assign(nullptr,
-                                             PairConnectionQuantity_first(p1),
-                                             PairConnectionQuantity_second(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_insert_or_assign(
-                   map, nullptr, PairConnectionQuantity_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_insert_or_assign(
-                   map, PairConnectionQuantity_first(p1), nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_insert(nullptr,
-                                            PairConnectionQuantity_first(p1),
-                                            PairConnectionQuantity_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_insert(
-                   map, nullptr, PairConnectionQuantity_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_insert(
-                   map, PairConnectionQuantity_first(p1), nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(
-      MapConnectionQuantity_at(nullptr, PairConnectionQuantity_first(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_at(map, nullptr), std::invalid_argument);
-  EXPECT_THROW(
-      MapConnectionQuantity_erase(nullptr, PairConnectionQuantity_first(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_erase(map, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_insert_or_assign(nullptr,                                             PairConnectionQuantity_first(p1),                                             PairConnectionQuantity_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_insert_or_assign(                   map, nullptr, PairConnectionQuantity_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_insert_or_assign(                   map, PairConnectionQuantity_first(p1), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_insert(nullptr,                                            PairConnectionQuantity_first(p1),                                            PairConnectionQuantity_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_insert(                   map, nullptr, PairConnectionQuantity_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_insert(                   map, PairConnectionQuantity_first(p1), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_at(nullptr, PairConnectionQuantity_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_at(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_erase(nullptr, PairConnectionQuantity_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_erase(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapConnectionQuantityTest, SizeEmptyClearContains) {
@@ -81,36 +86,53 @@ TEST_F(MapConnectionQuantityTest, SizeEmptyClearContains) {
   EXPECT_FALSE(MapConnectionQuantity_empty(map));
   MapConnectionQuantity_clear(map);
   EXPECT_TRUE(MapConnectionQuantity_empty(map));
-  EXPECT_THROW(MapConnectionQuantity_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(
-      MapConnectionQuantity_contains(nullptr, PairConnectionQuantity_first(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_contains(map2, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_contains(nullptr, PairConnectionQuantity_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_contains(map2, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapConnectionQuantityTest, KeysValuesItems) {
   EXPECT_NE(MapConnectionQuantity_keys(map), nullptr);
   EXPECT_NE(MapConnectionQuantity_values(map), nullptr);
   EXPECT_NE(MapConnectionQuantity_items(map), nullptr);
-  EXPECT_THROW(MapConnectionQuantity_keys(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_values(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_items(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_keys(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_values(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapConnectionQuantityTest, Equality) {
   EXPECT_TRUE(MapConnectionQuantity_equal(map, map2));
   EXPECT_FALSE(MapConnectionQuantity_not_equal(map, map2));
-  EXPECT_THROW(MapConnectionQuantity_equal(nullptr, map2),
-               std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_equal(map, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_not_equal(nullptr, map2),
-               std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_not_equal(map, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_not_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_not_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapConnectionQuantityTest, ToJsonFromJson) {
@@ -119,8 +141,10 @@ TEST_F(MapConnectionQuantityTest, ToJsonFromJson) {
   EXPECT_TRUE(MapConnectionQuantity_equal(map, m2));
   MapConnectionQuantity_destroy(m2);
   String_destroy(json);
-  EXPECT_THROW(MapConnectionQuantity_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapConnectionQuantity_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionQuantity_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

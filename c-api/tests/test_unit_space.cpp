@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/FArrayDouble_c_api.h"
 #include "falcon_core/generic/ListInt_c_api.h"
@@ -53,41 +55,53 @@ class UnitSpaceTest : public ::testing::Test {
 TEST_F(UnitSpaceTest, CreateDestroy) {
   auto us = UnitSpace_create(axes, domain);
   UnitSpace_destroy(us);
-  EXPECT_THROW(UnitSpace_create(nullptr, domain), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_create(axes, nullptr), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  UnitSpace_create(nullptr, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_create(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(UnitSpaceTest, CreateRayspace) {
   auto us = UnitSpace_create_rayspace(1.0, 2.0, domain);
   UnitSpace_destroy(us);
-  EXPECT_THROW(UnitSpace_create_rayspace(1.0, 2.0, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  UnitSpace_create_rayspace(1.0, 2.0, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(UnitSpaceTest, CreateCartesianspace) {
   auto us = UnitSpace_create_cartesianspace(axes_double, domain);
   UnitSpace_destroy(us);
-  EXPECT_THROW(UnitSpace_create_cartesianspace(nullptr, domain),
-               std::invalid_argument);
-  EXPECT_THROW(UnitSpace_create_cartesianspace(axes_double, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  UnitSpace_create_cartesianspace(nullptr, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_create_cartesianspace(axes_double, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(UnitSpaceTest, CreateCartesian1Dspace) {
   auto us = UnitSpace_create_cartesian1Dspace(1.0, domain);
   UnitSpace_destroy(us);
-  EXPECT_THROW(UnitSpace_create_cartesian1Dspace(1.0, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  UnitSpace_create_cartesian1Dspace(1.0, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(UnitSpaceTest, CreateCartesian2Dspace) {
   auto us = UnitSpace_create_cartesian2Dspace(axes_double, domain);
   UnitSpace_destroy(us);
-  EXPECT_THROW(UnitSpace_create_cartesian2Dspace(nullptr, domain),
-               std::invalid_argument);
-  EXPECT_THROW(UnitSpace_create_cartesian2Dspace(axes_double, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  UnitSpace_create_cartesian2Dspace(nullptr, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_create_cartesian2Dspace(axes_double, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(UnitSpaceTest, AxesDomainSpaceShapeDimensionCompile) {
@@ -101,20 +115,32 @@ TEST_F(UnitSpaceTest, AxesDomainSpaceShapeDimensionCompile) {
   Domain_destroy(dom);
   ListInt_destroy(shape);
   FArrayDouble_destroy(space);
-  EXPECT_THROW(UnitSpace_axes(nullptr), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_domain(nullptr), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_shape(nullptr), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_dimension(nullptr), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_compile(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  UnitSpace_axes(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_domain(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_shape(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_dimension(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_compile(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(UnitSpaceTest, CreateArray) {
   auto arr = UnitSpace_create_array(unitspace, axes_int);
   AxesControlArray_destroy(arr);
-  EXPECT_THROW(UnitSpace_create_array(nullptr, axes_int),
-               std::invalid_argument);
-  EXPECT_THROW(UnitSpace_create_array(unitspace, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  UnitSpace_create_array(nullptr, axes_int);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_create_array(unitspace, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(UnitSpaceTest, PushBackSizeEmptyEraseClearAtItemsContainsIndex) {
@@ -135,19 +161,45 @@ TEST_F(UnitSpaceTest, PushBackSizeEmptyEraseClearAtItemsContainsIndex) {
   EXPECT_EQ(UnitSpace_index(unitspace, d), 0);
   Discretizer_destroy(d);
 
-  EXPECT_THROW(UnitSpace_push_back(nullptr, d), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_push_back(unitspace, nullptr), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_items(nullptr, out, 1), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_items(unitspace, nullptr, 1), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_contains(nullptr, d), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_contains(unitspace, nullptr), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_index(nullptr, d), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_index(unitspace, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  UnitSpace_push_back(nullptr, d);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_push_back(unitspace, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_items(nullptr, out, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_items(unitspace, nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_contains(nullptr, d);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_contains(unitspace, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_index(nullptr, d);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_index(unitspace, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(UnitSpaceTest, IntersectionEqualNotEqual) {
@@ -157,14 +209,24 @@ TEST_F(UnitSpaceTest, IntersectionEqualNotEqual) {
   EXPECT_FALSE(UnitSpace_not_equal(unitspace, us2));
   UnitSpace_destroy(inter);
   UnitSpace_destroy(us2);
-  EXPECT_THROW(UnitSpace_intersection(nullptr, unitspace),
-               std::invalid_argument);
-  EXPECT_THROW(UnitSpace_intersection(unitspace, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(UnitSpace_equal(nullptr, unitspace), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_equal(unitspace, nullptr), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_not_equal(nullptr, unitspace), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_not_equal(unitspace, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  UnitSpace_intersection(nullptr, unitspace);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_intersection(unitspace, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_equal(nullptr, unitspace);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_equal(unitspace, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_not_equal(nullptr, unitspace);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_not_equal(unitspace, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(UnitSpaceTest, ToJsonFromJson) {
@@ -173,16 +235,26 @@ TEST_F(UnitSpaceTest, ToJsonFromJson) {
   EXPECT_TRUE(UnitSpace_equal(unitspace, us2));
   UnitSpace_destroy(us2);
   String_destroy(json);
-  EXPECT_THROW(UnitSpace_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  UnitSpace_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(UnitSpaceTest, SpaceCollection) {
-  EXPECT_THROW(UnitSpace_space(nullptr), std::invalid_argument);
-  EXPECT_THROW(UnitSpace_space(unitspace), std::runtime_error);
+  set_last_error(0, nullptr);
+  UnitSpace_space(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  UnitSpace_space(unitspace);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(UnitSpaceTest, ItemsBufferTooSmall) {
   DiscretizerHandle out[0];
-  EXPECT_THROW(UnitSpace_items(unitspace, out, 0), std::runtime_error);
+  set_last_error(0, nullptr);
+  UnitSpace_items(unitspace, out, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

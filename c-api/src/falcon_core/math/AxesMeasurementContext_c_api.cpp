@@ -2,13 +2,18 @@
 #include "falcon_core/math/AxesMeasurementContext_c_api.h"
 #include <falcon_core/generic/List.hpp>
 #include <falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+extern "C" {
 AxesMeasurementContextHandle AxesMeasurementContext_create_empty() {
+    FALCON_C_API_BEGIN
     return new falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(
         falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>());
+    FALCON_C_API_END(nullptr)
 }
 
 AxesMeasurementContextHandle AxesMeasurementContext_create_raw(const MeasurementContextHandle* data, size_t count) {
+    FALCON_C_API_BEGIN
     std::vector<falcon_core::autotuner_interfaces::contexts::MeasurementContextSP> vec;
         
     if (!data) {
@@ -21,53 +26,67 @@ AxesMeasurementContextHandle AxesMeasurementContext_create_raw(const Measurement
 
     return new falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(
         falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(vec));
+    FALCON_C_API_END(nullptr)
 }
 
 AxesMeasurementContextHandle AxesMeasurementContext_create(ListMeasurementContextHandle data) {
+    FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data handle passed to AxesMeasurementContext_create");
 }
     auto list = *static_cast<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(data);
     return new falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(
             std::make_shared<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>>(list));
+    FALCON_C_API_END(nullptr)
 }
 
 void AxesMeasurementContext_destroy(AxesMeasurementContextHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMeasurementContext_destroy");
 }
     delete static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle);
+    FALCON_C_API_END()
 }
 
 size_t AxesMeasurementContext_size(AxesMeasurementContextHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMeasurementContext_size");
 }
     return static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle)->size();
+    FALCON_C_API_END(0)
 }
 
 bool AxesMeasurementContext_empty(AxesMeasurementContextHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMeasurementContext_empty");
 }
     return static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle)->empty();
+    FALCON_C_API_END(false)
 }
 
 void AxesMeasurementContext_erase_at(AxesMeasurementContextHandle handle, size_t idx) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMeasurementContext_erase_at");
 }
     static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle)->erase_at(idx);
+    FALCON_C_API_END()
 }
 
 void AxesMeasurementContext_clear(AxesMeasurementContextHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMeasurementContext_clear");
 }
     static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle)->clear();
+    FALCON_C_API_END()
 }
 
 void AxesMeasurementContext_push_back(AxesMeasurementContextHandle handle, MeasurementContextHandle value) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMeasurementContext_push_back");
 }
@@ -77,9 +96,11 @@ throw std::invalid_argument("Null handle passed to AxesMeasurementContext_push_b
             }
             auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(*static_cast<falcon_core::autotuner_interfaces::contexts::MeasurementContext*>(value));
     static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle)->push_back(stored_obj);
+    FALCON_C_API_END()
 }
 
 bool AxesMeasurementContext_contains(AxesMeasurementContextHandle handle, MeasurementContextHandle value) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMeasurementContext_contains");
 }
@@ -89,9 +110,11 @@ throw std::invalid_argument("Null handle passed to AxesMeasurementContext_contai
             }
             auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(*static_cast<falcon_core::autotuner_interfaces::contexts::MeasurementContext*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle)->contains(stored_obj);
+    FALCON_C_API_END(false)
 }
 
 size_t AxesMeasurementContext_index(AxesMeasurementContextHandle handle, MeasurementContextHandle value) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMeasurementContext_index");
 }
@@ -101,9 +124,11 @@ throw std::invalid_argument("Null handle passed to AxesMeasurementContext_index"
             }
             auto stored_obj = std::make_shared<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(*static_cast<falcon_core::autotuner_interfaces::contexts::MeasurementContext*>(value));
     return static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle)->index(stored_obj);
+    FALCON_C_API_END(0)
 }
 
 size_t AxesMeasurementContext_items(AxesMeasurementContextHandle handle, MeasurementContextHandle* out_buffer, size_t buffer_size) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMeasurementContext_items");
 }
@@ -117,33 +142,41 @@ for (size_t i = 0; i < n; ++i) {
     out_buffer[i] = new falcon_core::autotuner_interfaces::contexts::MeasurementContext(*list->items()[i]);
 }
     return n;
+    FALCON_C_API_END(0)
 }
 
 MeasurementContextHandle AxesMeasurementContext_at(AxesMeasurementContextHandle handle, size_t idx) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMeasurementContext_at");
 }
     auto obj = static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle)->at(idx);
     return new falcon_core::autotuner_interfaces::contexts::MeasurementContext(*obj);
+    FALCON_C_API_END(nullptr)
 }
 
 bool AxesMeasurementContext_equal(AxesMeasurementContextHandle a, AxesMeasurementContextHandle b) {
+    FALCON_C_API_BEGIN
 if (!a || !b) {
 throw std::invalid_argument("Null handle passed to AxesMeasurementContext_equal");
 }
     auto listA = static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(a);
     auto listB = static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(b);
     return *listA == *listB;
+    FALCON_C_API_END(false)
 }
 
 bool AxesMeasurementContext_not_equal(AxesMeasurementContextHandle a, AxesMeasurementContextHandle b) {
+    FALCON_C_API_BEGIN
 if (!a || !b) {
 throw std::invalid_argument("Null handle passed to AxesMeasurementContext_not_equal");
 }
     return !AxesMeasurementContext_equal(a, b);
+    FALCON_C_API_END(false)
 }
 
 AxesMeasurementContextHandle AxesMeasurementContext_intersection(AxesMeasurementContextHandle handle, AxesMeasurementContextHandle other) {
+    FALCON_C_API_BEGIN
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to AxesMeasurementContext_intersection");
 }
@@ -151,20 +184,26 @@ throw std::invalid_argument("Null handle passed to AxesMeasurementContext_inters
     auto listB = static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(other);
     auto result = listA->intersection(std::make_shared<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>>(*listB));
     return new falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(result);
+    FALCON_C_API_END(nullptr)
 }
 
 StringHandle      AxesMeasurementContext_to_json_string(AxesMeasurementContextHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMeasurementContext_to_json_string");
 }
     std::string json = static_cast<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle)->to_json_string();
     return String_create(json.c_str(), json.size());
+    FALCON_C_API_END(nullptr)
 }
 
 AxesMeasurementContextHandle AxesMeasurementContext_from_json_string(StringHandle json) {
+    FALCON_C_API_BEGIN
 if (!json) {
 throw std::invalid_argument("Null string handle passed to AxesMeasurementContext_from_json_string");
 }
   auto ptr = falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>::from_json_string<falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>>(json->raw);
   return new falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(*ptr);
+    FALCON_C_API_END(nullptr)
+}
 }

@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListPairIntInt_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -29,7 +30,9 @@ TEST_F(ListPairIntIntTest, CreateEmpty) {
   EXPECT_TRUE(ListPairIntInt_empty(handle));
   EXPECT_EQ(ListPairIntInt_size(handle), 0);
   ListPairIntInt_destroy(handle);
-  EXPECT_THROW(ListPairIntInt_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairIntIntTest, FillValue) {
@@ -42,7 +45,9 @@ TEST_F(ListPairIntIntTest, CreateFromArray) {
   PairIntIntHandle     arr[2] = {sh1, sh2};
   ListPairIntIntHandle handle = ListPairIntInt_create(arr, 2);
   EXPECT_EQ(ListPairIntInt_size(handle), 2);
-  EXPECT_THROW(ListPairIntInt_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairIntInt_destroy(handle);
 }
 
@@ -50,14 +55,18 @@ TEST_F(ListPairIntIntTest, SizeEmptyInvalid) {
   auto handle = ListPairIntInt_create_empty();
   EXPECT_EQ(ListPairIntInt_size(handle), 0);
   ListPairIntInt_destroy(handle);
-  EXPECT_THROW(ListPairIntInt_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairIntIntTest, EmptyInvalid) {
   auto handle = ListPairIntInt_create_empty();
   EXPECT_TRUE(ListPairIntInt_empty(handle));
   ListPairIntInt_destroy(handle);
-  EXPECT_THROW(ListPairIntInt_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairIntIntTest, EraseAtClear) {
@@ -67,8 +76,12 @@ TEST_F(ListPairIntIntTest, EraseAtClear) {
   ListPairIntInt_clear(handle);
   EXPECT_TRUE(ListPairIntInt_empty(handle));
   ListPairIntInt_destroy(handle);
-  EXPECT_THROW(ListPairIntInt_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListPairIntInt_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairIntInt_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairIntIntTest, PushBackContainsIndex) {
@@ -77,9 +90,15 @@ TEST_F(ListPairIntIntTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListPairIntInt_contains(handle, sh1));
   EXPECT_EQ(ListPairIntInt_index(handle, sh1), 0);
   ListPairIntInt_destroy(handle);
-  EXPECT_THROW(ListPairIntInt_push_back(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListPairIntInt_contains(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListPairIntInt_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairIntInt_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairIntInt_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairIntIntTest, ItemsAt) {
@@ -88,9 +107,15 @@ TEST_F(ListPairIntIntTest, ItemsAt) {
   PairIntIntHandle out[2];
   EXPECT_EQ(ListPairIntInt_items(handle, out, 2), 2);
   ListPairIntInt_destroy(handle);
-  EXPECT_THROW(ListPairIntInt_items(nullptr, out, 2), std::invalid_argument);
-  EXPECT_THROW(ListPairIntInt_items(handle, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(ListPairIntInt_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairIntInt_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairIntInt_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairIntIntTest, EqualNotEqualIntersection) {
@@ -104,12 +129,24 @@ TEST_F(ListPairIntIntTest, EqualNotEqualIntersection) {
   ListPairIntInt_destroy(h1);
   ListPairIntInt_destroy(h2);
   ListPairIntInt_destroy(h3);
-  EXPECT_THROW(ListPairIntInt_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListPairIntInt_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListPairIntInt_not_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListPairIntInt_not_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListPairIntInt_intersection(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListPairIntInt_intersection(h1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairIntInt_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairIntInt_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairIntInt_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairIntInt_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairIntInt_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairIntIntTest, ToJsonFromJson) {
@@ -121,35 +158,48 @@ TEST_F(ListPairIntIntTest, ToJsonFromJson) {
   ListPairIntInt_destroy(handle);
   ListPairIntInt_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListPairIntInt_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(ListPairIntInt_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairIntInt_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairIntIntTest, FillValueNull) {
-  EXPECT_THROW(ListPairIntInt_fill_value(3, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairIntIntTest, PushBackNull) {
   auto handle = ListPairIntInt_create_empty();
-  EXPECT_THROW(ListPairIntInt_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairIntInt_destroy(handle);
 }
 
 TEST_F(ListPairIntIntTest, ContainsNull) {
   auto handle = ListPairIntInt_create_empty();
-  EXPECT_THROW(ListPairIntInt_contains(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairIntInt_destroy(handle);
 }
 
 TEST_F(ListPairIntIntTest, IndexNull) {
   auto handle = ListPairIntInt_create_empty();
-  EXPECT_THROW(ListPairIntInt_index(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairIntInt_destroy(handle);
 }
 
 TEST_F(ListPairIntIntTest, CreateNullArray) {
-  EXPECT_THROW(ListPairIntInt_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairIntIntTest, At) {
@@ -160,5 +210,7 @@ TEST_F(ListPairIntIntTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListPairIntInt_destroy(handle);
-  EXPECT_THROW(ListPairIntInt_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairIntInt_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

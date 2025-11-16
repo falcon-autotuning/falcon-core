@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListDiscretizer_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -32,7 +33,9 @@ TEST_F(ListDiscretizerTest, CreateEmpty) {
   EXPECT_TRUE(ListDiscretizer_empty(handle));
   EXPECT_EQ(ListDiscretizer_size(handle), 0);
   ListDiscretizer_destroy(handle);
-  EXPECT_THROW(ListDiscretizer_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDiscretizerTest, FillValue) {
@@ -45,7 +48,9 @@ TEST_F(ListDiscretizerTest, CreateFromArray) {
   DiscretizerHandle     arr[2] = {sh1, sh2};
   ListDiscretizerHandle handle = ListDiscretizer_create(arr, 2);
   EXPECT_EQ(ListDiscretizer_size(handle), 2);
-  EXPECT_THROW(ListDiscretizer_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListDiscretizer_destroy(handle);
 }
 
@@ -53,14 +58,18 @@ TEST_F(ListDiscretizerTest, SizeEmptyInvalid) {
   auto handle = ListDiscretizer_create_empty();
   EXPECT_EQ(ListDiscretizer_size(handle), 0);
   ListDiscretizer_destroy(handle);
-  EXPECT_THROW(ListDiscretizer_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDiscretizerTest, EmptyInvalid) {
   auto handle = ListDiscretizer_create_empty();
   EXPECT_TRUE(ListDiscretizer_empty(handle));
   ListDiscretizer_destroy(handle);
-  EXPECT_THROW(ListDiscretizer_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDiscretizerTest, EraseAtClear) {
@@ -70,8 +79,12 @@ TEST_F(ListDiscretizerTest, EraseAtClear) {
   ListDiscretizer_clear(handle);
   EXPECT_TRUE(ListDiscretizer_empty(handle));
   ListDiscretizer_destroy(handle);
-  EXPECT_THROW(ListDiscretizer_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListDiscretizer_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDiscretizer_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDiscretizerTest, PushBackContainsIndex) {
@@ -80,9 +93,15 @@ TEST_F(ListDiscretizerTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListDiscretizer_contains(handle, sh1));
   EXPECT_EQ(ListDiscretizer_index(handle, sh1), 0);
   ListDiscretizer_destroy(handle);
-  EXPECT_THROW(ListDiscretizer_push_back(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListDiscretizer_contains(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListDiscretizer_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDiscretizer_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDiscretizer_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDiscretizerTest, ItemsAt) {
@@ -91,10 +110,15 @@ TEST_F(ListDiscretizerTest, ItemsAt) {
   DiscretizerHandle out[2];
   EXPECT_EQ(ListDiscretizer_items(handle, out, 2), 2);
   ListDiscretizer_destroy(handle);
-  EXPECT_THROW(ListDiscretizer_items(nullptr, out, 2), std::invalid_argument);
-  EXPECT_THROW(ListDiscretizer_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListDiscretizer_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDiscretizer_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDiscretizer_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDiscretizerTest, EqualNotEqualIntersection) {
@@ -108,14 +132,24 @@ TEST_F(ListDiscretizerTest, EqualNotEqualIntersection) {
   ListDiscretizer_destroy(h1);
   ListDiscretizer_destroy(h2);
   ListDiscretizer_destroy(h3);
-  EXPECT_THROW(ListDiscretizer_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListDiscretizer_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListDiscretizer_not_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListDiscretizer_not_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListDiscretizer_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListDiscretizer_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDiscretizer_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDiscretizer_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDiscretizer_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDiscretizer_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDiscretizer_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDiscretizerTest, ToJsonFromJson) {
@@ -127,37 +161,48 @@ TEST_F(ListDiscretizerTest, ToJsonFromJson) {
   ListDiscretizer_destroy(handle);
   ListDiscretizer_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListDiscretizer_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(ListDiscretizer_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDiscretizer_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDiscretizerTest, FillValueNull) {
-  EXPECT_THROW(ListDiscretizer_fill_value(3, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDiscretizerTest, PushBackNull) {
   auto handle = ListDiscretizer_create_empty();
-  EXPECT_THROW(ListDiscretizer_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListDiscretizer_destroy(handle);
 }
 
 TEST_F(ListDiscretizerTest, ContainsNull) {
   auto handle = ListDiscretizer_create_empty();
-  EXPECT_THROW(ListDiscretizer_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListDiscretizer_destroy(handle);
 }
 
 TEST_F(ListDiscretizerTest, IndexNull) {
   auto handle = ListDiscretizer_create_empty();
-  EXPECT_THROW(ListDiscretizer_index(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListDiscretizer_destroy(handle);
 }
 
 TEST_F(ListDiscretizerTest, CreateNullArray) {
-  EXPECT_THROW(ListDiscretizer_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDiscretizerTest, At) {
@@ -168,5 +213,7 @@ TEST_F(ListDiscretizerTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListDiscretizer_destroy(handle);
-  EXPECT_THROW(ListDiscretizer_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDiscretizer_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

@@ -1,4 +1,6 @@
 #include <falcon_core/generic/ListMapStringBool_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <falcon_core/math/AxesMapStringBool_c_api.h>
 #include <gtest/gtest.h>
 
@@ -47,14 +49,20 @@ TEST_F(AxesMapStringBoolTest, CreateEmpty) {
   EXPECT_TRUE(AxesMapStringBool_empty(handle));
   EXPECT_EQ(AxesMapStringBool_size(handle), 0);
   AxesMapStringBool_destroy(handle);
-  EXPECT_THROW(AxesMapStringBool_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesMapStringBoolTest, CreateDestroy) {
   auto h = AxesMapStringBool_create_empty();
   AxesMapStringBool_destroy(h);
-  EXPECT_THROW(AxesMapStringBool_create(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   StringHandle         str3     = String_wrap("key3");
   PairStringBoolHandle pair3[1] = {PairStringBool_create(str3, true)};
 
@@ -102,10 +110,12 @@ TEST_F(AxesMapStringBoolTest, ContainsIndexEquality) {
 }
 
 TEST_F(AxesMapStringBoolTest, SerializationRoundTrip) {
-  EXPECT_THROW(AxesMapStringBool_from_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_to_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW({
     auto json   = AxesMapStringBool_to_json_string(sh1);
     auto loaded = AxesMapStringBool_from_json_string(json);
@@ -115,40 +125,74 @@ TEST_F(AxesMapStringBoolTest, SerializationRoundTrip) {
 }
 
 TEST_F(AxesMapStringBoolTest, EqualityWorks) {
-  EXPECT_THROW(AxesMapStringBool_equal(sh1, nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_not_equal(nullptr, sh1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_equal(sh1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_not_equal(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(AxesMapStringBool_equal(sh1, sh1));
   EXPECT_NO_THROW(AxesMapStringBool_not_equal(sh1, sh2));
 }
 
 TEST_F(AxesMapStringBoolTest, Intersection) {
-  EXPECT_THROW(AxesMapStringBool_intersection(nullptr, sh2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_intersection(sh1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_intersection(nullptr, sh2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_intersection(sh1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(AxesMapStringBool_intersection(sh1, sh2));
 }
 
 TEST_F(AxesMapStringBoolTest, MiscNullChecks) {
-  EXPECT_THROW(AxesMapStringBool_destroy(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_push_back(nullptr, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_push_back(sh1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_push_back(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_contains(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_contains(sh1, nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_index(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_index(sh1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_push_back(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_push_back(sh1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_push_back(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_contains(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_contains(sh1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_index(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_index(sh1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   MapStringBoolHandle rawbuffer[2];
-  EXPECT_THROW(AxesMapStringBool_items(nullptr, rawbuffer, 2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_items(sh1, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesMapStringBool_create_raw(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_items(nullptr, rawbuffer, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_items(sh1, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMapStringBool_create_raw(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

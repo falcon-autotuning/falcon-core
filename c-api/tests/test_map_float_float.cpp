@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/MapFloatFloat_c_api.h"
 #include "falcon_core/generic/PairFloatFloat_c_api.h"
@@ -29,8 +30,12 @@ class MapFloatFloatTest : public ::testing::Test {
 };
 
 TEST_F(MapFloatFloatTest, CreateDestroy) {
-  EXPECT_THROW(MapFloatFloat_create(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(MapFloatFloat_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapFloatFloat_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapFloatFloat_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapFloatFloatTest, InsertAssignAccessErase) {
@@ -38,18 +43,18 @@ TEST_F(MapFloatFloatTest, InsertAssignAccessErase) {
             PairFloatFloat_second(p1));
   MapFloatFloat_erase(map, PairFloatFloat_first(p1));
   EXPECT_FALSE(MapFloatFloat_contains(map, PairFloatFloat_first(p1)));
-  EXPECT_THROW(
-      MapFloatFloat_insert_or_assign(
-          nullptr, PairFloatFloat_first(p1), PairFloatFloat_second(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(
-      MapFloatFloat_insert(
-          nullptr, PairFloatFloat_first(p1), PairFloatFloat_second(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapFloatFloat_at(nullptr, PairFloatFloat_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapFloatFloat_erase(nullptr, PairFloatFloat_first(p1)),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapFloatFloat_insert_or_assign(          nullptr, PairFloatFloat_first(p1), PairFloatFloat_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapFloatFloat_insert(          nullptr, PairFloatFloat_first(p1), PairFloatFloat_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapFloatFloat_at(nullptr, PairFloatFloat_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapFloatFloat_erase(nullptr, PairFloatFloat_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapFloatFloatTest, SizeEmptyClearContains) {
@@ -57,29 +62,50 @@ TEST_F(MapFloatFloatTest, SizeEmptyClearContains) {
   EXPECT_FALSE(MapFloatFloat_empty(map));
   MapFloatFloat_clear(map);
   EXPECT_TRUE(MapFloatFloat_empty(map));
-  EXPECT_THROW(MapFloatFloat_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapFloatFloat_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapFloatFloat_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapFloatFloat_contains(nullptr, PairFloatFloat_first(p1)),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapFloatFloat_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapFloatFloat_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapFloatFloat_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapFloatFloat_contains(nullptr, PairFloatFloat_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapFloatFloatTest, KeysValuesItems) {
   EXPECT_NE(MapFloatFloat_keys(map), nullptr);
   EXPECT_NE(MapFloatFloat_values(map), nullptr);
   EXPECT_NE(MapFloatFloat_items(map), nullptr);
-  EXPECT_THROW(MapFloatFloat_keys(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapFloatFloat_values(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapFloatFloat_items(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapFloatFloat_keys(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapFloatFloat_values(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapFloatFloat_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapFloatFloatTest, Equality) {
   EXPECT_TRUE(MapFloatFloat_equal(map, map2));
   EXPECT_FALSE(MapFloatFloat_not_equal(map, map2));
-  EXPECT_THROW(MapFloatFloat_equal(nullptr, map2), std::invalid_argument);
-  EXPECT_THROW(MapFloatFloat_equal(map, nullptr), std::invalid_argument);
-  EXPECT_THROW(MapFloatFloat_not_equal(nullptr, map2), std::invalid_argument);
-  EXPECT_THROW(MapFloatFloat_not_equal(map, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapFloatFloat_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapFloatFloat_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapFloatFloat_not_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapFloatFloat_not_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapFloatFloatTest, ToJsonFromJson) {
@@ -88,6 +114,10 @@ TEST_F(MapFloatFloatTest, ToJsonFromJson) {
   EXPECT_TRUE(MapFloatFloat_equal(map, m2));
   MapFloatFloat_destroy(m2);
   String_destroy(json);
-  EXPECT_THROW(MapFloatFloat_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapFloatFloat_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapFloatFloat_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapFloatFloat_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

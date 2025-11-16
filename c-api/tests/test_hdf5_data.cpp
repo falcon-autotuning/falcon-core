@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/communications/HDF5Data_c_api.h"
 #include "falcon_core/generic/MapStringString_c_api.h"
@@ -101,61 +102,27 @@ TEST_F(HDF5DataTest, CreateDestroy) {
                            unique_id,
                            timestamp);
   HDF5Data_destroy(h);
-  EXPECT_THROW(HDF5Data_create(nullptr,
-                               unit_domain,
-                               domain_labels,
-                               ranges,
-                               metadata,
-                               measurement_title,
-                               unique_id,
-                               timestamp),
-               std::invalid_argument);
-  EXPECT_THROW(HDF5Data_create(shape,
-                               nullptr,
-                               domain_labels,
-                               ranges,
-                               metadata,
-                               measurement_title,
-                               unique_id,
-                               timestamp),
-               std::invalid_argument);
-  EXPECT_THROW(HDF5Data_create(shape,
-                               unit_domain,
-                               nullptr,
-                               ranges,
-                               metadata,
-                               measurement_title,
-                               unique_id,
-                               timestamp),
-               std::invalid_argument);
-  EXPECT_THROW(HDF5Data_create(shape,
-                               unit_domain,
-                               domain_labels,
-                               nullptr,
-                               metadata,
-                               measurement_title,
-                               unique_id,
-                               timestamp),
-               std::invalid_argument);
-  EXPECT_THROW(HDF5Data_create(shape,
-                               unit_domain,
-                               domain_labels,
-                               ranges,
-                               nullptr,
-                               measurement_title,
-                               unique_id,
-                               timestamp),
-               std::invalid_argument);
-  EXPECT_THROW(HDF5Data_create(shape,
-                               unit_domain,
-                               domain_labels,
-                               ranges,
-                               metadata,
-                               nullptr,
-                               unique_id,
-                               timestamp),
-               std::invalid_argument);
-  EXPECT_THROW(HDF5Data_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  HDF5Data_create(nullptr,                               unit_domain,                               domain_labels,                               ranges,                               metadata,                               measurement_title,                               unique_id,                               timestamp);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  HDF5Data_create(shape,                               nullptr,                               domain_labels,                               ranges,                               metadata,                               measurement_title,                               unique_id,                               timestamp);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  HDF5Data_create(shape,                               unit_domain,                               nullptr,                               ranges,                               metadata,                               measurement_title,                               unique_id,                               timestamp);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  HDF5Data_create(shape,                               unit_domain,                               domain_labels,                               nullptr,                               metadata,                               measurement_title,                               unique_id,                               timestamp);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  HDF5Data_create(shape,                               unit_domain,                               domain_labels,                               ranges,                               nullptr,                               measurement_title,                               unique_id,                               timestamp);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  HDF5Data_create(shape,                               unit_domain,                               domain_labels,                               ranges,                               metadata,                               nullptr,                               unique_id,                               timestamp);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  HDF5Data_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(HDF5DataTest, Equality) {
@@ -163,10 +130,18 @@ TEST_F(HDF5DataTest, Equality) {
   EXPECT_TRUE(HDF5Data_not_equal(hdf5, hdf5_2));
   EXPECT_TRUE(HDF5Data_equal(hdf5, hdf5));
   EXPECT_FALSE(HDF5Data_not_equal(hdf5, hdf5));
-  EXPECT_THROW(HDF5Data_equal(nullptr, hdf5_2), std::invalid_argument);
-  EXPECT_THROW(HDF5Data_equal(hdf5, nullptr), std::invalid_argument);
-  EXPECT_THROW(HDF5Data_not_equal(nullptr, hdf5_2), std::invalid_argument);
-  EXPECT_THROW(HDF5Data_not_equal(hdf5, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  HDF5Data_equal(nullptr, hdf5_2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  HDF5Data_equal(hdf5, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  HDF5Data_not_equal(nullptr, hdf5_2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  HDF5Data_not_equal(hdf5, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(HDF5DataTest, ToJsonFromJson) {
@@ -175,8 +150,12 @@ TEST_F(HDF5DataTest, ToJsonFromJson) {
   EXPECT_TRUE(HDF5Data_equal(hdf5, h2));
   HDF5Data_destroy(h2);
   String_destroy(json);
-  EXPECT_THROW(HDF5Data_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(HDF5Data_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  HDF5Data_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  HDF5Data_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(HDF5DataTest, ToFileAndCreateFromFile) {
@@ -188,11 +167,16 @@ TEST_F(HDF5DataTest, ToFileAndCreateFromFile) {
   std::remove("test_hdf5_data.h5");
   String_destroy(filename);
 
-  EXPECT_THROW(HDF5Data_to_file(nullptr, String_wrap("file.h5")),
-               std::invalid_argument);
-  EXPECT_THROW(HDF5Data_to_file(hdf5, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  HDF5Data_to_file(nullptr, String_wrap("file.h5"));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  HDF5Data_to_file(hdf5, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(HDF5Data_create_from_file(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  HDF5Data_create_from_file(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
@@ -319,12 +303,16 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
   Domain_destroy(domain);
 
   // Error case
-  EXPECT_THROW(HDF5Data_to_communications(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  HDF5Data_to_communications(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(HDF5DataTest, FromJsonStringInvalid) {
   StringHandle invalid_json = String_wrap("{not valid json}");
-  EXPECT_THROW(HDF5Data_from_json_string(invalid_json), std::exception);
+  set_last_error(0, nullptr);
+  HDF5Data_from_json_string(invalid_json);
+  EXPECT_EQ(get_last_error_code(), 1);
   String_destroy(invalid_json);
 }
 

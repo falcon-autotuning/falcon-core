@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/MapConnectionFloat_c_api.h"
 #include "falcon_core/generic/PairConnectionFloat_c_api.h"
@@ -31,8 +32,12 @@ class MapConnectionFloatTest : public ::testing::Test {
 };
 
 TEST_F(MapConnectionFloatTest, CreateDestroy) {
-  EXPECT_THROW(MapConnectionFloat_create(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapConnectionFloatTest, InsertAssignAccessErase) {
@@ -40,27 +45,30 @@ TEST_F(MapConnectionFloatTest, InsertAssignAccessErase) {
               PairConnectionFloat_second(p1));
   MapConnectionFloat_erase(map, PairConnectionFloat_first(p1));
   EXPECT_FALSE(MapConnectionFloat_contains(map, PairConnectionFloat_first(p1)));
-  EXPECT_THROW(
-      MapConnectionFloat_insert_or_assign(nullptr,
-                                          PairConnectionFloat_first(p1),
-                                          PairConnectionFloat_second(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_insert_or_assign(
-                   map, nullptr, PairConnectionFloat_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_insert(nullptr,
-                                         PairConnectionFloat_first(p1),
-                                         PairConnectionFloat_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(
-      MapConnectionFloat_insert(map, nullptr, PairConnectionFloat_second(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_at(nullptr, PairConnectionFloat_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_at(map, nullptr), std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_erase(nullptr, PairConnectionFloat_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_erase(map, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_insert_or_assign(nullptr,                                          PairConnectionFloat_first(p1),                                          PairConnectionFloat_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_insert_or_assign(                   map, nullptr, PairConnectionFloat_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_insert(nullptr,                                         PairConnectionFloat_first(p1),                                         PairConnectionFloat_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_insert(map, nullptr, PairConnectionFloat_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_at(nullptr, PairConnectionFloat_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_at(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_erase(nullptr, PairConnectionFloat_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_erase(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapConnectionFloatTest, SizeEmptyClearContains) {
@@ -68,34 +76,53 @@ TEST_F(MapConnectionFloatTest, SizeEmptyClearContains) {
   EXPECT_FALSE(MapConnectionFloat_empty(map));
   MapConnectionFloat_clear(map);
   EXPECT_TRUE(MapConnectionFloat_empty(map));
-  EXPECT_THROW(MapConnectionFloat_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(
-      MapConnectionFloat_contains(nullptr, PairConnectionFloat_first(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_contains(map2, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_contains(nullptr, PairConnectionFloat_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_contains(map2, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapConnectionFloatTest, KeysValuesItems) {
   EXPECT_NE(MapConnectionFloat_keys(map), nullptr);
   EXPECT_NE(MapConnectionFloat_values(map), nullptr);
   EXPECT_NE(MapConnectionFloat_items(map), nullptr);
-  EXPECT_THROW(MapConnectionFloat_keys(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_values(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_items(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_keys(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_values(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapConnectionFloatTest, Equality) {
   EXPECT_TRUE(MapConnectionFloat_equal(map, map2));
   EXPECT_FALSE(MapConnectionFloat_not_equal(map, map2));
-  EXPECT_THROW(MapConnectionFloat_equal(nullptr, map2), std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_equal(map, nullptr), std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_not_equal(nullptr, map2),
-               std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_not_equal(map, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_not_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_not_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapConnectionFloatTest, ToJsonFromJson) {
@@ -104,8 +131,10 @@ TEST_F(MapConnectionFloatTest, ToJsonFromJson) {
   EXPECT_TRUE(MapConnectionFloat_equal(map, m2));
   MapConnectionFloat_destroy(m2);
   String_destroy(json);
-  EXPECT_THROW(MapConnectionFloat_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapConnectionFloat_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapConnectionFloat_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

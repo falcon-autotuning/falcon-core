@@ -2,12 +2,17 @@
 #include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include <falcon_core/physics/device_structures/Connection.hpp>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+extern "C" {
 ListPairConnectionDoubleHandle ListPairConnectionDouble_create_empty() {
+    FALCON_C_API_BEGIN
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>();
+    FALCON_C_API_END(nullptr)
 }
 
 ListPairConnectionDoubleHandle ListPairConnectionDouble_fill_value(size_t count, PairConnectionDoubleHandle value) {
+    FALCON_C_API_BEGIN
     
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairConnectionDouble_fill_value");
@@ -16,10 +21,12 @@ ListPairConnectionDoubleHandle ListPairConnectionDouble_fill_value(size_t count,
     
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(
         count, stored_obj);
+    FALCON_C_API_END(nullptr)
 }
  
 
 ListPairConnectionDoubleHandle ListPairConnectionDouble_create(PairConnectionDoubleHandle* data, size_t count) {
+    FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data handle passed to ListPairConnectionDouble_create");
 }
@@ -30,44 +37,56 @@ throw std::invalid_argument("Null data handle passed to ListPairConnectionDouble
     }
 
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(vec);
+    FALCON_C_API_END(nullptr)
 }
 
 void ListPairConnectionDouble_destroy(ListPairConnectionDoubleHandle handle) {
+    FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_destroy");
     }
     delete static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle);
+    FALCON_C_API_END()
 }
 
 size_t ListPairConnectionDouble_size(ListPairConnectionDoubleHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_size");
 }
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->size();
+    FALCON_C_API_END(0)
 }
 
 bool ListPairConnectionDouble_empty(ListPairConnectionDoubleHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_empty");
 }
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->empty();
+    FALCON_C_API_END(false)
 }
 
 void ListPairConnectionDouble_erase_at(ListPairConnectionDoubleHandle handle, size_t idx) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_erase_at");
 }
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->erase_at(idx);
+    FALCON_C_API_END()
 }
 
 void ListPairConnectionDouble_clear(ListPairConnectionDoubleHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_clear");
 }
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->clear();
+    FALCON_C_API_END()
 }
 
 void ListPairConnectionDouble_push_back(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle value) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_push_back");
 }
@@ -78,9 +97,11 @@ throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_push
     auto stored_obj = std::make_shared<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(*static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(value));
     
     static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->push_back(stored_obj);
+    FALCON_C_API_END()
 }
 
 bool ListPairConnectionDouble_contains(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle value) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_contains");
 }
@@ -91,9 +112,11 @@ throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_cont
     auto stored_obj = std::make_shared<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(*static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(value));
     
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->contains(stored_obj);
+    FALCON_C_API_END(false)
 }
 
 size_t ListPairConnectionDouble_index(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle value) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_index");
 }
@@ -104,9 +127,11 @@ throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_inde
     auto stored_obj = std::make_shared<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(*static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>*>(value));
     
     return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->index(stored_obj);
+    FALCON_C_API_END(0)
 }
 
 size_t ListPairConnectionDouble_items(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle* out_buffer, size_t buffer_size) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_items");
 }
@@ -120,33 +145,41 @@ for (size_t i = 0; i < n; ++i) {
     out_buffer[i] = new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>(*list->items()[i]);
 }
     return n;
+    FALCON_C_API_END(0)
 }
 
 PairConnectionDoubleHandle ListPairConnectionDouble_at(ListPairConnectionDoubleHandle handle, size_t idx) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_at");
 }
     auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->at(idx);
     return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>(*obj);
+    FALCON_C_API_END(nullptr)
 }
 
 bool ListPairConnectionDouble_equal(ListPairConnectionDoubleHandle a, ListPairConnectionDoubleHandle b) {
+    FALCON_C_API_BEGIN
 if (!a || !b) {
 throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_equal");
 }
     auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(a);
     auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(b);
     return *listA == *listB;
+    FALCON_C_API_END(false)
 }
 
 bool ListPairConnectionDouble_not_equal(ListPairConnectionDoubleHandle a, ListPairConnectionDoubleHandle b) {
+    FALCON_C_API_BEGIN
 if (!a || !b) {
 throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_not_equal");
 }
     return !ListPairConnectionDouble_equal(a, b);
+    FALCON_C_API_END(false)
 }
 
 ListPairConnectionDoubleHandle ListPairConnectionDouble_intersection(ListPairConnectionDoubleHandle handle, ListPairConnectionDoubleHandle other) {
+    FALCON_C_API_BEGIN
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_intersection");
 }
@@ -154,19 +187,26 @@ throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_inte
     auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(other);
     auto result = listA->intersection(std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>>(*listB));
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(*result);
+    FALCON_C_API_END(nullptr)
 }
 
 StringHandle      ListPairConnectionDouble_to_json_string(ListPairConnectionDoubleHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_to_json_string");
 }
     std::string json = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle)->to_json_string();
     return String_create(json.c_str(), json.size());
+    FALCON_C_API_END(nullptr)
 }
+
 ListPairConnectionDoubleHandle ListPairConnectionDouble_from_json_string(StringHandle json) {
+    FALCON_C_API_BEGIN
 if (!json) {
 throw std::invalid_argument("Null string handle passed to ListPairConnectionDouble_from_json_string");
 }
   auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>>(json->raw);
   return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(*ptr);
+    FALCON_C_API_END(nullptr)
+}
 }

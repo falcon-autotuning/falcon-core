@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListAcquisitionContext_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -41,7 +42,9 @@ TEST_F(ListAcquisitionContextTest, CreateEmpty) {
   EXPECT_TRUE(ListAcquisitionContext_empty(handle));
   EXPECT_EQ(ListAcquisitionContext_size(handle), 0);
   ListAcquisitionContext_destroy(handle);
-  EXPECT_THROW(ListAcquisitionContext_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListAcquisitionContextTest, FillValue) {
@@ -54,8 +57,9 @@ TEST_F(ListAcquisitionContextTest, CreateFromArray) {
   AcquisitionContextHandle     arr[2] = {sh1, sh2};
   ListAcquisitionContextHandle handle = ListAcquisitionContext_create(arr, 2);
   EXPECT_EQ(ListAcquisitionContext_size(handle), 2);
-  EXPECT_THROW(ListAcquisitionContext_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListAcquisitionContext_destroy(handle);
 }
 
@@ -63,14 +67,18 @@ TEST_F(ListAcquisitionContextTest, SizeEmptyInvalid) {
   auto handle = ListAcquisitionContext_create_empty();
   EXPECT_EQ(ListAcquisitionContext_size(handle), 0);
   ListAcquisitionContext_destroy(handle);
-  EXPECT_THROW(ListAcquisitionContext_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListAcquisitionContextTest, EmptyInvalid) {
   auto handle = ListAcquisitionContext_create_empty();
   EXPECT_TRUE(ListAcquisitionContext_empty(handle));
   ListAcquisitionContext_destroy(handle);
-  EXPECT_THROW(ListAcquisitionContext_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListAcquisitionContextTest, EraseAtClear) {
@@ -80,9 +88,12 @@ TEST_F(ListAcquisitionContextTest, EraseAtClear) {
   ListAcquisitionContext_clear(handle);
   EXPECT_TRUE(ListAcquisitionContext_empty(handle));
   ListAcquisitionContext_destroy(handle);
-  EXPECT_THROW(ListAcquisitionContext_erase_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(ListAcquisitionContext_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListAcquisitionContextTest, PushBackContainsIndex) {
@@ -91,12 +102,15 @@ TEST_F(ListAcquisitionContextTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListAcquisitionContext_contains(handle, sh1));
   EXPECT_EQ(ListAcquisitionContext_index(handle, sh1), 0);
   ListAcquisitionContext_destroy(handle);
-  EXPECT_THROW(ListAcquisitionContext_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListAcquisitionContext_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListAcquisitionContext_index(nullptr, sh1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListAcquisitionContextTest, ItemsAt) {
@@ -105,11 +119,15 @@ TEST_F(ListAcquisitionContextTest, ItemsAt) {
   AcquisitionContextHandle out[2];
   EXPECT_EQ(ListAcquisitionContext_items(handle, out, 2), 2);
   ListAcquisitionContext_destroy(handle);
-  EXPECT_THROW(ListAcquisitionContext_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListAcquisitionContext_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListAcquisitionContext_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListAcquisitionContextTest, EqualNotEqualIntersection) {
@@ -123,18 +141,24 @@ TEST_F(ListAcquisitionContextTest, EqualNotEqualIntersection) {
   ListAcquisitionContext_destroy(h1);
   ListAcquisitionContext_destroy(h2);
   ListAcquisitionContext_destroy(h3);
-  EXPECT_THROW(ListAcquisitionContext_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListAcquisitionContext_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListAcquisitionContext_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListAcquisitionContext_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListAcquisitionContext_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListAcquisitionContext_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListAcquisitionContextTest, ToJsonFromJson) {
@@ -146,41 +170,48 @@ TEST_F(ListAcquisitionContextTest, ToJsonFromJson) {
   ListAcquisitionContext_destroy(handle);
   ListAcquisitionContext_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListAcquisitionContext_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListAcquisitionContext_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListAcquisitionContextTest, FillValueNull) {
-  EXPECT_THROW(ListAcquisitionContext_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListAcquisitionContextTest, PushBackNull) {
   auto handle = ListAcquisitionContext_create_empty();
-  EXPECT_THROW(ListAcquisitionContext_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListAcquisitionContext_destroy(handle);
 }
 
 TEST_F(ListAcquisitionContextTest, ContainsNull) {
   auto handle = ListAcquisitionContext_create_empty();
-  EXPECT_THROW(ListAcquisitionContext_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListAcquisitionContext_destroy(handle);
 }
 
 TEST_F(ListAcquisitionContextTest, IndexNull) {
   auto handle = ListAcquisitionContext_create_empty();
-  EXPECT_THROW(ListAcquisitionContext_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListAcquisitionContext_destroy(handle);
 }
 
 TEST_F(ListAcquisitionContextTest, CreateNullArray) {
-  EXPECT_THROW(ListAcquisitionContext_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListAcquisitionContextTest, At) {
@@ -191,5 +222,7 @@ TEST_F(ListAcquisitionContextTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListAcquisitionContext_destroy(handle);
-  EXPECT_THROW(ListAcquisitionContext_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListAcquisitionContext_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

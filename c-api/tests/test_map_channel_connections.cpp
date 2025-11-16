@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/MapChannelConnections_c_api.h"
 #include "falcon_core/generic/PairChannelConnections_c_api.h"
@@ -36,8 +37,12 @@ class MapChannelConnectionsTest : public ::testing::Test {
 };
 
 TEST_F(MapChannelConnectionsTest, CreateDestroy) {
-  EXPECT_THROW(MapChannelConnections_create(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapChannelConnections_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapChannelConnectionsTest, InsertAssignAccessErase) {
@@ -47,36 +52,36 @@ TEST_F(MapChannelConnectionsTest, InsertAssignAccessErase) {
   MapChannelConnections_erase(map, PairChannelConnections_first(p1));
   EXPECT_FALSE(
       MapChannelConnections_contains(map, PairChannelConnections_first(p1)));
-  EXPECT_THROW(
-      MapChannelConnections_insert_or_assign(nullptr,
-                                             PairChannelConnections_first(p1),
-                                             PairChannelConnections_second(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_insert_or_assign(
-                   map, nullptr, PairChannelConnections_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_insert_or_assign(
-                   map, PairChannelConnections_first(p1), nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_insert(nullptr,
-                                            PairChannelConnections_first(p1),
-                                            PairChannelConnections_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_insert(
-                   map, nullptr, PairChannelConnections_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_insert(
-                   map, PairChannelConnections_first(p1), nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(
-      MapChannelConnections_at(nullptr, PairChannelConnections_first(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_at(map, nullptr), std::invalid_argument);
-  EXPECT_THROW(
-      MapChannelConnections_erase(nullptr, PairChannelConnections_first(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_erase(map, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapChannelConnections_insert_or_assign(nullptr,                                             PairChannelConnections_first(p1),                                             PairChannelConnections_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_insert_or_assign(                   map, nullptr, PairChannelConnections_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_insert_or_assign(                   map, PairChannelConnections_first(p1), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_insert(nullptr,                                            PairChannelConnections_first(p1),                                            PairChannelConnections_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_insert(                   map, nullptr, PairChannelConnections_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_insert(                   map, PairChannelConnections_first(p1), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_at(nullptr, PairChannelConnections_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_at(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_erase(nullptr, PairChannelConnections_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_erase(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapChannelConnectionsTest, SizeEmptyClearContains) {
@@ -84,36 +89,53 @@ TEST_F(MapChannelConnectionsTest, SizeEmptyClearContains) {
   EXPECT_FALSE(MapChannelConnections_empty(map));
   MapChannelConnections_clear(map);
   EXPECT_TRUE(MapChannelConnections_empty(map));
-  EXPECT_THROW(MapChannelConnections_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(
-      MapChannelConnections_contains(nullptr, PairChannelConnections_first(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_contains(map2, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapChannelConnections_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_contains(nullptr, PairChannelConnections_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_contains(map2, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapChannelConnectionsTest, KeysValuesItems) {
   EXPECT_NE(MapChannelConnections_keys(map), nullptr);
   EXPECT_NE(MapChannelConnections_values(map), nullptr);
   EXPECT_NE(MapChannelConnections_items(map), nullptr);
-  EXPECT_THROW(MapChannelConnections_keys(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_values(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_items(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapChannelConnections_keys(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_values(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapChannelConnectionsTest, Equality) {
   EXPECT_TRUE(MapChannelConnections_equal(map, map2));
   EXPECT_FALSE(MapChannelConnections_not_equal(map, map2));
-  EXPECT_THROW(MapChannelConnections_equal(nullptr, map2),
-               std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_equal(map, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_not_equal(nullptr, map2),
-               std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_not_equal(map, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapChannelConnections_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_not_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_not_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapChannelConnectionsTest, ToJsonFromJson) {
@@ -122,8 +144,10 @@ TEST_F(MapChannelConnectionsTest, ToJsonFromJson) {
   EXPECT_TRUE(MapChannelConnections_equal(map, m2));
   MapChannelConnections_destroy(m2);
   String_destroy(json);
-  EXPECT_THROW(MapChannelConnections_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapChannelConnections_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapChannelConnections_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapChannelConnections_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

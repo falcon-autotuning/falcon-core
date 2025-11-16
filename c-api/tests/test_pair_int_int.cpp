@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <string>
 
@@ -32,23 +33,37 @@ class PairIntIntTest : public ::testing::Test {
 };
 
 TEST_F(PairIntIntTest, CreateDestroy) {
-  EXPECT_THROW(PairIntInt_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairIntInt_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairIntIntTest, Accessors) {
   auto f = PairIntInt_first(pair1);
   auto s = PairIntInt_second(pair1);
-  EXPECT_THROW(PairIntInt_first(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairIntInt_second(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairIntInt_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairIntInt_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairIntIntTest, Equality) {
   EXPECT_TRUE(PairIntInt_equal(pair1, pair2));
   EXPECT_FALSE(PairIntInt_not_equal(pair1, pair2));
-  EXPECT_THROW(PairIntInt_equal(nullptr, pair2), std::invalid_argument);
-  EXPECT_THROW(PairIntInt_equal(pair1, nullptr), std::invalid_argument);
-  EXPECT_THROW(PairIntInt_not_equal(nullptr, pair2), std::invalid_argument);
-  EXPECT_THROW(PairIntInt_not_equal(pair1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairIntInt_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairIntInt_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairIntInt_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairIntInt_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairIntIntTest, ToJsonFromJson) {
@@ -56,6 +71,10 @@ TEST_F(PairIntIntTest, ToJsonFromJson) {
   auto p2   = PairIntInt_from_json_string(json);
   EXPECT_TRUE(PairIntInt_equal(pair1, p2));
   PairIntInt_destroy(p2);
-  EXPECT_THROW(PairIntInt_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairIntInt_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairIntInt_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairIntInt_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

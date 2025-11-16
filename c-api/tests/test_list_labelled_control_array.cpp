@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListLabelledControlArray_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -48,8 +49,9 @@ TEST_F(ListLabelledControlArrayTest, CreateEmpty) {
   EXPECT_TRUE(ListLabelledControlArray_empty(handle));
   EXPECT_EQ(ListLabelledControlArray_size(handle), 0);
   ListLabelledControlArray_destroy(handle);
-  EXPECT_THROW(ListLabelledControlArray_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledControlArrayTest, FillValue) {
@@ -63,8 +65,9 @@ TEST_F(ListLabelledControlArrayTest, CreateFromArray) {
   ListLabelledControlArrayHandle handle =
       ListLabelledControlArray_create(arr, 2);
   EXPECT_EQ(ListLabelledControlArray_size(handle), 2);
-  EXPECT_THROW(ListLabelledControlArray_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListLabelledControlArray_destroy(handle);
 }
 
@@ -72,14 +75,18 @@ TEST_F(ListLabelledControlArrayTest, SizeEmptyInvalid) {
   auto handle = ListLabelledControlArray_create_empty();
   EXPECT_EQ(ListLabelledControlArray_size(handle), 0);
   ListLabelledControlArray_destroy(handle);
-  EXPECT_THROW(ListLabelledControlArray_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledControlArrayTest, EmptyInvalid) {
   auto handle = ListLabelledControlArray_create_empty();
   EXPECT_TRUE(ListLabelledControlArray_empty(handle));
   ListLabelledControlArray_destroy(handle);
-  EXPECT_THROW(ListLabelledControlArray_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledControlArrayTest, EraseAtClear) {
@@ -89,9 +96,12 @@ TEST_F(ListLabelledControlArrayTest, EraseAtClear) {
   ListLabelledControlArray_clear(handle);
   EXPECT_TRUE(ListLabelledControlArray_empty(handle));
   ListLabelledControlArray_destroy(handle);
-  EXPECT_THROW(ListLabelledControlArray_erase_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledControlArray_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledControlArrayTest, PushBackContainsIndex) {
@@ -100,12 +110,15 @@ TEST_F(ListLabelledControlArrayTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListLabelledControlArray_contains(handle, sh1));
   EXPECT_EQ(ListLabelledControlArray_index(handle, sh1), 0);
   ListLabelledControlArray_destroy(handle);
-  EXPECT_THROW(ListLabelledControlArray_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledControlArray_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledControlArray_index(nullptr, sh1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledControlArrayTest, ItemsAt) {
@@ -114,11 +127,15 @@ TEST_F(ListLabelledControlArrayTest, ItemsAt) {
   LabelledControlArrayHandle out[2];
   EXPECT_EQ(ListLabelledControlArray_items(handle, out, 2), 2);
   ListLabelledControlArray_destroy(handle);
-  EXPECT_THROW(ListLabelledControlArray_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledControlArray_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledControlArray_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledControlArrayTest, EqualNotEqualIntersection) {
@@ -132,18 +149,24 @@ TEST_F(ListLabelledControlArrayTest, EqualNotEqualIntersection) {
   ListLabelledControlArray_destroy(h1);
   ListLabelledControlArray_destroy(h2);
   ListLabelledControlArray_destroy(h3);
-  EXPECT_THROW(ListLabelledControlArray_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledControlArray_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledControlArray_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledControlArray_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledControlArray_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledControlArray_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledControlArrayTest, ToJsonFromJson) {
@@ -155,41 +178,48 @@ TEST_F(ListLabelledControlArrayTest, ToJsonFromJson) {
   ListLabelledControlArray_destroy(handle);
   ListLabelledControlArray_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListLabelledControlArray_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledControlArray_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledControlArrayTest, FillValueNull) {
-  EXPECT_THROW(ListLabelledControlArray_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledControlArrayTest, PushBackNull) {
   auto handle = ListLabelledControlArray_create_empty();
-  EXPECT_THROW(ListLabelledControlArray_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListLabelledControlArray_destroy(handle);
 }
 
 TEST_F(ListLabelledControlArrayTest, ContainsNull) {
   auto handle = ListLabelledControlArray_create_empty();
-  EXPECT_THROW(ListLabelledControlArray_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListLabelledControlArray_destroy(handle);
 }
 
 TEST_F(ListLabelledControlArrayTest, IndexNull) {
   auto handle = ListLabelledControlArray_create_empty();
-  EXPECT_THROW(ListLabelledControlArray_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListLabelledControlArray_destroy(handle);
 }
 
 TEST_F(ListLabelledControlArrayTest, CreateNullArray) {
-  EXPECT_THROW(ListLabelledControlArray_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledControlArrayTest, At) {
@@ -200,5 +230,7 @@ TEST_F(ListLabelledControlArrayTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListLabelledControlArray_destroy(handle);
-  EXPECT_THROW(ListLabelledControlArray_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledControlArray_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

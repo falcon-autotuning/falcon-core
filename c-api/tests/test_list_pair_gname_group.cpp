@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListPairGnameGroup_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -96,7 +97,9 @@ TEST_F(ListPairGnameGroupTest, CreateEmpty) {
   EXPECT_TRUE(ListPairGnameGroup_empty(handle));
   EXPECT_EQ(ListPairGnameGroup_size(handle), 0);
   ListPairGnameGroup_destroy(handle);
-  EXPECT_THROW(ListPairGnameGroup_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairGnameGroupTest, FillValue) {
@@ -109,7 +112,9 @@ TEST_F(ListPairGnameGroupTest, CreateFromArray) {
   PairGnameGroupHandle     arr[2] = {sh1, sh2};
   ListPairGnameGroupHandle handle = ListPairGnameGroup_create(arr, 2);
   EXPECT_EQ(ListPairGnameGroup_size(handle), 2);
-  EXPECT_THROW(ListPairGnameGroup_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairGnameGroup_destroy(handle);
 }
 
@@ -117,14 +122,18 @@ TEST_F(ListPairGnameGroupTest, SizeEmptyInvalid) {
   auto handle = ListPairGnameGroup_create_empty();
   EXPECT_EQ(ListPairGnameGroup_size(handle), 0);
   ListPairGnameGroup_destroy(handle);
-  EXPECT_THROW(ListPairGnameGroup_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairGnameGroupTest, EmptyInvalid) {
   auto handle = ListPairGnameGroup_create_empty();
   EXPECT_TRUE(ListPairGnameGroup_empty(handle));
   ListPairGnameGroup_destroy(handle);
-  EXPECT_THROW(ListPairGnameGroup_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairGnameGroupTest, EraseAtClear) {
@@ -134,8 +143,12 @@ TEST_F(ListPairGnameGroupTest, EraseAtClear) {
   ListPairGnameGroup_clear(handle);
   EXPECT_TRUE(ListPairGnameGroup_empty(handle));
   ListPairGnameGroup_destroy(handle);
-  EXPECT_THROW(ListPairGnameGroup_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListPairGnameGroup_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairGnameGroupTest, PushBackContainsIndex) {
@@ -144,11 +157,15 @@ TEST_F(ListPairGnameGroupTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListPairGnameGroup_contains(handle, sh1));
   EXPECT_EQ(ListPairGnameGroup_index(handle, sh1), 0);
   ListPairGnameGroup_destroy(handle);
-  EXPECT_THROW(ListPairGnameGroup_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairGnameGroup_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairGnameGroup_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairGnameGroupTest, ItemsAt) {
@@ -156,12 +173,16 @@ TEST_F(ListPairGnameGroupTest, ItemsAt) {
   auto                 handle = ListPairGnameGroup_create(arr, 2);
   PairGnameGroupHandle out[2];
   EXPECT_EQ(ListPairGnameGroup_items(handle, out, 2), 2);
-  EXPECT_THROW(ListPairGnameGroup_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairGnameGroup_items(handle, nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairGnameGroup_destroy(handle);
-  EXPECT_THROW(ListPairGnameGroup_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairGnameGroupTest, EqualNotEqualIntersection) {
@@ -175,16 +196,24 @@ TEST_F(ListPairGnameGroupTest, EqualNotEqualIntersection) {
   ListPairGnameGroup_destroy(h1);
   ListPairGnameGroup_destroy(h2);
   ListPairGnameGroup_destroy(h3);
-  EXPECT_THROW(ListPairGnameGroup_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListPairGnameGroup_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListPairGnameGroup_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairGnameGroup_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairGnameGroup_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairGnameGroup_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairGnameGroupTest, ToJsonFromJson) {
@@ -196,40 +225,48 @@ TEST_F(ListPairGnameGroupTest, ToJsonFromJson) {
   ListPairGnameGroup_destroy(handle);
   ListPairGnameGroup_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListPairGnameGroup_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairGnameGroup_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairGnameGroupTest, FillValueNull) {
-  EXPECT_THROW(ListPairGnameGroup_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairGnameGroupTest, PushBackNull) {
   auto handle = ListPairGnameGroup_create_empty();
-  EXPECT_THROW(ListPairGnameGroup_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairGnameGroup_destroy(handle);
 }
 
 TEST_F(ListPairGnameGroupTest, ContainsNull) {
   auto handle = ListPairGnameGroup_create_empty();
-  EXPECT_THROW(ListPairGnameGroup_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairGnameGroup_destroy(handle);
 }
 
 TEST_F(ListPairGnameGroupTest, IndexNull) {
   auto handle = ListPairGnameGroup_create_empty();
-  EXPECT_THROW(ListPairGnameGroup_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairGnameGroup_destroy(handle);
 }
 
 TEST_F(ListPairGnameGroupTest, CreateNullArray) {
-  EXPECT_THROW(ListPairGnameGroup_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairGnameGroupTest, At) {
@@ -240,5 +277,7 @@ TEST_F(ListPairGnameGroupTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListPairGnameGroup_destroy(handle);
-  EXPECT_THROW(ListPairGnameGroup_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairGnameGroup_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

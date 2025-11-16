@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
@@ -48,9 +49,15 @@ TEST_F(PortTransformsTest, CreateDestroy) {
   PortTransforms_destroy(t3);
   ListPortTransform_destroy(list);
 
-  EXPECT_THROW(PortTransforms_create_raw(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(PortTransforms_create(nullptr), std::invalid_argument);
-  EXPECT_THROW(PortTransforms_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PortTransforms_create_raw(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortTransformsTest, Accessors) {
@@ -69,11 +76,21 @@ TEST_F(PortTransformsTest, Accessors) {
   EXPECT_NE(t, nullptr);
   PortTransform_destroy(t);
 
-  EXPECT_THROW(PortTransforms_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(PortTransforms_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(PortTransforms_items(nullptr), std::invalid_argument);
-  EXPECT_THROW(PortTransforms_transforms(nullptr), std::invalid_argument);
-  EXPECT_THROW(PortTransforms_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PortTransforms_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_transforms(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortTransformsTest, Mutators) {
@@ -90,27 +107,43 @@ TEST_F(PortTransformsTest, Mutators) {
 
   PortTransforms_destroy(t);
 
-  EXPECT_THROW(PortTransforms_push_back(nullptr, pt), std::invalid_argument);
-  EXPECT_THROW(PortTransforms_push_back(transforms, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PortTransforms_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(PortTransforms_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PortTransforms_push_back(nullptr, pt);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_push_back(transforms, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortTransformsTest, ContainsIndex) {
   EXPECT_TRUE(PortTransforms_contains(transforms, pt));
   EXPECT_EQ(PortTransforms_index(transforms, pt), 0);
 
-  EXPECT_THROW(PortTransforms_contains(nullptr, pt), std::invalid_argument);
-  EXPECT_THROW(PortTransforms_contains(transforms, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PortTransforms_contains(nullptr, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PortTransforms_contains(nullptr, pt);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_contains(transforms, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_contains(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(PortTransforms_index(nullptr, pt), std::invalid_argument);
-  EXPECT_THROW(PortTransforms_index(transforms, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PortTransforms_index(nullptr, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PortTransforms_index(nullptr, pt);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_index(transforms, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_index(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortTransformsTest, EqualityIntersection) {
@@ -128,25 +161,35 @@ TEST_F(PortTransformsTest, EqualityIntersection) {
 
   PortTransforms_destroy(t2);
 
-  EXPECT_THROW(PortTransforms_equal(nullptr, transforms),
-               std::invalid_argument);
-  EXPECT_THROW(PortTransforms_equal(transforms, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PortTransforms_equal(nullptr, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PortTransforms_equal(nullptr, transforms);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_equal(transforms, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_equal(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(PortTransforms_not_equal(nullptr, transforms),
-               std::invalid_argument);
-  EXPECT_THROW(PortTransforms_not_equal(transforms, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PortTransforms_not_equal(nullptr, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PortTransforms_not_equal(nullptr, transforms);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_not_equal(transforms, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_not_equal(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(PortTransforms_intersection(nullptr, transforms),
-               std::invalid_argument);
-  EXPECT_THROW(PortTransforms_intersection(transforms, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PortTransforms_intersection(nullptr, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PortTransforms_intersection(nullptr, transforms);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_intersection(transforms, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_intersection(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortTransformsTest, ToJsonFromJson) {
@@ -159,6 +202,10 @@ TEST_F(PortTransformsTest, ToJsonFromJson) {
   PortTransforms_destroy(t2);
   String_destroy(json);
 
-  EXPECT_THROW(PortTransforms_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(PortTransforms_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PortTransforms_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransforms_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

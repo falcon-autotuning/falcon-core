@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListPairSizeTSizeT_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -29,7 +30,9 @@ TEST_F(ListPairSizeTSizeTTest, CreateEmpty) {
   EXPECT_TRUE(ListPairSizeTSizeT_empty(handle));
   EXPECT_EQ(ListPairSizeTSizeT_size(handle), 0);
   ListPairSizeTSizeT_destroy(handle);
-  EXPECT_THROW(ListPairSizeTSizeT_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairSizeTSizeTTest, FillValue) {
@@ -42,7 +45,9 @@ TEST_F(ListPairSizeTSizeTTest, CreateFromArray) {
   PairSizeTSizeTHandle     arr[2] = {sh1, sh2};
   ListPairSizeTSizeTHandle handle = ListPairSizeTSizeT_create(arr, 2);
   EXPECT_EQ(ListPairSizeTSizeT_size(handle), 2);
-  EXPECT_THROW(ListPairSizeTSizeT_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairSizeTSizeT_destroy(handle);
 }
 
@@ -50,14 +55,18 @@ TEST_F(ListPairSizeTSizeTTest, SizeEmptyInvalid) {
   auto handle = ListPairSizeTSizeT_create_empty();
   EXPECT_EQ(ListPairSizeTSizeT_size(handle), 0);
   ListPairSizeTSizeT_destroy(handle);
-  EXPECT_THROW(ListPairSizeTSizeT_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairSizeTSizeTTest, EmptyInvalid) {
   auto handle = ListPairSizeTSizeT_create_empty();
   EXPECT_TRUE(ListPairSizeTSizeT_empty(handle));
   ListPairSizeTSizeT_destroy(handle);
-  EXPECT_THROW(ListPairSizeTSizeT_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairSizeTSizeTTest, EraseAtClear) {
@@ -67,8 +76,12 @@ TEST_F(ListPairSizeTSizeTTest, EraseAtClear) {
   ListPairSizeTSizeT_clear(handle);
   EXPECT_TRUE(ListPairSizeTSizeT_empty(handle));
   ListPairSizeTSizeT_destroy(handle);
-  EXPECT_THROW(ListPairSizeTSizeT_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListPairSizeTSizeT_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairSizeTSizeTTest, PushBackContainsIndex) {
@@ -77,11 +90,15 @@ TEST_F(ListPairSizeTSizeTTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListPairSizeTSizeT_contains(handle, sh1));
   EXPECT_EQ(ListPairSizeTSizeT_index(handle, sh1), 0);
   ListPairSizeTSizeT_destroy(handle);
-  EXPECT_THROW(ListPairSizeTSizeT_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairSizeTSizeT_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairSizeTSizeT_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairSizeTSizeTTest, ItemsAt) {
@@ -90,11 +107,15 @@ TEST_F(ListPairSizeTSizeTTest, ItemsAt) {
   PairSizeTSizeTHandle out[2];
   EXPECT_EQ(ListPairSizeTSizeT_items(handle, out, 2), 2);
   ListPairSizeTSizeT_destroy(handle);
-  EXPECT_THROW(ListPairSizeTSizeT_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairSizeTSizeT_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairSizeTSizeT_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairSizeTSizeTTest, EqualNotEqualIntersection) {
@@ -108,16 +129,24 @@ TEST_F(ListPairSizeTSizeTTest, EqualNotEqualIntersection) {
   ListPairSizeTSizeT_destroy(h1);
   ListPairSizeTSizeT_destroy(h2);
   ListPairSizeTSizeT_destroy(h3);
-  EXPECT_THROW(ListPairSizeTSizeT_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListPairSizeTSizeT_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListPairSizeTSizeT_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairSizeTSizeT_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairSizeTSizeT_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairSizeTSizeT_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairSizeTSizeTTest, ToJsonFromJson) {
@@ -129,40 +158,48 @@ TEST_F(ListPairSizeTSizeTTest, ToJsonFromJson) {
   ListPairSizeTSizeT_destroy(handle);
   ListPairSizeTSizeT_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListPairSizeTSizeT_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairSizeTSizeT_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairSizeTSizeTTest, FillValueNull) {
-  EXPECT_THROW(ListPairSizeTSizeT_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairSizeTSizeTTest, PushBackNull) {
   auto handle = ListPairSizeTSizeT_create_empty();
-  EXPECT_THROW(ListPairSizeTSizeT_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairSizeTSizeT_destroy(handle);
 }
 
 TEST_F(ListPairSizeTSizeTTest, ContainsNull) {
   auto handle = ListPairSizeTSizeT_create_empty();
-  EXPECT_THROW(ListPairSizeTSizeT_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairSizeTSizeT_destroy(handle);
 }
 
 TEST_F(ListPairSizeTSizeTTest, IndexNull) {
   auto handle = ListPairSizeTSizeT_create_empty();
-  EXPECT_THROW(ListPairSizeTSizeT_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairSizeTSizeT_destroy(handle);
 }
 
 TEST_F(ListPairSizeTSizeTTest, CreateNullArray) {
-  EXPECT_THROW(ListPairSizeTSizeT_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairSizeTSizeTTest, At) {
@@ -173,5 +210,7 @@ TEST_F(ListPairSizeTSizeTTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListPairSizeTSizeT_destroy(handle);
-  EXPECT_THROW(ListPairSizeTSizeT_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairSizeTSizeT_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <string>
 
@@ -32,23 +33,37 @@ class PairSizeTSizeTTest : public ::testing::Test {
 };
 
 TEST_F(PairSizeTSizeTTest, CreateDestroy) {
-  EXPECT_THROW(PairSizeTSizeT_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairSizeTSizeT_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairSizeTSizeTTest, Accessors) {
   auto f = PairSizeTSizeT_first(pair1);
   auto s = PairSizeTSizeT_second(pair1);
-  EXPECT_THROW(PairSizeTSizeT_first(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairSizeTSizeT_second(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairSizeTSizeT_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairSizeTSizeT_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairSizeTSizeTTest, Equality) {
   EXPECT_TRUE(PairSizeTSizeT_equal(pair1, pair2));
   EXPECT_FALSE(PairSizeTSizeT_not_equal(pair1, pair2));
-  EXPECT_THROW(PairSizeTSizeT_equal(nullptr, pair2), std::invalid_argument);
-  EXPECT_THROW(PairSizeTSizeT_equal(pair1, nullptr), std::invalid_argument);
-  EXPECT_THROW(PairSizeTSizeT_not_equal(nullptr, pair2), std::invalid_argument);
-  EXPECT_THROW(PairSizeTSizeT_not_equal(pair1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairSizeTSizeT_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairSizeTSizeT_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairSizeTSizeT_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairSizeTSizeT_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairSizeTSizeTTest, ToJsonFromJson) {
@@ -56,6 +71,10 @@ TEST_F(PairSizeTSizeTTest, ToJsonFromJson) {
   auto p2   = PairSizeTSizeT_from_json_string(json);
   EXPECT_TRUE(PairSizeTSizeT_equal(pair1, p2));
   PairSizeTSizeT_destroy(p2);
-  EXPECT_THROW(PairSizeTSizeT_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairSizeTSizeT_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairSizeTSizeT_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairSizeTSizeT_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/MapStringDouble_c_api.h"
 #include "falcon_core/generic/PairStringDouble_c_api.h"
@@ -29,8 +30,12 @@ class MapStringDoubleTest : public ::testing::Test {
 };
 
 TEST_F(MapStringDoubleTest, CreateDestroy) {
-  EXPECT_THROW(MapStringDouble_create(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapStringDouble_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapStringDoubleTest, InsertAssignAccessErase) {
@@ -38,26 +43,30 @@ TEST_F(MapStringDoubleTest, InsertAssignAccessErase) {
             PairStringDouble_second(p1));
   MapStringDouble_erase(map, PairStringDouble_first(p1));
   EXPECT_FALSE(MapStringDouble_contains(map, PairStringDouble_first(p1)));
-  EXPECT_THROW(
-      MapStringDouble_insert_or_assign(
-          nullptr, PairStringDouble_first(p1), PairStringDouble_second(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_insert_or_assign(
-                   map, nullptr, PairStringDouble_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(
-      MapStringDouble_insert(
-          nullptr, PairStringDouble_first(p1), PairStringDouble_second(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(
-      MapStringDouble_insert(map, nullptr, PairStringDouble_second(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_at(nullptr, PairStringDouble_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_at(map, nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_erase(nullptr, PairStringDouble_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_erase(map, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapStringDouble_insert_or_assign(          nullptr, PairStringDouble_first(p1), PairStringDouble_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_insert_or_assign(                   map, nullptr, PairStringDouble_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_insert(          nullptr, PairStringDouble_first(p1), PairStringDouble_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_insert(map, nullptr, PairStringDouble_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_at(nullptr, PairStringDouble_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_at(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_erase(nullptr, PairStringDouble_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_erase(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapStringDoubleTest, SizeEmptyClearContains) {
@@ -65,30 +74,53 @@ TEST_F(MapStringDoubleTest, SizeEmptyClearContains) {
   EXPECT_FALSE(MapStringDouble_empty(map));
   MapStringDouble_clear(map);
   EXPECT_TRUE(MapStringDouble_empty(map));
-  EXPECT_THROW(MapStringDouble_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_contains(nullptr, PairStringDouble_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_contains(map2, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapStringDouble_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_contains(nullptr, PairStringDouble_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_contains(map2, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapStringDoubleTest, KeysValuesItems) {
   EXPECT_NE(MapStringDouble_keys(map), nullptr);
   EXPECT_NE(MapStringDouble_values(map), nullptr);
   EXPECT_NE(MapStringDouble_items(map), nullptr);
-  EXPECT_THROW(MapStringDouble_keys(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_values(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_items(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapStringDouble_keys(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_values(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapStringDoubleTest, Equality) {
   EXPECT_TRUE(MapStringDouble_equal(map, map2));
   EXPECT_FALSE(MapStringDouble_not_equal(map, map2));
-  EXPECT_THROW(MapStringDouble_equal(nullptr, map2), std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_equal(map, nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_not_equal(nullptr, map2), std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_not_equal(map, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapStringDouble_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_not_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_not_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapStringDoubleTest, ToJsonFromJson) {
@@ -97,7 +129,10 @@ TEST_F(MapStringDoubleTest, ToJsonFromJson) {
   EXPECT_TRUE(MapStringDouble_equal(map, m2));
   MapStringDouble_destroy(m2);
   String_destroy(json);
-  EXPECT_THROW(MapStringDouble_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringDouble_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapStringDouble_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringDouble_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

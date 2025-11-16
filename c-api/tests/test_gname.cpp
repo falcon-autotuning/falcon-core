@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/autotuner_interfaces/names/Gname_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -30,7 +31,9 @@ TEST_F(GnameTest, ConstructFromString) {
   StringHandle gname = Gname_gname(handle1);
   EXPECT_EQ(std::string(gname->raw, gname->length), "group1");
   String_destroy(gname);
-  EXPECT_THROW(Gname_gname(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Gname_gname(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GnameTest, ConstructFromInt) {
@@ -40,8 +43,12 @@ TEST_F(GnameTest, ConstructFromInt) {
 }
 
 TEST_F(GnameTest, CreateDestroyNull) {
-  EXPECT_THROW(Gname_create(nullptr), std::invalid_argument);
-  EXPECT_THROW(Gname_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Gname_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Gname_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GnameTest, EqualityAndInequality) {
@@ -49,10 +56,18 @@ TEST_F(GnameTest, EqualityAndInequality) {
   EXPECT_FALSE(Gname_not_equal(handle1, handle1));
   EXPECT_FALSE(Gname_equal(handle1, handle2));
   EXPECT_TRUE(Gname_not_equal(handle1, handle2));
-  EXPECT_THROW(Gname_equal(nullptr, handle2), std::invalid_argument);
-  EXPECT_THROW(Gname_equal(handle1, nullptr), std::invalid_argument);
-  EXPECT_THROW(Gname_not_equal(nullptr, handle2), std::invalid_argument);
-  EXPECT_THROW(Gname_not_equal(handle1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Gname_equal(nullptr, handle2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Gname_equal(handle1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Gname_not_equal(nullptr, handle2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Gname_not_equal(handle1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(GnameTest, SerializationRoundTrip) {
@@ -61,6 +76,10 @@ TEST_F(GnameTest, SerializationRoundTrip) {
   EXPECT_TRUE(Gname_equal(handle1, loaded));
   Gname_destroy(loaded);
   String_destroy(json);
-  EXPECT_THROW(Gname_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(Gname_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Gname_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Gname_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

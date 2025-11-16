@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/physics/units/SymbolUnit_c_api.h"
 

@@ -1,12 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
 #include <falcon_core/math/arrays/LabelledMeasuredArray.hpp>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+extern "C" {
 ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_create_empty() {
+    FALCON_C_API_BEGIN
     return new falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>();
+    FALCON_C_API_END(nullptr)
 }
 
 ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_fill_value(size_t count, LabelledMeasuredArrayHandle value) {
+    FALCON_C_API_BEGIN
     
     if (!value) {
     throw std::invalid_argument("Null value passed to ListLabelledMeasuredArray_fill_value");
@@ -15,10 +20,12 @@ ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_fill_value(size_t coun
     
     return new falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>(
         count, stored_obj);
+    FALCON_C_API_END(nullptr)
 }
  
 
 ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_create(LabelledMeasuredArrayHandle* data, size_t count) {
+    FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data handle passed to ListLabelledMeasuredArray_create");
 }
@@ -29,44 +36,56 @@ throw std::invalid_argument("Null data handle passed to ListLabelledMeasuredArra
     }
 
     return new falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>(vec);
+    FALCON_C_API_END(nullptr)
 }
 
 void ListLabelledMeasuredArray_destroy(ListLabelledMeasuredArrayHandle handle) {
+    FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_destroy");
     }
     delete static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle);
+    FALCON_C_API_END()
 }
 
 size_t ListLabelledMeasuredArray_size(ListLabelledMeasuredArrayHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_size");
 }
     return static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->size();
+    FALCON_C_API_END(0)
 }
 
 bool ListLabelledMeasuredArray_empty(ListLabelledMeasuredArrayHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_empty");
 }
     return static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->empty();
+    FALCON_C_API_END(false)
 }
 
 void ListLabelledMeasuredArray_erase_at(ListLabelledMeasuredArrayHandle handle, size_t idx) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_erase_at");
 }
     static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->erase_at(idx);
+    FALCON_C_API_END()
 }
 
 void ListLabelledMeasuredArray_clear(ListLabelledMeasuredArrayHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_clear");
 }
     static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->clear();
+    FALCON_C_API_END()
 }
 
 void ListLabelledMeasuredArray_push_back(ListLabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle value) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_push_back");
 }
@@ -77,9 +96,11 @@ throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_pus
     auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray*>(value));
     
     static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->push_back(stored_obj);
+    FALCON_C_API_END()
 }
 
 bool ListLabelledMeasuredArray_contains(ListLabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle value) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_contains");
 }
@@ -90,9 +111,11 @@ throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_con
     auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray*>(value));
     
     return static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->contains(stored_obj);
+    FALCON_C_API_END(false)
 }
 
 size_t ListLabelledMeasuredArray_index(ListLabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle value) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_index");
 }
@@ -103,9 +126,11 @@ throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_ind
     auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray*>(value));
     
     return static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->index(stored_obj);
+    FALCON_C_API_END(0)
 }
 
 size_t ListLabelledMeasuredArray_items(ListLabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle* out_buffer, size_t buffer_size) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_items");
 }
@@ -119,33 +144,41 @@ for (size_t i = 0; i < n; ++i) {
     out_buffer[i] = new falcon_core::math::arrays::LabelledMeasuredArray(*list->items()[i]);
 }
     return n;
+    FALCON_C_API_END(0)
 }
 
 LabelledMeasuredArrayHandle ListLabelledMeasuredArray_at(ListLabelledMeasuredArrayHandle handle, size_t idx) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_at");
 }
     auto obj = static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->at(idx);
     return new falcon_core::math::arrays::LabelledMeasuredArray(*obj);
+    FALCON_C_API_END(nullptr)
 }
 
 bool ListLabelledMeasuredArray_equal(ListLabelledMeasuredArrayHandle a, ListLabelledMeasuredArrayHandle b) {
+    FALCON_C_API_BEGIN
 if (!a || !b) {
 throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_equal");
 }
     auto listA = static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>*>(a);
     auto listB = static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>*>(b);
     return *listA == *listB;
+    FALCON_C_API_END(false)
 }
 
 bool ListLabelledMeasuredArray_not_equal(ListLabelledMeasuredArrayHandle a, ListLabelledMeasuredArrayHandle b) {
+    FALCON_C_API_BEGIN
 if (!a || !b) {
 throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_not_equal");
 }
     return !ListLabelledMeasuredArray_equal(a, b);
+    FALCON_C_API_END(false)
 }
 
 ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_intersection(ListLabelledMeasuredArrayHandle handle, ListLabelledMeasuredArrayHandle other) {
+    FALCON_C_API_BEGIN
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_intersection");
 }
@@ -153,19 +186,26 @@ throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_int
     auto listB = static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>*>(other);
     auto result = listA->intersection(std::make_shared<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>>(*listB));
     return new falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>(*result);
+    FALCON_C_API_END(nullptr)
 }
 
 StringHandle      ListLabelledMeasuredArray_to_json_string(ListLabelledMeasuredArrayHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListLabelledMeasuredArray_to_json_string");
 }
     std::string json = static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->to_json_string();
     return String_create(json.c_str(), json.size());
+    FALCON_C_API_END(nullptr)
 }
+
 ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_from_json_string(StringHandle json) {
+    FALCON_C_API_BEGIN
 if (!json) {
 throw std::invalid_argument("Null string handle passed to ListLabelledMeasuredArray_from_json_string");
 }
   auto ptr = falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>::from_json_string<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>>(json->raw);
   return new falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray>(*ptr);
+    FALCON_C_API_END(nullptr)
+}
 }

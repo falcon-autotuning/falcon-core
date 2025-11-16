@@ -1,12 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListDiscretizer_c_api.h"
 #include <falcon_core/math/discrete_spaces/Discretizer.hpp>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+extern "C" {
 ListDiscretizerHandle ListDiscretizer_create_empty() {
+    FALCON_C_API_BEGIN
     return new falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>();
+    FALCON_C_API_END(nullptr)
 }
 
 ListDiscretizerHandle ListDiscretizer_fill_value(size_t count, DiscretizerHandle value) {
+    FALCON_C_API_BEGIN
     
     if (!value) {
     throw std::invalid_argument("Null value passed to ListDiscretizer_fill_value");
@@ -15,10 +20,12 @@ ListDiscretizerHandle ListDiscretizer_fill_value(size_t count, DiscretizerHandle
     
     return new falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>(
         count, stored_obj);
+    FALCON_C_API_END(nullptr)
 }
  
 
 ListDiscretizerHandle ListDiscretizer_create(DiscretizerHandle* data, size_t count) {
+    FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data handle passed to ListDiscretizer_create");
 }
@@ -29,44 +36,56 @@ throw std::invalid_argument("Null data handle passed to ListDiscretizer_create")
     }
 
     return new falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>(vec);
+    FALCON_C_API_END(nullptr)
 }
 
 void ListDiscretizer_destroy(ListDiscretizerHandle handle) {
+    FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to ListDiscretizer_destroy");
     }
     delete static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(handle);
+    FALCON_C_API_END()
 }
 
 size_t ListDiscretizer_size(ListDiscretizerHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDiscretizer_size");
 }
     return static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(handle)->size();
+    FALCON_C_API_END(0)
 }
 
 bool ListDiscretizer_empty(ListDiscretizerHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDiscretizer_empty");
 }
     return static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(handle)->empty();
+    FALCON_C_API_END(false)
 }
 
 void ListDiscretizer_erase_at(ListDiscretizerHandle handle, size_t idx) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDiscretizer_erase_at");
 }
     static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(handle)->erase_at(idx);
+    FALCON_C_API_END()
 }
 
 void ListDiscretizer_clear(ListDiscretizerHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDiscretizer_clear");
 }
     static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(handle)->clear();
+    FALCON_C_API_END()
 }
 
 void ListDiscretizer_push_back(ListDiscretizerHandle handle, DiscretizerHandle value) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDiscretizer_push_back");
 }
@@ -77,9 +96,11 @@ throw std::invalid_argument("Null handle passed to ListDiscretizer_push_back");
     auto stored_obj = std::make_shared<falcon_core::math::discrete_spaces::Discretizer>(*static_cast<falcon_core::math::discrete_spaces::Discretizer*>(value));
     
     static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(handle)->push_back(stored_obj);
+    FALCON_C_API_END()
 }
 
 bool ListDiscretizer_contains(ListDiscretizerHandle handle, DiscretizerHandle value) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDiscretizer_contains");
 }
@@ -90,9 +111,11 @@ throw std::invalid_argument("Null handle passed to ListDiscretizer_contains");
     auto stored_obj = std::make_shared<falcon_core::math::discrete_spaces::Discretizer>(*static_cast<falcon_core::math::discrete_spaces::Discretizer*>(value));
     
     return static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(handle)->contains(stored_obj);
+    FALCON_C_API_END(false)
 }
 
 size_t ListDiscretizer_index(ListDiscretizerHandle handle, DiscretizerHandle value) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDiscretizer_index");
 }
@@ -103,9 +126,11 @@ throw std::invalid_argument("Null handle passed to ListDiscretizer_index");
     auto stored_obj = std::make_shared<falcon_core::math::discrete_spaces::Discretizer>(*static_cast<falcon_core::math::discrete_spaces::Discretizer*>(value));
     
     return static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(handle)->index(stored_obj);
+    FALCON_C_API_END(0)
 }
 
 size_t ListDiscretizer_items(ListDiscretizerHandle handle, DiscretizerHandle* out_buffer, size_t buffer_size) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDiscretizer_items");
 }
@@ -119,33 +144,41 @@ for (size_t i = 0; i < n; ++i) {
     out_buffer[i] = new falcon_core::math::discrete_spaces::Discretizer(*list->items()[i]);
 }
     return n;
+    FALCON_C_API_END(0)
 }
 
 DiscretizerHandle ListDiscretizer_at(ListDiscretizerHandle handle, size_t idx) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDiscretizer_at");
 }
     auto obj = static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(handle)->at(idx);
     return new falcon_core::math::discrete_spaces::Discretizer(*obj);
+    FALCON_C_API_END(nullptr)
 }
 
 bool ListDiscretizer_equal(ListDiscretizerHandle a, ListDiscretizerHandle b) {
+    FALCON_C_API_BEGIN
 if (!a || !b) {
 throw std::invalid_argument("Null handle passed to ListDiscretizer_equal");
 }
     auto listA = static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(a);
     auto listB = static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(b);
     return *listA == *listB;
+    FALCON_C_API_END(false)
 }
 
 bool ListDiscretizer_not_equal(ListDiscretizerHandle a, ListDiscretizerHandle b) {
+    FALCON_C_API_BEGIN
 if (!a || !b) {
 throw std::invalid_argument("Null handle passed to ListDiscretizer_not_equal");
 }
     return !ListDiscretizer_equal(a, b);
+    FALCON_C_API_END(false)
 }
 
 ListDiscretizerHandle ListDiscretizer_intersection(ListDiscretizerHandle handle, ListDiscretizerHandle other) {
+    FALCON_C_API_BEGIN
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListDiscretizer_intersection");
 }
@@ -153,19 +186,26 @@ throw std::invalid_argument("Null handle passed to ListDiscretizer_intersection"
     auto listB = static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(other);
     auto result = listA->intersection(std::make_shared<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>>(*listB));
     return new falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>(*result);
+    FALCON_C_API_END(nullptr)
 }
 
 StringHandle      ListDiscretizer_to_json_string(ListDiscretizerHandle handle) {
+    FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDiscretizer_to_json_string");
 }
     std::string json = static_cast<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>*>(handle)->to_json_string();
     return String_create(json.c_str(), json.size());
+    FALCON_C_API_END(nullptr)
 }
+
 ListDiscretizerHandle ListDiscretizer_from_json_string(StringHandle json) {
+    FALCON_C_API_BEGIN
 if (!json) {
 throw std::invalid_argument("Null string handle passed to ListDiscretizer_from_json_string");
 }
   auto ptr = falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>::from_json_string<falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>>(json->raw);
   return new falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>(*ptr);
+    FALCON_C_API_END(nullptr)
+}
 }

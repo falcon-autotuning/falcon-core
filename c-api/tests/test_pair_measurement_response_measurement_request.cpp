@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -90,12 +91,15 @@ class PairMeasurementResponseMeasurementRequestTest : public ::testing::Test {
 };
 
 TEST_F(PairMeasurementResponseMeasurementRequestTest, CreateDestroy) {
-  EXPECT_THROW(PairMeasurementResponseMeasurementRequest_create(nullptr, t2),
-               std::invalid_argument);
-  EXPECT_THROW(PairMeasurementResponseMeasurementRequest_create(t1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairMeasurementResponseMeasurementRequest_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairMeasurementResponseMeasurementRequest_create(nullptr, t2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairMeasurementResponseMeasurementRequest_create(t1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairMeasurementResponseMeasurementRequest_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairMeasurementResponseMeasurementRequestTest, Accessors) {
@@ -103,26 +107,30 @@ TEST_F(PairMeasurementResponseMeasurementRequestTest, Accessors) {
   auto s = PairMeasurementResponseMeasurementRequest_second(pair1);
   EXPECT_TRUE(MeasurementResponse_equal(f, t1));
   EXPECT_TRUE(MeasurementRequest_equal(s, t2));
-  EXPECT_THROW(PairMeasurementResponseMeasurementRequest_first(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairMeasurementResponseMeasurementRequest_second(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairMeasurementResponseMeasurementRequest_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairMeasurementResponseMeasurementRequest_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairMeasurementResponseMeasurementRequestTest, Equality) {
   EXPECT_TRUE(PairMeasurementResponseMeasurementRequest_equal(pair1, pair2));
   EXPECT_FALSE(
       PairMeasurementResponseMeasurementRequest_not_equal(pair1, pair2));
-  EXPECT_THROW(PairMeasurementResponseMeasurementRequest_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairMeasurementResponseMeasurementRequest_equal(pair1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(
-      PairMeasurementResponseMeasurementRequest_not_equal(nullptr, pair2),
-      std::invalid_argument);
-  EXPECT_THROW(
-      PairMeasurementResponseMeasurementRequest_not_equal(pair1, nullptr),
-      std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairMeasurementResponseMeasurementRequest_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairMeasurementResponseMeasurementRequest_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairMeasurementResponseMeasurementRequest_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairMeasurementResponseMeasurementRequest_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairMeasurementResponseMeasurementRequestTest, ToJsonFromJson) {
@@ -130,10 +138,10 @@ TEST_F(PairMeasurementResponseMeasurementRequestTest, ToJsonFromJson) {
   auto p2   = PairMeasurementResponseMeasurementRequest_from_json_string(json);
   EXPECT_TRUE(PairMeasurementResponseMeasurementRequest_equal(pair1, p2));
   PairMeasurementResponseMeasurementRequest_destroy(p2);
-  EXPECT_THROW(
-      PairMeasurementResponseMeasurementRequest_to_json_string(nullptr),
-      std::invalid_argument);
-  EXPECT_THROW(
-      PairMeasurementResponseMeasurementRequest_from_json_string(nullptr),
-      std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairMeasurementResponseMeasurementRequest_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairMeasurementResponseMeasurementRequest_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

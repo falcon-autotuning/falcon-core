@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
@@ -89,43 +91,48 @@ class DiscreteSpaceTest : public ::testing::Test {
 TEST_F(DiscreteSpaceTest, CreateDestroy) {
   auto d = DiscreteSpace_create(unitspace, axes_cldom, axes_map_str_bool);
   DiscreteSpace_destroy(d);
-  EXPECT_THROW(DiscreteSpace_create(nullptr, axes_cldom, axes_map_str_bool),
-               std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_create(unitspace, nullptr, axes_map_str_bool),
-               std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_create(unitspace, axes_cldom, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  DiscreteSpace_create(nullptr, axes_cldom, axes_map_str_bool);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_create(unitspace, nullptr, axes_map_str_bool);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_create(unitspace, axes_cldom, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DiscreteSpaceTest, CreateCartesian) {
   auto d = DiscreteSpace_create_cartesiandiscretespace(
       axes_int, axes_cldom, axes_map_str_bool, domain);
   DiscreteSpace_destroy(d);
-  EXPECT_THROW(DiscreteSpace_create_cartesiandiscretespace(
-                   nullptr, axes_cldom, axes_map_str_bool, domain),
-               std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_create_cartesiandiscretespace(
-                   axes_int, nullptr, axes_map_str_bool, domain),
-               std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_create_cartesiandiscretespace(
-                   axes_int, axes_cldom, nullptr, domain),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  DiscreteSpace_create_cartesiandiscretespace(                   nullptr, axes_cldom, axes_map_str_bool, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_create_cartesiandiscretespace(                   axes_int, nullptr, axes_map_str_bool, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_create_cartesiandiscretespace(                   axes_int, axes_cldom, nullptr, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DiscreteSpaceTest, CreateCartesian1D) {
   auto d = DiscreteSpace_create_cartesiandiscretespace1D(
       1, cldom, map_str_bool, domain);
   DiscreteSpace_destroy(d);
-  EXPECT_THROW(DiscreteSpace_create_cartesiandiscretespace1D(
-                   1, nullptr, map_str_bool, domain),
-               std::invalid_argument);
-  EXPECT_THROW(
-      DiscreteSpace_create_cartesiandiscretespace1D(1, cldom, nullptr, domain),
-      std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_create_cartesiandiscretespace1D(
-                   1, cldom, map_str_bool, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  DiscreteSpace_create_cartesiandiscretespace1D(                   1, nullptr, map_str_bool, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_create_cartesiandiscretespace1D(1, cldom, nullptr, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_create_cartesiandiscretespace1D(                   1, cldom, map_str_bool, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DiscreteSpaceTest, Accessors) {
@@ -138,20 +145,29 @@ TEST_F(DiscreteSpaceTest, Accessors) {
   AxesMapStringBool_destroy(inc);
   Ports_destroy(knobs);
 
-  EXPECT_THROW(DiscreteSpace_space(nullptr), std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_axes(nullptr), std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_increasing(nullptr), std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_knobs(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  DiscreteSpace_space(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_axes(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_increasing(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_knobs(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DiscreteSpaceTest, Validation) {
   DiscreteSpace_validate_unit_space_dimensionality_matches_knobs(ds);
   DiscreteSpace_validate_knob_uniqueness(ds);
-  EXPECT_THROW(
-      DiscreteSpace_validate_unit_space_dimensionality_matches_knobs(nullptr),
-      std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_validate_knob_uniqueness(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  DiscreteSpace_validate_unit_space_dimensionality_matches_knobs(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_validate_knob_uniqueness(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DiscreteSpaceTest, GetAxisDomainProjection) {
@@ -165,14 +181,24 @@ TEST_F(DiscreteSpaceTest, GetAxisDomainProjection) {
   AxesLabelledControlArray_destroy(proj);
   AxesInstrumentPort_destroy(aip);
 
-  EXPECT_THROW(DiscreteSpace_get_axis(nullptr, port), std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_get_axis(ds, nullptr), std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_get_domain(nullptr, port), std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_get_domain(ds, nullptr), std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_get_projection(nullptr, aip),
-               std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_get_projection(ds, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  DiscreteSpace_get_axis(nullptr, port);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_get_axis(ds, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_get_domain(nullptr, port);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_get_domain(ds, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_get_projection(nullptr, aip);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_get_projection(ds, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DiscreteSpaceTest, Equality) {
@@ -180,10 +206,18 @@ TEST_F(DiscreteSpaceTest, Equality) {
   EXPECT_TRUE(DiscreteSpace_equal(ds, d2));
   EXPECT_FALSE(DiscreteSpace_not_equal(ds, d2));
   DiscreteSpace_destroy(d2);
-  EXPECT_THROW(DiscreteSpace_equal(nullptr, ds), std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_equal(ds, nullptr), std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_not_equal(nullptr, ds), std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_not_equal(ds, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  DiscreteSpace_equal(nullptr, ds);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_equal(ds, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_not_equal(nullptr, ds);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_not_equal(ds, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DiscreteSpaceTest, ToJsonFromJson) {
@@ -192,6 +226,10 @@ TEST_F(DiscreteSpaceTest, ToJsonFromJson) {
   EXPECT_TRUE(DiscreteSpace_equal(ds, d2));
   DiscreteSpace_destroy(d2);
   String_destroy(json);
-  EXPECT_THROW(DiscreteSpace_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  DiscreteSpace_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  DiscreteSpace_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

@@ -1,4 +1,6 @@
 #include <falcon_core/generic/String_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <falcon_core/math/AnalyticFunction_c_api.h>
 #include <gtest/gtest.h>
 
@@ -36,11 +38,15 @@ class AnalyticFunctionTest : public ::testing::Test {
 TEST_F(AnalyticFunctionTest, CreateDestroy) {
   auto handle = AnalyticFunction_create(label_x, expr_x1);
   AnalyticFunction_destroy(handle);
-  EXPECT_THROW(AnalyticFunction_destroy(nullptr), std::invalid_argument);
-  EXPECT_THROW(AnalyticFunction_create(nullptr, expr_x1),
-               std::invalid_argument);
-  EXPECT_THROW(AnalyticFunction_create(label_x, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AnalyticFunction_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AnalyticFunction_create(nullptr, expr_x1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AnalyticFunction_create(label_x, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AnalyticFunctionTest, CreateIdentityConstant) {
@@ -56,17 +62,21 @@ TEST_F(AnalyticFunctionTest, Labels) {
   EXPECT_EQ(ListString_size(out_labels), 2);
   ListString_destroy(out_labels);
   AnalyticFunction_destroy(handle);
-  EXPECT_THROW(AnalyticFunction_labels(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AnalyticFunction_labels(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AnalyticFunctionTest, Evaluate) {
   auto handle = AnalyticFunction_create(label_x, expr_x1);
   EXPECT_DOUBLE_EQ(AnalyticFunction_evaluate(handle, args_x, 0.0), 3.0);
   AnalyticFunction_destroy(handle);
-  EXPECT_THROW(AnalyticFunction_evaluate(nullptr, args_x, 0.0),
-               std::invalid_argument);
-  EXPECT_THROW(AnalyticFunction_evaluate(handle, nullptr, 0.0),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AnalyticFunction_evaluate(nullptr, args_x, 0.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AnalyticFunction_evaluate(handle, nullptr, 0.0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AnalyticFunctionTest, EvaluateArraywise) {
@@ -75,10 +85,12 @@ TEST_F(AnalyticFunctionTest, EvaluateArraywise) {
   EXPECT_EQ(FArrayDouble_size(arr), 3);
   FArrayDouble_destroy(arr);
   AnalyticFunction_destroy(handle);
-  EXPECT_THROW(AnalyticFunction_evaluate_arraywise(nullptr, args_x, 1.0, 3.0),
-               std::invalid_argument);
-  EXPECT_THROW(AnalyticFunction_evaluate_arraywise(handle, nullptr, 1.0, 3.0),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AnalyticFunction_evaluate_arraywise(nullptr, args_x, 1.0, 3.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AnalyticFunction_evaluate_arraywise(handle, nullptr, 1.0, 3.0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AnalyticFunctionTest, EqualNotEqual) {
@@ -88,12 +100,18 @@ TEST_F(AnalyticFunctionTest, EqualNotEqual) {
   EXPECT_FALSE(AnalyticFunction_not_equal(handle1, handle2));
   AnalyticFunction_destroy(handle1);
   AnalyticFunction_destroy(handle2);
-  EXPECT_THROW(AnalyticFunction_equal(nullptr, handle2), std::invalid_argument);
-  EXPECT_THROW(AnalyticFunction_equal(handle1, nullptr), std::invalid_argument);
-  EXPECT_THROW(AnalyticFunction_not_equal(nullptr, handle2),
-               std::invalid_argument);
-  EXPECT_THROW(AnalyticFunction_not_equal(handle1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AnalyticFunction_equal(nullptr, handle2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AnalyticFunction_equal(handle1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AnalyticFunction_not_equal(nullptr, handle2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AnalyticFunction_not_equal(handle1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AnalyticFunctionTest, ToJsonFromJson) {
@@ -104,7 +122,10 @@ TEST_F(AnalyticFunctionTest, ToJsonFromJson) {
   AnalyticFunction_destroy(handle);
   AnalyticFunction_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(AnalyticFunction_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(AnalyticFunction_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AnalyticFunction_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AnalyticFunction_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

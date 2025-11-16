@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/ListPairSizeTSizeT_c_api.h"

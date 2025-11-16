@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/communications/messages/StandardResponse_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -23,8 +24,12 @@ class StandardResponseTest : public ::testing::Test {
 TEST_F(StandardResponseTest, CreateDestroy) {
   auto r = StandardResponse_create(String_wrap("test response"));
   StandardResponse_destroy(r);
-  EXPECT_THROW(StandardResponse_create(nullptr), std::invalid_argument);
-  EXPECT_THROW(StandardResponse_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  StandardResponse_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  StandardResponse_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(StandardResponseTest, Accessors) {
@@ -32,7 +37,9 @@ TEST_F(StandardResponseTest, Accessors) {
   EXPECT_STREQ(m->raw, "response message");
   String_destroy(m);
 
-  EXPECT_THROW(StandardResponse_message(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  StandardResponse_message(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(StandardResponseTest, Equality) {
@@ -41,12 +48,18 @@ TEST_F(StandardResponseTest, Equality) {
   EXPECT_TRUE(StandardResponse_equal(resp, resp));
   EXPECT_FALSE(StandardResponse_not_equal(resp, resp));
 
-  EXPECT_THROW(StandardResponse_equal(nullptr, resp2), std::invalid_argument);
-  EXPECT_THROW(StandardResponse_equal(resp, nullptr), std::invalid_argument);
-  EXPECT_THROW(StandardResponse_not_equal(nullptr, resp2),
-               std::invalid_argument);
-  EXPECT_THROW(StandardResponse_not_equal(resp, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  StandardResponse_equal(nullptr, resp2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  StandardResponse_equal(resp, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  StandardResponse_not_equal(nullptr, resp2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  StandardResponse_not_equal(resp, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(StandardResponseTest, ToJsonFromJson) {
@@ -56,7 +69,10 @@ TEST_F(StandardResponseTest, ToJsonFromJson) {
   StandardResponse_destroy(r2);
   String_destroy(json);
 
-  EXPECT_THROW(StandardResponse_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(StandardResponse_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  StandardResponse_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  StandardResponse_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

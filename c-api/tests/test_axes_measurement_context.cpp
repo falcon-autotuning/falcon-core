@@ -1,4 +1,6 @@
 #include <falcon_core/generic/ListMeasurementContext_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <falcon_core/math/AxesMeasurementContext_c_api.h>
 #include <gtest/gtest.h>
 
@@ -36,7 +38,9 @@ TEST_F(AxesMeasurementContextTest, CreateEmpty) {
   EXPECT_TRUE(AxesMeasurementContext_empty(handle));
   EXPECT_EQ(AxesMeasurementContext_size(handle), 0);
   AxesMeasurementContext_destroy(handle);
-  EXPECT_THROW(AxesMeasurementContext_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesMeasurementContextTest, CreateFromArray) {
@@ -46,7 +50,9 @@ TEST_F(AxesMeasurementContextTest, CreateFromArray) {
   AxesMeasurementContextHandle handle =
       AxesMeasurementContext_create(list_handle);
   EXPECT_EQ(AxesMeasurementContext_size(handle), 2);
-  EXPECT_THROW(AxesMeasurementContext_create(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   AxesMeasurementContext_destroy(handle);
 }
 
@@ -57,8 +63,9 @@ TEST_F(AxesMeasurementContextTest, CreateFromRaw) {
   AxesMeasurementContextHandle handle =
       AxesMeasurementContext_create_raw(arr, 2);
   EXPECT_EQ(AxesMeasurementContext_size(handle), 2);
-  EXPECT_THROW(AxesMeasurementContext_create_raw(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_create_raw(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   AxesMeasurementContext_destroy(handle);
 }
 
@@ -66,14 +73,18 @@ TEST_F(AxesMeasurementContextTest, SizeEmptyInvalid) {
   auto handle = AxesMeasurementContext_create_empty();
   EXPECT_EQ(AxesMeasurementContext_size(handle), 0);
   AxesMeasurementContext_destroy(handle);
-  EXPECT_THROW(AxesMeasurementContext_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesMeasurementContextTest, EmptyInvalid) {
   auto handle = AxesMeasurementContext_create_empty();
   EXPECT_TRUE(AxesMeasurementContext_empty(handle));
   AxesMeasurementContext_destroy(handle);
-  EXPECT_THROW(AxesMeasurementContext_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesMeasurementContextTest, PushBackContainsIndex) {
@@ -82,12 +93,15 @@ TEST_F(AxesMeasurementContextTest, PushBackContainsIndex) {
   EXPECT_TRUE(AxesMeasurementContext_contains(handle, sh1));
   EXPECT_EQ(AxesMeasurementContext_index(handle, sh1), 0);
   AxesMeasurementContext_destroy(handle);
-  EXPECT_THROW(AxesMeasurementContext_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMeasurementContext_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMeasurementContext_index(nullptr, sh1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesMeasurementContextTest, ItemsAt) {
@@ -99,11 +113,15 @@ TEST_F(AxesMeasurementContextTest, ItemsAt) {
   MeasurementContextHandle out[2];
   EXPECT_EQ(AxesMeasurementContext_items(handle, out, 2), 2);
   AxesMeasurementContext_destroy(handle);
-  EXPECT_THROW(AxesMeasurementContext_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMeasurementContext_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMeasurementContext_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesMeasurementContextTest, EqualNotEqualIntersection) {
@@ -120,18 +138,24 @@ TEST_F(AxesMeasurementContextTest, EqualNotEqualIntersection) {
   AxesMeasurementContext_destroy(h1);
   AxesMeasurementContext_destroy(h2);
   AxesMeasurementContext_destroy(h3);
-  EXPECT_THROW(AxesMeasurementContext_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMeasurementContext_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMeasurementContext_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMeasurementContext_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMeasurementContext_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMeasurementContext_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesMeasurementContextTest, Clear) {
@@ -143,7 +167,9 @@ TEST_F(AxesMeasurementContextTest, Clear) {
   EXPECT_EQ(AxesMeasurementContext_size(handle), 2);
   AxesMeasurementContext_clear(handle);
   EXPECT_EQ(AxesMeasurementContext_size(handle), 0);
-  EXPECT_THROW(AxesMeasurementContext_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesMeasurementContextTest, EraseAt) {
@@ -155,8 +181,9 @@ TEST_F(AxesMeasurementContextTest, EraseAt) {
   EXPECT_EQ(AxesMeasurementContext_size(handle), 2);
   AxesMeasurementContext_erase_at(handle, 0);
   EXPECT_EQ(AxesMeasurementContext_size(handle), 1);
-  EXPECT_THROW(AxesMeasurementContext_erase_at(nullptr, 1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_erase_at(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesMeasurementContextTest, ToJsonFromJson) {
@@ -171,35 +198,42 @@ TEST_F(AxesMeasurementContextTest, ToJsonFromJson) {
   AxesMeasurementContext_destroy(handle);
   AxesMeasurementContext_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(AxesMeasurementContext_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesMeasurementContext_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesMeasurementContextTest, PushBackNull) {
   auto handle = AxesMeasurementContext_create_empty();
-  EXPECT_THROW(AxesMeasurementContext_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   AxesMeasurementContext_destroy(handle);
 }
 
 TEST_F(AxesMeasurementContextTest, ContainsNull) {
   auto handle = AxesMeasurementContext_create_empty();
-  EXPECT_THROW(AxesMeasurementContext_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   AxesMeasurementContext_destroy(handle);
 }
 
 TEST_F(AxesMeasurementContextTest, IndexNull) {
   auto handle = AxesMeasurementContext_create_empty();
-  EXPECT_THROW(AxesMeasurementContext_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   AxesMeasurementContext_destroy(handle);
 }
 
 TEST_F(AxesMeasurementContextTest, CreateNullArray) {
-  EXPECT_THROW(AxesMeasurementContext_create(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesMeasurementContextTest, At) {
@@ -213,5 +247,7 @@ TEST_F(AxesMeasurementContextTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   AxesMeasurementContext_destroy(handle);
-  EXPECT_THROW(AxesMeasurementContext_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesMeasurementContext_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

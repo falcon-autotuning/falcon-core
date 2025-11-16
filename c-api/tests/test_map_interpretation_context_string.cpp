@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/MapInterpretationContextString_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextString_c_api.h"
@@ -77,10 +78,12 @@ class MapInterpretationContextStringTest : public ::testing::Test {
 };
 
 TEST_F(MapInterpretationContextStringTest, CreateDestroy) {
-  EXPECT_THROW(MapInterpretationContextString_create(nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextStringTest, InsertAssignAccessErase) {
@@ -91,38 +94,36 @@ TEST_F(MapInterpretationContextStringTest, InsertAssignAccessErase) {
       map, PairInterpretationContextString_first(p1));
   EXPECT_FALSE(MapInterpretationContextString_contains(
       map, PairInterpretationContextString_first(p1)));
-  EXPECT_THROW(MapInterpretationContextString_insert_or_assign(
-                   nullptr,
-                   PairInterpretationContextString_first(p1),
-                   PairInterpretationContextString_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_insert_or_assign(
-                   map, nullptr, PairInterpretationContextString_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_insert_or_assign(
-                   map, PairInterpretationContextString_first(p1), nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_insert(
-                   nullptr,
-                   PairInterpretationContextString_first(p1),
-                   PairInterpretationContextString_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_insert(
-                   map, nullptr, PairInterpretationContextString_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_insert(
-                   map, PairInterpretationContextString_first(p1), nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_at(
-                   nullptr, PairInterpretationContextString_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_at(map, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_erase(
-                   nullptr, PairInterpretationContextString_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_erase(map, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_insert_or_assign(                   nullptr,                   PairInterpretationContextString_first(p1),                   PairInterpretationContextString_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_insert_or_assign(                   map, nullptr, PairInterpretationContextString_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_insert_or_assign(                   map, PairInterpretationContextString_first(p1), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_insert(                   nullptr,                   PairInterpretationContextString_first(p1),                   PairInterpretationContextString_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_insert(                   map, nullptr, PairInterpretationContextString_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_insert(                   map, PairInterpretationContextString_first(p1), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_at(                   nullptr, PairInterpretationContextString_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_at(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_erase(                   nullptr, PairInterpretationContextString_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_erase(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextStringTest, SizeEmptyClearContains) {
@@ -130,42 +131,53 @@ TEST_F(MapInterpretationContextStringTest, SizeEmptyClearContains) {
   EXPECT_FALSE(MapInterpretationContextString_empty(map));
   MapInterpretationContextString_clear(map);
   EXPECT_TRUE(MapInterpretationContextString_empty(map));
-  EXPECT_THROW(MapInterpretationContextString_size(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_empty(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_clear(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_contains(
-                   nullptr, PairInterpretationContextString_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_contains(map2, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_contains(                   nullptr, PairInterpretationContextString_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_contains(map2, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextStringTest, KeysValuesItems) {
   EXPECT_NE(MapInterpretationContextString_keys(map), nullptr);
   EXPECT_NE(MapInterpretationContextString_values(map), nullptr);
   EXPECT_NE(MapInterpretationContextString_items(map), nullptr);
-  EXPECT_THROW(MapInterpretationContextString_keys(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_values(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_items(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_keys(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_values(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextStringTest, Equality) {
   EXPECT_TRUE(MapInterpretationContextString_equal(map, map2));
   EXPECT_FALSE(MapInterpretationContextString_not_equal(map, map2));
-  EXPECT_THROW(MapInterpretationContextString_equal(nullptr, map2),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_equal(map, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_not_equal(nullptr, map2),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_not_equal(map, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_not_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_not_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextStringTest, ToJsonFromJson) {
@@ -174,8 +186,10 @@ TEST_F(MapInterpretationContextStringTest, ToJsonFromJson) {
   EXPECT_TRUE(MapInterpretationContextString_equal(map, m2));
   MapInterpretationContextString_destroy(m2);
   String_destroy(json);
-  EXPECT_THROW(MapInterpretationContextString_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextString_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextString_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListGroup_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -89,7 +90,9 @@ TEST_F(ListGroupTest, CreateEmpty) {
   EXPECT_TRUE(ListGroup_empty(handle));
   EXPECT_EQ(ListGroup_size(handle), 0);
   ListGroup_destroy(handle);
-  EXPECT_THROW(ListGroup_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListGroupTest, FillValue) {
@@ -102,7 +105,9 @@ TEST_F(ListGroupTest, CreateFromArray) {
   GroupHandle     arr[2] = {sh1, sh2};
   ListGroupHandle handle = ListGroup_create(arr, 2);
   EXPECT_EQ(ListGroup_size(handle), 2);
-  EXPECT_THROW(ListGroup_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListGroup_destroy(handle);
 }
 
@@ -110,14 +115,18 @@ TEST_F(ListGroupTest, SizeEmptyInvalid) {
   auto handle = ListGroup_create_empty();
   EXPECT_EQ(ListGroup_size(handle), 0);
   ListGroup_destroy(handle);
-  EXPECT_THROW(ListGroup_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListGroupTest, EmptyInvalid) {
   auto handle = ListGroup_create_empty();
   EXPECT_TRUE(ListGroup_empty(handle));
   ListGroup_destroy(handle);
-  EXPECT_THROW(ListGroup_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListGroupTest, EraseAtClear) {
@@ -127,8 +136,12 @@ TEST_F(ListGroupTest, EraseAtClear) {
   ListGroup_clear(handle);
   EXPECT_TRUE(ListGroup_empty(handle));
   ListGroup_destroy(handle);
-  EXPECT_THROW(ListGroup_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListGroup_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListGroup_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListGroupTest, PushBackContainsIndex) {
@@ -137,9 +150,15 @@ TEST_F(ListGroupTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListGroup_contains(handle, sh1));
   EXPECT_EQ(ListGroup_index(handle, sh1), 0);
   ListGroup_destroy(handle);
-  EXPECT_THROW(ListGroup_push_back(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListGroup_contains(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListGroup_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListGroup_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListGroup_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListGroupTest, ItemsAt) {
@@ -148,9 +167,15 @@ TEST_F(ListGroupTest, ItemsAt) {
   GroupHandle out[2];
   EXPECT_EQ(ListGroup_items(handle, out, 2), 2);
   ListGroup_destroy(handle);
-  EXPECT_THROW(ListGroup_items(nullptr, out, 2), std::invalid_argument);
-  EXPECT_THROW(ListGroup_items(handle, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(ListGroup_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListGroup_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListGroup_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListGroupTest, EqualNotEqualIntersection) {
@@ -164,12 +189,24 @@ TEST_F(ListGroupTest, EqualNotEqualIntersection) {
   ListGroup_destroy(h1);
   ListGroup_destroy(h2);
   ListGroup_destroy(h3);
-  EXPECT_THROW(ListGroup_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListGroup_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListGroup_not_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListGroup_not_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListGroup_intersection(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListGroup_intersection(h1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListGroup_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListGroup_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListGroup_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListGroup_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListGroup_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListGroupTest, ToJsonFromJson) {
@@ -181,34 +218,48 @@ TEST_F(ListGroupTest, ToJsonFromJson) {
   ListGroup_destroy(handle);
   ListGroup_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListGroup_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(ListGroup_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListGroup_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListGroupTest, FillValueNull) {
-  EXPECT_THROW(ListGroup_fill_value(3, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListGroupTest, PushBackNull) {
   auto handle = ListGroup_create_empty();
-  EXPECT_THROW(ListGroup_push_back(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListGroup_destroy(handle);
 }
 
 TEST_F(ListGroupTest, ContainsNull) {
   auto handle = ListGroup_create_empty();
-  EXPECT_THROW(ListGroup_contains(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListGroup_destroy(handle);
 }
 
 TEST_F(ListGroupTest, IndexNull) {
   auto handle = ListGroup_create_empty();
-  EXPECT_THROW(ListGroup_index(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListGroup_destroy(handle);
 }
 
 TEST_F(ListGroupTest, CreateNullArray) {
-  EXPECT_THROW(ListGroup_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListGroupTest, At) {
@@ -219,5 +270,7 @@ TEST_F(ListGroupTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListGroup_destroy(handle);
-  EXPECT_THROW(ListGroup_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListGroup_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

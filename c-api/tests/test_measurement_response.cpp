@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
 #include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
@@ -49,15 +50,21 @@ class MeasurementResponseTest : public ::testing::Test {
 TEST_F(MeasurementResponseTest, CreateDestroy) {
   auto r = MeasurementResponse_create(arrays);
   MeasurementResponse_destroy(r);
-  EXPECT_THROW(MeasurementResponse_create(nullptr), std::invalid_argument);
-  EXPECT_THROW(MeasurementResponse_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MeasurementResponse_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementResponse_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MeasurementResponseTest, Accessors) {
   auto a = MeasurementResponse_arrays(resp);
   EXPECT_EQ(LabelledArraysLabelledMeasuredArray_size(a), 1);
   MeasurementResponse_destroy(a);
-  EXPECT_THROW(MeasurementResponse_arrays(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MeasurementResponse_arrays(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MeasurementResponseTest, Equality) {
@@ -66,13 +73,18 @@ TEST_F(MeasurementResponseTest, Equality) {
   EXPECT_TRUE(MeasurementResponse_equal(resp, resp));
   EXPECT_FALSE(MeasurementResponse_not_equal(resp, resp));
 
-  EXPECT_THROW(MeasurementResponse_equal(nullptr, resp2),
-               std::invalid_argument);
-  EXPECT_THROW(MeasurementResponse_equal(resp, nullptr), std::invalid_argument);
-  EXPECT_THROW(MeasurementResponse_not_equal(nullptr, resp2),
-               std::invalid_argument);
-  EXPECT_THROW(MeasurementResponse_not_equal(resp, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MeasurementResponse_equal(nullptr, resp2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementResponse_equal(resp, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementResponse_not_equal(nullptr, resp2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementResponse_not_equal(resp, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MeasurementResponseTest, ToJsonFromJson) {
@@ -82,13 +94,17 @@ TEST_F(MeasurementResponseTest, ToJsonFromJson) {
   MeasurementResponse_destroy(r2);
   String_destroy(json);
 
-  EXPECT_THROW(MeasurementResponse_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MeasurementResponse_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MeasurementResponse_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementResponse_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MeasurementResponseTest, Messages) {
   EXPECT_NO_THROW(MeasurementResponse_message(resp));
-  EXPECT_THROW(MeasurementResponse_message(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MeasurementResponse_message(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

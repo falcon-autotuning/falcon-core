@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/PairConnectionConnection_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -25,12 +26,15 @@ class PairConnectionConnectionTest : public ::testing::Test {
 };
 
 TEST_F(PairConnectionConnectionTest, CreateDestroy) {
-  EXPECT_THROW(PairConnectionConnection_create(nullptr, t2),
-               std::invalid_argument);
-  EXPECT_THROW(PairConnectionConnection_create(t1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairConnectionConnection_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairConnectionConnection_create(nullptr, t2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairConnectionConnection_create(t1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairConnectionConnection_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairConnectionConnectionTest, Accessors) {
@@ -38,21 +42,29 @@ TEST_F(PairConnectionConnectionTest, Accessors) {
   auto s = PairConnectionConnection_second(pair1);
   EXPECT_TRUE(Connection_equal(f, t1));
   EXPECT_TRUE(Connection_equal(s, t2));
-  EXPECT_THROW(PairConnectionConnection_first(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairConnectionConnection_second(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairConnectionConnection_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairConnectionConnection_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairConnectionConnectionTest, Equality) {
   EXPECT_TRUE(PairConnectionConnection_equal(pair1, pair2));
   EXPECT_FALSE(PairConnectionConnection_not_equal(pair1, pair2));
-  EXPECT_THROW(PairConnectionConnection_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairConnectionConnection_equal(pair1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairConnectionConnection_not_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairConnectionConnection_not_equal(pair1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairConnectionConnection_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairConnectionConnection_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairConnectionConnection_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairConnectionConnection_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairConnectionConnectionTest, ToJsonFromJson) {
@@ -60,8 +72,10 @@ TEST_F(PairConnectionConnectionTest, ToJsonFromJson) {
   auto p2   = PairConnectionConnection_from_json_string(json);
   EXPECT_TRUE(PairConnectionConnection_equal(pair1, p2));
   PairConnectionConnection_destroy(p2);
-  EXPECT_THROW(PairConnectionConnection_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairConnectionConnection_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairConnectionConnection_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairConnectionConnection_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

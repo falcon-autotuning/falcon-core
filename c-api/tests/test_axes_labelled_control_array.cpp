@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <vector>
 
@@ -98,9 +100,12 @@ class AxesLabelledControlArrayTest : public ::testing::Test {
 TEST_F(AxesLabelledControlArrayTest, CreateDestroy) {
   auto h = AxesLabelledControlArray_create_empty();
   AxesLabelledControlArray_destroy(h);
-  EXPECT_THROW(AxesLabelledControlArray_create(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   LabelledControlArrayHandle     arr[2] = {ca2d, ca1d};
   ListLabelledControlArrayHandle handle =
       ListLabelledControlArray_create(arr, 2);
@@ -146,10 +151,12 @@ TEST_F(AxesLabelledControlArrayTest, ContainsIndexEquality) {
 }
 
 TEST_F(AxesLabelledControlArrayTest, SerializationRoundTrip) {
-  EXPECT_THROW(AxesLabelledControlArray_from_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_to_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW({
     auto json   = AxesLabelledControlArray_to_json_string(axes);
     auto loaded = AxesLabelledControlArray_from_json_string(json);
@@ -159,49 +166,73 @@ TEST_F(AxesLabelledControlArrayTest, SerializationRoundTrip) {
 }
 
 TEST_F(AxesLabelledControlArrayTest, EqualityWorks) {
-  EXPECT_THROW(AxesLabelledControlArray_equal(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_not_equal(nullptr, axes2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_equal(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_not_equal(nullptr, axes2);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(AxesLabelledControlArray_equal(axes, axes));
   EXPECT_NO_THROW(AxesLabelledControlArray_not_equal(axes, axes2));
 }
 
 TEST_F(AxesLabelledControlArrayTest, Intersection) {
-  EXPECT_THROW(AxesLabelledControlArray_intersection(nullptr, axes2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_intersection(axes, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_intersection(nullptr, axes2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_intersection(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(AxesLabelledControlArray_intersection(axes, axes2));
 }
 
 TEST_F(AxesLabelledControlArrayTest, MiscNullChecks) {
-  EXPECT_THROW(AxesLabelledControlArray_destroy(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_push_back(nullptr, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_push_back(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_erase_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_push_back(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_contains(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_contains(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_index(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_index(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_items(nullptr, rawbuffer, 2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_items(axes, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesLabelledControlArray_create_raw(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_push_back(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_push_back(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_push_back(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_contains(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_contains(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_index(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_index(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_items(nullptr, rawbuffer, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_items(axes, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledControlArray_create_raw(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

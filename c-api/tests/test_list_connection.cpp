@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListConnection_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -29,7 +30,9 @@ TEST_F(ListConnectionTest, CreateEmpty) {
   EXPECT_TRUE(ListConnection_empty(handle));
   EXPECT_EQ(ListConnection_size(handle), 0);
   ListConnection_destroy(handle);
-  EXPECT_THROW(ListConnection_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListConnectionTest, FillValue) {
@@ -42,7 +45,9 @@ TEST_F(ListConnectionTest, CreateFromArray) {
   ConnectionHandle     arr[2] = {sh1, sh2};
   ListConnectionHandle handle = ListConnection_create(arr, 2);
   EXPECT_EQ(ListConnection_size(handle), 2);
-  EXPECT_THROW(ListConnection_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListConnection_destroy(handle);
 }
 
@@ -50,14 +55,18 @@ TEST_F(ListConnectionTest, SizeEmptyInvalid) {
   auto handle = ListConnection_create_empty();
   EXPECT_EQ(ListConnection_size(handle), 0);
   ListConnection_destroy(handle);
-  EXPECT_THROW(ListConnection_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListConnectionTest, EmptyInvalid) {
   auto handle = ListConnection_create_empty();
   EXPECT_TRUE(ListConnection_empty(handle));
   ListConnection_destroy(handle);
-  EXPECT_THROW(ListConnection_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListConnectionTest, EraseAtClear) {
@@ -67,8 +76,12 @@ TEST_F(ListConnectionTest, EraseAtClear) {
   ListConnection_clear(handle);
   EXPECT_TRUE(ListConnection_empty(handle));
   ListConnection_destroy(handle);
-  EXPECT_THROW(ListConnection_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListConnection_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListConnection_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListConnectionTest, PushBackContainsIndex) {
@@ -77,9 +90,15 @@ TEST_F(ListConnectionTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListConnection_contains(handle, sh1));
   EXPECT_EQ(ListConnection_index(handle, sh1), 0);
   ListConnection_destroy(handle);
-  EXPECT_THROW(ListConnection_push_back(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListConnection_contains(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListConnection_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListConnection_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListConnection_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListConnectionTest, ItemsAt) {
@@ -88,9 +107,15 @@ TEST_F(ListConnectionTest, ItemsAt) {
   ConnectionHandle out[2];
   EXPECT_EQ(ListConnection_items(handle, out, 2), 2);
   ListConnection_destroy(handle);
-  EXPECT_THROW(ListConnection_items(nullptr, out, 2), std::invalid_argument);
-  EXPECT_THROW(ListConnection_items(handle, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(ListConnection_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListConnection_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListConnection_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListConnectionTest, EqualNotEqualIntersection) {
@@ -104,12 +129,24 @@ TEST_F(ListConnectionTest, EqualNotEqualIntersection) {
   ListConnection_destroy(h1);
   ListConnection_destroy(h2);
   ListConnection_destroy(h3);
-  EXPECT_THROW(ListConnection_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListConnection_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListConnection_not_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListConnection_not_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListConnection_intersection(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListConnection_intersection(h1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListConnection_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListConnection_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListConnection_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListConnection_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListConnection_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListConnectionTest, ToJsonFromJson) {
@@ -121,35 +158,48 @@ TEST_F(ListConnectionTest, ToJsonFromJson) {
   ListConnection_destroy(handle);
   ListConnection_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListConnection_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(ListConnection_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListConnection_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListConnectionTest, FillValueNull) {
-  EXPECT_THROW(ListConnection_fill_value(3, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListConnectionTest, PushBackNull) {
   auto handle = ListConnection_create_empty();
-  EXPECT_THROW(ListConnection_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListConnection_destroy(handle);
 }
 
 TEST_F(ListConnectionTest, ContainsNull) {
   auto handle = ListConnection_create_empty();
-  EXPECT_THROW(ListConnection_contains(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListConnection_destroy(handle);
 }
 
 TEST_F(ListConnectionTest, IndexNull) {
   auto handle = ListConnection_create_empty();
-  EXPECT_THROW(ListConnection_index(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListConnection_destroy(handle);
 }
 
 TEST_F(ListConnectionTest, CreateNullArray) {
-  EXPECT_THROW(ListConnection_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListConnectionTest, At) {
@@ -160,5 +210,7 @@ TEST_F(ListConnectionTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListConnection_destroy(handle);
-  EXPECT_THROW(ListConnection_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListConnection_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

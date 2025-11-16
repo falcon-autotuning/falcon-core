@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListPairStringBool_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -31,7 +32,9 @@ TEST_F(ListPairStringBoolTest, CreateEmpty) {
   EXPECT_TRUE(ListPairStringBool_empty(handle));
   EXPECT_EQ(ListPairStringBool_size(handle), 0);
   ListPairStringBool_destroy(handle);
-  EXPECT_THROW(ListPairStringBool_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairStringBoolTest, FillValue) {
@@ -44,7 +47,9 @@ TEST_F(ListPairStringBoolTest, CreateFromArray) {
   PairStringBoolHandle     arr[2] = {sh1, sh2};
   ListPairStringBoolHandle handle = ListPairStringBool_create(arr, 2);
   EXPECT_EQ(ListPairStringBool_size(handle), 2);
-  EXPECT_THROW(ListPairStringBool_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairStringBool_destroy(handle);
 }
 
@@ -52,14 +57,18 @@ TEST_F(ListPairStringBoolTest, SizeEmptyInvalid) {
   auto handle = ListPairStringBool_create_empty();
   EXPECT_EQ(ListPairStringBool_size(handle), 0);
   ListPairStringBool_destroy(handle);
-  EXPECT_THROW(ListPairStringBool_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairStringBoolTest, EmptyInvalid) {
   auto handle = ListPairStringBool_create_empty();
   EXPECT_TRUE(ListPairStringBool_empty(handle));
   ListPairStringBool_destroy(handle);
-  EXPECT_THROW(ListPairStringBool_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairStringBoolTest, EraseAtClear) {
@@ -69,8 +78,12 @@ TEST_F(ListPairStringBoolTest, EraseAtClear) {
   ListPairStringBool_clear(handle);
   EXPECT_TRUE(ListPairStringBool_empty(handle));
   ListPairStringBool_destroy(handle);
-  EXPECT_THROW(ListPairStringBool_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListPairStringBool_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairStringBool_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairStringBoolTest, PushBackContainsIndex) {
@@ -79,11 +92,15 @@ TEST_F(ListPairStringBoolTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListPairStringBool_contains(handle, sh1));
   EXPECT_EQ(ListPairStringBool_index(handle, sh1), 0);
   ListPairStringBool_destroy(handle);
-  EXPECT_THROW(ListPairStringBool_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairStringBool_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairStringBool_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairStringBool_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairStringBool_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairStringBoolTest, ItemsAt) {
@@ -92,11 +109,15 @@ TEST_F(ListPairStringBoolTest, ItemsAt) {
   PairStringBoolHandle out[2];
   EXPECT_EQ(ListPairStringBool_items(handle, out, 2), 2);
   ListPairStringBool_destroy(handle);
-  EXPECT_THROW(ListPairStringBool_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairStringBool_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairStringBool_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairStringBool_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairStringBool_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairStringBoolTest, EqualNotEqualIntersection) {
@@ -110,16 +131,24 @@ TEST_F(ListPairStringBoolTest, EqualNotEqualIntersection) {
   ListPairStringBool_destroy(h1);
   ListPairStringBool_destroy(h2);
   ListPairStringBool_destroy(h3);
-  EXPECT_THROW(ListPairStringBool_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListPairStringBool_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListPairStringBool_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairStringBool_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairStringBool_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairStringBool_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairStringBool_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairStringBool_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairStringBool_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairStringBool_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairStringBool_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairStringBoolTest, ToJsonFromJson) {
@@ -131,40 +160,48 @@ TEST_F(ListPairStringBoolTest, ToJsonFromJson) {
   ListPairStringBool_destroy(handle);
   ListPairStringBool_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListPairStringBool_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairStringBool_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairStringBool_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairStringBoolTest, FillValueNull) {
-  EXPECT_THROW(ListPairStringBool_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairStringBoolTest, PushBackNull) {
   auto handle = ListPairStringBool_create_empty();
-  EXPECT_THROW(ListPairStringBool_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairStringBool_destroy(handle);
 }
 
 TEST_F(ListPairStringBoolTest, ContainsNull) {
   auto handle = ListPairStringBool_create_empty();
-  EXPECT_THROW(ListPairStringBool_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairStringBool_destroy(handle);
 }
 
 TEST_F(ListPairStringBoolTest, IndexNull) {
   auto handle = ListPairStringBool_create_empty();
-  EXPECT_THROW(ListPairStringBool_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairStringBool_destroy(handle);
 }
 
 TEST_F(ListPairStringBoolTest, CreateNullArray) {
-  EXPECT_THROW(ListPairStringBool_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairStringBoolTest, At) {
@@ -175,5 +212,7 @@ TEST_F(ListPairStringBoolTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListPairStringBool_destroy(handle);
-  EXPECT_THROW(ListPairStringBool_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairStringBool_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

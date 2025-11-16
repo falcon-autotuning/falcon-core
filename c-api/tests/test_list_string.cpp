@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListString_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -34,7 +35,9 @@ TEST_F(ListStringTest, CreateEmpty) {
   EXPECT_TRUE(ListString_empty(handle));
   EXPECT_EQ(ListString_size(handle), 0);
   ListString_destroy(handle);
-  EXPECT_THROW(ListString_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListString_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListStringTest, FillValue) {
@@ -53,7 +56,9 @@ TEST_F(ListStringTest, CreateFromArray) {
   StringHandle     arr[2] = {sh1, sh2};
   ListStringHandle handle = ListString_create(arr, 2);
   EXPECT_EQ(ListString_size(handle), 2);
-  EXPECT_THROW(ListString_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListString_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListString_destroy(handle);
 }
 
@@ -61,14 +66,18 @@ TEST_F(ListStringTest, SizeEmptyInvalid) {
   auto handle = ListString_create_empty();
   EXPECT_EQ(ListString_size(handle), 0);
   ListString_destroy(handle);
-  EXPECT_THROW(ListString_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListString_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListStringTest, EmptyInvalid) {
   auto handle = ListString_create_empty();
   EXPECT_TRUE(ListString_empty(handle));
   ListString_destroy(handle);
-  EXPECT_THROW(ListString_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListString_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListStringTest, EraseAtClear) {
@@ -78,8 +87,12 @@ TEST_F(ListStringTest, EraseAtClear) {
   ListString_clear(handle);
   EXPECT_TRUE(ListString_empty(handle));
   ListString_destroy(handle);
-  EXPECT_THROW(ListString_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListString_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListString_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListString_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListStringTest, PushBackContainsIndex) {
@@ -88,9 +101,15 @@ TEST_F(ListStringTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListString_contains(handle, sh1));
   EXPECT_EQ(ListString_index(handle, sh1), 0);
   ListString_destroy(handle);
-  EXPECT_THROW(ListString_push_back(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListString_contains(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListString_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListString_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListString_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListString_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListStringTest, ItemsAt) {
@@ -99,9 +118,15 @@ TEST_F(ListStringTest, ItemsAt) {
   StringHandle out[2];
   EXPECT_EQ(ListString_items(handle, out, 2), 2);
   ListString_destroy(handle);
-  EXPECT_THROW(ListString_items(nullptr, out, 2), std::invalid_argument);
-  EXPECT_THROW(ListString_items(handle, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(ListString_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListString_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListString_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListString_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListStringTest, EqualNotEqualIntersection) {
@@ -115,12 +140,24 @@ TEST_F(ListStringTest, EqualNotEqualIntersection) {
   ListString_destroy(h1);
   ListString_destroy(h2);
   ListString_destroy(h3);
-  EXPECT_THROW(ListString_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListString_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListString_not_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListString_not_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListString_intersection(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListString_intersection(h1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListString_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListString_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListString_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListString_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListString_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListString_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListStringTest, ToJsonFromJson) {
@@ -132,32 +169,46 @@ TEST_F(ListStringTest, ToJsonFromJson) {
   ListString_destroy(handle);
   ListString_destroy(handle2);
   destroy_string(json);
-  EXPECT_THROW(ListString_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(ListString_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListString_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListString_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListStringTest, FillValueNull) {
-  EXPECT_THROW(ListString_fill_value(3, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListString_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListStringTest, PushBackNull) {
   auto handle = ListString_create_empty();
-  EXPECT_THROW(ListString_push_back(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListString_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListString_destroy(handle);
 }
 
 TEST_F(ListStringTest, ContainsNull) {
   auto handle = ListString_create_empty();
-  EXPECT_THROW(ListString_contains(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListString_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListString_destroy(handle);
 }
 
 TEST_F(ListStringTest, IndexNull) {
   auto handle = ListString_create_empty();
-  EXPECT_THROW(ListString_index(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListString_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListString_destroy(handle);
 }
 
 TEST_F(ListStringTest, CreateNullArray) {
-  EXPECT_THROW(ListString_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListString_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

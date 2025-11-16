@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListImpedance_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -31,7 +32,9 @@ TEST_F(ListImpedanceTest, CreateEmpty) {
   EXPECT_TRUE(ListImpedance_empty(handle));
   EXPECT_EQ(ListImpedance_size(handle), 0);
   ListImpedance_destroy(handle);
-  EXPECT_THROW(ListImpedance_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListImpedanceTest, FillValue) {
@@ -44,7 +47,9 @@ TEST_F(ListImpedanceTest, CreateFromArray) {
   ImpedanceHandle     arr[2] = {sh1, sh2};
   ListImpedanceHandle handle = ListImpedance_create(arr, 2);
   EXPECT_EQ(ListImpedance_size(handle), 2);
-  EXPECT_THROW(ListImpedance_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListImpedance_destroy(handle);
 }
 
@@ -52,14 +57,18 @@ TEST_F(ListImpedanceTest, SizeEmptyInvalid) {
   auto handle = ListImpedance_create_empty();
   EXPECT_EQ(ListImpedance_size(handle), 0);
   ListImpedance_destroy(handle);
-  EXPECT_THROW(ListImpedance_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListImpedanceTest, EmptyInvalid) {
   auto handle = ListImpedance_create_empty();
   EXPECT_TRUE(ListImpedance_empty(handle));
   ListImpedance_destroy(handle);
-  EXPECT_THROW(ListImpedance_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListImpedanceTest, EraseAtClear) {
@@ -69,8 +78,12 @@ TEST_F(ListImpedanceTest, EraseAtClear) {
   ListImpedance_clear(handle);
   EXPECT_TRUE(ListImpedance_empty(handle));
   ListImpedance_destroy(handle);
-  EXPECT_THROW(ListImpedance_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListImpedance_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListImpedance_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListImpedanceTest, PushBackContainsIndex) {
@@ -79,9 +92,15 @@ TEST_F(ListImpedanceTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListImpedance_contains(handle, sh1));
   EXPECT_EQ(ListImpedance_index(handle, sh1), 0);
   ListImpedance_destroy(handle);
-  EXPECT_THROW(ListImpedance_push_back(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListImpedance_contains(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListImpedance_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListImpedance_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListImpedance_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListImpedanceTest, ItemsAt) {
@@ -90,9 +109,15 @@ TEST_F(ListImpedanceTest, ItemsAt) {
   ImpedanceHandle out[2];
   EXPECT_EQ(ListImpedance_items(handle, out, 2), 2);
   ListImpedance_destroy(handle);
-  EXPECT_THROW(ListImpedance_items(nullptr, out, 2), std::invalid_argument);
-  EXPECT_THROW(ListImpedance_items(handle, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(ListImpedance_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListImpedance_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListImpedance_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListImpedanceTest, EqualNotEqualIntersection) {
@@ -106,12 +131,24 @@ TEST_F(ListImpedanceTest, EqualNotEqualIntersection) {
   ListImpedance_destroy(h1);
   ListImpedance_destroy(h2);
   ListImpedance_destroy(h3);
-  EXPECT_THROW(ListImpedance_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListImpedance_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListImpedance_not_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListImpedance_not_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListImpedance_intersection(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListImpedance_intersection(h1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListImpedance_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListImpedance_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListImpedance_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListImpedance_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListImpedance_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListImpedanceTest, ToJsonFromJson) {
@@ -123,34 +160,48 @@ TEST_F(ListImpedanceTest, ToJsonFromJson) {
   ListImpedance_destroy(handle);
   ListImpedance_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListImpedance_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(ListImpedance_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListImpedance_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListImpedanceTest, FillValueNull) {
-  EXPECT_THROW(ListImpedance_fill_value(3, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListImpedanceTest, PushBackNull) {
   auto handle = ListImpedance_create_empty();
-  EXPECT_THROW(ListImpedance_push_back(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListImpedance_destroy(handle);
 }
 
 TEST_F(ListImpedanceTest, ContainsNull) {
   auto handle = ListImpedance_create_empty();
-  EXPECT_THROW(ListImpedance_contains(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListImpedance_destroy(handle);
 }
 
 TEST_F(ListImpedanceTest, IndexNull) {
   auto handle = ListImpedance_create_empty();
-  EXPECT_THROW(ListImpedance_index(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListImpedance_destroy(handle);
 }
 
 TEST_F(ListImpedanceTest, CreateNullArray) {
-  EXPECT_THROW(ListImpedance_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListImpedanceTest, At) {
@@ -161,5 +212,7 @@ TEST_F(ListImpedanceTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListImpedance_destroy(handle);
-  EXPECT_THROW(ListImpedance_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListImpedance_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

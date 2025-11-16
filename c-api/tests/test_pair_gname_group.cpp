@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/PairGnameGroup_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -78,9 +79,15 @@ class PairGnameGroupTest : public ::testing::Test {
 };
 
 TEST_F(PairGnameGroupTest, CreateDestroy) {
-  EXPECT_THROW(PairGnameGroup_create(nullptr, t2), std::invalid_argument);
-  EXPECT_THROW(PairGnameGroup_create(t1, nullptr), std::invalid_argument);
-  EXPECT_THROW(PairGnameGroup_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairGnameGroup_create(nullptr, t2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairGnameGroup_create(t1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairGnameGroup_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairGnameGroupTest, Accessors) {
@@ -88,17 +95,29 @@ TEST_F(PairGnameGroupTest, Accessors) {
   auto s = PairGnameGroup_second(pair1);
   EXPECT_TRUE(Gname_equal(f, t1));
   EXPECT_TRUE(Group_equal(s, t2));
-  EXPECT_THROW(PairGnameGroup_first(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairGnameGroup_second(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairGnameGroup_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairGnameGroup_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairGnameGroupTest, Equality) {
   EXPECT_TRUE(PairGnameGroup_equal(pair1, pair2));
   EXPECT_FALSE(PairGnameGroup_not_equal(pair1, pair2));
-  EXPECT_THROW(PairGnameGroup_equal(nullptr, pair2), std::invalid_argument);
-  EXPECT_THROW(PairGnameGroup_equal(pair1, nullptr), std::invalid_argument);
-  EXPECT_THROW(PairGnameGroup_not_equal(nullptr, pair2), std::invalid_argument);
-  EXPECT_THROW(PairGnameGroup_not_equal(pair1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairGnameGroup_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairGnameGroup_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairGnameGroup_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairGnameGroup_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairGnameGroupTest, ToJsonFromJson) {
@@ -106,6 +125,10 @@ TEST_F(PairGnameGroupTest, ToJsonFromJson) {
   auto p2   = PairGnameGroup_from_json_string(json);
   EXPECT_TRUE(PairGnameGroup_equal(pair1, p2));
   PairGnameGroup_destroy(p2);
-  EXPECT_THROW(PairGnameGroup_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairGnameGroup_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairGnameGroup_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairGnameGroup_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

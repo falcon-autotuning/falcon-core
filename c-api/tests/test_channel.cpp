@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -26,15 +27,21 @@ class ChannelTest : public ::testing::Test {
 TEST_F(ChannelTest, CreateDestroy) {
   ChannelHandle h = Channel_create(String_create("x", 1));
   Channel_destroy(h);
-  EXPECT_THROW(Channel_create(nullptr), std::invalid_argument);
-  EXPECT_THROW(Channel_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Channel_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channel_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ChannelTest, NameGetter) {
   StringHandle result = Channel_name(handle1);
   EXPECT_EQ(std::string(result->raw, result->length), "test_channel");
   String_destroy(result);
-  EXPECT_THROW(Channel_name(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Channel_name(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ChannelTest, EqualityAndInequality) {
@@ -43,10 +50,18 @@ TEST_F(ChannelTest, EqualityAndInequality) {
   EXPECT_FALSE(Channel_not_equal(handle1, handle1_copy));
   EXPECT_FALSE(Channel_equal(handle1, handle2));
   EXPECT_TRUE(Channel_not_equal(handle1, handle2));
-  EXPECT_THROW(Channel_equal(nullptr, handle2), std::invalid_argument);
-  EXPECT_THROW(Channel_equal(handle1, nullptr), std::invalid_argument);
-  EXPECT_THROW(Channel_not_equal(nullptr, handle2), std::invalid_argument);
-  EXPECT_THROW(Channel_not_equal(handle1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Channel_equal(nullptr, handle2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channel_equal(handle1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channel_not_equal(nullptr, handle2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channel_not_equal(handle1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Channel_destroy(handle1_copy);
 }
 
@@ -56,6 +71,10 @@ TEST_F(ChannelTest, SerializationRoundTrip) {
   EXPECT_TRUE(Channel_equal(handle1, loaded));
   Channel_destroy(loaded);
   String_destroy(json);
-  EXPECT_THROW(Channel_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(Channel_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Channel_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channel_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

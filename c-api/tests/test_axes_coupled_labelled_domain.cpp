@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <vector>
 
@@ -50,10 +52,12 @@ class AxesCoupledLabelledDomainTest : public ::testing::Test {
 TEST_F(AxesCoupledLabelledDomainTest, CreateDestroy) {
   auto h = AxesCoupledLabelledDomain_create_empty();
   AxesCoupledLabelledDomain_destroy(h);
-  EXPECT_THROW(AxesCoupledLabelledDomain_create(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(
       AxesCoupledLabelledDomain_create(CoupledLabelledDomain_create_empty()));
 }
@@ -87,10 +91,12 @@ TEST_F(AxesCoupledLabelledDomainTest, ContainsIndexEquality) {
 }
 
 TEST_F(AxesCoupledLabelledDomainTest, SerializationRoundTrip) {
-  EXPECT_THROW(AxesCoupledLabelledDomain_from_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_to_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW({
     auto json   = AxesCoupledLabelledDomain_to_json_string(axes);
     auto loaded = AxesCoupledLabelledDomain_from_json_string(json);
@@ -100,49 +106,73 @@ TEST_F(AxesCoupledLabelledDomainTest, SerializationRoundTrip) {
 }
 
 TEST_F(AxesCoupledLabelledDomainTest, EqualityWorks) {
-  EXPECT_THROW(AxesCoupledLabelledDomain_equal(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_not_equal(nullptr, axes2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_equal(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_not_equal(nullptr, axes2);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(AxesCoupledLabelledDomain_equal(axes, axes));
   EXPECT_NO_THROW(AxesCoupledLabelledDomain_not_equal(axes, axes2));
 }
 
 TEST_F(AxesCoupledLabelledDomainTest, Intersection) {
-  EXPECT_THROW(AxesCoupledLabelledDomain_intersection(nullptr, axes2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_intersection(axes, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_intersection(nullptr, axes2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_intersection(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(AxesCoupledLabelledDomain_intersection(axes, axes2));
 }
 
 TEST_F(AxesCoupledLabelledDomainTest, MiscNullChecks) {
-  EXPECT_THROW(AxesCoupledLabelledDomain_destroy(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_push_back(nullptr, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_push_back(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_erase_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_push_back(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_contains(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_contains(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_index(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_index(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_items(nullptr, rawbuffer, 2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_items(axes, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesCoupledLabelledDomain_create_raw(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_push_back(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_push_back(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_push_back(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_contains(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_contains(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_index(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_index(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_items(nullptr, rawbuffer, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_items(axes, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesCoupledLabelledDomain_create_raw(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

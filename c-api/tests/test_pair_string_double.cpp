@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <string>
 
@@ -33,27 +34,41 @@ class PairStringDoubleTest : public ::testing::Test {
 };
 
 TEST_F(PairStringDoubleTest, CreateDestroy) {
-  EXPECT_THROW(PairStringDouble_create(nullptr, t2), std::invalid_argument);
-  EXPECT_THROW(PairStringDouble_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairStringDouble_create(nullptr, t2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringDouble_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairStringDoubleTest, Accessors) {
   auto f = PairStringDouble_first(pair1);
   auto s = PairStringDouble_second(pair1);
   EXPECT_TRUE(String_equal(f, t1));
-  EXPECT_THROW(PairStringDouble_first(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairStringDouble_second(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairStringDouble_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringDouble_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairStringDoubleTest, Equality) {
   EXPECT_TRUE(PairStringDouble_equal(pair1, pair2));
   EXPECT_FALSE(PairStringDouble_not_equal(pair1, pair2));
-  EXPECT_THROW(PairStringDouble_equal(nullptr, pair2), std::invalid_argument);
-  EXPECT_THROW(PairStringDouble_equal(pair1, nullptr), std::invalid_argument);
-  EXPECT_THROW(PairStringDouble_not_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairStringDouble_not_equal(pair1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairStringDouble_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringDouble_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringDouble_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringDouble_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairStringDoubleTest, ToJsonFromJson) {
@@ -61,7 +76,10 @@ TEST_F(PairStringDoubleTest, ToJsonFromJson) {
   auto p2   = PairStringDouble_from_json_string(json);
   EXPECT_TRUE(PairStringDouble_equal(pair1, p2));
   PairStringDouble_destroy(p2);
-  EXPECT_THROW(PairStringDouble_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairStringDouble_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairStringDouble_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringDouble_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

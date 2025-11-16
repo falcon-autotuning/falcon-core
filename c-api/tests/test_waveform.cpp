@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/instrument_interfaces/Waveform_c_api.h"
 #include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
@@ -80,43 +81,49 @@ TEST_F(WaveformTest, CreateDestroy) {
   auto w = Waveform_create(space, transforms);
   Waveform_destroy(w);
 
-  EXPECT_THROW(Waveform_create(nullptr, transforms), std::invalid_argument);
-  EXPECT_THROW(Waveform_create(space, nullptr), std::invalid_argument);
-  EXPECT_THROW(Waveform_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_create(nullptr, transforms);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create(space, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   auto w2 = Waveform_create_cartesianwaveform(
       divisions, axes, increasing, transforms, domain);
   Waveform_destroy(w2);
 
-  EXPECT_THROW(Waveform_create_cartesianwaveform(
-                   nullptr, axes, increasing, transforms, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianwaveform(
-                   divisions, nullptr, increasing, transforms, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianwaveform(
-                   divisions, axes, nullptr, transforms, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianwaveform(
-                   divisions, axes, increasing, nullptr, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianwaveform(
-                   divisions, axes, increasing, transforms, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianwaveform(                   nullptr, axes, increasing, transforms, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianwaveform(                   divisions, nullptr, increasing, transforms, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianwaveform(                   divisions, axes, nullptr, transforms, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianwaveform(                   divisions, axes, increasing, nullptr, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianwaveform(                   divisions, axes, increasing, transforms, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   auto w3 = Waveform_create_cartesianidentitywaveform(
       divisions, axes, increasing, domain);
   Waveform_destroy(w3);
 
-  EXPECT_THROW(Waveform_create_cartesianidentitywaveform(
-                   nullptr, axes, increasing, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianidentitywaveform(
-                   divisions, nullptr, increasing, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianidentitywaveform(
-                   divisions, axes, nullptr, domain),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianidentitywaveform(                   nullptr, axes, increasing, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianidentitywaveform(                   divisions, nullptr, increasing, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianidentitywaveform(                   divisions, axes, nullptr, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(WaveformTest, Accessors) {
@@ -141,12 +148,24 @@ TEST_F(WaveformTest, Accessors) {
   EXPECT_NE(items, nullptr);
   ListPortTransform_destroy(items);
 
-  EXPECT_THROW(Waveform_space(nullptr), std::invalid_argument);
-  EXPECT_THROW(Waveform_transforms(nullptr), std::invalid_argument);
-  EXPECT_THROW(Waveform_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(Waveform_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(Waveform_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(Waveform_items(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_space(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_transforms(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   Waveform_destroy(w);
 }
@@ -164,10 +183,18 @@ TEST_F(WaveformTest, Mutators) {
   Waveform_clear(w);
   EXPECT_EQ(Waveform_size(w), 0);
 
-  EXPECT_THROW(Waveform_push_back(nullptr, pt2), std::invalid_argument);
-  EXPECT_THROW(Waveform_push_back(w, nullptr), std::invalid_argument);
-  EXPECT_THROW(Waveform_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(Waveform_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_push_back(nullptr, pt2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_push_back(w, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   PortTransform_destroy(pt2);
   Waveform_destroy(w);
@@ -179,13 +206,25 @@ TEST_F(WaveformTest, ContainsIndex) {
   EXPECT_TRUE(Waveform_contains(w, pt));
   EXPECT_EQ(Waveform_index(w, pt), 0);
 
-  EXPECT_THROW(Waveform_contains(nullptr, pt), std::invalid_argument);
-  EXPECT_THROW(Waveform_contains(w, nullptr), std::invalid_argument);
-  EXPECT_THROW(Waveform_contains(nullptr, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_contains(nullptr, pt);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_contains(w, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_contains(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(Waveform_index(nullptr, pt), std::invalid_argument);
-  EXPECT_THROW(Waveform_index(w, nullptr), std::invalid_argument);
-  EXPECT_THROW(Waveform_index(nullptr, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_index(nullptr, pt);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_index(w, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_index(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   Waveform_destroy(w);
 }
@@ -201,17 +240,35 @@ TEST_F(WaveformTest, EqualityIntersection) {
   EXPECT_NE(inter, nullptr);
   Waveform_destroy(inter);
 
-  EXPECT_THROW(Waveform_equal(nullptr, w2), std::invalid_argument);
-  EXPECT_THROW(Waveform_equal(w1, nullptr), std::invalid_argument);
-  EXPECT_THROW(Waveform_equal(nullptr, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_equal(nullptr, w2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_equal(w1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_equal(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(Waveform_not_equal(nullptr, w2), std::invalid_argument);
-  EXPECT_THROW(Waveform_not_equal(w1, nullptr), std::invalid_argument);
-  EXPECT_THROW(Waveform_not_equal(nullptr, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_not_equal(nullptr, w2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_not_equal(w1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_not_equal(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(Waveform_intersection(nullptr, w2), std::invalid_argument);
-  EXPECT_THROW(Waveform_intersection(w1, nullptr), std::invalid_argument);
-  EXPECT_THROW(Waveform_intersection(nullptr, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_intersection(nullptr, w2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_intersection(w1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_intersection(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   Waveform_destroy(w1);
   Waveform_destroy(w2);
@@ -225,8 +282,12 @@ TEST_F(WaveformTest, ToJsonFromJson) {
   auto w2 = Waveform_from_json_string(json);
   EXPECT_TRUE(Waveform_equal(w, w2));
 
-  EXPECT_THROW(Waveform_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(Waveform_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   Waveform_destroy(w2);
   String_destroy(json);
@@ -263,70 +324,70 @@ TEST_F(WaveformTest, CartesianWaveformVariants) {
       divisions2D, axes2D, increasing2D, transforms, domain);
   Waveform_destroy(w2d);
 
-  EXPECT_THROW(Waveform_create_cartesianwaveform2D(
-                   nullptr, axes2D, increasing2D, transforms, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianwaveform2D(
-                   divisions2D, nullptr, increasing2D, transforms, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianwaveform2D(
-                   divisions2D, axes2D, nullptr, transforms, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianwaveform2D(
-                   divisions2D, axes2D, increasing2D, nullptr, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianwaveform2D(
-                   divisions2D, axes2D, increasing2D, transforms, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianwaveform2D(                   nullptr, axes2D, increasing2D, transforms, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianwaveform2D(                   divisions2D, nullptr, increasing2D, transforms, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianwaveform2D(                   divisions2D, axes2D, nullptr, transforms, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianwaveform2D(                   divisions2D, axes2D, increasing2D, nullptr, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianwaveform2D(                   divisions2D, axes2D, increasing2D, transforms, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   // 2D identity waveform creation/destruction
   auto w2d_id = Waveform_create_cartesianidentitywaveform2D(
       divisions2D, axes2D, increasing2D, domain);
   Waveform_destroy(w2d_id);
 
-  EXPECT_THROW(Waveform_create_cartesianidentitywaveform2D(
-                   nullptr, axes2D, increasing2D, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianidentitywaveform2D(
-                   divisions2D, nullptr, increasing2D, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianidentitywaveform2D(
-                   divisions2D, axes2D, nullptr, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianidentitywaveform2D(
-                   divisions2D, axes2D, increasing2D, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianidentitywaveform2D(                   nullptr, axes2D, increasing2D, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianidentitywaveform2D(                   divisions2D, nullptr, increasing2D, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianidentitywaveform2D(                   divisions2D, axes2D, nullptr, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianidentitywaveform2D(                   divisions2D, axes2D, increasing2D, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   // 1D waveform creation/destruction
   auto w1d = Waveform_create_cartesianwaveform1D(
       2, labelled_domain, map, transforms, domain);
   Waveform_destroy(w1d);
 
-  EXPECT_THROW(
-      Waveform_create_cartesianwaveform1D(2, nullptr, map, transforms, domain),
-      std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianwaveform1D(
-                   2, labelled_domain, nullptr, transforms, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianwaveform1D(
-                   2, labelled_domain, map, nullptr, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianwaveform1D(
-                   2, labelled_domain, map, transforms, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianwaveform1D(2, nullptr, map, transforms, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianwaveform1D(                   2, labelled_domain, nullptr, transforms, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianwaveform1D(                   2, labelled_domain, map, nullptr, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianwaveform1D(                   2, labelled_domain, map, transforms, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   // 1D identity waveform creation/destruction
   auto w1d_id = Waveform_create_cartesianidentitywaveform1D(
       2, labelled_domain, map, domain);
   Waveform_destroy(w1d_id);
 
-  EXPECT_THROW(
-      Waveform_create_cartesianidentitywaveform1D(2, nullptr, map, domain),
-      std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianidentitywaveform1D(
-                   2, labelled_domain, nullptr, domain),
-               std::invalid_argument);
-  EXPECT_THROW(Waveform_create_cartesianidentitywaveform1D(
-                   2, labelled_domain, map, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianidentitywaveform1D(2, nullptr, map, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianidentitywaveform1D(                   2, labelled_domain, nullptr, domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Waveform_create_cartesianidentitywaveform1D(                   2, labelled_domain, map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

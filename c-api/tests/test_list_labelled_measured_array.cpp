@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListLabelledMeasuredArray_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -48,8 +49,9 @@ TEST_F(ListLabelledMeasuredArrayTest, CreateEmpty) {
   EXPECT_TRUE(ListLabelledMeasuredArray_empty(handle));
   EXPECT_EQ(ListLabelledMeasuredArray_size(handle), 0);
   ListLabelledMeasuredArray_destroy(handle);
-  EXPECT_THROW(ListLabelledMeasuredArray_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledMeasuredArrayTest, FillValue) {
@@ -63,8 +65,9 @@ TEST_F(ListLabelledMeasuredArrayTest, CreateFromArray) {
   ListLabelledMeasuredArrayHandle handle =
       ListLabelledMeasuredArray_create(arr, 2);
   EXPECT_EQ(ListLabelledMeasuredArray_size(handle), 2);
-  EXPECT_THROW(ListLabelledMeasuredArray_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListLabelledMeasuredArray_destroy(handle);
 }
 
@@ -72,14 +75,18 @@ TEST_F(ListLabelledMeasuredArrayTest, SizeEmptyInvalid) {
   auto handle = ListLabelledMeasuredArray_create_empty();
   EXPECT_EQ(ListLabelledMeasuredArray_size(handle), 0);
   ListLabelledMeasuredArray_destroy(handle);
-  EXPECT_THROW(ListLabelledMeasuredArray_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledMeasuredArrayTest, EmptyInvalid) {
   auto handle = ListLabelledMeasuredArray_create_empty();
   EXPECT_TRUE(ListLabelledMeasuredArray_empty(handle));
   ListLabelledMeasuredArray_destroy(handle);
-  EXPECT_THROW(ListLabelledMeasuredArray_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledMeasuredArrayTest, EraseAtClear) {
@@ -89,9 +96,12 @@ TEST_F(ListLabelledMeasuredArrayTest, EraseAtClear) {
   ListLabelledMeasuredArray_clear(handle);
   EXPECT_TRUE(ListLabelledMeasuredArray_empty(handle));
   ListLabelledMeasuredArray_destroy(handle);
-  EXPECT_THROW(ListLabelledMeasuredArray_erase_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledMeasuredArray_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledMeasuredArrayTest, PushBackContainsIndex) {
@@ -100,12 +110,15 @@ TEST_F(ListLabelledMeasuredArrayTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListLabelledMeasuredArray_contains(handle, sh1));
   EXPECT_EQ(ListLabelledMeasuredArray_index(handle, sh1), 0);
   ListLabelledMeasuredArray_destroy(handle);
-  EXPECT_THROW(ListLabelledMeasuredArray_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledMeasuredArray_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledMeasuredArray_index(nullptr, sh1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledMeasuredArrayTest, ItemsAt) {
@@ -114,11 +127,15 @@ TEST_F(ListLabelledMeasuredArrayTest, ItemsAt) {
   LabelledMeasuredArrayHandle out[2];
   EXPECT_EQ(ListLabelledMeasuredArray_items(handle, out, 2), 2);
   ListLabelledMeasuredArray_destroy(handle);
-  EXPECT_THROW(ListLabelledMeasuredArray_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledMeasuredArray_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledMeasuredArray_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledMeasuredArrayTest, EqualNotEqualIntersection) {
@@ -132,18 +149,24 @@ TEST_F(ListLabelledMeasuredArrayTest, EqualNotEqualIntersection) {
   ListLabelledMeasuredArray_destroy(h1);
   ListLabelledMeasuredArray_destroy(h2);
   ListLabelledMeasuredArray_destroy(h3);
-  EXPECT_THROW(ListLabelledMeasuredArray_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledMeasuredArray_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledMeasuredArray_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledMeasuredArray_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledMeasuredArray_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledMeasuredArray_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledMeasuredArrayTest, ToJsonFromJson) {
@@ -155,41 +178,48 @@ TEST_F(ListLabelledMeasuredArrayTest, ToJsonFromJson) {
   ListLabelledMeasuredArray_destroy(handle);
   ListLabelledMeasuredArray_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListLabelledMeasuredArray_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledMeasuredArray_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledMeasuredArrayTest, FillValueNull) {
-  EXPECT_THROW(ListLabelledMeasuredArray_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledMeasuredArrayTest, PushBackNull) {
   auto handle = ListLabelledMeasuredArray_create_empty();
-  EXPECT_THROW(ListLabelledMeasuredArray_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListLabelledMeasuredArray_destroy(handle);
 }
 
 TEST_F(ListLabelledMeasuredArrayTest, ContainsNull) {
   auto handle = ListLabelledMeasuredArray_create_empty();
-  EXPECT_THROW(ListLabelledMeasuredArray_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListLabelledMeasuredArray_destroy(handle);
 }
 
 TEST_F(ListLabelledMeasuredArrayTest, IndexNull) {
   auto handle = ListLabelledMeasuredArray_create_empty();
-  EXPECT_THROW(ListLabelledMeasuredArray_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListLabelledMeasuredArray_destroy(handle);
 }
 
 TEST_F(ListLabelledMeasuredArrayTest, CreateNullArray) {
-  EXPECT_THROW(ListLabelledMeasuredArray_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledMeasuredArrayTest, At) {
@@ -200,5 +230,7 @@ TEST_F(ListLabelledMeasuredArrayTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListLabelledMeasuredArray_destroy(handle);
-  EXPECT_THROW(ListLabelledMeasuredArray_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledMeasuredArray_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

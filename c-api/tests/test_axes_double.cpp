@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <stdexcept>
 
@@ -37,8 +39,12 @@ class AxesDoubleTest : public ::testing::Test {
 TEST_F(AxesDoubleTest, CreateDestroy) {
   auto h = AxesDouble_create_empty();
   AxesDouble_destroy(h);
-  EXPECT_THROW(AxesDouble_create(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesDouble_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesDouble_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesDouble_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesDoubleTest, AccessorsAndMutators) {
@@ -69,32 +75,64 @@ TEST_F(AxesDoubleTest, ContainsIndexEquality) {
 TEST_F(AxesDoubleTest, SerializationRoundTrip) {
   EXPECT_TRUE(AxesDouble_equal(
       AxesDouble_from_json_string(AxesDouble_to_json_string(axes)), axes));
-  EXPECT_THROW(AxesDouble_from_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesDouble_to_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesDouble_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesDouble_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesDoubleTest, EqualityWorks) {
   EXPECT_TRUE(AxesDouble_equal(axes, axes));
   EXPECT_TRUE(AxesDouble_not_equal(axes, axes2));
-  EXPECT_THROW(AxesDouble_equal(axes, nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesDouble_not_equal(axes, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesDouble_equal(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesDouble_not_equal(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesDoubleTest, Intersection) {
-  EXPECT_THROW(AxesDouble_intersection(nullptr, axes2), std::invalid_argument);
-  EXPECT_THROW(AxesDouble_intersection(axes, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesDouble_intersection(nullptr, axes2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesDouble_intersection(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(AxesDouble_intersection(axes, axes2));
 }
 
 TEST_F(AxesDoubleTest, MiscNullChecks) {
-  EXPECT_THROW(AxesDouble_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesDouble_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesDouble_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesDouble_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesDouble_push_back(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesDouble_contains(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesDouble_index(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesDouble_items(nullptr, raw_arr, 2), std::invalid_argument);
-  EXPECT_THROW(AxesDouble_items(axes, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(AxesDouble_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesDouble_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesDouble_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesDouble_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesDouble_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesDouble_push_back(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesDouble_contains(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesDouble_index(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesDouble_items(nullptr, raw_arr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesDouble_items(axes, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesDouble_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

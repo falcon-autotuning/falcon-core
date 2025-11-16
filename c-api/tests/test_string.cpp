@@ -1,4 +1,5 @@
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <cstring>

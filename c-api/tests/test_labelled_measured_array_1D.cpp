@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <cmath>
 
@@ -51,11 +53,15 @@ TEST_F(LabelledMeasuredArray1DTest, CreateDestroy) {
   LabelledMeasuredArray1D_destroy(lma3);
   lma3 = LabelledMeasuredArray1D_from_measured_array(ma, label);
   LabelledMeasuredArray1D_destroy(lma3);
-  EXPECT_THROW(LabelledMeasuredArray1D_from_farray(nullptr, label),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_from_measured_array(nullptr, label),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_from_farray(nullptr, label);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_from_measured_array(nullptr, label);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, Accessors) {
@@ -69,35 +75,52 @@ TEST_F(LabelledMeasuredArray1DTest, Accessors) {
   EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_get_distance(lma), 5.0);
   EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_get_mean(lma), 3.5);
   EXPECT_NE(LabelledMeasuredArray1D_get_std(lma), 0.0);
-  EXPECT_THROW(LabelledMeasuredArray1D_is_1D(nullptr), std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_as_1D(nullptr), std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_get_start(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_get_end(nullptr), std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_is_decreasing(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_is_increasing(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_get_distance(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_get_mean(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_get_std(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_is_1D(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_as_1D(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_get_start(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_get_end(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_is_decreasing(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_is_increasing(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_get_distance(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_get_mean(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_get_std(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, ReverseAndClosestIndex) {
   LabelledMeasuredArray1D_reverse(lma);
   EXPECT_EQ(LabelledMeasuredArray1D_get_closest_index(lma, 2.0), 4);
-  EXPECT_THROW(LabelledMeasuredArray1D_reverse(nullptr), std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_get_closest_index(nullptr, 2.0),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_reverse(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_get_closest_index(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, EvenDivisions) {
   auto list = LabelledMeasuredArray1D_even_divisions(lma, 2);
   // ListFArrayDouble_destroy(list); // implement destroy if needed
-  EXPECT_THROW(LabelledMeasuredArray1D_even_divisions(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_even_divisions(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, SizeAndShapeAndData) {
@@ -109,13 +132,18 @@ TEST_F(LabelledMeasuredArray1DTest, SizeAndShapeAndData) {
   double out_data[6];
   EXPECT_EQ(LabelledMeasuredArray1D_data(lma, out_data, 6), 6);
   for (int i = 0; i < 6; ++i) EXPECT_EQ(out_data[i], data[i]);
-  EXPECT_THROW(LabelledMeasuredArray1D_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_dimension(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_shape(nullptr, out_shape, 1),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_data(nullptr, out_data, 6),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_dimension(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_shape(nullptr, out_shape, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_data(nullptr, out_data, 6);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
@@ -189,151 +217,212 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
   LabelledMeasuredArray1D_destroy(lma_max_fa);
   LabelledMeasuredArray1D_destroy(lma_max_lma);
 
-  EXPECT_THROW(LabelledMeasuredArray1D_plusequals_farray(nullptr, fa),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_plusequals_farray(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_plusequals_double(nullptr, 1.0),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_plusequals_int(nullptr, 1),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_plus_control_array(nullptr, lma2),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_plus_control_array(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_plus_farray(nullptr, fa),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_plus_farray(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_plus_double(nullptr, 1.0),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_plus_int(nullptr, 1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_plusequals_farray(nullptr, fa);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_plusequals_farray(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_plusequals_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_plusequals_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_plus_control_array(nullptr, lma2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_plus_control_array(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_plus_farray(nullptr, fa);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_plus_farray(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_plus_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_plus_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(LabelledMeasuredArray1D_minusequals_control_array(nullptr, lma2),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_minusequals_control_array(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_minusequals_farray(nullptr, fa),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_minusequals_farray(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_minusequals_double(nullptr, 1.0),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_minusequals_int(nullptr, 1),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_minus_control_array(nullptr, ma),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_minus_control_array(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_minus_farray(nullptr, fa),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_minus_farray(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_minus_double(nullptr, 1.0),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_minus_int(nullptr, 1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_minusequals_control_array(nullptr, lma2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_minusequals_control_array(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_minusequals_farray(nullptr, fa);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_minusequals_farray(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_minusequals_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_minusequals_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_minus_control_array(nullptr, ma);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_minus_control_array(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_minus_farray(nullptr, fa);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_minus_farray(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_minus_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_minus_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(LabelledMeasuredArray1D_negation(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_negation(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(
-      LabelledMeasuredArray1D_timesequals_measured_array(nullptr, lma2),
-      std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_timesequals_measured_array(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_timesequals_farray(nullptr, fa),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_timesequals_farray(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MeasuredArray_timesequals_double(nullptr, 2.0),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_timesequals_int(nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_times_measured_array(nullptr, lma2),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_times_measured_array(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_times_farray(nullptr, fa),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_times_farray(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_times_double(nullptr, 2.0),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_times_int(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_timesequals_measured_array(nullptr, lma2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_timesequals_measured_array(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_timesequals_farray(nullptr, fa);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_timesequals_farray(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasuredArray_timesequals_double(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_timesequals_int(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_times_measured_array(nullptr, lma2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_times_measured_array(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_times_farray(nullptr, fa);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_times_farray(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_times_double(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_times_int(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(
-      LabelledMeasuredArray1D_dividesequals_measured_array(nullptr, lma2),
-      std::invalid_argument);
-  EXPECT_THROW(
-      LabelledMeasuredArray1D_dividesequals_measured_array(lma, nullptr),
-      std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_dividesequals_farray(nullptr, fa),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_dividesequals_farray(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_dividesequals_double(nullptr, 2.0),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_dividesequals_int(nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_divides_measured_array(nullptr, lma2),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_divides_measured_array(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_divides_farray(nullptr, fa),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_divides_farray(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_divides_double(nullptr, 2.0),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_divides_int(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_dividesequals_measured_array(nullptr, lma2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_dividesequals_measured_array(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_dividesequals_farray(nullptr, fa);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_dividesequals_farray(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_dividesequals_double(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_dividesequals_int(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_divides_measured_array(nullptr, lma2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_divides_measured_array(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_divides_farray(nullptr, fa);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_divides_farray(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_divides_double(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_divides_int(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(LabelledMeasuredArray1D_pow(nullptr, 2.0),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_abs(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_pow(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_abs(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(LabelledMeasuredArray1D_min_farray(nullptr, fa),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_min_farray(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_min_control_array(nullptr, lma2),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_min_control_array(lma, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_min_farray(nullptr, fa);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_min_farray(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_min_control_array(nullptr, lma2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_min_control_array(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(LabelledMeasuredArray1D_max_farray(nullptr, fa),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_max_farray(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_max_control_array(nullptr, lma2),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_max_control_array(lma, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_max_farray(nullptr, fa);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_max_farray(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_max_control_array(nullptr, lma2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_max_control_array(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, EqualityOperators) {
   EXPECT_TRUE(LabelledMeasuredArray1D_equality(lma, lma2));
   EXPECT_FALSE(LabelledMeasuredArray1D_notequality(lma, lma2));
-  EXPECT_THROW(LabelledMeasuredArray1D_equality(nullptr, lma2),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_equality(lma, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_notequality(nullptr, lma2),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_notequality(lma, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_equality(nullptr, lma2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_equality(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_notequality(nullptr, lma2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_notequality(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, ComparisonOperators) {
   EXPECT_TRUE(LabelledMeasuredArray1D_greaterthan(lma, 0.5));
   EXPECT_FALSE(LabelledMeasuredArray1D_lessthan(lma, 0.5));
-  EXPECT_THROW(LabelledMeasuredArray1D_greaterthan(nullptr, 0.5),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_lessthan(nullptr, 0.5),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_greaterthan(nullptr, 0.5);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_lessthan(nullptr, 0.5);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, OffsetSumReshapeWhereFlipGradient) {
@@ -353,18 +442,27 @@ TEST_F(LabelledMeasuredArray1DTest, OffsetSumReshapeWhereFlipGradient) {
   }
   auto grad = LabelledMeasuredArray1D_gradient(lma, 0);
   LabelledMeasuredArray1D_destroy(grad);
-  EXPECT_THROW(LabelledMeasuredArray1D_remove_offset(nullptr, 1.0),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_sum(nullptr), std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_reshape(nullptr, new_shape, 1),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_where(nullptr, 2.0),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_flip(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_full_gradient(nullptr, grad_buffer, 1),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_gradient(nullptr, 0),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_remove_offset(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_sum(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_reshape(nullptr, new_shape, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_where(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_flip(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_full_gradient(nullptr, grad_buffer, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_gradient(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, SumOfSquares) {
@@ -376,20 +474,21 @@ TEST_F(LabelledMeasuredArray1DTest, SumOfSquares) {
       15.0);
   EXPECT_DOUBLE_EQ(
       LabelledMeasuredArray1D_get_summed_diff_array_of_squares(lma, lma2), 0.0);
-  EXPECT_THROW(LabelledMeasuredArray1D_get_sum_of_squares(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(
-      LabelledMeasuredArray1D_get_summed_diff_int_of_squares(nullptr, 1),
-      std::invalid_argument);
-  EXPECT_THROW(
-      LabelledMeasuredArray1D_get_summed_diff_double_of_squares(nullptr, 1.0),
-      std::invalid_argument);
-  EXPECT_THROW(
-      LabelledMeasuredArray1D_get_summed_diff_array_of_squares(nullptr, lma2),
-      std::invalid_argument);
-  EXPECT_THROW(
-      LabelledMeasuredArray1D_get_summed_diff_array_of_squares(lma, nullptr),
-      std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_get_sum_of_squares(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_get_summed_diff_int_of_squares(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_get_summed_diff_double_of_squares(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_get_summed_diff_array_of_squares(nullptr, lma2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_get_summed_diff_array_of_squares(lma, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, ToJsonFromJson) {
@@ -398,10 +497,12 @@ TEST_F(LabelledMeasuredArray1DTest, ToJsonFromJson) {
   EXPECT_TRUE(LabelledMeasuredArray1D_equality(lma, lma3));
   LabelledMeasuredArray1D_destroy(lma3);
   String_destroy(json);
-  EXPECT_THROW(LabelledMeasuredArray1D_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(LabelledMeasuredArray1D_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, TimesEqualsDouble) {
@@ -409,31 +510,38 @@ TEST_F(LabelledMeasuredArray1DTest, TimesEqualsDouble) {
   double out_data[6];
   EXPECT_EQ(LabelledMeasuredArray1D_data(lma, out_data, 6), 6);
   for (int i = 0; i < 6; ++i) EXPECT_DOUBLE_EQ(out_data[i], data[i] * 2.0);
-  EXPECT_THROW(LabelledMeasuredArray1D_timesequals_double(nullptr, 2.0),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_timesequals_double(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, LabelAccess) {
   auto ac = LabelledMeasuredArray1D_label(lma);
   EXPECT_TRUE(AcquisitionContext_equal(ac, label));
-  EXPECT_THROW(LabelledMeasuredArray1D_label(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_label(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, ConnectionAccess) {
   auto conn_out = LabelledMeasuredArray1D_connection(lma);
   EXPECT_TRUE(Connection_equal(conn_out, conn));
-  EXPECT_THROW(LabelledMeasuredArray1D_connection(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_connection(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, InstrumentTypeAccess) {
   auto inst_type = LabelledMeasuredArray1D_instrument_type(lma);
-  EXPECT_THROW(LabelledMeasuredArray1D_instrument_type(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_instrument_type(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArray1DTest, UnitAccess) {
   auto unit = LabelledMeasuredArray1D_units(lma);
   EXPECT_TRUE(SymbolUnit_equal(unit, SymbolUnit_create_volt()));
-  EXPECT_THROW(LabelledMeasuredArray1D_units(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  LabelledMeasuredArray1D_units(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

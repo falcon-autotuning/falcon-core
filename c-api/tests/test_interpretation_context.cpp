@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"
@@ -41,13 +42,18 @@ class InterpretationContextTest : public ::testing::Test {
 TEST_F(InterpretationContextTest, CreateDestroy) {
   auto ctx2 = InterpretationContext_create(axes, list, unit);
   InterpretationContext_destroy(ctx2);
-  EXPECT_THROW(InterpretationContext_create(nullptr, list, unit),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContext_create(axes, nullptr, unit),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContext_create(axes, list, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContext_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContext_create(nullptr, list, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContext_create(axes, nullptr, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContext_create(axes, list, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContext_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InterpretationContextTest, Accessors) {
@@ -58,12 +64,18 @@ TEST_F(InterpretationContextTest, Accessors) {
   SymbolUnit_destroy(unit_out);
   AxesMeasurementContext_destroy(axes_out);
   ListMeasurementContext_destroy(list_out);
-  EXPECT_THROW(InterpretationContext_independent_variables(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContext_dependent_variables(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContext_unit(nullptr), std::invalid_argument);
-  EXPECT_THROW(InterpretationContext_dimension(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContext_independent_variables(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContext_dependent_variables(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContext_unit(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContext_dimension(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InterpretationContextTest, DependentVariableOps) {
@@ -71,23 +83,26 @@ TEST_F(InterpretationContextTest, DependentVariableOps) {
   InterpretationContext_dependent_variable(ctx, mc3);
   InterpretationContext_replace_dependent_variable(ctx, 0, mc3);
   MeasurementContext_destroy(mc3);
-  EXPECT_THROW(InterpretationContext_dependent_variable(nullptr, mc1),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContext_dependent_variable(ctx, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(
-      InterpretationContext_replace_dependent_variable(nullptr, 0, mc1),
-      std::invalid_argument);
-  EXPECT_THROW(
-      InterpretationContext_replace_dependent_variable(ctx, 0, nullptr),
-      std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContext_dependent_variable(nullptr, mc1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContext_dependent_variable(ctx, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContext_replace_dependent_variable(nullptr, 0, mc1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContext_replace_dependent_variable(ctx, 0, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InterpretationContextTest, GetIndependentVariable) {
   auto mc_out = InterpretationContext_get_independent_variables(ctx, 0);
   MeasurementContext_destroy(mc_out);
-  EXPECT_THROW(InterpretationContext_get_independent_variables(nullptr, 0),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContext_get_independent_variables(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InterpretationContextTest, WithUnit) {
@@ -95,10 +110,12 @@ TEST_F(InterpretationContextTest, WithUnit) {
   auto ctx2  = InterpretationContext_with_unit(ctx, unit2);
   InterpretationContext_destroy(ctx2);
   SymbolUnit_destroy(unit2);
-  EXPECT_THROW(InterpretationContext_with_unit(nullptr, unit),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContext_with_unit(ctx, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContext_with_unit(nullptr, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContext_with_unit(ctx, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InterpretationContextTest, EqualityOperators) {
@@ -106,14 +123,18 @@ TEST_F(InterpretationContextTest, EqualityOperators) {
   EXPECT_TRUE(InterpretationContext_equal(ctx, ctx2));
   EXPECT_FALSE(InterpretationContext_not_equal(ctx, ctx2));
   InterpretationContext_destroy(ctx2);
-  EXPECT_THROW(InterpretationContext_equal(nullptr, ctx),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContext_equal(ctx, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContext_not_equal(nullptr, ctx),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContext_not_equal(ctx, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContext_equal(nullptr, ctx);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContext_equal(ctx, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContext_not_equal(nullptr, ctx);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContext_not_equal(ctx, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InterpretationContextTest, ToJsonFromJson) {
@@ -122,8 +143,10 @@ TEST_F(InterpretationContextTest, ToJsonFromJson) {
   EXPECT_TRUE(InterpretationContext_equal(ctx, ctx2));
   InterpretationContext_destroy(ctx2);
   String_destroy(json);
-  EXPECT_THROW(InterpretationContext_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContext_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContext_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContext_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

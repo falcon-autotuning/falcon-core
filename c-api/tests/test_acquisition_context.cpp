@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -37,15 +38,21 @@ TEST_F(AcquisitionContextTest, CreateDestroy) {
   AcquisitionContext_destroy(c);
   auto c2 = AcquisitionContext_create_from_port(port);
   AcquisitionContext_destroy(c2);
-  EXPECT_THROW(AcquisitionContext_create(nullptr, instr_type, unit),
-               std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_create(conn, nullptr, unit),
-               std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_create(conn, instr_type, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_create_from_port(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AcquisitionContext_create(nullptr, instr_type, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_create(conn, nullptr, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_create(conn, instr_type, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_create_from_port(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AcquisitionContextTest, Accessors) {
@@ -55,10 +62,15 @@ TEST_F(AcquisitionContextTest, Accessors) {
   Connection_destroy(c);
   String_destroy(t);
   SymbolUnit_destroy(u);
-  EXPECT_THROW(AcquisitionContext_connection(nullptr), std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_instrument_type(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_units(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AcquisitionContext_connection(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_instrument_type(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_units(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AcquisitionContextTest, Division) {
@@ -68,14 +80,18 @@ TEST_F(AcquisitionContextTest, Division) {
   auto ctx_div_ctx = AcquisitionContext_division(ctx, ctx2);
   AcquisitionContext_destroy(ctx_div_ctx);
   SymbolUnit_destroy(u2);
-  EXPECT_THROW(AcquisitionContext_division_unit(nullptr, unit),
-               std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_division_unit(ctx, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_division(nullptr, ctx2),
-               std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_division(ctx, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AcquisitionContext_division_unit(nullptr, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_division_unit(ctx, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_division(nullptr, ctx2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_division(ctx, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AcquisitionContextTest, Match) {
@@ -85,25 +101,35 @@ TEST_F(AcquisitionContextTest, Match) {
   EXPECT_TRUE(AcquisitionContext_match_instrument_type(ctx, t));
   Connection_destroy(c);
   String_destroy(t);
-  EXPECT_THROW(AcquisitionContext_match_connection(nullptr, conn),
-               std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_match_connection(ctx, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_match_instrument_type(nullptr, instr_type),
-               std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_match_instrument_type(ctx, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AcquisitionContext_match_connection(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_match_connection(ctx, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_match_instrument_type(nullptr, instr_type);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_match_instrument_type(ctx, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AcquisitionContextTest, EqualityOperators) {
   EXPECT_FALSE(AcquisitionContext_equal(ctx, ctx2));
   EXPECT_TRUE(AcquisitionContext_not_equal(ctx, ctx2));
-  EXPECT_THROW(AcquisitionContext_equal(nullptr, ctx2), std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_equal(ctx, nullptr), std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_not_equal(nullptr, ctx2),
-               std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_not_equal(ctx, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AcquisitionContext_equal(nullptr, ctx2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_equal(ctx, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_not_equal(nullptr, ctx2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_not_equal(ctx, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AcquisitionContextTest, ToJsonFromJson) {
@@ -112,8 +138,10 @@ TEST_F(AcquisitionContextTest, ToJsonFromJson) {
   EXPECT_TRUE(AcquisitionContext_equal(ctx, ctx3));
   AcquisitionContext_destroy(ctx3);
   String_destroy(json);
-  EXPECT_THROW(AcquisitionContext_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AcquisitionContext_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AcquisitionContext_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AcquisitionContext_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

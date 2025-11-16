@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListPortTransform_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -41,7 +42,9 @@ TEST_F(ListPortTransformTest, CreateEmpty) {
   EXPECT_TRUE(ListPortTransform_empty(handle));
   EXPECT_EQ(ListPortTransform_size(handle), 0);
   ListPortTransform_destroy(handle);
-  EXPECT_THROW(ListPortTransform_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPortTransformTest, FillValue) {
@@ -54,7 +57,9 @@ TEST_F(ListPortTransformTest, CreateFromArray) {
   PortTransformHandle     arr[2] = {sh1, sh2};
   ListPortTransformHandle handle = ListPortTransform_create(arr, 2);
   EXPECT_EQ(ListPortTransform_size(handle), 2);
-  EXPECT_THROW(ListPortTransform_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPortTransform_destroy(handle);
 }
 
@@ -62,14 +67,18 @@ TEST_F(ListPortTransformTest, SizeEmptyInvalid) {
   auto handle = ListPortTransform_create_empty();
   EXPECT_EQ(ListPortTransform_size(handle), 0);
   ListPortTransform_destroy(handle);
-  EXPECT_THROW(ListPortTransform_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPortTransformTest, EmptyInvalid) {
   auto handle = ListPortTransform_create_empty();
   EXPECT_TRUE(ListPortTransform_empty(handle));
   ListPortTransform_destroy(handle);
-  EXPECT_THROW(ListPortTransform_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPortTransformTest, EraseAtClear) {
@@ -79,8 +88,12 @@ TEST_F(ListPortTransformTest, EraseAtClear) {
   ListPortTransform_clear(handle);
   EXPECT_TRUE(ListPortTransform_empty(handle));
   ListPortTransform_destroy(handle);
-  EXPECT_THROW(ListPortTransform_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListPortTransform_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPortTransform_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPortTransformTest, PushBackContainsIndex) {
@@ -89,10 +102,15 @@ TEST_F(ListPortTransformTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListPortTransform_contains(handle, sh1));
   EXPECT_EQ(ListPortTransform_index(handle, sh1), 0);
   ListPortTransform_destroy(handle);
-  EXPECT_THROW(ListPortTransform_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPortTransform_contains(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListPortTransform_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPortTransform_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPortTransform_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPortTransformTest, ItemsAt) {
@@ -101,10 +119,15 @@ TEST_F(ListPortTransformTest, ItemsAt) {
   PortTransformHandle out[2];
   EXPECT_EQ(ListPortTransform_items(handle, out, 2), 2);
   ListPortTransform_destroy(handle);
-  EXPECT_THROW(ListPortTransform_items(nullptr, out, 2), std::invalid_argument);
-  EXPECT_THROW(ListPortTransform_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPortTransform_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPortTransform_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPortTransform_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPortTransformTest, EqualNotEqualIntersection) {
@@ -118,14 +141,24 @@ TEST_F(ListPortTransformTest, EqualNotEqualIntersection) {
   ListPortTransform_destroy(h1);
   ListPortTransform_destroy(h2);
   ListPortTransform_destroy(h3);
-  EXPECT_THROW(ListPortTransform_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListPortTransform_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListPortTransform_not_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListPortTransform_not_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListPortTransform_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPortTransform_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPortTransform_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPortTransform_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPortTransform_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPortTransform_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPortTransform_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPortTransformTest, ToJsonFromJson) {
@@ -137,38 +170,48 @@ TEST_F(ListPortTransformTest, ToJsonFromJson) {
   ListPortTransform_destroy(handle);
   ListPortTransform_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListPortTransform_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPortTransform_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPortTransform_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPortTransformTest, FillValueNull) {
-  EXPECT_THROW(ListPortTransform_fill_value(3, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPortTransformTest, PushBackNull) {
   auto handle = ListPortTransform_create_empty();
-  EXPECT_THROW(ListPortTransform_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPortTransform_destroy(handle);
 }
 
 TEST_F(ListPortTransformTest, ContainsNull) {
   auto handle = ListPortTransform_create_empty();
-  EXPECT_THROW(ListPortTransform_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPortTransform_destroy(handle);
 }
 
 TEST_F(ListPortTransformTest, IndexNull) {
   auto handle = ListPortTransform_create_empty();
-  EXPECT_THROW(ListPortTransform_index(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPortTransform_destroy(handle);
 }
 
 TEST_F(ListPortTransformTest, CreateNullArray) {
-  EXPECT_THROW(ListPortTransform_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPortTransformTest, At) {
@@ -179,5 +222,7 @@ TEST_F(ListPortTransformTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListPortTransform_destroy(handle);
-  EXPECT_THROW(ListPortTransform_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPortTransform_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

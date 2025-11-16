@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListMapStringBool_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -33,7 +34,9 @@ TEST_F(ListMapStringBoolTest, CreateEmpty) {
   EXPECT_TRUE(ListMapStringBool_empty(handle));
   EXPECT_EQ(ListMapStringBool_size(handle), 0);
   ListMapStringBool_destroy(handle);
-  EXPECT_THROW(ListMapStringBool_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListMapStringBoolTest, FillValue) {
@@ -46,7 +49,9 @@ TEST_F(ListMapStringBoolTest, CreateFromArray) {
   MapStringBoolHandle     arr[2] = {sh1, sh2};
   ListMapStringBoolHandle handle = ListMapStringBool_create(arr, 2);
   EXPECT_EQ(ListMapStringBool_size(handle), 2);
-  EXPECT_THROW(ListMapStringBool_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListMapStringBool_destroy(handle);
 }
 
@@ -54,14 +59,18 @@ TEST_F(ListMapStringBoolTest, SizeEmptyInvalid) {
   auto handle = ListMapStringBool_create_empty();
   EXPECT_EQ(ListMapStringBool_size(handle), 0);
   ListMapStringBool_destroy(handle);
-  EXPECT_THROW(ListMapStringBool_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListMapStringBoolTest, EmptyInvalid) {
   auto handle = ListMapStringBool_create_empty();
   EXPECT_TRUE(ListMapStringBool_empty(handle));
   ListMapStringBool_destroy(handle);
-  EXPECT_THROW(ListMapStringBool_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListMapStringBoolTest, EraseAtClear) {
@@ -71,8 +80,12 @@ TEST_F(ListMapStringBoolTest, EraseAtClear) {
   ListMapStringBool_clear(handle);
   EXPECT_TRUE(ListMapStringBool_empty(handle));
   ListMapStringBool_destroy(handle);
-  EXPECT_THROW(ListMapStringBool_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListMapStringBool_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListMapStringBool_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListMapStringBoolTest, PushBackContainsIndex) {
@@ -81,10 +94,15 @@ TEST_F(ListMapStringBoolTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListMapStringBool_contains(handle, sh1));
   EXPECT_EQ(ListMapStringBool_index(handle, sh1), 0);
   ListMapStringBool_destroy(handle);
-  EXPECT_THROW(ListMapStringBool_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListMapStringBool_contains(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListMapStringBool_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListMapStringBool_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListMapStringBool_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListMapStringBoolTest, ItemsAt) {
@@ -93,10 +111,15 @@ TEST_F(ListMapStringBoolTest, ItemsAt) {
   MapStringBoolHandle out[2];
   EXPECT_EQ(ListMapStringBool_items(handle, out, 2), 2);
   ListMapStringBool_destroy(handle);
-  EXPECT_THROW(ListMapStringBool_items(nullptr, out, 2), std::invalid_argument);
-  EXPECT_THROW(ListMapStringBool_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListMapStringBool_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListMapStringBool_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListMapStringBool_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListMapStringBoolTest, EqualNotEqualIntersection) {
@@ -110,14 +133,24 @@ TEST_F(ListMapStringBoolTest, EqualNotEqualIntersection) {
   ListMapStringBool_destroy(h1);
   ListMapStringBool_destroy(h2);
   ListMapStringBool_destroy(h3);
-  EXPECT_THROW(ListMapStringBool_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListMapStringBool_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListMapStringBool_not_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListMapStringBool_not_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListMapStringBool_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListMapStringBool_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListMapStringBool_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListMapStringBool_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListMapStringBool_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListMapStringBool_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListMapStringBool_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListMapStringBoolTest, ToJsonFromJson) {
@@ -129,38 +162,48 @@ TEST_F(ListMapStringBoolTest, ToJsonFromJson) {
   ListMapStringBool_destroy(handle);
   ListMapStringBool_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListMapStringBool_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListMapStringBool_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListMapStringBool_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListMapStringBoolTest, FillValueNull) {
-  EXPECT_THROW(ListMapStringBool_fill_value(3, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListMapStringBoolTest, PushBackNull) {
   auto handle = ListMapStringBool_create_empty();
-  EXPECT_THROW(ListMapStringBool_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListMapStringBool_destroy(handle);
 }
 
 TEST_F(ListMapStringBoolTest, ContainsNull) {
   auto handle = ListMapStringBool_create_empty();
-  EXPECT_THROW(ListMapStringBool_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListMapStringBool_destroy(handle);
 }
 
 TEST_F(ListMapStringBoolTest, IndexNull) {
   auto handle = ListMapStringBool_create_empty();
-  EXPECT_THROW(ListMapStringBool_index(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListMapStringBool_destroy(handle);
 }
 
 TEST_F(ListMapStringBoolTest, CreateNullArray) {
-  EXPECT_THROW(ListMapStringBool_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListMapStringBoolTest, At) {
@@ -171,5 +214,7 @@ TEST_F(ListMapStringBoolTest, At) {
   ListMapStringBool_destroy(at0);
   ListMapStringBool_destroy(at1);
   ListMapStringBool_destroy(handle);
-  EXPECT_THROW(ListMapStringBool_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListMapStringBool_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

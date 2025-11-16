@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListChannel_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -29,7 +30,9 @@ TEST_F(ListChannelTest, CreateEmpty) {
   EXPECT_TRUE(ListChannel_empty(handle));
   EXPECT_EQ(ListChannel_size(handle), 0);
   ListChannel_destroy(handle);
-  EXPECT_THROW(ListChannel_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListChannelTest, FillValue) {
@@ -42,7 +45,9 @@ TEST_F(ListChannelTest, CreateFromArray) {
   ChannelHandle     arr[2] = {sh1, sh2};
   ListChannelHandle handle = ListChannel_create(arr, 2);
   EXPECT_EQ(ListChannel_size(handle), 2);
-  EXPECT_THROW(ListChannel_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListChannel_destroy(handle);
 }
 
@@ -50,14 +55,18 @@ TEST_F(ListChannelTest, SizeEmptyInvalid) {
   auto handle = ListChannel_create_empty();
   EXPECT_EQ(ListChannel_size(handle), 0);
   ListChannel_destroy(handle);
-  EXPECT_THROW(ListChannel_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListChannelTest, EmptyInvalid) {
   auto handle = ListChannel_create_empty();
   EXPECT_TRUE(ListChannel_empty(handle));
   ListChannel_destroy(handle);
-  EXPECT_THROW(ListChannel_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListChannelTest, EraseAtClear) {
@@ -67,8 +76,12 @@ TEST_F(ListChannelTest, EraseAtClear) {
   ListChannel_clear(handle);
   EXPECT_TRUE(ListChannel_empty(handle));
   ListChannel_destroy(handle);
-  EXPECT_THROW(ListChannel_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListChannel_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListChannel_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListChannelTest, PushBackContainsIndex) {
@@ -77,9 +90,15 @@ TEST_F(ListChannelTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListChannel_contains(handle, sh1));
   EXPECT_EQ(ListChannel_index(handle, sh1), 0);
   ListChannel_destroy(handle);
-  EXPECT_THROW(ListChannel_push_back(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListChannel_contains(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListChannel_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListChannel_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListChannel_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListChannelTest, ItemsAt) {
@@ -88,9 +107,15 @@ TEST_F(ListChannelTest, ItemsAt) {
   ChannelHandle out[2];
   EXPECT_EQ(ListChannel_items(handle, out, 2), 2);
   ListChannel_destroy(handle);
-  EXPECT_THROW(ListChannel_items(nullptr, out, 2), std::invalid_argument);
-  EXPECT_THROW(ListChannel_items(handle, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(ListChannel_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListChannel_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListChannel_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListChannelTest, EqualNotEqualIntersection) {
@@ -104,12 +129,24 @@ TEST_F(ListChannelTest, EqualNotEqualIntersection) {
   ListChannel_destroy(h1);
   ListChannel_destroy(h2);
   ListChannel_destroy(h3);
-  EXPECT_THROW(ListChannel_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListChannel_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListChannel_not_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListChannel_not_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListChannel_intersection(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListChannel_intersection(h1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListChannel_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListChannel_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListChannel_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListChannel_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListChannel_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListChannelTest, ToJsonFromJson) {
@@ -121,34 +158,48 @@ TEST_F(ListChannelTest, ToJsonFromJson) {
   ListChannel_destroy(handle);
   ListChannel_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListChannel_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(ListChannel_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListChannel_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListChannelTest, FillValueNull) {
-  EXPECT_THROW(ListChannel_fill_value(3, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListChannelTest, PushBackNull) {
   auto handle = ListChannel_create_empty();
-  EXPECT_THROW(ListChannel_push_back(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListChannel_destroy(handle);
 }
 
 TEST_F(ListChannelTest, ContainsNull) {
   auto handle = ListChannel_create_empty();
-  EXPECT_THROW(ListChannel_contains(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListChannel_destroy(handle);
 }
 
 TEST_F(ListChannelTest, IndexNull) {
   auto handle = ListChannel_create_empty();
-  EXPECT_THROW(ListChannel_index(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListChannel_destroy(handle);
 }
 
 TEST_F(ListChannelTest, CreateNullArray) {
-  EXPECT_THROW(ListChannel_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListChannelTest, At) {
@@ -159,5 +210,7 @@ TEST_F(ListChannelTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListChannel_destroy(handle);
-  EXPECT_THROW(ListChannel_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListChannel_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <stdexcept>
 
@@ -37,8 +39,12 @@ class AxesIntTest : public ::testing::Test {
 TEST_F(AxesIntTest, CreateDestroy) {
   auto h = AxesInt_create_empty();
   AxesInt_destroy(h);
-  EXPECT_THROW(AxesInt_create(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesInt_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesInt_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInt_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesIntTest, AccessorsAndMutators) {
@@ -69,32 +75,64 @@ TEST_F(AxesIntTest, ContainsIndexEquality) {
 TEST_F(AxesIntTest, SerializationRoundTrip) {
   EXPECT_TRUE(AxesInt_equal(
       AxesInt_from_json_string(AxesInt_to_json_string(axes)), axes));
-  EXPECT_THROW(AxesInt_from_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesInt_to_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesInt_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInt_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesIntTest, EqualityWorks) {
   EXPECT_TRUE(AxesInt_equal(axes, axes));
   EXPECT_TRUE(AxesInt_not_equal(axes, axes2));
-  EXPECT_THROW(AxesInt_equal(axes, nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesInt_not_equal(axes, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesInt_equal(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInt_not_equal(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(AxesIntTest, Intersection) {
-  EXPECT_THROW(AxesInt_intersection(nullptr, axes2), std::invalid_argument);
-  EXPECT_THROW(AxesInt_intersection(axes, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesInt_intersection(nullptr, axes2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInt_intersection(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(AxesInt_intersection(axes, axes2));
 }
 
 TEST_F(AxesIntTest, MiscNullChecks) {
-  EXPECT_THROW(AxesInt_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesInt_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesInt_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesInt_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesInt_push_back(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesInt_contains(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesInt_index(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesInt_items(nullptr, raw_arr, 2), std::invalid_argument);
-  EXPECT_THROW(AxesInt_items(axes, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(AxesInt_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesInt_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInt_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInt_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInt_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInt_push_back(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInt_contains(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInt_index(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInt_items(nullptr, raw_arr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInt_items(axes, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInt_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

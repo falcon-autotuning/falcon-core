@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"
@@ -83,10 +84,12 @@ class InterpretationContainerStringTest : public ::testing::Test {
 };
 
 TEST_F(InterpretationContainerStringTest, CreateDestroy) {
-  EXPECT_THROW(InterpretationContainerString_create(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InterpretationContainerStringTest, InsertAssignAccessErase) {
@@ -98,29 +101,36 @@ TEST_F(InterpretationContainerStringTest, InsertAssignAccessErase) {
       String_equal(InterpretationContainerString_at(container, ctx2), val2));
   InterpretationContainerString_erase(container, ctx2);
   EXPECT_FALSE(InterpretationContainerString_contains(container, ctx2));
-  EXPECT_THROW(
-      InterpretationContainerString_insert_or_assign(nullptr, ctx1, val1),
-      std::invalid_argument);
-  EXPECT_THROW(
-      InterpretationContainerString_insert_or_assign(container, nullptr, val1),
-      std::invalid_argument);
-  EXPECT_THROW(
-      InterpretationContainerString_insert_or_assign(container, ctx1, nullptr),
-      std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_insert(nullptr, ctx1, val1),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_insert(container, nullptr, val1),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_insert(container, ctx1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_at(nullptr, ctx1),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_at(container, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_erase(nullptr, ctx1),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_erase(container, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_insert_or_assign(nullptr, ctx1, val1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_insert_or_assign(container, nullptr, val1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_insert_or_assign(container, ctx1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_insert(nullptr, ctx1, val1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_insert(container, nullptr, val1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_insert(container, ctx1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_at(nullptr, ctx1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_at(container, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_erase(nullptr, ctx1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_erase(container, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InterpretationContainerStringTest, SizeEmptyClearContains) {
@@ -128,16 +138,21 @@ TEST_F(InterpretationContainerStringTest, SizeEmptyClearContains) {
   EXPECT_FALSE(InterpretationContainerString_empty(container));
   InterpretationContainerString_clear(container);
   EXPECT_TRUE(InterpretationContainerString_empty(container));
-  EXPECT_THROW(InterpretationContainerString_size(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_empty(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_clear(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_contains(nullptr, ctx1),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_contains(container, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_contains(nullptr, ctx1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_contains(container, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InterpretationContainerStringTest, KeysValuesItems) {
@@ -150,12 +165,15 @@ TEST_F(InterpretationContainerStringTest, KeysValuesItems) {
   ListInterpretationContext_destroy(keys);
   ListString_destroy(values);
   ListPairInterpretationContextString_destroy(items);
-  EXPECT_THROW(InterpretationContainerString_keys(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_values(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_items(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_keys(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_values(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InterpretationContainerStringTest, Equality) {
@@ -167,14 +185,18 @@ TEST_F(InterpretationContainerStringTest, Equality) {
   InterpretationContainerString_insert_or_assign(c2, ctx1, val1);
   EXPECT_FALSE(InterpretationContainerString_equal(container, c2));
   EXPECT_TRUE(InterpretationContainerString_not_equal(container, c2));
-  EXPECT_THROW(InterpretationContainerString_equal(nullptr, c2),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_equal(container, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_not_equal(nullptr, c2),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_not_equal(container, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_equal(nullptr, c2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_equal(container, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_not_equal(nullptr, c2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_not_equal(container, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   InterpretationContainerString_destroy(c2);
   MapInterpretationContextString_destroy(m2);
 }
@@ -185,18 +207,21 @@ TEST_F(InterpretationContainerStringTest, ToJsonFromJson) {
   EXPECT_TRUE(InterpretationContainerString_equal(container, c2));
   InterpretationContainerString_destroy(c2);
   String_destroy(json);
-  EXPECT_THROW(InterpretationContainerString_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InterpretationContainerStringTest, UnitAccessor) {
   auto unit = InterpretationContainerString_unit(container);
   EXPECT_NE(unit, nullptr);
   SymbolUnit_destroy(unit);
-  EXPECT_THROW(InterpretationContainerString_unit(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_unit(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InterpretationContainerStringTest, SelectByConnection) {
@@ -204,12 +229,12 @@ TEST_F(InterpretationContainerStringTest, SelectByConnection) {
   auto list =
       InterpretationContainerString_select_by_connection(container, conn);
   EXPECT_NE(list, nullptr);
-  EXPECT_THROW(
-      InterpretationContainerString_select_by_connection(nullptr, conn),
-      std::invalid_argument);
-  EXPECT_THROW(
-      InterpretationContainerString_select_by_connection(container, nullptr),
-      std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_select_by_connection(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_select_by_connection(container, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   Connection_destroy(conn);
   ListInterpretationContext_destroy(list);
 }
@@ -221,12 +246,12 @@ TEST_F(InterpretationContainerStringTest, SelectByConnections) {
   auto list =
       InterpretationContainerString_select_by_connections(container, conns);
   EXPECT_NE(list, nullptr);
-  EXPECT_THROW(
-      InterpretationContainerString_select_by_connections(nullptr, conns),
-      std::invalid_argument);
-  EXPECT_THROW(
-      InterpretationContainerString_select_by_connections(container, nullptr),
-      std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_select_by_connections(nullptr, conns);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_select_by_connections(container, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListInterpretationContext_destroy(list);
   Connections_destroy(conns);
 }
@@ -236,12 +261,12 @@ TEST_F(InterpretationContainerStringTest, SelectByIndependentConnection) {
   auto list = InterpretationContainerString_select_by_independent_connection(
       container, conn);
   EXPECT_NE(list, nullptr);
-  EXPECT_THROW(InterpretationContainerString_select_by_independent_connection(
-                   nullptr, conn),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_select_by_independent_connection(
-                   container, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_select_by_independent_connection(                   nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_select_by_independent_connection(                   container, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListInterpretationContext_destroy(list);
   Connection_destroy(conn);
 }
@@ -251,12 +276,12 @@ TEST_F(InterpretationContainerStringTest, SelectByDependentConnection) {
   auto list = InterpretationContainerString_select_by_dependent_connection(
       container, conn);
   EXPECT_NE(list, nullptr);
-  EXPECT_THROW(InterpretationContainerString_select_by_dependent_connection(
-                   nullptr, conn),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_select_by_dependent_connection(
-                   container, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_select_by_dependent_connection(                   nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_select_by_dependent_connection(                   container, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListInterpretationContext_destroy(list);
   Connection_destroy(conn);
 }
@@ -271,15 +296,15 @@ TEST_F(InterpretationContainerStringTest, SelectContexts) {
   auto list      = InterpretationContainerString_select_contexts(
       container, indp_list, dep_list);
   EXPECT_NE(list, nullptr);
-  EXPECT_THROW(InterpretationContainerString_select_contexts(
-                   nullptr, indp_list, dep_list),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_select_contexts(
-                   container, nullptr, dep_list),
-               std::invalid_argument);
-  EXPECT_THROW(InterpretationContainerString_select_contexts(
-                   container, indp_list, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_select_contexts(                   nullptr, indp_list, dep_list);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_select_contexts(                   container, nullptr, dep_list);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InterpretationContainerString_select_contexts(                   container, indp_list, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListInterpretationContext_destroy(list);
   ListConnection_destroy(indp_list);
   ListConnection_destroy(dep_list);

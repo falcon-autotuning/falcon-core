@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/domains/Domain_c_api.h"
@@ -20,7 +22,9 @@ class DomainTest : public ::testing::Test {
 TEST_F(DomainTest, CreateDestroy) {
   auto d = Domain_create(-1.0, 1.0, true, true);
   Domain_destroy(d);
-  EXPECT_THROW(Domain_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Domain_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DomainTest, BoundsAndContained) {
@@ -28,10 +32,18 @@ TEST_F(DomainTest, BoundsAndContained) {
   EXPECT_DOUBLE_EQ(Domain_greater_bound(dom1), 1.0);
   EXPECT_TRUE(Domain_lesser_bound_contained(dom1));
   EXPECT_FALSE(Domain_greater_bound_contained(dom1));
-  EXPECT_THROW(Domain_lesser_bound(nullptr), std::invalid_argument);
-  EXPECT_THROW(Domain_greater_bound(nullptr), std::invalid_argument);
-  EXPECT_THROW(Domain_lesser_bound_contained(nullptr), std::invalid_argument);
-  EXPECT_THROW(Domain_greater_bound_contained(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Domain_lesser_bound(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_greater_bound(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_lesser_bound_contained(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_greater_bound_contained(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DomainTest, InRangeRangeCenter) {
@@ -39,9 +51,15 @@ TEST_F(DomainTest, InRangeRangeCenter) {
   EXPECT_FALSE(Domain_in(dom1, 2.0));
   EXPECT_DOUBLE_EQ(Domain_range(dom1), 1.0);
   EXPECT_DOUBLE_EQ(Domain_center(dom1), 0.5);
-  EXPECT_THROW(Domain_in(nullptr, 0.5), std::invalid_argument);
-  EXPECT_THROW(Domain_range(nullptr), std::invalid_argument);
-  EXPECT_THROW(Domain_center(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Domain_in(nullptr, 0.5);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_range(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_center(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DomainTest, IntersectionUnion) {
@@ -49,18 +67,32 @@ TEST_F(DomainTest, IntersectionUnion) {
   auto uni   = Domain_union(dom1, dom2);
   Domain_destroy(inter);
   Domain_destroy(uni);
-  EXPECT_THROW(Domain_intersection(nullptr, dom2), std::invalid_argument);
-  EXPECT_THROW(Domain_intersection(dom1, nullptr), std::invalid_argument);
-  EXPECT_THROW(Domain_union(nullptr, dom2), std::invalid_argument);
-  EXPECT_THROW(Domain_union(dom1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Domain_intersection(nullptr, dom2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_intersection(dom1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_union(nullptr, dom2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_union(dom1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DomainTest, IsEmptyContainsDomain) {
   EXPECT_FALSE(Domain_is_empty(dom1));
   EXPECT_FALSE(Domain_contains_domain(dom2, dom1));
-  EXPECT_THROW(Domain_is_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(Domain_contains_domain(nullptr, dom2), std::invalid_argument);
-  EXPECT_THROW(Domain_contains_domain(dom1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Domain_is_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_contains_domain(nullptr, dom2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_contains_domain(dom1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DomainTest, ShiftScaleTransform) {
@@ -70,19 +102,35 @@ TEST_F(DomainTest, ShiftScaleTransform) {
                    Domain_transform(dom1, dom2, 0.5));
   Domain_destroy(shifted);
   Domain_destroy(scaled);
-  EXPECT_THROW(Domain_shift(nullptr, 1.0), std::invalid_argument);
-  EXPECT_THROW(Domain_scale(nullptr, 2.0), std::invalid_argument);
-  EXPECT_THROW(Domain_transform(nullptr, dom2, 0.5), std::invalid_argument);
-  EXPECT_THROW(Domain_transform(dom1, nullptr, 0.5), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Domain_shift(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_scale(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_transform(nullptr, dom2, 0.5);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_transform(dom1, nullptr, 0.5);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DomainTest, EqualNotEqual) {
   EXPECT_FALSE(Domain_equal(dom1, dom2));
   EXPECT_TRUE(Domain_not_equal(dom1, dom2));
-  EXPECT_THROW(Domain_equal(nullptr, dom2), std::invalid_argument);
-  EXPECT_THROW(Domain_equal(dom1, nullptr), std::invalid_argument);
-  EXPECT_THROW(Domain_not_equal(nullptr, dom2), std::invalid_argument);
-  EXPECT_THROW(Domain_not_equal(dom1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Domain_equal(nullptr, dom2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_equal(dom1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_not_equal(nullptr, dom2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_not_equal(dom1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DomainTest, ToJsonFromJson) {
@@ -91,6 +139,10 @@ TEST_F(DomainTest, ToJsonFromJson) {
   EXPECT_TRUE(Domain_equal(dom1, d2));
   Domain_destroy(d2);
   String_destroy(json);
-  EXPECT_THROW(Domain_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(Domain_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Domain_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Domain_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

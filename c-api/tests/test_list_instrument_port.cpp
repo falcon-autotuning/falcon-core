@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListInstrumentPort_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -35,7 +36,9 @@ TEST_F(ListInstrumentPortTest, CreateEmpty) {
   EXPECT_TRUE(ListInstrumentPort_empty(handle));
   EXPECT_EQ(ListInstrumentPort_size(handle), 0);
   ListInstrumentPort_destroy(handle);
-  EXPECT_THROW(ListInstrumentPort_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInstrumentPortTest, FillValue) {
@@ -48,7 +51,9 @@ TEST_F(ListInstrumentPortTest, CreateFromArray) {
   InstrumentPortHandle     arr[2] = {sh1, sh2};
   ListInstrumentPortHandle handle = ListInstrumentPort_create(arr, 2);
   EXPECT_EQ(ListInstrumentPort_size(handle), 2);
-  EXPECT_THROW(ListInstrumentPort_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListInstrumentPort_destroy(handle);
 }
 
@@ -56,14 +61,18 @@ TEST_F(ListInstrumentPortTest, SizeEmptyInvalid) {
   auto handle = ListInstrumentPort_create_empty();
   EXPECT_EQ(ListInstrumentPort_size(handle), 0);
   ListInstrumentPort_destroy(handle);
-  EXPECT_THROW(ListInstrumentPort_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInstrumentPortTest, EmptyInvalid) {
   auto handle = ListInstrumentPort_create_empty();
   EXPECT_TRUE(ListInstrumentPort_empty(handle));
   ListInstrumentPort_destroy(handle);
-  EXPECT_THROW(ListInstrumentPort_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInstrumentPortTest, EraseAtClear) {
@@ -73,8 +82,12 @@ TEST_F(ListInstrumentPortTest, EraseAtClear) {
   ListInstrumentPort_clear(handle);
   EXPECT_TRUE(ListInstrumentPort_empty(handle));
   ListInstrumentPort_destroy(handle);
-  EXPECT_THROW(ListInstrumentPort_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListInstrumentPort_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInstrumentPortTest, PushBackContainsIndex) {
@@ -83,11 +96,15 @@ TEST_F(ListInstrumentPortTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListInstrumentPort_contains(handle, sh1));
   EXPECT_EQ(ListInstrumentPort_index(handle, sh1), 0);
   ListInstrumentPort_destroy(handle);
-  EXPECT_THROW(ListInstrumentPort_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListInstrumentPort_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListInstrumentPort_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInstrumentPortTest, ItemsAt) {
@@ -96,11 +113,15 @@ TEST_F(ListInstrumentPortTest, ItemsAt) {
   InstrumentPortHandle out[2];
   EXPECT_EQ(ListInstrumentPort_items(handle, out, 2), 2);
   ListInstrumentPort_destroy(handle);
-  EXPECT_THROW(ListInstrumentPort_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListInstrumentPort_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListInstrumentPort_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInstrumentPortTest, EqualNotEqualIntersection) {
@@ -114,16 +135,24 @@ TEST_F(ListInstrumentPortTest, EqualNotEqualIntersection) {
   ListInstrumentPort_destroy(h1);
   ListInstrumentPort_destroy(h2);
   ListInstrumentPort_destroy(h3);
-  EXPECT_THROW(ListInstrumentPort_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListInstrumentPort_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListInstrumentPort_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListInstrumentPort_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListInstrumentPort_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListInstrumentPort_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInstrumentPortTest, ToJsonFromJson) {
@@ -135,40 +164,48 @@ TEST_F(ListInstrumentPortTest, ToJsonFromJson) {
   ListInstrumentPort_destroy(handle);
   ListInstrumentPort_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListInstrumentPort_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListInstrumentPort_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInstrumentPortTest, FillValueNull) {
-  EXPECT_THROW(ListInstrumentPort_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInstrumentPortTest, PushBackNull) {
   auto handle = ListInstrumentPort_create_empty();
-  EXPECT_THROW(ListInstrumentPort_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListInstrumentPort_destroy(handle);
 }
 
 TEST_F(ListInstrumentPortTest, ContainsNull) {
   auto handle = ListInstrumentPort_create_empty();
-  EXPECT_THROW(ListInstrumentPort_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListInstrumentPort_destroy(handle);
 }
 
 TEST_F(ListInstrumentPortTest, IndexNull) {
   auto handle = ListInstrumentPort_create_empty();
-  EXPECT_THROW(ListInstrumentPort_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListInstrumentPort_destroy(handle);
 }
 
 TEST_F(ListInstrumentPortTest, CreateNullArray) {
-  EXPECT_THROW(ListInstrumentPort_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInstrumentPortTest, At) {
@@ -179,5 +216,7 @@ TEST_F(ListInstrumentPortTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListInstrumentPort_destroy(handle);
-  EXPECT_THROW(ListInstrumentPort_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInstrumentPort_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

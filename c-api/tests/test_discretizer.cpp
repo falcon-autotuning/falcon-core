@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
@@ -23,21 +25,29 @@ TEST_F(DiscretizerTest, CreateDestroy) {
   Discretizer_destroy(d);
   auto p = Discretizer_create_polar_discretizer(0.5);
   Discretizer_destroy(p);
-  EXPECT_THROW(Discretizer_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Discretizer_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DiscretizerTest, DeltaSetDelta) {
   EXPECT_DOUBLE_EQ(Discretizer_delta(cart), 0.1);
   Discretizer_set_delta(cart, 0.5);
   EXPECT_DOUBLE_EQ(Discretizer_delta(cart), 0.5);
-  EXPECT_THROW(Discretizer_delta(nullptr), std::invalid_argument);
-  EXPECT_THROW(Discretizer_set_delta(nullptr, 0.5), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Discretizer_delta(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Discretizer_set_delta(nullptr, 0.5);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DiscretizerTest, Domain) {
   auto dom = Discretizer_domain(cart);
   Domain_destroy(dom);
-  EXPECT_THROW(Discretizer_domain(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Discretizer_domain(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DiscretizerTest, IsCartesianIsPolar) {
@@ -45,8 +55,12 @@ TEST_F(DiscretizerTest, IsCartesianIsPolar) {
   EXPECT_FALSE(Discretizer_is_cartesian(polar));
   EXPECT_TRUE(Discretizer_is_polar(polar));
   EXPECT_FALSE(Discretizer_is_polar(cart));
-  EXPECT_THROW(Discretizer_is_cartesian(nullptr), std::invalid_argument);
-  EXPECT_THROW(Discretizer_is_polar(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Discretizer_is_cartesian(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Discretizer_is_polar(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DiscretizerTest, Equality) {
@@ -54,10 +68,18 @@ TEST_F(DiscretizerTest, Equality) {
   EXPECT_TRUE(Discretizer_equal(cart, d2));
   EXPECT_FALSE(Discretizer_not_equal(cart, d2));
   Discretizer_destroy(d2);
-  EXPECT_THROW(Discretizer_equal(nullptr, cart), std::invalid_argument);
-  EXPECT_THROW(Discretizer_equal(cart, nullptr), std::invalid_argument);
-  EXPECT_THROW(Discretizer_not_equal(nullptr, cart), std::invalid_argument);
-  EXPECT_THROW(Discretizer_not_equal(cart, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Discretizer_equal(nullptr, cart);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Discretizer_equal(cart, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Discretizer_not_equal(nullptr, cart);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Discretizer_not_equal(cart, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DiscretizerTest, ToJsonFromJson) {
@@ -66,6 +88,10 @@ TEST_F(DiscretizerTest, ToJsonFromJson) {
   EXPECT_TRUE(Discretizer_equal(cart, d2));
   Discretizer_destroy(d2);
   String_destroy(json);
-  EXPECT_THROW(Discretizer_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(Discretizer_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Discretizer_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Discretizer_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

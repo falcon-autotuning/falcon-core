@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
@@ -55,34 +56,48 @@ TEST_F(InstrumentPortTest, CreatePortKnobMeterTimerClockDestroy) {
   auto c = InstrumentPort_create_execution_clock();
   InstrumentPort_destroy(c);
 
-  EXPECT_THROW(InstrumentPort_create_port(nullptr, conn, type, unit, desc),
-               std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_create_port(name, conn, nullptr, unit, desc),
-               std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_create_port(name, conn, type, nullptr, desc),
-               std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_create_port(name, conn, type, unit, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InstrumentPort_create_port(nullptr, conn, type, unit, desc);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_create_port(name, conn, nullptr, unit, desc);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_create_port(name, conn, type, nullptr, desc);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_create_port(name, conn, type, unit, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(InstrumentPort_create_knob(nullptr, conn, type, unit, desc),
-               std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_create_knob(name, conn, nullptr, unit, desc),
-               std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_create_knob(name, conn, type, nullptr, desc),
-               std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_create_knob(name, conn, type, unit, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InstrumentPort_create_knob(nullptr, conn, type, unit, desc);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_create_knob(name, conn, nullptr, unit, desc);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_create_knob(name, conn, type, nullptr, desc);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_create_knob(name, conn, type, unit, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(InstrumentPort_create_meter(nullptr, conn, type, unit, desc),
-               std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_create_meter(name, conn, nullptr, unit, desc),
-               std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_create_meter(name, conn, type, nullptr, desc),
-               std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_create_meter(name, conn, type, unit, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InstrumentPort_create_meter(nullptr, conn, type, unit, desc);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_create_meter(name, conn, nullptr, unit, desc);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_create_meter(name, conn, type, nullptr, desc);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_create_meter(name, conn, type, unit, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(InstrumentPort_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  InstrumentPort_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InstrumentPortTest, Accessors) {
@@ -100,13 +115,24 @@ TEST_F(InstrumentPortTest, Accessors) {
   String_destroy(d);
   String_destroy(ifn);
 
-  EXPECT_THROW(InstrumentPort_default_name(nullptr), std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_psuedo_name(nullptr), std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_instrument_type(nullptr), std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_units(nullptr), std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_description(nullptr), std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_instrument_facing_name(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  InstrumentPort_default_name(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_psuedo_name(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_instrument_type(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_units(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_description(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_instrument_facing_name(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InstrumentPortTest, TypeChecks) {
@@ -118,9 +144,15 @@ TEST_F(InstrumentPortTest, TypeChecks) {
   EXPECT_FALSE(InstrumentPort_is_port(knob));
   EXPECT_FALSE(InstrumentPort_is_port(meter));
 
-  EXPECT_THROW(InstrumentPort_is_port(nullptr), std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_is_knob(nullptr), std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_is_meter(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  InstrumentPort_is_port(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_is_knob(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_is_meter(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InstrumentPortTest, Equality) {
@@ -129,10 +161,18 @@ TEST_F(InstrumentPortTest, Equality) {
   EXPECT_FALSE(InstrumentPort_not_equal(port, p2));
   InstrumentPort_destroy(p2);
 
-  EXPECT_THROW(InstrumentPort_equal(nullptr, port), std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_equal(port, nullptr), std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_not_equal(nullptr, port), std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_not_equal(port, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  InstrumentPort_equal(nullptr, port);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_equal(port, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_not_equal(nullptr, port);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_not_equal(port, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(InstrumentPortTest, Serialization) {
@@ -142,6 +182,10 @@ TEST_F(InstrumentPortTest, Serialization) {
   InstrumentPort_destroy(p2);
   String_destroy(json);
 
-  EXPECT_THROW(InstrumentPort_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(InstrumentPort_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  InstrumentPort_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  InstrumentPort_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

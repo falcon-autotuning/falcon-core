@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/Quantity_c_api.h"
@@ -24,8 +26,12 @@ class QuantityTest : public ::testing::Test {
 TEST_F(QuantityTest, CreateDestroy) {
   auto q = Quantity_create(1.0, unit);
   Quantity_destroy(q);
-  EXPECT_THROW(Quantity_create(1.0, nullptr), std::invalid_argument);
-  EXPECT_THROW(Quantity_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Quantity_create(1.0, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(QuantityTest, ValueUnit) {
@@ -33,16 +39,24 @@ TEST_F(QuantityTest, ValueUnit) {
   auto u = Quantity_unit(quantity);
   EXPECT_NE(u, nullptr);
   SymbolUnit_destroy(u);
-  EXPECT_THROW(Quantity_value(nullptr), std::invalid_argument);
-  EXPECT_THROW(Quantity_unit(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Quantity_value(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_unit(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(QuantityTest, ConvertTo) {
   auto new_unit = SymbolUnit_create_millimeter();
   Quantity_convert_to(quantity, new_unit);
   SymbolUnit_destroy(new_unit);
-  EXPECT_THROW(Quantity_convert_to(nullptr, unit), std::invalid_argument);
-  EXPECT_THROW(Quantity_convert_to(quantity, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Quantity_convert_to(nullptr, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_convert_to(quantity, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(QuantityTest, MultiplyDivideAddSubtractIntDouble) {
@@ -56,10 +70,18 @@ TEST_F(QuantityTest, MultiplyDivideAddSubtractIntDouble) {
   Quantity_destroy(q3);
   Quantity_destroy(q4);
 
-  EXPECT_THROW(Quantity_multiply_int(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(Quantity_multiply_double(nullptr, 2.0), std::invalid_argument);
-  EXPECT_THROW(Quantity_divide_int(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(Quantity_divide_double(nullptr, 2.0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Quantity_multiply_int(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_multiply_double(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_divide_int(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_divide_double(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(QuantityTest, MultiplyDivideAddSubtractQuantity) {
@@ -73,21 +95,30 @@ TEST_F(QuantityTest, MultiplyDivideAddSubtractQuantity) {
   Quantity_destroy(q3);
   Quantity_destroy(q4);
 
-  EXPECT_THROW(Quantity_multiply_quantity(nullptr, other_quantity),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_multiply_quantity(quantity, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_divide_quantity(nullptr, other_quantity),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_divide_quantity(quantity, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_add_quantity(nullptr, other_quantity),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_add_quantity(quantity, nullptr), std::invalid_argument);
-  EXPECT_THROW(Quantity_subtract_quantity(nullptr, other_quantity),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_subtract_quantity(quantity, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Quantity_multiply_quantity(nullptr, other_quantity);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_multiply_quantity(quantity, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_divide_quantity(nullptr, other_quantity);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_divide_quantity(quantity, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_add_quantity(nullptr, other_quantity);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_add_quantity(quantity, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_subtract_quantity(nullptr, other_quantity);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_subtract_quantity(quantity, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(QuantityTest, MultiplyDivideAddSubtractEquals) {
@@ -103,28 +134,42 @@ TEST_F(QuantityTest, MultiplyDivideAddSubtractEquals) {
   EXPECT_EQ(Quantity_subtract_equals_quantity(quantity, other_quantity),
             quantity);
 
-  EXPECT_THROW(Quantity_multiply_equals_int(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(Quantity_multiply_equals_double(nullptr, 2.0),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_multiply_equals_quantity(nullptr, other_quantity),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_multiply_equals_quantity(quantity, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_divide_equals_int(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(Quantity_divide_equals_double(nullptr, 2.0),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_divide_equals_quantity(nullptr, other_quantity),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_divide_equals_quantity(quantity, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_add_equals_quantity(nullptr, other_quantity),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_add_equals_quantity(quantity, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_subtract_equals_quantity(nullptr, other_quantity),
-               std::invalid_argument);
-  EXPECT_THROW(Quantity_subtract_equals_quantity(quantity, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Quantity_multiply_equals_int(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_multiply_equals_double(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_multiply_equals_quantity(nullptr, other_quantity);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_multiply_equals_quantity(quantity, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_divide_equals_int(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_divide_equals_double(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_divide_equals_quantity(nullptr, other_quantity);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_divide_equals_quantity(quantity, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_add_equals_quantity(nullptr, other_quantity);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_add_equals_quantity(quantity, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_subtract_equals_quantity(nullptr, other_quantity);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_subtract_equals_quantity(quantity, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(QuantityTest, PowerNegateAbs) {
@@ -136,18 +181,32 @@ TEST_F(QuantityTest, PowerNegateAbs) {
   Quantity_destroy(q2);
   Quantity_destroy(q3);
 
-  EXPECT_THROW(Quantity_power(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(Quantity_negate(nullptr), std::invalid_argument);
-  EXPECT_THROW(Quantity_abs(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Quantity_power(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_negate(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_abs(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(QuantityTest, EqualNotEqual) {
   EXPECT_TRUE(Quantity_equal(quantity, quantity));
   EXPECT_FALSE(Quantity_not_equal(quantity, quantity));
-  EXPECT_THROW(Quantity_equal(nullptr, quantity), std::invalid_argument);
-  EXPECT_THROW(Quantity_equal(quantity, nullptr), std::invalid_argument);
-  EXPECT_THROW(Quantity_not_equal(nullptr, quantity), std::invalid_argument);
-  EXPECT_THROW(Quantity_not_equal(quantity, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Quantity_equal(nullptr, quantity);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_equal(quantity, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_not_equal(nullptr, quantity);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_not_equal(quantity, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(QuantityTest, ToJsonFromJson) {
@@ -156,6 +215,10 @@ TEST_F(QuantityTest, ToJsonFromJson) {
   EXPECT_TRUE(Quantity_equal(quantity, q2));
   Quantity_destroy(q2);
   String_destroy(json);
-  EXPECT_THROW(Quantity_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(Quantity_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Quantity_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Quantity_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

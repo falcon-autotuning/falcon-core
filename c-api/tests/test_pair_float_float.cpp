@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <string>
 
@@ -32,23 +33,37 @@ class PairFloatFloatTest : public ::testing::Test {
 };
 
 TEST_F(PairFloatFloatTest, CreateDestroy) {
-  EXPECT_THROW(PairFloatFloat_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairFloatFloat_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairFloatFloatTest, Accessors) {
   auto f = PairFloatFloat_first(pair1);
   auto s = PairFloatFloat_second(pair1);
-  EXPECT_THROW(PairFloatFloat_first(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairFloatFloat_second(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairFloatFloat_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairFloatFloat_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairFloatFloatTest, Equality) {
   EXPECT_TRUE(PairFloatFloat_equal(pair1, pair2));
   EXPECT_FALSE(PairFloatFloat_not_equal(pair1, pair2));
-  EXPECT_THROW(PairFloatFloat_equal(nullptr, pair2), std::invalid_argument);
-  EXPECT_THROW(PairFloatFloat_equal(pair1, nullptr), std::invalid_argument);
-  EXPECT_THROW(PairFloatFloat_not_equal(nullptr, pair2), std::invalid_argument);
-  EXPECT_THROW(PairFloatFloat_not_equal(pair1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairFloatFloat_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairFloatFloat_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairFloatFloat_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairFloatFloat_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairFloatFloatTest, ToJsonFromJson) {
@@ -56,6 +71,10 @@ TEST_F(PairFloatFloatTest, ToJsonFromJson) {
   auto p2   = PairFloatFloat_from_json_string(json);
   EXPECT_TRUE(PairFloatFloat_equal(pair1, p2));
   PairFloatFloat_destroy(p2);
-  EXPECT_THROW(PairFloatFloat_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairFloatFloat_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairFloatFloat_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairFloatFloat_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

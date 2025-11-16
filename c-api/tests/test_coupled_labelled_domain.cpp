@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
@@ -56,8 +58,12 @@ TEST_F(CoupledLabelledDomainTest, CreateDestroy) {
   CoupledLabelledDomain_destroy(c);
   auto e = CoupledLabelledDomain_create_empty();
   CoupledLabelledDomain_destroy(e);
-  EXPECT_THROW(CoupledLabelledDomain_create(nullptr), std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(CoupledLabelledDomainTest, DomainsLabels) {
@@ -68,17 +74,23 @@ TEST_F(CoupledLabelledDomainTest, DomainsLabels) {
   auto labels = CoupledLabelledDomain_labels(cldom);
   ListInstrumentPort_destroy(labels);
 
-  EXPECT_THROW(CoupledLabelledDomain_domains(nullptr), std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_labels(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_domains(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_labels(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(CoupledLabelledDomainTest, GetDomain) {
   auto d = CoupledLabelledDomain_get_domain(cldom, port);
   EXPECT_NE(d, nullptr);
-  EXPECT_THROW(CoupledLabelledDomain_get_domain(nullptr, port),
-               std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_get_domain(cldom, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_get_domain(nullptr, port);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_get_domain(cldom, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(CoupledLabelledDomainTest, Intersection) {
@@ -86,10 +98,12 @@ TEST_F(CoupledLabelledDomainTest, Intersection) {
   auto inter = CoupledLabelledDomain_intersection(cldom, c2);
   CoupledLabelledDomain_destroy(inter);
   CoupledLabelledDomain_destroy(c2);
-  EXPECT_THROW(CoupledLabelledDomain_intersection(nullptr, cldom),
-               std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_intersection(cldom, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_intersection(nullptr, cldom);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_intersection(cldom, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(CoupledLabelledDomainTest, PushBackSizeEmptyEraseClear) {
@@ -104,15 +118,24 @@ TEST_F(CoupledLabelledDomainTest, PushBackSizeEmptyEraseClear) {
   EXPECT_TRUE(CoupledLabelledDomain_empty(e));
   CoupledLabelledDomain_destroy(e);
 
-  EXPECT_THROW(CoupledLabelledDomain_push_back(nullptr, ldom_list),
-               std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_push_back(cldom, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_erase_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_push_back(nullptr, ldom_list);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_push_back(cldom, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(CoupledLabelledDomainTest, AtConstAtItems) {
@@ -124,10 +147,15 @@ TEST_F(CoupledLabelledDomainTest, AtConstAtItems) {
   EXPECT_EQ(ListLabelledDomain_size(items), 1);
   ListLabelledDomain_destroy(items);
 
-  EXPECT_THROW(CoupledLabelledDomain_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_const_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_items(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_const_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(CoupledLabelledDomainTest, ContainsIndex) {
@@ -137,14 +165,18 @@ TEST_F(CoupledLabelledDomainTest, ContainsIndex) {
   EXPECT_EQ(CoupledLabelledDomain_index(e, ldom_list), 0);
   CoupledLabelledDomain_destroy(e);
 
-  EXPECT_THROW(CoupledLabelledDomain_contains(nullptr, ldom_list),
-               std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_contains(cldom, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_index(nullptr, ldom_list),
-               std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_index(cldom, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_contains(nullptr, ldom_list);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_contains(cldom, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_index(nullptr, ldom_list);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_index(cldom, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(CoupledLabelledDomainTest, Equality) {
@@ -152,14 +184,18 @@ TEST_F(CoupledLabelledDomainTest, Equality) {
   EXPECT_TRUE(CoupledLabelledDomain_equal(cldom, c2));
   EXPECT_FALSE(CoupledLabelledDomain_not_equal(cldom, c2));
   CoupledLabelledDomain_destroy(c2);
-  EXPECT_THROW(CoupledLabelledDomain_equal(nullptr, cldom),
-               std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_equal(cldom, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_not_equal(nullptr, cldom),
-               std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_not_equal(cldom, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_equal(nullptr, cldom);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_equal(cldom, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_not_equal(nullptr, cldom);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_not_equal(cldom, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(CoupledLabelledDomainTest, ToJsonFromJson) {
@@ -168,8 +204,10 @@ TEST_F(CoupledLabelledDomainTest, ToJsonFromJson) {
   EXPECT_TRUE(CoupledLabelledDomain_equal(cldom, c2));
   CoupledLabelledDomain_destroy(c2);
   String_destroy(json);
-  EXPECT_THROW(CoupledLabelledDomain_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(CoupledLabelledDomain_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  CoupledLabelledDomain_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

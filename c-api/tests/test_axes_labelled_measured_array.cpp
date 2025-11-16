@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <vector>
 
@@ -100,10 +102,12 @@ class AxesLabelledMeasuredArrayTest : public ::testing::Test {
 TEST_F(AxesLabelledMeasuredArrayTest, CreateDestroy) {
   auto h = AxesLabelledMeasuredArray_create_empty();
   AxesLabelledMeasuredArray_destroy(h);
-  EXPECT_THROW(AxesLabelledMeasuredArray_create(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   LabelledMeasuredArrayHandle     arr[2] = {ca2d, ca1d};
   ListLabelledMeasuredArrayHandle handle =
       ListLabelledMeasuredArray_create(arr, 2);
@@ -149,10 +153,12 @@ TEST_F(AxesLabelledMeasuredArrayTest, ContainsIndexEquality) {
 }
 
 TEST_F(AxesLabelledMeasuredArrayTest, SerializationRoundTrip) {
-  EXPECT_THROW(AxesLabelledMeasuredArray_from_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_to_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW({
     auto json   = AxesLabelledMeasuredArray_to_json_string(axes);
     auto loaded = AxesLabelledMeasuredArray_from_json_string(json);
@@ -162,49 +168,73 @@ TEST_F(AxesLabelledMeasuredArrayTest, SerializationRoundTrip) {
 }
 
 TEST_F(AxesLabelledMeasuredArrayTest, EqualityWorks) {
-  EXPECT_THROW(AxesLabelledMeasuredArray_equal(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_not_equal(nullptr, axes2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_equal(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_not_equal(nullptr, axes2);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(AxesLabelledMeasuredArray_equal(axes, axes));
   EXPECT_NO_THROW(AxesLabelledMeasuredArray_not_equal(axes, axes2));
 }
 
 TEST_F(AxesLabelledMeasuredArrayTest, Intersection) {
-  EXPECT_THROW(AxesLabelledMeasuredArray_intersection(nullptr, axes2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_intersection(axes, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_intersection(nullptr, axes2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_intersection(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(AxesLabelledMeasuredArray_intersection(axes, axes2));
 }
 
 TEST_F(AxesLabelledMeasuredArrayTest, MiscNullChecks) {
-  EXPECT_THROW(AxesLabelledMeasuredArray_destroy(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_push_back(nullptr, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_push_back(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_erase_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_push_back(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_contains(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_contains(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_index(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_index(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_items(nullptr, rawbuffer, 2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_items(axes, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesLabelledMeasuredArray_create_raw(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_push_back(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_push_back(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_push_back(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_contains(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_contains(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_index(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_index(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_items(nullptr, rawbuffer, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_items(axes, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesLabelledMeasuredArray_create_raw(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

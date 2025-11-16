@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/PairInterpretationContextString_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -47,12 +48,15 @@ class PairInterpretationContextStringTest : public ::testing::Test {
 };
 
 TEST_F(PairInterpretationContextStringTest, CreateDestroy) {
-  EXPECT_THROW(PairInterpretationContextString_create(nullptr, t2),
-               std::invalid_argument);
-  EXPECT_THROW(PairInterpretationContextString_create(t1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairInterpretationContextString_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairInterpretationContextString_create(nullptr, t2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairInterpretationContextString_create(t1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairInterpretationContextString_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairInterpretationContextStringTest, Accessors) {
@@ -60,23 +64,29 @@ TEST_F(PairInterpretationContextStringTest, Accessors) {
   auto s = PairInterpretationContextString_second(pair1);
   EXPECT_TRUE(InterpretationContext_equal(f, t1));
   EXPECT_TRUE(String_equal(s, t2));
-  EXPECT_THROW(PairInterpretationContextString_first(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairInterpretationContextString_second(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairInterpretationContextString_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairInterpretationContextString_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairInterpretationContextStringTest, Equality) {
   EXPECT_TRUE(PairInterpretationContextString_equal(pair1, pair2));
   EXPECT_FALSE(PairInterpretationContextString_not_equal(pair1, pair2));
-  EXPECT_THROW(PairInterpretationContextString_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairInterpretationContextString_equal(pair1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairInterpretationContextString_not_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairInterpretationContextString_not_equal(pair1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairInterpretationContextString_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairInterpretationContextString_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairInterpretationContextString_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairInterpretationContextString_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairInterpretationContextStringTest, ToJsonFromJson) {
@@ -84,8 +94,10 @@ TEST_F(PairInterpretationContextStringTest, ToJsonFromJson) {
   auto p2   = PairInterpretationContextString_from_json_string(json);
   EXPECT_TRUE(PairInterpretationContextString_equal(pair1, p2));
   PairInterpretationContextString_destroy(p2);
-  EXPECT_THROW(PairInterpretationContextString_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairInterpretationContextString_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairInterpretationContextString_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairInterpretationContextString_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

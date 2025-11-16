@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListDeviceVoltageState_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -39,7 +40,9 @@ TEST_F(ListDeviceVoltageStateTest, CreateEmpty) {
   EXPECT_TRUE(ListDeviceVoltageState_empty(handle));
   EXPECT_EQ(ListDeviceVoltageState_size(handle), 0);
   ListDeviceVoltageState_destroy(handle);
-  EXPECT_THROW(ListDeviceVoltageState_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDeviceVoltageStateTest, FillValue) {
@@ -52,8 +55,9 @@ TEST_F(ListDeviceVoltageStateTest, CreateFromArray) {
   DeviceVoltageStateHandle     arr[2] = {sh1, sh2};
   ListDeviceVoltageStateHandle handle = ListDeviceVoltageState_create(arr, 2);
   EXPECT_EQ(ListDeviceVoltageState_size(handle), 2);
-  EXPECT_THROW(ListDeviceVoltageState_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListDeviceVoltageState_destroy(handle);
 }
 
@@ -61,14 +65,18 @@ TEST_F(ListDeviceVoltageStateTest, SizeEmptyInvalid) {
   auto handle = ListDeviceVoltageState_create_empty();
   EXPECT_EQ(ListDeviceVoltageState_size(handle), 0);
   ListDeviceVoltageState_destroy(handle);
-  EXPECT_THROW(ListDeviceVoltageState_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDeviceVoltageStateTest, EmptyInvalid) {
   auto handle = ListDeviceVoltageState_create_empty();
   EXPECT_TRUE(ListDeviceVoltageState_empty(handle));
   ListDeviceVoltageState_destroy(handle);
-  EXPECT_THROW(ListDeviceVoltageState_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDeviceVoltageStateTest, EraseAtClear) {
@@ -78,9 +86,12 @@ TEST_F(ListDeviceVoltageStateTest, EraseAtClear) {
   ListDeviceVoltageState_clear(handle);
   EXPECT_TRUE(ListDeviceVoltageState_empty(handle));
   ListDeviceVoltageState_destroy(handle);
-  EXPECT_THROW(ListDeviceVoltageState_erase_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(ListDeviceVoltageState_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDeviceVoltageStateTest, PushBackContainsIndex) {
@@ -89,12 +100,15 @@ TEST_F(ListDeviceVoltageStateTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListDeviceVoltageState_contains(handle, sh1));
   EXPECT_EQ(ListDeviceVoltageState_index(handle, sh1), 0);
   ListDeviceVoltageState_destroy(handle);
-  EXPECT_THROW(ListDeviceVoltageState_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListDeviceVoltageState_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListDeviceVoltageState_index(nullptr, sh1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDeviceVoltageStateTest, ItemsAt) {
@@ -103,11 +117,15 @@ TEST_F(ListDeviceVoltageStateTest, ItemsAt) {
   DeviceVoltageStateHandle out[2];
   EXPECT_EQ(ListDeviceVoltageState_items(handle, out, 2), 2);
   ListDeviceVoltageState_destroy(handle);
-  EXPECT_THROW(ListDeviceVoltageState_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListDeviceVoltageState_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListDeviceVoltageState_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDeviceVoltageStateTest, EqualNotEqualIntersection) {
@@ -121,18 +139,24 @@ TEST_F(ListDeviceVoltageStateTest, EqualNotEqualIntersection) {
   ListDeviceVoltageState_destroy(h1);
   ListDeviceVoltageState_destroy(h2);
   ListDeviceVoltageState_destroy(h3);
-  EXPECT_THROW(ListDeviceVoltageState_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListDeviceVoltageState_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListDeviceVoltageState_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListDeviceVoltageState_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListDeviceVoltageState_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListDeviceVoltageState_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDeviceVoltageStateTest, ToJsonFromJson) {
@@ -144,41 +168,48 @@ TEST_F(ListDeviceVoltageStateTest, ToJsonFromJson) {
   ListDeviceVoltageState_destroy(handle);
   ListDeviceVoltageState_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListDeviceVoltageState_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListDeviceVoltageState_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDeviceVoltageStateTest, FillValueNull) {
-  EXPECT_THROW(ListDeviceVoltageState_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDeviceVoltageStateTest, PushBackNull) {
   auto handle = ListDeviceVoltageState_create_empty();
-  EXPECT_THROW(ListDeviceVoltageState_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListDeviceVoltageState_destroy(handle);
 }
 
 TEST_F(ListDeviceVoltageStateTest, ContainsNull) {
   auto handle = ListDeviceVoltageState_create_empty();
-  EXPECT_THROW(ListDeviceVoltageState_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListDeviceVoltageState_destroy(handle);
 }
 
 TEST_F(ListDeviceVoltageStateTest, IndexNull) {
   auto handle = ListDeviceVoltageState_create_empty();
-  EXPECT_THROW(ListDeviceVoltageState_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListDeviceVoltageState_destroy(handle);
 }
 
 TEST_F(ListDeviceVoltageStateTest, CreateNullArray) {
-  EXPECT_THROW(ListDeviceVoltageState_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDeviceVoltageStateTest, At) {
@@ -189,5 +220,7 @@ TEST_F(ListDeviceVoltageStateTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListDeviceVoltageState_destroy(handle);
-  EXPECT_THROW(ListDeviceVoltageState_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDeviceVoltageState_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

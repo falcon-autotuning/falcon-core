@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
@@ -46,8 +47,12 @@ TEST_F(PortsTest, CreateDestroy) {
   Ports_destroy(p);
   auto e = Ports_create_empty();
   Ports_destroy(e);
-  EXPECT_THROW(Ports_create(nullptr), std::invalid_argument);
-  EXPECT_THROW(Ports_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Ports_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortsTest, PortsAccessors) {
@@ -68,37 +73,54 @@ TEST_F(PortsTest, PortsAccessors) {
   auto ifnames = Ports__get_instrument_facing_names(ports);
   ListString_destroy(ifnames);
 
-  EXPECT_THROW(Ports_ports(nullptr), std::invalid_argument);
-  EXPECT_THROW(Ports_default_names(nullptr), std::invalid_argument);
-  EXPECT_THROW(Ports_get_psuedo_names(nullptr), std::invalid_argument);
-  EXPECT_THROW(Ports__get_raw_names(nullptr), std::invalid_argument);
-  EXPECT_THROW(Ports__get_instrument_facing_names(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Ports_ports(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_default_names(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_get_psuedo_names(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports__get_raw_names(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports__get_instrument_facing_names(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortsTest, MatchingPort) {
   auto p = Ports__get_psuedoname_matching_port(ports, conn);
   InstrumentPort_destroy(p);
-  EXPECT_THROW(Ports__get_psuedoname_matching_port(nullptr, conn),
-               std::invalid_argument);
-  EXPECT_THROW(Ports__get_psuedoname_matching_port(ports, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Ports__get_psuedoname_matching_port(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports__get_psuedoname_matching_port(ports, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   auto t  = String_wrap("type");
   auto p2 = Ports__get_instrument_type_matching_port(ports, t);
   InstrumentPort_destroy(p2);
   String_destroy(t);
-  EXPECT_THROW(Ports__get_instrument_type_matching_port(nullptr, t),
-               std::invalid_argument);
-  EXPECT_THROW(Ports__get_instrument_type_matching_port(ports, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Ports__get_instrument_type_matching_port(nullptr, t);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports__get_instrument_type_matching_port(ports, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortsTest, TypeChecks) {
   EXPECT_FALSE(Ports_is_knobs(ports));
   EXPECT_FALSE(Ports_is_meters(ports));
-  EXPECT_THROW(Ports_is_knobs(nullptr), std::invalid_argument);
-  EXPECT_THROW(Ports_is_meters(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Ports_is_knobs(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_is_meters(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortsTest, Intersection) {
@@ -106,8 +128,12 @@ TEST_F(PortsTest, Intersection) {
   auto inter = Ports_intersection(ports, p2);
   Ports_destroy(inter);
   Ports_destroy(p2);
-  EXPECT_THROW(Ports_intersection(nullptr, ports), std::invalid_argument);
-  EXPECT_THROW(Ports_intersection(ports, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Ports_intersection(nullptr, ports);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_intersection(ports, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortsTest, PushBackSizeEmptyEraseClearAtItemsContainsIndex) {
@@ -131,19 +157,45 @@ TEST_F(PortsTest, PushBackSizeEmptyEraseClearAtItemsContainsIndex) {
   EXPECT_EQ(Ports_index(e, port), 0);
   Ports_destroy(e);
 
-  EXPECT_THROW(Ports_push_back(nullptr, port), std::invalid_argument);
-  EXPECT_THROW(Ports_push_back(ports, nullptr), std::invalid_argument);
-  EXPECT_THROW(Ports_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(Ports_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(Ports_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(Ports_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(Ports_const_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(Ports_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(Ports_items(nullptr), std::invalid_argument);
-  EXPECT_THROW(Ports_contains(nullptr, port), std::invalid_argument);
-  EXPECT_THROW(Ports_contains(ports, nullptr), std::invalid_argument);
-  EXPECT_THROW(Ports_index(nullptr, port), std::invalid_argument);
-  EXPECT_THROW(Ports_index(ports, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Ports_push_back(nullptr, port);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_push_back(ports, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_const_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_contains(nullptr, port);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_contains(ports, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_index(nullptr, port);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_index(ports, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortsTest, Equality) {
@@ -151,10 +203,18 @@ TEST_F(PortsTest, Equality) {
   EXPECT_TRUE(Ports_equal(ports, p2));
   EXPECT_FALSE(Ports_not_equal(ports, p2));
   Ports_destroy(p2);
-  EXPECT_THROW(Ports_equal(nullptr, ports), std::invalid_argument);
-  EXPECT_THROW(Ports_equal(ports, nullptr), std::invalid_argument);
-  EXPECT_THROW(Ports_not_equal(nullptr, ports), std::invalid_argument);
-  EXPECT_THROW(Ports_not_equal(ports, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Ports_equal(nullptr, ports);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_equal(ports, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_not_equal(nullptr, ports);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_not_equal(ports, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortsTest, Serialization) {
@@ -163,6 +223,10 @@ TEST_F(PortsTest, Serialization) {
   EXPECT_TRUE(Ports_equal(ports, p2));
   Ports_destroy(p2);
   String_destroy(json);
-  EXPECT_THROW(Ports_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(Ports_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Ports_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Ports_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

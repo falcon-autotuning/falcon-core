@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/FArrayDouble_c_api.h"
 #include "falcon_core/generic/PairFloatFloat_c_api.h"

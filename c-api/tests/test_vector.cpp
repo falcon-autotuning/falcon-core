@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/Point_c_api.h"
@@ -46,57 +48,75 @@ class VectorTest : public ::testing::Test {
 TEST_F(VectorTest, CreateDestroy) {
   auto v = Vector_create(start, end);
   Vector_destroy(v);
-  EXPECT_THROW(Vector_create(nullptr, end), std::invalid_argument);
-  EXPECT_THROW(Vector_create(start, nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_create(nullptr, end);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_create(start, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, CreateFromEnd) {
   auto v = Vector_create_from_end(end);
   Vector_destroy(v);
-  EXPECT_THROW(Vector_create_from_end(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_create_from_end(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, CreateFromQuantities) {
   auto v = Vector_create_from_quantities(map_cq, map_cq);
   Vector_destroy(v);
-  EXPECT_THROW(Vector_create_from_quantities(nullptr, map_cq),
-               std::invalid_argument);
-  EXPECT_THROW(Vector_create_from_quantities(map_cq, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_create_from_quantities(nullptr, map_cq);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_create_from_quantities(map_cq, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, CreateFromEndQuantities) {
   auto v = Vector_create_from_end_quantities(map_cq);
   Vector_destroy(v);
-  EXPECT_THROW(Vector_create_from_end_quantities(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_create_from_end_quantities(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, CreateFromDoubles) {
   auto v = Vector_create_from_doubles(map_cd, map_cd, unit);
   Vector_destroy(v);
-  EXPECT_THROW(Vector_create_from_doubles(nullptr, map_cd, unit),
-               std::invalid_argument);
-  EXPECT_THROW(Vector_create_from_doubles(map_cd, nullptr, unit),
-               std::invalid_argument);
-  EXPECT_THROW(Vector_create_from_doubles(map_cd, map_cd, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_create_from_doubles(nullptr, map_cd, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_create_from_doubles(map_cd, nullptr, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_create_from_doubles(map_cd, map_cd, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, CreateFromEndDoubles) {
   auto v = Vector_create_from_end_doubles(map_cd, unit);
   Vector_destroy(v);
-  EXPECT_THROW(Vector_create_from_end_doubles(nullptr, unit),
-               std::invalid_argument);
-  EXPECT_THROW(Vector_create_from_end_doubles(map_cd, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_create_from_end_doubles(nullptr, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_create_from_end_doubles(map_cd, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, CreateFromParent) {
   auto v = Vector_create_from_parent(map_cq);
   Vector_destroy(v);
-  EXPECT_THROW(Vector_create_from_parent(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_create_from_parent(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, EndStartPoint) {
@@ -104,8 +124,12 @@ TEST_F(VectorTest, EndStartPoint) {
   auto sp = Vector_startPoint(vector);
   Point_destroy(ep);
   Point_destroy(sp);
-  EXPECT_THROW(Vector_endPoint(nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_startPoint(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_endPoint(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_startPoint(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, EndStartQuantitiesAndMap) {
@@ -117,10 +141,18 @@ TEST_F(VectorTest, EndStartQuantitiesAndMap) {
   MapConnectionQuantity_destroy(sq);
   MapConnectionDouble_destroy(em);
   MapConnectionDouble_destroy(sm);
-  EXPECT_THROW(Vector_end_quantities(nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_start_quantities(nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_end_map(nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_start_map(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_end_quantities(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_start_quantities(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_end_map(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_start_map(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, ConnectionsUnitPrincipleMagnitude) {
@@ -132,10 +164,18 @@ TEST_F(VectorTest, ConnectionsUnitPrincipleMagnitude) {
   SymbolUnit_destroy(u);
   Connection_destroy(pc);
   EXPECT_GE(mag, 0.0);
-  EXPECT_THROW(Vector_connections(nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_unit(nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_principle_connection(nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_magnitude(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_connections(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_unit(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_principle_connection(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_magnitude(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, InsertOrAssignInsertAtErase) {
@@ -147,22 +187,39 @@ TEST_F(VectorTest, InsertOrAssignInsertAtErase) {
   Vector_erase(vector, conn);
   PairQuantityQuantity_destroy(pq);
 
-  EXPECT_THROW(Vector_insert_or_assign(nullptr, conn, pq),
-               std::invalid_argument);
-  EXPECT_THROW(Vector_insert_or_assign(vector, nullptr, pq),
-               std::invalid_argument);
-  EXPECT_THROW(Vector_insert_or_assign(vector, conn, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_insert_or_assign(nullptr, conn, pq);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_insert_or_assign(vector, nullptr, pq);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_insert_or_assign(vector, conn, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(Vector_insert(nullptr, conn, pq), std::invalid_argument);
-  EXPECT_THROW(Vector_insert(vector, nullptr, pq), std::invalid_argument);
-  EXPECT_THROW(Vector_insert(vector, conn, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_insert(nullptr, conn, pq);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_insert(vector, nullptr, pq);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_insert(vector, conn, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(Vector_at(nullptr, conn), std::invalid_argument);
-  EXPECT_THROW(Vector_at(vector, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_at(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_at(vector, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(Vector_erase(nullptr, conn), std::invalid_argument);
-  EXPECT_THROW(Vector_erase(vector, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_erase(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_erase(vector, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, SizeEmptyClear) {
@@ -170,15 +227,25 @@ TEST_F(VectorTest, SizeEmptyClear) {
   EXPECT_FALSE(Vector_empty(vector));
   Vector_clear(vector);
   EXPECT_TRUE(Vector_empty(vector));
-  EXPECT_THROW(Vector_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, ContainsKeysValuesItems) {
   EXPECT_TRUE(Vector_contains(vector, conn));
-  EXPECT_THROW(Vector_contains(nullptr, conn), std::invalid_argument);
-  EXPECT_THROW(Vector_contains(vector, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_contains(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_contains(vector, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   auto keys   = Vector_keys(vector);
   auto values = Vector_values(vector);
@@ -186,9 +253,15 @@ TEST_F(VectorTest, ContainsKeysValuesItems) {
   ListConnection_destroy(keys);
   ListPairQuantityQuantity_destroy(values);
   ListPairConnectionPairQuantityQuantity_destroy(items);
-  EXPECT_THROW(Vector_keys(nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_values(nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_items(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_keys(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_values(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, Arithmetic) {
@@ -210,16 +283,33 @@ TEST_F(VectorTest, Arithmetic) {
   Vector_destroy(neg);
   Vector_destroy(v2);
 
-  EXPECT_THROW(Vector_addition(nullptr, vector), std::invalid_argument);
-  EXPECT_THROW(Vector_addition(vector, nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_subtraction(nullptr, vector), std::invalid_argument);
-  EXPECT_THROW(Vector_subtraction(vector, nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_double_multiplication(nullptr, 2.0),
-               std::invalid_argument);
-  EXPECT_THROW(Vector_int_multiplication(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(Vector_double_division(nullptr, 2.0), std::invalid_argument);
-  EXPECT_THROW(Vector_int_division(nullptr, 2.0), std::invalid_argument);
-  EXPECT_THROW(Vector_negation(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_addition(nullptr, vector);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_addition(vector, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_subtraction(nullptr, vector);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_subtraction(vector, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_double_multiplication(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_int_multiplication(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_double_division(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_int_division(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_negation(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest,
@@ -228,35 +318,48 @@ TEST_F(VectorTest,
   auto                      v1  = Vector_update_start_from_states(vector, dvs);
   Vector_destroy(v1);
   DeviceVoltageStates_destroy(dvs);
-  EXPECT_THROW(Vector_update_start_from_states(nullptr, dvs),
-               std::invalid_argument);
-  EXPECT_THROW(Vector_update_start_from_states(vector, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_update_start_from_states(nullptr, dvs);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_update_start_from_states(vector, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   auto v2 = Vector_translate_doubles(vector, map_cd, unit);
   Vector_destroy(v2);
-  EXPECT_THROW(Vector_translate_doubles(nullptr, map_cd, unit),
-               std::invalid_argument);
-  EXPECT_THROW(Vector_translate_doubles(vector, nullptr, unit),
-               std::invalid_argument);
-  EXPECT_THROW(Vector_translate_doubles(vector, map_cd, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_translate_doubles(nullptr, map_cd, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_translate_doubles(vector, nullptr, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_translate_doubles(vector, map_cd, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   auto v3 = Vector_translate_quantities(vector, map_cq);
   Vector_destroy(v3);
-  EXPECT_THROW(Vector_translate_quantities(nullptr, map_cq),
-               std::invalid_argument);
-  EXPECT_THROW(Vector_translate_quantities(vector, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_translate_quantities(nullptr, map_cq);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_translate_quantities(vector, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   auto v4 = Vector_translate(vector, start);
   Vector_destroy(v4);
-  EXPECT_THROW(Vector_translate(nullptr, start), std::invalid_argument);
-  EXPECT_THROW(Vector_translate(vector, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_translate(nullptr, start);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_translate(vector, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   auto v5 = Vector_translate_to_origin(vector);
   Vector_destroy(v5);
-  EXPECT_THROW(Vector_translate_to_origin(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_translate_to_origin(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   auto v6 = Vector_double_extend(vector, 2.0);
   auto v7 = Vector_int_extend(vector, 2);
@@ -266,30 +369,50 @@ TEST_F(VectorTest,
   Vector_destroy(v7);
   Vector_destroy(v8);
   Vector_destroy(v9);
-  EXPECT_THROW(Vector_double_extend(nullptr, 2.0), std::invalid_argument);
-  EXPECT_THROW(Vector_int_extend(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(Vector_double_shrink(nullptr, 2.0), std::invalid_argument);
-  EXPECT_THROW(Vector_int_shrink(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_double_extend(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_int_extend(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_double_shrink(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_int_shrink(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   auto v10 = Vector_unit_vector(vector);
   auto v11 = Vector_normalize(vector);
   Vector_destroy(v10);
   Vector_destroy(v11);
-  EXPECT_THROW(Vector_unit_vector(nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_normalize(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_unit_vector(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_normalize(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   auto v12 = Vector_create(start, end);
   auto v13 = Vector_project(vector, v12);
   Vector_destroy(v13);
   Vector_destroy(v12);
-  EXPECT_THROW(Vector_project(nullptr, vector), std::invalid_argument);
-  EXPECT_THROW(Vector_project(vector, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_project(nullptr, vector);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_project(vector, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   auto new_unit = SymbolUnit_create_millivolt();
   Vector_update_unit(vector, new_unit);
   SymbolUnit_destroy(new_unit);
-  EXPECT_THROW(Vector_update_unit(nullptr, unit), std::invalid_argument);
-  EXPECT_THROW(Vector_update_unit(vector, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_update_unit(nullptr, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_update_unit(vector, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, EqualNotEqual) {
@@ -297,10 +420,18 @@ TEST_F(VectorTest, EqualNotEqual) {
   EXPECT_TRUE(Vector_equal(vector, v2));
   EXPECT_FALSE(Vector_not_equal(vector, v2));
   Vector_destroy(v2);
-  EXPECT_THROW(Vector_equal(nullptr, vector), std::invalid_argument);
-  EXPECT_THROW(Vector_equal(vector, nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_not_equal(nullptr, vector), std::invalid_argument);
-  EXPECT_THROW(Vector_not_equal(vector, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_equal(nullptr, vector);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_equal(vector, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_not_equal(nullptr, vector);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_not_equal(vector, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VectorTest, ToJsonFromJson) {
@@ -309,6 +440,10 @@ TEST_F(VectorTest, ToJsonFromJson) {
   EXPECT_TRUE(Vector_equal(vector, v2));
   Vector_destroy(v2);
   String_destroy(json);
-  EXPECT_THROW(Vector_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(Vector_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Vector_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Vector_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

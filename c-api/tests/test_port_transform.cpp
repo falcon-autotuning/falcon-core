@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
@@ -39,13 +40,21 @@ TEST_F(PortTransformTest, CreateDestroy) {
   auto i = PortTransform_create_identity_transform(port);
   PortTransform_destroy(i);
 
-  EXPECT_THROW(PortTransform_create(nullptr, transform), std::invalid_argument);
-  EXPECT_THROW(PortTransform_create(port, nullptr), std::invalid_argument);
-  EXPECT_THROW(PortTransform_create_constant_transform(nullptr, 1.0),
-               std::invalid_argument);
-  EXPECT_THROW(PortTransform_create_identity_transform(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PortTransform_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PortTransform_create(nullptr, transform);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransform_create(port, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransform_create_constant_transform(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransform_create_identity_transform(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransform_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortTransformTest, Accessors) {
@@ -57,8 +66,12 @@ TEST_F(PortTransformTest, Accessors) {
   EXPECT_NE(labels, nullptr);
   ListString_destroy(labels);
 
-  EXPECT_THROW(PortTransform_port(nullptr), std::invalid_argument);
-  EXPECT_THROW(PortTransform_labels(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PortTransform_port(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransform_labels(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortTransformTest, Evaluate) {
@@ -75,23 +88,36 @@ TEST_F(PortTransformTest, Evaluate) {
   FArrayDouble_destroy(arr);
   MapStringDouble_destroy(args);
 
-  EXPECT_THROW(PortTransform_evaluate(nullptr, args, 0.0),
-               std::invalid_argument);
-  EXPECT_THROW(PortTransform_evaluate(pt, nullptr, 0.0), std::invalid_argument);
-  EXPECT_THROW(PortTransform_evaluate_arraywise(nullptr, args, 1.0, 3.0),
-               std::invalid_argument);
-  EXPECT_THROW(PortTransform_evaluate_arraywise(pt, nullptr, 1.0, 3.0),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PortTransform_evaluate(nullptr, args, 0.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransform_evaluate(pt, nullptr, 0.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransform_evaluate_arraywise(nullptr, args, 1.0, 3.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransform_evaluate_arraywise(pt, nullptr, 1.0, 3.0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortTransformTest, Equality) {
   EXPECT_FALSE(PortTransform_equal(pt, pt2));
   EXPECT_TRUE(PortTransform_not_equal(pt, pt2));
 
-  EXPECT_THROW(PortTransform_equal(nullptr, pt2), std::invalid_argument);
-  EXPECT_THROW(PortTransform_equal(pt, nullptr), std::invalid_argument);
-  EXPECT_THROW(PortTransform_not_equal(nullptr, pt2), std::invalid_argument);
-  EXPECT_THROW(PortTransform_not_equal(pt, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PortTransform_equal(nullptr, pt2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransform_equal(pt, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransform_not_equal(nullptr, pt2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransform_not_equal(pt, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortTransformTest, ToJsonFromJson) {
@@ -104,6 +130,10 @@ TEST_F(PortTransformTest, ToJsonFromJson) {
   PortTransform_destroy(pt3);
   String_destroy(json);
 
-  EXPECT_THROW(PortTransform_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(PortTransform_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PortTransform_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PortTransform_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

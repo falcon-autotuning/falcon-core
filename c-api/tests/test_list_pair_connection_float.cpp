@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListPairConnectionFloat_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -41,7 +42,9 @@ TEST_F(ListPairConnectionFloatTest, CreateEmpty) {
   EXPECT_TRUE(ListPairConnectionFloat_empty(handle));
   EXPECT_EQ(ListPairConnectionFloat_size(handle), 0);
   ListPairConnectionFloat_destroy(handle);
-  EXPECT_THROW(ListPairConnectionFloat_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionFloatTest, FillValue) {
@@ -54,8 +57,9 @@ TEST_F(ListPairConnectionFloatTest, CreateFromArray) {
   PairConnectionFloatHandle     arr[2] = {sh1, sh2};
   ListPairConnectionFloatHandle handle = ListPairConnectionFloat_create(arr, 2);
   EXPECT_EQ(ListPairConnectionFloat_size(handle), 2);
-  EXPECT_THROW(ListPairConnectionFloat_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairConnectionFloat_destroy(handle);
 }
 
@@ -63,14 +67,18 @@ TEST_F(ListPairConnectionFloatTest, SizeEmptyInvalid) {
   auto handle = ListPairConnectionFloat_create_empty();
   EXPECT_EQ(ListPairConnectionFloat_size(handle), 0);
   ListPairConnectionFloat_destroy(handle);
-  EXPECT_THROW(ListPairConnectionFloat_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionFloatTest, EmptyInvalid) {
   auto handle = ListPairConnectionFloat_create_empty();
   EXPECT_TRUE(ListPairConnectionFloat_empty(handle));
   ListPairConnectionFloat_destroy(handle);
-  EXPECT_THROW(ListPairConnectionFloat_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionFloatTest, EraseAtClear) {
@@ -80,9 +88,12 @@ TEST_F(ListPairConnectionFloatTest, EraseAtClear) {
   ListPairConnectionFloat_clear(handle);
   EXPECT_TRUE(ListPairConnectionFloat_empty(handle));
   ListPairConnectionFloat_destroy(handle);
-  EXPECT_THROW(ListPairConnectionFloat_erase_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionFloat_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionFloatTest, PushBackContainsIndex) {
@@ -91,12 +102,15 @@ TEST_F(ListPairConnectionFloatTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListPairConnectionFloat_contains(handle, sh1));
   EXPECT_EQ(ListPairConnectionFloat_index(handle, sh1), 0);
   ListPairConnectionFloat_destroy(handle);
-  EXPECT_THROW(ListPairConnectionFloat_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionFloat_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionFloat_index(nullptr, sh1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionFloatTest, ItemsAt) {
@@ -105,11 +119,15 @@ TEST_F(ListPairConnectionFloatTest, ItemsAt) {
   PairConnectionFloatHandle out[2];
   EXPECT_EQ(ListPairConnectionFloat_items(handle, out, 2), 2);
   ListPairConnectionFloat_destroy(handle);
-  EXPECT_THROW(ListPairConnectionFloat_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionFloat_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionFloat_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionFloatTest, EqualNotEqualIntersection) {
@@ -123,18 +141,24 @@ TEST_F(ListPairConnectionFloatTest, EqualNotEqualIntersection) {
   ListPairConnectionFloat_destroy(h1);
   ListPairConnectionFloat_destroy(h2);
   ListPairConnectionFloat_destroy(h3);
-  EXPECT_THROW(ListPairConnectionFloat_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionFloat_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionFloat_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionFloat_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionFloat_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionFloat_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionFloatTest, ToJsonFromJson) {
@@ -146,41 +170,48 @@ TEST_F(ListPairConnectionFloatTest, ToJsonFromJson) {
   ListPairConnectionFloat_destroy(handle);
   ListPairConnectionFloat_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListPairConnectionFloat_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionFloat_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionFloatTest, FillValueNull) {
-  EXPECT_THROW(ListPairConnectionFloat_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionFloatTest, PushBackNull) {
   auto handle = ListPairConnectionFloat_create_empty();
-  EXPECT_THROW(ListPairConnectionFloat_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairConnectionFloat_destroy(handle);
 }
 
 TEST_F(ListPairConnectionFloatTest, ContainsNull) {
   auto handle = ListPairConnectionFloat_create_empty();
-  EXPECT_THROW(ListPairConnectionFloat_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairConnectionFloat_destroy(handle);
 }
 
 TEST_F(ListPairConnectionFloatTest, IndexNull) {
   auto handle = ListPairConnectionFloat_create_empty();
-  EXPECT_THROW(ListPairConnectionFloat_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairConnectionFloat_destroy(handle);
 }
 
 TEST_F(ListPairConnectionFloatTest, CreateNullArray) {
-  EXPECT_THROW(ListPairConnectionFloat_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionFloatTest, At) {
@@ -191,5 +222,7 @@ TEST_F(ListPairConnectionFloatTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListPairConnectionFloat_destroy(handle);
-  EXPECT_THROW(ListPairConnectionFloat_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionFloat_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

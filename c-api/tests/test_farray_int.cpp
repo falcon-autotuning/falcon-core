@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/FArrayInt_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -36,100 +37,226 @@ TEST_F(FArrayIntTest, CreateDestroy) {
   FArrayIntHandle from_data = FArrayInt_from_data(data, shape, 2);
   FArrayInt_destroy(from_data);
 
-  EXPECT_THROW(FArrayInt_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  FArrayInt_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(FArrayIntTest, NullptrCoverage) {
   int data[4] = {1, 2, 3, 4};
-  EXPECT_THROW(FArrayInt_create_zeros(nullptr, 2), std::exception);
-  EXPECT_THROW(FArrayInt_from_shape(nullptr, 2), std::exception);
-  EXPECT_THROW(FArrayInt_from_data(nullptr, shape, 2), std::exception);
-  EXPECT_THROW(FArrayInt_from_data(data, nullptr, 2), std::exception);
-  EXPECT_THROW(FArrayInt_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_dimension(nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_shape(nullptr, shape, 2), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_shape(arr1, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_data(nullptr, data, 4), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_plusequals_farray(nullptr, arr1),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_plusequals_farray(arr1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_plusequals_double(nullptr, 1.0),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_plusequals_int(nullptr, 1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_plus_farray(nullptr, arr1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_plus_farray(arr1, nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_plus_double(nullptr, 1.0), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_plus_int(nullptr, 1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_minusequals_farray(nullptr, arr1),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_minusequals_farray(arr1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_minusequals_double(nullptr, 1.0),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_minusequals_int(nullptr, 1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_minus_farray(nullptr, arr1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_minus_farray(arr1, nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_minus_double(nullptr, 1.0), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_minus_int(nullptr, 1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_negation(nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_timesequals_farray(nullptr, arr1),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_timesequals_farray(arr1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_timesequals_double(nullptr, 1.0),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_timesequals_int(nullptr, 1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_times_farray(nullptr, arr1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_times_farray(arr1, nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_times_double(nullptr, 1.0), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_times_int(nullptr, 1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_dividesequals_farray(nullptr, arr1),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_dividesequals_farray(arr1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_dividesequals_double(nullptr, 1.0),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_dividesequals_int(nullptr, 1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_divides_farray(nullptr, arr1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_divides_farray(arr1, nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_divides_double(nullptr, 1.0), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_divides_int(nullptr, 1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_pow(nullptr, 2.0), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_abs(nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_min(nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_min_arraywise(nullptr, arr1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_min_arraywise(arr1, nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_max(nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_max_arraywise(nullptr, arr1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_max_arraywise(arr1, nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_equality(nullptr, arr1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_equality(arr1, nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_notequality(nullptr, arr1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_notequality(arr1, nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_greaterthan(nullptr, 1.0), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_lessthan(nullptr, 1.0), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_remove_offset(nullptr, 1.0), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_sum(nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_reshape(nullptr, shape, 2), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_where(nullptr, 1), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_flip(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_full_gradient(nullptr, nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_full_gradient(arr1, nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_gradient(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_get_sum_of_squares(nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_get_summed_diff_int_of_squares(nullptr, 1),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_get_summed_diff_double_of_squares(nullptr, 1.0),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_get_summed_diff_array_of_squares(nullptr, arr1),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_get_summed_diff_array_of_squares(arr1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(FArrayInt_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(FArrayInt_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  FArrayInt_create_zeros(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_from_shape(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_from_data(nullptr, shape, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_from_data(data, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_dimension(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_shape(nullptr, shape, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_shape(arr1, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_data(nullptr, data, 4);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plusequals_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plusequals_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plusequals_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plusequals_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plus_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plus_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plus_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plus_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minusequals_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minusequals_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minusequals_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minusequals_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minus_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minus_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minus_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minus_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_negation(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_timesequals_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_timesequals_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_timesequals_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_timesequals_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_times_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_times_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_times_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_times_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_dividesequals_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_dividesequals_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_dividesequals_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_dividesequals_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_divides_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_divides_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_divides_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_divides_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_pow(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_abs(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_min(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_min_arraywise(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_min_arraywise(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_max(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_max_arraywise(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_max_arraywise(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_equality(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_equality(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_notequality(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_notequality(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_greaterthan(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_lessthan(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_remove_offset(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_sum(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_reshape(nullptr, shape, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_where(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_flip(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_full_gradient(nullptr, nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_full_gradient(arr1, nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_gradient(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_get_sum_of_squares(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_get_summed_diff_int_of_squares(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_get_summed_diff_double_of_squares(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_get_summed_diff_array_of_squares(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_get_summed_diff_array_of_squares(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(FArrayIntTest, BasicProperties) {
@@ -238,14 +365,20 @@ TEST_F(FArrayIntTest, ShapeBufferTooSmall) {
 TEST_F(FArrayIntTest, FullGradientBufferTooSmall) {
   FArrayIntHandle grads[1];  // buffer smaller than needed
   // Should throw or error if more gradients than buffer
-  EXPECT_THROW(FArrayInt_full_gradient(arr1, grads, 1), std::runtime_error);
+  set_last_error(0, nullptr);
+  FArrayInt_full_gradient(arr1, grads, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(FArrayIntTest, DataBufferTooSmall) {
   int out_data[2] = {0, 0};  // buffer smaller than needed (should be 4)
-  EXPECT_THROW(FArrayInt_data(arr1, out_data, 2), std::runtime_error);
+  set_last_error(0, nullptr);
+  FArrayInt_data(arr1, out_data, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(FArrayIntTest, DataNullBuffer) {
-  EXPECT_THROW(FArrayInt_data(arr1, nullptr, 4), std::invalid_argument);
+  set_last_error(0, nullptr);
+  FArrayInt_data(arr1, nullptr, 4);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

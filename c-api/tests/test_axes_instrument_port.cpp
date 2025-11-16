@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <vector>
 
@@ -56,8 +58,12 @@ class AxesInstrumentPortTest : public ::testing::Test {
 TEST_F(AxesInstrumentPortTest, CreateDestroy) {
   auto h = AxesInstrumentPort_create_empty();
   AxesInstrumentPort_destroy(h);
-  EXPECT_THROW(AxesInstrumentPort_create(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   auto liph = ListInstrumentPort_create_empty();
   ListInstrumentPort_push_back(liph, InstrumentPort_create_timer());
@@ -97,10 +103,12 @@ TEST_F(AxesInstrumentPortTest, ContainsIndexEquality) {
 }
 
 TEST_F(AxesInstrumentPortTest, SerializationRoundTrip) {
-  EXPECT_THROW(AxesInstrumentPort_from_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_to_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW({
     auto json   = AxesInstrumentPort_to_json_string(axes);
     auto loaded = AxesInstrumentPort_from_json_string(json);
@@ -110,42 +118,73 @@ TEST_F(AxesInstrumentPortTest, SerializationRoundTrip) {
 }
 
 TEST_F(AxesInstrumentPortTest, EqualityWorks) {
-  EXPECT_THROW(AxesInstrumentPort_equal(axes, nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_not_equal(nullptr, axes2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_equal(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_not_equal(nullptr, axes2);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(AxesInstrumentPort_equal(axes, axes));
   EXPECT_NO_THROW(AxesInstrumentPort_not_equal(axes, axes2));
 }
 
 TEST_F(AxesInstrumentPortTest, Intersection) {
-  EXPECT_THROW(AxesInstrumentPort_intersection(nullptr, axes2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_intersection(axes, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_intersection(nullptr, axes2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_intersection(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(AxesInstrumentPort_intersection(axes, axes2));
 }
 
 TEST_F(AxesInstrumentPortTest, MiscNullChecks) {
-  EXPECT_THROW(AxesInstrumentPort_destroy(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_push_back(nullptr, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_push_back(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_push_back(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_contains(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_contains(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_index(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_index(axes, nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_items(nullptr, rawbuffer, 2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_items(axes, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesInstrumentPort_create_raw(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_push_back(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_push_back(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_push_back(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_contains(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_contains(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_index(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_index(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_items(nullptr, rawbuffer, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_items(axes, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesInstrumentPort_create_raw(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

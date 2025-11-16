@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextQuantity_c_api.h"
@@ -69,10 +70,12 @@ class MapInterpretationContextQuantityTest : public ::testing::Test {
 };
 
 TEST_F(MapInterpretationContextQuantityTest, CreateDestroy) {
-  EXPECT_THROW(MapInterpretationContextQuantity_create(nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextQuantityTest, InsertAssignAccessErase) {
@@ -84,38 +87,36 @@ TEST_F(MapInterpretationContextQuantityTest, InsertAssignAccessErase) {
       map, PairInterpretationContextQuantity_first(p1));
   EXPECT_FALSE(MapInterpretationContextQuantity_contains(
       map, PairInterpretationContextQuantity_first(p1)));
-  EXPECT_THROW(MapInterpretationContextQuantity_insert_or_assign(
-                   nullptr,
-                   PairInterpretationContextQuantity_first(p1),
-                   PairInterpretationContextQuantity_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_insert_or_assign(
-                   map, nullptr, PairInterpretationContextQuantity_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_insert_or_assign(
-                   map, PairInterpretationContextQuantity_first(p1), nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_insert(
-                   nullptr,
-                   PairInterpretationContextQuantity_first(p1),
-                   PairInterpretationContextQuantity_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_insert(
-                   map, nullptr, PairInterpretationContextQuantity_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_insert(
-                   map, PairInterpretationContextQuantity_first(p1), nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_at(
-                   nullptr, PairInterpretationContextQuantity_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_at(map, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_erase(
-                   nullptr, PairInterpretationContextQuantity_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_erase(map, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_insert_or_assign(                   nullptr,                   PairInterpretationContextQuantity_first(p1),                   PairInterpretationContextQuantity_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_insert_or_assign(                   map, nullptr, PairInterpretationContextQuantity_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_insert_or_assign(                   map, PairInterpretationContextQuantity_first(p1), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_insert(                   nullptr,                   PairInterpretationContextQuantity_first(p1),                   PairInterpretationContextQuantity_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_insert(                   map, nullptr, PairInterpretationContextQuantity_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_insert(                   map, PairInterpretationContextQuantity_first(p1), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_at(                   nullptr, PairInterpretationContextQuantity_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_at(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_erase(                   nullptr, PairInterpretationContextQuantity_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_erase(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextQuantityTest, SizeEmptyClearContains) {
@@ -123,42 +124,53 @@ TEST_F(MapInterpretationContextQuantityTest, SizeEmptyClearContains) {
   EXPECT_FALSE(MapInterpretationContextQuantity_empty(map));
   MapInterpretationContextQuantity_clear(map);
   EXPECT_TRUE(MapInterpretationContextQuantity_empty(map));
-  EXPECT_THROW(MapInterpretationContextQuantity_size(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_empty(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_clear(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_contains(
-                   nullptr, PairInterpretationContextQuantity_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_contains(map2, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_contains(                   nullptr, PairInterpretationContextQuantity_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_contains(map2, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextQuantityTest, KeysValuesItems) {
   EXPECT_NE(MapInterpretationContextQuantity_keys(map), nullptr);
   EXPECT_NE(MapInterpretationContextQuantity_values(map), nullptr);
   EXPECT_NE(MapInterpretationContextQuantity_items(map), nullptr);
-  EXPECT_THROW(MapInterpretationContextQuantity_keys(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_values(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_items(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_keys(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_values(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextQuantityTest, Equality) {
   EXPECT_TRUE(MapInterpretationContextQuantity_equal(map, map2));
   EXPECT_FALSE(MapInterpretationContextQuantity_not_equal(map, map2));
-  EXPECT_THROW(MapInterpretationContextQuantity_equal(nullptr, map2),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_equal(map, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_not_equal(nullptr, map2),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_not_equal(map, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_not_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_not_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextQuantityTest, ToJsonFromJson) {
@@ -167,8 +179,10 @@ TEST_F(MapInterpretationContextQuantityTest, ToJsonFromJson) {
   EXPECT_TRUE(MapInterpretationContextQuantity_equal(map, m2));
   MapInterpretationContextQuantity_destroy(m2);
   String_destroy(json);
-  EXPECT_THROW(MapInterpretationContextQuantity_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextQuantity_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextQuantity_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

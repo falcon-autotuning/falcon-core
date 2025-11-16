@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/PairChannelConnections_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -28,11 +29,15 @@ class PairChannelConnectionsTest : public ::testing::Test {
 };
 
 TEST_F(PairChannelConnectionsTest, CreateDestroy) {
-  EXPECT_THROW(PairChannelConnections_create(nullptr, t2),
-               std::invalid_argument);
-  EXPECT_THROW(PairChannelConnections_create(t1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairChannelConnections_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairChannelConnections_create(nullptr, t2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairChannelConnections_create(t1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairChannelConnections_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairChannelConnectionsTest, Accessors) {
@@ -40,21 +45,29 @@ TEST_F(PairChannelConnectionsTest, Accessors) {
   auto s = PairChannelConnections_second(pair1);
   EXPECT_TRUE(Channel_equal(f, t1));
   EXPECT_TRUE(Connections_equal(s, t2));
-  EXPECT_THROW(PairChannelConnections_first(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairChannelConnections_second(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairChannelConnections_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairChannelConnections_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairChannelConnectionsTest, Equality) {
   EXPECT_TRUE(PairChannelConnections_equal(pair1, pair2));
   EXPECT_FALSE(PairChannelConnections_not_equal(pair1, pair2));
-  EXPECT_THROW(PairChannelConnections_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairChannelConnections_equal(pair1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairChannelConnections_not_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairChannelConnections_not_equal(pair1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairChannelConnections_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairChannelConnections_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairChannelConnections_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairChannelConnections_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairChannelConnectionsTest, ToJsonFromJson) {
@@ -62,8 +75,10 @@ TEST_F(PairChannelConnectionsTest, ToJsonFromJson) {
   auto p2   = PairChannelConnections_from_json_string(json);
   EXPECT_TRUE(PairChannelConnections_equal(pair1, p2));
   PairChannelConnections_destroy(p2);
-  EXPECT_THROW(PairChannelConnections_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairChannelConnections_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairChannelConnections_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairChannelConnections_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

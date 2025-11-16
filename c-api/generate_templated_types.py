@@ -169,6 +169,9 @@ class Entry:
         self.header_includes = header_includes
         self.header_includes.append('"falcon_core/generic/String_c_api.h"')
         self.implementation_includes = implementation_includes
+        self.implementation_includes.append(
+            '"falcon_core/generic/ErrorHandling_c_api.h"'
+        )
         self.header_path = (
             "include/falcon_core" / file_path / str(self.mangled_name() + "_c_api.h")
         )
@@ -505,6 +508,20 @@ ListPair{name}Handle {self.mangled_name()}_items({self.chandle()} handle);
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);""")
 
+    def error_type_handling(self, type: str) -> str:
+        if type == "bool":
+            return "false"
+        elif type == "size_t":
+            return "0"
+        elif type == "int":
+            return "0"
+        elif type == "float":
+            return "0.0"
+        elif type == "double":
+            return "0.0"
+        else:
+            return "nullptr"
+
     def generate_list_implementation(self):
         c_type = self.combo[0]
         cpp_real = self.combo[1]
@@ -562,86 +579,110 @@ for (size_t i = 0; i < n; ++i) {{
 """
         with self.edit_implementation() as f:
             f.write(f"""
+extern "C" {{
 {self.chandle()} {self.mangled_name()}_create_empty() {{
+    FALCON_C_API_BEGIN
     return new falcon_core::generic::List<{cpp_real}>();
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_fill_value(size_t count, {c_type} value) {{
+    FALCON_C_API_BEGIN
     {stored_fill_value}
     return new falcon_core::generic::List<{cpp_real}>(
         count, stored_obj);
+    FALCON_C_API_END(nullptr)
 }}
  {from_allocate}
 
 {self.chandle()} {self.mangled_name()}_create({c_type}* data, size_t count) {{
+    FALCON_C_API_BEGIN
 if (!data) {{
 throw std::invalid_argument("Null data handle passed to {self.mangled_name()}_create");
 }}
     std::vector<{cpp_stored}> vec;
     {create_allocation}
     return new falcon_core::generic::List<{cpp_real}>(vec);
+    FALCON_C_API_END(nullptr)
 }}
 
 void {self.mangled_name()}_destroy({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
     if (!handle) {{
     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_destroy");
     }}
     delete static_cast<falcon_core::generic::List<{cpp_real}>*>(handle);
+    FALCON_C_API_END()
 }}
 
 size_t {self.mangled_name()}_size({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_size");
 }}
     return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->size();
+    FALCON_C_API_END(0)
 }}
 
 bool {self.mangled_name()}_empty({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_empty");
 }}
     return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->empty();
+    FALCON_C_API_END(false)
 }}
 
 void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_erase_at");
 }}
     static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->erase_at(idx);
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_clear({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_clear");
 }}
     static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->clear();
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_push_back");
 }}
     {stored_fill_value}
     static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->push_back(stored_obj);
+    FALCON_C_API_END()
 }}
 
 bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_contains");
 }}
     {stored_fill_value}
     return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->contains(stored_obj);
+    FALCON_C_API_END(false)
 }}
 
 size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_index");
 }}
     {stored_fill_value}
     return static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->index(stored_obj);
+    FALCON_C_API_END(0)
 }}
 
 size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_items");
 }}
@@ -652,33 +693,41 @@ throw std::invalid_argument("Null output buffer passed to {self.mangled_name()}_
     size_t n = std::min(buffer_size, list->items().size());
     {copy_to_out_buffer}
     return n;
+    FALCON_C_API_END(0)
 }}
 
 {c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_at");
 }}
     auto obj = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->at(idx);
     {stored_out_value}
+    FALCON_C_API_END({self.error_type_handling(c_type)})
 }}
 
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
+    FALCON_C_API_BEGIN
 if (!a || !b) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equal");
 }}
     auto listA = static_cast<falcon_core::generic::List<{cpp_real}>*>(a);
     auto listB = static_cast<falcon_core::generic::List<{cpp_real}>*>(b);
     return *listA == *listB;
+    FALCON_C_API_END(false)
 }}
 
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
+    FALCON_C_API_BEGIN
 if (!a || !b) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_not_equal");
 }}
     return !{self.mangled_name()}_equal(a, b);
+    FALCON_C_API_END(false)
 }}
 
 {self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_intersection");
 }}
@@ -686,21 +735,28 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_interse
     auto listB = static_cast<falcon_core::generic::List<{cpp_real}>*>(other);
     auto result = listA->intersection(std::make_shared<falcon_core::generic::List<{cpp_real}>>(*listB));
     return new falcon_core::generic::List<{cpp_real}>(*result);
+    FALCON_C_API_END(nullptr)
 }}
 
 StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_to_json_string");
 }}
     std::string json = static_cast<falcon_core::generic::List<{cpp_real}>*>(handle)->to_json_string();
     return String_create(json.c_str(), json.size());
+    FALCON_C_API_END(nullptr)
 }}
+
 {self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
+    FALCON_C_API_BEGIN
 if (!json) {{
 throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_from_json_string");
 }}
   auto ptr = falcon_core::generic::List<{cpp_real}>::from_json_string<falcon_core::generic::List<{cpp_real}>>(json->raw);
   return new falcon_core::generic::List<{cpp_real}>(*ptr);
+    FALCON_C_API_END(nullptr)
+}}
 }}
 """)
 
@@ -709,63 +765,79 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
         cpp_type = self.combo[1]
         with self.edit_implementation() as f:
             f.write(f"""
+extern "C" {{
 {self.chandle()} {self.mangled_name()}_create(
     List{c_type} arrays) {{
+    FALCON_C_API_BEGIN
     if (!arrays) {{
     throw std::invalid_argument("Null arrays handle passed to {self.mangled_name()}_create");
     }}
     auto list = static_cast<falcon_core::generic::List<{cpp_type}>*>(arrays);
     return new falcon_core::math::arrays::LabelledArrays<{cpp_type}>(list->items());
+    FALCON_C_API_END(nullptr)
 }}
 
 void {self.mangled_name()}_destroy({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_destroy");
 }}
     delete static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle);
+    FALCON_C_API_END()
 }}
 
 List{c_type} {self.mangled_name()}_arrays(
     {self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_arrays");
 }}
     return new falcon_core::generic::List<{cpp_type}>(static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->items());
+    FALCON_C_API_END(nullptr)
 }}
 
 ListAcquisitionContextHandle {self.mangled_name()}_labels(
     {self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_labels");
 }}
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(*static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->labels());
+    FALCON_C_API_END(nullptr)
 }}
 
 bool {self.mangled_name()}_isControlArrays(
     {self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_isControlArrays");
 }}
     return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->isControlArrays();
+    FALCON_C_API_END(false)
 }}
 
 bool {self.mangled_name()}_isMeasuredArrays(
     {self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
     if (!handle) {{
     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_isMeasuredArrays");
     }}
     return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->isMeasuredArrays();
+    FALCON_C_API_END(false)
 }}
 
 {c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_at");
 }}
     auto obj = static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->at(idx);
     return new {cpp_type}(*obj);
+    FALCON_C_API_END({self.error_type_handling(c_type)})
 }}
 
 {self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_intersection");
 }}
@@ -773,37 +845,47 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_interse
     auto listB = static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(other);
     falcon_core::generic::ListSP<{cpp_type}> result = listA->intersection(std::make_shared<falcon_core::math::arrays::LabelledArrays<{cpp_type}>>(*listB));
     return new falcon_core::math::arrays::LabelledArrays<{cpp_type}>(result->items());
+    FALCON_C_API_END(nullptr)
 }}
 
 size_t {self.mangled_name()}_size({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_size");
 }}
     return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->size();
+    FALCON_C_API_END(0)
 }}
 
 bool {self.mangled_name()}_empty({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_empty");
 }}
     return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->empty();
+    FALCON_C_API_END(false)
 }}
 
 void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_erase_at");
 }}
     static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->erase_at(idx);
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_clear({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_clear");
 }}
     static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->clear();
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_push_back");
 }}
@@ -812,9 +894,11 @@ throw std::invalid_argument("Null value passed to {self.mangled_name()}_push_bac
 }}
     auto stored_obj = std::shared_ptr<{cpp_type}>(static_cast<{cpp_type}*>(value), []({cpp_type}*) {{}} );
     static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->push_back(stored_obj);
+    FALCON_C_API_END()
 }}
 
 bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_contains");
 }}
@@ -823,9 +907,11 @@ throw std::invalid_argument("Null value passed to {self.mangled_name()}_contains
 }}
     auto stored_obj = std::shared_ptr<{cpp_type}>(static_cast<{cpp_type}*>(value), []({cpp_type}*) {{}} );
     return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->contains(stored_obj);
+    FALCON_C_API_END(false)
 }}
 
 size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_index");
 }}
@@ -834,37 +920,48 @@ throw std::invalid_argument("Null value passed to {self.mangled_name()}_index");
 }}
     auto stored_obj = std::shared_ptr<{cpp_type}>(static_cast<{cpp_type}*>(value), []({cpp_type}*) {{}} );
     return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->index(stored_obj);
+    FALCON_C_API_END(0)
 }}
 
 bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equal");
 }}
     auto listA = static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle);
     auto listB = static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(other);
     return *listA == *listB;
+    FALCON_C_API_END(false)
 }}
 
 bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_not_equal");
 }}
     return !{self.mangled_name()}_equal(handle, other);
+    FALCON_C_API_END(false)
 }}
 
 StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_to_json_string");
 }}
     std::string json = static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->to_json_string();
     return String_create(json.c_str(), json.size());
+    FALCON_C_API_END(nullptr)
 }}
+
 {self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
+    FALCON_C_API_BEGIN
 if (!json) {{
 throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_from_json_string");
 }}
   auto ptr = falcon_core::math::arrays::LabelledArrays<{cpp_type}>::from_json_string<falcon_core::math::arrays::LabelledArrays<{cpp_type}>>(json->raw);
   return new falcon_core::math::arrays::LabelledArrays<{cpp_type}>(*ptr);
+    FALCON_C_API_END(nullptr)
+}}
 }}
 """)
 
@@ -922,87 +1019,111 @@ for (size_t i = 0; i < n; ++i) {{
 """
         with self.edit_implementation() as f:
             f.write(f"""
+extern "C" {{
 {self.chandle()} {self.mangled_name()}_create_empty() {{
+    FALCON_C_API_BEGIN
     return new falcon_core::math::Axes<{cpp_real}>(
         falcon_core::math::Axes<{cpp_real}>());
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_create_raw(const {c_type}* data, size_t count) {{
+    FALCON_C_API_BEGIN
     std::vector<{cpp_stored}> vec;
     {create_allocation}
     return new falcon_core::math::Axes<{cpp_real}>(
         falcon_core::math::Axes<{cpp_real}>(vec));
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_create(List{self.name()}Handle data) {{
+    FALCON_C_API_BEGIN
 if (!data) {{
 throw std::invalid_argument("Null data handle passed to {self.mangled_name()}_create");
 }}
     auto list = *static_cast<falcon_core::generic::List<{cpp_real}>*>(data);
     return new falcon_core::math::Axes<{cpp_real}>(
             std::make_shared<falcon_core::generic::List<{cpp_real}>>(list));
+    FALCON_C_API_END(nullptr)
 }}
 
 void {self.mangled_name()}_destroy({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_destroy");
 }}
     delete static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle);
+    FALCON_C_API_END()
 }}
 
 size_t {self.mangled_name()}_size({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_size");
 }}
     return static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->size();
+    FALCON_C_API_END(0)
 }}
 
 bool {self.mangled_name()}_empty({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_empty");
 }}
     return static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->empty();
+    FALCON_C_API_END(false)
 }}
 
 void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_erase_at");
 }}
     static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->erase_at(idx);
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_clear({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_clear");
 }}
     static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->clear();
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_push_back");
 }}
     {stored_fill_value}
     static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->push_back(stored_obj);
+    FALCON_C_API_END()
 }}
 
 bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_contains");
 }}
     {stored_fill_value}
     return static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->contains(stored_obj);
+    FALCON_C_API_END(false)
 }}
 
 size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_index");
 }}
     {stored_fill_value}
     return static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->index(stored_obj);
+    FALCON_C_API_END(0)
 }}
 
 size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_items");
 }}
@@ -1013,33 +1134,41 @@ throw std::invalid_argument("Null output buffer passed to {self.mangled_name()}_
     size_t n = std::min(buffer_size, list->items().size());
     {copy_to_out_buffer}
     return n;
+    FALCON_C_API_END(0)
 }}
 
 {c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_at");
 }}
     auto obj = static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->at(idx);
     {stored_out_value}
+    FALCON_C_API_END({self.error_type_handling(c_type)})
 }}
 
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
+    FALCON_C_API_BEGIN
 if (!a || !b) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equal");
 }}
     auto listA = static_cast<falcon_core::math::Axes<{cpp_real}>*>(a);
     auto listB = static_cast<falcon_core::math::Axes<{cpp_real}>*>(b);
     return *listA == *listB;
+    FALCON_C_API_END(false)
 }}
 
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
+    FALCON_C_API_BEGIN
 if (!a || !b) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_not_equal");
 }}
     return !{self.mangled_name()}_equal(a, b);
+    FALCON_C_API_END(false)
 }}
 
 {self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_intersection");
 }}
@@ -1047,22 +1176,28 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_interse
     auto listB = static_cast<falcon_core::math::Axes<{cpp_real}>*>(other);
     auto result = listA->intersection(std::make_shared<falcon_core::math::Axes<{cpp_real}>>(*listB));
     return new falcon_core::math::Axes<{cpp_real}>(result);
+    FALCON_C_API_END(nullptr)
 }}
 
 StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_to_json_string");
 }}
     std::string json = static_cast<falcon_core::math::Axes<{cpp_real}>*>(handle)->to_json_string();
     return String_create(json.c_str(), json.size());
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
+    FALCON_C_API_BEGIN
 if (!json) {{
 throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_from_json_string");
 }}
   auto ptr = falcon_core::math::Axes<{cpp_real}>::from_json_string<falcon_core::math::Axes<{cpp_real}>>(json->raw);
   return new falcon_core::math::Axes<{cpp_real}>(*ptr);
+    FALCON_C_API_END(nullptr)
+}}
 }}
 """)
 
@@ -1130,65 +1265,83 @@ return cstr;"""
 
             # Write the complete implementation
             f.write(f"""
+extern "C" {{
 {self.chandle()} {self.mangled_name()}_create({c_type_1} first, {c_type_2} second) {{
+    FALCON_C_API_BEGIN
     {first_create_adjustment}
     {second_create_adjustment}
     return new falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>(first_obj, second_obj);
+    FALCON_C_API_END(nullptr)
 }}
 
 void {self.mangled_name()}_destroy({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_destroy");
 }}
     delete static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(handle);
+    FALCON_C_API_END()
 }}
 
 {c_type_1} {self.mangled_name()}_first({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_first");
 }}
     {first_return}
+    FALCON_C_API_END({self.error_type_handling(c_type_1)})
 }}
 
 {c_type_2} {self.mangled_name()}_second({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_second");
 }}
     {second_return}
+    FALCON_C_API_END({self.error_type_handling(c_type_2)})
 }}
 
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
+    FALCON_C_API_BEGIN
 if (!a || !b) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equal");
 }}
     auto pair_a = static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(a);
     auto pair_b = static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(b);
     return *pair_a == *pair_b;
+    FALCON_C_API_END(false)
 }}
 
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
+    FALCON_C_API_BEGIN
 if (!a || !b) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_not_equal");
 }}
     auto pair_a = static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(a);
     auto pair_b = static_cast<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>*>(b);
     return *pair_a != *pair_b;
+    FALCON_C_API_END(false)
 }}
 
 StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_to_json_string");
 }}
 std::string json = static_cast<falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>*>(handle)->to_json_string();
   return String_create(json.c_str(), json.size());
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
+    FALCON_C_API_BEGIN
 if (!json) {{
 throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_from_json_string");
 }}
   auto ptr = falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>::from_json_string<falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>>(json->raw);
   return new falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>(*ptr);
+    FALCON_C_API_END(nullptr)
+}}
 }}
 """)
 
@@ -1217,32 +1370,40 @@ auto value_obj= std::make_shared<{cpp_value_type}>(temp_value);"""
             return_out_value = "return out;"
         with self.edit_implementation() as f:
             f.write(f"""
+extern "C" {{
 {self.chandle()} {self.mangled_name()}_create(MapInterpretationContext{self.name()}Handle map) {{
+    FALCON_C_API_BEGIN
 if (!map) {{
 throw std::invalid_argument("Null map handle passed to {self.mangled_name()}_create");
 }}
     auto real_map= std::make_shared<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, {cpp_value_type}>>(*static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, {cpp_value_type}>*>(map));
     return new falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>(real_map);
+    FALCON_C_API_END(nullptr)
 }}
 
 void {self.mangled_name()}_destroy({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null map handle passed to {self.mangled_name()}_destroy");
 }}
     delete static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
+    FALCON_C_API_END()
 }}
 
 SymbolUnitHandle {self.mangled_name()}_unit(
      {self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
      if (!handle) {{
      throw std::invalid_argument("Null handle passed to {self.mangled_name()}_unit");
      }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     return new falcon_core::physics::units::SymbolUnit(*that->unit());
+    FALCON_C_API_END(nullptr)
 }}
 
 ListInterpretationContextHandle {self.mangled_name()}_select_by_connection(
     {self.chandle()} handle, ConnectionHandle connection) {{
+    FALCON_C_API_BEGIN
     if (!handle) {{
     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_select_by_connection");
     }}
@@ -1252,10 +1413,12 @@ ListInterpretationContextHandle {self.mangled_name()}_select_by_connection(
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     auto conn = std::make_shared<falcon_core::physics::device_structures::Connection>(*static_cast<falcon_core::physics::device_structures::Connection*>(connection));
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_connection(conn));
+    FALCON_C_API_END(nullptr)
 }}
 
 ListInterpretationContextHandle {self.mangled_name()}_select_by_connections(
                     {self.chandle()} handle, ConnectionsHandle connections) {{
+    FALCON_C_API_BEGIN
                     if (!handle) {{
                     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_select_by_connections");
                     }}
@@ -1265,10 +1428,12 @@ ListInterpretationContextHandle {self.mangled_name()}_select_by_connections(
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     auto conns = std::make_shared<falcon_core::physics::device_structures::Connections>(*static_cast<falcon_core::physics::device_structures::Connections*>(connections));
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_connections(conns->items()));
+    FALCON_C_API_END(nullptr)
 }}
 
 ListInterpretationContextHandle {self.mangled_name()}_select_by_independent_connection(
     {self.chandle()} handle, ConnectionHandle connection) {{
+    FALCON_C_API_BEGIN
     if (!handle) {{
     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_select_by_independent_connection");
     }}
@@ -1278,10 +1443,12 @@ ListInterpretationContextHandle {self.mangled_name()}_select_by_independent_conn
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     auto conn = std::make_shared<falcon_core::physics::device_structures::Connection>(*static_cast<falcon_core::physics::device_structures::Connection*>(connection));
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_independent_connection(conn));
+    FALCON_C_API_END(nullptr)
 }}
 
 ListInterpretationContextHandle {self.mangled_name()}_select_by_dependent_connection(
     {self.chandle()} handle, ConnectionHandle connection) {{
+    FALCON_C_API_BEGIN
     if (!handle) {{
     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_select_by_dependent_connection");
     }}
@@ -1291,12 +1458,14 @@ ListInterpretationContextHandle {self.mangled_name()}_select_by_dependent_connec
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     auto conn = std::make_shared<falcon_core::physics::device_structures::Connection>(*static_cast<falcon_core::physics::device_structures::Connection*>(connection));
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->select_by_dependent_connection(conn));
+    FALCON_C_API_END(nullptr)
 }}
 
 ListInterpretationContextHandle {self.mangled_name()}_select_contexts(
     {self.chandle()} handle,
     ListConnectionHandle                independent_connections,
     ListConnectionHandle                dependent_connections) {{
+    FALCON_C_API_BEGIN
     if (!handle) {{
     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_select_contexts");
     }}
@@ -1321,11 +1490,13 @@ ListInterpretationContextHandle {self.mangled_name()}_select_contexts(
       falcon_core::autotuner_interfaces::interpretations::
           InterpretationContext>(
       that->select_contexts(independents, dependents)->items());
+    FALCON_C_API_END(nullptr)
 }}
 
 void {self.mangled_name()}_insert_or_assign({self.chandle()} handle,
     const InterpretationContextHandle   key,
     const {c_value_type} value) {{
+    FALCON_C_API_BEGIN
     if (!handle) {{
     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_insert_or_assign");
     }}
@@ -1336,12 +1507,14 @@ void {self.mangled_name()}_insert_or_assign({self.chandle()} handle,
     auto context= std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key)); 
     {set_proper_value}
     that->insert_or_assign(context, value_obj);
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_insert(
     {self.chandle()} handle,
     const InterpretationContextHandle   key,
     const {c_value_type} value) {{
+    FALCON_C_API_BEGIN
     if (!handle) {{
     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_insert");
     }}
@@ -1352,10 +1525,12 @@ void {self.mangled_name()}_insert(
     auto context= std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key)); 
     {set_proper_value}
     that->insert_or_assign(context, value_obj);
+    FALCON_C_API_END()
 }}
 
 {c_value_type} {self.mangled_name()}_at({self.chandle()} handle,
     const InterpretationContextHandle   key) {{
+    FALCON_C_API_BEGIN
     if (!handle) {{
     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_at");
     }}
@@ -1366,10 +1541,12 @@ void {self.mangled_name()}_insert(
     auto context= std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key)); 
     auto out = that->at(context);
     {return_out_value}
+    FALCON_C_API_END({self.error_type_handling(c_value_type)})
 }}
 
 void {self.mangled_name()}_erase({self.chandle()} handle,
     const InterpretationContextHandle   key) {{
+    FALCON_C_API_BEGIN
     if (!handle) {{
     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_erase");
     }}
@@ -1379,34 +1556,42 @@ void {self.mangled_name()}_erase({self.chandle()} handle,
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     auto context= std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key)); 
     return that->erase(context);
+    FALCON_C_API_END()
 }}
 
 size_t {self.mangled_name()}_size({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_size");
 }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     return that->size();
+    FALCON_C_API_END(0)
 }}
 
 bool {self.mangled_name()}_empty({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_empty");
 }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     return that->empty();
+    FALCON_C_API_END(false)
 }}
 
 void {self.mangled_name()}_clear({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_clear");
 }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     that->clear();
+    FALCON_C_API_END()
 }}
 
 bool {self.mangled_name()}_contains({self.chandle()} handle,
     const InterpretationContextHandle   key) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_contains");
 }}
@@ -1416,64 +1601,81 @@ throw std::invalid_argument("Null key passed to {self.mangled_name()}_contains")
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     auto context= std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key)); 
     return that->contains(context);
+    FALCON_C_API_END(false)
 }}
 
 ListInterpretationContextHandle {self.mangled_name()}_keys(
                     {self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
                     if (!handle) {{
                     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_keys");
                     }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*that->keys());
+    FALCON_C_API_END(nullptr)
 }}
 
 List{self.name()}Handle {self.mangled_name()}_values({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_values");
 }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     return new falcon_core::generic::List<{cpp_value_type}>(*that->values());
+    FALCON_C_API_END(nullptr)
 }}
 
 ListPairInterpretationContext{self.name()}Handle {self.mangled_name()}_items(
                     {self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
                     if (!handle) {{
                     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_items");
                     }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
     falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,{cpp_value_type}>> items_sp = that->items(); 
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,{cpp_value_type}>>(items_sp);
+    FALCON_C_API_END(nullptr)
 }}
 
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
+    FALCON_C_API_BEGIN
 if (!a || !b) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equal");
 }}
     auto listA = static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(a);
     auto listB = static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(b);
     return *listA == *listB;
+    FALCON_C_API_END(false)
 }}
 
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
+    FALCON_C_API_BEGIN
 if (!a || !b) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_not_equal");
 }}
     return !{self.mangled_name()}_equal(a, b);
+    FALCON_C_API_END(false)
 }}
 
 StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_to_json_string");
 }}
 std::string json = static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle)->to_json_string();
   return String_create(json.c_str(), json.size());
+    FALCON_C_API_END(nullptr)
 }}
+
 {self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
+    FALCON_C_API_BEGIN
 if (!json) {{
 throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_from_json_string");
 }}
   auto ptr = falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>::from_json_string<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>>(json->raw);
   return new falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>(*ptr);
+    FALCON_C_API_END(nullptr)
+}}
 }}
 """)
 
@@ -1529,11 +1731,15 @@ auto correct_value = std::make_shared<{cpp_value_type}>(temp_value);"""
             at_return = f"""return static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->at(correct_key);"""
         with self.edit_implementation() as f:
             f.write(f"""
+extern "C" {{
 {self.chandle()} {self.mangled_name()}_create_empty() {{
+    FALCON_C_API_BEGIN
     return new falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>(); 
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_create(const Pair{name}Handle* data, size_t count) {{
+    FALCON_C_API_BEGIN
 if (!data) {{
 throw std::invalid_argument("Null data pointer passed to {self.mangled_name()}_create");
 }}
@@ -1545,136 +1751,169 @@ throw std::invalid_argument("Null data pointer passed to {self.mangled_name()}_c
             data[i])));
     }}
     return new falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>(vec);
+    FALCON_C_API_END(nullptr)
 }}
 
 void {self.mangled_name()}_destroy({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_destroy");
 }}
     delete static_cast<falcon_core::generic::Map<{cpp_key_type}, {cpp_value_type}>*>(handle);
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_insert_or_assign({self.chandle()} handle, const {c_key_type} key, const {c_value_type} value) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_insert_or_assign");
 }}
     {correct_key}
     {correct_value}
     static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->insert_or_assign(correct_key,correct_value);
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_insert({self.chandle()} handle, const {c_key_type} key, const {c_value_type} value) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_insert");
 }}
     {correct_key}
     {correct_value}
     static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->insert(correct_key,correct_value);
+    FALCON_C_API_END()
 }}
 
 {c_value_type} {self.mangled_name()}_at({self.chandle()} handle, const {c_key_type} key) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_at");
 }}
     {correct_key}
     {at_return}
+    FALCON_C_API_END({self.error_type_handling(c_value_type)})
 }}
 
 void {self.mangled_name()}_erase({self.chandle()} handle, const {c_key_type} key) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_erase");
 }}
     {correct_key}
     return static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->erase(correct_key);
+    FALCON_C_API_END()
 }}
 
 size_t {self.mangled_name()}_size({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_size");
 }}
     return static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->size();
+    FALCON_C_API_END(0)
 }}
 
 bool {self.mangled_name()}_empty({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_empty");
 }}
     return static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->empty();
+    FALCON_C_API_END(false)
 }}
 
-
 void {self.mangled_name()}_clear({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_clear");
 }}
     return static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->clear();
+    FALCON_C_API_END()
 }}
 
 bool {self.mangled_name()}_contains({self.chandle()} handle, {c_key_type} key) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_contains");
 }}
     {correct_key}
     return static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->contains(correct_key);
+    FALCON_C_API_END(false)
 }}
 
 List{key_name}Handle {self.mangled_name()}_keys({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_keys");
 }}
     auto map = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle);
     auto keys_sp = map->keys(); // shared_ptr<falcon_core::generic::List<Key>>
     return new falcon_core::generic::List<{cpp_key_type}>(*keys_sp);
+    FALCON_C_API_END(nullptr)
 }}
 
 List{value_name}Handle {self.mangled_name()}_values({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_values");
 }}
     auto map = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle);
     auto values_sp = map->values(); // shared_ptr<falcon_core::generic::List<Value>>
     return new falcon_core::generic::List<{cpp_value_type}>(*values_sp);
+    FALCON_C_API_END(nullptr)
 }}
 
 ListPair{name}Handle {self.mangled_name()}_items({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_items");
 }}
     auto map = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle);
     falcon_core::generic::List<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>> items_sp = map->items(); 
     return new falcon_core::generic::List<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>>(items_sp);
+    FALCON_C_API_END(nullptr)
 }}
 
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b) {{
+    FALCON_C_API_BEGIN
 if (!a || !b) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equal");
 }}
     auto listA = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(a);
     auto listB = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(b);
     return *listA == *listB;
+    FALCON_C_API_END(false)
 }}
 
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b) {{
+    FALCON_C_API_BEGIN
 if (!a || !b) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_not_equal");
 }}
     return !{self.mangled_name()}_equal(a, b);
+    FALCON_C_API_END(false)
 }}
 
 StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_to_json_string");
 }}
 std::string json = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle)->to_json_string();
   return String_create(json.c_str(), json.size());
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
+    FALCON_C_API_BEGIN
 if (!json) {{
 throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_from_json_string");
 }}
   auto ptr = falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>::from_json_string<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>(json->raw);
   return new falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>(*ptr);
+    FALCON_C_API_END(nullptr)
+}}
 }}
 """)
 
@@ -1683,11 +1922,15 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
         cpp_type = self.combo[1]
         with self.edit_implementation() as f:
             f.write(f"""
+extern "C" {{
 {self.chandle()} {self.mangled_name()}_create_empty() {{
+    FALCON_C_API_BEGIN
     return new falcon_core::generic::FArray<{cpp_type}>(falcon_core::generic::FArray<{cpp_type}>());
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_create_zeros(const size_t* shape, size_t ndim) {{
+    FALCON_C_API_BEGIN
 if (!shape) {{
 throw std::invalid_argument("Null shape passed to {self.mangled_name()}_create_zeros");
 }}
@@ -1696,9 +1939,11 @@ throw std::invalid_argument("Null shape passed to {self.mangled_name()}_create_z
         vec.push_back(shape[i]);
     }}
     return new falcon_core::generic::FArray<{cpp_type}>(*falcon_core::generic::FArray<{cpp_type}>::zeros(vec));
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_from_shape(const size_t* shape, size_t ndim) {{
+    FALCON_C_API_BEGIN
 if (!shape) {{
 throw std::invalid_argument("Null shape passed to {self.mangled_name()}_from_shape");
 }}
@@ -1707,9 +1952,11 @@ throw std::invalid_argument("Null shape passed to {self.mangled_name()}_from_sha
         vec.push_back(shape[i]);
     }}
     return new falcon_core::generic::FArray<{cpp_type}>(falcon_core::generic::FArray<{cpp_type}>(vec));
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_from_data(const {c_type}* data, const size_t* shape, size_t ndim) {{
+    FALCON_C_API_BEGIN
 if (!data) {{
 throw std::invalid_argument("Null data passed to {self.mangled_name()}_from_data");
 }}
@@ -1726,31 +1973,40 @@ throw std::invalid_argument("Null shape passed to {self.mangled_name()}_from_dat
       xt::adapt(data, total_size, xt::no_ownership(), shapeVec);
   return new falcon_core::generic::FArray<{cpp_type}>(
       falcon_core::generic::FArray<{cpp_type}>(arr));
+    FALCON_C_API_END(nullptr)
 }}
 
 void {self.mangled_name()}_destroy({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_destroy");
 }}
     delete static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    FALCON_C_API_END()
 }}
 
 size_t {self.mangled_name()}_size({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_size");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return farray->size();
+    FALCON_C_API_END(0)
 }}
 
 size_t {self.mangled_name()}_dimension({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_dimension");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return farray->dimension();
+    FALCON_C_API_END(0)
 }}
+
 size_t {self.mangled_name()}_shape({self.chandle()} handle, size_t* out_buffer, size_t ndim) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_shape");
 }}
@@ -1765,9 +2021,11 @@ throw std::invalid_argument("Null out_buffer passed to {self.mangled_name()}_sha
         out_buffer[i] = shape[i];
     }}
     return to_copy;
+    FALCON_C_API_END(0)
 }}
 
 size_t {self.mangled_name()}_data({self.chandle()} handle, {c_type}* out_buffer, size_t numdata) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_data");
 }}
@@ -1784,34 +2042,42 @@ throw std::invalid_argument("Null out_buffer passed to {self.mangled_name()}_sha
     }}
     memcpy(out_buffer, farray->data(), farray->size() * sizeof({c_type}));
     return farray->size();
+    FALCON_C_API_END(0)
 }}
  
 void {self.mangled_name()}_plusequals_farray({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plusequals_farray");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
     *farray += *oarray;
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_plusequals_double({self.chandle()} handle, const double other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plusequals_double");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray += other;
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_plusequals_int({self.chandle()} handle, const int other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plusequals_int");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray += other;
+    FALCON_C_API_END()
 }}
 
 {self.chandle()} {self.mangled_name()}_plus_farray({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plus_farray");
 }}
@@ -1820,50 +2086,62 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plus_fa
     return new falcon_core::generic::FArray<{cpp_type}>(
         *(*farray +
             std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray)));
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_plus_double({self.chandle()} handle, const double other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plus_double");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*(*farray + other));
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_plus_int({self.chandle()} handle, const int other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plus_int");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*(*farray + other));
+    FALCON_C_API_END(nullptr)
 }}
 
 void {self.mangled_name()}_minusequals_farray({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minusequals_farray");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
     *farray -= *oarray;
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_minusequals_double({self.chandle()} handle, const double other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minusequals_double");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray -= other;
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_minusequals_int({self.chandle()} handle, const int other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minusequals_int");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray -= other;
+    FALCON_C_API_END()
 }}
 
 {self.chandle()} {self.mangled_name()}_minus_farray({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minus_farray");
 }}
@@ -1872,58 +2150,72 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minus_f
     return new falcon_core::generic::FArray<{cpp_type}>(
         *(*farray -
             std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray)));
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_minus_double({self.chandle()} handle, const double other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minus_double");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*(*farray - other));
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_minus_int({self.chandle()} handle, const int other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minus_int");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*(*farray - other));
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_negation({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_negation");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*(-*farray));
+    FALCON_C_API_END(nullptr)
 }}
 
 void {self.mangled_name()}_timesequals_farray({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_timesequals_farray");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
     *farray *= *oarray;
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_timesequals_double({self.chandle()} handle, const double other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_timesequals_double");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray *= other;
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_timesequals_int({self.chandle()} handle, const int other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_timesequals_int");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray *= other;
+    FALCON_C_API_END()
 }}
 
 {self.chandle()} {self.mangled_name()}_times_farray({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_times_farray");
 }}
@@ -1932,50 +2224,62 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_times_f
     return new falcon_core::generic::FArray<{cpp_type}>(
         *(*farray *
             std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray)));
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_times_double({self.chandle()} handle, const double other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_times_double");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*(*farray * other));
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_times_int({self.chandle()} handle, const int other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_times_int");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*(*farray * other));
+    FALCON_C_API_END(nullptr)
 }}
 
 void {self.mangled_name()}_dividesequals_farray({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_dividesequals_farray");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
     *farray /= *oarray;
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_dividesequals_double({self.chandle()} handle, const double other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_dividesequals_double");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray /= other;
+    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_dividesequals_int({self.chandle()} handle, const int other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_dividesequals_int");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray /= other;
+    FALCON_C_API_END()
 }}
 
 {self.chandle()} {self.mangled_name()}_divides_farray({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides_farray");
 }}
@@ -1984,49 +2288,61 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides
     return new falcon_core::generic::FArray<{cpp_type}>(
         *(*farray /
             std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray)));
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_divides_double({self.chandle()} handle, const double other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides_double");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*(*farray / other));
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_divides_int({self.chandle()} handle, const int other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides_int");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*(*farray / other));
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_pow({self.chandle()} handle, const double other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_pow");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*farray ^ other);
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_abs({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_abs");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*farray->abs());
+    FALCON_C_API_END(nullptr)
 }}
 
 {c_type} {self.mangled_name()}_min({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_min");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return farray->min();
+    FALCON_C_API_END({self.error_type_handling(c_type)})
 }}
 
 {self.chandle()} {self.mangled_name()}_min_arraywise({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_min_arraywise");
 }}
@@ -2034,17 +2350,21 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_min_arr
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
     return new falcon_core::generic::FArray<{cpp_type}>(
     *farray->min(std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray)));
+    FALCON_C_API_END(nullptr)
 }}
 
 {c_type} {self.mangled_name()}_max({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_max");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return farray->max();
+    FALCON_C_API_END({self.error_type_handling(c_type)})
 }}
 
 {self.chandle()} {self.mangled_name()}_max_arraywise({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_max_arraywise");
 }}
@@ -2052,59 +2372,73 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_max_arr
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
     return new falcon_core::generic::FArray<{cpp_type}>(
     *farray->max(std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray)));
+    FALCON_C_API_END(nullptr)
 }}
 
 bool {self.mangled_name()}_equality({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equality");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
     return *farray == *oarray;
+    FALCON_C_API_END(false)
 }}
 
 bool {self.mangled_name()}_notequality({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_notequality");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
     return *farray != *oarray;
+    FALCON_C_API_END(false)
 }}
 
 bool {self.mangled_name()}_greaterthan({self.chandle()} handle, const {c_type} value) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_greaterthan");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return *farray > value;
+    FALCON_C_API_END(false)
 }}
 
 bool {self.mangled_name()}_lessthan({self.chandle()} handle, const {c_type} value) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_lessthan");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return *farray < value;
+    FALCON_C_API_END(false)
 }}
 
 void {self.mangled_name()}_remove_offset({self.chandle()} handle, const {c_type} offset) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_remove_offset");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     farray->remove_offset(offset);
+    FALCON_C_API_END()
 }}
 
 {c_type} {self.mangled_name()}_sum({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_sum");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return farray->sum();
+    FALCON_C_API_END({self.error_type_handling(c_type)})
 }}
 
 {self.chandle()} {self.mangled_name()}_reshape({self.chandle()} handle, const size_t* shape, size_t ndims) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_reshape");
 }}
@@ -2114,25 +2448,31 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_reshape
     }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*farray->reshape(vec));
+    FALCON_C_API_END(nullptr)
 }}
 
 ListListSizeTHandle {self.mangled_name()}_where({self.chandle()} handle, const {c_type} value) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_where");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::List<falcon_core::generic::List<size_t>>(*farray->where(value));
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_flip({self.chandle()} handle, size_t axis) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_flip");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*farray->flip(axis));
+    FALCON_C_API_END(nullptr)
 }}
 
 size_t {self.mangled_name()}_full_gradient({self.chandle()} handle, {self.chandle()}* out_buffer, size_t buffer_size) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_full_gradient");
 }}
@@ -2148,63 +2488,79 @@ throw std::invalid_argument("Null out_buffer passed to {self.mangled_name()}_ful
         out_buffer[i] = new falcon_core::generic::FArray<{cpp_type}>(*(many_gradients->items()[i]));
     }}
     return many_gradients->size();
+    FALCON_C_API_END(0)
 }}
 
 {self.chandle()} {self.mangled_name()}_gradient({self.chandle()} handle, size_t axis) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_gradient");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*farray->gradient(axis));
+    FALCON_C_API_END(nullptr)
 }}
 
 double {self.mangled_name()}_get_sum_of_squares({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_get_sum_of_squares");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return farray->get_sum_of_squares();
+    FALCON_C_API_END(0.0)
 }}
 
 double {self.mangled_name()}_get_summed_diff_int_of_squares({self.chandle()} handle, const int other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_get_summed_diff_int_of_squares");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return farray->get_sum_of_squares(other);
+    FALCON_C_API_END(0.0)
 }}
 
 double {self.mangled_name()}_get_summed_diff_double_of_squares({self.chandle()} handle, const double other) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_get_summed_diff_double_of_squares");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return farray->get_sum_of_squares(other);
+    FALCON_C_API_END(0.0)
 }}
 
 double {self.mangled_name()}_get_summed_diff_array_of_squares({self.chandle()} handle, {self.chandle()} other) {{
+    FALCON_C_API_BEGIN
 if (!handle || !other) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_get_summed_diff_array_of_squares");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
     return farray->get_sum_of_squares(std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(*oarray));
+    FALCON_C_API_END(0.0)
 }}
 
 StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
+    FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_to_json_string");
 }}
   std::string json = static_cast<falcon_core::generic::FArray<{c_type}>*>(handle)->to_json_string();
   return String_create(json.c_str(), json.size());
+    FALCON_C_API_END(nullptr)
 }}
 
 {self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
+    FALCON_C_API_BEGIN
 if (!json) {{
 throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_from_json_string");
 }}
   auto ptr = falcon_core::generic::FArray<{cpp_type}>::from_json_string<falcon_core::generic::FArray<{cpp_type}>>(json->raw);
   return new falcon_core::generic::FArray<{cpp_type}>(*ptr);
+    FALCON_C_API_END(nullptr)
+}}
 }}
 """)
 

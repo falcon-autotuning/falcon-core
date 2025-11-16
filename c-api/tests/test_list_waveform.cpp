@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListWaveform_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -64,7 +65,9 @@ TEST_F(ListWaveformTest, CreateEmpty) {
   EXPECT_TRUE(ListWaveform_empty(handle));
   EXPECT_EQ(ListWaveform_size(handle), 0);
   ListWaveform_destroy(handle);
-  EXPECT_THROW(ListWaveform_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListWaveformTest, FillValue) {
@@ -77,7 +80,9 @@ TEST_F(ListWaveformTest, CreateFromArray) {
   WaveformHandle     arr[2] = {sh1, sh2};
   ListWaveformHandle handle = ListWaveform_create(arr, 2);
   EXPECT_EQ(ListWaveform_size(handle), 2);
-  EXPECT_THROW(ListWaveform_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListWaveform_destroy(handle);
 }
 
@@ -85,14 +90,18 @@ TEST_F(ListWaveformTest, SizeEmptyInvalid) {
   auto handle = ListWaveform_create_empty();
   EXPECT_EQ(ListWaveform_size(handle), 0);
   ListWaveform_destroy(handle);
-  EXPECT_THROW(ListWaveform_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListWaveformTest, EmptyInvalid) {
   auto handle = ListWaveform_create_empty();
   EXPECT_TRUE(ListWaveform_empty(handle));
   ListWaveform_destroy(handle);
-  EXPECT_THROW(ListWaveform_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListWaveformTest, EraseAtClear) {
@@ -102,8 +111,12 @@ TEST_F(ListWaveformTest, EraseAtClear) {
   ListWaveform_clear(handle);
   EXPECT_TRUE(ListWaveform_empty(handle));
   ListWaveform_destroy(handle);
-  EXPECT_THROW(ListWaveform_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListWaveform_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListWaveform_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListWaveformTest, PushBackContainsIndex) {
@@ -112,9 +125,15 @@ TEST_F(ListWaveformTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListWaveform_contains(handle, sh1));
   EXPECT_EQ(ListWaveform_index(handle, sh1), 0);
   ListWaveform_destroy(handle);
-  EXPECT_THROW(ListWaveform_push_back(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListWaveform_contains(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListWaveform_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListWaveform_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListWaveform_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListWaveformTest, ItemsAt) {
@@ -123,9 +142,15 @@ TEST_F(ListWaveformTest, ItemsAt) {
   WaveformHandle out[2];
   EXPECT_EQ(ListWaveform_items(handle, out, 2), 2);
   ListWaveform_destroy(handle);
-  EXPECT_THROW(ListWaveform_items(nullptr, out, 2), std::invalid_argument);
-  EXPECT_THROW(ListWaveform_items(handle, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(ListWaveform_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListWaveform_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListWaveform_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListWaveformTest, EqualNotEqualIntersection) {
@@ -139,12 +164,24 @@ TEST_F(ListWaveformTest, EqualNotEqualIntersection) {
   ListWaveform_destroy(h1);
   ListWaveform_destroy(h2);
   ListWaveform_destroy(h3);
-  EXPECT_THROW(ListWaveform_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListWaveform_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListWaveform_not_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListWaveform_not_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListWaveform_intersection(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListWaveform_intersection(h1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListWaveform_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListWaveform_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListWaveform_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListWaveform_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListWaveform_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListWaveformTest, ToJsonFromJson) {
@@ -156,34 +193,48 @@ TEST_F(ListWaveformTest, ToJsonFromJson) {
   ListWaveform_destroy(handle);
   ListWaveform_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListWaveform_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(ListWaveform_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListWaveform_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListWaveformTest, FillValueNull) {
-  EXPECT_THROW(ListWaveform_fill_value(3, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListWaveformTest, PushBackNull) {
   auto handle = ListWaveform_create_empty();
-  EXPECT_THROW(ListWaveform_push_back(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListWaveform_destroy(handle);
 }
 
 TEST_F(ListWaveformTest, ContainsNull) {
   auto handle = ListWaveform_create_empty();
-  EXPECT_THROW(ListWaveform_contains(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListWaveform_destroy(handle);
 }
 
 TEST_F(ListWaveformTest, IndexNull) {
   auto handle = ListWaveform_create_empty();
-  EXPECT_THROW(ListWaveform_index(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListWaveform_destroy(handle);
 }
 
 TEST_F(ListWaveformTest, CreateNullArray) {
-  EXPECT_THROW(ListWaveform_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListWaveformTest, At) {
@@ -194,5 +245,7 @@ TEST_F(ListWaveformTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListWaveform_destroy(handle);
-  EXPECT_THROW(ListWaveform_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListWaveform_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

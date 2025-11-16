@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
 #include "falcon_core/generic/ListPortTransform_c_api.h"
@@ -128,28 +129,27 @@ TEST_F(MeasurementRequestTest, CreateDestroy) {
   auto r = MeasurementRequest_create(
       msg, name, waveforms, getters, meter_transforms, time_domain);
   MeasurementRequest_destroy(r);
-  EXPECT_THROW(
-      MeasurementRequest_create(
-          nullptr, name, waveforms, getters, meter_transforms, time_domain),
-      std::invalid_argument);
-  EXPECT_THROW(
-      MeasurementRequest_create(
-          msg, nullptr, waveforms, getters, meter_transforms, time_domain),
-      std::invalid_argument);
-  EXPECT_THROW(MeasurementRequest_create(
-                   msg, name, nullptr, getters, meter_transforms, time_domain),
-               std::invalid_argument);
-  EXPECT_THROW(
-      MeasurementRequest_create(
-          msg, name, waveforms, nullptr, meter_transforms, time_domain),
-      std::invalid_argument);
-  EXPECT_THROW(MeasurementRequest_create(
-                   msg, name, waveforms, getters, nullptr, time_domain),
-               std::invalid_argument);
-  EXPECT_THROW(MeasurementRequest_create(
-                   msg, name, waveforms, getters, meter_transforms, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MeasurementRequest_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MeasurementRequest_create(          nullptr, name, waveforms, getters, meter_transforms, time_domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_create(          msg, nullptr, waveforms, getters, meter_transforms, time_domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_create(                   msg, name, nullptr, getters, meter_transforms, time_domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_create(          msg, name, waveforms, nullptr, meter_transforms, time_domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_create(                   msg, name, waveforms, getters, nullptr, time_domain);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_create(                   msg, name, waveforms, getters, meter_transforms, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MeasurementRequestTest, Accessors) {
@@ -178,14 +178,24 @@ TEST_F(MeasurementRequestTest, Accessors) {
                "clock");
   LabelledDomain_destroy(td);
 
-  EXPECT_THROW(MeasurementRequest_message(nullptr), std::invalid_argument);
-  EXPECT_THROW(MeasurementRequest_measurement_name(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MeasurementRequest_waveforms(nullptr), std::invalid_argument);
-  EXPECT_THROW(MeasurementRequest_getters(nullptr), std::invalid_argument);
-  EXPECT_THROW(MeasurementRequest_meter_transforms(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MeasurementRequest_time_domain(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MeasurementRequest_message(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_measurement_name(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_waveforms(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_getters(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_meter_transforms(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_time_domain(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MeasurementRequestTest, Equality) {
@@ -194,12 +204,18 @@ TEST_F(MeasurementRequestTest, Equality) {
   EXPECT_TRUE(MeasurementRequest_equal(req, req));
   EXPECT_FALSE(MeasurementRequest_not_equal(req, req));
 
-  EXPECT_THROW(MeasurementRequest_equal(nullptr, req2), std::invalid_argument);
-  EXPECT_THROW(MeasurementRequest_equal(req, nullptr), std::invalid_argument);
-  EXPECT_THROW(MeasurementRequest_not_equal(nullptr, req2),
-               std::invalid_argument);
-  EXPECT_THROW(MeasurementRequest_not_equal(req, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MeasurementRequest_equal(nullptr, req2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_equal(req, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_not_equal(nullptr, req2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_not_equal(req, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MeasurementRequestTest, ToJsonFromJson) {
@@ -209,8 +225,10 @@ TEST_F(MeasurementRequestTest, ToJsonFromJson) {
   MeasurementRequest_destroy(r2);
   String_destroy(json);
 
-  EXPECT_THROW(MeasurementRequest_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MeasurementRequest_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MeasurementRequest_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementRequest_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

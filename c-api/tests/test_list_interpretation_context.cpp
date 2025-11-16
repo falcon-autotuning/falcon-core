@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListInterpretationContext_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -66,8 +67,9 @@ TEST_F(ListInterpretationContextTest, CreateEmpty) {
   EXPECT_TRUE(ListInterpretationContext_empty(handle));
   EXPECT_EQ(ListInterpretationContext_size(handle), 0);
   ListInterpretationContext_destroy(handle);
-  EXPECT_THROW(ListInterpretationContext_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInterpretationContextTest, FillValue) {
@@ -81,8 +83,9 @@ TEST_F(ListInterpretationContextTest, CreateFromArray) {
   ListInterpretationContextHandle handle =
       ListInterpretationContext_create(arr, 2);
   EXPECT_EQ(ListInterpretationContext_size(handle), 2);
-  EXPECT_THROW(ListInterpretationContext_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListInterpretationContext_destroy(handle);
 }
 
@@ -90,14 +93,18 @@ TEST_F(ListInterpretationContextTest, SizeEmptyInvalid) {
   auto handle = ListInterpretationContext_create_empty();
   EXPECT_EQ(ListInterpretationContext_size(handle), 0);
   ListInterpretationContext_destroy(handle);
-  EXPECT_THROW(ListInterpretationContext_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInterpretationContextTest, EmptyInvalid) {
   auto handle = ListInterpretationContext_create_empty();
   EXPECT_TRUE(ListInterpretationContext_empty(handle));
   ListInterpretationContext_destroy(handle);
-  EXPECT_THROW(ListInterpretationContext_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInterpretationContextTest, EraseAtClear) {
@@ -107,9 +114,12 @@ TEST_F(ListInterpretationContextTest, EraseAtClear) {
   ListInterpretationContext_clear(handle);
   EXPECT_TRUE(ListInterpretationContext_empty(handle));
   ListInterpretationContext_destroy(handle);
-  EXPECT_THROW(ListInterpretationContext_erase_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(ListInterpretationContext_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInterpretationContextTest, PushBackContainsIndex) {
@@ -118,12 +128,15 @@ TEST_F(ListInterpretationContextTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListInterpretationContext_contains(handle, sh1));
   EXPECT_EQ(ListInterpretationContext_index(handle, sh1), 0);
   ListInterpretationContext_destroy(handle);
-  EXPECT_THROW(ListInterpretationContext_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListInterpretationContext_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListInterpretationContext_index(nullptr, sh1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInterpretationContextTest, ItemsAt) {
@@ -132,11 +145,15 @@ TEST_F(ListInterpretationContextTest, ItemsAt) {
   InterpretationContextHandle out[2];
   EXPECT_EQ(ListInterpretationContext_items(handle, out, 2), 2);
   ListInterpretationContext_destroy(handle);
-  EXPECT_THROW(ListInterpretationContext_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListInterpretationContext_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListInterpretationContext_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInterpretationContextTest, EqualNotEqualIntersection) {
@@ -150,18 +167,24 @@ TEST_F(ListInterpretationContextTest, EqualNotEqualIntersection) {
   ListInterpretationContext_destroy(h1);
   ListInterpretationContext_destroy(h2);
   ListInterpretationContext_destroy(h3);
-  EXPECT_THROW(ListInterpretationContext_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListInterpretationContext_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListInterpretationContext_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListInterpretationContext_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListInterpretationContext_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListInterpretationContext_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInterpretationContextTest, ToJsonFromJson) {
@@ -173,41 +196,48 @@ TEST_F(ListInterpretationContextTest, ToJsonFromJson) {
   ListInterpretationContext_destroy(handle);
   ListInterpretationContext_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListInterpretationContext_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListInterpretationContext_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInterpretationContextTest, FillValueNull) {
-  EXPECT_THROW(ListInterpretationContext_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInterpretationContextTest, PushBackNull) {
   auto handle = ListInterpretationContext_create_empty();
-  EXPECT_THROW(ListInterpretationContext_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListInterpretationContext_destroy(handle);
 }
 
 TEST_F(ListInterpretationContextTest, ContainsNull) {
   auto handle = ListInterpretationContext_create_empty();
-  EXPECT_THROW(ListInterpretationContext_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListInterpretationContext_destroy(handle);
 }
 
 TEST_F(ListInterpretationContextTest, IndexNull) {
   auto handle = ListInterpretationContext_create_empty();
-  EXPECT_THROW(ListInterpretationContext_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListInterpretationContext_destroy(handle);
 }
 
 TEST_F(ListInterpretationContextTest, CreateNullArray) {
-  EXPECT_THROW(ListInterpretationContext_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListInterpretationContextTest, At) {
@@ -218,5 +248,7 @@ TEST_F(ListInterpretationContextTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListInterpretationContext_destroy(handle);
-  EXPECT_THROW(ListInterpretationContext_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListInterpretationContext_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

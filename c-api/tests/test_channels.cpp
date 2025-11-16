@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channels_c_api.h"
@@ -41,8 +42,12 @@ TEST_F(ChannelsTest, CreateDestroy) {
   ChannelsHandle c = Channels_create(list);
   Channels_destroy(c);
 
-  EXPECT_THROW(Channels_create(nullptr), std::invalid_argument);
-  EXPECT_THROW(Channels_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Channels_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channels_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ChannelsTest, SizeAndEmpty) {
@@ -51,8 +56,12 @@ TEST_F(ChannelsTest, SizeAndEmpty) {
   ChannelsHandle empty = Channels_create_empty();
   EXPECT_TRUE(Channels_empty(empty));
   Channels_destroy(empty);
-  EXPECT_THROW(Channels_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(Channels_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Channels_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channels_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ChannelsTest, AtAndItems) {
@@ -73,8 +82,12 @@ TEST_F(ChannelsTest, AtAndItems) {
   String_destroy(ListString_at(items, 1));
   ListString_destroy(items);
 
-  EXPECT_THROW(Channels_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(Channels_items(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Channels_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channels_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ChannelsTest, PushBackAndEraseAt) {
@@ -85,26 +98,42 @@ TEST_F(ChannelsTest, PushBackAndEraseAt) {
   EXPECT_EQ(Channels_size(channels), 2);
   Channel_destroy(ch3);
 
-  EXPECT_THROW(Channels_push_back(nullptr, ch1), std::invalid_argument);
-  EXPECT_THROW(Channels_push_back(channels, nullptr), std::invalid_argument);
-  EXPECT_THROW(Channels_erase_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Channels_push_back(nullptr, ch1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channels_push_back(channels, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channels_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ChannelsTest, Clear) {
   Channels_clear(channels);
   EXPECT_EQ(Channels_size(channels), 0);
   EXPECT_TRUE(Channels_empty(channels));
-  EXPECT_THROW(Channels_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Channels_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ChannelsTest, ContainsAndIndex) {
   EXPECT_TRUE(Channels_contains(channels, ch1));
   EXPECT_EQ(Channels_index(channels, ch2), 1);
 
-  EXPECT_THROW(Channels_contains(nullptr, ch1), std::invalid_argument);
-  EXPECT_THROW(Channels_contains(channels, nullptr), std::invalid_argument);
-  EXPECT_THROW(Channels_index(nullptr, ch2), std::invalid_argument);
-  EXPECT_THROW(Channels_index(channels, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Channels_contains(nullptr, ch1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channels_contains(channels, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channels_index(nullptr, ch2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channels_index(channels, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ChannelsTest, EqualityAndInequality) {
@@ -113,10 +142,18 @@ TEST_F(ChannelsTest, EqualityAndInequality) {
   EXPECT_FALSE(Channels_not_equal(channels, channels2));
   Channels_destroy(channels2);
 
-  EXPECT_THROW(Channels_equal(nullptr, channels), std::invalid_argument);
-  EXPECT_THROW(Channels_equal(channels, nullptr), std::invalid_argument);
-  EXPECT_THROW(Channels_not_equal(nullptr, channels), std::invalid_argument);
-  EXPECT_THROW(Channels_not_equal(channels, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Channels_equal(nullptr, channels);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channels_equal(channels, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channels_not_equal(nullptr, channels);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channels_not_equal(channels, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ChannelsTest, Intersection) {
@@ -126,8 +163,12 @@ TEST_F(ChannelsTest, Intersection) {
   Channels_destroy(channels2);
   Channels_destroy(inter);
 
-  EXPECT_THROW(Channels_intersection(nullptr, channels), std::invalid_argument);
-  EXPECT_THROW(Channels_intersection(channels, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Channels_intersection(nullptr, channels);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channels_intersection(channels, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ChannelsTest, SerializationRoundTrip) {
@@ -137,6 +178,10 @@ TEST_F(ChannelsTest, SerializationRoundTrip) {
   Channels_destroy(loaded);
   String_destroy(json);
 
-  EXPECT_THROW(Channels_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(Channels_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Channels_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Channels_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

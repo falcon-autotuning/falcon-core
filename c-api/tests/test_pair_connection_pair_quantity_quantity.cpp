@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/PairConnectionPairQuantityQuantity_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -28,12 +29,15 @@ class PairConnectionPairQuantityQuantityTest : public ::testing::Test {
 };
 
 TEST_F(PairConnectionPairQuantityQuantityTest, CreateDestroy) {
-  EXPECT_THROW(PairConnectionPairQuantityQuantity_create(nullptr, t2),
-               std::invalid_argument);
-  EXPECT_THROW(PairConnectionPairQuantityQuantity_create(t1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairConnectionPairQuantityQuantity_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairConnectionPairQuantityQuantity_create(nullptr, t2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairConnectionPairQuantityQuantity_create(t1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairConnectionPairQuantityQuantity_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairConnectionPairQuantityQuantityTest, Accessors) {
@@ -41,23 +45,29 @@ TEST_F(PairConnectionPairQuantityQuantityTest, Accessors) {
   auto s = PairConnectionPairQuantityQuantity_second(pair1);
   EXPECT_TRUE(Connection_equal(f, t1));
   EXPECT_TRUE(PairQuantityQuantity_equal(s, t2));
-  EXPECT_THROW(PairConnectionPairQuantityQuantity_first(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairConnectionPairQuantityQuantity_second(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairConnectionPairQuantityQuantity_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairConnectionPairQuantityQuantity_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairConnectionPairQuantityQuantityTest, Equality) {
   EXPECT_TRUE(PairConnectionPairQuantityQuantity_equal(pair1, pair2));
   EXPECT_FALSE(PairConnectionPairQuantityQuantity_not_equal(pair1, pair2));
-  EXPECT_THROW(PairConnectionPairQuantityQuantity_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairConnectionPairQuantityQuantity_equal(pair1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairConnectionPairQuantityQuantity_not_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairConnectionPairQuantityQuantity_not_equal(pair1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairConnectionPairQuantityQuantity_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairConnectionPairQuantityQuantity_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairConnectionPairQuantityQuantity_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairConnectionPairQuantityQuantity_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairConnectionPairQuantityQuantityTest, ToJsonFromJson) {
@@ -65,8 +75,10 @@ TEST_F(PairConnectionPairQuantityQuantityTest, ToJsonFromJson) {
   auto p2   = PairConnectionPairQuantityQuantity_from_json_string(json);
   EXPECT_TRUE(PairConnectionPairQuantityQuantity_equal(pair1, p2));
   PairConnectionPairQuantityQuantity_destroy(p2);
-  EXPECT_THROW(PairConnectionPairQuantityQuantity_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairConnectionPairQuantityQuantity_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairConnectionPairQuantityQuantity_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairConnectionPairQuantityQuantity_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

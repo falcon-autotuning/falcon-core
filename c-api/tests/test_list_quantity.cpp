@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListQuantity_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -29,7 +30,9 @@ TEST_F(ListQuantityTest, CreateEmpty) {
   EXPECT_TRUE(ListQuantity_empty(handle));
   EXPECT_EQ(ListQuantity_size(handle), 0);
   ListQuantity_destroy(handle);
-  EXPECT_THROW(ListQuantity_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListQuantityTest, FillValue) {
@@ -42,7 +45,9 @@ TEST_F(ListQuantityTest, CreateFromArray) {
   QuantityHandle     arr[2] = {sh1, sh2};
   ListQuantityHandle handle = ListQuantity_create(arr, 2);
   EXPECT_EQ(ListQuantity_size(handle), 2);
-  EXPECT_THROW(ListQuantity_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListQuantity_destroy(handle);
 }
 
@@ -50,14 +55,18 @@ TEST_F(ListQuantityTest, SizeEmptyInvalid) {
   auto handle = ListQuantity_create_empty();
   EXPECT_EQ(ListQuantity_size(handle), 0);
   ListQuantity_destroy(handle);
-  EXPECT_THROW(ListQuantity_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListQuantityTest, EmptyInvalid) {
   auto handle = ListQuantity_create_empty();
   EXPECT_TRUE(ListQuantity_empty(handle));
   ListQuantity_destroy(handle);
-  EXPECT_THROW(ListQuantity_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListQuantityTest, EraseAtClear) {
@@ -67,8 +76,12 @@ TEST_F(ListQuantityTest, EraseAtClear) {
   ListQuantity_clear(handle);
   EXPECT_TRUE(ListQuantity_empty(handle));
   ListQuantity_destroy(handle);
-  EXPECT_THROW(ListQuantity_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListQuantity_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListQuantity_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListQuantityTest, PushBackContainsIndex) {
@@ -77,9 +90,15 @@ TEST_F(ListQuantityTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListQuantity_contains(handle, sh1));
   EXPECT_EQ(ListQuantity_index(handle, sh1), 0);
   ListQuantity_destroy(handle);
-  EXPECT_THROW(ListQuantity_push_back(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListQuantity_contains(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListQuantity_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListQuantity_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListQuantity_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListQuantityTest, ItemsAt) {
@@ -88,9 +107,15 @@ TEST_F(ListQuantityTest, ItemsAt) {
   QuantityHandle out[2];
   EXPECT_EQ(ListQuantity_items(handle, out, 2), 2);
   ListQuantity_destroy(handle);
-  EXPECT_THROW(ListQuantity_items(nullptr, out, 2), std::invalid_argument);
-  EXPECT_THROW(ListQuantity_items(handle, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(ListQuantity_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListQuantity_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListQuantity_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListQuantityTest, EqualNotEqualIntersection) {
@@ -104,12 +129,24 @@ TEST_F(ListQuantityTest, EqualNotEqualIntersection) {
   ListQuantity_destroy(h1);
   ListQuantity_destroy(h2);
   ListQuantity_destroy(h3);
-  EXPECT_THROW(ListQuantity_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListQuantity_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListQuantity_not_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListQuantity_not_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListQuantity_intersection(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListQuantity_intersection(h1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListQuantity_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListQuantity_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListQuantity_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListQuantity_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListQuantity_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListQuantityTest, ToJsonFromJson) {
@@ -121,34 +158,48 @@ TEST_F(ListQuantityTest, ToJsonFromJson) {
   ListQuantity_destroy(handle);
   ListQuantity_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListQuantity_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(ListQuantity_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListQuantity_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListQuantityTest, FillValueNull) {
-  EXPECT_THROW(ListQuantity_fill_value(3, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListQuantityTest, PushBackNull) {
   auto handle = ListQuantity_create_empty();
-  EXPECT_THROW(ListQuantity_push_back(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListQuantity_destroy(handle);
 }
 
 TEST_F(ListQuantityTest, ContainsNull) {
   auto handle = ListQuantity_create_empty();
-  EXPECT_THROW(ListQuantity_contains(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListQuantity_destroy(handle);
 }
 
 TEST_F(ListQuantityTest, IndexNull) {
   auto handle = ListQuantity_create_empty();
-  EXPECT_THROW(ListQuantity_index(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListQuantity_destroy(handle);
 }
 
 TEST_F(ListQuantityTest, CreateNullArray) {
-  EXPECT_THROW(ListQuantity_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListQuantityTest, At) {
@@ -161,5 +212,7 @@ TEST_F(ListQuantityTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListQuantity_destroy(handle);
-  EXPECT_THROW(ListQuantity_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListQuantity_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

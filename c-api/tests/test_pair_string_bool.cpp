@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <string>
 
@@ -33,25 +34,41 @@ class PairStringBoolTest : public ::testing::Test {
 };
 
 TEST_F(PairStringBoolTest, CreateDestroy) {
-  EXPECT_THROW(PairStringBool_create(nullptr, t2), std::invalid_argument);
-  EXPECT_THROW(PairStringBool_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairStringBool_create(nullptr, t2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringBool_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairStringBoolTest, Accessors) {
   auto f = PairStringBool_first(pair1);
   auto s = PairStringBool_second(pair1);
   EXPECT_TRUE(String_equal(f, t1));
-  EXPECT_THROW(PairStringBool_first(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairStringBool_second(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairStringBool_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringBool_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairStringBoolTest, Equality) {
   EXPECT_TRUE(PairStringBool_equal(pair1, pair2));
   EXPECT_FALSE(PairStringBool_not_equal(pair1, pair2));
-  EXPECT_THROW(PairStringBool_equal(nullptr, pair2), std::invalid_argument);
-  EXPECT_THROW(PairStringBool_equal(pair1, nullptr), std::invalid_argument);
-  EXPECT_THROW(PairStringBool_not_equal(nullptr, pair2), std::invalid_argument);
-  EXPECT_THROW(PairStringBool_not_equal(pair1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairStringBool_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringBool_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringBool_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringBool_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairStringBoolTest, ToJsonFromJson) {
@@ -59,6 +76,10 @@ TEST_F(PairStringBoolTest, ToJsonFromJson) {
   auto p2   = PairStringBool_from_json_string(json);
   EXPECT_TRUE(PairStringBool_equal(pair1, p2));
   PairStringBool_destroy(p2);
-  EXPECT_THROW(PairStringBool_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairStringBool_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairStringBool_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringBool_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/MapStringString_c_api.h"
 #include "falcon_core/generic/PairStringString_c_api.h"
@@ -37,8 +38,12 @@ class MapStringStringTest : public ::testing::Test {
 };
 
 TEST_F(MapStringStringTest, CreateDestroy) {
-  EXPECT_THROW(MapStringString_create(nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(MapStringString_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapStringString_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapStringStringTest, InsertAssignAccessErase) {
@@ -46,31 +51,36 @@ TEST_F(MapStringStringTest, InsertAssignAccessErase) {
                            PairStringString_second(p1)));
   MapStringString_erase(map, PairStringString_first(p1));
   EXPECT_FALSE(MapStringString_contains(map, PairStringString_first(p1)));
-  EXPECT_THROW(
-      MapStringString_insert_or_assign(
-          nullptr, PairStringString_first(p1), PairStringString_second(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapStringString_insert_or_assign(
-                   map, nullptr, PairStringString_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapStringString_insert_or_assign(
-                   map, PairStringString_first(p1), nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(
-      MapStringString_insert(
-          nullptr, PairStringString_first(p1), PairStringString_second(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(
-      MapStringString_insert(map, nullptr, PairStringString_second(p1)),
-      std::invalid_argument);
-  EXPECT_THROW(MapStringString_insert(map, PairStringString_first(p1), nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapStringString_at(nullptr, PairStringString_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapStringString_at(map, nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringString_erase(nullptr, PairStringString_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapStringString_erase(map, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapStringString_insert_or_assign(          nullptr, PairStringString_first(p1), PairStringString_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_insert_or_assign(                   map, nullptr, PairStringString_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_insert_or_assign(                   map, PairStringString_first(p1), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_insert(          nullptr, PairStringString_first(p1), PairStringString_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_insert(map, nullptr, PairStringString_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_insert(map, PairStringString_first(p1), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_at(nullptr, PairStringString_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_at(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_erase(nullptr, PairStringString_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_erase(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapStringStringTest, SizeEmptyClearContains) {
@@ -78,30 +88,53 @@ TEST_F(MapStringStringTest, SizeEmptyClearContains) {
   EXPECT_FALSE(MapStringString_empty(map));
   MapStringString_clear(map);
   EXPECT_TRUE(MapStringString_empty(map));
-  EXPECT_THROW(MapStringString_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringString_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringString_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringString_contains(nullptr, PairStringString_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapStringString_contains(map2, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapStringString_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_contains(nullptr, PairStringString_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_contains(map2, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapStringStringTest, KeysValuesItems) {
   EXPECT_NE(MapStringString_keys(map), nullptr);
   EXPECT_NE(MapStringString_values(map), nullptr);
   EXPECT_NE(MapStringString_items(map), nullptr);
-  EXPECT_THROW(MapStringString_keys(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringString_values(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringString_items(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapStringString_keys(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_values(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapStringStringTest, Equality) {
   EXPECT_TRUE(MapStringString_equal(map, map2));
   EXPECT_FALSE(MapStringString_not_equal(map, map2));
-  EXPECT_THROW(MapStringString_equal(nullptr, map2), std::invalid_argument);
-  EXPECT_THROW(MapStringString_equal(map, nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringString_not_equal(nullptr, map2), std::invalid_argument);
-  EXPECT_THROW(MapStringString_not_equal(map, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapStringString_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_not_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_not_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapStringStringTest, ToJsonFromJson) {
@@ -110,7 +143,10 @@ TEST_F(MapStringStringTest, ToJsonFromJson) {
   EXPECT_TRUE(MapStringString_equal(map, m2));
   MapStringString_destroy(m2);
   String_destroy(json);
-  EXPECT_THROW(MapStringString_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(MapStringString_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapStringString_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapStringString_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

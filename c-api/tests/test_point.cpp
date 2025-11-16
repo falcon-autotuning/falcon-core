@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/math/Point_c_api.h"
 
@@ -34,24 +36,34 @@ TEST_F(PointTest, CreateEmptyDestroy) {
   auto p = Point_create_empty();
   EXPECT_TRUE(Point_empty(p));
   Point_destroy(p);
-  EXPECT_THROW(Point_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PointTest, CreateAndCreateFromParent) {
   auto p2 = Point_create(map_cd, unit);
   Point_destroy(p2);
-  EXPECT_THROW(Point_create(nullptr, unit), std::invalid_argument);
-  EXPECT_THROW(Point_create(map_cd, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_create(nullptr, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_create(map_cd, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   auto p3 = Point_create_from_parent(map_cq);
   Point_destroy(p3);
-  EXPECT_THROW(Point_create_from_parent(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_create_from_parent(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PointTest, Unit) {
   auto u = Point_unit(point);
   EXPECT_NE(u, nullptr);
-  EXPECT_THROW(Point_unit(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_unit(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   SymbolUnit_destroy(u);
 }
 
@@ -71,22 +83,39 @@ TEST_F(PointTest, InsertOrAssignInsertAtErase) {
 }
 
 TEST_F(PointTest, InsertOrAssignInsertAtEraseNullptr) {
-  EXPECT_THROW(Point_insert_or_assign(nullptr, conn, qty),
-               std::invalid_argument);
-  EXPECT_THROW(Point_insert_or_assign(point, nullptr, qty),
-               std::invalid_argument);
-  EXPECT_THROW(Point_insert_or_assign(point, conn, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_insert_or_assign(nullptr, conn, qty);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_insert_or_assign(point, nullptr, qty);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_insert_or_assign(point, conn, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(Point_insert(nullptr, conn, qty), std::invalid_argument);
-  EXPECT_THROW(Point_insert(point, nullptr, qty), std::invalid_argument);
-  EXPECT_THROW(Point_insert(point, conn, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_insert(nullptr, conn, qty);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_insert(point, nullptr, qty);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_insert(point, conn, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(Point_at(nullptr, conn), std::invalid_argument);
-  EXPECT_THROW(Point_at(point, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_at(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_at(point, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
-  EXPECT_THROW(Point_erase(nullptr, conn), std::invalid_argument);
-  EXPECT_THROW(Point_erase(point, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_erase(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_erase(point, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PointTest, SizeEmptyClear) {
@@ -94,17 +123,27 @@ TEST_F(PointTest, SizeEmptyClear) {
   EXPECT_FALSE(Point_empty(point));
   Point_clear(point);
   EXPECT_TRUE(Point_empty(point));
-  EXPECT_THROW(Point_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(Point_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(Point_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PointTest, Contains) {
   EXPECT_TRUE(Point_contains(point, conn));
   EXPECT_FALSE(
       Point_contains(point, Connection_create_barrier_gate(String_wrap("B"))));
-  EXPECT_THROW(Point_contains(nullptr, conn), std::invalid_argument);
-  EXPECT_THROW(Point_contains(point, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_contains(nullptr, conn);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_contains(point, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PointTest, KeysValuesItemsCoordinatesConnections) {
@@ -128,11 +167,21 @@ TEST_F(PointTest, KeysValuesItemsCoordinatesConnections) {
   EXPECT_EQ(ListConnection_size(conns), 1);
   ListConnection_destroy(conns);
 
-  EXPECT_THROW(Point_keys(nullptr), std::invalid_argument);
-  EXPECT_THROW(Point_values(nullptr), std::invalid_argument);
-  EXPECT_THROW(Point_items(nullptr), std::invalid_argument);
-  EXPECT_THROW(Point_coordinates(nullptr), std::invalid_argument);
-  EXPECT_THROW(Point_connections(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_keys(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_values(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_coordinates(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_connections(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PointTest, Arithmetic) {
@@ -150,19 +199,37 @@ TEST_F(PointTest, Arithmetic) {
   Point_destroy(neg);
   Point_destroy(p2);
 
-  EXPECT_THROW(Point_addition(nullptr, point), std::invalid_argument);
-  EXPECT_THROW(Point_addition(point, nullptr), std::invalid_argument);
-  EXPECT_THROW(Point_subtraction(nullptr, point), std::invalid_argument);
-  EXPECT_THROW(Point_subtraction(point, nullptr), std::invalid_argument);
-  EXPECT_THROW(Point_multiplication(nullptr, 2.0), std::invalid_argument);
-  EXPECT_THROW(Point_division(nullptr, 2.0), std::invalid_argument);
-  EXPECT_THROW(Point_negation(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_addition(nullptr, point);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_addition(point, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_subtraction(nullptr, point);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_subtraction(point, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_multiplication(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_division(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_negation(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PointTest, SetUnit) {
   Point_set_unit(point, unit);
-  EXPECT_THROW(Point_set_unit(nullptr, unit), std::invalid_argument);
-  EXPECT_THROW(Point_set_unit(point, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_set_unit(nullptr, unit);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_set_unit(point, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PointTest, EqualNotEqual) {
@@ -170,10 +237,18 @@ TEST_F(PointTest, EqualNotEqual) {
   EXPECT_TRUE(Point_equal(point, p2));
   EXPECT_FALSE(Point_not_equal(point, p2));
   Point_destroy(p2);
-  EXPECT_THROW(Point_equal(nullptr, point), std::invalid_argument);
-  EXPECT_THROW(Point_equal(point, nullptr), std::invalid_argument);
-  EXPECT_THROW(Point_not_equal(nullptr, point), std::invalid_argument);
-  EXPECT_THROW(Point_not_equal(point, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_equal(nullptr, point);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_equal(point, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_not_equal(nullptr, point);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_not_equal(point, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PointTest, ToJsonFromJson) {
@@ -182,6 +257,10 @@ TEST_F(PointTest, ToJsonFromJson) {
   EXPECT_TRUE(Point_equal(point, p2));
   String_destroy(json);
   Point_destroy(p2);
-  EXPECT_THROW(Point_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(Point_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  Point_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  Point_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

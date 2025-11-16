@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <string>
 
@@ -34,9 +35,15 @@ class PairStringStringTest : public ::testing::Test {
 };
 
 TEST_F(PairStringStringTest, CreateDestroy) {
-  EXPECT_THROW(PairStringString_create(nullptr, t2), std::invalid_argument);
-  EXPECT_THROW(PairStringString_create(t1, nullptr), std::invalid_argument);
-  EXPECT_THROW(PairStringString_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairStringString_create(nullptr, t2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringString_create(t1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringString_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairStringStringTest, Accessors) {
@@ -44,19 +51,29 @@ TEST_F(PairStringStringTest, Accessors) {
   auto s = PairStringString_second(pair1);
   EXPECT_TRUE(String_equal(f, t1));
   EXPECT_TRUE(String_equal(s, t2));
-  EXPECT_THROW(PairStringString_first(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairStringString_second(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairStringString_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringString_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairStringStringTest, Equality) {
   EXPECT_TRUE(PairStringString_equal(pair1, pair2));
   EXPECT_FALSE(PairStringString_not_equal(pair1, pair2));
-  EXPECT_THROW(PairStringString_equal(nullptr, pair2), std::invalid_argument);
-  EXPECT_THROW(PairStringString_equal(pair1, nullptr), std::invalid_argument);
-  EXPECT_THROW(PairStringString_not_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairStringString_not_equal(pair1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairStringString_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringString_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringString_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringString_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairStringStringTest, ToJsonFromJson) {
@@ -64,7 +81,10 @@ TEST_F(PairStringStringTest, ToJsonFromJson) {
   auto p2   = PairStringString_from_json_string(json);
   EXPECT_TRUE(PairStringString_equal(pair1, p2));
   PairStringString_destroy(p2);
-  EXPECT_THROW(PairStringString_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairStringString_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairStringString_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairStringString_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

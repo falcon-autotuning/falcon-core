@@ -2,6 +2,7 @@
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <boost/filesystem.hpp>
 #include <fstream>

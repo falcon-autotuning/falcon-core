@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListPairInterpretationContextDouble_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -68,8 +69,9 @@ TEST_F(ListPairInterpretationContextDoubleTest, CreateEmpty) {
   EXPECT_TRUE(ListPairInterpretationContextDouble_empty(handle));
   EXPECT_EQ(ListPairInterpretationContextDouble_size(handle), 0);
   ListPairInterpretationContextDouble_destroy(handle);
-  EXPECT_THROW(ListPairInterpretationContextDouble_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairInterpretationContextDoubleTest, FillValue) {
@@ -83,8 +85,9 @@ TEST_F(ListPairInterpretationContextDoubleTest, CreateFromArray) {
   ListPairInterpretationContextDoubleHandle handle =
       ListPairInterpretationContextDouble_create(arr, 2);
   EXPECT_EQ(ListPairInterpretationContextDouble_size(handle), 2);
-  EXPECT_THROW(ListPairInterpretationContextDouble_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairInterpretationContextDouble_destroy(handle);
 }
 
@@ -92,16 +95,18 @@ TEST_F(ListPairInterpretationContextDoubleTest, SizeEmptyInvalid) {
   auto handle = ListPairInterpretationContextDouble_create_empty();
   EXPECT_EQ(ListPairInterpretationContextDouble_size(handle), 0);
   ListPairInterpretationContextDouble_destroy(handle);
-  EXPECT_THROW(ListPairInterpretationContextDouble_size(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairInterpretationContextDoubleTest, EmptyInvalid) {
   auto handle = ListPairInterpretationContextDouble_create_empty();
   EXPECT_TRUE(ListPairInterpretationContextDouble_empty(handle));
   ListPairInterpretationContextDouble_destroy(handle);
-  EXPECT_THROW(ListPairInterpretationContextDouble_empty(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairInterpretationContextDoubleTest, EraseAtClear) {
@@ -111,10 +116,12 @@ TEST_F(ListPairInterpretationContextDoubleTest, EraseAtClear) {
   ListPairInterpretationContextDouble_clear(handle);
   EXPECT_TRUE(ListPairInterpretationContextDouble_empty(handle));
   ListPairInterpretationContextDouble_destroy(handle);
-  EXPECT_THROW(ListPairInterpretationContextDouble_erase_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairInterpretationContextDouble_clear(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairInterpretationContextDoubleTest, PushBackContainsIndex) {
@@ -123,12 +130,15 @@ TEST_F(ListPairInterpretationContextDoubleTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListPairInterpretationContextDouble_contains(handle, sh1));
   EXPECT_EQ(ListPairInterpretationContextDouble_index(handle, sh1), 0);
   ListPairInterpretationContextDouble_destroy(handle);
-  EXPECT_THROW(ListPairInterpretationContextDouble_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairInterpretationContextDouble_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairInterpretationContextDouble_index(nullptr, sh1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairInterpretationContextDoubleTest, ItemsAt) {
@@ -137,12 +147,15 @@ TEST_F(ListPairInterpretationContextDoubleTest, ItemsAt) {
   PairInterpretationContextDoubleHandle out[2];
   EXPECT_EQ(ListPairInterpretationContextDouble_items(handle, out, 2), 2);
   ListPairInterpretationContextDouble_destroy(handle);
-  EXPECT_THROW(ListPairInterpretationContextDouble_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairInterpretationContextDouble_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairInterpretationContextDouble_at(nullptr, 0),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairInterpretationContextDoubleTest, EqualNotEqualIntersection) {
@@ -156,18 +169,24 @@ TEST_F(ListPairInterpretationContextDoubleTest, EqualNotEqualIntersection) {
   ListPairInterpretationContextDouble_destroy(h1);
   ListPairInterpretationContextDouble_destroy(h2);
   ListPairInterpretationContextDouble_destroy(h3);
-  EXPECT_THROW(ListPairInterpretationContextDouble_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairInterpretationContextDouble_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairInterpretationContextDouble_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairInterpretationContextDouble_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairInterpretationContextDouble_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairInterpretationContextDouble_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairInterpretationContextDoubleTest, ToJsonFromJson) {
@@ -179,41 +198,48 @@ TEST_F(ListPairInterpretationContextDoubleTest, ToJsonFromJson) {
   ListPairInterpretationContextDouble_destroy(handle);
   ListPairInterpretationContextDouble_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListPairInterpretationContextDouble_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairInterpretationContextDouble_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairInterpretationContextDoubleTest, FillValueNull) {
-  EXPECT_THROW(ListPairInterpretationContextDouble_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairInterpretationContextDoubleTest, PushBackNull) {
   auto handle = ListPairInterpretationContextDouble_create_empty();
-  EXPECT_THROW(ListPairInterpretationContextDouble_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairInterpretationContextDouble_destroy(handle);
 }
 
 TEST_F(ListPairInterpretationContextDoubleTest, ContainsNull) {
   auto handle = ListPairInterpretationContextDouble_create_empty();
-  EXPECT_THROW(ListPairInterpretationContextDouble_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairInterpretationContextDouble_destroy(handle);
 }
 
 TEST_F(ListPairInterpretationContextDoubleTest, IndexNull) {
   auto handle = ListPairInterpretationContextDouble_create_empty();
-  EXPECT_THROW(ListPairInterpretationContextDouble_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairInterpretationContextDouble_destroy(handle);
 }
 
 TEST_F(ListPairInterpretationContextDoubleTest, CreateNullArray) {
-  EXPECT_THROW(ListPairInterpretationContextDouble_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairInterpretationContextDoubleTest, At) {
@@ -224,6 +250,7 @@ TEST_F(ListPairInterpretationContextDoubleTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListPairInterpretationContextDouble_destroy(handle);
-  EXPECT_THROW(ListPairInterpretationContextDouble_at(nullptr, 0),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairInterpretationContextDouble_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

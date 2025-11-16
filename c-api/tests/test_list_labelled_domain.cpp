@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListLabelledDomain_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -47,7 +48,9 @@ TEST_F(ListLabelledDomainTest, CreateEmpty) {
   EXPECT_TRUE(ListLabelledDomain_empty(handle));
   EXPECT_EQ(ListLabelledDomain_size(handle), 0);
   ListLabelledDomain_destroy(handle);
-  EXPECT_THROW(ListLabelledDomain_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledDomainTest, FillValue) {
@@ -60,7 +63,9 @@ TEST_F(ListLabelledDomainTest, CreateFromArray) {
   LabelledDomainHandle     arr[2] = {sh1, sh2};
   ListLabelledDomainHandle handle = ListLabelledDomain_create(arr, 2);
   EXPECT_EQ(ListLabelledDomain_size(handle), 2);
-  EXPECT_THROW(ListLabelledDomain_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListLabelledDomain_destroy(handle);
 }
 
@@ -68,14 +73,18 @@ TEST_F(ListLabelledDomainTest, SizeEmptyInvalid) {
   auto handle = ListLabelledDomain_create_empty();
   EXPECT_EQ(ListLabelledDomain_size(handle), 0);
   ListLabelledDomain_destroy(handle);
-  EXPECT_THROW(ListLabelledDomain_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledDomainTest, EmptyInvalid) {
   auto handle = ListLabelledDomain_create_empty();
   EXPECT_TRUE(ListLabelledDomain_empty(handle));
   ListLabelledDomain_destroy(handle);
-  EXPECT_THROW(ListLabelledDomain_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledDomainTest, EraseAtClear) {
@@ -85,8 +94,12 @@ TEST_F(ListLabelledDomainTest, EraseAtClear) {
   ListLabelledDomain_clear(handle);
   EXPECT_TRUE(ListLabelledDomain_empty(handle));
   ListLabelledDomain_destroy(handle);
-  EXPECT_THROW(ListLabelledDomain_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListLabelledDomain_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledDomainTest, PushBackContainsIndex) {
@@ -95,11 +108,15 @@ TEST_F(ListLabelledDomainTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListLabelledDomain_contains(handle, sh1));
   EXPECT_EQ(ListLabelledDomain_index(handle, sh1), 0);
   ListLabelledDomain_destroy(handle);
-  EXPECT_THROW(ListLabelledDomain_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledDomain_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledDomain_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledDomainTest, ItemsAt) {
@@ -108,11 +125,15 @@ TEST_F(ListLabelledDomainTest, ItemsAt) {
   LabelledDomainHandle out[2];
   EXPECT_EQ(ListLabelledDomain_items(handle, out, 2), 2);
   ListLabelledDomain_destroy(handle);
-  EXPECT_THROW(ListLabelledDomain_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledDomain_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledDomain_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledDomainTest, EqualNotEqualIntersection) {
@@ -126,16 +147,24 @@ TEST_F(ListLabelledDomainTest, EqualNotEqualIntersection) {
   ListLabelledDomain_destroy(h1);
   ListLabelledDomain_destroy(h2);
   ListLabelledDomain_destroy(h3);
-  EXPECT_THROW(ListLabelledDomain_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListLabelledDomain_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListLabelledDomain_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledDomain_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledDomain_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledDomain_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledDomainTest, ToJsonFromJson) {
@@ -147,40 +176,48 @@ TEST_F(ListLabelledDomainTest, ToJsonFromJson) {
   ListLabelledDomain_destroy(handle);
   ListLabelledDomain_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListLabelledDomain_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListLabelledDomain_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledDomainTest, FillValueNull) {
-  EXPECT_THROW(ListLabelledDomain_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledDomainTest, PushBackNull) {
   auto handle = ListLabelledDomain_create_empty();
-  EXPECT_THROW(ListLabelledDomain_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListLabelledDomain_destroy(handle);
 }
 
 TEST_F(ListLabelledDomainTest, ContainsNull) {
   auto handle = ListLabelledDomain_create_empty();
-  EXPECT_THROW(ListLabelledDomain_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListLabelledDomain_destroy(handle);
 }
 
 TEST_F(ListLabelledDomainTest, IndexNull) {
   auto handle = ListLabelledDomain_create_empty();
-  EXPECT_THROW(ListLabelledDomain_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListLabelledDomain_destroy(handle);
 }
 
 TEST_F(ListLabelledDomainTest, CreateNullArray) {
-  EXPECT_THROW(ListLabelledDomain_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListLabelledDomainTest, At) {
@@ -191,5 +228,7 @@ TEST_F(ListLabelledDomainTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListLabelledDomain_destroy(handle);
-  EXPECT_THROW(ListLabelledDomain_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListLabelledDomain_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

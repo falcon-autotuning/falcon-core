@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/PairInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -39,10 +40,12 @@ class PairInterpretationContextDoubleTest : public ::testing::Test {
 };
 
 TEST_F(PairInterpretationContextDoubleTest, CreateDestroy) {
-  EXPECT_THROW(PairInterpretationContextDouble_create(nullptr, t2),
-               std::invalid_argument);
-  EXPECT_THROW(PairInterpretationContextDouble_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairInterpretationContextDouble_create(nullptr, t2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairInterpretationContextDouble_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairInterpretationContextDoubleTest, Accessors) {
@@ -50,23 +53,29 @@ TEST_F(PairInterpretationContextDoubleTest, Accessors) {
   auto s = PairInterpretationContextDouble_second(pair1);
   EXPECT_TRUE(InterpretationContext_equal(f, t1));
   EXPECT_TRUE(s == t2);
-  EXPECT_THROW(PairInterpretationContextDouble_first(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairInterpretationContextDouble_second(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairInterpretationContextDouble_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairInterpretationContextDouble_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairInterpretationContextDoubleTest, Equality) {
   EXPECT_TRUE(PairInterpretationContextDouble_equal(pair1, pair2));
   EXPECT_FALSE(PairInterpretationContextDouble_not_equal(pair1, pair2));
-  EXPECT_THROW(PairInterpretationContextDouble_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairInterpretationContextDouble_equal(pair1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairInterpretationContextDouble_not_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairInterpretationContextDouble_not_equal(pair1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairInterpretationContextDouble_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairInterpretationContextDouble_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairInterpretationContextDouble_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairInterpretationContextDouble_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairInterpretationContextDoubleTest, ToJsonFromJson) {
@@ -74,8 +83,10 @@ TEST_F(PairInterpretationContextDoubleTest, ToJsonFromJson) {
   auto p2   = PairInterpretationContextDouble_from_json_string(json);
   EXPECT_TRUE(PairInterpretationContextDouble_equal(pair1, p2));
   PairInterpretationContextDouble_destroy(p2);
-  EXPECT_THROW(PairInterpretationContextDouble_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairInterpretationContextDouble_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairInterpretationContextDouble_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairInterpretationContextDouble_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListListSizeT_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -31,7 +32,9 @@ TEST_F(ListListSizeTTest, CreateEmpty) {
   EXPECT_TRUE(ListListSizeT_empty(handle));
   EXPECT_EQ(ListListSizeT_size(handle), 0);
   ListListSizeT_destroy(handle);
-  EXPECT_THROW(ListListSizeT_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListListSizeTTest, FillValue) {
@@ -44,7 +47,9 @@ TEST_F(ListListSizeTTest, CreateFromArray) {
   ListSizeTHandle     arr[2] = {sh1, sh2};
   ListListSizeTHandle handle = ListListSizeT_create(arr, 2);
   EXPECT_EQ(ListListSizeT_size(handle), 2);
-  EXPECT_THROW(ListListSizeT_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListListSizeT_destroy(handle);
 }
 
@@ -52,14 +57,18 @@ TEST_F(ListListSizeTTest, SizeEmptyInvalid) {
   auto handle = ListListSizeT_create_empty();
   EXPECT_EQ(ListListSizeT_size(handle), 0);
   ListListSizeT_destroy(handle);
-  EXPECT_THROW(ListListSizeT_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListListSizeTTest, EmptyInvalid) {
   auto handle = ListListSizeT_create_empty();
   EXPECT_TRUE(ListListSizeT_empty(handle));
   ListListSizeT_destroy(handle);
-  EXPECT_THROW(ListListSizeT_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListListSizeTTest, EraseAtClear) {
@@ -69,8 +78,12 @@ TEST_F(ListListSizeTTest, EraseAtClear) {
   ListListSizeT_clear(handle);
   EXPECT_TRUE(ListListSizeT_empty(handle));
   ListListSizeT_destroy(handle);
-  EXPECT_THROW(ListListSizeT_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListListSizeT_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListListSizeT_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListListSizeTTest, PushBackContainsIndex) {
@@ -79,9 +92,15 @@ TEST_F(ListListSizeTTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListListSizeT_contains(handle, sh1));
   EXPECT_EQ(ListListSizeT_index(handle, sh1), 0);
   ListListSizeT_destroy(handle);
-  EXPECT_THROW(ListListSizeT_push_back(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListListSizeT_contains(nullptr, sh1), std::invalid_argument);
-  EXPECT_THROW(ListListSizeT_index(nullptr, sh1), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListListSizeT_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListListSizeT_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListListSizeTTest, ItemsAt) {
@@ -90,9 +109,15 @@ TEST_F(ListListSizeTTest, ItemsAt) {
   ListSizeTHandle out[2];
   EXPECT_EQ(ListListSizeT_items(handle, out, 2), 2);
   ListListSizeT_destroy(handle);
-  EXPECT_THROW(ListListSizeT_items(nullptr, out, 2), std::invalid_argument);
-  EXPECT_THROW(ListListSizeT_items(handle, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(ListListSizeT_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListListSizeT_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListListSizeT_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListListSizeTTest, EqualNotEqualIntersection) {
@@ -106,12 +131,24 @@ TEST_F(ListListSizeTTest, EqualNotEqualIntersection) {
   ListListSizeT_destroy(h1);
   ListListSizeT_destroy(h2);
   ListListSizeT_destroy(h3);
-  EXPECT_THROW(ListListSizeT_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListListSizeT_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListListSizeT_not_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListListSizeT_not_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListListSizeT_intersection(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListListSizeT_intersection(h1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListListSizeT_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListListSizeT_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListListSizeT_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListListSizeT_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListListSizeT_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListListSizeTTest, ToJsonFromJson) {
@@ -123,34 +160,48 @@ TEST_F(ListListSizeTTest, ToJsonFromJson) {
   ListListSizeT_destroy(handle);
   ListListSizeT_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListListSizeT_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(ListListSizeT_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListListSizeT_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListListSizeTTest, FillValueNull) {
-  EXPECT_THROW(ListListSizeT_fill_value(3, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListListSizeTTest, PushBackNull) {
   auto handle = ListListSizeT_create_empty();
-  EXPECT_THROW(ListListSizeT_push_back(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListListSizeT_destroy(handle);
 }
 
 TEST_F(ListListSizeTTest, ContainsNull) {
   auto handle = ListListSizeT_create_empty();
-  EXPECT_THROW(ListListSizeT_contains(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListListSizeT_destroy(handle);
 }
 
 TEST_F(ListListSizeTTest, IndexNull) {
   auto handle = ListListSizeT_create_empty();
-  EXPECT_THROW(ListListSizeT_index(handle, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListListSizeT_destroy(handle);
 }
 
 TEST_F(ListListSizeTTest, CreateNullArray) {
-  EXPECT_THROW(ListListSizeT_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListListSizeTTest, At) {
@@ -161,5 +212,7 @@ TEST_F(ListListSizeTTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListListSizeT_destroy(handle);
-  EXPECT_THROW(ListListSizeT_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListListSizeT_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

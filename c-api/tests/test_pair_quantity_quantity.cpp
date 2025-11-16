@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/PairQuantityQuantity_c_api.h"
 #include "falcon_core/physics/units/SymbolUnit_c_api.h"
@@ -24,9 +25,15 @@ class PairQuantityQuantityTest : public ::testing::Test {
 };
 
 TEST_F(PairQuantityQuantityTest, CreateDestroy) {
-  EXPECT_THROW(PairQuantityQuantity_create(nullptr, t2), std::invalid_argument);
-  EXPECT_THROW(PairQuantityQuantity_create(t1, nullptr), std::invalid_argument);
-  EXPECT_THROW(PairQuantityQuantity_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairQuantityQuantity_create(nullptr, t2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairQuantityQuantity_create(t1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairQuantityQuantity_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairQuantityQuantityTest, Accessors) {
@@ -34,21 +41,29 @@ TEST_F(PairQuantityQuantityTest, Accessors) {
   auto s = PairQuantityQuantity_second(pair1);
   EXPECT_TRUE(Quantity_equal(f, t1));
   EXPECT_TRUE(Quantity_equal(s, t2));
-  EXPECT_THROW(PairQuantityQuantity_first(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairQuantityQuantity_second(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairQuantityQuantity_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairQuantityQuantity_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairQuantityQuantityTest, Equality) {
   EXPECT_TRUE(PairQuantityQuantity_equal(pair1, pair2));
   EXPECT_FALSE(PairQuantityQuantity_not_equal(pair1, pair2));
-  EXPECT_THROW(PairQuantityQuantity_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairQuantityQuantity_equal(pair1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairQuantityQuantity_not_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairQuantityQuantity_not_equal(pair1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairQuantityQuantity_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairQuantityQuantity_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairQuantityQuantity_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairQuantityQuantity_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairQuantityQuantityTest, ToJsonFromJson) {
@@ -56,8 +71,10 @@ TEST_F(PairQuantityQuantityTest, ToJsonFromJson) {
   auto p2   = PairQuantityQuantity_from_json_string(json);
   EXPECT_TRUE(PairQuantityQuantity_equal(pair1, p2));
   PairQuantityQuantity_destroy(p2);
-  EXPECT_THROW(PairQuantityQuantity_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(PairQuantityQuantity_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairQuantityQuantity_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairQuantityQuantity_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

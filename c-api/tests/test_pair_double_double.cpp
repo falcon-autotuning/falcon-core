@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <string>
 
@@ -32,25 +33,37 @@ class PairDoubleDoubleTest : public ::testing::Test {
 };
 
 TEST_F(PairDoubleDoubleTest, CreateDestroy) {
-  EXPECT_THROW(PairDoubleDouble_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairDoubleDouble_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairDoubleDoubleTest, Accessors) {
   auto f = PairDoubleDouble_first(pair1);
   auto s = PairDoubleDouble_second(pair1);
-  EXPECT_THROW(PairDoubleDouble_first(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairDoubleDouble_second(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairDoubleDouble_first(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairDoubleDouble_second(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairDoubleDoubleTest, Equality) {
   EXPECT_TRUE(PairDoubleDouble_equal(pair1, pair2));
   EXPECT_FALSE(PairDoubleDouble_not_equal(pair1, pair2));
-  EXPECT_THROW(PairDoubleDouble_equal(nullptr, pair2), std::invalid_argument);
-  EXPECT_THROW(PairDoubleDouble_equal(pair1, nullptr), std::invalid_argument);
-  EXPECT_THROW(PairDoubleDouble_not_equal(nullptr, pair2),
-               std::invalid_argument);
-  EXPECT_THROW(PairDoubleDouble_not_equal(pair1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairDoubleDouble_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairDoubleDouble_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairDoubleDouble_not_equal(nullptr, pair2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairDoubleDouble_not_equal(pair1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PairDoubleDoubleTest, ToJsonFromJson) {
@@ -58,7 +71,10 @@ TEST_F(PairDoubleDoubleTest, ToJsonFromJson) {
   auto p2   = PairDoubleDouble_from_json_string(json);
   EXPECT_TRUE(PairDoubleDouble_equal(pair1, p2));
   PairDoubleDouble_destroy(p2);
-  EXPECT_THROW(PairDoubleDouble_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(PairDoubleDouble_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  PairDoubleDouble_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  PairDoubleDouble_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

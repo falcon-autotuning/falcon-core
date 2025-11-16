@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListPairChannelConnections_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -44,8 +45,9 @@ TEST_F(ListPairChannelConnectionsTest, CreateEmpty) {
   EXPECT_TRUE(ListPairChannelConnections_empty(handle));
   EXPECT_EQ(ListPairChannelConnections_size(handle), 0);
   ListPairChannelConnections_destroy(handle);
-  EXPECT_THROW(ListPairChannelConnections_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairChannelConnectionsTest, FillValue) {
@@ -59,8 +61,9 @@ TEST_F(ListPairChannelConnectionsTest, CreateFromArray) {
   ListPairChannelConnectionsHandle handle =
       ListPairChannelConnections_create(arr, 2);
   EXPECT_EQ(ListPairChannelConnections_size(handle), 2);
-  EXPECT_THROW(ListPairChannelConnections_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairChannelConnections_destroy(handle);
 }
 
@@ -68,15 +71,18 @@ TEST_F(ListPairChannelConnectionsTest, SizeEmptyInvalid) {
   auto handle = ListPairChannelConnections_create_empty();
   EXPECT_EQ(ListPairChannelConnections_size(handle), 0);
   ListPairChannelConnections_destroy(handle);
-  EXPECT_THROW(ListPairChannelConnections_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairChannelConnectionsTest, EmptyInvalid) {
   auto handle = ListPairChannelConnections_create_empty();
   EXPECT_TRUE(ListPairChannelConnections_empty(handle));
   ListPairChannelConnections_destroy(handle);
-  EXPECT_THROW(ListPairChannelConnections_empty(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairChannelConnectionsTest, EraseAtClear) {
@@ -86,10 +92,12 @@ TEST_F(ListPairChannelConnectionsTest, EraseAtClear) {
   ListPairChannelConnections_clear(handle);
   EXPECT_TRUE(ListPairChannelConnections_empty(handle));
   ListPairChannelConnections_destroy(handle);
-  EXPECT_THROW(ListPairChannelConnections_erase_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairChannelConnections_clear(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairChannelConnectionsTest, PushBackContainsIndex) {
@@ -98,12 +106,15 @@ TEST_F(ListPairChannelConnectionsTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListPairChannelConnections_contains(handle, sh1));
   EXPECT_EQ(ListPairChannelConnections_index(handle, sh1), 0);
   ListPairChannelConnections_destroy(handle);
-  EXPECT_THROW(ListPairChannelConnections_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairChannelConnections_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairChannelConnections_index(nullptr, sh1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairChannelConnectionsTest, ItemsAt) {
@@ -112,12 +123,15 @@ TEST_F(ListPairChannelConnectionsTest, ItemsAt) {
   PairChannelConnectionsHandle out[2];
   EXPECT_EQ(ListPairChannelConnections_items(handle, out, 2), 2);
   ListPairChannelConnections_destroy(handle);
-  EXPECT_THROW(ListPairChannelConnections_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairChannelConnections_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairChannelConnections_at(nullptr, 0),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairChannelConnectionsTest, EqualNotEqualIntersection) {
@@ -131,18 +145,24 @@ TEST_F(ListPairChannelConnectionsTest, EqualNotEqualIntersection) {
   ListPairChannelConnections_destroy(h1);
   ListPairChannelConnections_destroy(h2);
   ListPairChannelConnections_destroy(h3);
-  EXPECT_THROW(ListPairChannelConnections_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairChannelConnections_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairChannelConnections_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairChannelConnections_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairChannelConnections_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairChannelConnections_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairChannelConnectionsTest, ToJsonFromJson) {
@@ -154,41 +174,48 @@ TEST_F(ListPairChannelConnectionsTest, ToJsonFromJson) {
   ListPairChannelConnections_destroy(handle);
   ListPairChannelConnections_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListPairChannelConnections_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairChannelConnections_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairChannelConnectionsTest, FillValueNull) {
-  EXPECT_THROW(ListPairChannelConnections_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairChannelConnectionsTest, PushBackNull) {
   auto handle = ListPairChannelConnections_create_empty();
-  EXPECT_THROW(ListPairChannelConnections_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairChannelConnections_destroy(handle);
 }
 
 TEST_F(ListPairChannelConnectionsTest, ContainsNull) {
   auto handle = ListPairChannelConnections_create_empty();
-  EXPECT_THROW(ListPairChannelConnections_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairChannelConnections_destroy(handle);
 }
 
 TEST_F(ListPairChannelConnectionsTest, IndexNull) {
   auto handle = ListPairChannelConnections_create_empty();
-  EXPECT_THROW(ListPairChannelConnections_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairChannelConnections_destroy(handle);
 }
 
 TEST_F(ListPairChannelConnectionsTest, CreateNullArray) {
-  EXPECT_THROW(ListPairChannelConnections_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairChannelConnectionsTest, At) {
@@ -199,6 +226,7 @@ TEST_F(ListPairChannelConnectionsTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListPairChannelConnections_destroy(handle);
-  EXPECT_THROW(ListPairChannelConnections_at(nullptr, 0),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairChannelConnections_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

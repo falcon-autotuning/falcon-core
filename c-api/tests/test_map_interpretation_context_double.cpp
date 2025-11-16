@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/MapInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextDouble_c_api.h"
@@ -69,10 +70,12 @@ class MapInterpretationContextDoubleTest : public ::testing::Test {
 };
 
 TEST_F(MapInterpretationContextDoubleTest, CreateDestroy) {
-  EXPECT_THROW(MapInterpretationContextDouble_create(nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextDoubleTest, InsertAssignAccessErase) {
@@ -83,32 +86,30 @@ TEST_F(MapInterpretationContextDoubleTest, InsertAssignAccessErase) {
       map, PairInterpretationContextDouble_first(p1));
   EXPECT_FALSE(MapInterpretationContextDouble_contains(
       map, PairInterpretationContextDouble_first(p1)));
-  EXPECT_THROW(MapInterpretationContextDouble_insert_or_assign(
-                   nullptr,
-                   PairInterpretationContextDouble_first(p1),
-                   PairInterpretationContextDouble_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_insert_or_assign(
-                   map, nullptr, PairInterpretationContextDouble_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_insert(
-                   nullptr,
-                   PairInterpretationContextDouble_first(p1),
-                   PairInterpretationContextDouble_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_insert(
-                   map, nullptr, PairInterpretationContextDouble_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_at(
-                   nullptr, PairInterpretationContextDouble_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_at(map, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_erase(
-                   nullptr, PairInterpretationContextDouble_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_erase(map, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_insert_or_assign(                   nullptr,                   PairInterpretationContextDouble_first(p1),                   PairInterpretationContextDouble_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_insert_or_assign(                   map, nullptr, PairInterpretationContextDouble_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_insert(                   nullptr,                   PairInterpretationContextDouble_first(p1),                   PairInterpretationContextDouble_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_insert(                   map, nullptr, PairInterpretationContextDouble_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_at(                   nullptr, PairInterpretationContextDouble_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_at(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_erase(                   nullptr, PairInterpretationContextDouble_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_erase(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextDoubleTest, SizeEmptyClearContains) {
@@ -116,42 +117,53 @@ TEST_F(MapInterpretationContextDoubleTest, SizeEmptyClearContains) {
   EXPECT_FALSE(MapInterpretationContextDouble_empty(map));
   MapInterpretationContextDouble_clear(map);
   EXPECT_TRUE(MapInterpretationContextDouble_empty(map));
-  EXPECT_THROW(MapInterpretationContextDouble_size(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_empty(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_clear(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_contains(
-                   nullptr, PairInterpretationContextDouble_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_contains(map2, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_contains(                   nullptr, PairInterpretationContextDouble_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_contains(map2, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextDoubleTest, KeysValuesItems) {
   EXPECT_NE(MapInterpretationContextDouble_keys(map), nullptr);
   EXPECT_NE(MapInterpretationContextDouble_values(map), nullptr);
   EXPECT_NE(MapInterpretationContextDouble_items(map), nullptr);
-  EXPECT_THROW(MapInterpretationContextDouble_keys(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_values(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_items(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_keys(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_values(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextDoubleTest, Equality) {
   EXPECT_TRUE(MapInterpretationContextDouble_equal(map, map2));
   EXPECT_FALSE(MapInterpretationContextDouble_not_equal(map, map2));
-  EXPECT_THROW(MapInterpretationContextDouble_equal(nullptr, map2),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_equal(map, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_not_equal(nullptr, map2),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_not_equal(map, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_not_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_not_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInterpretationContextDoubleTest, ToJsonFromJson) {
@@ -160,8 +172,10 @@ TEST_F(MapInterpretationContextDoubleTest, ToJsonFromJson) {
   EXPECT_TRUE(MapInterpretationContextDouble_equal(map, m2));
   MapInterpretationContextDouble_destroy(m2);
   String_destroy(json);
-  EXPECT_THROW(MapInterpretationContextDouble_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInterpretationContextDouble_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInterpretationContextDouble_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

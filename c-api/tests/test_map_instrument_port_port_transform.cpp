@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
 #include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
@@ -55,10 +56,12 @@ class MapInstrumentPortPortTransformTest : public ::testing::Test {
 };
 
 TEST_F(MapInstrumentPortPortTransformTest, CreateDestroy) {
-  EXPECT_THROW(MapInstrumentPortPortTransform_create(nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInstrumentPortPortTransformTest, InsertAssignAccessErase) {
@@ -70,38 +73,36 @@ TEST_F(MapInstrumentPortPortTransformTest, InsertAssignAccessErase) {
       map, PairInstrumentPortPortTransform_first(p1));
   EXPECT_FALSE(MapInstrumentPortPortTransform_contains(
       map, PairInstrumentPortPortTransform_first(p1)));
-  EXPECT_THROW(MapInstrumentPortPortTransform_insert_or_assign(
-                   nullptr,
-                   PairInstrumentPortPortTransform_first(p1),
-                   PairInstrumentPortPortTransform_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_insert_or_assign(
-                   map, nullptr, PairInstrumentPortPortTransform_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_insert_or_assign(
-                   map, PairInstrumentPortPortTransform_first(p1), nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_insert(
-                   nullptr,
-                   PairInstrumentPortPortTransform_first(p1),
-                   PairInstrumentPortPortTransform_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_insert(
-                   map, nullptr, PairInstrumentPortPortTransform_second(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_insert(
-                   map, PairInstrumentPortPortTransform_first(p1), nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_at(
-                   nullptr, PairInstrumentPortPortTransform_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_at(map, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_erase(
-                   nullptr, PairInstrumentPortPortTransform_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_erase(map, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_insert_or_assign(                   nullptr,                   PairInstrumentPortPortTransform_first(p1),                   PairInstrumentPortPortTransform_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_insert_or_assign(                   map, nullptr, PairInstrumentPortPortTransform_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_insert_or_assign(                   map, PairInstrumentPortPortTransform_first(p1), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_insert(                   nullptr,                   PairInstrumentPortPortTransform_first(p1),                   PairInstrumentPortPortTransform_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_insert(                   map, nullptr, PairInstrumentPortPortTransform_second(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_insert(                   map, PairInstrumentPortPortTransform_first(p1), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_at(                   nullptr, PairInstrumentPortPortTransform_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_at(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_erase(                   nullptr, PairInstrumentPortPortTransform_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_erase(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInstrumentPortPortTransformTest, SizeEmptyClearContains) {
@@ -109,42 +110,53 @@ TEST_F(MapInstrumentPortPortTransformTest, SizeEmptyClearContains) {
   EXPECT_FALSE(MapInstrumentPortPortTransform_empty(map));
   MapInstrumentPortPortTransform_clear(map);
   EXPECT_TRUE(MapInstrumentPortPortTransform_empty(map));
-  EXPECT_THROW(MapInstrumentPortPortTransform_size(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_empty(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_clear(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_contains(
-                   nullptr, PairInstrumentPortPortTransform_first(p1)),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_contains(map2, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_contains(                   nullptr, PairInstrumentPortPortTransform_first(p1));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_contains(map2, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInstrumentPortPortTransformTest, KeysValuesItems) {
   EXPECT_NE(MapInstrumentPortPortTransform_keys(map), nullptr);
   EXPECT_NE(MapInstrumentPortPortTransform_values(map), nullptr);
   EXPECT_NE(MapInstrumentPortPortTransform_items(map), nullptr);
-  EXPECT_THROW(MapInstrumentPortPortTransform_keys(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_values(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_items(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_keys(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_values(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_items(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInstrumentPortPortTransformTest, Equality) {
   EXPECT_TRUE(MapInstrumentPortPortTransform_equal(map, map2));
   EXPECT_FALSE(MapInstrumentPortPortTransform_not_equal(map, map2));
-  EXPECT_THROW(MapInstrumentPortPortTransform_equal(nullptr, map2),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_equal(map, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_not_equal(nullptr, map2),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_not_equal(map, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_not_equal(nullptr, map2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_not_equal(map, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MapInstrumentPortPortTransformTest, ToJsonFromJson) {
@@ -153,8 +165,10 @@ TEST_F(MapInstrumentPortPortTransformTest, ToJsonFromJson) {
   EXPECT_TRUE(MapInstrumentPortPortTransform_equal(map, m2));
   MapInstrumentPortPortTransform_destroy(m2);
   String_destroy(json);
-  EXPECT_THROW(MapInstrumentPortPortTransform_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MapInstrumentPortPortTransform_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MapInstrumentPortPortTransform_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

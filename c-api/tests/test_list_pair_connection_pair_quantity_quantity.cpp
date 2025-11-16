@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListPairConnectionPairQuantityQuantity_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -42,8 +43,9 @@ TEST_F(ListPairConnectionPairQuantityQuantityTest, CreateEmpty) {
   EXPECT_TRUE(ListPairConnectionPairQuantityQuantity_empty(handle));
   EXPECT_EQ(ListPairConnectionPairQuantityQuantity_size(handle), 0);
   ListPairConnectionPairQuantityQuantity_destroy(handle);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionPairQuantityQuantityTest, FillValue) {
@@ -57,8 +59,9 @@ TEST_F(ListPairConnectionPairQuantityQuantityTest, CreateFromArray) {
   ListPairConnectionPairQuantityQuantityHandle handle =
       ListPairConnectionPairQuantityQuantity_create(arr, 2);
   EXPECT_EQ(ListPairConnectionPairQuantityQuantity_size(handle), 2);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairConnectionPairQuantityQuantity_destroy(handle);
 }
 
@@ -66,16 +69,18 @@ TEST_F(ListPairConnectionPairQuantityQuantityTest, SizeEmptyInvalid) {
   auto handle = ListPairConnectionPairQuantityQuantity_create_empty();
   EXPECT_EQ(ListPairConnectionPairQuantityQuantity_size(handle), 0);
   ListPairConnectionPairQuantityQuantity_destroy(handle);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_size(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionPairQuantityQuantityTest, EmptyInvalid) {
   auto handle = ListPairConnectionPairQuantityQuantity_create_empty();
   EXPECT_TRUE(ListPairConnectionPairQuantityQuantity_empty(handle));
   ListPairConnectionPairQuantityQuantity_destroy(handle);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_empty(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionPairQuantityQuantityTest, EraseAtClear) {
@@ -85,10 +90,12 @@ TEST_F(ListPairConnectionPairQuantityQuantityTest, EraseAtClear) {
   ListPairConnectionPairQuantityQuantity_clear(handle);
   EXPECT_TRUE(ListPairConnectionPairQuantityQuantity_empty(handle));
   ListPairConnectionPairQuantityQuantity_destroy(handle);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_erase_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_clear(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionPairQuantityQuantityTest, PushBackContainsIndex) {
@@ -97,12 +104,15 @@ TEST_F(ListPairConnectionPairQuantityQuantityTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListPairConnectionPairQuantityQuantity_contains(handle, sh1));
   EXPECT_EQ(ListPairConnectionPairQuantityQuantity_index(handle, sh1), 0);
   ListPairConnectionPairQuantityQuantity_destroy(handle);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_index(nullptr, sh1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionPairQuantityQuantityTest, ItemsAt) {
@@ -111,12 +121,15 @@ TEST_F(ListPairConnectionPairQuantityQuantityTest, ItemsAt) {
   PairConnectionPairQuantityQuantityHandle out[2];
   EXPECT_EQ(ListPairConnectionPairQuantityQuantity_items(handle, out, 2), 2);
   ListPairConnectionPairQuantityQuantity_destroy(handle);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_at(nullptr, 0),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionPairQuantityQuantityTest, EqualNotEqualIntersection) {
@@ -130,18 +143,24 @@ TEST_F(ListPairConnectionPairQuantityQuantityTest, EqualNotEqualIntersection) {
   ListPairConnectionPairQuantityQuantity_destroy(h1);
   ListPairConnectionPairQuantityQuantity_destroy(h2);
   ListPairConnectionPairQuantityQuantity_destroy(h3);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionPairQuantityQuantityTest, ToJsonFromJson) {
@@ -153,42 +172,48 @@ TEST_F(ListPairConnectionPairQuantityQuantityTest, ToJsonFromJson) {
   ListPairConnectionPairQuantityQuantity_destroy(handle);
   ListPairConnectionPairQuantityQuantity_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionPairQuantityQuantityTest, FillValueNull) {
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionPairQuantityQuantityTest, PushBackNull) {
   auto handle = ListPairConnectionPairQuantityQuantity_create_empty();
-  EXPECT_THROW(
-      ListPairConnectionPairQuantityQuantity_push_back(handle, nullptr),
-      std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairConnectionPairQuantityQuantity_destroy(handle);
 }
 
 TEST_F(ListPairConnectionPairQuantityQuantityTest, ContainsNull) {
   auto handle = ListPairConnectionPairQuantityQuantity_create_empty();
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairConnectionPairQuantityQuantity_destroy(handle);
 }
 
 TEST_F(ListPairConnectionPairQuantityQuantityTest, IndexNull) {
   auto handle = ListPairConnectionPairQuantityQuantity_create_empty();
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListPairConnectionPairQuantityQuantity_destroy(handle);
 }
 
 TEST_F(ListPairConnectionPairQuantityQuantityTest, CreateNullArray) {
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListPairConnectionPairQuantityQuantityTest, At) {
@@ -199,6 +224,7 @@ TEST_F(ListPairConnectionPairQuantityQuantityTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListPairConnectionPairQuantityQuantity_destroy(handle);
-  EXPECT_THROW(ListPairConnectionPairQuantityQuantity_at(nullptr, 0),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListPairConnectionPairQuantityQuantity_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

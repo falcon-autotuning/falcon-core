@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/communications/messages/VoltageStatesResponse_c_api.h"
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
@@ -43,11 +44,15 @@ class VoltageStatesResponseTest : public ::testing::Test {
 TEST_F(VoltageStatesResponseTest, CreateDestroy) {
   auto r = VoltageStatesResponse_create(String_wrap("test"), dvs_list);
   VoltageStatesResponse_destroy(r);
-  EXPECT_THROW(VoltageStatesResponse_create(nullptr, dvs_list),
-               std::invalid_argument);
-  EXPECT_THROW(VoltageStatesResponse_create(msg, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(VoltageStatesResponse_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  VoltageStatesResponse_create(nullptr, dvs_list);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  VoltageStatesResponse_create(msg, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  VoltageStatesResponse_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VoltageStatesResponseTest, Accessors) {
@@ -59,8 +64,12 @@ TEST_F(VoltageStatesResponseTest, Accessors) {
   EXPECT_EQ(DeviceVoltageStates_size(states), 2);
   DeviceVoltageStates_destroy(states);
 
-  EXPECT_THROW(VoltageStatesResponse_message(nullptr), std::invalid_argument);
-  EXPECT_THROW(VoltageStatesResponse_states(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  VoltageStatesResponse_message(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  VoltageStatesResponse_states(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VoltageStatesResponseTest, Equality) {
@@ -69,14 +78,18 @@ TEST_F(VoltageStatesResponseTest, Equality) {
   EXPECT_TRUE(VoltageStatesResponse_equal(resp, resp));
   EXPECT_FALSE(VoltageStatesResponse_not_equal(resp, resp));
 
-  EXPECT_THROW(VoltageStatesResponse_equal(nullptr, resp2),
-               std::invalid_argument);
-  EXPECT_THROW(VoltageStatesResponse_equal(resp, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(VoltageStatesResponse_not_equal(nullptr, resp2),
-               std::invalid_argument);
-  EXPECT_THROW(VoltageStatesResponse_not_equal(resp, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  VoltageStatesResponse_equal(nullptr, resp2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  VoltageStatesResponse_equal(resp, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  VoltageStatesResponse_not_equal(nullptr, resp2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  VoltageStatesResponse_not_equal(resp, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(VoltageStatesResponseTest, ToJsonFromJson) {
@@ -86,8 +99,10 @@ TEST_F(VoltageStatesResponseTest, ToJsonFromJson) {
   VoltageStatesResponse_destroy(r2);
   String_destroy(json);
 
-  EXPECT_THROW(VoltageStatesResponse_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(VoltageStatesResponse_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  VoltageStatesResponse_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  VoltageStatesResponse_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

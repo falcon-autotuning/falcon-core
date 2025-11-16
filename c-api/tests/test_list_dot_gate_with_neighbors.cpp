@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListDotGateWithNeighbors_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -42,8 +43,9 @@ TEST_F(ListDotGateWithNeighborsTest, CreateEmpty) {
   EXPECT_TRUE(ListDotGateWithNeighbors_empty(handle));
   EXPECT_EQ(ListDotGateWithNeighbors_size(handle), 0);
   ListDotGateWithNeighbors_destroy(handle);
-  EXPECT_THROW(ListDotGateWithNeighbors_destroy(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDotGateWithNeighborsTest, FillValue) {
@@ -57,8 +59,9 @@ TEST_F(ListDotGateWithNeighborsTest, CreateFromArray) {
   ListDotGateWithNeighborsHandle handle =
       ListDotGateWithNeighbors_create(arr, 2);
   EXPECT_EQ(ListDotGateWithNeighbors_size(handle), 2);
-  EXPECT_THROW(ListDotGateWithNeighbors_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListDotGateWithNeighbors_destroy(handle);
 }
 
@@ -66,14 +69,18 @@ TEST_F(ListDotGateWithNeighborsTest, SizeEmptyInvalid) {
   auto handle = ListDotGateWithNeighbors_create_empty();
   EXPECT_EQ(ListDotGateWithNeighbors_size(handle), 0);
   ListDotGateWithNeighbors_destroy(handle);
-  EXPECT_THROW(ListDotGateWithNeighbors_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDotGateWithNeighborsTest, EmptyInvalid) {
   auto handle = ListDotGateWithNeighbors_create_empty();
   EXPECT_TRUE(ListDotGateWithNeighbors_empty(handle));
   ListDotGateWithNeighbors_destroy(handle);
-  EXPECT_THROW(ListDotGateWithNeighbors_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDotGateWithNeighborsTest, EraseAtClear) {
@@ -83,9 +90,12 @@ TEST_F(ListDotGateWithNeighborsTest, EraseAtClear) {
   ListDotGateWithNeighbors_clear(handle);
   EXPECT_TRUE(ListDotGateWithNeighbors_empty(handle));
   ListDotGateWithNeighbors_destroy(handle);
-  EXPECT_THROW(ListDotGateWithNeighbors_erase_at(nullptr, 0),
-               std::invalid_argument);
-  EXPECT_THROW(ListDotGateWithNeighbors_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDotGateWithNeighborsTest, PushBackContainsIndex) {
@@ -94,12 +104,15 @@ TEST_F(ListDotGateWithNeighborsTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListDotGateWithNeighbors_contains(handle, sh1));
   EXPECT_EQ(ListDotGateWithNeighbors_index(handle, sh1), 0);
   ListDotGateWithNeighbors_destroy(handle);
-  EXPECT_THROW(ListDotGateWithNeighbors_push_back(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListDotGateWithNeighbors_contains(nullptr, sh1),
-               std::invalid_argument);
-  EXPECT_THROW(ListDotGateWithNeighbors_index(nullptr, sh1),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_push_back(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_contains(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_index(nullptr, sh1);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDotGateWithNeighborsTest, ItemsAt) {
@@ -108,11 +121,15 @@ TEST_F(ListDotGateWithNeighborsTest, ItemsAt) {
   DotGateWithNeighborsHandle out[2];
   EXPECT_EQ(ListDotGateWithNeighbors_items(handle, out, 2), 2);
   ListDotGateWithNeighbors_destroy(handle);
-  EXPECT_THROW(ListDotGateWithNeighbors_items(nullptr, out, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListDotGateWithNeighbors_items(handle, nullptr, 2),
-               std::invalid_argument);
-  EXPECT_THROW(ListDotGateWithNeighbors_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDotGateWithNeighborsTest, EqualNotEqualIntersection) {
@@ -126,18 +143,24 @@ TEST_F(ListDotGateWithNeighborsTest, EqualNotEqualIntersection) {
   ListDotGateWithNeighbors_destroy(h1);
   ListDotGateWithNeighbors_destroy(h2);
   ListDotGateWithNeighbors_destroy(h3);
-  EXPECT_THROW(ListDotGateWithNeighbors_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListDotGateWithNeighbors_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListDotGateWithNeighbors_not_equal(h1, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListDotGateWithNeighbors_not_equal(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListDotGateWithNeighbors_intersection(nullptr, h2),
-               std::invalid_argument);
-  EXPECT_THROW(ListDotGateWithNeighbors_intersection(h1, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDotGateWithNeighborsTest, ToJsonFromJson) {
@@ -149,41 +172,48 @@ TEST_F(ListDotGateWithNeighborsTest, ToJsonFromJson) {
   ListDotGateWithNeighbors_destroy(handle);
   ListDotGateWithNeighbors_destroy(handle2);
   String_destroy(json);
-  EXPECT_THROW(ListDotGateWithNeighbors_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(ListDotGateWithNeighbors_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDotGateWithNeighborsTest, FillValueNull) {
-  EXPECT_THROW(ListDotGateWithNeighbors_fill_value(3, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_fill_value(3, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDotGateWithNeighborsTest, PushBackNull) {
   auto handle = ListDotGateWithNeighbors_create_empty();
-  EXPECT_THROW(ListDotGateWithNeighbors_push_back(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_push_back(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListDotGateWithNeighbors_destroy(handle);
 }
 
 TEST_F(ListDotGateWithNeighborsTest, ContainsNull) {
   auto handle = ListDotGateWithNeighbors_create_empty();
-  EXPECT_THROW(ListDotGateWithNeighbors_contains(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_contains(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListDotGateWithNeighbors_destroy(handle);
 }
 
 TEST_F(ListDotGateWithNeighborsTest, IndexNull) {
   auto handle = ListDotGateWithNeighbors_create_empty();
-  EXPECT_THROW(ListDotGateWithNeighbors_index(handle, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_index(handle, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   ListDotGateWithNeighbors_destroy(handle);
 }
 
 TEST_F(ListDotGateWithNeighborsTest, CreateNullArray) {
-  EXPECT_THROW(ListDotGateWithNeighbors_create(nullptr, 2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListDotGateWithNeighborsTest, At) {
@@ -194,5 +224,7 @@ TEST_F(ListDotGateWithNeighborsTest, At) {
   destroy_string(at0);
   destroy_string(at1);
   ListDotGateWithNeighbors_destroy(handle);
-  EXPECT_THROW(ListDotGateWithNeighbors_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListDotGateWithNeighbors_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

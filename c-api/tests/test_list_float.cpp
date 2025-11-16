@@ -1,4 +1,5 @@
 #include <falcon_core/generic/ListFloat_c_api.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
@@ -28,7 +29,9 @@ TEST_F(ListFloatTest, CreateEmpty) {
   EXPECT_TRUE(ListFloat_empty(handle));
   EXPECT_EQ(ListFloat_size(handle), 0);
   ListFloat_destroy(handle);
-  EXPECT_THROW(ListFloat_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListFloat_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListFloatTest, FillValue) {
@@ -48,21 +51,27 @@ TEST_F(ListFloatTest, CreateFromArray) {
   ListFloatHandle handle = ListFloat_create(arr, 2);
   EXPECT_EQ(ListFloat_size(handle), 2);
   ListFloat_destroy(handle);
-  EXPECT_THROW(ListFloat_create(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListFloat_create(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListFloatTest, SizeEmptyInvalid) {
   auto handle = ListFloat_create_empty();
   EXPECT_EQ(ListFloat_size(handle), 0);
   ListFloat_destroy(handle);
-  EXPECT_THROW(ListFloat_size(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListFloat_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListFloatTest, EmptyInvalid) {
   auto handle = ListFloat_create_empty();
   EXPECT_TRUE(ListFloat_empty(handle));
   ListFloat_destroy(handle);
-  EXPECT_THROW(ListFloat_empty(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListFloat_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListFloatTest, EraseAtClear) {
@@ -72,8 +81,12 @@ TEST_F(ListFloatTest, EraseAtClear) {
   ListFloat_clear(handle);
   EXPECT_TRUE(ListFloat_empty(handle));
   ListFloat_destroy(handle);
-  EXPECT_THROW(ListFloat_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(ListFloat_clear(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListFloat_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListFloat_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListFloatTest, PushBackContainsIndex) {
@@ -82,9 +95,15 @@ TEST_F(ListFloatTest, PushBackContainsIndex) {
   EXPECT_TRUE(ListFloat_contains(handle, true));
   EXPECT_EQ(ListFloat_index(handle, true), 0);
   ListFloat_destroy(handle);
-  EXPECT_THROW(ListFloat_push_back(nullptr, true), std::invalid_argument);
-  EXPECT_THROW(ListFloat_contains(nullptr, true), std::invalid_argument);
-  EXPECT_THROW(ListFloat_index(nullptr, true), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListFloat_push_back(nullptr, true);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListFloat_contains(nullptr, true);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListFloat_index(nullptr, true);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListFloatTest, ItemsAt) {
@@ -95,9 +114,15 @@ TEST_F(ListFloatTest, ItemsAt) {
   EXPECT_EQ(ListFloat_at(handle, 0), true);
   EXPECT_EQ(ListFloat_at(handle, 1), false);
   ListFloat_destroy(handle);
-  EXPECT_THROW(ListFloat_items(nullptr, out, 2), std::invalid_argument);
-  EXPECT_THROW(ListFloat_items(handle, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(ListFloat_at(nullptr, 0), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListFloat_items(nullptr, out, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListFloat_items(handle, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListFloat_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListFloatTest, EqualNotEqualFloatersection) {
@@ -111,12 +136,24 @@ TEST_F(ListFloatTest, EqualNotEqualFloatersection) {
   ListFloat_destroy(h1);
   ListFloat_destroy(h2);
   ListFloat_destroy(h3);
-  EXPECT_THROW(ListFloat_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListFloat_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListFloat_not_equal(h1, nullptr), std::invalid_argument);
-  EXPECT_THROW(ListFloat_not_equal(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListFloat_intersection(nullptr, h2), std::invalid_argument);
-  EXPECT_THROW(ListFloat_intersection(h1, nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListFloat_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListFloat_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListFloat_not_equal(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListFloat_not_equal(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListFloat_intersection(nullptr, h2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListFloat_intersection(h1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(ListFloatTest, ToJsonFromJson) {
@@ -128,6 +165,10 @@ TEST_F(ListFloatTest, ToJsonFromJson) {
   ListFloat_destroy(handle);
   ListFloat_destroy(handle2);
   destroy_string(json);
-  EXPECT_THROW(ListFloat_to_json_string(nullptr), std::invalid_argument);
-  EXPECT_THROW(ListFloat_from_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  ListFloat_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  ListFloat_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

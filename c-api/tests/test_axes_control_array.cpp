@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <vector>
 
@@ -67,8 +69,12 @@ class AxesControlArrayTest : public ::testing::Test {
 TEST_F(AxesControlArrayTest, CreateDestroy) {
   auto h = AxesControlArray_create_empty();
   AxesControlArray_destroy(h);
-  EXPECT_THROW(AxesControlArray_create(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesControlArray_create(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 
   EXPECT_NO_THROW(AxesControlArray_create(ListControlArray_create_empty()));
 }
@@ -101,9 +107,12 @@ TEST_F(AxesControlArrayTest, ContainsIndexEquality) {
 }
 
 TEST_F(AxesControlArrayTest, SerializationRoundTrip) {
-  EXPECT_THROW(AxesControlArray_from_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_to_json_string(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesControlArray_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW({
     auto json   = AxesControlArray_to_json_string(axes);
     auto loaded = AxesControlArray_from_json_string(json);
@@ -113,39 +122,73 @@ TEST_F(AxesControlArrayTest, SerializationRoundTrip) {
 }
 
 TEST_F(AxesControlArrayTest, EqualityWorks) {
-  EXPECT_THROW(AxesControlArray_equal(axes, nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_not_equal(nullptr, axes2),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesControlArray_equal(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_not_equal(nullptr, axes2);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(AxesControlArray_equal(axes, axes));
   EXPECT_NO_THROW(AxesControlArray_not_equal(axes, axes2));
 }
 
 TEST_F(AxesControlArrayTest, Intersection) {
-  EXPECT_THROW(AxesControlArray_intersection(nullptr, axes2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_intersection(axes, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesControlArray_intersection(nullptr, axes2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_intersection(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW(AxesControlArray_intersection(axes, axes2));
 }
 
 TEST_F(AxesControlArrayTest, MiscNullChecks) {
-  EXPECT_THROW(AxesControlArray_destroy(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_push_back(nullptr, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_push_back(axes, nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_size(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_empty(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_erase_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_clear(nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_push_back(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_contains(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_contains(axes, nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_index(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_index(axes, nullptr), std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_items(nullptr, rawbuffer, 2),
-               std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_items(axes, nullptr, 2), std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_at(nullptr, 0), std::invalid_argument);
-  EXPECT_THROW(AxesControlArray_create_raw(nullptr, 2), std::invalid_argument);
+  set_last_error(0, nullptr);
+  AxesControlArray_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_push_back(nullptr, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_push_back(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_empty(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_erase_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_clear(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_push_back(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_contains(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_contains(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_index(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_index(axes, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_items(nullptr, rawbuffer, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_items(axes, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_at(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  AxesControlArray_create_raw(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

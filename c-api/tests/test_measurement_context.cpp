@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -31,12 +32,18 @@ TEST_F(MeasurementContextTest, CreateDestroy) {
   MeasurementContext_destroy(m);
   auto m2 = MeasurementContext_create_from_port(port);
   MeasurementContext_destroy(m2);
-  EXPECT_THROW(MeasurementContext_create(nullptr, String_wrap("oscilloscope")),
-               std::invalid_argument);
-  EXPECT_THROW(MeasurementContext_create(conn, nullptr), std::invalid_argument);
-  EXPECT_THROW(MeasurementContext_create_from_port(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MeasurementContext_destroy(nullptr), std::invalid_argument);
+  set_last_error(0, nullptr);
+  MeasurementContext_create(nullptr, String_wrap("oscilloscope"));
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementContext_create(conn, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementContext_create_from_port(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementContext_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MeasurementContextTest, Accessors) {
@@ -44,20 +51,29 @@ TEST_F(MeasurementContextTest, Accessors) {
   auto t = MeasurementContext_instrument_type(mc);
   Connection_destroy(c);
   String_destroy(t);
-  EXPECT_THROW(MeasurementContext_connection(nullptr), std::invalid_argument);
-  EXPECT_THROW(MeasurementContext_instrument_type(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MeasurementContext_connection(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementContext_instrument_type(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MeasurementContextTest, EqualityOperators) {
   EXPECT_FALSE(MeasurementContext_equal(mc, mc2));
   EXPECT_TRUE(MeasurementContext_not_equal(mc, mc2));
-  EXPECT_THROW(MeasurementContext_equal(nullptr, mc2), std::invalid_argument);
-  EXPECT_THROW(MeasurementContext_equal(mc, nullptr), std::invalid_argument);
-  EXPECT_THROW(MeasurementContext_not_equal(nullptr, mc2),
-               std::invalid_argument);
-  EXPECT_THROW(MeasurementContext_not_equal(mc, nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MeasurementContext_equal(nullptr, mc2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementContext_equal(mc, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementContext_not_equal(nullptr, mc2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementContext_not_equal(mc, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MeasurementContextTest, ToJsonFromJson) {
@@ -66,8 +82,10 @@ TEST_F(MeasurementContextTest, ToJsonFromJson) {
   EXPECT_TRUE(MeasurementContext_equal(mc, mc3));
   MeasurementContext_destroy(mc3);
   String_destroy(json);
-  EXPECT_THROW(MeasurementContext_to_json_string(nullptr),
-               std::invalid_argument);
-  EXPECT_THROW(MeasurementContext_from_json_string(nullptr),
-               std::invalid_argument);
+  set_last_error(0, nullptr);
+  MeasurementContext_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  MeasurementContext_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }
