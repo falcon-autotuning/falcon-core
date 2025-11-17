@@ -1,12 +1,12 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/instrument_interfaces/Waveform_c_api.h"
 #include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
 class WaveformTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    domain       = Domain_create(0, 1.0);
+    domain       = Domain_create(0, 1.0, true, true);
     default_name = String_wrap("A");
     port         = InstrumentPort_create_knob(
         default_name, Connection_create_barrier_gate(default_name));
@@ -96,19 +96,24 @@ TEST_F(WaveformTest, CreateDestroy) {
   Waveform_destroy(w2);
 
   set_last_error(0, nullptr);
-  Waveform_create_cartesianwaveform(                   nullptr, axes, increasing, transforms, domain);
+  Waveform_create_cartesianwaveform(
+      nullptr, axes, increasing, transforms, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianwaveform(                   divisions, nullptr, increasing, transforms, domain);
+  Waveform_create_cartesianwaveform(
+      divisions, nullptr, increasing, transforms, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianwaveform(                   divisions, axes, nullptr, transforms, domain);
+  Waveform_create_cartesianwaveform(
+      divisions, axes, nullptr, transforms, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianwaveform(                   divisions, axes, increasing, nullptr, domain);
+  Waveform_create_cartesianwaveform(
+      divisions, axes, increasing, nullptr, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianwaveform(                   divisions, axes, increasing, transforms, nullptr);
+  Waveform_create_cartesianwaveform(
+      divisions, axes, increasing, transforms, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 
   auto w3 = Waveform_create_cartesianidentitywaveform(
@@ -116,13 +121,14 @@ TEST_F(WaveformTest, CreateDestroy) {
   Waveform_destroy(w3);
 
   set_last_error(0, nullptr);
-  Waveform_create_cartesianidentitywaveform(                   nullptr, axes, increasing, domain);
+  Waveform_create_cartesianidentitywaveform(nullptr, axes, increasing, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianidentitywaveform(                   divisions, nullptr, increasing, domain);
+  Waveform_create_cartesianidentitywaveform(
+      divisions, nullptr, increasing, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianidentitywaveform(                   divisions, axes, nullptr, domain);
+  Waveform_create_cartesianidentitywaveform(divisions, axes, nullptr, domain);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -325,19 +331,24 @@ TEST_F(WaveformTest, CartesianWaveformVariants) {
   Waveform_destroy(w2d);
 
   set_last_error(0, nullptr);
-  Waveform_create_cartesianwaveform2D(                   nullptr, axes2D, increasing2D, transforms, domain);
+  Waveform_create_cartesianwaveform2D(
+      nullptr, axes2D, increasing2D, transforms, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianwaveform2D(                   divisions2D, nullptr, increasing2D, transforms, domain);
+  Waveform_create_cartesianwaveform2D(
+      divisions2D, nullptr, increasing2D, transforms, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianwaveform2D(                   divisions2D, axes2D, nullptr, transforms, domain);
+  Waveform_create_cartesianwaveform2D(
+      divisions2D, axes2D, nullptr, transforms, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianwaveform2D(                   divisions2D, axes2D, increasing2D, nullptr, domain);
+  Waveform_create_cartesianwaveform2D(
+      divisions2D, axes2D, increasing2D, nullptr, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianwaveform2D(                   divisions2D, axes2D, increasing2D, transforms, nullptr);
+  Waveform_create_cartesianwaveform2D(
+      divisions2D, axes2D, increasing2D, transforms, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 
   // 2D identity waveform creation/destruction
@@ -346,16 +357,20 @@ TEST_F(WaveformTest, CartesianWaveformVariants) {
   Waveform_destroy(w2d_id);
 
   set_last_error(0, nullptr);
-  Waveform_create_cartesianidentitywaveform2D(                   nullptr, axes2D, increasing2D, domain);
+  Waveform_create_cartesianidentitywaveform2D(
+      nullptr, axes2D, increasing2D, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianidentitywaveform2D(                   divisions2D, nullptr, increasing2D, domain);
+  Waveform_create_cartesianidentitywaveform2D(
+      divisions2D, nullptr, increasing2D, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianidentitywaveform2D(                   divisions2D, axes2D, nullptr, domain);
+  Waveform_create_cartesianidentitywaveform2D(
+      divisions2D, axes2D, nullptr, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianidentitywaveform2D(                   divisions2D, axes2D, increasing2D, nullptr);
+  Waveform_create_cartesianidentitywaveform2D(
+      divisions2D, axes2D, increasing2D, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 
   // 1D waveform creation/destruction
@@ -367,13 +382,15 @@ TEST_F(WaveformTest, CartesianWaveformVariants) {
   Waveform_create_cartesianwaveform1D(2, nullptr, map, transforms, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianwaveform1D(                   2, labelled_domain, nullptr, transforms, domain);
+  Waveform_create_cartesianwaveform1D(
+      2, labelled_domain, nullptr, transforms, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianwaveform1D(                   2, labelled_domain, map, nullptr, domain);
+  Waveform_create_cartesianwaveform1D(2, labelled_domain, map, nullptr, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianwaveform1D(                   2, labelled_domain, map, transforms, nullptr);
+  Waveform_create_cartesianwaveform1D(
+      2, labelled_domain, map, transforms, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 
   // 1D identity waveform creation/destruction
@@ -385,9 +402,10 @@ TEST_F(WaveformTest, CartesianWaveformVariants) {
   Waveform_create_cartesianidentitywaveform1D(2, nullptr, map, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianidentitywaveform1D(                   2, labelled_domain, nullptr, domain);
+  Waveform_create_cartesianidentitywaveform1D(
+      2, labelled_domain, nullptr, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesianidentitywaveform1D(                   2, labelled_domain, map, nullptr);
+  Waveform_create_cartesianidentitywaveform1D(2, labelled_domain, map, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }

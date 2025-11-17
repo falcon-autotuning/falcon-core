@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/communications/HDF5Data_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/MapStringString_c_api.h"
 #include "falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -103,22 +103,64 @@ TEST_F(HDF5DataTest, CreateDestroy) {
                            timestamp);
   HDF5Data_destroy(h);
   set_last_error(0, nullptr);
-  HDF5Data_create(nullptr,                               unit_domain,                               domain_labels,                               ranges,                               metadata,                               measurement_title,                               unique_id,                               timestamp);
+  HDF5Data_create(nullptr,
+                  unit_domain,
+                  domain_labels,
+                  ranges,
+                  metadata,
+                  measurement_title,
+                  unique_id,
+                  timestamp);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  HDF5Data_create(shape,                               nullptr,                               domain_labels,                               ranges,                               metadata,                               measurement_title,                               unique_id,                               timestamp);
+  HDF5Data_create(shape,
+                  nullptr,
+                  domain_labels,
+                  ranges,
+                  metadata,
+                  measurement_title,
+                  unique_id,
+                  timestamp);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  HDF5Data_create(shape,                               unit_domain,                               nullptr,                               ranges,                               metadata,                               measurement_title,                               unique_id,                               timestamp);
+  HDF5Data_create(shape,
+                  unit_domain,
+                  nullptr,
+                  ranges,
+                  metadata,
+                  measurement_title,
+                  unique_id,
+                  timestamp);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  HDF5Data_create(shape,                               unit_domain,                               domain_labels,                               nullptr,                               metadata,                               measurement_title,                               unique_id,                               timestamp);
+  HDF5Data_create(shape,
+                  unit_domain,
+                  domain_labels,
+                  nullptr,
+                  metadata,
+                  measurement_title,
+                  unique_id,
+                  timestamp);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  HDF5Data_create(shape,                               unit_domain,                               domain_labels,                               ranges,                               nullptr,                               measurement_title,                               unique_id,                               timestamp);
+  HDF5Data_create(shape,
+                  unit_domain,
+                  domain_labels,
+                  ranges,
+                  nullptr,
+                  measurement_title,
+                  unique_id,
+                  timestamp);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  HDF5Data_create(shape,                               unit_domain,                               domain_labels,                               ranges,                               metadata,                               nullptr,                               unique_id,                               timestamp);
+  HDF5Data_create(shape,
+                  unit_domain,
+                  domain_labels,
+                  ranges,
+                  metadata,
+                  nullptr,
+                  unique_id,
+                  timestamp);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   HDF5Data_destroy(nullptr);
@@ -196,7 +238,7 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
   ListLabelledMeasuredArray_push_back(lch, sh1);
   StringHandle         msg          = String_wrap("msg");
   StringHandle         name         = String_wrap("measurement");
-  DomainHandle         domain       = Domain_create(0, 1.0);
+  DomainHandle         domain       = Domain_create(0, 1.0, true, true);
   StringHandle         default_name = String_wrap("A");
   InstrumentPortHandle port         = InstrumentPort_create_knob(
       default_name, Connection_create_barrier_gate(default_name));

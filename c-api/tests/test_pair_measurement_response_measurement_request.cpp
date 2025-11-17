@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 
@@ -21,7 +21,7 @@ class PairMeasurementResponseMeasurementRequestTest : public ::testing::Test {
     ListLabelledMeasuredArray_push_back(lch, sh1);
     StringHandle         msg          = String_wrap("msg");
     StringHandle         name         = String_wrap("measurement");
-    DomainHandle         domain       = Domain_create(0, 1.0);
+    DomainHandle         domain       = Domain_create(0, 1.0, true, true);
     StringHandle         default_name = String_wrap("A");
     InstrumentPortHandle port         = InstrumentPort_create_knob(
         default_name, Connection_create_barrier_gate(default_name));

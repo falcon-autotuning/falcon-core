@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/ListPortTransform_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/Waveform_c_api.h"
@@ -16,7 +16,7 @@ class MeasurementRequestTest : public ::testing::Test {
   void SetUp() override {
     msg          = String_wrap("msg");
     name         = String_wrap("measurement");
-    domain       = Domain_create(0, 1.0);
+    domain       = Domain_create(0, 1.0, true, true);
     default_name = String_wrap("A");
     port         = InstrumentPort_create_knob(
         default_name, Connection_create_barrier_gate(default_name));
@@ -130,22 +130,28 @@ TEST_F(MeasurementRequestTest, CreateDestroy) {
       msg, name, waveforms, getters, meter_transforms, time_domain);
   MeasurementRequest_destroy(r);
   set_last_error(0, nullptr);
-  MeasurementRequest_create(          nullptr, name, waveforms, getters, meter_transforms, time_domain);
+  MeasurementRequest_create(
+      nullptr, name, waveforms, getters, meter_transforms, time_domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasurementRequest_create(          msg, nullptr, waveforms, getters, meter_transforms, time_domain);
+  MeasurementRequest_create(
+      msg, nullptr, waveforms, getters, meter_transforms, time_domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasurementRequest_create(                   msg, name, nullptr, getters, meter_transforms, time_domain);
+  MeasurementRequest_create(
+      msg, name, nullptr, getters, meter_transforms, time_domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasurementRequest_create(          msg, name, waveforms, nullptr, meter_transforms, time_domain);
+  MeasurementRequest_create(
+      msg, name, waveforms, nullptr, meter_transforms, time_domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasurementRequest_create(                   msg, name, waveforms, getters, nullptr, time_domain);
+  MeasurementRequest_create(
+      msg, name, waveforms, getters, nullptr, time_domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasurementRequest_create(                   msg, name, waveforms, getters, meter_transforms, nullptr);
+  MeasurementRequest_create(
+      msg, name, waveforms, getters, meter_transforms, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   MeasurementRequest_destroy(nullptr);

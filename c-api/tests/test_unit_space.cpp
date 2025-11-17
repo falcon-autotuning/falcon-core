@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
 #include "falcon_core/generic/ListInt_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -12,7 +11,7 @@
 class UnitSpaceTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    domain = Domain_create(0.0, 1.0);
+    domain = Domain_create(0.0, 1.0, true, true);
     axes   = AxesDiscretizer_create_empty();
     d1     = Discretizer_create_cartesian_discretizer(0.1);
     d2     = Discretizer_create_cartesian_discretizer(0.2);

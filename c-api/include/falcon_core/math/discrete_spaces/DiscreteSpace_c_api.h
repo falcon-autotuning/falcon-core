@@ -23,12 +23,12 @@ DiscreteSpaceHandle DiscreteSpace_create_cartesiandiscretespace(
     AxesIntHandle                   divisions,
     AxesCoupledLabelledDomainHandle axes,
     AxesMapStringBoolHandle         increasing,
-    DomainHandle                    domain = Domain_create(0, 1));
+    DomainHandle                    domain = Domain_create(0, 1, true, true));
 DiscreteSpaceHandle DiscreteSpace_create_cartesiandiscretespace1D(
     int                         division,
     CoupledLabelledDomainHandle shared_domain,
     MapStringBoolHandle         increasing,
-    DomainHandle                domain = Domain_create(0, 1));
+    DomainHandle                domain = Domain_create(0, 1, true, true));
 
 // Destructor
 void DiscreteSpace_destroy(DiscreteSpaceHandle handle);

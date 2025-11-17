@@ -10,8 +10,8 @@ typedef void* DomainHandle;
 // Constructors
 DomainHandle Domain_create(double min_val,
                            double max_val,
-                           bool   lesser_bound_contained  = true,
-                           bool   greater_bound_contained = true);
+                           bool   lesser_bound_contained,
+                           bool   greater_bound_contained);
 
 // Destructor
 void Domain_destroy(DomainHandle handle);
