@@ -3,6 +3,7 @@
     extern "C" {
 #endif
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
+#include <stdbool.h>
 #include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles

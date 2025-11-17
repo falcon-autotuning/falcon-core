@@ -4,6 +4,7 @@
 #endif
 #include "falcon_core/autotuner_interfaces/names/Gname_c_api.h"
 #include "falcon_core/physics/config/core/Group_c_api.h"
+#include <stdbool.h>
 #include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles

@@ -4,6 +4,7 @@
 #endif
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
 #include "falcon_core/physics/device_structures/Connections_c_api.h"
+#include <stdbool.h>
 #include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles

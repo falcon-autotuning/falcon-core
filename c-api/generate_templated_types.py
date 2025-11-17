@@ -3019,7 +3019,7 @@ registry: dict[str, Entry] = {
             "int",
             "IntInt",
         ],
-        [],
+        ["<stdbool.h>"],
         [],
         Path("generic"),
     ),
@@ -3034,7 +3034,7 @@ registry: dict[str, Entry] = {
             "float",
             "FloatFloat",
         ],
-        [],
+        ["<stdbool.h>"],
         [],
         Path("generic"),
     ),
@@ -3049,7 +3049,7 @@ registry: dict[str, Entry] = {
             "double",
             "DoubleDouble",
         ],
-        [],
+        ["<stdbool.h>"],
         [],
         Path("generic"),
     ),
@@ -3064,7 +3064,7 @@ registry: dict[str, Entry] = {
             "float",
             "IntFloat",
         ],
-        [],
+        ["<stdbool.h>"],
         [],
         Path("generic"),
     ),
@@ -3079,7 +3079,10 @@ registry: dict[str, Entry] = {
             "float",
             "ConnectionFloat",
         ],
-        ['"falcon_core/physics/device_structures/Connection_c_api.h"'],
+        [
+            '"falcon_core/physics/device_structures/Connection_c_api.h"',
+            "<stdbool.h>",
+        ],
         ["<falcon_core/physics/device_structures/Connection.hpp>"],
         Path("generic"),
     ),
@@ -3094,7 +3097,10 @@ registry: dict[str, Entry] = {
             "double",
             "ConnectionDouble",
         ],
-        ['"falcon_core/physics/device_structures/Connection_c_api.h"'],
+        [
+            '"falcon_core/physics/device_structures/Connection_c_api.h"',
+            "<stdbool.h>",
+        ],
         ["<falcon_core/physics/device_structures/Connection.hpp>"],
         Path("generic"),
     ),
@@ -3111,6 +3117,7 @@ registry: dict[str, Entry] = {
         ],
         [
             '"falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"',
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>",
@@ -3130,6 +3137,7 @@ registry: dict[str, Entry] = {
         ],
         [
             '"falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"',
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>",
@@ -3150,6 +3158,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"',
             '"falcon_core/math/Quantity_c_api.h"',
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>",
@@ -3168,7 +3177,10 @@ registry: dict[str, Entry] = {
             "falcon_core::math::QuantitySP",
             "QuantityQuantity",
         ],
-        ['"falcon_core/math/Quantity_c_api.h"'],
+        [
+            '"falcon_core/math/Quantity_c_api.h"',
+            "<stdbool.h>",
+        ],
         ["<falcon_core/math/Quantity.hpp>"],
         Path("generic"),
     ),
@@ -3186,6 +3198,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/math/Quantity_c_api.h"',
             '"falcon_core/physics/device_structures/Connection_c_api.h"',
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/math/Quantity.hpp>",
@@ -3702,7 +3715,10 @@ registry: dict[str, Entry] = {
             "falcon_core::physics::device_structures::ConnectionSP",
             "ConnectionConnection",
         ],
-        ['"falcon_core/physics/device_structures/Connection_c_api.h"'],
+        [
+            '"falcon_core/physics/device_structures/Connection_c_api.h"',
+            "<stdbool.h>",
+        ],
         ["<falcon_core/physics/device_structures/Connection.hpp>"],
         Path("generic"),
     ),
@@ -3717,7 +3733,10 @@ registry: dict[str, Entry] = {
             "falcon_core::physics::device_structures::ConnectionsSP",
             "ConnectionConnections",
         ],
-        ['"falcon_core/physics/device_structures/Connections_c_api.h"'],
+        [
+            '"falcon_core/physics/device_structures/Connections_c_api.h"',
+            "<stdbool.h>",
+        ],
         ["<falcon_core/physics/device_structures/Connections.hpp>"],
         Path("generic"),
     ),
@@ -3735,6 +3754,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/autotuner_interfaces/names/Channel_c_api.h"',
             '"falcon_core/physics/device_structures/Connections_c_api.h"',
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/physics/device_structures/Connections.hpp>",
@@ -3756,6 +3776,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/communications/messages/MeasurementResponse_c_api.h"',
             '"falcon_core/communications/messages/MeasurementRequest_c_api.h"',
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/communications/messages/MeasurementResponse.hpp>",
@@ -3777,6 +3798,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"',
             '"falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"',
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/instrument_interfaces/names/InstrumentPort.hpp>",
@@ -3798,6 +3820,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/autotuner_interfaces/names/Gname_c_api.h"',
             '"falcon_core/physics/config/core/Group_c_api.h"',
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/autotuner_interfaces/names/Gname.hpp>",
@@ -3819,6 +3842,7 @@ registry: dict[str, Entry] = {
         [
             '"falcon_core/physics/device_structures/Connection_c_api.h"',
             '"falcon_core/generic/PairQuantityQuantity_c_api.h"',
+            "<stdbool.h>",
         ],
         [
             "<falcon_core/physics/device_structures/Connection.hpp>",

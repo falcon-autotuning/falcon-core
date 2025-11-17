@@ -2,6 +2,7 @@
 #ifdef __cplusplus
     extern "C" {
 #endif
+#include <stdbool.h>
 #include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
