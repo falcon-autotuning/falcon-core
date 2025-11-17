@@ -44,6 +44,7 @@ build:
 		-DUSE_VCPKG=$(USE_VCPKG) \
 		. -S . -B $(BUILD_DIR)
 	ninja -C $(BUILD_DIR)
+	strip $(BUILD_DIR)/libfalcon_core_cpp.so
 	@echo "--- Build complete ---"
 
 build-dev:
