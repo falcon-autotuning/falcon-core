@@ -110,8 +110,8 @@ QuantityHandle Quantity_multiply_equals_int(QuantityHandle handle, int other) {
     throw std::invalid_argument(
         "Quantity_multiply_equals_int: handle cannot be null");
   }
-  Quantity self = *static_cast<Quantity*>(handle);
-  self *= other;
+  QuantitySP self = std::make_shared<Quantity>(*static_cast<Quantity*>(handle));
+  self->operator*=(other);
   return handle;
   FALCON_C_API_END(nullptr)
 }
@@ -123,8 +123,8 @@ QuantityHandle Quantity_multiply_equals_double(QuantityHandle handle,
     throw std::invalid_argument(
         "Quantity_multiply_equals_double: handle cannot be null");
   }
-  Quantity self = *static_cast<Quantity*>(handle);
-  self *= other;
+  QuantitySP self = std::make_shared<Quantity>(*static_cast<Quantity*>(handle));
+  self->operator*=(other);
   return handle;
   FALCON_C_API_END(nullptr)
 }
@@ -140,9 +140,9 @@ QuantityHandle Quantity_multiply_equals_quantity(QuantityHandle handle,
     throw std::invalid_argument(
         "Quantity_multiply_equals_quantity: other cannot be null");
   }
-  Quantity   self  = *static_cast<Quantity*>(handle);
+  QuantitySP self = std::make_shared<Quantity>(*static_cast<Quantity*>(handle));
   QuantitySP oself = std::make_shared<Quantity>(*static_cast<Quantity*>(other));
-  self *= oself;
+  self->operator*=(oself);
   return handle;
   FALCON_C_API_END(nullptr)
 }
@@ -191,8 +191,8 @@ QuantityHandle Quantity_divide_equals_int(QuantityHandle handle, int other) {
     throw std::invalid_argument(
         "Quantity_divide_equals_int: handle cannot be null");
   }
-  Quantity self = *static_cast<Quantity*>(handle);
-  self /= other;
+  QuantitySP self = std::make_shared<Quantity>(*static_cast<Quantity*>(handle));
+  self->operator/=(other);
   return handle;
   FALCON_C_API_END(nullptr)
 }
@@ -204,8 +204,8 @@ QuantityHandle Quantity_divide_equals_double(QuantityHandle handle,
     throw std::invalid_argument(
         "Quantity_divide_equals_double: handle cannot be null");
   }
-  Quantity self = *static_cast<Quantity*>(handle);
-  self /= other;
+  QuantitySP self = std::make_shared<Quantity>(*static_cast<Quantity*>(handle));
+  self->operator/=(other);
   return handle;
   FALCON_C_API_END(nullptr)
 }
@@ -221,9 +221,9 @@ QuantityHandle Quantity_divide_equals_quantity(QuantityHandle handle,
     throw std::invalid_argument(
         "Quantity_divide_equals_quantity: other cannot be null");
   }
-  Quantity   self  = *static_cast<Quantity*>(handle);
+  QuantitySP self = std::make_shared<Quantity>(*static_cast<Quantity*>(handle));
   QuantitySP oself = std::make_shared<Quantity>(*static_cast<Quantity*>(other));
-  self /= oself;
+  self->operator/=(oself);
   return handle;
   FALCON_C_API_END(nullptr)
 }
@@ -264,9 +264,9 @@ QuantityHandle Quantity_add_equals_quantity(QuantityHandle handle,
     throw std::invalid_argument(
         "Quantity_add_equals_quantity: other cannot be null");
   }
-  Quantity   self  = *static_cast<Quantity*>(handle);
+  QuantitySP self = std::make_shared<Quantity>(*static_cast<Quantity*>(handle));
   QuantitySP oself = std::make_shared<Quantity>(*static_cast<Quantity*>(other));
-  self += oself;
+  self->operator+=(oself);
   return handle;
   FALCON_C_API_END(nullptr)
 }
@@ -299,9 +299,9 @@ QuantityHandle Quantity_subtract_equals_quantity(QuantityHandle handle,
     throw std::invalid_argument(
         "Quantity_subtract_equals_quantity: other cannot be null");
   }
-  Quantity   self  = *static_cast<Quantity*>(handle);
+  QuantitySP self = std::make_shared<Quantity>(*static_cast<Quantity*>(handle));
   QuantitySP oself = std::make_shared<Quantity>(*static_cast<Quantity*>(other));
-  self -= oself;
+  self->operator-=(oself);
   return handle;
   FALCON_C_API_END(nullptr)
 }
