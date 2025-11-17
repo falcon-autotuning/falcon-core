@@ -1,13 +1,12 @@
 #pragma once
-#include <cstdint>
-
-#include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdbool.h>
+#include <stdint.h>
 
+#include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
 #include "falcon_core/generic/MapStringString_c_api.h"
 #include "falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h"
 #include "falcon_core/generic/String_c_api.h"

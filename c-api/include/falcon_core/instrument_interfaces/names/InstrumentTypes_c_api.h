@@ -1,8 +1,8 @@
 #pragma once
-#include "falcon_core/generic/String_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
+#include "falcon_core/generic/String_c_api.h"
 
 StringHandle InstrumentTypes_dc_voltage_source();
 StringHandle InstrumentTypes_amnmeter();

@@ -1,8 +1,4 @@
 #pragma once
-#include "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h"
-#include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h"
-#include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h"
-#include "falcon_core/physics/device_structures/Connections_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -10,6 +6,10 @@ extern "C" {
 #include <stdbool.h>
 
 #include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h"
+#include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h"
+#include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h"
+#include "falcon_core/physics/device_structures/Connections_c_api.h"
 typedef void* GateGeometryArray1DHandle;
 
 // Constructors

@@ -1,13 +1,13 @@
 #pragma once
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <stddef.h>
 
 #include "falcon_core/generic/ListConnection_c_api.h"
 #include "falcon_core/generic/ListInstrumentPort_c_api.h"
 #include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 typedef void* PortsHandle;
 

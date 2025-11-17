@@ -1,5 +1,4 @@
 #pragma once
-#include "falcon_core/physics/device_structures/Connection_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -7,6 +6,7 @@ extern "C" {
 #include <stdbool.h>
 
 #include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/physics/device_structures/Connection_c_api.h"
 typedef void* DotGateWithNeighborsHandle;
 
 // Constructors

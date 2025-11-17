@@ -1,5 +1,4 @@
 #pragma once
-#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -11,6 +10,7 @@ extern "C" {
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/arrays/ControlArray_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 // Forward declarations for opaque handles
 typedef void* LabelledControlArray1DHandle;
 

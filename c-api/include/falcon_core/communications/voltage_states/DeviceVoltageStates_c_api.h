@@ -1,6 +1,4 @@
 #pragma once
-#include "falcon_core/math/Point_c_api.h"
-#include "falcon_core/physics/device_structures/Connection_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -8,6 +6,8 @@ extern "C" {
 #include <stdbool.h>
 
 #include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
+#include "falcon_core/math/Point_c_api.h"
+#include "falcon_core/physics/device_structures/Connection_c_api.h"
 typedef void* DeviceVoltageStatesHandle;
 
 // Constructors

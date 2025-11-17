@@ -1,4 +1,9 @@
 #pragma once
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <stdbool.h>
 #include <stddef.h>
 
 #include "falcon_core/generic/ListConnection_c_api.h"
@@ -8,11 +13,6 @@
 #include "falcon_core/math/Quantity_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/units/SymbolUnit_c_api.h"
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include <stdbool.h>
 
 typedef void* PointHandle;
 

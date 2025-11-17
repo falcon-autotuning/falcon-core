@@ -1,6 +1,4 @@
 #pragma once
-#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
-#include "falcon_core/math/domains/LabelledDomain_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -10,6 +8,8 @@ extern "C" {
 #include "falcon_core/generic/ListWaveform_c_api.h"
 #include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
+#include "falcon_core/math/domains/LabelledDomain_c_api.h"
 typedef void* MeasurementRequestHandle;
 
 // Constructors

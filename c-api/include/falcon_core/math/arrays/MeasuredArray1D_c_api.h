@@ -1,10 +1,10 @@
 #pragma once
-#include "falcon_core/generic/FArrayDouble_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
 #include <stddef.h>
 
+#include "falcon_core/generic/FArrayDouble_c_api.h"
 #include "falcon_core/generic/ListFArrayDouble_c_api.h"
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/String_c_api.h"

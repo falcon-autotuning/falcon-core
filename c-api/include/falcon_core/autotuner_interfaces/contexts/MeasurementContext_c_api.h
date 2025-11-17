@@ -1,12 +1,12 @@
 #pragma once
-#include "falcon_core/generic/String_c_api.h"
-#include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
-#include "falcon_core/physics/device_structures/Connection_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 #include <stdbool.h>
+
+#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
+#include "falcon_core/physics/device_structures/Connection_c_api.h"
 typedef void* MeasurementContextHandle;
 
 // Constructors

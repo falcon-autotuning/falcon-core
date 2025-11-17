@@ -1,6 +1,4 @@
 #pragma once
-#include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
-#include "falcon_core/math/AnalyticFunction_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -11,6 +9,8 @@ extern "C" {
 #include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/MapStringDouble_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
+#include "falcon_core/math/AnalyticFunction_c_api.h"
 typedef void* PortTransformHandle;
 
 // Constructors

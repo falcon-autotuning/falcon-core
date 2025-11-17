@@ -1,5 +1,4 @@
 #pragma once
-#include "falcon_core/physics/device_structures/Connection_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -8,6 +7,7 @@ extern "C" {
 
 #include "falcon_core/generic/ListConnections_c_api.h"
 #include "falcon_core/generic/ListPairConnectionConnections_c_api.h"
+#include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/device_structures/Connections_c_api.h"
 typedef void* GateRelationsHandle;
 

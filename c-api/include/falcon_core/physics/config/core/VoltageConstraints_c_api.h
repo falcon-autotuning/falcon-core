@@ -1,14 +1,14 @@
 #pragma once
-#include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/physics/config/core/Adjacency_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include <stdbool.h>
 
+#include "falcon_core/generic/FArrayDouble_c_api.h"
 #include "falcon_core/generic/PairDoubleDouble_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/physics/config/core/Adjacency_c_api.h"
 typedef void* VoltageConstraintsHandle;
 
 // Constructors
