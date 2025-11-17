@@ -1,9 +1,10 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextQuantity_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
 class MapInterpretationContextQuantityTest : public ::testing::Test {
  protected:
@@ -40,12 +41,12 @@ class MapInterpretationContextQuantityTest : public ::testing::Test {
         InterpretationContext_create(AxesMeasurementContext_create(axes_indp1),
                                      axes_dep1,
                                      SymbolUnit_create_volt()),
-        Quantity_create(1.0));
+        Quantity_create(1.0, SymbolUnit_create_volt()));
     p2 = PairInterpretationContextQuantity_create(
         InterpretationContext_create(AxesMeasurementContext_create(axes_indp2),
                                      axes_dep2,
                                      SymbolUnit_create_volt()),
-        Quantity_create(2.0));
+        Quantity_create(2.0, SymbolUnit_create_volt()));
     PairInterpretationContextQuantityHandle arr[2] = {p1, p2};
     map  = MapInterpretationContextQuantity_create(arr, 2);
     map2 = MapInterpretationContextQuantity_create_empty();
@@ -88,31 +89,43 @@ TEST_F(MapInterpretationContextQuantityTest, InsertAssignAccessErase) {
   EXPECT_FALSE(MapInterpretationContextQuantity_contains(
       map, PairInterpretationContextQuantity_first(p1)));
   set_last_error(0, nullptr);
-  MapInterpretationContextQuantity_insert_or_assign(                   nullptr,                   PairInterpretationContextQuantity_first(p1),                   PairInterpretationContextQuantity_second(p1));
+  MapInterpretationContextQuantity_insert_or_assign(
+      nullptr,
+      PairInterpretationContextQuantity_first(p1),
+      PairInterpretationContextQuantity_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInterpretationContextQuantity_insert_or_assign(                   map, nullptr, PairInterpretationContextQuantity_second(p1));
+  MapInterpretationContextQuantity_insert_or_assign(
+      map, nullptr, PairInterpretationContextQuantity_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInterpretationContextQuantity_insert_or_assign(                   map, PairInterpretationContextQuantity_first(p1), nullptr);
+  MapInterpretationContextQuantity_insert_or_assign(
+      map, PairInterpretationContextQuantity_first(p1), nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInterpretationContextQuantity_insert(                   nullptr,                   PairInterpretationContextQuantity_first(p1),                   PairInterpretationContextQuantity_second(p1));
+  MapInterpretationContextQuantity_insert(
+      nullptr,
+      PairInterpretationContextQuantity_first(p1),
+      PairInterpretationContextQuantity_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInterpretationContextQuantity_insert(                   map, nullptr, PairInterpretationContextQuantity_second(p1));
+  MapInterpretationContextQuantity_insert(
+      map, nullptr, PairInterpretationContextQuantity_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInterpretationContextQuantity_insert(                   map, PairInterpretationContextQuantity_first(p1), nullptr);
+  MapInterpretationContextQuantity_insert(
+      map, PairInterpretationContextQuantity_first(p1), nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInterpretationContextQuantity_at(                   nullptr, PairInterpretationContextQuantity_first(p1));
+  MapInterpretationContextQuantity_at(
+      nullptr, PairInterpretationContextQuantity_first(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   MapInterpretationContextQuantity_at(map, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInterpretationContextQuantity_erase(                   nullptr, PairInterpretationContextQuantity_first(p1));
+  MapInterpretationContextQuantity_erase(
+      nullptr, PairInterpretationContextQuantity_first(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   MapInterpretationContextQuantity_erase(map, nullptr);
@@ -134,7 +147,8 @@ TEST_F(MapInterpretationContextQuantityTest, SizeEmptyClearContains) {
   MapInterpretationContextQuantity_clear(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInterpretationContextQuantity_contains(                   nullptr, PairInterpretationContextQuantity_first(p1));
+  MapInterpretationContextQuantity_contains(
+      nullptr, PairInterpretationContextQuantity_first(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   MapInterpretationContextQuantity_contains(map2, nullptr);

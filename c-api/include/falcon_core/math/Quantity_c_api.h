@@ -10,8 +10,7 @@ extern "C" {
 typedef void* QuantityHandle;
 
 // Constructors
-QuantityHandle Quantity_create(
-    double value, SymbolUnitHandle unit = SymbolUnit_create_volt());
+QuantityHandle Quantity_create(double value, SymbolUnitHandle unit);
 
 // Destructor
 void Quantity_destroy(QuantityHandle handle);
