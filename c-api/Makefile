@@ -54,6 +54,7 @@ build: generate_types
 		-DUSE_VCPKG=$(USE_VCPKG) \
    	-S . -B $(C_API_BUILD_DIR)
 	@ninja -C $(C_API_BUILD_DIR)
+	strip build/libfalcon_core_c_api.so
 	@echo "--- Build complete. C API library is now in $(C_API_BUILD_DIR) ---"
 
 build-dev: generate_types 
