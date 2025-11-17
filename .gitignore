@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 
+# release output folder
+out/
+
 
 # ignore vcpkg since it is large
 vcpkg/*
