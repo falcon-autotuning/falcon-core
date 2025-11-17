@@ -1,8 +1,8 @@
 #pragma once
 #ifdef __cplusplus
-#include "falcon_core/generic/String_c_api.h"
 extern "C" {
 #endif
+#include "falcon_core/generic/String_c_api.h"
 
 typedef void* ChannelHandle;
 

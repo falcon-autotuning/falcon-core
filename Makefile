@@ -34,3 +34,12 @@ clean-all:
 
 # Default target
 all: build
+
+prepare-release:
+	rm -rf out && mkdir -p out
+	cp cpp/build/libfalcon_core_cpp.so out/
+	cp c-api/build/libfalcon_core_c_api.so out/
+	zip -r out/falcon-core.zip . -x "cpp/build/*" "c-api/build/*" ".git/*" ".venv/*" "dist/*" ".cache/*" "pybind/*" "go/*" "packaging/*" "cpp/vcpkg_installed/*" "vcpkg_installed/*"
+	cd c-api && zip -r ../out/falcon-core-c-api-headers.zip include
+	cd cpp && zip -r ../out/falcon-core-cpp-headers.zip include
+
