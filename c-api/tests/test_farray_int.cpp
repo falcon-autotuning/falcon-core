@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/FArrayInt_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 
@@ -24,7 +24,7 @@ class FArrayIntTest : public ::testing::Test {
 };
 
 TEST_F(FArrayIntTest, CreateDestroy) {
-  FArrayIntHandle empty = FArrayInt_create_empty();
+  FArrayIntHandle empty = FArrayInt_create_empty(shape, 2);
   FArrayInt_destroy(empty);
 
   FArrayIntHandle zeros = FArrayInt_create_zeros(shape, 2);

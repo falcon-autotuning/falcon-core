@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 
@@ -25,7 +24,7 @@ class FArrayDoubleTest : public ::testing::Test {
 };
 
 TEST_F(FArrayDoubleTest, CreateDestroy) {
-  FArrayDoubleHandle empty = FArrayDouble_create_empty();
+  FArrayDoubleHandle empty = FArrayDouble_create_empty(shape, 2);
   FArrayDouble_destroy(empty);
 
   FArrayDoubleHandle zeros = FArrayDouble_create_zeros(shape, 2);

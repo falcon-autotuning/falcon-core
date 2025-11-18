@@ -11,7 +11,7 @@
 typedef void* FArrayDoubleHandle;
 // Function declarations
 
-FArrayDoubleHandle FArrayDouble_create_empty();
+FArrayDoubleHandle FArrayDouble_create_empty(const size_t* shape, size_t ndim);
 FArrayDoubleHandle FArrayDouble_create_zeros(const size_t* shape, size_t ndim);
 FArrayDoubleHandle FArrayDouble_from_shape(const size_t* shape, size_t ndim);
 FArrayDoubleHandle FArrayDouble_from_data(const double* data, const size_t* shape, size_t ndim);

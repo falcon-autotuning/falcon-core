@@ -427,7 +427,7 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
         # TODO: view and operator() are not wrapped
         with self.edit_header() as f:
             f.write(f"""
-{self.chandle()} {self.mangled_name()}_create_empty();
+{self.chandle()} {self.mangled_name()}_create_empty(const size_t* shape, size_t ndim);
 {self.chandle()} {self.mangled_name()}_create_zeros(const size_t* shape, size_t ndim);
 {self.chandle()} {self.mangled_name()}_from_shape(const size_t* shape, size_t ndim);
 {self.chandle()} {self.mangled_name()}_from_data(const {c_type}* data, const size_t* shape, size_t ndim);
@@ -1923,9 +1923,16 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
         with self.edit_implementation() as f:
             f.write(f"""
 extern "C" {{
-{self.chandle()} {self.mangled_name()}_create_empty() {{
+{self.chandle()} {self.mangled_name()}_create_empty(const size_t* shape, size_t ndim) {{
     FALCON_C_API_BEGIN
-    return new falcon_core::generic::FArray<{cpp_type}>(falcon_core::generic::FArray<{cpp_type}>());
+if (!shape) {{
+throw std::invalid_argument("Null shape passed to {self.mangled_name()}_create_empty");
+}}
+    std::vector<size_t> vec;
+    for (size_t i =0; i < ndim; ++i) {{
+        vec.push_back(shape[i]);
+    }}
+    return new falcon_core::generic::FArray<{cpp_type}>(*falcon_core::generic::FArray<{cpp_type}>::empty(vec));
     FALCON_C_API_END(nullptr)
 }}
 
@@ -1951,7 +1958,7 @@ throw std::invalid_argument("Null shape passed to {self.mangled_name()}_from_sha
     for (size_t i =0; i < ndim; ++i) {{
         vec.push_back(shape[i]);
     }}
-    return new falcon_core::generic::FArray<{cpp_type}>(falcon_core::generic::FArray<{cpp_type}>(vec));
+    return new falcon_core::generic::FArray<{cpp_type}>(vec);
     FALCON_C_API_END(nullptr)
 }}
 
@@ -1971,8 +1978,7 @@ throw std::invalid_argument("Null shape passed to {self.mangled_name()}_from_dat
   }}
   xt::xarray<{cpp_type}> arr =
       xt::adapt(data, total_size, xt::no_ownership(), shapeVec);
-  return new falcon_core::generic::FArray<{cpp_type}>(
-      falcon_core::generic::FArray<{cpp_type}>(arr));
+  return new falcon_core::generic::FArray<{cpp_type}>(arr);
     FALCON_C_API_END(nullptr)
 }}
 

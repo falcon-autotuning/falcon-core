@@ -5,9 +5,16 @@
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
-FArrayIntHandle FArrayInt_create_empty() {
+FArrayIntHandle FArrayInt_create_empty(const size_t* shape, size_t ndim) {
     FALCON_C_API_BEGIN
-    return new falcon_core::generic::FArray<int>(falcon_core::generic::FArray<int>());
+if (!shape) {
+throw std::invalid_argument("Null shape passed to FArrayInt_create_empty");
+}
+    std::vector<size_t> vec;
+    for (size_t i =0; i < ndim; ++i) {
+        vec.push_back(shape[i]);
+    }
+    return new falcon_core::generic::FArray<int>(*falcon_core::generic::FArray<int>::empty(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -33,7 +40,7 @@ throw std::invalid_argument("Null shape passed to FArrayInt_from_shape");
     for (size_t i =0; i < ndim; ++i) {
         vec.push_back(shape[i]);
     }
-    return new falcon_core::generic::FArray<int>(falcon_core::generic::FArray<int>(vec));
+    return new falcon_core::generic::FArray<int>(vec);
     FALCON_C_API_END(nullptr)
 }
 
@@ -53,8 +60,7 @@ throw std::invalid_argument("Null shape passed to FArrayInt_from_data");
   }
   xt::xarray<int> arr =
       xt::adapt(data, total_size, xt::no_ownership(), shapeVec);
-  return new falcon_core::generic::FArray<int>(
-      falcon_core::generic::FArray<int>(arr));
+  return new falcon_core::generic::FArray<int>(arr);
     FALCON_C_API_END(nullptr)
 }
 
