@@ -1,11 +1,12 @@
 #include <falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
 #include <vector>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
 class ListPairInstrumentPortPortTransformTest : public ::testing::Test {
  protected:
@@ -27,23 +28,31 @@ class ListPairInstrumentPortPortTransformTest : public ::testing::Test {
         InstrumentPort_create_knob(
             String_wrap("Channel1"),
             Connection_create_plunger_gate(String_wrap("gate1")),
-            InstrumentTypes_voltmeter()),
+            InstrumentTypes_voltmeter(),
+            SymbolUnit_create_volt(),
+            String_wrap("")),
         PortTransform_create(
             InstrumentPort_create_knob(
                 String_wrap("Channel1"),
                 Connection_create_plunger_gate(String_wrap("gate1")),
-                InstrumentTypes_voltmeter()),
+                InstrumentTypes_voltmeter(),
+                SymbolUnit_create_volt(),
+                String_wrap("")),
             AnalyticFunction_create_identity())));
     sh2 = track_quantity(PairInstrumentPortPortTransform_create(
         InstrumentPort_create_knob(
             String_wrap("Channel2"),
             Connection_create_plunger_gate(String_wrap("gate`")),
-            InstrumentTypes_voltmeter()),
+            InstrumentTypes_voltmeter(),
+            SymbolUnit_create_volt(),
+            String_wrap("")),
         PortTransform_create(
             InstrumentPort_create_knob(
                 String_wrap("Channel2"),
                 Connection_create_plunger_gate(String_wrap("gate2")),
-                InstrumentTypes_voltmeter()),
+                InstrumentTypes_voltmeter(),
+                SymbolUnit_create_volt(),
+                String_wrap("")),
             AnalyticFunction_create_identity())));
   }
   PairInstrumentPortPortTransformHandle sh1;

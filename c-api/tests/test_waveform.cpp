@@ -2,16 +2,26 @@
 
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/instrument_interfaces/Waveform_c_api.h"
+#include "falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h"
 #include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 class WaveformTest : public ::testing::Test {
  protected:
   void SetUp() override {
     domain       = Domain_create(0, 1.0, true, true);
     default_name = String_wrap("A");
-    port         = InstrumentPort_create_knob(
-        default_name, Connection_create_barrier_gate(default_name));
+    port =
+        InstrumentPort_create_knob(default_name,
+                                   Connection_create_barrier_gate(default_name),
+                                   InstrumentTypes_voltmeter(),
+                                   SymbolUnit_create_volt(),
+                                   String_wrap(""));
     getter = InstrumentPort_create_meter(
-        String_wrap("ohm1"), Connection_create_ohmic(String_wrap("ohm1")));
+        String_wrap("ohm1"),
+        Connection_create_ohmic(String_wrap("ohm1")),
+        InstrumentTypes_amnmeter(),
+        SymbolUnit_create_ampere(),
+        String_wrap(""));
     domain_list = ListLabelledDomain_create_empty();
     ListLabelledDomain_push_back(
         domain_list, LabelledDomain_create_from_port_and_domain(port, domain));
@@ -309,8 +319,12 @@ TEST_F(WaveformTest, CartesianWaveformVariants) {
   AxesCoupledLabelledDomain_push_back(
       axes2D, CoupledLabelledDomain_create(labelled_domain));
   StringHandle         other_name = String_wrap("B");
-  InstrumentPortHandle other_port = InstrumentPort_create_knob(
-      other_name, Connection_create_barrier_gate(default_name));
+  InstrumentPortHandle other_port =
+      InstrumentPort_create_knob(other_name,
+                                 Connection_create_barrier_gate(default_name),
+                                 InstrumentTypes_voltmeter(),
+                                 SymbolUnit_create_volt(),
+                                 String_wrap(""));
   ListLabelledDomainHandle other_domain_list =
       ListLabelledDomain_create_empty();
   ListLabelledDomain_push_back(

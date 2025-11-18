@@ -1,9 +1,10 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
@@ -14,7 +15,11 @@ class AcquisitionContextTest : public ::testing::Test {
     unit       = SymbolUnit_create_volt();
     instr_type = String_wrap("oscilloscope");
     ctx        = AcquisitionContext_create(conn, instr_type, unit);
-    port       = InstrumentPort_create_port(String_wrap("P1"), conn);
+    port       = InstrumentPort_create_port(String_wrap("P1"),
+                                      conn,
+                                      InstrumentTypes_voltmeter(),
+                                      SymbolUnit_create_volt(),
+                                      String_wrap(""));
     ctx2       = AcquisitionContext_create_from_port(port);
   }
   void TearDown() override {

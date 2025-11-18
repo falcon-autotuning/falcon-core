@@ -1,13 +1,14 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <vector>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/ListInstrumentPort_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h"
 #include "falcon_core/math/AxesInstrumentPort_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
 class AxesInstrumentPortTest : public ::testing::Test {
  protected:
@@ -15,8 +16,18 @@ class AxesInstrumentPortTest : public ::testing::Test {
     axes = AxesInstrumentPort_create_empty();
 
     // Create two tracked items and push them into axes and axes2
-    auto item1 = track_instrument_port(InstrumentPort_create_port(String_wrap("port1")));
-    auto item2 = track_instrument_port(InstrumentPort_create_port(String_wrap("port2")));
+    auto item1 = track_instrument_port(
+        InstrumentPort_create_port(String_wrap("port1"),
+                                   NULL,
+                                   InstrumentTypes_voltmeter(),
+                                   SymbolUnit_create_volt(),
+                                   String_wrap("")));
+    auto item2 = track_instrument_port(
+        InstrumentPort_create_port(String_wrap("port2"),
+                                   NULL,
+                                   InstrumentTypes_voltmeter(),
+                                   SymbolUnit_create_volt(),
+                                   String_wrap("")));
     AxesInstrumentPort_push_back(axes, item1);
     AxesInstrumentPort_push_back(axes, item2);
 
@@ -75,16 +86,26 @@ TEST_F(AxesInstrumentPortTest, CreateDestroy) {
 TEST_F(AxesInstrumentPortTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesInstrumentPort_size(axes), 2u);
 
-  InstrumentPortHandle out[1] = {
-      track_instrument_port(InstrumentPort_create_port(String_wrap("port1")))};
-  auto h2 = AxesInstrumentPort_create_raw(out, 1);
+  InstrumentPortHandle out[1] = {track_instrument_port(
+      InstrumentPort_create_port(String_wrap("port1"),
+                                 NULL,
+                                 InstrumentTypes_voltmeter(),
+                                 SymbolUnit_create_volt(),
+                                 String_wrap("")))};
+  auto                 h2     = AxesInstrumentPort_create_raw(out, 1);
   if (h2) AxesInstrumentPort_destroy(h2);
 
-  AxesInstrumentPort_push_back(
-      axes, track_instrument_port(InstrumentPort_create_port(String_wrap("port1"))));
+  AxesInstrumentPort_push_back(axes,
+                               track_instrument_port(InstrumentPort_create_port(
+                                   String_wrap("port1"),
+                                   NULL,
+                                   InstrumentTypes_voltmeter(),
+                                   SymbolUnit_create_volt(),
+                                   String_wrap(""))));
   InstrumentPortHandle out2[3];
   EXPECT_EQ(AxesInstrumentPort_items(axes, out2, 3), 3u);
-  // items(...) writes copies/handles into out2; caller must free them if they are new handles.
+  // items(...) writes copies/handles into out2; caller must free them if they
+  // are new handles.
   for (size_t i = 0; i < 3; ++i) {
     InstrumentPort_destroy(out2[i]);
   }

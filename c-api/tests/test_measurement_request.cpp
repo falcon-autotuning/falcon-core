@@ -6,10 +6,12 @@
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/Waveform_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h"
 #include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
 #include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
 #include "falcon_core/math/domains/LabelledDomain_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
 class MeasurementRequestTest : public ::testing::Test {
  protected:
@@ -18,10 +20,18 @@ class MeasurementRequestTest : public ::testing::Test {
     name         = String_wrap("measurement");
     domain       = Domain_create(0, 1.0, true, true);
     default_name = String_wrap("A");
-    port         = InstrumentPort_create_knob(
-        default_name, Connection_create_barrier_gate(default_name));
+    port =
+        InstrumentPort_create_knob(default_name,
+                                   Connection_create_barrier_gate(default_name),
+                                   InstrumentTypes_voltmeter(),
+                                   SymbolUnit_create_volt(),
+                                   String_wrap(""));
     getter = InstrumentPort_create_meter(
-        String_wrap("ohm1"), Connection_create_ohmic(String_wrap("ohm1")));
+        String_wrap("ohm1"),
+        Connection_create_ohmic(String_wrap("ohm1")),
+        InstrumentTypes_amnmeter(),
+        SymbolUnit_create_ampere(),
+        String_wrap(""));
     domain_list = ListLabelledDomain_create_empty();
     ListLabelledDomain_push_back(
         domain_list, LabelledDomain_create_from_port_and_domain(port, domain));

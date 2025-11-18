@@ -1,14 +1,20 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
 class PairInstrumentPortPortTransformTest : public ::testing::Test {
  protected:
   void SetUp() override {
     t1 = InstrumentPort_create_knob(
-        String_wrap("A"), Connection_create_plunger_gate(String_wrap("gate1")));
+        String_wrap("A"),
+        Connection_create_plunger_gate(String_wrap("gate1")),
+        InstrumentTypes_voltmeter(),
+        SymbolUnit_create_volt(),
+        String_wrap(""));
     t2    = PortTransform_create(t1, AnalyticFunction_create_identity());
     pair1 = PairInstrumentPortPortTransform_create(t1, t2);
     pair2 = PairInstrumentPortPortTransform_create(t1, t2);

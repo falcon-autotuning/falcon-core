@@ -1,17 +1,23 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
 class MeasurementContextTest : public ::testing::Test {
  protected:
   void SetUp() override {
     conn = Connection_create_barrier_gate(String_wrap("A"));
     port = InstrumentPort_create_port(
-        String_wrap("P1"), Connection_create_plunger_gate(String_wrap("G1")));
+        String_wrap("P1"),
+        Connection_create_plunger_gate(String_wrap("G1")),
+        InstrumentTypes_voltmeter(),
+        SymbolUnit_create_volt(),
+        String_wrap(""));
     mc  = MeasurementContext_create(conn, String_wrap("oscilloscope"));
     mc2 = MeasurementContext_create_from_port(port);
   }

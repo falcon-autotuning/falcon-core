@@ -9,6 +9,7 @@
 #include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/math/AxesInt_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
 class HDF5DataTest : public ::testing::Test {
  protected:
@@ -240,10 +241,18 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
   StringHandle         name         = String_wrap("measurement");
   DomainHandle         domain       = Domain_create(0, 1.0, true, true);
   StringHandle         default_name = String_wrap("A");
-  InstrumentPortHandle port         = InstrumentPort_create_knob(
-      default_name, Connection_create_barrier_gate(default_name));
-  InstrumentPortHandle getter = InstrumentPort_create_meter(
-      String_wrap("ohm1"), Connection_create_ohmic(String_wrap("ohm1")));
+  InstrumentPortHandle port =
+      InstrumentPort_create_knob(default_name,
+                                 Connection_create_barrier_gate(default_name),
+                                 InstrumentTypes_voltmeter(),
+                                 SymbolUnit_create_volt(),
+                                 String_wrap(""));
+  InstrumentPortHandle getter =
+      InstrumentPort_create_meter(String_wrap("ohm1"),
+                                  Connection_create_ohmic(String_wrap("ohm1")),
+                                  InstrumentTypes_amnmeter(),
+                                  SymbolUnit_create_ampere(),
+                                  String_wrap(""));
   ListLabelledDomainHandle domain_list = ListLabelledDomain_create_empty();
   ListLabelledDomain_push_back(
       domain_list, LabelledDomain_create_from_port_and_domain(port, domain));

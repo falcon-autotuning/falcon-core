@@ -1,15 +1,21 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
 #include "falcon_core/math/AnalyticFunction_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
 class PortTransformTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    port   = InstrumentPort_create_port(String_wrap("P1"));
+    port   = InstrumentPort_create_port(String_wrap("P1"),
+                                      NULL,
+                                      InstrumentTypes_voltmeter(),
+                                      SymbolUnit_create_volt(),
+                                      String_wrap(""));
     labels = ListString_create_empty();
     ListString_push_back(labels, String_wrap("x"));
     transform = AnalyticFunction_create(labels, String_wrap("2x[0] +1"));

@@ -14,25 +14,21 @@ extern "C" {
 typedef void* InstrumentPortHandle;
 
 // Constructors
-InstrumentPortHandle InstrumentPort_create_port(
-    StringHandle     default_name,
-    ConnectionHandle psuedo_name     = NULL,
-    StringHandle     instrument_type = InstrumentTypes_dc_voltage_source(),
-    SymbolUnitHandle units           = SymbolUnit_create_volt(),
-    StringHandle     description     = String_wrap(""));
-InstrumentPortHandle InstrumentPort_create_knob(
-    StringHandle     default_name,
-    ConnectionHandle psuedo_name     = NULL,
-    StringHandle     instrument_type = InstrumentTypes_dc_voltage_source(),
-    SymbolUnitHandle units           = SymbolUnit_create_millivolt(),
-    StringHandle     description     = String_wrap("A default voltage source"));
-InstrumentPortHandle InstrumentPort_create_meter(
-    StringHandle     default_name,
-    ConnectionHandle psuedo_name     = NULL,
-    StringHandle     instrument_type = InstrumentTypes_amnmeter(),
-    SymbolUnitHandle units           = SymbolUnit_create_nanoampere(),
-    StringHandle     description =
-        String_wrap("A default current instrument interface"));
+InstrumentPortHandle InstrumentPort_create_port(StringHandle     default_name,
+                                                ConnectionHandle psuedo_name,
+                                                StringHandle instrument_type,
+                                                SymbolUnitHandle units,
+                                                StringHandle     description);
+InstrumentPortHandle InstrumentPort_create_knob(StringHandle     default_name,
+                                                ConnectionHandle psuedo_name,
+                                                StringHandle instrument_type,
+                                                SymbolUnitHandle units,
+                                                StringHandle     description);
+InstrumentPortHandle InstrumentPort_create_meter(StringHandle     default_name,
+                                                 ConnectionHandle psuedo_name,
+                                                 StringHandle instrument_type,
+                                                 SymbolUnitHandle units,
+                                                 StringHandle     description);
 InstrumentPortHandle InstrumentPort_create_timer();
 InstrumentPortHandle InstrumentPort_create_execution_clock();
 

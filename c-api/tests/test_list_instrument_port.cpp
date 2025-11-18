@@ -1,9 +1,11 @@
 #include <falcon_core/generic/ListInstrumentPort_c_api.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
 #include <vector>
+
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
 class ListInstrumentPortTest : public ::testing::Test {
  protected:
@@ -21,11 +23,15 @@ class ListInstrumentPortTest : public ::testing::Test {
     sh1 = track_quantity(InstrumentPort_create_knob(
         String_wrap("knob1"),
         Connection_create_barrier_gate(String_wrap("gate1")),
-        InstrumentTypes_voltmeter()));
+        InstrumentTypes_voltmeter(),
+        SymbolUnit_create_volt(),
+        String_wrap("")));
     sh2 = track_quantity(InstrumentPort_create_knob(
         String_wrap("knob2"),
         Connection_create_barrier_gate(String_wrap("gate2")),
-        InstrumentTypes_voltmeter()));
+        InstrumentTypes_voltmeter(),
+        SymbolUnit_create_volt(),
+        String_wrap("")));
   }
   InstrumentPortHandle sh1;
   InstrumentPortHandle sh2;

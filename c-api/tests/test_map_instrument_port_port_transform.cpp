@@ -1,9 +1,10 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
 #include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
 class MapInstrumentPortPortTransformTest : public ::testing::Test {
  protected:
@@ -12,24 +13,32 @@ class MapInstrumentPortPortTransformTest : public ::testing::Test {
         InstrumentPort_create_knob(
             String_wrap("knob1"),
             Connection_create_barrier_gate(String_wrap("gate1")),
-            InstrumentTypes_voltmeter()),
+            InstrumentTypes_voltmeter(),
+            SymbolUnit_create_volt(),
+            String_wrap("")),
         PortTransform_create(
             InstrumentPort_create_knob(
                 String_wrap("name1"),
                 Connection_create_barrier_gate(String_wrap("gate1")),
-                InstrumentTypes_voltmeter()),
+                InstrumentTypes_voltmeter(),
+                SymbolUnit_create_volt(),
+                String_wrap("")),
             AnalyticFunction_create_identity()));
 
     p2 = PairInstrumentPortPortTransform_create(
         InstrumentPort_create_knob(
             String_wrap("knob2"),
             Connection_create_barrier_gate(String_wrap("gate2")),
-            InstrumentTypes_voltmeter()),
+            InstrumentTypes_voltmeter(),
+            SymbolUnit_create_volt(),
+            String_wrap("")),
         PortTransform_create(
             InstrumentPort_create_knob(
                 String_wrap("name2"),
                 Connection_create_barrier_gate(String_wrap("gate2")),
-                InstrumentTypes_voltmeter()),
+                InstrumentTypes_voltmeter(),
+                SymbolUnit_create_volt(),
+                String_wrap("")),
             AnalyticFunction_create_identity()));
 
     PairInstrumentPortPortTransformHandle arr[2] = {p1, p2};
@@ -74,31 +83,43 @@ TEST_F(MapInstrumentPortPortTransformTest, InsertAssignAccessErase) {
   EXPECT_FALSE(MapInstrumentPortPortTransform_contains(
       map, PairInstrumentPortPortTransform_first(p1)));
   set_last_error(0, nullptr);
-  MapInstrumentPortPortTransform_insert_or_assign(                   nullptr,                   PairInstrumentPortPortTransform_first(p1),                   PairInstrumentPortPortTransform_second(p1));
+  MapInstrumentPortPortTransform_insert_or_assign(
+      nullptr,
+      PairInstrumentPortPortTransform_first(p1),
+      PairInstrumentPortPortTransform_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInstrumentPortPortTransform_insert_or_assign(                   map, nullptr, PairInstrumentPortPortTransform_second(p1));
+  MapInstrumentPortPortTransform_insert_or_assign(
+      map, nullptr, PairInstrumentPortPortTransform_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInstrumentPortPortTransform_insert_or_assign(                   map, PairInstrumentPortPortTransform_first(p1), nullptr);
+  MapInstrumentPortPortTransform_insert_or_assign(
+      map, PairInstrumentPortPortTransform_first(p1), nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInstrumentPortPortTransform_insert(                   nullptr,                   PairInstrumentPortPortTransform_first(p1),                   PairInstrumentPortPortTransform_second(p1));
+  MapInstrumentPortPortTransform_insert(
+      nullptr,
+      PairInstrumentPortPortTransform_first(p1),
+      PairInstrumentPortPortTransform_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInstrumentPortPortTransform_insert(                   map, nullptr, PairInstrumentPortPortTransform_second(p1));
+  MapInstrumentPortPortTransform_insert(
+      map, nullptr, PairInstrumentPortPortTransform_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInstrumentPortPortTransform_insert(                   map, PairInstrumentPortPortTransform_first(p1), nullptr);
+  MapInstrumentPortPortTransform_insert(
+      map, PairInstrumentPortPortTransform_first(p1), nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInstrumentPortPortTransform_at(                   nullptr, PairInstrumentPortPortTransform_first(p1));
+  MapInstrumentPortPortTransform_at(nullptr,
+                                    PairInstrumentPortPortTransform_first(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   MapInstrumentPortPortTransform_at(map, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInstrumentPortPortTransform_erase(                   nullptr, PairInstrumentPortPortTransform_first(p1));
+  MapInstrumentPortPortTransform_erase(
+      nullptr, PairInstrumentPortPortTransform_first(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   MapInstrumentPortPortTransform_erase(map, nullptr);
@@ -120,7 +141,8 @@ TEST_F(MapInstrumentPortPortTransformTest, SizeEmptyClearContains) {
   MapInstrumentPortPortTransform_clear(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInstrumentPortPortTransform_contains(                   nullptr, PairInstrumentPortPortTransform_first(p1));
+  MapInstrumentPortPortTransform_contains(
+      nullptr, PairInstrumentPortPortTransform_first(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   MapInstrumentPortPortTransform_contains(map2, nullptr);
