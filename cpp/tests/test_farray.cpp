@@ -262,7 +262,7 @@ TEST(FArrayTest, PowerOperator) {
   arr(0, 1)                 = 3.0;
   arr(1, 0)                 = 4.0;
   arr(1, 1)                 = 5.0;
-  arr ^ 2.0;
+  arr.pow_inplace(2.0);
   EXPECT_DOUBLE_EQ((arr)(0, 0), 4.0);
   EXPECT_DOUBLE_EQ((arr)(0, 1), 9.0);
   EXPECT_DOUBLE_EQ((arr)(1, 0), 16.0);

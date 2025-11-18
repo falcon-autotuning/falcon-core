@@ -5,6 +5,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include "falcon_core/generic/ListListSizeT_c_api.h"
+#include "falcon_core/generic/FArrayDouble_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 
 // Forward declarations for opaque handles
@@ -45,7 +46,9 @@ void FArrayInt_dividesequals_int(FArrayIntHandle handle, const int other);
 FArrayIntHandle FArrayInt_divides_farray(FArrayIntHandle handle, FArrayIntHandle other);
 FArrayIntHandle FArrayInt_divides_double(FArrayIntHandle handle, const double other);
 FArrayIntHandle FArrayInt_divides_int(FArrayIntHandle handle, const int other);
-FArrayIntHandle FArrayInt_pow(FArrayIntHandle handle, const double other);
+FArrayIntHandle FArrayInt_pow(FArrayIntHandle handle, const int other);
+FArrayDoubleHandle FArrayInt_double_pow(FArrayIntHandle handle, const double other);
+void FArrayInt_pow_inplace(FArrayIntHandle handle, const int other);
 FArrayIntHandle FArrayInt_abs(FArrayIntHandle handle);
 int FArrayInt_min(FArrayIntHandle handle);
 FArrayIntHandle FArrayInt_min_arraywise(FArrayIntHandle handle, FArrayIntHandle other);

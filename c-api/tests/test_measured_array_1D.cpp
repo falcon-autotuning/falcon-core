@@ -146,7 +146,7 @@ TEST_F(MeasuredArray1DTest, ArithmeticOperators) {
   MeasuredArray1D_plusequals_farray(ma, fa);
   MeasuredArray1D_plusequals_double(ma, 1.0);
   MeasuredArray1D_plusequals_int(ma, 1);
-  auto ma_plus_ma = MeasuredArray1D_plus_control_array(ma, ma2);
+  auto ma_plus_ma = MeasuredArray1D_plus_measured_array(ma, ma2);
   auto ma_plus_fa = MeasuredArray1D_plus_farray(ma, fa);
   auto ma_plus_d  = MeasuredArray1D_plus_double(ma, 1.0);
   auto ma_plus_i  = MeasuredArray1D_plus_int(ma, 1);
@@ -158,7 +158,7 @@ TEST_F(MeasuredArray1DTest, ArithmeticOperators) {
   MeasuredArray1D_minusequals_farray(ma, fa);
   MeasuredArray1D_minusequals_double(ma, 1.0);
   MeasuredArray1D_minusequals_int(ma, 1);
-  auto ma_minus_ma = MeasuredArray1D_minus_control_array(ma, ma2);
+  auto ma_minus_ma = MeasuredArray1D_minus_measured_array(ma, ma2);
   auto ma_minus_fa = MeasuredArray1D_minus_farray(ma, fa);
   auto ma_minus_d  = MeasuredArray1D_minus_double(ma, 1.0);
   auto ma_minus_i  = MeasuredArray1D_minus_int(ma, 1);
@@ -201,12 +201,12 @@ TEST_F(MeasuredArray1DTest, ArithmeticOperators) {
   MeasuredArray1D_destroy(ma_abs);
 
   auto ma_min_fa = MeasuredArray1D_min_farray(ma, fa);
-  auto ma_min_ma = MeasuredArray1D_min_control_array(ma, ma2);
+  auto ma_min_ma = MeasuredArray1D_min_measured_array(ma, ma2);
   MeasuredArray1D_destroy(ma_min_fa);
   MeasuredArray1D_destroy(ma_min_ma);
 
   auto ma_max_fa = MeasuredArray1D_max_farray(ma, fa);
-  auto ma_max_ma = MeasuredArray1D_max_control_array(ma, ma2);
+  auto ma_max_ma = MeasuredArray1D_max_measured_array(ma, ma2);
   MeasuredArray1D_destroy(ma_max_fa);
   MeasuredArray1D_destroy(ma_max_ma);
 
@@ -223,10 +223,10 @@ TEST_F(MeasuredArray1DTest, ArithmeticOperators) {
   MeasuredArray1D_plusequals_int(nullptr, 1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasuredArray1D_plus_control_array(nullptr, ma2);
+  MeasuredArray1D_plus_measured_array(nullptr, ma2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasuredArray1D_plus_control_array(ma, nullptr);
+  MeasuredArray1D_plus_measured_array(ma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   MeasuredArray1D_plus_farray(nullptr, fa);
@@ -254,10 +254,10 @@ TEST_F(MeasuredArray1DTest, ArithmeticOperators) {
   MeasuredArray1D_minusequals_int(nullptr, 1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasuredArray1D_minus_control_array(nullptr, ma2);
+  MeasuredArray1D_minus_measured_array(nullptr, ma2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasuredArray1D_minus_control_array(ma, nullptr);
+  MeasuredArray1D_minus_measured_array(ma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   MeasuredArray1D_minus_farray(nullptr, fa);
@@ -352,10 +352,10 @@ TEST_F(MeasuredArray1DTest, ArithmeticOperators) {
   MeasuredArray1D_min_farray(ma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasuredArray1D_min_control_array(nullptr, ma2);
+  MeasuredArray1D_min_measured_array(nullptr, ma2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasuredArray1D_min_control_array(ma, nullptr);
+  MeasuredArray1D_min_measured_array(ma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 
   set_last_error(0, nullptr);
@@ -365,10 +365,10 @@ TEST_F(MeasuredArray1DTest, ArithmeticOperators) {
   MeasuredArray1D_max_farray(ma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasuredArray1D_max_control_array(nullptr, ma2);
+  MeasuredArray1D_max_measured_array(nullptr, ma2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasuredArray1D_max_control_array(ma, nullptr);
+  MeasuredArray1D_max_measured_array(ma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 

@@ -46,6 +46,8 @@ FArrayDoubleHandle FArrayDouble_divides_farray(FArrayDoubleHandle handle, FArray
 FArrayDoubleHandle FArrayDouble_divides_double(FArrayDoubleHandle handle, const double other);
 FArrayDoubleHandle FArrayDouble_divides_int(FArrayDoubleHandle handle, const int other);
 FArrayDoubleHandle FArrayDouble_pow(FArrayDoubleHandle handle, const double other);
+FArrayDoubleHandle FArrayDouble_double_pow(FArrayDoubleHandle handle, const double other);
+void FArrayDouble_pow_inplace(FArrayDoubleHandle handle, const double other);
 FArrayDoubleHandle FArrayDouble_abs(FArrayDoubleHandle handle);
 double FArrayDouble_min(FArrayDoubleHandle handle);
 FArrayDoubleHandle FArrayDouble_min_arraywise(FArrayDoubleHandle handle, FArrayDoubleHandle other);

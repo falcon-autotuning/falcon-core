@@ -216,16 +216,12 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     return std::make_shared<FArray<T>>(result);
   }
   std::shared_ptr<FArray<double>> operator^(const double other) const {
-    FArray<double> result(*this);
-    result._data = xt::pow(result._data, other);
-    return std::make_shared<FArray<double>>(result);
+    return std::make_shared<FArray<double>>(xt::pow(this->_data, other));
   }
   std::shared_ptr<FArray<T>> operator^(const int other) const {
-    FArray<T> result(*this);
-    result._data = xt::pow(result._data, other);
-    return std::make_shared<FArray<T>>(result);
+    return std::make_shared<FArray<T>>(xt::pow(this->_data, other));
   }
-  void operator^(const T other) { this->_data = xt::pow(this->_data, other); }
+  void pow_inplace(const T other) { this->_data = xt::pow(this->_data, other); }
   std::shared_ptr<FArray<T>> abs() const {
     FArray<T> result(*this);
     result._data = xt::abs(result._data);
@@ -398,16 +394,16 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   array_type&       xtensor() noexcept override { return _data; }
   const array_type& xtensor() const noexcept override { return _data; }
 
-  double get_sum_of_squares() const { return (*this ^ 2)->sum(); }
+  double get_sum_of_squares() const { return (*this ^ 2.0)->sum(); }
   double get_sum_of_squares(const int other) const {
-    return (*(*this - other) ^ 2).sum();
+    return (*(*this - other) ^ 2.0)->sum();
   }
   double get_sum_of_squares(const double other) const {
-    return (*(*this - other) ^ 2).sum();
+    return (*(*this - other) ^ 2.0)->sum();
   }
   double get_sum_of_squares(
       const std::shared_ptr<generic::FArray<T>>& other) const {
-    return (*(*this - other) ^ 2).sum();
+    return (*(*this - other) ^ 2.0)->sum();
   }
 
  protected:

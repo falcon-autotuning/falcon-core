@@ -298,12 +298,12 @@ void MeasuredArray1D_plusequals_int(MeasuredArray1DHandle handle,
   FALCON_C_API_END()
 }
 
-MeasuredArray1DHandle MeasuredArray1D_plus_control_array(
+MeasuredArray1DHandle MeasuredArray1D_plus_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to MeasuredArray1D_plus_control_array");
+        "Null handle passed to MeasuredArray1D_plus_measured_array");
   }
   MeasuredArray1D*  measured_array = static_cast<MeasuredArray1D*>(handle);
   MeasuredArray1DSP oarray =
@@ -389,12 +389,12 @@ void MeasuredArray1D_minusequals_int(MeasuredArray1DHandle handle,
   FALCON_C_API_END()
 }
 
-MeasuredArray1DHandle MeasuredArray1D_minus_control_array(
+MeasuredArray1DHandle MeasuredArray1D_minus_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to MeasuredArray1D_minus_control_array");
+        "Null handle passed to MeasuredArray1D_minus_measured_array");
   }
   MeasuredArray1D*  measured_array = static_cast<MeasuredArray1D*>(handle);
   MeasuredArray1DSP oarray =
@@ -688,12 +688,12 @@ MeasuredArray1DHandle MeasuredArray1D_min_farray(MeasuredArray1DHandle handle,
   FALCON_C_API_END(nullptr)
 }
 
-MeasuredArray1DHandle MeasuredArray1D_min_control_array(
+MeasuredArray1DHandle MeasuredArray1D_min_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to MeasuredArray1D_min_control_array");
+        "Null handle passed to MeasuredArray1D_min_measured_array");
   }
   return new MeasuredArray1D(*static_cast<MeasuredArray1D*>(handle)->min(
       std::make_shared<MeasuredArray1D>(
@@ -716,12 +716,12 @@ MeasuredArray1DHandle MeasuredArray1D_max_farray(MeasuredArray1DHandle handle,
   FALCON_C_API_END(nullptr)
 }
 
-MeasuredArray1DHandle MeasuredArray1D_max_control_array(
+MeasuredArray1DHandle MeasuredArray1D_max_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to MeasuredArray1D_max_control_array");
+        "Null handle passed to MeasuredArray1D_max_measured_array");
   }
   return new MeasuredArray1D(*static_cast<MeasuredArray1D*>(handle)->max(
       std::make_shared<MeasuredArray1D>(

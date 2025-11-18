@@ -399,14 +399,34 @@ throw std::invalid_argument("Null handle passed to FArrayInt_divides_int");
     FALCON_C_API_END(nullptr)
 }
 
-FArrayIntHandle FArrayInt_pow(FArrayIntHandle handle, const double other) {
+FArrayIntHandle FArrayInt_pow(FArrayIntHandle handle, const int other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_pow");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*farray ^ other);
+    const falcon_core::generic::FArray<int>* farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    return new falcon_core::generic::FArray<int>(*(*farray ^ other));
     FALCON_C_API_END(nullptr)
+}
+
+FArrayDoubleHandle FArrayInt_double_pow(FArrayIntHandle handle, const double other) {
+    FALCON_C_API_BEGIN
+if (!handle) {
+throw std::invalid_argument("Null handle passed to FArrayInt_pow");
+}
+    const falcon_core::generic::FArray<int>* farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    return new falcon_core::generic::FArray<double>(*(*farray ^ other));
+    FALCON_C_API_END(nullptr)
+}
+
+void FArrayInt_pow_inplace(FArrayIntHandle handle, const int other) {
+    FALCON_C_API_BEGIN
+if (!handle) {
+throw std::invalid_argument("Null handle passed to FArrayInt_pow");
+}
+    falcon_core::generic::FArray<int>* farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    farray->pow_inplace(other);
+    FALCON_C_API_END()
 }
 
 FArrayIntHandle FArrayInt_abs(FArrayIntHandle handle) {

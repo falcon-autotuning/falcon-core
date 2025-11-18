@@ -404,9 +404,29 @@ FArrayDoubleHandle FArrayDouble_pow(FArrayDoubleHandle handle, const double othe
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_pow");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<double>*>(handle);
-    return new falcon_core::generic::FArray<double>(*farray ^ other);
+    const falcon_core::generic::FArray<double>* farray = static_cast<falcon_core::generic::FArray<double>*>(handle);
+    return new falcon_core::generic::FArray<double>(*(*farray ^ other));
     FALCON_C_API_END(nullptr)
+}
+
+FArrayDoubleHandle FArrayDouble_double_pow(FArrayDoubleHandle handle, const double other) {
+    FALCON_C_API_BEGIN
+if (!handle) {
+throw std::invalid_argument("Null handle passed to FArrayDouble_pow");
+}
+    const falcon_core::generic::FArray<double>* farray = static_cast<falcon_core::generic::FArray<double>*>(handle);
+    return new falcon_core::generic::FArray<double>(*(*farray ^ other));
+    FALCON_C_API_END(nullptr)
+}
+
+void FArrayDouble_pow_inplace(FArrayDoubleHandle handle, const double other) {
+    FALCON_C_API_BEGIN
+if (!handle) {
+throw std::invalid_argument("Null handle passed to FArrayDouble_pow");
+}
+    falcon_core::generic::FArray<double>* farray = static_cast<falcon_core::generic::FArray<double>*>(handle);
+    farray->pow_inplace(other);
+    FALCON_C_API_END()
 }
 
 FArrayDoubleHandle FArrayDouble_abs(FArrayDoubleHandle handle) {

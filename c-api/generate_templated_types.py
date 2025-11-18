@@ -2325,7 +2325,7 @@ if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_pow");
 }}
     const falcon_core::generic::FArray<{cpp_type}>* farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
-    return new falcon_core::generic::FArray<{cpp_type}>(*farray ^ other);
+    return new falcon_core::generic::FArray<{cpp_type}>(*(*farray ^ other));
     FALCON_C_API_END(nullptr)
 }}
 
@@ -2335,7 +2335,7 @@ if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_pow");
 }}
     const falcon_core::generic::FArray<{cpp_type}>* farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
-    return new falcon_core::generic::FArray<double>(*farray ^ other);
+    return new falcon_core::generic::FArray<double>(*(*farray ^ other));
     FALCON_C_API_END(nullptr)
 }}
 
@@ -2345,7 +2345,7 @@ if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_pow");
 }}
     falcon_core::generic::FArray<{cpp_type}>* farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
-    farray->operator^(other);
+    farray->pow_inplace(other);
     FALCON_C_API_END()
 }}
 
@@ -4253,6 +4253,7 @@ registry: dict[str, Entry] = {
             "<stddef.h>",
             "<stdbool.h>",
             '"falcon_core/generic/ListListSizeT_c_api.h"',
+            '"falcon_core/generic/FArrayDouble_c_api.h"',
         ],
         [
             "<falcon_core/generic/FArray.hpp>",
