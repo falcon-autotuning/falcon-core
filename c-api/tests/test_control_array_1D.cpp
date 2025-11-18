@@ -1,9 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <cmath>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/arrays/ControlArray1D_c_api.h"
@@ -387,12 +386,12 @@ TEST_F(ControlArray1DTest, OffsetSumWhereFlipGradient) {
 }
 
 TEST_F(ControlArray1DTest, SumOfSquares) {
-  EXPECT_DOUBLE_EQ(ControlArray1D_get_sum_of_squares(ca), 6.0);
-  EXPECT_DOUBLE_EQ(ControlArray1D_get_summed_diff_int_of_squares(ca, 1), 3.0);
+  EXPECT_DOUBLE_EQ(ControlArray1D_get_sum_of_squares(ca), 14.0);
+  EXPECT_DOUBLE_EQ(ControlArray1D_get_summed_diff_int_of_squares(ca, 1), 5.0);
   EXPECT_DOUBLE_EQ(ControlArray1D_get_summed_diff_double_of_squares(ca, 1.0),
-                   3.0);
+                   5.0);
   EXPECT_DOUBLE_EQ(ControlArray1D_get_summed_diff_array_of_squares(ca, ca2),
-                   -6.0);
+                   14.0);
   set_last_error(0, nullptr);
   ControlArray1D_get_sum_of_squares(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);

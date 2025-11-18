@@ -542,17 +542,18 @@ TEST(FArrayDoubleTest, OperatorPowerAndDivideWithDouble) {
   // Test operator^ with double
   auto arr_pow = arr ^ 2.0;
   ASSERT_EQ(arr_pow.shape(), arr.shape());
-  // The implementation may not actually compute the power, but check type and
-  // shape If fixed, you can check values: EXPECT_DOUBLE_EQ((*arr_pow)(0,
-  // 0), 4.0);
+  EXPECT_DOUBLE_EQ((arr_pow)(0, 0), 4.0);
+  EXPECT_DOUBLE_EQ((arr_pow)(0, 1), 16.0);
+  EXPECT_DOUBLE_EQ((arr_pow)(1, 0), 64.0);
+  EXPECT_DOUBLE_EQ((arr_pow)(1, 1), 256.0);
 
   // Test operator/ with double
   auto arr_div = arr / 2.0;
   ASSERT_EQ(arr_div->shape(), arr.shape());
-  EXPECT_DOUBLE_EQ((*arr_div)(0, 0), 1.0);
-  EXPECT_DOUBLE_EQ((*arr_div)(0, 1), 2.0);
-  EXPECT_DOUBLE_EQ((*arr_div)(1, 0), 4.0);
-  EXPECT_DOUBLE_EQ((*arr_div)(1, 1), 8.0);
+  EXPECT_DOUBLE_EQ((*arr_div)(0, 0), 2.0);
+  EXPECT_DOUBLE_EQ((*arr_div)(0, 1), 8.0);
+  EXPECT_DOUBLE_EQ((*arr_div)(1, 0), 32.0);
+  EXPECT_DOUBLE_EQ((*arr_div)(1, 1), 128.0);
 }
 TEST(FArrayDoubleTest, OperatorNegationAndMinusDouble) {
   std::vector<size_t> shape = {2, 2};
