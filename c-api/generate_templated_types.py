@@ -461,7 +461,9 @@ void {self.mangled_name()}_dividesequals_int({self.chandle()} handle, const int 
 {self.chandle()} {self.mangled_name()}_divides_farray({self.chandle()} handle, {self.chandle()} other);
 {self.chandle()} {self.mangled_name()}_divides_double({self.chandle()} handle, const double other);
 {self.chandle()} {self.mangled_name()}_divides_int({self.chandle()} handle, const int other);
-{self.chandle()} {self.mangled_name()}_pow({self.chandle()} handle, const double other);
+{self.chandle()} {self.mangled_name()}_pow({self.chandle()} handle, const {c_type} other);
+FArrayDoubleHandle {self.mangled_name()}_double_pow({self.chandle()} handle, const double other);
+void {self.mangled_name()}_pow_inplace({self.chandle()} handle, const {c_type} other);
 {self.chandle()} {self.mangled_name()}_abs({self.chandle()} handle);
 {c_type} {self.mangled_name()}_min({self.chandle()} handle);
 {self.chandle()} {self.mangled_name()}_min_arraywise({self.chandle()} handle, {self.chandle()} other);
@@ -2317,14 +2319,34 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides
     FALCON_C_API_END(nullptr)
 }}
 
-{self.chandle()} {self.mangled_name()}_pow({self.chandle()} handle, const double other) {{
+{self.chandle()} {self.mangled_name()}_pow({self.chandle()} handle, const {c_type} other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_pow");
 }}
-    auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    const falcon_core::generic::FArray<{cpp_type}>* farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*farray ^ other);
     FALCON_C_API_END(nullptr)
+}}
+
+FArrayDoubleHandle {self.mangled_name()}_double_pow({self.chandle()} handle, const double other) {{
+    FALCON_C_API_BEGIN
+if (!handle) {{
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_pow");
+}}
+    const falcon_core::generic::FArray<{cpp_type}>* farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    return new falcon_core::generic::FArray<double>(*farray ^ other);
+    FALCON_C_API_END(nullptr)
+}}
+
+void {self.mangled_name()}_pow_inplace({self.chandle()} handle, const {c_type} other) {{
+    FALCON_C_API_BEGIN
+if (!handle) {{
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_pow");
+}}
+    falcon_core::generic::FArray<{cpp_type}>* farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+    farray->operator^(other);
+    FALCON_C_API_END()
 }}
 
 {self.chandle()} {self.mangled_name()}_abs({self.chandle()} handle) {{

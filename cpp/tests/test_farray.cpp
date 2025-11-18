@@ -262,12 +262,11 @@ TEST(FArrayTest, PowerOperator) {
   arr(0, 1)                 = 3.0;
   arr(1, 0)                 = 4.0;
   arr(1, 1)                 = 5.0;
-  auto arr_pow              = arr ^ 2.0;
-  // xt::pow is not in-place, so arr_pow should be elementwise squared
-  // (the implementation in FArray is not correct, but we test as written)
-  // This test will pass if the implementation is fixed to assign result._data =
-  // xt::pow(result._data, other); For now, just check type and shape
-  ASSERT_EQ(arr_pow.shape(), arr.shape());
+  arr ^ 2.0;
+  EXPECT_DOUBLE_EQ((arr)(0, 0), 4.0);
+  EXPECT_DOUBLE_EQ((arr)(0, 1), 9.0);
+  EXPECT_DOUBLE_EQ((arr)(1, 0), 16.0);
+  EXPECT_DOUBLE_EQ((arr)(1, 1), 25.0);
 }
 TEST(FArrayTest, OperatorParenthesesConstAndNonConst) {
   std::vector<size_t> shape = {2, 2};
@@ -532,28 +531,25 @@ TEST(FArrayIntTest, WhereReshapeFlipGradient5x5) {
 }
 
 TEST(FArrayDoubleTest, OperatorPowerAndDivideWithDouble) {
-  std::vector<size_t> shape = {2, 2};
-  FArray<double>      arr   = *FArray<double>::zeros(shape);
-  arr(0, 0)                 = 2.0;
-  arr(0, 1)                 = 4.0;
-  arr(1, 0)                 = 8.0;
-  arr(1, 1)                 = 16.0;
+  std::vector<size_t>  shape = {2, 2};
+  xt::xarray<double>   data  = {{2.0, 4.0}, {8.0, 16.0}};
+  const FArray<double> arr(data);
 
   // Test operator^ with double
   auto arr_pow = arr ^ 2.0;
-  ASSERT_EQ(arr_pow.shape(), arr.shape());
-  EXPECT_DOUBLE_EQ((arr_pow)(0, 0), 4.0);
-  EXPECT_DOUBLE_EQ((arr_pow)(0, 1), 16.0);
-  EXPECT_DOUBLE_EQ((arr_pow)(1, 0), 64.0);
-  EXPECT_DOUBLE_EQ((arr_pow)(1, 1), 256.0);
+  ASSERT_EQ(arr_pow->shape(), arr.shape());
+  EXPECT_DOUBLE_EQ((*arr_pow)(0, 0), 4.0);
+  EXPECT_DOUBLE_EQ((*arr_pow)(0, 1), 16.0);
+  EXPECT_DOUBLE_EQ((*arr_pow)(1, 0), 64.0);
+  EXPECT_DOUBLE_EQ((*arr_pow)(1, 1), 256.0);
 
   // Test operator/ with double
   auto arr_div = arr / 2.0;
   ASSERT_EQ(arr_div->shape(), arr.shape());
-  EXPECT_DOUBLE_EQ((*arr_div)(0, 0), 2.0);
-  EXPECT_DOUBLE_EQ((*arr_div)(0, 1), 8.0);
-  EXPECT_DOUBLE_EQ((*arr_div)(1, 0), 32.0);
-  EXPECT_DOUBLE_EQ((*arr_div)(1, 1), 128.0);
+  EXPECT_DOUBLE_EQ((*arr_div)(0, 0), 1.0);
+  EXPECT_DOUBLE_EQ((*arr_div)(0, 1), 2.0);
+  EXPECT_DOUBLE_EQ((*arr_div)(1, 0), 4.0);
+  EXPECT_DOUBLE_EQ((*arr_div)(1, 1), 8.0);
 }
 TEST(FArrayDoubleTest, OperatorNegationAndMinusDouble) {
   std::vector<size_t> shape = {2, 2};
@@ -610,8 +606,12 @@ TEST(FArrayDoubleTest, OperatorPowerConst) {
   arr(1, 0)                     = 4.0;
   arr(1, 1)                     = 5.0;
   const FArray<double>& carr    = arr;
-  auto                  arr_pow = carr ^ 2.0;
+  auto                  arr_pow = carr ^ 2;
   ASSERT_EQ(arr_pow->shape(), arr.shape());
+  EXPECT_DOUBLE_EQ((*arr_pow)(0, 0), 4.0);
+  EXPECT_DOUBLE_EQ((*arr_pow)(0, 1), 9.0);
+  EXPECT_DOUBLE_EQ((*arr_pow)(1, 0), 16.0);
+  EXPECT_DOUBLE_EQ((*arr_pow)(1, 1), 25.0);
 }
 
 TEST(FArrayDoubleTest, OperatorDivideConst) {

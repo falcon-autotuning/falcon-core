@@ -215,15 +215,17 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     result._data /= other->_data;
     return std::make_shared<FArray<T>>(result);
   }
-  std::shared_ptr<FArray<T>> operator^(const double other) const {
+  std::shared_ptr<FArray<double>> operator^(const double other) const {
+    FArray<double> result(*this);
+    result._data = xt::pow(result._data, other);
+    return std::make_shared<FArray<double>>(result);
+  }
+  std::shared_ptr<FArray<T>> operator^(const int other) const {
     FArray<T> result(*this);
     result._data = xt::pow(result._data, other);
     return std::make_shared<FArray<T>>(result);
   }
-  FArray<T>& operator^(const double other) {
-    this->_data = xt::pow(this->_data, other);
-    return *this;
-  }
+  void operator^(const T other) { this->_data = xt::pow(this->_data, other); }
   std::shared_ptr<FArray<T>> abs() const {
     FArray<T> result(*this);
     result._data = xt::abs(result._data);
