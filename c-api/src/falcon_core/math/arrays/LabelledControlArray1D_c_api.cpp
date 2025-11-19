@@ -36,7 +36,7 @@ LabelledControlArray1DHandle LabelledControlArray1D_from_farray(
   FALCON_C_API_END(nullptr)
 }
 
-LabelledControlArray1DHandle LabelledControlArray1D_from_controlarray(
+LabelledControlArray1DHandle LabelledControlArray1D_from_control_array(
     ControlArrayHandle controlarray, AcquisitionContextHandle label) {
   FALCON_C_API_BEGIN
   if (!controlarray) {

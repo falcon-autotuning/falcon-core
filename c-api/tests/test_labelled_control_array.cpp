@@ -25,7 +25,7 @@ class LabelledControlArrayTest : public ::testing::Test {
     label    = AcquisitionContext_create(
         conn, InstrumentTypes_voltmeter(), SymbolUnit_create_volt());
     lca  = LabelledControlArray_from_farray(fa, label);
-    lca2 = LabelledControlArray_from_controlarray(ca, label);
+    lca2 = LabelledControlArray_from_control_array(ca, label);
   }
   void TearDown() override {
     LabelledControlArray_destroy(lca);
@@ -47,13 +47,13 @@ class LabelledControlArrayTest : public ::testing::Test {
 TEST_F(LabelledControlArrayTest, CreateDestroy) {
   auto lca3 = LabelledControlArray_from_farray(fa, label);
   LabelledControlArray_destroy(lca3);
-  lca3 = LabelledControlArray_from_controlarray(ca, label);
+  lca3 = LabelledControlArray_from_control_array(ca, label);
   LabelledControlArray_destroy(lca3);
   set_last_error(0, nullptr);
   LabelledControlArray_from_farray(nullptr, label);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_from_controlarray(nullptr, label);
+  LabelledControlArray_from_control_array(nullptr, label);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledControlArray_destroy(nullptr);
@@ -413,7 +413,7 @@ TEST_F(LabelledControlArrayTest, ToJsonFromJson) {
 
 TEST_F(LabelledControlArrayTest, FromControlArrayNullLabel) {
   set_last_error(0, nullptr);
-  LabelledControlArray_from_controlarray(ca, nullptr);
+  LabelledControlArray_from_control_array(ca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 

@@ -1,9 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <vector>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/ListLabelledControlArray_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/AxesLabelledControlArray_c_api.h"
@@ -26,14 +25,14 @@ class AxesLabelledControlArrayTest : public ::testing::Test {
     auto pre_item1 = ControlArray_from_data(data2d, shape2d, 2);
     auto pre_item2 = ControlArray_from_data(data2d, shape2d, 2);
 
-    ca1d = track_labelled_control_array(LabelledControlArray_from_controlarray(
+    ca1d = track_labelled_control_array(LabelledControlArray_from_control_array(
         pre_item1,
         AcquisitionContext_create(
             Connection_create_plunger_gate(String_wrap("A")),
             InstrumentTypes_voltmeter(),
             SymbolUnit_create_volt())));
 
-    ca2d = track_labelled_control_array(LabelledControlArray_from_controlarray(
+    ca2d = track_labelled_control_array(LabelledControlArray_from_control_array(
         pre_item2,
         AcquisitionContext_create(
             Connection_create_plunger_gate(String_wrap("A")),
@@ -123,7 +122,7 @@ TEST_F(AxesLabelledControlArrayTest, AccessorsAndMutators) {
       Connection_create_plunger_gate(String_wrap("A")),
       InstrumentTypes_voltmeter(),
       SymbolUnit_create_volt());
-  auto lca = LabelledControlArray_from_controlarray(
+  auto lca = LabelledControlArray_from_control_array(
       ControlArray_from_data(data2d, shape2d, 2), label);
   LabelledControlArrayHandle out[1] = {lca};
   auto                       h2 = AxesLabelledControlArray_create_raw(out, 1);

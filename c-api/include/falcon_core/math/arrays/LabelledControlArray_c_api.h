@@ -16,7 +16,7 @@ typedef void* LabelledControlArrayHandle;
 // Constructors
 LabelledControlArrayHandle LabelledControlArray_from_farray(
     FArrayDoubleHandle farray, AcquisitionContextHandle label);
-LabelledControlArrayHandle LabelledControlArray_from_controlarray(
+LabelledControlArrayHandle LabelledControlArray_from_control_array(
     ControlArrayHandle controlarray, AcquisitionContextHandle label);
 
 // Destructor

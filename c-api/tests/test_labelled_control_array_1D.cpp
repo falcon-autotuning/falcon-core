@@ -27,7 +27,7 @@ class LabelledControlArray1DTest : public ::testing::Test {
     lca        = LabelledControlArray1D_from_farray(fa, label);
     double_lca = LabelledControlArray1D_from_farray(
         FArrayDouble_times_double(fa, 2.0), label);
-    lca2 = LabelledControlArray1D_from_controlarray(ca, label);
+    lca2 = LabelledControlArray1D_from_control_array(ca, label);
   }
   void TearDown() override {
     LabelledControlArray1D_destroy(lca);
@@ -51,13 +51,13 @@ class LabelledControlArray1DTest : public ::testing::Test {
 TEST_F(LabelledControlArray1DTest, CreateDestroy) {
   auto lca3 = LabelledControlArray1D_from_farray(fa, label);
   LabelledControlArray1D_destroy(lca3);
-  lca3 = LabelledControlArray1D_from_controlarray(ca, label);
+  lca3 = LabelledControlArray1D_from_control_array(ca, label);
   LabelledControlArray1D_destroy(lca3);
   set_last_error(0, nullptr);
   LabelledControlArray1D_from_farray(nullptr, label);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray1D_from_controlarray(nullptr, label);
+  LabelledControlArray1D_from_control_array(nullptr, label);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledControlArray1D_destroy(nullptr);
@@ -490,10 +490,10 @@ TEST_F(LabelledControlArray1DTest, AllowUnits) {
 
 TEST_F(LabelledControlArray1DTest, FromControlArrayNullptrCheck) {
   set_last_error(0, nullptr);
-  LabelledControlArray1D_from_controlarray(nullptr, label);
+  LabelledControlArray1D_from_control_array(nullptr, label);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray1D_from_controlarray(ca, nullptr);
+  LabelledControlArray1D_from_control_array(ca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
