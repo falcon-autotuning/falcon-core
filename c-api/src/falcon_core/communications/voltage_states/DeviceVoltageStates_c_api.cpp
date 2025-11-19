@@ -18,7 +18,14 @@ DeviceVoltageStatesHandle DeviceVoltageStates_create_empty() {
 DeviceVoltageStatesHandle DeviceVoltageStates_create(
     ListDeviceVoltageStateHandle items) {
   FALCON_C_API_BEGIN
-  return new DeviceVoltageStates(DeviceVoltageStates());
+  if (!items) {
+    throw std::invalid_argument(
+        "DeviceVoltageStates_create: items cannot be null");
+  }
+  falcon_core::generic::ListSP<DeviceVoltageState> list =
+      std::make_shared<falcon_core::generic::List<DeviceVoltageState>>(
+          *static_cast<falcon_core::generic::List<DeviceVoltageState>*>(items));
+  return new DeviceVoltageStates(list);
   FALCON_C_API_END(nullptr)
 }
 
