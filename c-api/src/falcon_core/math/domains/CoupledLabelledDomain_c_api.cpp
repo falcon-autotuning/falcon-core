@@ -122,10 +122,9 @@ void CoupledLabelledDomain_push_back(CoupledLabelledDomainHandle handle,
         "CoupledLabelledDomain_push_back: value cannot be null");
   }
   CoupledLabelledDomain* self = static_cast<CoupledLabelledDomain*>(handle);
-  falcon_core::generic::ListSP<LabelledDomain> real_value =
-      std::make_shared<falcon_core::generic::List<LabelledDomain>>(
-          *static_cast<falcon_core::generic::List<LabelledDomain>*>(value));
-  self->push_back(real_value->at(0));
+  LabelledDomainSP       real_value =
+      std::make_shared<LabelledDomain>(*static_cast<LabelledDomain*>(value));
+  self->push_back(real_value);
   FALCON_C_API_END()
 }
 
@@ -224,10 +223,9 @@ bool CoupledLabelledDomain_contains(CoupledLabelledDomainHandle handle,
         "CoupledLabelledDomain_contains: value cannot be null");
   }
   CoupledLabelledDomain self = *static_cast<CoupledLabelledDomain*>(handle);
-  falcon_core::generic::ListSP<LabelledDomain> real_value =
-      std::make_shared<falcon_core::generic::List<LabelledDomain>>(
-          *static_cast<falcon_core::generic::List<LabelledDomain>*>(value));
-  return self.contains(real_value->at(0));
+  LabelledDomainSP      real_value =
+      std::make_shared<LabelledDomain>(*static_cast<LabelledDomain*>(value));
+  return self.contains(real_value);
   FALCON_C_API_END(false)
 }
 

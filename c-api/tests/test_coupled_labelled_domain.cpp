@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
@@ -108,18 +107,18 @@ TEST_F(CoupledLabelledDomainTest, Intersection) {
 
 TEST_F(CoupledLabelledDomainTest, PushBackSizeEmptyEraseClear) {
   auto e = CoupledLabelledDomain_create_empty();
-  CoupledLabelledDomain_push_back(e, ldom_list);
+  CoupledLabelledDomain_push_back(e, ldom);
   EXPECT_EQ(CoupledLabelledDomain_size(e), 1);
   EXPECT_FALSE(CoupledLabelledDomain_empty(e));
   CoupledLabelledDomain_erase_at(e, 0);
   EXPECT_TRUE(CoupledLabelledDomain_empty(e));
-  CoupledLabelledDomain_push_back(e, ldom_list);
+  CoupledLabelledDomain_push_back(e, ldom);
   CoupledLabelledDomain_clear(e);
   EXPECT_TRUE(CoupledLabelledDomain_empty(e));
   CoupledLabelledDomain_destroy(e);
 
   set_last_error(0, nullptr);
-  CoupledLabelledDomain_push_back(nullptr, ldom_list);
+  CoupledLabelledDomain_push_back(nullptr, ldom);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   CoupledLabelledDomain_push_back(cldom, nullptr);
@@ -160,19 +159,19 @@ TEST_F(CoupledLabelledDomainTest, AtConstAtItems) {
 
 TEST_F(CoupledLabelledDomainTest, ContainsIndex) {
   auto e = CoupledLabelledDomain_create_empty();
-  CoupledLabelledDomain_push_back(e, ldom_list);
-  EXPECT_TRUE(CoupledLabelledDomain_contains(e, ldom_list));
-  EXPECT_EQ(CoupledLabelledDomain_index(e, ldom_list), 0);
+  CoupledLabelledDomain_push_back(e, ldom);
+  EXPECT_TRUE(CoupledLabelledDomain_contains(e, ldom));
+  EXPECT_EQ(CoupledLabelledDomain_index(e, ldom), 0);
   CoupledLabelledDomain_destroy(e);
 
   set_last_error(0, nullptr);
-  CoupledLabelledDomain_contains(nullptr, ldom_list);
+  CoupledLabelledDomain_contains(nullptr, ldom);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   CoupledLabelledDomain_contains(cldom, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  CoupledLabelledDomain_index(nullptr, ldom_list);
+  CoupledLabelledDomain_index(nullptr, ldom);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   CoupledLabelledDomain_index(cldom, nullptr);
