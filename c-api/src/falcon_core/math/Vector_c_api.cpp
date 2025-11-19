@@ -518,7 +518,7 @@ VectorHandle Vector_double_division(VectorHandle handle, double scalar) {
   FALCON_C_API_END(nullptr)
 }
 
-VectorHandle Vector_int_division(VectorHandle handle, double scalar) {
+VectorHandle Vector_int_division(VectorHandle handle, int scalar) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Vector_int_division: handle cannot be null");

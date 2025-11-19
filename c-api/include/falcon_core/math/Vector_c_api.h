@@ -65,7 +65,7 @@ VectorHandle Vector_subtraction(VectorHandle handle, VectorHandle other);
 VectorHandle Vector_double_multiplication(VectorHandle handle, double scalar);
 VectorHandle Vector_int_multiplication(VectorHandle handle, int scalar);
 VectorHandle Vector_double_division(VectorHandle handle, double scalar);
-VectorHandle Vector_int_division(VectorHandle handle, double scalar);
+VectorHandle Vector_int_division(VectorHandle handle, int scalar);
 VectorHandle Vector_negation(VectorHandle handle);
 VectorHandle Vector_update_start_from_states(VectorHandle              handle,
                                              DeviceVoltageStatesHandle state);
