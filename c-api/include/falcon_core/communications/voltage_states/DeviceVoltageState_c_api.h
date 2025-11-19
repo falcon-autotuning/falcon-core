@@ -10,10 +10,9 @@ extern "C" {
 typedef void* DeviceVoltageStateHandle;
 
 // Constructors
-DeviceVoltageStateHandle DeviceVoltageState_create(
-    ConnectionHandle connection,
-    double           voltage,
-    SymbolUnitHandle unit = SymbolUnit_create_volt());
+DeviceVoltageStateHandle DeviceVoltageState_create(ConnectionHandle connection,
+                                                   double           voltage,
+                                                   SymbolUnitHandle unit);
 
 // Destructor
 void DeviceVoltageState_destroy(DeviceVoltageStateHandle handle);
