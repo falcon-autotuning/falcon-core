@@ -65,11 +65,13 @@ class MeasurementRequestTest : public ::testing::Test {
     meter_transforms = MapInstrumentPortPortTransform_create_empty();
     MapInstrumentPortPortTransform_insert(meter_transforms, port, pt);
 
-    time_domain = LabelledDomain_create_from_port(
-        0.0,
-        1.0,
-        InstrumentTypes_clock(),
-        InstrumentPort_create_execution_clock());
+    time_domain =
+        LabelledDomain_create_from_port(0.0,
+                                        1.0,
+                                        InstrumentTypes_clock(),
+                                        InstrumentPort_create_execution_clock(),
+                                        true,
+                                        true);
 
     req = MeasurementRequest_create(
         msg, name, waveforms, getters, meter_transforms, time_domain);

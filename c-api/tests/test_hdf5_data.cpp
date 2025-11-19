@@ -294,7 +294,9 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
       LabelledDomain_create_from_port(0.0,
                                       1.0,
                                       InstrumentTypes_clock(),
-                                      InstrumentPort_create_execution_clock());
+                                      InstrumentPort_create_execution_clock(),
+                                      true,
+                                      true);
 
   MeasurementRequestHandle request = MeasurementRequest_create(
       msg, name, waveforms, getters, meter_transforms, time_domain);

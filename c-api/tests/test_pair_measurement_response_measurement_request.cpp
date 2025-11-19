@@ -75,11 +75,13 @@ class PairMeasurementResponseMeasurementRequestTest : public ::testing::Test {
         MapInstrumentPortPortTransform_create_empty();
     MapInstrumentPortPortTransform_insert(meter_transforms, port, pt);
 
-    LabelledDomainHandle time_domain = LabelledDomain_create_from_port(
-        0.0,
-        1.0,
-        InstrumentTypes_clock(),
-        InstrumentPort_create_execution_clock());
+    LabelledDomainHandle time_domain =
+        LabelledDomain_create_from_port(0.0,
+                                        1.0,
+                                        InstrumentTypes_clock(),
+                                        InstrumentPort_create_execution_clock(),
+                                        true,
+                                        true);
 
     t2 = MeasurementRequest_create(
         msg, name, waveforms, getters, meter_transforms, time_domain);

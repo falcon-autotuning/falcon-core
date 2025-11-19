@@ -1,10 +1,10 @@
 #include <falcon_core/generic/ListLabelledDomain_c_api.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
 #include <vector>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/math/domains/LabelledDomain_c_api.h"
 
 class ListLabelledDomainTest : public ::testing::Test {
@@ -28,7 +28,8 @@ class ListLabelledDomainTest : public ::testing::Test {
         InstrumentTypes_voltmeter(),
         true,
         true,
-        SymbolUnit_create_volt()));
+        SymbolUnit_create_volt(),
+        String_wrap("")));
     sh2 = track_quantity(LabelledDomain_create_primitive_knob(
         String_wrap("knob1"),
         0.0,
@@ -37,7 +38,8 @@ class ListLabelledDomainTest : public ::testing::Test {
         InstrumentTypes_voltmeter(),
         true,
         true,
-        SymbolUnit_create_volt()));
+        SymbolUnit_create_volt(),
+        String_wrap("")));
   }
   LabelledDomainHandle sh1;
   LabelledDomainHandle sh2;

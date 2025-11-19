@@ -20,7 +20,7 @@ LabelledDomainHandle LabelledDomain_create_primitive_knob(
     bool             lesser_bound_contained,
     bool             greater_bound_contained,
     SymbolUnitHandle units,
-    StringHandle     description = String_wrap(""));
+    StringHandle     description);
 LabelledDomainHandle LabelledDomain_create_primitive_meter(
     StringHandle     default_name,
     double           min_val,
@@ -30,7 +30,7 @@ LabelledDomainHandle LabelledDomain_create_primitive_meter(
     bool             lesser_bound_contained,
     bool             greater_bound_contained,
     SymbolUnitHandle units,
-    StringHandle     description = String_wrap(""));
+    StringHandle     description);
 LabelledDomainHandle LabelledDomain_create_primitive_port(
     StringHandle     default_name,
     double           min_val,
@@ -40,14 +40,14 @@ LabelledDomainHandle LabelledDomain_create_primitive_port(
     bool             lesser_bound_contained,
     bool             greater_bound_contained,
     SymbolUnitHandle units,
-    StringHandle     description = String_wrap(""));
+    StringHandle     description);
 LabelledDomainHandle LabelledDomain_create_from_port(
     double               min_val,
     double               max_val,
     StringHandle         instrument_type,
     InstrumentPortHandle port,
-    bool                 lesser_bound_contained  = true,
-    bool                 greater_bound_contained = true);
+    bool                 lesser_bound_contained,
+    bool                 greater_bound_contained);
 LabelledDomainHandle LabelledDomain_create_from_port_and_domain(
     InstrumentPortHandle port, DomainHandle domain);
 LabelledDomainHandle LabelledDomain_create_from_domain(
@@ -55,8 +55,8 @@ LabelledDomainHandle LabelledDomain_create_from_domain(
     StringHandle     default_name,
     ConnectionHandle psuedo_name,
     StringHandle     instrument_type,
-    SymbolUnitHandle units       = SymbolUnit_create_volt(),
-    StringHandle     description = String_wrap(""));
+    SymbolUnitHandle units,
+    StringHandle     description);
 
 // Destructor
 void LabelledDomain_destroy(LabelledDomainHandle handle);

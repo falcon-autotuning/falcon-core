@@ -1,10 +1,10 @@
 #include <falcon_core/generic/ListCoupledLabelledDomain_c_api.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
 #include <vector>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/domains/LabelledDomain_c_api.h"
 #include "falcon_core/physics/units/SymbolUnit_c_api.h"
@@ -36,7 +36,8 @@ class ListCoupledLabelledDomainTest : public ::testing::Test {
             InstrumentTypes_voltage_source(),
             true,
             true,
-            SymbolUnit_create_volt()));
+            SymbolUnit_create_volt(),
+            String_wrap("")));
     ListLabelledDomainHandle list2 = ListLabelledDomain_create_empty();
     ListLabelledDomain_push_back(
         list2,
@@ -48,7 +49,8 @@ class ListCoupledLabelledDomainTest : public ::testing::Test {
             InstrumentTypes_voltage_source(),
             true,
             true,
-            SymbolUnit_create_volt()));
+            SymbolUnit_create_volt(),
+            String_wrap("")));
 
     sh1 = track_quantity(CoupledLabelledDomain_create(list1));
     sh2 = track_quantity(CoupledLabelledDomain_create(list2));
