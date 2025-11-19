@@ -44,7 +44,7 @@ void LabelledMeasuredArray_plusequals_double(LabelledMeasuredArrayHandle handle,
                                              const double                other);
 void LabelledMeasuredArray_plusequals_int(LabelledMeasuredArrayHandle handle,
                                           const int                   other);
-LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_control_array(
+LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
 LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
@@ -52,7 +52,7 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_double(
     LabelledMeasuredArrayHandle handle, const double other);
 LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_int(
     LabelledMeasuredArrayHandle handle, const int other);
-void LabelledMeasuredArray_minusequals_control_array(
+void LabelledMeasuredArray_minusequals_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
 void LabelledMeasuredArray_minusequals_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
@@ -60,7 +60,7 @@ void LabelledMeasuredArray_minusequals_double(
     LabelledMeasuredArrayHandle handle, const double other);
 void LabelledMeasuredArray_minusequals_int(LabelledMeasuredArrayHandle handle,
                                            const int                   other);
-LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_control_array(
+LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_measured_array(
     LabelledMeasuredArrayHandle handle, MeasuredArrayHandle other);
 LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
@@ -108,11 +108,11 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_abs(
     LabelledMeasuredArrayHandle handle);
 LabelledMeasuredArrayHandle LabelledMeasuredArray_min_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
-LabelledMeasuredArrayHandle LabelledMeasuredArray_min_control_array(
+LabelledMeasuredArrayHandle LabelledMeasuredArray_min_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
 LabelledMeasuredArrayHandle LabelledMeasuredArray_max_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
-LabelledMeasuredArrayHandle LabelledMeasuredArray_max_control_array(
+LabelledMeasuredArrayHandle LabelledMeasuredArray_max_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
 bool   LabelledMeasuredArray_equality(LabelledMeasuredArrayHandle handle,
                                       LabelledMeasuredArrayHandle other);
