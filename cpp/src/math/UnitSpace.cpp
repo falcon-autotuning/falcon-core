@@ -106,17 +106,8 @@ void      UnitSpace::make_discrete_axes() {
                                   : bounds.second;
 
     auto arr = xt::arange<double>(lower_bound, upper_bound, delta);
-    std::cout << "Preparing to push_back an array with a lower_bound " +
-                     std::to_string(lower_bound) + " an upper_bound " +
-                     std::to_string(upper_bound) + " with a delta of " +
-                     std::to_string(delta)
-              << std::endl;
-    std::cout << "The array has " + std::to_string(arr.size()) + " entries"
-              << std::endl;
     arrays::ControlArray1DSP new_range =
         std::make_shared<arrays::ControlArray1D>(arr);
-    std::cout << "The range has size " + std::to_string(new_range->size())
-              << std::endl;
     _ranges->push_back(new_range);
   }
 }
@@ -167,34 +158,22 @@ void UnitSpace::compile() {
   std::vector<xt::xarray<double>> flat = std::vector<xt::xarray<double>>();
   for (const auto& arr : mesh) {
     xt::xarray<double> flat_array = xt::flatten(arr);
-    // std::cout << "In flattening the range has size " +
-    //                  std::to_string(flat_array.size())
-    //           << std::endl;
     flat.push_back(flat_array);
   }
 
   // Manually stack as rows (N x M, N = number of ranges, M = number of points)
-  size_t N = flat.size();
-  size_t M = flat[0].size();
-  std::cout << "N is " + std::to_string(N) + " and M is " + std::to_string(M)
-            << std::endl;
+  size_t             N     = flat.size();
+  size_t             M     = flat[0].size();
   xt::xarray<double> space = xt::zeros<double>({M, N});
   for (size_t i = 0; i < N; ++i) {
     for (size_t j = 0; j < M; ++j) {
       space(j, i) = flat[i](j);
     }
   }
-  // std::cout << "space shape: ";
-  // for (auto s : space.shape()) std::cout << s << " ";
-  // std::cout << std::endl;
 
   // Reverse columns to match Python's [:, ::-1]
   auto reversed = xt::flip(space, 0);
-  // std::cout << std::string("The reversed shape is ") +
-  //                  std::to_string(reversed.shape()[0]) + "," +
-  //                  std::to_string(reversed.shape()[1])
-  //           << std::endl;
-  _space = std::make_shared<generic::FArray<double>>(reversed);
+  _space        = std::make_shared<generic::FArray<double>>(reversed);
 }
 bool UnitSpace::operator==(const UnitSpace& other) const {
   return (*domain() == *other.domain()) && (*_ranges == *other._ranges);
