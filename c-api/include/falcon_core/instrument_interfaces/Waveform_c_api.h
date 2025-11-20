@@ -23,34 +23,34 @@ WaveformHandle Waveform_create_cartesianwaveform(
     AxesCoupledLabelledDomainHandle axes,
     AxesMapStringBoolHandle         increasing,
     ListPortTransformHandle         transforms,
-    DomainHandle                    domain = Domain_create(0, 1, true, true));
+    DomainHandle                    domain);
 WaveformHandle Waveform_create_cartesianidentitywaveform(
     AxesIntHandle                   divisions,
     AxesCoupledLabelledDomainHandle axes,
     AxesMapStringBoolHandle         increasing,
-    DomainHandle                    domain = Domain_create(0, 1, true, true));
+    DomainHandle                    domain);
 WaveformHandle Waveform_create_cartesianwaveform2D(
     AxesIntHandle                   divisions,
     AxesCoupledLabelledDomainHandle axes,
     AxesMapStringBoolHandle         increasing,
     ListPortTransformHandle         transforms,
-    DomainHandle                    domain = Domain_create(0, 1, true, true));
+    DomainHandle                    domain);
 WaveformHandle Waveform_create_cartesianidentitywaveform2D(
     AxesIntHandle                   divisions,
     AxesCoupledLabelledDomainHandle axes,
     AxesMapStringBoolHandle         increasing,
-    DomainHandle                    domain = Domain_create(0, 1, true, true));
+    DomainHandle                    domain);
 WaveformHandle Waveform_create_cartesianwaveform1D(
     int                         division,
     CoupledLabelledDomainHandle shared_domain,
     MapStringBoolHandle         increasing,
     ListPortTransformHandle     transforms,
-    DomainHandle                domain = Domain_create(0, 1, true, true));
+    DomainHandle                domain);
 WaveformHandle Waveform_create_cartesianidentitywaveform1D(
     int                         division,
     CoupledLabelledDomainHandle shared_domain,
     MapStringBoolHandle         increasing,
-    DomainHandle                domain = Domain_create(0, 1, true, true));
+    DomainHandle                domain);
 
 // Destructor
 void Waveform_destroy(WaveformHandle handle);
