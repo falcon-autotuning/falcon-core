@@ -20,7 +20,7 @@ PortTransformHandle  PortTransforms_create(ListPortTransformHandle handle);
 void PortTransforms_destroy(PortTransformsHandle handle);
 
 // Methods
-ListPortTransformHandle PortTransforms_transforms(PortTransformHandle handle);
+ListPortTransformHandle PortTransforms_transforms(PortTransformsHandle handle);
 void                    PortTransforms_push_back(PortTransformsHandle handle,
                                                  PortTransformHandle  value);
 size_t                  PortTransforms_size(PortTransformsHandle handle);
