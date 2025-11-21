@@ -62,8 +62,26 @@ LabelledDomainHandle LabelledDomain_create_from_domain(
 void LabelledDomain_destroy(LabelledDomainHandle handle);
 
 // Methods
+/* AUTO-DOC from cpp: LabelledDomain_port | falcon_core::math::domains::LabelledDomain::port */
+/**
+ * @brief (from C++: falcon_core::math::domains::LabelledDomain::port)
+ * @brief Get the port.
+ * @return Shared pointer to the port.
+ */
 InstrumentPortHandle LabelledDomain_port(LabelledDomainHandle handle);
+/* AUTO-DOC from cpp: LabelledDomain_domain | falcon_core::math::domains::LabelledDomain::domain */
+/**
+ * @brief (from C++: falcon_core::math::domains::LabelledDomain::domain)
+ * @brief Gets the domain associated with the port.
+ */
 DomainHandle         LabelledDomain_domain(LabelledDomainHandle handle);
+/* AUTO-DOC from cpp: LabelledDomain_matching_port | falcon_core::math::domains::LabelledDomain::matching_port */
+/**
+ * @brief (from C++: falcon_core::math::domains::LabelledDomain::matching_port)
+ * @brief Checks if the port matches the given port.
+ * @param port The port to compare with.
+ * @return True if the ports match, false otherwise.
+ */
 bool                 LabelledDomain_matching_port(LabelledDomainHandle handle,
                                                   InstrumentPortHandle port);
 double               LabelledDomain_lesser_bound(LabelledDomainHandle handle);

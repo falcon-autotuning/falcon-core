@@ -21,8 +21,23 @@ VoltageConstraintsHandle VoltageConstraints_create(
 void VoltageConstraints_destroy(VoltageConstraintsHandle handle);
 
 // Methods
+/* AUTO-DOC from cpp: VoltageConstraints_matrix | falcon_core::physics::config::core::VoltageConstraints::matrix */
+/**
+ * @brief (from C++: falcon_core::physics::config::core::VoltageConstraints::matrix)
+ * @brief The constraint matrix.
+ */
 FArrayDoubleHandle VoltageConstraints_matrix(VoltageConstraintsHandle handle);
+/* AUTO-DOC from cpp: VoltageConstraints_adjacency | falcon_core::physics::config::core::VoltageConstraints::adjacency */
+/**
+ * @brief (from C++: falcon_core::physics::config::core::VoltageConstraints::adjacency)
+ * @brief The adjacency matrix used to understand the device layout.
+ */
 AdjacencyHandle VoltageConstraints_adjacency(VoltageConstraintsHandle handle);
+/* AUTO-DOC from cpp: VoltageConstraints_limits | falcon_core::physics::config::core::VoltageConstraints::limits */
+/**
+ * @brief (from C++: falcon_core::physics::config::core::VoltageConstraints::limits)
+ * @brief The y axis vector safe voltage limits for each constraint.
+ */
 FArrayDoubleHandle VoltageConstraints_limits(VoltageConstraintsHandle handle);
 bool               VoltageConstraints_equal(VoltageConstraintsHandle a,
                                             VoltageConstraintsHandle b);

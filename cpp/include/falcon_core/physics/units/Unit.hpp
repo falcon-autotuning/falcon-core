@@ -153,60 +153,60 @@ class Unit : public generic::Song {
    */
   double offset() const;
 
-  /*
+  /**
    * @brief Multiply this unit by another unit.
    * @param other The unit to multiply by.
    * @return A new Unit representing the product of this unit and the other.
    */
   std::shared_ptr<Unit> operator*(const std::shared_ptr<Unit>& other) const;
-  /*
+  /**
    * @brief Divide this unit by another unit.
    * @param other The unit to divide by.
    * @return A new Unit representing the division of this unit by the other.
    */
   std::shared_ptr<Unit> operator/(const std::shared_ptr<Unit>& other) const;
-  /*
+  /**
    * @brief Raise the unit to a power.
    * @param power The exponent to raise the unit to.
    * @return A new Unit raised to the specified power.
    */
   std::shared_ptr<Unit> operator^(const int power) const;
-  /*
+  /**
    * @brief Apply a prefix to this unit.
    * @param prefix The prefix symbol to apply (e.g. "k" for kilo
    * @return A new Unit with the specified prefix applied.
    * @throws std::invalid_argument if the prefix is not valid.
    */
   std::shared_ptr<Unit> with_prefix(const std::string prefix) const;
-  /*
+  /**
    * @brief Apply a milli prefix to this unit.
    */
   std::shared_ptr<Unit> get_milli() const;
-  /*
+  /**
    * @brief Apply a micro prefix to this unit.
    */
   std::shared_ptr<Unit> get_micro() const;
-  /*
+  /**
    * @brief Apply a nano prefix to this unit.
    */
   std::shared_ptr<Unit> get_nano() const;
-  /*
+  /**
    * @brief Apply a pico prefix to this unit.
    */
   std::shared_ptr<Unit> get_pico() const;
-  /*
+  /**
    * @brief Apply a kilo prefix to this unit.
    */
   std::shared_ptr<Unit> get_kilo() const;
-  /*
+  /**
    * @brief Apply a mega prefix to this unit.
    */
   std::shared_ptr<Unit> get_mega() const;
-  /*
+  /**
    * @brief Apply a giga prefix to this unit.
    */
   std::shared_ptr<Unit> get_giga() const;
-  /*
+  /**
    * @brief Convert a value from this unit to a target unit.
    * @param value The value in this unit to convert.
    * @param target_unit The unit to convert the value to.
@@ -215,7 +215,7 @@ class Unit : public generic::Song {
    */
   double convert_value_to(const double                 value,
                           const std::shared_ptr<Unit>& target_unit) const;
-  /*
+  /**
    * @brief Check if this unit is compatible with another unit.
    * @param other The unit to check compatibility with.
    * @return True if the units are compatible (same dimensions), false

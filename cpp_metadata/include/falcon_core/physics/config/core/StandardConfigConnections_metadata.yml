@@ -1,0 +1,174 @@
+- comment_raw: "/**\n * @brief Base config functionality for core config classes.\n\
+    \ */"
+  comment: '@brief Base config functionality for core config classes.'
+  declaration: 'class StandardConfigConnections : public generic::Song {'
+  kind: class
+  name: null
+- comment_raw: "/**\n   * @brief Constructs the differet gate types holders.\n   *\
+    \ @param screening_gates The screening gates.\n   * @param reservoir_gates The\
+    \ reservoir gates.\n   * @param plunger_gates The plunger gates.\n   * @param\
+    \ barrier_gates The barrier gates.\n   * @param ohmics The ohmic contacts.\n \
+    \  */"
+  comment: '@brief Constructs the differet gate types holders.
+
+    @param screening_gates The screening gates.
+
+    @param reservoir_gates The reservoir gates.
+
+    @param plunger_gates The plunger gates.
+
+    @param barrier_gates The barrier gates.
+
+    @param ohmics The ohmic contacts.'
+  declaration: "StandardConfigConnections(\n      const device_structures::ConnectionsSP&\
+    \ screening_gates,\n      const device_structures::ConnectionsSP& reservoir_gates,\n\
+    \      const device_structures::ConnectionsSP& plunger_gates,\n      const device_structures::ConnectionsSP&\
+    \ barrier_gates,\n      const device_structures::ConnectionsSP& ohmics);"
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections
+- comment_raw: "/**\n   * @brief The screening gates from the config.\n   * @return\
+    \ The screening gates.\n   */"
+  comment: '@brief The screening gates from the config.
+
+    @return The screening gates.'
+  declaration: const device_structures::ConnectionsSP& screening_gates() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::screening_gates
+- comment_raw: "/**\n   * @brief The reservoir gates from the config.\n   * @return\
+    \ The reservoir gates.\n   */"
+  comment: '@brief The reservoir gates from the config.
+
+    @return The reservoir gates.'
+  declaration: const device_structures::ConnectionsSP& reservoir_gates() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::reservoir_gates
+- comment_raw: "/**\n   * @brief The plunger gates from the config.\n   * @return\
+    \ The plunger gates.\n   */"
+  comment: '@brief The plunger gates from the config.
+
+    @return The plunger gates.'
+  declaration: const device_structures::ConnectionsSP& plunger_gates() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::plunger_gates
+- comment_raw: "/**\n   * @brief The barrier gates from the config.\n   * @return\
+    \ The barrier gates.\n   */"
+  comment: '@brief The barrier gates from the config.
+
+    @return The barrier gates.'
+  declaration: const device_structures::ConnectionsSP& barrier_gates() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::barrier_gates
+- comment_raw: "/**\n   * @brief The ohmics from the config.\n   * @return The ohmics\
+    \ gates.\n   */"
+  comment: '@brief The ohmics from the config.
+
+    @return The ohmics gates.'
+  declaration: const device_structures::ConnectionsSP& ohmics() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::ohmics
+- comment_raw: "/**\n   * @brief Gets the connections of type as supplied.\n   * @param\
+    \ conn_type The type of connection to get. The types of supported\n   * connections\
+    \ are: Connection, Connection, Connection, Connection,\n   * Connection, DotGate,\
+    \ Gate. and Connection\n   * @returns the plural form of the connection type.\
+    \ This corresponds to the\n   * conn_type\n   */"
+  comment: '@brief Gets the connections of type as supplied.
+
+    @param conn_type The type of connection to get. The types of supported
+
+    connections are: Connection, Connection, Connection, Connection,
+
+    Connection, DotGate, Gate. and Connection
+
+    @returns the plural form of the connection type. This corresponds to the
+
+    conn_type'
+  declaration: const device_structures::ConnectionsSP dot_gates() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::dot_gates
+- comment_raw: "/**\n   * @brief Gets the first ohmic connection.\n   */"
+  comment: '@brief Gets the first ohmic connection.'
+  declaration: const device_structures::ConnectionSP get_ohmic() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::get_ohmic
+- comment_raw: "/**\n   * @brief Gets the first barrier gate connection.\n   */"
+  comment: '@brief Gets the first barrier gate connection.'
+  declaration: const device_structures::ConnectionSP get_barrier_gate() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::get_barrier_gate
+- comment_raw: "/**\n   * @brief Gets the first plunger gate connection.\n   */"
+  comment: '@brief Gets the first plunger gate connection.'
+  declaration: const device_structures::ConnectionSP get_plunger_gate() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::get_plunger_gate
+- comment_raw: "/**\n   * @brief Gets the first reservoir gate connection..\n   */"
+  comment: '@brief Gets the first reservoir gate connection..'
+  declaration: const device_structures::ConnectionSP get_reservoir_gate() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::get_reservoir_gate
+- comment_raw: "/**\n   * @brief Gets the first screening gate connection.\n   */"
+  comment: '@brief Gets the first screening gate connection.'
+  declaration: const device_structures::ConnectionSP get_screening_gate() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::get_screening_gate
+- comment_raw: "/**\n   * @brief Gets the first dot gate connection.\n   */"
+  comment: '@brief Gets the first dot gate connection.'
+  declaration: const device_structures::ConnectionSP get_dot_gate() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::get_dot_gate
+- comment_raw: "/**\n   * @brief Gets the first gate connection.\n   */"
+  comment: '@brief Gets the first gate connection.'
+  declaration: const device_structures::ConnectionSP get_gate() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::get_gate
+- comment_raw: "/**\n   * @brief Gets all of the gates for this collection from the\
+    \ config.\n   */"
+  comment: '@brief Gets all of the gates for this collection from the config.'
+  declaration: const device_structures::ConnectionsSP get_all_gates() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::get_all_gates
+- comment_raw: "/**\n   * @brief Gets all of the connections for this collection from\
+    \ the config.\n   */"
+  comment: '@brief Gets all of the connections for this collection from the config.'
+  declaration: const device_structures::ConnectionsSP get_all_connections() const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::get_all_connections
+- comment_raw: "/**\n   * @brief If this ohmic is a member of this group or not.\n\
+    \   */"
+  comment: '@brief If this ohmic is a member of this group or not.'
+  declaration: bool has_ohmic(const device_structures::ConnectionSP& ohmic) const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::has_ohmic
+- comment_raw: "/**\n   * @brief If this gate is a member of this group or not.\n\
+    \   */"
+  comment: '@brief If this gate is a member of this group or not.'
+  declaration: bool has_gate(const device_structures::ConnectionSP& gate) const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::has_gate
+- comment_raw: "/**\n   * @brief If this gate is a barriergate of this group or not.\n\
+    \   */"
+  comment: '@brief If this gate is a barriergate of this group or not.'
+  declaration: bool has_barrier_gate(const device_structures::ConnectionSP& gate)
+    const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::has_barrier_gate
+- comment_raw: "/**\n   * @brief If this gate is a plungergate of this group or not.\n\
+    \   */"
+  comment: '@brief If this gate is a plungergate of this group or not.'
+  declaration: bool has_plunger_gate(const device_structures::ConnectionSP& gate)
+    const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::has_plunger_gate
+- comment_raw: "/**\n   * @brief If this gate is a reservoirgate of this group or\
+    \ not.\n   */"
+  comment: '@brief If this gate is a reservoirgate of this group or not.'
+  declaration: bool has_reservoir_gate(const device_structures::ConnectionSP& gate)
+    const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::has_reservoir_gate
+- comment_raw: "/**\n   * @brief If this gate is a screeninggate of this group or\
+    \ not.\n   */"
+  comment: '@brief If this gate is a screeninggate of this group or not.'
+  declaration: bool has_screening_gate(const device_structures::ConnectionSP& gate)
+    const;
+  kind: function
+  name: falcon_core::physics::config::core::StandardConfigConnections::has_screening_gate

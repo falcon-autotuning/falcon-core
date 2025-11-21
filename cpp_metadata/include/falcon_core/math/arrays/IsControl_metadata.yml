@@ -1,0 +1,37 @@
+- comment_raw: "/**\n   * @brief Return the principle dimension of the array.\n  \
+    \ */"
+  comment: '@brief Return the principle dimension of the array.'
+  declaration: int principle_dimension() const {
+  kind: function
+  name: falcon_core::math::arrays::IsControl::principle_dimension
+- comment_raw: "/**\n   * @brief Return the increasing alignments for each dimension.\n\
+    \   */"
+  comment: '@brief Return the increasing alignments for each dimension.'
+  declaration: IncreasingAlignmentSP alignment() const {
+  kind: function
+  name: falcon_core::math::arrays::IsControl::alignment
+- comment_raw: "/**\n   * @brief Recalculates the alignments zmerinobased on current\
+    \ data.\n   */"
+  comment: '@brief Recalculates the alignments zmerinobased on current data.'
+  declaration: void update_alignments() {
+  kind: function
+  name: falcon_core::math::arrays::IsControl::update_alignments
+- comment_raw: "/**\n   * @brief Determine the alignment for each dimension of the\
+    \ array.\n   * for each dimension checks if the values are increasing, decreasing,\
+    \ or not\n   * changing.\n   * @returns the alignment for each dimension.\n  \
+    \ * @throws std::runtime_error if no alignment is found.\n   * @throws std::runtime_error\
+    \ if more than one alignment is found.\n   */"
+  comment: '@brief Determine the alignment for each dimension of the array.
+
+    for each dimension checks if the values are increasing, decreasing, or not
+
+    changing.
+
+    @returns the alignment for each dimension.
+
+    @throws std::runtime_error if no alignment is found.
+
+    @throws std::runtime_error if more than one alignment is found.'
+  declaration: IncreasingAlignmentSP _determine_alignments() {
+  kind: function
+  name: falcon_core::math::arrays::IsControl::_determine_alignments

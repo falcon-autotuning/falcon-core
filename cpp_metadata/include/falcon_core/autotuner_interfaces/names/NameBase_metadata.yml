@@ -1,0 +1,10 @@
+- comment_raw: "/**\n   * @brief The string form of the name.\n   */"
+  comment: '@brief The string form of the name.'
+  declaration: std::string name() const;
+  kind: function
+  name: falcon_core::autotuner_interfaces::names::NameBase::name
+- comment_raw: "/**\n   * @brief The numeric form of the name.\n   */"
+  comment: '@brief The numeric form of the name.'
+  declaration: int                       num() const;
+  kind: function
+  name: falcon_core::autotuner_interfaces::names::NameBase::num

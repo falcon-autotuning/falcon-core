@@ -1,0 +1,27 @@
+- comment_raw: "/**\n   * @brief Flip the data along the given axis.\n   * @param\
+    \ axis The axis to flip.\n   * @return A flipped IsLabelled.\n   */"
+  comment: '@brief Flip the data along the given axis.
+
+    @param axis The axis to flip.
+
+    @return A flipped IsLabelled.'
+  declaration: std::shared_ptr<IsLabelled<T>> flip(size_t axis) const {
+  kind: function
+  name: falcon_core::math::arrays::IsLabelled::flip
+- comment_raw: "/**\n   * @brief Return the gradient of the data along all axes.\n\
+    \   */"
+  comment: '@brief Return the gradient of the data along all axes.'
+  declaration: generic::ListSP<std::shared_ptr<IsLabelled<T>>> gradient() const {
+  kind: function
+  name: falcon_core::math::arrays::IsLabelled::gradient
+- comment_raw: "/**\n   * @brief Return the gradient of the data along a given axis.\n\
+    \   * @param axis The axis to compute the gradient.\n   * @return The gradient\
+    \ IsLabelled.\n   */"
+  comment: '@brief Return the gradient of the data along a given axis.
+
+    @param axis The axis to compute the gradient.
+
+    @return The gradient IsLabelled.'
+  declaration: std::shared_ptr<IsLabelled<T>> gradient(size_t axis) const {
+  kind: function
+  name: falcon_core::math::arrays::IsLabelled::gradient

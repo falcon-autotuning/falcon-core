@@ -125,16 +125,41 @@ bool   LabelledMeasuredArray_lessthan(LabelledMeasuredArrayHandle handle,
 void   LabelledMeasuredArray_remove_offset(LabelledMeasuredArrayHandle handle,
                                            const double                offset);
 double LabelledMeasuredArray_sum(LabelledMeasuredArrayHandle handle);
+/* AUTO-DOC from cpp: LabelledMeasuredArray_reshape | falcon_core::math::arrays::LabelledMeasuredArray::reshape */
+/**
+ * @brief (from C++: falcon_core::math::arrays::LabelledMeasuredArray::reshape)
+ * @brief Return a new Array with the given shape.
+ * @param shape The new shape.
+ * @return A reshaped LabelledMeasuredArray.
+ */
 LabelledMeasuredArrayHandle LabelledMeasuredArray_reshape(
     LabelledMeasuredArrayHandle handle, const size_t* shape, size_t ndims);
 ListListSizeTHandle LabelledMeasuredArray_where(
     LabelledMeasuredArrayHandle handle, const double value);
+/* AUTO-DOC from cpp: LabelledMeasuredArray_flip | falcon_core::math::arrays::LabelledMeasuredArray::flip */
+/**
+ * @brief (from C++: falcon_core::math::arrays::LabelledMeasuredArray::flip)
+ * @brief Flip the data along the given axis.
+ * @param axis The axis to flip.
+ * @return A flipped LabelledMeasuredArray.
+ */
 LabelledMeasuredArrayHandle LabelledMeasuredArray_flip(
     LabelledMeasuredArrayHandle handle, size_t axis);
 size_t LabelledMeasuredArray_full_gradient(
     LabelledMeasuredArrayHandle  handle,
     LabelledMeasuredArrayHandle* out_buffer,
     size_t                       buffer_size);
+/* AUTO-DOC from cpp: LabelledMeasuredArray_gradient | falcon_core::math::arrays::LabelledMeasuredArray::gradient */
+/**
+ * @brief (from C++: falcon_core::math::arrays::LabelledMeasuredArray::gradient)
+ * @brief Return the gradient of the data along a given axis.
+ * Computes the gradient along the specified axis using finite differences:
+ * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+ * - For boundary points, uses forward (first element) or backward (last
+ * element) difference.
+ * @param axis The axis to compute the gradient.
+ * @return The gradient FArray.
+ */
 LabelledMeasuredArrayHandle LabelledMeasuredArray_gradient(
     LabelledMeasuredArrayHandle handle, size_t axis);
 double LabelledMeasuredArray_get_sum_of_squares(

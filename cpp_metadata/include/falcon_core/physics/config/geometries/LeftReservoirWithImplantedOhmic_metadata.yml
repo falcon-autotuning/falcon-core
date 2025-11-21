@@ -1,0 +1,13 @@
+- comment_raw: "/**\n * @brief A special reservoir geometry that has an implanted\
+    \ ohmic contact and\n *the rest of the channel extending to the right.\n **/"
+  comment: '@brief A special reservoir geometry that has an implanted ohmic contact
+    and
+
+    the rest of the channel extending to the right.
+
+    */'
+  declaration: "class LeftReservoirWithImplantedOhmic : public device_structures::Connection,\n\
+    \                                        public HasImplantedOhmic,\n         \
+    \                               public HasRightNeighbor {"
+  kind: class
+  name: null

@@ -16,6 +16,11 @@ GnameHandle Gname_create(StringHandle name);
 void Gname_destroy(GnameHandle handle);
 
 // Methods
+/* AUTO-DOC from cpp: Gname_gname | falcon_core::autotuner_interfaces::names::Gname::gname */
+/**
+ * @brief (from C++: falcon_core::autotuner_interfaces::names::Gname::gname)
+ * @brief Collect the gname as a string.
+ */
 StringHandle Gname_gname(GnameHandle handle);
 bool         Gname_equal(GnameHandle a, GnameHandle b);
 bool         Gname_not_equal(GnameHandle a, GnameHandle b);

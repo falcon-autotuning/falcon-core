@@ -6,7 +6,7 @@ namespace falcon_core {
 namespace physics {
 namespace config {
 namespace geometries {
-/*
+/**
  * @brief A gate with an ohmic below it.
  */
 class HasImplantedOhmic : public virtual generic::Song {

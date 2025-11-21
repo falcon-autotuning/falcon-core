@@ -86,6 +86,13 @@ void ControlArray_remove_offset(ControlArrayHandle handle, const double offset);
 double              ControlArray_sum(ControlArrayHandle handle);
 ListListSizeTHandle ControlArray_where(ControlArrayHandle handle,
                                        const double       value);
+/* AUTO-DOC from cpp: ControlArray_flip | falcon_core::math::arrays::ControlArray::flip */
+/**
+ * @brief (from C++: falcon_core::math::arrays::ControlArray::flip)
+ * @brief Flip the data along the given axis.
+ * @param axis The axis to flip.
+ * @return A flipped ControlArray.
+ */
 ControlArrayHandle  ControlArray_flip(ControlArrayHandle handle, size_t axis);
 size_t              ControlArray_full_gradient(ControlArrayHandle  handle,
                                                FArrayDoubleHandle* out_buffer,

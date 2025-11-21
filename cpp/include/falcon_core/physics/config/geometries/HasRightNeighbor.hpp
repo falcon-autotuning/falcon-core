@@ -8,7 +8,7 @@ namespace physics {
 namespace config {
 namespace geometries {
 
-/*
+/**
  * @brief A gate with a right neighbor.
  */
 class HasRightNeighbor : public virtual generic::Song {

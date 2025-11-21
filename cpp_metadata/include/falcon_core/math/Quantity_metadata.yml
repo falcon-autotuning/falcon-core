@@ -1,0 +1,38 @@
+- comment_raw: "/**\n * @file Quantity.hpp\n * @brief Defines the Quantity class for\
+    \ FalconCore.\n */"
+  comment: '@file Quantity.hpp
+
+    @brief Defines the Quantity class for FalconCore.'
+  declaration: 'class Quantity : public generic::Song {'
+  kind: class
+  name: null
+- comment_raw: "/**\n   * @brief Initialize a Quantity, which is a float with a unit.\n\
+    \   * @param value the value of the quantity.\n   * @param unit the unit of the\
+    \ quantity.\n   */"
+  comment: '@brief Initialize a Quantity, which is a float with a unit.
+
+    @param value the value of the quantity.
+
+    @param unit the unit of the quantity.'
+  declaration: "Quantity(\n      double                       value,\n      physics::units::SymbolUnitSP\
+    \ unit = physics::units::SymbolUnit::Volt());"
+  kind: function
+  name: falcon_core::math::for::Quantity
+- comment_raw: "/**\n   * @brief Return the value of the quantity.\n   */"
+  comment: '@brief Return the value of the quantity.'
+  declaration: double value() const;
+  kind: function
+  name: falcon_core::math::for::value
+- comment_raw: "/**\n   * @brief Return the unit of the quantity.\n   */"
+  comment: '@brief Return the unit of the quantity.'
+  declaration: physics::units::SymbolUnitSP unit() const;
+  kind: function
+  name: falcon_core::math::for::unit
+- comment_raw: "/**\n   * @brief Convert the quantity to a different unit.\n   * @param\
+    \ target_unit the raget unit to convert to.\n   */"
+  comment: '@brief Convert the quantity to a different unit.
+
+    @param target_unit the raget unit to convert to.'
+  declaration: void convert_to(physics::units::SymbolUnitSP target_unit);
+  kind: function
+  name: falcon_core::math::for::convert_to

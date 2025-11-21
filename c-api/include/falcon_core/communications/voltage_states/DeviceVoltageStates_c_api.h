@@ -19,12 +19,35 @@ DeviceVoltageStatesHandle DeviceVoltageStates_create(
 void DeviceVoltageStates_destroy(DeviceVoltageStatesHandle handle);
 
 // Methods
+/* AUTO-DOC from cpp: DeviceVoltageStates_states | falcon_core::communications::voltage_states::DeviceVoltageStates::states */
+/**
+ * @brief (from C++: falcon_core::communications::voltage_states::DeviceVoltageStates::states)
+ * @brief Returns the list of voltage states.
+ */
 ListDeviceVoltageStateHandle DeviceVoltageStates_states(
     DeviceVoltageStatesHandle handle);
+/* AUTO-DOC from cpp: DeviceVoltageStates_add_state | falcon_core::communications::voltage_states::DeviceVoltageStates::add_state */
+/**
+ * @brief (from C++: falcon_core::communications::voltage_states::DeviceVoltageStates::add_state)
+ * @brief Add a voltage state to the collection.
+ * @param state The voltage state to add.
+ */
 void DeviceVoltageStates_add_state(DeviceVoltageStatesHandle handle,
                                    DeviceVoltageStateHandle  state);
+/* AUTO-DOC from cpp: DeviceVoltageStates_find_state | falcon_core::communications::voltage_states::DeviceVoltageStates::find_state */
+/**
+ * @brief (from C++: falcon_core::communications::voltage_states::DeviceVoltageStates::find_state)
+ * @brief Find a voltage state by its connection.
+ * @param connection The connection to find.
+ * @returns the voltage state if found.
+ */
 DeviceVoltageStatesHandle DeviceVoltageStates_find_state(
     DeviceVoltageStatesHandle handle, ConnectionHandle connection);
+/* AUTO-DOC from cpp: DeviceVoltageStates_to_point | falcon_core::communications::voltage_states::DeviceVoltageStates::to_point */
+/**
+ * @brief (from C++: falcon_core::communications::voltage_states::DeviceVoltageStates::to_point)
+ * @brief Conversion to the Point datatype.
+ */
 PointHandle DeviceVoltageStates_to_point(DeviceVoltageStatesHandle handle);
 DeviceVoltageStatesHandle DeviceVoltageStates_intersection(
     DeviceVoltageStatesHandle handle, DeviceVoltageStatesHandle other);

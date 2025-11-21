@@ -1,0 +1,20 @@
+- comment_raw: "/**\n   * @brief Constructs the measurement context.\n   * @param\
+    \ connection The device connection.\n   * @param instrument_type The type of instrument.\n\
+    \   */"
+  comment: '@brief Constructs the measurement context.
+
+    @param connection The device connection.
+
+    @param instrument_type The type of instrument.'
+  declaration: "MeasurementContext(\n      const physics::device_structures::ConnectionSP&\
+    \ connection,\n      const instrument_interfaces::names::Instrument& instrument_type);"
+  kind: function
+  name: falcon_core::autotuner_interfaces::contexts::MeasurementContext
+- comment_raw: "/**\n   * @brief Constructs a MeasururementContext from an AcquisitionContext.\n\
+    \   * @param acquisition_context The acquisition context.\n   */"
+  comment: '@brief Constructs a MeasururementContext from an AcquisitionContext.
+
+    @param acquisition_context The acquisition context.'
+  declaration: MeasurementContext(const contexts::BaseContextSP& acquisition_context);
+  kind: function
+  name: falcon_core::autotuner_interfaces::contexts::MeasurementContext

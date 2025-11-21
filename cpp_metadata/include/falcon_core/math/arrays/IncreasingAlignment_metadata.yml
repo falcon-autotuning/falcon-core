@@ -1,0 +1,13 @@
+- comment_raw: "/**\n * @file IncreasingAlignment.hpp\n * @brief Defines the IncreasingAlignment\
+    \ class for FalconCore.\n */"
+  comment: '@file IncreasingAlignment.hpp
+
+    @brief Defines the IncreasingAlignment class for FalconCore.'
+  declaration: 'class IncreasingAlignment : public generic::Song {'
+  kind: class
+  name: null
+- comment_raw: "/**\n   * @brief Return the alignment of the domain.\n   */"
+  comment: '@brief Return the alignment of the domain.'
+  declaration: int  alignment() const;
+  kind: function
+  name: falcon_core::math::arrays::for::alignment
