@@ -1,0 +1,8 @@
+c_header: MapInterpretationContextDouble_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/Map.hpp
+mappings:
+- cpp: falcon_core::generic::Map::keys
+  c: MapInterpretationContextDouble_keys
+- cpp: falcon_core::generic::Map::values
+  c: MapInterpretationContextDouble_values

@@ -1,0 +1,8 @@
+c_header: LabelledArraysLabelledControlArray_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/math/arrays/LabelledArrays.hpp
+mappings:
+- cpp: falcon_core::math::arrays::LabelledArrays::arrays
+  c: LabelledArraysLabelledControlArray_arrays
+- cpp: falcon_core::math::arrays::LabelledArrays::labels
+  c: LabelledArraysLabelledControlArray_labels

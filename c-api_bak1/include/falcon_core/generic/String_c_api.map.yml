@@ -1,0 +1,6 @@
+c_header: String_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/Pair.hpp
+mappings:
+- cpp: falcon_core::generic::Pair::create
+  c: String_create

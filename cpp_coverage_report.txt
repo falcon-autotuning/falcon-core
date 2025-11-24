@@ -1,0 +1,330 @@
+Per-file coverage:
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/cereal/types/xtensor.hpp:
+  classes: 0/0 (0.0%)
+  funcs:   0/4 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   1/2 (50.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   2/3 (66.7%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/1 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/1 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   2/3 (66.7%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   0/2 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/names/Channels.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   0/1 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/names/Gname.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   1/2 (50.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   2/3 (66.7%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/communications/HDF5Data.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   2/3 (66.7%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/communications/Time.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   3/4 (75.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/communications/messages/BaseMessage.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/2 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/communications/messages/MeasurementRequest.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/5 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/1 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/communications/messages/StandardRequest.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/1 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/communications/messages/StandardResponse.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/1 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/2 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/communications/voltage_states/DeviceVoltageState.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/3 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/communications/voltage_states/DeviceVoltageStates.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   3/4 (75.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/CategoryTags.hpp:
+  classes: 0/2 (0.0%)
+  funcs:   0/0 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/FArray.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   4/27 (14.8%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/FArrayProtocol.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/7 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/IsPrimitive.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/0 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   3/23 (13.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   2/12 (16.7%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   1/2 (50.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Song.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   2/6 (33.3%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/instrument_interfaces/Waveform.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   2/3 (66.7%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   10/12 (83.3%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/instrument_interfaces/names/InstrumentTypes.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/0 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/instrument_interfaces/names/Ports.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   6/7 (85.7%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   1/2 (50.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/instrument_interfaces/port_transforms/PortTransforms.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/2 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/AnalyticFunction.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   3/4 (75.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/Axes.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/1 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/Point.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   1/3 (33.3%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/Quantity.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   3/5 (60.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/UnitSpace.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   7/8 (87.5%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/Vector.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   15/16 (93.8%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/ControlArray.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   2/4 (50.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/ControlArray1D.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   3/5 (60.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   1/2 (50.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/Is1D.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   4/4 (100.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/IsControl.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   1/3 (33.3%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/IsLabelled.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   3/6 (50.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/LabelledArrays.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   3/4 (75.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/LabelledControlArray.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   3/5 (60.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/LabelledControlArray1D.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   3/5 (60.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/LabelledMeasuredArray.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   3/5 (60.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/LabelledMeasuredArray1D.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   3/5 (60.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/MeasuredArray.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   3/5 (60.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/MeasuredArray1D.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   3/5 (60.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/discrete_spaces/DiscreteSpace.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   6/7 (85.7%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/discrete_spaces/Discretizer.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   4/8 (50.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/domains/CoupledLabelledDomain.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   2/3 (66.7%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/domains/Domain.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   12/13 (92.3%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/domains/LabelledDomain.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   2/3 (66.7%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/ConfigManipulations.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   2/2 (100.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/Loader.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   2/2 (100.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/core/Adjacency.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   2/3 (66.7%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/core/Config.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   28/29 (96.6%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/core/Group.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   6/7 (85.7%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/core/StandardConfigConnections.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   21/22 (95.5%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   4/5 (80.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   0/1 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   2/3 (66.7%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   10/15 (66.7%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/geometries/HasImplantedOhmic.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   1/2 (50.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   1/2 (50.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/geometries/HasRightNeighbor.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   1/2 (50.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   0/1 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   0/1 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/device_structures/Connection.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   14/15 (93.3%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/device_structures/Connections.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   7/8 (87.5%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/device_structures/GateRelations.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   1/2 (50.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/device_structures/Impedance.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   3/4 (75.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/device_structures/Impedances.hpp:
+  classes: 1/1 (100.0%)
+  funcs:   0/1 (0.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/units/Prefix.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   5/5 (100.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/units/SymbolUnit.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   64/66 (97.0%)
+
+/home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/units/Unit.hpp:
+  classes: 0/1 (0.0%)
+  funcs:   41/43 (95.3%)
+
+Overall coverage:
+
+  Classes: 37/81 (45.7%)
+  Functions: 352/521 (67.6%)

@@ -1,0 +1,14 @@
+c_header: PairConnectionFloat_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/Pair.hpp
+mappings:
+- cpp: falcon_core::generic::Pair::create
+  c: PairConnectionFloat_create
+- cpp: falcon_core::generic::Pair::first
+  c: PairConnectionFloat_first
+- cpp: falcon_core::generic::Pair::second
+  c: PairConnectionFloat_second
+- cpp: falcon_core::generic::Pair::first
+  c: PairConnectionFloat_first
+- cpp: falcon_core::generic::Pair::second
+  c: PairConnectionFloat_second

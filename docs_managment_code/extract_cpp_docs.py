@@ -69,7 +69,11 @@ from typing import Any, Dict, List, Optional
 BLOCK_OR_TRIPLE = r'(?:/\*\*[\s\S]*?\*/|(?:///[^\n]*\n)+)'
 
 # Find class definitions
-CLASS_DEF_RE = re.compile(r'\bclass\s+([A-Za-z_]\w*)[^;{]*\{', re.MULTILINE)
+# CLASS_DEF_RE = re.compile(r'\bclass\s+([A-Za-z_]\w*)[^;{]*\{', re.MULTILINE)
+CLASS_DEF_RE = re.compile(
+    r'^\s*class\s+([A-Za-z_]\w*)[^;{]*\{',
+    re.MULTILINE,
+)
 
 
 # A declaration ends at ';' or '{' (prototype or definition start)

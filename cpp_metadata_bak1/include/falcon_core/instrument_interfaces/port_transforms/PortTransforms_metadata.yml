@@ -1,0 +1,21 @@
+- comment_raw: "/**\n * @brief Container for multiple PortTransform objects.\n */"
+  comment: '@brief Container for multiple PortTransform objects.'
+  declaration: 'class PortTransforms : public generic::List<PortTransform> {'
+  kind: class
+  name: null
+- comment_raw: "/**\n   * @brief Constructor for a collection of port transforms.\n\
+    \   * @param init a list of port transforms.\n   */"
+  comment: '@brief Constructor for a collection of port transforms.
+
+    @param init a list of port transforms.'
+  declaration: PortTransforms(const generic::ListSP<PortTransform>& init);
+  kind: function
+  name: falcon_core::instrument_interfaces::port_transforms::PortTransforms
+- comment_raw: "/**\n   * @brief Constructor for a collection of port transforms.\n\
+    \   * @param init a list of port transforms.\n   */"
+  comment: '@brief Constructor for a collection of port transforms.
+
+    @param init a list of port transforms.'
+  declaration: PortTransforms(const std::vector<PortTransformSP>& init);
+  kind: function
+  name: falcon_core::instrument_interfaces::port_transforms::PortTransforms

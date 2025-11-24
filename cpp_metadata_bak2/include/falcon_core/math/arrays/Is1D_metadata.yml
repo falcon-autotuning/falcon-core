@@ -1,0 +1,108 @@
+- comment_raw: "/**\n   * @brief Check if the array is 1D.\n   * @returns True if\
+    \ the array is 1D, False otherwise.\n   */"
+  comment: '@brief Check if the array is 1D.
+
+    @returns True if the array is 1D, False otherwise.'
+  declaration: bool is_1D() const {
+  kind: function
+  name: falcon_core::math::arrays::Is1D::is_1D
+- comment_raw: "/**\n   * @brief Return the data as a 1D array.\n   * @returns The\
+    \ data as a 1D array.\n   * @throws std::runtime_error if not 1D.\n   */"
+  comment: '@brief Return the data as a 1D array.
+
+    @returns The data as a 1D array.
+
+    @throws std::runtime_error if not 1D.'
+  declaration: generic::FArraySP<T> as_1D() const {
+  kind: function
+  name: falcon_core::math::arrays::Is1D::as_1D
+- comment_raw: "/**\n   * @brief Get the first element of the 1D array.\n   * @returns\
+    \ The first element of the 1D array.\n   */"
+  comment: '@brief Get the first element of the 1D array.
+
+    @returns The first element of the 1D array.'
+  declaration: T get_start() const {
+  kind: function
+  name: falcon_core::math::arrays::Is1D::get_start
+- comment_raw: "/**\n   * @brief Get the last element of the 1D array.\n   * @returns\
+    \ The last element of the 1D array.\n   */"
+  comment: '@brief Get the last element of the 1D array.
+
+    @returns The last element of the 1D array.'
+  declaration: T get_end() const {
+  kind: function
+  name: falcon_core::math::arrays::Is1D::get_end
+- comment_raw: "/**\n   * @brief Check if the array is decreasing.\n   * @returns\
+    \ True if the array is decreasing, False otherwise.\n   */"
+  comment: '@brief Check if the array is decreasing.
+
+    @returns True if the array is decreasing, False otherwise.'
+  declaration: bool is_decreasing() const {
+  kind: function
+  name: falcon_core::math::arrays::Is1D::is_decreasing
+- comment_raw: "/**\n   * @brief Check if the array is increasing.\n   * @returns\
+    \ True if the array is increasing, False otherwise.\n   */"
+  comment: '@brief Check if the array is increasing.
+
+    @returns True if the array is increasing, False otherwise.'
+  declaration: bool is_increasing() const {
+  kind: function
+  name: falcon_core::math::arrays::Is1D::is_increasing
+- comment_raw: "/**\n   * @brief Get the distance between the first and last element\
+    \ of the 1D\n   * array.\n   * @returns The distance between the first and last\
+    \ element of the 1D array.\n   */"
+  comment: '@brief Get the distance between the first and last element of the 1D
+
+    array.
+
+    @returns The distance between the first and last element of the 1D array.'
+  declaration: T get_distance() const {
+  kind: function
+  name: falcon_core::math::arrays::Is1D::get_distance
+- comment_raw: "/**\n   * @brief Get the mean of the 1D array.\n   * @returns The\
+    \ mean value.\n   */"
+  comment: '@brief Get the mean of the 1D array.
+
+    @returns The mean value.'
+  declaration: double get_mean() const {
+  kind: function
+  name: falcon_core::math::arrays::Is1D::get_mean
+- comment_raw: "/**\n   * @brief Get the standard deviation of the 1D array.\n   *\
+    \ @returns The standard deviation value.\n   */"
+  comment: '@brief Get the standard deviation of the 1D array.
+
+    @returns The standard deviation value.'
+  declaration: double get_std() const {
+  kind: function
+  name: falcon_core::math::arrays::Is1D::get_std
+- comment_raw: "/**\n   * @brief Reverse the 1D array.\n   */"
+  comment: '@brief Reverse the 1D array.'
+  declaration: void reverse() {
+  kind: function
+  name: falcon_core::math::arrays::Is1D::reverse
+- comment_raw: "/**\n   * @brief Get the index of the closest element to the given\
+    \ value.\n   * @param value The value to find the closest index to.\n   * @returns\
+    \ The index of the closest element.\n   */"
+  comment: '@brief Get the index of the closest element to the given value.
+
+    @param value The value to find the closest index to.
+
+    @returns The index of the closest element.'
+  declaration: size_t get_closest_index(double value) const {
+  kind: function
+  name: falcon_core::math::arrays::Is1D::get_closest_index
+- comment_raw: "/**\n   * @brief Splits the array into even divisions if possible.\n\
+    \   * @param divisions The number of divisions to split the array into.\n   *\
+    \ @returns The divisions as a ListSP of BaseArray segments.\n   * @throws std::runtime_error\
+    \ if array cannot be evenly divided.\n   */"
+  comment: '@brief Splits the array into even divisions if possible.
+
+    @param divisions The number of divisions to split the array into.
+
+    @returns The divisions as a ListSP of BaseArray segments.
+
+    @throws std::runtime_error if array cannot be evenly divided.'
+  declaration: generic::ListSP<generic::FArray<T>> even_divisions(size_t divisions)
+    const {
+  kind: function
+  name: falcon_core::math::arrays::Is1D::even_divisions

@@ -1,0 +1,38 @@
+- comment_raw: "/**\n   * @brief Initialize a set of DeviceVoltageStates.\n   * @param\
+    \ states all of the states contained within the DeviceVotlageStates.\n   */"
+  comment: '@brief Initialize a set of DeviceVoltageStates.
+
+    @param states all of the states contained within the DeviceVotlageStates.'
+  declaration: DeviceVoltageStates(const generic::ListSP<DeviceVoltageState>& states);
+  kind: function
+  name: falcon_core::communications::voltage_states::DeviceVoltageStates
+- comment_raw: "/**\n   * @brief Returns the list of voltage states.\n   */"
+  comment: '@brief Returns the list of voltage states.'
+  declaration: const generic::ListSP<DeviceVoltageState> states() const;
+  kind: function
+  name: falcon_core::communications::voltage_states::DeviceVoltageStates::states
+- comment_raw: "/**\n   * @brief Add a voltage state to the collection.\n   * @param\
+    \ state The voltage state to add.\n   */"
+  comment: '@brief Add a voltage state to the collection.
+
+    @param state The voltage state to add.'
+  declaration: void add_state(const DeviceVoltageStateSP& state);
+  kind: function
+  name: falcon_core::communications::voltage_states::DeviceVoltageStates::add_state
+- comment_raw: "/**\n   * @brief Find a voltage state by its connection.\n   * @param\
+    \ connection The connection to find.\n   * @returns the voltage state if found.\n\
+    \   */"
+  comment: '@brief Find a voltage state by its connection.
+
+    @param connection The connection to find.
+
+    @returns the voltage state if found.'
+  declaration: "const DeviceVoltageStateSP find_state(\n      const physics::device_structures::ConnectionSP&\
+    \ connection) const;"
+  kind: function
+  name: falcon_core::communications::voltage_states::DeviceVoltageStates::find_state
+- comment_raw: "/**\n   * @brief Conversion to the Point datatype.\n   */"
+  comment: '@brief Conversion to the Point datatype.'
+  declaration: const math::PointSP to_point() const;
+  kind: function
+  name: falcon_core::communications::voltage_states::DeviceVoltageStates::to_point

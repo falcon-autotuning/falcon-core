@@ -1,0 +1,134 @@
+- comment_raw: "/**\n   * @brief Initialize the DiscreteSpace.\n   * The order of\
+    \ the Knobs in teh axes are defined to line up with the space.\n   * @param space\
+    \ the space taht the decirete values fill\n   * @param axes the axes containing\
+    \ the discrete values.\n   * @param increasing True if the axes are decreasing\
+    \ with the direction of the\n   * domain or against.\n   */"
+  comment: '@brief Initialize the DiscreteSpace.
+
+    The order of the Knobs in teh axes are defined to line up with the space.
+
+    @param space the space taht the decirete values fill
+
+    @param axes the axes containing the discrete values.
+
+    @param increasing True if the axes are decreasing with the direction of the
+
+    domain or against.'
+  declaration: "DiscreteSpace(const UnitSpaceSP&                             space,\n\
+    \                const AxesSP<domains::CoupledLabelledDomain>&  axes,\n      \
+    \          const AxesSP<generic::Map<std::string, bool>>& increasing);"
+  kind: function
+  name: falcon_core::math::discrete_spaces::DiscreteSpace
+- comment_raw: "/**\n   * @brief Create a ND cartesian discrete space.\n   * @param\
+    \ divisions the number of divisions for each axis.\n   * @param axes the domains\
+    \ for each axis.\n   * @param increasing if each dimension is increasing with\
+    \ time or not.\n   * @param domain the domain of the space.\n   */"
+  comment: '@brief Create a ND cartesian discrete space.
+
+    @param divisions the number of divisions for each axis.
+
+    @param axes the domains for each axis.
+
+    @param increasing if each dimension is increasing with time or not.
+
+    @param domain the domain of the space.'
+  declaration: "static std::shared_ptr<DiscreteSpace> CartesianDiscreteSpace(\n  \
+    \    const AxesSP<int>&                             divisions,\n      const AxesSP<domains::CoupledLabelledDomain>&\
+    \  axes,\n      const AxesSP<generic::Map<std::string, bool>>& increasing,\n \
+    \     const domains::DomainSP&                       domain =\n          std::make_shared<domains::Domain>(std::pair<double,\
+    \ double>(0, 1)));"
+  kind: function
+  name: falcon_core::math::discrete_spaces::DiscreteSpace::CartesianDiscreteSpace
+- comment_raw: "/**\n   * @brief Create a ND cartesian discrete space.\n   * @param\
+    \ divisions the number of divisions for each axis.\n   * @param axes the domains\
+    \ for each axis.\n   * @param increasing if each dimension is increasing with\
+    \ time or not.\n   * @param domain the domain of the space.\n   */"
+  comment: '@brief Create a ND cartesian discrete space.
+
+    @param divisions the number of divisions for each axis.
+
+    @param axes the domains for each axis.
+
+    @param increasing if each dimension is increasing with time or not.
+
+    @param domain the domain of the space.'
+  declaration: "static std::shared_ptr<DiscreteSpace> CartesianDiscreteSpace1D(\n\
+    \      const int&                               division,\n      const domains::CoupledLabelledDomainSP&\
+    \  shared_domain,\n      const generic::MapSP<std::string, bool>& increasing,\n\
+    \      const domains::DomainSP&                 domain =\n          std::make_shared<domains::Domain>(std::pair<double,\
+    \ double>(0, 1)));"
+  kind: function
+  name: falcon_core::math::discrete_spaces::DiscreteSpace::CartesianDiscreteSpace1D
+- comment_raw: "/**\n   * @brief Return the stored UnitSpace.\n   */"
+  comment: '@brief Return the stored UnitSpace.'
+  declaration: const UnitSpaceSP& space() const;
+  kind: function
+  name: falcon_core::math::discrete_spaces::DiscreteSpace::space
+- comment_raw: "/**\n   * @brief Return the stored axes.\n   */"
+  comment: '@brief Return the stored axes.'
+  declaration: const AxesSP<domains::CoupledLabelledDomain>& axes() const;
+  kind: function
+  name: falcon_core::math::discrete_spaces::DiscreteSpace::axes
+- comment_raw: "/**\n   * @brief Return the increasing properties.\n   */"
+  comment: '@brief Return the increasing properties.'
+  declaration: const AxesSP<generic::Map<std::string, bool>>& increasing() const;
+  kind: function
+  name: falcon_core::math::discrete_spaces::DiscreteSpace::increasing
+- comment_raw: "/**\n   * @brief Return the knobs.\n   */"
+  comment: '@brief Return the knobs.'
+  declaration: const instrument_interfaces::names::PortsSP knobs() const;
+  kind: function
+  name: falcon_core::math::discrete_spaces::DiscreteSpace::knobs
+- comment_raw: "/**\n   * @brief Validate that the unit space dimensionality matches\
+    \ the number of\n   * knobs.\n   */"
+  comment: '@brief Validate that the unit space dimensionality matches the number
+    of
+
+    knobs.'
+  declaration: void validate_unit_space_dimensionality_matches_knobs() const;
+  kind: function
+  name: falcon_core::math::discrete_spaces::DiscreteSpace::validate_unit_space_dimensionality_matches_knobs
+- comment_raw: "/**\n   * @brief Validate that the knobs are unique.\n   */"
+  comment: '@brief Validate that the knobs are unique.'
+  declaration: void validate_knob_uniqueness() const;
+  kind: function
+  name: falcon_core::math::discrete_spaces::DiscreteSpace::validate_knob_uniqueness
+- comment_raw: "/**\n   * @brief Return the index of the axis containing the given\
+    \ knob.\n   * @param knob The knob to search for.\n   * @return The index of the\
+    \ axis containing the knob.\n   * @throws std::runtime_error if the knob is not\
+    \ found.\n   */"
+  comment: '@brief Return the index of the axis containing the given knob.
+
+    @param knob The knob to search for.
+
+    @return The index of the axis containing the knob.
+
+    @throws std::runtime_error if the knob is not found.'
+  declaration: "const int get_axis(\n      const instrument_interfaces::names::InstrumentPortSP&\
+    \ knob) const;"
+  kind: function
+  name: falcon_core::math::discrete_spaces::DiscreteSpace::get_axis
+- comment_raw: "/**\n   * @brief Return the domain of the given knob.\n   * @param\
+    \ knob The knob to search for.\n   * @return The domain of the knob.\n   */"
+  comment: '@brief Return the domain of the given knob.
+
+    @param knob The knob to search for.
+
+    @return The domain of the knob.'
+  declaration: "const domains::DomainSP get_domain(\n      const instrument_interfaces::names::InstrumentPortSP&\
+    \ knob) const;"
+  kind: function
+  name: falcon_core::math::discrete_spaces::DiscreteSpace::get_domain
+- comment_raw: "/**\n   * @brief Return the projection of the unit space onto the\
+    \ given axes.\n   * @param projection The axes to project onto.\n   * @return\
+    \ The projection of th espace onto the given axes.\n   */"
+  comment: '@brief Return the projection of the unit space onto the given axes.
+
+    @param projection The axes to project onto.
+
+    @return The projection of th espace onto the given axes.'
+  declaration: "const AxesSP<arrays::LabelledControlArray> get_projection(\n     \
+    \ const AxesSP<instrument_interfaces::names::InstrumentPort>& projection)\n  \
+    \    const;"
+  kind: function
+  name: falcon_core::math::discrete_spaces::DiscreteSpace::get_projection

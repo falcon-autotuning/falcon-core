@@ -1,0 +1,10 @@
+c_header: Quantity_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/math/Quantity.hpp
+mappings:
+- cpp: falcon_core::math::Quantity::value
+  c: Quantity_value
+- cpp: falcon_core::math::Quantity::unit
+  c: Quantity_unit
+- cpp: falcon_core::math::Quantity::convert_to
+  c: Quantity_convert_to

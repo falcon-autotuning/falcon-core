@@ -1,0 +1,10 @@
+- comment_raw: "/**\n * @brief A string corresponding to a channel name.\n */"
+  comment: '@brief A string corresponding to a channel name.'
+  declaration: 'class Channel : public generic::Song {'
+  kind: class
+  name: null
+- comment_raw: "/**\n   * @brief Constructs a channel with the given name.\n   */"
+  comment: '@brief Constructs a channel with the given name.'
+  declaration: "public:\n  Channel(const std::string& name);"
+  kind: function
+  name: falcon_core::autotuner_interfaces::names::Channel

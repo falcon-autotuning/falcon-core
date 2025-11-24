@@ -1,0 +1,6 @@
+c_header: LeftReservoirWithImplantedOhmic_c_api.h
+cpp_headers:
+- ../../../../../../cpp/include/falcon_core/physics/config/geometries/HasImplantedOhmic.hpp
+mappings:
+- cpp: falcon_core::physics::config::geometries::HasImplantedOhmic::ohmic
+  c: LeftReservoirWithImplantedOhmic_ohmic

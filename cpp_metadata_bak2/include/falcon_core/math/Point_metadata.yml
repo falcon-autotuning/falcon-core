@@ -1,0 +1,41 @@
+- comment_raw: "/**\n * @file Point.hpp\n * @brief Defines a Point in voltage space.\n\
+    \ */"
+  comment: '@file Point.hpp
+
+    @brief Defines a Point in voltage space.'
+  declaration: "class Point\n    : public generic::Map<physics::device_structures::Connection,\
+    \ Quantity> {"
+  kind: class
+  name: null
+- comment_raw: "/**\n   * @brief an overide of insert to make sure units are fixed.\n\
+    \   */"
+  comment: '@brief an overide of insert to make sure units are fixed.'
+  declaration: "void insert_or_assign(const physics::device_structures::ConnectionSP&\
+    \ key,\n                        const QuantitySP&                            \
+    \   value);"
+  kind: function
+  name: falcon_core::math::Point::insert_or_assign
+- comment_raw: "/**\n   * @brief an overide of insert to make sure units are fixed.\n\
+    \   */"
+  comment: '@brief an overide of insert to make sure units are fixed.'
+  declaration: "std::pair<iterator, bool> insert(\n      const physics::device_structures::ConnectionSP&\
+    \ key,\n      const QuantitySP&                               value);"
+  kind: function
+  name: falcon_core::math::Point::insert
+- comment_raw: "/**\n   * @brief Returns the SI unit for the point.\n   */"
+  comment: '@brief Returns the SI unit for the point.'
+  declaration: const physics::units::SymbolUnitSP unit() const;
+  kind: function
+  name: falcon_core::math::Point::unit
+- comment_raw: "/**\n   * @brief Returns the coordinates for the point.\n   */"
+  comment: '@brief Returns the coordinates for the point.'
+  declaration: "const generic::MapSP<physics::device_structures::Connection, Quantity>\n\
+    \  coordinates() const;"
+  kind: function
+  name: falcon_core::math::Point::coordinates
+- comment_raw: "/**\n   * @brief Returns the connections for the point.\n   */"
+  comment: '@brief Returns the connections for the point.'
+  declaration: "const generic::ListSP<physics::device_structures::Connection> connections()\n\
+    \      const;"
+  kind: function
+  name: falcon_core::math::Point::connections

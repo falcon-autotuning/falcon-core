@@ -1,0 +1,128 @@
+- comment_raw: "/**\n * @file BaseLabelledDomain.hpp\n * @brief Defines the BaseLabelledDomain\
+    \ template for FalconCore.\n */"
+  comment: '@file BaseLabelledDomain.hpp
+
+    @brief Defines the BaseLabelledDomain template for FalconCore.'
+  declaration: 'class LabelledDomain : public Domain {'
+  kind: class
+  name: null
+- comment_raw: "/**\n   * @brief Construct a labelled domain.\n   * @default_name\
+    \ The default_name for the instrument.\n   * @bounds The bounds on the domain.\n\
+    \   * @psuedo_name The name of the connection on the instrument if available.\n\
+    \   * @instrument_type The type of instrument connected to\n   * @lesser_bound_contained\
+    \ If the lesser_bound is contained in the domain.\n   * @greater_bound_contained\
+    \ If the greater_bound is contained in the domain.\n   * @units The units of the\
+    \ instrument.\n   * @description The description of the instrument.\n   */"
+  comment: '@brief Construct a labelled domain.
+
+    @default_name The default_name for the instrument.
+
+    @bounds The bounds on the domain.
+
+    @psuedo_name The name of the connection on the instrument if available.
+
+    @instrument_type The type of instrument connected to
+
+    @lesser_bound_contained If the lesser_bound is contained in the domain.
+
+    @greater_bound_contained If the greater_bound is contained in the domain.
+
+    @units The units of the instrument.
+
+    @description The description of the instrument.'
+  declaration: "LabelledDomain(\n      const std::string&                        \
+    \      default_name,\n      const std::pair<double, double>&                bounds,\n\
+    \      const physics::device_structures::ConnectionSP& psuedo_name,\n      const\
+    \ instrument_interfaces::names::Instrument& instrument_type,\n      bool     \
+    \                                       lesser_bound_contained,\n      bool  \
+    \                                          greater_bound_contained,\n      const\
+    \ physics::units::SymbolUnitSP&             units,\n      const std::string& \
+    \                             description,\n      const instrument_interfaces::names::PortType\
+    \    type =\n          instrument_interfaces::names::PortType::Knob);"
+  kind: function
+  name: falcon_core::math::domains::LabelledDomain
+- comment_raw: "/**\n   * @brief Construct a labelled domain.\n   * @param bounds\
+    \ Minimum, Maximum pair of the domain.\n   * @param port Shared pointer to the\
+    \ port.\n   */"
+  comment: '@brief Construct a labelled domain.
+
+    @param bounds Minimum, Maximum pair of the domain.
+
+    @param port Shared pointer to the port.'
+  declaration: "static const std::shared_ptr<LabelledDomain> from_port(\n      const\
+    \ std::pair<double, double>&                      bounds,\n      const instrument_interfaces::names::InstrumentPortSP&\
+    \ port,\n      const bool& lesser_bound_contained  = true,\n      const bool&\
+    \ greater_bound_contained = true);"
+  kind: function
+  name: falcon_core::math::domains::LabelledDomain::from_port
+- comment_raw: "/**\n   * @brief Create a LabelledDomain from an existing knob and\
+    \ domain.\n   * @param knob The knob to associate with the domain.\n   * @param\
+    \ domain The domain to associate with the knob.\n   * @return A created LabelledDomain.\n\
+    \   */"
+  comment: '@brief Create a LabelledDomain from an existing knob and domain.
+
+    @param knob The knob to associate with the domain.
+
+    @param domain The domain to associate with the knob.
+
+    @return A created LabelledDomain.'
+  declaration: "static const std::shared_ptr<LabelledDomain> from_port_and_domain(\n\
+    \      const instrument_interfaces::names::InstrumentPortSP& port,\n      const\
+    \ DomainSP&                                       domain);"
+  kind: function
+  name: falcon_core::math::domains::LabelledDomain::from_port_and_domain
+- comment_raw: "/**\n   * @brief Create a LabelledDomain from an existing domain.\n\
+    \   * @param domain The domain to associate with the knob.\n   * @param default_name\
+    \ The default name of the knob.\n   * @param pseudo_name The optional colloquial\
+    \ name of the knob.\n   * @param instrument_type The type of instrument the knob\
+    \ belongs to.\n   * @param units the units of the knob's domain.\n   * @param\
+    \ description A description of the knob.\n   * @return A created LabelledDomain.\n\
+    \   */"
+  comment: '@brief Create a LabelledDomain from an existing domain.
+
+    @param domain The domain to associate with the knob.
+
+    @param default_name The default name of the knob.
+
+    @param pseudo_name The optional colloquial name of the knob.
+
+    @param instrument_type The type of instrument the knob belongs to.
+
+    @param units the units of the knob''s domain.
+
+    @param description A description of the knob.
+
+    @return A created LabelledDomain.'
+  declaration: "static const std::shared_ptr<LabelledDomain> from_domain(\n      const\
+    \ DomainSP&                                 domain,\n      const std::string&\
+    \                              default_name,\n      const physics::device_structures::ConnectionSP&\
+    \ pseudo_name,\n      const instrument_interfaces::names::Instrument& instrument_type,\n\
+    \      const physics::units::SymbolUnitSP&             units =\n          physics::units::SymbolUnit::Volt(),\n\
+    \      const std::string& description = \"\");"
+  kind: function
+  name: falcon_core::math::domains::LabelledDomain::from_domain
+- comment_raw: "/**\n   * @brief Get the port.\n   * @return Shared pointer to the\
+    \ port.\n   */"
+  comment: '@brief Get the port.
+
+    @return Shared pointer to the port.'
+  declaration: const instrument_interfaces::names::InstrumentPortSP& port() const;
+  kind: function
+  name: falcon_core::math::domains::LabelledDomain::port
+- comment_raw: "/**\n   * @brief Gets the domain associated with the port.\n   */"
+  comment: '@brief Gets the domain associated with the port.'
+  declaration: std::shared_ptr<Domain> domain() const;
+  kind: function
+  name: falcon_core::math::domains::LabelledDomain::domain
+- comment_raw: "/**\n   * @brief Checks if the port matches the given port.\n   *\
+    \ @param port The port to compare with.\n   * @return True if the ports match,\
+    \ false otherwise.\n   */"
+  comment: '@brief Checks if the port matches the given port.
+
+    @param port The port to compare with.
+
+    @return True if the ports match, false otherwise.'
+  declaration: "bool matching_port(\n      const instrument_interfaces::names::InstrumentPortSP&\
+    \ port) const;"
+  kind: function
+  name: falcon_core::math::domains::LabelledDomain::matching_port

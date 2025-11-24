@@ -1,0 +1,65 @@
+- comment_raw: "/**\n   * @brief List can be constructed in 5 different ways:\n  \
+    \ *\n   * - Default constructor: creates an empty List container.\n   *   @code\n\
+    \   *   List o;\n   *   @endcode\n   *\n   * - Sized constructor: creates an List\
+    \ container with a given\n   * number of default-initialized elements.\n   * \
+    \  @param count Number of elements.\n   *   @code\n   *   List o(10);\n   *  \
+    \ @endcode\n   *\n   * - Fill constructor: creates an List container with a given\n\
+    \   * number of copies of a specified value.\n   *   @param count Number of elements.\n\
+    \   *   @param value Value to copy.\n   *   @code\n   *   List o(10, someValue);\n\
+    \   *   @endcode\n   *\n   * - Vector constructor: creates an List container from\
+    \ an existing\n   * vector of values.\n   *   @param vec Vector of values to copy.\n\
+    \   *   @code\n   *   std::vector<ListP> v = ...;\n   *   List o(v);\n   *   @endcode\n\
+    \   * - Initializer list constructor: creates a List container\n   *from an initializer\
+    \ list of shared pointers.\n   *   @param init Initializer list of shared_ptr<T>\
+    \ to copy.\n   *   @code\n   *   List o{ptr1, ptr2, ptr3};\n   *   @endcode\n\
+    \   */"
+  comment: "@brief List can be constructed in 5 different ways:\n- Default constructor:\
+    \ creates an empty List container.\n @code\n List o;\n @endcode\n- Sized constructor:\
+    \ creates an List container with a given\nnumber of default-initialized elements.\n\
+    \ @param count Number of elements.\n @code\n List o(10);\n @endcode\n- Fill constructor:\
+    \ creates an List container with a given\nnumber of copies of a specified value.\n\
+    \ @param count Number of elements.\n @param value Value to copy.\n @code\n List\
+    \ o(10, someValue);\n @endcode\n- Vector constructor: creates an List container\
+    \ from an existing\nvector of values.\n @param vec Vector of values to copy.\n\
+    \ @code\n std::vector<ListP> v = ...;\n List o(v);\n @endcode\n- Initializer list\
+    \ constructor: creates a List container\nfrom an initializer list of shared pointers.\n\
+    \ @param init Initializer list of shared_ptr<T> to copy.\n @code\n List o{ptr1,\
+    \ ptr2, ptr3};\n @endcode"
+  declaration: 'List() : _items(std::vector<StoredValue>()) {'
+  kind: function
+  name: falcon_core::generic::List
+- comment_raw: "/**\n   * @brief Finds the intersection between this list and another.\n\
+    \   * @param other the other list to compare again.\n   * @returns A list of values\
+    \ containing elements from both.\n   */"
+  comment: '@brief Finds the intersection between this list and another.
+
+    @param other the other list to compare again.
+
+    @returns A list of values containing elements from both.'
+  declaration: "std::shared_ptr<List<Value>> intersection(\n      const std::shared_ptr<List<Value>>&\
+    \ other) const {"
+  kind: function
+  name: falcon_core::generic::List::intersection
+- comment_raw: "/**\n   * @brief clears to contents of the list.\n   */"
+  comment: '@brief clears to contents of the list.'
+  declaration: void clear() {
+  kind: function
+  name: falcon_core::generic::List::clear
+- comment_raw: "/**\n   * @brief Allows for targetted eraseall of elements at an index.\n\
+    \   * @param idx The index to erase at.\n   */"
+  comment: '@brief Allows for targetted eraseall of elements at an index.
+
+    @param idx The index to erase at.'
+  declaration: void erase_at(size_t idx) {
+  kind: function
+  name: falcon_core::generic::List::erase_at
+- comment_raw: "/**\n   * @brief Return the last element of a list.\n   */"
+  comment: '@brief Return the last element of a list.'
+  declaration: StoredValue& back() {
+  kind: function
+  name: falcon_core::generic::List::back
+- comment_raw: "/**\n   * @brief Return the last element of a list.\n   */"
+  comment: '@brief Return the last element of a list.'
+  declaration: const StoredValue& back() const {
+  kind: function
+  name: falcon_core::generic::List::back

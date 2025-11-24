@@ -1,0 +1,5 @@
+- comment_raw: "/**\n * @brief A collection of Impedances.\n */"
+  comment: '@brief A collection of Impedances.'
+  declaration: 'class Impedances : public generic::List<Impedance> {'
+  kind: class
+  name: null

@@ -1,0 +1,67 @@
+#pragma once
+#ifdef __cplusplus
+    extern "C" {
+#endif
+#include "falcon_core/generic/PairStringString_c_api.h"
+#include <stddef.h>
+#include <stdbool.h>
+#include "falcon_core/generic/String_c_api.h"
+
+// Forward declarations for opaque handles
+typedef void* ListPairStringStringHandle;
+// Function declarations
+
+ListPairStringStringHandle ListPairStringString_create_empty();
+
+ListPairStringStringHandle ListPairStringString_fill_value(size_t count, PairStringStringHandle value);
+ListPairStringStringHandle ListPairStringString_create(PairStringStringHandle* data, size_t count);
+void ListPairStringString_destroy(ListPairStringStringHandle handle);
+void ListPairStringString_push_back(ListPairStringStringHandle handle, PairStringStringHandle value);
+size_t ListPairStringString_size(ListPairStringStringHandle handle);
+bool ListPairStringString_empty(ListPairStringStringHandle handle);
+/* AUTO-DOC from cpp: ListPairStringString_erase_at | falcon_core::generic::List::erase_at */
+/**
+ * @brief (from C++: falcon_core::generic::List::erase_at)
+ * @brief Allows for targetted eraseall of elements at an index.
+ * @param idx The index to erase at.
+ */
+void ListPairStringString_erase_at(ListPairStringStringHandle handle, size_t idx);
+/* AUTO-DOC from cpp: ListPairStringString_clear | falcon_core::generic::List::clear */
+/**
+ * @brief (from C++: falcon_core::generic::List::clear)
+ * @brief clears to contents of the list.
+ */
+void ListPairStringString_clear(ListPairStringStringHandle handle);
+PairStringStringHandle ListPairStringString_at(ListPairStringStringHandle handle, size_t idx);
+size_t ListPairStringString_items(ListPairStringStringHandle handle, PairStringStringHandle* out_buffer, size_t buffer_size);
+bool ListPairStringString_contains(ListPairStringStringHandle handle, PairStringStringHandle value);
+size_t ListPairStringString_index(ListPairStringStringHandle handle, PairStringStringHandle value);
+/* AUTO-DOC from cpp: ListPairStringString_intersection | falcon_core::generic::List::intersection */
+/**
+ * @brief (from C++: falcon_core::generic::List::intersection)
+ * @brief Finds the intersection between this list and another.
+ * @param other the other list to compare again.
+ * @returns A list of values containing elements from both.
+ */
+ListPairStringStringHandle ListPairStringString_intersection(ListPairStringStringHandle handle, ListPairStringStringHandle other);
+bool ListPairStringString_equal(ListPairStringStringHandle a, ListPairStringStringHandle b);
+bool ListPairStringString_not_equal(ListPairStringStringHandle a, ListPairStringStringHandle b);
+
+// Serialization (from Song)
+/* AUTO-DOC from cpp: ListPairStringString_to_json_string | falcon_core::generic::Song::to_json_string */
+/**
+ * @brief (from C++: falcon_core::generic::Song::to_json_string)
+ * @brief Serialize this object to a JSON string.
+ */
+StringHandle      ListPairStringString_to_json_string(ListPairStringStringHandle handle);
+/* AUTO-DOC from cpp: ListPairStringString_from_json_string | falcon_core::generic::Song::from_json_string */
+/**
+ * @brief (from C++: falcon_core::generic::Song::from_json_string)
+ * @brief Deserialize an object from a JSON string.
+ * @return std::shared_ptr<Song> (actually the derived type)
+ */
+ListPairStringStringHandle ListPairStringString_from_json_string(StringHandle json);
+
+#ifdef __cplusplus
+}
+#endif

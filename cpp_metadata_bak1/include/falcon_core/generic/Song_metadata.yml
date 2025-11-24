@@ -1,0 +1,70 @@
+- comment_raw: "/**\n * @brief Abstract base for all serializable Song objects.\n\
+    \ *\n * Inherit from Song in your serializable class, implement serialize(), and\n\
+    \ * register with cereal.\n *\n * @note\n * std::hash<falcon_core::generic::Song>\
+    \ is specialized (see Song.cpp)\n * so Song can be used as a key in std::unordered_map.\n\
+    \ *\n * @section usage Usage\n * @code\n * struct Animal : public Song {\n * \
+    \    int legs = 4;\n *     template<class Archive>\n *     void serialize(Archive&\
+    \ ar) { ar(CEREAL_NVP(legs)); }\n *     virtual ~Animal() = default;\n * };\n\
+    \ * struct Dog : public Animal {\n *     bool tail = true;\n *     template<class\
+    \ Archive>\n *     void serialize(Archive& ar) {\n *         ar(cereal::base_class<Animal>(this),\
+    \ CEREAL_NVP(tail));\n *     }\n * };\n * CEREAL_REGISTER_TYPE(Animal)\n * CEREAL_REGISTER_TYPE(Dog)\n\
+    \ * CEREAL_REGISTER_POLYMORPHIC_RELATION(Animal, Dog)\n * @endcode\n */"
+  comment: "@brief Abstract base for all serializable Song objects.\nInherit from\
+    \ Song in your serializable class, implement serialize(), and\nregister with cereal.\n\
+    @note\nstd::hash<falcon_core::generic::Song> is specialized (see Song.cpp)\nso\
+    \ Song can be used as a key in std::unordered_map.\n@section usage Usage\n@code\n\
+    struct Animal : public Song {\n   int legs = 4;\n   template<class Archive>\n\
+    \   void serialize(Archive& ar) { ar(CEREAL_NVP(legs)); }\n   virtual ~Animal()\
+    \ = default;\n};\nstruct Dog : public Animal {\n   bool tail = true;\n   template<class\
+    \ Archive>\n   void serialize(Archive& ar) {\n       ar(cereal::base_class<Animal>(this),\
+    \ CEREAL_NVP(tail));\n   }\n};\nCEREAL_REGISTER_TYPE(Animal)\nCEREAL_REGISTER_TYPE(Dog)\n\
+    CEREAL_REGISTER_POLYMORPHIC_RELATION(Animal, Dog)\n@endcode"
+  declaration: class Song {
+  kind: class
+  name: null
+- comment_raw: "/**\n   * @brief cereal serialization interface.\n   * Override in\
+    \ derived classes.\n   */"
+  comment: '@brief cereal serialization interface.
+
+    Override in derived classes.'
+  declaration: "template <class Archive>\n  void serialize(Archive&) {"
+  kind: function
+  name: falcon_core::generic::Song::serialize
+- comment_raw: "/**\n   * @brief Serialize this object to a JSON string.\n   */"
+  comment: '@brief Serialize this object to a JSON string.'
+  declaration: std::string to_json_string() const;
+  kind: function
+  name: falcon_core::generic::Song::to_json_string
+- comment_raw: "/**\n   * @brief Serialize this object to a JSON archive (output stream).\n\
+    \   */"
+  comment: '@brief Serialize this object to a JSON archive (output stream).'
+  declaration: void to_json_stream(std::ostream& os) const;
+  kind: function
+  name: falcon_core::generic::Song::to_json_stream
+- comment_raw: "/**\n   * @brief Deserialize an object from a JSON string.\n   * @return\
+    \ std::shared_ptr<Song> (actually the derived type)\n   */"
+  comment: '@brief Deserialize an object from a JSON string.
+
+    @return std::shared_ptr<Song> (actually the derived type)'
+  declaration: "template <typename T>\n  static std::shared_ptr<T> from_json_string(const\
+    \ std::string& json) {"
+  kind: function
+  name: falcon_core::generic::Song::from_json_string
+- comment_raw: "/**\n   * @brief Deserialize an object from a JSON archive (input\
+    \ stream).\n   * @return std::shared_ptr<Song> (actually the derived type)\n \
+    \  */"
+  comment: '@brief Deserialize an object from a JSON archive (input stream).
+
+    @return std::shared_ptr<Song> (actually the derived type)'
+  declaration: "template <typename T>\n  static std::shared_ptr<T> from_json_stream(std::istream&\
+    \ is) {"
+  kind: function
+  name: falcon_core::generic::Song::from_json_stream
+- comment_raw: "/**\n   * @brief Equality operator.\n   * Override in derived classes\
+    \ to compare member variables.\n   */"
+  comment: '@brief Equality operator.
+
+    Override in derived classes to compare member variables.'
+  declaration: using SongSP = std::shared_ptr<Song>;
+  kind: alias
+  name: null

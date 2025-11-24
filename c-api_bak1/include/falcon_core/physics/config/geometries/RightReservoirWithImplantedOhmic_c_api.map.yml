@@ -1,0 +1,6 @@
+c_header: RightReservoirWithImplantedOhmic_c_api.h
+cpp_headers:
+- ../../../../../../cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp
+mappings:
+- cpp: falcon_core::physics::config::geometries::HasLeftNeighbor::left_neighbor
+  c: RightReservoirWithImplantedOhmic_left_neighbor

@@ -1,0 +1,104 @@
+- comment_raw: "/**\n   * @brief Check if any of the data is greater than the value.\n\
+    \   * @param value The value to compare to.\n   * @return True if any of the data\
+    \ is greater than the value, False otherwise.\n   */"
+  comment: '@brief Check if any of the data is greater than the value.
+
+    @param value The value to compare to.
+
+    @return True if any of the data is greater than the value, False otherwise.'
+  declaration: return xt::any(_data > value);
+  kind: function
+  name: falcon_core::generic::xt::any
+- comment_raw: "/**\n   * @brief Check if any of the data is less than the value.\n\
+    \   * @param value The value to compare to.\n   * @return True if any of the data\
+    \ is less than the value, False otherwise.\n   */"
+  comment: '@brief Check if any of the data is less than the value.
+
+    @param value The value to compare to.
+
+    @return True if any of the data is less than the value, False otherwise.'
+  declaration: return xt::any(_data < value);
+  kind: function
+  name: falcon_core::generic::xt::any
+- comment_raw: "/**\n   * @brief Remove the offset from the data.\n   * @param offset\
+    \ The offset to remove.\n   */"
+  comment: '@brief Remove the offset from the data.
+
+    @param offset The offset to remove.'
+  declaration: return xt::sum(_data)();
+  kind: function
+  name: falcon_core::generic::xt::sum
+- comment_raw: "/**\n   * @brief Return a new Array with the given shape.\n   * @param\
+    \ shape The new shape.\n   * @return A reshaped FArray.\n   */"
+  comment: '@brief Return a new Array with the given shape.
+
+    @param shape The new shape.
+
+    @return A reshaped FArray.'
+  declaration: std::shared_ptr<FArray<T>> reshape(const std::vector<size_t>& shape)
+    const {
+  kind: function
+  name: falcon_core::generic::FArray::reshape
+- comment_raw: "/**\n   * @brief Return the indices of the data where the value is.\n\
+    \   * @param value The value to search for.\n   * @return Indices where the value\
+    \ matches.\n   */"
+  comment: '@brief Return the indices of the data where the value is.
+
+    @param value The value to search for.
+
+    @return Indices where the value matches.'
+  declaration: auto mask    = xt::equal(_data, value);
+  kind: function
+  name: falcon_core::generic::xt::equal
+- comment_raw: "/**\n   * @brief Flip the data along the given axis.\n   * @param\
+    \ axis The axis to flip.\n   * @return A flipped FArray.\n   */"
+  comment: '@brief Flip the data along the given axis.
+
+    @param axis The axis to flip.
+
+    @return A flipped FArray.'
+  declaration: std::shared_ptr<FArray<T>> flip(size_t axis) const {
+  kind: function
+  name: falcon_core::generic::FArray::flip
+- comment_raw: "/**\n   * @brief Return the gradient of the data along all axes.\n\
+    \   *\n   * Computes the gradient for each axis of the array using finite differences:\n\
+    \   * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2\n\
+    \   * - For boundary points, uses forward (first element) or backward (last\n\
+    \   * element) difference.\n   *\n   * @return A vector of FArray gradients (one\
+    \ for each axis).\n   */"
+  comment: '@brief Return the gradient of the data along all axes.
+
+    Computes the gradient for each axis of the array using finite differences:
+
+    - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+
+    - For boundary points, uses forward (first element) or backward (last
+
+    element) difference.
+
+    @return A vector of FArray gradients (one for each axis).'
+  declaration: ListSP<FArray<T>> gradient() const {
+  kind: function
+  name: falcon_core::generic::FArray::gradient
+- comment_raw: "/**\n   * @brief Return the gradient of the data along a given axis.\n\
+    \   *\n   * Computes the gradient along the specified axis using finite differences:\n\
+    \   * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2\n\
+    \   * - For boundary points, uses forward (first element) or backward (last\n\
+    \   * element) difference.\n   *\n   * @param axis The axis to compute the gradient.\n\
+    \   * @return The gradient FArray.\n   */"
+  comment: '@brief Return the gradient of the data along a given axis.
+
+    Computes the gradient along the specified axis using finite differences:
+
+    - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+
+    - For boundary points, uses forward (first element) or backward (last
+
+    element) difference.
+
+    @param axis The axis to compute the gradient.
+
+    @return The gradient FArray.'
+  declaration: std::shared_ptr<FArray<T>> gradient(size_t axis) const {
+  kind: function
+  name: falcon_core::generic::FArray::gradient

@@ -1,0 +1,114 @@
+- comment_raw: "/**\n * @file LabelledMeasuredArray.hpp\n * @brief Defines the a control\
+    \ array with a label.\n */"
+  comment: '@file LabelledMeasuredArray.hpp
+
+    @brief Defines the a control array with a label.'
+  declaration: 'class LabelledMeasuredArray : public MeasuredArray, public IsLabelled<double>
+    {'
+  kind: class
+  name: null
+- comment_raw: "/**\n   * @brief Construct a new Labelled Measured Array object.\n\
+    \   * @param array The control array.\n   * @param label The acquisition context\
+    \ label.\n   */"
+  comment: '@brief Construct a new Labelled Measured Array object.
+
+    @param array The control array.
+
+    @param label The acquisition context label.'
+  declaration: "LabelledMeasuredArray(\n      const arrays::MeasuredArraySP&     \
+    \                         array,\n      const autotuner_interfaces::contexts::AcquisitionContextSP&\
+    \ label);"
+  kind: function
+  name: falcon_core::math::arrays::LabelledMeasuredArray
+- comment_raw: "/**\n   * @brief Another constructor for a new Labelled Measured Array\
+    \ object using a\n   * BaseArray.\n   * @param array The control array.\n   *\
+    \ @param label The acquisition context label.\n   */"
+  comment: '@brief Another constructor for a new Labelled Measured Array object using
+    a
+
+    BaseArray.
+
+    @param array The control array.
+
+    @param label The acquisition context label.'
+  declaration: "LabelledMeasuredArray(\n      const generic::FArraySP<double>&   \
+    \                         array,\n      const autotuner_interfaces::contexts::AcquisitionContextSP&\
+    \ label);"
+  kind: function
+  name: falcon_core::math::arrays::LabelledMeasuredArray
+- comment_raw: "/**\n   * @brief Constructs a new LabelledMeasuredArray object using\
+    \ a BaseArray.\n   * @param array The control array.\n   * @param port The instrument\
+    \ port to create the label from.\n   */"
+  comment: '@brief Constructs a new LabelledMeasuredArray object using a BaseArray.
+
+    @param array The control array.
+
+    @param port The instrument port to create the label from.'
+  declaration: "LabelledMeasuredArray(\n      const generic::FArraySP<double>&   \
+    \                   array,\n      const instrument_interfaces::names::InstrumentPortSP&\
+    \ port);"
+  kind: function
+  name: falcon_core::math::arrays::LabelledMeasuredArray
+- comment_raw: "/**\n   * @brief Return a new Array with the given shape.\n   * @param\
+    \ shape The new shape.\n   * @return A reshaped LabelledMeasuredArray.\n   */"
+  comment: '@brief Return a new Array with the given shape.
+
+    @param shape The new shape.
+
+    @return A reshaped LabelledMeasuredArray.'
+  declaration: "std::shared_ptr<LabelledMeasuredArray> reshape(\n      const std::vector<size_t>&\
+    \ shape) const;"
+  kind: function
+  name: falcon_core::math::arrays::LabelledMeasuredArray::reshape
+- comment_raw: "/**\n   * @brief Flip the data along the given axis.\n   * @param\
+    \ axis The axis to flip.\n   * @return A flipped LabelledMeasuredArray.\n   */"
+  comment: '@brief Flip the data along the given axis.
+
+    @param axis The axis to flip.
+
+    @return A flipped LabelledMeasuredArray.'
+  declaration: std::shared_ptr<LabelledMeasuredArray> flip(size_t axis) const;
+  kind: function
+  name: falcon_core::math::arrays::LabelledMeasuredArray::flip
+- comment_raw: "/**\n   * @brief Return the gradient of the data along a given axis.\n\
+    \   *\n   * Computes the gradient along the specified axis using finite differences:\n\
+    \   * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2\n\
+    \   * - For boundary points, uses forward (first element) or backward (last\n\
+    \   * element) difference.\n   *\n   * @param axis The axis to compute the gradient.\n\
+    \   * @return The gradient FArray.\n   */"
+  comment: '@brief Return the gradient of the data along a given axis.
+
+    Computes the gradient along the specified axis using finite differences:
+
+    - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+
+    - For boundary points, uses forward (first element) or backward (last
+
+    element) difference.
+
+    @param axis The axis to compute the gradient.
+
+    @return The gradient FArray.'
+  declaration: generic::FArraySP<double> gradient(size_t axis) const;
+  kind: function
+  name: falcon_core::math::arrays::LabelledMeasuredArray::gradient
+- comment_raw: "/**\n   * @brief Return the gradient of the data along all axes.\n\
+    \   *\n   * Computes the gradient for each axis of the array using finite differences:\n\
+    \   * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2\n\
+    \   * - For boundary points, uses forward (first element) or backward (last\n\
+    \   * element) difference.\n   *\n   * @return A vector of FArray gradients (one\
+    \ for each axis).\n   */"
+  comment: '@brief Return the gradient of the data along all axes.
+
+    Computes the gradient for each axis of the array using finite differences:
+
+    - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+
+    - For boundary points, uses forward (first element) or backward (last
+
+    element) difference.
+
+    @return A vector of FArray gradients (one for each axis).'
+  declaration: generic::ListSP<generic::FArray<double>> gradient() const;
+  kind: function
+  name: falcon_core::math::arrays::LabelledMeasuredArray::gradient

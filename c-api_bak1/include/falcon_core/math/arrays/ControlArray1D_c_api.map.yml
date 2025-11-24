@@ -1,0 +1,10 @@
+c_header: ControlArray1D_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/math/arrays/ControlArray1D.hpp
+mappings:
+- cpp: falcon_core::math::arrays::ControlArray1D::flip
+  c: ControlArray1D_flip
+- cpp: falcon_core::math::arrays::ControlArray1D::gradient
+  c: ControlArray1D_gradient
+- cpp: falcon_core::math::arrays::ControlArray1D::gradient
+  c: ControlArray1D_gradient

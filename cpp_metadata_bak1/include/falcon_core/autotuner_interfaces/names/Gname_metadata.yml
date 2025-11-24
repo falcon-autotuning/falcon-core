@@ -1,0 +1,5 @@
+- comment_raw: "/**\n   * @brief Collect the gname as a string.\n   */"
+  comment: '@brief Collect the gname as a string.'
+  declaration: std::string gname() const;
+  kind: function
+  name: falcon_core::autotuner_interfaces::names::Gname::gname

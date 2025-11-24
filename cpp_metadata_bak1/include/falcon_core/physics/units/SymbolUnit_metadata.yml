@@ -1,0 +1,392 @@
+- comment_raw: "/**\n   * @brief Find a matching common unit for the given unit.\n\
+    \   * @return A pair containing the matching common unit's symbol and name.\n\
+    \   */"
+  comment: '@brief Find a matching common unit for the given unit.
+
+    @return A pair containing the matching common unit''s symbol and name.'
+  declaration: const std::pair<std::string, std::string> _find_matching_common_unit()
+    const;
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::_find_matching_common_unit
+- comment_raw: "/**\n   * @brief Generate a symbol for the unit based on its dimensions.\n\
+    \   * @return A string representing the generated symbol.\n   */"
+  comment: '@brief Generate a symbol for the unit based on its dimensions.
+
+    @return A string representing the generated symbol.'
+  declaration: const std::string _generate_symbol() const;
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::_generate_symbol
+- comment_raw: "/**\n   * @brief Get the symbol for a given dimension.\n   * @param\
+    \ dimension The dimension to get the symbol for.\n   * @return A string representing\
+    \ the symbol for the dimension.\n   */"
+  comment: '@brief Get the symbol for a given dimension.
+
+    @param dimension The dimension to get the symbol for.
+
+    @return A string representing the symbol for the dimension.'
+  declaration: const std::string _get_dimension_symbol(std::string dimension) const;
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::_get_dimension_symbol
+- comment_raw: "/**\n   * @brief Construct a SymbolUnit with a specific symbol and\
+    \ associated Unit.\n   * @param unit The Unit object associated with this symbol.\n\
+    \   */"
+  comment: '@brief Construct a SymbolUnit with a specific symbol and associated Unit.
+
+    @param unit The Unit object associated with this symbol.'
+  declaration: SymbolUnit(UnitSP unit);
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit
+- comment_raw: "/**\n   * @brief Construct a Meter\n   */"
+  comment: '@brief Construct a Meter'
+  declaration: static std::shared_ptr<SymbolUnit> Meter();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Meter
+- comment_raw: "/**\n   * @brief Construct a Kilogram\n   */"
+  comment: '@brief Construct a Kilogram'
+  declaration: static std::shared_ptr<SymbolUnit> Kilogram();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Kilogram
+- comment_raw: "/**\n   * @brief Construct a Second\n   */"
+  comment: '@brief Construct a Second'
+  declaration: static std::shared_ptr<SymbolUnit> Second();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Second
+- comment_raw: "/**\n   * @brief Construct an Ampere\n   */"
+  comment: '@brief Construct an Ampere'
+  declaration: static std::shared_ptr<SymbolUnit> Ampere();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Ampere
+- comment_raw: "/**\n   * @brief Construct a Kelvin\n   */"
+  comment: '@brief Construct a Kelvin'
+  declaration: static std::shared_ptr<SymbolUnit> Kelvin();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Kelvin
+- comment_raw: "/**\n   * @brief Construct a Mole\n   */"
+  comment: '@brief Construct a Mole'
+  declaration: static std::shared_ptr<SymbolUnit> Mole();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Mole
+- comment_raw: "/**\n   * @brief Construct a Candela\n   */"
+  comment: '@brief Construct a Candela'
+  declaration: static std::shared_ptr<SymbolUnit> Candela();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Candela
+- comment_raw: "/**\n   * @brief Construct a Hertz\n   */"
+  comment: '@brief Construct a Hertz'
+  declaration: static std::shared_ptr<SymbolUnit> Hertz();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Hertz
+- comment_raw: "/**\n   * @brief Construct a Newton\n   */"
+  comment: '@brief Construct a Newton'
+  declaration: static std::shared_ptr<SymbolUnit> Newton();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Newton
+- comment_raw: "/**\n   * @brief Construct a Pascal\n   */"
+  comment: '@brief Construct a Pascal'
+  declaration: static std::shared_ptr<SymbolUnit> Pascal();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Pascal
+- comment_raw: "/**\n   * @brief Construct a Joule\n   */"
+  comment: '@brief Construct a Joule'
+  declaration: static std::shared_ptr<SymbolUnit> Joule();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Joule
+- comment_raw: "/**\n   * @brief Construct a Watt\n   */"
+  comment: '@brief Construct a Watt'
+  declaration: static std::shared_ptr<SymbolUnit> Watt();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Watt
+- comment_raw: "/**\n   * @brief Construct a Coulomb\n   */"
+  comment: '@brief Construct a Coulomb'
+  declaration: static std::shared_ptr<SymbolUnit> Coulomb();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Coulomb
+- comment_raw: "/**\n   * @brief Construct a Volt\n   */"
+  comment: '@brief Construct a Volt'
+  declaration: static std::shared_ptr<SymbolUnit> Volt();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Volt
+- comment_raw: "/**\n   * @brief Construct a Farad\n   */"
+  comment: '@brief Construct a Farad'
+  declaration: static std::shared_ptr<SymbolUnit> Farad();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Farad
+- comment_raw: "/**\n   * @brief Construct an Ohm\n   */"
+  comment: '@brief Construct an Ohm'
+  declaration: static std::shared_ptr<SymbolUnit> Ohm();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Ohm
+- comment_raw: "/**\n   * @brief Construct a Seimens\n   */"
+  comment: '@brief Construct a Seimens'
+  declaration: static std::shared_ptr<SymbolUnit> Siemens();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Siemens
+- comment_raw: "/**\n   * @brief Construct a Weber\n   */"
+  comment: '@brief Construct a Weber'
+  declaration: static std::shared_ptr<SymbolUnit> Weber();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Weber
+- comment_raw: "/**\n   * @brief Construct a Tesla\n   */"
+  comment: '@brief Construct a Tesla'
+  declaration: static std::shared_ptr<SymbolUnit> Tesla();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Tesla
+- comment_raw: "/**\n   * @brief Construct a Henry\n   */"
+  comment: '@brief Construct a Henry'
+  declaration: static std::shared_ptr<SymbolUnit> Henry();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Henry
+- comment_raw: "/**\n   * @brief Construct a Minute\n   */"
+  comment: '@brief Construct a Minute'
+  declaration: static std::shared_ptr<SymbolUnit> Minute();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Minute
+- comment_raw: "/**\n   * @brief Construct an Hour\n   */"
+  comment: '@brief Construct an Hour'
+  declaration: static std::shared_ptr<SymbolUnit> Hour();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Hour
+- comment_raw: "/**\n   * @brief Construct an ElectronVolt\n   */"
+  comment: '@brief Construct an ElectronVolt'
+  declaration: static std::shared_ptr<SymbolUnit> ElectronVolt();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::ElectronVolt
+- comment_raw: "/**\n   * @brief Construct a Celsius\n   */"
+  comment: '@brief Construct a Celsius'
+  declaration: static std::shared_ptr<SymbolUnit> Celsius();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Celsius
+- comment_raw: "/**\n   * @brief Construct a Fahrenheit\n   */"
+  comment: '@brief Construct a Fahrenheit'
+  declaration: static std::shared_ptr<SymbolUnit> Fahrenheit();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Fahrenheit
+- comment_raw: "/**\n   * @brief Construct a Dimensionless\n   */"
+  comment: '@brief Construct a Dimensionless'
+  declaration: static std::shared_ptr<SymbolUnit> Dimensionless();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Dimensionless
+- comment_raw: "/**\n   * @brief Construct a Percent\n   */"
+  comment: '@brief Construct a Percent'
+  declaration: static std::shared_ptr<SymbolUnit> Percent();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Percent
+- comment_raw: "/**\n   * @brief Construct a Radian\n   */"
+  comment: '@brief Construct a Radian'
+  declaration: static std::shared_ptr<SymbolUnit> Radian();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::Radian
+- comment_raw: "/**\n   * @brief Construct a KiloMeter\n   */"
+  comment: '@brief Construct a KiloMeter'
+  declaration: static std::shared_ptr<SymbolUnit> KiloMeter();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::KiloMeter
+- comment_raw: "/**\n   * @brief Construct a MilliMeter\n   */"
+  comment: '@brief Construct a MilliMeter'
+  declaration: static std::shared_ptr<SymbolUnit> MilliMeter();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::MilliMeter
+- comment_raw: "/**\n   * @brief Construct a MilliVolt\n   */"
+  comment: '@brief Construct a MilliVolt'
+  declaration: static std::shared_ptr<SymbolUnit> MilliVolt();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::MilliVolt
+- comment_raw: "/**\n   * @brief Construct a KiloVolt\n   */"
+  comment: '@brief Construct a KiloVolt'
+  declaration: static std::shared_ptr<SymbolUnit> KiloVolt();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::KiloVolt
+- comment_raw: "/**\n   * @brief Construct a MilliAmpere\n   */"
+  comment: '@brief Construct a MilliAmpere'
+  declaration: static std::shared_ptr<SymbolUnit> MilliAmpere();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::MilliAmpere
+- comment_raw: "/**\n   * @brief Construct a MicroAmpere\n   */"
+  comment: '@brief Construct a MicroAmpere'
+  declaration: static std::shared_ptr<SymbolUnit> MicroAmpere();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::MicroAmpere
+- comment_raw: "/**\n   * @brief Construct a NanoAmpere\n   */"
+  comment: '@brief Construct a NanoAmpere'
+  declaration: static std::shared_ptr<SymbolUnit> NanoAmpere();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::NanoAmpere
+- comment_raw: "/**\n   * @brief Construct a PicoAmpere\n   */"
+  comment: '@brief Construct a PicoAmpere'
+  declaration: static std::shared_ptr<SymbolUnit> PicoAmpere();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::PicoAmpere
+- comment_raw: "/**\n   * @brief Construct a MilliSecond\n   */"
+  comment: '@brief Construct a MilliSecond'
+  declaration: static std::shared_ptr<SymbolUnit> MilliSecond();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::MilliSecond
+- comment_raw: "/**\n   * @brief Construct a MicroSecond\n   */"
+  comment: '@brief Construct a MicroSecond'
+  declaration: static std::shared_ptr<SymbolUnit> MicroSecond();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::MicroSecond
+- comment_raw: "/**\n   * @brief Construct a NanoSecond\n   */"
+  comment: '@brief Construct a NanoSecond'
+  declaration: static std::shared_ptr<SymbolUnit> NanoSecond();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::NanoSecond
+- comment_raw: "/**\n   * @brief Construct a PicoSecond\n   */"
+  comment: '@brief Construct a PicoSecond'
+  declaration: static std::shared_ptr<SymbolUnit> PicoSecond();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::PicoSecond
+- comment_raw: "/**\n   * @brief Construct a MilliOhm\n   */"
+  comment: '@brief Construct a MilliOhm'
+  declaration: static std::shared_ptr<SymbolUnit> MilliOhm();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::MilliOhm
+- comment_raw: "/**\n   * @brief Construct a KiloOhm\n   */"
+  comment: '@brief Construct a KiloOhm'
+  declaration: static std::shared_ptr<SymbolUnit> KiloOhm();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::KiloOhm
+- comment_raw: "/**\n   * @brief Construct a MegaOhm\n   */"
+  comment: '@brief Construct a MegaOhm'
+  declaration: static std::shared_ptr<SymbolUnit> MegaOhm();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::MegaOhm
+- comment_raw: "/**\n   * @brief Construct a MilliHertz\n   */"
+  comment: '@brief Construct a MilliHertz'
+  declaration: static std::shared_ptr<SymbolUnit> MilliHertz();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::MilliHertz
+- comment_raw: "/**\n   * @brief Construct a KiloHertz\n   */"
+  comment: '@brief Construct a KiloHertz'
+  declaration: static std::shared_ptr<SymbolUnit> KiloHertz();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::KiloHertz
+- comment_raw: "/**\n   * @brief Construct a MegaHertz\n   */"
+  comment: '@brief Construct a MegaHertz'
+  declaration: static std::shared_ptr<SymbolUnit> MegaHertz();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::MegaHertz
+- comment_raw: "/**\n   * @brief Construct a GigaHertz\n   */"
+  comment: '@brief Construct a GigaHertz'
+  declaration: static std::shared_ptr<SymbolUnit> GigaHertz();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::GigaHertz
+- comment_raw: "/**\n   * @brief Construct a MetersPerSecond\n   */"
+  comment: '@brief Construct a MetersPerSecond'
+  declaration: static std::shared_ptr<SymbolUnit> MetersPerSecond();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::MetersPerSecond
+- comment_raw: "/**\n   * @brief Construct a MetersPerSecondSquared\n   */"
+  comment: '@brief Construct a MetersPerSecondSquared'
+  declaration: static std::shared_ptr<SymbolUnit> MetersPerSecondSquared();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::MetersPerSecondSquared
+- comment_raw: "/**\n   * @brief Construct a NewtonMeter\n   */"
+  comment: '@brief Construct a NewtonMeter'
+  declaration: static std::shared_ptr<SymbolUnit> NewtonMeter();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::NewtonMeter
+- comment_raw: "/**\n   * @brief Construct a NewtonPerMeter\n   */"
+  comment: '@brief Construct a NewtonPerMeter'
+  declaration: static std::shared_ptr<SymbolUnit> NewtonPerMeter();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::NewtonPerMeter
+- comment_raw: "/**\n   * @brief Construct a VoltsPerMeter\n   */"
+  comment: '@brief Construct a VoltsPerMeter'
+  declaration: static std::shared_ptr<SymbolUnit> VoltsPerMeter();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::VoltsPerMeter
+- comment_raw: "/**\n   * @brief Construct a VoltsPerSecond\n   */"
+  comment: '@brief Construct a VoltsPerSecond'
+  declaration: static std::shared_ptr<SymbolUnit> VoltsPerSecond();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::VoltsPerSecond
+- comment_raw: "/**\n   * @brief Construct an AmperesPerMeter\n   */"
+  comment: '@brief Construct an AmperesPerMeter'
+  declaration: static std::shared_ptr<SymbolUnit> AmperesPerMeter();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::AmperesPerMeter
+- comment_raw: "/**\n   * @brief Construct a VoltsPerAmpere\n   */"
+  comment: '@brief Construct a VoltsPerAmpere'
+  declaration: static std::shared_ptr<SymbolUnit> VoltsPerAmpere();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::VoltsPerAmpere
+- comment_raw: "/**\n   * @brief Construct a WattsPerMeterKelvin\n   */"
+  comment: '@brief Construct a WattsPerMeterKelvin'
+  declaration: static std::shared_ptr<SymbolUnit> WattsPerMeterKelvin();
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::WattsPerMeterKelvin
+- comment_raw: "/**\n   * @brief Get the symbol of the unit.\n   * @return The symbol\
+    \ as a string.\n   */"
+  comment: '@brief Get the symbol of the unit.
+
+    @return The symbol as a string.'
+  declaration: const UnitSP unit() const;
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::unit
+- comment_raw: "/**\n   * @brief Get the name of the unit.\n   * @return The name\
+    \ as a string.\n   */"
+  comment: '@brief Get the name of the unit.
+
+    @return The name as a string.'
+  declaration: const std::string symbol() const;
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::symbol
+- comment_raw: "/**\n   * @brief Get the name of the unit.\n   * @return The name\
+    \ as a string.\n   */"
+  comment: '@brief Get the name of the unit.
+
+    @return The name as a string.'
+  declaration: const std::string name() const;
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::name
+- comment_raw: "/**\n   * @brief Multiply this symbol unit by another symbol unit.\n\
+    \   * @param other The symbol unit to multiply by.\n   * @return A new SymbolUnit\
+    \ representing the product of this symbol unit and\n   * the other.\n   */"
+  comment: '@brief Multiply this symbol unit by another symbol unit.
+
+    @param other The symbol unit to multiply by.
+
+    @return A new SymbolUnit representing the product of this symbol unit and
+
+    the other.'
+  declaration: "/**\n   * @brief Apply a prefix to this symbol unit.\n   * @param\
+    \ prefix The prefix symbol to apply (e.g. \"k\" for kilo\n   * @return A new SymbolUnit\
+    \ with the specified prefix applied.\n   * @throws std::invalid_argument if the\
+    \ prefix is not valid.\n   */\n  const std::shared_ptr<SymbolUnit> with_prefix(const\
+    \ std::string prefix) const;"
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::apply
+- comment_raw: "/**\n   * @brief Convert a value from this symbol unit to a target\
+    \ symbol unit.\n   * @param value The value in this symbol unit to convert.\n\
+    \   * @param target_unit The symbol unit to convert the value to.\n   * @return\
+    \ The converted value in the target symbol unit.\n   * @throws std::invalid_argument\
+    \ if the units are not compatible.\n   */"
+  comment: '@brief Convert a value from this symbol unit to a target symbol unit.
+
+    @param value The value in this symbol unit to convert.
+
+    @param target_unit The symbol unit to convert the value to.
+
+    @return The converted value in the target symbol unit.
+
+    @throws std::invalid_argument if the units are not compatible.'
+  declaration: "const double convert_value_to(\n      const double value, const std::shared_ptr<SymbolUnit>&\
+    \ target_unit) const;"
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::convert_value_to
+- comment_raw: "/**\n   * @brief Check if this symbol unit is compatible with another\
+    \ symbol unit.\n   * @param other The symbol unit to check compatibility with.\n\
+    \   * @return True if the symbol units are compatible (same dimensions), false\n\
+    \   * otherwise.\n   */"
+  comment: '@brief Check if this symbol unit is compatible with another symbol unit.
+
+    @param other The symbol unit to check compatibility with.
+
+    @return True if the symbol units are compatible (same dimensions), false
+
+    otherwise.'
+  declaration: const bool is_compatible_with(const std::shared_ptr<SymbolUnit>& other)
+    const;
+  kind: function
+  name: falcon_core::physics::units::SymbolUnit::is_compatible_with

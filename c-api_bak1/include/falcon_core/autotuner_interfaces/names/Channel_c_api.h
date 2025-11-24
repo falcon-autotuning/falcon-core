@@ -1,0 +1,33 @@
+#pragma once
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include <stdbool.h>
+
+#include "falcon_core/generic/String_c_api.h"
+
+typedef void* ChannelHandle;
+
+// Constructors
+ChannelHandle Channel_create(StringHandle name);
+
+// Destructor
+void Channel_destroy(ChannelHandle handle);
+
+// Methods
+/* AUTO-DOC from cpp: Channel_name | falcon_core::autotuner_interfaces::names::NameBase::name */
+/**
+ * @brief (from C++: falcon_core::autotuner_interfaces::names::NameBase::name)
+ * @brief The string form of the name.
+ */
+StringHandle Channel_name(ChannelHandle handle);
+bool         Channel_equal(ChannelHandle a, ChannelHandle b);
+bool         Channel_not_equal(ChannelHandle a, ChannelHandle b);
+
+// Serialization (from Song)
+StringHandle  Channel_to_json_string(ChannelHandle handle);
+ChannelHandle Channel_from_json_string(StringHandle json);
+
+#ifdef __cplusplus
+}
+#endif

@@ -1,0 +1,57 @@
+#pragma once
+#ifdef __cplusplus
+    extern "C" {
+#endif
+#include "falcon_core/generic/PairIntInt_c_api.h"
+#include "falcon_core/generic/ListInt_c_api.h"
+#include "falcon_core/generic/ListPairIntInt_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
+
+// Forward declarations for opaque handles
+typedef void* MapIntIntHandle;
+// Function declarations
+
+MapIntIntHandle MapIntInt_create_empty();
+MapIntIntHandle MapIntInt_create(const PairIntIntHandle* data, size_t count);
+void MapIntInt_destroy(MapIntIntHandle handle);
+void MapIntInt_insert_or_assign(MapIntIntHandle handle, const int key, const int value);
+void MapIntInt_insert(MapIntIntHandle handle, const int key, const int value);
+int MapIntInt_at(MapIntIntHandle handle, const int key);
+void MapIntInt_erase(MapIntIntHandle handle, const int key);
+size_t MapIntInt_size(MapIntIntHandle handle);
+bool MapIntInt_empty(MapIntIntHandle handle);
+void MapIntInt_clear(MapIntIntHandle handle);
+bool MapIntInt_contains(MapIntIntHandle handle, const int key);
+/* AUTO-DOC from cpp: MapIntInt_keys | falcon_core::generic::Map::keys */
+/**
+ * @brief (from C++: falcon_core::generic::Map::keys)
+ * @brief Return the keys of the Map.
+ */
+ListIntHandle MapIntInt_keys(MapIntIntHandle handle);
+/* AUTO-DOC from cpp: MapIntInt_values | falcon_core::generic::Map::values */
+/**
+ * @brief (from C++: falcon_core::generic::Map::values)
+ * @brief Return the values of the Map.
+ */
+ListIntHandle MapIntInt_values(MapIntIntHandle handle);
+ListPairIntIntHandle MapIntInt_items(MapIntIntHandle handle);
+bool MapIntInt_equal(MapIntIntHandle a, MapIntIntHandle b);
+bool MapIntInt_not_equal(MapIntIntHandle a, MapIntIntHandle b);
+// Serialization (from Song)
+/* AUTO-DOC from cpp: MapIntInt_to_json_string | falcon_core::generic::Song::to_json_string */
+/**
+ * @brief (from C++: falcon_core::generic::Song::to_json_string)
+ * @brief Serialize this object to a JSON string.
+ */
+StringHandle      MapIntInt_to_json_string(MapIntIntHandle handle);
+/* AUTO-DOC from cpp: MapIntInt_from_json_string | falcon_core::generic::Song::from_json_string */
+/**
+ * @brief (from C++: falcon_core::generic::Song::from_json_string)
+ * @brief Deserialize an object from a JSON string.
+ * @return std::shared_ptr<Song> (actually the derived type)
+ */
+MapIntIntHandle MapIntInt_from_json_string(StringHandle json);
+
+#ifdef __cplusplus
+}
+#endif

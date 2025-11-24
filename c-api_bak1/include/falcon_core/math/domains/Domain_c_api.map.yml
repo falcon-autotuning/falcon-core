@@ -1,0 +1,26 @@
+c_header: Domain_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/math/domains/Domain.hpp
+mappings:
+- cpp: falcon_core::math::domains::Domain::lesser_bound
+  c: Domain_lesser_bound
+- cpp: falcon_core::math::domains::Domain::greater_bound
+  c: Domain_greater_bound
+- cpp: falcon_core::math::domains::Domain::lesser_bound_contained
+  c: Domain_lesser_bound_contained
+- cpp: falcon_core::math::domains::Domain::greater_bound_contained
+  c: Domain_greater_bound_contained
+- cpp: falcon_core::math::domains::Domain::in
+  c: Domain_in
+- cpp: falcon_core::math::domains::Domain::range
+  c: Domain_range
+- cpp: falcon_core::math::domains::Domain::is_empty
+  c: Domain_is_empty
+- cpp: falcon_core::math::domains::Domain::contains_domain
+  c: Domain_contains_domain
+- cpp: falcon_core::math::domains::Domain::shift
+  c: Domain_shift
+- cpp: falcon_core::math::domains::Domain::scale
+  c: Domain_scale
+- cpp: falcon_core::math::domains::Domain::transform
+  c: Domain_transform

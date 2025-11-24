@@ -1,0 +1,60 @@
+- comment_raw: "/**\n * @brief A serializable vector of DotGateWithNeighbors pointers,\
+    \ also a Song.\n *\n * DotGatesWithNeighbors can be constructed in 5 different\
+    \ ways:\n *\n * - Default constructor: creates an empty DotGatesWithNeighbors\
+    \ container.\n *   @code\n *   DotGatesWithNeighbors o;\n *   @endcode\n *\n *\
+    \ - Sized constructor: creates an DotGatesWithNeighbors container with a given\n\
+    \ * number of default-initialized elements.\n *   @param count Number of elements.\n\
+    \ *   @code\n *   DotGatesWithNeighbors o(10);\n *   @endcode\n *\n * - Fill constructor:\
+    \ creates an DotGatesWithNeighbors container with a given\n * number of copies\
+    \ of a specified value.\n *   @param count Number of elements.\n *   @param value\
+    \ Value to copy.\n *   @code\n *   DotGatesWithNeighbors o(10, someDotGatesWithNeighborsP);\n\
+    \ *   @endcode\n *\n * - Vector constructor: creates an DotGatesWithNeighbors\
+    \ container from an\n *existing vector of DotGateWithNeighborsSP.\n *   @param\
+    \ vec Vector of DotGateWithNeighborsSP to copy.\n *   @code\n *   std::vector<DotGatesWithNeighborsP>\
+    \ v = ...;\n *   DotGatesWithNeighbors o(v);\n *   @endcode\n * - Initializer\
+    \ list constructor: creates a DotGatesWithNeighbors container\n *from an initializer\
+    \ list of shared pointers.\n *   @param init Initializer list of shared_ptr<T>\
+    \ to copy.\n *   @code\n *   DotGatesWithNeighbors o{ptr1, ptr2, ptr3};\n *  \
+    \ @endcode\n */"
+  comment: "@brief A serializable vector of DotGateWithNeighbors pointers, also a\
+    \ Song.\nDotGatesWithNeighbors can be constructed in 5 different ways:\n- Default\
+    \ constructor: creates an empty DotGatesWithNeighbors container.\n @code\n DotGatesWithNeighbors\
+    \ o;\n @endcode\n- Sized constructor: creates an DotGatesWithNeighbors container\
+    \ with a given\nnumber of default-initialized elements.\n @param count Number\
+    \ of elements.\n @code\n DotGatesWithNeighbors o(10);\n @endcode\n- Fill constructor:\
+    \ creates an DotGatesWithNeighbors container with a given\nnumber of copies of\
+    \ a specified value.\n @param count Number of elements.\n @param value Value to\
+    \ copy.\n @code\n DotGatesWithNeighbors o(10, someDotGatesWithNeighborsP);\n @endcode\n\
+    - Vector constructor: creates an DotGatesWithNeighbors container from an\nexisting\
+    \ vector of DotGateWithNeighborsSP.\n @param vec Vector of DotGateWithNeighborsSP\
+    \ to copy.\n @code\n std::vector<DotGatesWithNeighborsP> v = ...;\n DotGatesWithNeighbors\
+    \ o(v);\n @endcode\n- Initializer list constructor: creates a DotGatesWithNeighbors\
+    \ container\nfrom an initializer list of shared pointers.\n @param init Initializer\
+    \ list of shared_ptr<T> to copy.\n @code\n DotGatesWithNeighbors o{ptr1, ptr2,\
+    \ ptr3};\n @endcode"
+  declaration: "class DotGatesWithNeighbors\n    : public falcon_core::generic::List<DotGateWithNeighbors>\
+    \ {"
+  kind: class
+  name: null
+- comment_raw: "/**\n   * @brief Construct a DotGatesWithNeighbors container from\
+    \ an existing vector\n   * of values.\n   * @param vec Vector of values to copy.\n\
+    \   */"
+  comment: '@brief Construct a DotGatesWithNeighbors container from an existing vector
+
+    of values.
+
+    @param vec Vector of values to copy.'
+  declaration: DotGatesWithNeighbors(const std::vector<DotGateWithNeighborsSP>& vec);
+  kind: function
+  name: falcon_core::physics::config::geometries::DotGatesWithNeighbors
+- comment_raw: "/**\n   *  @brief Check if all connections are plunger gates.\n  \
+    \ */"
+  comment: '@brief Check if all connections are plunger gates.'
+  declaration: bool is_plunger_gates() const;
+  kind: function
+  name: falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_plunger_gates
+- comment_raw: "/**\n   * @brief Check if all connections are barrier gates.\n   */"
+  comment: '@brief Check if all connections are barrier gates.'
+  declaration: bool is_barrier_gates() const;
+  kind: function
+  name: falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_barrier_gates
