@@ -41,16 +41,7 @@ ConnectionsHandle Group_reservoir_gates(GroupHandle handle);
 ConnectionsHandle Group_plunger_gates(GroupHandle handle);
 // @category:read
 ConnectionsHandle Group_barrier_gates(GroupHandle handle);
-<<<<<<< HEAD
-/* AUTO-DOC from cpp: Group_ohmics |
- * falcon_core::physics::config::core::Group::ohmics */
-/**
- * @brief (from C++: falcon_core::physics::config::core::Group::ohmics)
- * @brief collect the ohmics pertaining to this group.
- */
-=======
 // @category:read
->>>>>>> 8f545d27 (Lots of categroies added to the entirety of physics in the c-api headers)
 ConnectionsHandle Group_ohmics(GroupHandle handle);
 // @category:read
 ConnectionsHandle Group_dot_gates(GroupHandle handle);

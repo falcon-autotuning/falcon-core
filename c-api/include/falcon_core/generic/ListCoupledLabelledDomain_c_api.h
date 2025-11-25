@@ -19,30 +19,12 @@ void ListCoupledLabelledDomain_destroy(ListCoupledLabelledDomainHandle handle);
 void ListCoupledLabelledDomain_push_back(ListCoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle value);
 size_t ListCoupledLabelledDomain_size(ListCoupledLabelledDomainHandle handle);
 bool ListCoupledLabelledDomain_empty(ListCoupledLabelledDomainHandle handle);
-/* AUTO-DOC from cpp: ListCoupledLabelledDomain_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief (from C++: falcon_core::generic::List::erase_at)
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListCoupledLabelledDomain_erase_at(ListCoupledLabelledDomainHandle handle, size_t idx);
-/* AUTO-DOC from cpp: ListCoupledLabelledDomain_clear | falcon_core::generic::List::clear */
-/**
- * @brief (from C++: falcon_core::generic::List::clear)
- * @brief clears to contents of the list.
- */
 void ListCoupledLabelledDomain_clear(ListCoupledLabelledDomainHandle handle);
 CoupledLabelledDomainHandle ListCoupledLabelledDomain_at(ListCoupledLabelledDomainHandle handle, size_t idx);
 size_t ListCoupledLabelledDomain_items(ListCoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle* out_buffer, size_t buffer_size);
 bool ListCoupledLabelledDomain_contains(ListCoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle value);
 size_t ListCoupledLabelledDomain_index(ListCoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle value);
-/* AUTO-DOC from cpp: ListCoupledLabelledDomain_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief (from C++: falcon_core::generic::List::intersection)
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_intersection(ListCoupledLabelledDomainHandle handle, ListCoupledLabelledDomainHandle other);
 bool ListCoupledLabelledDomain_equal(ListCoupledLabelledDomainHandle a, ListCoupledLabelledDomainHandle b);
 bool ListCoupledLabelledDomain_not_equal(ListCoupledLabelledDomainHandle a, ListCoupledLabelledDomainHandle b);

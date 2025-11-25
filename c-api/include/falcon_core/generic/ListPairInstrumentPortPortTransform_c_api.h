@@ -19,30 +19,12 @@ void ListPairInstrumentPortPortTransform_destroy(ListPairInstrumentPortPortTrans
 void ListPairInstrumentPortPortTransform_push_back(ListPairInstrumentPortPortTransformHandle handle, PairInstrumentPortPortTransformHandle value);
 size_t ListPairInstrumentPortPortTransform_size(ListPairInstrumentPortPortTransformHandle handle);
 bool ListPairInstrumentPortPortTransform_empty(ListPairInstrumentPortPortTransformHandle handle);
-/* AUTO-DOC from cpp: ListPairInstrumentPortPortTransform_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief (from C++: falcon_core::generic::List::erase_at)
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListPairInstrumentPortPortTransform_erase_at(ListPairInstrumentPortPortTransformHandle handle, size_t idx);
-/* AUTO-DOC from cpp: ListPairInstrumentPortPortTransform_clear | falcon_core::generic::List::clear */
-/**
- * @brief (from C++: falcon_core::generic::List::clear)
- * @brief clears to contents of the list.
- */
 void ListPairInstrumentPortPortTransform_clear(ListPairInstrumentPortPortTransformHandle handle);
 PairInstrumentPortPortTransformHandle ListPairInstrumentPortPortTransform_at(ListPairInstrumentPortPortTransformHandle handle, size_t idx);
 size_t ListPairInstrumentPortPortTransform_items(ListPairInstrumentPortPortTransformHandle handle, PairInstrumentPortPortTransformHandle* out_buffer, size_t buffer_size);
 bool ListPairInstrumentPortPortTransform_contains(ListPairInstrumentPortPortTransformHandle handle, PairInstrumentPortPortTransformHandle value);
 size_t ListPairInstrumentPortPortTransform_index(ListPairInstrumentPortPortTransformHandle handle, PairInstrumentPortPortTransformHandle value);
-/* AUTO-DOC from cpp: ListPairInstrumentPortPortTransform_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief (from C++: falcon_core::generic::List::intersection)
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListPairInstrumentPortPortTransformHandle ListPairInstrumentPortPortTransform_intersection(ListPairInstrumentPortPortTransformHandle handle, ListPairInstrumentPortPortTransformHandle other);
 bool ListPairInstrumentPortPortTransform_equal(ListPairInstrumentPortPortTransformHandle a, ListPairInstrumentPortPortTransformHandle b);
 bool ListPairInstrumentPortPortTransform_not_equal(ListPairInstrumentPortPortTransformHandle a, ListPairInstrumentPortPortTransformHandle b);

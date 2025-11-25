@@ -23,17 +23,7 @@ size_t MapInterpretationContextString_size(MapInterpretationContextStringHandle 
 bool MapInterpretationContextString_empty(MapInterpretationContextStringHandle handle);
 void MapInterpretationContextString_clear(MapInterpretationContextStringHandle handle);
 bool MapInterpretationContextString_contains(MapInterpretationContextStringHandle handle, const InterpretationContextHandle key);
-/* AUTO-DOC from cpp: MapInterpretationContextString_keys | falcon_core::generic::Map::keys */
-/**
- * @brief (from C++: falcon_core::generic::Map::keys)
- * @brief Return the keys of the Map.
- */
 ListInterpretationContextHandle MapInterpretationContextString_keys(MapInterpretationContextStringHandle handle);
-/* AUTO-DOC from cpp: MapInterpretationContextString_values | falcon_core::generic::Map::values */
-/**
- * @brief (from C++: falcon_core::generic::Map::values)
- * @brief Return the values of the Map.
- */
 ListStringHandle MapInterpretationContextString_values(MapInterpretationContextStringHandle handle);
 ListPairInterpretationContextStringHandle MapInterpretationContextString_items(MapInterpretationContextStringHandle handle);
 bool MapInterpretationContextString_equal(MapInterpretationContextStringHandle a, MapInterpretationContextStringHandle b);

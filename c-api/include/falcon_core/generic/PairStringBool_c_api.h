@@ -11,26 +11,9 @@
 typedef void* PairStringBoolHandle;
 // Function declarations
 
-/* AUTO-DOC from cpp: PairStringBool_create | falcon_core::generic::Pair::create */
-/**
- * @brief (from C++: falcon_core::generic::Pair::create)
- * @brief Store a pair of values.
- * @param first The first value.
- * @param second The second value.
- */
 PairStringBoolHandle PairStringBool_create(StringHandle first, bool second);
 void PairStringBool_destroy(PairStringBoolHandle handle);
-/* AUTO-DOC from cpp: PairStringBool_first | falcon_core::generic::Pair::first */
-/**
- * @brief (from C++: falcon_core::generic::Pair::first)
- * @brief Get the stored first value.
- */
 StringHandle PairStringBool_first(PairStringBoolHandle handle);
-/* AUTO-DOC from cpp: PairStringBool_second | falcon_core::generic::Pair::second */
-/**
- * @brief (from C++: falcon_core::generic::Pair::second)
- * @brief Get the stored second value.
- */
 bool PairStringBool_second(PairStringBoolHandle handle);
 bool PairStringBool_equal(PairStringBoolHandle a, PairStringBoolHandle b);
 bool PairStringBool_not_equal(PairStringBoolHandle a, PairStringBoolHandle b);

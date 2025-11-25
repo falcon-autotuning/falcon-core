@@ -22,17 +22,7 @@ size_t MapIntInt_size(MapIntIntHandle handle);
 bool MapIntInt_empty(MapIntIntHandle handle);
 void MapIntInt_clear(MapIntIntHandle handle);
 bool MapIntInt_contains(MapIntIntHandle handle, const int key);
-/* AUTO-DOC from cpp: MapIntInt_keys | falcon_core::generic::Map::keys */
-/**
- * @brief (from C++: falcon_core::generic::Map::keys)
- * @brief Return the keys of the Map.
- */
 ListIntHandle MapIntInt_keys(MapIntIntHandle handle);
-/* AUTO-DOC from cpp: MapIntInt_values | falcon_core::generic::Map::values */
-/**
- * @brief (from C++: falcon_core::generic::Map::values)
- * @brief Return the values of the Map.
- */
 ListIntHandle MapIntInt_values(MapIntIntHandle handle);
 ListPairIntIntHandle MapIntInt_items(MapIntIntHandle handle);
 bool MapIntInt_equal(MapIntIntHandle a, MapIntIntHandle b);

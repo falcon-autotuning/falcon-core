@@ -19,30 +19,12 @@ void ListPairInterpretationContextQuantity_destroy(ListPairInterpretationContext
 void ListPairInterpretationContextQuantity_push_back(ListPairInterpretationContextQuantityHandle handle, PairInterpretationContextQuantityHandle value);
 size_t ListPairInterpretationContextQuantity_size(ListPairInterpretationContextQuantityHandle handle);
 bool ListPairInterpretationContextQuantity_empty(ListPairInterpretationContextQuantityHandle handle);
-/* AUTO-DOC from cpp: ListPairInterpretationContextQuantity_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief (from C++: falcon_core::generic::List::erase_at)
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListPairInterpretationContextQuantity_erase_at(ListPairInterpretationContextQuantityHandle handle, size_t idx);
-/* AUTO-DOC from cpp: ListPairInterpretationContextQuantity_clear | falcon_core::generic::List::clear */
-/**
- * @brief (from C++: falcon_core::generic::List::clear)
- * @brief clears to contents of the list.
- */
 void ListPairInterpretationContextQuantity_clear(ListPairInterpretationContextQuantityHandle handle);
 PairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_at(ListPairInterpretationContextQuantityHandle handle, size_t idx);
 size_t ListPairInterpretationContextQuantity_items(ListPairInterpretationContextQuantityHandle handle, PairInterpretationContextQuantityHandle* out_buffer, size_t buffer_size);
 bool ListPairInterpretationContextQuantity_contains(ListPairInterpretationContextQuantityHandle handle, PairInterpretationContextQuantityHandle value);
 size_t ListPairInterpretationContextQuantity_index(ListPairInterpretationContextQuantityHandle handle, PairInterpretationContextQuantityHandle value);
-/* AUTO-DOC from cpp: ListPairInterpretationContextQuantity_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief (from C++: falcon_core::generic::List::intersection)
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_intersection(ListPairInterpretationContextQuantityHandle handle, ListPairInterpretationContextQuantityHandle other);
 bool ListPairInterpretationContextQuantity_equal(ListPairInterpretationContextQuantityHandle a, ListPairInterpretationContextQuantityHandle b);
 bool ListPairInterpretationContextQuantity_not_equal(ListPairInterpretationContextQuantityHandle a, ListPairInterpretationContextQuantityHandle b);

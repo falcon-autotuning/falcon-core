@@ -60,34 +60,10 @@ bool FArrayInt_greaterthan(FArrayIntHandle handle, const int value);
 bool FArrayInt_lessthan(FArrayIntHandle handle, const int value);
 void FArrayInt_remove_offset(FArrayIntHandle handle, const int offset);
 int FArrayInt_sum(FArrayIntHandle handle);
-/* AUTO-DOC from cpp: FArrayInt_reshape | falcon_core::generic::FArray::reshape */
-/**
- * @brief (from C++: falcon_core::generic::FArray::reshape)
- * @brief Return a new Array with the given shape.
- * @param shape The new shape.
- * @return A reshaped FArray.
- */
 FArrayIntHandle FArrayInt_reshape(FArrayIntHandle handle, const size_t* shape, size_t ndims);
 ListListSizeTHandle FArrayInt_where(FArrayIntHandle handle, const int value);
-/* AUTO-DOC from cpp: FArrayInt_flip | falcon_core::generic::FArray::flip */
-/**
- * @brief (from C++: falcon_core::generic::FArray::flip)
- * @brief Flip the data along the given axis.
- * @param axis The axis to flip.
- * @return A flipped FArray.
- */
 FArrayIntHandle FArrayInt_flip(FArrayIntHandle handle, size_t axis);
 size_t FArrayInt_full_gradient(FArrayIntHandle handle, FArrayIntHandle* out_buffer, size_t buffer_size);
-/* AUTO-DOC from cpp: FArrayInt_gradient | falcon_core::generic::FArray::gradient */
-/**
- * @brief (from C++: falcon_core::generic::FArray::gradient)
- * @brief Return the gradient of the data along all axes.
- * Computes the gradient for each axis of the array using finite differences:
- * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
- * - For boundary points, uses forward (first element) or backward (last
- * element) difference.
- * @return A vector of FArray gradients (one for each axis).
- */
 FArrayIntHandle FArrayInt_gradient(FArrayIntHandle handle, size_t axis);
 double FArrayInt_get_sum_of_squares(FArrayIntHandle handle);
 double FArrayInt_get_summed_diff_int_of_squares(FArrayIntHandle handle, const int other);

@@ -23,17 +23,7 @@ size_t MapConnectionFloat_size(MapConnectionFloatHandle handle);
 bool MapConnectionFloat_empty(MapConnectionFloatHandle handle);
 void MapConnectionFloat_clear(MapConnectionFloatHandle handle);
 bool MapConnectionFloat_contains(MapConnectionFloatHandle handle, const ConnectionHandle key);
-/* AUTO-DOC from cpp: MapConnectionFloat_keys | falcon_core::generic::Map::keys */
-/**
- * @brief (from C++: falcon_core::generic::Map::keys)
- * @brief Return the keys of the Map.
- */
 ListConnectionHandle MapConnectionFloat_keys(MapConnectionFloatHandle handle);
-/* AUTO-DOC from cpp: MapConnectionFloat_values | falcon_core::generic::Map::values */
-/**
- * @brief (from C++: falcon_core::generic::Map::values)
- * @brief Return the values of the Map.
- */
 ListFloatHandle MapConnectionFloat_values(MapConnectionFloatHandle handle);
 ListPairConnectionFloatHandle MapConnectionFloat_items(MapConnectionFloatHandle handle);
 bool MapConnectionFloat_equal(MapConnectionFloatHandle a, MapConnectionFloatHandle b);

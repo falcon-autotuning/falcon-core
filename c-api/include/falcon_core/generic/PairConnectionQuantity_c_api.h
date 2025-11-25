@@ -11,26 +11,9 @@
 typedef void* PairConnectionQuantityHandle;
 // Function declarations
 
-/* AUTO-DOC from cpp: PairConnectionQuantity_create | falcon_core::generic::Pair::create */
-/**
- * @brief (from C++: falcon_core::generic::Pair::create)
- * @brief Store a pair of values.
- * @param first The first value.
- * @param second The second value.
- */
 PairConnectionQuantityHandle PairConnectionQuantity_create(ConnectionHandle first, QuantityHandle second);
 void PairConnectionQuantity_destroy(PairConnectionQuantityHandle handle);
-/* AUTO-DOC from cpp: PairConnectionQuantity_first | falcon_core::generic::Pair::first */
-/**
- * @brief (from C++: falcon_core::generic::Pair::first)
- * @brief Get the stored first value.
- */
 ConnectionHandle PairConnectionQuantity_first(PairConnectionQuantityHandle handle);
-/* AUTO-DOC from cpp: PairConnectionQuantity_second | falcon_core::generic::Pair::second */
-/**
- * @brief (from C++: falcon_core::generic::Pair::second)
- * @brief Get the stored second value.
- */
 QuantityHandle PairConnectionQuantity_second(PairConnectionQuantityHandle handle);
 bool PairConnectionQuantity_equal(PairConnectionQuantityHandle a, PairConnectionQuantityHandle b);
 bool PairConnectionQuantity_not_equal(PairConnectionQuantityHandle a, PairConnectionQuantityHandle b);

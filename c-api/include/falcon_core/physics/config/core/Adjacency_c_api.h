@@ -13,8 +13,8 @@ extern "C" {
 typedef void* AdjacencyHandle;
 
 // @category:allocation
-AdjacencyHandle Adjacency_create(const int*        data,
-                                 const size_t*     shape,
+AdjacencyHandle Adjacency_create(int*              data,
+                                 size_t*           shape,
                                  size_t            ndim,
                                  ConnectionsHandle indexes);
 // @category:deallocation

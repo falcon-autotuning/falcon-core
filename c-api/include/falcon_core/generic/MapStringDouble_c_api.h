@@ -24,17 +24,7 @@ size_t MapStringDouble_size(MapStringDoubleHandle handle);
 bool MapStringDouble_empty(MapStringDoubleHandle handle);
 void MapStringDouble_clear(MapStringDoubleHandle handle);
 bool MapStringDouble_contains(MapStringDoubleHandle handle, const StringHandle key);
-/* AUTO-DOC from cpp: MapStringDouble_keys | falcon_core::generic::Map::keys */
-/**
- * @brief (from C++: falcon_core::generic::Map::keys)
- * @brief Return the keys of the Map.
- */
 ListStringHandle MapStringDouble_keys(MapStringDoubleHandle handle);
-/* AUTO-DOC from cpp: MapStringDouble_values | falcon_core::generic::Map::values */
-/**
- * @brief (from C++: falcon_core::generic::Map::values)
- * @brief Return the values of the Map.
- */
 ListDoubleHandle MapStringDouble_values(MapStringDoubleHandle handle);
 ListPairStringDoubleHandle MapStringDouble_items(MapStringDoubleHandle handle);
 bool MapStringDouble_equal(MapStringDoubleHandle a, MapStringDoubleHandle b);

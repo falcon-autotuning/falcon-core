@@ -19,30 +19,12 @@ void ListInterpretationContext_destroy(ListInterpretationContextHandle handle);
 void ListInterpretationContext_push_back(ListInterpretationContextHandle handle, InterpretationContextHandle value);
 size_t ListInterpretationContext_size(ListInterpretationContextHandle handle);
 bool ListInterpretationContext_empty(ListInterpretationContextHandle handle);
-/* AUTO-DOC from cpp: ListInterpretationContext_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief (from C++: falcon_core::generic::List::erase_at)
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListInterpretationContext_erase_at(ListInterpretationContextHandle handle, size_t idx);
-/* AUTO-DOC from cpp: ListInterpretationContext_clear | falcon_core::generic::List::clear */
-/**
- * @brief (from C++: falcon_core::generic::List::clear)
- * @brief clears to contents of the list.
- */
 void ListInterpretationContext_clear(ListInterpretationContextHandle handle);
 InterpretationContextHandle ListInterpretationContext_at(ListInterpretationContextHandle handle, size_t idx);
 size_t ListInterpretationContext_items(ListInterpretationContextHandle handle, InterpretationContextHandle* out_buffer, size_t buffer_size);
 bool ListInterpretationContext_contains(ListInterpretationContextHandle handle, InterpretationContextHandle value);
 size_t ListInterpretationContext_index(ListInterpretationContextHandle handle, InterpretationContextHandle value);
-/* AUTO-DOC from cpp: ListInterpretationContext_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief (from C++: falcon_core::generic::List::intersection)
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListInterpretationContextHandle ListInterpretationContext_intersection(ListInterpretationContextHandle handle, ListInterpretationContextHandle other);
 bool ListInterpretationContext_equal(ListInterpretationContextHandle a, ListInterpretationContextHandle b);
 bool ListInterpretationContext_not_equal(ListInterpretationContextHandle a, ListInterpretationContextHandle b);

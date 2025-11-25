@@ -10,26 +10,9 @@
 typedef void* PairConnectionConnectionsHandle;
 // Function declarations
 
-/* AUTO-DOC from cpp: PairConnectionConnections_create | falcon_core::generic::Pair::create */
-/**
- * @brief (from C++: falcon_core::generic::Pair::create)
- * @brief Store a pair of values.
- * @param first The first value.
- * @param second The second value.
- */
 PairConnectionConnectionsHandle PairConnectionConnections_create(ConnectionHandle first, ConnectionsHandle second);
 void PairConnectionConnections_destroy(PairConnectionConnectionsHandle handle);
-/* AUTO-DOC from cpp: PairConnectionConnections_first | falcon_core::generic::Pair::first */
-/**
- * @brief (from C++: falcon_core::generic::Pair::first)
- * @brief Get the stored first value.
- */
 ConnectionHandle PairConnectionConnections_first(PairConnectionConnectionsHandle handle);
-/* AUTO-DOC from cpp: PairConnectionConnections_second | falcon_core::generic::Pair::second */
-/**
- * @brief (from C++: falcon_core::generic::Pair::second)
- * @brief Get the stored second value.
- */
 ConnectionsHandle PairConnectionConnections_second(PairConnectionConnectionsHandle handle);
 bool PairConnectionConnections_equal(PairConnectionConnectionsHandle a, PairConnectionConnectionsHandle b);
 bool PairConnectionConnections_not_equal(PairConnectionConnectionsHandle a, PairConnectionConnectionsHandle b);

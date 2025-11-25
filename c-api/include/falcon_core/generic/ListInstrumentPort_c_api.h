@@ -19,30 +19,12 @@ void ListInstrumentPort_destroy(ListInstrumentPortHandle handle);
 void ListInstrumentPort_push_back(ListInstrumentPortHandle handle, InstrumentPortHandle value);
 size_t ListInstrumentPort_size(ListInstrumentPortHandle handle);
 bool ListInstrumentPort_empty(ListInstrumentPortHandle handle);
-/* AUTO-DOC from cpp: ListInstrumentPort_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief (from C++: falcon_core::generic::List::erase_at)
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListInstrumentPort_erase_at(ListInstrumentPortHandle handle, size_t idx);
-/* AUTO-DOC from cpp: ListInstrumentPort_clear | falcon_core::generic::List::clear */
-/**
- * @brief (from C++: falcon_core::generic::List::clear)
- * @brief clears to contents of the list.
- */
 void ListInstrumentPort_clear(ListInstrumentPortHandle handle);
 InstrumentPortHandle ListInstrumentPort_at(ListInstrumentPortHandle handle, size_t idx);
 size_t ListInstrumentPort_items(ListInstrumentPortHandle handle, InstrumentPortHandle* out_buffer, size_t buffer_size);
 bool ListInstrumentPort_contains(ListInstrumentPortHandle handle, InstrumentPortHandle value);
 size_t ListInstrumentPort_index(ListInstrumentPortHandle handle, InstrumentPortHandle value);
-/* AUTO-DOC from cpp: ListInstrumentPort_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief (from C++: falcon_core::generic::List::intersection)
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListInstrumentPortHandle ListInstrumentPort_intersection(ListInstrumentPortHandle handle, ListInstrumentPortHandle other);
 bool ListInstrumentPort_equal(ListInstrumentPortHandle a, ListInstrumentPortHandle b);
 bool ListInstrumentPort_not_equal(ListInstrumentPortHandle a, ListInstrumentPortHandle b);

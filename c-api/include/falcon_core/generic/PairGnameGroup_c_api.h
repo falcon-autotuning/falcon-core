@@ -11,26 +11,9 @@
 typedef void* PairGnameGroupHandle;
 // Function declarations
 
-/* AUTO-DOC from cpp: PairGnameGroup_create | falcon_core::generic::Pair::create */
-/**
- * @brief (from C++: falcon_core::generic::Pair::create)
- * @brief Store a pair of values.
- * @param first The first value.
- * @param second The second value.
- */
 PairGnameGroupHandle PairGnameGroup_create(GnameHandle first, GroupHandle second);
 void PairGnameGroup_destroy(PairGnameGroupHandle handle);
-/* AUTO-DOC from cpp: PairGnameGroup_first | falcon_core::generic::Pair::first */
-/**
- * @brief (from C++: falcon_core::generic::Pair::first)
- * @brief Get the stored first value.
- */
 GnameHandle PairGnameGroup_first(PairGnameGroupHandle handle);
-/* AUTO-DOC from cpp: PairGnameGroup_second | falcon_core::generic::Pair::second */
-/**
- * @brief (from C++: falcon_core::generic::Pair::second)
- * @brief Get the stored second value.
- */
 GroupHandle PairGnameGroup_second(PairGnameGroupHandle handle);
 bool PairGnameGroup_equal(PairGnameGroupHandle a, PairGnameGroupHandle b);
 bool PairGnameGroup_not_equal(PairGnameGroupHandle a, PairGnameGroupHandle b);

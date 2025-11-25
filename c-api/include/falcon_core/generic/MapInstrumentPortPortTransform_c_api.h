@@ -23,17 +23,7 @@ size_t MapInstrumentPortPortTransform_size(MapInstrumentPortPortTransformHandle 
 bool MapInstrumentPortPortTransform_empty(MapInstrumentPortPortTransformHandle handle);
 void MapInstrumentPortPortTransform_clear(MapInstrumentPortPortTransformHandle handle);
 bool MapInstrumentPortPortTransform_contains(MapInstrumentPortPortTransformHandle handle, const InstrumentPortHandle key);
-/* AUTO-DOC from cpp: MapInstrumentPortPortTransform_keys | falcon_core::generic::Map::keys */
-/**
- * @brief (from C++: falcon_core::generic::Map::keys)
- * @brief Return the keys of the Map.
- */
 ListInstrumentPortHandle MapInstrumentPortPortTransform_keys(MapInstrumentPortPortTransformHandle handle);
-/* AUTO-DOC from cpp: MapInstrumentPortPortTransform_values | falcon_core::generic::Map::values */
-/**
- * @brief (from C++: falcon_core::generic::Map::values)
- * @brief Return the values of the Map.
- */
 ListPortTransformHandle MapInstrumentPortPortTransform_values(MapInstrumentPortPortTransformHandle handle);
 ListPairInstrumentPortPortTransformHandle MapInstrumentPortPortTransform_items(MapInstrumentPortPortTransformHandle handle);
 bool MapInstrumentPortPortTransform_equal(MapInstrumentPortPortTransformHandle a, MapInstrumentPortPortTransformHandle b);

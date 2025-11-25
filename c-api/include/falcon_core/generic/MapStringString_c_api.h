@@ -23,17 +23,7 @@ size_t MapStringString_size(MapStringStringHandle handle);
 bool MapStringString_empty(MapStringStringHandle handle);
 void MapStringString_clear(MapStringStringHandle handle);
 bool MapStringString_contains(MapStringStringHandle handle, const StringHandle key);
-/* AUTO-DOC from cpp: MapStringString_keys | falcon_core::generic::Map::keys */
-/**
- * @brief (from C++: falcon_core::generic::Map::keys)
- * @brief Return the keys of the Map.
- */
 ListStringHandle MapStringString_keys(MapStringStringHandle handle);
-/* AUTO-DOC from cpp: MapStringString_values | falcon_core::generic::Map::values */
-/**
- * @brief (from C++: falcon_core::generic::Map::values)
- * @brief Return the values of the Map.
- */
 ListStringHandle MapStringString_values(MapStringStringHandle handle);
 ListPairStringStringHandle MapStringString_items(MapStringStringHandle handle);
 bool MapStringString_equal(MapStringStringHandle a, MapStringStringHandle b);

@@ -24,17 +24,7 @@ size_t MapStringBool_size(MapStringBoolHandle handle);
 bool MapStringBool_empty(MapStringBoolHandle handle);
 void MapStringBool_clear(MapStringBoolHandle handle);
 bool MapStringBool_contains(MapStringBoolHandle handle, const StringHandle key);
-/* AUTO-DOC from cpp: MapStringBool_keys | falcon_core::generic::Map::keys */
-/**
- * @brief (from C++: falcon_core::generic::Map::keys)
- * @brief Return the keys of the Map.
- */
 ListStringHandle MapStringBool_keys(MapStringBoolHandle handle);
-/* AUTO-DOC from cpp: MapStringBool_values | falcon_core::generic::Map::values */
-/**
- * @brief (from C++: falcon_core::generic::Map::values)
- * @brief Return the values of the Map.
- */
 ListBoolHandle MapStringBool_values(MapStringBoolHandle handle);
 ListPairStringBoolHandle MapStringBool_items(MapStringBoolHandle handle);
 bool MapStringBool_equal(MapStringBoolHandle a, MapStringBoolHandle b);
