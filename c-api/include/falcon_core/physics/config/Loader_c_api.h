@@ -9,18 +9,11 @@ extern "C" {
 #include "falcon_core/physics/config/core/Config_c_api.h"
 typedef void* LoaderHandle;
 
-// Constructors
+// @category:allocation
 LoaderHandle Loader_create(StringHandle config_path);
-
-// Destructor
+// @category:deallocation
 void Loader_destroy(LoaderHandle handle);
-
-// Methods
-/* AUTO-DOC from cpp: Loader_config | falcon_core::physics::config::Loader::config */
-/**
- * @brief (from C++: falcon_core::physics::config::Loader::config)
- * @brief Returns the config.
- */
+// @category:read
 ConfigHandle Loader_config(LoaderHandle handle);
 
 #ifdef __cplusplus

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
@@ -147,8 +147,6 @@ TEST_F(PortsTest, PushBackSizeEmptyEraseClearAtItemsContainsIndex) {
   Ports_clear(e);
   EXPECT_TRUE(Ports_empty(e));
   Ports_push_back(e, port);
-  auto c = Ports_const_at(e, 0);
-  InstrumentPort_destroy(c);
   auto a = Ports_at(e, 0);
   InstrumentPort_destroy(a);
   auto items = Ports_items(e);
@@ -174,9 +172,6 @@ TEST_F(PortsTest, PushBackSizeEmptyEraseClearAtItemsContainsIndex) {
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   Ports_clear(nullptr);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
-  Ports_const_at(nullptr, 0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   Ports_at(nullptr, 0);

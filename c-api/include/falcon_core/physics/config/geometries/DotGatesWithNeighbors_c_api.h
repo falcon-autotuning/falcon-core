@@ -8,54 +8,54 @@ extern "C" {
 #include "falcon_core/generic/ListDotGateWithNeighbors_c_api.h"
 typedef void* DotGatesWithNeighborsHandle;
 
-// Constructors
+// @category:allocation
 DotGatesWithNeighborsHandle DotGatesWithNeighbors_create_empty();
+// @category:allocation
 DotGatesWithNeighborsHandle DotGatesWithNeighbors_create(
     ListDotGateWithNeighborsHandle items);
-
-// Destructor
+// @category:deallocation
 void DotGatesWithNeighbors_destroy(DotGatesWithNeighborsHandle handle);
-
-// Methods
-/* AUTO-DOC from cpp: DotGatesWithNeighbors_is_plunger_gates | falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_plunger_gates */
-/**
- * @brief (from C++: falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_plunger_gates)
- * @brief Check if all connections are plunger gates.
- */
+// @category:read
 bool DotGatesWithNeighbors_is_plunger_gates(DotGatesWithNeighborsHandle handle);
-/* AUTO-DOC from cpp: DotGatesWithNeighbors_is_barrier_gates | falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_barrier_gates */
-/**
- * @brief (from C++: falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_barrier_gates)
- * @brief Check if all connections are barrier gates.
- */
+// @category:read
 bool DotGatesWithNeighbors_is_barrier_gates(DotGatesWithNeighborsHandle handle);
+// @category:read
 DotGatesWithNeighborsHandle DotGatesWithNeighbors_intersection(
     DotGatesWithNeighborsHandle handle, DotGatesWithNeighborsHandle other);
-void   DotGatesWithNeighbors_push_back(DotGatesWithNeighborsHandle handle,
-                                       DotGateWithNeighborsHandle  value);
+// @category:write
+void DotGatesWithNeighbors_push_back(DotGatesWithNeighborsHandle handle,
+                                     DotGateWithNeighborsHandle  value);
+// @category:read
 size_t DotGatesWithNeighbors_size(DotGatesWithNeighborsHandle handle);
-bool   DotGatesWithNeighbors_empty(DotGatesWithNeighborsHandle handle);
-void   DotGatesWithNeighbors_erase_at(DotGatesWithNeighborsHandle handle,
-                                      size_t                      idx);
-void   DotGatesWithNeighbors_clear(DotGatesWithNeighborsHandle handle);
-const DotGateWithNeighborsHandle DotGatesWithNeighbors_const_at(
-    DotGatesWithNeighborsHandle handle, size_t idx);
+// @category:read
+bool DotGatesWithNeighbors_empty(DotGatesWithNeighborsHandle handle);
+// @category:write
+void DotGatesWithNeighbors_erase_at(DotGatesWithNeighborsHandle handle,
+                                    size_t                      idx);
+// @category:write
+void DotGatesWithNeighbors_clear(DotGatesWithNeighborsHandle handle);
+// @category:read
 DotGateWithNeighborsHandle DotGatesWithNeighbors_at(
     DotGatesWithNeighborsHandle handle, size_t idx);
+// @category:read
 ListDotGateWithNeighborsHandle DotGatesWithNeighbors_items(
     DotGatesWithNeighborsHandle handle);
-bool   DotGatesWithNeighbors_contains(DotGatesWithNeighborsHandle handle,
-                                      DotGateWithNeighborsHandle  value);
+// @category:read
+bool DotGatesWithNeighbors_contains(DotGatesWithNeighborsHandle handle,
+                                    DotGateWithNeighborsHandle  value);
+// @category:read
 size_t DotGatesWithNeighbors_index(DotGatesWithNeighborsHandle handle,
                                    DotGateWithNeighborsHandle  value);
-bool   DotGatesWithNeighbors_equal(DotGatesWithNeighborsHandle a,
-                                   DotGatesWithNeighborsHandle b);
-bool   DotGatesWithNeighbors_not_equal(DotGatesWithNeighborsHandle a,
-                                       DotGatesWithNeighborsHandle b);
-
-// Serialization (from Song)
+// @category:read
+bool DotGatesWithNeighbors_equal(DotGatesWithNeighborsHandle handle,
+                                 DotGatesWithNeighborsHandle other);
+// @category:read
+bool DotGatesWithNeighbors_not_equal(DotGatesWithNeighborsHandle handle,
+                                     DotGatesWithNeighborsHandle other);
+// @category:read
 StringHandle DotGatesWithNeighbors_to_json_string(
     DotGatesWithNeighborsHandle handle);
+// @category:allocation
 DotGatesWithNeighborsHandle DotGatesWithNeighbors_from_json_string(
     StringHandle json);
 

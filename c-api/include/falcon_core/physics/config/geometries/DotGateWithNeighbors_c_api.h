@@ -9,36 +9,42 @@ extern "C" {
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 typedef void* DotGateWithNeighborsHandle;
 
-// Constructors
+// @category:allocation
 DotGateWithNeighborsHandle DotGateWithNeighbors_create_plungergatewithneighbors(
     StringHandle     name,
     ConnectionHandle left_neighbor,
     ConnectionHandle right_neighbor);
+// @category:allocation
 DotGateWithNeighborsHandle DotGateWithNeighbors_create_barriergatewithneighbors(
     StringHandle     name,
     ConnectionHandle left_neighbor,
     ConnectionHandle right_neighbor);
-
-// Destructor
+// @category:deallocation
 void DotGateWithNeighbors_destroy(DotGateWithNeighborsHandle handle);
-
-// Methods
-bool         DotGateWithNeighbors_equal(DotGateWithNeighborsHandle handle,
-                                        DotGateWithNeighborsHandle other);
-bool         DotGateWithNeighbors_not_equal(DotGateWithNeighborsHandle handle,
-                                            DotGateWithNeighborsHandle other);
+// @category:read
+bool DotGateWithNeighbors_equal(DotGateWithNeighborsHandle handle,
+                                DotGateWithNeighborsHandle other);
+// @category:read
+bool DotGateWithNeighbors_not_equal(DotGateWithNeighborsHandle handle,
+                                    DotGateWithNeighborsHandle other);
+// @category:read
 StringHandle DotGateWithNeighbors_name(DotGateWithNeighborsHandle handle);
+// @category:read
 StringHandle DotGateWithNeighbors_type(DotGateWithNeighborsHandle handle);
+// @category:read
 ConnectionHandle DotGateWithNeighbors_left_neighbor(
     DotGateWithNeighborsHandle handle);
+// @category:read
 ConnectionHandle DotGateWithNeighbors_right_neighbor(
     DotGateWithNeighborsHandle handle);
+// @category:read
 bool DotGateWithNeighbors_is_barrier_gate(DotGateWithNeighborsHandle handle);
+// @category:read
 bool DotGateWithNeighbors_is_plunger_gate(DotGateWithNeighborsHandle handle);
-
-// Serialization (from Song)
+// @category:read
 StringHandle DotGateWithNeighbors_to_json_string(
     DotGateWithNeighborsHandle handle);
+// @category:allocation
 DotGateWithNeighborsHandle DotGateWithNeighbors_from_json_string(
     StringHandle json);
 

@@ -8,33 +8,40 @@ extern "C" {
 #include "falcon_core/generic/ListImpedance_c_api.h"
 typedef void* ImpedancesHandle;
 
-// Constructors
+// @category:allocation
 ImpedancesHandle Impedances_create_empty();
-ImpedancesHandle Impedances_create(const ListImpedanceHandle items);
-
-// Destructor
+// @category:allocation
+ImpedancesHandle Impedances_create(ListImpedanceHandle items);
+// @category:deallocation
 void Impedances_destroy(ImpedancesHandle handle);
-
-// Methods
-void   Impedances_push_back(ImpedancesHandle handle, ImpedanceHandle value);
+// @category:write
+void Impedances_push_back(ImpedancesHandle handle, ImpedanceHandle value);
+// @category:read
 size_t Impedances_size(ImpedancesHandle handle);
-bool   Impedances_empty(ImpedancesHandle handle);
-void   Impedances_erase_at(ImpedancesHandle handle, size_t idx);
-void   Impedances_clear(ImpedancesHandle handle);
-ImpedanceHandle Impedances_const_at(ImpedancesHandle handle, size_t idx);
+// @category:read
+bool Impedances_empty(ImpedancesHandle handle);
+// @category:write
+void Impedances_erase_at(ImpedancesHandle handle, size_t idx);
+// @category:write
+void Impedances_clear(ImpedancesHandle handle);
+// @category:read
 ImpedanceHandle Impedances_at(ImpedancesHandle handle, size_t idx);
-size_t          Impedances_items(ImpedancesHandle handle,
-                                 ImpedanceHandle* out_buffer,
-                                 size_t           buffer_size);
+// @category:read
+ListImpedanceHandle Impedances_items(ImpedancesHandle handle);
+// @category:read
 bool Impedances_contains(ImpedancesHandle handle, ImpedanceHandle value);
-ImpedancesHandle Impedances_intersection(ImpedancesHandle a,
-                                         ImpedancesHandle b);
+// @category:allocation
+ImpedancesHandle Impedances_intersection(ImpedancesHandle handle,
+                                         ImpedancesHandle other);
+// @category:read
 size_t Impedances_index(ImpedancesHandle handle, ImpedanceHandle value);
-bool   Impedances_equal(ImpedancesHandle a, ImpedancesHandle b);
-bool   Impedances_not_equal(ImpedancesHandle a, ImpedancesHandle b);
-
-// Serialization (from Song)
-StringHandle     Impedances_to_json_string(ImpedancesHandle handle);
+// @category:read
+bool Impedances_equal(ImpedancesHandle handle, ImpedancesHandle other);
+// @category:read
+bool Impedances_not_equal(ImpedancesHandle handle, ImpedancesHandle other);
+// @category:read
+StringHandle Impedances_to_json_string(ImpedancesHandle handle);
+// @category:allocation
 ImpedancesHandle Impedances_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

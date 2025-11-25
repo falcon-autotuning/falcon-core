@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/ListDotGateWithNeighbors_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -54,13 +53,10 @@ TEST_F(DotGatesWithNeighborsTest, SizeAndEmpty) {
   EXPECT_FALSE(DotGatesWithNeighbors_empty(gates));
 }
 
-TEST_F(DotGatesWithNeighborsTest, AtAndConstAt) {
+TEST_F(DotGatesWithNeighborsTest, At) {
   DotGateWithNeighborsHandle g1 = DotGatesWithNeighbors_at(gates, 0);
-  DotGateWithNeighborsHandle g2 = DotGatesWithNeighbors_const_at(gates, 1);
   EXPECT_TRUE(DotGateWithNeighbors_equal(g1, gate1));
-  EXPECT_TRUE(DotGateWithNeighbors_equal(g2, gate2));
   DotGateWithNeighbors_destroy(g1);
-  DotGateWithNeighbors_destroy(g2);
 }
 
 TEST_F(DotGatesWithNeighborsTest, Items) {
@@ -163,9 +159,6 @@ TEST_F(DotGatesWithNeighborsTest, NullHandlesThrow) {
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   DotGatesWithNeighbors_at(nullptr, 0);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
-  DotGatesWithNeighbors_const_at(nullptr, 0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   DotGatesWithNeighbors_push_back(nullptr, gate1);

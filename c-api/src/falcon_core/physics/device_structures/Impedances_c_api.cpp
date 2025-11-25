@@ -102,16 +102,6 @@ void Impedances_clear(ImpedancesHandle handle) {
   FALCON_C_API_END()
 }
 
-ImpedanceHandle Impedances_const_at(ImpedancesHandle handle, size_t idx) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Impedances_const_at: handle cannot be null");
-  }
-  const auto conn = static_cast<Impedances*>(handle)->at(idx);
-  return static_cast<ImpedanceHandle>(conn.get());
-  FALCON_C_API_END(nullptr)
-}
-
 ImpedanceHandle Impedances_at(ImpedancesHandle handle, size_t idx) {
   FALCON_C_API_BEGIN
   if (!handle) {
@@ -122,24 +112,14 @@ ImpedanceHandle Impedances_at(ImpedancesHandle handle, size_t idx) {
   FALCON_C_API_END(nullptr)
 }
 
-size_t Impedances_items(ImpedancesHandle handle,
-                        ImpedanceHandle* out_buffer,
-                        size_t           buffer_size) {
+ListImpedanceHandle Impedances_items(ImpedancesHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Impedances_items: handle cannot be null");
   }
-  if (!out_buffer) {
-    throw std::invalid_argument("Impedances_items: out_buffer cannot be null");
-  }
-  auto&  items   = static_cast<Impedances*>(handle)->items();
-  size_t count   = items.size();
-  size_t to_copy = (buffer_size < count) ? buffer_size : count;
-  for (size_t i = 0; i < to_copy; ++i) {
-    out_buffer[i] = static_cast<ImpedanceHandle>(items[i].get());
-  }
-  return to_copy;
-  FALCON_C_API_END(0)
+  auto items = static_cast<Impedances*>(handle)->items();
+  return new falcon_core::generic::List<Impedance>(items);
+  FALCON_C_API_END(nullptr)
 }
 
 bool Impedances_contains(ImpedancesHandle handle, ImpedanceHandle value) {

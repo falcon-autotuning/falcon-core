@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ListImpedance_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/device_structures/Impedance_c_api.h"
 #include "falcon_core/physics/device_structures/Impedances_c_api.h"
@@ -41,8 +41,6 @@ TEST_F(ImpedancesTest, VectorConstructor) {
   ListImpedance_push_back(vec, imp2);
   ImpedancesHandle imps = Impedances_create(vec);
   EXPECT_EQ(Impedances_size(imps), 2);
-  EXPECT_TRUE(Impedance_equal(Impedances_const_at(imps, 0), imp1));
-  EXPECT_TRUE(Impedance_equal(Impedances_const_at(imps, 1), imp2));
   Impedances_destroy(imps);
   ListImpedance_destroy(vec);
 }
@@ -82,15 +80,13 @@ TEST_F(ImpedancesTest, ContainsAndIndex) {
   Impedances_destroy(imps);
 }
 
-TEST_F(ImpedancesTest, ItemsBuffer) {
+TEST_F(ImpedancesTest, Items_Buffer) {
   ImpedancesHandle imps = Impedances_create_empty();
   Impedances_push_back(imps, imp1);
   Impedances_push_back(imps, imp2);
-  ImpedanceHandle buffer[2];
-  size_t          n = Impedances_items(imps, buffer, 2);
-  EXPECT_EQ(n, 2);
-  EXPECT_TRUE(Impedance_equal(buffer[0], imp1));
-  EXPECT_TRUE(Impedance_equal(buffer[1], imp2));
+  ListImpedanceHandle handle = Impedances_items(imps);
+  EXPECT_TRUE(Impedance_equal(ListImpedance_at(handle, 0), imp1));
+  EXPECT_TRUE(Impedance_equal(ListImpedance_at(handle, 1), imp2));
   Impedances_destroy(imps);
 }
 
@@ -177,10 +173,9 @@ TEST_F(ImpedancesTest, SmallBufferItems) {
   ListImpedance_push_back(vec, imp2);
   ImpedancesHandle imps = Impedances_create(vec);
 
-  ImpedanceHandle buffer[1];
-  size_t          n = Impedances_items(imps, buffer, 1);
-  EXPECT_EQ(n, 1);
-  EXPECT_TRUE(Impedance_equal(buffer[0], imp1));
+  ListImpedanceHandle impedances = Impedances_items(imps);
+  EXPECT_EQ(ListImpedance_size(impedances), 2);
+  EXPECT_TRUE(Impedance_equal(ListImpedance_at(impedances, 0), imp1));
 
   Impedances_destroy(imps);
   ListImpedance_destroy(vec);
@@ -225,9 +220,6 @@ TEST_F(ImpedancesTest, NullHandlesThrow) {
   Impedances_at(nullptr, 0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Impedances_const_at(nullptr, 0);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
   Impedances_push_back(nullptr, imp1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
@@ -249,10 +241,7 @@ TEST_F(ImpedancesTest, NullHandlesThrow) {
   Impedances_index(imps, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Impedances_items(imps, nullptr, 0);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
-  Impedances_items(nullptr, nullptr, 0);
+  Impedances_items(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   Impedances_push_back(imps, nullptr);

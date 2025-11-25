@@ -9,33 +9,36 @@ extern "C" {
 #include "falcon_core/generic/String_c_api.h"
 typedef void* RightReservoirWithImplantedOhmicHandle;
 
-// Constructors
+// @category:allocation
 RightReservoirWithImplantedOhmicHandle RightReservoirWithImplantedOhmic_create(
     StringHandle name, ConnectionHandle left_neighbor, ConnectionHandle ohmic);
-
-// Destructor
+// @category:deallocation
 void RightReservoirWithImplantedOhmic_destroy(
     RightReservoirWithImplantedOhmicHandle handle);
-
-// Methods
+// @category:read
 StringHandle RightReservoirWithImplantedOhmic_name(
     RightReservoirWithImplantedOhmicHandle handle);
+// @category:read
 StringHandle RightReservoirWithImplantedOhmic_type(
     RightReservoirWithImplantedOhmicHandle handle);
+// @category:read
 ConnectionHandle RightReservoirWithImplantedOhmic_ohmic(
     RightReservoirWithImplantedOhmicHandle handle);
+// @category:read
 ConnectionHandle RightReservoirWithImplantedOhmic_left_neighbor(
     RightReservoirWithImplantedOhmicHandle handle);
+// @category:read
 bool RightReservoirWithImplantedOhmic_equal(
-    RightReservoirWithImplantedOhmicHandle a,
-    RightReservoirWithImplantedOhmicHandle b);
+    RightReservoirWithImplantedOhmicHandle handle,
+    RightReservoirWithImplantedOhmicHandle other);
+// @category:read
 bool RightReservoirWithImplantedOhmic_not_equal(
     RightReservoirWithImplantedOhmicHandle a,
     RightReservoirWithImplantedOhmicHandle b);
-
-// Serialization (from Song)
+// @category:read
 StringHandle RightReservoirWithImplantedOhmic_to_json_string(
     RightReservoirWithImplantedOhmicHandle handle);
+// @category:allocation
 RightReservoirWithImplantedOhmicHandle
 RightReservoirWithImplantedOhmic_from_json_string(StringHandle json);
 
