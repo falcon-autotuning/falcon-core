@@ -29,7 +29,7 @@ bool Connections_is_barrier_gates(ConnectionsHandle handle);
 bool Connections_is_reservoir_gates(ConnectionsHandle handle);
 // @category:read
 bool Connections_is_screening_gates(ConnectionsHandle handle);
-// @category:allocation
+// @category:read
 ConnectionsHandle Connections_intersection(ConnectionsHandle handle,
                                            ConnectionsHandle other);
 // @category:write

@@ -30,7 +30,7 @@ ImpedanceHandle Impedances_at(ImpedancesHandle handle, size_t idx);
 ListImpedanceHandle Impedances_items(ImpedancesHandle handle);
 // @category:read
 bool Impedances_contains(ImpedancesHandle handle, ImpedanceHandle value);
-// @category:allocation
+// @category:read
 ImpedancesHandle Impedances_intersection(ImpedancesHandle handle,
                                          ImpedancesHandle other);
 // @category:read

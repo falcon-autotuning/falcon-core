@@ -39,7 +39,7 @@ size_t Adjacency_data(AdjacencyHandle handle,
 // @category:write
 void Adjacency_timesequals_farray(AdjacencyHandle handle,
                                   FArrayIntHandle other);
-// @category:allocation
+// @category:read
 AdjacencyHandle Adjacency_times_farray(AdjacencyHandle handle,
                                        FArrayIntHandle other);
 // @category:read
@@ -50,7 +50,7 @@ bool Adjacency_notequality(AdjacencyHandle handle, AdjacencyHandle other);
 int Adjacency_sum(AdjacencyHandle handle);
 // @category:read
 ListListSizeTHandle Adjacency_where(AdjacencyHandle handle, int value);
-// @category:allocation
+// @category:read
 AdjacencyHandle Adjacency_flip(AdjacencyHandle handle, size_t axis);
 // @category:read
 StringHandle Adjacency_to_json_string(AdjacencyHandle handle);

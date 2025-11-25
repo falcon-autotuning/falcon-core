@@ -19,7 +19,7 @@ void DotGatesWithNeighbors_destroy(DotGatesWithNeighborsHandle handle);
 bool DotGatesWithNeighbors_is_plunger_gates(DotGatesWithNeighborsHandle handle);
 // @category:read
 bool DotGatesWithNeighbors_is_barrier_gates(DotGatesWithNeighborsHandle handle);
-// @category:allocation
+// @category:read
 DotGatesWithNeighborsHandle DotGatesWithNeighbors_intersection(
     DotGatesWithNeighborsHandle handle, DotGatesWithNeighborsHandle other);
 // @category:write
