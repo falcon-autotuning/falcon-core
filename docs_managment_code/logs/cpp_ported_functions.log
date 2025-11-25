@@ -73,12 +73,14 @@ falcon_core::math::UnitSpace::domain
 falcon_core::math::UnitSpace::shape
 falcon_core::math::UnitSpace::space
 falcon_core::math::Vector::connections
+falcon_core::math::Vector::endPoint
 falcon_core::math::Vector::end_map
 falcon_core::math::Vector::end_quantities
 falcon_core::math::Vector::magnitude
 falcon_core::math::Vector::normalize
 falcon_core::math::Vector::principle_connection
 falcon_core::math::Vector::project
+falcon_core::math::Vector::startPoint
 falcon_core::math::Vector::start_map
 falcon_core::math::Vector::start_quantities
 falcon_core::math::Vector::translate

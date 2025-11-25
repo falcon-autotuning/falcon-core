@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate *_c_api.auto_map.yml files by matching C++ methods (from cpp_metadata/*.yml)
+Generate *_c_api.map.yml files by matching C++ methods (from cpp_metadata/*.yml)
 with C wrapper functions in a mirrored c-api directory.
 
 Features:
@@ -14,7 +14,7 @@ Features:
     into many C headers (ListBool_c_api.h, ListConnection_c_api.h, ...).
     For such cases, if <Class>_<method> does not exist in any header,
     the script tries <HeaderBase>_<method> for each *_c_api.h in the same
-    directory and generates a separate .auto_map.yml for each header.
+    directory and generates a separate .map.yml for each header.
 """
 
 import argparse
@@ -111,7 +111,7 @@ def candidate_c_names_for_base(
 
 
 def parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="Generate *_c_api.auto_map.yml files.")
+    p = argparse.ArgumentParser(description="Generate *_c_api.map.yml files.")
     p.add_argument(
         "--cpp-metadata-root",
         type=Path,
@@ -133,7 +133,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument(
         "--overwrite",
         action="store_true",
-        help="Overwrite existing *_c_api.auto_map.yml files.",
+        help="Overwrite existing *_c_api.map.yml files.",
     )
     p.add_argument(
         "--verbose",
@@ -233,7 +233,6 @@ def collect_c_headers_for_class(
             print(f"    - {h.name}")
 
     return headers
-
 
 def find_c_wrappers_for_methods(
     class_name: str,
@@ -340,7 +339,7 @@ def process_one_metadata_file(
 ):
     """
     For a single *_metadata.yml file, locate the corresponding C++ header,
-    all relevant C headers, and write one *_c_api.auto_map.yml per C header that
+    all relevant C headers, and write one *_c_api.map.yml per C header that
     has matches.
     """
     stem = metadata_path.stem  # e.g. "List_metadata"
@@ -388,10 +387,10 @@ def process_one_metadata_file(
             print("  ⚠ No C wrappers found for any methods; skipping map generation.")
         return
 
-    # For each header with mappings, write an .auto_map.yml for that header
+    # For each header with mappings, write a .map.yml for that header
     for h, mappings in mappings_by_header.items():
-        # map file name: <HeaderStem>.auto_map.yml, e.g. ListBool_c_api.auto_map.yml
-        map_yaml_path = h.with_suffix(".auto_map.yml")
+        # map file name: <HeaderStem>.map.yml, e.g. ListBool_c_api.map.yml
+        map_yaml_path = h.with_suffix(".map.yml")
 
         if map_yaml_path.exists() and not overwrite:
             print(f"[SKIP] Map exists: {map_yaml_path}")
@@ -445,8 +444,8 @@ def main():
             meta_base_root,
             cpp_include_root,
             c_api_root,
-            args.overwrite,
-            args.verbose,
+            overwrite=args.overwrite,
+            verbose=args.verbose,
         )
 
 

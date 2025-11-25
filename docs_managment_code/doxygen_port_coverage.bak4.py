@@ -221,11 +221,11 @@ def find_cpp_functions_in_metadata(meta_root: Path) -> Set[str]:
 def find_ported_cpp_functions(c_api_root: Path) -> Set[str]:
     """
     Gather all C++ function names (fully qualified) that appear
-    in any *_c_api.auto_map.yml or *_c_api.user_map.yml 'cpp' field.
+    in any *_c_api.map.yml 'cpp' field.
     """
     ported: Set[str] = set()
 
-    for yml in c_api_root.rglob("*_c_api.*_map.yml"):
+    for yml in c_api_root.rglob("*_c_api.map.yml"):
         data = load_yaml(yml)
         if not isinstance(data, dict):
             continue
@@ -240,7 +240,6 @@ def find_ported_cpp_functions(c_api_root: Path) -> Set[str]:
                 ported.add(cpp_name)
 
     return ported
-
 
 
 def get_cpp_doc_functions_from_headers(cpp_root: Path) -> Set[str]:

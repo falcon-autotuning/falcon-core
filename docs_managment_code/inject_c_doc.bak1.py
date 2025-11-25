@@ -3,7 +3,7 @@
 """
 inject_c_docs.py (verbose, robust)
 
-- Reads *.auto_map.yml files from a C API tree
+- Reads *.map.yml files from a C API tree
 - Loads C++ doc units from cpp_metadata/*_metadata.yml
 - Inserts Doxygen blocks above matched C prototypes
 - Writes to mirrored c-api_appended_metadata tree (leaves originals untouched)
@@ -270,10 +270,8 @@ def main():
     ap.add_argument("--capi-root", default="c-api")
     ap.add_argument("--cpp-root", default="cpp")
     ap.add_argument("--cpp-metadata-root", default="cpp_metadata")
-    ap.add_argument("--maps-dir", default="c-api/include/falcon_core",
-                    help="Root dir to search for *.auto_map.yml files")
-    ap.add_argument("--map-file",
-                    help="Process a single map file (can be any path, e.g. *.auto_map.yml)")
+    ap.add_argument("--maps-dir", default="c-api/include/falcon_core")
+    ap.add_argument("--map-file")
     ap.add_argument("--out-root", default="c-api_appended_metadata")
     ap.add_argument("--verbose", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
@@ -291,13 +289,12 @@ def main():
 
     maps_dir = Path(args.maps_dir).resolve()
     count = 0
-    # ONLY process *.auto_map.yml files now
-    for mf in maps_dir.rglob("*.auto_map.yml"):
+    for mf in maps_dir.rglob("*.map.yml"):
         process_map(mf, capi_root, cpp_root, cpp_meta_root, out_root,
                     verbose=args.verbose, dry_run=args.dry_run)
         count += 1
     if count == 0:
-        print(f"[warn] no *.auto_map.yml found under {maps_dir}", file=sys.stderr)
+        print(f"[warn] no *.map.yml found under {maps_dir}", file=sys.stderr)
 
 if __name__ == "__main__":
     main()

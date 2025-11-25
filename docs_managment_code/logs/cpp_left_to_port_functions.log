@@ -11,10 +11,8 @@ falcon_core::instrument_interfaces::names::Ports::get_default_names
 falcon_core::math::AnalyticFunction::Constant
 falcon_core::math::AnalyticFunction::Identity
 falcon_core::math::UnitSpace::make_discrete_axes
-falcon_core::math::Vector::endPoint
 falcon_core::math::Vector::extend
 falcon_core::math::Vector::shrink
-falcon_core::math::Vector::startPoint
 falcon_core::math::arrays::Is1D::as_1D
 falcon_core::math::arrays::Is1D::even_divisions
 falcon_core::math::arrays::Is1D::get_closest_index

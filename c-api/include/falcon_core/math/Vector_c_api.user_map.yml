@@ -1,0 +1,9 @@
+c_header: Vector_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/math/Vector.hpp
+mappings:
+- cpp: falcon_core::math::Vector::endPoint
+  c: Vector_endPoint
+
+- cpp: falcon_core::math::Vector::startPoint
+  c: Vector_startPoint
