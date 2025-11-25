@@ -13,37 +13,37 @@ extern "C" {
 #include "falcon_core/math/AnalyticFunction_c_api.h"
 typedef void* PortTransformHandle;
 
-// Constructors
+// @category:allocation
 PortTransformHandle PortTransform_create(InstrumentPortHandle   port,
                                          AnalyticFunctionHandle transform);
+// @category:allocation
 PortTransformHandle PortTransform_create_constant_transform(
     InstrumentPortHandle port, double value);
+// @category:allocation
 PortTransformHandle PortTransform_create_identity_transform(
     InstrumentPortHandle port);
-
-// Destructor
+// @category:deallocation
 void PortTransform_destroy(PortTransformHandle handle);
-
-// Methods
-/* AUTO-DOC from cpp: PortTransform_port | falcon_core::instrument_interfaces::port_transforms::PortTransform::port */
-/**
- * @brief (from C++: falcon_core::instrument_interfaces::port_transforms::PortTransform::port)
- * @brief Returns the port associated with the transform.
- */
+// @category:read
 InstrumentPortHandle PortTransform_port(PortTransformHandle handle);
-ListStringHandle     PortTransform_labels(PortTransformHandle handle);
-double               PortTransform_evaluate(PortTransformHandle   handle,
-                                            MapStringDoubleHandle args,
-                                            double                time);
+// @category:read
+ListStringHandle PortTransform_labels(PortTransformHandle handle);
+// @category:read
+double PortTransform_evaluate(PortTransformHandle   handle,
+                              MapStringDoubleHandle args,
+                              double                time);
+// @category:read
 FArrayDoubleHandle PortTransform_evaluate_arraywise(PortTransformHandle handle,
                                                     MapStringDoubleHandle args,
                                                     double deltaT,
                                                     double maxTime);
+// @category:read
 bool PortTransform_equal(PortTransformHandle a, PortTransformHandle b);
+// @category:read
 bool PortTransform_not_equal(PortTransformHandle a, PortTransformHandle b);
-
-// Serialization (from Song)
-StringHandle        PortTransform_to_json_string(PortTransformHandle handle);
+// @category:read
+StringHandle PortTransform_to_json_string(PortTransformHandle handle);
+// @category:allocation
 PortTransformHandle PortTransform_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
