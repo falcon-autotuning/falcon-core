@@ -125,15 +125,15 @@ void SymbolUnit_destroy(SymbolUnitHandle handle);
 StringHandle SymbolUnit_symbol(SymbolUnitHandle handle);
 // @category:read
 StringHandle SymbolUnit_name(SymbolUnitHandle handle);
-// @category:allocation
+// @category:read
 SymbolUnitHandle SymbolUnit_multiplication(SymbolUnitHandle handle,
                                            SymbolUnitHandle other);
-// @category:allocation
+// @category:read
 SymbolUnitHandle SymbolUnit_division(SymbolUnitHandle handle,
                                      SymbolUnitHandle other);
-// @category:allocation
+// @category:read
 SymbolUnitHandle SymbolUnit_power(SymbolUnitHandle handle, int power);
-// @category:allocation
+// @category:read
 SymbolUnitHandle SymbolUnit_with_prefix(SymbolUnitHandle handle,
                                         StringHandle     prefix);
 // @category:read
