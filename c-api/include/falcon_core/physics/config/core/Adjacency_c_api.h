@@ -13,9 +13,9 @@ extern "C" {
 typedef void* AdjacencyHandle;
 
 // @category:allocation
-AdjacencyHandle Adjacency_create(int*              data,
-                                 size_t*           shape,
-                                 size_t            ndim,
+AdjacencyHandle Adjacency_create(const int*        data,
+                                 const size_t*     shape,
+                                 const size_t      ndim,
                                  ConnectionsHandle indexes);
 // @category:deallocation
 void              Adjacency_destroy(AdjacencyHandle handle);
@@ -29,9 +29,13 @@ size_t Adjacency_size(AdjacencyHandle handle);
 // @category:read
 size_t Adjacency_dimension(AdjacencyHandle handle);
 // @category:read
-size_t Adjacency_shape(AdjacencyHandle handle, size_t* out_buffer, size_t ndim);
+size_t Adjacency_shape(AdjacencyHandle handle,
+                       const size_t*   out_buffer,
+                       size_t          ndim);
 // @category:read
-size_t Adjacency_data(AdjacencyHandle handle, int* out_buffer, size_t numdata);
+size_t Adjacency_data(AdjacencyHandle handle,
+                      const int*      out_buffer,
+                      size_t          numdata);
 // @category:write
 void Adjacency_timesequals_farray(AdjacencyHandle handle,
                                   FArrayIntHandle other);
@@ -45,7 +49,7 @@ bool Adjacency_notequality(AdjacencyHandle handle, AdjacencyHandle other);
 // @category:read
 int Adjacency_sum(AdjacencyHandle handle);
 // @category:read
-ListListSizeTHandle Adjacency_where(AdjacencyHandle handle, const int value);
+ListListSizeTHandle Adjacency_where(AdjacencyHandle handle, int value);
 // @category:allocation
 AdjacencyHandle Adjacency_flip(AdjacencyHandle handle, size_t axis);
 // @category:read
