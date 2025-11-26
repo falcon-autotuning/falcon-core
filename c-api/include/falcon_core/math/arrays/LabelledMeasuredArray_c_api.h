@@ -12,167 +12,202 @@ extern "C" {
 
 typedef void* LabelledMeasuredArrayHandle;
 
-// Constructors
+// @category:allocation
 LabelledMeasuredArrayHandle LabelledMeasuredArray_from_farray(
     FArrayDoubleHandle farray, AcquisitionContextHandle label);
+// @category:allocation
 LabelledMeasuredArrayHandle LabelledMeasuredArray_from_measured_array(
     MeasuredArrayHandle measuredarray, AcquisitionContextHandle label);
-
-// Destructor
+// @category:deallocation
 void LabelledMeasuredArray_destroy(LabelledMeasuredArrayHandle handle);
-
-// Methods
+// @category:read
 AcquisitionContextHandle LabelledMeasuredArray_label(
     LabelledMeasuredArrayHandle handle);
+// @category:read
 ConnectionHandle LabelledMeasuredArray_connection(
     LabelledMeasuredArrayHandle handle);
+// @category:read
 StringHandle LabelledMeasuredArray_instrument_type(
     LabelledMeasuredArrayHandle handle);
+// @category:read
 SymbolUnitHandle LabelledMeasuredArray_units(
     LabelledMeasuredArrayHandle handle);
+// @category:read
 size_t LabelledMeasuredArray_size(LabelledMeasuredArrayHandle handle);
+// @category:read
 size_t LabelledMeasuredArray_dimension(LabelledMeasuredArrayHandle handle);
+// @category:read
 size_t LabelledMeasuredArray_shape(LabelledMeasuredArrayHandle handle,
                                    size_t*                     out_buffer,
                                    size_t                      ndim);
+// @category:read
 size_t LabelledMeasuredArray_data(LabelledMeasuredArrayHandle handle,
                                   double*                     out_buffer,
                                   size_t                      numdata);
+// @category:write
 void LabelledMeasuredArray_plusequals_farray(LabelledMeasuredArrayHandle handle,
                                              FArrayDoubleHandle          other);
+// @category:write
 void LabelledMeasuredArray_plusequals_double(LabelledMeasuredArrayHandle handle,
-                                             const double                other);
+                                             double                      other);
+// @category:write
 void LabelledMeasuredArray_plusequals_int(LabelledMeasuredArrayHandle handle,
-                                          const int                   other);
+                                          int                         other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_double(
-    LabelledMeasuredArrayHandle handle, const double other);
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_int(
-    LabelledMeasuredArrayHandle handle, const int other);
+    LabelledMeasuredArrayHandle handle, int other);
+// @category:write
 void LabelledMeasuredArray_minusequals_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
+// @category:write
 void LabelledMeasuredArray_minusequals_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:write
 void LabelledMeasuredArray_minusequals_double(
-    LabelledMeasuredArrayHandle handle, const double other);
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:write
 void LabelledMeasuredArray_minusequals_int(LabelledMeasuredArrayHandle handle,
-                                           const int                   other);
+                                           int                         other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_measured_array(
     LabelledMeasuredArrayHandle handle, MeasuredArrayHandle other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_double(
-    LabelledMeasuredArrayHandle handle, const double other);
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_int(
-    LabelledMeasuredArrayHandle handle, const int other);
+    LabelledMeasuredArrayHandle handle, int other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_negation(
     LabelledMeasuredArrayHandle handle);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_timesequals_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_timesequals_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:write
 void LabelledMeasuredArray_timesequals_double(
-    LabelledMeasuredArrayHandle handle, const double other);
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:write
 void LabelledMeasuredArray_timesequals_int(LabelledMeasuredArrayHandle handle,
-                                           const int                   other);
+                                           int                         other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_times_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_times_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_times_double(
-    LabelledMeasuredArrayHandle handle, const double other);
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_times_int(
-    LabelledMeasuredArrayHandle handle, const int other);
+    LabelledMeasuredArrayHandle handle, int other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_dividesequals_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_dividesequals_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:write
 void LabelledMeasuredArray_dividesequals_double(
-    LabelledMeasuredArrayHandle handle, const double other);
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:write
 void LabelledMeasuredArray_dividesequals_int(LabelledMeasuredArrayHandle handle,
-                                             const int                   other);
+                                             int                         other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_double(
-    LabelledMeasuredArrayHandle handle, const double other);
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_int(
-    LabelledMeasuredArrayHandle handle, const int other);
+    LabelledMeasuredArrayHandle handle, int other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_pow(
-    LabelledMeasuredArrayHandle handle, const double other);
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_abs(
     LabelledMeasuredArrayHandle handle);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_min_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_min_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_max_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_max_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
-bool   LabelledMeasuredArray_equality(LabelledMeasuredArrayHandle handle,
-                                      LabelledMeasuredArrayHandle other);
-bool   LabelledMeasuredArray_notequality(LabelledMeasuredArrayHandle handle,
-                                         LabelledMeasuredArrayHandle other);
-bool   LabelledMeasuredArray_greaterthan(LabelledMeasuredArrayHandle handle,
-                                         const double                value);
-bool   LabelledMeasuredArray_lessthan(LabelledMeasuredArrayHandle handle,
-                                      const double                value);
-void   LabelledMeasuredArray_remove_offset(LabelledMeasuredArrayHandle handle,
-                                           const double                offset);
+// @category:read
+bool LabelledMeasuredArray_equality(LabelledMeasuredArrayHandle handle,
+                                    LabelledMeasuredArrayHandle other);
+// @category:read
+bool LabelledMeasuredArray_notequality(LabelledMeasuredArrayHandle handle,
+                                       LabelledMeasuredArrayHandle other);
+// @category:read
+bool LabelledMeasuredArray_greaterthan(LabelledMeasuredArrayHandle handle,
+                                       double                      value);
+// @category:read
+bool LabelledMeasuredArray_lessthan(LabelledMeasuredArrayHandle handle,
+                                    double                      value);
+// @category:write
+void LabelledMeasuredArray_remove_offset(LabelledMeasuredArrayHandle handle,
+                                         double                      offset);
+// @category:read
 double LabelledMeasuredArray_sum(LabelledMeasuredArrayHandle handle);
-/* AUTO-DOC from cpp: LabelledMeasuredArray_reshape | falcon_core::math::arrays::LabelledMeasuredArray::reshape */
-/**
- * @brief (from C++: falcon_core::math::arrays::LabelledMeasuredArray::reshape)
- * @brief Return a new Array with the given shape.
- * @param shape The new shape.
- * @return A reshaped LabelledMeasuredArray.
- */
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_reshape(
     LabelledMeasuredArrayHandle handle, const size_t* shape, size_t ndims);
+// @category:read
 ListListSizeTHandle LabelledMeasuredArray_where(
-    LabelledMeasuredArrayHandle handle, const double value);
-/* AUTO-DOC from cpp: LabelledMeasuredArray_flip | falcon_core::math::arrays::LabelledMeasuredArray::flip */
-/**
- * @brief (from C++: falcon_core::math::arrays::LabelledMeasuredArray::flip)
- * @brief Flip the data along the given axis.
- * @param axis The axis to flip.
- * @return A flipped LabelledMeasuredArray.
- */
+    LabelledMeasuredArrayHandle handle, double value);
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_flip(
     LabelledMeasuredArrayHandle handle, size_t axis);
+// @category:read
 size_t LabelledMeasuredArray_full_gradient(
     LabelledMeasuredArrayHandle  handle,
     LabelledMeasuredArrayHandle* out_buffer,
     size_t                       buffer_size);
-/* AUTO-DOC from cpp: LabelledMeasuredArray_gradient | falcon_core::math::arrays::LabelledMeasuredArray::gradient */
-/**
- * @brief (from C++: falcon_core::math::arrays::LabelledMeasuredArray::gradient)
- * @brief Return the gradient of the data along a given axis.
- * Computes the gradient along the specified axis using finite differences:
- * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
- * - For boundary points, uses forward (first element) or backward (last
- * element) difference.
- * @param axis The axis to compute the gradient.
- * @return The gradient FArray.
- */
+// @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_gradient(
     LabelledMeasuredArrayHandle handle, size_t axis);
+// @category:read
 double LabelledMeasuredArray_get_sum_of_squares(
     LabelledMeasuredArrayHandle handle);
+// @category:read
 double LabelledMeasuredArray_get_summed_diff_int_of_squares(
-    LabelledMeasuredArrayHandle handle, const int other);
+    LabelledMeasuredArrayHandle handle, int other);
+// @category:read
 double LabelledMeasuredArray_get_summed_diff_double_of_squares(
-    LabelledMeasuredArrayHandle handle, const double other);
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:read
 double LabelledMeasuredArray_get_summed_diff_array_of_squares(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
-// Serialization (from Song)
+// @category:read
 StringHandle LabelledMeasuredArray_to_json_string(
     LabelledMeasuredArrayHandle handle);
+// @category:allocation
 LabelledMeasuredArrayHandle LabelledMeasuredArray_from_json_string(
     StringHandle json);
 

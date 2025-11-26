@@ -9,168 +9,201 @@ extern "C" {
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 
-// Forward declarations for opaque handles
 typedef void* MeasuredArray1DHandle;
 
-// Constructors
+// @category:allocation
 MeasuredArray1DHandle MeasuredArray1D_from_data(const double* data,
                                                 const size_t* shape,
                                                 size_t        ndim);
+// @category:allocation
 MeasuredArray1DHandle MeasuredArray1D_from_farray(FArrayDoubleHandle farray);
-
-// Destructor
+// @category:deallocation
 void MeasuredArray1D_destroy(MeasuredArray1DHandle handle);
-
-// Methods
-bool               MeasuredArray1D_is_1D(MeasuredArray1DHandle handle);
+// @category:read
+bool MeasuredArray1D_is_1D(MeasuredArray1DHandle handle);
+// @category:read
 FArrayDoubleHandle MeasuredArray1D_as_1D(MeasuredArray1DHandle handle);
-double             MeasuredArray1D_get_start(MeasuredArray1DHandle handle);
-double             MeasuredArray1D_get_end(MeasuredArray1DHandle handle);
-bool               MeasuredArray1D_is_decreasing(MeasuredArray1DHandle handle);
-bool               MeasuredArray1D_is_increasing(MeasuredArray1DHandle handle);
-double             MeasuredArray1D_get_distance(MeasuredArray1DHandle handle);
-double             MeasuredArray1D_get_mean(MeasuredArray1DHandle handle);
-double             MeasuredArray1D_get_std(MeasuredArray1DHandle handle);
-void               MeasuredArray1D_reverse(MeasuredArray1DHandle handle);
+// @category:read
+double MeasuredArray1D_get_start(MeasuredArray1DHandle handle);
+// @category:read
+double MeasuredArray1D_get_end(MeasuredArray1DHandle handle);
+// @category:read
+bool MeasuredArray1D_is_decreasing(MeasuredArray1DHandle handle);
+// @category:read
+bool MeasuredArray1D_is_increasing(MeasuredArray1DHandle handle);
+// @category:read
+double MeasuredArray1D_get_distance(MeasuredArray1DHandle handle);
+// @category:read
+double MeasuredArray1D_get_mean(MeasuredArray1DHandle handle);
+// @category:read
+double MeasuredArray1D_get_std(MeasuredArray1DHandle handle);
+// @category:write
+void MeasuredArray1D_reverse(MeasuredArray1DHandle handle);
+// @category:read
 size_t MeasuredArray1D_get_closest_index(MeasuredArray1DHandle handle,
                                          double                value);
+// @category:read
 ListFArrayDoubleHandle MeasuredArray1D_even_divisions(
     MeasuredArray1DHandle handle, size_t divisions);
+// @category:read
 size_t MeasuredArray1D_size(MeasuredArray1DHandle handle);
+// @category:read
 size_t MeasuredArray1D_dimension(MeasuredArray1DHandle handle);
+// @category:read
 size_t MeasuredArray1D_shape(MeasuredArray1DHandle handle,
                              size_t*               out_buffer,
                              size_t                ndim);
+// @category:read
 size_t MeasuredArray1D_data(MeasuredArray1DHandle handle,
                             double*               out_buffer,
                             size_t                numdata);
-void   MeasuredArray1D_plusequals_farray(MeasuredArray1DHandle handle,
-                                         FArrayDoubleHandle    other);
-void   MeasuredArray1D_plusequals_double(MeasuredArray1DHandle handle,
-                                         const double          other);
-void   MeasuredArray1D_plusequals_int(MeasuredArray1DHandle handle,
-                                      const int             other);
+// @category:write
+void MeasuredArray1D_plusequals_farray(MeasuredArray1DHandle handle,
+                                       FArrayDoubleHandle    other);
+// @category:write
+void MeasuredArray1D_plusequals_double(MeasuredArray1DHandle handle,
+                                       double                other);
+// @category:write
+void MeasuredArray1D_plusequals_int(MeasuredArray1DHandle handle, int other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_plus_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_plus_farray(MeasuredArray1DHandle handle,
                                                   FArrayDoubleHandle    other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_plus_double(MeasuredArray1DHandle handle,
-                                                  const double          other);
+                                                  double                other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_plus_int(MeasuredArray1DHandle handle,
-                                               const int             other);
+                                               int                   other);
+// @category:write
 void MeasuredArray1D_minusequals_farray(MeasuredArray1DHandle handle,
                                         FArrayDoubleHandle    other);
+// @category:write
 void MeasuredArray1D_minusequals_double(MeasuredArray1DHandle handle,
-                                        const double          other);
-void MeasuredArray1D_minusequals_int(MeasuredArray1DHandle handle,
-                                     const int             other);
+                                        double                other);
+// @category:write
+void MeasuredArray1D_minusequals_int(MeasuredArray1DHandle handle, int other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_minus_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_minus_farray(MeasuredArray1DHandle handle,
                                                    FArrayDoubleHandle    other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_minus_double(MeasuredArray1DHandle handle,
-                                                   const double          other);
+                                                   double                other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_minus_int(MeasuredArray1DHandle handle,
-                                                const int             other);
+                                                int                   other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_negation(MeasuredArray1DHandle handle);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_timesequals_farray(
     MeasuredArray1DHandle handle, FArrayDoubleHandle other);
+// @category:write
 void MeasuredArray1D_timesequals_double(MeasuredArray1DHandle handle,
-                                        const double          other);
-void MeasuredArray1D_timesequals_int(MeasuredArray1DHandle handle,
-                                     const int             other);
+                                        double                other);
+// @category:write
+void MeasuredArray1D_timesequals_int(MeasuredArray1DHandle handle, int other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_times_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_times_farray(MeasuredArray1DHandle handle,
                                                    FArrayDoubleHandle    other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_times_double(MeasuredArray1DHandle handle,
-                                                   const double          other);
+                                                   double                other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_times_int(MeasuredArray1DHandle handle,
-                                                const int             other);
+                                                int                   other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_dividesequals_measured_array(
     MeasuredArray1DHandle handle, FArrayDoubleHandle other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_dividesequals_farray(
     MeasuredArray1DHandle handle, FArrayDoubleHandle other);
+// @category:write
 void MeasuredArray1D_dividesequals_double(MeasuredArray1DHandle handle,
-                                          const double          other);
-void MeasuredArray1D_dividesequals_int(MeasuredArray1DHandle handle,
-                                       const int             other);
+                                          double                other);
+// @category:write
+void MeasuredArray1D_dividesequals_int(MeasuredArray1DHandle handle, int other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_divides_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_divides_farray(
     MeasuredArray1DHandle handle, FArrayDoubleHandle other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_divides_double(
-    MeasuredArray1DHandle handle, const double other);
+    MeasuredArray1DHandle handle, double other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_divides_int(MeasuredArray1DHandle handle,
-                                                  const int             other);
+                                                  int                   other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_pow(MeasuredArray1DHandle handle,
-                                          const double          other);
+                                          double                other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_abs(MeasuredArray1DHandle handle);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_min_farray(MeasuredArray1DHandle handle,
                                                  FArrayDoubleHandle    other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_min_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_max_farray(MeasuredArray1DHandle handle,
                                                  FArrayDoubleHandle    other);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_max_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other);
+// @category:read
 bool MeasuredArray1D_equality(MeasuredArray1DHandle handle,
                               MeasuredArray1DHandle other);
+// @category:read
 bool MeasuredArray1D_notequality(MeasuredArray1DHandle handle,
                                  MeasuredArray1DHandle other);
-bool MeasuredArray1D_greaterthan(MeasuredArray1DHandle handle,
-                                 const double          value);
-bool MeasuredArray1D_lessthan(MeasuredArray1DHandle handle, const double value);
-void MeasuredArray1D_remove_offset(MeasuredArray1DHandle handle,
-                                   const double          offset);
-double                MeasuredArray1D_sum(MeasuredArray1DHandle handle);
-/* AUTO-DOC from cpp: MeasuredArray1D_reshape | falcon_core::math::arrays::MeasuredArray1D::reshape */
-/**
- * @brief (from C++: falcon_core::math::arrays::MeasuredArray1D::reshape)
- * @brief Return a new Array with the given shape.
- * @param shape The new shape.
- * @return A reshaped MeasuredArray1D.
- */
+// @category:read
+bool MeasuredArray1D_greaterthan(MeasuredArray1DHandle handle, double value);
+// @category:read
+bool MeasuredArray1D_lessthan(MeasuredArray1DHandle handle, double value);
+// @category:write
+void MeasuredArray1D_remove_offset(MeasuredArray1DHandle handle, double offset);
+// @category:read
+double MeasuredArray1D_sum(MeasuredArray1DHandle handle);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_reshape(MeasuredArray1DHandle handle,
                                               const size_t*         shape,
                                               size_t                ndims);
-ListListSizeTHandle   MeasuredArray1D_where(MeasuredArray1DHandle handle,
-                                            const double          value);
-/* AUTO-DOC from cpp: MeasuredArray1D_flip | falcon_core::math::arrays::MeasuredArray1D::flip */
-/**
- * @brief (from C++: falcon_core::math::arrays::MeasuredArray1D::flip)
- * @brief Flip the data along the given axis.
- * @param axis The axis to flip.
- * @return A flipped MeasuredArray1D.
- */
+// @category:read
+ListListSizeTHandle MeasuredArray1D_where(MeasuredArray1DHandle handle,
+                                          double                value);
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_flip(MeasuredArray1DHandle handle,
                                            size_t                axis);
+// @category:read
 size_t MeasuredArray1D_full_gradient(MeasuredArray1DHandle  handle,
                                      MeasuredArray1DHandle* out_buffer,
                                      size_t                 buffer_size);
-/* AUTO-DOC from cpp: MeasuredArray1D_gradient | falcon_core::math::arrays::MeasuredArray1D::gradient */
-/**
- * @brief (from C++: falcon_core::math::arrays::MeasuredArray1D::gradient)
- * @brief Return the gradient of the data along a given axis.
- * Computes the gradient along the specified axis using finite differences:
- * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
- * - For boundary points, uses forward (first element) or backward (last
- * element) difference.
- * @param axis The axis to compute the gradient.
- * @return The gradient FArray.
- */
+// @category:read
 MeasuredArray1DHandle MeasuredArray1D_gradient(MeasuredArray1DHandle handle,
                                                size_t                axis);
+// @category:read
 double MeasuredArray1D_get_sum_of_squares(MeasuredArray1DHandle handle);
+// @category:read
 double MeasuredArray1D_get_summed_diff_int_of_squares(
-    MeasuredArray1DHandle handle, const int other);
+    MeasuredArray1DHandle handle, int other);
+// @category:read
 double MeasuredArray1D_get_summed_diff_double_of_squares(
-    MeasuredArray1DHandle handle, const double other);
+    MeasuredArray1DHandle handle, double other);
+// @category:read
 double MeasuredArray1D_get_summed_diff_array_of_squares(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other);
-
-// Serialization (from Song)
+// @category:read
 StringHandle MeasuredArray1D_to_json_string(MeasuredArray1DHandle handle);
+// @category:allocation
 MeasuredArray1DHandle MeasuredArray1D_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

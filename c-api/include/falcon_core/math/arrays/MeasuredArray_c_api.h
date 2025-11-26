@@ -8,146 +8,173 @@ extern "C" {
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 
-// Forward declarations for opaque handles
 typedef void* MeasuredArrayHandle;
-// Function declarations
 
+// @category:allocation
 MeasuredArrayHandle MeasuredArray_from_data(const double* data,
                                             const size_t* shape,
                                             size_t        ndim);
+// @category:allocation
 MeasuredArrayHandle MeasuredArray_from_farray(FArrayDoubleHandle farray);
-void                MeasuredArray_destroy(MeasuredArrayHandle handle);
-size_t              MeasuredArray_size(MeasuredArrayHandle handle);
-size_t              MeasuredArray_dimension(MeasuredArrayHandle handle);
-size_t              MeasuredArray_shape(MeasuredArrayHandle handle,
-                                        size_t*             out_buffer,
-                                        size_t              ndim);
-size_t              MeasuredArray_data(MeasuredArrayHandle handle,
-                                       double*             out_buffer,
-                                       size_t              numdata);
-void                MeasuredArray_plusequals_farray(MeasuredArrayHandle handle,
-                                                    FArrayDoubleHandle  other);
-void                MeasuredArray_plusequals_double(MeasuredArrayHandle handle,
-                                                    const double        other);
-void MeasuredArray_plusequals_int(MeasuredArrayHandle handle, const int other);
+// @category:deallocation
+void MeasuredArray_destroy(MeasuredArrayHandle handle);
+// @category:read
+size_t MeasuredArray_size(MeasuredArrayHandle handle);
+// @category:read
+size_t MeasuredArray_dimension(MeasuredArrayHandle handle);
+// @category:read
+size_t MeasuredArray_shape(MeasuredArrayHandle handle,
+                           size_t*             out_buffer,
+                           size_t              ndim);
+// @category:read
+size_t MeasuredArray_data(MeasuredArrayHandle handle,
+                          double*             out_buffer,
+                          size_t              numdata);
+// @category:write
+void MeasuredArray_plusequals_farray(MeasuredArrayHandle handle,
+                                     FArrayDoubleHandle  other);
+// @category:write
+void MeasuredArray_plusequals_double(MeasuredArrayHandle handle, double other);
+// @category:write
+void MeasuredArray_plusequals_int(MeasuredArrayHandle handle, int other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_plus_measured_array(
     MeasuredArrayHandle handle, MeasuredArrayHandle other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_plus_farray(MeasuredArrayHandle handle,
                                               FArrayDoubleHandle  other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_plus_double(MeasuredArrayHandle handle,
-                                              const double        other);
+                                              double              other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_plus_int(MeasuredArrayHandle handle,
-                                           const int           other);
-void                MeasuredArray_minusequals_farray(MeasuredArrayHandle handle,
-                                                     FArrayDoubleHandle  other);
-void                MeasuredArray_minusequals_double(MeasuredArrayHandle handle,
-                                                     const double        other);
-void MeasuredArray_minusequals_int(MeasuredArrayHandle handle, const int other);
+                                           int                 other);
+// @category:write
+void MeasuredArray_minusequals_farray(MeasuredArrayHandle handle,
+                                      FArrayDoubleHandle  other);
+// @category:write
+void MeasuredArray_minusequals_double(MeasuredArrayHandle handle, double other);
+// @category:write
+void MeasuredArray_minusequals_int(MeasuredArrayHandle handle, int other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_minus_measured_array(
     MeasuredArrayHandle handle, MeasuredArrayHandle other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_minus_farray(MeasuredArrayHandle handle,
                                                FArrayDoubleHandle  other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_minus_double(MeasuredArrayHandle handle,
-                                               const double        other);
+                                               double              other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_minus_int(MeasuredArrayHandle handle,
-                                            const int           other);
+                                            int                 other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_negation(MeasuredArrayHandle handle);
+// @category:read
 MeasuredArrayHandle MeasuredArray_timesequals_measured_array(
     MeasuredArrayHandle handle, MeasuredArrayHandle other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_timesequals_farray(MeasuredArrayHandle handle,
                                                      FArrayDoubleHandle  other);
-void                MeasuredArray_timesequals_double(MeasuredArrayHandle handle,
-                                                     const double        other);
-void MeasuredArray_timesequals_int(MeasuredArrayHandle handle, const int other);
+// @category:write
+void MeasuredArray_timesequals_double(MeasuredArrayHandle handle, double other);
+// @category:write
+void MeasuredArray_timesequals_int(MeasuredArrayHandle handle, int other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_times_measured_array(
     MeasuredArrayHandle handle, MeasuredArrayHandle other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_times_farray(MeasuredArrayHandle handle,
                                                FArrayDoubleHandle  other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_times_double(MeasuredArrayHandle handle,
-                                               const double        other);
+                                               double              other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_times_int(MeasuredArrayHandle handle,
-                                            const int           other);
+                                            int                 other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_dividesequals_measured_array(
     MeasuredArrayHandle handle, MeasuredArrayHandle other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_dividesequals_farray(
     MeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:write
 void MeasuredArray_dividesequals_double(MeasuredArrayHandle handle,
-                                        const double        other);
-void MeasuredArray_dividesequals_int(MeasuredArrayHandle handle,
-                                     const int           other);
+                                        double              other);
+// @category:write
+void MeasuredArray_dividesequals_int(MeasuredArrayHandle handle, int other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_divides_measured_array(
     MeasuredArrayHandle handle, MeasuredArrayHandle other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_divides_farray(MeasuredArrayHandle handle,
                                                  FArrayDoubleHandle  other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_divides_double(MeasuredArrayHandle handle,
-                                                 const double        other);
+                                                 double              other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_divides_int(MeasuredArrayHandle handle,
-                                              const int           other);
-MeasuredArrayHandle MeasuredArray_pow(MeasuredArrayHandle handle,
-                                      const double        other);
+                                              int                 other);
+// @category:read
+MeasuredArrayHandle MeasuredArray_pow(MeasuredArrayHandle handle, double other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_abs(MeasuredArrayHandle handle);
+// @category:read
 MeasuredArrayHandle MeasuredArray_min_farray(MeasuredArrayHandle handle,
                                              FArrayDoubleHandle  other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_min_measured_array(MeasuredArrayHandle handle,
                                                      MeasuredArrayHandle other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_max_farray(MeasuredArrayHandle handle,
                                              FArrayDoubleHandle  other);
+// @category:read
 MeasuredArrayHandle MeasuredArray_max_measured_array(MeasuredArrayHandle handle,
                                                      MeasuredArrayHandle other);
-bool                MeasuredArray_equality(MeasuredArrayHandle handle,
-                                           MeasuredArrayHandle other);
-bool                MeasuredArray_notequality(MeasuredArrayHandle handle,
-                                              MeasuredArrayHandle other);
-bool MeasuredArray_greaterthan(MeasuredArrayHandle handle, const double value);
-bool MeasuredArray_lessthan(MeasuredArrayHandle handle, const double value);
-void MeasuredArray_remove_offset(MeasuredArrayHandle handle,
-                                 const double        offset);
-double              MeasuredArray_sum(MeasuredArrayHandle handle);
-/* AUTO-DOC from cpp: MeasuredArray_reshape | falcon_core::math::arrays::MeasuredArray::reshape */
-/**
- * @brief (from C++: falcon_core::math::arrays::MeasuredArray::reshape)
- * @brief Return a new Array with the given shape.
- * @param shape The new shape.
- * @return A reshaped MeasuredArray.
- */
+// @category:read
+bool MeasuredArray_equality(MeasuredArrayHandle handle,
+                            MeasuredArrayHandle other);
+// @category:read
+bool MeasuredArray_notequality(MeasuredArrayHandle handle,
+                               MeasuredArrayHandle other);
+// @category:read
+bool MeasuredArray_greaterthan(MeasuredArrayHandle handle, double value);
+// @category:read
+bool MeasuredArray_lessthan(MeasuredArrayHandle handle, double value);
+// @category:write
+void MeasuredArray_remove_offset(MeasuredArrayHandle handle, double offset);
+// @category:read
+double MeasuredArray_sum(MeasuredArrayHandle handle);
+// @category:read
 MeasuredArrayHandle MeasuredArray_reshape(MeasuredArrayHandle handle,
                                           const size_t*       shape,
                                           size_t              ndims);
+// @category:read
 ListListSizeTHandle MeasuredArray_where(MeasuredArrayHandle handle,
-                                        const double        value);
-/* AUTO-DOC from cpp: MeasuredArray_flip | falcon_core::math::arrays::MeasuredArray::flip */
-/**
- * @brief (from C++: falcon_core::math::arrays::MeasuredArray::flip)
- * @brief Flip the data along the given axis.
- * @param axis The axis to flip.
- * @return A flipped MeasuredArray.
- */
+                                        double              value);
+// @category:read
 MeasuredArrayHandle MeasuredArray_flip(MeasuredArrayHandle handle, size_t axis);
-size_t              MeasuredArray_full_gradient(MeasuredArrayHandle  handle,
-                                                MeasuredArrayHandle* out_buffer,
-                                                size_t               buffer_size);
-/* AUTO-DOC from cpp: MeasuredArray_gradient | falcon_core::math::arrays::MeasuredArray::gradient */
-/**
- * @brief (from C++: falcon_core::math::arrays::MeasuredArray::gradient)
- * @brief Return the gradient of the data along a given axis.
- * Computes the gradient along the specified axis using finite differences:
- * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
- * - For boundary points, uses forward (first element) or backward (last
- * element) difference.
- * @param axis The axis to compute the gradient.
- * @return The gradient FArray.
- */
+// @category:read
+size_t MeasuredArray_full_gradient(MeasuredArrayHandle  handle,
+                                   MeasuredArrayHandle* out_buffer,
+                                   size_t               buffer_size);
+// @category:read
 MeasuredArrayHandle MeasuredArray_gradient(MeasuredArrayHandle handle,
                                            size_t              axis);
+// @category:read
 double MeasuredArray_get_sum_of_squares(MeasuredArrayHandle handle);
+// @category:read
 double MeasuredArray_get_summed_diff_int_of_squares(MeasuredArrayHandle handle,
-                                                    const int           other);
+                                                    int                 other);
+// @category:read
 double MeasuredArray_get_summed_diff_double_of_squares(
-    MeasuredArrayHandle handle, const double other);
+    MeasuredArrayHandle handle, double other);
+// @category:read
 double MeasuredArray_get_summed_diff_array_of_squares(
     MeasuredArrayHandle handle, MeasuredArrayHandle other);
-// Serialization (from Song)
-StringHandle        MeasuredArray_to_json_string(MeasuredArrayHandle handle);
+// @category:read
+StringHandle MeasuredArray_to_json_string(MeasuredArrayHandle handle);
+// @category:allocation
 MeasuredArrayHandle MeasuredArray_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

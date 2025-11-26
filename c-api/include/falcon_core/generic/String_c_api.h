@@ -9,11 +9,11 @@ struct string {
 };
 
 typedef struct string* StringHandle;
-// Constructors
+// @category:allocation
 StringHandle String_create(const char* raw, size_t length);
+// @category:allocation
 StringHandle String_wrap(const char* raw);
-
-// Destructor
+// @category:deallocation
 void String_destroy(StringHandle handle);
 #ifdef __cplusplus
 }
