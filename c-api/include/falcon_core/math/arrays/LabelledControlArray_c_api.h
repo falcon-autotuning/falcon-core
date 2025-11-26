@@ -44,13 +44,13 @@ size_t LabelledControlArray_data(LabelledControlArrayHandle handle,
                                  double*                    out_buffer,
                                  size_t                     numdata);
 // @category:write
-void LabelledControlArray_plusequals_farray(LabelledControlArrayHandle handle,
+void LabelledControlArray_plus_equals_farray(LabelledControlArrayHandle handle,
                                             FArrayDoubleHandle         other);
 // @category:write
-void LabelledControlArray_plusequals_double(LabelledControlArrayHandle handle,
+void LabelledControlArray_plus_equals_double(LabelledControlArrayHandle handle,
                                             double                     other);
 // @category:write
-void LabelledControlArray_plusequals_int(LabelledControlArrayHandle handle,
+void LabelledControlArray_plus_equals_int(LabelledControlArrayHandle handle,
                                          int                        other);
 // @category:read
 LabelledControlArrayHandle LabelledControlArray_plus_control_array(
@@ -65,16 +65,16 @@ LabelledControlArrayHandle LabelledControlArray_plus_double(
 LabelledControlArrayHandle LabelledControlArray_plus_int(
     LabelledControlArrayHandle handle, int other);
 // @category:write
-void LabelledControlArray_minusequals_control_array(
+void LabelledControlArray_minus_equals_control_array(
     LabelledControlArrayHandle handle, LabelledControlArrayHandle other);
 // @category:write
-void LabelledControlArray_minusequals_farray(LabelledControlArrayHandle handle,
+void LabelledControlArray_minus_equals_farray(LabelledControlArrayHandle handle,
                                              FArrayDoubleHandle         other);
 // @category:write
-void LabelledControlArray_minusequals_double(LabelledControlArrayHandle handle,
+void LabelledControlArray_minus_equals_double(LabelledControlArrayHandle handle,
                                              double                     other);
 // @category:write
-void LabelledControlArray_minusequals_int(LabelledControlArrayHandle handle,
+void LabelledControlArray_minus_equals_int(LabelledControlArrayHandle handle,
                                           int                        other);
 // @category:read
 LabelledControlArrayHandle LabelledControlArray_minus_control_array(
@@ -92,10 +92,10 @@ LabelledControlArrayHandle LabelledControlArray_minus_int(
 LabelledControlArrayHandle LabelledControlArray_negation(
     LabelledControlArrayHandle handle);
 // @category:write
-void LabelledControlArray_timesequals_double(LabelledControlArrayHandle handle,
+void LabelledControlArray_times_equals_double(LabelledControlArrayHandle handle,
                                              double                     other);
 // @category:write
-void LabelledControlArray_timesequals_int(LabelledControlArrayHandle handle,
+void LabelledControlArray_times_equals_int(LabelledControlArrayHandle handle,
                                           int                        other);
 // @category:read
 LabelledControlArrayHandle LabelledControlArray_times_double(
@@ -104,10 +104,10 @@ LabelledControlArrayHandle LabelledControlArray_times_double(
 LabelledControlArrayHandle LabelledControlArray_times_int(
     LabelledControlArrayHandle handle, int other);
 // @category:write
-void LabelledControlArray_dividesequals_double(
+void LabelledControlArray_divides_equals_double(
     LabelledControlArrayHandle handle, double other);
 // @category:write
-void LabelledControlArray_dividesequals_int(LabelledControlArrayHandle handle,
+void LabelledControlArray_divides_equals_int(LabelledControlArrayHandle handle,
                                             int                        other);
 // @category:read
 LabelledControlArrayHandle LabelledControlArray_divides_double(

@@ -58,13 +58,13 @@ size_t MeasuredArray1D_data(MeasuredArray1DHandle handle,
                             double*               out_buffer,
                             size_t                numdata);
 // @category:write
-void MeasuredArray1D_plusequals_farray(MeasuredArray1DHandle handle,
+void MeasuredArray1D_plus_equals_farray(MeasuredArray1DHandle handle,
                                        FArrayDoubleHandle    other);
 // @category:write
-void MeasuredArray1D_plusequals_double(MeasuredArray1DHandle handle,
+void MeasuredArray1D_plus_equals_double(MeasuredArray1DHandle handle,
                                        double                other);
 // @category:write
-void MeasuredArray1D_plusequals_int(MeasuredArray1DHandle handle, int other);
+void MeasuredArray1D_plus_equals_int(MeasuredArray1DHandle handle, int other);
 // @category:read
 MeasuredArray1DHandle MeasuredArray1D_plus_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other);
@@ -78,13 +78,13 @@ MeasuredArray1DHandle MeasuredArray1D_plus_double(MeasuredArray1DHandle handle,
 MeasuredArray1DHandle MeasuredArray1D_plus_int(MeasuredArray1DHandle handle,
                                                int                   other);
 // @category:write
-void MeasuredArray1D_minusequals_farray(MeasuredArray1DHandle handle,
+void MeasuredArray1D_minus_equals_farray(MeasuredArray1DHandle handle,
                                         FArrayDoubleHandle    other);
 // @category:write
-void MeasuredArray1D_minusequals_double(MeasuredArray1DHandle handle,
+void MeasuredArray1D_minus_equals_double(MeasuredArray1DHandle handle,
                                         double                other);
 // @category:write
-void MeasuredArray1D_minusequals_int(MeasuredArray1DHandle handle, int other);
+void MeasuredArray1D_minus_equals_int(MeasuredArray1DHandle handle, int other);
 // @category:read
 MeasuredArray1DHandle MeasuredArray1D_minus_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other);
@@ -100,13 +100,13 @@ MeasuredArray1DHandle MeasuredArray1D_minus_int(MeasuredArray1DHandle handle,
 // @category:read
 MeasuredArray1DHandle MeasuredArray1D_negation(MeasuredArray1DHandle handle);
 // @category:read
-MeasuredArray1DHandle MeasuredArray1D_timesequals_farray(
+MeasuredArray1DHandle MeasuredArray1D_times_equals_farray(
     MeasuredArray1DHandle handle, FArrayDoubleHandle other);
 // @category:write
-void MeasuredArray1D_timesequals_double(MeasuredArray1DHandle handle,
+void MeasuredArray1D_times_equals_double(MeasuredArray1DHandle handle,
                                         double                other);
 // @category:write
-void MeasuredArray1D_timesequals_int(MeasuredArray1DHandle handle, int other);
+void MeasuredArray1D_times_equals_int(MeasuredArray1DHandle handle, int other);
 // @category:read
 MeasuredArray1DHandle MeasuredArray1D_times_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other);
@@ -120,16 +120,16 @@ MeasuredArray1DHandle MeasuredArray1D_times_double(MeasuredArray1DHandle handle,
 MeasuredArray1DHandle MeasuredArray1D_times_int(MeasuredArray1DHandle handle,
                                                 int                   other);
 // @category:read
-MeasuredArray1DHandle MeasuredArray1D_dividesequals_measured_array(
+MeasuredArray1DHandle MeasuredArray1D_divides_equals_measured_array(
     MeasuredArray1DHandle handle, FArrayDoubleHandle other);
 // @category:read
-MeasuredArray1DHandle MeasuredArray1D_dividesequals_farray(
+MeasuredArray1DHandle MeasuredArray1D_divides_equals_farray(
     MeasuredArray1DHandle handle, FArrayDoubleHandle other);
 // @category:write
-void MeasuredArray1D_dividesequals_double(MeasuredArray1DHandle handle,
+void MeasuredArray1D_divides_equals_double(MeasuredArray1DHandle handle,
                                           double                other);
 // @category:write
-void MeasuredArray1D_dividesequals_int(MeasuredArray1DHandle handle, int other);
+void MeasuredArray1D_divides_equals_int(MeasuredArray1DHandle handle, int other);
 // @category:read
 MeasuredArray1DHandle MeasuredArray1D_divides_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other);

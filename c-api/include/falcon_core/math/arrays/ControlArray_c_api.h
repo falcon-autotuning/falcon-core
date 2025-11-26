@@ -31,12 +31,12 @@ size_t ControlArray_data(ControlArrayHandle handle,
                          double*            out_buffer,
                          size_t             numdata);
 // @category:write
-void ControlArray_plusequals_farray(ControlArrayHandle handle,
+void ControlArray_plus_equals_farray(ControlArrayHandle handle,
                                     FArrayDoubleHandle other);
 // @category:write
-void ControlArray_plusequals_double(ControlArrayHandle handle, double other);
+void ControlArray_plus_equals_double(ControlArrayHandle handle, double other);
 // @category:write
-void ControlArray_plusequals_int(ControlArrayHandle handle, int other);
+void ControlArray_plus_equals_int(ControlArrayHandle handle, int other);
 // @category:read
 ControlArrayHandle ControlArray_plus_control_array(ControlArrayHandle handle,
                                                    ControlArrayHandle other);
@@ -49,12 +49,12 @@ ControlArrayHandle ControlArray_plus_double(ControlArrayHandle handle,
 // @category:read
 ControlArrayHandle ControlArray_plus_int(ControlArrayHandle handle, int other);
 // @category:write
-void ControlArray_minusequals_farray(ControlArrayHandle handle,
+void ControlArray_minus_equals_farray(ControlArrayHandle handle,
                                      FArrayDoubleHandle other);
 // @category:write
-void ControlArray_minusequals_double(ControlArrayHandle handle, double other);
+void ControlArray_minus_equals_double(ControlArrayHandle handle, double other);
 // @category:write
-void ControlArray_minusequals_int(ControlArrayHandle handle, int other);
+void ControlArray_minus_equals_int(ControlArrayHandle handle, int other);
 // @category:read
 ControlArrayHandle ControlArray_minus_control_array(ControlArrayHandle handle,
                                                     ControlArrayHandle other);
@@ -69,18 +69,18 @@ ControlArrayHandle ControlArray_minus_int(ControlArrayHandle handle, int other);
 // @category:read
 ControlArrayHandle ControlArray_negation(ControlArrayHandle handle);
 // @category:write
-void ControlArray_timesequals_double(ControlArrayHandle handle, double other);
+void ControlArray_times_equals_double(ControlArrayHandle handle, double other);
 // @category:write
-void ControlArray_timesequals_int(ControlArrayHandle handle, int other);
+void ControlArray_times_equals_int(ControlArrayHandle handle, int other);
 // @category:read
 ControlArrayHandle ControlArray_times_double(ControlArrayHandle handle,
                                              double             other);
 // @category:read
 ControlArrayHandle ControlArray_times_int(ControlArrayHandle handle, int other);
 // @category:write
-void ControlArray_dividesequals_double(ControlArrayHandle handle, double other);
+void ControlArray_divides_equals_double(ControlArrayHandle handle, double other);
 // @category:write
-void ControlArray_dividesequals_int(ControlArrayHandle handle, int other);
+void ControlArray_divides_equals_int(ControlArrayHandle handle, int other);
 // @category:read
 ControlArrayHandle ControlArray_divides_double(ControlArrayHandle handle,
                                                double             other);

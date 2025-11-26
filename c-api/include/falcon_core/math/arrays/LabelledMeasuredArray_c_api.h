@@ -45,13 +45,13 @@ size_t LabelledMeasuredArray_data(LabelledMeasuredArrayHandle handle,
                                   double*                     out_buffer,
                                   size_t                      numdata);
 // @category:write
-void LabelledMeasuredArray_plusequals_farray(LabelledMeasuredArrayHandle handle,
+void LabelledMeasuredArray_plus_equals_farray(LabelledMeasuredArrayHandle handle,
                                              FArrayDoubleHandle          other);
 // @category:write
-void LabelledMeasuredArray_plusequals_double(LabelledMeasuredArrayHandle handle,
+void LabelledMeasuredArray_plus_equals_double(LabelledMeasuredArrayHandle handle,
                                              double                      other);
 // @category:write
-void LabelledMeasuredArray_plusequals_int(LabelledMeasuredArrayHandle handle,
+void LabelledMeasuredArray_plus_equals_int(LabelledMeasuredArrayHandle handle,
                                           int                         other);
 // @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_measured_array(
@@ -66,16 +66,16 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_double(
 LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_int(
     LabelledMeasuredArrayHandle handle, int other);
 // @category:write
-void LabelledMeasuredArray_minusequals_measured_array(
+void LabelledMeasuredArray_minus_equals_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
 // @category:write
-void LabelledMeasuredArray_minusequals_farray(
+void LabelledMeasuredArray_minus_equals_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
 // @category:write
-void LabelledMeasuredArray_minusequals_double(
+void LabelledMeasuredArray_minus_equals_double(
     LabelledMeasuredArrayHandle handle, double other);
 // @category:write
-void LabelledMeasuredArray_minusequals_int(LabelledMeasuredArrayHandle handle,
+void LabelledMeasuredArray_minus_equals_int(LabelledMeasuredArrayHandle handle,
                                            int                         other);
 // @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_measured_array(
@@ -93,16 +93,16 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_int(
 LabelledMeasuredArrayHandle LabelledMeasuredArray_negation(
     LabelledMeasuredArrayHandle handle);
 // @category:read
-LabelledMeasuredArrayHandle LabelledMeasuredArray_timesequals_measured_array(
+LabelledMeasuredArrayHandle LabelledMeasuredArray_times_equals_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
 // @category:read
-LabelledMeasuredArrayHandle LabelledMeasuredArray_timesequals_farray(
+LabelledMeasuredArrayHandle LabelledMeasuredArray_times_equals_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
 // @category:write
-void LabelledMeasuredArray_timesequals_double(
+void LabelledMeasuredArray_times_equals_double(
     LabelledMeasuredArrayHandle handle, double other);
 // @category:write
-void LabelledMeasuredArray_timesequals_int(LabelledMeasuredArrayHandle handle,
+void LabelledMeasuredArray_times_equals_int(LabelledMeasuredArrayHandle handle,
                                            int                         other);
 // @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_times_measured_array(
@@ -117,16 +117,16 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_times_double(
 LabelledMeasuredArrayHandle LabelledMeasuredArray_times_int(
     LabelledMeasuredArrayHandle handle, int other);
 // @category:read
-LabelledMeasuredArrayHandle LabelledMeasuredArray_dividesequals_measured_array(
+LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_equals_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
 // @category:read
-LabelledMeasuredArrayHandle LabelledMeasuredArray_dividesequals_farray(
+LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_equals_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
 // @category:write
-void LabelledMeasuredArray_dividesequals_double(
+void LabelledMeasuredArray_divides_equals_double(
     LabelledMeasuredArrayHandle handle, double other);
 // @category:write
-void LabelledMeasuredArray_dividesequals_int(LabelledMeasuredArrayHandle handle,
+void LabelledMeasuredArray_divides_equals_int(LabelledMeasuredArrayHandle handle,
                                              int                         other);
 // @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_measured_array(

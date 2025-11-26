@@ -76,13 +76,13 @@ size_t LabelledMeasuredArray1D_data(LabelledMeasuredArray1DHandle handle,
                                     double*                       out_buffer,
                                     size_t                        numdata);
 // @category:write
-void LabelledMeasuredArray1D_plusequals_farray(
+void LabelledMeasuredArray1D_plus_equals_farray(
     LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other);
 // @category:write
-void LabelledMeasuredArray1D_plusequals_double(
+void LabelledMeasuredArray1D_plus_equals_double(
     LabelledMeasuredArray1DHandle handle, double other);
 // @category:write
-void LabelledMeasuredArray1D_plusequals_int(
+void LabelledMeasuredArray1D_plus_equals_int(
     LabelledMeasuredArray1DHandle handle, int other);
 // @category:read
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_plus_measured_array(
@@ -97,16 +97,16 @@ LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_plus_double(
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_plus_int(
     LabelledMeasuredArray1DHandle handle, int other);
 // @category:write
-void LabelledMeasuredArray1D_minusequals_measured_array(
+void LabelledMeasuredArray1D_minus_equals_measured_array(
     LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other);
 // @category:write
-void LabelledMeasuredArray1D_minusequals_farray(
+void LabelledMeasuredArray1D_minus_equals_farray(
     LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other);
 // @category:write
-void LabelledMeasuredArray1D_minusequals_double(
+void LabelledMeasuredArray1D_minus_equals_double(
     LabelledMeasuredArray1DHandle handle, double other);
 // @category:write
-void LabelledMeasuredArray1D_minusequals_int(
+void LabelledMeasuredArray1D_minus_equals_int(
     LabelledMeasuredArray1DHandle handle, int other);
 // @category:read
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_minus_measured_array(
@@ -125,16 +125,16 @@ LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_negation(
     LabelledMeasuredArray1DHandle handle);
 // @category:read
 LabelledMeasuredArray1DHandle
-LabelledMeasuredArray1D_timesequals_measured_array(
+LabelledMeasuredArray1D_times_equals_measured_array(
     LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other);
 // @category:read
-LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_timesequals_farray(
+LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_times_equals_farray(
     LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other);
 // @category:write
-void LabelledMeasuredArray1D_timesequals_double(
+void LabelledMeasuredArray1D_times_equals_double(
     LabelledMeasuredArray1DHandle handle, double other);
 // @category:write
-void LabelledMeasuredArray1D_timesequals_int(
+void LabelledMeasuredArray1D_times_equals_int(
     LabelledMeasuredArray1DHandle handle, int other);
 // @category:read
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_times_measured_array(
@@ -150,16 +150,16 @@ LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_times_int(
     LabelledMeasuredArray1DHandle handle, int other);
 // @category:read
 LabelledMeasuredArray1DHandle
-LabelledMeasuredArray1D_dividesequals_measured_array(
+LabelledMeasuredArray1D_divides_equals_measured_array(
     LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other);
 // @category:read
-LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_dividesequals_farray(
+LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_divides_equals_farray(
     LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other);
 // @category:write
-void LabelledMeasuredArray1D_dividesequals_double(
+void LabelledMeasuredArray1D_divides_equals_double(
     LabelledMeasuredArray1DHandle handle, double other);
 // @category:write
-void LabelledMeasuredArray1D_dividesequals_int(
+void LabelledMeasuredArray1D_divides_equals_int(
     LabelledMeasuredArray1DHandle handle, int other);
 // @category:read
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_divides_measured_array(

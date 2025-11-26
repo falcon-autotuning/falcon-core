@@ -33,7 +33,7 @@ size_t Adjacency_shape(AdjacencyHandle handle, size_t* out_buffer, size_t ndim);
 // @category:read
 size_t Adjacency_data(AdjacencyHandle handle, int* out_buffer, size_t numdata);
 // @category:write
-void Adjacency_timesequals_farray(AdjacencyHandle handle,
+void Adjacency_times_equals_farray(AdjacencyHandle handle,
                                   FArrayIntHandle other);
 // @category:read
 AdjacencyHandle Adjacency_times_farray(AdjacencyHandle handle,
