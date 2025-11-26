@@ -32,7 +32,7 @@ InstrumentPortHandle Ports__get_psuedoname_matching_port(PortsHandle handle,
                                                          ConnectionHandle name);
 // @category:read
 InstrumentPortHandle Ports__get_instrument_type_matching_port(
-    PortsHandle handle, StringHandle type);
+    PortsHandle handle, StringHandle insttype);
 // @category:read
 bool Ports_is_knobs(PortsHandle handle);
 // @category:read
