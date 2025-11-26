@@ -47,7 +47,7 @@ TEST_F(VoltageConstraintsTest, MatrixGetter) {
 
 TEST_F(VoltageConstraintsTest, AdjacencyGetter) {
   AdjacencyHandle adj = VoltageConstraints_adjacency(handle);
-  EXPECT_TRUE(Adjacency_equality(adjacency, adj));
+  EXPECT_TRUE(Adjacency_Equal(adjacency, adj));
   Adjacency_destroy(adj);
 }
 
@@ -68,7 +68,7 @@ TEST_F(VoltageConstraintsTest, LimitsGetter) {
   PairFloatFloat_destroy(lim);
 }
 
-TEST_F(VoltageConstraintsTest, EqualityAndInequality) {
+TEST_F(VoltageConstraintsTest, EqualityAndInEqual) {
   VoltageConstraintsHandle handle2 =
       VoltageConstraints_create(adjacency, max_safe_diff, bounds);
   EXPECT_TRUE(VoltageConstraints_equal(handle, handle2));
@@ -84,7 +84,7 @@ TEST_F(VoltageConstraintsTest, SerializationRoundTrip) {
   String_destroy(json);
 }
 
-TEST_F(VoltageConstraintsTest, InequalityDifferentLimits) {
+TEST_F(VoltageConstraintsTest, InEqualDifferentLimits) {
   PairDoubleDoubleHandle   bounds2 = PairDoubleDouble_create(1.0, 5.0);
   VoltageConstraintsHandle handle2 =
       VoltageConstraints_create(adjacency, max_safe_diff, bounds2);
@@ -94,7 +94,7 @@ TEST_F(VoltageConstraintsTest, InequalityDifferentLimits) {
   PairDoubleDouble_destroy(bounds2);
 }
 
-TEST_F(VoltageConstraintsTest, InequalityDifferentAdjacency) {
+TEST_F(VoltageConstraintsTest, InEqualDifferentAdjacency) {
   ConnectionsHandle indexes2 = Connections_create_empty();
   Connections_push_back(indexes2, Connection_create_ohmic(String_wrap("O1")));
   Connections_push_back(indexes2,
@@ -153,7 +153,7 @@ TEST_F(VoltageConstraintsTest, EqualityThrowsOnNullHandle) {
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
-TEST_F(VoltageConstraintsTest, InequalityThrowsOnNullHandle) {
+TEST_F(VoltageConstraintsTest, InEqualThrowsOnNullHandle) {
   set_last_error(0, nullptr);
   VoltageConstraints_not_equal(handle, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);

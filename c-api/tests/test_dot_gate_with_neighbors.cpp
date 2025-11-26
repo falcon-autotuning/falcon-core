@@ -74,7 +74,7 @@ TEST_F(DotGateWithNeighborsTest, Equality) {
   DotGateWithNeighbors_destroy(handle2);
 }
 
-TEST_F(DotGateWithNeighborsTest, InequalityDifferentLeft) {
+TEST_F(DotGateWithNeighborsTest, InEqualDifferentLeft) {
   ConnectionHandle left2 = Connection_create_barrier_gate(String_wrap("left2"));
   DotGateWithNeighborsHandle handle2 =
       DotGateWithNeighbors_create_plunger_gate_with_neighbors(
@@ -85,7 +85,7 @@ TEST_F(DotGateWithNeighborsTest, InequalityDifferentLeft) {
   Connection_destroy(left2);
 }
 
-TEST_F(DotGateWithNeighborsTest, InequalityDifferentRight) {
+TEST_F(DotGateWithNeighborsTest, InEqualDifferentRight) {
   ConnectionHandle right2 =
       Connection_create_barrier_gate(String_wrap("right2"));
   DotGateWithNeighborsHandle handle2 =

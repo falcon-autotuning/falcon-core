@@ -58,11 +58,11 @@ TEST_F(AdjacencyTest, ShapeReturnsExpected) {
   EXPECT_EQ(out_shape[1], 3);
 }
 
-TEST_F(AdjacencyTest, EqualityAndInequality) {
+TEST_F(AdjacencyTest, EqualityAndInEqual) {
   AdjacencyHandle handle2 =
       Adjacency_create(matrix_data, matrix_shape, 2, indexes);
-  EXPECT_TRUE(Adjacency_equality(handle, handle2));
-  EXPECT_FALSE(Adjacency_notequality(handle, handle2));
+  EXPECT_TRUE(Adjacency_Equal(handle, handle2));
+  EXPECT_FALSE(Adjacency_NotEqual(handle, handle2));
   Adjacency_destroy(handle2);
 }
 
@@ -85,7 +85,7 @@ TEST_F(AdjacencyTest, FlipReturnsExpected) {
 TEST_F(AdjacencyTest, SerializationRoundTrip) {
   StringHandle    json   = Adjacency_to_json_string(handle);
   AdjacencyHandle loaded = Adjacency_from_json_string(json);
-  EXPECT_TRUE(Adjacency_equality(handle, loaded));
+  EXPECT_TRUE(Adjacency_Equal(handle, loaded));
   Adjacency_destroy(loaded);
   String_destroy(json);
 }
@@ -187,7 +187,7 @@ TEST_F(AdjacencyTest, TimesFarrayThrowsOnNullOther) {
 
 TEST_F(AdjacencyTest, EqualityThrowsOnNullHandle) {
   set_last_error(0, nullptr);
-  Adjacency_equality(nullptr, nullptr);
+  Adjacency_Equal(nullptr, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -197,25 +197,25 @@ TEST_F(AdjacencyTest, EqualityThrowsOnNullOther) {
   ConnectionsHandle idx      = Connections_create_empty();
   AdjacencyHandle   h        = Adjacency_create(data, shape, 1, idx);
   set_last_error(0, nullptr);
-  Adjacency_equality(h, nullptr);
+  Adjacency_Equal(h, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   Adjacency_destroy(h);
   Connection_destroy(idx);
 }
 
-TEST_F(AdjacencyTest, NotequalityThrowsOnNullHandle) {
+TEST_F(AdjacencyTest, NotEqualThrowsOnNullHandle) {
   set_last_error(0, nullptr);
-  Adjacency_notequality(nullptr, nullptr);
+  Adjacency_NotEqual(nullptr, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
-TEST_F(AdjacencyTest, NotequalityThrowsOnNullOther) {
+TEST_F(AdjacencyTest, NotEqualThrowsOnNullOther) {
   int               data[1]  = {0};
   size_t            shape[1] = {1};
   ConnectionsHandle idx      = Connections_create_empty();
   AdjacencyHandle   h        = Adjacency_create(data, shape, 1, idx);
   set_last_error(0, nullptr);
-  Adjacency_notequality(h, nullptr);
+  Adjacency_NotEqual(h, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   Adjacency_destroy(h);
   Connection_destroy(idx);

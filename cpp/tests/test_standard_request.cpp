@@ -19,7 +19,7 @@ TEST_F(StandardRequestTest, EqualityOperator) {
   EXPECT_FALSE(req1 == req3);
 }
 
-TEST_F(StandardRequestTest, InequalityOperator) {
+TEST_F(StandardRequestTest, InEqualOperator) {
   StandardRequest req1("foo");
   StandardRequest req2("bar");
   EXPECT_TRUE(req1 != req2);

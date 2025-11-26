@@ -192,10 +192,10 @@ LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_max_farray(
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_max_measured_array(
     LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other);
 // @category:read
-bool LabelledMeasuredArray1D_equality(LabelledMeasuredArray1DHandle handle,
+bool LabelledMeasuredArray1D_Equal(LabelledMeasuredArray1DHandle handle,
                                       LabelledMeasuredArray1DHandle other);
 // @category:read
-bool LabelledMeasuredArray1D_notequality(LabelledMeasuredArray1DHandle handle,
+bool LabelledMeasuredArray1D_NotEqual(LabelledMeasuredArray1DHandle handle,
                                          LabelledMeasuredArray1DHandle other);
 // @category:read
 bool LabelledMeasuredArray1D_greaterthan(LabelledMeasuredArray1DHandle handle,

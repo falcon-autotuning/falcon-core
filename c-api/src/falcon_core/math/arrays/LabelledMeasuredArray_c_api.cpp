@@ -718,12 +718,12 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_max_measured_array(
   return new LabelledMeasuredArray(*labelled_measured_array->operator+(oarray));
   FALCON_C_API_END(nullptr)
 }
-bool LabelledMeasuredArray_equality(LabelledMeasuredArrayHandle handle,
+bool LabelledMeasuredArray_Equal(LabelledMeasuredArrayHandle handle,
                                     LabelledMeasuredArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_equality");
+        "Null handle passed to LabelledMeasuredArray_Equal");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -732,12 +732,12 @@ bool LabelledMeasuredArray_equality(LabelledMeasuredArrayHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool LabelledMeasuredArray_notequality(LabelledMeasuredArrayHandle handle,
+bool LabelledMeasuredArray_NotEqual(LabelledMeasuredArrayHandle handle,
                                        LabelledMeasuredArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_notequality");
+        "Null handle passed to LabelledMeasuredArray_NotEqual");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);

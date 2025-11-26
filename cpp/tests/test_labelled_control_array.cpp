@@ -256,7 +256,7 @@ TEST_F(LabelledControlArrayTest, SerializationRoundTrip) {
   EXPECT_EQ(*lca1, *other);
 }
 
-TEST_F(LabelledControlArrayTest, InequalityOperator) {
+TEST_F(LabelledControlArrayTest, InEqualOperator) {
   auto lcaA = std::make_shared<LabelledControlArray>(
       std::make_shared<ControlArray>(arr1), labelA);
   auto lcaB = std::make_shared<LabelledControlArray>(

@@ -25,7 +25,7 @@ TEST(GnameTest, SerializationRoundTrip) {
   EXPECT_EQ(orig.gname(), copy->gname());
 }
 
-TEST(GnameTest, InequalityOperator) {
+TEST(GnameTest, InEqualOperator) {
   Gname g1("group1");
   Gname g2("group2");
   EXPECT_TRUE(g1 != g2);

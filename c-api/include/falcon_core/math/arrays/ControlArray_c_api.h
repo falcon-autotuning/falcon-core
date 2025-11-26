@@ -104,9 +104,9 @@ ControlArrayHandle ControlArray_max_farray(ControlArrayHandle handle,
 ControlArrayHandle ControlArray_max_control_array(ControlArrayHandle handle,
                                                   ControlArrayHandle other);
 // @category:read
-bool ControlArray_equality(ControlArrayHandle handle, ControlArrayHandle other);
+bool ControlArray_Equal(ControlArrayHandle handle, ControlArrayHandle other);
 // @category:read
-bool ControlArray_notequality(ControlArrayHandle handle,
+bool ControlArray_NotEqual(ControlArrayHandle handle,
                               ControlArrayHandle other);
 // @category:read
 bool ControlArray_greaterthan(ControlArrayHandle handle, double value);

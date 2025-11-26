@@ -19,7 +19,7 @@ TEST_F(StandardResponseTest, EqualityOperator) {
   EXPECT_FALSE(resp1 == resp3);
 }
 
-TEST_F(StandardResponseTest, InequalityOperator) {
+TEST_F(StandardResponseTest, InEqualOperator) {
   StandardResponse resp1("foo");
   StandardResponse resp2("bar");
   EXPECT_TRUE(resp1 != resp2);

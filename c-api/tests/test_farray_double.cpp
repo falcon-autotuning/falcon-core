@@ -195,16 +195,16 @@ TEST_F(FArrayDoubleTest, NullptrCoverage) {
   FArrayDouble_max_arraywise(arr1, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  FArrayDouble_equality(nullptr, arr1);
+  FArrayDouble_Equal(nullptr, arr1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  FArrayDouble_equality(arr1, nullptr);
+  FArrayDouble_Equal(arr1, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  FArrayDouble_notequality(nullptr, arr1);
+  FArrayDouble_NotEqual(nullptr, arr1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  FArrayDouble_notequality(arr1, nullptr);
+  FArrayDouble_NotEqual(arr1, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   FArrayDouble_greaterthan(nullptr, 1.0);
@@ -273,8 +273,8 @@ TEST_F(FArrayDoubleTest, BasicProperties) {
 
 TEST_F(FArrayDoubleTest, ArithmeticAndComparison) {
   FArrayDoubleHandle arr4 = FArrayDouble_create_zeros(shape, 2);
-  EXPECT_TRUE(FArrayDouble_equality(arr1, arr1));
-  EXPECT_FALSE(FArrayDouble_notequality(arr1, arr4));
+  EXPECT_TRUE(FArrayDouble_Equal(arr1, arr1));
+  EXPECT_FALSE(FArrayDouble_NotEqual(arr1, arr4));
   EXPECT_TRUE(FArrayDouble_greaterthan(arr1, -1000.0));
   EXPECT_FALSE(FArrayDouble_lessthan(arr1, -1000.0));
   FArrayDouble_plus_equals_farray(arr1, arr4);

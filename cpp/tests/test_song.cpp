@@ -60,7 +60,7 @@ class ComplexSong : public falcon_core::generic::Song {
   MyEnum                                _other;
 };
 
-// Custom hash and equality for using shared_ptr<Strsong> in unordered_map
+// Custom hash and Equal for using shared_ptr<Strsong> in unordered_map
 struct StrsongPtrHash {
   std::size_t operator()(const std::shared_ptr<Strsong>& s) const {
     return std::hash<std::string>{}(s->_value);
@@ -141,12 +141,12 @@ TEST(SongTest, SimpleSerialization) {
                std::runtime_error);
 }
 
-TEST(SongTest, Inequality) {
+TEST(SongTest, InEqual) {
   auto song1 = Strsong("hello");
   auto song2 = Strsong("goodbye");
   ASSERT_TRUE(song1 != song2);
 }
-TEST(SongTest, NotInequality) {
+TEST(SongTest, NotInEqual) {
   auto song1 = Strsong("hello");
   auto song2 = Strsong("hello");
   ASSERT_FALSE(song1 != song2);

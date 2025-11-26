@@ -90,7 +90,7 @@ TEST_F(DotGatesWithNeighborsTest, IsPlungerGatesTrue) {
   EXPECT_FALSE(DotGatesWithNeighbors_is_barrier_gates(gates));
 }
 
-TEST_F(DotGatesWithNeighborsTest, EqualityAndInequality) {
+TEST_F(DotGatesWithNeighborsTest, EqualityAndInEqual) {
   DotGatesWithNeighborsHandle gates2 = DotGatesWithNeighbors_create(list);
   EXPECT_TRUE(DotGatesWithNeighbors_equal(gates, gates2));
   EXPECT_FALSE(DotGatesWithNeighbors_not_equal(gates, gates2));

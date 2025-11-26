@@ -139,10 +139,10 @@ ControlArray1DHandle ControlArray1D_max_farray(ControlArray1DHandle handle,
 ControlArray1DHandle ControlArray1D_max_control_array(
     ControlArray1DHandle handle, ControlArray1DHandle other);
 // @category:read
-bool ControlArray1D_equality(ControlArray1DHandle handle,
+bool ControlArray1D_Equal(ControlArray1DHandle handle,
                              ControlArray1DHandle other);
 // @category:read
-bool ControlArray1D_notequality(ControlArray1DHandle handle,
+bool ControlArray1D_NotEqual(ControlArray1DHandle handle,
                                 ControlArray1DHandle other);
 // @category:read
 bool ControlArray1D_greaterthan(ControlArray1DHandle handle, double value);

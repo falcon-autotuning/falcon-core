@@ -51,7 +51,7 @@ TEST_F(GnameTest, CreateDestroyNull) {
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
-TEST_F(GnameTest, EqualityAndInequality) {
+TEST_F(GnameTest, EqualityAndInEqual) {
   EXPECT_TRUE(Gname_equal(handle1, handle1));
   EXPECT_FALSE(Gname_not_equal(handle1, handle1));
   EXPECT_FALSE(Gname_equal(handle1, handle2));

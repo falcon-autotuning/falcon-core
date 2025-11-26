@@ -127,7 +127,7 @@ TEST(HDF5DataTest, FileRoundTripEmptyMetadata) {
   auto loaded = HDF5Data::from_file(tmp_path);
   ASSERT_NE(loaded, nullptr);
 
-  // Compare JSON representations for equality
+  // Compare JSON representations for Equal
   std::string loaded_json = loaded->to_json_string();
   EXPECT_EQ(loaded_json, orig_json);
 }

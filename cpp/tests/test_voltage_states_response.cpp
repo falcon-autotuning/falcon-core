@@ -42,7 +42,7 @@ TEST_F(VoltageStatesResponseTest, EqualityOperator) {
   EXPECT_FALSE(resp1 == resp3);
 }
 
-TEST_F(VoltageStatesResponseTest, InequalityOperator) {
+TEST_F(VoltageStatesResponseTest, InEqualOperator) {
   VoltageStatesResponse resp1("msg", dvsList);
   VoltageStatesResponse resp2("other", dvsList);
   EXPECT_TRUE(resp1 != resp2);

@@ -581,9 +581,9 @@ void {self.mangled_name()}_pow_inplace({self.chandle()} handle,  {c_type} other)
 // @category:read
 {self.chandle()} {self.mangled_name()}_max_arraywise({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_equality({self.chandle()} handle, {self.chandle()} other);
+bool {self.mangled_name()}_Equal({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_notequality({self.chandle()} handle, {self.chandle()} other);
+bool {self.mangled_name()}_NotEqual({self.chandle()} handle, {self.chandle()} other);
 // @category:read
 bool {self.mangled_name()}_greaterthan({self.chandle()} handle,  {c_type} value);
 // @category:read
@@ -2536,10 +2536,10 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_max_arr
     FALCON_C_API_END(nullptr)
 }}
 
-bool {self.mangled_name()}_equality({self.chandle()} handle, {self.chandle()} other) {{
+bool {self.mangled_name()}_Equal({self.chandle()} handle, {self.chandle()} other) {{
     FALCON_C_API_BEGIN
 if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equality");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_Equal");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
@@ -2547,10 +2547,10 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equalit
     FALCON_C_API_END(false)
 }}
 
-bool {self.mangled_name()}_notequality({self.chandle()} handle, {self.chandle()} other) {{
+bool {self.mangled_name()}_NotEqual({self.chandle()} handle, {self.chandle()} other) {{
     FALCON_C_API_BEGIN
 if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_notequality");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_NotEqual");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);

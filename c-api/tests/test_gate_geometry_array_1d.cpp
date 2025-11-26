@@ -122,7 +122,7 @@ TEST_F(GateGeometryArray1DTest, OhmicsGetter) {
   DotGatesWithNeighbors_destroy(result);
 }
 
-TEST_F(GateGeometryArray1DTest, EqualityAndInequality) {
+TEST_F(GateGeometryArray1DTest, EqualityAndInEqual) {
   GateGeometryArray1DHandle handle2 =
       GateGeometryArray1D_create(linear, screening);
   EXPECT_TRUE(GateGeometryArray1D_equal(handle, handle2));

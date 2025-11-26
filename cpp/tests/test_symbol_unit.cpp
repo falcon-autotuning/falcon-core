@@ -410,7 +410,7 @@ TEST_F(SymbolUnitTest, CustomCrash) {
   ASSERT_THROW(SymbolUnit thebads(custom), std::invalid_argument);
 }
 
-TEST_F(SymbolUnitTest, InequalityOperator) {
+TEST_F(SymbolUnitTest, InEqualOperator) {
   SymbolUnitSP m1 = SymbolUnit::Meter();
   SymbolUnitSP m2 = SymbolUnit::Meter();
   SymbolUnitSP s  = SymbolUnit::Second();

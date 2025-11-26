@@ -323,19 +323,19 @@ TEST_F(ControlArray1DTest, ArithmeticOperators) {
 }
 
 TEST_F(ControlArray1DTest, EqualityOperators) {
-  EXPECT_FALSE(ControlArray1D_equality(ca, ca2));
-  EXPECT_TRUE(ControlArray1D_notequality(ca, ca2));
+  EXPECT_FALSE(ControlArray1D_Equal(ca, ca2));
+  EXPECT_TRUE(ControlArray1D_NotEqual(ca, ca2));
   set_last_error(0, nullptr);
-  ControlArray1D_equality(nullptr, ca2);
+  ControlArray1D_Equal(nullptr, ca2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  ControlArray1D_equality(ca, nullptr);
+  ControlArray1D_Equal(ca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  ControlArray1D_notequality(nullptr, ca2);
+  ControlArray1D_NotEqual(nullptr, ca2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  ControlArray1D_notequality(ca, nullptr);
+  ControlArray1D_NotEqual(ca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -412,7 +412,7 @@ TEST_F(ControlArray1DTest, SumOfSquares) {
 TEST_F(ControlArray1DTest, ToJsonFromJson) {
   auto json = ControlArray1D_to_json_string(ca);
   auto ca3  = ControlArray1D_from_json_string(json);
-  EXPECT_TRUE(ControlArray1D_equality(ca, ca3));
+  EXPECT_TRUE(ControlArray1D_Equal(ca, ca3));
   ControlArray1D_destroy(ca3);
   String_destroy(json);
   set_last_error(0, nullptr);

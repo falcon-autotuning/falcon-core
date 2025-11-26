@@ -90,7 +90,7 @@ TEST_F(ImpedancesTest, Items_Buffer) {
   Impedances_destroy(imps);
 }
 
-TEST_F(ImpedancesTest, EqualityAndInequality) {
+TEST_F(ImpedancesTest, EqualityAndInEqual) {
   ListImpedanceHandle vec1 = ListImpedance_create_empty();
   ListImpedance_push_back(vec1, imp1);
   ListImpedance_push_back(vec1, imp2);

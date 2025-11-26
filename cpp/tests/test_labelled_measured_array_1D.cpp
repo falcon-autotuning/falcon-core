@@ -348,7 +348,7 @@ TEST_F(LabelledMeasuredArray1DTest, SerializationRoundTrip) {
 //   EXPECT_THROW(lmaA->max(lmaB), std::invalid_argument);
 // }
 
-TEST_F(LabelledMeasuredArray1DTest, InequalityOperator) {
+TEST_F(LabelledMeasuredArray1DTest, InEqualOperator) {
   auto lmaA = std::make_shared<LabelledMeasuredArray1D>(
       std::make_shared<MeasuredArray>(arr1), labelA);
   auto lmaB = std::make_shared<LabelledMeasuredArray1D>(

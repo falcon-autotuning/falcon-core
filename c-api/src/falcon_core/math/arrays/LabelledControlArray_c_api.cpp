@@ -597,12 +597,12 @@ LabelledControlArrayHandle LabelledControlArray_max_control_array(
   FALCON_C_API_END(nullptr)
 }
 
-bool LabelledControlArray_equality(LabelledControlArrayHandle handle,
+bool LabelledControlArray_Equal(LabelledControlArrayHandle handle,
                                    LabelledControlArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray_equality");
+        "Null handle passed to LabelledControlArray_Equal");
   }
   LabelledControlArray* labelled_control_array =
       static_cast<LabelledControlArray*>(handle);
@@ -611,14 +611,14 @@ bool LabelledControlArray_equality(LabelledControlArrayHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool LabelledControlArray_notequality(LabelledControlArrayHandle handle,
+bool LabelledControlArray_NotEqual(LabelledControlArrayHandle handle,
                                       LabelledControlArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray_notequality");
+        "Null handle passed to LabelledControlArray_NotEqual");
   }
-  return !LabelledControlArray_equality(handle, other);
+  return !LabelledControlArray_Equal(handle, other);
   FALCON_C_API_END(false)
 }
 

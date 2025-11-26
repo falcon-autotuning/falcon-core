@@ -372,7 +372,7 @@ TEST_F(ConfigTest, GetIsolatedChannelGates) {
   Channel_destroy(channel);
 }
 
-TEST_F(ConfigTest, EqualityAndInequality) {
+TEST_F(ConfigTest, EqualityAndInEqual) {
   ConfigHandle handle2 = Config_create(screening_gates,
                                        plunger_gates,
                                        ohmics,

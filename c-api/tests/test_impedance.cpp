@@ -35,7 +35,7 @@ TEST(ImpedanceTest, SerializationRoundTrip) {
   Connection_destroy(conn);
 }
 
-TEST(ImpedanceTest, EqualityAndInequality) {
+TEST(ImpedanceTest, EqualityAndInEqual) {
   ConnectionHandle conn1 = Connection_create_plunger_gate(String_wrap("foo"));
   ImpedanceHandle  imp1  = Impedance_create(conn1, 42.5, 3.14);
 

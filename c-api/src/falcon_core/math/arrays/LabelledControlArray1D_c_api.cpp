@@ -717,12 +717,12 @@ LabelledControlArray1DHandle LabelledControlArray1D_max_control_array(
   FALCON_C_API_END(nullptr)
 }
 
-bool LabelledControlArray1D_equality(LabelledControlArray1DHandle handle,
+bool LabelledControlArray1D_Equal(LabelledControlArray1DHandle handle,
                                      LabelledControlArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_equality");
+        "Null handle passed to LabelledControlArray1D_Equal");
   }
   auto labelled_control_array   = static_cast<LabelledControlArray1D*>(handle);
   LabelledControlArray1D oarray = *static_cast<LabelledControlArray1D*>(other);
@@ -730,12 +730,12 @@ bool LabelledControlArray1D_equality(LabelledControlArray1DHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool LabelledControlArray1D_notequality(LabelledControlArray1DHandle handle,
+bool LabelledControlArray1D_NotEqual(LabelledControlArray1DHandle handle,
                                         LabelledControlArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_notequality");
+        "Null handle passed to LabelledControlArray1D_NotEqual");
   }
   auto labelled_control_array   = static_cast<LabelledControlArray1D*>(handle);
   LabelledControlArray1D oarray = *static_cast<LabelledControlArray1D*>(other);

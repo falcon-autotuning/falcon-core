@@ -160,10 +160,10 @@ LabelledControlArray1DHandle LabelledControlArray1D_max_farray(
 LabelledControlArray1DHandle LabelledControlArray1D_max_control_array(
     LabelledControlArray1DHandle handle, LabelledControlArray1DHandle other);
 // @category:read
-bool LabelledControlArray1D_equality(LabelledControlArray1DHandle handle,
+bool LabelledControlArray1D_Equal(LabelledControlArray1DHandle handle,
                                      LabelledControlArray1DHandle other);
 // @category:read
-bool LabelledControlArray1D_notequality(LabelledControlArray1DHandle handle,
+bool LabelledControlArray1D_NotEqual(LabelledControlArray1DHandle handle,
                                         LabelledControlArray1DHandle other);
 // @category:read
 bool LabelledControlArray1D_greaterthan(LabelledControlArray1DHandle handle,

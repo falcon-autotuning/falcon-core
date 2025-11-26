@@ -134,7 +134,7 @@ TEST_F(SymbolUnitTest, DestructorThrowsOnNullptr) {
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
-TEST_F(SymbolUnitTest, EqualityAndInequality) {
+TEST_F(SymbolUnitTest, EqualityAndInEqual) {
   SymbolUnitHandle m1 = SymbolUnit_create_meter();
   SymbolUnitHandle m2 = SymbolUnit_create_meter();
   SymbolUnitHandle s  = SymbolUnit_create_second();

@@ -595,11 +595,11 @@ MeasuredArrayHandle MeasuredArray_max_measured_array(
   FALCON_C_API_END(nullptr)
 }
 
-bool MeasuredArray_equality(MeasuredArrayHandle handle,
+bool MeasuredArray_Equal(MeasuredArrayHandle handle,
                             MeasuredArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
-    throw std::invalid_argument("Null handle passed to MeasuredArray_equality");
+    throw std::invalid_argument("Null handle passed to MeasuredArray_Equal");
   }
   MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
   MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);
@@ -607,12 +607,12 @@ bool MeasuredArray_equality(MeasuredArrayHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool MeasuredArray_notequality(MeasuredArrayHandle handle,
+bool MeasuredArray_NotEqual(MeasuredArrayHandle handle,
                                MeasuredArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to MeasuredArray_notequality");
+        "Null handle passed to MeasuredArray_NotEqual");
   }
   MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
   MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);

@@ -173,13 +173,13 @@ AdjacencyHandle Adjacency_times_farray(AdjacencyHandle handle,
   FALCON_C_API_END(nullptr)
 }
 
-bool Adjacency_equality(AdjacencyHandle handle, AdjacencyHandle other) {
+bool Adjacency_Equal(AdjacencyHandle handle, AdjacencyHandle other) {
   FALCON_C_API_BEGIN
   if (!handle) {
-    throw std::invalid_argument("Adjacency_equality: handle cannot be null");
+    throw std::invalid_argument("Adjacency_Equal: handle cannot be null");
   }
   if (!other) {
-    throw std::invalid_argument("Adjacency_equality: other cannot be null");
+    throw std::invalid_argument("Adjacency_Equal: other cannot be null");
   }
   Adjacency self  = *static_cast<Adjacency*>(handle);
   Adjacency oself = *static_cast<Adjacency*>(other);
@@ -187,13 +187,13 @@ bool Adjacency_equality(AdjacencyHandle handle, AdjacencyHandle other) {
   FALCON_C_API_END(false)
 }
 
-bool Adjacency_notequality(AdjacencyHandle handle, AdjacencyHandle other) {
+bool Adjacency_NotEqual(AdjacencyHandle handle, AdjacencyHandle other) {
   FALCON_C_API_BEGIN
   if (!handle) {
-    throw std::invalid_argument("Adjacency_notequality: handle cannot be null");
+    throw std::invalid_argument("Adjacency_NotEqual: handle cannot be null");
   }
   if (!other) {
-    throw std::invalid_argument("Adjacency_notequality: other cannot be null");
+    throw std::invalid_argument("Adjacency_NotEqual: other cannot be null");
   }
   Adjacency self  = *static_cast<Adjacency*>(handle);
   Adjacency oself = *static_cast<Adjacency*>(other);

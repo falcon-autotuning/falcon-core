@@ -159,10 +159,10 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_max_farray(
 LabelledMeasuredArrayHandle LabelledMeasuredArray_max_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
 // @category:read
-bool LabelledMeasuredArray_equality(LabelledMeasuredArrayHandle handle,
+bool LabelledMeasuredArray_Equal(LabelledMeasuredArrayHandle handle,
                                     LabelledMeasuredArrayHandle other);
 // @category:read
-bool LabelledMeasuredArray_notequality(LabelledMeasuredArrayHandle handle,
+bool LabelledMeasuredArray_NotEqual(LabelledMeasuredArrayHandle handle,
                                        LabelledMeasuredArrayHandle other);
 // @category:read
 bool LabelledMeasuredArray_greaterthan(LabelledMeasuredArrayHandle handle,

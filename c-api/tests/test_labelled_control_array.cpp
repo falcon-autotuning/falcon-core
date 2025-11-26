@@ -305,19 +305,19 @@ TEST_F(LabelledControlArrayTest, NullArgumentsArithmeticOperators) {
 }
 
 TEST_F(LabelledControlArrayTest, EqualityOperators) {
-  EXPECT_TRUE(LabelledControlArray_equality(lca, lca2));
-  EXPECT_FALSE(LabelledControlArray_notequality(lca, lca2));
+  EXPECT_TRUE(LabelledControlArray_Equal(lca, lca2));
+  EXPECT_FALSE(LabelledControlArray_NotEqual(lca, lca2));
   set_last_error(0, nullptr);
-  LabelledControlArray_equality(nullptr, lca2);
+  LabelledControlArray_Equal(nullptr, lca2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_equality(lca, nullptr);
+  LabelledControlArray_Equal(lca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_notequality(nullptr, lca2);
+  LabelledControlArray_NotEqual(nullptr, lca2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_notequality(lca, nullptr);
+  LabelledControlArray_NotEqual(lca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -395,7 +395,7 @@ TEST_F(LabelledControlArrayTest, SumOfSquares) {
 TEST_F(LabelledControlArrayTest, ToJsonFromJson) {
   auto json = LabelledControlArray_to_json_string(lca);
   auto lca3 = LabelledControlArray_from_json_string(json);
-  EXPECT_TRUE(LabelledControlArray_equality(lca, lca3));
+  EXPECT_TRUE(LabelledControlArray_Equal(lca, lca3));
   LabelledControlArray_destroy(lca3);
   String_destroy(json);
   set_last_error(0, nullptr);

@@ -346,7 +346,7 @@ TEST_F(LabelledMeasuredArrayTest, MaxLabelMismatchThrows) {
   EXPECT_THROW(lmaA->max(lmaB), std::invalid_argument);
 }
 
-TEST_F(LabelledMeasuredArrayTest, InequalityOperator) {
+TEST_F(LabelledMeasuredArrayTest, InEqualOperator) {
   auto lmaA = std::make_shared<LabelledMeasuredArray>(
       std::make_shared<MeasuredArray>(arr1), labelA);
   auto lmaB = std::make_shared<LabelledMeasuredArray>(

@@ -38,7 +38,7 @@ TEST_F(DeviceVoltageStateTest, EqualityOperator) {
   EXPECT_FALSE(dvs1 == dvs3);
 }
 
-TEST_F(DeviceVoltageStateTest, InequalityOperator) {
+TEST_F(DeviceVoltageStateTest, InEqualOperator) {
   DeviceVoltageState dvs1(connA, 2.0, volt);
   DeviceVoltageState dvs2(connA, 3.0, volt);
   EXPECT_TRUE(dvs1 != dvs2);

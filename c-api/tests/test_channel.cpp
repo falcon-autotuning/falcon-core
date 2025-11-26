@@ -44,7 +44,7 @@ TEST_F(ChannelTest, NameGetter) {
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
-TEST_F(ChannelTest, EqualityAndInequality) {
+TEST_F(ChannelTest, EqualityAndInEqual) {
   ChannelHandle handle1_copy = Channel_create(name1);
   EXPECT_TRUE(Channel_equal(handle1, handle1_copy));
   EXPECT_FALSE(Channel_not_equal(handle1, handle1_copy));

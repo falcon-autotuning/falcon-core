@@ -97,9 +97,9 @@ int FArrayInt_max(FArrayIntHandle handle);
 // @category:read
 FArrayIntHandle FArrayInt_max_arraywise(FArrayIntHandle handle, FArrayIntHandle other);
 // @category:read
-bool FArrayInt_equality(FArrayIntHandle handle, FArrayIntHandle other);
+bool FArrayInt_Equal(FArrayIntHandle handle, FArrayIntHandle other);
 // @category:read
-bool FArrayInt_notequality(FArrayIntHandle handle, FArrayIntHandle other);
+bool FArrayInt_NotEqual(FArrayIntHandle handle, FArrayIntHandle other);
 // @category:read
 bool FArrayInt_greaterthan(FArrayIntHandle handle,  int value);
 // @category:read

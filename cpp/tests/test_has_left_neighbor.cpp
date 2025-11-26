@@ -100,7 +100,7 @@ TEST(HasLeftNeighborTest, InitializerListConstructorNullptrThrows) {
 //   EXPECT_TRUE(gates1 != gates2);
 // }
 //
-// TEST(HasLeftNeighborTest, InequalityFalseForEqual) {
+// TEST(HasLeftNeighborTest, InEqualFalseForEqual) {
 //   ConnectionSP b1 = Connection::BarrierGate("b1");
 //   ConnectionSP b2 = Connection::BarrierGate("b2");
 //   auto gate1      = DotGateWithNeighbors::PlungerGateWithNeighbors("g", b1,

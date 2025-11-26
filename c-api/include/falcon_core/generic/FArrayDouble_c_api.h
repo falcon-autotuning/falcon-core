@@ -96,9 +96,9 @@ double FArrayDouble_max(FArrayDoubleHandle handle);
 // @category:read
 FArrayDoubleHandle FArrayDouble_max_arraywise(FArrayDoubleHandle handle, FArrayDoubleHandle other);
 // @category:read
-bool FArrayDouble_equality(FArrayDoubleHandle handle, FArrayDoubleHandle other);
+bool FArrayDouble_Equal(FArrayDoubleHandle handle, FArrayDoubleHandle other);
 // @category:read
-bool FArrayDouble_notequality(FArrayDoubleHandle handle, FArrayDoubleHandle other);
+bool FArrayDouble_NotEqual(FArrayDoubleHandle handle, FArrayDoubleHandle other);
 // @category:read
 bool FArrayDouble_greaterthan(FArrayDoubleHandle handle,  double value);
 // @category:read

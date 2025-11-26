@@ -346,19 +346,19 @@ TEST_F(LabelledControlArray1DTest, AlgebraicOperatorNullptrChecks) {
 }
 
 TEST_F(LabelledControlArray1DTest, EqualityOperators) {
-  EXPECT_TRUE(LabelledControlArray1D_equality(lca, lca2));
-  EXPECT_FALSE(LabelledControlArray1D_notequality(lca, lca2));
+  EXPECT_TRUE(LabelledControlArray1D_Equal(lca, lca2));
+  EXPECT_FALSE(LabelledControlArray1D_NotEqual(lca, lca2));
   set_last_error(0, nullptr);
-  LabelledControlArray1D_equality(nullptr, lca2);
+  LabelledControlArray1D_Equal(nullptr, lca2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray1D_equality(lca, nullptr);
+  LabelledControlArray1D_Equal(lca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray1D_notequality(nullptr, lca2);
+  LabelledControlArray1D_NotEqual(nullptr, lca2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray1D_notequality(lca, nullptr);
+  LabelledControlArray1D_NotEqual(lca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -436,7 +436,7 @@ TEST_F(LabelledControlArray1DTest, SumOfSquares) {
 TEST_F(LabelledControlArray1DTest, ToJsonFromJson) {
   auto json = LabelledControlArray1D_to_json_string(lca);
   auto lca3 = LabelledControlArray1D_from_json_string(json);
-  EXPECT_TRUE(LabelledControlArray1D_equality(lca, lca3));
+  EXPECT_TRUE(LabelledControlArray1D_Equal(lca, lca3));
   LabelledControlArray1D_destroy(lca3);
   String_destroy(json);
   set_last_error(0, nullptr);

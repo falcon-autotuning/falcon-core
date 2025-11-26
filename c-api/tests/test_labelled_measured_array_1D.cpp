@@ -397,19 +397,19 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
 }
 
 TEST_F(LabelledMeasuredArray1DTest, EqualityOperators) {
-  EXPECT_TRUE(LabelledMeasuredArray1D_equality(lma, lma2));
-  EXPECT_FALSE(LabelledMeasuredArray1D_notequality(lma, lma2));
+  EXPECT_TRUE(LabelledMeasuredArray1D_Equal(lma, lma2));
+  EXPECT_FALSE(LabelledMeasuredArray1D_NotEqual(lma, lma2));
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_equality(nullptr, lma2);
+  LabelledMeasuredArray1D_Equal(nullptr, lma2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_equality(lma, nullptr);
+  LabelledMeasuredArray1D_Equal(lma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_notequality(nullptr, lma2);
+  LabelledMeasuredArray1D_NotEqual(nullptr, lma2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_notequality(lma, nullptr);
+  LabelledMeasuredArray1D_NotEqual(lma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -493,7 +493,7 @@ TEST_F(LabelledMeasuredArray1DTest, SumOfSquares) {
 TEST_F(LabelledMeasuredArray1DTest, ToJsonFromJson) {
   auto json = LabelledMeasuredArray1D_to_json_string(lma);
   auto lma3 = LabelledMeasuredArray1D_from_json_string(json);
-  EXPECT_TRUE(LabelledMeasuredArray1D_equality(lma, lma3));
+  EXPECT_TRUE(LabelledMeasuredArray1D_Equal(lma, lma3));
   LabelledMeasuredArray1D_destroy(lma3);
   String_destroy(json);
   set_last_error(0, nullptr);

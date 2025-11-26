@@ -632,12 +632,12 @@ ControlArray1DHandle ControlArray1D_max_control_array(
   FALCON_C_API_END(nullptr)
 }
 
-bool ControlArray1D_equality(ControlArray1DHandle handle,
+bool ControlArray1D_Equal(ControlArray1DHandle handle,
                              ControlArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_equality");
+        "Null handle passed to ControlArray1D_Equal");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   ControlArray1D* oarray        = static_cast<ControlArray1D*>(other);
@@ -645,12 +645,12 @@ bool ControlArray1D_equality(ControlArray1DHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool ControlArray1D_notequality(ControlArray1DHandle handle,
+bool ControlArray1D_NotEqual(ControlArray1DHandle handle,
                                 ControlArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_notequality");
+        "Null handle passed to ControlArray1D_NotEqual");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   ControlArray1D* oarray        = static_cast<ControlArray1D*>(other);

@@ -121,7 +121,7 @@ TEST_F(ConnectionTest, FeatureChecks) {
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
-TEST_F(ConnectionTest, EqualityAndInequality) {
+TEST_F(ConnectionTest, EqualityAndInEqual) {
   ConnectionHandle a = Connection_create_barrier_gate(String_wrap("a"));
   ConnectionHandle b = Connection_create_barrier_gate(String_wrap("b"));
   EXPECT_TRUE(Connection_not_equal(a, b));

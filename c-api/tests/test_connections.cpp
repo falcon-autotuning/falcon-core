@@ -213,7 +213,7 @@ TEST_F(ConnectionsTest, Items_Buffer) {
   Connections_destroy(c);
 }
 
-TEST_F(ConnectionsTest, EqualityAndInequality) {
+TEST_F(ConnectionsTest, EqualityAndInEqual) {
   ConnectionsHandle c1 = Connections_create_empty();
   Connections_push_back(c1, barrier);
   Connections_push_back(c1, plunger);
@@ -228,7 +228,7 @@ TEST_F(ConnectionsTest, EqualityAndInequality) {
   Connections_destroy(c2);
   Connections_destroy(c3);
 
-  // Nullptr coverage for equality
+  // Nullptr coverage for Equal
   set_last_error(0, nullptr);
   Connections_equal(nullptr, c3);
   EXPECT_EQ(get_last_error_code(), 1);

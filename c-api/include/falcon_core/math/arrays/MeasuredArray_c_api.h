@@ -132,10 +132,10 @@ MeasuredArrayHandle MeasuredArray_max_farray(MeasuredArrayHandle handle,
 MeasuredArrayHandle MeasuredArray_max_measured_array(MeasuredArrayHandle handle,
                                                      MeasuredArrayHandle other);
 // @category:read
-bool MeasuredArray_equality(MeasuredArrayHandle handle,
+bool MeasuredArray_Equal(MeasuredArrayHandle handle,
                             MeasuredArrayHandle other);
 // @category:read
-bool MeasuredArray_notequality(MeasuredArrayHandle handle,
+bool MeasuredArray_NotEqual(MeasuredArrayHandle handle,
                                MeasuredArrayHandle other);
 // @category:read
 bool MeasuredArray_greaterthan(MeasuredArrayHandle handle, double value);

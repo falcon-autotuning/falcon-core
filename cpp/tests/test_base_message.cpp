@@ -19,7 +19,7 @@ TEST_F(BaseMessageTest, EqualityOperator) {
   EXPECT_FALSE(msg1 == msg3);
 }
 
-TEST_F(BaseMessageTest, InequalityOperator) {
+TEST_F(BaseMessageTest, InEqualOperator) {
   BaseMessage msg1("foo");
   BaseMessage msg2("bar");
   EXPECT_TRUE(msg1 != msg2);

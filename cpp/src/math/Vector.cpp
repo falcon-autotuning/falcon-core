@@ -296,12 +296,12 @@ const VectorSP Vector::project(const VectorSP& other) const {
   return result->translate(startPoint());
 }
 bool Vector::operator==(const Vector& other) const {
-  bool unit_equality = (*unit() == *other.unit());
-  bool conn_equality = (*connections() == *other.connections());
-  bool map_equality =
+  bool unit_Equal = (*unit() == *other.unit());
+  bool conn_Equal = (*connections() == *other.connections());
+  bool map_Equal =
       generic::Map<physics::device_structures::Connection,
                    generic::Pair<Quantity, Quantity>>::operator==(other);
-  return unit_equality && conn_equality && map_equality;
+  return unit_Equal && conn_Equal && map_Equal;
 }
 bool Vector::operator!=(const Vector& other) const { return !(*this == other); }
 }  // namespace math

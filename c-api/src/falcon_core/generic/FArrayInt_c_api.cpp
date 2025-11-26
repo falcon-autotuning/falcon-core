@@ -483,10 +483,10 @@ throw std::invalid_argument("Null handle passed to FArrayInt_max_arraywise");
     FALCON_C_API_END(nullptr)
 }
 
-bool FArrayInt_equality(FArrayIntHandle handle, FArrayIntHandle other) {
+bool FArrayInt_Equal(FArrayIntHandle handle, FArrayIntHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to FArrayInt_equality");
+throw std::invalid_argument("Null handle passed to FArrayInt_Equal");
 }
     auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
@@ -494,10 +494,10 @@ throw std::invalid_argument("Null handle passed to FArrayInt_equality");
     FALCON_C_API_END(false)
 }
 
-bool FArrayInt_notequality(FArrayIntHandle handle, FArrayIntHandle other) {
+bool FArrayInt_NotEqual(FArrayIntHandle handle, FArrayIntHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to FArrayInt_notequality");
+throw std::invalid_argument("Null handle passed to FArrayInt_NotEqual");
 }
     auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);

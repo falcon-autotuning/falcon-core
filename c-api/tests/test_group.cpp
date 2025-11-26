@@ -237,7 +237,7 @@ TEST_F(GroupTest, SerializationRoundTrip) {
   String_destroy(json);
 }
 
-TEST_F(GroupTest, EqualityAndInequality) {
+TEST_F(GroupTest, EqualityAndInEqual) {
   GroupHandle handle2 = Group_create(
       channel, num_dots, screening, reservoir, plunger, barrier, order);
   EXPECT_TRUE(Group_equal(handle, handle2));
@@ -464,7 +464,7 @@ TEST_F(GroupTest, EqualityThrowsOnNullHandle) {
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
-TEST_F(GroupTest, InequalityThrowsOnNullHandle) {
+TEST_F(GroupTest, InEqualThrowsOnNullHandle) {
   set_last_error(0, nullptr);
   Group_not_equal(nullptr, handle);
   EXPECT_EQ(get_last_error_code(), 1);

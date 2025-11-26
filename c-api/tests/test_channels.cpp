@@ -136,7 +136,7 @@ TEST_F(ChannelsTest, ContainsAndIndex) {
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
-TEST_F(ChannelsTest, EqualityAndInequality) {
+TEST_F(ChannelsTest, EqualityAndInEqual) {
   ChannelsHandle channels2 = Channels_create(list);
   EXPECT_TRUE(Channels_equal(channels, channels2));
   EXPECT_FALSE(Channels_not_equal(channels, channels2));
