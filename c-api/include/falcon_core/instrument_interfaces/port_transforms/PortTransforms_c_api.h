@@ -13,9 +13,6 @@ typedef void* PortTransformsHandle;
 // @category:allocation
 PortTransformsHandle PortTransforms_create_empty();
 // @category:allocation
-PortTransformsHandle PortTransforms_create_raw(PortTransformHandle* data,
-                                               size_t               count);
-// @category:allocation
 PortTransformHandle PortTransforms_create(ListPortTransformHandle handle);
 // @category:deallocation
 void PortTransforms_destroy(PortTransformsHandle handle);

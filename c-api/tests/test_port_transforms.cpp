@@ -47,17 +47,11 @@ TEST_F(PortTransformsTest, CreateDestroy) {
   PortTransforms_destroy(t);
 
   PortTransformHandle arr[2] = {pt, pt2};
-  auto                t2     = PortTransforms_create_raw(arr, 2);
-  PortTransforms_destroy(t2);
-
-  auto list = PortTransforms_items(transforms);
-  auto t3   = PortTransforms_create(list);
+  auto                list   = PortTransforms_items(transforms);
+  auto                t3     = PortTransforms_create(list);
   PortTransforms_destroy(t3);
   ListPortTransform_destroy(list);
 
-  set_last_error(0, nullptr);
-  PortTransforms_create_raw(nullptr, 2);
-  EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   PortTransforms_create(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
