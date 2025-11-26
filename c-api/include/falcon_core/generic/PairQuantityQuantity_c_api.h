@@ -10,14 +10,21 @@
 typedef void* PairQuantityQuantityHandle;
 // Function declarations
 
+// @category:allocation
 PairQuantityQuantityHandle PairQuantityQuantity_create(QuantityHandle first, QuantityHandle second);
+// @category:deallocation
 void PairQuantityQuantity_destroy(PairQuantityQuantityHandle handle);
+// @category:read
 QuantityHandle PairQuantityQuantity_first(PairQuantityQuantityHandle handle);
+// @category:read
 QuantityHandle PairQuantityQuantity_second(PairQuantityQuantityHandle handle);
+// @category:read
 bool PairQuantityQuantity_equal(PairQuantityQuantityHandle a, PairQuantityQuantityHandle b);
+// @category:read
 bool PairQuantityQuantity_not_equal(PairQuantityQuantityHandle a, PairQuantityQuantityHandle b);
-// Serialization (from Song)
+// @category:read
 StringHandle      PairQuantityQuantity_to_json_string(PairQuantityQuantityHandle handle);
+// @category:allocation
 PairQuantityQuantityHandle PairQuantityQuantity_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

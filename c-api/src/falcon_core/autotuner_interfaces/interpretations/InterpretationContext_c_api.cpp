@@ -107,7 +107,7 @@ int InterpretationContext_dimension(InterpretationContextHandle handle) {
   FALCON_C_API_END(0)
 }
 
-void InterpretationContext_dependent_variable(
+void InterpretationContext_add_dependent_variable(
     InterpretationContextHandle handle, MeasurementContextHandle variable) {
   FALCON_C_API_BEGIN
   if (!handle) {

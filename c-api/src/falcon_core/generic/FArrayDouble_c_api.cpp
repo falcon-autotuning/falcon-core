@@ -144,7 +144,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_plusequals_farra
     FALCON_C_API_END()
 }
 
-void FArrayDouble_plusequals_double(FArrayDoubleHandle handle, const double other) {
+void FArrayDouble_plusequals_double(FArrayDoubleHandle handle,  double other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_plusequals_double");
@@ -154,7 +154,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_plusequals_doubl
     FALCON_C_API_END()
 }
 
-void FArrayDouble_plusequals_int(FArrayDoubleHandle handle, const int other) {
+void FArrayDouble_plusequals_int(FArrayDoubleHandle handle,  int other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_plusequals_int");
@@ -177,7 +177,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_plus_farray");
     FALCON_C_API_END(nullptr)
 }
 
-FArrayDoubleHandle FArrayDouble_plus_double(FArrayDoubleHandle handle, const double other) {
+FArrayDoubleHandle FArrayDouble_plus_double(FArrayDoubleHandle handle,  double other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_plus_double");
@@ -187,7 +187,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_plus_double");
     FALCON_C_API_END(nullptr)
 }
 
-FArrayDoubleHandle FArrayDouble_plus_int(FArrayDoubleHandle handle, const int other) {
+FArrayDoubleHandle FArrayDouble_plus_int(FArrayDoubleHandle handle,  int other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_plus_int");
@@ -208,7 +208,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_minusequals_farr
     FALCON_C_API_END()
 }
 
-void FArrayDouble_minusequals_double(FArrayDoubleHandle handle, const double other) {
+void FArrayDouble_minusequals_double(FArrayDoubleHandle handle,  double other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_minusequals_double");
@@ -218,7 +218,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_minusequals_doub
     FALCON_C_API_END()
 }
 
-void FArrayDouble_minusequals_int(FArrayDoubleHandle handle, const int other) {
+void FArrayDouble_minusequals_int(FArrayDoubleHandle handle,  int other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_minusequals_int");
@@ -241,7 +241,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_minus_farray");
     FALCON_C_API_END(nullptr)
 }
 
-FArrayDoubleHandle FArrayDouble_minus_double(FArrayDoubleHandle handle, const double other) {
+FArrayDoubleHandle FArrayDouble_minus_double(FArrayDoubleHandle handle,  double other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_minus_double");
@@ -251,7 +251,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_minus_double");
     FALCON_C_API_END(nullptr)
 }
 
-FArrayDoubleHandle FArrayDouble_minus_int(FArrayDoubleHandle handle, const int other) {
+FArrayDoubleHandle FArrayDouble_minus_int(FArrayDoubleHandle handle,  int other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_minus_int");
@@ -282,7 +282,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_timesequals_farr
     FALCON_C_API_END()
 }
 
-void FArrayDouble_timesequals_double(FArrayDoubleHandle handle, const double other) {
+void FArrayDouble_timesequals_double(FArrayDoubleHandle handle,  double other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_timesequals_double");
@@ -292,7 +292,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_timesequals_doub
     FALCON_C_API_END()
 }
 
-void FArrayDouble_timesequals_int(FArrayDoubleHandle handle, const int other) {
+void FArrayDouble_timesequals_int(FArrayDoubleHandle handle,  int other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_timesequals_int");
@@ -315,7 +315,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_times_farray");
     FALCON_C_API_END(nullptr)
 }
 
-FArrayDoubleHandle FArrayDouble_times_double(FArrayDoubleHandle handle, const double other) {
+FArrayDoubleHandle FArrayDouble_times_double(FArrayDoubleHandle handle,  double other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_times_double");
@@ -325,7 +325,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_times_double");
     FALCON_C_API_END(nullptr)
 }
 
-FArrayDoubleHandle FArrayDouble_times_int(FArrayDoubleHandle handle, const int other) {
+FArrayDoubleHandle FArrayDouble_times_int(FArrayDoubleHandle handle,  int other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_times_int");
@@ -346,7 +346,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_dividesequals_fa
     FALCON_C_API_END()
 }
 
-void FArrayDouble_dividesequals_double(FArrayDoubleHandle handle, const double other) {
+void FArrayDouble_dividesequals_double(FArrayDoubleHandle handle,  double other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_dividesequals_double");
@@ -356,7 +356,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_dividesequals_do
     FALCON_C_API_END()
 }
 
-void FArrayDouble_dividesequals_int(FArrayDoubleHandle handle, const int other) {
+void FArrayDouble_dividesequals_int(FArrayDoubleHandle handle,  int other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_dividesequals_int");
@@ -379,7 +379,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_divides_farray")
     FALCON_C_API_END(nullptr)
 }
 
-FArrayDoubleHandle FArrayDouble_divides_double(FArrayDoubleHandle handle, const double other) {
+FArrayDoubleHandle FArrayDouble_divides_double(FArrayDoubleHandle handle,  double other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_divides_double");
@@ -389,7 +389,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_divides_double")
     FALCON_C_API_END(nullptr)
 }
 
-FArrayDoubleHandle FArrayDouble_divides_int(FArrayDoubleHandle handle, const int other) {
+FArrayDoubleHandle FArrayDouble_divides_int(FArrayDoubleHandle handle,  int other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_divides_int");
@@ -399,27 +399,27 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_divides_int");
     FALCON_C_API_END(nullptr)
 }
 
-FArrayDoubleHandle FArrayDouble_pow(FArrayDoubleHandle handle, const double other) {
+FArrayDoubleHandle FArrayDouble_pow(FArrayDoubleHandle handle,  double other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_pow");
 }
-    const falcon_core::generic::FArray<double>* farray = static_cast<falcon_core::generic::FArray<double>*>(handle);
+     falcon_core::generic::FArray<double>* farray = static_cast<falcon_core::generic::FArray<double>*>(handle);
     return new falcon_core::generic::FArray<double>(*(*farray ^ other));
     FALCON_C_API_END(nullptr)
 }
 
-FArrayDoubleHandle FArrayDouble_double_pow(FArrayDoubleHandle handle, const double other) {
+FArrayDoubleHandle FArrayDouble_double_pow(FArrayDoubleHandle handle,  double other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_pow");
 }
-    const falcon_core::generic::FArray<double>* farray = static_cast<falcon_core::generic::FArray<double>*>(handle);
+     falcon_core::generic::FArray<double>* farray = static_cast<falcon_core::generic::FArray<double>*>(handle);
     return new falcon_core::generic::FArray<double>(*(*farray ^ other));
     FALCON_C_API_END(nullptr)
 }
 
-void FArrayDouble_pow_inplace(FArrayDoubleHandle handle, const double other) {
+void FArrayDouble_pow_inplace(FArrayDoubleHandle handle,  double other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_pow");
@@ -505,7 +505,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_notequality");
     FALCON_C_API_END(false)
 }
 
-bool FArrayDouble_greaterthan(FArrayDoubleHandle handle, const double value) {
+bool FArrayDouble_greaterthan(FArrayDoubleHandle handle,  double value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_greaterthan");
@@ -515,7 +515,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_greaterthan");
     FALCON_C_API_END(false)
 }
 
-bool FArrayDouble_lessthan(FArrayDoubleHandle handle, const double value) {
+bool FArrayDouble_lessthan(FArrayDoubleHandle handle,  double value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_lessthan");
@@ -525,7 +525,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_lessthan");
     FALCON_C_API_END(false)
 }
 
-void FArrayDouble_remove_offset(FArrayDoubleHandle handle, const double offset) {
+void FArrayDouble_remove_offset(FArrayDoubleHandle handle,  double offset) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_remove_offset");
@@ -559,7 +559,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_reshape");
     FALCON_C_API_END(nullptr)
 }
 
-ListListSizeTHandle FArrayDouble_where(FArrayDoubleHandle handle, const double value) {
+ListListSizeTHandle FArrayDouble_where(FArrayDoubleHandle handle,  double value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_where");
@@ -619,7 +619,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_get_sum_of_squar
     FALCON_C_API_END(0.0)
 }
 
-double FArrayDouble_get_summed_diff_int_of_squares(FArrayDoubleHandle handle, const int other) {
+double FArrayDouble_get_summed_diff_int_of_squares(FArrayDoubleHandle handle,  int other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_get_summed_diff_int_of_squares");
@@ -629,7 +629,7 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_get_summed_diff_
     FALCON_C_API_END(0.0)
 }
 
-double FArrayDouble_get_summed_diff_double_of_squares(FArrayDoubleHandle handle, const double other) {
+double FArrayDouble_get_summed_diff_double_of_squares(FArrayDoubleHandle handle,  double other) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayDouble_get_summed_diff_double_of_squares");

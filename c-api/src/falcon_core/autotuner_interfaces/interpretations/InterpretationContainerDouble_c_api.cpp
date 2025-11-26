@@ -131,8 +131,8 @@ ListInterpretationContextHandle InterpretationContainerDouble_select_contexts(
 }
 
 void InterpretationContainerDouble_insert_or_assign(InterpretationContainerDoubleHandle handle,
-    const InterpretationContextHandle   key,
-    const double value) {
+     InterpretationContextHandle   key,
+     double value) {
     FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to InterpretationContainerDouble_insert_or_assign");
@@ -149,8 +149,8 @@ void InterpretationContainerDouble_insert_or_assign(InterpretationContainerDoubl
 
 void InterpretationContainerDouble_insert(
     InterpretationContainerDoubleHandle handle,
-    const InterpretationContextHandle   key,
-    const double value) {
+     InterpretationContextHandle   key,
+     double value) {
     FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to InterpretationContainerDouble_insert");
@@ -166,7 +166,7 @@ void InterpretationContainerDouble_insert(
 }
 
 double InterpretationContainerDouble_at(InterpretationContainerDoubleHandle handle,
-    const InterpretationContextHandle   key) {
+     InterpretationContextHandle   key) {
     FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to InterpretationContainerDouble_at");
@@ -182,7 +182,7 @@ double InterpretationContainerDouble_at(InterpretationContainerDoubleHandle hand
 }
 
 void InterpretationContainerDouble_erase(InterpretationContainerDoubleHandle handle,
-    const InterpretationContextHandle   key) {
+     InterpretationContextHandle   key) {
     FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to InterpretationContainerDouble_erase");
@@ -227,7 +227,7 @@ throw std::invalid_argument("Null handle passed to InterpretationContainerDouble
 }
 
 bool InterpretationContainerDouble_contains(InterpretationContainerDoubleHandle handle,
-    const InterpretationContextHandle   key) {
+     InterpretationContextHandle   key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to InterpretationContainerDouble_contains");

@@ -12,7 +12,7 @@ MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_create_e
     FALCON_C_API_END(nullptr)
 }
 
-MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_create(const PairInterpretationContextQuantityHandle* data, size_t count) {
+MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_create( PairInterpretationContextQuantityHandle* data, size_t count) {
     FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data pointer passed to MapInterpretationContextQuantity_create");
@@ -37,7 +37,7 @@ throw std::invalid_argument("Null handle passed to MapInterpretationContextQuant
     FALCON_C_API_END()
 }
 
-void MapInterpretationContextQuantity_insert_or_assign(MapInterpretationContextQuantityHandle handle, const InterpretationContextHandle key, const QuantityHandle value) {
+void MapInterpretationContextQuantity_insert_or_assign(MapInterpretationContextQuantityHandle handle,  InterpretationContextHandle key,  QuantityHandle value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_insert_or_assign");
@@ -58,7 +58,7 @@ auto correct_value = std::make_shared<falcon_core::math::Quantity>(temp_value);
     FALCON_C_API_END()
 }
 
-void MapInterpretationContextQuantity_insert(MapInterpretationContextQuantityHandle handle, const InterpretationContextHandle key, const QuantityHandle value) {
+void MapInterpretationContextQuantity_insert(MapInterpretationContextQuantityHandle handle,  InterpretationContextHandle key,  QuantityHandle value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_insert");
@@ -79,7 +79,7 @@ auto correct_value = std::make_shared<falcon_core::math::Quantity>(temp_value);
     FALCON_C_API_END()
 }
 
-QuantityHandle MapInterpretationContextQuantity_at(MapInterpretationContextQuantityHandle handle, const InterpretationContextHandle key) {
+QuantityHandle MapInterpretationContextQuantity_at(MapInterpretationContextQuantityHandle handle,  InterpretationContextHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_at");
@@ -94,7 +94,7 @@ auto correct_key = std::make_shared<falcon_core::autotuner_interfaces::interpret
     FALCON_C_API_END(nullptr)
 }
 
-void MapInterpretationContextQuantity_erase(MapInterpretationContextQuantityHandle handle, const InterpretationContextHandle key) {
+void MapInterpretationContextQuantity_erase(MapInterpretationContextQuantityHandle handle,  InterpretationContextHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_erase");

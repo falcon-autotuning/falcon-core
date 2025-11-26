@@ -12,65 +12,123 @@
 typedef void* FArrayIntHandle;
 // Function declarations
 
+// @category:allocation
 FArrayIntHandle FArrayInt_create_empty(const size_t* shape, size_t ndim);
+// @category:allocation
 FArrayIntHandle FArrayInt_create_zeros(const size_t* shape, size_t ndim);
+// @category:allocation
 FArrayIntHandle FArrayInt_from_shape(const size_t* shape, size_t ndim);
+// @category:allocation
 FArrayIntHandle FArrayInt_from_data(const int* data, const size_t* shape, size_t ndim);
+// @category:deallocation
 void FArrayInt_destroy(FArrayIntHandle handle);
+// @category:read
 size_t FArrayInt_size(FArrayIntHandle handle);
+// @category:read
 size_t FArrayInt_dimension(FArrayIntHandle handle);
-size_t FArrayInt_shape(FArrayIntHandle handle, size_t* out_buffer, size_t ndim);
+// @category:read
+size_t FArrayInt_shape(FArrayIntHandle handle,size_t* out_buffer, size_t ndim);
+// @category:read
 size_t FArrayInt_data(FArrayIntHandle handle, int* out_buffer, size_t numdata);
+// @category:write
 void FArrayInt_plusequals_farray(FArrayIntHandle handle, FArrayIntHandle other);
-void FArrayInt_plusequals_double(FArrayIntHandle handle, const double other);
-void FArrayInt_plusequals_int(FArrayIntHandle handle, const int other);
+// @category:write
+void FArrayInt_plusequals_double(FArrayIntHandle handle, double other);
+// @category:write
+void FArrayInt_plusequals_int(FArrayIntHandle handle, int other);
+// @category:read
 FArrayIntHandle FArrayInt_plus_farray(FArrayIntHandle handle, FArrayIntHandle other);
-FArrayIntHandle FArrayInt_plus_double(FArrayIntHandle handle, const double other);
-FArrayIntHandle FArrayInt_plus_int(FArrayIntHandle handle, const int other);
+// @category:read
+FArrayIntHandle FArrayInt_plus_double(FArrayIntHandle handle,  double other);
+// @category:read
+FArrayIntHandle FArrayInt_plus_int(FArrayIntHandle handle,  int other);
+// @category:write
 void FArrayInt_minusequals_farray(FArrayIntHandle handle, FArrayIntHandle other);
-void FArrayInt_minusequals_double(FArrayIntHandle handle, const double other);
-void FArrayInt_minusequals_int(FArrayIntHandle handle, const int other);
+// @category:write
+void FArrayInt_minusequals_double(FArrayIntHandle handle,  double other);
+// @category:write
+void FArrayInt_minusequals_int(FArrayIntHandle handle,  int other);
+// @category:read
 FArrayIntHandle FArrayInt_minus_farray(FArrayIntHandle handle, FArrayIntHandle other);
-FArrayIntHandle FArrayInt_minus_double(FArrayIntHandle handle, const double other);
-FArrayIntHandle FArrayInt_minus_int(FArrayIntHandle handle, const int other);
+// @category:read
+FArrayIntHandle FArrayInt_minus_double(FArrayIntHandle handle,  double other);
+// @category:read
+FArrayIntHandle FArrayInt_minus_int(FArrayIntHandle handle,  int other);
+// @category:read
 FArrayIntHandle FArrayInt_negation(FArrayIntHandle handle);
+// @category:write
 void FArrayInt_timesequals_farray(FArrayIntHandle handle, FArrayIntHandle other);
-void FArrayInt_timesequals_double(FArrayIntHandle handle, const double other);
-void FArrayInt_timesequals_int(FArrayIntHandle handle, const int other);
+// @category:write
+void FArrayInt_timesequals_double(FArrayIntHandle handle,  double other);
+// @category:write
+void FArrayInt_timesequals_int(FArrayIntHandle handle,  int other);
+// @category:read
 FArrayIntHandle FArrayInt_times_farray(FArrayIntHandle handle, FArrayIntHandle other);
-FArrayIntHandle FArrayInt_times_double(FArrayIntHandle handle, const double other);
-FArrayIntHandle FArrayInt_times_int(FArrayIntHandle handle, const int other);
+// @category:read
+FArrayIntHandle FArrayInt_times_double(FArrayIntHandle handle,  double other);
+// @category:read
+FArrayIntHandle FArrayInt_times_int(FArrayIntHandle handle,  int other);
+// @category:write
 void FArrayInt_dividesequals_farray(FArrayIntHandle handle, FArrayIntHandle other);
-void FArrayInt_dividesequals_double(FArrayIntHandle handle, const double other);
-void FArrayInt_dividesequals_int(FArrayIntHandle handle, const int other);
+// @category:write
+void FArrayInt_dividesequals_double(FArrayIntHandle handle,  double other);
+// @category:write
+void FArrayInt_dividesequals_int(FArrayIntHandle handle,  int other);
+// @category:read
 FArrayIntHandle FArrayInt_divides_farray(FArrayIntHandle handle, FArrayIntHandle other);
-FArrayIntHandle FArrayInt_divides_double(FArrayIntHandle handle, const double other);
-FArrayIntHandle FArrayInt_divides_int(FArrayIntHandle handle, const int other);
-FArrayIntHandle FArrayInt_pow(FArrayIntHandle handle, const int other);
-FArrayDoubleHandle FArrayInt_double_pow(FArrayIntHandle handle, const double other);
-void FArrayInt_pow_inplace(FArrayIntHandle handle, const int other);
+// @category:read
+FArrayIntHandle FArrayInt_divides_double(FArrayIntHandle handle,  double other);
+// @category:read
+FArrayIntHandle FArrayInt_divides_int(FArrayIntHandle handle,  int other);
+// @category:read
+FArrayIntHandle FArrayInt_pow(FArrayIntHandle handle,  int other);
+// @category:read
+FArrayDoubleHandle FArrayInt_double_pow(FArrayIntHandle handle,  double other);
+// @category:write
+void FArrayInt_pow_inplace(FArrayIntHandle handle,  int other);
+// @category:read
 FArrayIntHandle FArrayInt_abs(FArrayIntHandle handle);
+// @category:read
 int FArrayInt_min(FArrayIntHandle handle);
+// @category:read
 FArrayIntHandle FArrayInt_min_arraywise(FArrayIntHandle handle, FArrayIntHandle other);
+// @category:read
 int FArrayInt_max(FArrayIntHandle handle);
+// @category:read
 FArrayIntHandle FArrayInt_max_arraywise(FArrayIntHandle handle, FArrayIntHandle other);
+// @category:read
 bool FArrayInt_equality(FArrayIntHandle handle, FArrayIntHandle other);
+// @category:read
 bool FArrayInt_notequality(FArrayIntHandle handle, FArrayIntHandle other);
-bool FArrayInt_greaterthan(FArrayIntHandle handle, const int value);
-bool FArrayInt_lessthan(FArrayIntHandle handle, const int value);
-void FArrayInt_remove_offset(FArrayIntHandle handle, const int offset);
+// @category:read
+bool FArrayInt_greaterthan(FArrayIntHandle handle,  int value);
+// @category:read
+bool FArrayInt_lessthan(FArrayIntHandle handle,  int value);
+// @category:write
+void FArrayInt_remove_offset(FArrayIntHandle handle,  int offset);
+// @category:read
 int FArrayInt_sum(FArrayIntHandle handle);
+// @category:read
 FArrayIntHandle FArrayInt_reshape(FArrayIntHandle handle, const size_t* shape, size_t ndims);
-ListListSizeTHandle FArrayInt_where(FArrayIntHandle handle, const int value);
+// @category:read
+ListListSizeTHandle FArrayInt_where(FArrayIntHandle handle,  int value);
+// @category:read
 FArrayIntHandle FArrayInt_flip(FArrayIntHandle handle, size_t axis);
+// @category:read
 size_t FArrayInt_full_gradient(FArrayIntHandle handle, FArrayIntHandle* out_buffer, size_t buffer_size);
+// @category:read
 FArrayIntHandle FArrayInt_gradient(FArrayIntHandle handle, size_t axis);
+// @category:read
 double FArrayInt_get_sum_of_squares(FArrayIntHandle handle);
-double FArrayInt_get_summed_diff_int_of_squares(FArrayIntHandle handle, const int other);
-double FArrayInt_get_summed_diff_double_of_squares(FArrayIntHandle handle, const double other);
+// @category:read
+double FArrayInt_get_summed_diff_int_of_squares(FArrayIntHandle handle,  int other);
+// @category:read
+double FArrayInt_get_summed_diff_double_of_squares(FArrayIntHandle handle,  double other);
+// @category:read
 double FArrayInt_get_summed_diff_array_of_squares(FArrayIntHandle handle, FArrayIntHandle other);
-// Serialization (from Song)
+// @category:read
 StringHandle      FArrayInt_to_json_string(FArrayIntHandle handle);
+// @category:allocation
 FArrayIntHandle FArrayInt_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

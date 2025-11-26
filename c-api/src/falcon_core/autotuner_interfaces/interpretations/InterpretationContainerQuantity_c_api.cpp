@@ -132,8 +132,8 @@ ListInterpretationContextHandle InterpretationContainerQuantity_select_contexts(
 }
 
 void InterpretationContainerQuantity_insert_or_assign(InterpretationContainerQuantityHandle handle,
-    const InterpretationContextHandle   key,
-    const QuantityHandle value) {
+     InterpretationContextHandle   key,
+     QuantityHandle value) {
     FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to InterpretationContainerQuantity_insert_or_assign");
@@ -155,8 +155,8 @@ auto value_obj= std::make_shared<falcon_core::math::Quantity>(temp_value);
 
 void InterpretationContainerQuantity_insert(
     InterpretationContainerQuantityHandle handle,
-    const InterpretationContextHandle   key,
-    const QuantityHandle value) {
+     InterpretationContextHandle   key,
+     QuantityHandle value) {
     FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to InterpretationContainerQuantity_insert");
@@ -177,7 +177,7 @@ auto value_obj= std::make_shared<falcon_core::math::Quantity>(temp_value);
 }
 
 QuantityHandle InterpretationContainerQuantity_at(InterpretationContainerQuantityHandle handle,
-    const InterpretationContextHandle   key) {
+     InterpretationContextHandle   key) {
     FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to InterpretationContainerQuantity_at");
@@ -193,7 +193,7 @@ QuantityHandle InterpretationContainerQuantity_at(InterpretationContainerQuantit
 }
 
 void InterpretationContainerQuantity_erase(InterpretationContainerQuantityHandle handle,
-    const InterpretationContextHandle   key) {
+     InterpretationContextHandle   key) {
     FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to InterpretationContainerQuantity_erase");
@@ -238,7 +238,7 @@ throw std::invalid_argument("Null handle passed to InterpretationContainerQuanti
 }
 
 bool InterpretationContainerQuantity_contains(InterpretationContainerQuantityHandle handle,
-    const InterpretationContextHandle   key) {
+     InterpretationContextHandle   key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to InterpretationContainerQuantity_contains");

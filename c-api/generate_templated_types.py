@@ -84,8 +84,9 @@ class HeaderContext:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.file.write(f"""
-// Serialization (from Song)
+// @category:read
 StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle);
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json);
 """)
         self.file.write("\n#ifdef __cplusplus\n}\n#endif")
@@ -263,29 +264,44 @@ class Entry:
     def generate_list_header(self):
         c_type = self.combo[0]
         if c_type == "StringHandle" or (c_type in c_primitives):
-            allocate_signature = (
-                f"{self.chandle()} {self.mangled_name()}_allocate(size_t count);"
-            )
+            allocate_signature = f"""// @category:allocation
+{self.chandle()} {self.mangled_name()}_allocate(size_t count);"""
         else:
             allocate_signature = ""
         with self.edit_header() as f:
             f.write(f"""
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_create_empty();
 {allocate_signature}
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_fill_value(size_t count, {c_type} value);
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_create({c_type}* data, size_t count);
+// @category:deallocation
 void {self.mangled_name()}_destroy({self.chandle()} handle);
+// @category:write
 void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value);
+// @category:read
 size_t {self.mangled_name()}_size({self.chandle()} handle);
+// @category:read
 bool {self.mangled_name()}_empty({self.chandle()} handle);
+// @category:write
 void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx);
+// @category:write
 void {self.mangled_name()}_clear({self.chandle()} handle);
+// @category:read
 {c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx);
+// @category:read
 size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size);
+// @category:read
 bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value);
+// @category:read
 size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value);
+// @category:read
 {self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other);
+// @category:read
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
+// @category:read
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);
 """)
 
@@ -294,49 +310,61 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);
         # cpp_type = self.combo[1]
         with self.edit_header() as f:
             f.write(f"""
-// Constructors
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_create(
     List{c_type} arrays);
-
-// Destructor
+// @category:deallocation
 void {self.mangled_name()}_destroy(
     {self.chandle()} handle);
-
-// Methods
+// @category:read
 List{c_type} {self.mangled_name()}_arrays(
     {self.chandle()} handle);
+// @category:read
 ListAcquisitionContextHandle {self.mangled_name()}_labels(
     {self.chandle()} handle);
+// @category:read
 bool {self.mangled_name()}_isControlArrays(
     {self.chandle()} handle);
+// @category:read
 bool {self.mangled_name()}_isMeasuredArrays(
     {self.chandle()} handle);
+// @category:write
 void {self.mangled_name()}_push_back(
     {self.chandle()} handle,
     {c_type} value);
+// @category:read
 size_t {self.mangled_name()}_size(
     {self.chandle()} handle);
+// @category:read
 bool {self.mangled_name()}_empty(
     {self.chandle()} handle);
+// @category:write
 void {self.mangled_name()}_erase_at(
     {self.chandle()} handle, size_t idx);
+// @category:write
 void {self.mangled_name()}_clear(
     {self.chandle()} handle);
+// @category:read
 {c_type} {self.mangled_name()}_at(
     {self.chandle()} handle, size_t idx);
+// @category:read
 bool {self.mangled_name()}_contains(
     {self.chandle()} handle,
     {c_type} value);
+// @category:read
 size_t {self.mangled_name()}_index(
     {self.chandle()} handle,
     {c_type} value);
+// @category:read
 {self.chandle()}
 {self.mangled_name()}_intersection(
     {self.chandle()} handle,
     {self.chandle()} other);
+// @category:read
 bool {self.mangled_name()}_equal(
     {self.chandle()} handle,
     {self.chandle()} other);
+// @category:read
 bool {self.mangled_name()}_not_equal(
     {self.chandle()} handle,
     {self.chandle()} other);
@@ -347,44 +375,65 @@ bool {self.mangled_name()}_not_equal(
         # value_name = self.combo[2]
         with self.edit_header() as f:
             f.write(f"""
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_create(MapInterpretationContext{self.name()}Handle map);
+// @category:deallocation
 void {self.mangled_name()}_destroy({self.chandle()} handle);
+// @category:read
 SymbolUnitHandle {self.mangled_name()}_unit(
      {self.chandle()} handle);
+// @category:read
 ListInterpretationContextHandle {self.mangled_name()}_select_by_connection(
     {self.chandle()} handle, ConnectionHandle connection);
+// @category:read
 ListInterpretationContextHandle {self.mangled_name()}_select_by_connections(
                     {self.chandle()} handle, ConnectionsHandle connections);
+// @category:read
 ListInterpretationContextHandle {self.mangled_name()}_select_by_independent_connection(
                     {self.chandle()} handle, ConnectionHandle connection);
+// @category:read
 ListInterpretationContextHandle {self.mangled_name()}_select_by_dependent_connection(
                     {self.chandle()} handle, ConnectionHandle connection);
+// @category:read
 ListInterpretationContextHandle {self.mangled_name()}_select_contexts(
     {self.chandle()} handle,
     ListConnectionHandle                independent_connections,
     ListConnectionHandle                dependent_connections);
+// @category:write
 void {self.mangled_name()}_insert_or_assign({self.chandle()} handle,
-    const InterpretationContextHandle   key,
-    const {c_value_type} value);
+     InterpretationContextHandle   key,
+     {c_value_type} value);
+// @category:write
 void {self.mangled_name()}_insert(
     {self.chandle()} handle,
-    const InterpretationContextHandle   key,
-    const {c_value_type} value);
+     InterpretationContextHandle   key,
+     {c_value_type} value);
+// @category:read
 {c_value_type} {self.mangled_name()}_at({self.chandle()} handle,
-    const InterpretationContextHandle   key);
+     InterpretationContextHandle   key);
+// @category:write
 void {self.mangled_name()}_erase({self.chandle()} handle,
-    const InterpretationContextHandle   key);
+     InterpretationContextHandle   key);
+// @category:read
 size_t {self.mangled_name()}_size({self.chandle()} handle);
+// @category:read
 bool {self.mangled_name()}_empty({self.chandle()} handle);
+// @category:write
 void {self.mangled_name()}_clear({self.chandle()} handle);
+// @category:read
 bool {self.mangled_name()}_contains({self.chandle()} handle,
-    const InterpretationContextHandle   key);
+     InterpretationContextHandle   key);
+// @category:read
 ListInterpretationContextHandle {self.mangled_name()}_keys(
                     {self.chandle()} handle);
+// @category:read
 List{self.name()}Handle {self.mangled_name()}_values({self.chandle()} handle);
+// @category:read
 ListPairInterpretationContext{self.name()}Handle {self.mangled_name()}_items(
                     {self.chandle()} handle);
+// @category:read
 bool {self.mangled_name()}_equal({self.chandle()} handle,{self.chandle()} other);
+// @category:read
 bool {self.mangled_name()}_not_equal({self.chandle()} handle,{self.chandle()} other);
 """)
 
@@ -392,21 +441,37 @@ bool {self.mangled_name()}_not_equal({self.chandle()} handle,{self.chandle()} ot
         c_type = self.combo[0]
         with self.edit_header() as f:
             f.write(f"""
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_create_empty();
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_create_raw(const {c_type}* data, size_t count);
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_create(List{self.name()}Handle data);
+// @category:deallocation
 void {self.mangled_name()}_destroy({self.chandle()} handle);
+// @category:write
 void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value);
+// @category:read
 size_t {self.mangled_name()}_size({self.chandle()} handle);
+// @category:read
 bool {self.mangled_name()}_empty({self.chandle()} handle);
+// @category:write
 void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx);
+// @category:write
 void {self.mangled_name()}_clear({self.chandle()} handle);
+// @category:read
 {c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx);
+// @category:read
 size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size);
+// @category:read
 bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value);
+// @category:read
 size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value);
+// @category:read
 {self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other);
+// @category:read
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
+// @category:read
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);
 """)
 
@@ -415,11 +480,17 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);
         c_type_2 = self.combo[3]
         with self.edit_header() as f:
             f.write(f"""
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_create({c_type_1} first, {c_type_2} second);
+// @category:deallocation
 void {self.mangled_name()}_destroy({self.chandle()} handle);
+// @category:read
 {c_type_1} {self.mangled_name()}_first({self.chandle()} handle);
+// @category:read
 {c_type_2} {self.mangled_name()}_second({self.chandle()} handle);
+// @category:read
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
+// @category:read
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);""")
 
     def generate_farray_header(self):
@@ -427,62 +498,119 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
         # TODO: view and operator() are not wrapped
         with self.edit_header() as f:
             f.write(f"""
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_create_empty(const size_t* shape, size_t ndim);
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_create_zeros(const size_t* shape, size_t ndim);
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_from_shape(const size_t* shape, size_t ndim);
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_from_data(const {c_type}* data, const size_t* shape, size_t ndim);
+// @category:deallocation
 void {self.mangled_name()}_destroy({self.chandle()} handle);
+// @category:read
 size_t {self.mangled_name()}_size({self.chandle()} handle);
+// @category:read
 size_t {self.mangled_name()}_dimension({self.chandle()} handle);
-size_t {self.mangled_name()}_shape({self.chandle()} handle, size_t* out_buffer, size_t ndim);
+// @category:read
+size_t {self.mangled_name()}_shape({self.chandle()} handle,size_t* out_buffer, size_t ndim);
+// @category:read
 size_t {self.mangled_name()}_data({self.chandle()} handle, {c_type}* out_buffer, size_t numdata);
+// @category:write
 void {self.mangled_name()}_plusequals_farray({self.chandle()} handle, {self.chandle()} other);
-void {self.mangled_name()}_plusequals_double({self.chandle()} handle, const double other);
-void {self.mangled_name()}_plusequals_int({self.chandle()} handle, const int other);
+// @category:write
+void {self.mangled_name()}_plusequals_double({self.chandle()} handle, double other);
+// @category:write
+void {self.mangled_name()}_plusequals_int({self.chandle()} handle, int other);
+// @category:read
 {self.chandle()} {self.mangled_name()}_plus_farray({self.chandle()} handle, {self.chandle()} other);
-{self.chandle()} {self.mangled_name()}_plus_double({self.chandle()} handle, const double other);
-{self.chandle()} {self.mangled_name()}_plus_int({self.chandle()} handle, const int other);
+// @category:read
+{self.chandle()} {self.mangled_name()}_plus_double({self.chandle()} handle,  double other);
+// @category:read
+{self.chandle()} {self.mangled_name()}_plus_int({self.chandle()} handle,  int other);
+// @category:write
 void {self.mangled_name()}_minusequals_farray({self.chandle()} handle, {self.chandle()} other);
-void {self.mangled_name()}_minusequals_double({self.chandle()} handle, const double other);
-void {self.mangled_name()}_minusequals_int({self.chandle()} handle, const int other);
+// @category:write
+void {self.mangled_name()}_minusequals_double({self.chandle()} handle,  double other);
+// @category:write
+void {self.mangled_name()}_minusequals_int({self.chandle()} handle,  int other);
+// @category:read
 {self.chandle()} {self.mangled_name()}_minus_farray({self.chandle()} handle, {self.chandle()} other);
-{self.chandle()} {self.mangled_name()}_minus_double({self.chandle()} handle, const double other);
-{self.chandle()} {self.mangled_name()}_minus_int({self.chandle()} handle, const int other);
+// @category:read
+{self.chandle()} {self.mangled_name()}_minus_double({self.chandle()} handle,  double other);
+// @category:read
+{self.chandle()} {self.mangled_name()}_minus_int({self.chandle()} handle,  int other);
+// @category:read
 {self.chandle()} {self.mangled_name()}_negation({self.chandle()} handle);
+// @category:write
 void {self.mangled_name()}_timesequals_farray({self.chandle()} handle, {self.chandle()} other);
-void {self.mangled_name()}_timesequals_double({self.chandle()} handle, const double other);
-void {self.mangled_name()}_timesequals_int({self.chandle()} handle, const int other);
+// @category:write
+void {self.mangled_name()}_timesequals_double({self.chandle()} handle,  double other);
+// @category:write
+void {self.mangled_name()}_timesequals_int({self.chandle()} handle,  int other);
+// @category:read
 {self.chandle()} {self.mangled_name()}_times_farray({self.chandle()} handle, {self.chandle()} other);
-{self.chandle()} {self.mangled_name()}_times_double({self.chandle()} handle, const double other);
-{self.chandle()} {self.mangled_name()}_times_int({self.chandle()} handle, const int other);
+// @category:read
+{self.chandle()} {self.mangled_name()}_times_double({self.chandle()} handle,  double other);
+// @category:read
+{self.chandle()} {self.mangled_name()}_times_int({self.chandle()} handle,  int other);
+// @category:write
 void {self.mangled_name()}_dividesequals_farray({self.chandle()} handle, {self.chandle()} other);
-void {self.mangled_name()}_dividesequals_double({self.chandle()} handle, const double other);
-void {self.mangled_name()}_dividesequals_int({self.chandle()} handle, const int other);
+// @category:write
+void {self.mangled_name()}_dividesequals_double({self.chandle()} handle,  double other);
+// @category:write
+void {self.mangled_name()}_dividesequals_int({self.chandle()} handle,  int other);
+// @category:read
 {self.chandle()} {self.mangled_name()}_divides_farray({self.chandle()} handle, {self.chandle()} other);
-{self.chandle()} {self.mangled_name()}_divides_double({self.chandle()} handle, const double other);
-{self.chandle()} {self.mangled_name()}_divides_int({self.chandle()} handle, const int other);
-{self.chandle()} {self.mangled_name()}_pow({self.chandle()} handle, const {c_type} other);
-FArrayDoubleHandle {self.mangled_name()}_double_pow({self.chandle()} handle, const double other);
-void {self.mangled_name()}_pow_inplace({self.chandle()} handle, const {c_type} other);
+// @category:read
+{self.chandle()} {self.mangled_name()}_divides_double({self.chandle()} handle,  double other);
+// @category:read
+{self.chandle()} {self.mangled_name()}_divides_int({self.chandle()} handle,  int other);
+// @category:read
+{self.chandle()} {self.mangled_name()}_pow({self.chandle()} handle,  {c_type} other);
+// @category:read
+FArrayDoubleHandle {self.mangled_name()}_double_pow({self.chandle()} handle,  double other);
+// @category:write
+void {self.mangled_name()}_pow_inplace({self.chandle()} handle,  {c_type} other);
+// @category:read
 {self.chandle()} {self.mangled_name()}_abs({self.chandle()} handle);
+// @category:read
 {c_type} {self.mangled_name()}_min({self.chandle()} handle);
+// @category:read
 {self.chandle()} {self.mangled_name()}_min_arraywise({self.chandle()} handle, {self.chandle()} other);
+// @category:read
 {c_type} {self.mangled_name()}_max({self.chandle()} handle);
+// @category:read
 {self.chandle()} {self.mangled_name()}_max_arraywise({self.chandle()} handle, {self.chandle()} other);
+// @category:read
 bool {self.mangled_name()}_equality({self.chandle()} handle, {self.chandle()} other);
+// @category:read
 bool {self.mangled_name()}_notequality({self.chandle()} handle, {self.chandle()} other);
-bool {self.mangled_name()}_greaterthan({self.chandle()} handle, const {c_type} value);
-bool {self.mangled_name()}_lessthan({self.chandle()} handle, const {c_type} value);
-void {self.mangled_name()}_remove_offset({self.chandle()} handle, const {c_type} offset);
+// @category:read
+bool {self.mangled_name()}_greaterthan({self.chandle()} handle,  {c_type} value);
+// @category:read
+bool {self.mangled_name()}_lessthan({self.chandle()} handle,  {c_type} value);
+// @category:write
+void {self.mangled_name()}_remove_offset({self.chandle()} handle,  {c_type} offset);
+// @category:read
 {c_type} {self.mangled_name()}_sum({self.chandle()} handle);
+// @category:read
 {self.chandle()} {self.mangled_name()}_reshape({self.chandle()} handle, const size_t* shape, size_t ndims);
-ListListSizeTHandle {self.mangled_name()}_where({self.chandle()} handle, const {c_type} value);
+// @category:read
+ListListSizeTHandle {self.mangled_name()}_where({self.chandle()} handle,  {c_type} value);
+// @category:read
 {self.chandle()} {self.mangled_name()}_flip({self.chandle()} handle, size_t axis);
+// @category:read
 size_t {self.mangled_name()}_full_gradient({self.chandle()} handle, {self.chandle()}* out_buffer, size_t buffer_size);
+// @category:read
 {self.chandle()} {self.mangled_name()}_gradient({self.chandle()} handle, size_t axis);
+// @category:read
 double {self.mangled_name()}_get_sum_of_squares({self.chandle()} handle);
-double {self.mangled_name()}_get_summed_diff_int_of_squares({self.chandle()} handle, const int other);
-double {self.mangled_name()}_get_summed_diff_double_of_squares({self.chandle()} handle, const double other);
+// @category:read
+double {self.mangled_name()}_get_summed_diff_int_of_squares({self.chandle()} handle,  int other);
+// @category:read
+double {self.mangled_name()}_get_summed_diff_double_of_squares({self.chandle()} handle,  double other);
+// @category:read
 double {self.mangled_name()}_get_summed_diff_array_of_squares({self.chandle()} handle, {self.chandle()} other);""")
 
     def generate_map_header(self):
@@ -493,21 +621,37 @@ double {self.mangled_name()}_get_summed_diff_array_of_squares({self.chandle()} h
         name = self.combo[8]
         with self.edit_header() as f:
             f.write(f"""
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_create_empty();
-{self.chandle()} {self.mangled_name()}_create(const Pair{name}Handle* data, size_t count);
+// @category:allocation
+{self.chandle()} {self.mangled_name()}_create(Pair{name}Handle* data, size_t count);
+// @category:deallocation
 void {self.mangled_name()}_destroy({self.chandle()} handle);
-void {self.mangled_name()}_insert_or_assign({self.chandle()} handle, const {c_key_type} key, const {c_value_type} value);
-void {self.mangled_name()}_insert({self.chandle()} handle, const {c_key_type} key, const {c_value_type} value);
-{c_value_type} {self.mangled_name()}_at({self.chandle()} handle, const {c_key_type} key);
-void {self.mangled_name()}_erase({self.chandle()} handle, const {c_key_type} key);
+// @category:write
+void {self.mangled_name()}_insert_or_assign({self.chandle()} handle, {c_key_type} key, {c_value_type} value);
+// @category:write
+void {self.mangled_name()}_insert({self.chandle()} handle, {c_key_type} key, {c_value_type} value);
+// @category:read
+{c_value_type} {self.mangled_name()}_at({self.chandle()} handle, {c_key_type} key);
+// @category:write
+void {self.mangled_name()}_erase({self.chandle()} handle, {c_key_type} key);
+// @category:read
 size_t {self.mangled_name()}_size({self.chandle()} handle);
+// @category:read
 bool {self.mangled_name()}_empty({self.chandle()} handle);
+// @category:write
 void {self.mangled_name()}_clear({self.chandle()} handle);
-bool {self.mangled_name()}_contains({self.chandle()} handle, const {c_key_type} key);
+// @category:read
+bool {self.mangled_name()}_contains({self.chandle()} handle, {c_key_type} key);
+// @category:read
 List{key_name}Handle {self.mangled_name()}_keys({self.chandle()} handle);
+// @category:read
 List{value_name}Handle {self.mangled_name()}_values({self.chandle()} handle);
+// @category:read
 ListPair{name}Handle {self.mangled_name()}_items({self.chandle()} handle);
+// @category:read
 bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
+// @category:read
 bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);""")
 
     def error_type_handling(self, type: str) -> str:
@@ -1496,8 +1640,8 @@ ListInterpretationContextHandle {self.mangled_name()}_select_contexts(
 }}
 
 void {self.mangled_name()}_insert_or_assign({self.chandle()} handle,
-    const InterpretationContextHandle   key,
-    const {c_value_type} value) {{
+     InterpretationContextHandle   key,
+     {c_value_type} value) {{
     FALCON_C_API_BEGIN
     if (!handle) {{
     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_insert_or_assign");
@@ -1514,8 +1658,8 @@ void {self.mangled_name()}_insert_or_assign({self.chandle()} handle,
 
 void {self.mangled_name()}_insert(
     {self.chandle()} handle,
-    const InterpretationContextHandle   key,
-    const {c_value_type} value) {{
+     InterpretationContextHandle   key,
+     {c_value_type} value) {{
     FALCON_C_API_BEGIN
     if (!handle) {{
     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_insert");
@@ -1531,7 +1675,7 @@ void {self.mangled_name()}_insert(
 }}
 
 {c_value_type} {self.mangled_name()}_at({self.chandle()} handle,
-    const InterpretationContextHandle   key) {{
+     InterpretationContextHandle   key) {{
     FALCON_C_API_BEGIN
     if (!handle) {{
     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_at");
@@ -1547,7 +1691,7 @@ void {self.mangled_name()}_insert(
 }}
 
 void {self.mangled_name()}_erase({self.chandle()} handle,
-    const InterpretationContextHandle   key) {{
+     InterpretationContextHandle   key) {{
     FALCON_C_API_BEGIN
     if (!handle) {{
     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_erase");
@@ -1592,7 +1736,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_clear")
 }}
 
 bool {self.mangled_name()}_contains({self.chandle()} handle,
-    const InterpretationContextHandle   key) {{
+     InterpretationContextHandle   key) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_contains");
@@ -1740,7 +1884,7 @@ extern "C" {{
     FALCON_C_API_END(nullptr)
 }}
 
-{self.chandle()} {self.mangled_name()}_create(const Pair{name}Handle* data, size_t count) {{
+{self.chandle()} {self.mangled_name()}_create( Pair{name}Handle* data, size_t count) {{
     FALCON_C_API_BEGIN
 if (!data) {{
 throw std::invalid_argument("Null data pointer passed to {self.mangled_name()}_create");
@@ -1765,7 +1909,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_destroy
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_insert_or_assign({self.chandle()} handle, const {c_key_type} key, const {c_value_type} value) {{
+void {self.mangled_name()}_insert_or_assign({self.chandle()} handle,  {c_key_type} key,  {c_value_type} value) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_insert_or_assign");
@@ -1776,7 +1920,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_insert_
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_insert({self.chandle()} handle, const {c_key_type} key, const {c_value_type} value) {{
+void {self.mangled_name()}_insert({self.chandle()} handle,  {c_key_type} key,  {c_value_type} value) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_insert");
@@ -1787,7 +1931,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_insert"
     FALCON_C_API_END()
 }}
 
-{c_value_type} {self.mangled_name()}_at({self.chandle()} handle, const {c_key_type} key) {{
+{c_value_type} {self.mangled_name()}_at({self.chandle()} handle,  {c_key_type} key) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_at");
@@ -1797,7 +1941,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_at");
     FALCON_C_API_END({self.error_type_handling(c_value_type)})
 }}
 
-void {self.mangled_name()}_erase({self.chandle()} handle, const {c_key_type} key) {{
+void {self.mangled_name()}_erase({self.chandle()} handle,  {c_key_type} key) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_erase");
@@ -2064,7 +2208,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plusequ
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_plusequals_double({self.chandle()} handle, const double other) {{
+void {self.mangled_name()}_plusequals_double({self.chandle()} handle,  double other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plusequals_double");
@@ -2074,7 +2218,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plusequ
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_plusequals_int({self.chandle()} handle, const int other) {{
+void {self.mangled_name()}_plusequals_int({self.chandle()} handle,  int other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plusequals_int");
@@ -2097,7 +2241,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plus_fa
     FALCON_C_API_END(nullptr)
 }}
 
-{self.chandle()} {self.mangled_name()}_plus_double({self.chandle()} handle, const double other) {{
+{self.chandle()} {self.mangled_name()}_plus_double({self.chandle()} handle,  double other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plus_double");
@@ -2107,7 +2251,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plus_do
     FALCON_C_API_END(nullptr)
 }}
 
-{self.chandle()} {self.mangled_name()}_plus_int({self.chandle()} handle, const int other) {{
+{self.chandle()} {self.mangled_name()}_plus_int({self.chandle()} handle,  int other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plus_int");
@@ -2128,7 +2272,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minuseq
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_minusequals_double({self.chandle()} handle, const double other) {{
+void {self.mangled_name()}_minusequals_double({self.chandle()} handle,  double other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minusequals_double");
@@ -2138,7 +2282,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minuseq
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_minusequals_int({self.chandle()} handle, const int other) {{
+void {self.mangled_name()}_minusequals_int({self.chandle()} handle,  int other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minusequals_int");
@@ -2161,7 +2305,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minus_f
     FALCON_C_API_END(nullptr)
 }}
 
-{self.chandle()} {self.mangled_name()}_minus_double({self.chandle()} handle, const double other) {{
+{self.chandle()} {self.mangled_name()}_minus_double({self.chandle()} handle,  double other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minus_double");
@@ -2171,7 +2315,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minus_d
     FALCON_C_API_END(nullptr)
 }}
 
-{self.chandle()} {self.mangled_name()}_minus_int({self.chandle()} handle, const int other) {{
+{self.chandle()} {self.mangled_name()}_minus_int({self.chandle()} handle,  int other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minus_int");
@@ -2202,7 +2346,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_timeseq
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_timesequals_double({self.chandle()} handle, const double other) {{
+void {self.mangled_name()}_timesequals_double({self.chandle()} handle,  double other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_timesequals_double");
@@ -2212,7 +2356,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_timeseq
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_timesequals_int({self.chandle()} handle, const int other) {{
+void {self.mangled_name()}_timesequals_int({self.chandle()} handle,  int other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_timesequals_int");
@@ -2235,7 +2379,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_times_f
     FALCON_C_API_END(nullptr)
 }}
 
-{self.chandle()} {self.mangled_name()}_times_double({self.chandle()} handle, const double other) {{
+{self.chandle()} {self.mangled_name()}_times_double({self.chandle()} handle,  double other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_times_double");
@@ -2245,7 +2389,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_times_d
     FALCON_C_API_END(nullptr)
 }}
 
-{self.chandle()} {self.mangled_name()}_times_int({self.chandle()} handle, const int other) {{
+{self.chandle()} {self.mangled_name()}_times_int({self.chandle()} handle,  int other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_times_int");
@@ -2266,7 +2410,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_dividesequals_double({self.chandle()} handle, const double other) {{
+void {self.mangled_name()}_dividesequals_double({self.chandle()} handle,  double other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_dividesequals_double");
@@ -2276,7 +2420,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_dividesequals_int({self.chandle()} handle, const int other) {{
+void {self.mangled_name()}_dividesequals_int({self.chandle()} handle,  int other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_dividesequals_int");
@@ -2299,7 +2443,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides
     FALCON_C_API_END(nullptr)
 }}
 
-{self.chandle()} {self.mangled_name()}_divides_double({self.chandle()} handle, const double other) {{
+{self.chandle()} {self.mangled_name()}_divides_double({self.chandle()} handle,  double other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides_double");
@@ -2309,7 +2453,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides
     FALCON_C_API_END(nullptr)
 }}
 
-{self.chandle()} {self.mangled_name()}_divides_int({self.chandle()} handle, const int other) {{
+{self.chandle()} {self.mangled_name()}_divides_int({self.chandle()} handle,  int other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides_int");
@@ -2319,27 +2463,27 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides
     FALCON_C_API_END(nullptr)
 }}
 
-{self.chandle()} {self.mangled_name()}_pow({self.chandle()} handle, const {c_type} other) {{
+{self.chandle()} {self.mangled_name()}_pow({self.chandle()} handle,  {c_type} other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_pow");
 }}
-    const falcon_core::generic::FArray<{cpp_type}>* farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+     falcon_core::generic::FArray<{cpp_type}>* farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<{cpp_type}>(*(*farray ^ other));
     FALCON_C_API_END(nullptr)
 }}
 
-FArrayDoubleHandle {self.mangled_name()}_double_pow({self.chandle()} handle, const double other) {{
+FArrayDoubleHandle {self.mangled_name()}_double_pow({self.chandle()} handle,  double other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_pow");
 }}
-    const falcon_core::generic::FArray<{cpp_type}>* farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
+     falcon_core::generic::FArray<{cpp_type}>* farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return new falcon_core::generic::FArray<double>(*(*farray ^ other));
     FALCON_C_API_END(nullptr)
 }}
 
-void {self.mangled_name()}_pow_inplace({self.chandle()} handle, const {c_type} other) {{
+void {self.mangled_name()}_pow_inplace({self.chandle()} handle,  {c_type} other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_pow");
@@ -2425,7 +2569,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_notequa
     FALCON_C_API_END(false)
 }}
 
-bool {self.mangled_name()}_greaterthan({self.chandle()} handle, const {c_type} value) {{
+bool {self.mangled_name()}_greaterthan({self.chandle()} handle,  {c_type} value) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_greaterthan");
@@ -2435,7 +2579,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_greater
     FALCON_C_API_END(false)
 }}
 
-bool {self.mangled_name()}_lessthan({self.chandle()} handle, const {c_type} value) {{
+bool {self.mangled_name()}_lessthan({self.chandle()} handle,  {c_type} value) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_lessthan");
@@ -2445,7 +2589,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_lesstha
     FALCON_C_API_END(false)
 }}
 
-void {self.mangled_name()}_remove_offset({self.chandle()} handle, const {c_type} offset) {{
+void {self.mangled_name()}_remove_offset({self.chandle()} handle,  {c_type} offset) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_remove_offset");
@@ -2479,7 +2623,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_reshape
     FALCON_C_API_END(nullptr)
 }}
 
-ListListSizeTHandle {self.mangled_name()}_where({self.chandle()} handle, const {c_type} value) {{
+ListListSizeTHandle {self.mangled_name()}_where({self.chandle()} handle,  {c_type} value) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_where");
@@ -2539,7 +2683,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_get_sum
     FALCON_C_API_END(0.0)
 }}
 
-double {self.mangled_name()}_get_summed_diff_int_of_squares({self.chandle()} handle, const int other) {{
+double {self.mangled_name()}_get_summed_diff_int_of_squares({self.chandle()} handle,  int other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_get_summed_diff_int_of_squares");
@@ -2549,7 +2693,7 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_get_sum
     FALCON_C_API_END(0.0)
 }}
 
-double {self.mangled_name()}_get_summed_diff_double_of_squares({self.chandle()} handle, const double other) {{
+double {self.mangled_name()}_get_summed_diff_double_of_squares({self.chandle()} handle,  double other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_get_summed_diff_double_of_squares");

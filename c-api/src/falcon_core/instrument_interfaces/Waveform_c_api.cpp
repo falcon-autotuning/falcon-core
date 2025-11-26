@@ -32,7 +32,7 @@ WaveformHandle Waveform_create(DiscreteSpaceHandle     space,
   FALCON_C_API_END(nullptr)
 }
 
-WaveformHandle Waveform_create_cartesianwaveform(
+WaveformHandle Waveform_create_cartesian_waveform(
     AxesIntHandle                   divisions,
     AxesCoupledLabelledDomainHandle axes,
     AxesMapStringBoolHandle         increasing,
@@ -85,7 +85,7 @@ WaveformHandle Waveform_create_cartesianwaveform(
                                                    self_domain));
   FALCON_C_API_END(nullptr)
 }
-WaveformHandle Waveform_create_cartesianidentitywaveform(
+WaveformHandle Waveform_create_cartesian_identity_waveform(
     AxesIntHandle                   divisions,
     AxesCoupledLabelledDomainHandle axes,
     AxesMapStringBoolHandle         increasing,
@@ -122,7 +122,7 @@ WaveformHandle Waveform_create_cartesianidentitywaveform(
   FALCON_C_API_END(nullptr)
 }
 
-WaveformHandle Waveform_create_cartesianwaveform2D(
+WaveformHandle Waveform_create_cartesian_waveform_2D(
     AxesIntHandle                   divisions,
     AxesCoupledLabelledDomainHandle axes,
     AxesMapStringBoolHandle         increasing,
@@ -176,7 +176,7 @@ WaveformHandle Waveform_create_cartesianwaveform2D(
   FALCON_C_API_END(nullptr)
 }
 
-WaveformHandle Waveform_create_cartesianidentitywaveform2D(
+WaveformHandle Waveform_create_cartesian_identity_waveform_2D(
     AxesIntHandle                   divisions,
     AxesCoupledLabelledDomainHandle axes,
     AxesMapStringBoolHandle         increasing,
@@ -218,7 +218,7 @@ WaveformHandle Waveform_create_cartesianidentitywaveform2D(
   FALCON_C_API_END(nullptr)
 }
 
-WaveformHandle Waveform_create_cartesianwaveform1D(
+WaveformHandle Waveform_create_cartesian_waveform_1D(
     int                         division,
     CoupledLabelledDomainHandle shared_domain,
     MapStringBoolHandle         increasing,
@@ -261,7 +261,7 @@ WaveformHandle Waveform_create_cartesianwaveform1D(
   FALCON_C_API_END(nullptr)
 }
 
-WaveformHandle Waveform_create_cartesianidentitywaveform1D(
+WaveformHandle Waveform_create_cartesian_identity_waveform_1D(
     int                         division,
     CoupledLabelledDomainHandle shared_domain,
     MapStringBoolHandle         increasing,

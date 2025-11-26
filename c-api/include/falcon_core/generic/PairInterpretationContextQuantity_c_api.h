@@ -11,14 +11,21 @@
 typedef void* PairInterpretationContextQuantityHandle;
 // Function declarations
 
+// @category:allocation
 PairInterpretationContextQuantityHandle PairInterpretationContextQuantity_create(InterpretationContextHandle first, QuantityHandle second);
+// @category:deallocation
 void PairInterpretationContextQuantity_destroy(PairInterpretationContextQuantityHandle handle);
+// @category:read
 InterpretationContextHandle PairInterpretationContextQuantity_first(PairInterpretationContextQuantityHandle handle);
+// @category:read
 QuantityHandle PairInterpretationContextQuantity_second(PairInterpretationContextQuantityHandle handle);
+// @category:read
 bool PairInterpretationContextQuantity_equal(PairInterpretationContextQuantityHandle a, PairInterpretationContextQuantityHandle b);
+// @category:read
 bool PairInterpretationContextQuantity_not_equal(PairInterpretationContextQuantityHandle a, PairInterpretationContextQuantityHandle b);
-// Serialization (from Song)
+// @category:read
 StringHandle      PairInterpretationContextQuantity_to_json_string(PairInterpretationContextQuantityHandle handle);
+// @category:allocation
 PairInterpretationContextQuantityHandle PairInterpretationContextQuantity_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

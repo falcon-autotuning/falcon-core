@@ -11,7 +11,7 @@ MapConnectionDoubleHandle MapConnectionDouble_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-MapConnectionDoubleHandle MapConnectionDouble_create(const PairConnectionDoubleHandle* data, size_t count) {
+MapConnectionDoubleHandle MapConnectionDouble_create( PairConnectionDoubleHandle* data, size_t count) {
     FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data pointer passed to MapConnectionDouble_create");
@@ -36,7 +36,7 @@ throw std::invalid_argument("Null handle passed to MapConnectionDouble_destroy")
     FALCON_C_API_END()
 }
 
-void MapConnectionDouble_insert_or_assign(MapConnectionDoubleHandle handle, const ConnectionHandle key, const double value) {
+void MapConnectionDouble_insert_or_assign(MapConnectionDoubleHandle handle,  ConnectionHandle key,  double value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapConnectionDouble_insert_or_assign");
@@ -52,7 +52,7 @@ auto correct_key = std::make_shared<falcon_core::physics::device_structures::Con
     FALCON_C_API_END()
 }
 
-void MapConnectionDouble_insert(MapConnectionDoubleHandle handle, const ConnectionHandle key, const double value) {
+void MapConnectionDouble_insert(MapConnectionDoubleHandle handle,  ConnectionHandle key,  double value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapConnectionDouble_insert");
@@ -68,7 +68,7 @@ auto correct_key = std::make_shared<falcon_core::physics::device_structures::Con
     FALCON_C_API_END()
 }
 
-double MapConnectionDouble_at(MapConnectionDoubleHandle handle, const ConnectionHandle key) {
+double MapConnectionDouble_at(MapConnectionDoubleHandle handle,  ConnectionHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapConnectionDouble_at");
@@ -83,7 +83,7 @@ auto correct_key = std::make_shared<falcon_core::physics::device_structures::Con
     FALCON_C_API_END(0.0)
 }
 
-void MapConnectionDouble_erase(MapConnectionDoubleHandle handle, const ConnectionHandle key) {
+void MapConnectionDouble_erase(MapConnectionDoubleHandle handle,  ConnectionHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapConnectionDouble_erase");

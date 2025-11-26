@@ -8,26 +8,22 @@ extern "C" {
 #include "falcon_core/generic/String_c_api.h"
 typedef void* GnameHandle;
 
-// Constructors
+// @category:allocation
 GnameHandle Gname_create_from_num(int num);
+// @category:allocation
 GnameHandle Gname_create(StringHandle name);
-
-// Destructor
+// @category:deallocation
 void Gname_destroy(GnameHandle handle);
-
-// Methods
-/* AUTO-DOC from cpp: Gname_gname | falcon_core::autotuner_interfaces::names::Gname::gname */
-/**
- * @brief (from C++: falcon_core::autotuner_interfaces::names::Gname::gname)
- * @brief Collect the gname as a string.
- */
+// @category:read
 StringHandle Gname_gname(GnameHandle handle);
-bool         Gname_equal(GnameHandle a, GnameHandle b);
-bool         Gname_not_equal(GnameHandle a, GnameHandle b);
-
-// Serialization (from Song)
+// @category:read
+bool Gname_equal(GnameHandle a, GnameHandle b);
+// @category:read
+bool Gname_not_equal(GnameHandle a, GnameHandle b);
+// @category:read
 StringHandle Gname_to_json_string(GnameHandle handle);
-GnameHandle  Gname_from_json_string(StringHandle json);
+// @category:allocation
+GnameHandle Gname_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

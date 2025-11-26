@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/units/SymbolUnit_c_api.h"
@@ -80,14 +80,14 @@ TEST_F(InterpretationContextTest, Accessors) {
 
 TEST_F(InterpretationContextTest, DependentVariableOps) {
   auto mc3 = MeasurementContext_create(conn, String_wrap("voltmeter"));
-  InterpretationContext_dependent_variable(ctx, mc3);
+  InterpretationContext_add_dependent_variable(ctx, mc3);
   InterpretationContext_replace_dependent_variable(ctx, 0, mc3);
   MeasurementContext_destroy(mc3);
   set_last_error(0, nullptr);
-  InterpretationContext_dependent_variable(nullptr, mc1);
+  InterpretationContext_add_dependent_variable(nullptr, mc1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  InterpretationContext_dependent_variable(ctx, nullptr);
+  InterpretationContext_add_dependent_variable(ctx, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   InterpretationContext_replace_dependent_variable(nullptr, 0, mc1);

@@ -18,48 +18,70 @@
 typedef void* InterpretationContainerQuantityHandle;
 // Function declarations
 
+// @category:allocation
 InterpretationContainerQuantityHandle InterpretationContainerQuantity_create(MapInterpretationContextQuantityHandle map);
+// @category:deallocation
 void InterpretationContainerQuantity_destroy(InterpretationContainerQuantityHandle handle);
+// @category:read
 SymbolUnitHandle InterpretationContainerQuantity_unit(
      InterpretationContainerQuantityHandle handle);
+// @category:read
 ListInterpretationContextHandle InterpretationContainerQuantity_select_by_connection(
     InterpretationContainerQuantityHandle handle, ConnectionHandle connection);
+// @category:read
 ListInterpretationContextHandle InterpretationContainerQuantity_select_by_connections(
                     InterpretationContainerQuantityHandle handle, ConnectionsHandle connections);
+// @category:read
 ListInterpretationContextHandle InterpretationContainerQuantity_select_by_independent_connection(
                     InterpretationContainerQuantityHandle handle, ConnectionHandle connection);
+// @category:read
 ListInterpretationContextHandle InterpretationContainerQuantity_select_by_dependent_connection(
                     InterpretationContainerQuantityHandle handle, ConnectionHandle connection);
+// @category:read
 ListInterpretationContextHandle InterpretationContainerQuantity_select_contexts(
     InterpretationContainerQuantityHandle handle,
     ListConnectionHandle                independent_connections,
     ListConnectionHandle                dependent_connections);
+// @category:write
 void InterpretationContainerQuantity_insert_or_assign(InterpretationContainerQuantityHandle handle,
-    const InterpretationContextHandle   key,
-    const QuantityHandle value);
+     InterpretationContextHandle   key,
+     QuantityHandle value);
+// @category:write
 void InterpretationContainerQuantity_insert(
     InterpretationContainerQuantityHandle handle,
-    const InterpretationContextHandle   key,
-    const QuantityHandle value);
+     InterpretationContextHandle   key,
+     QuantityHandle value);
+// @category:read
 QuantityHandle InterpretationContainerQuantity_at(InterpretationContainerQuantityHandle handle,
-    const InterpretationContextHandle   key);
+     InterpretationContextHandle   key);
+// @category:write
 void InterpretationContainerQuantity_erase(InterpretationContainerQuantityHandle handle,
-    const InterpretationContextHandle   key);
+     InterpretationContextHandle   key);
+// @category:read
 size_t InterpretationContainerQuantity_size(InterpretationContainerQuantityHandle handle);
+// @category:read
 bool InterpretationContainerQuantity_empty(InterpretationContainerQuantityHandle handle);
+// @category:write
 void InterpretationContainerQuantity_clear(InterpretationContainerQuantityHandle handle);
+// @category:read
 bool InterpretationContainerQuantity_contains(InterpretationContainerQuantityHandle handle,
-    const InterpretationContextHandle   key);
+     InterpretationContextHandle   key);
+// @category:read
 ListInterpretationContextHandle InterpretationContainerQuantity_keys(
                     InterpretationContainerQuantityHandle handle);
+// @category:read
 ListQuantityHandle InterpretationContainerQuantity_values(InterpretationContainerQuantityHandle handle);
+// @category:read
 ListPairInterpretationContextQuantityHandle InterpretationContainerQuantity_items(
                     InterpretationContainerQuantityHandle handle);
+// @category:read
 bool InterpretationContainerQuantity_equal(InterpretationContainerQuantityHandle handle,InterpretationContainerQuantityHandle other);
+// @category:read
 bool InterpretationContainerQuantity_not_equal(InterpretationContainerQuantityHandle handle,InterpretationContainerQuantityHandle other);
 
-// Serialization (from Song)
+// @category:read
 StringHandle      InterpretationContainerQuantity_to_json_string(InterpretationContainerQuantityHandle handle);
+// @category:allocation
 InterpretationContainerQuantityHandle InterpretationContainerQuantity_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

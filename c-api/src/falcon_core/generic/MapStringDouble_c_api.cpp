@@ -10,7 +10,7 @@ MapStringDoubleHandle MapStringDouble_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-MapStringDoubleHandle MapStringDouble_create(const PairStringDoubleHandle* data, size_t count) {
+MapStringDoubleHandle MapStringDouble_create( PairStringDoubleHandle* data, size_t count) {
     FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data pointer passed to MapStringDouble_create");
@@ -35,7 +35,7 @@ throw std::invalid_argument("Null handle passed to MapStringDouble_destroy");
     FALCON_C_API_END()
 }
 
-void MapStringDouble_insert_or_assign(MapStringDoubleHandle handle, const StringHandle key, const double value) {
+void MapStringDouble_insert_or_assign(MapStringDoubleHandle handle,  StringHandle key,  double value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringDouble_insert_or_assign");
@@ -50,7 +50,7 @@ throw std::invalid_argument("Null handle passed to MapStringDouble_insert_or_ass
     FALCON_C_API_END()
 }
 
-void MapStringDouble_insert(MapStringDoubleHandle handle, const StringHandle key, const double value) {
+void MapStringDouble_insert(MapStringDoubleHandle handle,  StringHandle key,  double value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringDouble_insert");
@@ -65,7 +65,7 @@ throw std::invalid_argument("Null handle passed to MapStringDouble_insert");
     FALCON_C_API_END()
 }
 
-double MapStringDouble_at(MapStringDoubleHandle handle, const StringHandle key) {
+double MapStringDouble_at(MapStringDoubleHandle handle,  StringHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringDouble_at");
@@ -79,7 +79,7 @@ throw std::invalid_argument("Null handle passed to MapStringDouble_at");
     FALCON_C_API_END(0.0)
 }
 
-void MapStringDouble_erase(MapStringDoubleHandle handle, const StringHandle key) {
+void MapStringDouble_erase(MapStringDoubleHandle handle,  StringHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringDouble_erase");

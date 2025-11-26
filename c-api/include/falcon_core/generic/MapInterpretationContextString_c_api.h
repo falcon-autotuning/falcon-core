@@ -12,24 +12,41 @@
 typedef void* MapInterpretationContextStringHandle;
 // Function declarations
 
+// @category:allocation
 MapInterpretationContextStringHandle MapInterpretationContextString_create_empty();
-MapInterpretationContextStringHandle MapInterpretationContextString_create(const PairInterpretationContextStringHandle* data, size_t count);
+// @category:allocation
+MapInterpretationContextStringHandle MapInterpretationContextString_create(PairInterpretationContextStringHandle* data, size_t count);
+// @category:deallocation
 void MapInterpretationContextString_destroy(MapInterpretationContextStringHandle handle);
-void MapInterpretationContextString_insert_or_assign(MapInterpretationContextStringHandle handle, const InterpretationContextHandle key, const StringHandle value);
-void MapInterpretationContextString_insert(MapInterpretationContextStringHandle handle, const InterpretationContextHandle key, const StringHandle value);
-StringHandle MapInterpretationContextString_at(MapInterpretationContextStringHandle handle, const InterpretationContextHandle key);
-void MapInterpretationContextString_erase(MapInterpretationContextStringHandle handle, const InterpretationContextHandle key);
+// @category:write
+void MapInterpretationContextString_insert_or_assign(MapInterpretationContextStringHandle handle, InterpretationContextHandle key, StringHandle value);
+// @category:write
+void MapInterpretationContextString_insert(MapInterpretationContextStringHandle handle, InterpretationContextHandle key, StringHandle value);
+// @category:read
+StringHandle MapInterpretationContextString_at(MapInterpretationContextStringHandle handle, InterpretationContextHandle key);
+// @category:write
+void MapInterpretationContextString_erase(MapInterpretationContextStringHandle handle, InterpretationContextHandle key);
+// @category:read
 size_t MapInterpretationContextString_size(MapInterpretationContextStringHandle handle);
+// @category:read
 bool MapInterpretationContextString_empty(MapInterpretationContextStringHandle handle);
+// @category:write
 void MapInterpretationContextString_clear(MapInterpretationContextStringHandle handle);
-bool MapInterpretationContextString_contains(MapInterpretationContextStringHandle handle, const InterpretationContextHandle key);
+// @category:read
+bool MapInterpretationContextString_contains(MapInterpretationContextStringHandle handle, InterpretationContextHandle key);
+// @category:read
 ListInterpretationContextHandle MapInterpretationContextString_keys(MapInterpretationContextStringHandle handle);
+// @category:read
 ListStringHandle MapInterpretationContextString_values(MapInterpretationContextStringHandle handle);
+// @category:read
 ListPairInterpretationContextStringHandle MapInterpretationContextString_items(MapInterpretationContextStringHandle handle);
+// @category:read
 bool MapInterpretationContextString_equal(MapInterpretationContextStringHandle a, MapInterpretationContextStringHandle b);
+// @category:read
 bool MapInterpretationContextString_not_equal(MapInterpretationContextStringHandle a, MapInterpretationContextStringHandle b);
-// Serialization (from Song)
+// @category:read
 StringHandle      MapInterpretationContextString_to_json_string(MapInterpretationContextStringHandle handle);
+// @category:allocation
 MapInterpretationContextStringHandle MapInterpretationContextString_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

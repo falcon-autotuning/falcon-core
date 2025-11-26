@@ -12,7 +12,7 @@ MapGnameGroupHandle MapGnameGroup_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-MapGnameGroupHandle MapGnameGroup_create(const PairGnameGroupHandle* data, size_t count) {
+MapGnameGroupHandle MapGnameGroup_create( PairGnameGroupHandle* data, size_t count) {
     FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data pointer passed to MapGnameGroup_create");
@@ -37,7 +37,7 @@ throw std::invalid_argument("Null handle passed to MapGnameGroup_destroy");
     FALCON_C_API_END()
 }
 
-void MapGnameGroup_insert_or_assign(MapGnameGroupHandle handle, const GnameHandle key, const GroupHandle value) {
+void MapGnameGroup_insert_or_assign(MapGnameGroupHandle handle,  GnameHandle key,  GroupHandle value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapGnameGroup_insert_or_assign");
@@ -58,7 +58,7 @@ auto correct_value = std::make_shared<falcon_core::physics::config::core::Group>
     FALCON_C_API_END()
 }
 
-void MapGnameGroup_insert(MapGnameGroupHandle handle, const GnameHandle key, const GroupHandle value) {
+void MapGnameGroup_insert(MapGnameGroupHandle handle,  GnameHandle key,  GroupHandle value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapGnameGroup_insert");
@@ -79,7 +79,7 @@ auto correct_value = std::make_shared<falcon_core::physics::config::core::Group>
     FALCON_C_API_END()
 }
 
-GroupHandle MapGnameGroup_at(MapGnameGroupHandle handle, const GnameHandle key) {
+GroupHandle MapGnameGroup_at(MapGnameGroupHandle handle,  GnameHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapGnameGroup_at");
@@ -94,7 +94,7 @@ auto correct_key = std::make_shared<falcon_core::autotuner_interfaces::names::Gn
     FALCON_C_API_END(nullptr)
 }
 
-void MapGnameGroup_erase(MapGnameGroupHandle handle, const GnameHandle key) {
+void MapGnameGroup_erase(MapGnameGroupHandle handle,  GnameHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapGnameGroup_erase");

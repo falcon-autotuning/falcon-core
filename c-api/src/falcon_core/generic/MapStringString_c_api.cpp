@@ -10,7 +10,7 @@ MapStringStringHandle MapStringString_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-MapStringStringHandle MapStringString_create(const PairStringStringHandle* data, size_t count) {
+MapStringStringHandle MapStringString_create( PairStringStringHandle* data, size_t count) {
     FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data pointer passed to MapStringString_create");
@@ -35,7 +35,7 @@ throw std::invalid_argument("Null handle passed to MapStringString_destroy");
     FALCON_C_API_END()
 }
 
-void MapStringString_insert_or_assign(MapStringStringHandle handle, const StringHandle key, const StringHandle value) {
+void MapStringString_insert_or_assign(MapStringStringHandle handle,  StringHandle key,  StringHandle value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringString_insert_or_assign");
@@ -54,7 +54,7 @@ throw std::invalid_argument("Null handle passed to MapStringString_insert_or_ass
     FALCON_C_API_END()
 }
 
-void MapStringString_insert(MapStringStringHandle handle, const StringHandle key, const StringHandle value) {
+void MapStringString_insert(MapStringStringHandle handle,  StringHandle key,  StringHandle value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringString_insert");
@@ -73,7 +73,7 @@ throw std::invalid_argument("Null handle passed to MapStringString_insert");
     FALCON_C_API_END()
 }
 
-StringHandle MapStringString_at(MapStringStringHandle handle, const StringHandle key) {
+StringHandle MapStringString_at(MapStringStringHandle handle,  StringHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringString_at");
@@ -92,7 +92,7 @@ throw std::invalid_argument("Null handle passed to MapStringString_at");
     FALCON_C_API_END(nullptr)
 }
 
-void MapStringString_erase(MapStringStringHandle handle, const StringHandle key) {
+void MapStringString_erase(MapStringStringHandle handle,  StringHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringString_erase");

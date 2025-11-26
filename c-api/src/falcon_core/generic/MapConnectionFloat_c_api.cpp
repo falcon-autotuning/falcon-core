@@ -11,7 +11,7 @@ MapConnectionFloatHandle MapConnectionFloat_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-MapConnectionFloatHandle MapConnectionFloat_create(const PairConnectionFloatHandle* data, size_t count) {
+MapConnectionFloatHandle MapConnectionFloat_create( PairConnectionFloatHandle* data, size_t count) {
     FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data pointer passed to MapConnectionFloat_create");
@@ -36,7 +36,7 @@ throw std::invalid_argument("Null handle passed to MapConnectionFloat_destroy");
     FALCON_C_API_END()
 }
 
-void MapConnectionFloat_insert_or_assign(MapConnectionFloatHandle handle, const ConnectionHandle key, const float value) {
+void MapConnectionFloat_insert_or_assign(MapConnectionFloatHandle handle,  ConnectionHandle key,  float value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapConnectionFloat_insert_or_assign");
@@ -52,7 +52,7 @@ auto correct_key = std::make_shared<falcon_core::physics::device_structures::Con
     FALCON_C_API_END()
 }
 
-void MapConnectionFloat_insert(MapConnectionFloatHandle handle, const ConnectionHandle key, const float value) {
+void MapConnectionFloat_insert(MapConnectionFloatHandle handle,  ConnectionHandle key,  float value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapConnectionFloat_insert");
@@ -68,7 +68,7 @@ auto correct_key = std::make_shared<falcon_core::physics::device_structures::Con
     FALCON_C_API_END()
 }
 
-float MapConnectionFloat_at(MapConnectionFloatHandle handle, const ConnectionHandle key) {
+float MapConnectionFloat_at(MapConnectionFloatHandle handle,  ConnectionHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapConnectionFloat_at");
@@ -83,7 +83,7 @@ auto correct_key = std::make_shared<falcon_core::physics::device_structures::Con
     FALCON_C_API_END(0.0)
 }
 
-void MapConnectionFloat_erase(MapConnectionFloatHandle handle, const ConnectionHandle key) {
+void MapConnectionFloat_erase(MapConnectionFloatHandle handle,  ConnectionHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapConnectionFloat_erase");

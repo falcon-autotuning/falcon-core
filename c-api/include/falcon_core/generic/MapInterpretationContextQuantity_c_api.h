@@ -12,24 +12,41 @@
 typedef void* MapInterpretationContextQuantityHandle;
 // Function declarations
 
+// @category:allocation
 MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_create_empty();
-MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_create(const PairInterpretationContextQuantityHandle* data, size_t count);
+// @category:allocation
+MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_create(PairInterpretationContextQuantityHandle* data, size_t count);
+// @category:deallocation
 void MapInterpretationContextQuantity_destroy(MapInterpretationContextQuantityHandle handle);
-void MapInterpretationContextQuantity_insert_or_assign(MapInterpretationContextQuantityHandle handle, const InterpretationContextHandle key, const QuantityHandle value);
-void MapInterpretationContextQuantity_insert(MapInterpretationContextQuantityHandle handle, const InterpretationContextHandle key, const QuantityHandle value);
-QuantityHandle MapInterpretationContextQuantity_at(MapInterpretationContextQuantityHandle handle, const InterpretationContextHandle key);
-void MapInterpretationContextQuantity_erase(MapInterpretationContextQuantityHandle handle, const InterpretationContextHandle key);
+// @category:write
+void MapInterpretationContextQuantity_insert_or_assign(MapInterpretationContextQuantityHandle handle, InterpretationContextHandle key, QuantityHandle value);
+// @category:write
+void MapInterpretationContextQuantity_insert(MapInterpretationContextQuantityHandle handle, InterpretationContextHandle key, QuantityHandle value);
+// @category:read
+QuantityHandle MapInterpretationContextQuantity_at(MapInterpretationContextQuantityHandle handle, InterpretationContextHandle key);
+// @category:write
+void MapInterpretationContextQuantity_erase(MapInterpretationContextQuantityHandle handle, InterpretationContextHandle key);
+// @category:read
 size_t MapInterpretationContextQuantity_size(MapInterpretationContextQuantityHandle handle);
+// @category:read
 bool MapInterpretationContextQuantity_empty(MapInterpretationContextQuantityHandle handle);
+// @category:write
 void MapInterpretationContextQuantity_clear(MapInterpretationContextQuantityHandle handle);
-bool MapInterpretationContextQuantity_contains(MapInterpretationContextQuantityHandle handle, const InterpretationContextHandle key);
+// @category:read
+bool MapInterpretationContextQuantity_contains(MapInterpretationContextQuantityHandle handle, InterpretationContextHandle key);
+// @category:read
 ListInterpretationContextHandle MapInterpretationContextQuantity_keys(MapInterpretationContextQuantityHandle handle);
+// @category:read
 ListQuantityHandle MapInterpretationContextQuantity_values(MapInterpretationContextQuantityHandle handle);
+// @category:read
 ListPairInterpretationContextQuantityHandle MapInterpretationContextQuantity_items(MapInterpretationContextQuantityHandle handle);
+// @category:read
 bool MapInterpretationContextQuantity_equal(MapInterpretationContextQuantityHandle a, MapInterpretationContextQuantityHandle b);
+// @category:read
 bool MapInterpretationContextQuantity_not_equal(MapInterpretationContextQuantityHandle a, MapInterpretationContextQuantityHandle b);
-// Serialization (from Song)
+// @category:read
 StringHandle      MapInterpretationContextQuantity_to_json_string(MapInterpretationContextQuantityHandle handle);
+// @category:allocation
 MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

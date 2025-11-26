@@ -10,14 +10,21 @@
 typedef void* PairConnectionConnectionsHandle;
 // Function declarations
 
+// @category:allocation
 PairConnectionConnectionsHandle PairConnectionConnections_create(ConnectionHandle first, ConnectionsHandle second);
+// @category:deallocation
 void PairConnectionConnections_destroy(PairConnectionConnectionsHandle handle);
+// @category:read
 ConnectionHandle PairConnectionConnections_first(PairConnectionConnectionsHandle handle);
+// @category:read
 ConnectionsHandle PairConnectionConnections_second(PairConnectionConnectionsHandle handle);
+// @category:read
 bool PairConnectionConnections_equal(PairConnectionConnectionsHandle a, PairConnectionConnectionsHandle b);
+// @category:read
 bool PairConnectionConnections_not_equal(PairConnectionConnectionsHandle a, PairConnectionConnectionsHandle b);
-// Serialization (from Song)
+// @category:read
 StringHandle      PairConnectionConnections_to_json_string(PairConnectionConnectionsHandle handle);
+// @category:allocation
 PairConnectionConnectionsHandle PairConnectionConnections_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

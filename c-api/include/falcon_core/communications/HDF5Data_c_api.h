@@ -17,7 +17,7 @@ extern "C" {
 
 typedef void* HDF5DataHandle;
 
-// Constructors
+// @category:allocation
 HDF5DataHandle HDF5Data_create(AxesIntHandle                   shape,
                                AxesControlArrayHandle          unit_domain,
                                AxesCoupledLabelledDomainHandle domain_labels,
@@ -26,7 +26,9 @@ HDF5DataHandle HDF5Data_create(AxesIntHandle                   shape,
                                StringHandle          measurement_title,
                                int                   unique_id,
                                int                   timestamp);
+// @category:allocation
 HDF5DataHandle HDF5Data_create_from_file(StringHandle path);
+// @category:allocation
 HDF5DataHandle HDF5Data_create_from_communications(
     MeasurementRequestHandle  request,
     MeasurementResponseHandle response,
@@ -35,32 +37,20 @@ HDF5DataHandle HDF5Data_create_from_communications(
     StringHandle              measurement_title,
     int                       unique_id,
     int                       timestamp);
-
-// Destructor
+// @category:deallocation
 void HDF5Data_destroy(HDF5DataHandle handle);
-
-// Methods
-/* AUTO-DOC from cpp: HDF5Data_to_file | falcon_core::communications::HDF5Data::to_file */
-/**
- * @brief (from C++: falcon_core::communications::HDF5Data::to_file)
- * @brief Convert from an HDF5Data object to a file.
- * @param path The path to write the HDF5 file at.
- */
+// @category:read
 void HDF5Data_to_file(HDF5DataHandle handle, StringHandle path);
-/* AUTO-DOC from cpp: HDF5Data_to_communications | falcon_core::communications::HDF5Data::to_communications */
-/**
- * @brief (from C++: falcon_core::communications::HDF5Data::to_communications)
- * @brief Convert from an HDF5Data object to a MeasurementResponse and a
- * Metadata.
- * @return A pair of MeasurementResponse and MeasurementRequest.
- */
+// @category:read
 PairMeasurementResponseMeasurementRequestHandle HDF5Data_to_communications(
     HDF5DataHandle handle);
+// @category:read
 bool HDF5Data_equal(HDF5DataHandle handle, HDF5DataHandle other);
+// @category:read
 bool HDF5Data_not_equal(HDF5DataHandle handle, HDF5DataHandle other);
-
-// Serialization (from Song)
-StringHandle   HDF5Data_to_json_string(HDF5DataHandle handle);
+// @category:read
+StringHandle HDF5Data_to_json_string(HDF5DataHandle handle);
+// @category:allocation
 HDF5DataHandle HDF5Data_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

@@ -12,7 +12,7 @@ MapInstrumentPortPortTransformHandle MapInstrumentPortPortTransform_create_empty
     FALCON_C_API_END(nullptr)
 }
 
-MapInstrumentPortPortTransformHandle MapInstrumentPortPortTransform_create(const PairInstrumentPortPortTransformHandle* data, size_t count) {
+MapInstrumentPortPortTransformHandle MapInstrumentPortPortTransform_create( PairInstrumentPortPortTransformHandle* data, size_t count) {
     FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data pointer passed to MapInstrumentPortPortTransform_create");
@@ -37,7 +37,7 @@ throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransfor
     FALCON_C_API_END()
 }
 
-void MapInstrumentPortPortTransform_insert_or_assign(MapInstrumentPortPortTransformHandle handle, const InstrumentPortHandle key, const PortTransformHandle value) {
+void MapInstrumentPortPortTransform_insert_or_assign(MapInstrumentPortPortTransformHandle handle,  InstrumentPortHandle key,  PortTransformHandle value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransform_insert_or_assign");
@@ -58,7 +58,7 @@ auto correct_value = std::make_shared<falcon_core::instrument_interfaces::port_t
     FALCON_C_API_END()
 }
 
-void MapInstrumentPortPortTransform_insert(MapInstrumentPortPortTransformHandle handle, const InstrumentPortHandle key, const PortTransformHandle value) {
+void MapInstrumentPortPortTransform_insert(MapInstrumentPortPortTransformHandle handle,  InstrumentPortHandle key,  PortTransformHandle value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransform_insert");
@@ -79,7 +79,7 @@ auto correct_value = std::make_shared<falcon_core::instrument_interfaces::port_t
     FALCON_C_API_END()
 }
 
-PortTransformHandle MapInstrumentPortPortTransform_at(MapInstrumentPortPortTransformHandle handle, const InstrumentPortHandle key) {
+PortTransformHandle MapInstrumentPortPortTransform_at(MapInstrumentPortPortTransformHandle handle,  InstrumentPortHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransform_at");
@@ -94,7 +94,7 @@ auto correct_key = std::make_shared<falcon_core::instrument_interfaces::names::I
     FALCON_C_API_END(nullptr)
 }
 
-void MapInstrumentPortPortTransform_erase(MapInstrumentPortPortTransformHandle handle, const InstrumentPortHandle key) {
+void MapInstrumentPortPortTransform_erase(MapInstrumentPortPortTransformHandle handle,  InstrumentPortHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransform_erase");

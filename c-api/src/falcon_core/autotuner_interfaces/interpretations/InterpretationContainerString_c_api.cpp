@@ -131,8 +131,8 @@ ListInterpretationContextHandle InterpretationContainerString_select_contexts(
 }
 
 void InterpretationContainerString_insert_or_assign(InterpretationContainerStringHandle handle,
-    const InterpretationContextHandle   key,
-    const StringHandle value) {
+     InterpretationContextHandle   key,
+     StringHandle value) {
     FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to InterpretationContainerString_insert_or_assign");
@@ -153,8 +153,8 @@ void InterpretationContainerString_insert_or_assign(InterpretationContainerStrin
 
 void InterpretationContainerString_insert(
     InterpretationContainerStringHandle handle,
-    const InterpretationContextHandle   key,
-    const StringHandle value) {
+     InterpretationContextHandle   key,
+     StringHandle value) {
     FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to InterpretationContainerString_insert");
@@ -174,7 +174,7 @@ void InterpretationContainerString_insert(
 }
 
 StringHandle InterpretationContainerString_at(InterpretationContainerStringHandle handle,
-    const InterpretationContextHandle   key) {
+     InterpretationContextHandle   key) {
     FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to InterpretationContainerString_at");
@@ -190,7 +190,7 @@ StringHandle InterpretationContainerString_at(InterpretationContainerStringHandl
 }
 
 void InterpretationContainerString_erase(InterpretationContainerStringHandle handle,
-    const InterpretationContextHandle   key) {
+     InterpretationContextHandle   key) {
     FALCON_C_API_BEGIN
     if (!handle) {
     throw std::invalid_argument("Null handle passed to InterpretationContainerString_erase");
@@ -235,7 +235,7 @@ throw std::invalid_argument("Null handle passed to InterpretationContainerString
 }
 
 bool InterpretationContainerString_contains(InterpretationContainerStringHandle handle,
-    const InterpretationContextHandle   key) {
+     InterpretationContextHandle   key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to InterpretationContainerString_contains");

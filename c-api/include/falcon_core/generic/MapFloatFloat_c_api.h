@@ -11,24 +11,41 @@
 typedef void* MapFloatFloatHandle;
 // Function declarations
 
+// @category:allocation
 MapFloatFloatHandle MapFloatFloat_create_empty();
-MapFloatFloatHandle MapFloatFloat_create(const PairFloatFloatHandle* data, size_t count);
+// @category:allocation
+MapFloatFloatHandle MapFloatFloat_create(PairFloatFloatHandle* data, size_t count);
+// @category:deallocation
 void MapFloatFloat_destroy(MapFloatFloatHandle handle);
-void MapFloatFloat_insert_or_assign(MapFloatFloatHandle handle, const float key, const float value);
-void MapFloatFloat_insert(MapFloatFloatHandle handle, const float key, const float value);
-float MapFloatFloat_at(MapFloatFloatHandle handle, const float key);
-void MapFloatFloat_erase(MapFloatFloatHandle handle, const float key);
+// @category:write
+void MapFloatFloat_insert_or_assign(MapFloatFloatHandle handle, float key, float value);
+// @category:write
+void MapFloatFloat_insert(MapFloatFloatHandle handle, float key, float value);
+// @category:read
+float MapFloatFloat_at(MapFloatFloatHandle handle, float key);
+// @category:write
+void MapFloatFloat_erase(MapFloatFloatHandle handle, float key);
+// @category:read
 size_t MapFloatFloat_size(MapFloatFloatHandle handle);
+// @category:read
 bool MapFloatFloat_empty(MapFloatFloatHandle handle);
+// @category:write
 void MapFloatFloat_clear(MapFloatFloatHandle handle);
-bool MapFloatFloat_contains(MapFloatFloatHandle handle, const float key);
+// @category:read
+bool MapFloatFloat_contains(MapFloatFloatHandle handle, float key);
+// @category:read
 ListFloatHandle MapFloatFloat_keys(MapFloatFloatHandle handle);
+// @category:read
 ListFloatHandle MapFloatFloat_values(MapFloatFloatHandle handle);
+// @category:read
 ListPairFloatFloatHandle MapFloatFloat_items(MapFloatFloatHandle handle);
+// @category:read
 bool MapFloatFloat_equal(MapFloatFloatHandle a, MapFloatFloatHandle b);
+// @category:read
 bool MapFloatFloat_not_equal(MapFloatFloatHandle a, MapFloatFloatHandle b);
-// Serialization (from Song)
+// @category:read
 StringHandle      MapFloatFloat_to_json_string(MapFloatFloatHandle handle);
+// @category:allocation
 MapFloatFloatHandle MapFloatFloat_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

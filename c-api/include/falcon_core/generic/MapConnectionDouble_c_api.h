@@ -12,24 +12,41 @@
 typedef void* MapConnectionDoubleHandle;
 // Function declarations
 
+// @category:allocation
 MapConnectionDoubleHandle MapConnectionDouble_create_empty();
-MapConnectionDoubleHandle MapConnectionDouble_create(const PairConnectionDoubleHandle* data, size_t count);
+// @category:allocation
+MapConnectionDoubleHandle MapConnectionDouble_create(PairConnectionDoubleHandle* data, size_t count);
+// @category:deallocation
 void MapConnectionDouble_destroy(MapConnectionDoubleHandle handle);
-void MapConnectionDouble_insert_or_assign(MapConnectionDoubleHandle handle, const ConnectionHandle key, const double value);
-void MapConnectionDouble_insert(MapConnectionDoubleHandle handle, const ConnectionHandle key, const double value);
-double MapConnectionDouble_at(MapConnectionDoubleHandle handle, const ConnectionHandle key);
-void MapConnectionDouble_erase(MapConnectionDoubleHandle handle, const ConnectionHandle key);
+// @category:write
+void MapConnectionDouble_insert_or_assign(MapConnectionDoubleHandle handle, ConnectionHandle key, double value);
+// @category:write
+void MapConnectionDouble_insert(MapConnectionDoubleHandle handle, ConnectionHandle key, double value);
+// @category:read
+double MapConnectionDouble_at(MapConnectionDoubleHandle handle, ConnectionHandle key);
+// @category:write
+void MapConnectionDouble_erase(MapConnectionDoubleHandle handle, ConnectionHandle key);
+// @category:read
 size_t MapConnectionDouble_size(MapConnectionDoubleHandle handle);
+// @category:read
 bool MapConnectionDouble_empty(MapConnectionDoubleHandle handle);
+// @category:write
 void MapConnectionDouble_clear(MapConnectionDoubleHandle handle);
-bool MapConnectionDouble_contains(MapConnectionDoubleHandle handle, const ConnectionHandle key);
+// @category:read
+bool MapConnectionDouble_contains(MapConnectionDoubleHandle handle, ConnectionHandle key);
+// @category:read
 ListConnectionHandle MapConnectionDouble_keys(MapConnectionDoubleHandle handle);
+// @category:read
 ListDoubleHandle MapConnectionDouble_values(MapConnectionDoubleHandle handle);
+// @category:read
 ListPairConnectionDoubleHandle MapConnectionDouble_items(MapConnectionDoubleHandle handle);
+// @category:read
 bool MapConnectionDouble_equal(MapConnectionDoubleHandle a, MapConnectionDoubleHandle b);
+// @category:read
 bool MapConnectionDouble_not_equal(MapConnectionDoubleHandle a, MapConnectionDoubleHandle b);
-// Serialization (from Song)
+// @category:read
 StringHandle      MapConnectionDouble_to_json_string(MapConnectionDoubleHandle handle);
+// @category:allocation
 MapConnectionDoubleHandle MapConnectionDouble_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

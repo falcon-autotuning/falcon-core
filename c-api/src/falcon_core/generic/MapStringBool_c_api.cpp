@@ -10,7 +10,7 @@ MapStringBoolHandle MapStringBool_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-MapStringBoolHandle MapStringBool_create(const PairStringBoolHandle* data, size_t count) {
+MapStringBoolHandle MapStringBool_create( PairStringBoolHandle* data, size_t count) {
     FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data pointer passed to MapStringBool_create");
@@ -35,7 +35,7 @@ throw std::invalid_argument("Null handle passed to MapStringBool_destroy");
     FALCON_C_API_END()
 }
 
-void MapStringBool_insert_or_assign(MapStringBoolHandle handle, const StringHandle key, const bool value) {
+void MapStringBool_insert_or_assign(MapStringBoolHandle handle,  StringHandle key,  bool value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringBool_insert_or_assign");
@@ -50,7 +50,7 @@ throw std::invalid_argument("Null handle passed to MapStringBool_insert_or_assig
     FALCON_C_API_END()
 }
 
-void MapStringBool_insert(MapStringBoolHandle handle, const StringHandle key, const bool value) {
+void MapStringBool_insert(MapStringBoolHandle handle,  StringHandle key,  bool value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringBool_insert");
@@ -65,7 +65,7 @@ throw std::invalid_argument("Null handle passed to MapStringBool_insert");
     FALCON_C_API_END()
 }
 
-bool MapStringBool_at(MapStringBoolHandle handle, const StringHandle key) {
+bool MapStringBool_at(MapStringBoolHandle handle,  StringHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringBool_at");
@@ -79,7 +79,7 @@ throw std::invalid_argument("Null handle passed to MapStringBool_at");
     FALCON_C_API_END(false)
 }
 
-void MapStringBool_erase(MapStringBoolHandle handle, const StringHandle key) {
+void MapStringBool_erase(MapStringBoolHandle handle,  StringHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringBool_erase");

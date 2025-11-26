@@ -9,14 +9,21 @@
 typedef void* PairIntIntHandle;
 // Function declarations
 
+// @category:allocation
 PairIntIntHandle PairIntInt_create(int first, int second);
+// @category:deallocation
 void PairIntInt_destroy(PairIntIntHandle handle);
+// @category:read
 int PairIntInt_first(PairIntIntHandle handle);
+// @category:read
 int PairIntInt_second(PairIntIntHandle handle);
+// @category:read
 bool PairIntInt_equal(PairIntIntHandle a, PairIntIntHandle b);
+// @category:read
 bool PairIntInt_not_equal(PairIntIntHandle a, PairIntIntHandle b);
-// Serialization (from Song)
+// @category:read
 StringHandle      PairIntInt_to_json_string(PairIntIntHandle handle);
+// @category:allocation
 PairIntIntHandle PairIntInt_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

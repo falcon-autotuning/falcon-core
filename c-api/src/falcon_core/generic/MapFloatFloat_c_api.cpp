@@ -10,7 +10,7 @@ MapFloatFloatHandle MapFloatFloat_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-MapFloatFloatHandle MapFloatFloat_create(const PairFloatFloatHandle* data, size_t count) {
+MapFloatFloatHandle MapFloatFloat_create( PairFloatFloatHandle* data, size_t count) {
     FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data pointer passed to MapFloatFloat_create");
@@ -35,7 +35,7 @@ throw std::invalid_argument("Null handle passed to MapFloatFloat_destroy");
     FALCON_C_API_END()
 }
 
-void MapFloatFloat_insert_or_assign(MapFloatFloatHandle handle, const float key, const float value) {
+void MapFloatFloat_insert_or_assign(MapFloatFloatHandle handle,  float key,  float value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapFloatFloat_insert_or_assign");
@@ -46,7 +46,7 @@ throw std::invalid_argument("Null handle passed to MapFloatFloat_insert_or_assig
     FALCON_C_API_END()
 }
 
-void MapFloatFloat_insert(MapFloatFloatHandle handle, const float key, const float value) {
+void MapFloatFloat_insert(MapFloatFloatHandle handle,  float key,  float value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapFloatFloat_insert");
@@ -57,7 +57,7 @@ throw std::invalid_argument("Null handle passed to MapFloatFloat_insert");
     FALCON_C_API_END()
 }
 
-float MapFloatFloat_at(MapFloatFloatHandle handle, const float key) {
+float MapFloatFloat_at(MapFloatFloatHandle handle,  float key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapFloatFloat_at");
@@ -67,7 +67,7 @@ throw std::invalid_argument("Null handle passed to MapFloatFloat_at");
     FALCON_C_API_END(0.0)
 }
 
-void MapFloatFloat_erase(MapFloatFloatHandle handle, const float key) {
+void MapFloatFloat_erase(MapFloatFloatHandle handle,  float key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapFloatFloat_erase");

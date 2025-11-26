@@ -9,25 +9,26 @@ extern "C" {
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
 typedef void* MeasurementResponseHandle;
 
-// Constructors
+// @category:allocation
 MeasurementResponseHandle MeasurementResponse_create(
     LabelledArraysLabelledMeasuredArrayHandle arrays);
-
-// Destructor
+// @category:deallocation
 void MeasurementResponse_destroy(MeasurementResponseHandle handle);
-
-// Methods
+// @category:read
 LabelledArraysLabelledMeasuredArrayHandle MeasurementResponse_arrays(
     MeasurementResponseHandle handle);
+// @category:read
 StringHandle MeasurementResponse_message(MeasurementResponseHandle handle);
-bool         MeasurementResponse_equal(MeasurementResponseHandle handle,
-                                       MeasurementResponseHandle other);
-bool         MeasurementResponse_not_equal(MeasurementResponseHandle handle,
-                                           MeasurementResponseHandle other);
-
-// Serialization (from Song)
+// @category:read
+bool MeasurementResponse_equal(MeasurementResponseHandle handle,
+                               MeasurementResponseHandle other);
+// @category:read
+bool MeasurementResponse_not_equal(MeasurementResponseHandle handle,
+                                   MeasurementResponseHandle other);
+// @category:read
 StringHandle MeasurementResponse_to_json_string(
     MeasurementResponseHandle handle);
+// @category:allocation
 MeasurementResponseHandle MeasurementResponse_from_json_string(
     StringHandle json);
 

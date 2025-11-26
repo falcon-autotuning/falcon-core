@@ -13,24 +13,41 @@
 typedef void* MapStringDoubleHandle;
 // Function declarations
 
+// @category:allocation
 MapStringDoubleHandle MapStringDouble_create_empty();
-MapStringDoubleHandle MapStringDouble_create(const PairStringDoubleHandle* data, size_t count);
+// @category:allocation
+MapStringDoubleHandle MapStringDouble_create(PairStringDoubleHandle* data, size_t count);
+// @category:deallocation
 void MapStringDouble_destroy(MapStringDoubleHandle handle);
-void MapStringDouble_insert_or_assign(MapStringDoubleHandle handle, const StringHandle key, const double value);
-void MapStringDouble_insert(MapStringDoubleHandle handle, const StringHandle key, const double value);
-double MapStringDouble_at(MapStringDoubleHandle handle, const StringHandle key);
-void MapStringDouble_erase(MapStringDoubleHandle handle, const StringHandle key);
+// @category:write
+void MapStringDouble_insert_or_assign(MapStringDoubleHandle handle, StringHandle key, double value);
+// @category:write
+void MapStringDouble_insert(MapStringDoubleHandle handle, StringHandle key, double value);
+// @category:read
+double MapStringDouble_at(MapStringDoubleHandle handle, StringHandle key);
+// @category:write
+void MapStringDouble_erase(MapStringDoubleHandle handle, StringHandle key);
+// @category:read
 size_t MapStringDouble_size(MapStringDoubleHandle handle);
+// @category:read
 bool MapStringDouble_empty(MapStringDoubleHandle handle);
+// @category:write
 void MapStringDouble_clear(MapStringDoubleHandle handle);
-bool MapStringDouble_contains(MapStringDoubleHandle handle, const StringHandle key);
+// @category:read
+bool MapStringDouble_contains(MapStringDoubleHandle handle, StringHandle key);
+// @category:read
 ListStringHandle MapStringDouble_keys(MapStringDoubleHandle handle);
+// @category:read
 ListDoubleHandle MapStringDouble_values(MapStringDoubleHandle handle);
+// @category:read
 ListPairStringDoubleHandle MapStringDouble_items(MapStringDoubleHandle handle);
+// @category:read
 bool MapStringDouble_equal(MapStringDoubleHandle a, MapStringDoubleHandle b);
+// @category:read
 bool MapStringDouble_not_equal(MapStringDoubleHandle a, MapStringDoubleHandle b);
-// Serialization (from Song)
+// @category:read
 StringHandle      MapStringDouble_to_json_string(MapStringDoubleHandle handle);
+// @category:allocation
 MapStringDoubleHandle MapStringDouble_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

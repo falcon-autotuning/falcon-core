@@ -12,25 +12,42 @@
 typedef void* AxesLabelledMeasuredArray1DHandle;
 // Function declarations
 
+// @category:allocation
 AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_create_empty();
+// @category:allocation
 AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_create_raw(const LabelledMeasuredArray1DHandle* data, size_t count);
+// @category:allocation
 AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_create(ListLabelledMeasuredArray1DHandle data);
+// @category:deallocation
 void AxesLabelledMeasuredArray1D_destroy(AxesLabelledMeasuredArray1DHandle handle);
+// @category:write
 void AxesLabelledMeasuredArray1D_push_back(AxesLabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle value);
+// @category:read
 size_t AxesLabelledMeasuredArray1D_size(AxesLabelledMeasuredArray1DHandle handle);
+// @category:read
 bool AxesLabelledMeasuredArray1D_empty(AxesLabelledMeasuredArray1DHandle handle);
+// @category:write
 void AxesLabelledMeasuredArray1D_erase_at(AxesLabelledMeasuredArray1DHandle handle, size_t idx);
+// @category:write
 void AxesLabelledMeasuredArray1D_clear(AxesLabelledMeasuredArray1DHandle handle);
+// @category:read
 LabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_at(AxesLabelledMeasuredArray1DHandle handle, size_t idx);
+// @category:read
 size_t AxesLabelledMeasuredArray1D_items(AxesLabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle* out_buffer, size_t buffer_size);
+// @category:read
 bool AxesLabelledMeasuredArray1D_contains(AxesLabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle value);
+// @category:read
 size_t AxesLabelledMeasuredArray1D_index(AxesLabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle value);
+// @category:read
 AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_intersection(AxesLabelledMeasuredArray1DHandle handle, AxesLabelledMeasuredArray1DHandle other);
+// @category:read
 bool AxesLabelledMeasuredArray1D_equal(AxesLabelledMeasuredArray1DHandle a, AxesLabelledMeasuredArray1DHandle b);
+// @category:read
 bool AxesLabelledMeasuredArray1D_not_equal(AxesLabelledMeasuredArray1DHandle a, AxesLabelledMeasuredArray1DHandle b);
 
-// Serialization (from Song)
+// @category:read
 StringHandle      AxesLabelledMeasuredArray1D_to_json_string(AxesLabelledMeasuredArray1DHandle handle);
+// @category:allocation
 AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

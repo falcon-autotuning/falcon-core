@@ -11,14 +11,21 @@
 typedef void* PairConnectionQuantityHandle;
 // Function declarations
 
+// @category:allocation
 PairConnectionQuantityHandle PairConnectionQuantity_create(ConnectionHandle first, QuantityHandle second);
+// @category:deallocation
 void PairConnectionQuantity_destroy(PairConnectionQuantityHandle handle);
+// @category:read
 ConnectionHandle PairConnectionQuantity_first(PairConnectionQuantityHandle handle);
+// @category:read
 QuantityHandle PairConnectionQuantity_second(PairConnectionQuantityHandle handle);
+// @category:read
 bool PairConnectionQuantity_equal(PairConnectionQuantityHandle a, PairConnectionQuantityHandle b);
+// @category:read
 bool PairConnectionQuantity_not_equal(PairConnectionQuantityHandle a, PairConnectionQuantityHandle b);
-// Serialization (from Song)
+// @category:read
 StringHandle      PairConnectionQuantity_to_json_string(PairConnectionQuantityHandle handle);
+// @category:allocation
 PairConnectionQuantityHandle PairConnectionQuantity_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

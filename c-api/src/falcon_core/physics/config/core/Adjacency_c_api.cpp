@@ -11,8 +11,8 @@
 using namespace falcon_core::physics::config::core;
 
 extern "C" {
-AdjacencyHandle Adjacency_create(int*              data,
-                                 size_t*           shape,
+AdjacencyHandle Adjacency_create(const int*        data,
+                                 const size_t*     shape,
                                  size_t            ndim,
                                  ConnectionsHandle indexes) {
   FALCON_C_API_BEGIN

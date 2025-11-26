@@ -12,7 +12,7 @@ MapConnectionQuantityHandle MapConnectionQuantity_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-MapConnectionQuantityHandle MapConnectionQuantity_create(const PairConnectionQuantityHandle* data, size_t count) {
+MapConnectionQuantityHandle MapConnectionQuantity_create( PairConnectionQuantityHandle* data, size_t count) {
     FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data pointer passed to MapConnectionQuantity_create");
@@ -37,7 +37,7 @@ throw std::invalid_argument("Null handle passed to MapConnectionQuantity_destroy
     FALCON_C_API_END()
 }
 
-void MapConnectionQuantity_insert_or_assign(MapConnectionQuantityHandle handle, const ConnectionHandle key, const QuantityHandle value) {
+void MapConnectionQuantity_insert_or_assign(MapConnectionQuantityHandle handle,  ConnectionHandle key,  QuantityHandle value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapConnectionQuantity_insert_or_assign");
@@ -58,7 +58,7 @@ auto correct_value = std::make_shared<falcon_core::math::Quantity>(temp_value);
     FALCON_C_API_END()
 }
 
-void MapConnectionQuantity_insert(MapConnectionQuantityHandle handle, const ConnectionHandle key, const QuantityHandle value) {
+void MapConnectionQuantity_insert(MapConnectionQuantityHandle handle,  ConnectionHandle key,  QuantityHandle value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapConnectionQuantity_insert");
@@ -79,7 +79,7 @@ auto correct_value = std::make_shared<falcon_core::math::Quantity>(temp_value);
     FALCON_C_API_END()
 }
 
-QuantityHandle MapConnectionQuantity_at(MapConnectionQuantityHandle handle, const ConnectionHandle key) {
+QuantityHandle MapConnectionQuantity_at(MapConnectionQuantityHandle handle,  ConnectionHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapConnectionQuantity_at");
@@ -94,7 +94,7 @@ auto correct_key = std::make_shared<falcon_core::physics::device_structures::Con
     FALCON_C_API_END(nullptr)
 }
 
-void MapConnectionQuantity_erase(MapConnectionQuantityHandle handle, const ConnectionHandle key) {
+void MapConnectionQuantity_erase(MapConnectionQuantityHandle handle,  ConnectionHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapConnectionQuantity_erase");

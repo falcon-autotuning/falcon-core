@@ -12,7 +12,7 @@ MapChannelConnectionsHandle MapChannelConnections_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-MapChannelConnectionsHandle MapChannelConnections_create(const PairChannelConnectionsHandle* data, size_t count) {
+MapChannelConnectionsHandle MapChannelConnections_create( PairChannelConnectionsHandle* data, size_t count) {
     FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data pointer passed to MapChannelConnections_create");
@@ -37,7 +37,7 @@ throw std::invalid_argument("Null handle passed to MapChannelConnections_destroy
     FALCON_C_API_END()
 }
 
-void MapChannelConnections_insert_or_assign(MapChannelConnectionsHandle handle, const ChannelHandle key, const ConnectionsHandle value) {
+void MapChannelConnections_insert_or_assign(MapChannelConnectionsHandle handle,  ChannelHandle key,  ConnectionsHandle value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapChannelConnections_insert_or_assign");
@@ -58,7 +58,7 @@ auto correct_value = std::make_shared<falcon_core::physics::device_structures::C
     FALCON_C_API_END()
 }
 
-void MapChannelConnections_insert(MapChannelConnectionsHandle handle, const ChannelHandle key, const ConnectionsHandle value) {
+void MapChannelConnections_insert(MapChannelConnectionsHandle handle,  ChannelHandle key,  ConnectionsHandle value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapChannelConnections_insert");
@@ -79,7 +79,7 @@ auto correct_value = std::make_shared<falcon_core::physics::device_structures::C
     FALCON_C_API_END()
 }
 
-ConnectionsHandle MapChannelConnections_at(MapChannelConnectionsHandle handle, const ChannelHandle key) {
+ConnectionsHandle MapChannelConnections_at(MapChannelConnectionsHandle handle,  ChannelHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapChannelConnections_at");
@@ -94,7 +94,7 @@ auto correct_key = std::make_shared<falcon_core::autotuner_interfaces::names::Ch
     FALCON_C_API_END(nullptr)
 }
 
-void MapChannelConnections_erase(MapChannelConnectionsHandle handle, const ChannelHandle key) {
+void MapChannelConnections_erase(MapChannelConnectionsHandle handle,  ChannelHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapChannelConnections_erase");

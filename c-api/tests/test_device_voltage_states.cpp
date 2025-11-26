@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 #include "falcon_core/physics/units/SymbolUnit_c_api.h"
@@ -123,11 +123,9 @@ TEST_F(DeviceVoltageStatesTest, PushBackSizeEmptyEraseClear) {
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
-TEST_F(DeviceVoltageStatesTest, AtConstAtItems) {
-  auto at  = DeviceVoltageStates_at(states, 0);
-  auto cat = DeviceVoltageStates_const_at(states, 0);
+TEST_F(DeviceVoltageStatesTest, AtItems) {
+  auto at = DeviceVoltageStates_at(states, 0);
   EXPECT_NE(at, nullptr);
-  EXPECT_NE(cat, nullptr);
   DeviceVoltageState_destroy(at);
   auto items = DeviceVoltageStates_items(states);
   EXPECT_EQ(ListDeviceVoltageState_size(items), 1);
@@ -135,9 +133,6 @@ TEST_F(DeviceVoltageStatesTest, AtConstAtItems) {
 
   set_last_error(0, nullptr);
   DeviceVoltageStates_at(nullptr, 0);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
-  DeviceVoltageStates_const_at(nullptr, 0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   DeviceVoltageStates_items(nullptr);

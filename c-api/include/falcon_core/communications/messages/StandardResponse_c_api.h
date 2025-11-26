@@ -8,21 +8,21 @@ extern "C" {
 #include "falcon_core/generic/String_c_api.h"
 typedef void* StandardResponseHandle;
 
-// Constructors
+// @category:allocation
 StandardResponseHandle StandardResponse_create(StringHandle message);
-
-// Destructor
+// @category:deallocation
 void StandardResponse_destroy(StandardResponseHandle handle);
-
-// Methods
+// @category:read
 StringHandle StandardResponse_message(StandardResponseHandle handle);
-bool         StandardResponse_equal(StandardResponseHandle handle,
-                                    StandardResponseHandle other);
-bool         StandardResponse_not_equal(StandardResponseHandle handle,
-                                        StandardResponseHandle other);
-
-// Serialization (from Song)
+// @category:read
+bool StandardResponse_equal(StandardResponseHandle handle,
+                            StandardResponseHandle other);
+// @category:read
+bool StandardResponse_not_equal(StandardResponseHandle handle,
+                                StandardResponseHandle other);
+// @category:read
 StringHandle StandardResponse_to_json_string(StandardResponseHandle handle);
+// @category:allocation
 StandardResponseHandle StandardResponse_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

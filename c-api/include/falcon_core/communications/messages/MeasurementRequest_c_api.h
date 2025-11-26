@@ -12,7 +12,7 @@ extern "C" {
 #include "falcon_core/math/domains/LabelledDomain_c_api.h"
 typedef void* MeasurementRequestHandle;
 
-// Constructors
+// @category:allocation
 MeasurementRequestHandle MeasurementRequest_create(
     StringHandle                         message,
     StringHandle                         measurement_name,
@@ -20,28 +20,33 @@ MeasurementRequestHandle MeasurementRequest_create(
     PortsHandle                          getters,
     MapInstrumentPortPortTransformHandle meter_transforms,
     LabelledDomainHandle                 time_domain);
-
-// Destructor
+// @category:deallocation
 void MeasurementRequest_destroy(MeasurementRequestHandle handle);
-
-// Methods
+// @category:read
 StringHandle MeasurementRequest_measurement_name(
     MeasurementRequestHandle handle);
-PortsHandle        MeasurementRequest_getters(MeasurementRequestHandle handle);
+// @category:read
+PortsHandle MeasurementRequest_getters(MeasurementRequestHandle handle);
+// @category:read
 ListWaveformHandle MeasurementRequest_waveforms(
     MeasurementRequestHandle handle);
+// @category:read
 MapInstrumentPortPortTransformHandle MeasurementRequest_meter_transforms(
     MeasurementRequestHandle handle);
+// @category:read
 LabelledDomainHandle MeasurementRequest_time_domain(
     MeasurementRequestHandle handle);
+// @category:read
 StringHandle MeasurementRequest_message(MeasurementRequestHandle handle);
-bool         MeasurementRequest_equal(MeasurementRequestHandle handle,
-                                      MeasurementRequestHandle other);
-bool         MeasurementRequest_not_equal(MeasurementRequestHandle handle,
-                                          MeasurementRequestHandle other);
-
-// Serialization (from Song)
+// @category:read
+bool MeasurementRequest_equal(MeasurementRequestHandle handle,
+                              MeasurementRequestHandle other);
+// @category:read
+bool MeasurementRequest_not_equal(MeasurementRequestHandle handle,
+                                  MeasurementRequestHandle other);
+// @category:read
 StringHandle MeasurementRequest_to_json_string(MeasurementRequestHandle handle);
+// @category:allocation
 MeasurementRequestHandle MeasurementRequest_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

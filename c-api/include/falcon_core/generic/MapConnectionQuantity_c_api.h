@@ -12,24 +12,41 @@
 typedef void* MapConnectionQuantityHandle;
 // Function declarations
 
+// @category:allocation
 MapConnectionQuantityHandle MapConnectionQuantity_create_empty();
-MapConnectionQuantityHandle MapConnectionQuantity_create(const PairConnectionQuantityHandle* data, size_t count);
+// @category:allocation
+MapConnectionQuantityHandle MapConnectionQuantity_create(PairConnectionQuantityHandle* data, size_t count);
+// @category:deallocation
 void MapConnectionQuantity_destroy(MapConnectionQuantityHandle handle);
-void MapConnectionQuantity_insert_or_assign(MapConnectionQuantityHandle handle, const ConnectionHandle key, const QuantityHandle value);
-void MapConnectionQuantity_insert(MapConnectionQuantityHandle handle, const ConnectionHandle key, const QuantityHandle value);
-QuantityHandle MapConnectionQuantity_at(MapConnectionQuantityHandle handle, const ConnectionHandle key);
-void MapConnectionQuantity_erase(MapConnectionQuantityHandle handle, const ConnectionHandle key);
+// @category:write
+void MapConnectionQuantity_insert_or_assign(MapConnectionQuantityHandle handle, ConnectionHandle key, QuantityHandle value);
+// @category:write
+void MapConnectionQuantity_insert(MapConnectionQuantityHandle handle, ConnectionHandle key, QuantityHandle value);
+// @category:read
+QuantityHandle MapConnectionQuantity_at(MapConnectionQuantityHandle handle, ConnectionHandle key);
+// @category:write
+void MapConnectionQuantity_erase(MapConnectionQuantityHandle handle, ConnectionHandle key);
+// @category:read
 size_t MapConnectionQuantity_size(MapConnectionQuantityHandle handle);
+// @category:read
 bool MapConnectionQuantity_empty(MapConnectionQuantityHandle handle);
+// @category:write
 void MapConnectionQuantity_clear(MapConnectionQuantityHandle handle);
-bool MapConnectionQuantity_contains(MapConnectionQuantityHandle handle, const ConnectionHandle key);
+// @category:read
+bool MapConnectionQuantity_contains(MapConnectionQuantityHandle handle, ConnectionHandle key);
+// @category:read
 ListConnectionHandle MapConnectionQuantity_keys(MapConnectionQuantityHandle handle);
+// @category:read
 ListQuantityHandle MapConnectionQuantity_values(MapConnectionQuantityHandle handle);
+// @category:read
 ListPairConnectionQuantityHandle MapConnectionQuantity_items(MapConnectionQuantityHandle handle);
+// @category:read
 bool MapConnectionQuantity_equal(MapConnectionQuantityHandle a, MapConnectionQuantityHandle b);
+// @category:read
 bool MapConnectionQuantity_not_equal(MapConnectionQuantityHandle a, MapConnectionQuantityHandle b);
-// Serialization (from Song)
+// @category:read
 StringHandle      MapConnectionQuantity_to_json_string(MapConnectionQuantityHandle handle);
+// @category:allocation
 MapConnectionQuantityHandle MapConnectionQuantity_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

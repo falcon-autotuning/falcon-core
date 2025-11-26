@@ -10,7 +10,7 @@ MapIntIntHandle MapIntInt_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-MapIntIntHandle MapIntInt_create(const PairIntIntHandle* data, size_t count) {
+MapIntIntHandle MapIntInt_create( PairIntIntHandle* data, size_t count) {
     FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data pointer passed to MapIntInt_create");
@@ -35,7 +35,7 @@ throw std::invalid_argument("Null handle passed to MapIntInt_destroy");
     FALCON_C_API_END()
 }
 
-void MapIntInt_insert_or_assign(MapIntIntHandle handle, const int key, const int value) {
+void MapIntInt_insert_or_assign(MapIntIntHandle handle,  int key,  int value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapIntInt_insert_or_assign");
@@ -46,7 +46,7 @@ throw std::invalid_argument("Null handle passed to MapIntInt_insert_or_assign");
     FALCON_C_API_END()
 }
 
-void MapIntInt_insert(MapIntIntHandle handle, const int key, const int value) {
+void MapIntInt_insert(MapIntIntHandle handle,  int key,  int value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapIntInt_insert");
@@ -57,7 +57,7 @@ throw std::invalid_argument("Null handle passed to MapIntInt_insert");
     FALCON_C_API_END()
 }
 
-int MapIntInt_at(MapIntIntHandle handle, const int key) {
+int MapIntInt_at(MapIntIntHandle handle,  int key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapIntInt_at");
@@ -67,7 +67,7 @@ throw std::invalid_argument("Null handle passed to MapIntInt_at");
     FALCON_C_API_END(0)
 }
 
-void MapIntInt_erase(MapIntIntHandle handle, const int key) {
+void MapIntInt_erase(MapIntIntHandle handle,  int key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapIntInt_erase");

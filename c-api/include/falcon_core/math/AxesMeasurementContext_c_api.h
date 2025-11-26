@@ -12,25 +12,42 @@
 typedef void* AxesMeasurementContextHandle;
 // Function declarations
 
+// @category:allocation
 AxesMeasurementContextHandle AxesMeasurementContext_create_empty();
+// @category:allocation
 AxesMeasurementContextHandle AxesMeasurementContext_create_raw(const MeasurementContextHandle* data, size_t count);
+// @category:allocation
 AxesMeasurementContextHandle AxesMeasurementContext_create(ListMeasurementContextHandle data);
+// @category:deallocation
 void AxesMeasurementContext_destroy(AxesMeasurementContextHandle handle);
+// @category:write
 void AxesMeasurementContext_push_back(AxesMeasurementContextHandle handle, MeasurementContextHandle value);
+// @category:read
 size_t AxesMeasurementContext_size(AxesMeasurementContextHandle handle);
+// @category:read
 bool AxesMeasurementContext_empty(AxesMeasurementContextHandle handle);
+// @category:write
 void AxesMeasurementContext_erase_at(AxesMeasurementContextHandle handle, size_t idx);
+// @category:write
 void AxesMeasurementContext_clear(AxesMeasurementContextHandle handle);
+// @category:read
 MeasurementContextHandle AxesMeasurementContext_at(AxesMeasurementContextHandle handle, size_t idx);
+// @category:read
 size_t AxesMeasurementContext_items(AxesMeasurementContextHandle handle, MeasurementContextHandle* out_buffer, size_t buffer_size);
+// @category:read
 bool AxesMeasurementContext_contains(AxesMeasurementContextHandle handle, MeasurementContextHandle value);
+// @category:read
 size_t AxesMeasurementContext_index(AxesMeasurementContextHandle handle, MeasurementContextHandle value);
+// @category:read
 AxesMeasurementContextHandle AxesMeasurementContext_intersection(AxesMeasurementContextHandle handle, AxesMeasurementContextHandle other);
+// @category:read
 bool AxesMeasurementContext_equal(AxesMeasurementContextHandle a, AxesMeasurementContextHandle b);
+// @category:read
 bool AxesMeasurementContext_not_equal(AxesMeasurementContextHandle a, AxesMeasurementContextHandle b);
 
-// Serialization (from Song)
+// @category:read
 StringHandle      AxesMeasurementContext_to_json_string(AxesMeasurementContextHandle handle);
+// @category:allocation
 AxesMeasurementContextHandle AxesMeasurementContext_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

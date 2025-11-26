@@ -8,19 +8,19 @@ extern "C" {
 
 typedef void* ChannelHandle;
 
-// Constructors
+// @category:allocation
 ChannelHandle Channel_create(StringHandle name);
-
-// Destructor
+// @category:deallocation
 void Channel_destroy(ChannelHandle handle);
-
-// Methods
+// @category:read
 StringHandle Channel_name(ChannelHandle handle);
-bool         Channel_equal(ChannelHandle a, ChannelHandle b);
-bool         Channel_not_equal(ChannelHandle a, ChannelHandle b);
-
-// Serialization (from Song)
-StringHandle  Channel_to_json_string(ChannelHandle handle);
+// @category:read
+bool Channel_equal(ChannelHandle a, ChannelHandle b);
+// @category:read
+bool Channel_not_equal(ChannelHandle a, ChannelHandle b);
+// @category:read
+StringHandle Channel_to_json_string(ChannelHandle handle);
+// @category:allocation
 ChannelHandle Channel_from_json_string(StringHandle json);
 
 #ifdef __cplusplus

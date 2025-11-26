@@ -11,7 +11,7 @@ MapInterpretationContextDoubleHandle MapInterpretationContextDouble_create_empty
     FALCON_C_API_END(nullptr)
 }
 
-MapInterpretationContextDoubleHandle MapInterpretationContextDouble_create(const PairInterpretationContextDoubleHandle* data, size_t count) {
+MapInterpretationContextDoubleHandle MapInterpretationContextDouble_create( PairInterpretationContextDoubleHandle* data, size_t count) {
     FALCON_C_API_BEGIN
 if (!data) {
 throw std::invalid_argument("Null data pointer passed to MapInterpretationContextDouble_create");
@@ -36,7 +36,7 @@ throw std::invalid_argument("Null handle passed to MapInterpretationContextDoubl
     FALCON_C_API_END()
 }
 
-void MapInterpretationContextDouble_insert_or_assign(MapInterpretationContextDoubleHandle handle, const InterpretationContextHandle key, const double value) {
+void MapInterpretationContextDouble_insert_or_assign(MapInterpretationContextDoubleHandle handle,  InterpretationContextHandle key,  double value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextDouble_insert_or_assign");
@@ -52,7 +52,7 @@ auto correct_key = std::make_shared<falcon_core::autotuner_interfaces::interpret
     FALCON_C_API_END()
 }
 
-void MapInterpretationContextDouble_insert(MapInterpretationContextDoubleHandle handle, const InterpretationContextHandle key, const double value) {
+void MapInterpretationContextDouble_insert(MapInterpretationContextDoubleHandle handle,  InterpretationContextHandle key,  double value) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextDouble_insert");
@@ -68,7 +68,7 @@ auto correct_key = std::make_shared<falcon_core::autotuner_interfaces::interpret
     FALCON_C_API_END()
 }
 
-double MapInterpretationContextDouble_at(MapInterpretationContextDoubleHandle handle, const InterpretationContextHandle key) {
+double MapInterpretationContextDouble_at(MapInterpretationContextDoubleHandle handle,  InterpretationContextHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextDouble_at");
@@ -83,7 +83,7 @@ auto correct_key = std::make_shared<falcon_core::autotuner_interfaces::interpret
     FALCON_C_API_END(0.0)
 }
 
-void MapInterpretationContextDouble_erase(MapInterpretationContextDoubleHandle handle, const InterpretationContextHandle key) {
+void MapInterpretationContextDouble_erase(MapInterpretationContextDoubleHandle handle,  InterpretationContextHandle key) {
     FALCON_C_API_BEGIN
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextDouble_erase");
