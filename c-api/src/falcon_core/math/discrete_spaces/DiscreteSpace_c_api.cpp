@@ -41,7 +41,7 @@ DiscreteSpaceHandle DiscreteSpace_create(UnitSpaceHandle                 space,
   FALCON_C_API_END(nullptr)
 }
 
-DiscreteSpaceHandle DiscreteSpace_create_cartesiandiscretespace(
+DiscreteSpaceHandle DiscreteSpace_create_cartesian_discrete_space(
     AxesIntHandle                   divisions,
     AxesCoupledLabelledDomainHandle axes,
     AxesMapStringBoolHandle         increasing,
@@ -82,7 +82,7 @@ DiscreteSpaceHandle DiscreteSpace_create_cartesiandiscretespace(
   FALCON_C_API_END(nullptr)
 }
 
-DiscreteSpaceHandle DiscreteSpace_create_cartesiandiscretespace1D(
+DiscreteSpaceHandle DiscreteSpace_create_cartesian_discrete_space_1D(
     int                         division,
     CoupledLabelledDomainHandle shared_domain,
     MapStringBoolHandle         increasing,

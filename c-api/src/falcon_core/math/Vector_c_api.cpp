@@ -174,7 +174,7 @@ void Vector_destroy(VectorHandle handle) {
   FALCON_C_API_END()
 }
 
-PointHandle Vector_endPoint(VectorHandle handle) {
+PointHandle Vector_end_point(VectorHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Vector_endPoint: handle cannot be null");
@@ -184,7 +184,7 @@ PointHandle Vector_endPoint(VectorHandle handle) {
   FALCON_C_API_END(nullptr)
 }
 
-PointHandle Vector_startPoint(VectorHandle handle) {
+PointHandle Vector_start_point(VectorHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Vector_startPoint: handle cannot be null");

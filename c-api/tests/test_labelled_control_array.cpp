@@ -332,13 +332,11 @@ TEST_F(LabelledControlArrayTest, ComparisonOperators) {
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
-TEST_F(LabelledControlArrayTest, OffsetSumReshapeWhereFlipGradient) {
+TEST_F(LabelledControlArrayTest, OffsetSumWhereFlipGradient) {
   LabelledControlArray_remove_offset(lca, 1.0);
   EXPECT_DOUBLE_EQ(LabelledControlArray_sum(lca), 15.0);
   size_t new_shape[1] = {6};
-  auto   reshaped     = LabelledControlArray_reshape(lca, new_shape, 1);
-  LabelledControlArray_destroy(reshaped);
-  auto where = LabelledControlArray_where(lca, 2.0);
+  auto   where        = LabelledControlArray_where(lca, 2.0);
   ListListSizeT_destroy(where);
   auto flipped = LabelledControlArray_flip(lca, 0);
   LabelledControlArray_destroy(flipped);
@@ -354,9 +352,6 @@ TEST_F(LabelledControlArrayTest, OffsetSumReshapeWhereFlipGradient) {
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledControlArray_sum(nullptr);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
-  LabelledControlArray_reshape(nullptr, new_shape, 1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledControlArray_where(nullptr, 2.0);

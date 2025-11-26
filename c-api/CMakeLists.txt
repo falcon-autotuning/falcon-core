@@ -47,6 +47,8 @@ if(CCACHE_PROGRAM)
   set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
 endif()
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
+set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD ON)
+set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD_BATCH_SIZE 20)
 
 option(USE_VCPKG "Use vcpkg for dependencies" ON)
 set(BOOST_FILESYSTEM_TARGET Boost::filesystem)

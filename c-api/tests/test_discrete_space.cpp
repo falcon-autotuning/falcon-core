@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon_core/math/UnitSpace_c_api.h"
@@ -106,32 +105,37 @@ TEST_F(DiscreteSpaceTest, CreateDestroy) {
 }
 
 TEST_F(DiscreteSpaceTest, CreateCartesian) {
-  auto d = DiscreteSpace_create_cartesiandiscretespace(
+  auto d = DiscreteSpace_create_cartesian_discrete_space(
       axes_int, axes_cldom, axes_map_str_bool, domain);
   DiscreteSpace_destroy(d);
   set_last_error(0, nullptr);
-  DiscreteSpace_create_cartesiandiscretespace(                   nullptr, axes_cldom, axes_map_str_bool, domain);
+  DiscreteSpace_create_cartesian_discrete_space(
+      nullptr, axes_cldom, axes_map_str_bool, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  DiscreteSpace_create_cartesiandiscretespace(                   axes_int, nullptr, axes_map_str_bool, domain);
+  DiscreteSpace_create_cartesian_discrete_space(
+      axes_int, nullptr, axes_map_str_bool, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  DiscreteSpace_create_cartesiandiscretespace(                   axes_int, axes_cldom, nullptr, domain);
+  DiscreteSpace_create_cartesian_discrete_space(
+      axes_int, axes_cldom, nullptr, domain);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DiscreteSpaceTest, CreateCartesian1D) {
-  auto d = DiscreteSpace_create_cartesiandiscretespace1D(
+  auto d = DiscreteSpace_create_cartesian_discrete_space_1D(
       1, cldom, map_str_bool, domain);
   DiscreteSpace_destroy(d);
   set_last_error(0, nullptr);
-  DiscreteSpace_create_cartesiandiscretespace1D(                   1, nullptr, map_str_bool, domain);
+  DiscreteSpace_create_cartesian_discrete_space_1D(
+      1, nullptr, map_str_bool, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  DiscreteSpace_create_cartesiandiscretespace1D(1, cldom, nullptr, domain);
+  DiscreteSpace_create_cartesian_discrete_space_1D(1, cldom, nullptr, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  DiscreteSpace_create_cartesiandiscretespace1D(                   1, cldom, map_str_bool, nullptr);
+  DiscreteSpace_create_cartesian_discrete_space_1D(
+      1, cldom, map_str_bool, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 

@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/Point_c_api.h"
 #include "falcon_core/math/Quantity_c_api.h"
@@ -120,15 +119,15 @@ TEST_F(VectorTest, CreateFromParent) {
 }
 
 TEST_F(VectorTest, EndStartPoint) {
-  auto ep = Vector_endPoint(vector);
-  auto sp = Vector_startPoint(vector);
+  auto ep = Vector_end_point(vector);
+  auto sp = Vector_start_point(vector);
   Point_destroy(ep);
   Point_destroy(sp);
   set_last_error(0, nullptr);
-  Vector_endPoint(nullptr);
+  Vector_end_point(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Vector_startPoint(nullptr);
+  Vector_start_point(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 

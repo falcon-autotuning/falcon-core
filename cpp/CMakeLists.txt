@@ -4,8 +4,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CPP_TARGET "falcon_core_cpp")
-option(FALCON_CORE_DEV
-       "Dev mode generates coverage and testing" OFF)
+option(FALCON_CORE_DEV "Dev mode generates coverage and testing" OFF)
 if(FALCON_CORE_DEV)
   set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 endif()
@@ -46,6 +45,8 @@ if(CCACHE_PROGRAM)
   set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
 endif()
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
+set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD ON)
+set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD_BATCH_SIZE 20)
 
 # Handling VCPKG support
 option(USE_VCPKG "Use vcpkg for dependencies" ON)
@@ -110,9 +111,8 @@ endif()
 file(GLOB_RECURSE FALCON_CORE_SOURCES CONFIGURE_DEPENDS "src/*.cpp")
 add_library(${CPP_LIB_NAME} SHARED ${FALCON_CORE_SOURCES})
 target_include_directories(
-  ${CPP_LIB_NAME}
-  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-         $<INSTALL_INTERFACE:include>)
+  ${CPP_LIB_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+                         $<INSTALL_INTERFACE:include>)
 target_link_libraries(
   ${CPP_LIB_NAME}
   PUBLIC ${BOOST_FILESYSTEM_TARGET}
