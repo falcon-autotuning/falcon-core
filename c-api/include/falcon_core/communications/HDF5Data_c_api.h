@@ -39,7 +39,7 @@ HDF5DataHandle HDF5Data_create_from_communications(
     int                       timestamp);
 // @category:deallocation
 void HDF5Data_destroy(HDF5DataHandle handle);
-// @category:read
+// @category:write
 void HDF5Data_to_file(HDF5DataHandle handle, StringHandle path);
 // @category:read
 PairMeasurementResponseMeasurementRequestHandle HDF5Data_to_communications(

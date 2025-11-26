@@ -48,9 +48,6 @@ if(CCACHE_PROGRAM)
   set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
 endif()
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
-set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD ON)
-set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD_BATCH_SIZE
-                                                   ${BATCH_SIZE})
 
 option(USE_VCPKG "Use vcpkg for dependencies" ON)
 set(BOOST_FILESYSTEM_TARGET Boost::filesystem)
@@ -120,6 +117,9 @@ endif()
 file(GLOB_RECURSE C_API_SOURCES "src/*.cpp" "src/*.c")
 
 add_library(${C_API_LIB_NAME} SHARED ${C_API_SOURCES})
+set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD ON)
+set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD_BATCH_SIZE
+                                                   ${BATCH_SIZE})
 
 target_include_directories(
   ${C_API_LIB_NAME}

@@ -43,7 +43,7 @@ build:
 		$(TOOLCHAIN_ARG) \
 		-DUSE_VCPKG=$(USE_VCPKG) \
 		. -S . -B $(BUILD_DIR)
-	ninja -C $(BUILD_DIR)
+	ninja -C $(BUILD_DIR) -j $(shell nproc)
 	strip $(BUILD_DIR)/libfalcon_core_cpp.so
 	@echo "--- Build complete ---"
 
@@ -62,7 +62,7 @@ build-dev:
 		. -S . -B $(BUILD_DIR)
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi;
 	@LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH \
-	ninja -C $(BUILD_DIR) -d stats
+	@ninja -C $(BUILD_DIR) -j $(nproc) -d stats
 	@echo "--- Build complete ---"
 
 define LOAD_COMPILER_ENV
