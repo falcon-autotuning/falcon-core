@@ -178,12 +178,12 @@ size_t LabelledMeasuredArray_data(LabelledMeasuredArrayHandle handle,
   FALCON_C_API_END(0)
 }
 
-void LabelledMeasuredArray_plusequals_farray(LabelledMeasuredArrayHandle handle,
+void LabelledMeasuredArray_plus_equals_farray(LabelledMeasuredArrayHandle handle,
                                              FArrayDoubleHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_plusequals_farray");
+        "Null handle passed to LabelledMeasuredArray_plus_equals_farray");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -193,12 +193,12 @@ void LabelledMeasuredArray_plusequals_farray(LabelledMeasuredArrayHandle handle,
   FALCON_C_API_END()
 }
 
-void LabelledMeasuredArray_plusequals_double(LabelledMeasuredArrayHandle handle,
+void LabelledMeasuredArray_plus_equals_double(LabelledMeasuredArrayHandle handle,
                                              const double other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_plusequals_double");
+        "Null handle passed to LabelledMeasuredArray_plus_equals_double");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -206,12 +206,12 @@ void LabelledMeasuredArray_plusequals_double(LabelledMeasuredArrayHandle handle,
   FALCON_C_API_END()
 }
 
-void LabelledMeasuredArray_plusequals_int(LabelledMeasuredArrayHandle handle,
+void LabelledMeasuredArray_plus_equals_int(LabelledMeasuredArrayHandle handle,
                                           const int                   other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_plusequals_int");
+        "Null handle passed to LabelledMeasuredArray_plus_equals_int");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -276,13 +276,13 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_int(
   FALCON_C_API_END(nullptr)
 }
 
-void LabelledMeasuredArray_minusequals_measured_array(
+void LabelledMeasuredArray_minus_equals_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
         "Null handle passed to "
-        "LabelledMeasuredArray_minusequals_measured_array");
+        "LabelledMeasuredArray_minus_equals_measured_array");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -291,12 +291,12 @@ void LabelledMeasuredArray_minusequals_measured_array(
   FALCON_C_API_END()
 }
 
-void LabelledMeasuredArray_minusequals_farray(
+void LabelledMeasuredArray_minus_equals_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_minusequals_farray");
+        "Null handle passed to LabelledMeasuredArray_minus_equals_farray");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -306,12 +306,12 @@ void LabelledMeasuredArray_minusequals_farray(
   FALCON_C_API_END()
 }
 
-void LabelledMeasuredArray_minusequals_double(
+void LabelledMeasuredArray_minus_equals_double(
     LabelledMeasuredArrayHandle handle, const double other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_minusequals_double");
+        "Null handle passed to LabelledMeasuredArray_minus_equals_double");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -319,12 +319,12 @@ void LabelledMeasuredArray_minusequals_double(
   FALCON_C_API_END()
 }
 
-void LabelledMeasuredArray_minusequals_int(LabelledMeasuredArrayHandle handle,
+void LabelledMeasuredArray_minus_equals_int(LabelledMeasuredArrayHandle handle,
                                            const int                   other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_minusequals_int");
+        "Null handle passed to LabelledMeasuredArray_minus_equals_int");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -402,13 +402,13 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_negation(
   FALCON_C_API_END(nullptr)
 }
 
-LabelledMeasuredArrayHandle LabelledMeasuredArray_timesequals_measured_array(
+LabelledMeasuredArrayHandle LabelledMeasuredArray_times_equals_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
         "Null handle passed to "
-        "LabelledMeasuredArray_timesequals_measured_array");
+        "LabelledMeasuredArray_times_equals_measured_array");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -418,12 +418,12 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_timesequals_measured_array(
   FALCON_C_API_END(nullptr)
 }
 
-LabelledMeasuredArrayHandle LabelledMeasuredArray_timesequals_farray(
+LabelledMeasuredArrayHandle LabelledMeasuredArray_times_equals_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_timesequals_farray");
+        "Null handle passed to LabelledMeasuredArray_times_equals_farray");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -434,12 +434,12 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_timesequals_farray(
   FALCON_C_API_END(nullptr)
 }
 
-void LabelledMeasuredArray_timesequals_double(
+void LabelledMeasuredArray_times_equals_double(
     LabelledMeasuredArrayHandle handle, const double other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_timesequals_double");
+        "Null handle passed to LabelledMeasuredArray_times_equals_double");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -447,12 +447,12 @@ void LabelledMeasuredArray_timesequals_double(
   FALCON_C_API_END()
 }
 
-void LabelledMeasuredArray_timesequals_int(LabelledMeasuredArrayHandle handle,
+void LabelledMeasuredArray_times_equals_int(LabelledMeasuredArrayHandle handle,
                                            const int                   other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_timesequals_int");
+        "Null handle passed to LabelledMeasuredArray_times_equals_int");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -517,13 +517,13 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_times_int(
   FALCON_C_API_END(nullptr)
 }
 
-LabelledMeasuredArrayHandle LabelledMeasuredArray_dividesequals_measured_array(
+LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_equals_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
         "Null handle passed to "
-        "LabelledMeasuredArray_dividesequals_measured_array");
+        "LabelledMeasuredArray_divides_equals_measured_array");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -533,12 +533,12 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_dividesequals_measured_array(
   FALCON_C_API_END(nullptr)
 }
 
-LabelledMeasuredArrayHandle LabelledMeasuredArray_dividesequals_farray(
+LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_equals_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_dividesequals_farray");
+        "Null handle passed to LabelledMeasuredArray_divides_equals_farray");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -549,12 +549,12 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_dividesequals_farray(
   FALCON_C_API_END(nullptr)
 }
 
-void LabelledMeasuredArray_dividesequals_double(
+void LabelledMeasuredArray_divides_equals_double(
     LabelledMeasuredArrayHandle handle, const double other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_dividesequals_double");
+        "Null handle passed to LabelledMeasuredArray_divides_equals_double");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -562,12 +562,12 @@ void LabelledMeasuredArray_dividesequals_double(
   FALCON_C_API_END()
 }
 
-void LabelledMeasuredArray_dividesequals_int(LabelledMeasuredArrayHandle handle,
+void LabelledMeasuredArray_divides_equals_int(LabelledMeasuredArrayHandle handle,
                                              const int other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_dividesequals_int");
+        "Null handle passed to LabelledMeasuredArray_divides_equals_int");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);

@@ -265,12 +265,12 @@ size_t ControlArray1D_data(ControlArray1DHandle handle,
   FALCON_C_API_END(0)
 }
 
-void ControlArray1D_plusequals_farray(ControlArray1DHandle handle,
+void ControlArray1D_plus_equals_farray(ControlArray1DHandle handle,
                                       FArrayDoubleHandle   other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_plusequals_farray");
+        "Null handle passed to ControlArray1D_plus_equals_farray");
   }
   ControlArray1D*          control_array = static_cast<ControlArray1D*>(handle);
   generic::FArray<double>* oarray =
@@ -279,24 +279,24 @@ void ControlArray1D_plusequals_farray(ControlArray1DHandle handle,
   FALCON_C_API_END()
 }
 
-void ControlArray1D_plusequals_double(ControlArray1DHandle handle,
+void ControlArray1D_plus_equals_double(ControlArray1DHandle handle,
                                       const double         other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_plusequals_double");
+        "Null handle passed to ControlArray1D_plus_equals_double");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   control_array->operator+=(other);
   FALCON_C_API_END()
 }
 
-void ControlArray1D_plusequals_int(ControlArray1DHandle handle,
+void ControlArray1D_plus_equals_int(ControlArray1DHandle handle,
                                    const int            other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_plusequals_int");
+        "Null handle passed to ControlArray1D_plus_equals_int");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   control_array->operator+=(other);
@@ -356,12 +356,12 @@ ControlArray1DHandle ControlArray1D_plus_int(ControlArray1DHandle handle,
   FALCON_C_API_END(nullptr)
 }
 
-void ControlArray1D_minusequals_farray(ControlArray1DHandle handle,
+void ControlArray1D_minus_equals_farray(ControlArray1DHandle handle,
                                        FArrayDoubleHandle   other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_minusequals_farray");
+        "Null handle passed to ControlArray1D_minus_equals_farray");
   }
   ControlArray1D*          control_array = static_cast<ControlArray1D*>(handle);
   generic::FArray<double>* oarray =
@@ -370,24 +370,24 @@ void ControlArray1D_minusequals_farray(ControlArray1DHandle handle,
   FALCON_C_API_END()
 }
 
-void ControlArray1D_minusequals_double(ControlArray1DHandle handle,
+void ControlArray1D_minus_equals_double(ControlArray1DHandle handle,
                                        const double         other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_minusequals_double");
+        "Null handle passed to ControlArray1D_minus_equals_double");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   control_array->operator-=(other);
   FALCON_C_API_END()
 }
 
-void ControlArray1D_minusequals_int(ControlArray1DHandle handle,
+void ControlArray1D_minus_equals_int(ControlArray1DHandle handle,
                                     const int            other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_minusequals_int");
+        "Null handle passed to ControlArray1D_minus_equals_int");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   control_array->operator-=(other);
@@ -457,24 +457,24 @@ ControlArray1DHandle ControlArray1D_negation(ControlArray1DHandle handle) {
   FALCON_C_API_END(nullptr)
 }
 
-void ControlArray1D_timesequals_double(ControlArray1DHandle handle,
+void ControlArray1D_times_equals_double(ControlArray1DHandle handle,
                                        const double         other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_timesequals_double");
+        "Null handle passed to ControlArray1D_times_equals_double");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   control_array->operator*=(other);
   FALCON_C_API_END()
 }
 
-void ControlArray1D_timesequals_int(ControlArray1DHandle handle,
+void ControlArray1D_times_equals_int(ControlArray1DHandle handle,
                                     const int            other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_timesequals_int");
+        "Null handle passed to ControlArray1D_times_equals_int");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   control_array->operator*=(other);
@@ -505,24 +505,24 @@ ControlArray1DHandle ControlArray1D_times_int(ControlArray1DHandle handle,
   FALCON_C_API_END(nullptr)
 }
 
-void ControlArray1D_dividesequals_double(ControlArray1DHandle handle,
+void ControlArray1D_divides_equals_double(ControlArray1DHandle handle,
                                          const double         other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_dividesequals_double");
+        "Null handle passed to ControlArray1D_divides_equals_double");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   control_array->operator/=(other);
   FALCON_C_API_END()
 }
 
-void ControlArray1D_dividesequals_int(ControlArray1DHandle handle,
+void ControlArray1D_divides_equals_int(ControlArray1DHandle handle,
                                       const int            other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_dividesequals_int");
+        "Null handle passed to ControlArray1D_divides_equals_int");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   control_array->operator/=(other);

@@ -314,12 +314,12 @@ size_t LabelledControlArray1D_data(LabelledControlArray1DHandle handle,
   FALCON_C_API_END(0)
 }
 
-void LabelledControlArray1D_plusequals_farray(
+void LabelledControlArray1D_plus_equals_farray(
     LabelledControlArray1DHandle handle, FArrayDoubleHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_plusequals_farray");
+        "Null handle passed to LabelledControlArray1D_plus_equals_farray");
   }
   LabelledControlArray1D* labelled_control_array =
       static_cast<LabelledControlArray1D*>(handle);
@@ -330,12 +330,12 @@ void LabelledControlArray1D_plusequals_farray(
   FALCON_C_API_END()
 }
 
-void LabelledControlArray1D_plusequals_double(
+void LabelledControlArray1D_plus_equals_double(
     LabelledControlArray1DHandle handle, const double other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_plusequals_double");
+        "Null handle passed to LabelledControlArray1D_plus_equals_double");
   }
   LabelledControlArray1D* labelled_control_array =
       static_cast<LabelledControlArray1D*>(handle);
@@ -343,12 +343,12 @@ void LabelledControlArray1D_plusequals_double(
   FALCON_C_API_END()
 }
 
-void LabelledControlArray1D_plusequals_int(LabelledControlArray1DHandle handle,
+void LabelledControlArray1D_plus_equals_int(LabelledControlArray1DHandle handle,
                                            const int                    other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_plusequals_int");
+        "Null handle passed to LabelledControlArray1D_plus_equals_int");
   }
   LabelledControlArray1D* labelled_control_array =
       static_cast<LabelledControlArray1D*>(handle);
@@ -413,12 +413,12 @@ LabelledControlArray1DHandle LabelledControlArray1D_plus_int(
   FALCON_C_API_END(nullptr)
 }
 
-void LabelledControlArray1D_minusequals_farray(
+void LabelledControlArray1D_minus_equals_farray(
     LabelledControlArray1DHandle handle, FArrayDoubleHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_minusequals_farray");
+        "Null handle passed to LabelledControlArray1D_minus_equals_farray");
   }
   LabelledControlArray1D* labelled_control_array =
       static_cast<LabelledControlArray1D*>(handle);
@@ -429,12 +429,12 @@ void LabelledControlArray1D_minusequals_farray(
   FALCON_C_API_END()
 }
 
-void LabelledControlArray1D_minusequals_double(
+void LabelledControlArray1D_minus_equals_double(
     LabelledControlArray1DHandle handle, const double other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_minusequals_double");
+        "Null handle passed to LabelledControlArray1D_minus_equals_double");
   }
   LabelledControlArray1D* labelled_control_array =
       static_cast<LabelledControlArray1D*>(handle);
@@ -442,12 +442,12 @@ void LabelledControlArray1D_minusequals_double(
   FALCON_C_API_END()
 }
 
-void LabelledControlArray1D_minusequals_int(LabelledControlArray1DHandle handle,
+void LabelledControlArray1D_minus_equals_int(LabelledControlArray1DHandle handle,
                                             const int other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_minusequals_int");
+        "Null handle passed to LabelledControlArray1D_minus_equals_int");
   }
   LabelledControlArray1D* labelled_control_array =
       static_cast<LabelledControlArray1D*>(handle);
@@ -525,12 +525,12 @@ LabelledControlArray1DHandle LabelledControlArray1D_negation(
   FALCON_C_API_END(nullptr)
 }
 
-void LabelledControlArray1D_timesequals_double(
+void LabelledControlArray1D_times_equals_double(
     LabelledControlArray1DHandle handle, const double other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_timesequals_double");
+        "Null handle passed to LabelledControlArray1D_times_equals_double");
   }
   LabelledControlArray1D* labelled_control_array =
       static_cast<LabelledControlArray1D*>(handle);
@@ -538,12 +538,12 @@ void LabelledControlArray1D_timesequals_double(
   FALCON_C_API_END()
 }
 
-void LabelledControlArray1D_timesequals_int(LabelledControlArray1DHandle handle,
+void LabelledControlArray1D_times_equals_int(LabelledControlArray1DHandle handle,
                                             const int other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_timesequals_int");
+        "Null handle passed to LabelledControlArray1D_times_equals_int");
   }
   LabelledControlArray1D* labelled_control_array =
       static_cast<LabelledControlArray1D*>(handle);
@@ -577,12 +577,12 @@ LabelledControlArray1DHandle LabelledControlArray1D_times_int(
   FALCON_C_API_END(nullptr)
 }
 
-void LabelledControlArray1D_dividesequals_double(
+void LabelledControlArray1D_divides_equals_double(
     LabelledControlArray1DHandle handle, const double other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_dividesequals_double");
+        "Null handle passed to LabelledControlArray1D_divides_equals_double");
   }
   LabelledControlArray1D* labelled_control_array =
       static_cast<LabelledControlArray1D*>(handle);
@@ -590,12 +590,12 @@ void LabelledControlArray1D_dividesequals_double(
   FALCON_C_API_END()
 }
 
-void LabelledControlArray1D_dividesequals_int(
+void LabelledControlArray1D_divides_equals_int(
     LabelledControlArray1DHandle handle, const int other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_dividesequals_int");
+        "Null handle passed to LabelledControlArray1D_divides_equals_int");
   }
   LabelledControlArray1D* labelled_control_array =
       static_cast<LabelledControlArray1D*>(handle);

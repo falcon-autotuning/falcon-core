@@ -113,12 +113,12 @@ size_t ControlArray_data(ControlArrayHandle handle,
   FALCON_C_API_END(0)
 }
 
-void ControlArray_plusequals_farray(ControlArrayHandle handle,
+void ControlArray_plus_equals_farray(ControlArrayHandle handle,
                                     FArrayDoubleHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray_plusequals_farray");
+        "Null handle passed to ControlArray_plus_equals_farray");
   }
   ControlArray*            control_array = static_cast<ControlArray*>(handle);
   generic::FArray<double>* oarray =
@@ -127,23 +127,23 @@ void ControlArray_plusequals_farray(ControlArrayHandle handle,
   FALCON_C_API_END()
 }
 
-void ControlArray_plusequals_double(ControlArrayHandle handle,
+void ControlArray_plus_equals_double(ControlArrayHandle handle,
                                     const double       other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray_plusequals_double");
+        "Null handle passed to ControlArray_plus_equals_double");
   }
   ControlArray* control_array = static_cast<ControlArray*>(handle);
   control_array->operator+=(other);
   FALCON_C_API_END()
 }
 
-void ControlArray_plusequals_int(ControlArrayHandle handle, const int other) {
+void ControlArray_plus_equals_int(ControlArrayHandle handle, const int other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray_plusequals_int");
+        "Null handle passed to ControlArray_plus_equals_int");
   }
   ControlArray* control_array = static_cast<ControlArray*>(handle);
   control_array->operator+=(other);
@@ -201,12 +201,12 @@ ControlArrayHandle ControlArray_plus_int(ControlArrayHandle handle,
   FALCON_C_API_END(nullptr)
 }
 
-void ControlArray_minusequals_farray(ControlArrayHandle handle,
+void ControlArray_minus_equals_farray(ControlArrayHandle handle,
                                      FArrayDoubleHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray_minusequals_farray");
+        "Null handle passed to ControlArray_minus_equals_farray");
   }
   ControlArray*            control_array = static_cast<ControlArray*>(handle);
   generic::FArray<double>* oarray =
@@ -215,23 +215,23 @@ void ControlArray_minusequals_farray(ControlArrayHandle handle,
   FALCON_C_API_END()
 }
 
-void ControlArray_minusequals_double(ControlArrayHandle handle,
+void ControlArray_minus_equals_double(ControlArrayHandle handle,
                                      const double       other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray_minusequals_double");
+        "Null handle passed to ControlArray_minus_equals_double");
   }
   ControlArray* control_array = static_cast<ControlArray*>(handle);
   control_array->operator-=(other);
   FALCON_C_API_END()
 }
 
-void ControlArray_minusequals_int(ControlArrayHandle handle, const int other) {
+void ControlArray_minus_equals_int(ControlArrayHandle handle, const int other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray_minusequals_int");
+        "Null handle passed to ControlArray_minus_equals_int");
   }
   ControlArray* control_array = static_cast<ControlArray*>(handle);
   control_array->operator-=(other);
@@ -299,23 +299,23 @@ ControlArrayHandle ControlArray_negation(ControlArrayHandle handle) {
   FALCON_C_API_END(nullptr)
 }
 
-void ControlArray_timesequals_double(ControlArrayHandle handle,
+void ControlArray_times_equals_double(ControlArrayHandle handle,
                                      const double       other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray_timesequals_double");
+        "Null handle passed to ControlArray_times_equals_double");
   }
   ControlArray* control_array = static_cast<ControlArray*>(handle);
   control_array->operator*=(other);
   FALCON_C_API_END()
 }
 
-void ControlArray_timesequals_int(ControlArrayHandle handle, const int other) {
+void ControlArray_times_equals_int(ControlArrayHandle handle, const int other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray_timesequals_int");
+        "Null handle passed to ControlArray_times_equals_int");
   }
   ControlArray* control_array = static_cast<ControlArray*>(handle);
   control_array->operator*=(other);
@@ -345,24 +345,24 @@ ControlArrayHandle ControlArray_times_int(ControlArrayHandle handle,
   FALCON_C_API_END(nullptr)
 }
 
-void ControlArray_dividesequals_double(ControlArrayHandle handle,
+void ControlArray_divides_equals_double(ControlArrayHandle handle,
                                        const double       other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray_dividesequals_double");
+        "Null handle passed to ControlArray_divides_equals_double");
   }
   ControlArray* control_array = static_cast<ControlArray*>(handle);
   control_array->operator/=(other);
   FALCON_C_API_END()
 }
 
-void ControlArray_dividesequals_int(ControlArrayHandle handle,
+void ControlArray_divides_equals_int(ControlArrayHandle handle,
                                     const int          other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray_dividesequals_int");
+        "Null handle passed to ControlArray_divides_equals_int");
   }
   ControlArray* control_array = static_cast<ControlArray*>(handle);
   control_array->operator/=(other);

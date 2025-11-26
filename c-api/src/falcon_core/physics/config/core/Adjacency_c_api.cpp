@@ -136,16 +136,16 @@ size_t Adjacency_data(AdjacencyHandle handle, int* out_buffer, size_t numdata) {
   FALCON_C_API_END(0)
 }
 
-void Adjacency_timesequals_farray(AdjacencyHandle handle,
+void Adjacency_times_equals_farray(AdjacencyHandle handle,
                                   FArrayIntHandle other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Adjacency_timesequals_farray: handle cannot be null");
+        "Adjacency_times_equals_farray: handle cannot be null");
   }
   if (!other) {
     throw std::invalid_argument(
-        "Adjacency_timesequals_farray: other cannot be null");
+        "Adjacency_times_equals_farray: other cannot be null");
   }
   Adjacency                         self = *static_cast<Adjacency*>(handle);
   falcon_core::generic::FArray<int> oarray =
