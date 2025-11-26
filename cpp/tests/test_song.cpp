@@ -4,17 +4,14 @@
 
 #include "falcon_core/generic/Song.hpp"
 namespace {
-// --- Helper Classes for Testing ---
-
-// Mirrors python `strjson`
-class StrSong : public falcon_core::generic::Song {
+class Strsong : public falcon_core::generic::Song {
  public:
-  StrSong(std::string value = "") : _value(std::move(value)) {}
+  Strsong(std::string value = "") : _value(std::move(value)) {}
 
-  bool operator==(const StrSong& other) const {
+  bool operator==(const Strsong& other) const {
     return Song::operator==(other);
   }
-  bool operator!=(const StrSong& other) const {
+  bool operator!=(const Strsong& other) const {
     return Song::operator!=(other);
   }
 
@@ -46,7 +43,7 @@ enum class MyEnum { STUFF };
 class ComplexSong : public falcon_core::generic::Song {
  public:
   ComplexSong(std::vector<std::string>              strings = {},
-              std::vector<std::shared_ptr<StrSong>> songs   = {},
+              std::vector<std::shared_ptr<Strsong>> songs   = {},
               MyEnum                                other   = MyEnum::STUFF)
       : _strings(std::move(strings)), _songs(std::move(songs)), _other(other) {}
 
@@ -59,20 +56,20 @@ class ComplexSong : public falcon_core::generic::Song {
   }
 
   std::vector<std::string>              _strings;
-  std::vector<std::shared_ptr<StrSong>> _songs;
+  std::vector<std::shared_ptr<Strsong>> _songs;
   MyEnum                                _other;
 };
 
-// Custom hash and equality for using shared_ptr<StrSong> in unordered_map
-struct StrSongPtrHash {
-  std::size_t operator()(const std::shared_ptr<StrSong>& s) const {
+// Custom hash and equality for using shared_ptr<Strsong> in unordered_map
+struct StrsongPtrHash {
+  std::size_t operator()(const std::shared_ptr<Strsong>& s) const {
     return std::hash<std::string>{}(s->_value);
   }
 };
 
-struct StrSongPtrEqual {
-  bool operator()(const std::shared_ptr<StrSong>& a,
-                  const std::shared_ptr<StrSong>& b) const {
+struct StrsongPtrEqual {
+  bool operator()(const std::shared_ptr<Strsong>& a,
+                  const std::shared_ptr<Strsong>& b) const {
     return *a == *b;
   }
 };
@@ -80,12 +77,12 @@ struct StrSongPtrEqual {
 // Mirrors python `the_destroyer`
 class TheDestroyerSong : public falcon_core::generic::Song {
  public:
-  using StrSongListSongMap = std::unordered_map<std::shared_ptr<StrSong>,
+  using StrsongListSongMap = std::unordered_map<std::shared_ptr<Strsong>,
                                                 std::shared_ptr<ListSong>,
-                                                StrSongPtrHash,
-                                                StrSongPtrEqual>;
+                                                StrsongPtrHash,
+                                                StrsongPtrEqual>;
 
-  StrSongListSongMap                        _value;
+  StrsongListSongMap                        _value;
   std::shared_ptr<ComplexSong>              _stuff;
   std::vector<std::string>                  _args;
   std::vector<std::shared_ptr<ComplexSong>> _even_more;
@@ -104,8 +101,8 @@ class TheDestroyerSong : public falcon_core::generic::Song {
 }  // namespace
 
 // --- Cereal Type Registration ---
-CEREAL_REGISTER_TYPE(::StrSong)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ::StrSong)
+CEREAL_REGISTER_TYPE(::Strsong)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ::Strsong)
 CEREAL_REGISTER_TYPE(::ListSong)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, ::ListSong)
 CEREAL_REGISTER_TYPE(::ComplexSong)
@@ -137,43 +134,43 @@ void test_serialization(const T& original) {
 // --- Tests ---
 
 TEST(SongTest, SimpleSerialization) {
-  test_serialization(StrSong("hello"));
+  test_serialization(Strsong("hello"));
   test_serialization(ListSong({"hello", "world"}));
-  auto string = StrSong("hello").to_json_string();
+  auto string = Strsong("hello").to_json_string();
   ASSERT_THROW(TheDestroyerSong::from_json_string<TheDestroyerSong>(string),
                std::runtime_error);
 }
 
 TEST(SongTest, Inequality) {
-  auto song1 = StrSong("hello");
-  auto song2 = StrSong("goodbye");
+  auto song1 = Strsong("hello");
+  auto song2 = Strsong("goodbye");
   ASSERT_TRUE(song1 != song2);
 }
 TEST(SongTest, NotInequality) {
-  auto song1 = StrSong("hello");
-  auto song2 = StrSong("hello");
+  auto song1 = Strsong("hello");
+  auto song2 = Strsong("hello");
   ASSERT_FALSE(song1 != song2);
 }
 
 TEST(SongTest, Equality) {
-  auto song1 = StrSong("hello");
-  auto song2 = StrSong("hello");
+  auto song1 = Strsong("hello");
+  auto song2 = Strsong("hello");
   ASSERT_TRUE(song1 == song2);
 }
 TEST(SongTest, NotEquality) {
-  auto song1 = StrSong("hello");
-  auto song2 = StrSong("goodbye");
+  auto song1 = Strsong("hello");
+  auto song2 = Strsong("goodbye");
   ASSERT_FALSE(song1 == song2);
 }
 
 TEST(SongTest, DestroyerSerialization) {
   auto original    = std::make_shared<TheDestroyerSong>();
   original->_value = {
-      {std::make_shared<StrSong>("hello"),
+      {std::make_shared<Strsong>("hello"),
        std::make_shared<ListSong>(std::vector<std::string>{"world"})}};
   original->_stuff = std::make_shared<ComplexSong>(
       std::vector<std::string>{"hello"},
-      std::vector<std::shared_ptr<StrSong>>{std::make_shared<StrSong>("world")},
+      std::vector<std::shared_ptr<Strsong>>{std::make_shared<Strsong>("world")},
       MyEnum::STUFF);
   original->_args      = {"hello", "world"};
   original->_even_more = {original->_stuff};

@@ -6,6 +6,7 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(C_API_TARGET "falcon_core_c_api")
+set(BATCH_SIZE 20)
 option(FALCON_CORE_DEV "Dev mode generates coverage and testing" OFF)
 if(FALCON_CORE_DEV)
   set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -48,7 +49,8 @@ if(CCACHE_PROGRAM)
 endif()
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
 set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD ON)
-set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD_BATCH_SIZE 20)
+set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD_BATCH_SIZE
+                                                   ${BATCH_SIZE})
 
 option(USE_VCPKG "Use vcpkg for dependencies" ON)
 set(BOOST_FILESYSTEM_TARGET Boost::filesystem)
@@ -144,6 +146,9 @@ if(FALCON_CORE_DEV)
   file(GLOB RUN_TESTS_SOURCES tests/test_*.cpp)
   add_executable(falcon_core_c_api_run_tests ${RUN_TESTS_SOURCES})
   target_link_directories(falcon_core_c_api_run_tests PRIVATE ${CORE_BUILD_ABS})
+  set_target_properties(falcon_core_c_api_run_tests PROPERTIES UNITY_BUILD ON)
+  set_target_properties(falcon_core_c_api_run_tests
+                        PROPERTIES UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE})
   set_target_properties(
     falcon_core_c_api_run_tests
     PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build"

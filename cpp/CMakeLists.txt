@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CPP_TARGET "falcon_core_cpp")
 option(FALCON_CORE_DEV "Dev mode generates coverage and testing" OFF)
+set(BATCH_SIZE 20)
 if(FALCON_CORE_DEV)
   set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 endif()
@@ -45,8 +46,8 @@ if(CCACHE_PROGRAM)
   set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
 endif()
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
-set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD ON)
-set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD_BATCH_SIZE 20)
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=lld")
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -fuse-ld=lld")
 
 # Handling VCPKG support
 option(USE_VCPKG "Use vcpkg for dependencies" ON)
@@ -110,6 +111,9 @@ endif()
 
 file(GLOB_RECURSE FALCON_CORE_SOURCES CONFIGURE_DEPENDS "src/*.cpp")
 add_library(${CPP_LIB_NAME} SHARED ${FALCON_CORE_SOURCES})
+set_target_properties(${CPP_LIB_NAME} PROPERTIES UNITY_BUILD ON)
+set_target_properties(${CPP_LIB_NAME} PROPERTIES UNITY_BUILD_BATCH_SIZE
+                                                 ${BATCH_SIZE})
 target_include_directories(
   ${CPP_LIB_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
                          $<INSTALL_INTERFACE:include>)
@@ -134,6 +138,9 @@ if(FALCON_CORE_DEV)
   enable_testing()
   file(GLOB RUN_TESTS_SOURCES tests/test_*.cpp)
   add_executable(falcon_core_cpp_run_tests ${RUN_TESTS_SOURCES})
+  set_target_properties(falcon_core_cpp_run_tests PROPERTIES UNITY_BUILD ON)
+  set_target_properties(falcon_core_cpp_run_tests
+                        PROPERTIES UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE})
   set_target_properties(
     falcon_core_cpp_run_tests
     PROPERTIES SKIP_BUILD_RPATH FALSE

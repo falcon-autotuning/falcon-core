@@ -13,7 +13,7 @@
 
 using namespace falcon_core;
 using namespace autotuner_interfaces;
-using namespace instrument_interfaces;
+using namespace instrument_interfaces::names;
 using namespace interpretations;
 using namespace physics;
 using namespace device_structures;
@@ -34,12 +34,12 @@ class InterpretationContainerTest : public ::testing::Test {
   MeasurementContextSP    mcA, mcB, mcO;
   InterpretationContextSP ctxA_O_V, ctxB_O_V, ctxA_O_A;
   void                    SetUp() override {
-    mcA = std::make_shared<MeasurementContext>(
-        connA, names::InstrumentTypes::VOLTMETER);
-    mcB = std::make_shared<MeasurementContext>(
-        connB, names::InstrumentTypes::VOLTMETER);
-    mcO = std::make_shared<MeasurementContext>(
-        connO, names::InstrumentTypes::VOLTMETER);
+    mcA =
+        std::make_shared<MeasurementContext>(connA, InstrumentTypes::VOLTMETER);
+    mcB =
+        std::make_shared<MeasurementContext>(connB, InstrumentTypes::VOLTMETER);
+    mcO =
+        std::make_shared<MeasurementContext>(connO, InstrumentTypes::VOLTMETER);
     ctxA_O_V = std::make_shared<InterpretationContext>(
         std::make_shared<math::Axes<MeasurementContext>>(
             std::vector<MeasurementContextSP>{mcA}),

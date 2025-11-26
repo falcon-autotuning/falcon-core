@@ -12,8 +12,7 @@
 namespace {
 using namespace falcon_core;
 using namespace generic;
-using namespace instrument_interfaces;
-using namespace names;
+using namespace instrument_interfaces::names;
 
 class PortsTest : public ::testing::Test {
  protected:

@@ -119,8 +119,6 @@ bool Ports::operator!=(const Ports& other) const { return !(*this == other); }
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::names::Ports)
-CEREAL_REGISTER_TYPE(falcon_core::generic::List<
-                     falcon_core::instrument_interfaces::names::InstrumentPort>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::List<
         falcon_core::instrument_interfaces::names::InstrumentPort>,

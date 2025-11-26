@@ -312,8 +312,4 @@ using PQQ = falcon_core::generic::Pair<falcon_core::math::Quantity,
                                        falcon_core::math::Quantity>;
 using MBD = falcon_core::generic::
     Map<falcon_core::physics::device_structures::Connection, PQQ>;
-CEREAL_REGISTER_TYPE(PQQ)
-CEREAL_REGISTER_TYPE(MBD)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PQQ)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MBD)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(MBD, falcon_core::math::Vector)

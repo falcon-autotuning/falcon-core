@@ -7,9 +7,7 @@
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/math/discrete_spaces/DiscreteSpace.hpp"
-using namespace falcon_core;
-using namespace instrument_interfaces;
-using namespace names;
+using namespace falcon_core::instrument_interfaces::names;
 
 extern "C" {
 WaveformHandle Waveform_create(DiscreteSpaceHandle     space,

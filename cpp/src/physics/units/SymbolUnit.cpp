@@ -7,38 +7,6 @@
 namespace falcon_core {
 namespace physics {
 namespace units {
-const std::vector<std::tuple<UnitSP, std::string, std::string>> Units_And_Names{
-    {Unit::Meter(), SI::UNIT_SYMBOL_METER, SI::UNIT_NAME_METER},
-    {Unit::Kilogram(), SI::UNIT_SYMBOL_KILOGRAM, SI::UNIT_NAME_KILOGRAM},
-    {Unit::Second(), SI::UNIT_SYMBOL_SECOND, SI::UNIT_NAME_SECOND},
-    {Unit::Ampere(), SI::UNIT_SYMBOL_AMPERE, SI::UNIT_NAME_AMPERE},
-    {Unit::Kelvin(), SI::UNIT_SYMBOL_KELVIN, SI::UNIT_NAME_KELVIN},
-    {Unit::Mole(), SI::UNIT_SYMBOL_MOLE, SI::UNIT_NAME_MOLE},
-    {Unit::Candela(), SI::UNIT_SYMBOL_CANDELA, SI::UNIT_NAME_CANDELA},
-    {Unit::Hertz(), SI::UNIT_SYMBOL_HERTZ, SI::UNIT_NAME_HERTZ},
-    {Unit::Newton(), SI::UNIT_SYMBOL_NEWTON, SI::UNIT_NAME_NEWTON},
-    {Unit::Pascal(), SI::UNIT_SYMBOL_PASCAL, SI::UNIT_NAME_PASCAL},
-    {Unit::Joule(), SI::UNIT_SYMBOL_JOULE, SI::UNIT_NAME_JOULE},
-    {Unit::Watt(), SI::UNIT_SYMBOL_WATT, SI::UNIT_NAME_WATT},
-    {Unit::Coulomb(), SI::UNIT_SYMBOL_COULOMB, SI::UNIT_NAME_COULOMB},
-    {Unit::Volt(), SI::UNIT_SYMBOL_VOLT, SI::UNIT_NAME_VOLT},
-    {Unit::Farad(), SI::UNIT_SYMBOL_FARAD, SI::UNIT_NAME_FARAD},
-    {Unit::Ohm(), SI::UNIT_SYMBOL_OHM, SI::UNIT_NAME_OHM},
-    {Unit::Siemens(), SI::UNIT_SYMBOL_SIEMENS, SI::UNIT_NAME_SIEMENS},
-    {Unit::Weber(), SI::UNIT_SYMBOL_WEBER, SI::UNIT_NAME_WEBER},
-    {Unit::Tesla(), SI::UNIT_SYMBOL_TESLA, SI::UNIT_NAME_TESLA},
-    {Unit::Henry(), SI::UNIT_SYMBOL_HENRY, SI::UNIT_NAME_HENRY},
-    {Unit::Minute(), SI::UNIT_SYMBOL_MINUTE, SI::UNIT_NAME_MINUTE},
-    {Unit::Hour(), SI::UNIT_SYMBOL_HOUR, SI::UNIT_NAME_HOUR},
-    {Unit::ElectronVolt(),
-     SI::UNIT_SYMBOL_ELECTRON_VOLT,
-     SI::UNIT_NAME_ELECTRON_VOLT},
-    {Unit::Celsius(), SI::UNIT_SYMBOL_CELSIUS, SI::UNIT_NAME_CELSIUS},
-    {Unit::Fahrenheit(), SI::UNIT_SYMBOL_FAHRENHEIT, SI::UNIT_NAME_FAHRENHEIT},
-    {Unit::Dimensionless(), SI::UNIT_SYMBOL, SI::UNIT_NAME_DIMENSIONLESS},
-    {Unit::Percent(), SI::UNIT_SYMBOL_PERCENT, SI::UNIT_NAME_PERCENT},
-    {Unit::Radian(), SI::UNIT_SYMBOL_RADIAN, SI::UNIT_NAME_RADIAN},
-};
 const std::map<std::string, std::string> Dimension_Symbols{
     {SI::DIMENSION_LENGTH, SI::UNIT_SYMBOL_METER},
     {SI::DIMENSION_MASS, SI::UNIT_SYMBOL_KILOGRAM},
@@ -282,9 +250,10 @@ const bool SymbolUnit::is_compatible_with(const SymbolUnitSP& other) const {
 }
 const std::pair<std::string, std::string>
 SymbolUnit::_find_matching_common_unit() const {
-  double tolerance = 1e-6;
-  for (const std::tuple<UnitSP, std::string, std::string>& triplet :
-       get_unit_symbols()) {
+  double tolerance    = 1e-6;
+  auto   unit_symbols = get_unit_symbols();
+  for (const std::tuple<UnitSP, const char*, const char*>& triplet :
+       unit_symbols) {
     if (unit()->dimensions().empty()) {
       if (std::abs(unit()->scale_factor() - 0.01) <= tolerance) {
         return {SI::UNIT_SYMBOL_PERCENT, SI::UNIT_SYMBOL_PERCENT};
@@ -296,8 +265,8 @@ SymbolUnit::_find_matching_common_unit() const {
       }
     }
     if (std::get<0>(triplet)->dimensions() == unit()->dimensions()) {
-      return {unit()->prefix() + std::get<1>(triplet),
-              unit()->prefix() + std::get<2>(triplet)};
+      return {unit()->prefix() + std::string(std::get<1>(triplet)),
+              unit()->prefix() + std::string(std::get<2>(triplet))};
     }
   }
   // No exact match found, generate a custom symbol and name
@@ -375,9 +344,42 @@ const std::string SymbolUnit::_generate_symbol() const {
 
   return numerator_str + "·" + denominator_str;
 }
-const std::vector<std::tuple<UnitSP, std::string, std::string>>
+const std::vector<std::tuple<UnitSP, const char*, const char*>>
 SymbolUnit::get_unit_symbols() const {
-  return Units_And_Names;
+  return {
+      {Unit::Meter(), SI::UNIT_SYMBOL_METER, SI::UNIT_NAME_METER},
+      {Unit::Kilogram(), SI::UNIT_SYMBOL_KILOGRAM, SI::UNIT_NAME_KILOGRAM},
+      {Unit::Second(), SI::UNIT_SYMBOL_SECOND, SI::UNIT_NAME_SECOND},
+      {Unit::Ampere(), SI::UNIT_SYMBOL_AMPERE, SI::UNIT_NAME_AMPERE},
+      {Unit::Kelvin(), SI::UNIT_SYMBOL_KELVIN, SI::UNIT_NAME_KELVIN},
+      {Unit::Mole(), SI::UNIT_SYMBOL_MOLE, SI::UNIT_NAME_MOLE},
+      {Unit::Candela(), SI::UNIT_SYMBOL_CANDELA, SI::UNIT_NAME_CANDELA},
+      {Unit::Hertz(), SI::UNIT_SYMBOL_HERTZ, SI::UNIT_NAME_HERTZ},
+      {Unit::Newton(), SI::UNIT_SYMBOL_NEWTON, SI::UNIT_NAME_NEWTON},
+      {Unit::Pascal(), SI::UNIT_SYMBOL_PASCAL, SI::UNIT_NAME_PASCAL},
+      {Unit::Joule(), SI::UNIT_SYMBOL_JOULE, SI::UNIT_NAME_JOULE},
+      {Unit::Watt(), SI::UNIT_SYMBOL_WATT, SI::UNIT_NAME_WATT},
+      {Unit::Coulomb(), SI::UNIT_SYMBOL_COULOMB, SI::UNIT_NAME_COULOMB},
+      {Unit::Volt(), SI::UNIT_SYMBOL_VOLT, SI::UNIT_NAME_VOLT},
+      {Unit::Farad(), SI::UNIT_SYMBOL_FARAD, SI::UNIT_NAME_FARAD},
+      {Unit::Ohm(), SI::UNIT_SYMBOL_OHM, SI::UNIT_NAME_OHM},
+      {Unit::Siemens(), SI::UNIT_SYMBOL_SIEMENS, SI::UNIT_NAME_SIEMENS},
+      {Unit::Weber(), SI::UNIT_SYMBOL_WEBER, SI::UNIT_NAME_WEBER},
+      {Unit::Tesla(), SI::UNIT_SYMBOL_TESLA, SI::UNIT_NAME_TESLA},
+      {Unit::Henry(), SI::UNIT_SYMBOL_HENRY, SI::UNIT_NAME_HENRY},
+      {Unit::Minute(), SI::UNIT_SYMBOL_MINUTE, SI::UNIT_NAME_MINUTE},
+      {Unit::Hour(), SI::UNIT_SYMBOL_HOUR, SI::UNIT_NAME_HOUR},
+      {Unit::ElectronVolt(),
+       SI::UNIT_SYMBOL_ELECTRON_VOLT,
+       SI::UNIT_NAME_ELECTRON_VOLT},
+      {Unit::Celsius(), SI::UNIT_SYMBOL_CELSIUS, SI::UNIT_NAME_CELSIUS},
+      {Unit::Fahrenheit(),
+       SI::UNIT_SYMBOL_FAHRENHEIT,
+       SI::UNIT_NAME_FAHRENHEIT},
+      {Unit::Dimensionless(), SI::UNIT_SYMBOL, SI::UNIT_NAME_DIMENSIONLESS},
+      {Unit::Percent(), SI::UNIT_SYMBOL_PERCENT, SI::UNIT_NAME_PERCENT},
+      {Unit::Radian(), SI::UNIT_SYMBOL_RADIAN, SI::UNIT_NAME_RADIAN},
+  };
 }
 
 const std::map<std::string, std::string> SymbolUnit::get_dimension_symbols()

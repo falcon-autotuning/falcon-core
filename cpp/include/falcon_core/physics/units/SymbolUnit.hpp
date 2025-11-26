@@ -323,7 +323,7 @@ class SymbolUnit : public generic::Song {
    */
   const bool is_compatible_with(const std::shared_ptr<SymbolUnit>& other) const;
 
-  const std::vector<std::tuple<UnitSP, std::string, std::string>>
+  const std::vector<std::tuple<UnitSP, const char*, const char*>>
   get_unit_symbols() const;
 
   const std::map<std::string, std::string> get_dimension_symbols() const;
