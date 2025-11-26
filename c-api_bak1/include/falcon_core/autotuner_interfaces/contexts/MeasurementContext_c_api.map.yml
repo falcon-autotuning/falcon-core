@@ -1,8 +1,0 @@
-c_header: MeasurementContext_c_api.h
-cpp_headers:
-- ../../../../../cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp
-mappings:
-- cpp: falcon_core::autotuner_interfaces::contexts::BaseContext::connection
-  c: MeasurementContext_connection
-- cpp: falcon_core::autotuner_interfaces::contexts::BaseContext::instrument_type
-  c: MeasurementContext_instrument_type

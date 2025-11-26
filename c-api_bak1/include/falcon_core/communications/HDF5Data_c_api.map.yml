@@ -1,8 +1,0 @@
-c_header: HDF5Data_c_api.h
-cpp_headers:
-- ../../../../cpp/include/falcon_core/communications/HDF5Data.hpp
-mappings:
-- cpp: falcon_core::communications::HDF5Data::to_file
-  c: HDF5Data_to_file
-- cpp: falcon_core::communications::HDF5Data::to_communications
-  c: HDF5Data_to_communications

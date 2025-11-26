@@ -515,11 +515,11 @@ size_t {self.mangled_name()}_shape({self.chandle()} handle,size_t* out_buffer, s
 // @category:read
 size_t {self.mangled_name()}_data({self.chandle()} handle, {c_type}* out_buffer, size_t numdata);
 // @category:write
-void {self.mangled_name()}_plusequals_farray({self.chandle()} handle, {self.chandle()} other);
+void {self.mangled_name()}_plus_equals_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:write
-void {self.mangled_name()}_plusequals_double({self.chandle()} handle, double other);
+void {self.mangled_name()}_plus_equals_double({self.chandle()} handle, double other);
 // @category:write
-void {self.mangled_name()}_plusequals_int({self.chandle()} handle, int other);
+void {self.mangled_name()}_plus_equals_int({self.chandle()} handle, int other);
 // @category:read
 {self.chandle()} {self.mangled_name()}_plus_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:read
@@ -527,11 +527,11 @@ void {self.mangled_name()}_plusequals_int({self.chandle()} handle, int other);
 // @category:read
 {self.chandle()} {self.mangled_name()}_plus_int({self.chandle()} handle,  int other);
 // @category:write
-void {self.mangled_name()}_minusequals_farray({self.chandle()} handle, {self.chandle()} other);
+void {self.mangled_name()}_minus_equals_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:write
-void {self.mangled_name()}_minusequals_double({self.chandle()} handle,  double other);
+void {self.mangled_name()}_minus_equals_double({self.chandle()} handle,  double other);
 // @category:write
-void {self.mangled_name()}_minusequals_int({self.chandle()} handle,  int other);
+void {self.mangled_name()}_minus_equals_int({self.chandle()} handle,  int other);
 // @category:read
 {self.chandle()} {self.mangled_name()}_minus_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:read
@@ -541,11 +541,11 @@ void {self.mangled_name()}_minusequals_int({self.chandle()} handle,  int other);
 // @category:read
 {self.chandle()} {self.mangled_name()}_negation({self.chandle()} handle);
 // @category:write
-void {self.mangled_name()}_timesequals_farray({self.chandle()} handle, {self.chandle()} other);
+void {self.mangled_name()}_times_equals_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:write
-void {self.mangled_name()}_timesequals_double({self.chandle()} handle,  double other);
+void {self.mangled_name()}_times_equals_double({self.chandle()} handle,  double other);
 // @category:write
-void {self.mangled_name()}_timesequals_int({self.chandle()} handle,  int other);
+void {self.mangled_name()}_times_equals_int({self.chandle()} handle,  int other);
 // @category:read
 {self.chandle()} {self.mangled_name()}_times_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:read
@@ -553,11 +553,11 @@ void {self.mangled_name()}_timesequals_int({self.chandle()} handle,  int other);
 // @category:read
 {self.chandle()} {self.mangled_name()}_times_int({self.chandle()} handle,  int other);
 // @category:write
-void {self.mangled_name()}_dividesequals_farray({self.chandle()} handle, {self.chandle()} other);
+void {self.mangled_name()}_divides_equals_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:write
-void {self.mangled_name()}_dividesequals_double({self.chandle()} handle,  double other);
+void {self.mangled_name()}_divides_equals_double({self.chandle()} handle,  double other);
 // @category:write
-void {self.mangled_name()}_dividesequals_int({self.chandle()} handle,  int other);
+void {self.mangled_name()}_divides_equals_int({self.chandle()} handle,  int other);
 // @category:read
 {self.chandle()} {self.mangled_name()}_divides_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:read
@@ -2186,10 +2186,10 @@ throw std::invalid_argument("Null out_buffer passed to {self.mangled_name()}_sha
     FALCON_C_API_END(0)
 }}
  
-void {self.mangled_name()}_plusequals_farray({self.chandle()} handle, {self.chandle()} other) {{
+void {self.mangled_name()}_plus_equals_farray({self.chandle()} handle, {self.chandle()} other) {{
     FALCON_C_API_BEGIN
 if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plusequals_farray");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plus_equals_farray");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
@@ -2197,20 +2197,20 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plusequ
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_plusequals_double({self.chandle()} handle,  double other) {{
+void {self.mangled_name()}_plus_equals_double({self.chandle()} handle,  double other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plusequals_double");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plus_equals_double");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray += other;
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_plusequals_int({self.chandle()} handle,  int other) {{
+void {self.mangled_name()}_plus_equals_int({self.chandle()} handle,  int other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plusequals_int");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plus_equals_int");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray += other;
@@ -2250,10 +2250,10 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_plus_in
     FALCON_C_API_END(nullptr)
 }}
 
-void {self.mangled_name()}_minusequals_farray({self.chandle()} handle, {self.chandle()} other) {{
+void {self.mangled_name()}_minus_equals_farray({self.chandle()} handle, {self.chandle()} other) {{
     FALCON_C_API_BEGIN
 if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minusequals_farray");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minus_equals_farray");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
@@ -2261,20 +2261,20 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minuseq
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_minusequals_double({self.chandle()} handle,  double other) {{
+void {self.mangled_name()}_minus_equals_double({self.chandle()} handle,  double other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minusequals_double");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minus_equals_double");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray -= other;
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_minusequals_int({self.chandle()} handle,  int other) {{
+void {self.mangled_name()}_minus_equals_int({self.chandle()} handle,  int other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minusequals_int");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_minus_equals_int");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray -= other;
@@ -2324,10 +2324,10 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_negatio
     FALCON_C_API_END(nullptr)
 }}
 
-void {self.mangled_name()}_timesequals_farray({self.chandle()} handle, {self.chandle()} other) {{
+void {self.mangled_name()}_times_equals_farray({self.chandle()} handle, {self.chandle()} other) {{
     FALCON_C_API_BEGIN
 if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_timesequals_farray");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_times_equals_farray");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
@@ -2335,20 +2335,20 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_timeseq
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_timesequals_double({self.chandle()} handle,  double other) {{
+void {self.mangled_name()}_times_equals_double({self.chandle()} handle,  double other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_timesequals_double");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_times_equals_double");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray *= other;
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_timesequals_int({self.chandle()} handle,  int other) {{
+void {self.mangled_name()}_times_equals_int({self.chandle()} handle,  int other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_timesequals_int");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_times_equals_int");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray *= other;
@@ -2388,10 +2388,10 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_times_i
     FALCON_C_API_END(nullptr)
 }}
 
-void {self.mangled_name()}_dividesequals_farray({self.chandle()} handle, {self.chandle()} other) {{
+void {self.mangled_name()}_divides_equals_farray({self.chandle()} handle, {self.chandle()} other) {{
     FALCON_C_API_BEGIN
 if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_dividesequals_farray");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides_equals_farray");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
@@ -2399,20 +2399,20 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_dividesequals_double({self.chandle()} handle,  double other) {{
+void {self.mangled_name()}_divides_equals_double({self.chandle()} handle,  double other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_dividesequals_double");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides_equals_double");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray /= other;
     FALCON_C_API_END()
 }}
 
-void {self.mangled_name()}_dividesequals_int({self.chandle()} handle,  int other) {{
+void {self.mangled_name()}_divides_equals_int({self.chandle()} handle,  int other) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_dividesequals_int");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_divides_equals_int");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     *farray /= other;
