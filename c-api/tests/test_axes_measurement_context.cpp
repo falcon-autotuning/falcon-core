@@ -1,11 +1,11 @@
 #include <falcon_core/generic/ListMeasurementContext_c_api.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <falcon_core/math/AxesMeasurementContext_c_api.h>
 #include <gtest/gtest.h>
 
 #include <stdexcept>
 #include <vector>
+
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 class AxesMeasurementContextTest : public ::testing::Test {
  protected:
@@ -52,19 +52,6 @@ TEST_F(AxesMeasurementContextTest, CreateFromArray) {
   EXPECT_EQ(AxesMeasurementContext_size(handle), 2);
   set_last_error(0, nullptr);
   AxesMeasurementContext_create(nullptr);
-  EXPECT_EQ(get_last_error_code(), 1);
-  AxesMeasurementContext_destroy(handle);
-}
-
-TEST_F(AxesMeasurementContextTest, CreateFromRaw) {
-  MeasurementContextHandle arr[2] = {sh1, sh2};
-  // ListMeasurementContextHandle list_handle =
-  //     ListMeasurementContext_create(arr, 2);
-  AxesMeasurementContextHandle handle =
-      AxesMeasurementContext_create_raw(arr, 2);
-  EXPECT_EQ(AxesMeasurementContext_size(handle), 2);
-  set_last_error(0, nullptr);
-  AxesMeasurementContext_create_raw(nullptr, 2);
   EXPECT_EQ(get_last_error_code(), 1);
   AxesMeasurementContext_destroy(handle);
 }

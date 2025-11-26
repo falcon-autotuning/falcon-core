@@ -15,8 +15,6 @@ typedef void* AxesLabelledMeasuredArray1DHandle;
 // @category:allocation
 AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_create_empty();
 // @category:allocation
-AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_create_raw(const LabelledMeasuredArray1DHandle* data, size_t count);
-// @category:allocation
 AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_create(ListLabelledMeasuredArray1DHandle data);
 // @category:deallocation
 void AxesLabelledMeasuredArray1D_destroy(AxesLabelledMeasuredArray1DHandle handle);

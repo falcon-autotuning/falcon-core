@@ -15,8 +15,6 @@ typedef void* AxesMeasurementContextHandle;
 // @category:allocation
 AxesMeasurementContextHandle AxesMeasurementContext_create_empty();
 // @category:allocation
-AxesMeasurementContextHandle AxesMeasurementContext_create_raw(const MeasurementContextHandle* data, size_t count);
-// @category:allocation
 AxesMeasurementContextHandle AxesMeasurementContext_create(ListMeasurementContextHandle data);
 // @category:deallocation
 void AxesMeasurementContext_destroy(AxesMeasurementContextHandle handle);

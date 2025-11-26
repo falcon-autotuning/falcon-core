@@ -14,8 +14,6 @@ typedef void* AxesDoubleHandle;
 // @category:allocation
 AxesDoubleHandle AxesDouble_create_empty();
 // @category:allocation
-AxesDoubleHandle AxesDouble_create_raw(const double* data, size_t count);
-// @category:allocation
 AxesDoubleHandle AxesDouble_create(ListDoubleHandle data);
 // @category:deallocation
 void AxesDouble_destroy(AxesDoubleHandle handle);

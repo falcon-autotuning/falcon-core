@@ -1,9 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <stdexcept>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/math/AxesInt_c_api.h"
 
 class AxesIntTest : public ::testing::Test {
@@ -52,9 +51,6 @@ TEST_F(AxesIntTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesInt_at(axes, 1), 2);
   int out[4];
   EXPECT_EQ(AxesInt_items(axes, out, 4), 2u);
-  auto h2 = AxesInt_create_raw(raw, 2);
-  ASSERT_NE(h2, nullptr);
-  AxesInt_destroy(h2);
   AxesInt_push_back(axes, 3);
   AxesInt_erase_at(axes, 2);
   AxesInt_clear(axes);

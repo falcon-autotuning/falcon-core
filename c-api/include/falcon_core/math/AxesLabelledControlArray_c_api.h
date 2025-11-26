@@ -15,8 +15,6 @@ typedef void* AxesLabelledControlArrayHandle;
 // @category:allocation
 AxesLabelledControlArrayHandle AxesLabelledControlArray_create_empty();
 // @category:allocation
-AxesLabelledControlArrayHandle AxesLabelledControlArray_create_raw(const LabelledControlArrayHandle* data, size_t count);
-// @category:allocation
 AxesLabelledControlArrayHandle AxesLabelledControlArray_create(ListLabelledControlArrayHandle data);
 // @category:deallocation
 void AxesLabelledControlArray_destroy(AxesLabelledControlArrayHandle handle);

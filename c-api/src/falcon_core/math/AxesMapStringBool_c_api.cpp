@@ -12,23 +12,6 @@ AxesMapStringBoolHandle AxesMapStringBool_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-AxesMapStringBoolHandle AxesMapStringBool_create_raw(const MapStringBoolHandle* data, size_t count) {
-    FALCON_C_API_BEGIN
-    std::vector<falcon_core::generic::MapSP<std::string, bool>> vec;
-        
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to AxesMapStringBool_create_allocation");
-                }
-    vec.reserve(count);
-    for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::make_shared<falcon_core::generic::Map<std::string, bool>>(*static_cast<falcon_core::generic::Map<std::string, bool>*>(data[i])));
-    }
-
-    return new falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>(
-        falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>(vec));
-    FALCON_C_API_END(nullptr)
-}
-
 AxesMapStringBoolHandle AxesMapStringBool_create(ListMapStringBoolHandle data) {
     FALCON_C_API_BEGIN
 if (!data) {

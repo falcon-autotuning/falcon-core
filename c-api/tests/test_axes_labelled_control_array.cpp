@@ -125,8 +125,6 @@ TEST_F(AxesLabelledControlArrayTest, AccessorsAndMutators) {
   auto lca = LabelledControlArray_from_control_array(
       ControlArray_from_data(data2d, shape2d, 2), label);
   LabelledControlArrayHandle out[1] = {lca};
-  auto                       h2 = AxesLabelledControlArray_create_raw(out, 1);
-  if (h2) AxesLabelledControlArray_destroy(h2);
   ListLabelledControlArray_destroy(handle);
   //
   AxesLabelledControlArray_push_back(axes, lca);
@@ -232,6 +230,4 @@ TEST_F(AxesLabelledControlArrayTest, MiscNullChecks) {
   AxesLabelledControlArray_at(nullptr, 0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  AxesLabelledControlArray_create_raw(nullptr, 2);
-  EXPECT_EQ(get_last_error_code(), 1);
 }

@@ -1,9 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <vector>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/AxesLabelledMeasuredArray1D_c_api.h"
@@ -123,8 +122,6 @@ TEST_F(AxesLabelledMeasuredArray1DTest, AccessorsAndMutators) {
   auto lca = LabelledMeasuredArray1D_from_measured_array(
       MeasuredArray_from_data(data, shape, 1), label);
   LabelledMeasuredArray1DHandle out[1] = {lca};
-  auto h2 = AxesLabelledMeasuredArray1D_create_raw(out, 1);
-  if (h2) AxesLabelledMeasuredArray1D_destroy(h2);
   ListLabelledMeasuredArray1D_destroy(handle);
   //
   AxesLabelledMeasuredArray1D_push_back(axes, lca);
@@ -230,6 +227,4 @@ TEST_F(AxesLabelledMeasuredArray1DTest, MiscNullChecks) {
   AxesLabelledMeasuredArray1D_at(nullptr, 0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  AxesLabelledMeasuredArray1D_create_raw(nullptr, 2);
-  EXPECT_EQ(get_last_error_code(), 1);
 }

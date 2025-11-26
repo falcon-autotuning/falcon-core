@@ -12,23 +12,6 @@ AxesInstrumentPortHandle AxesInstrumentPort_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-AxesInstrumentPortHandle AxesInstrumentPort_create_raw(const InstrumentPortHandle* data, size_t count) {
-    FALCON_C_API_BEGIN
-    std::vector<falcon_core::instrument_interfaces::names::InstrumentPortSP> vec;
-        
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to AxesInstrumentPort_create_allocation");
-                }
-    vec.reserve(count);
-    for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::make_shared<falcon_core::instrument_interfaces::names::InstrumentPort>(*static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(data[i])));
-    }
-
-    return new falcon_core::math::Axes<falcon_core::instrument_interfaces::names::InstrumentPort>(
-        falcon_core::math::Axes<falcon_core::instrument_interfaces::names::InstrumentPort>(vec));
-    FALCON_C_API_END(nullptr)
-}
-
 AxesInstrumentPortHandle AxesInstrumentPort_create(ListInstrumentPortHandle data) {
     FALCON_C_API_BEGIN
 if (!data) {

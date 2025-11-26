@@ -15,8 +15,6 @@ typedef void* AxesCoupledLabelledDomainHandle;
 // @category:allocation
 AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_create_empty();
 // @category:allocation
-AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_create_raw(const CoupledLabelledDomainHandle* data, size_t count);
-// @category:allocation
 AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_create(ListCoupledLabelledDomainHandle data);
 // @category:deallocation
 void AxesCoupledLabelledDomain_destroy(AxesCoupledLabelledDomainHandle handle);

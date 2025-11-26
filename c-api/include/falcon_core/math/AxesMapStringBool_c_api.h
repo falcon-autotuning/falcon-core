@@ -14,8 +14,6 @@ typedef void* AxesMapStringBoolHandle;
 // @category:allocation
 AxesMapStringBoolHandle AxesMapStringBool_create_empty();
 // @category:allocation
-AxesMapStringBoolHandle AxesMapStringBool_create_raw(const MapStringBoolHandle* data, size_t count);
-// @category:allocation
 AxesMapStringBoolHandle AxesMapStringBool_create(ListMapStringBoolHandle data);
 // @category:deallocation
 void AxesMapStringBool_destroy(AxesMapStringBoolHandle handle);

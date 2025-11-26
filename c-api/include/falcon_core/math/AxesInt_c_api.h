@@ -14,8 +14,6 @@ typedef void* AxesIntHandle;
 // @category:allocation
 AxesIntHandle AxesInt_create_empty();
 // @category:allocation
-AxesIntHandle AxesInt_create_raw(const int* data, size_t count);
-// @category:allocation
 AxesIntHandle AxesInt_create(ListIntHandle data);
 // @category:deallocation
 void AxesInt_destroy(AxesIntHandle handle);

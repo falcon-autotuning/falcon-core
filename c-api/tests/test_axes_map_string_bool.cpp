@@ -1,12 +1,11 @@
 #include <falcon_core/generic/ListMapStringBool_c_api.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <falcon_core/math/AxesMapStringBool_c_api.h>
 #include <gtest/gtest.h>
 
 #include <stdexcept>
 #include <vector>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/MapStringBool_c_api.h"
 #include "falcon_core/generic/PairStringBool_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -68,7 +67,6 @@ TEST_F(AxesMapStringBoolTest, CreateDestroy) {
 
   MapStringBoolHandle map_pair3[1] = {MapStringBool_create(pair3, 1)};
   //
-  auto h1 = AxesMapStringBool_create_raw(map_pair3, 1);
 }
 //
 TEST_F(AxesMapStringBoolTest, AccessorsAndMutators) {
@@ -193,6 +191,4 @@ TEST_F(AxesMapStringBoolTest, MiscNullChecks) {
   AxesMapStringBool_at(nullptr, 0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  AxesMapStringBool_create_raw(nullptr, 2);
-  EXPECT_EQ(get_last_error_code(), 1);
 }

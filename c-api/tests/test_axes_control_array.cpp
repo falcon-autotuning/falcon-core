@@ -1,9 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <vector>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/ListControlArray_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/AxesControlArray_c_api.h"
@@ -14,13 +13,13 @@ class AxesControlArrayTest : public ::testing::Test {
   void SetUp() override {
     shape2d[0] = 2;
     shape2d[1] = 3;
-    data2d[0] = 1.0;
-    data2d[1] = 2.0;
-    data2d[2] = 3.0;
-    data2d[3] = 1.0;
-    data2d[4] = 2.0;
-    data2d[5] = 3.0;
-    axes = AxesControlArray_create_empty();
+    data2d[0]  = 1.0;
+    data2d[1]  = 2.0;
+    data2d[2]  = 3.0;
+    data2d[3]  = 1.0;
+    data2d[4]  = 2.0;
+    data2d[5]  = 3.0;
+    axes       = AxesControlArray_create_empty();
     auto item1 = track_ca(ControlArray_from_data(data2d, shape2d, 2));
     auto item2 = track_ca(ControlArray_from_data(data2d, shape2d, 2));
     AxesControlArray_push_back(axes, item1);
@@ -84,8 +83,6 @@ TEST_F(AxesControlArrayTest, AccessorsAndMutators) {
 
   // ListControlArrayHandle out1[1] = {ListControlArray_create_empty()};
   ControlArrayHandle out[1] = {ControlArray_from_data(data2d, shape2d, 2)};
-  auto               h2     = AxesControlArray_create_raw(out, 1);
-  if (h2) AxesControlArray_destroy(h2);
 
   AxesControlArray_push_back(axes, ControlArray_from_data(data2d, shape2d, 2));
   ControlArrayHandle out2[3];
@@ -189,6 +186,4 @@ TEST_F(AxesControlArrayTest, MiscNullChecks) {
   AxesControlArray_at(nullptr, 0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  AxesControlArray_create_raw(nullptr, 2);
-  EXPECT_EQ(get_last_error_code(), 1);
 }

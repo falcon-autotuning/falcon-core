@@ -11,15 +11,6 @@ AxesDoubleHandle AxesDouble_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-AxesDoubleHandle AxesDouble_create_raw(const double* data, size_t count) {
-    FALCON_C_API_BEGIN
-    std::vector<double> vec;
-    vec.insert(vec.end(), data, data + count);
-    return new falcon_core::math::Axes<double>(
-        falcon_core::math::Axes<double>(vec));
-    FALCON_C_API_END(nullptr)
-}
-
 AxesDoubleHandle AxesDouble_create(ListDoubleHandle data) {
     FALCON_C_API_BEGIN
 if (!data) {

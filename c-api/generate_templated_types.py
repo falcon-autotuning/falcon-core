@@ -444,8 +444,6 @@ bool {self.mangled_name()}_not_equal({self.chandle()} handle,{self.chandle()} ot
 // @category:allocation
 {self.chandle()} {self.mangled_name()}_create_empty();
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_create_raw(const {c_type}* data, size_t count);
-// @category:allocation
 {self.chandle()} {self.mangled_name()}_create(List{self.name()}Handle data);
 // @category:deallocation
 void {self.mangled_name()}_destroy({self.chandle()} handle);
@@ -1170,15 +1168,6 @@ extern "C" {{
     FALCON_C_API_BEGIN
     return new falcon_core::math::Axes<{cpp_real}>(
         falcon_core::math::Axes<{cpp_real}>());
-    FALCON_C_API_END(nullptr)
-}}
-
-{self.chandle()} {self.mangled_name()}_create_raw(const {c_type}* data, size_t count) {{
-    FALCON_C_API_BEGIN
-    std::vector<{cpp_stored}> vec;
-    {create_allocation}
-    return new falcon_core::math::Axes<{cpp_real}>(
-        falcon_core::math::Axes<{cpp_real}>(vec));
     FALCON_C_API_END(nullptr)
 }}
 

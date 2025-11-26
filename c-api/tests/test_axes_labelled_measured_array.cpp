@@ -1,14 +1,12 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <vector>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/AxesLabelledMeasuredArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
-#include "falcon_core/math/arrays/MeasuredArray.hpp"
 
 class AxesLabelledMeasuredArrayTest : public ::testing::Test {
  protected:
@@ -128,8 +126,6 @@ TEST_F(AxesLabelledMeasuredArrayTest, AccessorsAndMutators) {
   auto lca = LabelledMeasuredArray_from_measured_array(
       MeasuredArray_from_data(data2d, shape2d, 2), label);
   LabelledMeasuredArrayHandle out[1] = {lca};
-  auto                        h2 = AxesLabelledMeasuredArray_create_raw(out, 1);
-  if (h2) AxesLabelledMeasuredArray_destroy(h2);
   ListLabelledMeasuredArray_destroy(handle);
   //
   AxesLabelledMeasuredArray_push_back(axes, lca);
@@ -235,6 +231,4 @@ TEST_F(AxesLabelledMeasuredArrayTest, MiscNullChecks) {
   AxesLabelledMeasuredArray_at(nullptr, 0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  AxesLabelledMeasuredArray_create_raw(nullptr, 2);
-  EXPECT_EQ(get_last_error_code(), 1);
 }

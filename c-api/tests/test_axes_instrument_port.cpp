@@ -92,8 +92,6 @@ TEST_F(AxesInstrumentPortTest, AccessorsAndMutators) {
                                  InstrumentTypes_voltmeter(),
                                  SymbolUnit_create_volt(),
                                  String_wrap("")))};
-  auto                 h2     = AxesInstrumentPort_create_raw(out, 1);
-  if (h2) AxesInstrumentPort_destroy(h2);
 
   AxesInstrumentPort_push_back(axes,
                                track_instrument_port(InstrumentPort_create_port(
@@ -206,6 +204,4 @@ TEST_F(AxesInstrumentPortTest, MiscNullChecks) {
   AxesInstrumentPort_at(nullptr, 0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  AxesInstrumentPort_create_raw(nullptr, 2);
-  EXPECT_EQ(get_last_error_code(), 1);
 }

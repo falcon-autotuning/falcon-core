@@ -15,8 +15,6 @@ typedef void* AxesInstrumentPortHandle;
 // @category:allocation
 AxesInstrumentPortHandle AxesInstrumentPort_create_empty();
 // @category:allocation
-AxesInstrumentPortHandle AxesInstrumentPort_create_raw(const InstrumentPortHandle* data, size_t count);
-// @category:allocation
 AxesInstrumentPortHandle AxesInstrumentPort_create(ListInstrumentPortHandle data);
 // @category:deallocation
 void AxesInstrumentPort_destroy(AxesInstrumentPortHandle handle);

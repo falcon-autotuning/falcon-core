@@ -1,9 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <vector>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/ListControlArray1D_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/AxesControlArray1D_c_api.h"
@@ -77,8 +76,6 @@ TEST_F(AxesControlArray1DTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesControlArray1D_size(axes), 2u);
 
   ControlArray1DHandle out[1] = {ControlArray1D_from_data(data, shape, 1)};
-  auto                 h2     = AxesControlArray1D_create_raw(out, 1);
-  if (h2) AxesControlArray1D_destroy(h2);
 
   AxesControlArray1D_push_back(axes, ControlArray1D_from_data(data, shape, 1));
   ControlArray1DHandle out2[3];
@@ -182,6 +179,4 @@ TEST_F(AxesControlArray1DTest, MiscNullChecks) {
   AxesControlArray1D_at(nullptr, 0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  AxesControlArray1D_create_raw(nullptr, 2);
-  EXPECT_EQ(get_last_error_code(), 1);
 }

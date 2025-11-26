@@ -11,15 +11,6 @@ AxesIntHandle AxesInt_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-AxesIntHandle AxesInt_create_raw(const int* data, size_t count) {
-    FALCON_C_API_BEGIN
-    std::vector<int> vec;
-    vec.insert(vec.end(), data, data + count);
-    return new falcon_core::math::Axes<int>(
-        falcon_core::math::Axes<int>(vec));
-    FALCON_C_API_END(nullptr)
-}
-
 AxesIntHandle AxesInt_create(ListIntHandle data) {
     FALCON_C_API_BEGIN
 if (!data) {

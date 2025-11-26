@@ -1,9 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <vector>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
@@ -11,7 +10,7 @@
 class AxesCoupledLabelledDomainTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    axes = AxesCoupledLabelledDomain_create_empty();
+    axes       = AxesCoupledLabelledDomain_create_empty();
     auto item1 = track_item(CoupledLabelledDomain_create_empty());
     auto item2 = track_item(CoupledLabelledDomain_create_empty());
     AxesCoupledLabelledDomain_push_back(axes, item1);
@@ -66,8 +65,6 @@ TEST_F(AxesCoupledLabelledDomainTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesCoupledLabelledDomain_size(axes), 2u);
 
   CoupledLabelledDomainHandle out[1] = {CoupledLabelledDomain_create_empty()};
-  auto                        h2 = AxesCoupledLabelledDomain_create_raw(out, 1);
-  if (h2) AxesCoupledLabelledDomain_destroy(h2);
 
   AxesCoupledLabelledDomain_push_back(axes,
                                       CoupledLabelledDomain_create_empty());
@@ -173,6 +170,4 @@ TEST_F(AxesCoupledLabelledDomainTest, MiscNullChecks) {
   AxesCoupledLabelledDomain_at(nullptr, 0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  AxesCoupledLabelledDomain_create_raw(nullptr, 2);
-  EXPECT_EQ(get_last_error_code(), 1);
 }

@@ -1,9 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <stdexcept>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/math/AxesDouble_c_api.h"
 
 class AxesDoubleTest : public ::testing::Test {
@@ -52,9 +51,6 @@ TEST_F(AxesDoubleTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesDouble_at(axes, 1), 2);
   double out[4];
   EXPECT_EQ(AxesDouble_items(axes, out, 4), 2u);
-  auto h2 = AxesDouble_create_raw(raw, 2);
-  ASSERT_NE(h2, nullptr);
-  AxesDouble_destroy(h2);
   AxesDouble_push_back(axes, 3);
   AxesDouble_erase_at(axes, 2);
   AxesDouble_clear(axes);

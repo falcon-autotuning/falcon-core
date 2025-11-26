@@ -15,8 +15,6 @@ typedef void* AxesControlArrayHandle;
 // @category:allocation
 AxesControlArrayHandle AxesControlArray_create_empty();
 // @category:allocation
-AxesControlArrayHandle AxesControlArray_create_raw(const ControlArrayHandle* data, size_t count);
-// @category:allocation
 AxesControlArrayHandle AxesControlArray_create(ListControlArrayHandle data);
 // @category:deallocation
 void AxesControlArray_destroy(AxesControlArrayHandle handle);

@@ -12,23 +12,6 @@ AxesMeasurementContextHandle AxesMeasurementContext_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-AxesMeasurementContextHandle AxesMeasurementContext_create_raw(const MeasurementContextHandle* data, size_t count) {
-    FALCON_C_API_BEGIN
-    std::vector<falcon_core::autotuner_interfaces::contexts::MeasurementContextSP> vec;
-        
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to AxesMeasurementContext_create_allocation");
-                }
-    vec.reserve(count);
-    for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::make_shared<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(*static_cast<falcon_core::autotuner_interfaces::contexts::MeasurementContext*>(data[i])));
-    }
-
-    return new falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(
-        falcon_core::math::Axes<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(vec));
-    FALCON_C_API_END(nullptr)
-}
-
 AxesMeasurementContextHandle AxesMeasurementContext_create(ListMeasurementContextHandle data) {
     FALCON_C_API_BEGIN
 if (!data) {

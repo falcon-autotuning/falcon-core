@@ -12,23 +12,6 @@ AxesLabelledControlArrayHandle AxesLabelledControlArray_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-AxesLabelledControlArrayHandle AxesLabelledControlArray_create_raw(const LabelledControlArrayHandle* data, size_t count) {
-    FALCON_C_API_BEGIN
-    std::vector<falcon_core::math::arrays::LabelledControlArraySP> vec;
-        
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to AxesLabelledControlArray_create_allocation");
-                }
-    vec.reserve(count);
-    for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::make_shared<falcon_core::math::arrays::LabelledControlArray>(*static_cast<falcon_core::math::arrays::LabelledControlArray*>(data[i])));
-    }
-
-    return new falcon_core::math::Axes<falcon_core::math::arrays::LabelledControlArray>(
-        falcon_core::math::Axes<falcon_core::math::arrays::LabelledControlArray>(vec));
-    FALCON_C_API_END(nullptr)
-}
-
 AxesLabelledControlArrayHandle AxesLabelledControlArray_create(ListLabelledControlArrayHandle data) {
     FALCON_C_API_BEGIN
 if (!data) {

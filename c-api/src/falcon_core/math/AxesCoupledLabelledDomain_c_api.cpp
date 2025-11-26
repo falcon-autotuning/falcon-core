@@ -12,23 +12,6 @@ AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_create_empty() {
     FALCON_C_API_END(nullptr)
 }
 
-AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_create_raw(const CoupledLabelledDomainHandle* data, size_t count) {
-    FALCON_C_API_BEGIN
-    std::vector<falcon_core::math::domains::CoupledLabelledDomainSP> vec;
-        
-    if (!data) {
-    throw std::invalid_argument("Null data handle passed to AxesCoupledLabelledDomain_create_allocation");
-                }
-    vec.reserve(count);
-    for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(data[i])));
-    }
-
-    return new falcon_core::math::Axes<falcon_core::math::domains::CoupledLabelledDomain>(
-        falcon_core::math::Axes<falcon_core::math::domains::CoupledLabelledDomain>(vec));
-    FALCON_C_API_END(nullptr)
-}
-
 AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_create(ListCoupledLabelledDomainHandle data) {
     FALCON_C_API_BEGIN
 if (!data) {

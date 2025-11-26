@@ -15,8 +15,6 @@ typedef void* AxesDiscretizerHandle;
 // @category:allocation
 AxesDiscretizerHandle AxesDiscretizer_create_empty();
 // @category:allocation
-AxesDiscretizerHandle AxesDiscretizer_create_raw(const DiscretizerHandle* data, size_t count);
-// @category:allocation
 AxesDiscretizerHandle AxesDiscretizer_create(ListDiscretizerHandle data);
 // @category:deallocation
 void AxesDiscretizer_destroy(AxesDiscretizerHandle handle);

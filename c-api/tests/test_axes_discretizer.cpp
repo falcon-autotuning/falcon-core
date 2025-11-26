@@ -1,9 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <vector>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/AxesDiscretizer_c_api.h"
 #include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
@@ -12,8 +11,10 @@ class AxesDiscretizerTest : public ::testing::Test {
  protected:
   void SetUp() override {
     axes = AxesDiscretizer_create_empty();
-    auto item1 = track_discretizer(Discretizer_create_cartesian_discretizer(0.5));
-    auto item2 = track_discretizer(Discretizer_create_cartesian_discretizer(0.5));
+    auto item1 =
+        track_discretizer(Discretizer_create_cartesian_discretizer(0.5));
+    auto item2 =
+        track_discretizer(Discretizer_create_cartesian_discretizer(0.5));
     AxesDiscretizer_push_back(axes, item1);
     AxesDiscretizer_push_back(axes, item2);
 
@@ -42,9 +43,9 @@ class AxesDiscretizerTest : public ::testing::Test {
     return h;
   }
 
-  AxesDiscretizerHandle axes  = nullptr;
-  AxesDiscretizerHandle axes2 = nullptr;
-  DiscretizerHandle     rawbuffer[2];
+  AxesDiscretizerHandle          axes  = nullptr;
+  AxesDiscretizerHandle          axes2 = nullptr;
+  DiscretizerHandle              rawbuffer[2];
   std::vector<DiscretizerHandle> created_items;
 };
 
@@ -64,11 +65,9 @@ TEST_F(AxesDiscretizerTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesDiscretizer_size(axes), 2u);
 
   DiscretizerHandle out[1] = {AxesDiscretizer_create_empty()};
-  auto              h2     = AxesDiscretizer_create_raw(out, 1);
-  if (h2) AxesDiscretizer_destroy(h2);
 
-  AxesDiscretizer_push_back(axes,
-                            track_discretizer(Discretizer_create_cartesian_discretizer(0.5)));
+  AxesDiscretizer_push_back(
+      axes, track_discretizer(Discretizer_create_cartesian_discretizer(0.5)));
   DiscretizerHandle out2[3];
   EXPECT_EQ(AxesDiscretizer_items(axes, out2, 3), 3u);
   for (size_t i = 0; i < 3; ++i) {
@@ -169,6 +168,4 @@ TEST_F(AxesDiscretizerTest, MiscNullChecks) {
   AxesDiscretizer_at(nullptr, 0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  AxesDiscretizer_create_raw(nullptr, 2);
-  EXPECT_EQ(get_last_error_code(), 1);
 }
