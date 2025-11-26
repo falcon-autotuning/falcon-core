@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
@@ -14,11 +13,11 @@ class DotGateWithNeighborsTest : public ::testing::Test {
   DotGateWithNeighborsHandle handle;
 
   void SetUp() override {
-    name  = String_create("center", 6);
-    left  = Connection_create_barrier_gate(String_wrap("left"));
-    right = Connection_create_barrier_gate(String_wrap("right"));
-    handle =
-        DotGateWithNeighbors_create_plungergatewithneighbors(name, left, right);
+    name   = String_create("center", 6);
+    left   = Connection_create_barrier_gate(String_wrap("left"));
+    right  = Connection_create_barrier_gate(String_wrap("right"));
+    handle = DotGateWithNeighbors_create_plunger_gate_with_neighbors(
+        name, left, right);
   }
 
   void TearDown() override {
@@ -68,7 +67,8 @@ TEST_F(DotGateWithNeighborsTest, IsPlungerGate) {
 
 TEST_F(DotGateWithNeighborsTest, Equality) {
   DotGateWithNeighborsHandle handle2 =
-      DotGateWithNeighbors_create_plungergatewithneighbors(name, left, right);
+      DotGateWithNeighbors_create_plunger_gate_with_neighbors(
+          name, left, right);
   EXPECT_TRUE(DotGateWithNeighbors_equal(handle, handle2));
   EXPECT_FALSE(DotGateWithNeighbors_not_equal(handle, handle2));
   DotGateWithNeighbors_destroy(handle2);
@@ -77,7 +77,8 @@ TEST_F(DotGateWithNeighborsTest, Equality) {
 TEST_F(DotGateWithNeighborsTest, InequalityDifferentLeft) {
   ConnectionHandle left2 = Connection_create_barrier_gate(String_wrap("left2"));
   DotGateWithNeighborsHandle handle2 =
-      DotGateWithNeighbors_create_plungergatewithneighbors(name, left2, right);
+      DotGateWithNeighbors_create_plunger_gate_with_neighbors(
+          name, left2, right);
   EXPECT_FALSE(DotGateWithNeighbors_equal(handle, handle2));
   EXPECT_TRUE(DotGateWithNeighbors_not_equal(handle, handle2));
   DotGateWithNeighbors_destroy(handle2);
@@ -88,7 +89,8 @@ TEST_F(DotGateWithNeighborsTest, InequalityDifferentRight) {
   ConnectionHandle right2 =
       Connection_create_barrier_gate(String_wrap("right2"));
   DotGateWithNeighborsHandle handle2 =
-      DotGateWithNeighbors_create_plungergatewithneighbors(name, left, right2);
+      DotGateWithNeighbors_create_plunger_gate_with_neighbors(
+          name, left, right2);
   EXPECT_FALSE(DotGateWithNeighbors_equal(handle, handle2));
   EXPECT_TRUE(DotGateWithNeighbors_not_equal(handle, handle2));
   DotGateWithNeighbors_destroy(handle2);
@@ -105,13 +107,13 @@ TEST_F(DotGateWithNeighborsTest, SerializationRoundTrip) {
 
 TEST_F(DotGateWithNeighborsTest, ThrowsOnNullLeftNeighbor) {
   set_last_error(0, nullptr);
-  DotGateWithNeighbors_create_plungergatewithneighbors(                   name, nullptr, right);
+  DotGateWithNeighbors_create_plunger_gate_with_neighbors(name, nullptr, right);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DotGateWithNeighborsTest, ThrowsOnNullRightNeighbor) {
   set_last_error(0, nullptr);
-  DotGateWithNeighbors_create_plungergatewithneighbors(name, left, nullptr);
+  DotGateWithNeighbors_create_plunger_gate_with_neighbors(name, left, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -119,7 +121,8 @@ TEST_F(DotGateWithNeighborsTest, BarrierGateVariant) {
   ConnectionHandle left  = Connection_create_plunger_gate(String_wrap("left"));
   ConnectionHandle right = Connection_create_plunger_gate(String_wrap("right"));
   DotGateWithNeighborsHandle barrier_handle =
-      DotGateWithNeighbors_create_barriergatewithneighbors(name, left, right);
+      DotGateWithNeighbors_create_barrier_gate_with_neighbors(
+          name, left, right);
   EXPECT_TRUE(DotGateWithNeighbors_is_barrier_gate(barrier_handle));
   EXPECT_FALSE(DotGateWithNeighbors_is_plunger_gate(barrier_handle));
   DotGateWithNeighbors_destroy(barrier_handle);
@@ -194,21 +197,21 @@ TEST_F(DotGateWithNeighborsTest, NullptrThrows) {
   DotGateWithNeighbors_destroy(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  DotGateWithNeighbors_create_plungergatewithneighbors(                   nullptr, left, right);
+  DotGateWithNeighbors_create_plunger_gate_with_neighbors(nullptr, left, right);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  DotGateWithNeighbors_create_plungergatewithneighbors(                   name, nullptr, right);
+  DotGateWithNeighbors_create_plunger_gate_with_neighbors(name, nullptr, right);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  DotGateWithNeighbors_create_plungergatewithneighbors(name, left, nullptr);
+  DotGateWithNeighbors_create_plunger_gate_with_neighbors(name, left, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  DotGateWithNeighbors_create_barriergatewithneighbors(                   nullptr, left, right);
+  DotGateWithNeighbors_create_barrier_gate_with_neighbors(nullptr, left, right);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  DotGateWithNeighbors_create_barriergatewithneighbors(                   name, nullptr, right);
+  DotGateWithNeighbors_create_barrier_gate_with_neighbors(name, nullptr, right);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  DotGateWithNeighbors_create_barriergatewithneighbors(name, left, nullptr);
+  DotGateWithNeighbors_create_barrier_gate_with_neighbors(name, left, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }

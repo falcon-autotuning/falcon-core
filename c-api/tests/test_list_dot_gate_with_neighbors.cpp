@@ -1,10 +1,10 @@
 #include <falcon_core/generic/ListDotGateWithNeighbors_c_api.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
 #include <vector>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
@@ -25,14 +25,16 @@ class ListDotGateWithNeighborsTest : public ::testing::Test {
     return s;
   }
   void SetUp() override {
-    sh1 = track_quantity(DotGateWithNeighbors_create_plungergatewithneighbors(
-        String_wrap("G1"),
-        Connection_create_barrier_gate(String_wrap("B1")),
-        Connection_create_barrier_gate(String_wrap("B2"))));
-    sh2 = track_quantity(DotGateWithNeighbors_create_plungergatewithneighbors(
-        String_wrap("G2"),
-        Connection_create_barrier_gate(String_wrap("B3")),
-        Connection_create_barrier_gate(String_wrap("B4"))));
+    sh1 =
+        track_quantity(DotGateWithNeighbors_create_plunger_gate_with_neighbors(
+            String_wrap("G1"),
+            Connection_create_barrier_gate(String_wrap("B1")),
+            Connection_create_barrier_gate(String_wrap("B2"))));
+    sh2 =
+        track_quantity(DotGateWithNeighbors_create_plunger_gate_with_neighbors(
+            String_wrap("G2"),
+            Connection_create_barrier_gate(String_wrap("B3")),
+            Connection_create_barrier_gate(String_wrap("B4"))));
   }
   DotGateWithNeighborsHandle sh1;
   DotGateWithNeighborsHandle sh2;

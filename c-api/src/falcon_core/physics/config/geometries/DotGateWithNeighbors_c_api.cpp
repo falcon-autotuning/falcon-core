@@ -10,7 +10,8 @@ using namespace falcon_core::physics::config::geometries;
 using namespace falcon_core::physics::device_structures;
 
 extern "C" {
-DotGateWithNeighborsHandle DotGateWithNeighbors_create_plungergatewithneighbors(
+DotGateWithNeighborsHandle
+DotGateWithNeighbors_create_plunger_gate_with_neighbors(
     StringHandle     name,
     ConnectionHandle left_neighbor,
     ConnectionHandle right_neighbor) {
@@ -41,7 +42,8 @@ DotGateWithNeighborsHandle DotGateWithNeighbors_create_plungergatewithneighbors(
   FALCON_C_API_END(nullptr)
 }
 
-DotGateWithNeighborsHandle DotGateWithNeighbors_create_barriergatewithneighbors(
+DotGateWithNeighborsHandle
+DotGateWithNeighbors_create_barrier_gate_with_neighbors(
     StringHandle     name,
     ConnectionHandle left_neighbor,
     ConnectionHandle right_neighbor) {

@@ -24,8 +24,10 @@ class DotGatesWithNeighborsTest : public ::testing::Test {
     ConnectionHandle b2   = Connection_create_barrier_gate(String_wrap("b2"));
     ConnectionHandle b3   = Connection_create_barrier_gate(String_wrap("b3"));
 
-    gate1 = DotGateWithNeighbors_create_plungergatewithneighbors(name, b1, b2);
-    gate2 = DotGateWithNeighbors_create_plungergatewithneighbors(name, b3, b2);
+    gate1 =
+        DotGateWithNeighbors_create_plunger_gate_with_neighbors(name, b1, b2);
+    gate2 =
+        DotGateWithNeighbors_create_plunger_gate_with_neighbors(name, b3, b2);
 
     list = ListDotGateWithNeighbors_create_empty();
     ListDotGateWithNeighbors_push_back(list, gate1);

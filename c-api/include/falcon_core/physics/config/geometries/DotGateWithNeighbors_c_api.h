@@ -10,12 +10,14 @@ extern "C" {
 typedef void* DotGateWithNeighborsHandle;
 
 // @category:allocation
-DotGateWithNeighborsHandle DotGateWithNeighbors_create_plungergatewithneighbors(
+DotGateWithNeighborsHandle
+DotGateWithNeighbors_create_plunger_gate_with_neighbors(
     StringHandle     name,
     ConnectionHandle left_neighbor,
     ConnectionHandle right_neighbor);
 // @category:allocation
-DotGateWithNeighborsHandle DotGateWithNeighbors_create_barriergatewithneighbors(
+DotGateWithNeighborsHandle
+DotGateWithNeighbors_create_barrier_gate_with_neighbors(
     StringHandle     name,
     ConnectionHandle left_neighbor,
     ConnectionHandle right_neighbor);
