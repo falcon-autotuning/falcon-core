@@ -19,7 +19,7 @@ typedef void* InterpretationContainerDoubleHandle;
 // Function declarations
 
 // @category:allocation
-InterpretationContainerDoubleHandle InterpretationContainerDouble_create(MapInterpretationContextDoubleHandle map);
+InterpretationContainerDoubleHandle InterpretationContainerDouble_create(MapInterpretationContextDoubleHandle contextDoubleMap);
 // @category:deallocation
 void InterpretationContainerDouble_destroy(InterpretationContainerDoubleHandle handle);
 // @category:read

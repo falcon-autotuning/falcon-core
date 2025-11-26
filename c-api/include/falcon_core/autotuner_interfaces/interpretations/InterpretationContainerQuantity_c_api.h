@@ -19,7 +19,7 @@ typedef void* InterpretationContainerQuantityHandle;
 // Function declarations
 
 // @category:allocation
-InterpretationContainerQuantityHandle InterpretationContainerQuantity_create(MapInterpretationContextQuantityHandle map);
+InterpretationContainerQuantityHandle InterpretationContainerQuantity_create(MapInterpretationContextQuantityHandle contextDoubleMap);
 // @category:deallocation
 void InterpretationContainerQuantity_destroy(InterpretationContainerQuantityHandle handle);
 // @category:read

@@ -19,7 +19,7 @@ typedef void* InterpretationContainerStringHandle;
 // Function declarations
 
 // @category:allocation
-InterpretationContainerStringHandle InterpretationContainerString_create(MapInterpretationContextStringHandle map);
+InterpretationContainerStringHandle InterpretationContainerString_create(MapInterpretationContextStringHandle contextDoubleMap);
 // @category:deallocation
 void InterpretationContainerString_destroy(InterpretationContainerStringHandle handle);
 // @category:read

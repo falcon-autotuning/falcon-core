@@ -376,7 +376,7 @@ bool {self.mangled_name()}_not_equal(
         with self.edit_header() as f:
             f.write(f"""
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_create(MapInterpretationContext{self.name()}Handle map);
+{self.chandle()} {self.mangled_name()}_create(MapInterpretationContext{self.name()}Handle contextDoubleMap);
 // @category:deallocation
 void {self.mangled_name()}_destroy({self.chandle()} handle);
 // @category:read
