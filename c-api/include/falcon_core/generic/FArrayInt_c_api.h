@@ -31,11 +31,11 @@ size_t FArrayInt_shape(FArrayIntHandle handle,size_t* out_buffer, size_t ndim);
 // @category:read
 size_t FArrayInt_data(FArrayIntHandle handle, int* out_buffer, size_t numdata);
 // @category:write
-void FArrayInt_plus_equals_farray(FArrayIntHandle handle, FArrayIntHandle other);
+void FArrayInt_plusequals_farray(FArrayIntHandle handle, FArrayIntHandle other);
 // @category:write
-void FArrayInt_plus_equals_double(FArrayIntHandle handle, double other);
+void FArrayInt_plusequals_double(FArrayIntHandle handle, double other);
 // @category:write
-void FArrayInt_plus_equals_int(FArrayIntHandle handle, int other);
+void FArrayInt_plusequals_int(FArrayIntHandle handle, int other);
 // @category:read
 FArrayIntHandle FArrayInt_plus_farray(FArrayIntHandle handle, FArrayIntHandle other);
 // @category:read
@@ -43,11 +43,11 @@ FArrayIntHandle FArrayInt_plus_double(FArrayIntHandle handle,  double other);
 // @category:read
 FArrayIntHandle FArrayInt_plus_int(FArrayIntHandle handle,  int other);
 // @category:write
-void FArrayInt_minus_equals_farray(FArrayIntHandle handle, FArrayIntHandle other);
+void FArrayInt_minusequals_farray(FArrayIntHandle handle, FArrayIntHandle other);
 // @category:write
-void FArrayInt_minus_equals_double(FArrayIntHandle handle,  double other);
+void FArrayInt_minusequals_double(FArrayIntHandle handle,  double other);
 // @category:write
-void FArrayInt_minus_equals_int(FArrayIntHandle handle,  int other);
+void FArrayInt_minusequals_int(FArrayIntHandle handle,  int other);
 // @category:read
 FArrayIntHandle FArrayInt_minus_farray(FArrayIntHandle handle, FArrayIntHandle other);
 // @category:read
@@ -57,11 +57,11 @@ FArrayIntHandle FArrayInt_minus_int(FArrayIntHandle handle,  int other);
 // @category:read
 FArrayIntHandle FArrayInt_negation(FArrayIntHandle handle);
 // @category:write
-void FArrayInt_times_equals_farray(FArrayIntHandle handle, FArrayIntHandle other);
+void FArrayInt_timesequals_farray(FArrayIntHandle handle, FArrayIntHandle other);
 // @category:write
-void FArrayInt_times_equals_double(FArrayIntHandle handle,  double other);
+void FArrayInt_timesequals_double(FArrayIntHandle handle,  double other);
 // @category:write
-void FArrayInt_times_equals_int(FArrayIntHandle handle,  int other);
+void FArrayInt_timesequals_int(FArrayIntHandle handle,  int other);
 // @category:read
 FArrayIntHandle FArrayInt_times_farray(FArrayIntHandle handle, FArrayIntHandle other);
 // @category:read
@@ -69,11 +69,11 @@ FArrayIntHandle FArrayInt_times_double(FArrayIntHandle handle,  double other);
 // @category:read
 FArrayIntHandle FArrayInt_times_int(FArrayIntHandle handle,  int other);
 // @category:write
-void FArrayInt_divides_equals_farray(FArrayIntHandle handle, FArrayIntHandle other);
+void FArrayInt_dividesequals_farray(FArrayIntHandle handle, FArrayIntHandle other);
 // @category:write
-void FArrayInt_divides_equals_double(FArrayIntHandle handle,  double other);
+void FArrayInt_dividesequals_double(FArrayIntHandle handle,  double other);
 // @category:write
-void FArrayInt_divides_equals_int(FArrayIntHandle handle,  int other);
+void FArrayInt_dividesequals_int(FArrayIntHandle handle,  int other);
 // @category:read
 FArrayIntHandle FArrayInt_divides_farray(FArrayIntHandle handle, FArrayIntHandle other);
 // @category:read

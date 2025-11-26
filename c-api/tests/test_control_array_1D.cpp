@@ -139,9 +139,9 @@ TEST_F(ControlArray1DTest, SizeAndShapeAndData) {
 }
 
 TEST_F(ControlArray1DTest, ArithmeticOperators) {
-  ControlArray1D_plusequals_farray(ca, fa);
-  ControlArray1D_plusequals_double(ca, 1.0);
-  ControlArray1D_plusequals_int(ca, 1);
+  ControlArray1D_plus_equals_farray(ca, fa);
+  ControlArray1D_plus_equals_double(ca, 1.0);
+  ControlArray1D_plus_equals_int(ca, 1);
   auto ca_plus_ca = ControlArray1D_plus_control_array(ca, ca2);
   auto ca_plus_fa = ControlArray1D_plus_farray(ca, fa);
   auto ca_plus_d  = ControlArray1D_plus_double(ca, 1.0);
@@ -151,9 +151,9 @@ TEST_F(ControlArray1DTest, ArithmeticOperators) {
   ControlArray1D_destroy(ca_plus_d);
   ControlArray1D_destroy(ca_plus_i);
 
-  ControlArray1D_minusequals_farray(ca, fa);
-  ControlArray1D_minusequals_double(ca, 1.0);
-  ControlArray1D_minusequals_int(ca, 1);
+  ControlArray1D_minus_equals_farray(ca, fa);
+  ControlArray1D_minus_equals_double(ca, 1.0);
+  ControlArray1D_minus_equals_int(ca, 1);
   auto ca_minus_ca = ControlArray1D_minus_control_array(ca, ca2);
   auto ca_minus_fa = ControlArray1D_minus_farray(ca, fa);
   auto ca_minus_d  = ControlArray1D_minus_double(ca, 1.0);
@@ -166,15 +166,15 @@ TEST_F(ControlArray1DTest, ArithmeticOperators) {
   auto ca_neg = ControlArray1D_negation(ca);
   ControlArray1D_destroy(ca_neg);
 
-  ControlArray1D_timesequals_double(ca, 2.0);
-  ControlArray1D_timesequals_int(ca, 2);
+  ControlArray1D_times_equals_double(ca, 2.0);
+  ControlArray1D_times_equals_int(ca, 2);
   auto ca_times_d = ControlArray1D_times_double(ca, 2.0);
   auto ca_times_i = ControlArray1D_times_int(ca, 2);
   ControlArray1D_destroy(ca_times_d);
   ControlArray1D_destroy(ca_times_i);
 
-  ControlArray1D_dividesequals_double(ca, 2.0);
-  ControlArray1D_dividesequals_int(ca, 2);
+  ControlArray1D_divides_equals_double(ca, 2.0);
+  ControlArray1D_divides_equals_int(ca, 2);
   auto ca_div_d = ControlArray1D_divides_double(ca, 2.0);
   auto ca_div_i = ControlArray1D_divides_int(ca, 2);
   ControlArray1D_destroy(ca_div_d);
@@ -197,16 +197,16 @@ TEST_F(ControlArray1DTest, ArithmeticOperators) {
   ControlArray1D_destroy(ca_max_ca);
 
   set_last_error(0, nullptr);
-  ControlArray1D_plusequals_farray(nullptr, fa);
+  ControlArray1D_plus_equals_farray(nullptr, fa);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  ControlArray1D_plusequals_farray(ca, nullptr);
+  ControlArray1D_plus_equals_farray(ca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  ControlArray1D_plusequals_double(nullptr, 1.0);
+  ControlArray1D_plus_equals_double(nullptr, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  ControlArray1D_plusequals_int(nullptr, 1);
+  ControlArray1D_plus_equals_int(nullptr, 1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   ControlArray1D_plus_control_array(nullptr, ca2);
@@ -228,16 +228,16 @@ TEST_F(ControlArray1DTest, ArithmeticOperators) {
   EXPECT_EQ(get_last_error_code(), 1);
 
   set_last_error(0, nullptr);
-  ControlArray1D_minusequals_farray(nullptr, fa);
+  ControlArray1D_minus_equals_farray(nullptr, fa);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  ControlArray1D_minusequals_farray(ca, nullptr);
+  ControlArray1D_minus_equals_farray(ca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  ControlArray1D_minusequals_double(nullptr, 1.0);
+  ControlArray1D_minus_equals_double(nullptr, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  ControlArray1D_minusequals_int(nullptr, 1);
+  ControlArray1D_minus_equals_int(nullptr, 1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   ControlArray1D_minus_control_array(nullptr, ca2);
@@ -263,10 +263,10 @@ TEST_F(ControlArray1DTest, ArithmeticOperators) {
   EXPECT_EQ(get_last_error_code(), 1);
 
   set_last_error(0, nullptr);
-  ControlArray1D_timesequals_double(nullptr, 2.0);
+  ControlArray1D_times_equals_double(nullptr, 2.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  ControlArray1D_timesequals_int(nullptr, 2);
+  ControlArray1D_times_equals_int(nullptr, 2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   ControlArray1D_times_double(nullptr, 2.0);
@@ -276,10 +276,10 @@ TEST_F(ControlArray1DTest, ArithmeticOperators) {
   EXPECT_EQ(get_last_error_code(), 1);
 
   set_last_error(0, nullptr);
-  ControlArray1D_dividesequals_double(nullptr, 2.0);
+  ControlArray1D_divides_equals_double(nullptr, 2.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  ControlArray1D_dividesequals_int(nullptr, 2);
+  ControlArray1D_divides_equals_int(nullptr, 2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   ControlArray1D_divides_double(nullptr, 2.0);

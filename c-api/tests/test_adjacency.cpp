@@ -144,7 +144,7 @@ TEST_F(AdjacencyTest, DataThrowsOnNullHandle) {
 
 TEST_F(AdjacencyTest, TimesequalsFarrayThrowsOnNullHandle) {
   set_last_error(0, nullptr);
-  Adjacency_timesequals_farray(nullptr, nullptr);
+  Adjacency_times_equals_farray(nullptr, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -161,7 +161,7 @@ TEST_F(AdjacencyTest, TimesequalsFarrayThrowsOnNullOther) {
   Adjacency_create(data, nullptr, 1, idx);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Adjacency_timesequals_farray(h, nullptr);
+  Adjacency_times_equals_farray(h, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   Adjacency_destroy(h);
   Connection_destroy(idx);
@@ -277,7 +277,7 @@ TEST_F(AdjacencyTest, TimesequalsFarrayWorks) {
   size_t          shape[2] = {3, 3};
   FArrayIntHandle farray   = FArrayInt_from_data(arr, shape, 2);
   // Should not throw
-  EXPECT_NO_THROW(Adjacency_timesequals_farray(handle, farray));
+  EXPECT_NO_THROW(Adjacency_times_equals_farray(handle, farray));
   FArrayInt_destroy(farray);
 }
 

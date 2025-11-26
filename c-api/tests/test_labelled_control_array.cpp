@@ -102,9 +102,9 @@ TEST_F(LabelledControlArrayTest, Accessors) {
 }
 
 TEST_F(LabelledControlArrayTest, Addition) {
-  LabelledControlArray_plusequals_farray(lca, fa);
-  LabelledControlArray_plusequals_double(lca, 1.0);
-  LabelledControlArray_plusequals_int(lca, 1);
+  LabelledControlArray_plus_equals_farray(lca, fa);
+  LabelledControlArray_plus_equals_double(lca, 1.0);
+  LabelledControlArray_plus_equals_int(lca, 1);
   auto lca_plus_lca = LabelledControlArray_plus_control_array(lca, lca2);
   auto lca_plus_fa  = LabelledControlArray_plus_farray(lca, fa);
   auto lca_plus_d   = LabelledControlArray_plus_double(lca, 1.0);
@@ -116,10 +116,10 @@ TEST_F(LabelledControlArrayTest, Addition) {
 }
 
 TEST_F(LabelledControlArrayTest, Subtraction) {
-  LabelledControlArray_minusequals_control_array(lca, lca2);
-  LabelledControlArray_minusequals_farray(lca, fa);
-  LabelledControlArray_minusequals_double(lca, 1.0);
-  LabelledControlArray_minusequals_int(lca, 1);
+  LabelledControlArray_minus_equals_control_array(lca, lca2);
+  LabelledControlArray_minus_equals_farray(lca, fa);
+  LabelledControlArray_minus_equals_double(lca, 1.0);
+  LabelledControlArray_minus_equals_int(lca, 1);
   auto lca_minus_lca = LabelledControlArray_minus_control_array(lca, lca2);
   auto lca_minus_fa  = LabelledControlArray_minus_farray(lca, fa);
   auto lca_minus_d   = LabelledControlArray_minus_double(lca, 1.0);
@@ -136,8 +136,8 @@ TEST_F(LabelledControlArrayTest, Negation) {
 }
 
 TEST_F(LabelledControlArrayTest, Multiplication) {
-  LabelledControlArray_timesequals_double(lca, 2.0);
-  LabelledControlArray_timesequals_int(lca, 2);
+  LabelledControlArray_times_equals_double(lca, 2.0);
+  LabelledControlArray_times_equals_int(lca, 2);
   auto lca_times_d = LabelledControlArray_times_double(lca, 2.0);
   auto lca_times_i = LabelledControlArray_times_int(lca, 2);
   LabelledControlArray_destroy(lca_times_d);
@@ -145,8 +145,8 @@ TEST_F(LabelledControlArrayTest, Multiplication) {
 }
 
 TEST_F(LabelledControlArrayTest, Division) {
-  LabelledControlArray_dividesequals_double(lca, 2.0);
-  LabelledControlArray_dividesequals_int(lca, 2);
+  LabelledControlArray_divides_equals_double(lca, 2.0);
+  LabelledControlArray_divides_equals_int(lca, 2);
   auto lca_div_d = LabelledControlArray_divides_double(lca, 2.0);
   auto lca_div_i = LabelledControlArray_divides_int(lca, 2);
   LabelledControlArray_destroy(lca_div_d);
@@ -173,16 +173,16 @@ TEST_F(LabelledControlArrayTest, MiscArithmeticOperators) {
 
 TEST_F(LabelledControlArrayTest, NullArgumentsArithmeticOperators) {
   set_last_error(0, nullptr);
-  LabelledControlArray_plusequals_farray(nullptr, fa);
+  LabelledControlArray_plus_equals_farray(nullptr, fa);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_plusequals_farray(lca, nullptr);
+  LabelledControlArray_plus_equals_farray(lca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_plusequals_double(nullptr, 1.0);
+  LabelledControlArray_plus_equals_double(nullptr, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_plusequals_int(nullptr, 1);
+  LabelledControlArray_plus_equals_int(nullptr, 1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledControlArray_plus_control_array(nullptr, lca2);
@@ -204,22 +204,22 @@ TEST_F(LabelledControlArrayTest, NullArgumentsArithmeticOperators) {
   EXPECT_EQ(get_last_error_code(), 1);
 
   set_last_error(0, nullptr);
-  LabelledControlArray_minusequals_control_array(nullptr, lca2);
+  LabelledControlArray_minus_equals_control_array(nullptr, lca2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_minusequals_control_array(lca, nullptr);
+  LabelledControlArray_minus_equals_control_array(lca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_minusequals_farray(nullptr, fa);
+  LabelledControlArray_minus_equals_farray(nullptr, fa);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_minusequals_farray(lca, nullptr);
+  LabelledControlArray_minus_equals_farray(lca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_minusequals_double(nullptr, 1.0);
+  LabelledControlArray_minus_equals_double(nullptr, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_minusequals_int(nullptr, 1);
+  LabelledControlArray_minus_equals_int(nullptr, 1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledControlArray_minus_control_array(nullptr, lca2);
@@ -245,10 +245,10 @@ TEST_F(LabelledControlArrayTest, NullArgumentsArithmeticOperators) {
   EXPECT_EQ(get_last_error_code(), 1);
 
   set_last_error(0, nullptr);
-  LabelledControlArray_timesequals_double(nullptr, 2.0);
+  LabelledControlArray_times_equals_double(nullptr, 2.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_timesequals_int(nullptr, 2);
+  LabelledControlArray_times_equals_int(nullptr, 2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledControlArray_times_double(nullptr, 2.0);
@@ -258,10 +258,10 @@ TEST_F(LabelledControlArrayTest, NullArgumentsArithmeticOperators) {
   EXPECT_EQ(get_last_error_code(), 1);
 
   set_last_error(0, nullptr);
-  LabelledControlArray_dividesequals_double(nullptr, 2.0);
+  LabelledControlArray_divides_equals_double(nullptr, 2.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_dividesequals_int(nullptr, 2);
+  LabelledControlArray_divides_equals_int(nullptr, 2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledControlArray_divides_double(nullptr, 2.0);

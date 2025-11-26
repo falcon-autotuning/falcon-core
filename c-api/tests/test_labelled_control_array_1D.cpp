@@ -147,9 +147,9 @@ TEST_F(LabelledControlArray1DTest, SizeAndShapeAndData) {
 }
 
 TEST_F(LabelledControlArray1DTest, Addition) {
-  LabelledControlArray1D_plusequals_farray(lca, fa);
-  LabelledControlArray1D_plusequals_double(lca, 1.0);
-  LabelledControlArray1D_plusequals_int(lca, 1);
+  LabelledControlArray1D_plus_equals_farray(lca, fa);
+  LabelledControlArray1D_plus_equals_double(lca, 1.0);
+  LabelledControlArray1D_plus_equals_int(lca, 1);
   auto lca_plus_lca = LabelledControlArray1D_plus_control_array(lca, lca2);
   auto lca_plus_fa  = LabelledControlArray1D_plus_farray(lca, fa);
   auto lca_plus_d   = LabelledControlArray1D_plus_double(lca, 1.0);
@@ -161,9 +161,9 @@ TEST_F(LabelledControlArray1DTest, Addition) {
 }
 
 TEST_F(LabelledControlArray1DTest, SubtractionEquals) {
-  LabelledControlArray1D_minusequals_farray(double_lca, fa);
-  LabelledControlArray1D_minusequals_double(lca, 1.0);
-  LabelledControlArray1D_minusequals_int(lca, 1);
+  LabelledControlArray1D_minus_equals_farray(double_lca, fa);
+  LabelledControlArray1D_minus_equals_double(lca, 1.0);
+  LabelledControlArray1D_minus_equals_int(lca, 1);
 }
 TEST_F(LabelledControlArray1DTest, Subtraction) {
   auto lca_minus_lca =
@@ -183,8 +183,8 @@ TEST_F(LabelledControlArray1DTest, Negation) {
 }
 
 TEST_F(LabelledControlArray1DTest, Times) {
-  LabelledControlArray1D_timesequals_double(lca, 2.0);
-  LabelledControlArray1D_timesequals_int(lca, 2);
+  LabelledControlArray1D_times_equals_double(lca, 2.0);
+  LabelledControlArray1D_times_equals_int(lca, 2);
   auto lca_times_d = LabelledControlArray1D_times_double(lca, 2.0);
   auto lca_times_i = LabelledControlArray1D_times_int(lca, 2);
   LabelledControlArray1D_destroy(lca_times_d);
@@ -192,8 +192,8 @@ TEST_F(LabelledControlArray1DTest, Times) {
 }
 
 TEST_F(LabelledControlArray1DTest, Division) {
-  LabelledControlArray1D_dividesequals_double(lca, 2.0);
-  LabelledControlArray1D_dividesequals_int(lca, 2);
+  LabelledControlArray1D_divides_equals_double(lca, 2.0);
+  LabelledControlArray1D_divides_equals_int(lca, 2);
   auto lca_div_d = LabelledControlArray1D_divides_double(lca, 2.0);
   auto lca_div_i = LabelledControlArray1D_divides_int(lca, 2);
   LabelledControlArray1D_destroy(lca_div_d);
@@ -220,16 +220,16 @@ TEST_F(LabelledControlArray1DTest, MiscOperations) {
 
 TEST_F(LabelledControlArray1DTest, AlgebraicOperatorNullptrChecks) {
   set_last_error(0, nullptr);
-  LabelledControlArray1D_plusequals_farray(nullptr, fa);
+  LabelledControlArray1D_plus_equals_farray(nullptr, fa);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray1D_plusequals_farray(lca, nullptr);
+  LabelledControlArray1D_plus_equals_farray(lca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray1D_plusequals_double(nullptr, 1.0);
+  LabelledControlArray1D_plus_equals_double(nullptr, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray1D_plusequals_int(nullptr, 1);
+  LabelledControlArray1D_plus_equals_int(nullptr, 1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledControlArray1D_plus_control_array(nullptr, lca2);
@@ -251,16 +251,16 @@ TEST_F(LabelledControlArray1DTest, AlgebraicOperatorNullptrChecks) {
   EXPECT_EQ(get_last_error_code(), 1);
 
   set_last_error(0, nullptr);
-  LabelledControlArray1D_minusequals_farray(nullptr, fa);
+  LabelledControlArray1D_minus_equals_farray(nullptr, fa);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray1D_minusequals_farray(lca, nullptr);
+  LabelledControlArray1D_minus_equals_farray(lca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray1D_minusequals_double(nullptr, 1.0);
+  LabelledControlArray1D_minus_equals_double(nullptr, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray1D_minusequals_int(nullptr, 1);
+  LabelledControlArray1D_minus_equals_int(nullptr, 1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledControlArray1D_minus_control_array(nullptr, lca2);
@@ -286,10 +286,10 @@ TEST_F(LabelledControlArray1DTest, AlgebraicOperatorNullptrChecks) {
   EXPECT_EQ(get_last_error_code(), 1);
 
   set_last_error(0, nullptr);
-  LabelledControlArray1D_timesequals_double(nullptr, 2.0);
+  LabelledControlArray1D_times_equals_double(nullptr, 2.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray1D_timesequals_int(nullptr, 2);
+  LabelledControlArray1D_times_equals_int(nullptr, 2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledControlArray1D_times_double(nullptr, 2.0);
@@ -299,10 +299,10 @@ TEST_F(LabelledControlArray1DTest, AlgebraicOperatorNullptrChecks) {
   EXPECT_EQ(get_last_error_code(), 1);
 
   set_last_error(0, nullptr);
-  LabelledControlArray1D_dividesequals_double(nullptr, 2.0);
+  LabelledControlArray1D_divides_equals_double(nullptr, 2.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray1D_dividesequals_int(nullptr, 2);
+  LabelledControlArray1D_divides_equals_int(nullptr, 2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledControlArray1D_divides_double(nullptr, 2.0);

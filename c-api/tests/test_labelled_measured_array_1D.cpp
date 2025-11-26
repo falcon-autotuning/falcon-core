@@ -146,9 +146,9 @@ TEST_F(LabelledMeasuredArray1DTest, SizeAndShapeAndData) {
 }
 
 TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
-  LabelledMeasuredArray1D_plusequals_farray(lma, fa);
-  LabelledMeasuredArray1D_plusequals_double(lma, 1.0);
-  LabelledMeasuredArray1D_plusequals_int(lma, 1);
+  LabelledMeasuredArray1D_plus_equals_farray(lma, fa);
+  LabelledMeasuredArray1D_plus_equals_double(lma, 1.0);
+  LabelledMeasuredArray1D_plus_equals_int(lma, 1);
   auto lma_plus_lma = LabelledMeasuredArray1D_plus_measured_array(lma, lma2);
   auto lma_plus_fa  = LabelledMeasuredArray1D_plus_farray(lma, fa);
   auto lma_plus_d   = LabelledMeasuredArray1D_plus_double(lma, 1.0);
@@ -158,10 +158,10 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
   LabelledMeasuredArray1D_destroy(lma_plus_d);
   LabelledMeasuredArray1D_destroy(lma_plus_i);
 
-  LabelledMeasuredArray1D_minusequals_measured_array(lma, lma2);
-  LabelledMeasuredArray1D_minusequals_farray(lma, fa);
-  LabelledMeasuredArray1D_minusequals_double(lma, 1.0);
-  LabelledMeasuredArray1D_minusequals_int(lma, 1);
+  LabelledMeasuredArray1D_minus_equals_measured_array(lma, lma2);
+  LabelledMeasuredArray1D_minus_equals_farray(lma, fa);
+  LabelledMeasuredArray1D_minus_equals_double(lma, 1.0);
+  LabelledMeasuredArray1D_minus_equals_int(lma, 1);
   auto lma_minus_ma = LabelledMeasuredArray1D_minus_measured_array(lma, ma);
   auto lma_minus_fa = LabelledMeasuredArray1D_minus_farray(lma, fa);
   auto lma_minus_d  = LabelledMeasuredArray1D_minus_double(lma, 1.0);
@@ -174,10 +174,10 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
   auto lma_neg = LabelledMeasuredArray1D_negation(lma);
   LabelledMeasuredArray1D_destroy(lma_neg);
 
-  LabelledMeasuredArray1D_timesequals_measured_array(lma, lma2);
-  LabelledMeasuredArray1D_timesequals_farray(lma, fa);
-  MeasuredArray_timesequals_double(lma, 2.0);
-  LabelledMeasuredArray1D_timesequals_int(lma, 2);
+  LabelledMeasuredArray1D_times_equals_measured_array(lma, lma2);
+  LabelledMeasuredArray1D_times_equals_farray(lma, fa);
+  MeasuredArray_times_equals_double(lma, 2.0);
+  LabelledMeasuredArray1D_times_equals_int(lma, 2);
   auto lma_times_lma = LabelledMeasuredArray1D_times_measured_array(lma, lma2);
   auto lma_times_fa  = LabelledMeasuredArray1D_times_farray(lma, fa);
   auto lma_times_d   = LabelledMeasuredArray1D_times_double(lma, 2.0);
@@ -187,10 +187,10 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
   LabelledMeasuredArray1D_destroy(lma_times_d);
   LabelledMeasuredArray1D_destroy(lma_times_i);
 
-  LabelledMeasuredArray1D_dividesequals_measured_array(lma, lma2);
-  LabelledMeasuredArray1D_dividesequals_farray(lma, fa);
-  LabelledMeasuredArray1D_dividesequals_double(lma, 2.0);
-  LabelledMeasuredArray1D_dividesequals_int(lma, 2);
+  LabelledMeasuredArray1D_divides_equals_measured_array(lma, lma2);
+  LabelledMeasuredArray1D_divides_equals_farray(lma, fa);
+  LabelledMeasuredArray1D_divides_equals_double(lma, 2.0);
+  LabelledMeasuredArray1D_divides_equals_int(lma, 2);
   auto lma_div_lma = LabelledMeasuredArray1D_divides_measured_array(lma, lma2);
   auto lma_div_fa  = LabelledMeasuredArray1D_divides_farray(lma, fa);
   auto lma_div_d   = LabelledMeasuredArray1D_divides_double(lma, 2.0);
@@ -217,16 +217,16 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
   LabelledMeasuredArray1D_destroy(lma_max_lma);
 
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_plusequals_farray(nullptr, fa);
+  LabelledMeasuredArray1D_plus_equals_farray(nullptr, fa);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_plusequals_farray(lma, nullptr);
+  LabelledMeasuredArray1D_plus_equals_farray(lma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_plusequals_double(nullptr, 1.0);
+  LabelledMeasuredArray1D_plus_equals_double(nullptr, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_plusequals_int(nullptr, 1);
+  LabelledMeasuredArray1D_plus_equals_int(nullptr, 1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledMeasuredArray1D_plus_measured_array(nullptr, lma2);
@@ -248,22 +248,22 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
   EXPECT_EQ(get_last_error_code(), 1);
 
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_minusequals_measured_array(nullptr, lma2);
+  LabelledMeasuredArray1D_minus_equals_measured_array(nullptr, lma2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_minusequals_measured_array(lma, nullptr);
+  LabelledMeasuredArray1D_minus_equals_measured_array(lma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_minusequals_farray(nullptr, fa);
+  LabelledMeasuredArray1D_minus_equals_farray(nullptr, fa);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_minusequals_farray(lma, nullptr);
+  LabelledMeasuredArray1D_minus_equals_farray(lma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_minusequals_double(nullptr, 1.0);
+  LabelledMeasuredArray1D_minus_equals_double(nullptr, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_minusequals_int(nullptr, 1);
+  LabelledMeasuredArray1D_minus_equals_int(nullptr, 1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledMeasuredArray1D_minus_measured_array(nullptr, ma);
@@ -289,22 +289,22 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
   EXPECT_EQ(get_last_error_code(), 1);
 
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_timesequals_measured_array(nullptr, lma2);
+  LabelledMeasuredArray1D_times_equals_measured_array(nullptr, lma2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_timesequals_measured_array(lma, nullptr);
+  LabelledMeasuredArray1D_times_equals_measured_array(lma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_timesequals_farray(nullptr, fa);
+  LabelledMeasuredArray1D_times_equals_farray(nullptr, fa);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_timesequals_farray(lma, nullptr);
+  LabelledMeasuredArray1D_times_equals_farray(lma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasuredArray_timesequals_double(nullptr, 2.0);
+  MeasuredArray_times_equals_double(nullptr, 2.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_timesequals_int(nullptr, 2);
+  LabelledMeasuredArray1D_times_equals_int(nullptr, 2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledMeasuredArray1D_times_measured_array(nullptr, lma2);
@@ -326,22 +326,22 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
   EXPECT_EQ(get_last_error_code(), 1);
 
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_dividesequals_measured_array(nullptr, lma2);
+  LabelledMeasuredArray1D_divides_equals_measured_array(nullptr, lma2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_dividesequals_measured_array(lma, nullptr);
+  LabelledMeasuredArray1D_divides_equals_measured_array(lma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_dividesequals_farray(nullptr, fa);
+  LabelledMeasuredArray1D_divides_equals_farray(nullptr, fa);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_dividesequals_farray(lma, nullptr);
+  LabelledMeasuredArray1D_divides_equals_farray(lma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_dividesequals_double(nullptr, 2.0);
+  LabelledMeasuredArray1D_divides_equals_double(nullptr, 2.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_dividesequals_int(nullptr, 2);
+  LabelledMeasuredArray1D_divides_equals_int(nullptr, 2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   LabelledMeasuredArray1D_divides_measured_array(nullptr, lma2);
@@ -505,12 +505,12 @@ TEST_F(LabelledMeasuredArray1DTest, ToJsonFromJson) {
 }
 
 TEST_F(LabelledMeasuredArray1DTest, TimesEqualsDouble) {
-  LabelledMeasuredArray1D_timesequals_double(lma, 2.0);
+  LabelledMeasuredArray1D_times_equals_double(lma, 2.0);
   double out_data[6];
   EXPECT_EQ(LabelledMeasuredArray1D_data(lma, out_data, 6), 6);
   for (int i = 0; i < 6; ++i) EXPECT_DOUBLE_EQ(out_data[i], data[i] * 2.0);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray1D_timesequals_double(nullptr, 2.0);
+  LabelledMeasuredArray1D_times_equals_double(nullptr, 2.0);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
