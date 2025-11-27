@@ -45,14 +45,14 @@ size_t LabelledMeasuredArray_data(LabelledMeasuredArrayHandle handle,
                                   double*                     out_buffer,
                                   size_t                      numdata);
 // @category:write
-void LabelledMeasuredArray_plus_equals_farray(LabelledMeasuredArrayHandle handle,
-                                             FArrayDoubleHandle          other);
+void LabelledMeasuredArray_plus_equals_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
 // @category:write
-void LabelledMeasuredArray_plus_equals_double(LabelledMeasuredArrayHandle handle,
-                                             double                      other);
+void LabelledMeasuredArray_plus_equals_double(
+    LabelledMeasuredArrayHandle handle, double other);
 // @category:write
 void LabelledMeasuredArray_plus_equals_int(LabelledMeasuredArrayHandle handle,
-                                          int                         other);
+                                           int                         other);
 // @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
@@ -76,7 +76,7 @@ void LabelledMeasuredArray_minus_equals_double(
     LabelledMeasuredArrayHandle handle, double other);
 // @category:write
 void LabelledMeasuredArray_minus_equals_int(LabelledMeasuredArrayHandle handle,
-                                           int                         other);
+                                            int                         other);
 // @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_measured_array(
     LabelledMeasuredArrayHandle handle, MeasuredArrayHandle other);
@@ -92,10 +92,10 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_minus_int(
 // @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_negation(
     LabelledMeasuredArrayHandle handle);
-// @category:read
+// @category:write
 LabelledMeasuredArrayHandle LabelledMeasuredArray_times_equals_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
-// @category:read
+// @category:write
 LabelledMeasuredArrayHandle LabelledMeasuredArray_times_equals_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
 // @category:write
@@ -103,7 +103,7 @@ void LabelledMeasuredArray_times_equals_double(
     LabelledMeasuredArrayHandle handle, double other);
 // @category:write
 void LabelledMeasuredArray_times_equals_int(LabelledMeasuredArrayHandle handle,
-                                           int                         other);
+                                            int                         other);
 // @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_times_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
@@ -116,18 +116,18 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_times_double(
 // @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_times_int(
     LabelledMeasuredArrayHandle handle, int other);
-// @category:read
+// @category:write
 LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_equals_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
-// @category:read
+// @category:write
 LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_equals_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
 // @category:write
 void LabelledMeasuredArray_divides_equals_double(
     LabelledMeasuredArrayHandle handle, double other);
 // @category:write
-void LabelledMeasuredArray_divides_equals_int(LabelledMeasuredArrayHandle handle,
-                                             int                         other);
+void LabelledMeasuredArray_divides_equals_int(
+    LabelledMeasuredArrayHandle handle, int other);
 // @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
@@ -160,16 +160,16 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_max_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
 // @category:read
 bool LabelledMeasuredArray_equal(LabelledMeasuredArrayHandle handle,
-                                    LabelledMeasuredArrayHandle other);
+                                 LabelledMeasuredArrayHandle other);
 // @category:read
 bool LabelledMeasuredArray_not_equal(LabelledMeasuredArrayHandle handle,
-                                       LabelledMeasuredArrayHandle other);
+                                     LabelledMeasuredArrayHandle other);
 // @category:read
 bool LabelledMeasuredArray_greater_than(LabelledMeasuredArrayHandle handle,
-                                       double                      value);
+                                        double                      value);
 // @category:read
 bool LabelledMeasuredArray_less_than(LabelledMeasuredArrayHandle handle,
-                                    double                      value);
+                                     double                      value);
 // @category:write
 void LabelledMeasuredArray_remove_offset(LabelledMeasuredArrayHandle handle,
                                          double                      offset);

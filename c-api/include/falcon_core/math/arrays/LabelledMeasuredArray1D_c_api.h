@@ -123,11 +123,11 @@ LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_minus_int(
 // @category:read
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_negation(
     LabelledMeasuredArray1DHandle handle);
-// @category:read
+// @category:write
 LabelledMeasuredArray1DHandle
 LabelledMeasuredArray1D_times_equals_measured_array(
     LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other);
-// @category:read
+// @category:write
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_times_equals_farray(
     LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other);
 // @category:write
@@ -148,11 +148,11 @@ LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_times_double(
 // @category:read
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_times_int(
     LabelledMeasuredArray1DHandle handle, int other);
-// @category:read
+// @category:write
 LabelledMeasuredArray1DHandle
 LabelledMeasuredArray1D_divides_equals_measured_array(
     LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other);
-// @category:read
+// @category:write
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_divides_equals_farray(
     LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other);
 // @category:write
@@ -193,16 +193,16 @@ LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_max_measured_array(
     LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other);
 // @category:read
 bool LabelledMeasuredArray1D_equal(LabelledMeasuredArray1DHandle handle,
-                                      LabelledMeasuredArray1DHandle other);
+                                   LabelledMeasuredArray1DHandle other);
 // @category:read
 bool LabelledMeasuredArray1D_not_equal(LabelledMeasuredArray1DHandle handle,
-                                         LabelledMeasuredArray1DHandle other);
+                                       LabelledMeasuredArray1DHandle other);
 // @category:read
 bool LabelledMeasuredArray1D_greater_than(LabelledMeasuredArray1DHandle handle,
-                                         double                        value);
+                                          double                        value);
 // @category:read
 bool LabelledMeasuredArray1D_less_than(LabelledMeasuredArray1DHandle handle,
-                                      double                        value);
+                                       double                        value);
 // @category:write
 void LabelledMeasuredArray1D_remove_offset(LabelledMeasuredArray1DHandle handle,
                                            double offset);
