@@ -28,9 +28,9 @@ UnitSpaceHandle UnitSpace_create(AxesDiscretizerHandle axes,
   FALCON_C_API_END(nullptr)
 }
 
-UnitSpaceHandle UnitSpace_create_rayspace(double       dr,
-                                          double       dtheta,
-                                          DomainHandle domain) {
+UnitSpaceHandle UnitSpace_create_ray_space(double       dr,
+                                           double       dtheta,
+                                           DomainHandle domain) {
   FALCON_C_API_BEGIN
   if (!domain) {
     throw std::invalid_argument(
@@ -43,8 +43,8 @@ UnitSpaceHandle UnitSpace_create_rayspace(double       dr,
   FALCON_C_API_END(nullptr)
 }
 
-UnitSpaceHandle UnitSpace_create_cartesianspace(AxesDoubleHandle deltas,
-                                                DomainHandle     domain) {
+UnitSpaceHandle UnitSpace_create_cartesian_space(AxesDoubleHandle deltas,
+                                                 DomainHandle     domain) {
   FALCON_C_API_BEGIN
   if (!domain) {
     throw std::invalid_argument(
@@ -63,8 +63,8 @@ UnitSpaceHandle UnitSpace_create_cartesianspace(AxesDoubleHandle deltas,
   FALCON_C_API_END(nullptr)
 }
 
-UnitSpaceHandle UnitSpace_create_cartesian1Dspace(double       delta,
-                                                  DomainHandle domain) {
+UnitSpaceHandle UnitSpace_create_cartesian_1D_space(double       delta,
+                                                    DomainHandle domain) {
   FALCON_C_API_BEGIN
   if (!domain) {
     throw std::invalid_argument(
@@ -79,8 +79,8 @@ UnitSpaceHandle UnitSpace_create_cartesian1Dspace(double       delta,
   FALCON_C_API_END(nullptr)
 }
 
-UnitSpaceHandle UnitSpace_create_cartesian2Dspace(AxesDoubleHandle deltas,
-                                                  DomainHandle     domain) {
+UnitSpaceHandle UnitSpace_create_cartesian_2D_space(AxesDoubleHandle deltas,
+                                                    DomainHandle     domain) {
   FALCON_C_API_BEGIN
   if (!domain) {
     throw std::invalid_argument(

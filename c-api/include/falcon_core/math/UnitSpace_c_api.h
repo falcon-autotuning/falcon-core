@@ -19,18 +19,18 @@ typedef void* UnitSpaceHandle;
 UnitSpaceHandle UnitSpace_create(AxesDiscretizerHandle axes,
                                  DomainHandle          domain);
 // @category:allocation
-UnitSpaceHandle UnitSpace_create_rayspace(double       dr,
-                                          double       dtheta,
-                                          DomainHandle domain);
+UnitSpaceHandle UnitSpace_create_ray_space(double       dr,
+                                           double       dtheta,
+                                           DomainHandle domain);
 // @category:allocation
-UnitSpaceHandle UnitSpace_create_cartesianspace(AxesDoubleHandle deltas,
-                                                DomainHandle     domain);
+UnitSpaceHandle UnitSpace_create_cartesian_space(AxesDoubleHandle deltas,
+                                                 DomainHandle     domain);
 // @category:allocation
-UnitSpaceHandle UnitSpace_create_cartesian1Dspace(double       delta,
-                                                  DomainHandle domain);
+UnitSpaceHandle UnitSpace_create_cartesian_1D_space(double       delta,
+                                                    DomainHandle domain);
 // @category:allocation
-UnitSpaceHandle UnitSpace_create_cartesian2Dspace(AxesDoubleHandle deltas,
-                                                  DomainHandle     domain);
+UnitSpaceHandle UnitSpace_create_cartesian_2D_space(AxesDoubleHandle deltas,
+                                                    DomainHandle     domain);
 // @category:deallocation
 void UnitSpace_destroy(UnitSpaceHandle handle);
 // @category:read

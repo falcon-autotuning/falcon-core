@@ -66,40 +66,40 @@ TEST_F(UnitSpaceTest, CreateDestroy) {
 }
 
 TEST_F(UnitSpaceTest, CreateRayspace) {
-  auto us = UnitSpace_create_rayspace(1.0, 2.0, domain);
+  auto us = UnitSpace_create_ray_space(1.0, 2.0, domain);
   UnitSpace_destroy(us);
   set_last_error(0, nullptr);
-  UnitSpace_create_rayspace(1.0, 2.0, nullptr);
+  UnitSpace_create_ray_space(1.0, 2.0, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(UnitSpaceTest, CreateCartesianspace) {
-  auto us = UnitSpace_create_cartesianspace(axes_double, domain);
+  auto us = UnitSpace_create_cartesian_space(axes_double, domain);
   UnitSpace_destroy(us);
   set_last_error(0, nullptr);
-  UnitSpace_create_cartesianspace(nullptr, domain);
+  UnitSpace_create_cartesian_space(nullptr, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  UnitSpace_create_cartesianspace(axes_double, nullptr);
+  UnitSpace_create_cartesian_space(axes_double, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(UnitSpaceTest, CreateCartesian1Dspace) {
-  auto us = UnitSpace_create_cartesian1Dspace(1.0, domain);
+  auto us = UnitSpace_create_cartesian_1D_space(1.0, domain);
   UnitSpace_destroy(us);
   set_last_error(0, nullptr);
-  UnitSpace_create_cartesian1Dspace(1.0, nullptr);
+  UnitSpace_create_cartesian_1D_space(1.0, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(UnitSpaceTest, CreateCartesian2Dspace) {
-  auto us = UnitSpace_create_cartesian2Dspace(axes_double, domain);
+  auto us = UnitSpace_create_cartesian_2D_space(axes_double, domain);
   UnitSpace_destroy(us);
   set_last_error(0, nullptr);
-  UnitSpace_create_cartesian2Dspace(nullptr, domain);
+  UnitSpace_create_cartesian_2D_space(nullptr, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  UnitSpace_create_cartesian2Dspace(axes_double, nullptr);
+  UnitSpace_create_cartesian_2D_space(axes_double, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
