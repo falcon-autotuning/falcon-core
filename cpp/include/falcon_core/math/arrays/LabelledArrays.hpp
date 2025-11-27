@@ -86,7 +86,7 @@ class LabelledArrays : public generic::List<ArrayType> {
   /**
    * @brief Checks if the contents are of control arrays.
    */
-  bool isControlArrays() const {
+  bool is_control_arrays() const {
     for (const std::shared_ptr<ArrayType>& array : this->items()) {
       if (!array || !dynamic_cast<const ControlArray*>(array.get())) {
         return false;
@@ -97,7 +97,7 @@ class LabelledArrays : public generic::List<ArrayType> {
   /**
    * @brief Checks if the contents are of measured arrays.
    */
-  bool isMeasuredArrays() const {
+  bool is_measured_arrays() const {
     for (const std::shared_ptr<ArrayType>& array : this->items()) {
       if (!array || !dynamic_cast<const MeasuredArray*>(array.get())) {
         return false;

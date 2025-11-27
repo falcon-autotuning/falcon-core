@@ -83,8 +83,8 @@ TEST_F(LabelledArraysLabelledMeasuredArray1DTest, Accessors) {
   EXPECT_TRUE(labs != nullptr);
   ListAcquisitionContext_destroy(labs);
 
-  EXPECT_TRUE(LabelledArraysLabelledMeasuredArray1D_isMeasuredArrays(arrays));
-  EXPECT_FALSE(LabelledArraysLabelledMeasuredArray1D_isControlArrays(arrays));
+  EXPECT_TRUE(LabelledArraysLabelledMeasuredArray1D_is_measured_arrays(arrays));
+  EXPECT_FALSE(LabelledArraysLabelledMeasuredArray1D_is_control_arrays(arrays));
 
   set_last_error(0, nullptr);
   LabelledArraysLabelledMeasuredArray1D_arrays(nullptr);
@@ -93,10 +93,10 @@ TEST_F(LabelledArraysLabelledMeasuredArray1DTest, Accessors) {
   LabelledArraysLabelledMeasuredArray1D_labels(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledArraysLabelledMeasuredArray1D_isControlArrays(nullptr);
+  LabelledArraysLabelledMeasuredArray1D_is_control_arrays(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledArraysLabelledMeasuredArray1D_isMeasuredArrays(nullptr);
+  LabelledArraysLabelledMeasuredArray1D_is_measured_arrays(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 

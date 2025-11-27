@@ -46,23 +46,23 @@ throw std::invalid_argument("Null handle passed to LabelledArraysLabelledMeasure
     FALCON_C_API_END(nullptr)
 }
 
-bool LabelledArraysLabelledMeasuredArray_isControlArrays(
+bool LabelledArraysLabelledMeasuredArray_is_control_arrays(
     LabelledArraysLabelledMeasuredArrayHandle handle) {
     FALCON_C_API_BEGIN
 if (!handle) {
-throw std::invalid_argument("Null handle passed to LabelledArraysLabelledMeasuredArray_isControlArrays");
+throw std::invalid_argument("Null handle passed to LabelledArraysLabelledMeasuredArray_is_control_arrays");
 }
-    return static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->isControlArrays();
+    return static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->is_control_arrays();
     FALCON_C_API_END(false)
 }
 
-bool LabelledArraysLabelledMeasuredArray_isMeasuredArrays(
+bool LabelledArraysLabelledMeasuredArray_is_measured_arrays(
     LabelledArraysLabelledMeasuredArrayHandle handle) {
     FALCON_C_API_BEGIN
     if (!handle) {
-    throw std::invalid_argument("Null handle passed to LabelledArraysLabelledMeasuredArray_isMeasuredArrays");
+    throw std::invalid_argument("Null handle passed to LabelledArraysLabelledMeasuredArray_is_measured_arrays");
     }
-    return static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->isMeasuredArrays();
+    return static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledMeasuredArray>*>(handle)->is_measured_arrays();
     FALCON_C_API_END(false)
 }
 

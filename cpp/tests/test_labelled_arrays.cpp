@@ -90,10 +90,10 @@ TEST_F(LabelledArraysTest, IsControlArraysAndIsMeasuredArrays) {
   std::vector<LabelledMeasuredArraySP>  mvec{lma1, lma2};
   LabelledArrays<LabelledControlArray>  carrs(cvec);
   LabelledArrays<LabelledMeasuredArray> marrs(mvec);
-  EXPECT_TRUE(carrs.isControlArrays());
-  EXPECT_FALSE(carrs.isMeasuredArrays());
-  EXPECT_TRUE(marrs.isMeasuredArrays());
-  EXPECT_FALSE(marrs.isControlArrays());
+  EXPECT_TRUE(carrs.is_control_arrays());
+  EXPECT_FALSE(carrs.is_measured_arrays());
+  EXPECT_TRUE(marrs.is_measured_arrays());
+  EXPECT_FALSE(marrs.is_control_arrays());
 }
 
 TEST_F(LabelledArraysTest, SerializationRoundTripMeasured) {

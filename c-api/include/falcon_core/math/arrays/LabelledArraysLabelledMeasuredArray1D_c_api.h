@@ -25,10 +25,10 @@ ListLabelledMeasuredArray1DHandle LabelledArraysLabelledMeasuredArray1D_arrays(
 ListAcquisitionContextHandle LabelledArraysLabelledMeasuredArray1D_labels(
     LabelledArraysLabelledMeasuredArray1DHandle handle);
 // @category:read
-bool LabelledArraysLabelledMeasuredArray1D_isControlArrays(
+bool LabelledArraysLabelledMeasuredArray1D_is_control_arrays(
     LabelledArraysLabelledMeasuredArray1DHandle handle);
 // @category:read
-bool LabelledArraysLabelledMeasuredArray1D_isMeasuredArrays(
+bool LabelledArraysLabelledMeasuredArray1D_is_measured_arrays(
     LabelledArraysLabelledMeasuredArray1DHandle handle);
 // @category:write
 void LabelledArraysLabelledMeasuredArray1D_push_back(

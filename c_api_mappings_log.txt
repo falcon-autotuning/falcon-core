@@ -11749,8 +11749,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -11845,24 +11845,24 @@ mappings:
       Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_check_array_labels']
       Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_iscontrolarrays']
-      Header ControlArray_c_api.h: base=ControlArray, candidates=['ControlArray_iscontrolarrays']
-      Header IncreasingAlignment_c_api.h: base=IncreasingAlignment, candidates=['IncreasingAlignment_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
-      Header LabelledControlArray1D_c_api.h: base=LabelledControlArray1D, candidates=['LabelledControlArray1D_iscontrolarrays']
-      Header LabelledControlArray_c_api.h: base=LabelledControlArray, candidates=['LabelledControlArray_iscontrolarrays']
-      Header LabelledMeasuredArray1D_c_api.h: base=LabelledMeasuredArray1D, candidates=['LabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledMeasuredArray_c_api.h: base=LabelledMeasuredArray, candidates=['LabelledMeasuredArray_iscontrolarrays']
-      Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_iscontrolarrays']
-      Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_iscontrolarrays']
+      Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_is_control_arrays']
+      Header ControlArray_c_api.h: base=ControlArray, candidates=['ControlArray_is_control_arrays']
+      Header IncreasingAlignment_c_api.h: base=IncreasingAlignment, candidates=['IncreasingAlignment_is_control_arrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
+      Header LabelledControlArray1D_c_api.h: base=LabelledControlArray1D, candidates=['LabelledControlArray1D_is_control_arrays']
+      Header LabelledControlArray_c_api.h: base=LabelledControlArray, candidates=['LabelledControlArray_is_control_arrays']
+      Header LabelledMeasuredArray1D_c_api.h: base=LabelledMeasuredArray1D, candidates=['LabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledMeasuredArray_c_api.h: base=LabelledMeasuredArray, candidates=['LabelledMeasuredArray_is_control_arrays']
+      Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_is_control_arrays']
+      Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_ismeasuredarrays']
@@ -23847,8 +23847,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -23943,24 +23943,24 @@ mappings:
       Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_check_array_labels']
       Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_iscontrolarrays']
-      Header ControlArray_c_api.h: base=ControlArray, candidates=['ControlArray_iscontrolarrays']
-      Header IncreasingAlignment_c_api.h: base=IncreasingAlignment, candidates=['IncreasingAlignment_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
-      Header LabelledControlArray1D_c_api.h: base=LabelledControlArray1D, candidates=['LabelledControlArray1D_iscontrolarrays']
-      Header LabelledControlArray_c_api.h: base=LabelledControlArray, candidates=['LabelledControlArray_iscontrolarrays']
-      Header LabelledMeasuredArray1D_c_api.h: base=LabelledMeasuredArray1D, candidates=['LabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledMeasuredArray_c_api.h: base=LabelledMeasuredArray, candidates=['LabelledMeasuredArray_iscontrolarrays']
-      Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_iscontrolarrays']
-      Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_iscontrolarrays']
+      Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_is_control_arrays']
+      Header ControlArray_c_api.h: base=ControlArray, candidates=['ControlArray_is_control_arrays']
+      Header IncreasingAlignment_c_api.h: base=IncreasingAlignment, candidates=['IncreasingAlignment_is_control_arrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
+      Header LabelledControlArray1D_c_api.h: base=LabelledControlArray1D, candidates=['LabelledControlArray1D_is_control_arrays']
+      Header LabelledControlArray_c_api.h: base=LabelledControlArray, candidates=['LabelledControlArray_is_control_arrays']
+      Header LabelledMeasuredArray1D_c_api.h: base=LabelledMeasuredArray1D, candidates=['LabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledMeasuredArray_c_api.h: base=LabelledMeasuredArray, candidates=['LabelledMeasuredArray_is_control_arrays']
+      Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_is_control_arrays']
+      Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_ismeasuredarrays']
@@ -34898,8 +34898,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -34994,24 +34994,24 @@ mappings:
       Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_check_array_labels']
       Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_iscontrolarrays']
-      Header ControlArray_c_api.h: base=ControlArray, candidates=['ControlArray_iscontrolarrays']
-      Header IncreasingAlignment_c_api.h: base=IncreasingAlignment, candidates=['IncreasingAlignment_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
-      Header LabelledControlArray1D_c_api.h: base=LabelledControlArray1D, candidates=['LabelledControlArray1D_iscontrolarrays']
-      Header LabelledControlArray_c_api.h: base=LabelledControlArray, candidates=['LabelledControlArray_iscontrolarrays']
-      Header LabelledMeasuredArray1D_c_api.h: base=LabelledMeasuredArray1D, candidates=['LabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledMeasuredArray_c_api.h: base=LabelledMeasuredArray, candidates=['LabelledMeasuredArray_iscontrolarrays']
-      Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_iscontrolarrays']
-      Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_iscontrolarrays']
+      Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_is_control_arrays']
+      Header ControlArray_c_api.h: base=ControlArray, candidates=['ControlArray_is_control_arrays']
+      Header IncreasingAlignment_c_api.h: base=IncreasingAlignment, candidates=['IncreasingAlignment_is_control_arrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
+      Header LabelledControlArray1D_c_api.h: base=LabelledControlArray1D, candidates=['LabelledControlArray1D_is_control_arrays']
+      Header LabelledControlArray_c_api.h: base=LabelledControlArray, candidates=['LabelledControlArray_is_control_arrays']
+      Header LabelledMeasuredArray1D_c_api.h: base=LabelledMeasuredArray1D, candidates=['LabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledMeasuredArray_c_api.h: base=LabelledMeasuredArray, candidates=['LabelledMeasuredArray_is_control_arrays']
+      Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_is_control_arrays']
+      Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_ismeasuredarrays']
@@ -45949,8 +45949,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -46045,24 +46045,24 @@ mappings:
       Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_check_array_labels']
       Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_iscontrolarrays']
-      Header ControlArray_c_api.h: base=ControlArray, candidates=['ControlArray_iscontrolarrays']
-      Header IncreasingAlignment_c_api.h: base=IncreasingAlignment, candidates=['IncreasingAlignment_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
-      Header LabelledControlArray1D_c_api.h: base=LabelledControlArray1D, candidates=['LabelledControlArray1D_iscontrolarrays']
-      Header LabelledControlArray_c_api.h: base=LabelledControlArray, candidates=['LabelledControlArray_iscontrolarrays']
-      Header LabelledMeasuredArray1D_c_api.h: base=LabelledMeasuredArray1D, candidates=['LabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledMeasuredArray_c_api.h: base=LabelledMeasuredArray, candidates=['LabelledMeasuredArray_iscontrolarrays']
-      Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_iscontrolarrays']
-      Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_iscontrolarrays']
+      Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_is_control_arrays']
+      Header ControlArray_c_api.h: base=ControlArray, candidates=['ControlArray_is_control_arrays']
+      Header IncreasingAlignment_c_api.h: base=IncreasingAlignment, candidates=['IncreasingAlignment_is_control_arrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
+      Header LabelledControlArray1D_c_api.h: base=LabelledControlArray1D, candidates=['LabelledControlArray1D_is_control_arrays']
+      Header LabelledControlArray_c_api.h: base=LabelledControlArray, candidates=['LabelledControlArray_is_control_arrays']
+      Header LabelledMeasuredArray1D_c_api.h: base=LabelledMeasuredArray1D, candidates=['LabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledMeasuredArray_c_api.h: base=LabelledMeasuredArray, candidates=['LabelledMeasuredArray_is_control_arrays']
+      Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_is_control_arrays']
+      Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_ismeasuredarrays']
@@ -56770,8 +56770,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -56821,15 +56821,15 @@ mappings:
       Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_check_array_labels']
       Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_ismeasuredarrays']
@@ -62186,8 +62186,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -62237,15 +62237,15 @@ mappings:
       Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_check_array_labels']
       Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_ismeasuredarrays']
@@ -67757,8 +67757,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -67808,15 +67808,15 @@ mappings:
       Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_check_array_labels']
       Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_ismeasuredarrays']
@@ -72997,8 +72997,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -73048,15 +73048,15 @@ mappings:
       Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_check_array_labels']
       Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_ismeasuredarrays']
@@ -78413,8 +78413,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -78464,15 +78464,15 @@ mappings:
       Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_check_array_labels']
       Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_ismeasuredarrays']
@@ -88982,8 +88982,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -89078,24 +89078,24 @@ mappings:
       Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_check_array_labels']
       Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_iscontrolarrays']
-      Header ControlArray_c_api.h: base=ControlArray, candidates=['ControlArray_iscontrolarrays']
-      Header IncreasingAlignment_c_api.h: base=IncreasingAlignment, candidates=['IncreasingAlignment_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
-      Header LabelledControlArray1D_c_api.h: base=LabelledControlArray1D, candidates=['LabelledControlArray1D_iscontrolarrays']
-      Header LabelledControlArray_c_api.h: base=LabelledControlArray, candidates=['LabelledControlArray_iscontrolarrays']
-      Header LabelledMeasuredArray1D_c_api.h: base=LabelledMeasuredArray1D, candidates=['LabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledMeasuredArray_c_api.h: base=LabelledMeasuredArray, candidates=['LabelledMeasuredArray_iscontrolarrays']
-      Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_iscontrolarrays']
-      Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_iscontrolarrays']
+      Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_is_control_arrays']
+      Header ControlArray_c_api.h: base=ControlArray, candidates=['ControlArray_is_control_arrays']
+      Header IncreasingAlignment_c_api.h: base=IncreasingAlignment, candidates=['IncreasingAlignment_is_control_arrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
+      Header LabelledControlArray1D_c_api.h: base=LabelledControlArray1D, candidates=['LabelledControlArray1D_is_control_arrays']
+      Header LabelledControlArray_c_api.h: base=LabelledControlArray, candidates=['LabelledControlArray_is_control_arrays']
+      Header LabelledMeasuredArray1D_c_api.h: base=LabelledMeasuredArray1D, candidates=['LabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledMeasuredArray_c_api.h: base=LabelledMeasuredArray, candidates=['LabelledMeasuredArray_is_control_arrays']
+      Header MeasuredArray1D_c_api.h: base=MeasuredArray1D, candidates=['MeasuredArray1D_is_control_arrays']
+      Header MeasuredArray_c_api.h: base=MeasuredArray, candidates=['MeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header ControlArray1D_c_api.h: base=ControlArray1D, candidates=['ControlArray1D_ismeasuredarrays']
@@ -100363,8 +100363,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -100414,15 +100414,15 @@ mappings:
       Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_check_array_labels']
       Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_ismeasuredarrays']
@@ -105934,8 +105934,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -105985,15 +105985,15 @@ mappings:
       Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_check_array_labels']
       Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_ismeasuredarrays']
@@ -111507,8 +111507,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -111558,15 +111558,15 @@ mappings:
       Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_check_array_labels']
       Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_ismeasuredarrays']
@@ -117084,8 +117084,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -117135,15 +117135,15 @@ mappings:
       Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_check_array_labels']
       Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_ismeasuredarrays']
@@ -122661,8 +122661,8 @@ mappings:
     - falcon_core::math::arrays::LabelledArrays::arrays (method 'arrays')
     - falcon_core::math::arrays::LabelledArrays::labels (method 'labels')
     - falcon_core::math::arrays::LabelledArrays::check_array_labels (method 'check_array_labels')
-    - falcon_core::math::arrays::LabelledArrays::isControlArrays (method 'isControlArrays')
-    - falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method 'isMeasuredArrays')
+    - falcon_core::math::arrays::LabelledArrays::is_control_arrays (method 'is_control_arrays')
+    - falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method 'is_measured_arrays')
 
   Processing method: falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays (method name: LabelledMeasuredArrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_labelledmeasuredarrays']
@@ -122712,15 +122712,15 @@ mappings:
       Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_check_array_labels']
       Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_check_array_labels']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isControlArrays (method name: isControlArrays)
-    Primary candidates (base=LabelledArrays): ['LabelledArrays_iscontrolarrays']
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_control_arrays (method name: is_control_arrays)
+    Primary candidates (base=LabelledArrays): ['LabelledArrays_is_control_arrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
-      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_iscontrolarrays']
-      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_iscontrolarrays']
+      Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_is_control_arrays']
+      Header LabelledArraysLabelledControlArray_c_api.h: base=LabelledArraysLabelledControlArray, candidates=['LabelledArraysLabelledControlArray_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray1D_c_api.h: base=LabelledArraysLabelledMeasuredArray1D, candidates=['LabelledArraysLabelledMeasuredArray1D_is_control_arrays']
+      Header LabelledArraysLabelledMeasuredArray_c_api.h: base=LabelledArraysLabelledMeasuredArray, candidates=['LabelledArraysLabelledMeasuredArray_is_control_arrays']
 
-  Processing method: falcon_core::math::arrays::LabelledArrays::isMeasuredArrays (method name: isMeasuredArrays)
+  Processing method: falcon_core::math::arrays::LabelledArrays::is_measured_arrays (method name: is_measured_arrays)
     Primary candidates (base=LabelledArrays): ['LabelledArrays_ismeasuredarrays']
     No primary <Class>_<method> symbol found; trying per-header base names.
       Header LabelledArraysLabelledControlArray1D_c_api.h: base=LabelledArraysLabelledControlArray1D, candidates=['LabelledArraysLabelledControlArray1D_ismeasuredarrays']

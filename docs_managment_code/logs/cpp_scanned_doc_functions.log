@@ -176,8 +176,8 @@ falcon_core::math::arrays::LabelledArrays::LabelledControlArrays
 falcon_core::math::arrays::LabelledArrays::LabelledMeasuredArrays
 falcon_core::math::arrays::LabelledArrays::arrays
 falcon_core::math::arrays::LabelledArrays::check_array_labels
-falcon_core::math::arrays::LabelledArrays::isControlArrays
-falcon_core::math::arrays::LabelledArrays::isMeasuredArrays
+falcon_core::math::arrays::LabelledArrays::is_control_arrays
+falcon_core::math::arrays::LabelledArrays::is_measured_arrays
 falcon_core::math::arrays::LabelledArrays::labels
 falcon_core::math::arrays::LabelledControlArray
 falcon_core::math::arrays::LabelledControlArray1D

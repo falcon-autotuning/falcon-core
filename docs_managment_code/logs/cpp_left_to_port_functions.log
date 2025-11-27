@@ -19,8 +19,8 @@ falcon_core::math::arrays::Is1D::get_closest_index
 falcon_core::math::arrays::Is1D::reverse
 falcon_core::math::arrays::IsControl::_determine_alignments
 falcon_core::math::arrays::LabelledArrays::check_array_labels
-falcon_core::math::arrays::LabelledArrays::isControlArrays
-falcon_core::math::arrays::LabelledArrays::isMeasuredArrays
+falcon_core::math::arrays::LabelledArrays::is_control_arrays
+falcon_core::math::arrays::LabelledArrays::is_measured_arrays
 falcon_core::math::discrete_spaces::Discretizer::CartesianDiscretizer
 falcon_core::math::discrete_spaces::Discretizer::PolarDiscretizer
 falcon_core::math::domains::Domain::bounds

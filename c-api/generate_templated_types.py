@@ -323,10 +323,10 @@ List{c_type} {self.mangled_name()}_arrays(
 ListAcquisitionContextHandle {self.mangled_name()}_labels(
     {self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_isControlArrays(
+bool {self.mangled_name()}_is_control_arrays(
     {self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_isMeasuredArrays(
+bool {self.mangled_name()}_is_measured_arrays(
     {self.chandle()} handle);
 // @category:write
 void {self.mangled_name()}_push_back(
@@ -950,23 +950,23 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_labels"
     FALCON_C_API_END(nullptr)
 }}
 
-bool {self.mangled_name()}_isControlArrays(
+bool {self.mangled_name()}_is_control_arrays(
     {self.chandle()} handle) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_isControlArrays");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_is_control_arrays");
 }}
-    return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->isControlArrays();
+    return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->is_control_arrays();
     FALCON_C_API_END(false)
 }}
 
-bool {self.mangled_name()}_isMeasuredArrays(
+bool {self.mangled_name()}_is_measured_arrays(
     {self.chandle()} handle) {{
     FALCON_C_API_BEGIN
     if (!handle) {{
-    throw std::invalid_argument("Null handle passed to {self.mangled_name()}_isMeasuredArrays");
+    throw std::invalid_argument("Null handle passed to {self.mangled_name()}_is_measured_arrays");
     }}
-    return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->isMeasuredArrays();
+    return static_cast<falcon_core::math::arrays::LabelledArrays<{cpp_type}>*>(handle)->is_measured_arrays();
     FALCON_C_API_END(false)
 }}
 
