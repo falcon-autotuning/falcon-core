@@ -32,7 +32,7 @@ size_t MeasuredArray_data(MeasuredArrayHandle handle,
                           size_t              numdata);
 // @category:write
 void MeasuredArray_plus_equals_farray(MeasuredArrayHandle handle,
-                                     FArrayDoubleHandle  other);
+                                      FArrayDoubleHandle  other);
 // @category:write
 void MeasuredArray_plus_equals_double(MeasuredArrayHandle handle, double other);
 // @category:write
@@ -51,9 +51,10 @@ MeasuredArrayHandle MeasuredArray_plus_int(MeasuredArrayHandle handle,
                                            int                 other);
 // @category:write
 void MeasuredArray_minus_equals_farray(MeasuredArrayHandle handle,
-                                      FArrayDoubleHandle  other);
+                                       FArrayDoubleHandle  other);
 // @category:write
-void MeasuredArray_minus_equals_double(MeasuredArrayHandle handle, double other);
+void MeasuredArray_minus_equals_double(MeasuredArrayHandle handle,
+                                       double              other);
 // @category:write
 void MeasuredArray_minus_equals_int(MeasuredArrayHandle handle, int other);
 // @category:read
@@ -70,14 +71,15 @@ MeasuredArrayHandle MeasuredArray_minus_int(MeasuredArrayHandle handle,
                                             int                 other);
 // @category:read
 MeasuredArrayHandle MeasuredArray_negation(MeasuredArrayHandle handle);
-// @category:read
+// @category:write
 MeasuredArrayHandle MeasuredArray_times_equals_measured_array(
     MeasuredArrayHandle handle, MeasuredArrayHandle other);
-// @category:read
-MeasuredArrayHandle MeasuredArray_times_equals_farray(MeasuredArrayHandle handle,
-                                                     FArrayDoubleHandle  other);
 // @category:write
-void MeasuredArray_times_equals_double(MeasuredArrayHandle handle, double other);
+MeasuredArrayHandle MeasuredArray_times_equals_farray(
+    MeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:write
+void MeasuredArray_times_equals_double(MeasuredArrayHandle handle,
+                                       double              other);
 // @category:write
 void MeasuredArray_times_equals_int(MeasuredArrayHandle handle, int other);
 // @category:read
@@ -92,15 +94,15 @@ MeasuredArrayHandle MeasuredArray_times_double(MeasuredArrayHandle handle,
 // @category:read
 MeasuredArrayHandle MeasuredArray_times_int(MeasuredArrayHandle handle,
                                             int                 other);
-// @category:read
+// @category:write
 MeasuredArrayHandle MeasuredArray_divides_equals_measured_array(
     MeasuredArrayHandle handle, MeasuredArrayHandle other);
-// @category:read
+// @category:write
 MeasuredArrayHandle MeasuredArray_divides_equals_farray(
     MeasuredArrayHandle handle, FArrayDoubleHandle other);
 // @category:write
 void MeasuredArray_divides_equals_double(MeasuredArrayHandle handle,
-                                        double              other);
+                                         double              other);
 // @category:write
 void MeasuredArray_divides_equals_int(MeasuredArrayHandle handle, int other);
 // @category:read
@@ -132,11 +134,10 @@ MeasuredArrayHandle MeasuredArray_max_farray(MeasuredArrayHandle handle,
 MeasuredArrayHandle MeasuredArray_max_measured_array(MeasuredArrayHandle handle,
                                                      MeasuredArrayHandle other);
 // @category:read
-bool MeasuredArray_equal(MeasuredArrayHandle handle,
-                            MeasuredArrayHandle other);
+bool MeasuredArray_equal(MeasuredArrayHandle handle, MeasuredArrayHandle other);
 // @category:read
 bool MeasuredArray_not_equal(MeasuredArrayHandle handle,
-                               MeasuredArrayHandle other);
+                             MeasuredArrayHandle other);
 // @category:read
 bool MeasuredArray_greater_than(MeasuredArrayHandle handle, double value);
 // @category:read
