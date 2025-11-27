@@ -21,7 +21,7 @@ GateGeometryArray1DHandle GateGeometryArray1D_create(
     throw std::invalid_argument(
         "GateGeometryArray1D_create: screening_gates cannot be null");
   }
-  falcon_core::physics::device_structures::ConnectionsSP real_lineararray =
+  falcon_core::physics::device_structures::ConnectionsSP real_linear_array =
       std::make_shared<falcon_core::physics::device_structures::Connections>(
           *static_cast<falcon_core::physics::device_structures::Connections*>(
               lineararray));
@@ -30,7 +30,7 @@ GateGeometryArray1DHandle GateGeometryArray1D_create(
           *static_cast<falcon_core::physics::device_structures::Connections*>(
               screening_gates));
   return new GateGeometryArray1D(
-      GateGeometryArray1D(real_lineararray, real_screening_gates));
+      GateGeometryArray1D(real_linear_array, real_screening_gates));
   FALCON_C_API_END(nullptr)
 }
 
@@ -170,12 +170,12 @@ DotGateWithNeighborsHandle GateGeometryArray1D_right_barrier(
   FALCON_C_API_END(nullptr)
 }
 
-ConnectionsHandle GateGeometryArray1D_lineararray(
+ConnectionsHandle GateGeometryArray1D_linear_array(
     GateGeometryArray1DHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "GateGeometryArray1D_lineararray: handle cannot be null");
+        "GateGeometryArray1D_linear_array: handle cannot be null");
   }
   GateGeometryArray1D self = *static_cast<GateGeometryArray1D*>(handle);
   return new falcon_core::physics::device_structures::Connections(

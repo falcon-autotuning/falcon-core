@@ -713,7 +713,7 @@ Processing metadata file: /home/zach/Documents/github/FALCon/falcon-core/cpp_met
     ✓ Found matching C wrapper: GateGeometryArray1D_right_reservoir (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_reservoir, candidates=['GateGeometryArray1D_right_reservoir'])
     ✓ Found matching C wrapper: GateGeometryArray1D_left_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::left_barrier, candidates=['GateGeometryArray1D_left_barrier'])
     ✓ Found matching C wrapper: GateGeometryArray1D_right_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier, candidates=['GateGeometryArray1D_right_barrier'])
-    ✓ Found matching C wrapper: GateGeometryArray1D_lineararray (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_lineararray'])
+    ✓ Found matching C wrapper: GateGeometryArray1D_linear_array (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_linear_array'])
     ✓ Found matching C wrapper: GateGeometryArray1D_screening_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates, candidates=['GateGeometryArray1D_screening_gates'])
     ✓ Found matching C wrapper: GateGeometryArray1D_raw_central_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates, candidates=['GateGeometryArray1D_raw_central_gates'])
     ✓ Found matching C wrapper: GateGeometryArray1D_central_dot_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::central_dot_gates, candidates=['GateGeometryArray1D_central_dot_gates'])
@@ -1656,7 +1656,7 @@ Processing metadata file: /home/zach/Documents/github/FALCon/falcon-core/cpp_met
     ✓ Found matching C wrapper: GateGeometryArray1D_right_reservoir (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_reservoir, candidates=['GateGeometryArray1D_right_reservoir'])
     ✓ Found matching C wrapper: GateGeometryArray1D_left_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::left_barrier, candidates=['GateGeometryArray1D_left_barrier'])
     ✓ Found matching C wrapper: GateGeometryArray1D_right_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier, candidates=['GateGeometryArray1D_right_barrier'])
-    ✓ Found matching C wrapper: GateGeometryArray1D_lineararray (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_lineararray'])
+    ✓ Found matching C wrapper: GateGeometryArray1D_linear_array (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_linear_array'])
     ✓ Found matching C wrapper: GateGeometryArray1D_screening_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates, candidates=['GateGeometryArray1D_screening_gates'])
     ✓ Found matching C wrapper: GateGeometryArray1D_raw_central_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates, candidates=['GateGeometryArray1D_raw_central_gates'])
     ✓ Found matching C wrapper: GateGeometryArray1D_central_dot_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::central_dot_gates, candidates=['GateGeometryArray1D_central_dot_gates'])
@@ -2599,7 +2599,7 @@ Processing metadata file: /home/zach/Documents/github/FALCon/falcon-core/cpp_met
     ✓ Found matching C wrapper: GateGeometryArray1D_right_reservoir (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_reservoir, candidates=['GateGeometryArray1D_right_reservoir'])
     ✓ Found matching C wrapper: GateGeometryArray1D_left_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::left_barrier, candidates=['GateGeometryArray1D_left_barrier'])
     ✓ Found matching C wrapper: GateGeometryArray1D_right_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier, candidates=['GateGeometryArray1D_right_barrier'])
-    ✓ Found matching C wrapper: GateGeometryArray1D_lineararray (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_lineararray'])
+    ✓ Found matching C wrapper: GateGeometryArray1D_linear_array (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_linear_array'])
     ✓ Found matching C wrapper: GateGeometryArray1D_screening_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates, candidates=['GateGeometryArray1D_screening_gates'])
     ✓ Found matching C wrapper: GateGeometryArray1D_raw_central_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates, candidates=['GateGeometryArray1D_raw_central_gates'])
     ✓ Found matching C wrapper: GateGeometryArray1D_central_dot_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::central_dot_gates, candidates=['GateGeometryArray1D_central_dot_gates'])
@@ -3607,7 +3607,7 @@ Processing metadata file: /home/zach/Documents/github/FALCon/falcon-core/cpp_met
     ✓ Found matching C wrapper: GateGeometryArray1D_right_reservoir (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_reservoir, candidates=['GateGeometryArray1D_right_reservoir'])
     ✓ Found matching C wrapper: GateGeometryArray1D_left_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::left_barrier, candidates=['GateGeometryArray1D_left_barrier'])
     ✓ Found matching C wrapper: GateGeometryArray1D_right_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier, candidates=['GateGeometryArray1D_right_barrier'])
-    ✓ Found matching C wrapper: GateGeometryArray1D_lineararray (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_lineararray'])
+    ✓ Found matching C wrapper: GateGeometryArray1D_linear_array (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_linear_array'])
     ✓ Found matching C wrapper: GateGeometryArray1D_screening_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates, candidates=['GateGeometryArray1D_screening_gates'])
     ✓ Found matching C wrapper: GateGeometryArray1D_raw_central_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates, candidates=['GateGeometryArray1D_raw_central_gates'])
     ✓ Found matching C wrapper: GateGeometryArray1D_central_dot_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::central_dot_gates, candidates=['GateGeometryArray1D_central_dot_gates'])
@@ -4745,7 +4745,7 @@ Processing metadata file: /home/zach/Documents/github/FALCon/falcon-core/cpp_met
     ✓ Found matching C wrapper: GateGeometryArray1D_right_reservoir (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_reservoir, candidates=['GateGeometryArray1D_right_reservoir'])
     ✓ Found matching C wrapper: GateGeometryArray1D_left_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::left_barrier, candidates=['GateGeometryArray1D_left_barrier'])
     ✓ Found matching C wrapper: GateGeometryArray1D_right_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier, candidates=['GateGeometryArray1D_right_barrier'])
-    ✓ Found matching C wrapper: GateGeometryArray1D_lineararray (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_lineararray'])
+    ✓ Found matching C wrapper: GateGeometryArray1D_linear_array (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_linear_array'])
     ✓ Found matching C wrapper: GateGeometryArray1D_screening_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates, candidates=['GateGeometryArray1D_screening_gates'])
     ✓ Found matching C wrapper: GateGeometryArray1D_raw_central_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates, candidates=['GateGeometryArray1D_raw_central_gates'])
     ✓ Found matching C wrapper: GateGeometryArray1D_central_dot_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::central_dot_gates, candidates=['GateGeometryArray1D_central_dot_gates'])
@@ -6429,7 +6429,7 @@ Processing metadata file: /home/zach/Documents/github/FALCon/falcon-core/cpp_met
     ✓ Found matching C wrapper: GateGeometryArray1D_right_reservoir (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_reservoir, candidates=['GateGeometryArray1D_right_reservoir'])
     ✓ Found matching C wrapper: GateGeometryArray1D_left_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::left_barrier, candidates=['GateGeometryArray1D_left_barrier'])
     ✓ Found matching C wrapper: GateGeometryArray1D_right_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier, candidates=['GateGeometryArray1D_right_barrier'])
-    ✓ Found matching C wrapper: GateGeometryArray1D_lineararray (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_lineararray'])
+    ✓ Found matching C wrapper: GateGeometryArray1D_linear_array (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_linear_array'])
     ✓ Found matching C wrapper: GateGeometryArray1D_screening_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates, candidates=['GateGeometryArray1D_screening_gates'])
     ✓ Found matching C wrapper: GateGeometryArray1D_raw_central_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates, candidates=['GateGeometryArray1D_raw_central_gates'])
     ✓ Found matching C wrapper: GateGeometryArray1D_central_dot_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::central_dot_gates, candidates=['GateGeometryArray1D_central_dot_gates'])
@@ -6455,7 +6455,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -8599,8 +8599,8 @@ Processing metadata file: /home/zach/Documents/github/FALCon/falcon-core/cpp_met
     candidates: ['GateGeometryArray1D_right_barrier']
     ✓ Found matching C wrapper: GateGeometryArray1D_right_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier, candidates=['GateGeometryArray1D_right_barrier'])
   Using patterns for class GateGeometryArray1D, method lineararray (transformed: lineararray)
-    candidates: ['GateGeometryArray1D_lineararray']
-    ✓ Found matching C wrapper: GateGeometryArray1D_lineararray (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_lineararray'])
+    candidates: ['GateGeometryArray1D_linear_array']
+    ✓ Found matching C wrapper: GateGeometryArray1D_linear_array (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_linear_array'])
   Using patterns for class GateGeometryArray1D, method screening_gates (transformed: screening_gates)
     candidates: ['GateGeometryArray1D_screening_gates']
     ✓ Found matching C wrapper: GateGeometryArray1D_screening_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates, candidates=['GateGeometryArray1D_screening_gates'])
@@ -8634,7 +8634,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -10884,8 +10884,8 @@ Processing metadata file: /home/zach/Documents/github/FALCon/falcon-core/cpp_met
     candidates: ['GateGeometryArray1D_right_barrier']
     ✓ Found matching C wrapper: GateGeometryArray1D_right_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier, candidates=['GateGeometryArray1D_right_barrier'])
   Using patterns for class GateGeometryArray1D, method lineararray (transformed: lineararray)
-    candidates: ['GateGeometryArray1D_lineararray']
-    ✓ Found matching C wrapper: GateGeometryArray1D_lineararray (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_lineararray'])
+    candidates: ['GateGeometryArray1D_linear_array']
+    ✓ Found matching C wrapper: GateGeometryArray1D_linear_array (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_linear_array'])
   Using patterns for class GateGeometryArray1D, method screening_gates (transformed: screening_gates)
     candidates: ['GateGeometryArray1D_screening_gates']
     ✓ Found matching C wrapper: GateGeometryArray1D_screening_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates, candidates=['GateGeometryArray1D_screening_gates'])
@@ -10919,7 +10919,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -15528,8 +15528,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -15567,7 +15567,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -27626,8 +27626,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -27665,7 +27665,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -38677,8 +38677,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -38716,7 +38716,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -49728,8 +49728,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -49767,7 +49767,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -58918,8 +58918,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -58957,7 +58957,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -64434,8 +64434,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -64473,7 +64473,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -70005,8 +70005,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -70044,7 +70044,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -75145,8 +75145,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -75184,7 +75184,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -80661,8 +80661,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -80700,7 +80700,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -84938,7 +84938,7 @@ Processing metadata file: /home/zach/Documents/github/FALCon/falcon-core/cpp_met
     ✓ Found matching C wrapper: GateGeometryArray1D_right_reservoir
     ✓ Found matching C wrapper: GateGeometryArray1D_left_barrier
     ✓ Found matching C wrapper: GateGeometryArray1D_right_barrier
-    ✓ Found matching C wrapper: GateGeometryArray1D_lineararray
+    ✓ Found matching C wrapper: GateGeometryArray1D_linear_array
     ✓ Found matching C wrapper: GateGeometryArray1D_screening_gates
     ✓ Found matching C wrapper: GateGeometryArray1D_raw_central_gates
     ✓ Found matching C wrapper: GateGeometryArray1D_central_dot_gates
@@ -84964,7 +84964,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -87494,8 +87494,8 @@ Processing metadata file: /home/zach/Documents/github/FALCon/falcon-core/cpp_met
     candidates: ['GateGeometryArray1D_right_barrier']
     ✓ Found matching C wrapper: GateGeometryArray1D_right_barrier (for falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier, candidates=['GateGeometryArray1D_right_barrier'])
   Using patterns for class GateGeometryArray1D, method lineararray (transformed: lineararray)
-    candidates: ['GateGeometryArray1D_lineararray']
-    ✓ Found matching C wrapper: GateGeometryArray1D_lineararray (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_lineararray'])
+    candidates: ['GateGeometryArray1D_linear_array']
+    ✓ Found matching C wrapper: GateGeometryArray1D_linear_array (for falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray, candidates=['GateGeometryArray1D_linear_array'])
   Using patterns for class GateGeometryArray1D, method screening_gates (transformed: screening_gates)
     candidates: ['GateGeometryArray1D_screening_gates']
     ✓ Found matching C wrapper: GateGeometryArray1D_screening_gates (for falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates, candidates=['GateGeometryArray1D_screening_gates'])
@@ -87529,7 +87529,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -92935,8 +92935,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -92974,7 +92974,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -102611,8 +102611,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -102650,7 +102650,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -108182,8 +108182,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -108221,7 +108221,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -113755,8 +113755,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -113794,7 +113794,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -119332,8 +119332,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -119371,7 +119371,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
@@ -124909,8 +124909,8 @@ mappings:
       ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_right_barrier
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray (method name: lineararray)
-    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_lineararray']
-      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_lineararray
+    Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_linear_array']
+      ✓ Found primary C wrapper in GateGeometryArray1D_c_api.h: GateGeometryArray1D_linear_array
 
   Processing method: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates (method name: screening_gates)
     Primary candidates (base=GateGeometryArray1D): ['GateGeometryArray1D_screening_gates']
@@ -124948,7 +124948,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates

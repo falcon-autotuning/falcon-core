@@ -20,7 +20,7 @@ class GateGeometryArray1D : public generic::Song {
   DotGatesWithNeighborsSP          _central_dot_gates;
   device_structures::Connections   _raw_central_gates;
   device_structures::ConnectionsSP _screening_gates;
-  device_structures::ConnectionsSP _lineararray;
+  device_structures::ConnectionsSP _linear_array;
   std::unordered_map<std::string, device_structures::ConnectionSP>
       _gate_name_map;
 
@@ -126,7 +126,7 @@ class GateGeometryArray1D : public generic::Song {
        _raw_central_gates,
        _central_dot_gates,
        _screening_gates,
-       _lineararray,
+       _linear_array,
        _gate_name_map);
   }
 };

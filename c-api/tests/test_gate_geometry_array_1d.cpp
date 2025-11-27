@@ -92,7 +92,7 @@ TEST_F(GateGeometryArray1DTest, RightBarrier) {
 }
 
 TEST_F(GateGeometryArray1DTest, LineararrayGetter) {
-  ConnectionsHandle result = GateGeometryArray1D_lineararray(handle);
+  ConnectionsHandle result = GateGeometryArray1D_linear_array(handle);
   EXPECT_EQ(Connections_size(result), 7);
   Connections_destroy(result);
 }
@@ -185,7 +185,7 @@ TEST_F(GateGeometryArray1DTest, NullptrThrows) {
   GateGeometryArray1D_right_barrier(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  GateGeometryArray1D_lineararray(nullptr);
+  GateGeometryArray1D_linear_array(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   GateGeometryArray1D_screening_gates(nullptr);

@@ -41,7 +41,7 @@ DotGateWithNeighborsHandle GateGeometryArray1D_left_barrier(
 DotGateWithNeighborsHandle GateGeometryArray1D_right_barrier(
     GateGeometryArray1DHandle handle);
 // @category:read
-ConnectionsHandle GateGeometryArray1D_lineararray(
+ConnectionsHandle GateGeometryArray1D_linear_array(
     GateGeometryArray1DHandle handle);
 // @category:read
 ConnectionsHandle GateGeometryArray1D_screening_gates(

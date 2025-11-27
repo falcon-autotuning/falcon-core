@@ -494,7 +494,7 @@ Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/p
 [map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
 [capi] doc already present: GateGeometryArray1D_right_barrier
 [map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-[capi] doc already present: GateGeometryArray1D_lineararray
+[capi] doc already present: GateGeometryArray1D_linear_array
 [map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
 [capi] doc already present: GateGeometryArray1D_screening_gates
 [map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates

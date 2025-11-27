@@ -17,7 +17,7 @@ mappings:
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
   c: GateGeometryArray1D_right_barrier
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
-  c: GateGeometryArray1D_lineararray
+  c: GateGeometryArray1D_linear_array
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
   c: GateGeometryArray1D_screening_gates
 - cpp: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates

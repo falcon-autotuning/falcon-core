@@ -12,7 +12,7 @@ GateGeometryArray1D::GateGeometryArray1D() = default;
 GateGeometryArray1D::GateGeometryArray1D(
     device_structures::ConnectionsSP lineararray,
     device_structures::ConnectionsSP screening_gates)
-    : _lineararray(lineararray), _screening_gates(screening_gates) {
+    : _linear_array(lineararray), _screening_gates(screening_gates) {
   if (!lineararray) {
     throw std::invalid_argument(
         "GateGeometryArray1D: The lineararray cannot be null.");
@@ -93,20 +93,20 @@ GateGeometryArray1D::GateGeometryArray1D(
   }
 }
 GateGeometryArray1D::iterator GateGeometryArray1D::begin() {
-  return _lineararray->begin();
+  return _linear_array->begin();
 }
 GateGeometryArray1D::iterator GateGeometryArray1D::end() {
-  return _lineararray->end();
+  return _linear_array->end();
 }
 GateGeometryArray1D::const_iterator GateGeometryArray1D::begin() const {
-  return _lineararray->begin();
+  return _linear_array->begin();
 }
 GateGeometryArray1D::const_iterator GateGeometryArray1D::end() const {
-  return _lineararray->end();
+  return _linear_array->end();
 }
 const device_structures::ConnectionsSP& GateGeometryArray1D::lineararray()
     const {
-  return _lineararray;
+  return _linear_array;
 }
 const device_structures::ConnectionsSP& GateGeometryArray1D::screening_gates()
     const {
