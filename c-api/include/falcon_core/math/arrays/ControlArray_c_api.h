@@ -104,14 +104,14 @@ ControlArrayHandle ControlArray_max_farray(ControlArrayHandle handle,
 ControlArrayHandle ControlArray_max_control_array(ControlArrayHandle handle,
                                                   ControlArrayHandle other);
 // @category:read
-bool ControlArray_Equal(ControlArrayHandle handle, ControlArrayHandle other);
+bool ControlArray_equal(ControlArrayHandle handle, ControlArrayHandle other);
 // @category:read
-bool ControlArray_NotEqual(ControlArrayHandle handle,
+bool ControlArray_not_equal(ControlArrayHandle handle,
                               ControlArrayHandle other);
 // @category:read
-bool ControlArray_greaterthan(ControlArrayHandle handle, double value);
+bool ControlArray_greater_than(ControlArrayHandle handle, double value);
 // @category:read
-bool ControlArray_lessthan(ControlArrayHandle handle, double value);
+bool ControlArray_less_than(ControlArrayHandle handle, double value);
 // @category:write
 void ControlArray_remove_offset(ControlArrayHandle handle, double offset);
 // @category:read

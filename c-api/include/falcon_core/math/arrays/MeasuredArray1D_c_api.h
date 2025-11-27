@@ -160,15 +160,15 @@ MeasuredArray1DHandle MeasuredArray1D_max_farray(MeasuredArray1DHandle handle,
 MeasuredArray1DHandle MeasuredArray1D_max_measured_array(
     MeasuredArray1DHandle handle, MeasuredArray1DHandle other);
 // @category:read
-bool MeasuredArray1D_Equal(MeasuredArray1DHandle handle,
+bool MeasuredArray1D_equal(MeasuredArray1DHandle handle,
                               MeasuredArray1DHandle other);
 // @category:read
-bool MeasuredArray1D_NotEqual(MeasuredArray1DHandle handle,
+bool MeasuredArray1D_not_equal(MeasuredArray1DHandle handle,
                                  MeasuredArray1DHandle other);
 // @category:read
-bool MeasuredArray1D_greaterthan(MeasuredArray1DHandle handle, double value);
+bool MeasuredArray1D_greater_than(MeasuredArray1DHandle handle, double value);
 // @category:read
-bool MeasuredArray1D_lessthan(MeasuredArray1DHandle handle, double value);
+bool MeasuredArray1D_less_than(MeasuredArray1DHandle handle, double value);
 // @category:write
 void MeasuredArray1D_remove_offset(MeasuredArray1DHandle handle, double offset);
 // @category:read

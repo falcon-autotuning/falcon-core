@@ -195,22 +195,22 @@ TEST_F(FArrayIntTest, NullptrCoverage) {
   FArrayInt_max_arraywise(arr1, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  FArrayInt_Equal(nullptr, arr1);
+  FArrayInt_equal(nullptr, arr1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  FArrayInt_Equal(arr1, nullptr);
+  FArrayInt_equal(arr1, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  FArrayInt_NotEqual(nullptr, arr1);
+  FArrayInt_not_equal(nullptr, arr1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  FArrayInt_NotEqual(arr1, nullptr);
+  FArrayInt_not_equal(arr1, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  FArrayInt_greaterthan(nullptr, 1.0);
+  FArrayInt_greater_than(nullptr, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  FArrayInt_lessthan(nullptr, 1.0);
+  FArrayInt_less_than(nullptr, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   FArrayInt_remove_offset(nullptr, 1.0);
@@ -273,10 +273,10 @@ TEST_F(FArrayIntTest, BasicProperties) {
 
 TEST_F(FArrayIntTest, ArithmeticAndComparison) {
   FArrayIntHandle arr4 = FArrayInt_create_zeros(shape, 2);
-  EXPECT_TRUE(FArrayInt_Equal(arr1, arr1));
-  EXPECT_FALSE(FArrayInt_NotEqual(arr1, arr4));
-  EXPECT_TRUE(FArrayInt_greaterthan(arr1, -1000.0));
-  EXPECT_FALSE(FArrayInt_lessthan(arr1, -1000.0));
+  EXPECT_TRUE(FArrayInt_equal(arr1, arr1));
+  EXPECT_FALSE(FArrayInt_not_equal(arr1, arr4));
+  EXPECT_TRUE(FArrayInt_greater_than(arr1, -1000.0));
+  EXPECT_FALSE(FArrayInt_less_than(arr1, -1000.0));
   FArrayInt_plus_equals_farray(arr1, arr4);
   FArrayInt_plus_equals_double(arr1, 1.0);
   FArrayInt_plus_equals_int(arr1, 1);

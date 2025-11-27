@@ -581,13 +581,13 @@ void {self.mangled_name()}_pow_inplace({self.chandle()} handle,  {c_type} other)
 // @category:read
 {self.chandle()} {self.mangled_name()}_max_arraywise({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_Equal({self.chandle()} handle, {self.chandle()} other);
+bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_NotEqual({self.chandle()} handle, {self.chandle()} other);
+bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_greaterthan({self.chandle()} handle,  {c_type} value);
+bool {self.mangled_name()}_greater_than({self.chandle()} handle,  {c_type} value);
 // @category:read
-bool {self.mangled_name()}_lessthan({self.chandle()} handle,  {c_type} value);
+bool {self.mangled_name()}_less_than({self.chandle()} handle,  {c_type} value);
 // @category:write
 void {self.mangled_name()}_remove_offset({self.chandle()} handle,  {c_type} offset);
 // @category:read
@@ -2536,10 +2536,10 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_max_arr
     FALCON_C_API_END(nullptr)
 }}
 
-bool {self.mangled_name()}_Equal({self.chandle()} handle, {self.chandle()} other) {{
+bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other) {{
     FALCON_C_API_BEGIN
 if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_Equal");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equal");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
@@ -2547,10 +2547,10 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_Equal")
     FALCON_C_API_END(false)
 }}
 
-bool {self.mangled_name()}_NotEqual({self.chandle()} handle, {self.chandle()} other) {{
+bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other) {{
     FALCON_C_API_BEGIN
 if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_NotEqual");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_not_equal");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<{cpp_type}>*>(other);
@@ -2558,20 +2558,20 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_NotEqua
     FALCON_C_API_END(false)
 }}
 
-bool {self.mangled_name()}_greaterthan({self.chandle()} handle,  {c_type} value) {{
+bool {self.mangled_name()}_greater_than({self.chandle()} handle,  {c_type} value) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_greaterthan");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_greater_than");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return *farray > value;
     FALCON_C_API_END(false)
 }}
 
-bool {self.mangled_name()}_lessthan({self.chandle()} handle,  {c_type} value) {{
+bool {self.mangled_name()}_less_than({self.chandle()} handle,  {c_type} value) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_lessthan");
+throw std::invalid_argument("Null handle passed to {self.mangled_name()}_less_than");
 }}
     auto farray = static_cast<falcon_core::generic::FArray<{cpp_type}>*>(handle);
     return *farray < value;

@@ -718,12 +718,12 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_max_measured_array(
   return new LabelledMeasuredArray(*labelled_measured_array->operator+(oarray));
   FALCON_C_API_END(nullptr)
 }
-bool LabelledMeasuredArray_Equal(LabelledMeasuredArrayHandle handle,
+bool LabelledMeasuredArray_equal(LabelledMeasuredArrayHandle handle,
                                     LabelledMeasuredArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_Equal");
+        "Null handle passed to LabelledMeasuredArray_equal");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -732,12 +732,12 @@ bool LabelledMeasuredArray_Equal(LabelledMeasuredArrayHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool LabelledMeasuredArray_NotEqual(LabelledMeasuredArrayHandle handle,
+bool LabelledMeasuredArray_not_equal(LabelledMeasuredArrayHandle handle,
                                        LabelledMeasuredArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_NotEqual");
+        "Null handle passed to LabelledMeasuredArray_not_equal");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
@@ -746,7 +746,7 @@ bool LabelledMeasuredArray_NotEqual(LabelledMeasuredArrayHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool LabelledMeasuredArray_greaterthan(LabelledMeasuredArrayHandle handle,
+bool LabelledMeasuredArray_greater_than(LabelledMeasuredArrayHandle handle,
                                        const double                value) {
   FALCON_C_API_BEGIN
   if (!handle) {
@@ -759,12 +759,12 @@ bool LabelledMeasuredArray_greaterthan(LabelledMeasuredArrayHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool LabelledMeasuredArray_lessthan(LabelledMeasuredArrayHandle handle,
+bool LabelledMeasuredArray_less_than(LabelledMeasuredArrayHandle handle,
                                     const double                value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_lessthan");
+        "Null handle passed to LabelledMeasuredArray_less_than");
   }
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);

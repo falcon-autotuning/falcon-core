@@ -595,11 +595,11 @@ MeasuredArrayHandle MeasuredArray_max_measured_array(
   FALCON_C_API_END(nullptr)
 }
 
-bool MeasuredArray_Equal(MeasuredArrayHandle handle,
+bool MeasuredArray_equal(MeasuredArrayHandle handle,
                             MeasuredArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
-    throw std::invalid_argument("Null handle passed to MeasuredArray_Equal");
+    throw std::invalid_argument("Null handle passed to MeasuredArray_equal");
   }
   MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
   MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);
@@ -607,12 +607,12 @@ bool MeasuredArray_Equal(MeasuredArrayHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool MeasuredArray_NotEqual(MeasuredArrayHandle handle,
+bool MeasuredArray_not_equal(MeasuredArrayHandle handle,
                                MeasuredArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to MeasuredArray_NotEqual");
+        "Null handle passed to MeasuredArray_not_equal");
   }
   MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
   MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);
@@ -620,21 +620,21 @@ bool MeasuredArray_NotEqual(MeasuredArrayHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool MeasuredArray_greaterthan(MeasuredArrayHandle handle, const double value) {
+bool MeasuredArray_greater_than(MeasuredArrayHandle handle, const double value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to MeasuredArray_greaterthan");
+        "Null handle passed to MeasuredArray_greater_than");
   }
   MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
   return measured_array->operator>(value);
   FALCON_C_API_END(false)
 }
 
-bool MeasuredArray_lessthan(MeasuredArrayHandle handle, const double value) {
+bool MeasuredArray_less_than(MeasuredArrayHandle handle, const double value) {
   FALCON_C_API_BEGIN
   if (!handle) {
-    throw std::invalid_argument("Null handle passed to MeasuredArray_lessthan");
+    throw std::invalid_argument("Null handle passed to MeasuredArray_less_than");
   }
   MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
   return measured_array->operator<(value);

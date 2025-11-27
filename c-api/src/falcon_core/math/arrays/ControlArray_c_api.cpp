@@ -470,11 +470,11 @@ ControlArrayHandle ControlArray_max_control_array(ControlArrayHandle handle,
   FALCON_C_API_END(nullptr)
 }
 
-bool ControlArray_Equal(ControlArrayHandle handle,
+bool ControlArray_equal(ControlArrayHandle handle,
                            ControlArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
-    throw std::invalid_argument("Null handle passed to ControlArray_Equal");
+    throw std::invalid_argument("Null handle passed to ControlArray_equal");
   }
   auto control_array = static_cast<ControlArray*>(handle);
   auto oarray        = static_cast<ControlArray*>(other);
@@ -482,12 +482,12 @@ bool ControlArray_Equal(ControlArrayHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool ControlArray_NotEqual(ControlArrayHandle handle,
+bool ControlArray_not_equal(ControlArrayHandle handle,
                               ControlArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray_NotEqual");
+        "Null handle passed to ControlArray_not_equal");
   }
   auto control_array = static_cast<ControlArray*>(handle);
   auto oarray        = static_cast<ControlArray*>(other);
@@ -495,21 +495,21 @@ bool ControlArray_NotEqual(ControlArrayHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool ControlArray_greaterthan(ControlArrayHandle handle, const double value) {
+bool ControlArray_greater_than(ControlArrayHandle handle, const double value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray_greaterthan");
+        "Null handle passed to ControlArray_greater_than");
   }
   auto control_array = static_cast<ControlArray*>(handle);
   return control_array->operator>(value);
   FALCON_C_API_END(false)
 }
 
-bool ControlArray_lessthan(ControlArrayHandle handle, const double value) {
+bool ControlArray_less_than(ControlArrayHandle handle, const double value) {
   FALCON_C_API_BEGIN
   if (!handle) {
-    throw std::invalid_argument("Null handle passed to ControlArray_lessthan");
+    throw std::invalid_argument("Null handle passed to ControlArray_less_than");
   }
   auto control_array = static_cast<ControlArray*>(handle);
   return control_array->operator<(value);

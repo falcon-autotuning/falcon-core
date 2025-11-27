@@ -47,7 +47,7 @@ TEST_F(VoltageConstraintsTest, MatrixGetter) {
 
 TEST_F(VoltageConstraintsTest, AdjacencyGetter) {
   AdjacencyHandle adj = VoltageConstraints_adjacency(handle);
-  EXPECT_TRUE(Adjacency_Equal(adjacency, adj));
+  EXPECT_TRUE(Adjacency_equal(adjacency, adj));
   Adjacency_destroy(adj);
 }
 

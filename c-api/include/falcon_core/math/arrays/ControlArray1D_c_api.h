@@ -139,15 +139,15 @@ ControlArray1DHandle ControlArray1D_max_farray(ControlArray1DHandle handle,
 ControlArray1DHandle ControlArray1D_max_control_array(
     ControlArray1DHandle handle, ControlArray1DHandle other);
 // @category:read
-bool ControlArray1D_Equal(ControlArray1DHandle handle,
+bool ControlArray1D_equal(ControlArray1DHandle handle,
                              ControlArray1DHandle other);
 // @category:read
-bool ControlArray1D_NotEqual(ControlArray1DHandle handle,
+bool ControlArray1D_not_equal(ControlArray1DHandle handle,
                                 ControlArray1DHandle other);
 // @category:read
-bool ControlArray1D_greaterthan(ControlArray1DHandle handle, double value);
+bool ControlArray1D_greater_than(ControlArray1DHandle handle, double value);
 // @category:read
-bool ControlArray1D_lessthan(ControlArray1DHandle handle, double value);
+bool ControlArray1D_less_than(ControlArray1DHandle handle, double value);
 // @category:write
 void ControlArray1D_remove_offset(ControlArray1DHandle handle, double offset);
 // @category:read

@@ -717,12 +717,12 @@ LabelledControlArray1DHandle LabelledControlArray1D_max_control_array(
   FALCON_C_API_END(nullptr)
 }
 
-bool LabelledControlArray1D_Equal(LabelledControlArray1DHandle handle,
+bool LabelledControlArray1D_equal(LabelledControlArray1DHandle handle,
                                      LabelledControlArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_Equal");
+        "Null handle passed to LabelledControlArray1D_equal");
   }
   auto labelled_control_array   = static_cast<LabelledControlArray1D*>(handle);
   LabelledControlArray1D oarray = *static_cast<LabelledControlArray1D*>(other);
@@ -730,12 +730,12 @@ bool LabelledControlArray1D_Equal(LabelledControlArray1DHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool LabelledControlArray1D_NotEqual(LabelledControlArray1DHandle handle,
+bool LabelledControlArray1D_not_equal(LabelledControlArray1DHandle handle,
                                         LabelledControlArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_NotEqual");
+        "Null handle passed to LabelledControlArray1D_not_equal");
   }
   auto labelled_control_array   = static_cast<LabelledControlArray1D*>(handle);
   LabelledControlArray1D oarray = *static_cast<LabelledControlArray1D*>(other);
@@ -743,24 +743,24 @@ bool LabelledControlArray1D_NotEqual(LabelledControlArray1DHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool LabelledControlArray1D_greaterthan(LabelledControlArray1DHandle handle,
+bool LabelledControlArray1D_greater_than(LabelledControlArray1DHandle handle,
                                         const double                 value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_greaterthan");
+        "Null handle passed to LabelledControlArray1D_greater_than");
   }
   auto labelled_control_array = static_cast<LabelledControlArray1D*>(handle);
   return labelled_control_array->operator>(value);
   FALCON_C_API_END(false)
 }
 
-bool LabelledControlArray1D_lessthan(LabelledControlArray1DHandle handle,
+bool LabelledControlArray1D_less_than(LabelledControlArray1DHandle handle,
                                      const double                 value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray1D_lessthan");
+        "Null handle passed to LabelledControlArray1D_less_than");
   }
   auto labelled_control_array = static_cast<LabelledControlArray1D*>(handle);
   return labelled_control_array->operator<(value);

@@ -140,16 +140,16 @@ LabelledControlArrayHandle LabelledControlArray_max_farray(
 LabelledControlArrayHandle LabelledControlArray_max_control_array(
     LabelledControlArrayHandle handle, LabelledControlArrayHandle other);
 // @category:read
-bool LabelledControlArray_Equal(LabelledControlArrayHandle handle,
+bool LabelledControlArray_equal(LabelledControlArrayHandle handle,
                                    LabelledControlArrayHandle other);
 // @category:read
-bool LabelledControlArray_NotEqual(LabelledControlArrayHandle handle,
+bool LabelledControlArray_not_equal(LabelledControlArrayHandle handle,
                                       LabelledControlArrayHandle other);
 // @category:read
-bool LabelledControlArray_greaterthan(LabelledControlArrayHandle handle,
+bool LabelledControlArray_greater_than(LabelledControlArrayHandle handle,
                                       double                     value);
 // @category:read
-bool LabelledControlArray_lessthan(LabelledControlArrayHandle handle,
+bool LabelledControlArray_less_than(LabelledControlArrayHandle handle,
                                    double                     value);
 // @category:write
 void LabelledControlArray_remove_offset(LabelledControlArrayHandle handle,

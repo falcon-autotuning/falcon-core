@@ -39,9 +39,9 @@ void Adjacency_times_equals_farray(AdjacencyHandle handle,
 AdjacencyHandle Adjacency_times_farray(AdjacencyHandle handle,
                                        FArrayIntHandle other);
 // @category:read
-bool Adjacency_Equal(AdjacencyHandle handle, AdjacencyHandle other);
+bool Adjacency_equal(AdjacencyHandle handle, AdjacencyHandle other);
 // @category:read
-bool Adjacency_NotEqual(AdjacencyHandle handle, AdjacencyHandle other);
+bool Adjacency_not_equal(AdjacencyHandle handle, AdjacencyHandle other);
 // @category:read
 int Adjacency_sum(AdjacencyHandle handle);
 // @category:read

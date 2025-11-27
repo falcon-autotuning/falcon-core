@@ -483,10 +483,10 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_max_arraywise");
     FALCON_C_API_END(nullptr)
 }
 
-bool FArrayDouble_Equal(FArrayDoubleHandle handle, FArrayDoubleHandle other) {
+bool FArrayDouble_equal(FArrayDoubleHandle handle, FArrayDoubleHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to FArrayDouble_Equal");
+throw std::invalid_argument("Null handle passed to FArrayDouble_equal");
 }
     auto farray = static_cast<falcon_core::generic::FArray<double>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<double>*>(other);
@@ -494,10 +494,10 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_Equal");
     FALCON_C_API_END(false)
 }
 
-bool FArrayDouble_NotEqual(FArrayDoubleHandle handle, FArrayDoubleHandle other) {
+bool FArrayDouble_not_equal(FArrayDoubleHandle handle, FArrayDoubleHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to FArrayDouble_NotEqual");
+throw std::invalid_argument("Null handle passed to FArrayDouble_not_equal");
 }
     auto farray = static_cast<falcon_core::generic::FArray<double>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<double>*>(other);
@@ -505,20 +505,20 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_NotEqual");
     FALCON_C_API_END(false)
 }
 
-bool FArrayDouble_greaterthan(FArrayDoubleHandle handle,  double value) {
+bool FArrayDouble_greater_than(FArrayDoubleHandle handle,  double value) {
     FALCON_C_API_BEGIN
 if (!handle) {
-throw std::invalid_argument("Null handle passed to FArrayDouble_greaterthan");
+throw std::invalid_argument("Null handle passed to FArrayDouble_greater_than");
 }
     auto farray = static_cast<falcon_core::generic::FArray<double>*>(handle);
     return *farray > value;
     FALCON_C_API_END(false)
 }
 
-bool FArrayDouble_lessthan(FArrayDoubleHandle handle,  double value) {
+bool FArrayDouble_less_than(FArrayDoubleHandle handle,  double value) {
     FALCON_C_API_BEGIN
 if (!handle) {
-throw std::invalid_argument("Null handle passed to FArrayDouble_lessthan");
+throw std::invalid_argument("Null handle passed to FArrayDouble_less_than");
 }
     auto farray = static_cast<falcon_core::generic::FArray<double>*>(handle);
     return *farray < value;

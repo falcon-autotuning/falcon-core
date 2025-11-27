@@ -97,13 +97,13 @@ int FArrayInt_max(FArrayIntHandle handle);
 // @category:read
 FArrayIntHandle FArrayInt_max_arraywise(FArrayIntHandle handle, FArrayIntHandle other);
 // @category:read
-bool FArrayInt_Equal(FArrayIntHandle handle, FArrayIntHandle other);
+bool FArrayInt_equal(FArrayIntHandle handle, FArrayIntHandle other);
 // @category:read
-bool FArrayInt_NotEqual(FArrayIntHandle handle, FArrayIntHandle other);
+bool FArrayInt_not_equal(FArrayIntHandle handle, FArrayIntHandle other);
 // @category:read
-bool FArrayInt_greaterthan(FArrayIntHandle handle,  int value);
+bool FArrayInt_greater_than(FArrayIntHandle handle,  int value);
 // @category:read
-bool FArrayInt_lessthan(FArrayIntHandle handle,  int value);
+bool FArrayInt_less_than(FArrayIntHandle handle,  int value);
 // @category:write
 void FArrayInt_remove_offset(FArrayIntHandle handle,  int offset);
 // @category:read

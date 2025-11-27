@@ -61,8 +61,8 @@ TEST_F(AdjacencyTest, ShapeReturnsExpected) {
 TEST_F(AdjacencyTest, EqualityAndInEqual) {
   AdjacencyHandle handle2 =
       Adjacency_create(matrix_data, matrix_shape, 2, indexes);
-  EXPECT_TRUE(Adjacency_Equal(handle, handle2));
-  EXPECT_FALSE(Adjacency_NotEqual(handle, handle2));
+  EXPECT_TRUE(Adjacency_equal(handle, handle2));
+  EXPECT_FALSE(Adjacency_not_equal(handle, handle2));
   Adjacency_destroy(handle2);
 }
 
@@ -85,7 +85,7 @@ TEST_F(AdjacencyTest, FlipReturnsExpected) {
 TEST_F(AdjacencyTest, SerializationRoundTrip) {
   StringHandle    json   = Adjacency_to_json_string(handle);
   AdjacencyHandle loaded = Adjacency_from_json_string(json);
-  EXPECT_TRUE(Adjacency_Equal(handle, loaded));
+  EXPECT_TRUE(Adjacency_equal(handle, loaded));
   Adjacency_destroy(loaded);
   String_destroy(json);
 }
@@ -187,7 +187,7 @@ TEST_F(AdjacencyTest, TimesFarrayThrowsOnNullOther) {
 
 TEST_F(AdjacencyTest, EqualityThrowsOnNullHandle) {
   set_last_error(0, nullptr);
-  Adjacency_Equal(nullptr, nullptr);
+  Adjacency_equal(nullptr, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -197,7 +197,7 @@ TEST_F(AdjacencyTest, EqualityThrowsOnNullOther) {
   ConnectionsHandle idx      = Connections_create_empty();
   AdjacencyHandle   h        = Adjacency_create(data, shape, 1, idx);
   set_last_error(0, nullptr);
-  Adjacency_Equal(h, nullptr);
+  Adjacency_equal(h, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   Adjacency_destroy(h);
   Connection_destroy(idx);
@@ -205,7 +205,7 @@ TEST_F(AdjacencyTest, EqualityThrowsOnNullOther) {
 
 TEST_F(AdjacencyTest, NotEqualThrowsOnNullHandle) {
   set_last_error(0, nullptr);
-  Adjacency_NotEqual(nullptr, nullptr);
+  Adjacency_not_equal(nullptr, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -215,7 +215,7 @@ TEST_F(AdjacencyTest, NotEqualThrowsOnNullOther) {
   ConnectionsHandle idx      = Connections_create_empty();
   AdjacencyHandle   h        = Adjacency_create(data, shape, 1, idx);
   set_last_error(0, nullptr);
-  Adjacency_NotEqual(h, nullptr);
+  Adjacency_not_equal(h, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   Adjacency_destroy(h);
   Connection_destroy(idx);

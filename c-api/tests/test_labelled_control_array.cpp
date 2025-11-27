@@ -305,30 +305,30 @@ TEST_F(LabelledControlArrayTest, NullArgumentsArithmeticOperators) {
 }
 
 TEST_F(LabelledControlArrayTest, EqualityOperators) {
-  EXPECT_TRUE(LabelledControlArray_Equal(lca, lca2));
-  EXPECT_FALSE(LabelledControlArray_NotEqual(lca, lca2));
+  EXPECT_TRUE(LabelledControlArray_equal(lca, lca2));
+  EXPECT_FALSE(LabelledControlArray_not_equal(lca, lca2));
   set_last_error(0, nullptr);
-  LabelledControlArray_Equal(nullptr, lca2);
+  LabelledControlArray_equal(nullptr, lca2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_Equal(lca, nullptr);
+  LabelledControlArray_equal(lca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_NotEqual(nullptr, lca2);
+  LabelledControlArray_not_equal(nullptr, lca2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_NotEqual(lca, nullptr);
+  LabelledControlArray_not_equal(lca, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledControlArrayTest, ComparisonOperators) {
-  EXPECT_TRUE(LabelledControlArray_greaterthan(lca, 0.5));
-  EXPECT_FALSE(LabelledControlArray_lessthan(lca, 0.5));
+  EXPECT_TRUE(LabelledControlArray_greater_than(lca, 0.5));
+  EXPECT_FALSE(LabelledControlArray_less_than(lca, 0.5));
   set_last_error(0, nullptr);
-  LabelledControlArray_greaterthan(nullptr, 0.5);
+  LabelledControlArray_greater_than(nullptr, 0.5);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledControlArray_lessthan(nullptr, 0.5);
+  LabelledControlArray_less_than(nullptr, 0.5);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -395,7 +395,7 @@ TEST_F(LabelledControlArrayTest, SumOfSquares) {
 TEST_F(LabelledControlArrayTest, ToJsonFromJson) {
   auto json = LabelledControlArray_to_json_string(lca);
   auto lca3 = LabelledControlArray_from_json_string(json);
-  EXPECT_TRUE(LabelledControlArray_Equal(lca, lca3));
+  EXPECT_TRUE(LabelledControlArray_equal(lca, lca3));
   LabelledControlArray_destroy(lca3);
   String_destroy(json);
   set_last_error(0, nullptr);

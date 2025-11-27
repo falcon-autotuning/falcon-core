@@ -483,10 +483,10 @@ throw std::invalid_argument("Null handle passed to FArrayInt_max_arraywise");
     FALCON_C_API_END(nullptr)
 }
 
-bool FArrayInt_Equal(FArrayIntHandle handle, FArrayIntHandle other) {
+bool FArrayInt_equal(FArrayIntHandle handle, FArrayIntHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to FArrayInt_Equal");
+throw std::invalid_argument("Null handle passed to FArrayInt_equal");
 }
     auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
@@ -494,10 +494,10 @@ throw std::invalid_argument("Null handle passed to FArrayInt_Equal");
     FALCON_C_API_END(false)
 }
 
-bool FArrayInt_NotEqual(FArrayIntHandle handle, FArrayIntHandle other) {
+bool FArrayInt_not_equal(FArrayIntHandle handle, FArrayIntHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to FArrayInt_NotEqual");
+throw std::invalid_argument("Null handle passed to FArrayInt_not_equal");
 }
     auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
     auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
@@ -505,20 +505,20 @@ throw std::invalid_argument("Null handle passed to FArrayInt_NotEqual");
     FALCON_C_API_END(false)
 }
 
-bool FArrayInt_greaterthan(FArrayIntHandle handle,  int value) {
+bool FArrayInt_greater_than(FArrayIntHandle handle,  int value) {
     FALCON_C_API_BEGIN
 if (!handle) {
-throw std::invalid_argument("Null handle passed to FArrayInt_greaterthan");
+throw std::invalid_argument("Null handle passed to FArrayInt_greater_than");
 }
     auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
     return *farray > value;
     FALCON_C_API_END(false)
 }
 
-bool FArrayInt_lessthan(FArrayIntHandle handle,  int value) {
+bool FArrayInt_less_than(FArrayIntHandle handle,  int value) {
     FALCON_C_API_BEGIN
 if (!handle) {
-throw std::invalid_argument("Null handle passed to FArrayInt_lessthan");
+throw std::invalid_argument("Null handle passed to FArrayInt_less_than");
 }
     auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
     return *farray < value;

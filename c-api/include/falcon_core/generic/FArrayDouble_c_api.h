@@ -96,13 +96,13 @@ double FArrayDouble_max(FArrayDoubleHandle handle);
 // @category:read
 FArrayDoubleHandle FArrayDouble_max_arraywise(FArrayDoubleHandle handle, FArrayDoubleHandle other);
 // @category:read
-bool FArrayDouble_Equal(FArrayDoubleHandle handle, FArrayDoubleHandle other);
+bool FArrayDouble_equal(FArrayDoubleHandle handle, FArrayDoubleHandle other);
 // @category:read
-bool FArrayDouble_NotEqual(FArrayDoubleHandle handle, FArrayDoubleHandle other);
+bool FArrayDouble_not_equal(FArrayDoubleHandle handle, FArrayDoubleHandle other);
 // @category:read
-bool FArrayDouble_greaterthan(FArrayDoubleHandle handle,  double value);
+bool FArrayDouble_greater_than(FArrayDoubleHandle handle,  double value);
 // @category:read
-bool FArrayDouble_lessthan(FArrayDoubleHandle handle,  double value);
+bool FArrayDouble_less_than(FArrayDoubleHandle handle,  double value);
 // @category:write
 void FArrayDouble_remove_offset(FArrayDoubleHandle handle,  double offset);
 // @category:read

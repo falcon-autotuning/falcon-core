@@ -354,30 +354,30 @@ TEST_F(LabelledMeasuredArrayTest, ArithmeticOperators) {
 }
 
 TEST_F(LabelledMeasuredArrayTest, EqualityOperators) {
-  EXPECT_TRUE(LabelledMeasuredArray_Equal(lma, lma2));
-  EXPECT_FALSE(LabelledMeasuredArray_NotEqual(lma, lma2));
+  EXPECT_TRUE(LabelledMeasuredArray_equal(lma, lma2));
+  EXPECT_FALSE(LabelledMeasuredArray_not_equal(lma, lma2));
   set_last_error(0, nullptr);
-  LabelledMeasuredArray_Equal(nullptr, lma2);
+  LabelledMeasuredArray_equal(nullptr, lma2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray_Equal(lma, nullptr);
+  LabelledMeasuredArray_equal(lma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray_NotEqual(nullptr, lma2);
+  LabelledMeasuredArray_not_equal(nullptr, lma2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray_NotEqual(lma, nullptr);
+  LabelledMeasuredArray_not_equal(lma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledMeasuredArrayTest, ComparisonOperators) {
-  EXPECT_TRUE(LabelledMeasuredArray_greaterthan(lma, 0.5));
-  EXPECT_FALSE(LabelledMeasuredArray_lessthan(lma, 0.5));
+  EXPECT_TRUE(LabelledMeasuredArray_greater_than(lma, 0.5));
+  EXPECT_FALSE(LabelledMeasuredArray_less_than(lma, 0.5));
   set_last_error(0, nullptr);
-  LabelledMeasuredArray_greaterthan(nullptr, 0.5);
+  LabelledMeasuredArray_greater_than(nullptr, 0.5);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledMeasuredArray_lessthan(nullptr, 0.5);
+  LabelledMeasuredArray_less_than(nullptr, 0.5);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -449,7 +449,7 @@ TEST_F(LabelledMeasuredArrayTest, SumOfSquares) {
 TEST_F(LabelledMeasuredArrayTest, ToJsonFromJson) {
   auto json = LabelledMeasuredArray_to_json_string(lma);
   auto lma3 = LabelledMeasuredArray_from_json_string(json);
-  EXPECT_TRUE(LabelledMeasuredArray_Equal(lma, lma3));
+  EXPECT_TRUE(LabelledMeasuredArray_equal(lma, lma3));
   LabelledMeasuredArray_destroy(lma3);
   String_destroy(json);
   set_last_error(0, nullptr);

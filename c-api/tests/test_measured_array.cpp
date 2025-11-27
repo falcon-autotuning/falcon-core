@@ -328,30 +328,30 @@ TEST_F(MeasuredArrayTest, ArithmeticOperatorsInvalidArgs) {
 }
 
 TEST_F(MeasuredArrayTest, EqualityOperators) {
-  EXPECT_TRUE(MeasuredArray_Equal(ma, ma2));
-  EXPECT_FALSE(MeasuredArray_NotEqual(ma, ma2));
+  EXPECT_TRUE(MeasuredArray_equal(ma, ma2));
+  EXPECT_FALSE(MeasuredArray_not_equal(ma, ma2));
   set_last_error(0, nullptr);
-  MeasuredArray_Equal(nullptr, ma2);
+  MeasuredArray_equal(nullptr, ma2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasuredArray_Equal(ma, nullptr);
+  MeasuredArray_equal(ma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasuredArray_NotEqual(nullptr, ma2);
+  MeasuredArray_not_equal(nullptr, ma2);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasuredArray_NotEqual(ma, nullptr);
+  MeasuredArray_not_equal(ma, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(MeasuredArrayTest, ComparisonOperators) {
-  EXPECT_TRUE(MeasuredArray_greaterthan(ma, 0.5));
-  EXPECT_FALSE(MeasuredArray_lessthan(ma, 0.5));
+  EXPECT_TRUE(MeasuredArray_greater_than(ma, 0.5));
+  EXPECT_FALSE(MeasuredArray_less_than(ma, 0.5));
   set_last_error(0, nullptr);
-  MeasuredArray_greaterthan(nullptr, 0.5);
+  MeasuredArray_greater_than(nullptr, 0.5);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MeasuredArray_lessthan(nullptr, 0.5);
+  MeasuredArray_less_than(nullptr, 0.5);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -424,7 +424,7 @@ TEST_F(MeasuredArrayTest, SumOfSquares) {
 TEST_F(MeasuredArrayTest, ToJsonFromJson) {
   auto json = MeasuredArray_to_json_string(ma);
   auto ma3  = MeasuredArray_from_json_string(json);
-  EXPECT_TRUE(MeasuredArray_Equal(ma, ma3));
+  EXPECT_TRUE(MeasuredArray_equal(ma, ma3));
   MeasuredArray_destroy(ma3);
   String_destroy(json);
   set_last_error(0, nullptr);

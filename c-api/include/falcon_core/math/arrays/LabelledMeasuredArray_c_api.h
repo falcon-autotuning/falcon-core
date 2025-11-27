@@ -159,16 +159,16 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_max_farray(
 LabelledMeasuredArrayHandle LabelledMeasuredArray_max_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
 // @category:read
-bool LabelledMeasuredArray_Equal(LabelledMeasuredArrayHandle handle,
+bool LabelledMeasuredArray_equal(LabelledMeasuredArrayHandle handle,
                                     LabelledMeasuredArrayHandle other);
 // @category:read
-bool LabelledMeasuredArray_NotEqual(LabelledMeasuredArrayHandle handle,
+bool LabelledMeasuredArray_not_equal(LabelledMeasuredArrayHandle handle,
                                        LabelledMeasuredArrayHandle other);
 // @category:read
-bool LabelledMeasuredArray_greaterthan(LabelledMeasuredArrayHandle handle,
+bool LabelledMeasuredArray_greater_than(LabelledMeasuredArrayHandle handle,
                                        double                      value);
 // @category:read
-bool LabelledMeasuredArray_lessthan(LabelledMeasuredArrayHandle handle,
+bool LabelledMeasuredArray_less_than(LabelledMeasuredArrayHandle handle,
                                     double                      value);
 // @category:write
 void LabelledMeasuredArray_remove_offset(LabelledMeasuredArrayHandle handle,

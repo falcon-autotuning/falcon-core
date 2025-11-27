@@ -632,12 +632,12 @@ ControlArray1DHandle ControlArray1D_max_control_array(
   FALCON_C_API_END(nullptr)
 }
 
-bool ControlArray1D_Equal(ControlArray1DHandle handle,
+bool ControlArray1D_equal(ControlArray1DHandle handle,
                              ControlArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_Equal");
+        "Null handle passed to ControlArray1D_equal");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   ControlArray1D* oarray        = static_cast<ControlArray1D*>(other);
@@ -645,12 +645,12 @@ bool ControlArray1D_Equal(ControlArray1DHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool ControlArray1D_NotEqual(ControlArray1DHandle handle,
+bool ControlArray1D_not_equal(ControlArray1DHandle handle,
                                 ControlArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_NotEqual");
+        "Null handle passed to ControlArray1D_not_equal");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   ControlArray1D* oarray        = static_cast<ControlArray1D*>(other);
@@ -658,23 +658,23 @@ bool ControlArray1D_NotEqual(ControlArray1DHandle handle,
   FALCON_C_API_END(false)
 }
 
-bool ControlArray1D_greaterthan(ControlArray1DHandle handle,
+bool ControlArray1D_greater_than(ControlArray1DHandle handle,
                                 const double         value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_greaterthan");
+        "Null handle passed to ControlArray1D_greater_than");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   return control_array->operator>(value);
   FALCON_C_API_END(false)
 }
 
-bool ControlArray1D_lessthan(ControlArray1DHandle handle, const double value) {
+bool ControlArray1D_less_than(ControlArray1DHandle handle, const double value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
-        "Null handle passed to ControlArray1D_lessthan");
+        "Null handle passed to ControlArray1D_less_than");
   }
   ControlArray1D* control_array = static_cast<ControlArray1D*>(handle);
   return control_array->operator<(value);
