@@ -1,0 +1,2236 @@
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/Vector_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/Vector.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/Vector_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/Vector_metadata.yml
+[meta] loaded 24 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/Vector_metadata.yml
+[meta] total units: 24
+[map] cpp exact name matched: falcon_core::math::Vector::end_quantities
+[capi] inserted doc above: Vector_end_quantities
+[map] cpp exact name matched: falcon_core::math::Vector::start_quantities
+[capi] inserted doc above: Vector_start_quantities
+[map] cpp exact name matched: falcon_core::math::Vector::end_map
+[capi] inserted doc above: Vector_end_map
+[map] cpp exact name matched: falcon_core::math::Vector::start_map
+[capi] inserted doc above: Vector_start_map
+[map] cpp exact name matched: falcon_core::math::Vector::connections
+[capi] inserted doc above: Vector_connections
+[map] cpp exact name matched: falcon_core::math::Vector::unit
+[capi] inserted doc above: Vector_unit
+[map] cpp exact name matched: falcon_core::math::Vector::principle_connection
+[capi] inserted doc above: Vector_principle_connection
+[map] cpp exact name matched: falcon_core::math::Vector::magnitude
+[capi] inserted doc above: Vector_magnitude
+[map] cpp exact name matched: falcon_core::math::Vector::update_start_from_states
+[capi] inserted doc above: Vector_update_start_from_states
+[map] cpp exact name matched: falcon_core::math::Vector::translate
+[capi] doc already present: Vector_translate
+[map] cpp exact name matched: falcon_core::math::Vector::translate
+[capi] doc already present: Vector_translate
+[map] cpp exact name matched: falcon_core::math::Vector::translate
+[capi] doc already present: Vector_translate
+[map] cpp exact name matched: falcon_core::math::Vector::translate_to_origin
+[capi] inserted doc above: Vector_translate_to_origin
+[map] cpp exact name matched: falcon_core::math::Vector::unit_vector
+[capi] inserted doc above: Vector_unit_vector
+[map] cpp exact name matched: falcon_core::math::Vector::normalize
+[capi] inserted doc above: Vector_normalize
+[map] cpp exact name matched: falcon_core::math::Vector::project
+[capi] inserted doc above: Vector_project
+[map] cpp exact name matched: falcon_core::math::Vector::update_unit
+[capi] inserted doc above: Vector_update_unit
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/Vector_c_api.h (inserted=14)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/Point_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/Point.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/Point_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/Point_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/Point_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::math::Point::insert_or_assign
+[capi] inserted doc above: Point_insert_or_assign
+[map] cpp exact name matched: falcon_core::math::Point::insert
+[capi] doc already present: Point_insert
+[map] cpp exact name matched: falcon_core::math::Point::unit
+[capi] inserted doc above: Point_unit
+[map] cpp exact name matched: falcon_core::math::Point::coordinates
+[capi] inserted doc above: Point_coordinates
+[map] cpp exact name matched: falcon_core::math::Point::connections
+[capi] inserted doc above: Point_connections
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/Point_c_api.h (inserted=4)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/AnalyticFunction_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/AnalyticFunction.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/AnalyticFunction_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/AnalyticFunction_metadata.yml
+[meta] loaded 8 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/AnalyticFunction_metadata.yml
+[meta] total units: 8
+[map] cpp exact name matched: falcon_core::math::AnalyticFunction::labels
+[capi] inserted doc above: AnalyticFunction_labels
+[map] cpp exact name matched: falcon_core::math::AnalyticFunction::evaluate
+[capi] inserted doc above: AnalyticFunction_evaluate
+[map] cpp exact name matched: falcon_core::math::AnalyticFunction::evaluate
+[capi] doc already present: AnalyticFunction_evaluate
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/AnalyticFunction_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/Quantity_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/Quantity.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/Quantity_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/Quantity_metadata.yml
+[meta] loaded 5 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/Quantity_metadata.yml
+[meta] total units: 5
+[map] cpp exact name matched: falcon_core::math::Quantity::value
+[capi] inserted doc above: Quantity_value
+[map] cpp exact name matched: falcon_core::math::Quantity::unit
+[capi] inserted doc above: Quantity_unit
+[map] cpp exact name matched: falcon_core::math::Quantity::convert_to
+[capi] inserted doc above: Quantity_convert_to
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/Quantity_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/UnitSpace_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/UnitSpace.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/UnitSpace_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/UnitSpace_metadata.yml
+[meta] loaded 14 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/UnitSpace_metadata.yml
+[meta] total units: 14
+[map] cpp exact name matched: falcon_core::math::UnitSpace::axes
+[capi] inserted doc above: UnitSpace_axes
+[map] cpp exact name matched: falcon_core::math::UnitSpace::domain
+[capi] inserted doc above: UnitSpace_domain
+[map] cpp exact name matched: falcon_core::math::UnitSpace::space
+[capi] inserted doc above: UnitSpace_space
+[map] cpp exact name matched: falcon_core::math::UnitSpace::shape
+[capi] inserted doc above: UnitSpace_shape
+[map] cpp exact name matched: falcon_core::math::UnitSpace::dimension
+[capi] inserted doc above: UnitSpace_dimension
+[map] cpp exact name matched: falcon_core::math::UnitSpace::compile
+[capi] inserted doc above: UnitSpace_compile
+[map] cpp exact name matched: falcon_core::math::UnitSpace::create_array
+[capi] inserted doc above: UnitSpace_create_array
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/UnitSpace_c_api.h (inserted=7)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/ControlArray_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/ControlArray.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/ControlArray_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/ControlArray_metadata.yml
+[meta] loaded 4 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/ControlArray_metadata.yml
+[meta] total units: 4
+[map] cpp exact name matched: falcon_core::math::arrays::ControlArray::flip
+[capi] inserted doc above: ControlArray_flip
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/ControlArray_c_api.h (inserted=1)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledControlArray1D_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/LabelledControlArray1D.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledControlArray1D_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledControlArray1D_metadata.yml
+[meta] loaded 8 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledControlArray1D_metadata.yml
+[meta] total units: 8
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledControlArray1D::reshape
+[capi] inserted doc above: LabelledControlArray1D_reshape
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledControlArray1D::flip
+[capi] inserted doc above: LabelledControlArray1D_flip
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledControlArray1D::gradient
+[capi] inserted doc above: LabelledControlArray1D_gradient
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledControlArray1D::gradient
+[capi] doc already present: LabelledControlArray1D_gradient
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledControlArray1D_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/LabelledArrays.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] loaded 8 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] total units: 8
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledArrays::arrays
+[capi] inserted doc above: LabelledArraysLabelledMeasuredArray1D_arrays
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledArrays::labels
+[capi] inserted doc above: LabelledArraysLabelledMeasuredArray1D_labels
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/MeasuredArray_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/MeasuredArray.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/MeasuredArray_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/MeasuredArray_metadata.yml
+[meta] loaded 5 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/MeasuredArray_metadata.yml
+[meta] total units: 5
+[map] cpp exact name matched: falcon_core::math::arrays::MeasuredArray::reshape
+[capi] inserted doc above: MeasuredArray_reshape
+[map] cpp exact name matched: falcon_core::math::arrays::MeasuredArray::flip
+[capi] inserted doc above: MeasuredArray_flip
+[map] cpp exact name matched: falcon_core::math::arrays::MeasuredArray::gradient
+[capi] inserted doc above: MeasuredArray_gradient
+[map] cpp exact name matched: falcon_core::math::arrays::MeasuredArray::gradient
+[capi] doc already present: MeasuredArray_gradient
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/MeasuredArray_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/LabelledMeasuredArray1D.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledMeasuredArray1D_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledMeasuredArray1D_metadata.yml
+[meta] loaded 8 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledMeasuredArray1D_metadata.yml
+[meta] total units: 8
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledMeasuredArray1D::reshape
+[capi] inserted doc above: LabelledMeasuredArray1D_reshape
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledMeasuredArray1D::flip
+[capi] inserted doc above: LabelledMeasuredArray1D_flip
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledMeasuredArray1D::gradient
+[capi] inserted doc above: LabelledMeasuredArray1D_gradient
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledMeasuredArray1D::gradient
+[capi] doc already present: LabelledMeasuredArray1D_gradient
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledControlArray_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/LabelledControlArray.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledControlArray_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledControlArray_metadata.yml
+[meta] loaded 8 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledControlArray_metadata.yml
+[meta] total units: 8
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledControlArray::reshape
+[capi] inserted doc above: LabelledControlArray_reshape
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledControlArray::flip
+[capi] inserted doc above: LabelledControlArray_flip
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledControlArray::gradient
+[capi] inserted doc above: LabelledControlArray_gradient
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledControlArray::gradient
+[capi] doc already present: LabelledControlArray_gradient
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledControlArray_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/LabelledArrays.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] loaded 8 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] total units: 8
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledArrays::arrays
+[capi] inserted doc above: LabelledArraysLabelledMeasuredArray_arrays
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledArrays::labels
+[capi] inserted doc above: LabelledArraysLabelledMeasuredArray_labels
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/LabelledArrays.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] loaded 8 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] total units: 8
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledArrays::arrays
+[capi] inserted doc above: LabelledArraysLabelledControlArray_arrays
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledArrays::labels
+[capi] inserted doc above: LabelledArraysLabelledControlArray_labels
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/LabelledArrays.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] loaded 8 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] total units: 8
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledArrays::arrays
+[capi] inserted doc above: LabelledArraysLabelledControlArray1D_arrays
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledArrays::labels
+[capi] inserted doc above: LabelledArraysLabelledControlArray1D_labels
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledMeasuredArray_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/LabelledMeasuredArray.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledMeasuredArray_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledMeasuredArray_metadata.yml
+[meta] loaded 8 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/LabelledMeasuredArray_metadata.yml
+[meta] total units: 8
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledMeasuredArray::reshape
+[capi] inserted doc above: LabelledMeasuredArray_reshape
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledMeasuredArray::flip
+[capi] inserted doc above: LabelledMeasuredArray_flip
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledMeasuredArray::gradient
+[capi] inserted doc above: LabelledMeasuredArray_gradient
+[map] cpp exact name matched: falcon_core::math::arrays::LabelledMeasuredArray::gradient
+[capi] doc already present: LabelledMeasuredArray_gradient
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/LabelledMeasuredArray_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/ControlArray1D_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/ControlArray1D.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/ControlArray1D_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/ControlArray1D_metadata.yml
+[meta] loaded 5 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/ControlArray1D_metadata.yml
+[meta] total units: 5
+[map] cpp exact name matched: falcon_core::math::arrays::ControlArray1D::flip
+[capi] inserted doc above: ControlArray1D_flip
+[map] cpp exact name matched: falcon_core::math::arrays::ControlArray1D::gradient
+[capi] inserted doc above: ControlArray1D_gradient
+[map] cpp exact name matched: falcon_core::math::arrays::ControlArray1D::gradient
+[capi] doc already present: ControlArray1D_gradient
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/ControlArray1D_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/MeasuredArray1D_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/MeasuredArray1D.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/MeasuredArray1D_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/MeasuredArray1D_metadata.yml
+[meta] loaded 5 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/MeasuredArray1D_metadata.yml
+[meta] total units: 5
+[map] cpp exact name matched: falcon_core::math::arrays::MeasuredArray1D::reshape
+[capi] inserted doc above: MeasuredArray1D_reshape
+[map] cpp exact name matched: falcon_core::math::arrays::MeasuredArray1D::flip
+[capi] inserted doc above: MeasuredArray1D_flip
+[map] cpp exact name matched: falcon_core::math::arrays::MeasuredArray1D::gradient
+[capi] inserted doc above: MeasuredArray1D_gradient
+[map] cpp exact name matched: falcon_core::math::arrays::MeasuredArray1D::gradient
+[capi] doc already present: MeasuredArray1D_gradient
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/MeasuredArray1D_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/IncreasingAlignment_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/IncreasingAlignment_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/IncreasingAlignment_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/arrays/IncreasingAlignment_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::math::arrays::IncreasingAlignment::alignment
+[capi] inserted doc above: IncreasingAlignment_alignment
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/arrays/IncreasingAlignment_c_api.h (inserted=1)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/discrete_spaces/DiscreteSpace.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/discrete_spaces/DiscreteSpace_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/discrete_spaces/DiscreteSpace_metadata.yml
+[meta] loaded 12 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/discrete_spaces/DiscreteSpace_metadata.yml
+[meta] total units: 12
+[map] cpp exact name matched: falcon_core::math::discrete_spaces::DiscreteSpace::space
+[capi] inserted doc above: DiscreteSpace_space
+[map] cpp exact name matched: falcon_core::math::discrete_spaces::DiscreteSpace::axes
+[capi] inserted doc above: DiscreteSpace_axes
+[map] cpp exact name matched: falcon_core::math::discrete_spaces::DiscreteSpace::increasing
+[capi] inserted doc above: DiscreteSpace_increasing
+[map] cpp exact name matched: falcon_core::math::discrete_spaces::DiscreteSpace::knobs
+[capi] inserted doc above: DiscreteSpace_knobs
+[map] cpp exact name matched: falcon_core::math::discrete_spaces::DiscreteSpace::validate_unit_space_dimensionality_matches_knobs
+[capi] inserted doc above: DiscreteSpace_validate_unit_space_dimensionality_matches_knobs
+[map] cpp exact name matched: falcon_core::math::discrete_spaces::DiscreteSpace::validate_knob_uniqueness
+[capi] inserted doc above: DiscreteSpace_validate_knob_uniqueness
+[map] cpp exact name matched: falcon_core::math::discrete_spaces::DiscreteSpace::get_axis
+[capi] inserted doc above: DiscreteSpace_get_axis
+[map] cpp exact name matched: falcon_core::math::discrete_spaces::DiscreteSpace::get_domain
+[capi] inserted doc above: DiscreteSpace_get_domain
+[map] cpp exact name matched: falcon_core::math::discrete_spaces::DiscreteSpace::get_projection
+[capi] inserted doc above: DiscreteSpace_get_projection
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h (inserted=9)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/discrete_spaces/Discretizer.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/discrete_spaces/Discretizer_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/discrete_spaces/Discretizer_metadata.yml
+[meta] loaded 7 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/discrete_spaces/Discretizer_metadata.yml
+[meta] total units: 7
+[map] cpp exact name matched: falcon_core::math::discrete_spaces::Discretizer::is_cartesian
+[capi] inserted doc above: Discretizer_is_cartesian
+[map] cpp exact name matched: falcon_core::math::discrete_spaces::Discretizer::is_polar
+[capi] inserted doc above: Discretizer_is_polar
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/domains/CoupledLabelledDomain_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/domains/CoupledLabelledDomain.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/domains/CoupledLabelledDomain_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/domains/CoupledLabelledDomain_metadata.yml
+[meta] loaded 5 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/domains/CoupledLabelledDomain_metadata.yml
+[meta] total units: 5
+[map] cpp exact name matched: falcon_core::math::domains::CoupledLabelledDomain::domains
+[capi] inserted doc above: CoupledLabelledDomain_domains
+[map] cpp exact name matched: falcon_core::math::domains::CoupledLabelledDomain::labels
+[capi] inserted doc above: CoupledLabelledDomain_labels
+[map] cpp exact name matched: falcon_core::math::domains::CoupledLabelledDomain::get_domain
+[capi] inserted doc above: CoupledLabelledDomain_get_domain
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/domains/CoupledLabelledDomain_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/domains/LabelledDomain_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/domains/LabelledDomain.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/domains/LabelledDomain_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/domains/LabelledDomain_metadata.yml
+[meta] loaded 8 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/domains/LabelledDomain_metadata.yml
+[meta] total units: 8
+[map] cpp exact name matched: falcon_core::math::domains::LabelledDomain::port
+[capi] inserted doc above: LabelledDomain_port
+[map] cpp exact name matched: falcon_core::math::domains::LabelledDomain::domain
+[capi] inserted doc above: LabelledDomain_domain
+[map] cpp exact name matched: falcon_core::math::domains::LabelledDomain::matching_port
+[capi] inserted doc above: LabelledDomain_matching_port
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/domains/LabelledDomain_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/domains/Domain_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/math/domains/Domain.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/domains/Domain_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/domains/Domain_metadata.yml
+[meta] loaded 17 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/math/domains/Domain_metadata.yml
+[meta] total units: 17
+[map] cpp exact name matched: falcon_core::math::domains::Domain::lesser_bound
+[capi] inserted doc above: Domain_lesser_bound
+[map] cpp exact name matched: falcon_core::math::domains::Domain::greater_bound
+[capi] inserted doc above: Domain_greater_bound
+[map] cpp exact name matched: falcon_core::math::domains::Domain::lesser_bound_contained
+[capi] inserted doc above: Domain_lesser_bound_contained
+[map] cpp exact name matched: falcon_core::math::domains::Domain::greater_bound_contained
+[capi] inserted doc above: Domain_greater_bound_contained
+[map] cpp exact name matched: falcon_core::math::domains::Domain::in
+[capi] inserted doc above: Domain_in
+[map] cpp exact name matched: falcon_core::math::domains::Domain::range
+[capi] inserted doc above: Domain_range
+[map] cpp exact name matched: falcon_core::math::domains::Domain::is_empty
+[capi] inserted doc above: Domain_is_empty
+[map] cpp exact name matched: falcon_core::math::domains::Domain::contains_domain
+[capi] inserted doc above: Domain_contains_domain
+[map] cpp exact name matched: falcon_core::math::domains::Domain::shift
+[capi] inserted doc above: Domain_shift
+[map] cpp exact name matched: falcon_core::math::domains::Domain::scale
+[capi] inserted doc above: Domain_scale
+[map] cpp exact name matched: falcon_core::math::domains::Domain::transform
+[capi] inserted doc above: Domain_transform
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/math/domains/Domain_c_api.h (inserted=11)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/units/SymbolUnit_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/units/SymbolUnit.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/units/SymbolUnit_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/units/SymbolUnit_metadata.yml
+[meta] loaded 66 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/units/SymbolUnit_metadata.yml
+[meta] total units: 66
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Meter
+[capi] inserted doc above: SymbolUnit_create_meter
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Kilogram
+[capi] inserted doc above: SymbolUnit_create_kilogram
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Second
+[capi] inserted doc above: SymbolUnit_create_second
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Ampere
+[capi] inserted doc above: SymbolUnit_create_ampere
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Kelvin
+[capi] inserted doc above: SymbolUnit_create_kelvin
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Mole
+[capi] inserted doc above: SymbolUnit_create_mole
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Candela
+[capi] inserted doc above: SymbolUnit_create_candela
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Hertz
+[capi] inserted doc above: SymbolUnit_create_hertz
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Newton
+[capi] inserted doc above: SymbolUnit_create_newton
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Pascal
+[capi] inserted doc above: SymbolUnit_create_pascal
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Joule
+[capi] inserted doc above: SymbolUnit_create_joule
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Watt
+[capi] inserted doc above: SymbolUnit_create_watt
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Coulomb
+[capi] inserted doc above: SymbolUnit_create_coulomb
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Volt
+[capi] inserted doc above: SymbolUnit_create_volt
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Farad
+[capi] inserted doc above: SymbolUnit_create_farad
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Ohm
+[capi] inserted doc above: SymbolUnit_create_ohm
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Siemens
+[capi] inserted doc above: SymbolUnit_create_siemens
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Weber
+[capi] inserted doc above: SymbolUnit_create_weber
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Tesla
+[capi] inserted doc above: SymbolUnit_create_tesla
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Henry
+[capi] inserted doc above: SymbolUnit_create_henry
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Minute
+[capi] inserted doc above: SymbolUnit_create_minute
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Hour
+[capi] inserted doc above: SymbolUnit_create_hour
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::ElectronVolt
+[capi] inserted doc above: SymbolUnit_create_electronvolt
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Celsius
+[capi] inserted doc above: SymbolUnit_create_celsius
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Fahrenheit
+[capi] inserted doc above: SymbolUnit_create_fahrenheit
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Dimensionless
+[capi] inserted doc above: SymbolUnit_create_dimensionless
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Percent
+[capi] inserted doc above: SymbolUnit_create_percent
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::Radian
+[capi] inserted doc above: SymbolUnit_create_radian
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::KiloMeter
+[capi] inserted doc above: SymbolUnit_create_kilometer
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::MilliMeter
+[capi] inserted doc above: SymbolUnit_create_millimeter
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::MilliVolt
+[capi] inserted doc above: SymbolUnit_create_millivolt
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::KiloVolt
+[capi] inserted doc above: SymbolUnit_create_kilovolt
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::MilliAmpere
+[capi] inserted doc above: SymbolUnit_create_milliampere
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::MicroAmpere
+[capi] inserted doc above: SymbolUnit_create_microampere
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::NanoAmpere
+[capi] inserted doc above: SymbolUnit_create_nanoampere
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::PicoAmpere
+[capi] inserted doc above: SymbolUnit_create_picoampere
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::MilliSecond
+[capi] inserted doc above: SymbolUnit_create_millisecond
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::MicroSecond
+[capi] inserted doc above: SymbolUnit_create_microsecond
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::NanoSecond
+[capi] inserted doc above: SymbolUnit_create_nanosecond
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::PicoSecond
+[capi] inserted doc above: SymbolUnit_create_picosecond
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::MilliOhm
+[capi] inserted doc above: SymbolUnit_create_milliohm
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::KiloOhm
+[capi] inserted doc above: SymbolUnit_create_kiloohm
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::MegaOhm
+[capi] inserted doc above: SymbolUnit_create_megaohm
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::MilliHertz
+[capi] inserted doc above: SymbolUnit_create_millihertz
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::KiloHertz
+[capi] inserted doc above: SymbolUnit_create_kilohertz
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::MegaHertz
+[capi] inserted doc above: SymbolUnit_create_megahertz
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::GigaHertz
+[capi] inserted doc above: SymbolUnit_create_gigahertz
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::MetersPerSecond
+[capi] inserted doc above: SymbolUnit_create_meters_per_second
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::MetersPerSecondSquared
+[capi] inserted doc above: SymbolUnit_create_meters_per_second_squared
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::NewtonMeter
+[capi] inserted doc above: SymbolUnit_create_newton_meter
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::NewtonPerMeter
+[capi] inserted doc above: SymbolUnit_create_newtons_per_meter
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::VoltsPerMeter
+[capi] inserted doc above: SymbolUnit_create_volts_per_meter
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::VoltsPerSecond
+[capi] inserted doc above: SymbolUnit_create_volts_per_second
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::AmperesPerMeter
+[capi] inserted doc above: SymbolUnit_create_amperes_per_meter
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::VoltsPerAmpere
+[capi] inserted doc above: SymbolUnit_create_volts_per_ampere
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::WattsPerMeterKelvin
+[capi] inserted doc above: SymbolUnit_create_watts_per_meter_kelvin
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::symbol
+[capi] inserted doc above: SymbolUnit_symbol
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::name
+[capi] inserted doc above: SymbolUnit_name
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::convert_value_to
+[capi] inserted doc above: SymbolUnit_convert_value_to
+[map] cpp exact name matched: falcon_core::physics::units::SymbolUnit::is_compatible_with
+[capi] inserted doc above: SymbolUnit_is_compatible_with
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/units/SymbolUnit_c_api.h (inserted=60)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/device_structures/Impedance_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/device_structures/Impedance.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/device_structures/Impedance_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/device_structures/Impedance_metadata.yml
+[meta] loaded 3 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/device_structures/Impedance_metadata.yml
+[meta] total units: 3
+[map] cpp exact name matched: falcon_core::physics::device_structures::Impedance::connection
+[capi] inserted doc above: Impedance_connection
+[map] cpp exact name matched: falcon_core::physics::device_structures::Impedance::resistance
+[capi] inserted doc above: Impedance_resistance
+[map] cpp exact name matched: falcon_core::physics::device_structures::Impedance::capacitance
+[capi] inserted doc above: Impedance_capacitance
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/device_structures/Impedance_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/device_structures/Connection_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/device_structures/Connection.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/device_structures/Connection_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/device_structures/Connection_metadata.yml
+[meta] loaded 15 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/device_structures/Connection_metadata.yml
+[meta] total units: 15
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connection::name
+[capi] inserted doc above: Connection_name
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connection::type
+[capi] inserted doc above: Connection_type
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connection::is_dot_gate
+[capi] inserted doc above: Connection_is_dot_gate
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connection::is_barrier_gate
+[capi] inserted doc above: Connection_is_barrier_gate
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connection::is_plunger_gate
+[capi] inserted doc above: Connection_is_plunger_gate
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connection::is_reservoir_gate
+[capi] inserted doc above: Connection_is_reservoir_gate
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connection::is_screening_gate
+[capi] inserted doc above: Connection_is_screening_gate
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connection::is_ohmic
+[capi] inserted doc above: Connection_is_ohmic
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connection::is_gate
+[capi] inserted doc above: Connection_is_gate
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/device_structures/Connection_c_api.h (inserted=9)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/device_structures/Connections_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/device_structures/Connections.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/device_structures/Connections_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/device_structures/Connections_metadata.yml
+[meta] loaded 13 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/device_structures/Connections_metadata.yml
+[meta] total units: 13
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connections::is_gates
+[capi] inserted doc above: Connections_is_gates
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connections::is_ohmics
+[capi] inserted doc above: Connections_is_ohmics
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connections::is_dot_gates
+[capi] inserted doc above: Connections_is_dot_gates
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connections::is_plunger_gates
+[capi] inserted doc above: Connections_is_plunger_gates
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connections::is_barrier_gates
+[capi] inserted doc above: Connections_is_barrier_gates
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connections::is_reservoir_gates
+[capi] inserted doc above: Connections_is_reservoir_gates
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connections::is_screening_gates
+[capi] inserted doc above: Connections_is_screening_gates
+[map] cpp exact name matched: falcon_core::physics::device_structures::Connections::intersection
+[capi] inserted doc above: Connections_intersection
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/device_structures/Connections_c_api.h (inserted=8)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/device_structures/GateRelations_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/device_structures/GateRelations.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/device_structures/GateRelations_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/device_structures/GateRelations_metadata.yml
+[meta] loaded 3 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/device_structures/GateRelations_metadata.yml
+[meta] total units: 3
+[map] cpp exact name matched: falcon_core::physics::device_structures::GateRelations::insert_or_assign
+[capi] inserted doc above: GateRelations_insert_or_assign
+[map] cpp exact name matched: falcon_core::physics::device_structures::GateRelations::insert
+[capi] doc already present: GateRelations_insert
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/device_structures/GateRelations_c_api.h (inserted=1)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/config/Loader_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/Loader.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/Loader_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/Loader_metadata.yml
+[meta] loaded 4 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/Loader_metadata.yml
+[meta] total units: 4
+[map] cpp exact name matched: falcon_core::physics::config::Loader::config
+[capi] inserted doc above: Loader_config
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/config/Loader_c_api.h (inserted=1)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/config/core/Group_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/core/Group.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/core/Group_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/core/Group_metadata.yml
+[meta] loaded 9 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/core/Group_metadata.yml
+[meta] total units: 9
+[map] cpp exact name matched: falcon_core::physics::config::core::Group::ohmics
+[capi] inserted doc above: Group_ohmics
+[map] cpp exact name matched: falcon_core::physics::config::core::Group::name
+[capi] inserted doc above: Group_name
+[map] cpp exact name matched: falcon_core::physics::config::core::Group::num_dots
+[capi] inserted doc above: Group_num_dots
+[map] cpp exact name matched: falcon_core::physics::config::core::Group::order
+[capi] inserted doc above: Group_order
+[map] cpp exact name matched: falcon_core::physics::config::core::Group::has_channel
+[capi] inserted doc above: Group_has_channel
+[map] cpp exact name matched: falcon_core::physics::config::core::Group::is_charge_sensor
+[capi] inserted doc above: Group_is_charge_sensor
+[map] cpp exact name matched: falcon_core::physics::config::core::Group::get_all_channel_gates
+[capi] inserted doc above: Group_get_all_channel_gates
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/config/core/Group_c_api.h (inserted=7)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/core/VoltageConstraints_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/core/VoltageConstraints_metadata.yml
+[meta] loaded 5 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/core/VoltageConstraints_metadata.yml
+[meta] total units: 5
+[map] cpp exact name matched: falcon_core::physics::config::core::VoltageConstraints::matrix
+[capi] inserted doc above: VoltageConstraints_matrix
+[map] cpp exact name matched: falcon_core::physics::config::core::VoltageConstraints::matrix
+[capi] doc already present: VoltageConstraints_matrix
+[map] cpp exact name matched: falcon_core::physics::config::core::VoltageConstraints::adjacency
+[capi] inserted doc above: VoltageConstraints_adjacency
+[map] cpp exact name matched: falcon_core::physics::config::core::VoltageConstraints::limits
+[capi] inserted doc above: VoltageConstraints_limits
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/core/Adjacency.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/core/Adjacency_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/core/Adjacency_metadata.yml
+[meta] loaded 3 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/core/Adjacency_metadata.yml
+[meta] total units: 3
+[map] cpp exact name matched: falcon_core::physics::config::core::Adjacency::indexes
+[capi] inserted doc above: Adjacency_indexes
+[map] cpp exact name matched: falcon_core::physics::config::core::Adjacency::get_true_pairs
+[capi] inserted doc above: Adjacency_get_true_pairs
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/config/core/Config_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/core/Config.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/core/Config_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/core/Config_metadata.yml
+[meta] loaded 78 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/core/Config_metadata.yml
+[meta] total units: 78
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::num_unique_channels
+[capi] inserted doc above: Config_num_unique_channels
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::voltage_constraints
+[capi] inserted doc above: Config_voltage_constraints
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::groups
+[capi] inserted doc above: Config_groups
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::channels
+[capi] inserted doc above: Config_channels
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_impedance
+[capi] inserted doc above: Config_get_impedance
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_all_gnames
+[capi] inserted doc above: Config_get_all_gnames
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_all_groups
+[capi] inserted doc above: Config_get_all_groups
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::has_channel
+[capi] inserted doc above: Config_has_channel
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::has_gname
+[capi] inserted doc above: Config_has_gname
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::select_group
+[capi] inserted doc above: Config_select_group
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_dot_number
+[capi] inserted doc above: Config_get_dot_number
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_charge_sense_groups
+[capi] inserted doc above: Config_get_charge_sense_groups
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::ohmic_in_charge_sensor
+[capi] inserted doc above: Config_ohmic_in_charge_sensor
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_associated_ohmic
+[capi] inserted doc above: Config_get_associated_ohmic
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_current_channels
+[capi] inserted doc above: Config_get_current_channels
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_gname
+[capi] inserted doc above: Config_get_gname
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_group_barrier_gates
+[capi] inserted doc above: Config_get_group_barrier_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_group_plunger_gates
+[capi] inserted doc above: Config_get_group_plunger_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_group_reservoir_gates
+[capi] inserted doc above: Config_get_group_reservoir_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_group_screening_gates
+[capi] inserted doc above: Config_get_group_screening_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_group_dot_gates
+[capi] inserted doc above: Config_get_group_dot_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_group_gates
+[capi] inserted doc above: Config_get_group_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_channel_barrier_gates
+[capi] inserted doc above: Config_get_channel_barrier_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_channel_plunger_gates
+[capi] inserted doc above: Config_get_channel_plunger_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_channel_reservoir_gates
+[capi] inserted doc above: Config_get_channel_reservoir_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_channel_screening_gates
+[capi] inserted doc above: Config_get_channel_screening_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_channel_dot_gates
+[capi] inserted doc above: Config_get_channel_dot_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_channel_gates
+[capi] inserted doc above: Config_get_channel_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_channel_ohmics
+[capi] inserted doc above: Config_get_channel_ohmics
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_channel_order_no_ohmics
+[capi] inserted doc above: Config_get_channel_order_no_ohmics
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_num_unique_channels
+[capi] inserted doc above: Config_get_num_unique_channels
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::return_channels_from_gate
+[capi] inserted doc above: Config_return_channels_from_gate
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::return_channel_from_gate
+[capi] inserted doc above: Config_return_channel_from_gate
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::ohmic_in_channel
+[capi] inserted doc above: Config_ohmic_in_channel
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_dot_channel_neighbors
+[capi] inserted doc above: Config_get_dot_channel_neighbors
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_barrier_gate_dict
+[capi] inserted doc above: Config_get_barrier_gate_dict
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_plunger_gate_dict
+[capi] inserted doc above: Config_get_plunger_gate_dict
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_reservoir_gate_dict
+[capi] inserted doc above: Config_get_reservoir_gate_dict
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_screening_gate_dict
+[capi] inserted doc above: Config_get_screening_gate_dict
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_dot_gate_dict
+[capi] inserted doc above: Config_get_dot_gate_dict
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_gate_dict
+[capi] inserted doc above: Config_get_gate_dict
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_barrier_gates
+[capi] inserted doc above: Config_get_isolated_barrier_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_plunger_gates
+[capi] inserted doc above: Config_get_isolated_plunger_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_reservoir_gates
+[capi] inserted doc above: Config_get_isolated_reservoir_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_screening_gates
+[capi] inserted doc above: Config_get_isolated_screening_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_dot_gates
+[capi] inserted doc above: Config_get_isolated_dot_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_gates
+[capi] inserted doc above: Config_get_isolated_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_shared_barrier_gates
+[capi] inserted doc above: Config_get_shared_barrier_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_shared_plunger_gates
+[capi] inserted doc above: Config_get_shared_plunger_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_shared_reservoir_gates
+[capi] inserted doc above: Config_get_shared_reservoir_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_shared_screening_gates
+[capi] inserted doc above: Config_get_shared_screening_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_shared_dot_gates
+[capi] inserted doc above: Config_get_shared_dot_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_shared_gates
+[capi] inserted doc above: Config_get_shared_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_shared_channel_barrier_gates
+[capi] inserted doc above: Config_get_shared_channel_barrier_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_shared_channel_plunger_gates
+[capi] inserted doc above: Config_get_shared_channel_plunger_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_shared_channel_reservoir_gates
+[capi] inserted doc above: Config_get_shared_channel_reservoir_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_shared_channel_screening_gates
+[capi] inserted doc above: Config_get_shared_channel_screening_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_shared_channel_dot_gates
+[capi] inserted doc above: Config_get_shared_channel_dot_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_shared_channel_gates
+[capi] inserted doc above: Config_get_shared_channel_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_channel_barrier_gates
+[capi] inserted doc above: Config_get_isolated_channel_barrier_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_channel_plunger_gates
+[capi] inserted doc above: Config_get_isolated_channel_plunger_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_channel_reservoir_gates
+[capi] inserted doc above: Config_get_isolated_channel_reservoir_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_channel_screening_gates
+[capi] inserted doc above: Config_get_isolated_channel_screening_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_channel_dot_gates
+[capi] inserted doc above: Config_get_isolated_channel_dot_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_channel_gates
+[capi] inserted doc above: Config_get_isolated_channel_gates
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_barrier_gates_by_channel
+[capi] inserted doc above: Config_get_isolated_barrier_gates_by_channel
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_plunger_gates_by_channel
+[capi] inserted doc above: Config_get_isolated_plunger_gates_by_channel
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_reservoir_gates_by_channel
+[capi] inserted doc above: Config_get_isolated_reservoir_gates_by_channel
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_screening_gates_by_channel
+[capi] inserted doc above: Config_get_isolated_screening_gates_by_channel
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_dot_gates_by_channel
+[capi] inserted doc above: Config_get_isolated_dot_gates_by_channel
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::get_isolated_gates_by_channel
+[capi] inserted doc above: Config_get_isolated_gates_by_channel
+[map] cpp exact name matched: falcon_core::physics::config::core::Config::generate_gate_relations
+[capi] inserted doc above: Config_generate_gate_relations
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/config/core/Config_c_api.h (inserted=72)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors_metadata.yml
+[meta] loaded 4 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors_metadata.yml
+[meta] total units: 4
+[map] cpp exact name matched: falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_plunger_gates
+[capi] inserted doc above: DotGatesWithNeighbors_is_plunger_gates
+[map] cpp exact name matched: falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_barrier_gates
+[capi] inserted doc above: DotGatesWithNeighbors_is_barrier_gates
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/geometries/GateGeometryArray1D_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/geometries/GateGeometryArray1D_metadata.yml
+[meta] loaded 14 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/physics/config/geometries/GateGeometryArray1D_metadata.yml
+[meta] total units: 14
+[map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::append_central_gate
+[capi] inserted doc above: GateGeometryArray1D_append_central_gate
+[map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::all_dot_gates
+[capi] inserted doc above: GateGeometryArray1D_all_dot_gates
+[map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::query_neighbors
+[capi] inserted doc above: GateGeometryArray1D_query_neighbors
+[map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::left_reservoir
+[capi] inserted doc above: GateGeometryArray1D_left_reservoir
+[map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::right_reservoir
+[capi] inserted doc above: GateGeometryArray1D_right_reservoir
+[map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::left_barrier
+[capi] inserted doc above: GateGeometryArray1D_left_barrier
+[map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
+[capi] inserted doc above: GateGeometryArray1D_right_barrier
+[map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
+[capi] inserted doc above: GateGeometryArray1D_lineararray
+[map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
+[capi] inserted doc above: GateGeometryArray1D_screening_gates
+[map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
+[capi] inserted doc above: GateGeometryArray1D_raw_central_gates
+[map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::central_dot_gates
+[capi] inserted doc above: GateGeometryArray1D_central_dot_gates
+[map] cpp exact name matched: falcon_core::physics::config::geometries::GateGeometryArray1D::ohmics
+[capi] inserted doc above: GateGeometryArray1D_ohmics
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h (inserted=12)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/communications/HDF5Data_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/communications/HDF5Data.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/communications/HDF5Data_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/communications/HDF5Data_metadata.yml
+[meta] loaded 5 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/communications/HDF5Data_metadata.yml
+[meta] total units: 5
+[map] cpp exact name matched: falcon_core::communications::HDF5Data::to_file
+[capi] inserted doc above: HDF5Data_to_file
+[map] cpp exact name matched: falcon_core::communications::HDF5Data::to_communications
+[capi] inserted doc above: HDF5Data_to_communications
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/communications/HDF5Data_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/communications/Time_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/communications/Time.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/communications/Time_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/communications/Time_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/communications/Time_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::communications::Time::micro_seconds_since_epoch
+[capi] inserted doc above: Time_micro_seconds_since_epoch
+[map] cpp exact name matched: falcon_core::communications::Time::time
+[capi] inserted doc above: Time_time
+[map] cpp exact name matched: falcon_core::communications::Time::to_string
+[capi] inserted doc above: Time_to_string
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/communications/Time_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/communications/voltage_states/DeviceVoltageStates.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/communications/voltage_states/DeviceVoltageStates_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/communications/voltage_states/DeviceVoltageStates_metadata.yml
+[meta] loaded 5 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/communications/voltage_states/DeviceVoltageStates_metadata.yml
+[meta] total units: 5
+[map] cpp exact name matched: falcon_core::communications::voltage_states::DeviceVoltageStates::states
+[capi] inserted doc above: DeviceVoltageStates_states
+[map] cpp exact name matched: falcon_core::communications::voltage_states::DeviceVoltageStates::add_state
+[capi] inserted doc above: DeviceVoltageStates_add_state
+[map] cpp exact name matched: falcon_core::communications::voltage_states::DeviceVoltageStates::find_state
+[capi] inserted doc above: DeviceVoltageStates_find_state
+[map] cpp exact name matched: falcon_core::communications::voltage_states::DeviceVoltageStates::to_point
+[capi] inserted doc above: DeviceVoltageStates_to_point
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h (inserted=4)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/instrument_interfaces/Waveform.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/instrument_interfaces/Waveform_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/instrument_interfaces/Waveform_metadata.yml
+[meta] loaded 10 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/instrument_interfaces/Waveform_metadata.yml
+[meta] total units: 10
+[map] cpp exact name matched: falcon_core::instrument_interfaces::Waveform::CartesianWaveform
+[capi] inserted doc above: Waveform_create_cartesianwaveform
+[map] cpp exact name matched: falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform
+[capi] inserted doc above: Waveform_create_cartesianidentitywaveform
+[map] cpp exact name matched: falcon_core::instrument_interfaces::Waveform::CartesianWaveform2D
+[capi] inserted doc above: Waveform_create_cartesianwaveform2D
+[map] cpp exact name matched: falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform2D
+[capi] inserted doc above: Waveform_create_cartesianidentitywaveform2D
+[map] cpp exact name matched: falcon_core::instrument_interfaces::Waveform::CartesianWaveform1D
+[capi] inserted doc above: Waveform_create_cartesianwaveform1D
+[map] cpp exact name matched: falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform1D
+[capi] inserted doc above: Waveform_create_cartesianidentitywaveform1D
+[map] cpp exact name matched: falcon_core::instrument_interfaces::Waveform::space
+[capi] inserted doc above: Waveform_space
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h (inserted=7)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_metadata.yml
+[meta] loaded 5 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_metadata.yml
+[meta] total units: 5
+[map] cpp exact name matched: falcon_core::instrument_interfaces::port_transforms::PortTransform::port
+[capi] inserted doc above: PortTransform_port
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h (inserted=1)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/instrument_interfaces/names/InstrumentPort_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/instrument_interfaces/names/InstrumentPort_metadata.yml
+[meta] loaded 14 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/instrument_interfaces/names/InstrumentPort_metadata.yml
+[meta] total units: 14
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::InstrumentPort::default_name
+[capi] inserted doc above: InstrumentPort_default_name
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::InstrumentPort::instrument_type
+[capi] inserted doc above: InstrumentPort_instrument_type
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::InstrumentPort::units
+[capi] inserted doc above: InstrumentPort_units
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::InstrumentPort::description
+[capi] inserted doc above: InstrumentPort_description
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::InstrumentPort::instrument_facing_name
+[capi] inserted doc above: InstrumentPort_instrument_facing_name
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::InstrumentPort::is_knob
+[capi] inserted doc above: InstrumentPort_is_knob
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::InstrumentPort::is_meter
+[capi] inserted doc above: InstrumentPort_is_meter
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::InstrumentPort::is_port
+[capi] inserted doc above: InstrumentPort_is_port
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h (inserted=8)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/instrument_interfaces/names/Ports.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/instrument_interfaces/names/Ports_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/instrument_interfaces/names/Ports_metadata.yml
+[meta] loaded 11 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/instrument_interfaces/names/Ports_metadata.yml
+[meta] total units: 11
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::Ports::ports
+[capi] inserted doc above: Ports_ports
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::Ports::_get_raw_names
+[capi] inserted doc above: Ports__get_raw_names
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::Ports::_get_instrument_facing_names
+[capi] inserted doc above: Ports__get_instrument_facing_names
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::Ports::_get_psuedoname_matching_port
+[capi] inserted doc above: Ports__get_psuedoname_matching_port
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::Ports::_get_instrument_type_matching_port
+[capi] inserted doc above: Ports__get_instrument_type_matching_port
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::Ports::is_knobs
+[capi] inserted doc above: Ports_is_knobs
+[map] cpp exact name matched: falcon_core::instrument_interfaces::names::Ports::is_meters
+[capi] inserted doc above: Ports_is_meters
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h (inserted=7)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListWaveform_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListWaveform_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListWaveform_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListWaveform_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListWaveform_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPortTransform_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPortTransform_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPortTransform_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPortTransform_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPortTransform_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListCoupledLabelledDomain_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListCoupledLabelledDomain_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListCoupledLabelledDomain_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListCoupledLabelledDomain_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListCoupledLabelledDomain_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapConnectionQuantity_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapConnectionQuantity_keys
+[map] cpp exact name matched: falcon_core::generic::Map::values
+[capi] inserted doc above: MapConnectionQuantity_values
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapConnectionQuantity_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapStringDouble_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapStringDouble_keys
+[map] cpp exact name matched: falcon_core::generic::Map::values
+[capi] inserted doc above: MapStringDouble_values
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapStringDouble_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairConnectionDouble_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairConnectionDouble_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairConnectionDouble_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairConnectionDouble_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairConnectionDouble_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairConnectionDouble_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairConnectionDouble_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairConnectionConnection_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairConnectionConnection_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairConnectionConnection_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairConnectionConnection_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairConnectionConnection_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairConnectionConnection_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairConnectionConnection_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionQuantity_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairConnectionQuantity_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairConnectionQuantity_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairConnectionQuantity_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionQuantity_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListMeasurementContext_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListMeasurementContext_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListMeasurementContext_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListMeasurementContext_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListMeasurementContext_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairGnameGroup_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairGnameGroup_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairGnameGroup_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairGnameGroup_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairGnameGroup_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/FArrayInt_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/FArray.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/FArray_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/FArray_metadata.yml
+[meta] loaded 8 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/FArray_metadata.yml
+[meta] total units: 8
+[map] cpp exact name matched: falcon_core::generic::FArray::reshape
+[capi] inserted doc above: FArrayInt_reshape
+[map] cpp exact name matched: falcon_core::generic::FArray::flip
+[capi] inserted doc above: FArrayInt_flip
+[map] cpp exact name matched: falcon_core::generic::FArray::gradient
+[capi] inserted doc above: FArrayInt_gradient
+[map] cpp exact name matched: falcon_core::generic::FArray::gradient
+[capi] doc already present: FArrayInt_gradient
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/FArrayInt_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListFArrayDouble_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListFArrayDouble_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListFArrayDouble_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListFArrayDouble_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListFArrayDouble_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListLabelledMeasuredArray_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListLabelledMeasuredArray_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListLabelledMeasuredArray_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListLabelledMeasuredArray_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListLabelledMeasuredArray_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairConnectionFloat_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairConnectionFloat_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairConnectionFloat_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairConnectionFloat_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairConnectionFloat_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairQuantityQuantity_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairQuantityQuantity_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairQuantityQuantity_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairQuantityQuantity_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairQuantityQuantity_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListInstrumentPort_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListInstrumentPort_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListInstrumentPort_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListInstrumentPort_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListInstrumentPort_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairStringBool_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairStringBool_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairStringBool_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairStringBool_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairStringBool_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairStringBool_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairStringBool_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairStringDouble_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairStringDouble_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairStringDouble_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairStringDouble_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairStringDouble_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairStringDouble_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairStringDouble_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextQuantity_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairInterpretationContextQuantity_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairInterpretationContextQuantity_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairInterpretationContextQuantity_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairInterpretationContextQuantity_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairInterpretationContextQuantity_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextQuantity_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairConnectionPairQuantityQuantity_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairConnectionPairQuantityQuantity_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairConnectionPairQuantityQuantity_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairConnectionPairQuantityQuantity_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairConnectionPairQuantityQuantity_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairConnectionPairQuantityQuantity_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairConnectionPairQuantityQuantity_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapInterpretationContextDouble_keys
+[map] cpp exact name matched: falcon_core::generic::Map::values
+[capi] inserted doc above: MapInterpretationContextDouble_values
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapStringBool_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapStringBool_keys
+[map] cpp exact name matched: falcon_core::generic::Map::values
+[capi] inserted doc above: MapStringBool_values
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapStringBool_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListAcquisitionContext_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListAcquisitionContext_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListAcquisitionContext_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapIntInt_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapIntInt_keys
+[map] cpp exact name matched: falcon_core::generic::Map::values
+[capi] inserted doc above: MapIntInt_values
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapIntInt_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListDiscretizer_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListDiscretizer_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListDiscretizer_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListDiscretizer_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListDiscretizer_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapChannelConnections_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapChannelConnections_keys
+[map] cpp exact name matched: falcon_core::generic::Map::values
+[capi] inserted doc above: MapChannelConnections_values
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapChannelConnections_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairQuantityQuantity_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairQuantityQuantity_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairQuantityQuantity_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairQuantityQuantity_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairQuantityQuantity_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairQuantityQuantity_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairQuantityQuantity_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListInterpretationContext_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListInterpretationContext_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListInterpretationContext_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListInterpretationContext_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListInterpretationContext_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapConnectionFloat_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapConnectionFloat_keys
+[map] cpp exact name matched: falcon_core::generic::Map::values
+[capi] inserted doc above: MapConnectionFloat_values
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapConnectionFloat_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListDeviceVoltageState_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListDeviceVoltageState_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListDeviceVoltageState_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListDeviceVoltageState_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListDeviceVoltageState_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListQuantity_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListQuantity_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListQuantity_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListQuantity_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListQuantity_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairStringString_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairStringString_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairStringString_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairStringString_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairStringString_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListLabelledControlArray1D_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListLabelledControlArray1D_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListLabelledControlArray1D_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListLabelledControlArray1D_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListLabelledControlArray1D_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairFloatFloat_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairFloatFloat_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairFloatFloat_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairFloatFloat_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairFloatFloat_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListLabelledControlArray_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListLabelledControlArray_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListLabelledControlArray_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListLabelledControlArray_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListLabelledControlArray_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapGnameGroup_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapGnameGroup_keys
+[map] cpp exact name matched: falcon_core::generic::Map::values
+[capi] inserted doc above: MapGnameGroup_values
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapGnameGroup_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListSizeT_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListSizeT_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListSizeT_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListSizeT_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListSizeT_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapConnectionDouble_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapConnectionDouble_keys
+[map] cpp exact name matched: falcon_core::generic::Map::values
+[capi] inserted doc above: MapConnectionDouble_values
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapConnectionDouble_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListInt_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListInt_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListInt_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListInt_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListInt_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairConnectionQuantity_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairConnectionQuantity_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairConnectionQuantity_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairConnectionQuantity_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairConnectionQuantity_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairConnectionQuantity_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairConnectionQuantity_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListListSizeT_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListListSizeT_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListListSizeT_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListListSizeT_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListListSizeT_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairStringDouble_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairStringDouble_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairStringDouble_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairStringDouble_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairStringDouble_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListLabelledDomain_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListLabelledDomain_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListLabelledDomain_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListLabelledDomain_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListLabelledDomain_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListFloat_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListFloat_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListFloat_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListFloat_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListFloat_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairDoubleDouble_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairDoubleDouble_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairDoubleDouble_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairDoubleDouble_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairDoubleDouble_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairDoubleDouble_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairDoubleDouble_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairMeasurementResponseMeasurementRequest_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairMeasurementResponseMeasurementRequest_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairMeasurementResponseMeasurementRequest_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairMeasurementResponseMeasurementRequest_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairMeasurementResponseMeasurementRequest_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairIntFloat_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairIntFloat_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairIntFloat_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairIntFloat_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairIntFloat_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairIntFloat_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairIntFloat_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairStringBool_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairStringBool_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairStringBool_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairStringBool_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairStringBool_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionFloat_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairConnectionFloat_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairConnectionFloat_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairConnectionFloat_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionFloat_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListChannel_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListChannel_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListChannel_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListChannel_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListChannel_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListGname_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListGname_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListGname_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListGname_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListGname_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairInstrumentPortPortTransform_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairInstrumentPortPortTransform_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairInstrumentPortPortTransform_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListControlArray1D_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListControlArray1D_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListControlArray1D_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListControlArray1D_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListControlArray1D_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextString_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairInterpretationContextString_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairInterpretationContextString_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairInterpretationContextString_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairInterpretationContextString_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairInterpretationContextString_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextString_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairChannelConnections_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairChannelConnections_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairChannelConnections_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairChannelConnections_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairChannelConnections_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListDotGateWithNeighbors_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListDotGateWithNeighbors_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListDotGateWithNeighbors_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListDotGateWithNeighbors_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListDotGateWithNeighbors_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairConnectionConnections_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairConnectionConnections_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairConnectionConnections_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairConnectionConnections_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairConnectionConnections_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairConnectionConnections_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairConnectionConnections_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairChannelConnections_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairChannelConnections_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairChannelConnections_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairChannelConnections_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairChannelConnections_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairChannelConnections_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairChannelConnections_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListImpedance_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListImpedance_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListImpedance_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListImpedance_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListImpedance_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairConnectionDouble_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairConnectionDouble_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairConnectionDouble_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListControlArray_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListControlArray_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListControlArray_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListControlArray_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListControlArray_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListDouble_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListDouble_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListDouble_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListDouble_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListDouble_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairSizeTSizeT_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairSizeTSizeT_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairSizeTSizeT_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairSizeTSizeT_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairSizeTSizeT_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairIntInt_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairIntInt_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairIntInt_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairIntInt_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairIntInt_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairIntInt_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairIntInt_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairInterpretationContextDouble_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairInterpretationContextDouble_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairInterpretationContextDouble_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/FArrayDouble_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/FArray.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/FArray_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/FArray_metadata.yml
+[meta] loaded 8 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/FArray_metadata.yml
+[meta] total units: 8
+[map] cpp exact name matched: falcon_core::generic::FArray::reshape
+[capi] inserted doc above: FArrayDouble_reshape
+[map] cpp exact name matched: falcon_core::generic::FArray::flip
+[capi] inserted doc above: FArrayDouble_flip
+[map] cpp exact name matched: falcon_core::generic::FArray::gradient
+[capi] inserted doc above: FArrayDouble_gradient
+[map] cpp exact name matched: falcon_core::generic::FArray::gradient
+[capi] doc already present: FArrayDouble_gradient
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/FArrayDouble_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairFloatFloat_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairFloatFloat_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairFloatFloat_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairFloatFloat_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairFloatFloat_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairFloatFloat_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairFloatFloat_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListString_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListString_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListString_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListString_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListString_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairIntFloat_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairIntFloat_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairIntFloat_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairIntFloat_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairIntFloat_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextQuantity_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapInterpretationContextQuantity_keys
+[map] cpp exact name matched: falcon_core::generic::Map::values
+[capi] inserted doc above: MapInterpretationContextQuantity_values
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextQuantity_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairIntInt_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairIntInt_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairIntInt_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairIntInt_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairIntInt_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapFloatFloat_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapFloatFloat_keys
+[map] cpp exact name matched: falcon_core::generic::Map::values
+[capi] inserted doc above: MapFloatFloat_values
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapFloatFloat_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairGnameGroup_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairGnameGroup_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairGnameGroup_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairGnameGroup_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairGnameGroup_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairGnameGroup_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairGnameGroup_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListGroup_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListGroup_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListGroup_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListGroup_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListGroup_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairConnectionConnections_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairConnectionConnections_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairConnectionConnections_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListLabelledMeasuredArray1D_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListLabelledMeasuredArray1D_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListLabelledMeasuredArray1D_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextString_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapInterpretationContextString_keys
+[map] cpp exact name matched: falcon_core::generic::Map::values
+[capi] inserted doc above: MapInterpretationContextString_values
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextString_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairInterpretationContextQuantity_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairInterpretationContextQuantity_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairInterpretationContextQuantity_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionPairQuantityQuantity_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairConnectionPairQuantityQuantity_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairConnectionPairQuantityQuantity_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairConnectionPairQuantityQuantity_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionPairQuantityQuantity_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextString_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairInterpretationContextString_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairInterpretationContextString_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairInterpretationContextString_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextString_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapStringString_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapStringString_keys
+[map] cpp exact name matched: falcon_core::generic::Map::values
+[capi] inserted doc above: MapStringString_values
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapStringString_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListMapStringBool_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListMapStringBool_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListMapStringBool_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListMapStringBool_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListMapStringBool_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairInstrumentPortPortTransform_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairInstrumentPortPortTransform_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairInstrumentPortPortTransform_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairInstrumentPortPortTransform_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairInstrumentPortPortTransform_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairInstrumentPortPortTransform_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairInstrumentPortPortTransform_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapInstrumentPortPortTransform_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Map.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] loaded 2 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Map_metadata.yml
+[meta] total units: 2
+[map] cpp exact name matched: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapInstrumentPortPortTransform_keys
+[map] cpp exact name matched: falcon_core::generic::Map::values
+[capi] inserted doc above: MapInstrumentPortPortTransform_values
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/MapInstrumentPortPortTransform_c_api.h (inserted=2)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairStringString_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairStringString_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairStringString_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairStringString_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairStringString_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairStringString_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairStringString_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairSizeTSizeT_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairSizeTSizeT_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairSizeTSizeT_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairSizeTSizeT_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListPairSizeTSizeT_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListBool_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListBool_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListBool_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListBool_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListBool_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextDouble_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/Pair.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/Pair_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairInterpretationContextDouble_create
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairInterpretationContextDouble_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairInterpretationContextDouble_second
+[map] cpp exact name matched: falcon_core::generic::Pair::first
+[capi] doc already present: PairInterpretationContextDouble_first
+[map] cpp exact name matched: falcon_core::generic::Pair::second
+[capi] doc already present: PairInterpretationContextDouble_second
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextDouble_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListConnections_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListConnections_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListConnections_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListConnections_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListConnections_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListConnection_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/generic/List.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/generic/List_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListConnection_intersection
+[map] cpp exact name matched: falcon_core::generic::List::clear
+[capi] inserted doc above: ListConnection_clear
+[map] cpp exact name matched: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListConnection_erase_at
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/generic/ListConnection_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_metadata.yml
+[meta] loaded 10 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_metadata.yml
+[meta] total units: 10
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContext::independent_variables
+[capi] inserted doc above: InterpretationContext_independent_variables
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContext::dependent_variables
+[capi] inserted doc above: InterpretationContext_dependent_variables
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContext::unit
+[capi] inserted doc above: InterpretationContext_unit
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContext::dimension
+[capi] inserted doc above: InterpretationContext_dimension
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContext::replace_dependent_variable
+[capi] inserted doc above: InterpretationContext_replace_dependent_variable
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContext::with_unit
+[capi] inserted doc above: InterpretationContext_with_unit
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h (inserted=6)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] loaded 4 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] total units: 4
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::unit
+[capi] inserted doc above: InterpretationContainerDouble_unit
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connection
+[capi] inserted doc above: InterpretationContainerDouble_select_by_connection
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connections
+[capi] inserted doc above: InterpretationContainerDouble_select_by_connections
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] loaded 4 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] total units: 4
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::unit
+[capi] inserted doc above: InterpretationContainerString_unit
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connection
+[capi] inserted doc above: InterpretationContainerString_select_by_connection
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connections
+[capi] inserted doc above: InterpretationContainerString_select_by_connections
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] loaded 4 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] total units: 4
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::unit
+[capi] inserted doc above: InterpretationContainerQuantity_unit
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connection
+[capi] inserted doc above: InterpretationContainerQuantity_select_by_connection
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connections
+[capi] inserted doc above: InterpretationContainerQuantity_select_by_connections
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h (inserted=3)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/autotuner_interfaces/names/Gname_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/names/Gname.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/names/Gname_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/names/Gname_metadata.yml
+[meta] loaded 1 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/names/Gname_metadata.yml
+[meta] total units: 1
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::names::Gname::gname
+[capi] inserted doc above: Gname_gname
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/autotuner_interfaces/names/Gname_c_api.h (inserted=1)
+[map] using C header: /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h
+[meta] cpp_headers map-dir -> /home/zach/Documents/github/FALCon/falcon-core/cpp/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_metadata.yml
+[meta] will use: /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_metadata.yml
+[meta] loaded 6 units from /home/zach/Documents/github/FALCon/falcon-core/cpp_metadata/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_metadata.yml
+[meta] total units: 6
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::contexts::AcquisitionContext::units
+[capi] inserted doc above: AcquisitionContext_units
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::contexts::AcquisitionContext::match_connection
+[capi] inserted doc above: AcquisitionContext_match_connection
+[map] cpp exact name matched: falcon_core::autotuner_interfaces::contexts::AcquisitionContext::match_instrument_type
+[capi] inserted doc above: AcquisitionContext_match_instrument_type
+Wrote /home/zach/Documents/github/FALCon/falcon-core/c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h (inserted=3)

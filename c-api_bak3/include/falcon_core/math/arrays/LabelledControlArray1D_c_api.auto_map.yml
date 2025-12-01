@@ -1,0 +1,12 @@
+c_header: LabelledControlArray1D_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/math/arrays/LabelledControlArray1D.hpp
+mappings:
+- cpp: falcon_core::math::arrays::LabelledControlArray1D::reshape
+  c: LabelledControlArray1D_reshape
+- cpp: falcon_core::math::arrays::LabelledControlArray1D::flip
+  c: LabelledControlArray1D_flip
+- cpp: falcon_core::math::arrays::LabelledControlArray1D::gradient
+  c: LabelledControlArray1D_gradient
+- cpp: falcon_core::math::arrays::LabelledControlArray1D::gradient
+  c: LabelledControlArray1D_gradient
