@@ -105,6 +105,8 @@ ControlArray1DSP ControlArray1D::abs() const {
   return std::make_shared<ControlArray1D>(generic::FArray<double>::abs());
 }
 
+double ControlArray1D::min() const { return generic::FArray<double>::min(); }
+
 ControlArray1DSP ControlArray1D::min(const ControlArray1DSP& other) const {
   if (!other) {
     throw std::invalid_argument(
@@ -121,6 +123,8 @@ ControlArray1DSP ControlArray1D::min(
   }
   return std::make_shared<ControlArray1D>(generic::FArray<double>::min(other));
 }
+
+double ControlArray1D::max() const { return generic::FArray<double>::max(); }
 
 ControlArray1DSP ControlArray1D::max(const ControlArray1DSP& other) const {
   if (!other) {

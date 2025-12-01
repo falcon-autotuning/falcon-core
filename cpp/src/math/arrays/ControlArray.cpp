@@ -128,6 +128,8 @@ ControlArraySP ControlArray::abs() const {
   return std::make_shared<ControlArray>(generic::FArray<double>::abs());
 }
 
+double ControlArray::min() const { return generic::FArray<double>::min(); }
+
 ControlArraySP ControlArray::min(const ControlArraySP& other) const {
   if (!other) {
     throw std::invalid_argument(
@@ -148,6 +150,8 @@ ControlArraySP ControlArray::min(const generic::FArraySP<double>& other) const {
   }
   return ControlArray::min(std::make_shared<ControlArray>(other));
 }
+
+double ControlArray::max() const { return generic::FArray<double>::max(); }
 
 ControlArraySP ControlArray::max(const ControlArraySP& other) const {
   if (!other) {

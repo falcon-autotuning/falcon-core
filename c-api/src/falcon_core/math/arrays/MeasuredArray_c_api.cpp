@@ -538,14 +538,14 @@ MeasuredArrayHandle MeasuredArray_abs(MeasuredArrayHandle handle) {
   FALCON_C_API_END(nullptr)
 }
 
-double MeasuredArray_min {
+double MeasuredArray_min(MeasuredArrayHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_min");
   }
   MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
   return measured_array->min();
-  FALCON_C_API_END(nullptr)
+  FALCON_C_API_END(0.0)
 }
 
 MeasuredArrayHandle MeasuredArray_min_farray(MeasuredArrayHandle handle,
@@ -584,7 +584,7 @@ double MeasuredArray_max(MeasuredArrayHandle handle) {
   }
   MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
   return measured_array->max();
-  FALCON_C_API_END(nullptr)
+  FALCON_C_API_END(0.0)
 }
 
 MeasuredArrayHandle MeasuredArray_max_farray(MeasuredArrayHandle handle,

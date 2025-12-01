@@ -667,7 +667,7 @@ double LabelledMeasuredArray_min(LabelledMeasuredArrayHandle handle) {
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
   return labelled_measured_array->min();
-  FALCON_C_API_END(nullptr)
+  FALCON_C_API_END(0.0)
 }
 
 LabelledMeasuredArrayHandle LabelledMeasuredArray_min_farray(
@@ -710,7 +710,7 @@ double LabelledMeasuredArray_max(LabelledMeasuredArrayHandle handle) {
   LabelledMeasuredArray* labelled_measured_array =
       static_cast<LabelledMeasuredArray*>(handle);
   return labelled_measured_array->max();
-  FALCON_C_API_END(nullptr)
+  FALCON_C_API_END(0.0)
 }
 
 LabelledMeasuredArrayHandle LabelledMeasuredArray_max_farray(
@@ -724,9 +724,8 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_max_farray(
       static_cast<LabelledMeasuredArray*>(handle);
   generic::FArray<double>* oarray =
       static_cast<generic::FArray<double>*>(other);
-  return new LabelledMeasuredArray(
-      *labelled_measured_array->max +
-      (std::make_shared<generic::FArray<double>>(*oarray)));
+  return new LabelledMeasuredArray(*labelled_measured_array->max(
+      std::make_shared<generic::FArray<double>>(*oarray)));
   FALCON_C_API_END(nullptr)
 }
 LabelledMeasuredArrayHandle LabelledMeasuredArray_max_measured_array(
@@ -740,7 +739,7 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_max_measured_array(
       static_cast<LabelledMeasuredArray*>(handle);
   LabelledMeasuredArraySP oarray = std::make_shared<LabelledMeasuredArray>(
       *static_cast<LabelledMeasuredArray*>(other));
-  return new LabelledMeasuredArray(*labelled_measured_array->max + (oarray));
+  return new LabelledMeasuredArray(*labelled_measured_array->max(oarray));
   FALCON_C_API_END(nullptr)
 }
 bool LabelledMeasuredArray_equal(LabelledMeasuredArrayHandle handle,

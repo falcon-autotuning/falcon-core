@@ -143,6 +143,8 @@ std::shared_ptr<MeasuredArray> MeasuredArray::abs() const {
   return std::make_shared<MeasuredArray>(generic::FArray<double>::abs());
 }
 
+double MeasuredArray::min() const { return generic::FArray<double>::min(); }
+
 std::shared_ptr<MeasuredArray> MeasuredArray::min(
     const std::shared_ptr<MeasuredArray>& other) const {
   if (!other) {
@@ -158,6 +160,8 @@ std::shared_ptr<MeasuredArray> MeasuredArray::min(
   }
   return std::make_shared<MeasuredArray>(generic::FArray<double>::min(other));
 }
+
+double MeasuredArray::max() const { return generic::FArray<double>::max(); }
 
 std::shared_ptr<MeasuredArray> MeasuredArray::max(
     const std::shared_ptr<MeasuredArray>& other) const {

@@ -77,12 +77,20 @@ class MeasuredArray : public generic::FArray<double> {
   std::shared_ptr<MeasuredArray> operator^(const double other) const;
 
   std::shared_ptr<MeasuredArray> abs() const;
+  /**
+   * @brief Return the minimum value of the array.
+   */
+  double min() const override;
 
   std::shared_ptr<MeasuredArray> min(
       const std::shared_ptr<MeasuredArray>& other) const;
 
   std::shared_ptr<MeasuredArray> min(
       const std::shared_ptr<FArray<double>>& other) const;
+  /**
+   * @brief Return the maximum value of the array.
+   */
+  double max() const override;
 
   std::shared_ptr<MeasuredArray> max(
       const std::shared_ptr<MeasuredArray>& other) const;

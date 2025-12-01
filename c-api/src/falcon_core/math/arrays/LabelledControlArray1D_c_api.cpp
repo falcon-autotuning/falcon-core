@@ -664,7 +664,7 @@ double LabelledControlArray1D_min(LabelledControlArray1DHandle handle) {
   LabelledControlArray1D* labelled_control_array =
       static_cast<LabelledControlArray1D*>(handle);
   return labelled_control_array->min();
-  FALCON_C_API_END(nullptr)
+  FALCON_C_API_END(0.0)
 }
 
 LabelledControlArray1DHandle LabelledControlArray1D_min_farray(
@@ -707,7 +707,7 @@ double LabelledControlArray1D_max(LabelledControlArray1DHandle handle) {
   LabelledControlArray1D* labelled_control_array =
       static_cast<LabelledControlArray1D*>(handle);
   return labelled_control_array->max();
-  FALCON_C_API_END(nullptr)
+  FALCON_C_API_END(0.0)
 }
 
 LabelledControlArray1DHandle LabelledControlArray1D_max_farray(

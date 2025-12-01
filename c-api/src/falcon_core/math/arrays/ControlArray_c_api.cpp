@@ -421,7 +421,7 @@ double ControlArray_min(ControlArrayHandle handle) {
   }
   ControlArray* control_array = static_cast<ControlArray*>(handle);
   return control_array->min();
-  FALCON_C_API_END(nullptr)
+  FALCON_C_API_END(0.0)
 }
 
 ControlArrayHandle ControlArray_min_farray(ControlArrayHandle handle,
@@ -459,7 +459,7 @@ double ControlArray_max(ControlArrayHandle handle) {
   }
   ControlArray* control_array = static_cast<ControlArray*>(handle);
   return control_array->max();
-  FALCON_C_API_END(nullptr)
+  FALCON_C_API_END(0.0)
 }
 
 ControlArrayHandle ControlArray_max_farray(ControlArrayHandle handle,

@@ -66,12 +66,20 @@ class ControlArray1D : public ControlArray, public Is1D<double> {
   std::shared_ptr<ControlArray1D> operator^(const double other) const;
 
   std::shared_ptr<ControlArray1D> abs() const;
+  /**
+   * @brief Return the minimum value of the array.
+   */
+  double min() const;
 
   std::shared_ptr<ControlArray1D> min(
       const std::shared_ptr<ControlArray1D>& other) const;
 
   std::shared_ptr<ControlArray1D> min(
       const std::shared_ptr<FArray<double>>& other) const;
+  /**
+   * @brief Return the maximum value of the array.
+   */
+  double max() const;
 
   std::shared_ptr<ControlArray1D> max(
       const std::shared_ptr<ControlArray1D>& other) const;

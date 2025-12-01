@@ -680,7 +680,7 @@ double MeasuredArray1D_min(MeasuredArray1DHandle handle) {
   }
   MeasuredArray1D* measured_array = static_cast<MeasuredArray1D*>(handle);
   return measured_array->min();
-  FALCON_C_API_END(nullptr)
+  FALCON_C_API_END(0.0)
 }
 
 MeasuredArray1DHandle MeasuredArray1D_min_farray(MeasuredArray1DHandle handle,
@@ -718,8 +718,7 @@ double MeasuredArray1D_max(MeasuredArray1DHandle handle) {
   }
   MeasuredArray1D* measured_array = static_cast<MeasuredArray1D*>(handle);
   return measured_array->max();
-  FALCON_C_API_END(nullptr)
-  double
+  FALCON_C_API_END(0.0)
 }
 
 MeasuredArray1DHandle MeasuredArray1D_max_farray(MeasuredArray1DHandle handle,
