@@ -129,6 +129,10 @@ std::shared_ptr<LabelledMeasuredArray1D> LabelledMeasuredArray1D::abs() const {
       generic::FArray<double>::abs(), this->label());
 }
 
+double LabelledMeasuredArray1D::min() const {
+  return generic::FArray<double>::min();
+}
+
 std::shared_ptr<LabelledMeasuredArray1D> LabelledMeasuredArray1D::min(
     const std::shared_ptr<LabelledMeasuredArray1D>& other) const {
   return std::make_shared<LabelledMeasuredArray1D>(
@@ -139,6 +143,10 @@ std::shared_ptr<LabelledMeasuredArray1D> LabelledMeasuredArray1D::min(
     const std::shared_ptr<FArray<double>>& other) const {
   return std::make_shared<LabelledMeasuredArray1D>(
       generic::FArray<double>::min(other), this->label());
+}
+
+double LabelledMeasuredArray1D::max() const {
+  return generic::FArray<double>::max();
 }
 
 std::shared_ptr<LabelledMeasuredArray1D> LabelledMeasuredArray1D::max(

@@ -182,7 +182,7 @@ size_t LabelledControlArray_data(LabelledControlArrayHandle handle,
 }
 
 void LabelledControlArray_plus_equals_farray(LabelledControlArrayHandle handle,
-                                            FArrayDoubleHandle         other) {
+                                             FArrayDoubleHandle         other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
@@ -197,7 +197,7 @@ void LabelledControlArray_plus_equals_farray(LabelledControlArrayHandle handle,
 }
 
 void LabelledControlArray_plus_equals_double(LabelledControlArrayHandle handle,
-                                            const double               other) {
+                                             const double               other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -210,7 +210,7 @@ void LabelledControlArray_plus_equals_double(LabelledControlArrayHandle handle,
 }
 
 void LabelledControlArray_plus_equals_int(LabelledControlArrayHandle handle,
-                                         const int                  other) {
+                                          const int                  other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -295,7 +295,7 @@ void LabelledControlArray_minus_equals_control_array(
 }
 
 void LabelledControlArray_minus_equals_farray(LabelledControlArrayHandle handle,
-                                             FArrayDoubleHandle         other) {
+                                              FArrayDoubleHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
@@ -310,7 +310,7 @@ void LabelledControlArray_minus_equals_farray(LabelledControlArrayHandle handle,
 }
 
 void LabelledControlArray_minus_equals_double(LabelledControlArrayHandle handle,
-                                             const double               other) {
+                                              const double other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -323,7 +323,7 @@ void LabelledControlArray_minus_equals_double(LabelledControlArrayHandle handle,
 }
 
 void LabelledControlArray_minus_equals_int(LabelledControlArrayHandle handle,
-                                          const int                  other) {
+                                           const int                  other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -406,7 +406,7 @@ LabelledControlArrayHandle LabelledControlArray_negation(
 }
 
 void LabelledControlArray_times_equals_double(LabelledControlArrayHandle handle,
-                                             const double               other) {
+                                              const double other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -419,7 +419,7 @@ void LabelledControlArray_times_equals_double(LabelledControlArrayHandle handle,
 }
 
 void LabelledControlArray_times_equals_int(LabelledControlArrayHandle handle,
-                                          const int                  other) {
+                                           const int                  other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -471,7 +471,7 @@ void LabelledControlArray_divides_equals_double(
 }
 
 void LabelledControlArray_divides_equals_int(LabelledControlArrayHandle handle,
-                                            const int                  other) {
+                                             const int                  other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -535,6 +535,18 @@ LabelledControlArrayHandle LabelledControlArray_abs(
   FALCON_C_API_END(nullptr)
 }
 
+double LabelledControlArray_min(LabelledControlArrayHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledControlArray_min");
+  }
+  LabelledControlArray* labelled_control_array =
+      static_cast<LabelledControlArray*>(handle);
+  return labelled_control_array->min();
+  FALCON_C_API_END(0.0)
+}
+
 LabelledControlArrayHandle LabelledControlArray_min_farray(
     LabelledControlArrayHandle handle, FArrayDoubleHandle other) {
   FALCON_C_API_BEGIN
@@ -564,6 +576,18 @@ LabelledControlArrayHandle LabelledControlArray_min_control_array(
       *static_cast<LabelledControlArray*>(other));
   return new LabelledControlArray(*labelled_control_array->min(oarray));
   FALCON_C_API_END(nullptr)
+}
+
+double LabelledControlArray_max(LabelledControlArrayHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledControlArray_max");
+  }
+  LabelledControlArray* labelled_control_array =
+      static_cast<LabelledControlArray*>(handle);
+  return labelled_control_array->max();
+  FALCON_C_API_END(0.0)
 }
 
 LabelledControlArrayHandle LabelledControlArray_max_farray(
@@ -598,7 +622,7 @@ LabelledControlArrayHandle LabelledControlArray_max_control_array(
 }
 
 bool LabelledControlArray_equal(LabelledControlArrayHandle handle,
-                                   LabelledControlArrayHandle other) {
+                                LabelledControlArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
@@ -612,7 +636,7 @@ bool LabelledControlArray_equal(LabelledControlArrayHandle handle,
 }
 
 bool LabelledControlArray_not_equal(LabelledControlArrayHandle handle,
-                                      LabelledControlArrayHandle other) {
+                                    LabelledControlArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
@@ -623,7 +647,7 @@ bool LabelledControlArray_not_equal(LabelledControlArrayHandle handle,
 }
 
 bool LabelledControlArray_greater_than(LabelledControlArrayHandle handle,
-                                      const double               value) {
+                                       const double               value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -636,7 +660,7 @@ bool LabelledControlArray_greater_than(LabelledControlArrayHandle handle,
 }
 
 bool LabelledControlArray_less_than(LabelledControlArrayHandle handle,
-                                   const double               value) {
+                                    const double               value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(

@@ -153,6 +153,10 @@ LabelledControlArraySP LabelledControlArray::abs() const {
                                                 this->label());
 }
 
+double LabelledControlArray::min() const {
+  return generic::FArray<double>::min();
+}
+
 LabelledControlArraySP LabelledControlArray::min(
     const LabelledControlArraySP& other) const {
   if (!other) {
@@ -171,6 +175,10 @@ LabelledControlArraySP LabelledControlArray::min(
   }
   return std::make_shared<LabelledControlArray>(
       generic::FArray<double>::min(other), this->label());
+}
+
+double LabelledControlArray::max() const {
+  return generic::FArray<double>::max();
 }
 
 LabelledControlArraySP LabelledControlArray::max(

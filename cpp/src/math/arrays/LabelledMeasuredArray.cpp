@@ -216,6 +216,10 @@ LabelledMeasuredArraySP LabelledMeasuredArray::abs() const {
                                                  this->label());
 }
 
+double LabelledMeasuredArray::min() const {
+  return generic::FArray<double>::min();
+}
+
 LabelledMeasuredArraySP LabelledMeasuredArray::min(
     const LabelledMeasuredArraySP& other) const {
   if (!other) {
@@ -239,6 +243,10 @@ LabelledMeasuredArraySP LabelledMeasuredArray::min(
   }
   return std::make_shared<LabelledMeasuredArray>(
       generic::FArray<double>::min(other), this->label());
+}
+
+double LabelledMeasuredArray::max() const {
+  return generic::FArray<double>::max();
 }
 
 LabelledMeasuredArraySP LabelledMeasuredArray::max(

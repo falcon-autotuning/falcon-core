@@ -178,8 +178,8 @@ size_t LabelledMeasuredArray_data(LabelledMeasuredArrayHandle handle,
   FALCON_C_API_END(0)
 }
 
-void LabelledMeasuredArray_plus_equals_farray(LabelledMeasuredArrayHandle handle,
-                                             FArrayDoubleHandle other) {
+void LabelledMeasuredArray_plus_equals_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
@@ -193,8 +193,8 @@ void LabelledMeasuredArray_plus_equals_farray(LabelledMeasuredArrayHandle handle
   FALCON_C_API_END()
 }
 
-void LabelledMeasuredArray_plus_equals_double(LabelledMeasuredArrayHandle handle,
-                                             const double other) {
+void LabelledMeasuredArray_plus_equals_double(
+    LabelledMeasuredArrayHandle handle, const double other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -207,7 +207,7 @@ void LabelledMeasuredArray_plus_equals_double(LabelledMeasuredArrayHandle handle
 }
 
 void LabelledMeasuredArray_plus_equals_int(LabelledMeasuredArrayHandle handle,
-                                          const int                   other) {
+                                           const int                   other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -320,7 +320,7 @@ void LabelledMeasuredArray_minus_equals_double(
 }
 
 void LabelledMeasuredArray_minus_equals_int(LabelledMeasuredArrayHandle handle,
-                                           const int                   other) {
+                                            const int                   other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -448,7 +448,7 @@ void LabelledMeasuredArray_times_equals_double(
 }
 
 void LabelledMeasuredArray_times_equals_int(LabelledMeasuredArrayHandle handle,
-                                           const int                   other) {
+                                            const int                   other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -562,8 +562,8 @@ void LabelledMeasuredArray_divides_equals_double(
   FALCON_C_API_END()
 }
 
-void LabelledMeasuredArray_divides_equals_int(LabelledMeasuredArrayHandle handle,
-                                             const int other) {
+void LabelledMeasuredArray_divides_equals_int(
+    LabelledMeasuredArrayHandle handle, const int other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -658,6 +658,18 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_abs(
   FALCON_C_API_END(nullptr)
 }
 
+double LabelledMeasuredArray_min(LabelledMeasuredArrayHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_min");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return labelled_measured_array->min();
+  FALCON_C_API_END(nullptr)
+}
+
 LabelledMeasuredArrayHandle LabelledMeasuredArray_min_farray(
     LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other) {
   FALCON_C_API_BEGIN
@@ -669,7 +681,7 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_min_farray(
       static_cast<LabelledMeasuredArray*>(handle);
   generic::FArray<double>* oarray =
       static_cast<generic::FArray<double>*>(other);
-  return new LabelledMeasuredArray(*labelled_measured_array->operator-(
+  return new LabelledMeasuredArray(*labelled_measured_array->min(
       std::make_shared<generic::FArray<double>>(*oarray)));
   FALCON_C_API_END(nullptr)
 }
@@ -685,7 +697,19 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_min_measured_array(
       static_cast<LabelledMeasuredArray*>(handle);
   LabelledMeasuredArraySP oarray = std::make_shared<LabelledMeasuredArray>(
       *static_cast<LabelledMeasuredArray*>(other));
-  return new LabelledMeasuredArray(*labelled_measured_array->operator-(oarray));
+  return new LabelledMeasuredArray(*labelled_measured_array->min(oarray));
+  FALCON_C_API_END(nullptr)
+}
+
+double LabelledMeasuredArray_max(LabelledMeasuredArrayHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray_max");
+  }
+  LabelledMeasuredArray* labelled_measured_array =
+      static_cast<LabelledMeasuredArray*>(handle);
+  return labelled_measured_array->max();
   FALCON_C_API_END(nullptr)
 }
 
@@ -700,8 +724,9 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_max_farray(
       static_cast<LabelledMeasuredArray*>(handle);
   generic::FArray<double>* oarray =
       static_cast<generic::FArray<double>*>(other);
-  return new LabelledMeasuredArray(*labelled_measured_array->operator+(
-      std::make_shared<generic::FArray<double>>(*oarray)));
+  return new LabelledMeasuredArray(
+      *labelled_measured_array->max +
+      (std::make_shared<generic::FArray<double>>(*oarray)));
   FALCON_C_API_END(nullptr)
 }
 LabelledMeasuredArrayHandle LabelledMeasuredArray_max_measured_array(
@@ -715,11 +740,11 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_max_measured_array(
       static_cast<LabelledMeasuredArray*>(handle);
   LabelledMeasuredArraySP oarray = std::make_shared<LabelledMeasuredArray>(
       *static_cast<LabelledMeasuredArray*>(other));
-  return new LabelledMeasuredArray(*labelled_measured_array->operator+(oarray));
+  return new LabelledMeasuredArray(*labelled_measured_array->max + (oarray));
   FALCON_C_API_END(nullptr)
 }
 bool LabelledMeasuredArray_equal(LabelledMeasuredArrayHandle handle,
-                                    LabelledMeasuredArrayHandle other) {
+                                 LabelledMeasuredArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
@@ -733,7 +758,7 @@ bool LabelledMeasuredArray_equal(LabelledMeasuredArrayHandle handle,
 }
 
 bool LabelledMeasuredArray_not_equal(LabelledMeasuredArrayHandle handle,
-                                       LabelledMeasuredArrayHandle other) {
+                                     LabelledMeasuredArrayHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
@@ -747,7 +772,7 @@ bool LabelledMeasuredArray_not_equal(LabelledMeasuredArrayHandle handle,
 }
 
 bool LabelledMeasuredArray_greater_than(LabelledMeasuredArrayHandle handle,
-                                       const double                value) {
+                                        const double                value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -760,7 +785,7 @@ bool LabelledMeasuredArray_greater_than(LabelledMeasuredArrayHandle handle,
 }
 
 bool LabelledMeasuredArray_less_than(LabelledMeasuredArrayHandle handle,
-                                    const double                value) {
+                                     const double                value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(

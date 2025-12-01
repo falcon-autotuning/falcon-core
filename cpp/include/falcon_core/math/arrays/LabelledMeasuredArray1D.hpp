@@ -91,12 +91,20 @@ class LabelledMeasuredArray1D : public LabelledMeasuredArray,
   std::shared_ptr<LabelledMeasuredArray1D> operator^(const double other) const;
 
   std::shared_ptr<LabelledMeasuredArray1D> abs() const;
+  /**
+   * @brief Return the minimum value of the array.
+   */
+  double min() const;
 
   std::shared_ptr<LabelledMeasuredArray1D> min(
       const std::shared_ptr<LabelledMeasuredArray1D>& other) const;
 
   std::shared_ptr<LabelledMeasuredArray1D> min(
       const std::shared_ptr<FArray<double>>& other) const;
+  /**
+   * @brief Return the maximum value of the array.
+   */
+  double max() const;
 
   std::shared_ptr<LabelledMeasuredArray1D> max(
       const std::shared_ptr<LabelledMeasuredArray1D>& other) const;

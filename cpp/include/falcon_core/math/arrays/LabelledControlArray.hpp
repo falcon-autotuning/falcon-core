@@ -82,12 +82,20 @@ class LabelledControlArray : public ControlArray, public IsLabelled<double> {
   std::shared_ptr<LabelledControlArray> operator^(const double other) const;
 
   std::shared_ptr<LabelledControlArray> abs() const;
+  /**
+   * @brief Return the minimum value of the array.
+   */
+  double min() const;
 
   std::shared_ptr<LabelledControlArray> min(
       const std::shared_ptr<LabelledControlArray>& other) const;
 
   std::shared_ptr<LabelledControlArray> min(
       const std::shared_ptr<FArray<double>>& other) const;
+  /**
+   * @brief Return the maximum value of the array.
+   */
+  double max() const;
 
   std::shared_ptr<LabelledControlArray> max(
       const std::shared_ptr<LabelledControlArray>& other) const;

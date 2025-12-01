@@ -817,6 +817,18 @@ LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_abs(
   FALCON_C_API_END(nullptr)
 }
 
+double LabelledMeasuredArray1D_min(LabelledMeasuredArray1DHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray1D_min");
+  }
+  LabelledMeasuredArray1D* labelled_measured_array =
+      static_cast<LabelledMeasuredArray1D*>(handle);
+  return labelled_measured_array->min());
+  FALCON_C_API_END(nullptr)
+}
+
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_min_farray(
     LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other) {
   FALCON_C_API_BEGIN
@@ -845,6 +857,18 @@ LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_min_measured_array(
   LabelledMeasuredArray1DSP oarray = std::make_shared<LabelledMeasuredArray1D>(
       *static_cast<LabelledMeasuredArray1D*>(other));
   return new LabelledMeasuredArray1D(*labelled_measured_array->min(oarray));
+  FALCON_C_API_END(nullptr)
+}
+
+double LabelledMeasuredArray1D_max(LabelledMeasuredArray1DHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to LabelledMeasuredArray1D_max");
+  }
+  LabelledMeasuredArray1D* labelled_measured_array =
+      static_cast<LabelledMeasuredArray1D*>(handle);
+  return labelled_measured_array->max());
   FALCON_C_API_END(nullptr)
 }
 
@@ -880,7 +904,7 @@ LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_max_measured_array(
 }
 
 bool LabelledMeasuredArray1D_equal(LabelledMeasuredArray1DHandle handle,
-                                      LabelledMeasuredArray1DHandle other) {
+                                   LabelledMeasuredArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
@@ -894,7 +918,7 @@ bool LabelledMeasuredArray1D_equal(LabelledMeasuredArray1DHandle handle,
 }
 
 bool LabelledMeasuredArray1D_not_equal(LabelledMeasuredArray1DHandle handle,
-                                         LabelledMeasuredArray1DHandle other) {
+                                       LabelledMeasuredArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
@@ -908,7 +932,7 @@ bool LabelledMeasuredArray1D_not_equal(LabelledMeasuredArray1DHandle handle,
 }
 
 bool LabelledMeasuredArray1D_greater_than(LabelledMeasuredArray1DHandle handle,
-                                         const double                  value) {
+                                          const double                  value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -920,7 +944,7 @@ bool LabelledMeasuredArray1D_greater_than(LabelledMeasuredArray1DHandle handle,
 }
 
 bool LabelledMeasuredArray1D_less_than(LabelledMeasuredArray1DHandle handle,
-                                      const double                  value) {
+                                       const double                  value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(

@@ -261,7 +261,7 @@ size_t MeasuredArray1D_data(MeasuredArray1DHandle handle,
 }
 
 void MeasuredArray1D_plus_equals_farray(MeasuredArray1DHandle handle,
-                                       FArrayDoubleHandle    other) {
+                                        FArrayDoubleHandle    other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
@@ -275,7 +275,7 @@ void MeasuredArray1D_plus_equals_farray(MeasuredArray1DHandle handle,
 }
 
 void MeasuredArray1D_plus_equals_double(MeasuredArray1DHandle handle,
-                                       const double          other) {
+                                        const double          other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -287,7 +287,7 @@ void MeasuredArray1D_plus_equals_double(MeasuredArray1DHandle handle,
 }
 
 void MeasuredArray1D_plus_equals_int(MeasuredArray1DHandle handle,
-                                    const int             other) {
+                                     const int             other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -352,7 +352,7 @@ MeasuredArray1DHandle MeasuredArray1D_plus_int(MeasuredArray1DHandle handle,
 }
 
 void MeasuredArray1D_minus_equals_farray(MeasuredArray1DHandle handle,
-                                        FArrayDoubleHandle    other) {
+                                         FArrayDoubleHandle    other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
@@ -366,7 +366,7 @@ void MeasuredArray1D_minus_equals_farray(MeasuredArray1DHandle handle,
 }
 
 void MeasuredArray1D_minus_equals_double(MeasuredArray1DHandle handle,
-                                        const double          other) {
+                                         const double          other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -378,7 +378,7 @@ void MeasuredArray1D_minus_equals_double(MeasuredArray1DHandle handle,
 }
 
 void MeasuredArray1D_minus_equals_int(MeasuredArray1DHandle handle,
-                                     const int             other) {
+                                      const int             other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -469,7 +469,7 @@ MeasuredArray1DHandle MeasuredArray1D_times_equals_farray(
 }
 
 void MeasuredArray1D_times_equals_double(MeasuredArray1DHandle handle,
-                                        const double          other) {
+                                         const double          other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -481,7 +481,7 @@ void MeasuredArray1D_times_equals_double(MeasuredArray1DHandle handle,
 }
 
 void MeasuredArray1D_times_equals_int(MeasuredArray1DHandle handle,
-                                     const int             other) {
+                                      const int             other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -576,7 +576,7 @@ MeasuredArray1DHandle MeasuredArray1D_divides_equals_farray(
 }
 
 void MeasuredArray1D_divides_equals_double(MeasuredArray1DHandle handle,
-                                          const double          other) {
+                                           const double          other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -588,7 +588,7 @@ void MeasuredArray1D_divides_equals_double(MeasuredArray1DHandle handle,
 }
 
 void MeasuredArray1D_divides_equals_int(MeasuredArray1DHandle handle,
-                                       const int             other) {
+                                        const int             other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -673,6 +673,16 @@ MeasuredArray1DHandle MeasuredArray1D_abs(MeasuredArray1DHandle handle) {
   FALCON_C_API_END(nullptr)
 }
 
+double MeasuredArray1D_min(MeasuredArray1DHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument("Null handle passed to MeasuredArray1D_min");
+  }
+  MeasuredArray1D* measured_array = static_cast<MeasuredArray1D*>(handle);
+  return measured_array->min();
+  FALCON_C_API_END(nullptr)
+}
+
 MeasuredArray1DHandle MeasuredArray1D_min_farray(MeasuredArray1DHandle handle,
                                                  FArrayDoubleHandle    other) {
   FALCON_C_API_BEGIN
@@ -699,6 +709,17 @@ MeasuredArray1DHandle MeasuredArray1D_min_measured_array(
       std::make_shared<MeasuredArray1D>(
           *static_cast<MeasuredArray1D*>(other))));
   FALCON_C_API_END(nullptr)
+}
+
+double MeasuredArray1D_max(MeasuredArray1DHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument("Null handle passed to MeasuredArray1D_max");
+  }
+  MeasuredArray1D* measured_array = static_cast<MeasuredArray1D*>(handle);
+  return measured_array->max();
+  FALCON_C_API_END(nullptr)
+  double
 }
 
 MeasuredArray1DHandle MeasuredArray1D_max_farray(MeasuredArray1DHandle handle,
@@ -730,11 +751,10 @@ MeasuredArray1DHandle MeasuredArray1D_max_measured_array(
 }
 
 bool MeasuredArray1D_equal(MeasuredArray1DHandle handle,
-                              MeasuredArray1DHandle other) {
+                           MeasuredArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
-    throw std::invalid_argument(
-        "Null handle passed to MeasuredArray1D_equal");
+    throw std::invalid_argument("Null handle passed to MeasuredArray1D_equal");
   }
   MeasuredArray1D* measured_array = static_cast<MeasuredArray1D*>(handle);
   MeasuredArray1D* oarray         = static_cast<MeasuredArray1D*>(other);
@@ -743,7 +763,7 @@ bool MeasuredArray1D_equal(MeasuredArray1DHandle handle,
 }
 
 bool MeasuredArray1D_not_equal(MeasuredArray1DHandle handle,
-                                 MeasuredArray1DHandle other) {
+                               MeasuredArray1DHandle other) {
   FALCON_C_API_BEGIN
   if (!handle || !other) {
     throw std::invalid_argument(
@@ -756,7 +776,7 @@ bool MeasuredArray1D_not_equal(MeasuredArray1DHandle handle,
 }
 
 bool MeasuredArray1D_greater_than(MeasuredArray1DHandle handle,
-                                 const double          value) {
+                                  const double          value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(
@@ -768,7 +788,7 @@ bool MeasuredArray1D_greater_than(MeasuredArray1DHandle handle,
 }
 
 bool MeasuredArray1D_less_than(MeasuredArray1DHandle handle,
-                              const double          value) {
+                               const double          value) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(

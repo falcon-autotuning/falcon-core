@@ -121,6 +121,10 @@ LabelledControlArray1DSP LabelledControlArray1D::abs() const {
       generic::FArray<double>::abs(), this->label());
 }
 
+double LabelledControlArray1D::min() const {
+  return generic::FArray<double>::min();
+}
+
 LabelledControlArray1DSP LabelledControlArray1D::min(
     const LabelledControlArray1DSP& other) const {
   if (!other) {
@@ -139,6 +143,10 @@ LabelledControlArray1DSP LabelledControlArray1D::min(
   }
   return std::make_shared<LabelledControlArray1D>(
       generic::FArray<double>::min(other), this->label());
+}
+
+double LabelledControlArray1D::max() const {
+  return generic::FArray<double>::max();
 }
 
 LabelledControlArray1DSP LabelledControlArray1D::max(

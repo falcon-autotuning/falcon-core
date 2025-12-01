@@ -122,11 +122,15 @@ MeasuredArrayHandle MeasuredArray_pow(MeasuredArrayHandle handle, double other);
 // @category:read
 MeasuredArrayHandle MeasuredArray_abs(MeasuredArrayHandle handle);
 // @category:read
+MeasuredArrayHandle MeasuredArray_min(MeasuredArrayHandle handle);
+// @category:read
 MeasuredArrayHandle MeasuredArray_min_farray(MeasuredArrayHandle handle,
                                              FArrayDoubleHandle  other);
 // @category:read
 MeasuredArrayHandle MeasuredArray_min_measured_array(MeasuredArrayHandle handle,
                                                      MeasuredArrayHandle other);
+// @category:read
+MeasuredArrayHandle MeasuredArray_max(MeasuredArrayHandle handle);
 // @category:read
 MeasuredArrayHandle MeasuredArray_max_farray(MeasuredArrayHandle handle,
                                              FArrayDoubleHandle  other);

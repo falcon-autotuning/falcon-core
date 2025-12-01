@@ -180,11 +180,15 @@ LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_pow(
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_abs(
     LabelledMeasuredArray1DHandle handle);
 // @category:read
+double LabelledMeasuredArray1D_min(LabelledMeasuredArray1DHandle handle);
+// @category:read
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_min_farray(
     LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other);
 // @category:read
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_min_measured_array(
     LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other);
+// @category:read
+double LabelledMeasuredArray1D_max(LabelledMeasuredArray1DHandle handle);
 // @category:read
 LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_max_farray(
     LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other);

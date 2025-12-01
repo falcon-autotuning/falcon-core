@@ -62,7 +62,7 @@ build-dev:
 		. -S . -B $(BUILD_DIR)
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi;
 	@LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH \
-	ninja -C $(BUILD_DIR) -j $(nproc) -d stats
+	ninja -C $(BUILD_DIR) -j $(shell nproc) -d stats
 	@echo "--- Build complete ---"
 
 define LOAD_COMPILER_ENV

@@ -45,13 +45,13 @@ size_t LabelledControlArray_data(LabelledControlArrayHandle handle,
                                  size_t                     numdata);
 // @category:write
 void LabelledControlArray_plus_equals_farray(LabelledControlArrayHandle handle,
-                                            FArrayDoubleHandle         other);
+                                             FArrayDoubleHandle         other);
 // @category:write
 void LabelledControlArray_plus_equals_double(LabelledControlArrayHandle handle,
-                                            double                     other);
+                                             double                     other);
 // @category:write
 void LabelledControlArray_plus_equals_int(LabelledControlArrayHandle handle,
-                                         int                        other);
+                                          int                        other);
 // @category:read
 LabelledControlArrayHandle LabelledControlArray_plus_control_array(
     LabelledControlArrayHandle handle, LabelledControlArrayHandle other);
@@ -69,13 +69,13 @@ void LabelledControlArray_minus_equals_control_array(
     LabelledControlArrayHandle handle, LabelledControlArrayHandle other);
 // @category:write
 void LabelledControlArray_minus_equals_farray(LabelledControlArrayHandle handle,
-                                             FArrayDoubleHandle         other);
+                                              FArrayDoubleHandle         other);
 // @category:write
 void LabelledControlArray_minus_equals_double(LabelledControlArrayHandle handle,
-                                             double                     other);
+                                              double                     other);
 // @category:write
 void LabelledControlArray_minus_equals_int(LabelledControlArrayHandle handle,
-                                          int                        other);
+                                           int                        other);
 // @category:read
 LabelledControlArrayHandle LabelledControlArray_minus_control_array(
     LabelledControlArrayHandle handle, LabelledControlArrayHandle other);
@@ -93,10 +93,10 @@ LabelledControlArrayHandle LabelledControlArray_negation(
     LabelledControlArrayHandle handle);
 // @category:write
 void LabelledControlArray_times_equals_double(LabelledControlArrayHandle handle,
-                                             double                     other);
+                                              double                     other);
 // @category:write
 void LabelledControlArray_times_equals_int(LabelledControlArrayHandle handle,
-                                          int                        other);
+                                           int                        other);
 // @category:read
 LabelledControlArrayHandle LabelledControlArray_times_double(
     LabelledControlArrayHandle handle, double other);
@@ -108,7 +108,7 @@ void LabelledControlArray_divides_equals_double(
     LabelledControlArrayHandle handle, double other);
 // @category:write
 void LabelledControlArray_divides_equals_int(LabelledControlArrayHandle handle,
-                                            int                        other);
+                                             int                        other);
 // @category:read
 LabelledControlArrayHandle LabelledControlArray_divides_double(
     LabelledControlArrayHandle handle, double other);
@@ -122,8 +122,7 @@ LabelledControlArrayHandle LabelledControlArray_pow(
 LabelledControlArrayHandle LabelledControlArray_abs(
     LabelledControlArrayHandle handle);
 // @category:read
-LabelledControlArrayHandle LabelledControlArray_min(
-    LabelledControlArrayHandle handle);
+double LabelledControlArray_min(LabelledControlArrayHandle handle);
 // @category:read
 LabelledControlArrayHandle LabelledControlArray_min_farray(
     LabelledControlArrayHandle handle, FArrayDoubleHandle other);
@@ -131,8 +130,7 @@ LabelledControlArrayHandle LabelledControlArray_min_farray(
 LabelledControlArrayHandle LabelledControlArray_min_control_array(
     LabelledControlArrayHandle handle, LabelledControlArrayHandle other);
 // @category:read
-LabelledControlArrayHandle LabelledControlArray_max(
-    LabelledControlArrayHandle handle);
+double LabelledControlArray_max(LabelledControlArrayHandle handle);
 // @category:read
 LabelledControlArrayHandle LabelledControlArray_max_farray(
     LabelledControlArrayHandle handle, FArrayDoubleHandle other);
@@ -141,16 +139,16 @@ LabelledControlArrayHandle LabelledControlArray_max_control_array(
     LabelledControlArrayHandle handle, LabelledControlArrayHandle other);
 // @category:read
 bool LabelledControlArray_equal(LabelledControlArrayHandle handle,
-                                   LabelledControlArrayHandle other);
+                                LabelledControlArrayHandle other);
 // @category:read
 bool LabelledControlArray_not_equal(LabelledControlArrayHandle handle,
-                                      LabelledControlArrayHandle other);
+                                    LabelledControlArrayHandle other);
 // @category:read
 bool LabelledControlArray_greater_than(LabelledControlArrayHandle handle,
-                                      double                     value);
+                                       double                     value);
 // @category:read
 bool LabelledControlArray_less_than(LabelledControlArrayHandle handle,
-                                   double                     value);
+                                    double                     value);
 // @category:write
 void LabelledControlArray_remove_offset(LabelledControlArrayHandle handle,
                                         double                     offset);

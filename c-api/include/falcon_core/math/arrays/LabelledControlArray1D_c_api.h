@@ -80,7 +80,7 @@ void LabelledControlArray1D_plus_equals_double(
     LabelledControlArray1DHandle handle, double other);
 // @category:write
 void LabelledControlArray1D_plus_equals_int(LabelledControlArray1DHandle handle,
-                                           int                          other);
+                                            int                          other);
 // @category:read
 LabelledControlArray1DHandle LabelledControlArray1D_plus_control_array(
     LabelledControlArray1DHandle handle, LabelledControlArray1DHandle other);
@@ -100,8 +100,8 @@ void LabelledControlArray1D_minus_equals_farray(
 void LabelledControlArray1D_minus_equals_double(
     LabelledControlArray1DHandle handle, double other);
 // @category:write
-void LabelledControlArray1D_minus_equals_int(LabelledControlArray1DHandle handle,
-                                            int                          other);
+void LabelledControlArray1D_minus_equals_int(
+    LabelledControlArray1DHandle handle, int other);
 // @category:read
 LabelledControlArray1DHandle LabelledControlArray1D_minus_control_array(
     LabelledControlArray1DHandle handle, LabelledControlArray1DHandle other);
@@ -121,8 +121,8 @@ LabelledControlArray1DHandle LabelledControlArray1D_negation(
 void LabelledControlArray1D_times_equals_double(
     LabelledControlArray1DHandle handle, double other);
 // @category:write
-void LabelledControlArray1D_times_equals_int(LabelledControlArray1DHandle handle,
-                                            int                          other);
+void LabelledControlArray1D_times_equals_int(
+    LabelledControlArray1DHandle handle, int other);
 // @category:read
 LabelledControlArray1DHandle LabelledControlArray1D_times_double(
     LabelledControlArray1DHandle handle, double other);
@@ -148,11 +148,15 @@ LabelledControlArray1DHandle LabelledControlArray1D_pow(
 LabelledControlArray1DHandle LabelledControlArray1D_abs(
     LabelledControlArray1DHandle handle);
 // @category:read
+double LabelledControlArray1D_min(LabelledControlArray1DHandle handle);
+// @category:read
 LabelledControlArray1DHandle LabelledControlArray1D_min_farray(
     LabelledControlArray1DHandle handle, FArrayDoubleHandle other);
 // @category:read
 LabelledControlArray1DHandle LabelledControlArray1D_min_control_array(
     LabelledControlArray1DHandle handle, LabelledControlArray1DHandle other);
+// @category:read
+double LabelledControlArray1D_max(LabelledControlArray1DHandle handle);
 // @category:read
 LabelledControlArray1DHandle LabelledControlArray1D_max_farray(
     LabelledControlArray1DHandle handle, FArrayDoubleHandle other);
@@ -161,16 +165,16 @@ LabelledControlArray1DHandle LabelledControlArray1D_max_control_array(
     LabelledControlArray1DHandle handle, LabelledControlArray1DHandle other);
 // @category:read
 bool LabelledControlArray1D_equal(LabelledControlArray1DHandle handle,
-                                     LabelledControlArray1DHandle other);
+                                  LabelledControlArray1DHandle other);
 // @category:read
 bool LabelledControlArray1D_not_equal(LabelledControlArray1DHandle handle,
-                                        LabelledControlArray1DHandle other);
+                                      LabelledControlArray1DHandle other);
 // @category:read
 bool LabelledControlArray1D_greater_than(LabelledControlArray1DHandle handle,
-                                        double                       value);
+                                         double                       value);
 // @category:read
 bool LabelledControlArray1D_less_than(LabelledControlArray1DHandle handle,
-                                     double                       value);
+                                      double                       value);
 // @category:write
 void LabelledControlArray1D_remove_offset(LabelledControlArray1DHandle handle,
                                           double                       offset);

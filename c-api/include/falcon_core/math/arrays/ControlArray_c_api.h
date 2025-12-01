@@ -32,7 +32,7 @@ size_t ControlArray_data(ControlArrayHandle handle,
                          size_t             numdata);
 // @category:write
 void ControlArray_plus_equals_farray(ControlArrayHandle handle,
-                                    FArrayDoubleHandle other);
+                                     FArrayDoubleHandle other);
 // @category:write
 void ControlArray_plus_equals_double(ControlArrayHandle handle, double other);
 // @category:write
@@ -50,7 +50,7 @@ ControlArrayHandle ControlArray_plus_double(ControlArrayHandle handle,
 ControlArrayHandle ControlArray_plus_int(ControlArrayHandle handle, int other);
 // @category:write
 void ControlArray_minus_equals_farray(ControlArrayHandle handle,
-                                     FArrayDoubleHandle other);
+                                      FArrayDoubleHandle other);
 // @category:write
 void ControlArray_minus_equals_double(ControlArrayHandle handle, double other);
 // @category:write
@@ -78,7 +78,8 @@ ControlArrayHandle ControlArray_times_double(ControlArrayHandle handle,
 // @category:read
 ControlArrayHandle ControlArray_times_int(ControlArrayHandle handle, int other);
 // @category:write
-void ControlArray_divides_equals_double(ControlArrayHandle handle, double other);
+void ControlArray_divides_equals_double(ControlArrayHandle handle,
+                                        double             other);
 // @category:write
 void ControlArray_divides_equals_int(ControlArrayHandle handle, int other);
 // @category:read
@@ -92,11 +93,15 @@ ControlArrayHandle ControlArray_pow(ControlArrayHandle handle, double other);
 // @category:read
 ControlArrayHandle ControlArray_abs(ControlArrayHandle handle);
 // @category:read
+double ControlArray_min(ControlArrayHandle handle);
+// @category:read
 ControlArrayHandle ControlArray_min_farray(ControlArrayHandle handle,
                                            FArrayDoubleHandle other);
 // @category:read
 ControlArrayHandle ControlArray_min_control_array(ControlArrayHandle handle,
                                                   ControlArrayHandle other);
+// @category:read
+double ControlArray_max(ControlArrayHandle handle);
 // @category:read
 ControlArrayHandle ControlArray_max_farray(ControlArrayHandle handle,
                                            FArrayDoubleHandle other);
@@ -107,7 +112,7 @@ ControlArrayHandle ControlArray_max_control_array(ControlArrayHandle handle,
 bool ControlArray_equal(ControlArrayHandle handle, ControlArrayHandle other);
 // @category:read
 bool ControlArray_not_equal(ControlArrayHandle handle,
-                              ControlArrayHandle other);
+                            ControlArrayHandle other);
 // @category:read
 bool ControlArray_greater_than(ControlArrayHandle handle, double value);
 // @category:read
