@@ -1,7 +1,7 @@
 # Additional makefile(s)..
 
 # Include doc pipeline rules (ignore if missing)
--include ./docs_managment_code/capi_docs.mk
+-include ./code_docs/capi_docs/capi_docs.mk
 
 # --------------------------------------------------------------------
 # Top-level build/test/clean rules for cpp and c-api

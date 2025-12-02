@@ -1,0 +1,70 @@
+#pragma once
+#ifdef __cplusplus
+    extern "C" {
+#endif
+#include "falcon_core/math/arrays/ControlArray_c_api.h"
+#include <stddef.h>
+#include <stdbool.h>
+#include "falcon_core/generic/String_c_api.h"
+
+// Forward declarations for opaque handles
+typedef void* ListControlArrayHandle;
+// Function declarations
+
+// @category:allocation
+ListControlArrayHandle ListControlArray_create_empty();
+
+// @category:allocation
+ListControlArrayHandle ListControlArray_fill_value(size_t count, ControlArrayHandle value);
+// @category:allocation
+ListControlArrayHandle ListControlArray_create(ControlArrayHandle* data, size_t count);
+// @category:deallocation
+void ListControlArray_destroy(ListControlArrayHandle handle);
+// @category:write
+void ListControlArray_push_back(ListControlArrayHandle handle, ControlArrayHandle value);
+// @category:read
+size_t ListControlArray_size(ListControlArrayHandle handle);
+// @category:read
+bool ListControlArray_empty(ListControlArrayHandle handle);
+// @category:write
+/* AUTO-DOC from cpp: ListControlArray_erase_at | falcon_core::generic::List::erase_at */
+/**
+ * @brief Allows for targetted eraseall of elements at an index.
+ * @param idx The index to erase at.
+ */
+void ListControlArray_erase_at(ListControlArrayHandle handle, size_t idx);
+// @category:write
+/* AUTO-DOC from cpp: ListControlArray_clear | falcon_core::generic::List::clear */
+/**
+ * @brief clears to contents of the list.
+ */
+void ListControlArray_clear(ListControlArrayHandle handle);
+// @category:read
+ControlArrayHandle ListControlArray_at(ListControlArrayHandle handle, size_t idx);
+// @category:read
+size_t ListControlArray_items(ListControlArrayHandle handle, ControlArrayHandle* out_buffer, size_t buffer_size);
+// @category:read
+bool ListControlArray_contains(ListControlArrayHandle handle, ControlArrayHandle value);
+// @category:read
+size_t ListControlArray_index(ListControlArrayHandle handle, ControlArrayHandle value);
+// @category:read
+/* AUTO-DOC from cpp: ListControlArray_intersection | falcon_core::generic::List::intersection */
+/**
+ * @brief Finds the intersection between this list and another.
+ * @param other the other list to compare again.
+ * @returns A list of values containing elements from both.
+ */
+ListControlArrayHandle ListControlArray_intersection(ListControlArrayHandle handle, ListControlArrayHandle other);
+// @category:read
+bool ListControlArray_equal(ListControlArrayHandle a, ListControlArrayHandle b);
+// @category:read
+bool ListControlArray_not_equal(ListControlArrayHandle a, ListControlArrayHandle b);
+
+// @category:read
+StringHandle      ListControlArray_to_json_string(ListControlArrayHandle handle);
+// @category:allocation
+ListControlArrayHandle ListControlArray_from_json_string(StringHandle json);
+
+#ifdef __cplusplus
+}
+#endif

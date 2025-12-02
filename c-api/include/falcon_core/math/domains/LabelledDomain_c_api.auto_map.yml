@@ -1,0 +1,10 @@
+c_header: LabelledDomain_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/math/domains/LabelledDomain.hpp
+mappings:
+- cpp: falcon_core::math::domains::LabelledDomain::port
+  c: LabelledDomain_port
+- cpp: falcon_core::math::domains::LabelledDomain::domain
+  c: LabelledDomain_domain
+- cpp: falcon_core::math::domains::LabelledDomain::matching_port
+  c: LabelledDomain_matching_port

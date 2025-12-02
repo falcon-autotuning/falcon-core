@@ -1,0 +1,10 @@
+c_header: ListCoupledLabelledDomain_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/List.hpp
+mappings:
+- cpp: falcon_core::generic::List::intersection
+  c: ListCoupledLabelledDomain_intersection
+- cpp: falcon_core::generic::List::clear
+  c: ListCoupledLabelledDomain_clear
+- cpp: falcon_core::generic::List::erase_at
+  c: ListCoupledLabelledDomain_erase_at
