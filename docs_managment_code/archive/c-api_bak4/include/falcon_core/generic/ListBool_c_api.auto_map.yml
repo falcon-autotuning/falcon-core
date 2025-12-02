@@ -1,0 +1,10 @@
+c_header: ListBool_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/List.hpp
+mappings:
+- cpp: falcon_core::generic::List::intersection
+  c: ListBool_intersection
+- cpp: falcon_core::generic::List::clear
+  c: ListBool_clear
+- cpp: falcon_core::generic::List::erase_at
+  c: ListBool_erase_at

@@ -45,9 +45,9 @@
 - comment_raw: "/**\n   * @brief Checks if the contents are of control arrays.\n \
     \  */"
   comment: '@brief Checks if the contents are of control arrays.'
-  declaration: bool isControlArrays() const {
+  declaration: bool is_control_arrays() const {
   kind: function
-  name: falcon_core::math::arrays::LabelledArrays::isControlArrays
+  name: falcon_core::math::arrays::LabelledArrays::is_control_arrays
 - comment_raw: "/**\n   * @brief Checks if the contents are of measured arrays.\n\
     \   */"
   comment: '@brief Checks if the contents are of measured arrays.'

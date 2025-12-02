@@ -1,0 +1,20 @@
+c_header: Connections_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/physics/device_structures/Connections.hpp
+mappings:
+- cpp: falcon_core::physics::device_structures::Connections::is_gates
+  c: Connections_is_gates
+- cpp: falcon_core::physics::device_structures::Connections::is_ohmics
+  c: Connections_is_ohmics
+- cpp: falcon_core::physics::device_structures::Connections::is_dot_gates
+  c: Connections_is_dot_gates
+- cpp: falcon_core::physics::device_structures::Connections::is_plunger_gates
+  c: Connections_is_plunger_gates
+- cpp: falcon_core::physics::device_structures::Connections::is_barrier_gates
+  c: Connections_is_barrier_gates
+- cpp: falcon_core::physics::device_structures::Connections::is_reservoir_gates
+  c: Connections_is_reservoir_gates
+- cpp: falcon_core::physics::device_structures::Connections::is_screening_gates
+  c: Connections_is_screening_gates
+- cpp: falcon_core::physics::device_structures::Connections::intersection
+  c: Connections_intersection

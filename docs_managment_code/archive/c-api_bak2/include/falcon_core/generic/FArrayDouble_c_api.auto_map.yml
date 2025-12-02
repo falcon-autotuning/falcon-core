@@ -1,0 +1,12 @@
+c_header: FArrayDouble_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/FArray.hpp
+mappings:
+- cpp: falcon_core::generic::FArray::reshape
+  c: FArrayDouble_reshape
+- cpp: falcon_core::generic::FArray::flip
+  c: FArrayDouble_flip
+- cpp: falcon_core::generic::FArray::gradient
+  c: FArrayDouble_gradient
+- cpp: falcon_core::generic::FArray::gradient
+  c: FArrayDouble_gradient

@@ -1,0 +1,6 @@
+c_header: PortTransform_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp
+mappings:
+- cpp: falcon_core::instrument_interfaces::port_transforms::PortTransform::port
+  c: PortTransform_port

@@ -1,0 +1,10 @@
+c_header: ListQuantity_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/List.hpp
+mappings:
+- cpp: falcon_core::generic::List::intersection
+  c: ListQuantity_intersection
+- cpp: falcon_core::generic::List::clear
+  c: ListQuantity_clear
+- cpp: falcon_core::generic::List::erase_at
+  c: ListQuantity_erase_at

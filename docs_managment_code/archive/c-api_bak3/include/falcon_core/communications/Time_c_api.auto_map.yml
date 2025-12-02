@@ -1,0 +1,10 @@
+c_header: Time_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/communications/Time.hpp
+mappings:
+- cpp: falcon_core::communications::Time::micro_seconds_since_epoch
+  c: Time_micro_seconds_since_epoch
+- cpp: falcon_core::communications::Time::time
+  c: Time_time
+- cpp: falcon_core::communications::Time::to_string
+  c: Time_to_string

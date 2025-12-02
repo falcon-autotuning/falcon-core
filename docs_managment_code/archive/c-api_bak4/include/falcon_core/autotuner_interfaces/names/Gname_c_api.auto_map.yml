@@ -1,0 +1,6 @@
+c_header: Gname_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/autotuner_interfaces/names/Gname.hpp
+mappings:
+- cpp: falcon_core::autotuner_interfaces::names::Gname::gname
+  c: Gname_gname

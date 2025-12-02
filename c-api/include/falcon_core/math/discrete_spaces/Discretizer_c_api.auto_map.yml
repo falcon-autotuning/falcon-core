@@ -1,0 +1,8 @@
+c_header: Discretizer_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/math/discrete_spaces/Discretizer.hpp
+mappings:
+- cpp: falcon_core::math::discrete_spaces::Discretizer::is_cartesian
+  c: Discretizer_is_cartesian
+- cpp: falcon_core::math::discrete_spaces::Discretizer::is_polar
+  c: Discretizer_is_polar

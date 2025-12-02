@@ -1,0 +1,6 @@
+c_header: Loader_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/physics/config/Loader.hpp
+mappings:
+- cpp: falcon_core::physics::config::Loader::config
+  c: Loader_config

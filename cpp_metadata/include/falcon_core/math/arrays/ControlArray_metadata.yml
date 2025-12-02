@@ -7,6 +7,18 @@
     {'
   kind: class
   name: null
+- comment_raw: "/**\n   * @brief Return the minimum value of the array.\n   */"
+  comment: '@brief Return the minimum value of the array.'
+  declaration: "std::shared_ptr<ControlArray> min(\n      const std::shared_ptr<ControlArray>&\
+    \ other) const;"
+  kind: function
+  name: falcon_core::math::arrays::ControlArray::min
+- comment_raw: "/**\n   * @brief Return the maximum value of the array.\n   */"
+  comment: '@brief Return the maximum value of the array.'
+  declaration: "std::shared_ptr<ControlArray> max(\n      const std::shared_ptr<ControlArray>&\
+    \ other) const;"
+  kind: function
+  name: falcon_core::math::arrays::ControlArray::max
 - comment_raw: "/**\n   * @brief Return a new Array with the given shape.\n   * @param\
     \ shape The new shape.\n   * @return A reshaped ControlArray.\n   */"
   comment: '@brief Return a new Array with the given shape.

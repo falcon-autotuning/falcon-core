@@ -1,0 +1,14 @@
+c_header: PairChannelConnections_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/Pair.hpp
+mappings:
+- cpp: falcon_core::generic::Pair::create
+  c: PairChannelConnections_create
+- cpp: falcon_core::generic::Pair::first
+  c: PairChannelConnections_first
+- cpp: falcon_core::generic::Pair::second
+  c: PairChannelConnections_second
+- cpp: falcon_core::generic::Pair::first
+  c: PairChannelConnections_first
+- cpp: falcon_core::generic::Pair::second
+  c: PairChannelConnections_second

@@ -1,0 +1,10 @@
+c_header: ListMapStringBool_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/List.hpp
+mappings:
+- cpp: falcon_core::generic::List::intersection
+  c: ListMapStringBool_intersection
+- cpp: falcon_core::generic::List::clear
+  c: ListMapStringBool_clear
+- cpp: falcon_core::generic::List::erase_at
+  c: ListMapStringBool_erase_at

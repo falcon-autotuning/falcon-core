@@ -6,6 +6,16 @@
   declaration: 'class ControlArray1D : public ControlArray, public Is1D<double> {'
   kind: class
   name: null
+- comment_raw: "/**\n   * @brief Return the minimum value of the array.\n   */"
+  comment: '@brief Return the minimum value of the array.'
+  declaration: double min() const;
+  kind: function
+  name: falcon_core::math::arrays::ControlArray1D::min
+- comment_raw: "/**\n   * @brief Return the maximum value of the array.\n   */"
+  comment: '@brief Return the maximum value of the array.'
+  declaration: double max() const;
+  kind: function
+  name: falcon_core::math::arrays::ControlArray1D::max
 - comment_raw: "/**\n   * @brief Return a new Array with the given shape.\n   * @param\
     \ shape The new shape.\n   * @return A reshaped ControlArray1D.\n   */"
   comment: '@brief Return a new Array with the given shape.

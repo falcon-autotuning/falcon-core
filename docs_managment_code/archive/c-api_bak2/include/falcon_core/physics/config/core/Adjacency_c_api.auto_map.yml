@@ -1,0 +1,8 @@
+c_header: Adjacency_c_api.h
+cpp_headers:
+- ../../../../../../cpp/include/falcon_core/physics/config/core/Adjacency.hpp
+mappings:
+- cpp: falcon_core::physics::config::core::Adjacency::indexes
+  c: Adjacency_indexes
+- cpp: falcon_core::physics::config::core::Adjacency::get_true_pairs
+  c: Adjacency_get_true_pairs

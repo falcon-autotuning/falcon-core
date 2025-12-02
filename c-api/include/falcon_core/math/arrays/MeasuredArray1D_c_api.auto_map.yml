@@ -1,0 +1,16 @@
+c_header: MeasuredArray1D_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/math/arrays/MeasuredArray1D.hpp
+mappings:
+- cpp: falcon_core::math::arrays::MeasuredArray1D::min
+  c: MeasuredArray1D_min
+- cpp: falcon_core::math::arrays::MeasuredArray1D::max
+  c: MeasuredArray1D_max
+- cpp: falcon_core::math::arrays::MeasuredArray1D::reshape
+  c: MeasuredArray1D_reshape
+- cpp: falcon_core::math::arrays::MeasuredArray1D::flip
+  c: MeasuredArray1D_flip
+- cpp: falcon_core::math::arrays::MeasuredArray1D::gradient
+  c: MeasuredArray1D_gradient
+- cpp: falcon_core::math::arrays::MeasuredArray1D::gradient
+  c: MeasuredArray1D_gradient

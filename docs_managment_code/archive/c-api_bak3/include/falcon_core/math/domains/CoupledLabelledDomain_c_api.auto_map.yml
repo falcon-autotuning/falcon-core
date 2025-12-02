@@ -1,0 +1,10 @@
+c_header: CoupledLabelledDomain_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/math/domains/CoupledLabelledDomain.hpp
+mappings:
+- cpp: falcon_core::math::domains::CoupledLabelledDomain::domains
+  c: CoupledLabelledDomain_domains
+- cpp: falcon_core::math::domains::CoupledLabelledDomain::labels
+  c: CoupledLabelledDomain_labels
+- cpp: falcon_core::math::domains::CoupledLabelledDomain::get_domain
+  c: CoupledLabelledDomain_get_domain

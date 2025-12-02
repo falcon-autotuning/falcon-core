@@ -87,7 +87,7 @@ docs-run:
 	    --cpp-root "$(CPP_ROOT)" \
 	    --cpp-metadata-root "$(CPP_METADATA_ROOT)" \
 	    --maps-dir "$(AUTO_MAPS_DIR)" \
-	    --user-maps-dir "$(USER_MAPS_DIR)" \
+	    --man-maps-dir "$(USER_MAPS_DIR)" \
 	    --out-root "$(C_API_ROOT)" \
 	    --verbose \
 	    >> "$(LOGS_DIR)/inject_c_docs.log"

@@ -21,8 +21,6 @@ falcon_core::math::arrays::Is1D::get_closest_index
 falcon_core::math::arrays::Is1D::reverse
 falcon_core::math::arrays::IsControl::_determine_alignments
 falcon_core::math::arrays::LabelledArrays::check_array_labels
-falcon_core::math::arrays::LabelledArrays::is_control_arrays
-falcon_core::math::arrays::LabelledArrays::is_measured_arrays
 falcon_core::math::discrete_spaces::Discretizer::CartesianDiscretizer
 falcon_core::math::discrete_spaces::Discretizer::PolarDiscretizer
 falcon_core::math::domains::Domain::bounds
@@ -53,6 +51,7 @@ falcon_core::physics::config::core::StandardConfigConnections::has_reservoir_gat
 falcon_core::physics::config::core::StandardConfigConnections::has_screening_gate
 falcon_core::physics::config::core::StandardConfigConnections::plunger_gates
 falcon_core::physics::config::core::StandardConfigConnections::reservoir_gates
+falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray
 falcon_core::physics::config::geometries::HasImplantedOhmic::ohmic
 falcon_core::physics::config::geometries::HasLeftNeighbor::left_neighbor
 falcon_core::physics::config::geometries::HasRightNeighbor::right_neighbor

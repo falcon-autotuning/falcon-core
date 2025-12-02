@@ -3,7 +3,7 @@ cpp_headers:
 - ../../../../cpp/include/falcon_core/math/Vector.hpp
 mappings:
 - cpp: falcon_core::math::Vector::endPoint
-  c: Vector_endPoint
+  c: Vector_end_point
 
 - cpp: falcon_core::math::Vector::startPoint
-  c: Vector_startPoint
+  c: Vector_start_point
