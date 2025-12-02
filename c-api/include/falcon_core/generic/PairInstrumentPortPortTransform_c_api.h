@@ -13,7 +13,6 @@ typedef void* PairInstrumentPortPortTransformHandle;
 
 /* AUTO-DOC from cpp: PairInstrumentPortPortTransform_create | falcon_core::generic::Pair::create */
 /**
- * @brief (from C++: falcon_core::generic::Pair::create)
  * @brief Store a pair of values.
  * @param first The first value.
  * @param second The second value.
@@ -22,13 +21,11 @@ PairInstrumentPortPortTransformHandle PairInstrumentPortPortTransform_create(Ins
 void PairInstrumentPortPortTransform_destroy(PairInstrumentPortPortTransformHandle handle);
 /* AUTO-DOC from cpp: PairInstrumentPortPortTransform_first | falcon_core::generic::Pair::first */
 /**
- * @brief (from C++: falcon_core::generic::Pair::first)
  * @brief Get the stored first value.
  */
 InstrumentPortHandle PairInstrumentPortPortTransform_first(PairInstrumentPortPortTransformHandle handle);
 /* AUTO-DOC from cpp: PairInstrumentPortPortTransform_second | falcon_core::generic::Pair::second */
 /**
- * @brief (from C++: falcon_core::generic::Pair::second)
  * @brief Get the stored second value.
  */
 PortTransformHandle PairInstrumentPortPortTransform_second(PairInstrumentPortPortTransformHandle handle);

@@ -13,7 +13,6 @@ typedef void* PairStringDoubleHandle;
 
 /* AUTO-DOC from cpp: PairStringDouble_create | falcon_core::generic::Pair::create */
 /**
- * @brief (from C++: falcon_core::generic::Pair::create)
  * @brief Store a pair of values.
  * @param first The first value.
  * @param second The second value.
@@ -22,13 +21,11 @@ PairStringDoubleHandle PairStringDouble_create(StringHandle first, double second
 void PairStringDouble_destroy(PairStringDoubleHandle handle);
 /* AUTO-DOC from cpp: PairStringDouble_first | falcon_core::generic::Pair::first */
 /**
- * @brief (from C++: falcon_core::generic::Pair::first)
  * @brief Get the stored first value.
  */
 StringHandle PairStringDouble_first(PairStringDoubleHandle handle);
 /* AUTO-DOC from cpp: PairStringDouble_second | falcon_core::generic::Pair::second */
 /**
- * @brief (from C++: falcon_core::generic::Pair::second)
  * @brief Get the stored second value.
  */
 double PairStringDouble_second(PairStringDoubleHandle handle);

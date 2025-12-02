@@ -1,6 +1,0 @@
-c_header: Channel_c_api.h
-cpp_headers:
-- ../../../../../cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp
-mappings:
-- cpp: falcon_core::autotuner_interfaces::names::NameBase::name
-  c: Channel_name

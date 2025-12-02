@@ -35,53 +35,53 @@ VectorHandle Vector_create_from_parent(MapConnectionQuantityHandle items);
 void Vector_destroy(VectorHandle handle);
 
 // Methods
+/* MAN-DOC from cpp: Vector_endPoint | falcon_core::math::Vector::endPoint */
+/**
+ * @brief Returns the point at the end.
+ */
 PointHandle                 Vector_endPoint(VectorHandle handle);
+/* MAN-DOC from cpp: Vector_startPoint | falcon_core::math::Vector::startPoint */
+/**
+ * @brief Returns the point at the start.
+ */
 PointHandle                 Vector_startPoint(VectorHandle handle);
 /* AUTO-DOC from cpp: Vector_end_quantities | falcon_core::math::Vector::end_quantities */
 /**
- * @brief (from C++: falcon_core::math::Vector::end_quantities)
  * @brief Returns the raw map of the ending point.
  */
 MapConnectionQuantityHandle Vector_end_quantities(VectorHandle handle);
 /* AUTO-DOC from cpp: Vector_start_quantities | falcon_core::math::Vector::start_quantities */
 /**
- * @brief (from C++: falcon_core::math::Vector::start_quantities)
  * @brief Returns the raw map of the starting point.
  */
 MapConnectionQuantityHandle Vector_start_quantities(VectorHandle handle);
 /* AUTO-DOC from cpp: Vector_end_map | falcon_core::math::Vector::end_map */
 /**
- * @brief (from C++: falcon_core::math::Vector::end_map)
  * @brief Returns the raw unitless map of the ending point.
  */
 MapConnectionDoubleHandle   Vector_end_map(VectorHandle handle);
 /* AUTO-DOC from cpp: Vector_start_map | falcon_core::math::Vector::start_map */
 /**
- * @brief (from C++: falcon_core::math::Vector::start_map)
  * @brief Returns the raw unitless map of the starting point.
  */
 MapConnectionDoubleHandle   Vector_start_map(VectorHandle handle);
 /* AUTO-DOC from cpp: Vector_connections | falcon_core::math::Vector::connections */
 /**
- * @brief (from C++: falcon_core::math::Vector::connections)
  * @brief Returns the affected connections for this vector.
  */
 ListConnectionHandle        Vector_connections(VectorHandle handle);
 /* AUTO-DOC from cpp: Vector_unit | falcon_core::math::Vector::unit */
 /**
- * @brief (from C++: falcon_core::math::Vector::unit)
  * @brief Returns the unit of this vector.
  */
 SymbolUnitHandle            Vector_unit(VectorHandle handle);
 /* AUTO-DOC from cpp: Vector_principle_connection | falcon_core::math::Vector::principle_connection */
 /**
- * @brief (from C++: falcon_core::math::Vector::principle_connection)
  * @brief returns the principle_connection that is the largest.
  */
 ConnectionHandle            Vector_principle_connection(VectorHandle handle);
 /* AUTO-DOC from cpp: Vector_magnitude | falcon_core::math::Vector::magnitude */
 /**
- * @brief (from C++: falcon_core::math::Vector::magnitude)
  * @brief The magnitude of the vector.
  */
 double                      Vector_magnitude(VectorHandle handle);
@@ -109,7 +109,6 @@ VectorHandle Vector_int_division(VectorHandle handle, int scalar);
 VectorHandle Vector_negation(VectorHandle handle);
 /* AUTO-DOC from cpp: Vector_update_start_from_states | falcon_core::math::Vector::update_start_from_states */
 /**
- * @brief (from C++: falcon_core::math::Vector::update_start_from_states)
  * @brief Updates the vector to start from teh given DeviceCVoltageStates.
  * @param state the new device voltage state.
  * @returns the displaced vector which starts at the given state.
@@ -121,10 +120,15 @@ VectorHandle Vector_translate_doubles(VectorHandle              handle,
                                       SymbolUnitHandle          unit);
 VectorHandle Vector_translate_quantities(VectorHandle                handle,
                                          MapConnectionQuantityHandle point);
+/* AUTO-DOC from cpp: Vector_translate | falcon_core::math::Vector::translate */
+/**
+ * @brief Displaces the origin of a vector by a point.
+ * @param point the diplacement
+ * @param unit the unit of displacement
+ */
 VectorHandle Vector_translate(VectorHandle handle, PointHandle point);
 /* AUTO-DOC from cpp: Vector_translate_to_origin | falcon_core::math::Vector::translate_to_origin */
 /**
- * @brief (from C++: falcon_core::math::Vector::translate_to_origin)
  * @brief Translates a vector to the origin.
  */
 VectorHandle Vector_translate_to_origin(VectorHandle handle);
@@ -134,26 +138,22 @@ VectorHandle Vector_double_shrink(VectorHandle handle, double extension);
 VectorHandle Vector_int_shrink(VectorHandle handle, int extension);
 /* AUTO-DOC from cpp: Vector_unit_vector | falcon_core::math::Vector::unit_vector */
 /**
- * @brief (from C++: falcon_core::math::Vector::unit_vector)
  * @brief Generates the unit vector for the direction of this vector.
  */
 VectorHandle Vector_unit_vector(VectorHandle handle);
 /* AUTO-DOC from cpp: Vector_normalize | falcon_core::math::Vector::normalize */
 /**
- * @brief (from C++: falcon_core::math::Vector::normalize)
  * @brief Returns the normalized vector starting at the anchored starting
  * point.
  */
 VectorHandle Vector_normalize(VectorHandle handle);
 /* AUTO-DOC from cpp: Vector_project | falcon_core::math::Vector::project */
 /**
- * @brief (from C++: falcon_core::math::Vector::project)
  * @brief Projects this vector onto another.
  */
 VectorHandle Vector_project(VectorHandle handle, VectorHandle other);
 /* AUTO-DOC from cpp: Vector_update_unit | falcon_core::math::Vector::update_unit */
 /**
- * @brief (from C++: falcon_core::math::Vector::update_unit)
  * @brief Updates the unit of this vector.
  */
 void         Vector_update_unit(VectorHandle handle, SymbolUnitHandle unit);

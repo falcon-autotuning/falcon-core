@@ -25,13 +25,11 @@ void MapChannelConnections_clear(MapChannelConnectionsHandle handle);
 bool MapChannelConnections_contains(MapChannelConnectionsHandle handle, const ChannelHandle key);
 /* AUTO-DOC from cpp: MapChannelConnections_keys | falcon_core::generic::Map::keys */
 /**
- * @brief (from C++: falcon_core::generic::Map::keys)
  * @brief Return the keys of the Map.
  */
 ListChannelHandle MapChannelConnections_keys(MapChannelConnectionsHandle handle);
 /* AUTO-DOC from cpp: MapChannelConnections_values | falcon_core::generic::Map::values */
 /**
- * @brief (from C++: falcon_core::generic::Map::values)
  * @brief Return the values of the Map.
  */
 ListConnectionsHandle MapChannelConnections_values(MapChannelConnectionsHandle handle);

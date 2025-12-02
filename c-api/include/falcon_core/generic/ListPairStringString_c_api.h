@@ -21,14 +21,12 @@ size_t ListPairStringString_size(ListPairStringStringHandle handle);
 bool ListPairStringString_empty(ListPairStringStringHandle handle);
 /* AUTO-DOC from cpp: ListPairStringString_erase_at | falcon_core::generic::List::erase_at */
 /**
- * @brief (from C++: falcon_core::generic::List::erase_at)
  * @brief Allows for targetted eraseall of elements at an index.
  * @param idx The index to erase at.
  */
 void ListPairStringString_erase_at(ListPairStringStringHandle handle, size_t idx);
 /* AUTO-DOC from cpp: ListPairStringString_clear | falcon_core::generic::List::clear */
 /**
- * @brief (from C++: falcon_core::generic::List::clear)
  * @brief clears to contents of the list.
  */
 void ListPairStringString_clear(ListPairStringStringHandle handle);
@@ -38,7 +36,6 @@ bool ListPairStringString_contains(ListPairStringStringHandle handle, PairString
 size_t ListPairStringString_index(ListPairStringStringHandle handle, PairStringStringHandle value);
 /* AUTO-DOC from cpp: ListPairStringString_intersection | falcon_core::generic::List::intersection */
 /**
- * @brief (from C++: falcon_core::generic::List::intersection)
  * @brief Finds the intersection between this list and another.
  * @param other the other list to compare again.
  * @returns A list of values containing elements from both.

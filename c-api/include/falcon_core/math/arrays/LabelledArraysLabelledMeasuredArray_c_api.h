@@ -23,14 +23,12 @@ void LabelledArraysLabelledMeasuredArray_destroy(
 // Methods
 /* AUTO-DOC from cpp: LabelledArraysLabelledMeasuredArray_arrays | falcon_core::math::arrays::LabelledArrays::arrays */
 /**
- * @brief (from C++: falcon_core::math::arrays::LabelledArrays::arrays)
  * @brief Returns the internal vector of labelled arrays.
  */
 ListLabelledMeasuredArrayHandle LabelledArraysLabelledMeasuredArray_arrays(
     LabelledArraysLabelledMeasuredArrayHandle handle);
 /* AUTO-DOC from cpp: LabelledArraysLabelledMeasuredArray_labels | falcon_core::math::arrays::LabelledArrays::labels */
 /**
- * @brief (from C++: falcon_core::math::arrays::LabelledArrays::labels)
  * @brief Returns the labels of all labelled arrays.
  */
 ListAcquisitionContextHandle LabelledArraysLabelledMeasuredArray_labels(

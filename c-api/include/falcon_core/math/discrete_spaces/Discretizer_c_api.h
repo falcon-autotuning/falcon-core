@@ -22,13 +22,11 @@ void         Discretizer_set_delta(DiscretizerHandle handle, double delta);
 DomainHandle Discretizer_domain(DiscretizerHandle handle);
 /* AUTO-DOC from cpp: Discretizer_is_cartesian | falcon_core::math::discrete_spaces::Discretizer::is_cartesian */
 /**
- * @brief (from C++: falcon_core::math::discrete_spaces::Discretizer::is_cartesian)
  * @brief Checks if the current Discretizer is Cartesian.
  */
 bool         Discretizer_is_cartesian(DiscretizerHandle handle);
 /* AUTO-DOC from cpp: Discretizer_is_polar | falcon_core::math::discrete_spaces::Discretizer::is_polar */
 /**
- * @brief (from C++: falcon_core::math::discrete_spaces::Discretizer::is_polar)
  * @brief Checks if the current Discretizer is Polar.
  */
 bool         Discretizer_is_polar(DiscretizerHandle handle);

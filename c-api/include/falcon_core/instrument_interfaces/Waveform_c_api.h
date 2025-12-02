@@ -20,7 +20,6 @@ WaveformHandle Waveform_create(DiscreteSpaceHandle     space,
                                ListPortTransformHandle transforms);
 /* AUTO-DOC from cpp: Waveform_create_cartesianwaveform | falcon_core::instrument_interfaces::Waveform::CartesianWaveform */
 /**
- * @brief (from C++: falcon_core::instrument_interfaces::Waveform::CartesianWaveform)
  * @brief Create a ND CartesianWaveform from raw deltas.
  * @param divisions The number of divisions along each axis.
  * @param axes The axes defining the cartesian space.
@@ -36,7 +35,6 @@ WaveformHandle Waveform_create_cartesianwaveform(
     DomainHandle                    domain);
 /* AUTO-DOC from cpp: Waveform_create_cartesianidentitywaveform | falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform */
 /**
- * @brief (from C++: falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform)
  * @brief Create a ND CartesianWaveform with identity transforms.
  * @param divisions The number of divisions along each axis.
  * @param axes The axes defining the cartesian space.
@@ -50,7 +48,6 @@ WaveformHandle Waveform_create_cartesianidentitywaveform(
     DomainHandle                    domain);
 /* AUTO-DOC from cpp: Waveform_create_cartesianwaveform2D | falcon_core::instrument_interfaces::Waveform::CartesianWaveform2D */
 /**
- * @brief (from C++: falcon_core::instrument_interfaces::Waveform::CartesianWaveform2D)
  * @brief Create a 2D CartesianWaveform from raw deltas.
  * @param divisions The number of divisions along each axis.
  * @param axes The axes defining the cartesian space.
@@ -66,7 +63,6 @@ WaveformHandle Waveform_create_cartesianwaveform2D(
     DomainHandle                    domain);
 /* AUTO-DOC from cpp: Waveform_create_cartesianidentitywaveform2D | falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform2D */
 /**
- * @brief (from C++: falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform2D)
  * @brief Create a 2D CartesianWaveform with identity transforms.
  * @param divisions The number of divisions along each axis.
  * @param axes The axes defining the cartesian space.
@@ -80,7 +76,6 @@ WaveformHandle Waveform_create_cartesianidentitywaveform2D(
     DomainHandle                    domain);
 /* AUTO-DOC from cpp: Waveform_create_cartesianwaveform1D | falcon_core::instrument_interfaces::Waveform::CartesianWaveform1D */
 /**
- * @brief (from C++: falcon_core::instrument_interfaces::Waveform::CartesianWaveform1D)
  * @brief Create a 1D CartesianWaveform from raw deltas.
  * @param divisions The number of divisions along each axis.
  * @param axes The axes defining the cartesian space.
@@ -96,7 +91,6 @@ WaveformHandle Waveform_create_cartesianwaveform1D(
     DomainHandle                domain);
 /* AUTO-DOC from cpp: Waveform_create_cartesianidentitywaveform1D | falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform1D */
 /**
- * @brief (from C++: falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform1D)
  * @brief Create a 1D CartesianWaveform with identity transforms.
  * @param divisions The number of divisions along each axis.
  * @param axes The axes defining the cartesian space.
@@ -115,7 +109,6 @@ void Waveform_destroy(WaveformHandle handle);
 // Methods
 /* AUTO-DOC from cpp: Waveform_space | falcon_core::instrument_interfaces::Waveform::space */
 /**
- * @brief (from C++: falcon_core::instrument_interfaces::Waveform::space)
  * @brief Get the measurement space.
  */
 DiscreteSpaceHandle     Waveform_space(WaveformHandle handle);

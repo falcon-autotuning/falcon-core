@@ -21,14 +21,12 @@ size_t ListPairFloatFloat_size(ListPairFloatFloatHandle handle);
 bool ListPairFloatFloat_empty(ListPairFloatFloatHandle handle);
 /* AUTO-DOC from cpp: ListPairFloatFloat_erase_at | falcon_core::generic::List::erase_at */
 /**
- * @brief (from C++: falcon_core::generic::List::erase_at)
  * @brief Allows for targetted eraseall of elements at an index.
  * @param idx The index to erase at.
  */
 void ListPairFloatFloat_erase_at(ListPairFloatFloatHandle handle, size_t idx);
 /* AUTO-DOC from cpp: ListPairFloatFloat_clear | falcon_core::generic::List::clear */
 /**
- * @brief (from C++: falcon_core::generic::List::clear)
  * @brief clears to contents of the list.
  */
 void ListPairFloatFloat_clear(ListPairFloatFloatHandle handle);
@@ -38,7 +36,6 @@ bool ListPairFloatFloat_contains(ListPairFloatFloatHandle handle, PairFloatFloat
 size_t ListPairFloatFloat_index(ListPairFloatFloatHandle handle, PairFloatFloatHandle value);
 /* AUTO-DOC from cpp: ListPairFloatFloat_intersection | falcon_core::generic::List::intersection */
 /**
- * @brief (from C++: falcon_core::generic::List::intersection)
  * @brief Finds the intersection between this list and another.
  * @param other the other list to compare again.
  * @returns A list of values containing elements from both.

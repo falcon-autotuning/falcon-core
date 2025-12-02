@@ -21,14 +21,12 @@ size_t ListGroup_size(ListGroupHandle handle);
 bool ListGroup_empty(ListGroupHandle handle);
 /* AUTO-DOC from cpp: ListGroup_erase_at | falcon_core::generic::List::erase_at */
 /**
- * @brief (from C++: falcon_core::generic::List::erase_at)
  * @brief Allows for targetted eraseall of elements at an index.
  * @param idx The index to erase at.
  */
 void ListGroup_erase_at(ListGroupHandle handle, size_t idx);
 /* AUTO-DOC from cpp: ListGroup_clear | falcon_core::generic::List::clear */
 /**
- * @brief (from C++: falcon_core::generic::List::clear)
  * @brief clears to contents of the list.
  */
 void ListGroup_clear(ListGroupHandle handle);
@@ -38,7 +36,6 @@ bool ListGroup_contains(ListGroupHandle handle, GroupHandle value);
 size_t ListGroup_index(ListGroupHandle handle, GroupHandle value);
 /* AUTO-DOC from cpp: ListGroup_intersection | falcon_core::generic::List::intersection */
 /**
- * @brief (from C++: falcon_core::generic::List::intersection)
  * @brief Finds the intersection between this list and another.
  * @param other the other list to compare again.
  * @returns A list of values containing elements from both.

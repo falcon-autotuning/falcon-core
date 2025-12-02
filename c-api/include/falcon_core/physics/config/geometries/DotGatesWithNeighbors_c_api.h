@@ -19,13 +19,11 @@ void DotGatesWithNeighbors_destroy(DotGatesWithNeighborsHandle handle);
 // Methods
 /* AUTO-DOC from cpp: DotGatesWithNeighbors_is_plunger_gates | falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_plunger_gates */
 /**
- * @brief (from C++: falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_plunger_gates)
  * @brief Check if all connections are plunger gates.
  */
 bool DotGatesWithNeighbors_is_plunger_gates(DotGatesWithNeighborsHandle handle);
 /* AUTO-DOC from cpp: DotGatesWithNeighbors_is_barrier_gates | falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_barrier_gates */
 /**
- * @brief (from C++: falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_barrier_gates)
  * @brief Check if all connections are barrier gates.
  */
 bool DotGatesWithNeighbors_is_barrier_gates(DotGatesWithNeighborsHandle handle);

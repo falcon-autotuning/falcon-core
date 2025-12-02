@@ -21,14 +21,12 @@ size_t ListLabelledMeasuredArray_size(ListLabelledMeasuredArrayHandle handle);
 bool ListLabelledMeasuredArray_empty(ListLabelledMeasuredArrayHandle handle);
 /* AUTO-DOC from cpp: ListLabelledMeasuredArray_erase_at | falcon_core::generic::List::erase_at */
 /**
- * @brief (from C++: falcon_core::generic::List::erase_at)
  * @brief Allows for targetted eraseall of elements at an index.
  * @param idx The index to erase at.
  */
 void ListLabelledMeasuredArray_erase_at(ListLabelledMeasuredArrayHandle handle, size_t idx);
 /* AUTO-DOC from cpp: ListLabelledMeasuredArray_clear | falcon_core::generic::List::clear */
 /**
- * @brief (from C++: falcon_core::generic::List::clear)
  * @brief clears to contents of the list.
  */
 void ListLabelledMeasuredArray_clear(ListLabelledMeasuredArrayHandle handle);
@@ -38,7 +36,6 @@ bool ListLabelledMeasuredArray_contains(ListLabelledMeasuredArrayHandle handle, 
 size_t ListLabelledMeasuredArray_index(ListLabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle value);
 /* AUTO-DOC from cpp: ListLabelledMeasuredArray_intersection | falcon_core::generic::List::intersection */
 /**
- * @brief (from C++: falcon_core::generic::List::intersection)
  * @brief Finds the intersection between this list and another.
  * @param other the other list to compare again.
  * @returns A list of values containing elements from both.

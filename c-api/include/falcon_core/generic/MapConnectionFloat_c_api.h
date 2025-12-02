@@ -25,13 +25,11 @@ void MapConnectionFloat_clear(MapConnectionFloatHandle handle);
 bool MapConnectionFloat_contains(MapConnectionFloatHandle handle, const ConnectionHandle key);
 /* AUTO-DOC from cpp: MapConnectionFloat_keys | falcon_core::generic::Map::keys */
 /**
- * @brief (from C++: falcon_core::generic::Map::keys)
  * @brief Return the keys of the Map.
  */
 ListConnectionHandle MapConnectionFloat_keys(MapConnectionFloatHandle handle);
 /* AUTO-DOC from cpp: MapConnectionFloat_values | falcon_core::generic::Map::values */
 /**
- * @brief (from C++: falcon_core::generic::Map::values)
  * @brief Return the values of the Map.
  */
 ListFloatHandle MapConnectionFloat_values(MapConnectionFloatHandle handle);

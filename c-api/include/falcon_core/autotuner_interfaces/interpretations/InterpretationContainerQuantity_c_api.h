@@ -22,14 +22,12 @@ InterpretationContainerQuantityHandle InterpretationContainerQuantity_create(Map
 void InterpretationContainerQuantity_destroy(InterpretationContainerQuantityHandle handle);
 /* AUTO-DOC from cpp: InterpretationContainerQuantity_unit | falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::unit */
 /**
- * @brief (from C++: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::unit)
  * @brief Returns the unit that all contexts in this constainer must have.
  */
 SymbolUnitHandle InterpretationContainerQuantity_unit(
      InterpretationContainerQuantityHandle handle);
 /* AUTO-DOC from cpp: InterpretationContainerQuantity_select_by_connection | falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connection */
 /**
- * @brief (from C++: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connection)
  * @brief Select contexts that involve a specific connection.
  * @param connection The connection to search for.
  * @returns A list of contexts that involve the specified connection in either
@@ -39,7 +37,6 @@ ListInterpretationContextHandle InterpretationContainerQuantity_select_by_connec
     InterpretationContainerQuantityHandle handle, ConnectionHandle connection);
 /* AUTO-DOC from cpp: InterpretationContainerQuantity_select_by_connections | falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connections */
 /**
- * @brief (from C++: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connections)
  * @brief Select contexts that involve all of the specified connections.
  * @param connections List of connections to search for.
  * @returns A list of contexts that involve all specified connections.

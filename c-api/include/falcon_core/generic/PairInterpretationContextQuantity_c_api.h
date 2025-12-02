@@ -13,7 +13,6 @@ typedef void* PairInterpretationContextQuantityHandle;
 
 /* AUTO-DOC from cpp: PairInterpretationContextQuantity_create | falcon_core::generic::Pair::create */
 /**
- * @brief (from C++: falcon_core::generic::Pair::create)
  * @brief Store a pair of values.
  * @param first The first value.
  * @param second The second value.
@@ -22,13 +21,11 @@ PairInterpretationContextQuantityHandle PairInterpretationContextQuantity_create
 void PairInterpretationContextQuantity_destroy(PairInterpretationContextQuantityHandle handle);
 /* AUTO-DOC from cpp: PairInterpretationContextQuantity_first | falcon_core::generic::Pair::first */
 /**
- * @brief (from C++: falcon_core::generic::Pair::first)
  * @brief Get the stored first value.
  */
 InterpretationContextHandle PairInterpretationContextQuantity_first(PairInterpretationContextQuantityHandle handle);
 /* AUTO-DOC from cpp: PairInterpretationContextQuantity_second | falcon_core::generic::Pair::second */
 /**
- * @brief (from C++: falcon_core::generic::Pair::second)
  * @brief Get the stored second value.
  */
 QuantityHandle PairInterpretationContextQuantity_second(PairInterpretationContextQuantityHandle handle);

@@ -22,21 +22,18 @@ void CoupledLabelledDomain_destroy(CoupledLabelledDomainHandle handle);
 // Methods
 /* AUTO-DOC from cpp: CoupledLabelledDomain_domains | falcon_core::math::domains::CoupledLabelledDomain::domains */
 /**
- * @brief (from C++: falcon_core::math::domains::CoupledLabelledDomain::domains)
  * @brief Get all domains.
  */
 ListLabelledDomainHandle CoupledLabelledDomain_domains(
     CoupledLabelledDomainHandle handle);
 /* AUTO-DOC from cpp: CoupledLabelledDomain_labels | falcon_core::math::domains::CoupledLabelledDomain::labels */
 /**
- * @brief (from C++: falcon_core::math::domains::CoupledLabelledDomain::labels)
  * @brief Get all labels.
  * @return Vector of shared pointers to labels.
  */
 PortsHandle CoupledLabelledDomain_labels(CoupledLabelledDomainHandle handle);
 /* AUTO-DOC from cpp: CoupledLabelledDomain_get_domain | falcon_core::math::domains::CoupledLabelledDomain::get_domain */
 /**
- * @brief (from C++: falcon_core::math::domains::CoupledLabelledDomain::get_domain)
  * @brief Get domain by label.
  * @param search Shared pointer to label to search for.
  * @return Shared pointer to the matching domain.

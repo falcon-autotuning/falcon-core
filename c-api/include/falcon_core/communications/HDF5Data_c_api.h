@@ -42,14 +42,12 @@ void HDF5Data_destroy(HDF5DataHandle handle);
 // Methods
 /* AUTO-DOC from cpp: HDF5Data_to_file | falcon_core::communications::HDF5Data::to_file */
 /**
- * @brief (from C++: falcon_core::communications::HDF5Data::to_file)
  * @brief Convert from an HDF5Data object to a file.
  * @param path The path to write the HDF5 file at.
  */
 void HDF5Data_to_file(HDF5DataHandle handle, StringHandle path);
 /* AUTO-DOC from cpp: HDF5Data_to_communications | falcon_core::communications::HDF5Data::to_communications */
 /**
- * @brief (from C++: falcon_core::communications::HDF5Data::to_communications)
  * @brief Convert from an HDF5Data object to a MeasurementResponse and a
  * Metadata.
  * @return A pair of MeasurementResponse and MeasurementRequest.

@@ -21,14 +21,12 @@ size_t ListGname_size(ListGnameHandle handle);
 bool ListGname_empty(ListGnameHandle handle);
 /* AUTO-DOC from cpp: ListGname_erase_at | falcon_core::generic::List::erase_at */
 /**
- * @brief (from C++: falcon_core::generic::List::erase_at)
  * @brief Allows for targetted eraseall of elements at an index.
  * @param idx The index to erase at.
  */
 void ListGname_erase_at(ListGnameHandle handle, size_t idx);
 /* AUTO-DOC from cpp: ListGname_clear | falcon_core::generic::List::clear */
 /**
- * @brief (from C++: falcon_core::generic::List::clear)
  * @brief clears to contents of the list.
  */
 void ListGname_clear(ListGnameHandle handle);
@@ -38,7 +36,6 @@ bool ListGname_contains(ListGnameHandle handle, GnameHandle value);
 size_t ListGname_index(ListGnameHandle handle, GnameHandle value);
 /* AUTO-DOC from cpp: ListGname_intersection | falcon_core::generic::List::intersection */
 /**
- * @brief (from C++: falcon_core::generic::List::intersection)
  * @brief Finds the intersection between this list and another.
  * @param other the other list to compare again.
  * @returns A list of values containing elements from both.

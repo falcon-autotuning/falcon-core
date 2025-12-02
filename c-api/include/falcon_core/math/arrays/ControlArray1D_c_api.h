@@ -114,7 +114,6 @@ ListListSizeTHandle  ControlArray1D_where(ControlArray1DHandle handle,
                                           const double         value);
 /* AUTO-DOC from cpp: ControlArray1D_flip | falcon_core::math::arrays::ControlArray1D::flip */
 /**
- * @brief (from C++: falcon_core::math::arrays::ControlArray1D::flip)
  * @brief Flip the data along the given axis.
  * @param axis The axis to flip.
  * @return A flipped ControlArray1D1D.
@@ -126,7 +125,6 @@ size_t               ControlArray1D_full_gradient(ControlArray1DHandle handle,
                                                   size_t               buffer_size);
 /* AUTO-DOC from cpp: ControlArray1D_gradient | falcon_core::math::arrays::ControlArray1D::gradient */
 /**
- * @brief (from C++: falcon_core::math::arrays::ControlArray1D::gradient)
  * @brief Return the gradient of the data along a given axis.
  * Computes the gradient along the specified axis using finite differences:
  * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2

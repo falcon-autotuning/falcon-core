@@ -20,14 +20,12 @@ size_t ListDouble_size(ListDoubleHandle handle);
 bool ListDouble_empty(ListDoubleHandle handle);
 /* AUTO-DOC from cpp: ListDouble_erase_at | falcon_core::generic::List::erase_at */
 /**
- * @brief (from C++: falcon_core::generic::List::erase_at)
  * @brief Allows for targetted eraseall of elements at an index.
  * @param idx The index to erase at.
  */
 void ListDouble_erase_at(ListDoubleHandle handle, size_t idx);
 /* AUTO-DOC from cpp: ListDouble_clear | falcon_core::generic::List::clear */
 /**
- * @brief (from C++: falcon_core::generic::List::clear)
  * @brief clears to contents of the list.
  */
 void ListDouble_clear(ListDoubleHandle handle);
@@ -37,7 +35,6 @@ bool ListDouble_contains(ListDoubleHandle handle, double value);
 size_t ListDouble_index(ListDoubleHandle handle, double value);
 /* AUTO-DOC from cpp: ListDouble_intersection | falcon_core::generic::List::intersection */
 /**
- * @brief (from C++: falcon_core::generic::List::intersection)
  * @brief Finds the intersection between this list and another.
  * @param other the other list to compare again.
  * @returns A list of values containing elements from both.

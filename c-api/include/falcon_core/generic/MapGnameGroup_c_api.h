@@ -25,13 +25,11 @@ void MapGnameGroup_clear(MapGnameGroupHandle handle);
 bool MapGnameGroup_contains(MapGnameGroupHandle handle, const GnameHandle key);
 /* AUTO-DOC from cpp: MapGnameGroup_keys | falcon_core::generic::Map::keys */
 /**
- * @brief (from C++: falcon_core::generic::Map::keys)
  * @brief Return the keys of the Map.
  */
 ListGnameHandle MapGnameGroup_keys(MapGnameGroupHandle handle);
 /* AUTO-DOC from cpp: MapGnameGroup_values | falcon_core::generic::Map::values */
 /**
- * @brief (from C++: falcon_core::generic::Map::values)
  * @brief Return the values of the Map.
  */
 ListGroupHandle MapGnameGroup_values(MapGnameGroupHandle handle);

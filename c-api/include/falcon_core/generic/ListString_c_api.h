@@ -20,14 +20,12 @@ size_t ListString_size(ListStringHandle handle);
 bool ListString_empty(ListStringHandle handle);
 /* AUTO-DOC from cpp: ListString_erase_at | falcon_core::generic::List::erase_at */
 /**
- * @brief (from C++: falcon_core::generic::List::erase_at)
  * @brief Allows for targetted eraseall of elements at an index.
  * @param idx The index to erase at.
  */
 void ListString_erase_at(ListStringHandle handle, size_t idx);
 /* AUTO-DOC from cpp: ListString_clear | falcon_core::generic::List::clear */
 /**
- * @brief (from C++: falcon_core::generic::List::clear)
  * @brief clears to contents of the list.
  */
 void ListString_clear(ListStringHandle handle);
@@ -37,7 +35,6 @@ bool ListString_contains(ListStringHandle handle, StringHandle value);
 size_t ListString_index(ListStringHandle handle, StringHandle value);
 /* AUTO-DOC from cpp: ListString_intersection | falcon_core::generic::List::intersection */
 /**
- * @brief (from C++: falcon_core::generic::List::intersection)
  * @brief Finds the intersection between this list and another.
  * @param other the other list to compare again.
  * @returns A list of values containing elements from both.

@@ -18,19 +18,16 @@ void Quantity_destroy(QuantityHandle handle);
 // Methods
 /* AUTO-DOC from cpp: Quantity_value | falcon_core::math::Quantity::value */
 /**
- * @brief (from C++: falcon_core::math::Quantity::value)
  * @brief Return the value of the quantity.
  */
 double           Quantity_value(QuantityHandle handle);
 /* AUTO-DOC from cpp: Quantity_unit | falcon_core::math::Quantity::unit */
 /**
- * @brief (from C++: falcon_core::math::Quantity::unit)
  * @brief Return the unit of the quantity.
  */
 SymbolUnitHandle Quantity_unit(QuantityHandle handle);
 /* AUTO-DOC from cpp: Quantity_convert_to | falcon_core::math::Quantity::convert_to */
 /**
- * @brief (from C++: falcon_core::math::Quantity::convert_to)
  * @brief Convert the quantity to a different unit.
  * @param target_unit the raget unit to convert to.
  */

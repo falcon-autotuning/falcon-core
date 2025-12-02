@@ -1,3 +1,0 @@
-/home/tylerk/falcon-dev/falcon-core/c-api/CMakeFiles/falcon_core_c_api.dir
-/home/tylerk/falcon-dev/falcon-core/c-api/CMakeFiles/edit_cache.dir
-/home/tylerk/falcon-dev/falcon-core/c-api/CMakeFiles/rebuild_cache.dir

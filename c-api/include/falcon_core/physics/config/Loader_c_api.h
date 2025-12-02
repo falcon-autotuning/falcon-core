@@ -18,7 +18,6 @@ void Loader_destroy(LoaderHandle handle);
 // Methods
 /* AUTO-DOC from cpp: Loader_config | falcon_core::physics::config::Loader::config */
 /**
- * @brief (from C++: falcon_core::physics::config::Loader::config)
  * @brief Returns the config.
  */
 ConfigHandle Loader_config(LoaderHandle handle);

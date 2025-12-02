@@ -27,7 +27,6 @@ void PortTransform_destroy(PortTransformHandle handle);
 // Methods
 /* AUTO-DOC from cpp: PortTransform_port | falcon_core::instrument_interfaces::port_transforms::PortTransform::port */
 /**
- * @brief (from C++: falcon_core::instrument_interfaces::port_transforms::PortTransform::port)
  * @brief Returns the port associated with the transform.
  */
 InstrumentPortHandle PortTransform_port(PortTransformHandle handle);

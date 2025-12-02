@@ -12,7 +12,6 @@ typedef void* PairConnectionConnectionHandle;
 
 /* AUTO-DOC from cpp: PairConnectionConnection_create | falcon_core::generic::Pair::create */
 /**
- * @brief (from C++: falcon_core::generic::Pair::create)
  * @brief Store a pair of values.
  * @param first The first value.
  * @param second The second value.
@@ -21,13 +20,11 @@ PairConnectionConnectionHandle PairConnectionConnection_create(ConnectionHandle 
 void PairConnectionConnection_destroy(PairConnectionConnectionHandle handle);
 /* AUTO-DOC from cpp: PairConnectionConnection_first | falcon_core::generic::Pair::first */
 /**
- * @brief (from C++: falcon_core::generic::Pair::first)
  * @brief Get the stored first value.
  */
 ConnectionHandle PairConnectionConnection_first(PairConnectionConnectionHandle handle);
 /* AUTO-DOC from cpp: PairConnectionConnection_second | falcon_core::generic::Pair::second */
 /**
- * @brief (from C++: falcon_core::generic::Pair::second)
  * @brief Get the stored second value.
  */
 ConnectionHandle PairConnectionConnection_second(PairConnectionConnectionHandle handle);

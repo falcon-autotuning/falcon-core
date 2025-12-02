@@ -28,13 +28,11 @@ void Point_destroy(PointHandle handle);
 // Methods
 /* AUTO-DOC from cpp: Point_unit | falcon_core::math::Point::unit */
 /**
- * @brief (from C++: falcon_core::math::Point::unit)
  * @brief Returns the SI unit for the point.
  */
 SymbolUnitHandle     Point_unit(PointHandle handle);
 /* AUTO-DOC from cpp: Point_insert_or_assign | falcon_core::math::Point::insert_or_assign */
 /**
- * @brief (from C++: falcon_core::math::Point::insert_or_assign)
  * @brief an overide of insert to make sure units are fixed.
  */
 void                 Point_insert_or_assign(PointHandle      handle,
@@ -54,13 +52,11 @@ ListQuantityHandle   Point_values(PointHandle handle);
 ListPairConnectionQuantityHandle Point_items(PointHandle handle);
 /* AUTO-DOC from cpp: Point_coordinates | falcon_core::math::Point::coordinates */
 /**
- * @brief (from C++: falcon_core::math::Point::coordinates)
  * @brief Returns the coordinates for the point.
  */
 MapConnectionQuantityHandle      Point_coordinates(PointHandle handle);
 /* AUTO-DOC from cpp: Point_connections | falcon_core::math::Point::connections */
 /**
- * @brief (from C++: falcon_core::math::Point::connections)
  * @brief Returns the connections for the point.
  */
 ListConnectionHandle             Point_connections(PointHandle handle);

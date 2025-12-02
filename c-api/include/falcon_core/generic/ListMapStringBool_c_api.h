@@ -21,14 +21,12 @@ size_t ListMapStringBool_size(ListMapStringBoolHandle handle);
 bool ListMapStringBool_empty(ListMapStringBoolHandle handle);
 /* AUTO-DOC from cpp: ListMapStringBool_erase_at | falcon_core::generic::List::erase_at */
 /**
- * @brief (from C++: falcon_core::generic::List::erase_at)
  * @brief Allows for targetted eraseall of elements at an index.
  * @param idx The index to erase at.
  */
 void ListMapStringBool_erase_at(ListMapStringBoolHandle handle, size_t idx);
 /* AUTO-DOC from cpp: ListMapStringBool_clear | falcon_core::generic::List::clear */
 /**
- * @brief (from C++: falcon_core::generic::List::clear)
  * @brief clears to contents of the list.
  */
 void ListMapStringBool_clear(ListMapStringBoolHandle handle);
@@ -38,7 +36,6 @@ bool ListMapStringBool_contains(ListMapStringBoolHandle handle, MapStringBoolHan
 size_t ListMapStringBool_index(ListMapStringBoolHandle handle, MapStringBoolHandle value);
 /* AUTO-DOC from cpp: ListMapStringBool_intersection | falcon_core::generic::List::intersection */
 /**
- * @brief (from C++: falcon_core::generic::List::intersection)
  * @brief Finds the intersection between this list and another.
  * @param other the other list to compare again.
  * @returns A list of values containing elements from both.

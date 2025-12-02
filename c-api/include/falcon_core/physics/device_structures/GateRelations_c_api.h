@@ -22,7 +22,6 @@ void GateRelations_destroy(GateRelationsHandle handle);
 // Methods
 /* AUTO-DOC from cpp: GateRelations_insert_or_assign | falcon_core::physics::device_structures::GateRelations::insert_or_assign */
 /**
- * @brief (from C++: falcon_core::physics::device_structures::GateRelations::insert_or_assign)
  * @brief Override the default Map assignment to force gate typing.
  */
 void              GateRelations_insert_or_assign(GateRelationsHandle handle,

@@ -36,43 +36,36 @@ void UnitSpace_destroy(UnitSpaceHandle handle);
 // Methods
 /* AUTO-DOC from cpp: UnitSpace_axes | falcon_core::math::UnitSpace::axes */
 /**
- * @brief (from C++: falcon_core::math::UnitSpace::axes)
  * @brief Return the axes of the space.
  */
 AxesDiscretizerHandle  UnitSpace_axes(UnitSpaceHandle handle);
 /* AUTO-DOC from cpp: UnitSpace_domain | falcon_core::math::UnitSpace::domain */
 /**
- * @brief (from C++: falcon_core::math::UnitSpace::domain)
  * @brief Return the domain of the space
  */
 DomainHandle           UnitSpace_domain(UnitSpaceHandle handle);
 /* AUTO-DOC from cpp: UnitSpace_space | falcon_core::math::UnitSpace::space */
 /**
- * @brief (from C++: falcon_core::math::UnitSpace::space)
  * @brief Return the stored space.
  */
 FArrayDoubleHandle     UnitSpace_space(UnitSpaceHandle handle);
 /* AUTO-DOC from cpp: UnitSpace_shape | falcon_core::math::UnitSpace::shape */
 /**
- * @brief (from C++: falcon_core::math::UnitSpace::shape)
  * @brief Return the shape of the unit space.
  */
 ListIntHandle          UnitSpace_shape(UnitSpaceHandle handle);
 /* AUTO-DOC from cpp: UnitSpace_dimension | falcon_core::math::UnitSpace::dimension */
 /**
- * @brief (from C++: falcon_core::math::UnitSpace::dimension)
  * @brief Return the number of dimensions in the space.
  */
 size_t                 UnitSpace_dimension(UnitSpaceHandle handle);
 /* AUTO-DOC from cpp: UnitSpace_compile | falcon_core::math::UnitSpace::compile */
 /**
- * @brief (from C++: falcon_core::math::UnitSpace::compile)
  * @brief Compile the unit space into a space.
  */
 void                   UnitSpace_compile(UnitSpaceHandle handle);
 /* AUTO-DOC from cpp: UnitSpace_create_array | falcon_core::math::UnitSpace::create_array */
 /**
- * @brief (from C++: falcon_core::math::UnitSpace::create_array)
  * @brief Return the projection of the space onto the given axes.
  * The projection contains the indexes of the axes to project onto.
  * @param axes The axes to project onto.

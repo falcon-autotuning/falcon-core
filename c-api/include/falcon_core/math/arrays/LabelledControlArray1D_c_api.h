@@ -126,7 +126,6 @@ void   LabelledControlArray1D_remove_offset(LabelledControlArray1DHandle handle,
 double LabelledControlArray1D_sum(LabelledControlArray1DHandle handle);
 /* AUTO-DOC from cpp: LabelledControlArray1D_reshape | falcon_core::math::arrays::LabelledControlArray1D::reshape */
 /**
- * @brief (from C++: falcon_core::math::arrays::LabelledControlArray1D::reshape)
  * @brief Return a new Array with the given shape.
  * @param shape The new shape.
  * @return A reshaped LabelledControlArray1D.
@@ -137,7 +136,6 @@ ListListSizeTHandle LabelledControlArray1D_where(
     LabelledControlArray1DHandle handle, const double value);
 /* AUTO-DOC from cpp: LabelledControlArray1D_flip | falcon_core::math::arrays::LabelledControlArray1D::flip */
 /**
- * @brief (from C++: falcon_core::math::arrays::LabelledControlArray1D::flip)
  * @brief Flip the data along the given axis.
  * @param axis The axis to flip.
  * @return A flipped LabelledControlArray1D.
@@ -149,7 +147,16 @@ size_t LabelledControlArray1D_full_gradient(LabelledControlArray1DHandle handle,
                                             size_t              buffer_size);
 /* AUTO-DOC from cpp: LabelledControlArray1D_gradient | falcon_core::math::arrays::LabelledControlArray1D::gradient */
 /**
- * @brief (from C++: falcon_core::math::arrays::LabelledControlArray1D::gradient)
+ * @brief Return the gradient of the data along a given axis.
+ * Computes the gradient along the specified axis using finite differences:
+ * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+ * - For boundary points, uses forward (first element) or backward (last
+ * element) difference.
+ * @param axis The axis to compute the gradient.
+ * @return The gradient FArray.
+ */
+/* AUTO-DOC from cpp: LabelledControlArray1D_gradient | falcon_core::math::arrays::LabelledControlArray1D::gradient */
+/**
  * @brief Return the gradient of the data along a given axis.
  * Computes the gradient along the specified axis using finite differences:
  * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2

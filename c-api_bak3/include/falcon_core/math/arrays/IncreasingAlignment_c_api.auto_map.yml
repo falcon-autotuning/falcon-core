@@ -1,6 +1,0 @@
-c_header: IncreasingAlignment_c_api.h
-cpp_headers:
-- ../../../../../cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp
-mappings:
-- cpp: falcon_core::math::arrays::IncreasingAlignment::alignment
-  c: IncreasingAlignment_alignment

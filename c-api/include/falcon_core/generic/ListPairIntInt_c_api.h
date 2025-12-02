@@ -21,14 +21,12 @@ size_t ListPairIntInt_size(ListPairIntIntHandle handle);
 bool ListPairIntInt_empty(ListPairIntIntHandle handle);
 /* AUTO-DOC from cpp: ListPairIntInt_erase_at | falcon_core::generic::List::erase_at */
 /**
- * @brief (from C++: falcon_core::generic::List::erase_at)
  * @brief Allows for targetted eraseall of elements at an index.
  * @param idx The index to erase at.
  */
 void ListPairIntInt_erase_at(ListPairIntIntHandle handle, size_t idx);
 /* AUTO-DOC from cpp: ListPairIntInt_clear | falcon_core::generic::List::clear */
 /**
- * @brief (from C++: falcon_core::generic::List::clear)
  * @brief clears to contents of the list.
  */
 void ListPairIntInt_clear(ListPairIntIntHandle handle);
@@ -38,7 +36,6 @@ bool ListPairIntInt_contains(ListPairIntIntHandle handle, PairIntIntHandle value
 size_t ListPairIntInt_index(ListPairIntIntHandle handle, PairIntIntHandle value);
 /* AUTO-DOC from cpp: ListPairIntInt_intersection | falcon_core::generic::List::intersection */
 /**
- * @brief (from C++: falcon_core::generic::List::intersection)
  * @brief Finds the intersection between this list and another.
  * @param other the other list to compare again.
  * @returns A list of values containing elements from both.

@@ -26,7 +26,6 @@ StringHandle     AcquisitionContext_instrument_type(
         AcquisitionContextHandle handle);
 /* AUTO-DOC from cpp: AcquisitionContext_units | falcon_core::autotuner_interfaces::contexts::AcquisitionContext::units */
 /**
- * @brief (from C++: falcon_core::autotuner_interfaces::contexts::AcquisitionContext::units)
  * @brief Returns the units of the context.
  */
 SymbolUnitHandle AcquisitionContext_units(AcquisitionContextHandle handle);
@@ -36,7 +35,6 @@ AcquisitionContextHandle AcquisitionContext_division(
     AcquisitionContextHandle handle, AcquisitionContextHandle other);
 /* AUTO-DOC from cpp: AcquisitionContext_match_connection | falcon_core::autotuner_interfaces::contexts::AcquisitionContext::match_connection */
 /**
- * @brief (from C++: falcon_core::autotuner_interfaces::contexts::AcquisitionContext::match_connection)
  * @brief Divide the units. The context on the top keeps all other details.
  * @param other: The unit to divide by.
  * @return A new context with the divided units.
@@ -45,7 +43,6 @@ bool AcquisitionContext_match_connection(AcquisitionContextHandle handle,
                                          ConnectionHandle         other);
 /* AUTO-DOC from cpp: AcquisitionContext_match_instrument_type | falcon_core::autotuner_interfaces::contexts::AcquisitionContext::match_instrument_type */
 /**
- * @brief (from C++: falcon_core::autotuner_interfaces::contexts::AcquisitionContext::match_instrument_type)
  * @brief Returns if the instrument type matches this context.
  */
 bool AcquisitionContext_match_instrument_type(AcquisitionContextHandle handle,

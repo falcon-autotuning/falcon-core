@@ -25,13 +25,11 @@ void MapConnectionDouble_clear(MapConnectionDoubleHandle handle);
 bool MapConnectionDouble_contains(MapConnectionDoubleHandle handle, const ConnectionHandle key);
 /* AUTO-DOC from cpp: MapConnectionDouble_keys | falcon_core::generic::Map::keys */
 /**
- * @brief (from C++: falcon_core::generic::Map::keys)
  * @brief Return the keys of the Map.
  */
 ListConnectionHandle MapConnectionDouble_keys(MapConnectionDoubleHandle handle);
 /* AUTO-DOC from cpp: MapConnectionDouble_values | falcon_core::generic::Map::values */
 /**
- * @brief (from C++: falcon_core::generic::Map::values)
  * @brief Return the values of the Map.
  */
 ListDoubleHandle MapConnectionDouble_values(MapConnectionDoubleHandle handle);

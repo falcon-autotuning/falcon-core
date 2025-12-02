@@ -115,7 +115,6 @@ void   LabelledControlArray_remove_offset(LabelledControlArrayHandle handle,
 double LabelledControlArray_sum(LabelledControlArrayHandle handle);
 /* AUTO-DOC from cpp: LabelledControlArray_reshape | falcon_core::math::arrays::LabelledControlArray::reshape */
 /**
- * @brief (from C++: falcon_core::math::arrays::LabelledControlArray::reshape)
  * @brief Return a new Array with the given shape.
  * @param shape The new shape.
  * @return A reshaped LabelledControlArray.
@@ -126,7 +125,6 @@ ListListSizeTHandle LabelledControlArray_where(
     LabelledControlArrayHandle handle, const double value);
 /* AUTO-DOC from cpp: LabelledControlArray_flip | falcon_core::math::arrays::LabelledControlArray::flip */
 /**
- * @brief (from C++: falcon_core::math::arrays::LabelledControlArray::flip)
  * @brief Flip the data along the given axis.
  * @param axis The axis to flip.
  * @return A flipped LabelledControlArray.
@@ -138,7 +136,16 @@ size_t LabelledControlArray_full_gradient(LabelledControlArrayHandle handle,
                                           size_t buffer_size);
 /* AUTO-DOC from cpp: LabelledControlArray_gradient | falcon_core::math::arrays::LabelledControlArray::gradient */
 /**
- * @brief (from C++: falcon_core::math::arrays::LabelledControlArray::gradient)
+ * @brief Return the gradient of the data along a given axis.
+ * Computes the gradient along the specified axis using finite differences:
+ * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+ * - For boundary points, uses forward (first element) or backward (last
+ * element) difference.
+ * @param axis The axis to compute the gradient.
+ * @return The gradient FArray.
+ */
+/* AUTO-DOC from cpp: LabelledControlArray_gradient | falcon_core::math::arrays::LabelledControlArray::gradient */
+/**
  * @brief Return the gradient of the data along a given axis.
  * Computes the gradient along the specified axis using finite differences:
  * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2

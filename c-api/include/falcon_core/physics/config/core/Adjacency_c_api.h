@@ -26,14 +26,12 @@ void Adjacency_destroy(AdjacencyHandle handle);
 // Methods
 /* AUTO-DOC from cpp: Adjacency_indexes | falcon_core::physics::config::core::Adjacency::indexes */
 /**
- * @brief (from C++: falcon_core::physics::config::core::Adjacency::indexes)
  * # @brief Returns the indexes of the gates in the order for the adjacency
  *    matrix
  */
 ConnectionsHandle        Adjacency_indexes(AdjacencyHandle handle);
 /* AUTO-DOC from cpp: Adjacency_get_true_pairs | falcon_core::physics::config::core::Adjacency::get_true_pairs */
 /**
- * @brief (from C++: falcon_core::physics::config::core::Adjacency::get_true_pairs)
  * @brief Returns the pairs of indexes where the adjacency matrix is true (1)
  */
 ListPairSizeTSizeTHandle Adjacency_get_true_pairs(AdjacencyHandle handle);

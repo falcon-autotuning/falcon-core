@@ -25,13 +25,11 @@ void MapInterpretationContextDouble_clear(MapInterpretationContextDoubleHandle h
 bool MapInterpretationContextDouble_contains(MapInterpretationContextDoubleHandle handle, const InterpretationContextHandle key);
 /* AUTO-DOC from cpp: MapInterpretationContextDouble_keys | falcon_core::generic::Map::keys */
 /**
- * @brief (from C++: falcon_core::generic::Map::keys)
  * @brief Return the keys of the Map.
  */
 ListInterpretationContextHandle MapInterpretationContextDouble_keys(MapInterpretationContextDoubleHandle handle);
 /* AUTO-DOC from cpp: MapInterpretationContextDouble_values | falcon_core::generic::Map::values */
 /**
- * @brief (from C++: falcon_core::generic::Map::values)
  * @brief Return the values of the Map.
  */
 ListDoubleHandle MapInterpretationContextDouble_values(MapInterpretationContextDoubleHandle handle);

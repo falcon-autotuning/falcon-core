@@ -18,7 +18,6 @@ void IncreasingAlignment_destroy(IncreasingAlignmentHandle handle);
 // Methods
 /* AUTO-DOC from cpp: IncreasingAlignment_alignment | falcon_core::math::arrays::IncreasingAlignment::alignment */
 /**
- * @brief (from C++: falcon_core::math::arrays::IncreasingAlignment::alignment)
  * @brief Return the alignment of the domain.
  */
 int  IncreasingAlignment_alignment(IncreasingAlignmentHandle handle);

@@ -88,7 +88,6 @@ ListListSizeTHandle ControlArray_where(ControlArrayHandle handle,
                                        const double       value);
 /* AUTO-DOC from cpp: ControlArray_flip | falcon_core::math::arrays::ControlArray::flip */
 /**
- * @brief (from C++: falcon_core::math::arrays::ControlArray::flip)
  * @brief Flip the data along the given axis.
  * @param axis The axis to flip.
  * @return A flipped ControlArray.

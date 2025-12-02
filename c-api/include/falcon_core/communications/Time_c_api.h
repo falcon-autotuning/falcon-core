@@ -18,21 +18,18 @@ void Time_destroy(TimeHandle handle);
 // Methods
 /* AUTO-DOC from cpp: Time_micro_seconds_since_epoch | falcon_core::communications::Time::micro_seconds_since_epoch */
 /**
- * @brief (from C++: falcon_core::communications::Time::micro_seconds_since_epoch)
  * @brief Get the time in microseconds since epoch.
  * @return The time in microseconds since epoch.
  */
 long long    Time_micro_seconds_since_epoch(TimeHandle handle);
 /* AUTO-DOC from cpp: Time_time | falcon_core::communications::Time::time */
 /**
- * @brief (from C++: falcon_core::communications::Time::time)
  * @brief Get the time in seconds since epoch.
  * @return The time in seconds since epoch.
  */
 long long    Time_time(TimeHandle handle);
 /* AUTO-DOC from cpp: Time_to_string | falcon_core::communications::Time::to_string */
 /**
- * @brief (from C++: falcon_core::communications::Time::to_string)
  * @brief Convert the Time to a human-readable string.
  * @return A string representation of the Time.
  */

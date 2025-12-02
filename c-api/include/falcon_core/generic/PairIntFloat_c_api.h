@@ -11,7 +11,6 @@ typedef void* PairIntFloatHandle;
 
 /* AUTO-DOC from cpp: PairIntFloat_create | falcon_core::generic::Pair::create */
 /**
- * @brief (from C++: falcon_core::generic::Pair::create)
  * @brief Store a pair of values.
  * @param first The first value.
  * @param second The second value.
@@ -20,13 +19,11 @@ PairIntFloatHandle PairIntFloat_create(int first, float second);
 void PairIntFloat_destroy(PairIntFloatHandle handle);
 /* AUTO-DOC from cpp: PairIntFloat_first | falcon_core::generic::Pair::first */
 /**
- * @brief (from C++: falcon_core::generic::Pair::first)
  * @brief Get the stored first value.
  */
 int PairIntFloat_first(PairIntFloatHandle handle);
 /* AUTO-DOC from cpp: PairIntFloat_second | falcon_core::generic::Pair::second */
 /**
- * @brief (from C++: falcon_core::generic::Pair::second)
  * @brief Get the stored second value.
  */
 float PairIntFloat_second(PairIntFloatHandle handle);

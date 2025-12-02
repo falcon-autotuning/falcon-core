@@ -21,14 +21,12 @@ size_t ListPairConnectionConnections_size(ListPairConnectionConnectionsHandle ha
 bool ListPairConnectionConnections_empty(ListPairConnectionConnectionsHandle handle);
 /* AUTO-DOC from cpp: ListPairConnectionConnections_erase_at | falcon_core::generic::List::erase_at */
 /**
- * @brief (from C++: falcon_core::generic::List::erase_at)
  * @brief Allows for targetted eraseall of elements at an index.
  * @param idx The index to erase at.
  */
 void ListPairConnectionConnections_erase_at(ListPairConnectionConnectionsHandle handle, size_t idx);
 /* AUTO-DOC from cpp: ListPairConnectionConnections_clear | falcon_core::generic::List::clear */
 /**
- * @brief (from C++: falcon_core::generic::List::clear)
  * @brief clears to contents of the list.
  */
 void ListPairConnectionConnections_clear(ListPairConnectionConnectionsHandle handle);
@@ -38,7 +36,6 @@ bool ListPairConnectionConnections_contains(ListPairConnectionConnectionsHandle 
 size_t ListPairConnectionConnections_index(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle value);
 /* AUTO-DOC from cpp: ListPairConnectionConnections_intersection | falcon_core::generic::List::intersection */
 /**
- * @brief (from C++: falcon_core::generic::List::intersection)
  * @brief Finds the intersection between this list and another.
  * @param other the other list to compare again.
  * @returns A list of values containing elements from both.

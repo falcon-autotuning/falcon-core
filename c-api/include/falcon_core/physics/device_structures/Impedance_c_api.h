@@ -19,21 +19,18 @@ void Impedance_destroy(ImpedanceHandle handle);
 // Methods
 /* AUTO-DOC from cpp: Impedance_connection | falcon_core::physics::device_structures::Impedance::connection */
 /**
- * @brief (from C++: falcon_core::physics::device_structures::Impedance::connection)
  * @brief Gets the connection leading to the fridge with this impedance
  * @return A shared pointer to the BaseConnection
  */
 ConnectionHandle Impedance_connection(ImpedanceHandle handle);
 /* AUTO-DOC from cpp: Impedance_resistance | falcon_core::physics::device_structures::Impedance::resistance */
 /**
- * @brief (from C++: falcon_core::physics::device_structures::Impedance::resistance)
  * @brief Gets the resistance of the impedance
  * @return The resistance in ohms
  */
 double           Impedance_resistance(ImpedanceHandle handle);
 /* AUTO-DOC from cpp: Impedance_capacitance | falcon_core::physics::device_structures::Impedance::capacitance */
 /**
- * @brief (from C++: falcon_core::physics::device_structures::Impedance::capacitance)
  * @brief Gets the capacitance of the impedance
  * @return The capacitance in farads
  */

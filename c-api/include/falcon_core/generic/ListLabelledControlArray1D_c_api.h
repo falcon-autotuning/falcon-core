@@ -21,14 +21,12 @@ size_t ListLabelledControlArray1D_size(ListLabelledControlArray1DHandle handle);
 bool ListLabelledControlArray1D_empty(ListLabelledControlArray1DHandle handle);
 /* AUTO-DOC from cpp: ListLabelledControlArray1D_erase_at | falcon_core::generic::List::erase_at */
 /**
- * @brief (from C++: falcon_core::generic::List::erase_at)
  * @brief Allows for targetted eraseall of elements at an index.
  * @param idx The index to erase at.
  */
 void ListLabelledControlArray1D_erase_at(ListLabelledControlArray1DHandle handle, size_t idx);
 /* AUTO-DOC from cpp: ListLabelledControlArray1D_clear | falcon_core::generic::List::clear */
 /**
- * @brief (from C++: falcon_core::generic::List::clear)
  * @brief clears to contents of the list.
  */
 void ListLabelledControlArray1D_clear(ListLabelledControlArray1DHandle handle);
@@ -38,7 +36,6 @@ bool ListLabelledControlArray1D_contains(ListLabelledControlArray1DHandle handle
 size_t ListLabelledControlArray1D_index(ListLabelledControlArray1DHandle handle, LabelledControlArray1DHandle value);
 /* AUTO-DOC from cpp: ListLabelledControlArray1D_intersection | falcon_core::generic::List::intersection */
 /**
- * @brief (from C++: falcon_core::generic::List::intersection)
  * @brief Finds the intersection between this list and another.
  * @param other the other list to compare again.
  * @returns A list of values containing elements from both.
