@@ -39,6 +39,17 @@ VectorHandle Vector_create_from_parent(MapConnectionQuantityHandle items);
 // @category:deallocation
 void Vector_destroy(VectorHandle handle);
 // @category:read
+/* USER-DOC */
+/**
+ * @brief Return the end point of a vector in device coordinates.
+ *
+ * This function is part of the public C API. It returns the end point
+ * associated with the given vector handle, after applying the current
+ * device transform.
+ *
+ * @param v  Handle to a valid Vector instance.
+ * @return   A handle to the end point Vector.
+ */
 PointHandle Vector_end_point(VectorHandle handle);
 // @category:read
 PointHandle Vector_start_point(VectorHandle handle);

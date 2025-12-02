@@ -3,19 +3,23 @@
 """
 inject_c_docs.py
 
-Injector that:
+Minimal, working injector that:
 
-- Walks a maps directory for *.auto_map.yml files (auto-generated mappings).
+- Walks a maps directory for *.auto_map.yml files (original behaviour).
 - Optionally walks a manual-maps directory for *.man_map.yml (or legacy
   *.user_map.yml) files.
 - For each map, finds the corresponding C header and C++ metadata file(s).
-- If a user-written Doxygen block exists for a function (with a nearby
-  /* USER-DOC */ marker), merges in exactly one C++ doc snippet (from either
-  a manual or auto map) into that block.
-- Otherwise, inserts a new Doxygen block built from the C++ docs, tagged as
-  AUTO-DOC or MAN-DOC.
+- Injects Doxygen comment blocks from the C++ metadata above matching C
+  function prototypes in the C header.
 - Writes updated headers under --out-root, mirroring the structure under
   --capi-root.
+
+Key design choice (to fix earlier failures):
+  We locate the C++ metadata by searching under --cpp-metadata-root for files
+  named "<stem>_metadata.yml", where <stem> is the basename of each entry in
+  the map's cpp_headers list (e.g. "Vector.hpp" -> "Vector_metadata.yml").
+  This avoids brittle relative-path logic while still using your existing
+  cpp_metadata layout.
 """
 
 from __future__ import annotations
@@ -33,7 +37,6 @@ except Exception:
 
 AUTO_MARK = "/* AUTO-DOC from cpp:"
 MAN_MARK  = "/* MAN-DOC from cpp:"
-USER_MARK = "/* USER-DOC"  # marker used by humans in C headers
 
 
 # ---------------------------------------------------------------------------
@@ -62,7 +65,8 @@ def find_metadata_files_for_cpp_headers(
     cpp_meta_root: Path,
     verbose: bool = False,
 ) -> List[Path]:
-    """Given the cpp_headers list from a map, return a list of metadata files.
+    """
+    Given the cpp_headers list from a map, return a list of metadata files.
 
     For each entry like "../../../../cpp/include/falcon_core/math/Vector.hpp",
     we only care about the stem ("Vector") and look for
@@ -98,7 +102,8 @@ def find_metadata_files_for_cpp_headers(
 
 
 def collect_metadata_units(meta_files: List[Path], verbose: bool = False) -> List[Dict[str, Any]]:
-    """Load all metadata units from the given *_metadata.yml files.
+    """
+    Load all metadata units from the given *_metadata.yml files.
     Each file can be either a list[...] or a dict whose values may be lists.
     """
     units: List[Dict[str, Any]] = []
@@ -126,7 +131,8 @@ def collect_metadata_units(meta_files: List[Path], verbose: bool = False) -> Lis
 
 
 def find_cpp_doc(units: List[Dict[str, Any]], cpp_key: str, verbose: bool = False) -> Optional[str]:
-    """Find the 'comment' string for cpp_key in the list of metadata units.
+    """
+    Find the 'comment' string for cpp_key in the list of metadata units.
 
     Resolution order:
       1) exact match on 'name'
@@ -167,24 +173,10 @@ def find_cpp_doc(units: List[Dict[str, Any]], cpp_key: str, verbose: bool = Fals
     return None
 
 
-def _normalize_cpp_comment_for_details(comment_text: str) -> List[str]:
-    """Normalize cpp comment text for embedding inside a 'Documentation imported from C++:' section.
-
-    We strip a leading '@brief' from lines so we don't confuse Doxygen by
-    nesting a new @brief inside an existing block.
-    """
-    lines: List[str] = []
-    for ln in str(comment_text).splitlines():
-        s = ln.rstrip()
-        stripped = s.strip()
-        if stripped.startswith("@brief"):
-            stripped = stripped[len("@brief"):].lstrip(" :-\t")
-        lines.append(stripped)
-    return lines
-
-
 def build_auto_block(c_func: str, cpp_key: str, comment_text: str) -> str:
-    """Build the AUTO-DOC doxygen block that will be injected above the C prototype."""
+    """
+    Build the AUTO-DOC doxygen block that will be injected above the C prototype.
+    """
     lines: List[str] = []
     lines.append(f"{AUTO_MARK} {c_func} | {cpp_key} */")
     lines.append("/**")
@@ -199,7 +191,9 @@ def build_auto_block(c_func: str, cpp_key: str, comment_text: str) -> str:
 
 
 def build_man_block(c_func: str, cpp_key: str, comment_text: str) -> str:
-    """Build the MAN-DOC doxygen block (manual maps)."""
+    """
+    Build the MAN-DOC doxygen block (manual maps, formerly user maps).
+    """
     lines: List[str] = []
     lines.append(f"{MAN_MARK} {c_func} | {cpp_key} */")
     lines.append("/**")
@@ -218,126 +212,26 @@ def build_man_block(c_func: str, cpp_key: str, comment_text: str) -> str:
 # ---------------------------------------------------------------------------
 
 def already_has_block_near(header_text: str, insert_pos: int, c_func: str) -> bool:
-    """Check if there is already an AUTO-DOC or MAN-DOC block for this function
-    in the ~500 characters before insert_pos."""
+    """
+    Check if there is already an AUTO-DOC or MAN-DOC block for this function
+    in the ~500 characters before insert_pos.
+    """
     start = max(0, insert_pos - 500)
     snippet = header_text[start:insert_pos]
     return ((AUTO_MARK in snippet) or (MAN_MARK in snippet)) and (c_func in snippet)
 
 
-def _merge_into_existing_block(
-    header_text: str,
-    line_start: int,
-    c_func: str,
-    cpp_key: str,
-    comment_text: str,
-    is_manual_map: bool,
-    verbose: bool = False,
-) -> tuple[str, bool]:
-    """Try to merge cpp-derived docs into an existing *user* Doxygen block.
-
-    Conditions:
-      - We look backwards from line_start for a '/**' that ends with '*/'
-        before the function prototype.
-      - We only treat that block as belonging to this function if there is
-        no intervening *code* (only whitespace/comments) between the end
-        of the block and the function prototype line.
-      - We only merge if there is a nearby '/* USER-DOC */' marker above
-        the block (i.e., this is user-authored documentation).
-      - We only merge once; if "Documentation imported from C++" is already
-        present, we skip.
-    """
-    # Limit backward search to keep things cheap and localized
-    search_start = max(0, line_start - 2000)
-    prefix = header_text[search_start:line_start]
-    rel_block_start = prefix.rfind("/**")
-    if rel_block_start == -1:
-        return header_text, False
-
-    block_start = search_start + rel_block_start
-    end_idx = header_text.find("*/", block_start)
-    if end_idx == -1 or end_idx > line_start:
-        # No complete block before the prototype
-        return header_text, False
-
-    block_end = end_idx + 2
-    block_text = header_text[block_start:block_end]
-
-    # Make sure the block is *directly* attached to this function:
-    # allow only whitespace and comments between the block and prototype.
-    gap = header_text[block_end:line_start]
-    # If we see obvious "code punctuation" in the gap, assume this block
-    # belongs to a previous function and do not merge.
-    if any(ch in gap for ch in "();{}#"):
-        return header_text, False
-
-    # Ensure this block is tagged as user-authored (USER-DOC nearby)
-    snippet_above = header_text[max(0, block_start - 200):block_start]
-    if USER_MARK not in snippet_above:
-        return header_text, False
-
-    # Avoid re-merging if we already added a "Documentation imported from C++" section
-    if "Documentation imported from C++" in block_text:
-        if verbose:
-            print(f"[capi] existing imported C++ docs found near {c_func}, skipping merge")
-        return header_text, False
-
-    # Build the extra details section from cpp comment
-    detail_lines = _normalize_cpp_comment_for_details(comment_text)
-    insert_pos = block_text.rfind("*/")
-    if insert_pos == -1:
-        return header_text, False
-
-    before = block_text[:insert_pos].rstrip("\n")
-    after = block_text[insert_pos:]
-
-    extra = "\n *\n * Documentation imported from C++:\n"
-    for ln in detail_lines:
-        if ln:
-            extra += f" * {ln}\n"
-        else:
-            extra += " *\n"
-
-    new_block_text = before + extra + "\n" + after
-
-    # Add provenance comment above the block if not already present
-    prov_comment = (
-        f"{MAN_MARK} {c_func} | {cpp_key} */\n"
-        if is_manual_map
-        else f"{AUTO_MARK} {c_func} | {cpp_key} */\n"
-    )
-    snippet_start = max(0, block_start - 500)
-    before_block = header_text[snippet_start:block_start]
-
-    if prov_comment.strip() in before_block:
-        new_prefix = header_text[:block_start]
-    else:
-        new_prefix = header_text[:block_start] + prov_comment
-
-    new_header_text = new_prefix + new_block_text + header_text[block_end:]
-    if verbose:
-        print(f"[capi] merged C++ docs into existing user block for: {c_func}")
-    return new_header_text, True
-
-
 def insert_block_above_prototype(
     header_text: str,
     c_func: str,
-    cpp_key: str,
-    comment_text: str,
     block: str,
-    is_manual_map: bool,
     verbose: bool = False,
 ) -> tuple[str, bool]:
-    """Insert or merge a doc block above the C prototype for c_func.
+    """
+    Very simple, robust insertion:
 
-    Behaviour:
-      1) Locate the first occurrence of 'c_func('.
-      2) If a user Doxygen block (with USER-DOC) is directly attached to
-         this function, merge the C++ docs into that block (for either
-         manual or auto maps), and add a provenance comment (MAN/AUTO).
-      3) Otherwise, insert the given 'block' at the beginning of the line,
-         unless an AUTO/MAN block is already present nearby.
+    - Find the first occurrence of "c_func(".
+    - Insert the block at the beginning of that line.
     """
     needle = f"{c_func}("
     idx = header_text.find(needle)
@@ -353,26 +247,11 @@ def insert_block_above_prototype(
     else:
         line_start += 1
 
-    # First try to merge into an existing user-authored block
-    header_text, merged = _merge_into_existing_block(
-        header_text,
-        line_start,
-        c_func,
-        cpp_key,
-        comment_text,
-        is_manual_map,
-        verbose=verbose,
-    )
-    if merged:
-        return header_text, True
-
-    # If there is already an AUTO/MAN block near this prototype, skip insertion
     if already_has_block_near(header_text, line_start, c_func):
         if verbose:
             print(f"[capi] existing AUTO-DOC/MAN-DOC found, skipping: {c_func}")
         return header_text, False
 
-    # Insert new block (AUTO or MAN)
     new_text = header_text[:line_start] + block + header_text[line_start:]
     if verbose:
         print(f"[capi] inserted doc above: {c_func}")
@@ -380,8 +259,10 @@ def insert_block_above_prototype(
 
 
 def mirror_capi_path(c_header: Path, capi_root: Path, out_root: Path) -> Path:
-    """Map a C header path under capi_root to its corresponding output path
-    under out_root, preserving the relative directory structure."""
+    """
+    Map a C header path under capi_root to its corresponding output path
+    under out_root, preserving the relative directory structure.
+    """
     c_header = c_header.resolve()
     capi_root = capi_root.resolve()
     rel = c_header.relative_to(capi_root)
@@ -398,7 +279,8 @@ def resolve_c_header_path(
     capi_root: Path,
     verbose: bool = False,
 ) -> Optional[Path]:
-    """Resolve cfg['c_header'] to an actual file path.
+    """
+    Resolve cfg['c_header'] to an actual file path.
 
     Handles:
       - c_header: "Vector_c_api.h" with the map in the same directory
@@ -446,7 +328,9 @@ def process_map(
     verbose: bool = False,
     dry_run: bool = False,
 ) -> None:
-    """Process a single *.auto_map.yml, *.man_map.yml, or *.user_map.yml file."""
+    """
+    Process a single *.auto_map.yml, *.man_map.yml, or *.user_map.yml file.
+    """
     map_file = map_file.resolve()
     if verbose:
         print(f"\n[map] processing: {map_file}")
@@ -478,8 +362,11 @@ def process_map(
     header_text = read_text(c_header_path)
     inserted = 0
 
-    # Decide manual vs auto based on filename
-    is_manual_map = map_file.name.endswith("man_map.yml") or map_file.name.endswith("user_map.yml")
+    # Decide tag type based on filename
+    is_manual_map = (
+        map_file.name.endswith("man_map.yml")
+        or map_file.name.endswith("user_map.yml")
+    )
 
     for m in cfg.get("mappings") or []:
         cpp_key = m.get("cpp")
@@ -496,15 +383,7 @@ def process_map(
         else:
             block = build_auto_block(c_func, cpp_key, comment_text)
 
-        header_text, did = insert_block_above_prototype(
-            header_text,
-            c_func,
-            cpp_key,
-            comment_text,
-            block,
-            is_manual_map,
-            verbose=verbose,
-        )
+        header_text, did = insert_block_above_prototype(header_text, c_func, block, verbose=verbose)
         if did:
             inserted += 1
 
@@ -577,7 +456,7 @@ def main() -> None:
 
     processed = 0
 
-    # 1) Auto maps
+    # 1) Auto maps (original behavior)
     if args.maps_dir:
         maps_dir = Path(args.maps_dir).resolve()
         for mf in maps_dir.rglob("*.auto_map.yml"):
@@ -591,7 +470,7 @@ def main() -> None:
             )
             processed += 1
 
-    # 2) Manual maps (formerly "user" maps)
+    # 2) Manual maps (formerly “user” maps)
     if man_maps_dir:
         man_dir = Path(man_maps_dir).resolve()
         # Support both new *.man_map.yml and legacy *.user_map.yml

@@ -1,8 +1,0 @@
-c_header: GateRelations_c_api.h
-cpp_headers:
-- ../../../../../cpp/include/falcon_core/physics/device_structures/GateRelations.hpp
-mappings:
-- cpp: falcon_core::physics::device_structures::GateRelations::insert_or_assign
-  c: GateRelations_insert_or_assign
-- cpp: falcon_core::physics::device_structures::GateRelations::insert
-  c: GateRelations_insert
