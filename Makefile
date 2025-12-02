@@ -1,3 +1,11 @@
+# Additional makefile(s)..
+
+# Include doc pipeline rules (ignore if missing)
+-include ./docs_managment_code/capi_docs.mk
+
+# --------------------------------------------------------------------
+# Top-level build/test/clean rules for cpp and c-api
+# --------------------------------------------------------------------
 .PHONY: all build build-dev test test-cpp test-c-api clean clean-all
 
 # Build both C++ and C API (release)
