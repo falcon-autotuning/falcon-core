@@ -26,12 +26,12 @@ QuantityHandle Quantity_multiply_double(QuantityHandle handle, double other);
 // @category:read
 QuantityHandle Quantity_multiply_quantity(QuantityHandle handle,
                                           QuantityHandle other);
-// @category:read
+// @category:write
 QuantityHandle Quantity_multiply_equals_int(QuantityHandle handle, int other);
-// @category:read
+// @category:write
 QuantityHandle Quantity_multiply_equals_double(QuantityHandle handle,
                                                double         other);
-// @category:read
+// @category:write
 QuantityHandle Quantity_multiply_equals_quantity(QuantityHandle handle,
                                                  QuantityHandle other);
 // @category:read
@@ -41,12 +41,12 @@ QuantityHandle Quantity_divide_double(QuantityHandle handle, double other);
 // @category:read
 QuantityHandle Quantity_divide_quantity(QuantityHandle handle,
                                         QuantityHandle other);
-// @category:read
+// @category:write
 QuantityHandle Quantity_divide_equals_int(QuantityHandle handle, int other);
-// @category:read
+// @category:write
 QuantityHandle Quantity_divide_equals_double(QuantityHandle handle,
                                              double         other);
-// @category:read
+// @category:write
 QuantityHandle Quantity_divide_equals_quantity(QuantityHandle handle,
                                                QuantityHandle other);
 // @category:read
@@ -54,13 +54,13 @@ QuantityHandle Quantity_power(QuantityHandle handle, int other);
 // @category:read
 QuantityHandle Quantity_add_quantity(QuantityHandle handle,
                                      QuantityHandle other);
-// @category:read
+// @category:write
 QuantityHandle Quantity_add_equals_quantity(QuantityHandle handle,
                                             QuantityHandle other);
 // @category:read
 QuantityHandle Quantity_subtract_quantity(QuantityHandle handle,
                                           QuantityHandle other);
-// @category:read
+// @category:write
 QuantityHandle Quantity_subtract_equals_quantity(QuantityHandle handle,
                                                  QuantityHandle other);
 // @category:read
