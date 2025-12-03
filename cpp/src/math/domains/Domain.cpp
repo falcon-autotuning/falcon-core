@@ -136,6 +136,13 @@ const double Domain::transform(const std::shared_ptr<Domain>& other,
   auto offset    = transform.second;
   return value * scale + offset;
 }
+bool Domain::operator==(const Domain& other) const {
+  return (_lesser_bound == other._lesser_bound) &&
+         (_greater_bound == other._greater_bound) &&
+         (_lesser_bound_contained == other._lesser_bound_contained) &&
+         (_greater_bound_contained == other._greater_bound_contained);
+}
+bool Domain::operator!=(const Domain& other) const { return !(*this == other); }
 }  // namespace domains
 }  // namespace math
 }  // namespace falcon_core

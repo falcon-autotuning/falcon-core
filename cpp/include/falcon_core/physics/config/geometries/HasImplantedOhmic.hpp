@@ -11,8 +11,11 @@ namespace geometries {
  */
 class HasImplantedOhmic : public virtual generic::Song {
   device_structures::ConnectionSP _ohmic;
+  mutable std::shared_timed_mutex _mu_ohmic;
 
  public:
+  HasImplantedOhmic(const HasImplantedOhmic& other);
+  HasImplantedOhmic operator=(const HasImplantedOhmic& other);
   HasImplantedOhmic(device_structures::ConnectionSP ohmic);
   /**
    * @brief Returns the ohmic below the gate.
@@ -24,6 +27,7 @@ class HasImplantedOhmic : public virtual generic::Song {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_ohmic(_mu_ohmic);
     ar(cereal::base_class<Song>(this), _ohmic);
   }
 };

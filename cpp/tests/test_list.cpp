@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <stdexcept>
+#include <thread>
 
 #include "falcon_core/generic/List.hpp"
 
@@ -13,7 +14,7 @@ class StrSong : public Song {
  public:
   StrSong(std::string value = "") : _value(value) {}
 
-  std::string value() { return _value; }
+  std::string value() const { return _value; }
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -21,6 +22,12 @@ class StrSong : public Song {
   }
 };
 using StrSongSP = std::shared_ptr<StrSong>;
+bool operator==(const StrSong& lhs, const StrSong& rhs) {
+  return lhs.value() == rhs.value();
+}
+bool operator!=(const StrSong& lhs, const StrSong& rhs) {
+  return !(lhs == rhs);
+}
 }  // namespace
 CEREAL_REGISTER_TYPE(StrSong)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, StrSong)
@@ -457,6 +464,33 @@ TEST_F(ListTest, EqualitySongEdgeCases) {
   EXPECT_TRUE(list1 == list2);   // same size, same values
   EXPECT_FALSE(list1 == list3);  // different size
   EXPECT_FALSE(list1 == list4);  // same size, different values
+}
+
+TEST_F(ListTest, MultiThreadedAt) {
+  List<StrSong>            list(song_data);
+  std::shared_ptr<StrSong> b = list.at(0);
+
+  std::thread t1([&list, this] {
+    std::shared_ptr<StrSong> song1 = std::make_shared<StrSong>("Changed");
+    song_data[0]                   = song1;
+  });
+  t1.join();
+
+  // b should still have the original title
+  EXPECT_NE(b->value(), song_data[0]->value());
+  EXPECT_EQ(list.at(0)->value(), "hello");
+  EXPECT_EQ(b->value(), "hello");
+
+  std::thread t([&list] {
+    std::shared_ptr<StrSong> other = list.at(0);
+    list.erase_at(0);
+    EXPECT_EQ(list.at(0)->value(), "world");
+  });
+  t.join();
+
+  // b should still have the original title
+  EXPECT_NE(b->value(), song_data[0]->value());
+  EXPECT_EQ(b->value(), "hello");
 }
 
 }  // namespace

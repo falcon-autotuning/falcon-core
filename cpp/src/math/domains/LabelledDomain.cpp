@@ -117,6 +117,13 @@ bool LabelledDomain::matching_port(
   }
   return _port && *_port == *port;
 }
+bool LabelledDomain::operator==(const LabelledDomain& other) const {
+  return *this->domain() == *other.domain() &&
+         *(this->port()) == *(other.port());
+}
+bool LabelledDomain::operator!=(const LabelledDomain& other) const {
+  return !(*this == other);
+}
 }  // namespace domains
 }  // namespace math
 }  // namespace falcon_core

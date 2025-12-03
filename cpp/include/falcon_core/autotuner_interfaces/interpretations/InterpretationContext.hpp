@@ -85,6 +85,8 @@ class InterpretationContext : public generic::Song {
    */
   const std::shared_ptr<InterpretationContext> with_unit(
       physics::units::SymbolUnitSP unit) const;
+  bool operator==(const InterpretationContext& other) const;
+  bool operator!=(const InterpretationContext& other) const;
 
  protected:
   friend class cereal::access;

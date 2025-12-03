@@ -16,14 +16,6 @@ class Impedances : public generic::List<Impedance> {
   Impedances(const std::vector<ImpedanceSP>& vec);
   bool operator==(const Impedances& other) const;
   bool operator!=(const Impedances& other) const;
-
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<List<Impedance>>(this));
-  }
-
- protected:
-  friend class cereal::access;
 };
 using ImpedancesSP = std::shared_ptr<Impedances>;
 

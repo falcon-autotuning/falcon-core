@@ -22,9 +22,12 @@ namespace math {
  * UnitSpace is the base class for spaces with axes and a domain.
  */
 class UnitSpace : public math::Axes<discrete_spaces::Discretizer> {
-  domains::DomainSP              _domain;
-  AxesSP<arrays::ControlArray1D> _ranges;
-  generic::FArraySP<double>      _space;
+  domains::DomainSP               _domain;
+  AxesSP<arrays::ControlArray1D>  _ranges;
+  generic::FArraySP<double>       _space;
+  mutable std::shared_timed_mutex _mu_space;
+  mutable std::shared_timed_mutex _mu_ranges;
+  mutable std::shared_timed_mutex _mu_domain;
 
   /**
    * @brief Store the computed discrete ranges.
@@ -33,6 +36,8 @@ class UnitSpace : public math::Axes<discrete_spaces::Discretizer> {
   void make_discrete_axes();
 
  public:
+  UnitSpace(const UnitSpace& other);
+  UnitSpace operator=(const UnitSpace& other);
   /**
    * @brief Initialize a UnitSpace.
    * @param axes The axes defining the space.
@@ -110,6 +115,11 @@ class UnitSpace : public math::Axes<discrete_spaces::Discretizer> {
   UnitSpace();
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_domain(_mu_domain,
+                                                          std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_ranges(_mu_ranges,
+                                                          std::defer_lock);
+    std::lock(lock_domain, lock_ranges);
     ar(cereal::base_class<math::Axes<discrete_spaces::Discretizer>>(this),
        _domain,
        _ranges);

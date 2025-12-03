@@ -85,6 +85,34 @@ const InterpretationContextSP InterpretationContext::with_unit(
   return std::make_shared<InterpretationContext>(
       _independent_variables, _dependent_variables, unit);
 }
+bool InterpretationContext::operator==(
+    const InterpretationContext& other) const {
+  if (dimension() != other.dimension()) {
+    return false;
+  }
+  for (int i = 0; i < dimension(); i++) {
+    if (*(get_independent_variable(i)) !=
+        *(other.get_independent_variable(i))) {
+      return false;
+    }
+  }
+  if (*unit() != *other.unit()) {
+    return false;
+  }
+  if (dependent_variables()->size() != other.dependent_variables()->size()) {
+    return false;
+  }
+  for (size_t i = 0; i < dependent_variables()->size(); i++) {
+    if (*(*dependent_variables())[i] != *(*other.dependent_variables())[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+bool InterpretationContext::operator!=(
+    const InterpretationContext& other) const {
+  return !(*this == other);
+}
 }  // namespace interpretations
 }  // namespace autotuner_interfaces
 }  // namespace falcon_core

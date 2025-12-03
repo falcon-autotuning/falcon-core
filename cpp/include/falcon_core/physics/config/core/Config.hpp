@@ -21,8 +21,15 @@ class Config : public StandardConfigConnections {
   autotuner_interfaces::names::ChannelsSP _channels;
   VoltageConstraintsSP                    _voltage_constraints;
   generic::MapSP<autotuner_interfaces::names::Gname, Group> _groups;
+  mutable std::shared_timed_mutex                           _mu_channels;
+  mutable std::shared_timed_mutex                           _mu_groups;
+  mutable std::shared_timed_mutex                           _mu_wiring_DC;
+  mutable std::shared_timed_mutex _mu_voltage_constraints;
+  mutable std::shared_timed_mutex _mu_num_unique_channels;
 
  public:
+  Config(const Config& other);
+  Config operator=(const Config& other);
   /**
    * @brief Constructs a new Config object for falcon use.
    * @param screening_gates The screening gates configuration.
@@ -560,6 +567,16 @@ class Config : public StandardConfigConnections {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_channels(_mu_channels,
+                                                            std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_groups(_mu_groups,
+                                                          std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_wiring_DC(_mu_wiring_DC,
+                                                             std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_voltage_constraints(
+        _mu_voltage_constraints, std::defer_lock);
+    std::lock(
+        lock_channels, lock_voltage_constraints, lock_groups, lock_wiring_DC);
     ar(cereal::base_class<StandardConfigConnections>(this),
        _num_unique_channels,
        _wiring_DC,

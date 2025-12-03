@@ -53,13 +53,6 @@ class Channels : public generic::List<Channel> {
 
   bool operator==(const Channels& other) const;
   bool operator!=(const Channels& other) const;
-
- protected:
-  friend class cereal::access;
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::List<Channel>>(this));
-  }
 };
 using ChannelsSP = std::shared_ptr<Channels>;
 }  // namespace names

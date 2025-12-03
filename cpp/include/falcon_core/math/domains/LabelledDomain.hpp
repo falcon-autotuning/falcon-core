@@ -96,6 +96,8 @@ class LabelledDomain : public Domain {
    */
   bool matching_port(
       const instrument_interfaces::names::InstrumentPortSP& port) const;
+  bool operator==(const LabelledDomain& other) const;
+  bool operator!=(const LabelledDomain& other) const;
 
  protected:
   LabelledDomain();

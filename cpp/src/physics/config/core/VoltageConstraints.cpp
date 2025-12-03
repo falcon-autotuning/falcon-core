@@ -6,6 +6,45 @@ namespace falcon_core {
 namespace physics {
 namespace config {
 namespace core {
+VoltageConstraints::VoltageConstraints(const VoltageConstraints& other) {
+  std::shared_lock<std::shared_timed_mutex> lock_adjacency(other._mu_adjacency,
+                                                           std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_matrix(other._mu_matrix,
+                                                        std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_limits(other._mu_limits,
+                                                        std::defer_lock);
+  std::lock(lock_adjacency, lock_matrix, lock_limits);
+  _adjacency = other._adjacency;
+  _matrix    = other._matrix;
+  _limits    = other._limits;
+}
+VoltageConstraints VoltageConstraints::operator=(
+    const VoltageConstraints& other) {
+  if (this != &other) {
+    std::shared_lock<std::shared_timed_mutex> lock_other_adjacency(
+        other._mu_adjacency, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_matrix(
+        other._mu_matrix, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_limits(
+        other._mu_limits, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_adjacency(_mu_adjacency,
+                                                             std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_matrix(_mu_matrix,
+                                                          std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_limits(_mu_limits,
+                                                          std::defer_lock);
+    std::lock(lock_adjacency,
+              lock_matrix,
+              lock_limits,
+              lock_other_adjacency,
+              lock_other_matrix,
+              lock_other_limits);
+    _adjacency = other._adjacency;
+    _matrix    = other._matrix;
+    _limits    = other._limits;
+  }
+  return *this;
+}
 VoltageConstraints::VoltageConstraints() = default;
 VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
                                        double                    max_safe_diff,
@@ -40,24 +79,33 @@ VoltageConstraints::VoltageConstraints(const AdjacencySP         adjacency,
     this->_matrix(row + 1, b) = 1;
   }
   this->_limits = *generic::FArray<double>::zeros({H, 1});
-  std::fill(this->_limits.data(),
-            this->_limits.data() + adjacency->shape()[0],
+  std::fill(this->_limits.raw_data(),
+            this->_limits.raw_data() + adjacency->shape()[0],
             std::abs(bounds.second));
-  std::fill(this->_limits.data() + adjacency->shape()[0],
-            this->_limits.data() + 2 * adjacency->shape()[0],
+  std::fill(this->_limits.raw_data() + adjacency->shape()[0],
+            this->_limits.raw_data() + 2 * adjacency->shape()[0],
             std::abs(bounds.first));
-  std::fill(this->_limits.data() + 2 * adjacency->shape()[0],
-            this->_limits.data() + 2 * adjacency->shape()[0] + 2 * pairs.size(),
-            max_safe_diff);
+  std::fill(
+      this->_limits.raw_data() + 2 * adjacency->shape()[0],
+      this->_limits.raw_data() + 2 * adjacency->shape()[0] + 2 * pairs.size(),
+      max_safe_diff);
 }
 const generic::FArray<double>& VoltageConstraints::matrix() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_matrix);
   return _matrix;
 }
-const generic::FArray<double>& VoltageConstraints::matrix() { return _matrix; }
+const generic::FArray<double>& VoltageConstraints::matrix() {
+  std::unique_lock<std::shared_timed_mutex> lock(_mu_matrix);
+  return _matrix;
+}
 
-const AdjacencySP VoltageConstraints::adjacency() const { return _adjacency; }
+const AdjacencySP VoltageConstraints::adjacency() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_adjacency);
+  return _adjacency;
+}
 
 const generic::FArray<double>& VoltageConstraints::limits() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_limits);
   return _limits;
 }
 

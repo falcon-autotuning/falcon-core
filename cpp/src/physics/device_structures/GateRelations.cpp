@@ -34,6 +34,13 @@ GateRelations::insert(const ConnectionSP& key, const ConnectionsSP& value) {
   }
   return Map::insert(key, value);
 }
+bool GateRelations::operator==(const GateRelations& other) const {
+  return static_cast<const Map<Connection, Connections>&>(*this) ==
+         static_cast<const Map<Connection, Connections>&>(other);
+}
+bool GateRelations::operator!=(const GateRelations& other) const {
+  return !(*this == other);
+}
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core

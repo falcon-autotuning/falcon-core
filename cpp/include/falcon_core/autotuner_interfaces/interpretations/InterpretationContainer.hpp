@@ -186,7 +186,7 @@ class InterpretationContainer
     std::vector<InterpretationContextSP> matching_contexts =
         std::vector<InterpretationContextSP>();
     generic::List<generic::Pair<InterpretationContext, Value>> items =
-        this->items();
+        *this->items();
     for (generic::PairSP<InterpretationContext, Value>& kv : items) {
       matching_contexts.push_back(kv->first());
     }
@@ -247,6 +247,44 @@ class InterpretationContainer
     auto result = std::make_shared<generic::List<InterpretationContext>>(
         matching_contexts);
     return result;
+  }
+  bool operator==(const InterpretationContainer<Value>& other) const {
+    if (this->size() != other.size()) return false;
+    std::vector<size_t> unmatched_indexes(this->size());
+    for (size_t i = 0; i < this->size(); ++i) {
+      unmatched_indexes[i] = i;
+    }
+    auto our_items   = this->items();
+    auto other_items = other.items();
+    for (size_t i = 0; i < our_items->size(); ++i) {
+      const auto& our_pair = our_items->at(i);
+      bool        matched  = false;
+      for (size_t j = 0; j < other_items->size(); ++j) {
+        if (std::find(unmatched_indexes.begin(), unmatched_indexes.end(), j) ==
+            unmatched_indexes.end()) {
+          continue;
+        }
+        const auto& other_pair = other_items->at(j);
+        if (*our_pair->first() == *other_pair->first()) {
+          if (*our_pair->second() != *other_pair->second()) {
+            return false;
+          }
+          matched = true;
+          unmatched_indexes.erase(
+              std::remove(
+                  unmatched_indexes.begin(), unmatched_indexes.end(), j),
+              unmatched_indexes.end());
+          break;
+        }
+      }
+      if (!matched) {
+        return false;
+      }
+    }
+    return true;
+  }
+  bool operator!=(const InterpretationContainer<Value>& other) const {
+    return !(*this == other);
   }
 };
 template <typename Value>

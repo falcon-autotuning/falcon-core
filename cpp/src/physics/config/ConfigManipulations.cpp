@@ -108,7 +108,7 @@ core::AdjacencySP ConfigManipulations::_extract_adjacency(
       }
     }
   }
-  return std::make_shared<core::Adjacency>(adjacency.xtensor(), total_gates);
+  return std::make_shared<core::Adjacency>(adjacency.data(), total_gates);
 }
 
 core::VoltageConstraintsSP ConfigManipulations::_extract_voltage_constraints(

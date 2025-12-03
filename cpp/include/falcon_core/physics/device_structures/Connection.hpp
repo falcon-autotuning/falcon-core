@@ -1,5 +1,8 @@
 #pragma once
 
+#include <mutex>
+#include <shared_mutex>
+
 #include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core {
@@ -19,11 +22,21 @@ static const std::map<DeviceFeature, std::string> DeviceFeatureNames = {
     {DeviceFeature::ScreeningGate, "ScreeningGate"},
     {DeviceFeature::Ohmic, "Ohmic"}};
 class Connection : public virtual generic::Song {
-  std::string   _name;
-  DeviceFeature _type;
+  std::string                     _name;
+  DeviceFeature                   _type;
+  mutable std::shared_timed_mutex _mu_name;
+  mutable std::shared_timed_mutex _mu_type;
 
  public:
-  bool operator<(const Connection& other) const;
+  /**
+   * @brief Copy constructor.
+   */
+  Connection(const Connection& other);
+  /**
+   * @brief Assignment operator.
+   */
+  Connection operator=(const Connection& other);
+  bool       operator<(const Connection& other) const;
   /**
    * @brief Construct a Connection with a name and type.
    * @param name The name of the connection.
@@ -102,6 +115,11 @@ class Connection : public virtual generic::Song {
   Connection();
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_name(_mu_name,
+                                                        std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_type(_mu_type,
+                                                        std::defer_lock);
+    std::lock(lock_name, lock_type);
     ar(cereal::base_class<falcon_core::generic::Song>(this), _name, _type);
   }
 };

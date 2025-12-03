@@ -21,8 +21,16 @@ class InstrumentPort : public generic::Song {
   physics::units::SymbolUnitSP             _units;
   std::string                              _description;
   PortType                                 _type;
+  mutable std::shared_timed_mutex          _mu_default_name;
+  mutable std::shared_timed_mutex          _mu_pseudo_name;
+  mutable std::shared_timed_mutex          _mu_instrument_type;
+  mutable std::shared_timed_mutex          _mu_units;
+  mutable std::shared_timed_mutex          _mu_description;
+  mutable std::shared_timed_mutex          _mu_type;
 
  public:
+  InstrumentPort(const InstrumentPort& other);
+  InstrumentPort operator=(const InstrumentPort& other);
   /**
    * @brief Initialize an InstrumentPort.
    * @param default_name The default name of the port (e.g. "Vg1").
@@ -132,6 +140,24 @@ class InstrumentPort : public generic::Song {
   InstrumentPort();
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_default_name(
+        _mu_default_name, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_pseudo_name(_mu_pseudo_name,
+                                                               std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_instrument_type(
+        _mu_instrument_type, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_units(_mu_units,
+                                                         std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_description(_mu_description,
+                                                               std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_type(_mu_type,
+                                                        std::defer_lock);
+    std::lock(lock_default_name,
+              lock_pseudo_name,
+              lock_instrument_type,
+              lock_units,
+              lock_description,
+              lock_type);
     ar(cereal::base_class<generic::Song>(this),
        _default_name,
        _pseudo_name,

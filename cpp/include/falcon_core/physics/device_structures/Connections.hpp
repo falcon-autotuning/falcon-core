@@ -104,13 +104,8 @@ class Connections : public falcon_core::generic::List<Connection> {
    */
   std::shared_ptr<Connections> intersection(
       const std::shared_ptr<Connections>& other) const;
-
- protected:
-  friend class cereal::access;
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::List<Connection>>(this));
-  }
+  bool operator==(const Connections& other) const;
+  bool operator!=(const Connections& other) const;
 };
 using ConnectionsSP = std::shared_ptr<Connections>;
 }  // namespace device_structures

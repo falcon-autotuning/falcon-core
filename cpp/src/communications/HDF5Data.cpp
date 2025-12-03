@@ -59,7 +59,7 @@ void HDF5Data::to_file(const std::string& path) const {
     H5::Group   sub_domain_group = domains_group.createGroup(dim_name);
 
     // Data
-    const auto& arr          = (*_unit_domain)[i]->xtensor();
+    const auto& arr          = (*_unit_domain)[i]->data();
     std::string dataset_path = "/domains/dim" + std::to_string(i) + "/data";
     xt::dump_hdf5(file.getFileName(), dataset_path, arr);
     // prepare string dataspace/type for labels
@@ -115,7 +115,7 @@ void HDF5Data::to_file(const std::string& path) const {
   for (const math::arrays::LabelledMeasuredArraySP& range : _ranges->arrays()) {
     std::string key = range->connection() ? range->connection()->name()
                                           : range->instrument_type();
-    const auto& arr = range->xtensor();
+    const auto& arr = range->data();
     std::string dataset_path =
         "/ranges/range" + std::to_string(range_idx) + "/data";
     xt::dump_hdf5(file.getFileName(), dataset_path, arr);

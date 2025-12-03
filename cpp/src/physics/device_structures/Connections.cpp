@@ -78,6 +78,13 @@ ConnectionsSP Connections::intersection(
   return std::make_shared<Connections>(
       generic::List<Connection>::intersection(other_list));
 }
+bool Connections::operator==(const Connections& other) const {
+  return static_cast<const List<Connection>&>(*this) ==
+         static_cast<const List<Connection>&>(other);
+}
+bool Connections::operator!=(const Connections& other) const {
+  return !(*this == other);
+}
 
 }  // namespace device_structures
 }  // namespace physics

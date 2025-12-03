@@ -13,9 +13,12 @@ namespace core {
  **/
 class Adjacency : public generic::FArray<int> {
   using Indexes = physics::device_structures::ConnectionsSP;
-  Indexes _indexes;
+  Indexes                         _indexes;
+  mutable std::shared_timed_mutex _mu_indexes;
 
  public:
+  Adjacency(const Adjacency& other);
+  Adjacency operator=(const Adjacency& other);
   Adjacency(const xt::xarray<int>& matrix, const Indexes indexes);
   /**
    # @brief Returns the indexes of the gates in the order for the adjacency
@@ -35,6 +38,7 @@ class Adjacency : public generic::FArray<int> {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_indexes(_mu_indexes);
     ar(cereal::base_class<generic::FArray<int>>(this), _indexes);
   }
 };

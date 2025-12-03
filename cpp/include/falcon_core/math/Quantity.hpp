@@ -17,10 +17,14 @@ namespace math {
  * Supports arithmetic operations and unit conversion.
  */
 class Quantity : public generic::Song {
-  double                       _value;
-  physics::units::SymbolUnitSP _unit;
+  double                          _value;
+  physics::units::SymbolUnitSP    _unit;
+  mutable std::shared_timed_mutex _mu_value;
+  mutable std::shared_timed_mutex _mu_unit;
 
  public:
+  Quantity(const Quantity& other);
+  Quantity operator=(const Quantity& other);
   /**
    * @brief Initialize a Quantity, which is a float with a unit.
    * @param value the value of the quantity.
@@ -89,6 +93,11 @@ class Quantity : public generic::Song {
   Quantity();
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_value(_mu_value,
+                                                         std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
+                                                        std::defer_lock);
+    std::lock(lock_value, lock_unit);
     ar(cereal::base_class<Song>(this), _value, _unit);
   }
 };

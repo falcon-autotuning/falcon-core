@@ -69,13 +69,6 @@ class Ports : public generic::List<InstrumentPort> {
   const bool is_meters() const;
   bool       operator==(const Ports& other) const;
   bool       operator!=(const Ports& other) const;
-
- protected:
-  friend class cereal::access;
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::List<InstrumentPort>>(this));
-  }
 };
 using PortsSP = std::shared_ptr<Ports>;
 }  // namespace names

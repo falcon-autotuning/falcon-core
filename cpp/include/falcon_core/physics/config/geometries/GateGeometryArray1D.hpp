@@ -22,12 +22,19 @@ class GateGeometryArray1D : public generic::Song {
   device_structures::ConnectionsSP _screening_gates;
   device_structures::ConnectionsSP _linear_array;
   std::unordered_map<std::string, device_structures::ConnectionSP>
-      _gate_name_map;
+                                  _gate_name_map;
+  mutable std::shared_timed_mutex _mu_central_dot_gates;
+  mutable std::shared_timed_mutex _mu_raw_central_gates;
+  mutable std::shared_timed_mutex _mu_screening_gates;
+  mutable std::shared_timed_mutex _mu_linear_array;
+  mutable std::shared_timed_mutex _mu_gate_name_map;
 
  public:
   using iterator = typename device_structures::Connections::iterator;
   using const_iterator =
       typename device_structures::Connections::const_iterator;
+  GateGeometryArray1D(const GateGeometryArray1D& other);
+  GateGeometryArray1D operator=(const GateGeometryArray1D& other);
   /**
    * @brief Starts the geometry of the gates.
    * @param lineararray A linear array of gates and ohmics in the order left to
@@ -122,6 +129,21 @@ class GateGeometryArray1D : public generic::Song {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_central_dot_gates(
+        _mu_central_dot_gates, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_raw_central_gates(
+        _mu_raw_central_gates, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_screening_gates(
+        _mu_screening_gates, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_linear_array(
+        _mu_linear_array, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_gate_name_map(
+        _mu_gate_name_map, std::defer_lock);
+    std::lock(lock_central_dot_gates,
+              lock_raw_central_gates,
+              lock_screening_gates,
+              lock_linear_array,
+              lock_gate_name_map);
     ar(cereal::base_class<Song>(this),
        _raw_central_gates,
        _central_dot_gates,

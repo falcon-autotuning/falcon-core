@@ -16,11 +16,6 @@ void Song::to_json_stream(std::ostream& os) const {
   archive(ptr);
 }
 
-bool Song::operator==(const Song& other) const {
-  return to_json_string() == other.to_json_string();
-}
-bool Song::operator!=(const Song& other) const { return !(*this == other); }
-
 }  // namespace generic
 }  // namespace falcon_core
 

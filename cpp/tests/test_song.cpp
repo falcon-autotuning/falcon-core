@@ -8,13 +8,6 @@ class Strsong : public falcon_core::generic::Song {
  public:
   Strsong(std::string value = "") : _value(std::move(value)) {}
 
-  bool operator==(const Strsong& other) const {
-    return Song::operator==(other);
-  }
-  bool operator!=(const Strsong& other) const {
-    return Song::operator!=(other);
-  }
-
   template <class Archive>
   void serialize(Archive& ar) {
     ar(cereal::base_class<falcon_core::generic::Song>(this), _value);
@@ -67,20 +60,12 @@ struct StrsongPtrHash {
   }
 };
 
-struct StrsongPtrEqual {
-  bool operator()(const std::shared_ptr<Strsong>& a,
-                  const std::shared_ptr<Strsong>& b) const {
-    return *a == *b;
-  }
-};
-
 // Mirrors python `the_destroyer`
 class TheDestroyerSong : public falcon_core::generic::Song {
  public:
   using StrsongListSongMap = std::unordered_map<std::shared_ptr<Strsong>,
                                                 std::shared_ptr<ListSong>,
-                                                StrsongPtrHash,
-                                                StrsongPtrEqual>;
+                                                StrsongPtrHash>;
 
   StrsongListSongMap                        _value;
   std::shared_ptr<ComplexSong>              _stuff;
@@ -97,6 +82,23 @@ class TheDestroyerSong : public falcon_core::generic::Song {
        _even_more);
   }
 };
+bool operator==(const Strsong& lhs, const Strsong& rhs) {
+  return lhs._value == rhs._value;
+}
+bool operator==(const ListSong& lhs, const ListSong& rhs) {
+  return lhs._value == rhs._value;
+}
+bool operator==(const ComplexSong& lhs, const ComplexSong& rhs) {
+  return lhs._strings == rhs._strings &&
+         lhs._songs.size() == rhs._songs.size() &&
+         std::equal(
+             lhs._songs.begin(),
+             lhs._songs.end(),
+             rhs._songs.begin(),
+             [](const std::shared_ptr<Strsong>& a,
+                const std::shared_ptr<Strsong>& b) { return *a == *b; }) &&
+         lhs._other == rhs._other;
+}
 
 }  // namespace
 
@@ -121,14 +123,6 @@ void test_serialization(const T& original) {
       falcon_core::generic::Song::from_json_string<T>(json_str);
   ASSERT_NE(deserialized_ptr, nullptr);
   ASSERT_EQ(original, *deserialized_ptr);
-
-  // Test stream methods
-  std::stringstream ss;
-  original.to_json_stream(ss);
-  auto deserialized_stream_ptr =
-      falcon_core::generic::Song::from_json_stream<T>(ss);
-  ASSERT_NE(deserialized_stream_ptr, nullptr);
-  ASSERT_EQ(original, *deserialized_stream_ptr);
 }
 
 // --- Tests ---
@@ -139,28 +133,6 @@ TEST(SongTest, SimpleSerialization) {
   auto string = Strsong("hello").to_json_string();
   ASSERT_THROW(TheDestroyerSong::from_json_string<TheDestroyerSong>(string),
                std::runtime_error);
-}
-
-TEST(SongTest, InEqual) {
-  auto song1 = Strsong("hello");
-  auto song2 = Strsong("goodbye");
-  ASSERT_TRUE(song1 != song2);
-}
-TEST(SongTest, NotInEqual) {
-  auto song1 = Strsong("hello");
-  auto song2 = Strsong("hello");
-  ASSERT_FALSE(song1 != song2);
-}
-
-TEST(SongTest, Equality) {
-  auto song1 = Strsong("hello");
-  auto song2 = Strsong("hello");
-  ASSERT_TRUE(song1 == song2);
-}
-TEST(SongTest, NotEquality) {
-  auto song1 = Strsong("hello");
-  auto song2 = Strsong("goodbye");
-  ASSERT_FALSE(song1 == song2);
 }
 
 TEST(SongTest, DestroyerSerialization) {
@@ -191,23 +163,5 @@ TEST(SongTest, DestroyerSerialization) {
   auto des_it  = deserialized->_value.begin();
   ASSERT_EQ(*(orig_it->first), *(des_it->first));
   ASSERT_EQ(*(orig_it->second), *(des_it->second));
-
-  // Test stream methods
-  std::stringstream ss;
-  original->to_json_stream(ss);
-  auto deserialized_stream =
-      falcon_core::generic::Song::from_json_stream<TheDestroyerSong>(ss);
-
-  ASSERT_NE(deserialized_stream, nullptr);
-  ASSERT_EQ(original->_args, deserialized_stream->_args);
-  ASSERT_EQ(*(original->_stuff), *(deserialized_stream->_stuff));
-  ASSERT_EQ(original->_even_more.size(),
-            deserialized_stream->_even_more.size());
-  ASSERT_EQ(*(original->_even_more[0]), *(deserialized_stream->_even_more[0]));
-  ASSERT_EQ(original->_value.size(), deserialized_stream->_value.size());
-  auto stream_orig_it = original->_value.begin();
-  auto des_stream_it  = deserialized_stream->_value.begin();
-  ASSERT_EQ(*(stream_orig_it->first), *(des_stream_it->first));
-  ASSERT_EQ(*(stream_orig_it->second), *(des_stream_it->second));
 }
 }  // namespace

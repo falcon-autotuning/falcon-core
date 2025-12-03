@@ -6,10 +6,14 @@ namespace falcon_core {
 namespace physics {
 namespace config {
 class Loader : public ConfigManipulations {
-  boost::filesystem::path _config_path;
-  core::ConfigSP          _config;
+  boost::filesystem::path         _config_path;
+  core::ConfigSP                  _config;
+  mutable std::shared_timed_mutex _mu_config;
+  mutable std::shared_timed_mutex _mu_config_path;
 
  public:
+  Loader(const Loader& other);
+  Loader operator=(const Loader& other);
   /**
    * @brief Constructor for config loading utility.
    * @param config_path Path to the configuration file.

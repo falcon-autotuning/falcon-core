@@ -13,6 +13,68 @@ namespace falcon_core {
 namespace physics {
 namespace config {
 namespace core {
+Config::Config(const Config& other) : StandardConfigConnections(other) {
+  std::shared_lock<std::shared_timed_mutex> lock_groups(other._mu_groups,
+                                                        std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_wiring_DC(other._mu_wiring_DC,
+                                                           std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_voltage_constraints(
+      other._mu_voltage_constraints, std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_channels(other._mu_channels,
+                                                          std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_num_unique_channels(
+      other._mu_num_unique_channels, std::defer_lock);
+  std::lock(lock_groups,
+            lock_wiring_DC,
+            lock_voltage_constraints,
+            lock_channels,
+            lock_num_unique_channels);
+  _groups              = other._groups;
+  _wiring_DC           = other._wiring_DC;
+  _voltage_constraints = other._voltage_constraints;
+  _channels            = other._channels;
+  _num_unique_channels = other._num_unique_channels;
+}
+Config Config::operator=(const Config& other) {
+  if (this != &other) {
+    std::shared_lock<std::shared_timed_mutex> lock_other_groups(
+        other._mu_groups, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_wiring_DC(
+        other._mu_wiring_DC, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_voltage_constraints(
+        other._mu_voltage_constraints, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_channels(
+        other._mu_channels, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_other_num_unique_channels(
+        other._mu_num_unique_channels, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_groups(_mu_groups,
+                                                          std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_wiring_DC(_mu_wiring_DC,
+                                                             std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_voltage_constraints(
+        _mu_voltage_constraints, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_channels(_mu_channels,
+                                                            std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_num_unique_channels(
+        _mu_num_unique_channels, std::defer_lock);
+    std::lock(lock_groups,
+              lock_wiring_DC,
+              lock_voltage_constraints,
+              lock_channels,
+              lock_other_groups,
+              lock_other_wiring_DC,
+              lock_other_voltage_constraints,
+              lock_other_num_unique_channels,
+              lock_num_unique_channels,
+              lock_other_channels);
+    _groups              = other._groups;
+    _wiring_DC           = other._wiring_DC;
+    _voltage_constraints = other._voltage_constraints;
+    _channels            = other._channels;
+    _num_unique_channels = other._num_unique_channels;
+  }
+  return *this;
+}
 Config::Config() = default;
 Config::Config(
     const device_structures::ConnectionsSP& screening_gates,
@@ -45,16 +107,17 @@ Config::Config(
   check_impedance_consistency();
 }
 void Config::check_impedance_consistency() const {
-  if (!_wiring_DC || _wiring_DC->empty()) return;
+  if (!wiring_DC() || wiring_DC()->empty()) return;
   auto all_connections = get_all_connections();
-  for (const device_structures::ImpedanceSP& imp : *wiring_DC()) {
+  auto wiring_DC       = *this->wiring_DC();
+  for (const device_structures::ImpedanceSP& imp : wiring_DC) {
     if (!all_connections->contains(imp->connection())) {
       throw std::runtime_error("Config: Connection " +
                                imp->connection()->name() +
                                " not in wiring_DC.");
     }
   }
-  if (all_connections->size() != wiring_DC()->size()) {
+  if (all_connections->size() != wiring_DC.size()) {
     throw std::runtime_error(
         "Config: Include all connections or none in wiring_DC.");
   }
@@ -114,16 +177,25 @@ void Config::check_group_consistency() const {
   }
 }
 
-int Config::num_unique_channels() const { return _num_unique_channels; }
+int Config::num_unique_channels() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_num_unique_channels);
+  return _num_unique_channels;
+}
 VoltageConstraintsSP Config::voltage_constraints() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_voltage_constraints);
   return _voltage_constraints;
 }
 generic::MapSP<autotuner_interfaces::names::Gname, Group> Config::groups()
     const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_groups);
   return _groups;
 }
-device_structures::ImpedancesSP Config::wiring_DC() const { return _wiring_DC; }
+device_structures::ImpedancesSP Config::wiring_DC() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_wiring_DC);
+  return _wiring_DC;
+}
 autotuner_interfaces::names::ChannelsSP Config::channels() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_channels);
   return _channels;
 }
 device_structures::ImpedanceSP Config::get_impedance(
@@ -131,7 +203,8 @@ device_structures::ImpedanceSP Config::get_impedance(
   if (!connection) {
     throw std::invalid_argument("Config: A null connection is not searchable.");
   }
-  for (const device_structures::ImpedanceSP& imp : *wiring_DC()) {
+  auto wiring_dc = *wiring_DC();
+  for (const device_structures::ImpedanceSP& imp : wiring_dc) {
     auto search = *imp->connection();
     if (search == *connection) return imp;
   }

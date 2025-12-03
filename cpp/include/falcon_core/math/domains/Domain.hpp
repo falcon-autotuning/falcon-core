@@ -136,6 +136,8 @@ class Domain : public generic::Song {
    */
   const double transform(const std::shared_ptr<Domain>& other,
                          double                         value) const;
+  bool         operator==(const Domain& other) const;
+  bool         operator!=(const Domain& other) const;
 
  protected:
   friend class cereal::access;

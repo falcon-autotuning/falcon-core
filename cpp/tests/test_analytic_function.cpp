@@ -100,8 +100,8 @@ TEST(AnalyticFunctionTest, CustomDeltaEvaluation) {
   auto map = std::make_shared<falcon_core::generic::Map<std::string, double>>();
   auto out = func->evaluate(map, 0.1, 1.0);
   EXPECT_EQ(out->size(), 11);
-  EXPECT_EQ(out->xtensor().at(0), 5.0);
-  EXPECT_EQ(out->xtensor().at(9), 5.0);
+  EXPECT_EQ(out->data().at(0), 5.0);
+  EXPECT_EQ(out->data().at(9), 5.0);
 }
 
 TEST(AnalyticFunctionTest, NullLabelsInput) {
@@ -166,8 +166,7 @@ TEST(AnalyticFunctionTest, CustomQuadraticTimeArray) {
           xt::pow(xt::arange(start, end, delta), 2));
   auto result = *func.evaluate(map, delta, end);
   for (int i = 0; i < expected_result.size(); i++) {
-    EXPECT_NEAR(
-        result.xtensor().at(i), expected_result.xtensor().at(i), tolerance);
+    EXPECT_NEAR(result.data().at(i), expected_result.data().at(i), tolerance);
   }
 }
 TEST(AnalyticFunctionTest, BrokenHardestPrompt) {
@@ -204,8 +203,7 @@ TEST(AnalyticFunctionTest, HardestPrompt) {
           xt::pow(xt::arange(start, end, delta), 3) * 2 * gate_value);
   auto result = *func.evaluate(map, delta, end);
   for (int i = 0; i < expected_result.size(); i++) {
-    EXPECT_NEAR(
-        result.xtensor().at(i), expected_result.xtensor().at(i), tolerance);
+    EXPECT_NEAR(result.data().at(i), expected_result.data().at(i), tolerance);
   }
 }
 

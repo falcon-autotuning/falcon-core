@@ -43,10 +43,10 @@ class IsControl : public virtual generic::IFArray<T> {
 
       generic::FArraySP<double> grad = this->gradient(dim);
 
-      if (xt::all(grad->xtensor() < 0)) {
+      if (xt::all(grad->data() < 0)) {
         alignments.emplace_back(std::make_shared<IncreasingAlignment>(false),
                                 dim);
-      } else if (xt::all(grad->xtensor() > 0)) {
+      } else if (xt::all(grad->data() > 0)) {
         alignments.emplace_back(std::make_shared<IncreasingAlignment>(true),
                                 dim);
       }

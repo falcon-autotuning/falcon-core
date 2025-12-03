@@ -1,5 +1,7 @@
 #include "falcon_core/physics/device_structures/Impedance.hpp"
 
+#include <mutex>
+
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
@@ -14,6 +16,44 @@ Impedance::Impedance(ConnectionSP connection,
     throw std::invalid_argument("Impedance: connection cannot be nullptr");
   }
 }
+Impedance::Impedance(const Impedance& other) {
+  std::shared_lock<std::shared_timed_mutex> lock_connection(
+      other._mu_connection, std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_resistance(
+      other._mu_resistance, std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_capacitance(
+      other._mu_capacitance, std::defer_lock);
+  std::lock(lock_connection, lock_resistance, lock_capacitance);
+  _connection  = other._connection;
+  _resistance  = other._resistance;
+  _capacitance = other._capacitance;
+}
+Impedance Impedance::operator=(const Impedance& other) {
+  if (this != &other) {
+    std::shared_lock<std::shared_timed_mutex> lock_other_connection(
+        other._mu_connection, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_resistance(
+        other._mu_resistance, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_capacitance(
+        other._mu_capacitance, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_connection(_mu_connection,
+                                                              std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_resistance(_mu_resistance,
+                                                              std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_capacitance(_mu_capacitance,
+                                                               std::defer_lock);
+    std::lock(lock_connection,
+              lock_resistance,
+              lock_capacitance,
+              lock_other_connection,
+              lock_other_resistance,
+              lock_other_capacitance);
+    _connection  = other._connection;
+    _resistance  = other._resistance;
+    _capacitance = other._capacitance;
+  }
+  return *this;
+}
 
 Impedance::Impedance() = default;
 ImpedanceSP Impedance::create(const ConnectionSP connection,
@@ -21,10 +61,19 @@ ImpedanceSP Impedance::create(const ConnectionSP connection,
                               double             capacitance) {
   return std::make_shared<Impedance>(connection, resistance, capacitance);
 }
-ConnectionSP Impedance::connection() const { return _connection; }
-double       Impedance::resistance() const { return _resistance; }
-double       Impedance::capacitance() const { return _capacitance; }
-bool         Impedance::operator==(const Impedance& other) const {
+ConnectionSP Impedance::connection() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_connection);
+  return _connection;
+}
+double Impedance::resistance() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_resistance);
+  return _resistance;
+}
+double Impedance::capacitance() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_capacitance);
+  return _capacitance;
+}
+bool Impedance::operator==(const Impedance& other) const {
   return (*connection() == *other.connection()) &&
          (resistance() == other.resistance()) &&
          (capacitance() == other.capacitance());

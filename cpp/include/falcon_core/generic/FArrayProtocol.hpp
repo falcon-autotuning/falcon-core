@@ -25,8 +25,8 @@ class IFArray {
   virtual const xt::dynamic_shape<size_t>& shape() const noexcept     = 0;
   virtual size_t                           size() const noexcept      = 0;
   virtual size_t                           dimension() const noexcept = 0;
-  virtual T*                               data() noexcept            = 0;
-  virtual const T*                         data() const noexcept      = 0;
+  virtual T*                               raw_data() noexcept        = 0;
+  virtual const T*                         raw_data() const noexcept  = 0;
 
   // Iterators
   virtual typename array_type::iterator       begin() noexcept        = 0;
@@ -39,8 +39,8 @@ class IFArray {
   virtual T max() const = 0;
 
   // View
-  virtual array_type&       xtensor() noexcept       = 0;
-  virtual const array_type& xtensor() const noexcept = 0;
+  virtual array_type&       data() noexcept       = 0;
+  virtual const array_type& data() const noexcept = 0;
 
   // Assignment and conversion
   virtual operator array_type&()             = 0;
