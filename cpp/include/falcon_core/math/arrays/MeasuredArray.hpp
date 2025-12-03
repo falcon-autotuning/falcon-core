@@ -23,6 +23,8 @@ class MeasuredArray : public generic::FArray<double> {
   }
 
  public:
+  MeasuredArray(const MeasuredArray& other);
+  MeasuredArray operator=(const MeasuredArray& other);
   MeasuredArray(const generic::FArraySP<double>& arr);
   MeasuredArray(const xt::xarray<double>& arr);
   MeasuredArray(xt::xarray<double>&& arr) noexcept;

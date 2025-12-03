@@ -27,17 +27,8 @@ size_t ListLabelledMeasuredArray1D_size(ListLabelledMeasuredArray1DHandle handle
 // @category:read
 bool ListLabelledMeasuredArray1D_empty(ListLabelledMeasuredArray1DHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListLabelledMeasuredArray1D_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListLabelledMeasuredArray1D_erase_at(ListLabelledMeasuredArray1DHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListLabelledMeasuredArray1D_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListLabelledMeasuredArray1D_clear(ListLabelledMeasuredArray1DHandle handle);
 // @category:read
 LabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_at(ListLabelledMeasuredArray1DHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListLabelledMeasuredArray1D_contains(ListLabelledMeasuredArray1DHandle hand
 // @category:read
 size_t ListLabelledMeasuredArray1D_index(ListLabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListLabelledMeasuredArray1D_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_intersection(ListLabelledMeasuredArray1DHandle handle, ListLabelledMeasuredArray1DHandle other);
 // @category:read
 bool ListLabelledMeasuredArray1D_equal(ListLabelledMeasuredArray1DHandle a, ListLabelledMeasuredArray1DHandle b);

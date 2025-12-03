@@ -27,17 +27,8 @@ size_t ListChannel_size(ListChannelHandle handle);
 // @category:read
 bool ListChannel_empty(ListChannelHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListChannel_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListChannel_erase_at(ListChannelHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListChannel_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListChannel_clear(ListChannelHandle handle);
 // @category:read
 ChannelHandle ListChannel_at(ListChannelHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListChannel_contains(ListChannelHandle handle, ChannelHandle value);
 // @category:read
 size_t ListChannel_index(ListChannelHandle handle, ChannelHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListChannel_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListChannelHandle ListChannel_intersection(ListChannelHandle handle, ListChannelHandle other);
 // @category:read
 bool ListChannel_equal(ListChannelHandle a, ListChannelHandle b);

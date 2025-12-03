@@ -27,17 +27,8 @@ size_t ListDiscretizer_size(ListDiscretizerHandle handle);
 // @category:read
 bool ListDiscretizer_empty(ListDiscretizerHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListDiscretizer_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListDiscretizer_erase_at(ListDiscretizerHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListDiscretizer_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListDiscretizer_clear(ListDiscretizerHandle handle);
 // @category:read
 DiscretizerHandle ListDiscretizer_at(ListDiscretizerHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListDiscretizer_contains(ListDiscretizerHandle handle, DiscretizerHandle va
 // @category:read
 size_t ListDiscretizer_index(ListDiscretizerHandle handle, DiscretizerHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListDiscretizer_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListDiscretizerHandle ListDiscretizer_intersection(ListDiscretizerHandle handle, ListDiscretizerHandle other);
 // @category:read
 bool ListDiscretizer_equal(ListDiscretizerHandle a, ListDiscretizerHandle b);

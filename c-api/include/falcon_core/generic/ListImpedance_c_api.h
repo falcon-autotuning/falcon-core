@@ -27,17 +27,8 @@ size_t ListImpedance_size(ListImpedanceHandle handle);
 // @category:read
 bool ListImpedance_empty(ListImpedanceHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListImpedance_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListImpedance_erase_at(ListImpedanceHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListImpedance_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListImpedance_clear(ListImpedanceHandle handle);
 // @category:read
 ImpedanceHandle ListImpedance_at(ListImpedanceHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListImpedance_contains(ListImpedanceHandle handle, ImpedanceHandle value);
 // @category:read
 size_t ListImpedance_index(ListImpedanceHandle handle, ImpedanceHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListImpedance_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListImpedanceHandle ListImpedance_intersection(ListImpedanceHandle handle, ListImpedanceHandle other);
 // @category:read
 bool ListImpedance_equal(ListImpedanceHandle a, ListImpedanceHandle b);

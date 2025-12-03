@@ -448,7 +448,7 @@ ListPairConnectionPairQuantityQuantityHandle Vector_items(VectorHandle handle) {
   Vector self = *static_cast<Vector*>(handle);
   return new falcon_core::generic::List<falcon_core::generic::Pair<
       falcon_core::physics::device_structures::Connection,
-      falcon_core::generic::Pair<Quantity, Quantity>>>(self.items());
+      falcon_core::generic::Pair<Quantity, Quantity>>>(*self.items());
   FALCON_C_API_END(nullptr)
 }
 

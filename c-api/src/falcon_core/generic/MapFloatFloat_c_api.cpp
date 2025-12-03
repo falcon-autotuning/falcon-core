@@ -142,8 +142,8 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to MapFloatFloat_items");
 }
     auto map = static_cast<falcon_core::generic::Map<float,float>*>(handle);
-    falcon_core::generic::List<falcon_core::generic::Pair<float,float>> items_sp = map->items(); 
-    return new falcon_core::generic::List<falcon_core::generic::Pair<float,float>>(items_sp);
+    falcon_core::generic::ListSP<falcon_core::generic::Pair<float,float>> items_sp = map->items(); 
+    return new falcon_core::generic::List<falcon_core::generic::Pair<float,float>>(*items_sp);
     FALCON_C_API_END(nullptr)
 }
 

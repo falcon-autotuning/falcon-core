@@ -34,16 +34,8 @@ void MapIntInt_clear(MapIntIntHandle handle);
 // @category:read
 bool MapIntInt_contains(MapIntIntHandle handle, int key);
 // @category:read
-/* AUTO-DOC from cpp: MapIntInt_keys | falcon_core::generic::Map::keys */
-/**
- * @brief Return the keys of the Map.
- */
 ListIntHandle MapIntInt_keys(MapIntIntHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: MapIntInt_values | falcon_core::generic::Map::values */
-/**
- * @brief Return the values of the Map.
- */
 ListIntHandle MapIntInt_values(MapIntIntHandle handle);
 // @category:read
 ListPairIntIntHandle MapIntInt_items(MapIntIntHandle handle);

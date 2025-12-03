@@ -213,7 +213,7 @@ ListPairConnectionQuantityHandle Point_items(PointHandle handle) {
   Point self  = *static_cast<Point*>(handle);
   auto  items = self.items();
   return new generic::List<
-      generic::Pair<device_structures::Connection, Quantity>>(items);
+      generic::Pair<device_structures::Connection, Quantity>>(*items);
   FALCON_C_API_END(nullptr)
 }
 

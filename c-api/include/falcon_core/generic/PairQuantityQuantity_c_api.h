@@ -11,26 +11,12 @@ typedef void* PairQuantityQuantityHandle;
 // Function declarations
 
 // @category:allocation
-/* AUTO-DOC from cpp: PairQuantityQuantity_create | falcon_core::generic::Pair::create */
-/**
- * @brief Store a pair of values.
- * @param first The first value.
- * @param second The second value.
- */
 PairQuantityQuantityHandle PairQuantityQuantity_create(QuantityHandle first, QuantityHandle second);
 // @category:deallocation
 void PairQuantityQuantity_destroy(PairQuantityQuantityHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: PairQuantityQuantity_first | falcon_core::generic::Pair::first */
-/**
- * @brief Get the stored first value.
- */
 QuantityHandle PairQuantityQuantity_first(PairQuantityQuantityHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: PairQuantityQuantity_second | falcon_core::generic::Pair::second */
-/**
- * @brief Get the stored second value.
- */
 QuantityHandle PairQuantityQuantity_second(PairQuantityQuantityHandle handle);
 // @category:read
 bool PairQuantityQuantity_equal(PairQuantityQuantityHandle a, PairQuantityQuantityHandle b);

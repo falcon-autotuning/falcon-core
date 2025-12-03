@@ -35,16 +35,8 @@ void MapConnectionQuantity_clear(MapConnectionQuantityHandle handle);
 // @category:read
 bool MapConnectionQuantity_contains(MapConnectionQuantityHandle handle, ConnectionHandle key);
 // @category:read
-/* AUTO-DOC from cpp: MapConnectionQuantity_keys | falcon_core::generic::Map::keys */
-/**
- * @brief Return the keys of the Map.
- */
 ListConnectionHandle MapConnectionQuantity_keys(MapConnectionQuantityHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: MapConnectionQuantity_values | falcon_core::generic::Map::values */
-/**
- * @brief Return the values of the Map.
- */
 ListQuantityHandle MapConnectionQuantity_values(MapConnectionQuantityHandle handle);
 // @category:read
 ListPairConnectionQuantityHandle MapConnectionQuantity_items(MapConnectionQuantityHandle handle);

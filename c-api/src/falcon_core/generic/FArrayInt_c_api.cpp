@@ -128,7 +128,7 @@ throw std::invalid_argument("Null out_buffer passed to FArrayInt_shape");
         " elements, but the FArray has " + std::to_string(farray->size()) +
         " elements.");
     }
-    memcpy(out_buffer, farray->data(), farray->size() * sizeof(int));
+    memcpy(out_buffer, farray->raw_data(), farray->size() * sizeof(int));
     return farray->size();
     FALCON_C_API_END(0)
 }

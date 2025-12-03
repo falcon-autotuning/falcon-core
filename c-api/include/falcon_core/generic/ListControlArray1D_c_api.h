@@ -27,17 +27,8 @@ size_t ListControlArray1D_size(ListControlArray1DHandle handle);
 // @category:read
 bool ListControlArray1D_empty(ListControlArray1DHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListControlArray1D_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListControlArray1D_erase_at(ListControlArray1DHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListControlArray1D_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListControlArray1D_clear(ListControlArray1DHandle handle);
 // @category:read
 ControlArray1DHandle ListControlArray1D_at(ListControlArray1DHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListControlArray1D_contains(ListControlArray1DHandle handle, ControlArray1D
 // @category:read
 size_t ListControlArray1D_index(ListControlArray1DHandle handle, ControlArray1DHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListControlArray1D_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListControlArray1DHandle ListControlArray1D_intersection(ListControlArray1DHandle handle, ListControlArray1DHandle other);
 // @category:read
 bool ListControlArray1D_equal(ListControlArray1DHandle a, ListControlArray1DHandle b);

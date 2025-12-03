@@ -11,6 +11,12 @@ ControlArray::ControlArray(const ControlArray& other) : FArray<double>(other) {
   _principle_dimension = other._principle_dimension;
   _alignment           = other._alignment;
 }
+ControlArray ControlArray::operator=(const ControlArray& other) {
+  if (this != &other) {
+    ControlArray::operator=(other);
+  }
+  return *this;
+}
 ControlArray::ControlArray() : FArray<double>() {
   _principle_dimension = 0;
   _alignment = std::make_shared<IncreasingAlignment>(IncreasingAlignment(true));

@@ -27,17 +27,8 @@ size_t ListSizeT_size(ListSizeTHandle handle);
 // @category:read
 bool ListSizeT_empty(ListSizeTHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListSizeT_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListSizeT_erase_at(ListSizeTHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListSizeT_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListSizeT_clear(ListSizeTHandle handle);
 // @category:read
 size_t ListSizeT_at(ListSizeTHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListSizeT_contains(ListSizeTHandle handle, size_t value);
 // @category:read
 size_t ListSizeT_index(ListSizeTHandle handle, size_t value);
 // @category:read
-/* AUTO-DOC from cpp: ListSizeT_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListSizeTHandle ListSizeT_intersection(ListSizeTHandle handle, ListSizeTHandle other);
 // @category:read
 bool ListSizeT_equal(ListSizeTHandle a, ListSizeTHandle b);

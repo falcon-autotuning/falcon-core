@@ -35,16 +35,8 @@ void MapGnameGroup_clear(MapGnameGroupHandle handle);
 // @category:read
 bool MapGnameGroup_contains(MapGnameGroupHandle handle, GnameHandle key);
 // @category:read
-/* AUTO-DOC from cpp: MapGnameGroup_keys | falcon_core::generic::Map::keys */
-/**
- * @brief Return the keys of the Map.
- */
 ListGnameHandle MapGnameGroup_keys(MapGnameGroupHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: MapGnameGroup_values | falcon_core::generic::Map::values */
-/**
- * @brief Return the values of the Map.
- */
 ListGroupHandle MapGnameGroup_values(MapGnameGroupHandle handle);
 // @category:read
 ListPairGnameGroupHandle MapGnameGroup_items(MapGnameGroupHandle handle);

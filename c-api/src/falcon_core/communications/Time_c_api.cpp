@@ -63,30 +63,6 @@ StringHandle Time_to_string(TimeHandle handle) {
   FALCON_C_API_END(nullptr)
 }
 
-bool Time_equal(TimeHandle a, TimeHandle b) {
-  FALCON_C_API_BEGIN
-  if (!a) {
-    throw std::invalid_argument("Null handle passed to Time_equal for a");
-  }
-  if (!b) {
-    throw std::invalid_argument("Null handle passed to Time_equal for b");
-  }
-  return *(static_cast<Time*>(a)) == *(static_cast<Time*>(b));
-  FALCON_C_API_END(false)
-}
-
-bool Time_not_equal(TimeHandle a, TimeHandle b) {
-  FALCON_C_API_BEGIN
-  if (!a) {
-    throw std::invalid_argument("Null handle passed to Time_not_equal for a");
-  }
-  if (!b) {
-    throw std::invalid_argument("Null handle passed to Time_not_equal for b");
-  }
-  return *(static_cast<Time*>(a)) != *(static_cast<Time*>(b));
-  FALCON_C_API_END(false)
-}
-
 StringHandle Time_to_json_string(TimeHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {

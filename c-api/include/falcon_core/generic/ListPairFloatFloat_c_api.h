@@ -27,17 +27,8 @@ size_t ListPairFloatFloat_size(ListPairFloatFloatHandle handle);
 // @category:read
 bool ListPairFloatFloat_empty(ListPairFloatFloatHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListPairFloatFloat_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListPairFloatFloat_erase_at(ListPairFloatFloatHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListPairFloatFloat_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListPairFloatFloat_clear(ListPairFloatFloatHandle handle);
 // @category:read
 PairFloatFloatHandle ListPairFloatFloat_at(ListPairFloatFloatHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListPairFloatFloat_contains(ListPairFloatFloatHandle handle, PairFloatFloat
 // @category:read
 size_t ListPairFloatFloat_index(ListPairFloatFloatHandle handle, PairFloatFloatHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListPairFloatFloat_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListPairFloatFloatHandle ListPairFloatFloat_intersection(ListPairFloatFloatHandle handle, ListPairFloatFloatHandle other);
 // @category:read
 bool ListPairFloatFloat_equal(ListPairFloatFloatHandle a, ListPairFloatFloatHandle b);

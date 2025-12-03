@@ -27,17 +27,8 @@ size_t ListInt_size(ListIntHandle handle);
 // @category:read
 bool ListInt_empty(ListIntHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListInt_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListInt_erase_at(ListIntHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListInt_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListInt_clear(ListIntHandle handle);
 // @category:read
 int ListInt_at(ListIntHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListInt_contains(ListIntHandle handle, int value);
 // @category:read
 size_t ListInt_index(ListIntHandle handle, int value);
 // @category:read
-/* AUTO-DOC from cpp: ListInt_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListIntHandle ListInt_intersection(ListIntHandle handle, ListIntHandle other);
 // @category:read
 bool ListInt_equal(ListIntHandle a, ListIntHandle b);

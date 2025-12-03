@@ -26,6 +26,7 @@ class ControlArray : public generic::FArray<double>, public IsControl<double> {
 
  public:
   ControlArray(const ControlArray& other);
+  ControlArray operator=(const ControlArray& other);
   ControlArray(const xt::xarray<double>& arr);
   ControlArray(const generic::FArraySP<double>& arr);
   ControlArray(xt::xarray<double>&& arr) noexcept;

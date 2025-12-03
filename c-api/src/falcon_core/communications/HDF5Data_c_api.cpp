@@ -176,36 +176,6 @@ PairMeasurementResponseMeasurementRequestHandle HDF5Data_to_communications(
   FALCON_C_API_END(nullptr)
 }
 
-bool HDF5Data_equal(HDF5DataHandle handle, HDF5DataHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Null handle passed to HDF5Data_equal: handle");
-  }
-  if (!other) {
-    throw std::invalid_argument("Null handle passed to HDF5Data_equal: other");
-  }
-  HDF5Data* hdf5_data = static_cast<HDF5Data*>(handle);
-  HDF5Data* odata     = static_cast<HDF5Data*>(other);
-  return (*hdf5_data) == (*odata);
-  FALCON_C_API_END(false)
-}
-
-bool HDF5Data_not_equal(HDF5DataHandle handle, HDF5DataHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to HDF5Data_not_equal: handle");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "Null handle passed to HDF5Data_not_equal: other");
-  }
-  HDF5Data* hdf5_data = static_cast<HDF5Data*>(handle);
-  HDF5Data* odata     = static_cast<HDF5Data*>(other);
-  return (*hdf5_data) != (*odata);
-  FALCON_C_API_END(false)
-}
-
 StringHandle HDF5Data_to_json_string(HDF5DataHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {

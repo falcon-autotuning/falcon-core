@@ -27,17 +27,8 @@ size_t ListPairInterpretationContextQuantity_size(ListPairInterpretationContextQ
 // @category:read
 bool ListPairInterpretationContextQuantity_empty(ListPairInterpretationContextQuantityHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListPairInterpretationContextQuantity_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListPairInterpretationContextQuantity_erase_at(ListPairInterpretationContextQuantityHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListPairInterpretationContextQuantity_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListPairInterpretationContextQuantity_clear(ListPairInterpretationContextQuantityHandle handle);
 // @category:read
 PairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_at(ListPairInterpretationContextQuantityHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListPairInterpretationContextQuantity_contains(ListPairInterpretationContex
 // @category:read
 size_t ListPairInterpretationContextQuantity_index(ListPairInterpretationContextQuantityHandle handle, PairInterpretationContextQuantityHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListPairInterpretationContextQuantity_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_intersection(ListPairInterpretationContextQuantityHandle handle, ListPairInterpretationContextQuantityHandle other);
 // @category:read
 bool ListPairInterpretationContextQuantity_equal(ListPairInterpretationContextQuantityHandle a, ListPairInterpretationContextQuantityHandle b);

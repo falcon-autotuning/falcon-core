@@ -35,16 +35,8 @@ void MapChannelConnections_clear(MapChannelConnectionsHandle handle);
 // @category:read
 bool MapChannelConnections_contains(MapChannelConnectionsHandle handle, ChannelHandle key);
 // @category:read
-/* AUTO-DOC from cpp: MapChannelConnections_keys | falcon_core::generic::Map::keys */
-/**
- * @brief Return the keys of the Map.
- */
 ListChannelHandle MapChannelConnections_keys(MapChannelConnectionsHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: MapChannelConnections_values | falcon_core::generic::Map::values */
-/**
- * @brief Return the values of the Map.
- */
 ListConnectionsHandle MapChannelConnections_values(MapChannelConnectionsHandle handle);
 // @category:read
 ListPairChannelConnectionsHandle MapChannelConnections_items(MapChannelConnectionsHandle handle);

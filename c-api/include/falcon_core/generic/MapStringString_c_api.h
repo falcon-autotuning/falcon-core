@@ -35,16 +35,8 @@ void MapStringString_clear(MapStringStringHandle handle);
 // @category:read
 bool MapStringString_contains(MapStringStringHandle handle, StringHandle key);
 // @category:read
-/* AUTO-DOC from cpp: MapStringString_keys | falcon_core::generic::Map::keys */
-/**
- * @brief Return the keys of the Map.
- */
 ListStringHandle MapStringString_keys(MapStringStringHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: MapStringString_values | falcon_core::generic::Map::values */
-/**
- * @brief Return the values of the Map.
- */
 ListStringHandle MapStringString_values(MapStringStringHandle handle);
 // @category:read
 ListPairStringStringHandle MapStringString_items(MapStringStringHandle handle);

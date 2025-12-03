@@ -3,6 +3,18 @@
 namespace falcon_core {
 namespace math {
 namespace arrays {
+LabelledControlArray::LabelledControlArray(const LabelledControlArray& other)
+    : ControlArray(other) {
+  _label = other._label;
+}
+LabelledControlArray LabelledControlArray::operator=(
+    const LabelledControlArray& other) {
+  if (this != &other) {
+    ControlArray::operator=(other);
+    _label = other._label;
+  }
+  return *this;
+}
 const arrays::ControlArray& check_and_deref(
     const arrays::ControlArraySP& array) {
   if (!array)

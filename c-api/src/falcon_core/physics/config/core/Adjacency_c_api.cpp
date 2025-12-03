@@ -1,7 +1,7 @@
 #include "falcon_core/physics/config/core/Adjacency_c_api.h"
 
+#include <cstring>
 #include <falcon_core/physics/config/core/Adjacency.hpp>
-#include <string>
 
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/FArray.hpp"
@@ -131,13 +131,13 @@ size_t Adjacency_data(AdjacencyHandle handle, int* out_buffer, size_t numdata) {
     throw std::runtime_error(
         "Trying to store more datapoints than buffer allocated.");
   }
-  memcpy(out_buffer, self->data(), self->size() * sizeof(int));
+  memcpy(out_buffer, self->raw_data(), self->size() * sizeof(int));
   return self->size();
   FALCON_C_API_END(0)
 }
 
 void Adjacency_times_equals_farray(AdjacencyHandle handle,
-                                  FArrayIntHandle other) {
+                                   FArrayIntHandle other) {
   FALCON_C_API_BEGIN
   if (!handle) {
     throw std::invalid_argument(

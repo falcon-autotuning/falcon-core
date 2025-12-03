@@ -27,17 +27,8 @@ size_t ListPortTransform_size(ListPortTransformHandle handle);
 // @category:read
 bool ListPortTransform_empty(ListPortTransformHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListPortTransform_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListPortTransform_erase_at(ListPortTransformHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListPortTransform_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListPortTransform_clear(ListPortTransformHandle handle);
 // @category:read
 PortTransformHandle ListPortTransform_at(ListPortTransformHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListPortTransform_contains(ListPortTransformHandle handle, PortTransformHan
 // @category:read
 size_t ListPortTransform_index(ListPortTransformHandle handle, PortTransformHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListPortTransform_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListPortTransformHandle ListPortTransform_intersection(ListPortTransformHandle handle, ListPortTransformHandle other);
 // @category:read
 bool ListPortTransform_equal(ListPortTransformHandle a, ListPortTransformHandle b);

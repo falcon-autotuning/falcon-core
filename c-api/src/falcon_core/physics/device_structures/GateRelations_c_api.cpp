@@ -180,9 +180,9 @@ ListPairConnectionConnectionsHandle GateRelations_items(
   if (!handle) {
     throw std::invalid_argument("GateRelations_items: handle cannot be null");
   }
-  List<Pair<Connection, Connections>> items =
+  ListSP<Pair<Connection, Connections>> items =
       static_cast<GateRelations*>(handle)->items();
-  return new List<Pair<Connection, Connections>>(items);
+  return new List<Pair<Connection, Connections>>(*items);
   FALCON_C_API_END(nullptr)
 }
 

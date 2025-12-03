@@ -12,26 +12,12 @@ typedef void* PairStringStringHandle;
 // Function declarations
 
 // @category:allocation
-/* AUTO-DOC from cpp: PairStringString_create | falcon_core::generic::Pair::create */
-/**
- * @brief Store a pair of values.
- * @param first The first value.
- * @param second The second value.
- */
 PairStringStringHandle PairStringString_create(StringHandle first, StringHandle second);
 // @category:deallocation
 void PairStringString_destroy(PairStringStringHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: PairStringString_first | falcon_core::generic::Pair::first */
-/**
- * @brief Get the stored first value.
- */
 StringHandle PairStringString_first(PairStringStringHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: PairStringString_second | falcon_core::generic::Pair::second */
-/**
- * @brief Get the stored second value.
- */
 StringHandle PairStringString_second(PairStringStringHandle handle);
 // @category:read
 bool PairStringString_equal(PairStringStringHandle a, PairStringStringHandle b);

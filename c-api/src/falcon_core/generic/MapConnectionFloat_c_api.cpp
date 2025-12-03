@@ -168,8 +168,8 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to MapConnectionFloat_items");
 }
     auto map = static_cast<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>*>(handle);
-    falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,float>> items_sp = map->items(); 
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,float>>(items_sp);
+    falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,float>> items_sp = map->items(); 
+    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,float>>(*items_sp);
     FALCON_C_API_END(nullptr)
 }
 
