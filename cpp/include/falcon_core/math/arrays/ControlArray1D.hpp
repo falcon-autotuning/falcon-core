@@ -28,10 +28,6 @@ class ControlArray1D : public ControlArray, public Is1D<double> {
   ControlArray1D(const generic::FArraySP<double>& arr);
   ControlArray1D(const ControlArraySP& arr);
   ControlArray1D(xt::xarray<double>&& arr) noexcept;
-  ControlArray1D(const ControlArray1D&)                = default;
-  ControlArray1D(ControlArray1D&&) noexcept            = default;
-  ControlArray1D& operator=(const ControlArray1D&)     = default;
-  ControlArray1D& operator=(ControlArray1D&&) noexcept = default;
   // Arithmetic operators
   std::shared_ptr<ControlArray1D> operator+(const double other) const;
 

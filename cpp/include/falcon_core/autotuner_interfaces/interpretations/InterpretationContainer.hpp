@@ -15,18 +15,37 @@ namespace interpretations {
 template <typename Value>
 class InterpretationContainer
     : public generic::Map<InterpretationContext, Value> {
-  physics::units::SymbolUnitSP _unit;
+  physics::units::SymbolUnitSP    _unit;
+  mutable std::shared_timed_mutex _mu_unit;
 
  protected:
   InterpretationContainer() = default;
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_u(_mu_unit);
     ar(cereal::base_class<generic::Map<InterpretationContext, Value>>(this),
        _unit);
   }
 
  public:
+  InterpretationContainer(const InterpretationContainer<Value>& other)
+      : generic::Map<InterpretationContext, Value>(other) {
+    std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_unit);
+    _unit = other._unit;
+  }
+  InterpretationContext operator=(const InterpretationContainer<Value>& other) {
+    if (this != &other) {
+      std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_unit,
+                                                       std::defer_lock);
+      std::unique_lock<std::shared_timed_mutex> lock_u(_mu_unit,
+                                                       std::defer_lock);
+      std::lock(lock_o, lock_u);
+      _unit = other._unit;
+      generic::Map<InterpretationContext, Value>::operator=(other);
+    }
+    return *this;
+  }
   /**
    * @brief A container for interpretations of the contents.
    * @param contexts The list of contexts.
@@ -52,7 +71,10 @@ class InterpretationContainer
   /**
    * @brief Returns the unit that all contexts in this constainer must have.
    */
-  const physics::units::SymbolUnitSP unit() const { return _unit; }
+  const physics::units::SymbolUnitSP unit() const {
+    std::shared_lock<std::shared_timed_mutex> lock_u(_mu_unit);
+    return _unit;
+  }
   /**
    * @brief Select contexts that involve a specific connection.
    * @param connection The connection to search for.

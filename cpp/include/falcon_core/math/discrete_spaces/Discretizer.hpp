@@ -22,11 +22,16 @@ namespace discrete_spaces {
  * Discretizers define how a domain is divided into discrete steps.
  */
 class Discretizer : public generic::Song {
-  double            _delta;
-  domains::DomainSP _delta_domain;
-  Dividers          _type;
+  double                          _delta;
+  domains::DomainSP               _delta_domain;
+  Dividers                        _type;
+  mutable std::shared_timed_mutex _mu_delta;
+  mutable std::shared_timed_mutex _mu_delta_domain;
+  mutable std::shared_timed_mutex _mu_type;
 
  public:
+  Discretizer(const Discretizer& other);
+  Discretizer operator=(const Discretizer& other);
   /**
    * @brief Construct a Discretizer. The delta must be within the
    * delta_domain.
@@ -64,6 +69,13 @@ class Discretizer : public generic::Song {
   Discretizer();
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_delta(_mu_delta,
+                                                         std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_delta_domain(
+        _mu_delta_domain, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_type(_mu_type,
+                                                        std::defer_lock);
+    std::lock(lock_delta, lock_delta_domain, lock_type);
     ar(cereal::base_class<generic::Song>(this), _delta, _delta_domain, _type);
   }
 };

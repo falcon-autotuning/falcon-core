@@ -9,8 +9,11 @@ namespace messages {
 
 class VoltageStatesResponse : public BaseMessage {
   communications::voltage_states::DeviceVoltageStatesSP _states;
+  mutable std::shared_timed_mutex                       _mu_states;
 
  public:
+  VoltageStatesResponse(const VoltageStatesResponse& other);
+  VoltageStatesResponse operator=(const VoltageStatesResponse& other);
   VoltageStatesResponse(
       const std::string&                                           message,
       const communications::voltage_states::DeviceVoltageStatesSP& states);
@@ -24,6 +27,7 @@ class VoltageStatesResponse : public BaseMessage {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_s(_mu_states);
     ar(cereal::base_class<BaseMessage>(this), _states);
   }
 };

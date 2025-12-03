@@ -44,10 +44,6 @@ class LabelledControlArray : public ControlArray, public IsLabelled<double> {
       const generic::FArraySP<double>&                      array,
       const instrument_interfaces::names::InstrumentPortSP& port);
 
-  LabelledControlArray(const LabelledControlArray&)                = default;
-  LabelledControlArray(LabelledControlArray&&) noexcept            = default;
-  LabelledControlArray& operator=(const LabelledControlArray&)     = default;
-  LabelledControlArray& operator=(LabelledControlArray&&) noexcept = default;
   // Arithmetic operators
   std::shared_ptr<LabelledControlArray> operator+(const double other) const;
 

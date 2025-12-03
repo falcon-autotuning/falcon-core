@@ -43,10 +43,6 @@ class LabelledMeasuredArray : public MeasuredArray, public IsLabelled<double> {
       const generic::FArraySP<double>&                      array,
       const instrument_interfaces::names::InstrumentPortSP& port);
 
-  LabelledMeasuredArray(const LabelledMeasuredArray&)                = default;
-  LabelledMeasuredArray(LabelledMeasuredArray&&) noexcept            = default;
-  LabelledMeasuredArray& operator=(const LabelledMeasuredArray&)     = default;
-  LabelledMeasuredArray& operator=(LabelledMeasuredArray&&) noexcept = default;
   // Arithmetic operators
   std::shared_ptr<LabelledMeasuredArray> operator+(const double other) const;
 

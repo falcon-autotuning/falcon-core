@@ -5,6 +5,46 @@
 namespace falcon_core {
 namespace autotuner_interfaces {
 namespace interpretations {
+InterpretationContext::InterpretationContext(
+    const InterpretationContext& other) {
+  std::shared_lock<std::shared_timed_mutex> lock_independent_variables(
+      other._mu_independent_variables, std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_dependent_variables(
+      other._mu_dependent_variables, std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_unit(other._mu_unit,
+                                                      std::defer_lock);
+  std::lock(lock_independent_variables, lock_dependent_variables, lock_unit);
+  _independent_variables = other._independent_variables;
+  _dependent_variables   = other._dependent_variables;
+  _unit                  = other._unit;
+}
+InterpretationContext InterpretationContext::operator=(
+    const InterpretationContext& other) {
+  if (this != &other) {
+    std::shared_lock<std::shared_timed_mutex> lock_other_independent_variables(
+        other._mu_independent_variables, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_dependent_variables(
+        other._mu_dependent_variables, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_unit(other._mu_unit,
+                                                              std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_independent_variables(
+        _mu_independent_variables, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_dependent_variables(
+        _mu_dependent_variables, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
+                                                        std::defer_lock);
+    std::lock(lock_independent_variables,
+              lock_dependent_variables,
+              lock_unit,
+              lock_other_independent_variables,
+              lock_other_dependent_variables,
+              lock_other_unit);
+    _independent_variables = other._independent_variables;
+    _dependent_variables   = other._dependent_variables;
+    _unit                  = other._unit;
+  }
+  return *this;
+}
 InterpretationContext::InterpretationContext()
     : _independent_variables(
           std::make_shared<math::Axes<
@@ -37,13 +77,18 @@ InterpretationContext::InterpretationContext(
 }
 const math::AxesSP<autotuner_interfaces::contexts::MeasurementContext>
 InterpretationContext::independent_variables() const {
+  std::shared_lock<std::shared_timed_mutex> lock_independent_variables(
+      _mu_independent_variables);
   return _independent_variables;
 }
 const generic::ListSP<autotuner_interfaces::contexts::MeasurementContext>
 InterpretationContext::dependent_variables() const {
+  std::shared_lock<std::shared_timed_mutex> lock_dependent_variables(
+      _mu_dependent_variables);
   return _dependent_variables;
 }
 const physics::units::SymbolUnitSP InterpretationContext::unit() const {
+  std::shared_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
   return _unit;
 }
 const int InterpretationContext::dimension() const {
@@ -64,7 +109,7 @@ void InterpretationContext::replace_dependent_variable(
   if (!dependent_variable) {
     throw std::invalid_argument("Dependent variable must not be null.");
   }
-  if (index < 0 || index >= _dependent_variables->size()) {
+  if (index < 0 || index >= dependent_variables()->size()) {
     throw std::out_of_range("Index out of range");
   }
 
@@ -75,7 +120,7 @@ InterpretationContext::get_independent_variable(int index) const {
   if (index < 0 || index >= dimension()) {
     throw std::out_of_range("Index out of range");
   }
-  return (*_independent_variables)[index];
+  return (*independent_variables())[index];
 }
 const InterpretationContextSP InterpretationContext::with_unit(
     physics::units::SymbolUnitSP unit) const {
@@ -83,7 +128,7 @@ const InterpretationContextSP InterpretationContext::with_unit(
     throw std::invalid_argument("Unit must not be null.");
   }
   return std::make_shared<InterpretationContext>(
-      _independent_variables, _dependent_variables, unit);
+      independent_variables(), dependent_variables(), unit);
 }
 bool InterpretationContext::operator==(
     const InterpretationContext& other) const {

@@ -9,7 +9,44 @@
 namespace falcon_core {
 namespace math {
 namespace discrete_spaces {
-
+DiscreteSpace::DiscreteSpace(const DiscreteSpace& other) {
+  std::shared_lock<std::shared_timed_mutex> lock_space(other._mu_space,
+                                                       std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_axes(other._mu_axes,
+                                                      std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_increasing(
+      other._mu_increasing, std::defer_lock);
+  std::lock(lock_space, lock_axes, lock_increasing);
+  _space      = other._space;
+  _axes       = other._axes;
+  _increasing = other._increasing;
+}
+DiscreteSpace DiscreteSpace::operator=(const DiscreteSpace& other) {
+  if (this != &other) {
+    std::shared_lock<std::shared_timed_mutex> lock_other_space(other._mu_space,
+                                                               std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_axes(other._mu_axes,
+                                                              std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_increasing(
+        other._mu_increasing, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_space(_mu_space,
+                                                         std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_axes(_mu_axes,
+                                                        std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_increasing(_mu_increasing,
+                                                              std::defer_lock);
+    std::lock(lock_space,
+              lock_axes,
+              lock_increasing,
+              lock_other_space,
+              lock_other_axes,
+              lock_other_increasing);
+    _space      = other._space;
+    _axes       = other._axes;
+    _increasing = other._increasing;
+  }
+  return *this;
+}
 DiscreteSpace::DiscreteSpace() = default;
 DiscreteSpace::DiscreteSpace(
     const UnitSpaceSP&                             space,
@@ -60,18 +97,24 @@ DiscreteSpaceSP DiscreteSpace::CartesianDiscreteSpace1D(
       std::make_shared<Axes<generic::Map<std::string, bool>>>(
           std::vector<generic::MapSP<std::string, bool>>{increasing}));
 }
-const UnitSpaceSP& DiscreteSpace::space() const { return _space; }
+const UnitSpaceSP& DiscreteSpace::space() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_space);
+  return _space;
+}
 const AxesSP<domains::CoupledLabelledDomain>& DiscreteSpace::axes() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_axes);
   return _axes;
 }
 const AxesSP<generic::Map<std::string, bool>>& DiscreteSpace::increasing()
     const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_increasing);
   return _increasing;
 }
 const instrument_interfaces::names::PortsSP DiscreteSpace::knobs() const {
   instrument_interfaces::names::PortsSP knobs =
       std::make_shared<instrument_interfaces::names::Ports>();
-  for (const domains::CoupledLabelledDomainSP axis : *axes()) {
+  auto axes = *this->axes();
+  for (const domains::CoupledLabelledDomainSP axis : axes) {
     auto labels = *axis->labels();
     for (const instrument_interfaces::names::InstrumentPortSP knob : labels) {
       knobs->push_back(knob);
@@ -80,14 +123,15 @@ const instrument_interfaces::names::PortsSP DiscreteSpace::knobs() const {
   return knobs;
 }
 void DiscreteSpace::validate_unit_space_dimensionality_matches_knobs() const {
-  if (_space->dimension() != _axes->size()) {
+  if (space()->dimension() != axes()->size()) {
     throw std::invalid_argument(
         "Unit space dimensionality does not match number of knob axes.");
   }
 }
 void DiscreteSpace::validate_knob_uniqueness() const {
   std::set<std::string> old_names;
-  for (const domains::CoupledLabelledDomainSP& axis : *_axes) {
+  auto                  axes = *this->axes();
+  for (const domains::CoupledLabelledDomainSP& axis : axes) {
     auto                  labels        = axis->labels();
     auto                  default_names = labels->get_default_names();
     std::set<std::string> new_names(default_names->begin(),
@@ -107,10 +151,11 @@ const int DiscreteSpace::get_axis(
     throw std::invalid_argument(
         "DiscreteSpace: The knob label cannot be null.");
   }
-  for (domains::CoupledLabelledDomainSP axis : *_axes) {
+  auto axes = *this->axes();
+  for (domains::CoupledLabelledDomainSP axis : axes) {
     auto labels = axis->labels();
     if (labels->contains(knob)) {
-      return _axes->index(axis);
+      return this->axes()->index(axis);
     }
   }
   throw std::runtime_error("DiscreteSpace: Knob " + knob->default_name() +
@@ -123,7 +168,7 @@ const domains::DomainSP DiscreteSpace::get_domain(
         "DiscreteSpace: The knob label cannot be null.");
   }
   int axis = get_axis(knob);
-  return _axes->at(axis)->get_domain(knob);
+  return axes()->at(axis)->get_domain(knob);
 }
 const AxesSP<arrays::LabelledControlArray> DiscreteSpace::get_projection(
     const AxesSP<instrument_interfaces::names::InstrumentPort>& projection)
@@ -133,7 +178,7 @@ const AxesSP<arrays::LabelledControlArray> DiscreteSpace::get_projection(
         "DiscreteSpace: The projection must not be null.");
   }
   // Validate dimensionality
-  if (projection->size() != _space->dimension()) {
+  if (projection->size() != space()->dimension()) {
     throw std::runtime_error(
         "DiscreteSpace: The projection dimensionality must be less than or "
         "equal to the space "
@@ -156,13 +201,13 @@ const AxesSP<arrays::LabelledControlArray> DiscreteSpace::get_projection(
 
   // Create unit projections
   auto unitprojections =
-      _space->create_array(std::make_shared<Axes<int>>(projection_axes));
+      space()->create_array(std::make_shared<Axes<int>>(projection_axes));
 
   std::vector<arrays::ControlArraySP> scaled_projections;
   for (size_t i = 0; i < unitprojections->size(); ++i) {
     auto unitprojection = unitprojections->at(i);
     auto knob           = projection->at(i);
-    auto increasing_map = _increasing->at(i);
+    auto increasing_map = increasing()->at(i);
 
     auto        domain     = get_domain(knob);
     double      difference = domain->range();

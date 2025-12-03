@@ -8,7 +8,20 @@
 namespace falcon_core {
 namespace instrument_interfaces {
 namespace port_transforms {
-
+PortTransform::PortTransform(const PortTransform& other)
+    : AnalyticFunction(other) {
+  std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_port);
+  _port = other._port;
+}
+PortTransform PortTransform::operator=(const PortTransform& other) {
+  if (this != &other) {
+    std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_port);
+    std::unique_lock<std::shared_timed_mutex> lock_port(_mu_port);
+    _port = other._port;
+    math::AnalyticFunction::operator=(other);
+  }
+  return *this;
+}
 PortTransform::PortTransform(const names::InstrumentPortSP&  port,
                              const math::AnalyticFunctionSP& transform)
     : AnalyticFunction(transform ? *transform : *Identity()), _port(port) {
@@ -36,7 +49,10 @@ PortTransformSP PortTransform::IdentityTransform(
                                          math::AnalyticFunction::Identity());
 }
 
-const names::InstrumentPortSP PortTransform::port() const { return _port; }
+const names::InstrumentPortSP PortTransform::port() const {
+  std::shared_lock<std::shared_timed_mutex> lock_port(_mu_port);
+  return _port;
+}
 bool PortTransform::operator==(const PortTransform& other) const {
   return (*port() == *other.port()) &&
          math::AnalyticFunction::operator==(other);

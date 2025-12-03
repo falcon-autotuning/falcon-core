@@ -40,11 +40,6 @@ class LabelledControlArray1D : public LabelledControlArray,
   LabelledControlArray1D(
       const generic::FArraySP<double>&                            array,
       const autotuner_interfaces::contexts::AcquisitionContextSP& label);
-  LabelledControlArray1D(const LabelledControlArray1D&)            = default;
-  LabelledControlArray1D(LabelledControlArray1D&&) noexcept        = default;
-  LabelledControlArray1D& operator=(const LabelledControlArray1D&) = default;
-  LabelledControlArray1D& operator=(LabelledControlArray1D&&) noexcept =
-      default;
   // Arithmetic operators
   std::shared_ptr<LabelledControlArray1D> operator+(const double other) const;
 

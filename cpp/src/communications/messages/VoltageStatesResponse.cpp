@@ -6,7 +6,21 @@
 namespace falcon_core {
 namespace communications {
 namespace messages {
-
+VoltageStatesResponse::VoltageStatesResponse(const VoltageStatesResponse& other)
+    : BaseMessage(other) {
+  std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_states);
+  _states = other._states;
+}
+VoltageStatesResponse VoltageStatesResponse::operator=(
+    const VoltageStatesResponse& other) {
+  if (this != &other) {
+    std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_states);
+    std::unique_lock<std::shared_timed_mutex> lock_s(_mu_states);
+    BaseMessage::                             operator=(other);
+    _states = other._states;
+  }
+  return *this;
+}
 VoltageStatesResponse::VoltageStatesResponse() = default;
 VoltageStatesResponse::VoltageStatesResponse(
     const std::string&                                           message,
@@ -20,6 +34,7 @@ VoltageStatesResponse::VoltageStatesResponse(
 
 const communications::voltage_states::DeviceVoltageStatesSP&
 VoltageStatesResponse::states() const {
+  std::shared_lock<std::shared_timed_mutex> lock_s(_mu_states);
   return _states;
 }
 bool VoltageStatesResponse::operator==(

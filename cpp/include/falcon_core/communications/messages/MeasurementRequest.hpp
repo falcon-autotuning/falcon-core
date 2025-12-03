@@ -18,8 +18,15 @@ class MeasurementRequest : public BaseMessage {
                  instrument_interfaces::port_transforms::PortTransform>
                                   _meter_transforms;
   math::domains::LabelledDomainSP _time_domain;
+  mutable std::shared_timed_mutex _mu_measurement_name;
+  mutable std::shared_timed_mutex _mu_waveforms;
+  mutable std::shared_timed_mutex _mu_getters;
+  mutable std::shared_timed_mutex _mu_meter_transforms;
+  mutable std::shared_timed_mutex _mu_time_domain;
 
  public:
+  MeasurementRequest(const MeasurementRequest& other);
+  MeasurementRequest operator=(const MeasurementRequest& other);
   MeasurementRequest(
       const std::string&                                      message,
       const std::string&                                      measurement_name,
@@ -44,6 +51,17 @@ class MeasurementRequest : public BaseMessage {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_mn(_mu_measurement_name,
+                                                      std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_wf(_mu_waveforms,
+                                                      std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_g(_mu_getters,
+                                                     std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_mt(_mu_meter_transforms,
+                                                      std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_td(_mu_time_domain,
+                                                      std::defer_lock);
+    std::lock(lock_mn, lock_wf, lock_g, lock_mt, lock_td);
     ar(cereal::base_class<BaseMessage>(this),
        _measurement_name,
        _waveforms,

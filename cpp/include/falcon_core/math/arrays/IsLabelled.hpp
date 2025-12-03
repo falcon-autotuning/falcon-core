@@ -9,9 +9,11 @@ class IsLabelled : public virtual generic::IFArray<T> {
  protected:
   friend class cereal::access;
   autotuner_interfaces::contexts::AcquisitionContextSP _label;
+  mutable std::shared_timed_mutex                      _mu_label;
 
  public:
   autotuner_interfaces::contexts::AcquisitionContextSP label() const {
+    std::shared_lock<std::shared_timed_mutex> lock_l(_mu_label);
     return _label;
   }
   const physics::device_structures::ConnectionSP connection() const {

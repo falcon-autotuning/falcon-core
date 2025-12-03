@@ -44,13 +44,6 @@ class CoupledLabelledDomain : public generic::List<LabelledDomain> {
       const instrument_interfaces::names::InstrumentPortSP& search) const;
   bool operator==(const CoupledLabelledDomain& other) const;
   bool operator!=(const CoupledLabelledDomain& other) const;
-
- protected:
-  friend class cereal::access;
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::List<LabelledDomain>>(this));
-  }
 };
 using CoupledLabelledDomainSP = std::shared_ptr<CoupledLabelledDomain>;
 }  // namespace domains

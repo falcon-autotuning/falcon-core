@@ -13,8 +13,11 @@ namespace instrument_interfaces {
 
 class Waveform : public port_transforms::PortTransforms {
   math::discrete_spaces::DiscreteSpaceSP _space;
+  mutable std::shared_timed_mutex        _mu_space;
 
  public:
+  Waveform(const Waveform& other);
+  Waveform operator=(const Waveform& other);
   /**
    * @brief Construct a Waveform.
    * @param space The measurement space.
@@ -131,6 +134,7 @@ class Waveform : public port_transforms::PortTransforms {
   Waveform();
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_space(_mu_space);
     ar(cereal::base_class<port_transforms::PortTransforms>(this), _space);
   }
 };

@@ -19,7 +19,7 @@ class Is1D : public virtual generic::IFArray<T> {
    */
   generic::FArraySP<T> as_1D() const {
     if (!is_1D()) throw std::runtime_error("Not a 1D array");
-    return std::make_shared<generic::FArray<T>>(this->xtensor());
+    return std::make_shared<generic::FArray<T>>(this->data());
   }
   /**
    * @brief Get the first element of the 1D array.
@@ -51,20 +51,18 @@ class Is1D : public virtual generic::IFArray<T> {
    * @brief Get the mean of the 1D array.
    * @returns The mean value.
    */
-  double get_mean() const { return xt::mean(this->xtensor())(); }
+  double get_mean() const { return xt::mean(this->data())(); }
 
   /**
    * @brief Get the standard deviation of the 1D array.
    * @returns The standard deviation value.
    */
-  double get_std() const { return xt::stddev(this->xtensor())(); }
+  double get_std() const { return xt::stddev(this->data())(); }
 
   /**
    * @brief Reverse the 1D array.
    */
-  void reverse() {
-    std::reverse(this->xtensor().begin(), this->xtensor().end());
-  }
+  void reverse() { std::reverse(this->data().begin(), this->data().end()); }
 
   /**
    * @brief Get the index of the closest element to the given value.
@@ -72,7 +70,7 @@ class Is1D : public virtual generic::IFArray<T> {
    * @returns The index of the closest element.
    */
   size_t get_closest_index(double value) const {
-    auto& arr = this->xtensor();
+    auto& arr = this->data();
     auto  it =
         std::min_element(arr.begin(), arr.end(), [value](double a, double b) {
           return std::abs(a - value) < std::abs(b - value);
@@ -87,7 +85,7 @@ class Is1D : public virtual generic::IFArray<T> {
    * @throws std::runtime_error if array cannot be evenly divided.
    */
   generic::ListSP<generic::FArray<T>> even_divisions(size_t divisions) const {
-    auto&  arr              = this->xtensor();
+    auto&  arr              = this->data();
     size_t partition_length = arr.size() / divisions;
     if (arr.size() % divisions != 0)
       throw std::runtime_error("Array cannot be evenly divided");

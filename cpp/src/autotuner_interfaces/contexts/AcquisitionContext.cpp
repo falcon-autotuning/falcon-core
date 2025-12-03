@@ -5,7 +5,20 @@
 namespace falcon_core {
 namespace autotuner_interfaces {
 namespace contexts {
-
+AcquisitionContext::AcquisitionContext(const AcquisitionContext& other)
+    : BaseContext(other) {
+  std::shared_lock<std::shared_timed_mutex> lock_units(other._mu_units);
+  _units = other._units;
+}
+AcquisitionContext AcquisitionContext::operator=(
+    const AcquisitionContext& other) {
+  if (this != &other) {
+    BaseContext::                             operator=(other);
+    std::shared_lock<std::shared_timed_mutex> lock_units(other._mu_units);
+    _units = other._units;
+  }
+  return *this;
+}
 AcquisitionContext::AcquisitionContext() : BaseContext(), _units(nullptr) {}
 
 AcquisitionContext::AcquisitionContext(
@@ -37,6 +50,7 @@ AcquisitionContextSP AcquisitionContext::from_context(
 }
 
 const physics::units::SymbolUnitSP AcquisitionContext::units() const {
+  std::shared_lock<std::shared_timed_mutex> lock_u(_mu_units);
   return _units;
 }
 

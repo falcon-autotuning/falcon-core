@@ -66,8 +66,6 @@ bool CoupledLabelledDomain::operator!=(
 }  // namespace math
 }  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::math::domains::CoupledLabelledDomain);
-CEREAL_REGISTER_TYPE(
-    falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>);
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>,
     falcon_core::math::domains::CoupledLabelledDomain)

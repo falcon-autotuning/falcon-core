@@ -6,7 +6,44 @@
 namespace falcon_core {
 namespace math {
 namespace discrete_spaces {
-
+Discretizer::Discretizer(const Discretizer& other) : generic::Song(other) {
+  std::shared_lock<std::shared_timed_mutex> lock_delta(other._mu_delta,
+                                                       std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_delta_domain(
+      other._mu_delta_domain, std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_type(other._mu_type,
+                                                      std::defer_lock);
+  std::lock(lock_delta, lock_delta_domain, lock_type);
+  _delta        = other._delta;
+  _delta_domain = other._delta_domain;
+  _type         = other._type;
+}
+Discretizer Discretizer::operator=(const Discretizer& other) {
+  if (this != &other) {
+    std::shared_lock<std::shared_timed_mutex> lock_other_delta(other._mu_delta,
+                                                               std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_delta_domain(
+        other._mu_delta_domain, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_type(other._mu_type,
+                                                              std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_delta(_mu_delta,
+                                                         std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_delta_domain(
+        _mu_delta_domain, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_type(_mu_type,
+                                                        std::defer_lock);
+    std::lock(lock_delta,
+              lock_delta_domain,
+              lock_type,
+              lock_other_delta,
+              lock_other_delta_domain,
+              lock_other_type);
+    _delta        = other._delta;
+    _delta_domain = other._delta_domain;
+    _type         = other._type;
+  }
+  return *this;
+}
 Discretizer::Discretizer(const double&            delta,
                          const domains::DomainSP& delta_domain,
                          const Dividers&          type)
@@ -27,16 +64,34 @@ DiscretizerSP Discretizer::PolarDiscretizer(const double& delta) {
       Dividers::Polar);
 }
 
-double Discretizer::delta() const { return _delta; }
-void   Discretizer::set_delta(double delta) { _delta = delta; }
-const domains::DomainSP& Discretizer::domain() const { return _delta_domain; }
-const bool               Discretizer::is_cartesian() const {
+double Discretizer::delta() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_delta);
+  return _delta;
+}
+void Discretizer::set_delta(double delta) {
+  std::unique_lock<std::shared_timed_mutex> lock(_mu_delta);
+  _delta = delta;
+}
+const domains::DomainSP& Discretizer::domain() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_delta_domain);
+  return _delta_domain;
+}
+const bool Discretizer::is_cartesian() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_type);
   return _type == Dividers::Cartesian;
 }
-const bool Discretizer::is_polar() const { return _type == Dividers::Polar; }
+const bool Discretizer::is_polar() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_type);
+  return _type == Dividers::Polar;
+}
 
 Discretizer::Discretizer() = default;
 bool Discretizer::operator==(const Discretizer& other) const {
+  std::shared_lock<std::shared_timed_mutex> lock_other_type(other._mu_type,
+                                                            std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_type(_mu_type,
+                                                      std::defer_lock);
+  std::lock(lock_type, lock_other_type);
   return (delta() == other.delta()) && (*domain() == *other.domain()) &&
          (_type == other._type);
 }

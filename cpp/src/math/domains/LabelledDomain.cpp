@@ -8,6 +8,20 @@
 namespace falcon_core {
 namespace math {
 namespace domains {
+LabelledDomain::LabelledDomain(const LabelledDomain& other) : Domain(other) {
+  std::shared_lock<std::shared_timed_mutex> lock_other_port(other._mu_port);
+  _port = other._port;
+}
+LabelledDomain LabelledDomain::operator=(const LabelledDomain& other) {
+  if (this != &other) {
+    std::shared_lock<std::shared_timed_mutex> lock_other_port(other._mu_port);
+    std::unique_lock<std::shared_timed_mutex> lock_port(_mu_port);
+    std::lock(lock_port, lock_other_port);
+    Domain::operator=(other);
+    _port = other._port;
+  }
+  return *this;
+}
 LabelledDomain::LabelledDomain() = default;
 LabelledDomain::LabelledDomain(
     const std::string&                              default_name,
@@ -102,6 +116,7 @@ const std::shared_ptr<LabelledDomain> LabelledDomain::from_domain(
 }
 const instrument_interfaces::names::InstrumentPortSP& LabelledDomain::port()
     const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_port);
   return _port;
 }
 std::shared_ptr<Domain> LabelledDomain::domain() const {
@@ -115,7 +130,7 @@ bool LabelledDomain::matching_port(
   if (!port) {
     throw std::invalid_argument("LabelledDomain: The port must not be null.");
   }
-  return _port && *_port == *port;
+  return this->port() && *this->port() == *port;
 }
 bool LabelledDomain::operator==(const LabelledDomain& other) const {
   return *this->domain() == *other.domain() &&

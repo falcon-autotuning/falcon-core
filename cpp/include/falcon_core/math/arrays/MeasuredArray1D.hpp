@@ -22,10 +22,6 @@ class MeasuredArray1D : public MeasuredArray, public Is1D<double> {
   MeasuredArray1D(const MeasuredArraySP& arr);
   MeasuredArray1D(const xt::xarray<double>& arr);
   MeasuredArray1D(xt::xarray<double>&& arr) noexcept;
-  MeasuredArray1D(const MeasuredArray1D&)                = default;
-  MeasuredArray1D(MeasuredArray1D&&) noexcept            = default;
-  MeasuredArray1D& operator=(const MeasuredArray1D&)     = default;
-  MeasuredArray1D& operator=(MeasuredArray1D&&) noexcept = default;
   static std::shared_ptr<MeasuredArray1D> zeros(
       const std::vector<size_t>& shape) {
     return std::make_shared<MeasuredArray1D>(xt::zeros<double>(shape));

@@ -22,15 +22,41 @@ class HDF5Data : public generic::Song {
   math::AxesSP<math::domains::CoupledLabelledDomain> _domain_labels;
   math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray> _ranges;
   std::shared_ptr<Metadata>                                           _metadata;
-  std::string _measurement_title;
-  int         _unique_id;
-  int         _timestamp;
+  std::string                     _measurement_title;
+  int                             _unique_id;
+  int                             _timestamp;
+  mutable std::shared_timed_mutex _mu_metadata;
+  mutable std::shared_timed_mutex _mu_ranges;
+  mutable std::shared_timed_mutex _mu_unit_domain;
+  mutable std::shared_timed_mutex _mu_domain_labels;
+  mutable std::shared_timed_mutex _mu_shape;
+  mutable std::shared_timed_mutex _mu_measurement_title;
+  mutable std::shared_timed_mutex _mu_unique_id;
+  mutable std::shared_timed_mutex _mu_timestamp;
 
  protected:
   friend class cereal::access;
   HDF5Data();
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_m(_mu_metadata,
+                                                     std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_r(_mu_ranges,
+                                                     std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_ud(_mu_unit_domain,
+                                                      std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_dl(_mu_domain_labels,
+                                                      std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_s(_mu_shape,
+                                                     std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_mt(_mu_measurement_title,
+                                                      std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_uid(_mu_unique_id,
+                                                       std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_ts(_mu_timestamp,
+                                                      std::defer_lock);
+    std::lock(
+        lock_m, lock_r, lock_ud, lock_dl, lock_s, lock_mt, lock_uid, lock_ts);
     ar(cereal::base_class<generic::Song>(this),
        _shape,
        _unit_domain,
@@ -43,6 +69,8 @@ class HDF5Data : public generic::Song {
   }
 
  public:
+  HDF5Data(const HDF5Data& other);
+  HDF5Data operator=(const HDF5Data& other);
   /**
    * @brief Construct the protable data for database storage.
    * @param shape The shape of the data array.

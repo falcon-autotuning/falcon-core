@@ -3,6 +3,18 @@
 #include <chrono>
 namespace falcon_core {
 namespace communications {
+Time::Time(const Time& other) {
+  std::shared_lock<std::shared_timed_mutex> lock_other(other._mu_time);
+  _micro_seconds_since_epoch = other._micro_seconds_since_epoch;
+}
+Time Time::operator=(const Time& other) {
+  if (this != &other) {
+    std::shared_lock<std::shared_timed_mutex> lock_other(other._mu_time);
+    std::shared_lock<std::shared_timed_mutex> lock_this(_mu_time);
+    _micro_seconds_since_epoch = other._micro_seconds_since_epoch;
+  }
+  return *this;
+}
 Time::Time() {
   auto now = std::chrono::system_clock::now();
   auto us  = std::chrono::duration_cast<std::chrono::microseconds>(
@@ -15,13 +27,14 @@ Time::Time(long long micro_seconds_since_epoch)
     : _micro_seconds_since_epoch(micro_seconds_since_epoch) {}
 
 const long long Time::micro_seconds_since_epoch() const {
+  std::shared_lock<std::shared_timed_mutex> lock_t(_mu_time);
   return _micro_seconds_since_epoch;
 }
 
-const long long Time::time() const { return _micro_seconds_since_epoch; }
+const long long Time::time() const { return micro_seconds_since_epoch(); }
 
 const std::string Time::to_string() const {
-  std::time_t sec = _micro_seconds_since_epoch / 1000000;
+  std::time_t sec = micro_seconds_since_epoch() / 1000000;
   std::tm     tm  = *std::localtime(&sec);
   char        buf[20];
   std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &tm);

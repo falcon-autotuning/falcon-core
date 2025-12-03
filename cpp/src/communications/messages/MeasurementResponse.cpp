@@ -7,7 +7,21 @@
 namespace falcon_core {
 namespace communications {
 namespace messages {
-
+MeasurementResponse::MeasurementResponse(const MeasurementResponse& other)
+    : BaseMessage(other) {
+  std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_arrays);
+  _arrays = other._arrays;
+}
+MeasurementResponse MeasurementResponse::operator=(
+    const MeasurementResponse& other) {
+  if (this != &other) {
+    std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_arrays);
+    std::unique_lock<std::shared_timed_mutex> lock_a(_mu_arrays);
+    _arrays = other._arrays;
+    BaseMessage::operator=(other);
+  }
+  return *this;
+}
 MeasurementResponse::MeasurementResponse() = default;
 MeasurementResponse::MeasurementResponse(
     const math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>&
@@ -21,6 +35,7 @@ MeasurementResponse::MeasurementResponse(
 
 const math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>&
 MeasurementResponse::arrays() const {
+  std::shared_lock<std::shared_timed_mutex> lock_a(_mu_arrays);
   return _arrays;
 }
 bool MeasurementResponse::operator==(const MeasurementResponse& other) const {

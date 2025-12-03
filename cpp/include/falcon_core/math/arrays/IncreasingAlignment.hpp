@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <shared_mutex>
+
 #include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core {
@@ -17,16 +19,20 @@ namespace arrays {
  * 0 implies no trend in the domain.
  */
 class IncreasingAlignment : public generic::Song {
-  int _alignment;
+  int                             _alignment;
+  mutable std::shared_timed_mutex _mu_alignment;
 
  protected:
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_a(_mu_alignment);
     ar(cereal::base_class<falcon_core::generic::Song>(this), _alignment);
   }
 
  public:
+  IncreasingAlignment(const IncreasingAlignment& other);
+  IncreasingAlignment operator=(const IncreasingAlignment& other);
   IncreasingAlignment();
   IncreasingAlignment(const bool alignment);
   /**

@@ -3,11 +3,26 @@
 namespace falcon_core {
 namespace math {
 namespace arrays {
-
+IncreasingAlignment::IncreasingAlignment(const IncreasingAlignment& other) {
+  std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_alignment);
+  _alignment = other._alignment;
+}
+IncreasingAlignment IncreasingAlignment::operator=(
+    const IncreasingAlignment& other) {
+  if (this != &other) {
+    std::shared_lock<std::shared_timed_mutex> lock_a(_mu_alignment);
+    std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_alignment);
+    _alignment = other._alignment;
+  }
+  return *this;
+}
 IncreasingAlignment::IncreasingAlignment() : _alignment(0) {}
 IncreasingAlignment::IncreasingAlignment(const bool alignment)
     : _alignment(alignment ? 1 : -1) {}
-int  IncreasingAlignment::alignment() const { return _alignment; }
+int IncreasingAlignment::alignment() const {
+  std::shared_lock<std::shared_timed_mutex> lock_a(_mu_alignment);
+  return _alignment;
+}
 bool IncreasingAlignment::operator==(const IncreasingAlignment& other) const {
   return alignment() == other.alignment();
 }
