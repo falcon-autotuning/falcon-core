@@ -11,40 +11,41 @@ namespace config {
 namespace core {
 StandardConfigConnections::StandardConfigConnections(
     const StandardConfigConnections& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_screening_gates(
-      other._mu_screening_gates, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_reservoir_gates(
-      other._mu_reservoir_gates, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_plunger_gates(
-      other._mu_plunger_gates, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_barrier_gates(
-      other._mu_barrier_gates, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_ohmics(other._mu_ohmics,
+  std::unique_lock<std::shared_timed_mutex> lock_screening_gates(
+      _mu_screening_gates, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_reservoir_gates(
+      _mu_reservoir_gates, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_plunger_gates(
+      _mu_plunger_gates, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_barrier_gates(
+      _mu_barrier_gates, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_ohmics(_mu_ohmics,
                                                         std::defer_lock);
   std::lock(lock_screening_gates,
             lock_reservoir_gates,
             lock_plunger_gates,
             lock_barrier_gates,
             lock_ohmics);
-  _screening_gates = other._screening_gates;
-  _reservoir_gates = other._reservoir_gates;
-  _plunger_gates   = other._plunger_gates;
-  _barrier_gates   = other._barrier_gates;
-  _ohmics          = other._ohmics;
+  if (!other.screening_gates() || !other.reservoir_gates() ||
+      !other.plunger_gates() || !other.barrier_gates() || !other.ohmics()) {
+    throw std::invalid_argument(
+        "StandardConfigConnections: The screening_gates, reservoir_gates, "
+        "plunger_gates, barrier_gates, and ohmics of the other "
+        "StandardConfigConnections are not allowed to not be null.");
+  }
+  _screening_gates = std::make_shared<device_structures::Connections>(
+      *other.screening_gates());
+  _reservoir_gates = std::make_shared<device_structures::Connections>(
+      *other.reservoir_gates());
+  _plunger_gates =
+      std::make_shared<device_structures::Connections>(*other.plunger_gates());
+  _barrier_gates =
+      std::make_shared<device_structures::Connections>(*other.barrier_gates());
+  _ohmics = std::make_shared<device_structures::Connections>(*other.ohmics());
 }
 StandardConfigConnections StandardConfigConnections::operator=(
     const StandardConfigConnections& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_screening_gates(
-        other._mu_screening_gates, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_reservoir_gates(
-        other._mu_reservoir_gates, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_plunger_gates(
-        other._mu_plunger_gates, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_barrier_gates(
-        other._mu_barrier_gates, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_ohmics(
-        other._mu_ohmics, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_screening_gates(
         _mu_screening_gates, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_reservoir_gates(
@@ -59,18 +60,23 @@ StandardConfigConnections StandardConfigConnections::operator=(
               lock_reservoir_gates,
               lock_plunger_gates,
               lock_barrier_gates,
-              lock_ohmics,
-              lock_other_screening_gates,
-              lock_other_reservoir_gates,
-              lock_other_plunger_gates,
-              lock_other_barrier_gates,
-              lock_other_ohmics);
-    _screening_gates = other._screening_gates;
-    _reservoir_gates = other._reservoir_gates;
-    _plunger_gates   = other._plunger_gates;
-    _barrier_gates   = other._barrier_gates;
-    _reservoir_gates = other._reservoir_gates;
-    _ohmics          = other._ohmics;
+              lock_ohmics);
+    if (!other.screening_gates() || !other.reservoir_gates() ||
+        !other.plunger_gates() || !other.barrier_gates() || !other.ohmics()) {
+      throw std::invalid_argument(
+          "StandardConfigConnections: The screening_gates, reservoir_gates, "
+          "plunger_gates, barrier_gates, and ohmics of the other "
+          "StandardConfigConnections are not allowed to not be null.");
+    }
+    _screening_gates = std::make_shared<device_structures::Connections>(
+        *other.screening_gates());
+    _reservoir_gates = std::make_shared<device_structures::Connections>(
+        *other.reservoir_gates());
+    _plunger_gates = std::make_shared<device_structures::Connections>(
+        *other.plunger_gates());
+    _barrier_gates = std::make_shared<device_structures::Connections>(
+        *other.barrier_gates());
+    _ohmics = std::make_shared<device_structures::Connections>(*other.ohmics());
   }
   return *this;
 }

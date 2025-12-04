@@ -40,14 +40,16 @@ HDF5DataHandle HDF5Data_create_from_communications(
 // @category:deallocation
 void HDF5Data_destroy(HDF5DataHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: HDF5Data_to_file | falcon_core::communications::HDF5Data::to_file */
+/* AUTO-DOC from cpp: HDF5Data_to_file |
+ * falcon_core::communications::HDF5Data::to_file */
 /**
  * @brief Convert from an HDF5Data object to a file.
  * @param path The path to write the HDF5 file at.
  */
 void HDF5Data_to_file(HDF5DataHandle handle, StringHandle path);
 // @category:read
-/* AUTO-DOC from cpp: HDF5Data_to_communications | falcon_core::communications::HDF5Data::to_communications */
+/* AUTO-DOC from cpp: HDF5Data_to_communications |
+ * falcon_core::communications::HDF5Data::to_communications */
 /**
  * @brief Convert from an HDF5Data object to a MeasurementResponse and a
  * Metadata.
@@ -55,6 +57,23 @@ void HDF5Data_to_file(HDF5DataHandle handle, StringHandle path);
  */
 PairMeasurementResponseMeasurementRequestHandle HDF5Data_to_communications(
     HDF5DataHandle handle);
+// @category:read
+AxesIntHandle HDF5Data_shape(HDF5DataHandle handle);
+// @category:read
+AxesControlArrayHandle HDF5Data_unit_domain(HDF5DataHandle handle);
+// @category:read
+AxesCoupledLabelledDomainHandle HDF5Data_domain_labels(HDF5DataHandle handle);
+// @category:read
+LabelledArraysLabelledMeasuredArrayHandle HDF5Data_ranges(
+    HDF5DataHandle handle);
+// @category:read
+MapStringStringHandle HDF5Data_metadata(HDF5DataHandle handle);
+// @category:read
+StringHandle HDF5Data_measurement_title(HDF5DataHandle handle);
+// @category:read
+int HDF5Data_unique_id(HDF5DataHandle handle);
+// @category:read
+int HDF5Data_timestamp(HDF5DataHandle handle);
 // @category:read
 bool HDF5Data_equal(HDF5DataHandle handle, HDF5DataHandle other);
 // @category:read

@@ -55,20 +55,20 @@ Vector::Vector(const PointSP& start, const PointSP& end)
     throw std::invalid_argument(
         "Vector: The start and end points must not be null.");
   }
-  auto end_connections   = end->connections();
-  auto start_connections = start->connections();
+  auto end_connections   = *end->connections();
+  auto start_connections = *start->connections();
   for (const physics::device_structures::ConnectionSP& connection :
-       *end_connections) {
+       end_connections) {
     _connections->push_back(connection);
   }
   for (const physics::device_structures::ConnectionSP& connection :
-       *start_connections) {
+       start_connections) {
     if (!_connections->contains(connection)) {
       _connections->push_back(connection);
     }
   }
-  for (const physics::device_structures::ConnectionSP connectionSP :
-       *_connections) {
+  auto conns = *connections();
+  for (const physics::device_structures::ConnectionSP connectionSP : conns) {
     QuantitySP first, second;
     if (start->contains(connectionSP)) {
       first = start->at(connectionSP);

@@ -6,20 +6,22 @@ namespace falcon_core {
 namespace physics {
 namespace config {
 namespace core {
-Adjacency::Adjacency(const Adjacency& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_indexes(other._mu_indexes);
-  _indexes = other._indexes;
-  generic::FArray<int>::operator=(other);
+Adjacency::Adjacency(const Adjacency& other) : generic::FArray<int>(other) {
+  std::unique_lock<std::shared_timed_mutex> lock_indexes(_mu_indexes);
+  if (!other.indexes()) {
+    throw std::invalid_argument("Adjacency: The indexes cannot be null.");
+  }
+  _indexes = std::make_shared<device_structures::Connections>(*other.indexes());
 }
 Adjacency Adjacency::operator=(const Adjacency& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_indexes(
-        other._mu_indexes, std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_indexes(_mu_indexes,
-                                                           std::defer_lock);
-    std::lock(lock_indexes, lock_other_indexes);
-    _indexes = other._indexes;
     generic::FArray<int>::operator=(other);
+    std::unique_lock<std::shared_timed_mutex> lock_indexes(_mu_indexes);
+    if (!other.indexes()) {
+      throw std::invalid_argument("Adjacency: The indexes cannot be null.");
+    }
+    _indexes =
+        std::make_shared<device_structures::Connections>(*other.indexes());
   }
   return *this;
 }

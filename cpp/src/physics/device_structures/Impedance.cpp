@@ -17,40 +17,38 @@ Impedance::Impedance(ConnectionSP connection,
   }
 }
 Impedance::Impedance(const Impedance& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_connection(
-      other._mu_connection, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_resistance(
-      other._mu_resistance, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_capacitance(
-      other._mu_capacitance, std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_connection(_mu_connection,
+                                                            std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_resistance(_mu_resistance,
+                                                            std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_capacitance(_mu_capacitance,
+                                                             std::defer_lock);
   std::lock(lock_connection, lock_resistance, lock_capacitance);
-  _connection  = other._connection;
-  _resistance  = other._resistance;
-  _capacitance = other._capacitance;
+  if (!other.connection()) {
+    throw std::invalid_argument(
+        "Impedance copy constructor: other.connection() cannot be nullptr");
+  }
+  _connection  = std::make_shared<Connection>(*other.connection());
+  _resistance  = other.resistance();
+  _capacitance = other.capacitance();
 }
 Impedance Impedance::operator=(const Impedance& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_connection(
-        other._mu_connection, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_resistance(
-        other._mu_resistance, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_capacitance(
-        other._mu_capacitance, std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_connection(_mu_connection,
+    std::shared_lock<std::shared_timed_mutex> lock_connection(_mu_connection,
                                                               std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_resistance(_mu_resistance,
+    std::shared_lock<std::shared_timed_mutex> lock_resistance(_mu_resistance,
                                                               std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_capacitance(_mu_capacitance,
+    std::shared_lock<std::shared_timed_mutex> lock_capacitance(_mu_capacitance,
                                                                std::defer_lock);
-    std::lock(lock_connection,
-              lock_resistance,
-              lock_capacitance,
-              lock_other_connection,
-              lock_other_resistance,
-              lock_other_capacitance);
-    _connection  = other._connection;
-    _resistance  = other._resistance;
-    _capacitance = other._capacitance;
+    std::lock(lock_connection, lock_resistance, lock_capacitance);
+    if (!other.connection()) {
+      throw std::invalid_argument(
+          "Impedance assignment operator: other.connection() cannot be "
+          "nullptr");
+    }
+    _connection  = std::make_shared<Connection>(*other.connection());
+    _resistance  = other.resistance();
+    _capacitance = other.capacitance();
   }
   return *this;
 }

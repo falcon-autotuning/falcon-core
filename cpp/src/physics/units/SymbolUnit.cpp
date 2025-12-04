@@ -18,40 +18,35 @@ const std::map<std::string, std::string> Dimension_Symbols{
 };
 
 SymbolUnit::SymbolUnit(const SymbolUnit& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_unit(other._mu_unit,
+  std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
                                                       std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_symbol(other._mu_symbol,
+  std::unique_lock<std::shared_timed_mutex> lock_symbol(_mu_symbol,
                                                         std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_name(other._mu_name,
+  std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,
                                                       std::defer_lock);
   std::lock(lock_unit, lock_symbol, lock_name);
-  _unit   = other._unit;
-  _symbol = other._symbol;
-  _name   = other._name;
+  if (!other.unit()) {
+    throw std::invalid_argument("SymbolUnit: other.unit() cannot be null.");
+  }
+  _unit   = std::make_shared<Unit>(*other.unit());
+  _symbol = other.symbol();
+  _name   = other.name();
 }
 SymbolUnit SymbolUnit::operator=(const SymbolUnit& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_unit(other._mu_unit,
-                                                              std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_symbol(
-        other._mu_symbol, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_name(other._mu_name,
-                                                              std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
                                                         std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_symbol(_mu_symbol,
                                                           std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,
                                                         std::defer_lock);
-    std::lock(lock_unit,
-              lock_symbol,
-              lock_name,
-              lock_other_unit,
-              lock_other_symbol,
-              lock_other_name);
-    _unit   = other._unit;
-    _symbol = other._symbol;
-    _name   = other._name;
+    std::lock(lock_unit, lock_symbol, lock_name);
+    if (!other.unit()) {
+      throw std::invalid_argument("SymbolUnit: other.unit() cannot be null.");
+    }
+    _unit   = std::make_shared<Unit>(*other.unit());
+    _symbol = other.symbol();
+    _name   = other.name();
   }
   return *this;
 }

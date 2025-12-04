@@ -26,40 +26,43 @@ device_structures::ConnectionsSP extract_ohmics(
 }
 }  // namespace
 Group::Group(const Group& other) : StandardConfigConnections(other) {
-  std::shared_lock<std::shared_timed_mutex> lock_name(other._mu_name,
+  std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,
                                                       std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_num_dots(other._mu_num_dots,
+  std::unique_lock<std::shared_timed_mutex> lock_num_dots(_mu_num_dots,
                                                           std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_order(other._mu_order,
+  std::unique_lock<std::shared_timed_mutex> lock_order(_mu_order,
                                                        std::defer_lock);
   std::lock(lock_name, lock_num_dots, lock_order);
-  _name     = other._name;
-  _num_dots = other._num_dots;
-  _order    = other._order;
+  if (!other.name()) {
+    throw std::invalid_argument("Group: the channel must not be null.");
+  }
+  _name = std::make_shared<autotuner_interfaces::names::Channel>(*other.name());
+  _num_dots = other.num_dots();
+  if (!other.order()) {
+    throw std::invalid_argument("Group: the order must not be null.");
+  }
+  _order = std::make_shared<geometries::GateGeometryArray1D>(*other.order());
 }
 Group Group::operator=(const Group& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_name(other._mu_name,
-                                                              std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_num_dots(
-        other._mu_num_dots, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_order(other._mu_order,
-                                                               std::defer_lock);
+    StandardConfigConnections::               operator=(other);
     std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,
                                                         std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_num_dots(_mu_num_dots,
                                                             std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_order(_mu_order,
                                                          std::defer_lock);
-    std::lock(lock_name,
-              lock_num_dots,
-              lock_order,
-              lock_other_name,
-              lock_other_num_dots,
-              lock_other_order);
-    _name     = other._name;
-    _num_dots = other._num_dots;
-    _order    = other._order;
+    std::lock(lock_name, lock_num_dots, lock_order);
+    if (!other.name()) {
+      throw std::invalid_argument("Group: the channel must not be null.");
+    }
+    _name =
+        std::make_shared<autotuner_interfaces::names::Channel>(*other.name());
+    _num_dots = other.num_dots();
+    if (!other.order()) {
+      throw std::invalid_argument("Group: the order must not be null.");
+    }
+    _order = std::make_shared<geometries::GateGeometryArray1D>(*other.order());
   }
   return *this;
 }

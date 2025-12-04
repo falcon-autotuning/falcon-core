@@ -7,41 +7,40 @@ namespace physics {
 namespace config {
 namespace core {
 VoltageConstraints::VoltageConstraints(const VoltageConstraints& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_adjacency(other._mu_adjacency,
+  std::unique_lock<std::shared_timed_mutex> lock_adjacency(_mu_adjacency,
                                                            std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_matrix(other._mu_matrix,
+  std::unique_lock<std::shared_timed_mutex> lock_matrix(_mu_matrix,
                                                         std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_limits(other._mu_limits,
+  std::unique_lock<std::shared_timed_mutex> lock_limits(_mu_limits,
                                                         std::defer_lock);
   std::lock(lock_adjacency, lock_matrix, lock_limits);
-  _adjacency = other._adjacency;
-  _matrix    = other._matrix;
-  _limits    = other._limits;
+  if (!other.adjacency()) {
+    throw std::invalid_argument(
+        "VoltageConstraints: The adjacency matrix of the other object is "
+        "null.");
+  }
+  _adjacency = std::make_shared<Adjacency>(*other.adjacency());
+  _matrix    = *std::make_shared<generic::FArray<double>>(other.matrix());
+  _limits    = *std::make_shared<generic::FArray<double>>(other.limits());
 }
 VoltageConstraints VoltageConstraints::operator=(
     const VoltageConstraints& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_adjacency(
-        other._mu_adjacency, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_matrix(
-        other._mu_matrix, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_limits(
-        other._mu_limits, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_adjacency(_mu_adjacency,
                                                              std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_matrix(_mu_matrix,
                                                           std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_limits(_mu_limits,
                                                           std::defer_lock);
-    std::lock(lock_adjacency,
-              lock_matrix,
-              lock_limits,
-              lock_other_adjacency,
-              lock_other_matrix,
-              lock_other_limits);
-    _adjacency = other._adjacency;
-    _matrix    = other._matrix;
-    _limits    = other._limits;
+    std::lock(lock_adjacency, lock_matrix, lock_limits);
+    if (!other.adjacency()) {
+      throw std::invalid_argument(
+          "VoltageConstraints: The adjacency matrix of the other object is "
+          "null.");
+    }
+    _adjacency = std::make_shared<Adjacency>(*other.adjacency());
+    _matrix    = *std::make_shared<generic::FArray<double>>(other.matrix());
+    _limits    = *std::make_shared<generic::FArray<double>>(other.limits());
   }
   return *this;
 }

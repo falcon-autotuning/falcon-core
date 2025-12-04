@@ -34,17 +34,19 @@ class List : public generic::Song {
   using iterator       = typename Container::iterator;
   using const_iterator = typename Container::const_iterator;
   List<Value>(const List<Value>& other) {
-    std::shared_lock<std::shared_timed_mutex> lock_items(other._mu_items);
-    _items = other._items;
+    clear();
+    _items.reserve(other.size());
+    std::shared_lock<std::shared_timed_mutex> lock_items(_mu_items);
+    copy_items_impl(other.items(),
+                    typename category::determine_tag<Value>::type{});
   }
   List operator=(const List<Value>& other) {
     if (this != &other) {
-      std::shared_lock<std::shared_timed_mutex> lock_other_items(
-          other._mu_items, std::defer_lock);
-      std::unique_lock<std::shared_timed_mutex> lock_items(_mu_items,
-                                                           std::defer_lock);
-      std::lock(lock_items, lock_other_items);
-      _items = other._items;
+      clear();
+      _items.reserve(other.size());
+      std::unique_lock<std::shared_timed_mutex> lock_items(_mu_items);
+      copy_items_impl(other.items(),
+                      typename category::determine_tag<Value>::type{});
     }
     return *this;
   }
@@ -410,6 +412,20 @@ class List : public generic::Song {
   bool operator_equal_impl(const List<Value>& other,
                            category::other_tag) const {
     throw std::runtime_error("Unsupported type for List");
+  }
+  // Tag dispatch for deep copy
+  void copy_items_impl(const Container& src, category::song_tag) {
+    for (const auto& item : src) {
+      _items.push_back(std::make_shared<Value>(*item));
+    }
+  }
+  void copy_items_impl(const Container& src, category::primitive_tag) {
+    for (const auto& item : src) {
+      _items.push_back(item);
+    }
+  }
+  void copy_items_impl(const Container&, category::other_tag) {
+    static_assert(sizeof(Value) == 0, "Unsupported type for List deep copy");
   }
 };
 template <typename Value>

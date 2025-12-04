@@ -10,16 +10,15 @@ namespace falcon_core {
 namespace math {
 Point::Point(const Point& other)
     : generic::Map<physics::device_structures::Connection, Quantity>(other) {
-  std::shared_lock<std::shared_timed_mutex> lock_unit(other._mu_unit);
-  _unit = other._unit;
+  std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
+  _unit = std::make_shared<physics::units::SymbolUnit>(*other.unit());
 }
 Point Point::operator=(const Point& other) {
   if (this != &other) {
     generic::Map<physics::device_structures::Connection, Quantity>::operator=(
         other);
-    std::shared_lock<std::shared_timed_mutex> lock_other_unit(other._mu_unit);
     std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
-    _unit = other._unit;
+    _unit = std::make_shared<physics::units::SymbolUnit>(*other.unit());
   }
   return *this;
 }

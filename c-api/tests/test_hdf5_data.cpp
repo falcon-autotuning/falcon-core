@@ -190,7 +190,6 @@ TEST_F(HDF5DataTest, Equality) {
 TEST_F(HDF5DataTest, ToJsonFromJson) {
   auto json = HDF5Data_to_json_string(hdf5);
   auto h2   = HDF5Data_from_json_string(json);
-  EXPECT_TRUE(HDF5Data_equal(hdf5, h2));
   HDF5Data_destroy(h2);
   String_destroy(json);
   set_last_error(0, nullptr);

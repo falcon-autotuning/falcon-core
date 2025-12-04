@@ -123,6 +123,47 @@ class HDF5Data : public generic::Song {
    */
   void to_file(const std::string& path) const;
   /**
+   * @brief Get the shape of the data array.
+   * @return The shape of the data array.
+   */
+  math::AxesSP<int> shape() const;
+  /**
+   * @brief Get the unit domain for each axis.
+   * @return The unit domain for each axis.
+   */
+  math::AxesSP<math::arrays::ControlArray> unit_domain() const;
+  /**
+   * @brief Get the domain labels for each axis.
+   * @return The domain labels for each axis.
+   */
+  math::AxesSP<math::domains::CoupledLabelledDomain> domain_labels() const;
+  /**
+   * @brief Get the ranges for each axis.
+   * @return The ranges for each axis.
+   */
+  math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray> ranges()
+      const;
+  /**
+   * @brief Get the metadata for the measurement.
+   * @return The metadata for the measurement.
+   */
+  std::shared_ptr<Metadata> metadata() const;
+  /**
+   * @brief Get the measurement title.
+   * @return The measurement title.
+   */
+  std::string measurement_title() const;
+  /**
+   * @brief Get the unique id for the measurement.
+   * @return The unique id for the measurement.
+   */
+  int unique_id() const;
+  /**
+   * @brief Get the timestamp for the measurement.
+   * @return The timestamp for the measurement.
+   */
+  int timestamp() const;
+  /**
    * @brief Convert from an HDF5Data object to a MeasurementResponse and a
    * Metadata.
    * @return A pair of MeasurementResponse and MeasurementRequest.
@@ -130,6 +171,9 @@ class HDF5Data : public generic::Song {
   const std::pair<communications::messages::MeasurementResponseSP,
                   communications::messages::MeasurementRequestSP>
   to_communications() const;
+
+  bool operator==(const HDF5Data& other);
+  bool operator!=(const HDF5Data& other);
 };
 using HDF5DataSP = std::shared_ptr<HDF5Data>;
 }  // namespace communications

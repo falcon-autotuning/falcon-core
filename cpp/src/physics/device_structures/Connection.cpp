@@ -4,12 +4,14 @@ namespace falcon_core {
 namespace physics {
 namespace device_structures {
 Connection::Connection(const Connection& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_name(other._mu_name,
+  std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,
                                                       std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_type(other._mu_type,
+  std::unique_lock<std::shared_timed_mutex> lock_type(_mu_type,
                                                       std::defer_lock);
-  std::lock(lock_name, lock_type);
-  _name = other._name;
+  std::shared_lock<std::shared_timed_mutex> lock_other_type(other._mu_type,
+                                                            std::defer_lock);
+  std::lock(lock_name, lock_type, lock_other_type);
+  _name = other.name();
   _type = other._type;
 }
 Connection Connection::operator=(const Connection& other) {
@@ -18,12 +20,10 @@ Connection Connection::operator=(const Connection& other) {
                                                         std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_type(_mu_type,
                                                         std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_name(other._mu_name,
-                                                              std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_other_type(other._mu_type,
                                                               std::defer_lock);
-    std::lock(lock_name, lock_type, lock_other_name, lock_other_type);
-    _name = other._name;
+    std::lock(lock_name, lock_type, lock_other_type);
+    _name = other.name();
     _type = other._type;
   }
   return *this;

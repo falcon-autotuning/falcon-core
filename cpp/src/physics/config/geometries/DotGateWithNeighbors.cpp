@@ -8,6 +8,34 @@ namespace falcon_core {
 namespace physics {
 namespace config {
 namespace geometries {
+DotGateWithNeighbors::DotGateWithNeighbors(const DotGateWithNeighbors& other)
+    : Connection(other), HasLeftNeighbor(other), HasRightNeighbor(other) {}
+
+DotGateWithNeighbors& DotGateWithNeighbors::operator=(
+    const DotGateWithNeighbors& other) {
+  if (this != &other) {
+    Connection::      operator=(other);
+    HasLeftNeighbor:: operator=(other);
+    HasRightNeighbor::operator=(other);
+  }
+  return *this;
+}
+
+DotGateWithNeighbors::DotGateWithNeighbors(
+    DotGateWithNeighbors&& other) noexcept
+    : Connection(std::move(other)),
+      HasLeftNeighbor(std::move(other)),
+      HasRightNeighbor(std::move(other)) {}
+
+DotGateWithNeighbors& DotGateWithNeighbors::operator=(
+    DotGateWithNeighbors&& other) noexcept {
+  if (this != &other) {
+    Connection::      operator=(std::move(other));
+    HasLeftNeighbor:: operator=(std::move(other));
+    HasRightNeighbor::operator=(std::move(other));
+  }
+  return *this;
+}
 DotGateWithNeighbors::DotGateWithNeighbors() = default;
 DotGateWithNeighbors::DotGateWithNeighbors(
     std::string                      name,

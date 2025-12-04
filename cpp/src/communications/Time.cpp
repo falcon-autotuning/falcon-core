@@ -40,6 +40,10 @@ const std::string Time::to_string() const {
   std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &tm);
   return std::string(buf);
 }
+bool Time::operator==(const Time& other) {
+  return micro_seconds_since_epoch() == other.micro_seconds_since_epoch();
+}
+bool Time::operator!=(const Time& other) { return !(*this == other); }
 }  // namespace communications
 }  // namespace falcon_core
 CEREAL_REGISTER_TYPE(falcon_core::communications::Time)

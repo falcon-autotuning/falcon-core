@@ -25,17 +25,12 @@ class Map : public virtual generic::Song {
 
  public:
   Map<Key, Value>(const Map<Key, Value>& other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_items(other._mu_items);
-    _items = other._items;
+    _items = std::make_shared<Container>(*other.items());
   }
   Map<Key, Value> operator=(const Map<Key, Value>& other) {
     if (this != &other) {
-      std::shared_lock<std::shared_timed_mutex> lock_other_items(
-          other._mu_items, std::defer_lock);
-      std::unique_lock<std::shared_timed_mutex> lock_items(_mu_items,
-                                                           std::defer_lock);
-      std::lock(lock_items, lock_other_items);
-      _items = other._items;
+      std::unique_lock<std::shared_timed_mutex> lock_items(_mu_items);
+      _items = std::make_shared<Container>(*other.items());
     }
     return *this;
   }

@@ -35,27 +35,25 @@ class Pair : public generic::Song {
 
  public:
   Pair<T1, T2>(const Pair<T1, T2>& other) {
-    std::shared_lock<std::shared_timed_mutex> lock_first(other._mu_first,
+    std::shared_lock<std::shared_timed_mutex> lock_first(_mu_first,
                                                          std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_second(other._mu_second,
+    std::shared_lock<std::shared_timed_mutex> lock_second(_mu_second,
                                                           std::defer_lock);
     std::lock(lock_first, lock_second);
-    _first  = other._first;
-    _second = other._second;
+    copy_impl(other,
+              typename category::determine_tag<T1>::type{},
+              typename category::determine_tag<T2>::type{});
   }
   Pair<T1, T2> operator=(const Pair<T1, T2>& other) {
     if (this != &other) {
-      std::shared_lock<std::shared_timed_mutex> lock_other_first(
-          other._mu_first, std::defer_lock);
-      std::shared_lock<std::shared_timed_mutex> lock_other_second(
-          other._mu_second, std::defer_lock);
-      std::unique_lock<std::shared_timed_mutex> lock_first(_mu_first,
+      std::shared_lock<std::shared_timed_mutex> lock_first(_mu_first,
                                                            std::defer_lock);
-      std::unique_lock<std::shared_timed_mutex> lock_second(_mu_second,
+      std::shared_lock<std::shared_timed_mutex> lock_second(_mu_second,
                                                             std::defer_lock);
-      std::lock(lock_first, lock_second, lock_other_first, lock_other_second);
-      _first  = other._first;
-      _second = other._second;
+      std::lock(lock_first, lock_second);
+      copy_impl(other,
+                typename category::determine_tag<T1>::type{},
+                typename category::determine_tag<T2>::type{});
     }
     return *this;
   }
@@ -151,6 +149,31 @@ class Pair : public generic::Song {
                            category::song_tag,
                            category::song_tag) const {
     return (*first() == *other.first()) && (*second() == *other.second());
+  }
+  // Tag dispatch for deep copy
+  void copy_impl(const Pair<T1, T2>& other,
+                 category::primitive_tag,
+                 category::primitive_tag) {
+    _first  = other.first();
+    _second = other.second();
+  }
+  void copy_impl(const Pair<T1, T2>& other,
+                 category::primitive_tag,
+                 category::song_tag) {
+    _first  = other.first();
+    _second = std::make_shared<T2>(*other.second());
+  }
+  void copy_impl(const Pair<T1, T2>& other,
+                 category::song_tag,
+                 category::primitive_tag) {
+    _first  = std::make_shared<T1>(*other.first());
+    _second = other._second;
+  }
+  void copy_impl(const Pair<T1, T2>& other,
+                 category::song_tag,
+                 category::song_tag) {
+    _first  = std::make_shared<T1>(*other.first());
+    _second = std::make_shared<T2>(*other.second());
   }
 };
 template <typename T1, typename T2>

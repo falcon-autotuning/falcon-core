@@ -4,6 +4,7 @@
 
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
+#include "falcon_core/generic/CategoryTags.hpp"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/generic/Pair.hpp"
@@ -288,7 +289,11 @@ class InterpretationContainer
         }
         const auto& other_pair = other_items->at(j);
         if (*our_pair->first() == *other_pair->first()) {
-          if (*our_pair->second() != *other_pair->second()) {
+          if (!compare_value(our_pair->second(),
+                             other_pair->second(),
+                             generic::category::is_shared_ptr<
+                                 typename std::remove_reference<
+                                     decltype(our_pair->second())>::type>())) {
             return false;
           }
           matched = true;

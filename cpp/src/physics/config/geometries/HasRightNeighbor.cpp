@@ -7,18 +7,25 @@ namespace physics {
 namespace config {
 namespace geometries {
 HasRightNeighbor::HasRightNeighbor(const HasRightNeighbor& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_right_neighbor(
-      other._mu_right_neighbor);
-  _right_neighbor = other._right_neighbor;
+  std::unique_lock<std::shared_timed_mutex> lock_right_neighbor(
+      _mu_right_neighbor);
+  if (!other.right_neighbor()) {
+    throw std::invalid_argument(
+        "HasRightNeighbor: right_neighbor is null in copy");
+  }
+  _right_neighbor =
+      std::make_shared<device_structures::Connection>(*other.right_neighbor());
 }
 HasRightNeighbor HasRightNeighbor::operator=(const HasRightNeighbor& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_right_neighbor(
-        other._mu_right_neighbor, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_right_neighbor(
-        _mu_right_neighbor, std::defer_lock);
-    std::lock(lock_right_neighbor, lock_other_right_neighbor);
-    _right_neighbor = other._right_neighbor;
+        _mu_right_neighbor);
+    if (!other.right_neighbor()) {
+      throw std::invalid_argument(
+          "HasRightNeighbor: right_neighbor is null in copy");
+    }
+    _right_neighbor = std::make_shared<device_structures::Connection>(
+        *other.right_neighbor());
   }
   return *this;
 }

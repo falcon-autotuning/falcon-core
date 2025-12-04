@@ -14,39 +14,41 @@ namespace physics {
 namespace config {
 namespace core {
 Config::Config(const Config& other) : StandardConfigConnections(other) {
-  std::shared_lock<std::shared_timed_mutex> lock_groups(other._mu_groups,
+  std::unique_lock<std::shared_timed_mutex> lock_groups(_mu_groups,
                                                         std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_wiring_DC(other._mu_wiring_DC,
+  std::unique_lock<std::shared_timed_mutex> lock_wiring_DC(_mu_wiring_DC,
                                                            std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_voltage_constraints(
-      other._mu_voltage_constraints, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_channels(other._mu_channels,
+  std::unique_lock<std::shared_timed_mutex> lock_voltage_constraints(
+      _mu_voltage_constraints, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_channels(_mu_channels,
                                                           std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_num_unique_channels(
-      other._mu_num_unique_channels, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_num_unique_channels(
+      _mu_num_unique_channels, std::defer_lock);
   std::lock(lock_groups,
             lock_wiring_DC,
             lock_voltage_constraints,
             lock_channels,
             lock_num_unique_channels);
-  _groups              = other._groups;
-  _wiring_DC           = other._wiring_DC;
-  _voltage_constraints = other._voltage_constraints;
-  _channels            = other._channels;
-  _num_unique_channels = other._num_unique_channels;
+  if (!other.groups() || !other.wiring_DC() || !other.voltage_constraints() ||
+      !other.channels()) {
+    throw std::invalid_argument(
+        "Config: The constraints, wiring, groups, and channels are not "
+        "permitted to be null.");
+  }
+  _groups =
+      std::make_shared<generic::Map<autotuner_interfaces::names::Gname, Group>>(
+          *other.groups());
+  _wiring_DC =
+      std::make_shared<device_structures::Impedances>(*other.wiring_DC());
+  _voltage_constraints =
+      std::make_shared<VoltageConstraints>(*other.voltage_constraints());
+  _channels = std::make_shared<autotuner_interfaces::names::Channels>(
+      *other.channels());
+  _num_unique_channels = other.num_unique_channels();
 }
 Config Config::operator=(const Config& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_groups(
-        other._mu_groups, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_wiring_DC(
-        other._mu_wiring_DC, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_voltage_constraints(
-        other._mu_voltage_constraints, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_channels(
-        other._mu_channels, std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_other_num_unique_channels(
-        other._mu_num_unique_channels, std::defer_lock);
+    StandardConfigConnections::               operator=(other);
     std::unique_lock<std::shared_timed_mutex> lock_groups(_mu_groups,
                                                           std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_wiring_DC(_mu_wiring_DC,
@@ -61,17 +63,23 @@ Config Config::operator=(const Config& other) {
               lock_wiring_DC,
               lock_voltage_constraints,
               lock_channels,
-              lock_other_groups,
-              lock_other_wiring_DC,
-              lock_other_voltage_constraints,
-              lock_other_num_unique_channels,
-              lock_num_unique_channels,
-              lock_other_channels);
-    _groups              = other._groups;
-    _wiring_DC           = other._wiring_DC;
-    _voltage_constraints = other._voltage_constraints;
-    _channels            = other._channels;
-    _num_unique_channels = other._num_unique_channels;
+              lock_num_unique_channels);
+    if (!other.groups() || !other.wiring_DC() || !other.voltage_constraints() ||
+        !other.channels()) {
+      throw std::invalid_argument(
+          "Config: The constraints, wiring, groups, and channels are not "
+          "permitted to be null.");
+    }
+    _groups = std::make_shared<
+        generic::Map<autotuner_interfaces::names::Gname, Group>>(
+        *other.groups());
+    _wiring_DC =
+        std::make_shared<device_structures::Impedances>(*other.wiring_DC());
+    _voltage_constraints =
+        std::make_shared<VoltageConstraints>(*other.voltage_constraints());
+    _channels = std::make_shared<autotuner_interfaces::names::Channels>(
+        *other.channels());
+    _num_unique_channels = other.num_unique_channels();
   }
   return *this;
 }
@@ -1163,16 +1171,16 @@ Config::get_isolated_gates_by_channel() const {
 }
 device_structures::GateRelationsSP Config::generate_gate_relations() const {
   device_structures::GateRelations out;
-  device_structures::ConnectionsSP all_gates  = get_all_gates();
-  auto                             all_groups = get_all_groups();
-  for (const device_structures::ConnectionSP& gate : *all_gates) {
+  device_structures::Connections   all_gates  = *get_all_gates();
+  auto                             all_groups = *get_all_groups();
+  for (const device_structures::ConnectionSP& gate : all_gates) {
     device_structures::ConnectionsSP neighbors =
         std::make_shared<device_structures::Connections>();
-    for (const GroupSP& group : *all_groups) {
+    for (const GroupSP& group : all_groups) {
       if (!group->has_gate(gate)) continue;
-      device_structures::ConnectionsSP group_neighbors =
-          group->order()->query_neighbors(gate);
-      for (const device_structures::ConnectionSP& conn : *group_neighbors) {
+      device_structures::Connections group_neighbors =
+          *group->order()->query_neighbors(gate);
+      for (const device_structures::ConnectionSP& conn : group_neighbors) {
         neighbors->push_back(conn);
       }
     }

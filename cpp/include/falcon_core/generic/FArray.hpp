@@ -24,18 +24,10 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   using reference       = T&;
   using const_reference = const T&;
 
-  FArray<T>(const FArray<T>& other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_data(other._mu_data);
-    _data = other._data;
-  }
+  FArray<T>(const FArray<T>& other) { _data = other.data(); }
   FArray<T>& operator=(const FArray<T>& other) {
     if (this != &other) {
-      std::shared_lock<std::shared_timed_mutex> lock_other_data(
-          other._mu_data, std::defer_lock);
-      std::unique_lock<std::shared_timed_mutex> lock_data(_mu_data,
-                                                          std::defer_lock);
-      std::lock(lock_data, lock_other_data);
-      _data = other._data;
+      _data = other.data();
     }
     return *this;
   }

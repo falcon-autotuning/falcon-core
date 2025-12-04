@@ -50,6 +50,8 @@ class Time : public generic::Song {
    * @return A string representation of the Time.
    */
   const std::string to_string() const;
+  bool              operator==(const Time& other);
+  bool              operator!=(const Time& other);
 };
 }  // namespace communications
 }  // namespace falcon_core
