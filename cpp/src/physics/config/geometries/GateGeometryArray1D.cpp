@@ -52,7 +52,7 @@ GateGeometryArray1D::GateGeometryArray1D(const GateGeometryArray1D& other) {
     _gate_name_map.emplace(kv.first, kv.second);
   }
 }
-GateGeometryArray1D GateGeometryArray1D::operator=(
+GateGeometryArray1D& GateGeometryArray1D::operator=(
     const GateGeometryArray1D& other) {
   if (this != &other) {
     std::unique_lock<std::shared_timed_mutex> lock_linear_array(

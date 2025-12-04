@@ -16,7 +16,8 @@ HasImplantedOhmic::HasImplantedOhmic(const HasImplantedOhmic& other) {
   }
   _ohmic = std::make_shared<device_structures::Connection>(*other.ohmic());
 }
-HasImplantedOhmic HasImplantedOhmic::operator=(const HasImplantedOhmic& other) {
+HasImplantedOhmic& HasImplantedOhmic::operator=(
+    const HasImplantedOhmic& other) {
   if (this != &other) {
     std::unique_lock<std::shared_timed_mutex> lock_ohmic(_mu_ohmic);
     if (!other.ohmic()) {

@@ -14,7 +14,7 @@ Connection::Connection(const Connection& other) {
   _name = other.name();
   _type = other._type;
 }
-Connection Connection::operator=(const Connection& other) {
+Connection& Connection::operator=(const Connection& other) {
   if (this != &other) {
     std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,
                                                         std::defer_lock);

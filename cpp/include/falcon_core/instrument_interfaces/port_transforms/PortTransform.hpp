@@ -16,7 +16,7 @@ class PortTransform : public math::AnalyticFunction {
 
  public:
   PortTransform(const PortTransform& other);
-  PortTransform operator=(const PortTransform& other);
+  PortTransform& operator=(const PortTransform& other);
   /**
    * @brief Construct a port transform
    * @param port the port that the transform applies to.

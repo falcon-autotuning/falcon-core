@@ -70,7 +70,7 @@ class HDF5Data : public generic::Song {
 
  public:
   HDF5Data(const HDF5Data& other);
-  HDF5Data operator=(const HDF5Data& other);
+  HDF5Data& operator=(const HDF5Data& other);
   /**
    * @brief Construct the protable data for database storage.
    * @param shape The shape of the data array.

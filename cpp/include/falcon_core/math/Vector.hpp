@@ -31,7 +31,7 @@ class Vector : public generic::Map<physics::device_structures::Connection,
 
  public:
   Vector(const Vector& other);
-  Vector operator=(const Vector& other);
+  Vector& operator=(const Vector& other);
   Vector(const PointSP& start, const PointSP& end);
   Vector(const PointSP& end);
   Vector(const generic::MapSP<physics::device_structures::Connection, Quantity>&

@@ -19,7 +19,7 @@ namespace arrays {
 class LabelledControlArray : public ControlArray, public IsLabelled<double> {
  public:
   LabelledControlArray(const LabelledControlArray& other);
-  LabelledControlArray operator=(const LabelledControlArray& other);
+  LabelledControlArray& operator=(const LabelledControlArray& other);
   /**
    * @brief Construct a new Labelled Control Array object.
    * @param array The control array.

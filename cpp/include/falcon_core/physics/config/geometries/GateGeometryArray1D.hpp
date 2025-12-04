@@ -34,7 +34,7 @@ class GateGeometryArray1D : public generic::Song {
   using const_iterator =
       typename device_structures::Connections::const_iterator;
   GateGeometryArray1D(const GateGeometryArray1D& other);
-  GateGeometryArray1D operator=(const GateGeometryArray1D& other);
+  GateGeometryArray1D& operator=(const GateGeometryArray1D& other);
   /**
    * @brief Starts the geometry of the gates.
    * @param lineararray A linear array of gates and ohmics in the order left to

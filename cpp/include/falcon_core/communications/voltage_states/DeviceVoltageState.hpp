@@ -13,7 +13,7 @@ class DeviceVoltageState : public math::Quantity {
 
  public:
   DeviceVoltageState(const DeviceVoltageState& other);
-  DeviceVoltageState operator=(const DeviceVoltageState& other);
+  DeviceVoltageState& operator=(const DeviceVoltageState& other);
   DeviceVoltageState(const physics::device_structures::ConnectionSP& connection,
                      const double&                                   voltage,
                      const physics::units::SymbolUnitSP&             unit);

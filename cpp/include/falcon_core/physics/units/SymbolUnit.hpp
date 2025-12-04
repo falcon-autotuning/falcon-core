@@ -37,7 +37,7 @@ class SymbolUnit : public generic::Song {
 
  public:
   SymbolUnit(const SymbolUnit& other);
-  SymbolUnit operator=(const SymbolUnit& other);
+  SymbolUnit& operator=(const SymbolUnit& other);
   /**
    * @brief Construct a SymbolUnit with a specific symbol and associated Unit.
    * @param unit The Unit object associated with this symbol.

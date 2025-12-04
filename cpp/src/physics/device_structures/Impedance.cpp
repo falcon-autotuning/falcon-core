@@ -32,7 +32,7 @@ Impedance::Impedance(const Impedance& other) {
   _resistance  = other.resistance();
   _capacitance = other.capacitance();
 }
-Impedance Impedance::operator=(const Impedance& other) {
+Impedance& Impedance::operator=(const Impedance& other) {
   if (this != &other) {
     std::shared_lock<std::shared_timed_mutex> lock_connection(_mu_connection,
                                                               std::defer_lock);

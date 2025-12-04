@@ -6,26 +6,31 @@
 namespace falcon_core {
 namespace math {
 Quantity::Quantity(const Quantity& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_other_unit(other._mu_unit,
-                                                            std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_other_value(other._mu_value,
-                                                             std::defer_lock);
-  _value = other._value;
-  _unit  = other._unit;
+  std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
+                                                      std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_value(_mu_value,
+                                                       std::defer_lock);
+  std::lock(lock_unit, lock_value);
+  if (!other.unit()) {
+    throw std::invalid_argument(
+        "Quantity copy constructor: Other Quantity contains null unit.");
+  }
+  _value = other.value();
+  _unit  = std::make_shared<physics::units::SymbolUnit>(*other.unit());
 }
-Quantity Quantity::operator=(const Quantity& other) {
+Quantity& Quantity::operator=(const Quantity& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_unit(other._mu_unit,
-                                                              std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_value(other._mu_value,
-                                                               std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
                                                         std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_value(_mu_value,
                                                          std::defer_lock);
-    std::lock(lock_unit, lock_value, lock_other_unit, lock_other_value);
-    _value = other._value;
-    _unit  = other._unit;
+    std::lock(lock_unit, lock_value);
+    if (!other.unit()) {
+      throw std::invalid_argument(
+          "Quantity copy constructor: Other Quantity contains null unit.");
+    }
+    _value = other.value();
+    _unit  = std::make_shared<physics::units::SymbolUnit>(*other.unit());
   }
   return *this;
 }

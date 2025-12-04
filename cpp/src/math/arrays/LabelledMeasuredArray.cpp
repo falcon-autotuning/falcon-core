@@ -23,13 +23,13 @@ const generic::FArray<double>& lma_check_and_defref(
 }
 LabelledMeasuredArray::LabelledMeasuredArray(const LabelledMeasuredArray& other)
     : MeasuredArray(other) {
-  _label = other._label;
+  _label = other.label();
 }
-LabelledMeasuredArray LabelledMeasuredArray::operator=(
+LabelledMeasuredArray& LabelledMeasuredArray::operator=(
     const LabelledMeasuredArray& other) {
   if (this != &other) {
     MeasuredArray::operator=(other);
-    _label = other._label;
+    _label = other.label();
   }
   return *this;
 }

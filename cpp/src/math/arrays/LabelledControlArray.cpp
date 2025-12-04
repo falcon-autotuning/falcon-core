@@ -5,13 +5,13 @@ namespace math {
 namespace arrays {
 LabelledControlArray::LabelledControlArray(const LabelledControlArray& other)
     : ControlArray(other) {
-  _label = other._label;
+  _label = other.label();
 }
-LabelledControlArray LabelledControlArray::operator=(
+LabelledControlArray& LabelledControlArray::operator=(
     const LabelledControlArray& other) {
   if (this != &other) {
     ControlArray::operator=(other);
-    _label = other._label;
+    _label = other.label();
   }
   return *this;
 }

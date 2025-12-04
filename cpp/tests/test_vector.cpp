@@ -160,8 +160,8 @@ TEST_F(VectorTest, StartMap) {
 
 TEST_F(VectorTest, PrincipleConnection) {
   auto conn = v1->principle_connection();
-  ASSERT_TRUE(conn == conn2 ||
-              conn == conn1);  // Should be one of the connections
+  ASSERT_TRUE(*conn == *conn2 ||
+              *conn == *conn1);  // Should be one of the connections
 }
 
 TEST_F(VectorTest, TranslateWithPoint) {
@@ -275,7 +275,7 @@ TEST_F(VectorTest, PrincipleConnectionSingleConnection) {
       std::vector<std::pair<ConnectionSP, double>>{{conn1, 5.0}});
   auto vec  = std::make_shared<Vector>(single_map, unit);
   auto conn = vec->principle_connection();
-  ASSERT_EQ(conn, conn1);
+  ASSERT_EQ(*conn, *conn1);
 }
 
 TEST_F(VectorTest, PrincipleConnectionEqualValues) {
@@ -286,7 +286,7 @@ TEST_F(VectorTest, PrincipleConnectionEqualValues) {
   auto vec  = std::make_shared<Vector>(start_map, equal_map, unit);
   auto conn = vec->principle_connection();
   // Should be one of the connections, since both have equal values
-  ASSERT_TRUE(conn == conn1 || conn == conn2);
+  ASSERT_TRUE(*conn == *conn1 || *conn == *conn2);
 }
 
 TEST_F(VectorTest, PrincipleConnectionNullThrows) {
@@ -411,7 +411,7 @@ TEST_F(VectorTest, PrincipleConnectionChoosesLargestDifference) {
   auto vec = std::make_shared<Vector>(start_map, end_map, unit);
   ASSERT_NE(vec, nullptr);
   // conn2 has larger difference (5.0) so principle_connection should pick conn2
-  EXPECT_EQ(vec->principle_connection(), conn2);
+  EXPECT_EQ(*vec->principle_connection(), *conn2);
 }
 
 }  // namespace

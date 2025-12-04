@@ -21,7 +21,7 @@ class Group : public StandardConfigConnections {
 
  public:
   Group(const Group& other);
-  Group operator=(const Group& other);
+  Group& operator=(const Group& other);
   /**
    * @brief Holds information about a group of gates.
    * @param name The name of the group.

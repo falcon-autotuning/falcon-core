@@ -7,15 +7,33 @@ namespace autotuner_interfaces {
 namespace contexts {
 AcquisitionContext::AcquisitionContext(const AcquisitionContext& other)
     : BaseContext(other) {
-  std::shared_lock<std::shared_timed_mutex> lock_units(other._mu_units);
-  _units = other._units;
+  std::unique_lock<std::shared_timed_mutex> lock_units(_mu_units,
+                                                       std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_other_units(other._mu_units,
+                                                             std::defer_lock);
+  std::lock(lock_units, lock_other_units);
+  if (!other._units) {
+    throw std::invalid_argument(
+        "AcquisitionContext copy constructor: Other AcquisitionContext "
+        "contains null shared pointer.");
+  }
+  _units = std::make_shared<physics::units::SymbolUnit>(*other._units);
 }
-AcquisitionContext AcquisitionContext::operator=(
+AcquisitionContext& AcquisitionContext::operator=(
     const AcquisitionContext& other) {
   if (this != &other) {
     BaseContext::                             operator=(other);
-    std::shared_lock<std::shared_timed_mutex> lock_units(other._mu_units);
-    _units = other._units;
+    std::unique_lock<std::shared_timed_mutex> lock_units(_mu_units,
+                                                         std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_units(other._mu_units,
+                                                               std::defer_lock);
+    std::lock(lock_units, lock_other_units);
+    if (!other._units) {
+      throw std::invalid_argument(
+          "AcquisitionContext copy constructor: Other AcquisitionContext "
+          "contains null shared pointer.");
+    }
+    _units = std::make_shared<physics::units::SymbolUnit>(*other._units);
   }
   return *this;
 }
@@ -72,6 +90,7 @@ const AcquisitionContextSP AcquisitionContext::operator/(
         "AcquisitionContext: The connection to divide by must not be "
         "null.");
   }
+  std::cout << "Dividing AcquisitionContext units: " << std::endl;
   return std::make_shared<AcquisitionContext>(
       connection(), instrument_type(), *units() / other->units());
 }

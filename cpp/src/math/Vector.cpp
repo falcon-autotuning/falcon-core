@@ -13,30 +13,34 @@ namespace math {
 Vector::Vector(const Vector& other)
     : generic::Map<physics::device_structures::Connection,
                    generic::Pair<Quantity, Quantity>>(other) {
-  std::shared_lock<std::shared_timed_mutex> lock_unit(other._mu_unit,
+  std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
                                                       std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_connections(
-      other._mu_connections, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_connections(_mu_connections,
+                                                             std::defer_lock);
   std::lock(lock_unit, lock_connections);
-  _unit        = other._unit;
-  _connections = other._connections;
+  if (!other.unit() || !other.connections()) {
+    throw std::invalid_argument(
+        "Vector copy constructor: Other Vector contains null shared pointers.");
+  }
+  _unit        = std::make_shared<physics::units::SymbolUnit>(*other.unit());
+  _connections = std::make_shared<physics::device_structures::Connections>(
+      *other.connections());
 }
-Vector Vector::operator=(const Vector& other) {
+Vector& Vector::operator=(const Vector& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_unit(other._mu_unit,
-                                                              std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_connections(
-        other._mu_connections, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
                                                         std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_connections(_mu_connections,
                                                                std::defer_lock);
-    std::lock(
-        lock_unit, lock_connections, lock_other_unit, lock_other_connections);
-    _unit        = other._unit;
-    _connections = other._connections;
-    generic::Map<physics::device_structures::Connection,
-                 generic::Pair<Quantity, Quantity>>::operator=(other);
+    std::lock(lock_unit, lock_connections);
+    if (!other.unit() || !other.connections()) {
+      throw std::invalid_argument(
+          "Vector copy constructor: Other Vector contains null shared "
+          "pointers.");
+    }
+    _unit        = std::make_shared<physics::units::SymbolUnit>(*other.unit());
+    _connections = std::make_shared<physics::device_structures::Connections>(
+        *other.connections());
   }
   return *this;
 }

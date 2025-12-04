@@ -15,8 +15,6 @@ class DotGateWithNeighbors : public device_structures::Connection,
  public:
   DotGateWithNeighbors(const DotGateWithNeighbors& other);
   DotGateWithNeighbors& operator=(const DotGateWithNeighbors& other);
-  DotGateWithNeighbors(DotGateWithNeighbors&& other) noexcept;
-  DotGateWithNeighbors& operator=(DotGateWithNeighbors&& other) noexcept;
   DotGateWithNeighbors(std::string                      name,
                        device_structures::DeviceFeature type,
                        device_structures::ConnectionSP  left_neighbor,

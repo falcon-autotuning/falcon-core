@@ -6,14 +6,27 @@ namespace communications {
 namespace voltage_states {
 DeviceVoltageState::DeviceVoltageState(const DeviceVoltageState& other)
     : math::Quantity(other) {
-  std::shared_ptr<physics::device_structures::Connection> temp = _connection;
-  _connection = other._connection;
+  std::unique_lock<std::shared_timed_mutex> lock_c(_mu_connection);
+  if (!other._connection) {
+    throw std::invalid_argument(
+        "DeviceVoltageState copy constructor: Other DeviceVoltageState "
+        "contains null shared pointer.");
+  }
+  _connection = std::make_shared<physics::device_structures::Connection>(
+      *other._connection);
 }
-DeviceVoltageState DeviceVoltageState::operator=(
+DeviceVoltageState& DeviceVoltageState::operator=(
     const DeviceVoltageState& other) {
   if (this != &other) {
-    math::Quantity::operator=(other);
-    _connection = other._connection;
+    math::Quantity::                          operator=(other);
+    std::unique_lock<std::shared_timed_mutex> lock_c(_mu_connection);
+    if (!other._connection) {
+      throw std::invalid_argument(
+          "DeviceVoltageState copy constructor: Other DeviceVoltageState "
+          "contains null shared pointer.");
+    }
+    _connection = std::make_shared<physics::device_structures::Connection>(
+        *other._connection);
   }
   return *this;
 }

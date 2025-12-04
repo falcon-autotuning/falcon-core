@@ -22,7 +22,7 @@ class AcquisitionContext : public BaseContext {
 
  public:
   AcquisitionContext(const AcquisitionContext& other);
-  AcquisitionContext operator=(const AcquisitionContext& other);
+  AcquisitionContext& operator=(const AcquisitionContext& other);
   /**
    * @brief Initialize an AcquisitionContext with a connection, instrument type,
    * and units.

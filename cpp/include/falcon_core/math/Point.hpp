@@ -27,7 +27,7 @@ class Point
 
  public:
   Point(const Point& other);
-  Point operator=(const Point& other);
+  Point& operator=(const Point& other);
   Point();
   Point(const generic::MapSP<physics::device_structures::Connection, double>&
                                             init,

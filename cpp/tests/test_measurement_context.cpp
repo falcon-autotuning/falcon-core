@@ -14,7 +14,7 @@ TEST(MeasurementContextTest, ConstructorFromThings) {
   auto               conn  = Connection::PlungerGate("a");
   Instrument         instr = InstrumentTypes::VOLTAGE_SOURCE;
   MeasurementContext ctx(conn, instr);
-  EXPECT_EQ(ctx.connection(), conn);
+  EXPECT_EQ(*ctx.connection(), *conn);
   EXPECT_EQ(ctx.instrument_type(), instr);
 }
 
@@ -23,7 +23,7 @@ TEST(MeasurementContextTest, ConstructorFromBaseContext) {
   Instrument         instr = InstrumentTypes::VOLTAGE_SOURCE;
   BaseContext        ctx(conn, instr);
   MeasurementContext mctx(std::make_shared<BaseContext>(ctx));
-  EXPECT_EQ(mctx.connection(), conn);
+  EXPECT_EQ(*mctx.connection(), *conn);
   EXPECT_EQ(mctx.instrument_type(), instr);
 }
 
@@ -33,7 +33,7 @@ TEST(MeasurementContextTest, ConstructorFromAcquisitionContext) {
   SymbolUnitSP       unit  = SymbolUnit::Volt();
   AcquisitionContext ctx(conn, instr, unit);
   MeasurementContext mctx(std::make_shared<AcquisitionContext>(ctx));
-  EXPECT_EQ(mctx.connection(), conn);
+  EXPECT_EQ(*mctx.connection(), *conn);
   EXPECT_EQ(mctx.instrument_type(), instr);
 }
 

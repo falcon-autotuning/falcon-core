@@ -17,7 +17,7 @@ class HasRightNeighbor : public virtual generic::Song {
 
  public:
   HasRightNeighbor(const HasRightNeighbor& other);
-  HasRightNeighbor operator=(const HasRightNeighbor& other);
+  HasRightNeighbor& operator=(const HasRightNeighbor& other);
   HasRightNeighbor(device_structures::ConnectionSP right_neighbor);
 
   /**

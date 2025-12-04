@@ -1,16 +1,18 @@
 #include "falcon_core/autotuner_interfaces/names/Channel.hpp"
 
+#include <mutex>
+
 namespace falcon_core {
 namespace autotuner_interfaces {
 namespace names {
 Channel::Channel(const Channel& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_other_name(other._mu_name);
-  _name = other._name;
+  std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name);
+  _name = other.name();
 }
-Channel Channel::operator=(const Channel& other) {
+Channel& Channel::operator=(const Channel& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_name(other._mu_name);
-    _name = other._name;
+    std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name);
+    _name = other.name();
   }
   return *this;
 }

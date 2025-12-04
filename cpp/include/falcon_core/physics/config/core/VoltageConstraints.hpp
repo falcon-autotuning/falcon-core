@@ -22,7 +22,7 @@ class VoltageConstraints : public generic::Song {
 
  public:
   VoltageConstraints(const VoltageConstraints& other);
-  VoltageConstraints operator=(const VoltageConstraints& other);
+  VoltageConstraints& operator=(const VoltageConstraints& other);
   VoltageConstraints(const AdjacencySP         adjacency,
                      double                    max_safe_diff,
                      std::pair<double, double> bounds);

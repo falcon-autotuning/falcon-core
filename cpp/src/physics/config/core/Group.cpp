@@ -43,7 +43,7 @@ Group::Group(const Group& other) : StandardConfigConnections(other) {
   }
   _order = std::make_shared<geometries::GateGeometryArray1D>(*other.order());
 }
-Group Group::operator=(const Group& other) {
+Group& Group::operator=(const Group& other) {
   if (this != &other) {
     StandardConfigConnections::               operator=(other);
     std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,

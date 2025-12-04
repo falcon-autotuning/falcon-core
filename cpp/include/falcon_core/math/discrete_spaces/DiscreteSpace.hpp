@@ -21,7 +21,7 @@ class DiscreteSpace : public generic::Song {
 
  public:
   DiscreteSpace(const DiscreteSpace& other);
-  DiscreteSpace operator=(const DiscreteSpace& other);
+  DiscreteSpace& operator=(const DiscreteSpace& other);
   /**
    * @brief Initialize the DiscreteSpace.
    * The order of the Knobs in teh axes are defined to line up with the space.

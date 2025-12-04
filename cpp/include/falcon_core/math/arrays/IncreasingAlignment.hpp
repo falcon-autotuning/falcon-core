@@ -32,7 +32,7 @@ class IncreasingAlignment : public generic::Song {
 
  public:
   IncreasingAlignment(const IncreasingAlignment& other);
-  IncreasingAlignment operator=(const IncreasingAlignment& other);
+  IncreasingAlignment& operator=(const IncreasingAlignment& other);
   IncreasingAlignment();
   IncreasingAlignment(const bool alignment);
   /**

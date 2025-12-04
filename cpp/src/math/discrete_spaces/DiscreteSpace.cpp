@@ -10,40 +10,42 @@ namespace falcon_core {
 namespace math {
 namespace discrete_spaces {
 DiscreteSpace::DiscreteSpace(const DiscreteSpace& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_space(other._mu_space,
+  std::unique_lock<std::shared_timed_mutex> lock_space(other._mu_space,
                                                        std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_axes(other._mu_axes,
+  std::unique_lock<std::shared_timed_mutex> lock_axes(other._mu_axes,
                                                       std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_increasing(
+  std::unique_lock<std::shared_timed_mutex> lock_increasing(
       other._mu_increasing, std::defer_lock);
   std::lock(lock_space, lock_axes, lock_increasing);
-  _space      = other._space;
-  _axes       = other._axes;
-  _increasing = other._increasing;
+  if (!other.space() || !other.axes() || !other.increasing()) {
+    throw std::invalid_argument(
+        "DiscreteSpace copy constructor: Other DiscreteSpace contains null "
+        "shared pointers.");
+  }
+  _space = std::make_shared<UnitSpace>(*other.space());
+  _axes = std::make_shared<Axes<domains::CoupledLabelledDomain>>(*other.axes());
+  _increasing = std::make_shared<Axes<generic::Map<std::string, bool>>>(
+      *other.increasing());
 }
-DiscreteSpace DiscreteSpace::operator=(const DiscreteSpace& other) {
+DiscreteSpace& DiscreteSpace::operator=(const DiscreteSpace& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_space(other._mu_space,
-                                                               std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_axes(other._mu_axes,
-                                                              std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_increasing(
-        other._mu_increasing, std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_space(_mu_space,
+    std::unique_lock<std::shared_timed_mutex> lock_space(other._mu_space,
                                                          std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_axes(_mu_axes,
+    std::unique_lock<std::shared_timed_mutex> lock_axes(other._mu_axes,
                                                         std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_increasing(_mu_increasing,
-                                                              std::defer_lock);
-    std::lock(lock_space,
-              lock_axes,
-              lock_increasing,
-              lock_other_space,
-              lock_other_axes,
-              lock_other_increasing);
-    _space      = other._space;
-    _axes       = other._axes;
-    _increasing = other._increasing;
+    std::unique_lock<std::shared_timed_mutex> lock_increasing(
+        other._mu_increasing, std::defer_lock);
+    std::lock(lock_space, lock_axes, lock_increasing);
+    if (!other.space() || !other.axes() || !other.increasing()) {
+      throw std::invalid_argument(
+          "DiscreteSpace copy constructor: Other DiscreteSpace contains null "
+          "shared pointers.");
+    }
+    _space = std::make_shared<UnitSpace>(*other.space());
+    _axes =
+        std::make_shared<Axes<domains::CoupledLabelledDomain>>(*other.axes());
+    _increasing = std::make_shared<Axes<generic::Map<std::string, bool>>>(
+        *other.increasing());
   }
   return *this;
 }

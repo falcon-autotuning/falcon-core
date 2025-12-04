@@ -11,13 +11,21 @@ namespace math {
 Point::Point(const Point& other)
     : generic::Map<physics::device_structures::Connection, Quantity>(other) {
   std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
+  if (!other.unit()) {
+    throw std::invalid_argument(
+        "Point copy constructor: Other Point contains null shared pointer.");
+  }
   _unit = std::make_shared<physics::units::SymbolUnit>(*other.unit());
 }
-Point Point::operator=(const Point& other) {
+Point& Point::operator=(const Point& other) {
   if (this != &other) {
     generic::Map<physics::device_structures::Connection, Quantity>::operator=(
         other);
     std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
+    if (!other.unit()) {
+      throw std::invalid_argument(
+          "Point copy constructor: Other Point contains null shared pointer.");
+    }
     _unit = std::make_shared<physics::units::SymbolUnit>(*other.unit());
   }
   return *this;

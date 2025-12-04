@@ -172,3 +172,12 @@ TEST_F(InterpretationContainerTest, SelectContexts) {
   EXPECT_THROW(container.select_contexts(indp_list, nullptr),
                std::invalid_argument);
 }
+TEST_F(InterpretationContainerTest, SerializationRoundTrip) {
+  auto map = std::make_shared<generic::Map<InterpretationContext, double>>();
+  map->insert(ctxA_O_V, 1.0);
+  InterpretationContainer<double> container(map);
+  auto                            string = container.to_json_string();
+  auto c2 = InterpretationContainer<double>::from_json_string<
+      InterpretationContainer<double>>(string);
+  EXPECT_EQ(container, *c2);
+}

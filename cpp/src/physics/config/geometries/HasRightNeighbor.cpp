@@ -16,7 +16,7 @@ HasRightNeighbor::HasRightNeighbor(const HasRightNeighbor& other) {
   _right_neighbor =
       std::make_shared<device_structures::Connection>(*other.right_neighbor());
 }
-HasRightNeighbor HasRightNeighbor::operator=(const HasRightNeighbor& other) {
+HasRightNeighbor& HasRightNeighbor::operator=(const HasRightNeighbor& other) {
   if (this != &other) {
     std::unique_lock<std::shared_timed_mutex> lock_right_neighbor(
         _mu_right_neighbor);

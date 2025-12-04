@@ -13,7 +13,7 @@ class BaseMessage : public generic::Song {
 
  public:
   BaseMessage(const BaseMessage& other);
-  BaseMessage operator=(const BaseMessage& other);
+  BaseMessage& operator=(const BaseMessage& other);
   BaseMessage(const std::string& message);
 
   const std::string& message() const;

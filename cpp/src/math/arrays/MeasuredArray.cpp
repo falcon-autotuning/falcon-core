@@ -5,7 +5,7 @@ namespace math {
 namespace arrays {
 MeasuredArray::MeasuredArray(const MeasuredArray& other)
     : FArray<double>(other) {}
-MeasuredArray MeasuredArray::operator=(const MeasuredArray& other) {
+MeasuredArray& MeasuredArray::operator=(const MeasuredArray& other) {
   if (this != &other) {
     FArray<double>::operator=(other);
   }

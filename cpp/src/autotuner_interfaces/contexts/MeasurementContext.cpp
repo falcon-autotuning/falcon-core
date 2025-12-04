@@ -4,20 +4,11 @@ namespace falcon_core {
 namespace autotuner_interfaces {
 namespace contexts {
 MeasurementContext::MeasurementContext(const MeasurementContext& other)
-    : BaseContext(other) {
-  std::shared_lock<std::shared_timed_mutex> lock_unit(other._mu_unit);
-  _unit = other._unit;
-}
-MeasurementContext MeasurementContext::operator=(
+    : BaseContext(other) {}
+MeasurementContext& MeasurementContext::operator=(
     const MeasurementContext& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_unit(other._mu_unit,
-                                                              std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
-                                                        std::defer_lock);
-    std::lock(lock_unit, lock_other_unit);
     BaseContext::operator=(other);
-    _unit = other._unit;
   }
   return *this;
 }

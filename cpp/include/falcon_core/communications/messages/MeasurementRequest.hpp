@@ -26,7 +26,7 @@ class MeasurementRequest : public BaseMessage {
 
  public:
   MeasurementRequest(const MeasurementRequest& other);
-  MeasurementRequest operator=(const MeasurementRequest& other);
+  MeasurementRequest& operator=(const MeasurementRequest& other);
   MeasurementRequest(
       const std::string&                                      message,
       const std::string&                                      measurement_name,

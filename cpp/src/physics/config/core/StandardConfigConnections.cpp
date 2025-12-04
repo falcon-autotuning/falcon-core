@@ -43,7 +43,7 @@ StandardConfigConnections::StandardConfigConnections(
       std::make_shared<device_structures::Connections>(*other.barrier_gates());
   _ohmics = std::make_shared<device_structures::Connections>(*other.ohmics());
 }
-StandardConfigConnections StandardConfigConnections::operator=(
+StandardConfigConnections& StandardConfigConnections::operator=(
     const StandardConfigConnections& other) {
   if (this != &other) {
     std::unique_lock<std::shared_timed_mutex> lock_screening_gates(

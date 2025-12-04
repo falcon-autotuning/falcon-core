@@ -6,39 +6,31 @@ namespace falcon_core {
 namespace autotuner_interfaces {
 namespace names {
 NameBase::NameBase(const NameBase& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_name(other._mu_name,
+  std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,
                                                       std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_num(other._mu_num,
-                                                     std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_index_string(
+  std::unique_lock<std::shared_timed_mutex> lock_num(_mu_num, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_index_string(_mu_index_string,
+                                                              std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_other_index_string(
       other._mu_index_string, std::defer_lock);
-  std::lock(lock_name, lock_num, lock_index_string);
-  _name         = other._name;
-  _num          = other._num;
+  std::lock(lock_name, lock_num, lock_index_string, lock_other_index_string);
+  _name         = other.name();
+  _num          = other.num();
   _index_string = other._index_string;
 }
-NameBase NameBase::operator=(const NameBase& other) {
+NameBase& NameBase::operator=(const NameBase& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_name(other._mu_name,
-                                                              std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_num(other._mu_num,
-                                                             std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_index_string(
-        other._mu_index_string, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,
                                                         std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_num(_mu_num,
                                                        std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_index_string(
         _mu_index_string, std::defer_lock);
-    std::lock(lock_name,
-              lock_num,
-              lock_index_string,
-              lock_other_name,
-              lock_other_num,
-              lock_other_index_string);
-    _name         = other._name;
-    _num          = other._num;
+    std::shared_lock<std::shared_timed_mutex> lock_other_index_string(
+        other._mu_index_string, std::defer_lock);
+    std::lock(lock_name, lock_num, lock_index_string, lock_other_index_string);
+    _name         = other.name();
+    _num          = other.num();
     _index_string = other._index_string;
   }
   return *this;

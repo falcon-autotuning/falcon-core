@@ -27,7 +27,7 @@ class InterpretationContext : public generic::Song {
 
  public:
   InterpretationContext(const InterpretationContext& other);
-  InterpretationContext operator=(const InterpretationContext& other);
+  InterpretationContext& operator=(const InterpretationContext& other);
   /**
    * @brief Creates the InterpretationContext.
    * @param independent_variables The independent variables (sweep parameters).

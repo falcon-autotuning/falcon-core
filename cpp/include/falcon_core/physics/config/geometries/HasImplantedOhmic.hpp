@@ -15,7 +15,7 @@ class HasImplantedOhmic : public virtual generic::Song {
 
  public:
   HasImplantedOhmic(const HasImplantedOhmic& other);
-  HasImplantedOhmic operator=(const HasImplantedOhmic& other);
+  HasImplantedOhmic& operator=(const HasImplantedOhmic& other);
   HasImplantedOhmic(device_structures::ConnectionSP ohmic);
   /**
    * @brief Returns the ohmic below the gate.

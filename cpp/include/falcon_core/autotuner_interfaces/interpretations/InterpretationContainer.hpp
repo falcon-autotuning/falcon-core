@@ -32,17 +32,33 @@ class InterpretationContainer
  public:
   InterpretationContainer(const InterpretationContainer<Value>& other)
       : generic::Map<InterpretationContext, Value>(other) {
-    std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_unit);
-    _unit = other._unit;
+    std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_unit,
+                                                     std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_u(_mu_unit, std::defer_lock);
+    std::lock(lock_o, lock_u);
+    if (!other._unit) {
+      throw std::invalid_argument(
+          "InterpretationContainer copy constructor: Other "
+          "InterpretationContainer "
+          "contains null shared pointer.");
+    }
+    _unit = std::make_shared<physics::units::SymbolUnit>(*other._unit);
   }
-  InterpretationContext operator=(const InterpretationContainer<Value>& other) {
+  InterpretationContext& operator=(
+      const InterpretationContainer<Value>& other) {
     if (this != &other) {
       std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_unit,
                                                        std::defer_lock);
       std::unique_lock<std::shared_timed_mutex> lock_u(_mu_unit,
                                                        std::defer_lock);
       std::lock(lock_o, lock_u);
-      _unit = other._unit;
+      if (!other._unit) {
+        throw std::invalid_argument(
+            "InterpretationContainer copy constructor: Other "
+            "InterpretationContainer "
+            "contains null shared pointer.");
+      }
+      _unit = std::make_shared<physics::units::SymbolUnit>(*other._unit);
       generic::Map<InterpretationContext, Value>::operator=(other);
     }
     return *this;

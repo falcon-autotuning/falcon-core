@@ -15,7 +15,7 @@ class MeasurementResponse : public BaseMessage {
 
  public:
   MeasurementResponse(const MeasurementResponse& other);
-  MeasurementResponse operator=(const MeasurementResponse& other);
+  MeasurementResponse& operator=(const MeasurementResponse& other);
   MeasurementResponse(
       const math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>&
           arrays);

@@ -46,7 +46,7 @@ Config::Config(const Config& other) : StandardConfigConnections(other) {
       *other.channels());
   _num_unique_channels = other.num_unique_channels();
 }
-Config Config::operator=(const Config& other) {
+Config& Config::operator=(const Config& other) {
   if (this != &other) {
     StandardConfigConnections::               operator=(other);
     std::unique_lock<std::shared_timed_mutex> lock_groups(_mu_groups,

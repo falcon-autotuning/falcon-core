@@ -30,7 +30,7 @@ class InstrumentPort : public generic::Song {
 
  public:
   InstrumentPort(const InstrumentPort& other);
-  InstrumentPort operator=(const InstrumentPort& other);
+  InstrumentPort& operator=(const InstrumentPort& other);
   /**
    * @brief Initialize an InstrumentPort.
    * @param default_name The default name of the port (e.g. "Vg1").

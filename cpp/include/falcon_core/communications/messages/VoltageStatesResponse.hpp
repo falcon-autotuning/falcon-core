@@ -13,7 +13,7 @@ class VoltageStatesResponse : public BaseMessage {
 
  public:
   VoltageStatesResponse(const VoltageStatesResponse& other);
-  VoltageStatesResponse operator=(const VoltageStatesResponse& other);
+  VoltageStatesResponse& operator=(const VoltageStatesResponse& other);
   VoltageStatesResponse(
       const std::string&                                           message,
       const communications::voltage_states::DeviceVoltageStatesSP& states);

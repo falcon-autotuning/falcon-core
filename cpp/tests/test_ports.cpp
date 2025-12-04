@@ -53,7 +53,7 @@ TEST_F(PortsTest, PortsGetter) {
   Ports ports(*ports_ABC);
   auto  list = ports.ports();
   EXPECT_EQ(list->size(), 3u);
-  EXPECT_EQ((*list)[0], portA);
+  EXPECT_EQ(*(*list)[0], *portA);
 }
 
 TEST_F(PortsTest, GetDefaultNames) {
@@ -97,7 +97,7 @@ TEST_F(PortsTest, GetInstrumentFacingNames) {
 TEST_F(PortsTest, GetPsuedonameMatchingPort) {
   Ports ports(*ports_ABC);
   auto  found = ports._get_psuedoname_matching_port(portA->pseudo_name());
-  EXPECT_EQ(found, portA);
+  EXPECT_EQ(*found, *portA);
   EXPECT_THROW(ports._get_psuedoname_matching_port(nullptr),
                std::invalid_argument);
   InstrumentPortSP not_found = std::make_shared<InstrumentPort>(

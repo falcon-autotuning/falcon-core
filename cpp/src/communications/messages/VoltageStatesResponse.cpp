@@ -8,16 +8,29 @@ namespace communications {
 namespace messages {
 VoltageStatesResponse::VoltageStatesResponse(const VoltageStatesResponse& other)
     : BaseMessage(other) {
-  std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_states);
-  _states = other._states;
+  std::unique_lock<std::shared_timed_mutex> lock_o(_mu_states);
+  if (!other._states) {
+    throw std::invalid_argument(
+        "VoltageStatesResponse copy constructor: Other VoltageStatesResponse "
+        "contains null shared pointer.");
+  }
+  _states =
+      std::make_shared<communications::voltage_states::DeviceVoltageStates>(
+          *other._states);
 }
-VoltageStatesResponse VoltageStatesResponse::operator=(
+VoltageStatesResponse& VoltageStatesResponse::operator=(
     const VoltageStatesResponse& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_states);
-    std::unique_lock<std::shared_timed_mutex> lock_s(_mu_states);
-    BaseMessage::                             operator=(other);
-    _states = other._states;
+    std::unique_lock<std::shared_timed_mutex> lock_o(_mu_states);
+    if (!other._states) {
+      throw std::invalid_argument(
+          "VoltageStatesResponse copy constructor: Other VoltageStatesResponse "
+          "contains null shared pointer.");
+    }
+    _states =
+        std::make_shared<communications::voltage_states::DeviceVoltageStates>(
+            *other._states);
+    BaseMessage::operator=(other);
   }
   return *this;
 }

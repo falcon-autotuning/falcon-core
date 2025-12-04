@@ -10,17 +10,17 @@ namespace instrument_interfaces {
 namespace names {
 InstrumentPort::InstrumentPort(const InstrumentPort& other)
     : generic::Song(other) {
-  std::shared_lock<std::shared_timed_mutex> lock_default_name(
-      other._mu_default_name, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_pseudo_name(
-      other._mu_pseudo_name, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_instrument_type(
-      other._mu_instrument_type, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_units(other._mu_units,
+  std::unique_lock<std::shared_timed_mutex> lock_default_name(_mu_default_name,
+                                                              std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_pseudo_name(_mu_pseudo_name,
+                                                             std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_instrument_type(
+      _mu_instrument_type, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_units(_mu_units,
                                                        std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_description(
-      other._mu_description, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_type(other._mu_type,
+  std::unique_lock<std::shared_timed_mutex> lock_description(_mu_description,
+                                                             std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_type(_mu_type,
                                                       std::defer_lock);
   std::lock(lock_default_name,
             lock_pseudo_name,
@@ -28,27 +28,25 @@ InstrumentPort::InstrumentPort(const InstrumentPort& other)
             lock_units,
             lock_description,
             lock_type);
-  _default_name    = other._default_name;
-  _pseudo_name     = other._pseudo_name;
-  _instrument_type = other._instrument_type;
-  _units           = other._units;
-  _description     = other._description;
-  _type            = other._type;
+  if (!other.units()) {
+    throw std::invalid_argument(
+        "InstrumentPort copy constructor: Other InstrumentPort contains null "
+        "shared pointer for units.");
+  }
+  _default_name    = other.default_name();
+  _instrument_type = other.instrument_type();
+  _units       = std::make_shared<physics::units::SymbolUnit>(*other.units());
+  _description = other.description();
+  _type        = other.type();
+  if (other._pseudo_name) {
+    _pseudo_name = std::make_shared<physics::device_structures::Connection>(
+        *other.pseudo_name());
+  } else {
+    _pseudo_name = nullptr;
+  }
 }
-InstrumentPort InstrumentPort::operator=(const InstrumentPort& other) {
+InstrumentPort& InstrumentPort::operator=(const InstrumentPort& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_default_name(
-        other._mu_default_name, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_pseudo_name(
-        other._mu_pseudo_name, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_instrument_type(
-        other._mu_instrument_type, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_units(other._mu_units,
-                                                               std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_description(
-        other._mu_description, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_type(other._mu_type,
-                                                              std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_default_name(
         _mu_default_name, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_pseudo_name(_mu_pseudo_name,
@@ -66,19 +64,23 @@ InstrumentPort InstrumentPort::operator=(const InstrumentPort& other) {
               lock_instrument_type,
               lock_units,
               lock_description,
-              lock_type,
-              lock_other_default_name,
-              lock_other_pseudo_name,
-              lock_other_instrument_type,
-              lock_other_units,
-              lock_other_description,
-              lock_other_type);
-    _default_name    = other._default_name;
-    _pseudo_name     = other._pseudo_name;
-    _instrument_type = other._instrument_type;
-    _units           = other._units;
-    _description     = other._description;
-    _type            = other._type;
+              lock_type);
+    if (!other.units()) {
+      throw std::invalid_argument(
+          "InstrumentPort copy constructor: Other InstrumentPort contains null "
+          "shared pointer for units.");
+    }
+    _default_name    = other.default_name();
+    _instrument_type = other.instrument_type();
+    _units       = std::make_shared<physics::units::SymbolUnit>(*other.units());
+    _description = other.description();
+    _type        = other.type();
+    if (other.pseudo_name()) {
+      _pseudo_name = std::make_shared<physics::device_structures::Connection>(
+          *other.pseudo_name());
+    } else {
+      _pseudo_name = nullptr;
+    }
   }
   return *this;
 }

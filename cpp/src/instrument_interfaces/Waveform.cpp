@@ -11,15 +11,26 @@ namespace falcon_core {
 namespace instrument_interfaces {
 Waveform::Waveform(const Waveform& other)
     : port_transforms::PortTransforms(other) {
-  std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_space);
-  _space = other._space;
+  std::unique_lock<std::shared_timed_mutex> lock_o(_mu_space);
+  if (!other._space) {
+    throw std::invalid_argument(
+        "Waveform copy constructor: Other Waveform contains null shared "
+        "pointer for space.");
+  }
+  _space =
+      std::make_shared<math::discrete_spaces::DiscreteSpace>(*other._space);
 }
-Waveform Waveform::operator=(const Waveform& other) {
+Waveform& Waveform::operator=(const Waveform& other) {
   if (this != &other) {
     port_transforms::PortTransforms::         operator=(other);
-    std::shared_lock<std::shared_timed_mutex> lock_s(_mu_space);
-    std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_space);
-    _space = other._space;
+    std::unique_lock<std::shared_timed_mutex> lock_o(_mu_space);
+    if (!other._space) {
+      throw std::invalid_argument(
+          "Waveform copy constructor: Other Waveform contains null shared "
+          "pointer for space.");
+    }
+    _space =
+        std::make_shared<math::discrete_spaces::DiscreteSpace>(*other._space);
   }
   return *this;
 }

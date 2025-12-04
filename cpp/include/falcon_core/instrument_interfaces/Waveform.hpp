@@ -17,7 +17,7 @@ class Waveform : public port_transforms::PortTransforms {
 
  public:
   Waveform(const Waveform& other);
-  Waveform operator=(const Waveform& other);
+  Waveform& operator=(const Waveform& other);
   /**
    * @brief Construct a Waveform.
    * @param space The measurement space.

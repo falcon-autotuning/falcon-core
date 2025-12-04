@@ -40,7 +40,7 @@ class List : public generic::Song {
     copy_items_impl(other.items(),
                     typename category::determine_tag<Value>::type{});
   }
-  List operator=(const List<Value>& other) {
+  List& operator=(const List<Value>& other) {
     if (this != &other) {
       clear();
       _items.reserve(other.size());

@@ -3,28 +3,23 @@
 #include "falcon_core/autotuner_interfaces/contexts/BaseContext.hpp"
 #include "falcon_core/instrument_interfaces/names/Instrument.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
-#include "falcon_core/physics/units/SymbolUnit.hpp"
 
 namespace falcon_core {
 namespace autotuner_interfaces {
 namespace contexts {
 
 class MeasurementContext : public contexts::BaseContext {
-  physics::units::SymbolUnitSP    _unit;
-  mutable std::shared_timed_mutex _mu_unit;
-
  protected:
   friend class cereal::access;
   MeasurementContext();
   template <class Archive>
   void serialize(Archive& ar) {
-    std::shared_lock<std::shared_timed_mutex> lock_u(_mu_unit);
     ar(cereal::base_class<contexts::BaseContext>(this));
   }
 
  public:
   MeasurementContext(const MeasurementContext& other);
-  MeasurementContext operator=(const MeasurementContext& other);
+  MeasurementContext& operator=(const MeasurementContext& other);
   /**
    * @brief Constructs the measurement context.
    * @param connection The device connection.

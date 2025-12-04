@@ -10,27 +10,39 @@ namespace falcon_core {
 namespace math {
 UnitSpace::UnitSpace(const UnitSpace& other)
     : math::Axes<discrete_spaces::Discretizer>(other) {
-  std::shared_lock<std::shared_timed_mutex> lock_domain(other._mu_domain,
+  std::unique_lock<std::shared_timed_mutex> lock_domain(_mu_domain,
                                                         std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_ranges(other._mu_ranges,
+  std::unique_lock<std::shared_timed_mutex> lock_ranges(_mu_ranges,
                                                         std::defer_lock);
-  std::lock(lock_domain, lock_ranges);
-  _domain = other._domain;
-  _ranges = other._ranges;
+  std::shared_lock<std::shared_timed_mutex> lock_other_ranges(other._mu_ranges,
+                                                              std::defer_lock);
+  std::lock(lock_domain, lock_ranges, lock_other_ranges);
+  if (!other.domain() || !other._ranges) {
+    throw std::invalid_argument(
+        "UnitSpace copy constructor: Other UnitSpace contains null shared "
+        "pointers.");
+  }
+  _domain = std::make_shared<domains::Domain>(*other.domain());
+  _ranges =
+      std::make_shared<math::Axes<arrays::ControlArray1D>>(*other._ranges);
 }
-UnitSpace UnitSpace::operator=(const UnitSpace& other) {
+UnitSpace& UnitSpace::operator=(const UnitSpace& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_domain(
-        other._mu_domain, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_ranges(
-        other._mu_ranges, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_domain(_mu_domain,
                                                           std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_ranges(_mu_ranges,
                                                           std::defer_lock);
-    std::lock(lock_domain, lock_ranges, lock_other_domain, lock_other_ranges);
-    _domain = other._domain;
-    _ranges = other._ranges;
+    std::shared_lock<std::shared_timed_mutex> lock_other_ranges(
+        other._mu_ranges, std::defer_lock);
+    std::lock(lock_domain, lock_ranges, lock_other_ranges);
+    if (!other.domain() || !other._ranges) {
+      throw std::invalid_argument(
+          "UnitSpace copy constructor: Other UnitSpace contains null shared "
+          "pointers.");
+    }
+    _domain = std::make_shared<domains::Domain>(*other.domain());
+    _ranges =
+        std::make_shared<math::Axes<arrays::ControlArray1D>>(*other._ranges);
   }
   return *this;
 }

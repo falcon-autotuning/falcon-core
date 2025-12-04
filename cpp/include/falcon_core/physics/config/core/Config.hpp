@@ -29,7 +29,7 @@ class Config : public StandardConfigConnections {
 
  public:
   Config(const Config& other);
-  Config operator=(const Config& other);
+  Config& operator=(const Config& other);
   /**
    * @brief Constructs a new Config object for falcon use.
    * @param screening_gates The screening gates configuration.

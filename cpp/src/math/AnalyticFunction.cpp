@@ -13,15 +13,19 @@ AnalyticFunction::AnalyticFunction(const AnalyticFunction& other)
     : List<VariableName>(other) {
   std::shared_lock<std::shared_timed_mutex> lock_expression(
       other._mu_expression, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_this_expression(
+      _mu_expression, std::defer_lock);
+  std::lock(lock_this_expression, lock_expression);
   _expression = other._expression;
 }
-AnalyticFunction AnalyticFunction::operator=(const AnalyticFunction& other) {
+AnalyticFunction& AnalyticFunction::operator=(const AnalyticFunction& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_expression(
+    List<VariableName>::operator=(other);
+    std::shared_lock<std::shared_timed_mutex> lock_expression(
         other._mu_expression, std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_expression(_mu_expression,
-                                                              std::defer_lock);
-    std::lock(lock_expression, lock_other_expression);
+    std::unique_lock<std::shared_timed_mutex> lock_this_expression(
+        _mu_expression, std::defer_lock);
+    std::lock(lock_this_expression, lock_expression);
     _expression = other._expression;
   }
   return *this;

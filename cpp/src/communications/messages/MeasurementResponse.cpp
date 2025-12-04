@@ -9,15 +9,28 @@ namespace communications {
 namespace messages {
 MeasurementResponse::MeasurementResponse(const MeasurementResponse& other)
     : BaseMessage(other) {
-  std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_arrays);
-  _arrays = other._arrays;
+  std::unique_lock<std::shared_timed_mutex> lock_o(_mu_arrays);
+  if (!other._arrays) {
+    throw std::invalid_argument(
+        "MeasurementResponse copy constructor: Other MeasurementResponse "
+        "contains null shared pointer.");
+  }
+  _arrays = std::make_shared<
+      math::arrays::LabelledArrays<math::arrays::LabelledMeasuredArray>>(
+      *other.arrays());
 }
-MeasurementResponse MeasurementResponse::operator=(
+MeasurementResponse& MeasurementResponse::operator=(
     const MeasurementResponse& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_arrays);
-    std::unique_lock<std::shared_timed_mutex> lock_a(_mu_arrays);
-    _arrays = other._arrays;
+    std::unique_lock<std::shared_timed_mutex> lock_o(_mu_arrays);
+    if (!other._arrays) {
+      throw std::invalid_argument(
+          "MeasurementResponse copy constructor: Other MeasurementResponse "
+          "contains null shared pointer.");
+    }
+    _arrays = std::make_shared<
+        math::arrays::LabelledArrays<math::arrays::LabelledMeasuredArray>>(
+        *other.arrays());
     BaseMessage::operator=(other);
   }
   return *this;

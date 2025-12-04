@@ -31,7 +31,7 @@ class Discretizer : public generic::Song {
 
  public:
   Discretizer(const Discretizer& other);
-  Discretizer operator=(const Discretizer& other);
+  Discretizer& operator=(const Discretizer& other);
   /**
    * @brief Construct a Discretizer. The delta must be within the
    * delta_domain.

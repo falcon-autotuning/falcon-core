@@ -23,7 +23,7 @@ VoltageConstraints::VoltageConstraints(const VoltageConstraints& other) {
   _matrix    = *std::make_shared<generic::FArray<double>>(other.matrix());
   _limits    = *std::make_shared<generic::FArray<double>>(other.limits());
 }
-VoltageConstraints VoltageConstraints::operator=(
+VoltageConstraints& VoltageConstraints::operator=(
     const VoltageConstraints& other) {
   if (this != &other) {
     std::unique_lock<std::shared_timed_mutex> lock_adjacency(_mu_adjacency,

@@ -24,7 +24,7 @@ class Quantity : public generic::Song {
 
  public:
   Quantity(const Quantity& other);
-  Quantity operator=(const Quantity& other);
+  Quantity& operator=(const Quantity& other);
   /**
    * @brief Initialize a Quantity, which is a float with a unit.
    * @param value the value of the quantity.

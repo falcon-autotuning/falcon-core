@@ -1,17 +1,17 @@
 #include "falcon_core/communications/Time.hpp"
 
 #include <chrono>
+#include <mutex>
 namespace falcon_core {
 namespace communications {
 Time::Time(const Time& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_other(other._mu_time);
-  _micro_seconds_since_epoch = other._micro_seconds_since_epoch;
+  std::unique_lock<std::shared_timed_mutex> lock(_mu_time);
+  _micro_seconds_since_epoch = other.micro_seconds_since_epoch();
 }
-Time Time::operator=(const Time& other) {
+Time& Time::operator=(const Time& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other(other._mu_time);
-    std::shared_lock<std::shared_timed_mutex> lock_this(_mu_time);
-    _micro_seconds_since_epoch = other._micro_seconds_since_epoch;
+    std::unique_lock<std::shared_timed_mutex> lock(_mu_time);
+    _micro_seconds_since_epoch = other.micro_seconds_since_epoch();
   }
   return *this;
 }

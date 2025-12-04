@@ -7,15 +7,15 @@ namespace falcon_core {
 namespace physics {
 namespace config {
 namespace geometries {
-HasLeftNeighbor::HasLeftNeighbor(const HasLeftNeighbor& other)
-    : _left_neighbor(other.left_neighbor()
-                         ? std::make_shared<device_structures::Connection>(
-                               *other.left_neighbor())
-                         : nullptr) {
-  if (!_left_neighbor) {
+HasLeftNeighbor::HasLeftNeighbor(const HasLeftNeighbor& other) {
+  std::unique_lock<std::shared_timed_mutex> lock_left_neighbor(
+      _mu_left_neighbor);
+  if (!other.left_neighbor()) {
     throw std::invalid_argument(
         "HasLeftNeighbor: left_neighbor is null in copy");
   }
+  _left_neighbor =
+      std::make_shared<device_structures::Connection>(*other.left_neighbor());
 }
 HasLeftNeighbor& HasLeftNeighbor::operator=(const HasLeftNeighbor& other) {
   if (this != &other) {
@@ -27,16 +27,6 @@ HasLeftNeighbor& HasLeftNeighbor::operator=(const HasLeftNeighbor& other) {
     }
     _left_neighbor =
         std::make_shared<device_structures::Connection>(*other.left_neighbor());
-  }
-  return *this;
-}
-HasLeftNeighbor::HasLeftNeighbor(HasLeftNeighbor&& other) noexcept
-    : _left_neighbor(std::move(other._left_neighbor)) {}
-HasLeftNeighbor& HasLeftNeighbor::operator=(HasLeftNeighbor&& other) noexcept {
-  if (this != &other) {
-    std::unique_lock<std::shared_timed_mutex> lock_left_neighbor(
-        _mu_left_neighbor);
-    _left_neighbor = std::move(other._left_neighbor);
   }
   return *this;
 }

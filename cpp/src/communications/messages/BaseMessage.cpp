@@ -7,17 +7,13 @@ namespace falcon_core {
 namespace communications {
 namespace messages {
 BaseMessage::BaseMessage(const BaseMessage& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_m(_mu_message);
-  _message = other._message;
+  std::unique_lock<std::shared_timed_mutex> lock_m(_mu_message);
+  _message = other.message();
 }
-BaseMessage BaseMessage::operator=(const BaseMessage& other) {
+BaseMessage& BaseMessage::operator=(const BaseMessage& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_m(_mu_message,
-                                                     std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_message,
-                                                     std::defer_lock);
-    std::lock(lock_m, lock_o);
-    _message = other._message;
+    std::unique_lock<std::shared_timed_mutex> lock_m(_mu_message);
+    _message = other.message();
   }
   return *this;
 }

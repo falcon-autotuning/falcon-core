@@ -7,39 +7,54 @@ namespace falcon_core {
 namespace math {
 namespace discrete_spaces {
 Discretizer::Discretizer(const Discretizer& other) : generic::Song(other) {
-  std::shared_lock<std::shared_timed_mutex> lock_delta(other._mu_delta,
+  std::unique_lock<std::shared_timed_mutex> lock_delta(_mu_delta,
                                                        std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_delta_domain(
-      other._mu_delta_domain, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_type(other._mu_type,
+  std::unique_lock<std::shared_timed_mutex> lock_delta_domain(_mu_delta_domain,
+                                                              std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_type(_mu_type,
                                                       std::defer_lock);
-  std::lock(lock_delta, lock_delta_domain, lock_type);
+  std::shared_lock<std::shared_timed_mutex> lock_other_delta_domain(
+      other._mu_delta_domain, std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_other_type(other._mu_type,
+                                                            std::defer_lock);
+  std::lock(lock_delta,
+            lock_delta_domain,
+            lock_type,
+            lock_other_delta_domain,
+            lock_other_type);
+  if (!other._delta_domain) {
+    throw std::invalid_argument(
+        "Discretizer copy constructor: Other Discretizer contains null "
+        "shared pointer for domain.");
+  }
   _delta        = other._delta;
-  _delta_domain = other._delta_domain;
+  _delta_domain = std::make_shared<domains::Domain>(*other._delta_domain);
   _type         = other._type;
 }
-Discretizer Discretizer::operator=(const Discretizer& other) {
+Discretizer& Discretizer::operator=(const Discretizer& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_delta(other._mu_delta,
-                                                               std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_delta_domain(
-        other._mu_delta_domain, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_type(other._mu_type,
-                                                              std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_delta(_mu_delta,
                                                          std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_delta_domain(
         _mu_delta_domain, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_type(_mu_type,
                                                         std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_delta_domain(
+        other._mu_delta_domain, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_type(other._mu_type,
+                                                              std::defer_lock);
     std::lock(lock_delta,
               lock_delta_domain,
               lock_type,
-              lock_other_delta,
               lock_other_delta_domain,
               lock_other_type);
+    if (!other._delta_domain) {
+      throw std::invalid_argument(
+          "Discretizer copy constructor: Other Discretizer contains null "
+          "shared pointer for domain.");
+    }
     _delta        = other._delta;
-    _delta_domain = other._delta_domain;
+    _delta_domain = std::make_shared<domains::Domain>(*other._delta_domain);
     _type         = other._type;
   }
   return *this;

@@ -18,7 +18,7 @@ class NameBase : public generic::Song {
 
  public:
   NameBase(const NameBase& other);
-  NameBase operator=(const NameBase& other);
+  NameBase& operator=(const NameBase& other);
   NameBase(const std::string& name);
   NameBase(const std::string& name, const std::string& index_string);
   NameBase(const int& num, const std::string& index_string);

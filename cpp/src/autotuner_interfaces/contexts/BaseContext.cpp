@@ -6,30 +6,35 @@ namespace falcon_core {
 namespace autotuner_interfaces {
 namespace contexts {
 BaseContext::BaseContext(const BaseContext& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_instrument_type(
-      other._mu_instrument_type, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_connection(
-      other._mu_connection, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_instrument_type(
+      _mu_instrument_type, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_connection(_mu_connection,
+                                                            std::defer_lock);
   std::lock(lock_instrument_type, lock_connection);
-  _connection      = other._connection;
-  _instrument_type = other._instrument_type;
+  if (!other.connection()) {
+    throw std::invalid_argument(
+        "BaseContext copy constructor: Other BaseContext contains null "
+        "shared pointer.");
+  }
+  _connection = std::make_shared<physics::device_structures::Connection>(
+      *other.connection());
+  _instrument_type = other.instrument_type();
 }
-BaseContext BaseContext::operator=(const BaseContext& other) {
+BaseContext& BaseContext::operator=(const BaseContext& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_instrument_type(
-        other._mu_instrument_type, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_connection(
-        other._mu_connection, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_instrument_type(
         _mu_instrument_type, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_connection(_mu_connection,
                                                               std::defer_lock);
-    std::lock(lock_instrument_type,
-              lock_connection,
-              lock_other_instrument_type,
-              lock_other_connection);
-    _connection      = other._connection;
-    _instrument_type = other._instrument_type;
+    std::lock(lock_instrument_type, lock_connection);
+    if (!other.connection()) {
+      throw std::invalid_argument(
+          "BaseContext copy constructor: Other BaseContext contains null "
+          "shared pointer.");
+    }
+    _connection = std::make_shared<physics::device_structures::Connection>(
+        *other.connection());
+    _instrument_type = other.instrument_type();
   }
   return *this;
 }

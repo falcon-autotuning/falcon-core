@@ -25,7 +25,7 @@ class StandardConfigConnections : public generic::Song {
 
  public:
   StandardConfigConnections(const StandardConfigConnections& other);
-  StandardConfigConnections operator=(const StandardConfigConnections& other);
+  StandardConfigConnections& operator=(const StandardConfigConnections& other);
   /**
    * @brief Constructs the differet gate types holders.
    * @param screening_gates The screening gates.

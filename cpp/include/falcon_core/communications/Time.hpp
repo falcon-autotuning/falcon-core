@@ -22,7 +22,7 @@ class Time : public generic::Song {
 
  public:
   Time(const Time& other);
-  Time operator=(const Time& other);
+  Time& operator=(const Time& other);
   /**
    * @brief Construct a Tiem object at the current time.
    */

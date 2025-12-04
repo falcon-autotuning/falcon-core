@@ -1,18 +1,19 @@
 #include "falcon_core/math/arrays/IncreasingAlignment.hpp"
 
+#include <mutex>
+
 namespace falcon_core {
 namespace math {
 namespace arrays {
 IncreasingAlignment::IncreasingAlignment(const IncreasingAlignment& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_alignment);
-  _alignment = other._alignment;
+  std::unique_lock<std::shared_timed_mutex> lock_o(_mu_alignment);
+  _alignment = other.alignment();
 }
-IncreasingAlignment IncreasingAlignment::operator=(
+IncreasingAlignment& IncreasingAlignment::operator=(
     const IncreasingAlignment& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_a(_mu_alignment);
-    std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_alignment);
-    _alignment = other._alignment;
+    std::unique_lock<std::shared_timed_mutex> lock_o(_mu_alignment);
+    _alignment = other.alignment();
   }
   return *this;
 }

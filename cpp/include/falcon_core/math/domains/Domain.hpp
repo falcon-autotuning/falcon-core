@@ -21,7 +21,7 @@ class Domain : public generic::Song {
 
  public:
   Domain(const Domain& other);
-  Domain operator=(const Domain& other);
+  Domain& operator=(const Domain& other);
   /**
    * @brief Construct a Domain.
    * @param min_val Minimum value of the domain.

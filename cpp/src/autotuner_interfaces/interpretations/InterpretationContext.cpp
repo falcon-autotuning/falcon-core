@@ -7,41 +7,50 @@ namespace autotuner_interfaces {
 namespace interpretations {
 InterpretationContext::InterpretationContext(
     const InterpretationContext& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_independent_variables(
-      other._mu_independent_variables, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_dependent_variables(
-      other._mu_dependent_variables, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_unit(other._mu_unit,
+  std::unique_lock<std::shared_timed_mutex> lock_independent_variables(
+      _mu_independent_variables, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_dependent_variables(
+      _mu_dependent_variables, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
                                                       std::defer_lock);
   std::lock(lock_independent_variables, lock_dependent_variables, lock_unit);
-  _independent_variables = other._independent_variables;
-  _dependent_variables   = other._dependent_variables;
-  _unit                  = other._unit;
+  if (!other.independent_variables() || !other.dependent_variables() ||
+      !other.unit()) {
+    throw std::invalid_argument(
+        "InterpretationContext copy constructor: Other InterpretationContext "
+        "contains null shared pointers.");
+  }
+  _independent_variables = std::make_shared<
+      math::Axes<autotuner_interfaces::contexts::MeasurementContext>>(
+      *other.independent_variables());
+  _dependent_variables = std::make_shared<
+      generic::List<autotuner_interfaces::contexts::MeasurementContext>>(
+      *other.dependent_variables());
+  _unit = std::make_shared<physics::units::SymbolUnit>(*other.unit());
 }
-InterpretationContext InterpretationContext::operator=(
+InterpretationContext& InterpretationContext::operator=(
     const InterpretationContext& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_independent_variables(
-        other._mu_independent_variables, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_dependent_variables(
-        other._mu_dependent_variables, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_unit(other._mu_unit,
-                                                              std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_independent_variables(
         _mu_independent_variables, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_dependent_variables(
         _mu_dependent_variables, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
                                                         std::defer_lock);
-    std::lock(lock_independent_variables,
-              lock_dependent_variables,
-              lock_unit,
-              lock_other_independent_variables,
-              lock_other_dependent_variables,
-              lock_other_unit);
-    _independent_variables = other._independent_variables;
-    _dependent_variables   = other._dependent_variables;
-    _unit                  = other._unit;
+    std::lock(lock_independent_variables, lock_dependent_variables, lock_unit);
+    if (!other.independent_variables() || !other.dependent_variables() ||
+        !other.unit()) {
+      throw std::invalid_argument(
+          "InterpretationContext copy constructor: Other InterpretationContext "
+          "contains null shared pointers.");
+    }
+    _independent_variables = std::make_shared<
+        math::Axes<autotuner_interfaces::contexts::MeasurementContext>>(
+        *other.independent_variables());
+    _dependent_variables = std::make_shared<
+        generic::List<autotuner_interfaces::contexts::MeasurementContext>>(
+        *other.dependent_variables());
+    _unit = std::make_shared<physics::units::SymbolUnit>(*other.unit());
   }
   return *this;
 }

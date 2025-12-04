@@ -13,7 +13,7 @@ Adjacency::Adjacency(const Adjacency& other) : generic::FArray<int>(other) {
   }
   _indexes = std::make_shared<device_structures::Connections>(*other.indexes());
 }
-Adjacency Adjacency::operator=(const Adjacency& other) {
+Adjacency& Adjacency::operator=(const Adjacency& other) {
   if (this != &other) {
     generic::FArray<int>::operator=(other);
     std::unique_lock<std::shared_timed_mutex> lock_indexes(_mu_indexes);

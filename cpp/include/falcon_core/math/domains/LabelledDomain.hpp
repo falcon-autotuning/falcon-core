@@ -22,7 +22,7 @@ class LabelledDomain : public Domain {
 
  public:
   LabelledDomain(const LabelledDomain& other);
-  LabelledDomain operator=(const LabelledDomain& other);
+  LabelledDomain& operator=(const LabelledDomain& other);
   /**
    * @brief Construct a labelled domain.
    * @default_name The default_name for the instrument.

@@ -19,7 +19,7 @@ Loader::Loader(const Loader& other) {
   }
   _config = std::make_shared<core::Config>(*other.config());
 }
-Loader Loader::operator=(const Loader& other) {
+Loader& Loader::operator=(const Loader& other) {
   if (this != &other) {
     std::unique_lock<std::shared_timed_mutex> lock_config_path(_mu_config_path,
                                                                std::defer_lock);

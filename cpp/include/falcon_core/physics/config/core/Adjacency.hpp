@@ -18,7 +18,7 @@ class Adjacency : public generic::FArray<int> {
 
  public:
   Adjacency(const Adjacency& other);
-  Adjacency operator=(const Adjacency& other);
+  Adjacency& operator=(const Adjacency& other);
   Adjacency(const xt::xarray<int>& matrix, const Indexes indexes);
   /**
    # @brief Returns the indexes of the gates in the order for the adjacency

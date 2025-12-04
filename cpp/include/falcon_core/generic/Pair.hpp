@@ -44,7 +44,7 @@ class Pair : public generic::Song {
               typename category::determine_tag<T1>::type{},
               typename category::determine_tag<T2>::type{});
   }
-  Pair<T1, T2> operator=(const Pair<T1, T2>& other) {
+  Pair<T1, T2>& operator=(const Pair<T1, T2>& other) {
     if (this != &other) {
       std::shared_lock<std::shared_timed_mutex> lock_first(_mu_first,
                                                            std::defer_lock);

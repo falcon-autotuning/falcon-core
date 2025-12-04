@@ -35,8 +35,8 @@ class Connection : public virtual generic::Song {
   /**
    * @brief Assignment operator.
    */
-  Connection operator=(const Connection& other);
-  bool       operator<(const Connection& other) const;
+  Connection& operator=(const Connection& other);
+  bool        operator<(const Connection& other) const;
   /**
    * @brief Construct a Connection with a name and type.
    * @param name The name of the connection.

@@ -38,7 +38,7 @@ class AnalyticFunction : public generic::List<VariableName> {
 
  public:
   AnalyticFunction(const AnalyticFunction& other);
-  AnalyticFunction operator=(const AnalyticFunction& other);
+  AnalyticFunction& operator=(const AnalyticFunction& other);
   /**
    * @brief Construct an AnalyticFunction with a mapping of the function's
    * arguments to their names.

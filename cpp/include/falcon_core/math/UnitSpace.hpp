@@ -37,7 +37,7 @@ class UnitSpace : public math::Axes<discrete_spaces::Discretizer> {
 
  public:
   UnitSpace(const UnitSpace& other);
-  UnitSpace operator=(const UnitSpace& other);
+  UnitSpace& operator=(const UnitSpace& other);
   /**
    * @brief Initialize a UnitSpace.
    * @param axes The axes defining the space.

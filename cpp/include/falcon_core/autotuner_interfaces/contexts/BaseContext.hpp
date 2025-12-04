@@ -15,7 +15,7 @@ class BaseContext : public generic::Song {
 
  public:
   BaseContext(const BaseContext& other);
-  BaseContext operator=(const BaseContext& other);
+  BaseContext& operator=(const BaseContext& other);
   /**
    * @brief Initialize a BaseContext with a connection and instrument type.
    * @param connection The device connection.

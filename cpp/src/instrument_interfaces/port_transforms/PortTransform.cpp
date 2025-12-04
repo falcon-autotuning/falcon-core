@@ -10,14 +10,23 @@ namespace instrument_interfaces {
 namespace port_transforms {
 PortTransform::PortTransform(const PortTransform& other)
     : AnalyticFunction(other) {
-  std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_port);
-  _port = other._port;
+  std::unique_lock<std::shared_timed_mutex> lock_o(_mu_port);
+  if (!other.port()) {
+    throw std::invalid_argument(
+        "PortTransform copy constructor: Other PortTransform contains null "
+        "shared pointer.");
+  }
+  _port = std::make_shared<names::InstrumentPort>(*other.port());
 }
-PortTransform PortTransform::operator=(const PortTransform& other) {
+PortTransform& PortTransform::operator=(const PortTransform& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_port);
-    std::unique_lock<std::shared_timed_mutex> lock_port(_mu_port);
-    _port = other._port;
+    std::unique_lock<std::shared_timed_mutex> lock_o(_mu_port);
+    if (!other.port()) {
+      throw std::invalid_argument(
+          "PortTransform copy constructor: Other PortTransform contains null "
+          "shared pointer.");
+    }
+    _port = std::make_shared<names::InstrumentPort>(*other.port());
     math::AnalyticFunction::operator=(other);
   }
   return *this;

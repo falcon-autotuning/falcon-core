@@ -6,34 +6,25 @@ namespace falcon_core {
 namespace math {
 namespace domains {
 Domain::Domain(const Domain& other) {
-  std::shared_lock<std::shared_timed_mutex> lock_other_lesser_bound(
-      other._mu_lesser_bound, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_other_greater_bound(
-      other._mu_greater_bound, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_other_lesser_bound_contained(
-      other._mu_lesser_bound_contained, std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_other_greater_bound_contained(
-      other._mu_greater_bound_contained, std::defer_lock);
-  std::lock(lock_other_lesser_bound,
-            lock_other_greater_bound,
-            lock_other_lesser_bound_contained,
-            lock_other_greater_bound_contained);
-  _lesser_bound            = other._lesser_bound;
-  _greater_bound           = other._greater_bound;
-  _lesser_bound_contained  = other._lesser_bound_contained;
-  _greater_bound_contained = other._greater_bound_contained;
+  std::unique_lock<std::shared_timed_mutex> lock_lesser_bound(_mu_lesser_bound,
+                                                              std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_greater_bound(
+      _mu_greater_bound, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_lesser_bound_contained(
+      _mu_lesser_bound_contained, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_greater_bound_contained(
+      _mu_greater_bound_contained, std::defer_lock);
+  std::lock(lock_lesser_bound,
+            lock_greater_bound,
+            lock_lesser_bound_contained,
+            lock_greater_bound_contained);
+  _lesser_bound            = other.lesser_bound();
+  _greater_bound           = other.greater_bound();
+  _lesser_bound_contained  = other.lesser_bound_contained();
+  _greater_bound_contained = other.greater_bound_contained();
 }
-Domain Domain::operator=(const Domain& other) {
+Domain& Domain::operator=(const Domain& other) {
   if (this != &other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other_lesser_bound(
-        other._mu_lesser_bound, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_greater_bound(
-        other._mu_greater_bound, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_other_lesser_bound_contained(
-        other._mu_lesser_bound_contained, std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex>
-        lock_other_greater_bound_contained(other._mu_greater_bound_contained,
-                                           std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_lesser_bound(
         _mu_lesser_bound, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_greater_bound(
@@ -45,15 +36,11 @@ Domain Domain::operator=(const Domain& other) {
     std::lock(lock_lesser_bound,
               lock_greater_bound,
               lock_lesser_bound_contained,
-              lock_greater_bound_contained,
-              lock_other_lesser_bound,
-              lock_other_greater_bound,
-              lock_other_lesser_bound_contained,
-              lock_other_greater_bound_contained);
-    _lesser_bound            = other._lesser_bound;
-    _greater_bound           = other._greater_bound;
-    _lesser_bound_contained  = other._lesser_bound_contained;
-    _greater_bound_contained = other._greater_bound_contained;
+              lock_greater_bound_contained);
+    _lesser_bound            = other.lesser_bound();
+    _greater_bound           = other.greater_bound();
+    _lesser_bound_contained  = other.lesser_bound_contained();
+    _greater_bound_contained = other.greater_bound_contained();
   }
   return *this;
 }

@@ -17,7 +17,7 @@ class Impedance : public generic::Song {
 
  public:
   Impedance(const Impedance& other);
-  Impedance operator=(const Impedance& other);
+  Impedance& operator=(const Impedance& other);
   Impedance(std::shared_ptr<Connection> connection,
             double                      resistance,
             double                      capacitance);

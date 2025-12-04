@@ -32,7 +32,7 @@ SymbolUnit::SymbolUnit(const SymbolUnit& other) {
   _symbol = other.symbol();
   _name   = other.name();
 }
-SymbolUnit SymbolUnit::operator=(const SymbolUnit& other) {
+SymbolUnit& SymbolUnit::operator=(const SymbolUnit& other) {
   if (this != &other) {
     std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
                                                         std::defer_lock);

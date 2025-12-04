@@ -8,12 +8,14 @@ namespace falcon_core {
 namespace math {
 namespace arrays {
 ControlArray::ControlArray(const ControlArray& other) : FArray<double>(other) {
-  _principle_dimension = other._principle_dimension;
-  _alignment           = other._alignment;
+  _principle_dimension = other.principle_dimension();
+  _alignment           = other.alignment();
 }
-ControlArray ControlArray::operator=(const ControlArray& other) {
+ControlArray& ControlArray::operator=(const ControlArray& other) {
   if (this != &other) {
-    ControlArray::operator=(other);
+    FArray<double>::operator=(other);
+    _principle_dimension = other.principle_dimension();
+    _alignment           = other.alignment();
   }
   return *this;
 }

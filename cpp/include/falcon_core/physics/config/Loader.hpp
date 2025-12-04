@@ -13,7 +13,7 @@ class Loader : public ConfigManipulations {
 
  public:
   Loader(const Loader& other);
-  Loader operator=(const Loader& other);
+  Loader& operator=(const Loader& other);
   /**
    * @brief Constructor for config loading utility.
    * @param config_path Path to the configuration file.
