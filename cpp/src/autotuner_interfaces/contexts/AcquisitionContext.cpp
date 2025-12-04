@@ -90,7 +90,6 @@ const AcquisitionContextSP AcquisitionContext::operator/(
         "AcquisitionContext: The connection to divide by must not be "
         "null.");
   }
-  std::cout << "Dividing AcquisitionContext units: " << std::endl;
   return std::make_shared<AcquisitionContext>(
       connection(), instrument_type(), *units() / other->units());
 }

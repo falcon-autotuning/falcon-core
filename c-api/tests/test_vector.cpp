@@ -1,7 +1,5 @@
 #include <gtest/gtest.h>
 
-#include <iostream>
-
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/math/Point_c_api.h"
@@ -17,19 +15,14 @@ class VectorTest : public ::testing::Test {
     map_cd = MapConnectionDouble_create_empty();
     conn   = Connection_create_plunger_gate(String_wrap("A"));
     MapConnectionDouble_insert(map_cd, conn, 1.0);
-    std::cout << "Inserted connection into map_cd" << std::endl;
 
     map_cq = MapConnectionQuantity_create_empty();
     qty    = Quantity_create(2.0, unit);
     MapConnectionQuantity_insert(map_cq, conn, qty);
-    std::cout << "Inserted connection into map_cq" << std::endl;
 
-    start = Point_create(map_cd, unit);
-    std::cout << "Created start point" << std::endl;
-    end = Point_create(map_cq, unit);
-    std::cout << "Created end point" << std::endl;
+    start  = Point_create(map_cd, unit);
+    end    = Point_create(map_cq, unit);
     vector = Vector_create(start, end);
-    std::cout << "Created vector" << std::endl;
   }
   void TearDown() override {
     Vector_destroy(vector);
@@ -52,11 +45,8 @@ class VectorTest : public ::testing::Test {
 };
 
 TEST_F(VectorTest, CreateDestroy) {
-  std::cout << "Starting test VectorCreateDestroy" << std::endl;
   auto v = Vector_create(start, end);
-  std::cout << "Created vector at " << v << std::endl;
   Vector_destroy(v);
-  std::cout << "Destroyed vector at " << v << std::endl;
   set_last_error(0, nullptr);
   Vector_create(nullptr, end);
   EXPECT_EQ(get_last_error_code(), 1);
