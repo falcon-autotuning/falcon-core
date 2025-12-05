@@ -5,6 +5,45 @@
 namespace falcon_core {
 namespace math {
 namespace domains {
+Domain::Domain(const Domain& other) {
+  std::unique_lock<std::shared_timed_mutex> lock_lesser_bound(_mu_lesser_bound,
+                                                              std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_greater_bound(
+      _mu_greater_bound, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_lesser_bound_contained(
+      _mu_lesser_bound_contained, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_greater_bound_contained(
+      _mu_greater_bound_contained, std::defer_lock);
+  std::lock(lock_lesser_bound,
+            lock_greater_bound,
+            lock_lesser_bound_contained,
+            lock_greater_bound_contained);
+  _lesser_bound            = other.lesser_bound();
+  _greater_bound           = other.greater_bound();
+  _lesser_bound_contained  = other.lesser_bound_contained();
+  _greater_bound_contained = other.greater_bound_contained();
+}
+Domain& Domain::operator=(const Domain& other) {
+  if (this != &other) {
+    std::unique_lock<std::shared_timed_mutex> lock_lesser_bound(
+        _mu_lesser_bound, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_greater_bound(
+        _mu_greater_bound, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_lesser_bound_contained(
+        _mu_lesser_bound_contained, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_greater_bound_contained(
+        _mu_greater_bound_contained, std::defer_lock);
+    std::lock(lock_lesser_bound,
+              lock_greater_bound,
+              lock_lesser_bound_contained,
+              lock_greater_bound_contained);
+    _lesser_bound            = other.lesser_bound();
+    _greater_bound           = other.greater_bound();
+    _lesser_bound_contained  = other.lesser_bound_contained();
+    _greater_bound_contained = other.greater_bound_contained();
+  }
+  return *this;
+}
 Domain::Domain() = default;
 Domain::Domain(double min_val,
                double max_val,
@@ -25,27 +64,35 @@ Domain::Domain(std::pair<double, double> bounds,
              std::max(bounds.first, bounds.second),
              lesser_bound_contained,
              greater_bound_contained) {}
-const double Domain::lesser_bound() const { return _lesser_bound; }
-const double Domain::greater_bound() const { return _greater_bound; }
+const double Domain::lesser_bound() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_lesser_bound);
+  return _lesser_bound;
+}
+const double Domain::greater_bound() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_greater_bound);
+  return _greater_bound;
+}
 const std::pair<double, double> Domain::bounds() const {
-  return {_lesser_bound, _greater_bound};
+  return {lesser_bound(), greater_bound()};
 }
 const bool Domain::lesser_bound_contained() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_lesser_bound_contained);
   return _lesser_bound_contained;
 }
 const bool Domain::greater_bound_contained() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_greater_bound_contained);
   return _greater_bound_contained;
 }
 const bool Domain::in(double value) const {
-  bool greater_than_min =
-      _lesser_bound_contained ? value >= _lesser_bound : value > _lesser_bound;
-  bool less_than_max = _greater_bound_contained ? value <= _greater_bound
-                                                : value < _greater_bound;
+  bool greater_than_min = lesser_bound_contained() ? value >= lesser_bound()
+                                                   : value > lesser_bound();
+  bool less_than_max    = greater_bound_contained() ? value <= greater_bound()
+                                                    : value < greater_bound();
   return greater_than_min && less_than_max;
 }
-const double Domain::range() const { return _greater_bound - _lesser_bound; }
+const double Domain::range() const { return greater_bound() - lesser_bound(); }
 const double Domain::get_center() const {
-  return (_lesser_bound + _greater_bound) / 2.0;
+  return (lesser_bound() + greater_bound()) / 2.0;
 }
 const std::shared_ptr<Domain> Domain::operator&(
     const std::shared_ptr<Domain>& other) const {
@@ -101,10 +148,10 @@ const bool Domain::contains_domain(const std::shared_ptr<Domain>& other) const {
   return *(*this | other) == *this;
 }
 const std::shared_ptr<Domain> Domain::shift(double offset) const {
-  return std::make_shared<Domain>(_lesser_bound + offset,
-                                  _greater_bound + offset,
-                                  _lesser_bound_contained,
-                                  _greater_bound_contained);
+  return std::make_shared<Domain>(lesser_bound() + offset,
+                                  greater_bound() + offset,
+                                  lesser_bound_contained(),
+                                  greater_bound_contained());
 }
 const std::shared_ptr<Domain> Domain::scale(double factor) const {
   double center         = get_center();
@@ -112,8 +159,8 @@ const std::shared_ptr<Domain> Domain::scale(double factor) const {
   double new_half_range = half_range * std::abs(factor);
   return std::make_shared<Domain>(center - new_half_range,
                                   center + new_half_range,
-                                  _lesser_bound_contained,
-                                  _greater_bound_contained);
+                                  lesser_bound_contained(),
+                                  greater_bound_contained());
 }
 const std::pair<double, double> Domain::calculate_transform(
     const std::shared_ptr<Domain>& other) const {
@@ -136,6 +183,13 @@ const double Domain::transform(const std::shared_ptr<Domain>& other,
   auto offset    = transform.second;
   return value * scale + offset;
 }
+bool Domain::operator==(const Domain& other) const {
+  return (lesser_bound() == other.lesser_bound()) &&
+         (greater_bound() == other.greater_bound()) &&
+         (lesser_bound_contained() == other.lesser_bound_contained()) &&
+         (greater_bound_contained() == other.greater_bound_contained());
+}
+bool Domain::operator!=(const Domain& other) const { return !(*this == other); }
 }  // namespace domains
 }  // namespace math
 }  // namespace falcon_core

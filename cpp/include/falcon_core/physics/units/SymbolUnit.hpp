@@ -1,6 +1,8 @@
 #pragma once
 
 #include <memory>
+#include <mutex>
+#include <shared_mutex>
 #include <string>
 
 #include "falcon_core/generic/Song.hpp"
@@ -10,9 +12,12 @@ namespace physics {
 namespace units {
 
 class SymbolUnit : public generic::Song {
-  UnitSP      _unit;
-  std::string _symbol;
-  std::string _name;
+  UnitSP                          _unit;
+  std::string                     _symbol;
+  std::string                     _name;
+  mutable std::shared_timed_mutex _mu_unit;
+  mutable std::shared_timed_mutex _mu_symbol;
+  mutable std::shared_timed_mutex _mu_name;
   /**
    * @brief Find a matching common unit for the given unit.
    * @return A pair containing the matching common unit's symbol and name.
@@ -31,6 +36,8 @@ class SymbolUnit : public generic::Song {
   const std::string _get_dimension_symbol(std::string dimension) const;
 
  public:
+  SymbolUnit(const SymbolUnit& other);
+  SymbolUnit& operator=(const SymbolUnit& other);
   /**
    * @brief Construct a SymbolUnit with a specific symbol and associated Unit.
    * @param unit The Unit object associated with this symbol.
@@ -336,6 +343,13 @@ class SymbolUnit : public generic::Song {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
+                                                        std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_symbol(_mu_symbol,
+                                                          std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_name(_mu_name,
+                                                        std::defer_lock);
+    std::lock(lock_unit, lock_symbol, lock_name);
     ar(cereal::base_class<Song>(this), _unit, _symbol, _name);
   }
 };

@@ -7,6 +7,18 @@
 namespace falcon_core {
 namespace math {
 namespace arrays {
+ControlArray::ControlArray(const ControlArray& other) : FArray<double>(other) {
+  _principle_dimension = other.principle_dimension();
+  _alignment           = other.alignment();
+}
+ControlArray& ControlArray::operator=(const ControlArray& other) {
+  if (this != &other) {
+    FArray<double>::operator=(other);
+    _principle_dimension = other.principle_dimension();
+    _alignment           = other.alignment();
+  }
+  return *this;
+}
 ControlArray::ControlArray() : FArray<double>() {
   _principle_dimension = 0;
   _alignment = std::make_shared<IncreasingAlignment>(IncreasingAlignment(true));

@@ -35,16 +35,8 @@ void MapInterpretationContextQuantity_clear(MapInterpretationContextQuantityHand
 // @category:read
 bool MapInterpretationContextQuantity_contains(MapInterpretationContextQuantityHandle handle, InterpretationContextHandle key);
 // @category:read
-/* AUTO-DOC from cpp: MapInterpretationContextQuantity_keys | falcon_core::generic::Map::keys */
-/**
- * @brief Return the keys of the Map.
- */
 ListInterpretationContextHandle MapInterpretationContextQuantity_keys(MapInterpretationContextQuantityHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: MapInterpretationContextQuantity_values | falcon_core::generic::Map::values */
-/**
- * @brief Return the values of the Map.
- */
 ListQuantityHandle MapInterpretationContextQuantity_values(MapInterpretationContextQuantityHandle handle);
 // @category:read
 ListPairInterpretationContextQuantityHandle MapInterpretationContextQuantity_items(MapInterpretationContextQuantityHandle handle);

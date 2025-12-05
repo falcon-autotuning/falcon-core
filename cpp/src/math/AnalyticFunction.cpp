@@ -9,6 +9,27 @@
 
 namespace falcon_core {
 namespace math {
+AnalyticFunction::AnalyticFunction(const AnalyticFunction& other)
+    : List<VariableName>(other) {
+  std::shared_lock<std::shared_timed_mutex> lock_expression(
+      other._mu_expression, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_this_expression(
+      _mu_expression, std::defer_lock);
+  std::lock(lock_this_expression, lock_expression);
+  _expression = other._expression;
+}
+AnalyticFunction& AnalyticFunction::operator=(const AnalyticFunction& other) {
+  if (this != &other) {
+    List<VariableName>::operator=(other);
+    std::shared_lock<std::shared_timed_mutex> lock_expression(
+        other._mu_expression, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_this_expression(
+        _mu_expression, std::defer_lock);
+    std::lock(lock_this_expression, lock_expression);
+    _expression = other._expression;
+  }
+  return *this;
+}
 size_t maxXindex(const std::string& expr) {
   std::regex           x_index_regex(R"(x\[(\d+)\])");
   std::sregex_iterator iter(expr.begin(), expr.end(), x_index_regex);
@@ -113,9 +134,10 @@ void AnalyticFunction::checkSafeEvaluateArgs(
 double AnalyticFunction::evaluate(
     const generic::MapSP<VariableName, double>& args,
     const double&                               time) const {
-  exprtk::expression<double> tkExpression;
-  std::vector<double>        x(items().size(), 0.0);
-  double                     t = time;
+  std::shared_lock<std::shared_timed_mutex> lock_expression(_mu_expression);
+  exprtk::expression<double>                tkExpression;
+  std::vector<double>                       x(items().size(), 0.0);
+  double                                    t = time;
   checkSafeEvaluateArgs(args);
   populateXvector(x, items(), args);
   compileExpression(_expression, tkExpression, t, x);
@@ -125,9 +147,10 @@ generic::FArraySP<double> AnalyticFunction::evaluate(
     const generic::MapSP<VariableName, double>& args,
     const double&                               deltaT,
     const double&                               maxTime) const {
-  exprtk::expression<double> tkExpression;
-  std::vector<double>        x(items().size(), 0.0);
-  double                     t = 0.0;
+  std::shared_lock<std::shared_timed_mutex> lock_expression(_mu_expression);
+  exprtk::expression<double>                tkExpression;
+  std::vector<double>                       x(items().size(), 0.0);
+  double                                    t = 0.0;
   checkSafeEvaluateArgs(args);
   populateXvector(x, items(), args);
   compileExpression(_expression, tkExpression, t, x);

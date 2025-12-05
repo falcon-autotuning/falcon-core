@@ -22,9 +22,12 @@ namespace math {
  */
 class Point
     : public generic::Map<physics::device_structures::Connection, Quantity> {
-  physics::units::SymbolUnitSP _unit;
+  physics::units::SymbolUnitSP    _unit;
+  mutable std::shared_timed_mutex _mu_unit;
 
  public:
+  Point(const Point& other);
+  Point& operator=(const Point& other);
   Point();
   Point(const generic::MapSP<physics::device_structures::Connection, double>&
                                             init,
@@ -72,6 +75,7 @@ class Point
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
     ar(cereal::base_class<
            generic::Map<physics::device_structures::Connection, Quantity>>(
            this),

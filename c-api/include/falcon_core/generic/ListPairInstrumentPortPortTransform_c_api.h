@@ -27,17 +27,8 @@ size_t ListPairInstrumentPortPortTransform_size(ListPairInstrumentPortPortTransf
 // @category:read
 bool ListPairInstrumentPortPortTransform_empty(ListPairInstrumentPortPortTransformHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListPairInstrumentPortPortTransform_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListPairInstrumentPortPortTransform_erase_at(ListPairInstrumentPortPortTransformHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListPairInstrumentPortPortTransform_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListPairInstrumentPortPortTransform_clear(ListPairInstrumentPortPortTransformHandle handle);
 // @category:read
 PairInstrumentPortPortTransformHandle ListPairInstrumentPortPortTransform_at(ListPairInstrumentPortPortTransformHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListPairInstrumentPortPortTransform_contains(ListPairInstrumentPortPortTran
 // @category:read
 size_t ListPairInstrumentPortPortTransform_index(ListPairInstrumentPortPortTransformHandle handle, PairInstrumentPortPortTransformHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListPairInstrumentPortPortTransform_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListPairInstrumentPortPortTransformHandle ListPairInstrumentPortPortTransform_intersection(ListPairInstrumentPortPortTransformHandle handle, ListPairInstrumentPortPortTransformHandle other);
 // @category:read
 bool ListPairInstrumentPortPortTransform_equal(ListPairInstrumentPortPortTransformHandle a, ListPairInstrumentPortPortTransformHandle b);

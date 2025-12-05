@@ -10,6 +10,40 @@
 
 namespace falcon_core {
 namespace math {
+Vector::Vector(const Vector& other)
+    : generic::Map<physics::device_structures::Connection,
+                   generic::Pair<Quantity, Quantity>>(other) {
+  std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
+                                                      std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_connections(_mu_connections,
+                                                             std::defer_lock);
+  std::lock(lock_unit, lock_connections);
+  if (!other.unit() || !other.connections()) {
+    throw std::invalid_argument(
+        "Vector copy constructor: Other Vector contains null shared pointers.");
+  }
+  _unit        = std::make_shared<physics::units::SymbolUnit>(*other.unit());
+  _connections = std::make_shared<physics::device_structures::Connections>(
+      *other.connections());
+}
+Vector& Vector::operator=(const Vector& other) {
+  if (this != &other) {
+    std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
+                                                        std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_connections(_mu_connections,
+                                                               std::defer_lock);
+    std::lock(lock_unit, lock_connections);
+    if (!other.unit() || !other.connections()) {
+      throw std::invalid_argument(
+          "Vector copy constructor: Other Vector contains null shared "
+          "pointers.");
+    }
+    _unit        = std::make_shared<physics::units::SymbolUnit>(*other.unit());
+    _connections = std::make_shared<physics::device_structures::Connections>(
+        *other.connections());
+  }
+  return *this;
+}
 
 Vector::Vector()
     : _unit(physics::units::SymbolUnit::Dimensionless()),
@@ -25,20 +59,20 @@ Vector::Vector(const PointSP& start, const PointSP& end)
     throw std::invalid_argument(
         "Vector: The start and end points must not be null.");
   }
-  auto end_connections   = end->connections();
-  auto start_connections = start->connections();
+  auto end_connections   = *end->connections();
+  auto start_connections = *start->connections();
   for (const physics::device_structures::ConnectionSP& connection :
-       *end_connections) {
+       end_connections) {
     _connections->push_back(connection);
   }
   for (const physics::device_structures::ConnectionSP& connection :
-       *start_connections) {
+       start_connections) {
     if (!_connections->contains(connection)) {
       _connections->push_back(connection);
     }
   }
-  for (const physics::device_structures::ConnectionSP connectionSP :
-       *_connections) {
+  auto conns = *connections();
+  for (const physics::device_structures::ConnectionSP connectionSP : conns) {
     QuantitySP first, second;
     if (start->contains(connectionSP)) {
       first = start->at(connectionSP);
@@ -93,14 +127,16 @@ Vector::Vector(const generic::MapSP<physics::device_structures::Connection,
 
 const PointSP Vector::endPoint() const {
   PointSP result = std::make_shared<Point>();
-  for (const auto pair : items()) {
+  auto    items  = *this->items();
+  for (const auto pair : items) {
     result->insert(pair->first(), pair->second()->second());
   }
   return result;
 }
 const PointSP Vector::startPoint() const {
   PointSP result = std::make_shared<Point>();
-  for (const auto pair : items()) {
+  auto    items  = *this->items();
+  for (const auto pair : items) {
     result->insert(pair->first(), pair->second()->first());
   }
   return result;
@@ -109,7 +145,8 @@ const generic::MapSP<physics::device_structures::Connection, Quantity>
 Vector::end_quantities() const {
   generic::MapSP<physics::device_structures::Connection, Quantity> result =
       std::make_shared<Map<physics::device_structures::Connection, Quantity>>();
-  for (const auto pair : items()) {
+  auto items = *this->items();
+  for (const auto pair : items) {
     result->insert(pair->first(), pair->second()->second());
   }
   return result;
@@ -118,7 +155,8 @@ const generic::MapSP<physics::device_structures::Connection, Quantity>
 Vector::start_quantities() const {
   generic::MapSP<physics::device_structures::Connection, Quantity> result =
       std::make_shared<Map<physics::device_structures::Connection, Quantity>>();
-  for (const auto pair : items()) {
+  auto items = *this->items();
+  for (const auto pair : items) {
     result->insert(pair->first(), pair->second()->first());
   }
   return result;
@@ -127,7 +165,8 @@ const generic::MapSP<physics::device_structures::Connection, double>
 Vector::end_map() const {
   generic::MapSP<physics::device_structures::Connection, double> result =
       std::make_shared<Map<physics::device_structures::Connection, double>>();
-  for (const auto pair : items()) {
+  auto items = *this->items();
+  for (const auto pair : items) {
     result->insert(pair->first(), pair->second()->second()->value());
   }
   return result;
@@ -136,15 +175,18 @@ const generic::MapSP<physics::device_structures::Connection, double>
 Vector::start_map() const {
   generic::MapSP<physics::device_structures::Connection, double> result =
       std::make_shared<Map<physics::device_structures::Connection, double>>();
-  for (const auto pair : items()) {
+  auto items = *this->items();
+  for (const auto pair : items) {
     result->insert(pair->first(), pair->second()->first()->value());
   }
   return result;
 }
 const physics::device_structures::ConnectionsSP& Vector::connections() const {
+  std::shared_lock<std::shared_timed_mutex> lock_connections(_mu_connections);
   return _connections;
 }
 const falcon_core::physics::units::SymbolUnitSP& Vector::unit() const {
+  std::shared_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
   return _unit;
 }
 const physics::device_structures::ConnectionSP Vector::principle_connection()
@@ -161,8 +203,9 @@ const physics::device_structures::ConnectionSP Vector::principle_connection()
   return big_conn;
 }
 const double Vector::magnitude() const {
-  double sum = 0.0;
-  for (const physics::device_structures::ConnectionSP& conn : *_connections) {
+  double sum         = 0.0;
+  auto   connections = *this->connections();
+  for (const physics::device_structures::ConnectionSP& conn : connections) {
     double diff = (*at(conn)->second() - at(conn)->first())->value();
     sum += diff * diff;
   }
@@ -272,7 +315,8 @@ const VectorSP Vector::shrink(const int& shrink) const {
 }
 const VectorSP Vector::normalize() const { return shrink(magnitude()); }
 void           Vector::update_unit(const physics::units::SymbolUnitSP& unit) {
-  for (auto pair : items()) {
+  auto items = *this->items();
+  for (auto pair : items) {
     pair->second()->first()->convert_to(unit);
     pair->second()->second()->convert_to(unit);
   }

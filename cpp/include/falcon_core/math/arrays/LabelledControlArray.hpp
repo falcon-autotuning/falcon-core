@@ -18,6 +18,8 @@ namespace arrays {
  */
 class LabelledControlArray : public ControlArray, public IsLabelled<double> {
  public:
+  LabelledControlArray(const LabelledControlArray& other);
+  LabelledControlArray& operator=(const LabelledControlArray& other);
   /**
    * @brief Construct a new Labelled Control Array object.
    * @param array The control array.
@@ -44,10 +46,6 @@ class LabelledControlArray : public ControlArray, public IsLabelled<double> {
       const generic::FArraySP<double>&                      array,
       const instrument_interfaces::names::InstrumentPortSP& port);
 
-  LabelledControlArray(const LabelledControlArray&)                = default;
-  LabelledControlArray(LabelledControlArray&&) noexcept            = default;
-  LabelledControlArray& operator=(const LabelledControlArray&)     = default;
-  LabelledControlArray& operator=(LabelledControlArray&&) noexcept = default;
   // Arithmetic operators
   std::shared_ptr<LabelledControlArray> operator+(const double other) const;
 

@@ -4,7 +4,32 @@
 namespace falcon_core {
 namespace communications {
 namespace voltage_states {
-
+DeviceVoltageState::DeviceVoltageState(const DeviceVoltageState& other)
+    : math::Quantity(other) {
+  std::unique_lock<std::shared_timed_mutex> lock_c(_mu_connection);
+  if (!other._connection) {
+    throw std::invalid_argument(
+        "DeviceVoltageState copy constructor: Other DeviceVoltageState "
+        "contains null shared pointer.");
+  }
+  _connection = std::make_shared<physics::device_structures::Connection>(
+      *other._connection);
+}
+DeviceVoltageState& DeviceVoltageState::operator=(
+    const DeviceVoltageState& other) {
+  if (this != &other) {
+    math::Quantity::                          operator=(other);
+    std::unique_lock<std::shared_timed_mutex> lock_c(_mu_connection);
+    if (!other._connection) {
+      throw std::invalid_argument(
+          "DeviceVoltageState copy constructor: Other DeviceVoltageState "
+          "contains null shared pointer.");
+    }
+    _connection = std::make_shared<physics::device_structures::Connection>(
+        *other._connection);
+  }
+  return *this;
+}
 DeviceVoltageState::DeviceVoltageState(
     const physics::device_structures::ConnectionSP& connection,
     const double&                                   voltage,
@@ -21,6 +46,7 @@ DeviceVoltageState::DeviceVoltageState()
 
 const physics::device_structures::ConnectionSP& DeviceVoltageState::connection()
     const {
+  std::shared_lock<std::shared_timed_mutex> lock_c(_mu_connection);
   return _connection;
 }
 

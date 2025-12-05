@@ -9,6 +9,31 @@
 
 namespace falcon_core {
 namespace instrument_interfaces {
+Waveform::Waveform(const Waveform& other)
+    : port_transforms::PortTransforms(other) {
+  std::unique_lock<std::shared_timed_mutex> lock_o(_mu_space);
+  if (!other._space) {
+    throw std::invalid_argument(
+        "Waveform copy constructor: Other Waveform contains null shared "
+        "pointer for space.");
+  }
+  _space =
+      std::make_shared<math::discrete_spaces::DiscreteSpace>(*other._space);
+}
+Waveform& Waveform::operator=(const Waveform& other) {
+  if (this != &other) {
+    port_transforms::PortTransforms::         operator=(other);
+    std::unique_lock<std::shared_timed_mutex> lock_o(_mu_space);
+    if (!other._space) {
+      throw std::invalid_argument(
+          "Waveform copy constructor: Other Waveform contains null shared "
+          "pointer for space.");
+    }
+    _space =
+        std::make_shared<math::discrete_spaces::DiscreteSpace>(*other._space);
+  }
+  return *this;
+}
 
 const generic::ListSP<port_transforms::PortTransform>& wave_check_and_deref(
     const generic::ListSP<port_transforms::PortTransform>& transforms) {
@@ -141,11 +166,12 @@ const WaveformSP Waveform::CartesianIdentityWaveform1D(
       domain);
 }
 const math::discrete_spaces::DiscreteSpaceSP& Waveform::space() const {
+  std::shared_lock<std::shared_timed_mutex> lock_s(_mu_space);
   return _space;
 }
 void Waveform::confirm_knobs_match() const {
   names::PortsSP discreteKnobs = std::make_shared<names::Ports>();
-  auto           all_axes      = _space->axes()->items();
+  auto           all_axes      = space()->axes()->items();
   for (const math::domains::CoupledLabelledDomainSP& axis : all_axes) {
     auto axis_labels = *axis->labels();
     for (const names::InstrumentPortSP& knob : axis_labels) {

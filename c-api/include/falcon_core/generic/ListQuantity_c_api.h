@@ -27,17 +27,8 @@ size_t ListQuantity_size(ListQuantityHandle handle);
 // @category:read
 bool ListQuantity_empty(ListQuantityHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListQuantity_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListQuantity_erase_at(ListQuantityHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListQuantity_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListQuantity_clear(ListQuantityHandle handle);
 // @category:read
 QuantityHandle ListQuantity_at(ListQuantityHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListQuantity_contains(ListQuantityHandle handle, QuantityHandle value);
 // @category:read
 size_t ListQuantity_index(ListQuantityHandle handle, QuantityHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListQuantity_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListQuantityHandle ListQuantity_intersection(ListQuantityHandle handle, ListQuantityHandle other);
 // @category:read
 bool ListQuantity_equal(ListQuantityHandle a, ListQuantityHandle b);

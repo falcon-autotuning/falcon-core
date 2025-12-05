@@ -27,17 +27,8 @@ size_t ListDotGateWithNeighbors_size(ListDotGateWithNeighborsHandle handle);
 // @category:read
 bool ListDotGateWithNeighbors_empty(ListDotGateWithNeighborsHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListDotGateWithNeighbors_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListDotGateWithNeighbors_erase_at(ListDotGateWithNeighborsHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListDotGateWithNeighbors_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListDotGateWithNeighbors_clear(ListDotGateWithNeighborsHandle handle);
 // @category:read
 DotGateWithNeighborsHandle ListDotGateWithNeighbors_at(ListDotGateWithNeighborsHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListDotGateWithNeighbors_contains(ListDotGateWithNeighborsHandle handle, Do
 // @category:read
 size_t ListDotGateWithNeighbors_index(ListDotGateWithNeighborsHandle handle, DotGateWithNeighborsHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListDotGateWithNeighbors_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_intersection(ListDotGateWithNeighborsHandle handle, ListDotGateWithNeighborsHandle other);
 // @category:read
 bool ListDotGateWithNeighbors_equal(ListDotGateWithNeighborsHandle a, ListDotGateWithNeighborsHandle b);

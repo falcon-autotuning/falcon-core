@@ -8,6 +8,44 @@
 
 namespace falcon_core {
 namespace math {
+UnitSpace::UnitSpace(const UnitSpace& other)
+    : math::Axes<discrete_spaces::Discretizer>(other) {
+  std::unique_lock<std::shared_timed_mutex> lock_domain(_mu_domain,
+                                                        std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_ranges(_mu_ranges,
+                                                        std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_other_ranges(other._mu_ranges,
+                                                              std::defer_lock);
+  std::lock(lock_domain, lock_ranges, lock_other_ranges);
+  if (!other.domain() || !other._ranges) {
+    throw std::invalid_argument(
+        "UnitSpace copy constructor: Other UnitSpace contains null shared "
+        "pointers.");
+  }
+  _domain = std::make_shared<domains::Domain>(*other.domain());
+  _ranges =
+      std::make_shared<math::Axes<arrays::ControlArray1D>>(*other._ranges);
+}
+UnitSpace& UnitSpace::operator=(const UnitSpace& other) {
+  if (this != &other) {
+    std::unique_lock<std::shared_timed_mutex> lock_domain(_mu_domain,
+                                                          std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_ranges(_mu_ranges,
+                                                          std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_other_ranges(
+        other._mu_ranges, std::defer_lock);
+    std::lock(lock_domain, lock_ranges, lock_other_ranges);
+    if (!other.domain() || !other._ranges) {
+      throw std::invalid_argument(
+          "UnitSpace copy constructor: Other UnitSpace contains null shared "
+          "pointers.");
+    }
+    _domain = std::make_shared<domains::Domain>(*other.domain());
+    _ranges =
+        std::make_shared<math::Axes<arrays::ControlArray1D>>(*other._ranges);
+  }
+  return *this;
+}
 UnitSpace::UnitSpace() = default;
 UnitSpace::UnitSpace(const AxesSP<discrete_spaces::Discretizer>& axes,
                      const domains::DomainSP&                    domain)
@@ -72,10 +110,16 @@ UnitSpaceSP UnitSpace::Cartesian1DSpace(const double&            delta,
 const AxesSP<discrete_spaces::Discretizer> UnitSpace::axes() const {
   return std::make_shared<Axes<discrete_spaces::Discretizer>>(items());
 }
-const domains::DomainSP&         UnitSpace::domain() const { return _domain; }
-const generic::FArraySP<double>& UnitSpace::space() const { return _space; }
-const generic::ListSP<int>       UnitSpace::shape() const {
-  generic::ListSP<int>               shape = std::make_shared<List<int>>();
+const domains::DomainSP& UnitSpace::domain() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_domain);
+  return _domain;
+}
+const generic::FArraySP<double>& UnitSpace::space() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_space);
+  return _space;
+}
+const generic::ListSP<int> UnitSpace::shape() const {
+  generic::ListSP<int>               shape  = std::make_shared<List<int>>();
   math::Axes<arrays::ControlArray1D> ranges = *this->_ranges;
   for (const arrays::ControlArray1DSP& array : ranges) {
     int size = array->size();
@@ -85,6 +129,7 @@ const generic::ListSP<int>       UnitSpace::shape() const {
 }
 const int UnitSpace::dimension() const { return this->size(); }
 void      UnitSpace::make_discrete_axes() {
+  std::unique_lock<std::shared_timed_mutex> lock_ranges(_mu_ranges);
   for (const discrete_spaces::DiscretizerSP& disc : items()) {
     double factor = 1.0;
     if (disc->is_cartesian()) {
@@ -95,7 +140,8 @@ void      UnitSpace::make_discrete_axes() {
       throw std::runtime_error("Discretizer type not supported.");
     }
 
-    domains::DomainSP domain = *(_domain->scale(factor)) & (disc->domain());
+    domains::DomainSP domain =
+        *(this->domain()->scale(factor)) & (disc->domain());
     std::pair<double, double> bounds = domain->bounds();
     double                    delta  = disc->delta();
 
@@ -136,7 +182,7 @@ const AxesSP<arrays::ControlArray> UnitSpace::create_array(
   }
   std::vector<xt::xarray<double>> grids;
   for (int i = 0; i < axes->size(); ++i) {
-    grids.push_back(_ranges->at(axes->at(i))->xtensor());
+    grids.push_back(_ranges->at(axes->at(i))->data());
   }
   std::vector<xt::xarray<double>>                    mesh = meshgrid_xt(grids);
   std::vector<std::shared_ptr<arrays::ControlArray>> mesh_ptrs;
@@ -147,10 +193,11 @@ const AxesSP<arrays::ControlArray> UnitSpace::create_array(
 }
 void UnitSpace::compile() {
   // Collect xtensor arrays from _ranges, reversed
-  std::vector<xt::xarray<double>> grids;
-  int                             range_num = _ranges->size();
+  std::shared_lock<std::shared_timed_mutex> lock_ranges(_mu_ranges);
+  std::vector<xt::xarray<double>>           grids;
+  int                                       range_num = _ranges->size();
   for (int i = range_num - 1; i >= 0; --i) {
-    grids.push_back(_ranges->at(i)->xtensor());
+    grids.push_back(_ranges->at(i)->data());
   }
   std::vector<xt::xarray<double>> mesh = meshgrid_xt(grids);
 
@@ -172,10 +219,16 @@ void UnitSpace::compile() {
   }
 
   // Reverse columns to match Python's [:, ::-1]
-  auto reversed = xt::flip(space, 0);
-  _space        = std::make_shared<generic::FArray<double>>(reversed);
+  auto                                      reversed = xt::flip(space, 0);
+  std::unique_lock<std::shared_timed_mutex> lock_space(_mu_space);
+  _space = std::make_shared<generic::FArray<double>>(reversed);
 }
 bool UnitSpace::operator==(const UnitSpace& other) const {
+  std::shared_lock<std::shared_timed_mutex> lock_ranges(_mu_ranges,
+                                                        std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_other_ranges(other._mu_ranges,
+                                                              std::defer_lock);
+  std::lock(lock_ranges, lock_other_ranges);
   return (*domain() == *other.domain()) && (*_ranges == *other._ranges);
 }
 bool UnitSpace::operator!=(const UnitSpace& other) const {

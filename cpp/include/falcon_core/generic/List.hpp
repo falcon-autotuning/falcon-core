@@ -2,6 +2,8 @@
 
 #include <algorithm>
 #include <memory>
+#include <mutex>
+#include <shared_mutex>
 #include <stdexcept>
 #include <type_traits>
 
@@ -25,11 +27,29 @@ class List : public generic::Song {
   using Container = std::vector<StoredValue>;
 
  private:
-  Container _items;
+  Container                       _items;
+  mutable std::shared_timed_mutex _mu_items;
 
  public:
   using iterator       = typename Container::iterator;
   using const_iterator = typename Container::const_iterator;
+  List<Value>(const List<Value>& other) {
+    clear();
+    _items.reserve(other.size());
+    std::shared_lock<std::shared_timed_mutex> lock_items(_mu_items);
+    copy_items_impl(other.items(),
+                    typename category::determine_tag<Value>::type{});
+  }
+  List& operator=(const List<Value>& other) {
+    if (this != &other) {
+      clear();
+      _items.reserve(other.size());
+      std::unique_lock<std::shared_timed_mutex> lock_items(_mu_items);
+      copy_items_impl(other.items(),
+                      typename category::determine_tag<Value>::type{});
+    }
+    return *this;
+  }
   List(iterator begin, iterator end) : _items(begin, end) {}
   /**
    * @brief List can be constructed in 5 different ways:
@@ -99,11 +119,15 @@ class List : public generic::Song {
   static std::shared_ptr<List<Value>> create(const Container& init) {
     return std::make_shared<List<Value>>(init);
   }
-  List<Value>(const List<Value>&)                = default;
-  List<Value>(List<Value>&&) noexcept            = default;
-  List<Value>& operator=(const List<Value>&)     = default;
-  List<Value>& operator=(List<Value>&&) noexcept = default;
-  void         push_back(const StoredValue& item) {
+  const Container& items() const {
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
+    return _items;
+  }
+  Container& items() {
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
+    return _items;
+  }
+  void push_back(const StoredValue& item) {
     push_back_impl<Value>(item,
                           typename category::determine_tag<Value>::type{});
   }
@@ -117,11 +141,12 @@ class List : public generic::Song {
         }
       }
     }
+    std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
     _items.insert(pos, first, last);
   }
 
-  size_t size() const { return _items.size(); }
-  bool   empty() const { return _items.empty(); }
+  size_t size() const { return items().size(); }
+  bool   empty() const { return items().empty(); }
 
   auto at(const size_t idx) const -> std::conditional_t<
       std::is_same<typename category::determine_bool_tag<Value>::type,
@@ -139,12 +164,10 @@ class List : public generic::Song {
   }
   StoredValue&       operator[](const size_t idx) { return at(idx); }
   const StoredValue& operator[](const size_t idx) const { return at(idx); }
-  const Container&   items() const { return _items; }
-  Container&         items() { return _items; }
-  iterator           begin() { return _items.begin(); }
-  iterator           end() { return _items.end(); }
-  const_iterator     begin() const { return _items.begin(); }
-  const_iterator     end() const { return _items.end(); }
+  iterator           begin() { return items().begin(); }
+  iterator           end() { return items().end(); }
+  const_iterator     begin() const { return items().begin(); }
+  const_iterator     end() const { return items().end(); }
   bool               contains(const StoredValue& value) const {
     return contains_impl(value,
                          typename category::determine_tag<Value>::type{});
@@ -176,12 +199,16 @@ class List : public generic::Song {
   /**
    * @brief clears to contents of the list.
    */
-  void clear() { _items.clear(); }
+  void clear() {
+    std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
+    _items.clear();
+  }
   /**
    * @brief Allows for targetted eraseall of elements at an index.
    * @param idx The index to erase at.
    */
   void erase_at(size_t idx) {
+    std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
     if (idx >= _items.size()) {
       throw std::out_of_range("List: Index out of bounds in erase_at");
     }
@@ -191,6 +218,7 @@ class List : public generic::Song {
    * @brief Return the last element of a list.
    */
   StoredValue& back() {
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     if (_items.empty()) {
       throw std::out_of_range("List: back() called on empty list");
     }
@@ -201,6 +229,7 @@ class List : public generic::Song {
    * @brief Return the last element of a list.
    */
   const StoredValue& back() const {
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     if (_items.empty()) {
       throw std::out_of_range("List::back() called on empty list");
     }
@@ -209,6 +238,7 @@ class List : public generic::Song {
 
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_items(_mu_items);
     ar(cereal::base_class<generic::Song>(this), _items);
   }
   bool operator==(const List<Value>& other) const {
@@ -220,35 +250,39 @@ class List : public generic::Song {
  protected:
   friend class cereal::access;
   StoredValue& at_impl(size_t idx, category::other_tag) {
-    if (idx >= _items.size()) {
+    if (idx >= size()) {
       throw std::out_of_range("List: The index " + std::to_string(idx) +
                               " exceeds the length of the array " +
-                              std::to_string(_items.size()));
+                              std::to_string(size()));
     }
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     return _items.at(idx);
   }
   const StoredValue& at_impl(size_t idx, category::other_tag) const {
-    if (idx >= _items.size()) {
+    if (idx >= size()) {
       throw std::out_of_range("List: The index " + std::to_string(idx) +
                               " exceeds the length of the array " +
-                              std::to_string(_items.size()));
+                              std::to_string(size()));
     }
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     return _items.at(idx);
   }
   StoredValue at_impl(size_t idx, category::bool_tag) {
-    if (idx >= _items.size()) {
+    if (idx >= size()) {
       throw std::out_of_range("List: The index " + std::to_string(idx) +
                               " exceeds the length of the array " +
-                              std::to_string(_items.size()));
+                              std::to_string(size()));
     }
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     return _items.at(idx);
   }
   const StoredValue at_impl(size_t idx, category::bool_tag) const {
-    if (idx >= _items.size()) {
+    if (idx >= size()) {
       throw std::out_of_range("List: The index " + std::to_string(idx) +
                               " exceeds the length of the array " +
-                              std::to_string(_items.size()));
+                              std::to_string(size()));
     }
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     return _items.at(idx);
   }
 
@@ -279,10 +313,12 @@ class List : public generic::Song {
   template <typename T>
   void push_back_impl(const std::shared_ptr<T>& item, category::song_tag) {
     if (!item) throw std::invalid_argument("List: Cannot push nullptr");
+    std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
     _items.push_back(item);
   }
   template <typename T>
   void push_back_impl(const T& item, category::primitive_tag) {
+    std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
     _items.push_back(item);
   }
   template <typename T>
@@ -298,16 +334,17 @@ class List : public generic::Song {
           "List: The value must be specified and not null to check if this "
           "list contains it.");
     }
-
+    auto items = this->items();
     return std::any_of(
-        _items.begin(), _items.end(), [&value](const StoredValue& item) {
+        items.begin(), items.end(), [&value](const StoredValue& item) {
           return *item == *value;
         });
   }
   template <typename T>
   bool contains_impl(const T& value, category::primitive_tag) const {
+    auto items = this->items();
     return std::any_of(
-        _items.begin(), _items.end(), [&value](const StoredValue& item) {
+        items.begin(), items.end(), [&value](const StoredValue& item) {
           return item == value;
         });
   }
@@ -324,7 +361,7 @@ class List : public generic::Song {
           "index.");
     }
 
-    for (size_t i = 0; i < _items.size(); ++i) {
+    for (size_t i = 0; i < size(); ++i) {
       if (*_items[i] == *value) {
         return i;
       }
@@ -333,7 +370,7 @@ class List : public generic::Song {
   }
   template <typename T>
   size_t index_impl(const T& value, category::primitive_tag) const {
-    for (size_t i = 0; i < _items.size(); ++i) {
+    for (size_t i = 0; i < size(); ++i) {
       if (_items[i] == value) {
         return i;
       }
@@ -375,6 +412,20 @@ class List : public generic::Song {
   bool operator_equal_impl(const List<Value>& other,
                            category::other_tag) const {
     throw std::runtime_error("Unsupported type for List");
+  }
+  // Tag dispatch for deep copy
+  void copy_items_impl(const Container& src, category::song_tag) {
+    for (const auto& item : src) {
+      _items.push_back(std::make_shared<Value>(*item));
+    }
+  }
+  void copy_items_impl(const Container& src, category::primitive_tag) {
+    for (const auto& item : src) {
+      _items.push_back(item);
+    }
+  }
+  void copy_items_impl(const Container&, category::other_tag) {
+    static_assert(sizeof(Value) == 0, "Unsupported type for List deep copy");
   }
 };
 template <typename Value>

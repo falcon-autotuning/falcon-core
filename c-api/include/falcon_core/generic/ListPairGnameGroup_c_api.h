@@ -27,17 +27,8 @@ size_t ListPairGnameGroup_size(ListPairGnameGroupHandle handle);
 // @category:read
 bool ListPairGnameGroup_empty(ListPairGnameGroupHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListPairGnameGroup_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListPairGnameGroup_erase_at(ListPairGnameGroupHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListPairGnameGroup_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListPairGnameGroup_clear(ListPairGnameGroupHandle handle);
 // @category:read
 PairGnameGroupHandle ListPairGnameGroup_at(ListPairGnameGroupHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListPairGnameGroup_contains(ListPairGnameGroupHandle handle, PairGnameGroup
 // @category:read
 size_t ListPairGnameGroup_index(ListPairGnameGroupHandle handle, PairGnameGroupHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListPairGnameGroup_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListPairGnameGroupHandle ListPairGnameGroup_intersection(ListPairGnameGroupHandle handle, ListPairGnameGroupHandle other);
 // @category:read
 bool ListPairGnameGroup_equal(ListPairGnameGroupHandle a, ListPairGnameGroupHandle b);

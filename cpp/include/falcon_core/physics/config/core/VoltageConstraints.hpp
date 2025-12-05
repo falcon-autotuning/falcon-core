@@ -13,11 +13,16 @@ namespace core {
  * for each constraint.
  */
 class VoltageConstraints : public generic::Song {
-  generic::FArray<double> _matrix;
-  AdjacencySP             _adjacency;
-  generic::FArray<double> _limits;
+  generic::FArray<double>         _matrix;
+  AdjacencySP                     _adjacency;
+  generic::FArray<double>         _limits;
+  mutable std::shared_timed_mutex _mu_matrix;
+  mutable std::shared_timed_mutex _mu_adjacency;
+  mutable std::shared_timed_mutex _mu_limits;
 
  public:
+  VoltageConstraints(const VoltageConstraints& other);
+  VoltageConstraints& operator=(const VoltageConstraints& other);
   VoltageConstraints(const AdjacencySP         adjacency,
                      double                    max_safe_diff,
                      std::pair<double, double> bounds);
@@ -45,6 +50,13 @@ class VoltageConstraints : public generic::Song {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_matrix(_mu_matrix,
+                                                          std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_adjacency(_mu_adjacency,
+                                                             std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_limits(_mu_limits,
+                                                          std::defer_lock);
+    std::lock(lock_matrix, lock_adjacency, lock_limits);
     ar(cereal::base_class<generic::Song>(this), _matrix, _adjacency, _limits);
   }
 };

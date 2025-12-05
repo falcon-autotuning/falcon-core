@@ -27,17 +27,8 @@ size_t ListDeviceVoltageState_size(ListDeviceVoltageStateHandle handle);
 // @category:read
 bool ListDeviceVoltageState_empty(ListDeviceVoltageStateHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListDeviceVoltageState_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListDeviceVoltageState_erase_at(ListDeviceVoltageStateHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListDeviceVoltageState_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListDeviceVoltageState_clear(ListDeviceVoltageStateHandle handle);
 // @category:read
 DeviceVoltageStateHandle ListDeviceVoltageState_at(ListDeviceVoltageStateHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListDeviceVoltageState_contains(ListDeviceVoltageStateHandle handle, Device
 // @category:read
 size_t ListDeviceVoltageState_index(ListDeviceVoltageStateHandle handle, DeviceVoltageStateHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListDeviceVoltageState_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListDeviceVoltageStateHandle ListDeviceVoltageState_intersection(ListDeviceVoltageStateHandle handle, ListDeviceVoltageStateHandle other);
 // @category:read
 bool ListDeviceVoltageState_equal(ListDeviceVoltageStateHandle a, ListDeviceVoltageStateHandle b);

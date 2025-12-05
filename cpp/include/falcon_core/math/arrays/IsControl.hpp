@@ -1,4 +1,6 @@
 #pragma once
+#include <shared_mutex>
+
 #include "falcon_core/generic/FArray.hpp"
 #include "falcon_core/generic/FArrayProtocol.hpp"
 #include "falcon_core/math/arrays/IncreasingAlignment.hpp"
@@ -8,8 +10,10 @@ namespace arrays {
 template <typename T>
 class IsControl : public virtual generic::IFArray<T> {
  protected:
-  int                   _principle_dimension;
-  IncreasingAlignmentSP _alignment;
+  int                             _principle_dimension;
+  IncreasingAlignmentSP           _alignment;
+  mutable std::shared_timed_mutex _mu_alignment;
+  mutable std::shared_timed_mutex _mu_principle_dimension;
 
  public:
   virtual generic::FArraySP<T>                gradient(size_t axis) const = 0;
@@ -17,15 +21,24 @@ class IsControl : public virtual generic::IFArray<T> {
   /**
    * @brief Return the principle dimension of the array.
    */
-  int principle_dimension() const { return _principle_dimension; }
+  int principle_dimension() const {
+    std::shared_lock<std::shared_timed_mutex> lock_pd(_mu_principle_dimension);
+    return _principle_dimension;
+  }
   /**
    * @brief Return the increasing alignments for each dimension.
    */
-  IncreasingAlignmentSP alignment() const { return _alignment; }
+  IncreasingAlignmentSP alignment() const {
+    std::shared_lock<std::shared_timed_mutex> lock_a(_mu_alignment);
+    return _alignment;
+  }
   /**
    * @brief Recalculates the alignments zmerinobased on current data.
    */
-  void update_alignments() { _alignment = _determine_alignments(); }
+  void update_alignments() {
+    std::unique_lock<std::shared_timed_mutex> lock_a(_mu_alignment);
+    _alignment = _determine_alignments();
+  }
   /**
    * @brief Determine the alignment for each dimension of the array.
    * for each dimension checks if the values are increasing, decreasing, or not
@@ -43,10 +56,10 @@ class IsControl : public virtual generic::IFArray<T> {
 
       generic::FArraySP<double> grad = this->gradient(dim);
 
-      if (xt::all(grad->xtensor() < 0)) {
+      if (xt::all(grad->data() < 0)) {
         alignments.emplace_back(std::make_shared<IncreasingAlignment>(false),
                                 dim);
-      } else if (xt::all(grad->xtensor() > 0)) {
+      } else if (xt::all(grad->data() > 0)) {
         alignments.emplace_back(std::make_shared<IncreasingAlignment>(true),
                                 dim);
       }
@@ -59,7 +72,7 @@ class IsControl : public virtual generic::IFArray<T> {
       throw std::runtime_error(
           "IsControl: The array must have exactly one alignment dimension.");
     }
-
+    std::unique_lock<std::shared_timed_mutex> lock_pd(_mu_principle_dimension);
     _principle_dimension = alignments[0].second;
     return alignments[0].first;
   }

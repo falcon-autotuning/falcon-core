@@ -3,6 +3,14 @@
 namespace falcon_core {
 namespace math {
 namespace arrays {
+MeasuredArray::MeasuredArray(const MeasuredArray& other)
+    : FArray<double>(other) {}
+MeasuredArray& MeasuredArray::operator=(const MeasuredArray& other) {
+  if (this != &other) {
+    FArray<double>::operator=(other);
+  }
+  return *this;
+}
 MeasuredArray::MeasuredArray() : FArray<double>() {}
 MeasuredArray::MeasuredArray(const xt::xarray<double>& arr)
     : FArray<double>(arr) {}

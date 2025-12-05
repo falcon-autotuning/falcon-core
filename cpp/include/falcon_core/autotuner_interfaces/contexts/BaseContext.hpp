@@ -10,8 +10,12 @@ namespace contexts {
 class BaseContext : public generic::Song {
   physics::device_structures::ConnectionSP _connection;
   instrument_interfaces::names::Instrument _instrument_type;
+  mutable std::shared_timed_mutex          _mu_connection;
+  mutable std::shared_timed_mutex          _mu_instrument_type;
 
  public:
+  BaseContext(const BaseContext& other);
+  BaseContext& operator=(const BaseContext& other);
   /**
    * @brief Initialize a BaseContext with a connection and instrument type.
    * @param connection The device connection.
@@ -41,6 +45,11 @@ class BaseContext : public generic::Song {
   BaseContext();
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_c(_mu_connection,
+                                                     std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_i(_mu_instrument_type,
+                                                     std::defer_lock);
+    std::lock(lock_c, lock_i);
     ar(cereal::base_class<generic::Song>(this), _connection, _instrument_type);
   }
 };

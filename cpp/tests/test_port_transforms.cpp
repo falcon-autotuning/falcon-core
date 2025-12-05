@@ -33,8 +33,8 @@ TEST_F(PortTransformsTest, VectorConstructor) {
   std::vector<PortTransformSP> vec{ptA, ptB};
   PortTransforms               pts(vec);
   EXPECT_EQ(pts.size(), 2);
-  EXPECT_EQ(pts.at(0), ptA);
-  EXPECT_EQ(pts.at(1), ptB);
+  EXPECT_EQ(*pts.at(0), *ptA);
+  EXPECT_EQ(*pts.at(1), *ptB);
 }
 TEST_F(PortTransformsTest, TransformsGetter) {
   std::vector<PortTransformSP> vec{ptA, ptB};

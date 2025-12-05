@@ -105,13 +105,6 @@ class LabelledArrays : public generic::List<ArrayType> {
     }
     return true;
   }
-
- private:
-  friend class cereal::access;
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::List<ArrayType>>(this));
-  }
 };
 template <typename T>
 using LabelledArraysSP = std::shared_ptr<LabelledArrays<T>>;

@@ -26,7 +26,8 @@ namespace math {
 
 using VariableName = std::string;
 class AnalyticFunction : public generic::List<VariableName> {
-  std::string _expression;
+  std::string                     _expression;
+  mutable std::shared_timed_mutex _mu_expression;
   /**
    * @brief Checks that it is safe to evaluate the args that the user passed in.
    * @param args The user args from the evaluate function
@@ -36,6 +37,8 @@ class AnalyticFunction : public generic::List<VariableName> {
       const generic::MapSP<VariableName, double>& args) const;
 
  public:
+  AnalyticFunction(const AnalyticFunction& other);
+  AnalyticFunction& operator=(const AnalyticFunction& other);
   /**
    * @brief Construct an AnalyticFunction with a mapping of the function's
    * arguments to their names.
@@ -84,6 +87,7 @@ class AnalyticFunction : public generic::List<VariableName> {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_expression(_mu_expression);
     ar(cereal::base_class<generic::List<VariableName>>(this), _expression);
   }
 };

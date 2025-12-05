@@ -15,8 +15,13 @@ class Group : public StandardConfigConnections {
   autotuner_interfaces::names::ChannelSP _name;
   int                                    _num_dots;
   geometries::GateGeometryArray1DSP      _order;
+  mutable std::shared_timed_mutex        _mu_name;
+  mutable std::shared_timed_mutex        _mu_num_dots;
+  mutable std::shared_timed_mutex        _mu_order;
 
  public:
+  Group(const Group& other);
+  Group& operator=(const Group& other);
   /**
    * @brief Holds information about a group of gates.
    * @param name The name of the group.
@@ -79,6 +84,13 @@ class Group : public StandardConfigConnections {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_name(_mu_name,
+                                                        std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_num_dots(_mu_num_dots,
+                                                            std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_order(_mu_order,
+                                                         std::defer_lock);
+    std::lock(lock_name, lock_num_dots, lock_order);
     ar(cereal::base_class<StandardConfigConnections>(this),
        _name,
        _num_dots,

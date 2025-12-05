@@ -18,8 +18,11 @@ namespace domains {
  */
 class LabelledDomain : public Domain {
   instrument_interfaces::names::InstrumentPortSP _port;
+  mutable std::shared_timed_mutex                _mu_port;
 
  public:
+  LabelledDomain(const LabelledDomain& other);
+  LabelledDomain& operator=(const LabelledDomain& other);
   /**
    * @brief Construct a labelled domain.
    * @default_name The default_name for the instrument.
@@ -96,12 +99,15 @@ class LabelledDomain : public Domain {
    */
   bool matching_port(
       const instrument_interfaces::names::InstrumentPortSP& port) const;
+  bool operator==(const LabelledDomain& other) const;
+  bool operator!=(const LabelledDomain& other) const;
 
  protected:
   LabelledDomain();
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_port(_mu_port);
     ar(cereal::base_class<Domain>(this), _port);
   }
 };

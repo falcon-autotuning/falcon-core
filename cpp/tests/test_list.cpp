@@ -1,19 +1,30 @@
 #include <gtest/gtest.h>
 
-#include <stdexcept>
+#include <memory>
+#include <string>
+#include <thread>
 
 #include "falcon_core/generic/List.hpp"
+#include "falcon_core/generic/Map.hpp"
+#include "falcon_core/generic/Pair.hpp"
 
 namespace {
 using namespace falcon_core;
 using namespace generic;
+template <typename T>
+void test_list_serialization_roundtrip(const std::vector<T>& values) {
+  List<T>     list(values);
+  std::string json         = list.to_json_string();
+  auto        deserialized = List<T>::template from_json_string<List<T>>(json);
+  EXPECT_EQ(list, *deserialized);
+}
 class StrSong : public Song {
   std::string _value;
 
  public:
   StrSong(std::string value = "") : _value(value) {}
 
-  std::string value() { return _value; }
+  std::string value() const { return _value; }
 
   template <class Archive>
   void serialize(Archive& ar) {
@@ -21,6 +32,12 @@ class StrSong : public Song {
   }
 };
 using StrSongSP = std::shared_ptr<StrSong>;
+bool operator==(const StrSong& lhs, const StrSong& rhs) {
+  return lhs.value() == rhs.value();
+}
+bool operator!=(const StrSong& lhs, const StrSong& rhs) {
+  return !(lhs == rhs);
+}
 }  // namespace
 CEREAL_REGISTER_TYPE(StrSong)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, StrSong)
@@ -459,4 +476,53 @@ TEST_F(ListTest, EqualitySongEdgeCases) {
   EXPECT_FALSE(list1 == list4);  // same size, different values
 }
 
+TEST_F(ListTest, MultiThreadedAt) {
+  List<StrSong>            list(song_data);
+  std::shared_ptr<StrSong> b = list.at(0);
+
+  std::thread t1([&list, this] {
+    std::shared_ptr<StrSong> song1 = std::make_shared<StrSong>("Changed");
+    song_data[0]                   = song1;
+  });
+  t1.join();
+
+  // b should still have the original title
+  EXPECT_NE(b->value(), song_data[0]->value());
+  EXPECT_EQ(list.at(0)->value(), "hello");
+  EXPECT_EQ(b->value(), "hello");
+
+  std::thread t([&list] {
+    std::shared_ptr<StrSong> other = list.at(0);
+    list.erase_at(0);
+    EXPECT_EQ(list.at(0)->value(), "world");
+  });
+  t.join();
+
+  // b should still have the original title
+  EXPECT_NE(b->value(), song_data[0]->value());
+  EXPECT_EQ(b->value(), "hello");
+}
+
+TEST(ListSerializationTest, PrimitiveTypes) {
+  test_list_serialization_roundtrip<int>({1, 2, 3});
+  test_list_serialization_roundtrip<double>({1.1, 2.2, 3.3});
+  test_list_serialization_roundtrip<float>({1.1f, 2.2f, 3.3f});
+  test_list_serialization_roundtrip<size_t>({1, 2, 3});
+  test_list_serialization_roundtrip<std::string>({"a", "b", "c"});
+}
+
+TEST(ListSerializationTest, PairTypes) {
+  using PairSD                               = Pair<std::string, double>;
+  std::vector<std::shared_ptr<PairSD>> pairs = {
+      std::make_shared<PairSD>("x", 1.0), std::make_shared<PairSD>("y", 2.0)};
+  List<PairSD> list(pairs);
+  std::string  json = list.to_json_string();
+  auto deserialized = List<PairSD>::from_json_string<List<PairSD>>(json);
+  // Compare by value
+  ASSERT_EQ(list.size(), deserialized->size());
+  for (size_t i = 0; i < list.size(); ++i) {
+    EXPECT_EQ(list[i]->first(), deserialized->items()[i]->first());
+    EXPECT_EQ(list[i]->second(), deserialized->items()[i]->second());
+  }
+}
 }  // namespace

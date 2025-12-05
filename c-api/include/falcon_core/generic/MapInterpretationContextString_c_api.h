@@ -35,16 +35,8 @@ void MapInterpretationContextString_clear(MapInterpretationContextStringHandle h
 // @category:read
 bool MapInterpretationContextString_contains(MapInterpretationContextStringHandle handle, InterpretationContextHandle key);
 // @category:read
-/* AUTO-DOC from cpp: MapInterpretationContextString_keys | falcon_core::generic::Map::keys */
-/**
- * @brief Return the keys of the Map.
- */
 ListInterpretationContextHandle MapInterpretationContextString_keys(MapInterpretationContextStringHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: MapInterpretationContextString_values | falcon_core::generic::Map::values */
-/**
- * @brief Return the values of the Map.
- */
 ListStringHandle MapInterpretationContextString_values(MapInterpretationContextStringHandle handle);
 // @category:read
 ListPairInterpretationContextStringHandle MapInterpretationContextString_items(MapInterpretationContextStringHandle handle);

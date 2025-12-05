@@ -10,26 +10,12 @@ typedef void* PairDoubleDoubleHandle;
 // Function declarations
 
 // @category:allocation
-/* AUTO-DOC from cpp: PairDoubleDouble_create | falcon_core::generic::Pair::create */
-/**
- * @brief Store a pair of values.
- * @param first The first value.
- * @param second The second value.
- */
 PairDoubleDoubleHandle PairDoubleDouble_create(double first, double second);
 // @category:deallocation
 void PairDoubleDouble_destroy(PairDoubleDoubleHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: PairDoubleDouble_first | falcon_core::generic::Pair::first */
-/**
- * @brief Get the stored first value.
- */
 double PairDoubleDouble_first(PairDoubleDoubleHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: PairDoubleDouble_second | falcon_core::generic::Pair::second */
-/**
- * @brief Get the stored second value.
- */
 double PairDoubleDouble_second(PairDoubleDoubleHandle handle);
 // @category:read
 bool PairDoubleDouble_equal(PairDoubleDoubleHandle a, PairDoubleDoubleHandle b);

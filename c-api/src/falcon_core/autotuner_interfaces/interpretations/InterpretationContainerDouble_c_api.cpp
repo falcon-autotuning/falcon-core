@@ -269,7 +269,7 @@ ListPairInterpretationContextDoubleHandle InterpretationContainerDouble_items(
                     throw std::invalid_argument("Null handle passed to InterpretationContainerDouble_items");
                     }
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<double>*>(handle);
-    falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,double>> items_sp = that->items(); 
+    falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,double>> items_sp = *that->items(); 
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,double>>(items_sp);
     FALCON_C_API_END(nullptr)
 }

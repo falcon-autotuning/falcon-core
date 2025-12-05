@@ -15,8 +15,13 @@ class DiscreteSpace : public generic::Song {
   UnitSpaceSP                             _space;
   AxesSP<domains::CoupledLabelledDomain>  _axes;
   AxesSP<generic::Map<std::string, bool>> _increasing;
+  mutable std::shared_timed_mutex         _mu_space;
+  mutable std::shared_timed_mutex         _mu_axes;
+  mutable std::shared_timed_mutex         _mu_increasing;
 
  public:
+  DiscreteSpace(const DiscreteSpace& other);
+  DiscreteSpace& operator=(const DiscreteSpace& other);
   /**
    * @brief Initialize the DiscreteSpace.
    * The order of the Knobs in teh axes are defined to line up with the space.
@@ -110,6 +115,13 @@ class DiscreteSpace : public generic::Song {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_space(_mu_space,
+                                                         std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_axes(_mu_axes,
+                                                        std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_increasing(_mu_increasing,
+                                                              std::defer_lock);
+    std::lock(lock_space, lock_axes, lock_increasing);
     ar(cereal::base_class<generic::Song>(this), _space, _axes, _increasing);
   }
 };

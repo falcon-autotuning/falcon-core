@@ -23,11 +23,6 @@ class PortTransforms : public generic::List<PortTransform> {
    */
   PortTransforms(const std::vector<PortTransformSP>& init);
   const generic::ListSP<PortTransform> transforms() const;
-
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::List<PortTransform>>(this));
-  }
 };
 
 }  // namespace port_transforms

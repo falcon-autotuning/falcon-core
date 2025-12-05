@@ -9,6 +9,77 @@ namespace falcon_core {
 namespace physics {
 namespace config {
 namespace core {
+StandardConfigConnections::StandardConfigConnections(
+    const StandardConfigConnections& other) {
+  std::unique_lock<std::shared_timed_mutex> lock_screening_gates(
+      _mu_screening_gates, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_reservoir_gates(
+      _mu_reservoir_gates, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_plunger_gates(
+      _mu_plunger_gates, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_barrier_gates(
+      _mu_barrier_gates, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_ohmics(_mu_ohmics,
+                                                        std::defer_lock);
+  std::lock(lock_screening_gates,
+            lock_reservoir_gates,
+            lock_plunger_gates,
+            lock_barrier_gates,
+            lock_ohmics);
+  if (!other.screening_gates() || !other.reservoir_gates() ||
+      !other.plunger_gates() || !other.barrier_gates() || !other.ohmics()) {
+    throw std::invalid_argument(
+        "StandardConfigConnections: The screening_gates, reservoir_gates, "
+        "plunger_gates, barrier_gates, and ohmics of the other "
+        "StandardConfigConnections are not allowed to not be null.");
+  }
+  _screening_gates = std::make_shared<device_structures::Connections>(
+      *other.screening_gates());
+  _reservoir_gates = std::make_shared<device_structures::Connections>(
+      *other.reservoir_gates());
+  _plunger_gates =
+      std::make_shared<device_structures::Connections>(*other.plunger_gates());
+  _barrier_gates =
+      std::make_shared<device_structures::Connections>(*other.barrier_gates());
+  _ohmics = std::make_shared<device_structures::Connections>(*other.ohmics());
+}
+StandardConfigConnections& StandardConfigConnections::operator=(
+    const StandardConfigConnections& other) {
+  if (this != &other) {
+    std::unique_lock<std::shared_timed_mutex> lock_screening_gates(
+        _mu_screening_gates, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_reservoir_gates(
+        _mu_reservoir_gates, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_plunger_gates(
+        _mu_plunger_gates, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_barrier_gates(
+        _mu_barrier_gates, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_ohmics(_mu_ohmics,
+                                                          std::defer_lock);
+    std::lock(lock_screening_gates,
+              lock_reservoir_gates,
+              lock_plunger_gates,
+              lock_barrier_gates,
+              lock_ohmics);
+    if (!other.screening_gates() || !other.reservoir_gates() ||
+        !other.plunger_gates() || !other.barrier_gates() || !other.ohmics()) {
+      throw std::invalid_argument(
+          "StandardConfigConnections: The screening_gates, reservoir_gates, "
+          "plunger_gates, barrier_gates, and ohmics of the other "
+          "StandardConfigConnections are not allowed to not be null.");
+    }
+    _screening_gates = std::make_shared<device_structures::Connections>(
+        *other.screening_gates());
+    _reservoir_gates = std::make_shared<device_structures::Connections>(
+        *other.reservoir_gates());
+    _plunger_gates = std::make_shared<device_structures::Connections>(
+        *other.plunger_gates());
+    _barrier_gates = std::make_shared<device_structures::Connections>(
+        *other.barrier_gates());
+    _ohmics = std::make_shared<device_structures::Connections>(*other.ohmics());
+  }
+  return *this;
+}
 StandardConfigConnections::StandardConfigConnections()
     : _screening_gates(std::make_shared<device_structures::Connections>()),
       _reservoir_gates(std::make_shared<device_structures::Connections>()),
@@ -61,22 +132,27 @@ StandardConfigConnections::StandardConfigConnections(
 }
 const device_structures::ConnectionsSP&
 StandardConfigConnections::screening_gates() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_screening_gates);
   return _screening_gates;
 }
 const device_structures::ConnectionsSP&
 StandardConfigConnections::reservoir_gates() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_reservoir_gates);
   return _reservoir_gates;
 }
 const device_structures::ConnectionsSP&
 StandardConfigConnections::plunger_gates() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_plunger_gates);
   return _plunger_gates;
 }
 const device_structures::ConnectionsSP&
 StandardConfigConnections::barrier_gates() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_barrier_gates);
   return _barrier_gates;
 }
 const device_structures::ConnectionsSP& StandardConfigConnections::ohmics()
     const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_ohmics);
   return _ohmics;
 }
 const device_structures::ConnectionsSP StandardConfigConnections::dot_gates()
@@ -93,44 +169,44 @@ const device_structures::ConnectionsSP StandardConfigConnections::dot_gates()
 }
 const device_structures::ConnectionSP StandardConfigConnections::get_ohmic()
     const {
-  return _ohmics->at(0);
+  return ohmics()->at(0);
 }
 const device_structures::ConnectionSP
 StandardConfigConnections::get_barrier_gate() const {
-  return _barrier_gates->at(0);
+  return barrier_gates()->at(0);
 }
 const device_structures::ConnectionSP
 StandardConfigConnections::get_plunger_gate() const {
-  return _plunger_gates->at(0);
+  return plunger_gates()->at(0);
 }
 const device_structures::ConnectionSP
 StandardConfigConnections::get_reservoir_gate() const {
-  return _reservoir_gates->at(0);
+  return reservoir_gates()->at(0);
 }
 const device_structures::ConnectionSP
 StandardConfigConnections::get_screening_gate() const {
-  return _screening_gates->at(0);
+  return screening_gates()->at(0);
 }
 const device_structures::ConnectionSP StandardConfigConnections::get_dot_gate()
     const {
-  if (_plunger_gates->size() > 0) {
-    return _plunger_gates->at(0);
-  } else if (_barrier_gates->size() > 0) {
-    return _barrier_gates->at(0);
+  if (plunger_gates()->size() > 0) {
+    return plunger_gates()->at(0);
+  } else if (barrier_gates()->size() > 0) {
+    return barrier_gates()->at(0);
   } else {
     return nullptr;
   }
 }
 const device_structures::ConnectionSP StandardConfigConnections::get_gate()
     const {
-  if (_plunger_gates->size() > 0) {
-    return _plunger_gates->at(0);
-  } else if (_barrier_gates->size() > 0) {
-    return _barrier_gates->at(0);
-  } else if (_reservoir_gates->size() > 0) {
-    return _reservoir_gates->at(0);
-  } else if (_screening_gates->size() > 0) {
-    return _screening_gates->at(0);
+  if (plunger_gates()->size() > 0) {
+    return plunger_gates()->at(0);
+  } else if (barrier_gates()->size() > 0) {
+    return barrier_gates()->at(0);
+  } else if (reservoir_gates()->size() > 0) {
+    return reservoir_gates()->at(0);
+  } else if (screening_gates()->size() > 0) {
+    return screening_gates()->at(0);
   } else {
     return nullptr;
   }
@@ -142,7 +218,8 @@ StandardConfigConnections::get_all_gates() const {
   auto total_collection = std::vector<device_structures::ConnectionsSP>{
       barrier_gates(), plunger_gates(), screening_gates(), reservoir_gates()};
   for (const auto collection : total_collection) {
-    for (const device_structures::ConnectionSP& connection : *collection) {
+    auto coll = *collection;
+    for (const device_structures::ConnectionSP& connection : coll) {
       combination->push_back(connection);
     }
   }
@@ -167,7 +244,8 @@ bool StandardConfigConnections::has_ohmic(
     throw std::invalid_argument(
         "StandardConfigConnections: The ohmic has to not be null.");
   }
-  for (auto& o : *ohmics()) {
+  auto ohmics_list = *ohmics();
+  for (auto& o : ohmics_list) {
     if (*o == *ohmic) {
       return true;
     }
@@ -194,7 +272,8 @@ bool StandardConfigConnections::has_barrier_gate(
     throw std::invalid_argument(
         "StandardConfigConnections: The gate has to not be null.");
   }
-  for (const device_structures::ConnectionSP& g : *barrier_gates()) {
+  auto barrier_gates_list = *barrier_gates();
+  for (const device_structures::ConnectionSP& g : barrier_gates_list) {
     if (*g == *gate) {
       return true;
     }
@@ -207,7 +286,8 @@ bool StandardConfigConnections::has_plunger_gate(
     throw std::invalid_argument(
         "StandardConfigConnections: The gate has to not be null.");
   }
-  for (const device_structures::ConnectionSP& g : *plunger_gates()) {
+  auto plunger_gates_list = *plunger_gates();
+  for (const device_structures::ConnectionSP& g : plunger_gates_list) {
     if (*g == *gate) {
       return true;
     }
@@ -220,7 +300,8 @@ bool StandardConfigConnections::has_reservoir_gate(
     throw std::invalid_argument(
         "StandardConfigConnections: The gate has to not be null.");
   }
-  for (const device_structures::ConnectionSP& g : *reservoir_gates()) {
+  auto reservoir_gates_list = *reservoir_gates();
+  for (const device_structures::ConnectionSP& g : reservoir_gates_list) {
     if (*g == *gate) {
       return true;
     }
@@ -233,7 +314,8 @@ bool StandardConfigConnections::has_screening_gate(
     throw std::invalid_argument(
         "StandardConfigConnections: The gate has to not be null.");
   }
-  for (const device_structures::ConnectionSP& g : *screening_gates()) {
+  auto screening_gates_list = *screening_gates();
+  for (const device_structures::ConnectionSP& g : screening_gates_list) {
     if (*g == *gate) {
       return true;
     }

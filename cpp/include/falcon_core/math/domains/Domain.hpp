@@ -1,5 +1,8 @@
 #pragma once
 
+#include <mutex>
+#include <shared_mutex>
+
 #include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core {
@@ -7,12 +10,18 @@ namespace math {
 namespace domains {
 
 class Domain : public generic::Song {
-  double _lesser_bound;
-  double _greater_bound;
-  bool   _lesser_bound_contained;
-  bool   _greater_bound_contained;
+  double                          _lesser_bound;
+  double                          _greater_bound;
+  bool                            _lesser_bound_contained;
+  bool                            _greater_bound_contained;
+  mutable std::shared_timed_mutex _mu_lesser_bound;
+  mutable std::shared_timed_mutex _mu_greater_bound;
+  mutable std::shared_timed_mutex _mu_lesser_bound_contained;
+  mutable std::shared_timed_mutex _mu_greater_bound_contained;
 
  public:
+  Domain(const Domain& other);
+  Domain& operator=(const Domain& other);
   /**
    * @brief Construct a Domain.
    * @param min_val Minimum value of the domain.
@@ -136,12 +145,26 @@ class Domain : public generic::Song {
    */
   const double transform(const std::shared_ptr<Domain>& other,
                          double                         value) const;
+  bool         operator==(const Domain& other) const;
+  bool         operator!=(const Domain& other) const;
 
  protected:
   friend class cereal::access;
   Domain();
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_lesser_bound(
+        _mu_lesser_bound, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_greater_bound(
+        _mu_greater_bound, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_lesser_bound_contained(
+        _mu_lesser_bound_contained, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_greater_bound_contained(
+        _mu_greater_bound_contained, std::defer_lock);
+    std::lock(lock_lesser_bound,
+              lock_greater_bound,
+              lock_lesser_bound_contained,
+              lock_greater_bound_contained);
     ar(cereal::base_class<falcon_core::generic::Song>(this),
        _lesser_bound,
        _greater_bound,

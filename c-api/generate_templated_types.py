@@ -1767,7 +1767,7 @@ ListPairInterpretationContext{self.name()}Handle {self.mangled_name()}_items(
                     throw std::invalid_argument("Null handle passed to {self.mangled_name()}_items");
                     }}
     auto that= static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>*>(handle);
-    falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,{cpp_value_type}>> items_sp = that->items(); 
+    falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,{cpp_value_type}>> items_sp = *that->items(); 
     return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,{cpp_value_type}>>(items_sp);
     FALCON_C_API_END(nullptr)
 }}
@@ -2005,8 +2005,8 @@ if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_items");
 }}
     auto map = static_cast<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>*>(handle);
-    falcon_core::generic::List<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>> items_sp = map->items(); 
-    return new falcon_core::generic::List<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>>(items_sp);
+    falcon_core::generic::ListSP<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>> items_sp = map->items(); 
+    return new falcon_core::generic::List<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>>(*items_sp);
     FALCON_C_API_END(nullptr)
 }}
 
@@ -2181,7 +2181,7 @@ throw std::invalid_argument("Null out_buffer passed to {self.mangled_name()}_sha
         " elements, but the FArray has " + std::to_string(farray->size()) +
         " elements.");
     }}
-    memcpy(out_buffer, farray->data(), farray->size() * sizeof({c_type}));
+    memcpy(out_buffer, farray->raw_data(), farray->size() * sizeof({c_type}));
     return farray->size();
     FALCON_C_API_END(0)
 }}

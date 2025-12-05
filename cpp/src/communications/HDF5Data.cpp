@@ -16,6 +16,99 @@
 
 namespace falcon_core {
 namespace communications {
+HDF5Data::HDF5Data(const HDF5Data& other) {
+  std::unique_lock<std::shared_timed_mutex> lock_metadata(_mu_metadata,
+                                                          std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_shape(_mu_shape,
+                                                       std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_unit_domain(_mu_unit_domain,
+                                                             std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_domain_labels(
+      _mu_domain_labels, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_ranges(_mu_ranges,
+                                                        std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_measurement_title(
+      _mu_measurement_title, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_unique_id(_mu_unique_id,
+                                                           std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_timestamp(_mu_timestamp,
+                                                           std::defer_lock);
+  std::lock(lock_metadata,
+            lock_shape,
+            lock_unit_domain,
+            lock_domain_labels,
+            lock_ranges,
+            lock_measurement_title,
+            lock_unique_id,
+            lock_timestamp);
+  if (!other.metadata() || !other.shape() || !other.unit_domain() ||
+      !other.domain_labels() || !other.ranges()) {
+    throw std::invalid_argument(
+        "HDF5Data copy constructor: Other HDF5Data contains null shared "
+        "pointers.");
+  }
+  _metadata    = std::make_shared<Metadata>(*other.metadata());
+  _shape       = std::make_shared<math::Axes<int>>(*other.shape());
+  _unit_domain = std::make_shared<math::Axes<math::arrays::ControlArray>>(
+      *other.unit_domain());
+  _domain_labels =
+      std::make_shared<math::Axes<math::domains::CoupledLabelledDomain>>(
+          *other.domain_labels());
+  _ranges = std::make_shared<
+      math::arrays::LabelledArrays<math::arrays::LabelledMeasuredArray>>(
+      *other.ranges());
+  _measurement_title = other.measurement_title();
+  _unique_id         = other.unique_id();
+  _timestamp         = other.timestamp();
+}
+HDF5Data& HDF5Data::operator=(const HDF5Data& other) {
+  if (this != &other) {
+    std::unique_lock<std::shared_timed_mutex> lock_metadata(_mu_metadata,
+                                                            std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_shape(_mu_shape,
+                                                         std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_unit_domain(_mu_unit_domain,
+                                                               std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_domain_labels(
+        _mu_domain_labels, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_ranges(_mu_ranges,
+                                                          std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_measurement_title(
+        _mu_measurement_title, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_unique_id(_mu_unique_id,
+                                                             std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_timestamp(_mu_timestamp,
+                                                             std::defer_lock);
+    std::lock(lock_metadata,
+              lock_shape,
+              lock_unit_domain,
+              lock_domain_labels,
+              lock_ranges,
+              lock_measurement_title,
+              lock_unique_id,
+              lock_timestamp);
+    if (!other.metadata() || !other.shape() || !other.unit_domain() ||
+        !other.domain_labels() || !other.ranges()) {
+      throw std::invalid_argument(
+          "HDF5Data copy constructor: Other HDF5Data contains null shared "
+          "pointers.");
+    }
+    _metadata    = std::make_shared<Metadata>(*other.metadata());
+    _shape       = std::make_shared<math::Axes<int>>(*other.shape());
+    _unit_domain = std::make_shared<math::Axes<math::arrays::ControlArray>>(
+        *other.unit_domain());
+    _domain_labels =
+        std::make_shared<math::Axes<math::domains::CoupledLabelledDomain>>(
+            *other.domain_labels());
+    _ranges = std::make_shared<
+        math::arrays::LabelledArrays<math::arrays::LabelledMeasuredArray>>(
+        *other.ranges());
+    _measurement_title = other.measurement_title();
+    _unique_id         = other.unique_id();
+    _timestamp         = other.timestamp();
+  }
+  return *this;
+}
 HDF5Data::HDF5Data() = default;
 HDF5Data::HDF5Data(
     const math::AxesSP<int>&                                  shape,
@@ -35,15 +128,49 @@ HDF5Data::HDF5Data(
       _measurement_title(measurement_title),
       _unique_id(unique_id),
       _timestamp(timestamp) {}
+math::AxesSP<int> HDF5Data::shape() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_shape);
+  return _shape;
+}
+math::AxesSP<math::arrays::ControlArray> HDF5Data::unit_domain() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_unit_domain);
+  return _unit_domain;
+}
+math::AxesSP<math::domains::CoupledLabelledDomain> HDF5Data::domain_labels()
+    const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_domain_labels);
+  return _domain_labels;
+}
+math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>
+HDF5Data::ranges() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_ranges);
+  return _ranges;
+}
+std::shared_ptr<HDF5Data::Metadata> HDF5Data::metadata() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_metadata);
+  return _metadata;
+}
+std::string HDF5Data::measurement_title() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_measurement_title);
+  return _measurement_title;
+}
+int HDF5Data::unique_id() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_unique_id);
+  return _unique_id;
+}
+int HDF5Data::timestamp() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_timestamp);
+  return _timestamp;
+}
 
 void HDF5Data::to_file(const std::string& path) const {
   H5::H5File file(path, H5F_ACC_TRUNC);
 
   // Dimensions
   H5::Group dimensions_group = file.createGroup("/dimensions");
-  for (size_t i = 0; i < _shape->size(); ++i) {
+  for (size_t i = 0; i < shape()->size(); ++i) {
     std::string   dim_name = "dim" + std::to_string(i);
-    int           value    = (*_shape)[i];
+    int64_t       value    = static_cast<int64_t>((*shape())[i]);
     hsize_t       dims[1]  = {1};
     H5::DataSpace dataspace(1, dims);
     H5::DataSet   dataset = dimensions_group.createDataSet(
@@ -54,12 +181,12 @@ void HDF5Data::to_file(const std::string& path) const {
   // Domains
   H5::Group              domains_group = file.createGroup("/domains");
   std::vector<H5::Group> sub_domains;
-  for (size_t i = 0; i < _shape->size(); ++i) {
+  for (size_t i = 0; i < shape()->size(); ++i) {
     std::string dim_name         = "dim" + std::to_string(i);
     H5::Group   sub_domain_group = domains_group.createGroup(dim_name);
 
     // Data
-    const auto& arr          = (*_unit_domain)[i]->xtensor();
+    const auto& arr          = (*unit_domain())[i] -> data();
     std::string dataset_path = "/domains/dim" + std::to_string(i) + "/data";
     xt::dump_hdf5(file.getFileName(), dataset_path, arr);
     // prepare string dataspace/type for labels
@@ -68,7 +195,7 @@ void HDF5Data::to_file(const std::string& path) const {
     H5::StrType   str_type(H5::PredType::C_S1, H5T_VARIABLE);
 
     // Labels
-    const auto& domains   = (*_domain_labels)[i]->domains();
+    const auto& domains   = (*domain_labels())[i] -> domains();
     size_t      label_idx = 0;
     for (const auto& domain : domains) {
       std::string label_name = domain->port()->instrument_facing_name();
@@ -112,10 +239,11 @@ void HDF5Data::to_file(const std::string& path) const {
   // Ranges
   H5::Group ranges_group = file.createGroup("/ranges");
   size_t    range_idx    = 0;
-  for (const math::arrays::LabelledMeasuredArraySP& range : _ranges->arrays()) {
+  for (const math::arrays::LabelledMeasuredArraySP& range :
+       ranges()->arrays()) {
     std::string key = range->connection() ? range->connection()->name()
                                           : range->instrument_type();
-    const auto& arr = range->xtensor();
+    const auto& arr = range->data();
     std::string dataset_path =
         "/ranges/range" + std::to_string(range_idx) + "/data";
     xt::dump_hdf5(file.getFileName(), dataset_path, arr);
@@ -143,7 +271,7 @@ void HDF5Data::to_file(const std::string& path) const {
   // Metadata
   H5::Group   metadata_group = file.createGroup("/metadata");
   H5::StrType str_type(H5::PredType::C_S1, H5T_VARIABLE);
-  for (const auto& pair : *_metadata) {
+  for (const auto& pair : *metadata()) {
     hsize_t       md_dims[1] = {1};
     H5::DataSpace md_space(1, md_dims);
     H5::DataSet   md_ds =
@@ -152,10 +280,12 @@ void HDF5Data::to_file(const std::string& path) const {
   }
   H5::Attribute timestamp_attr = metadata_group.createAttribute(
       "timestamp", H5::PredType::NATIVE_INT, H5::DataSpace());
-  timestamp_attr.write(H5::PredType::NATIVE_INT, &_timestamp);
+  int tsamp = timestamp();
+  timestamp_attr.write(H5::PredType::NATIVE_INT, &tsamp);
   H5::Attribute unique_id_attr = metadata_group.createAttribute(
       "unique_id", H5::PredType::NATIVE_INT, H5::DataSpace());
-  unique_id_attr.write(H5::PredType::NATIVE_INT, &_unique_id);
+  int uid = unique_id();
+  unique_id_attr.write(H5::PredType::NATIVE_INT, &uid);
   H5::Attribute measurement_title_attr = metadata_group.createAttribute(
       "measurement_title", str_type, H5::DataSpace());
   measurement_title_attr.write(str_type, _measurement_title);
@@ -171,7 +301,7 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_file(const std::string& path) {
   for (hsize_t i = 0; i < num_dims; ++i) {
     std::string dim_name = dimensions_group.getObjnameByIdx(i);
     H5::DataSet ds       = dimensions_group.openDataSet(dim_name);
-    int         value;
+    int64_t     value;
     ds.read(&value, H5::PredType::NATIVE_INT64);
     shape.push_back(value);
   }
@@ -394,8 +524,17 @@ HDF5Data::to_communications() const {
       messages::MeasurementRequest::from_json_string<
           messages::MeasurementRequest>(
           std::string(_metadata->at("song_request")));
+  std::shared_lock<std::shared_timed_mutex> lock_a_metadata(_mu_metadata);
   return std::make_pair(response, request);
 }
+bool HDF5Data::operator==(const HDF5Data& other) {
+  return (shape() == other.shape() && unit_domain() == other.unit_domain() &&
+          domain_labels() == other.domain_labels() &&
+          ranges() == other.ranges() && metadata() == other.metadata() &&
+          measurement_title() == other.measurement_title() &&
+          unique_id() == other.unique_id() && timestamp() == other.timestamp());
+}
+bool HDF5Data::operator!=(const HDF5Data& other) { return !(*this == other); }
 }  // namespace communications
 }  // namespace falcon_core
 

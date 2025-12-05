@@ -381,14 +381,14 @@ TEST(FArrayTest, DataAndXtensorAccess) {
   arr(0, 1)                 = 2.0;
   arr(1, 0)                 = 3.0;
   arr(1, 1)                 = 4.0;
-  double* data_ptr          = arr.data();
+  double* data_ptr          = arr.raw_data();
   EXPECT_EQ(data_ptr[0], 1.0);
-  auto& xt = arr.xtensor();
+  auto& xt = arr.data();
   EXPECT_EQ(xt(0, 1), 2.0);
   const FArray<double>& carr      = arr;
-  const double*         cdata_ptr = carr.data();
+  const double*         cdata_ptr = carr.raw_data();
   EXPECT_EQ(cdata_ptr[2], 3.0);
-  const auto& cxt = carr.xtensor();
+  const auto& cxt = carr.data();
   EXPECT_EQ(cxt(1, 1), 4.0);
 }
 

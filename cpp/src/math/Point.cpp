@@ -3,13 +3,33 @@
 #include <stdexcept>
 
 #include "cereal/types/polymorphic.hpp"
-#include "falcon_core/generic/Pair.hpp"
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
 namespace falcon_core {
 namespace math {
-
+Point::Point(const Point& other)
+    : generic::Map<physics::device_structures::Connection, Quantity>(other) {
+  std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
+  if (!other.unit()) {
+    throw std::invalid_argument(
+        "Point copy constructor: Other Point contains null shared pointer.");
+  }
+  _unit = std::make_shared<physics::units::SymbolUnit>(*other.unit());
+}
+Point& Point::operator=(const Point& other) {
+  if (this != &other) {
+    generic::Map<physics::device_structures::Connection, Quantity>::operator=(
+        other);
+    std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
+    if (!other.unit()) {
+      throw std::invalid_argument(
+          "Point copy constructor: Other Point contains null shared pointer.");
+    }
+    _unit = std::make_shared<physics::units::SymbolUnit>(*other.unit());
+  }
+  return *this;
+}
 Point::Point()
     : generic::Map<physics::device_structures::Connection, Quantity>() {}
 Point::Point(
@@ -43,11 +63,12 @@ void Point::insert_or_assign(
   }
   // If default constructing an empty Point a unit can still be set by the first
   // inserted entry.
-  if (items().empty()) {
+  std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
+  if (items()->empty()) {
     this->_unit = value->unit();
   }
-  value->convert_to(this->unit());
-  Map::insert_or_assign(key, value);
+  value->convert_to(this->_unit);
+  return Map::insert_or_assign(key, value);
 }
 std::pair<Point::iterator, bool> Point::insert(
     const physics::device_structures::ConnectionSP& key,
@@ -57,19 +78,23 @@ std::pair<Point::iterator, bool> Point::insert(
   }
   // If default constructing an empty Point a unit can still be set by the first
   // inserted entry.
-  if (items().empty()) {
+  std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
+  if (items()->empty()) {
     this->_unit = value->unit();
   }
   value->convert_to(this->_unit);
   return Map::insert(key, value);
 }
 
-const physics::units::SymbolUnitSP Point::unit() const { return _unit; }
+const physics::units::SymbolUnitSP Point::unit() const {
+  std::shared_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
+  return _unit;
+}
 const generic::MapSP<physics::device_structures::Connection, Quantity>
 Point::coordinates() const {
   auto map = std::make_shared<
       generic::Map<physics::device_structures::Connection, Quantity>>();
-  for (const auto& pair : items()) {
+  for (const auto& pair : *items()) {
     map->insert(pair->first(), pair->second());
   }
   return map;
@@ -85,13 +110,13 @@ PointSP Point::operator+(const PointSP& other) const {
   }
   auto new_map = std::make_shared<
       generic::Map<physics::device_structures::Connection, Quantity>>();
-  for (const auto& kv : items()) {
+  for (const auto& kv : *items()) {
     new_map->insert_or_assign(
         kv->first(),
         std::make_shared<Quantity>(*kv->second()));  // deep copy
   }
   PointSP result = std::make_shared<Point>(new_map);
-  for (const auto& kv : other->items()) {
+  for (const auto& kv : *other->items()) {
     auto it = result->find(kv->first());
     if (it != result->end()) {
       *(*it)->second() += kv->second();
@@ -110,12 +135,12 @@ PointSP Point::operator-(const PointSP& other) const {
   }
   auto new_map = std::make_shared<
       generic::Map<physics::device_structures::Connection, Quantity>>();
-  for (const auto& kv : items()) {
+  for (const auto& kv : *items()) {
     new_map->insert(kv->first(),
                     std::make_shared<Quantity>(*kv->second()));  // deep copy
   }
   PointSP result = std::make_shared<Point>(new_map);
-  for (const auto& kv : other->items()) {
+  for (const auto& kv : *other->items()) {
     auto it = result->find(kv->first());
     if (it != result->end()) {
       *(*it)->second() -= kv->second();
@@ -129,12 +154,12 @@ PointSP Point::operator-(const PointSP& other) const {
 PointSP Point::operator*(double scalar) const {
   auto new_map = std::make_shared<
       generic::Map<physics::device_structures::Connection, Quantity>>();
-  for (const auto& kv : items()) {
+  for (const auto& kv : *items()) {
     new_map->insert(kv->first(),
                     std::make_shared<Quantity>(*kv->second()));  // deep copy
   }
   PointSP result = std::make_shared<Point>(new_map);
-  for (auto& kv : result->items()) {
+  for (auto& kv : *result->items()) {
     *kv->second() *= scalar;
   }
   return result;
@@ -143,12 +168,12 @@ PointSP Point::operator*(double scalar) const {
 PointSP Point::operator/(double scalar) const {
   auto new_map = std::make_shared<
       generic::Map<physics::device_structures::Connection, Quantity>>();
-  for (const auto& kv : items()) {
+  for (const auto& kv : *items()) {
     new_map->insert(kv->first(),
                     std::make_shared<Quantity>(*kv->second()));  // deep copy
   }
   PointSP result = std::make_shared<Point>(new_map);
-  for (auto& kv : result->items()) {
+  for (auto& kv : *result->items()) {
     *kv->second() /= scalar;
   }
   return result;
@@ -157,7 +182,7 @@ PointSP Point::operator/(double scalar) const {
 PointSP Point::operator-() const {
   auto new_map = std::make_shared<
       generic::Map<physics::device_structures::Connection, Quantity>>();
-  for (const auto& kv : items()) {
+  for (const auto& kv : *items()) {
     new_map->insert(kv->first(),
                     -*kv->second());  // negate value
   }

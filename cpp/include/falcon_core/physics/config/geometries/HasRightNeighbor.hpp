@@ -13,8 +13,11 @@ namespace geometries {
  */
 class HasRightNeighbor : public virtual generic::Song {
   device_structures::ConnectionSP _right_neighbor;
+  mutable std::shared_timed_mutex _mu_right_neighbor;
 
  public:
+  HasRightNeighbor(const HasRightNeighbor& other);
+  HasRightNeighbor& operator=(const HasRightNeighbor& other);
   HasRightNeighbor(device_structures::ConnectionSP right_neighbor);
 
   /**
@@ -27,6 +30,8 @@ class HasRightNeighbor : public virtual generic::Song {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_right_neighbor(
+        _mu_right_neighbor);
     ar(cereal::base_class<generic::Song>(this), _right_neighbor);
   }
 };

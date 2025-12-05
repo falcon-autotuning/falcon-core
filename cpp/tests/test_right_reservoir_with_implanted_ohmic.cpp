@@ -1,4 +1,3 @@
-
 #include <gtest/gtest.h>
 
 #include <memory>
@@ -16,8 +15,8 @@ TEST(RightReservoirWithImplantedOhmicTest, ConstructorWorks) {
   RightReservoirWithImplantedOhmic obj("rr", right_neighbor, ohmic);
 
   EXPECT_EQ(obj.name(), "rr");
-  EXPECT_EQ(obj.left_neighbor(), right_neighbor);
-  EXPECT_EQ(obj.ohmic(), ohmic);
+  EXPECT_EQ(*obj.left_neighbor(), *right_neighbor);
+  EXPECT_EQ(*obj.ohmic(), *ohmic);
 }
 
 TEST(RightReservoirWithImplantedOhmicTest, ThrowsOnNullRightNeighbor) {

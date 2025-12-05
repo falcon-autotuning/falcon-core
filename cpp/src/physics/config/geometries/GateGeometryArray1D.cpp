@@ -8,11 +8,93 @@ namespace falcon_core {
 namespace physics {
 namespace config {
 namespace geometries {
+GateGeometryArray1D::GateGeometryArray1D(const GateGeometryArray1D& other) {
+  std::unique_lock<std::shared_timed_mutex> lock_linear_array(_mu_linear_array,
+                                                              std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_screening_gates(
+      _mu_screening_gates, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_raw_central_gates(
+      _mu_raw_central_gates, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_central_dot_gates(
+      _mu_central_dot_gates, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_gate_name_map(
+      _mu_gate_name_map, std::defer_lock);
+  std::lock(lock_linear_array,
+            lock_screening_gates,
+            lock_raw_central_gates,
+            lock_central_dot_gates,
+            lock_gate_name_map);
+  if (!other._linear_array) {
+    throw std::invalid_argument(
+        "GateGeometryArray1D copy constructor: The lineararray cannot be "
+        "null.");
+  }
+  _linear_array =
+      std::make_shared<device_structures::Connections>(*other._linear_array);
+  if (!other._screening_gates) {
+    throw std::invalid_argument(
+        "GateGeometryArray1D copy constructor: The screening_gates cannot be "
+        "null.");
+  }
+  _screening_gates =
+      std::make_shared<device_structures::Connections>(*other._screening_gates);
+  _raw_central_gates = *std::make_shared<device_structures::Connections>(
+      other._raw_central_gates);
+  if (!other._central_dot_gates) {
+    throw std::invalid_argument(
+        "GateGeometryArray1D copy constructor: The central_dot_gates cannot be "
+        "null.");
+  }
+  _central_dot_gates =
+      std::make_shared<DotGatesWithNeighbors>(*other._central_dot_gates);
+  _gate_name_map.clear();
+  for (const auto& kv : other._gate_name_map) {
+    _gate_name_map.emplace(kv.first, kv.second);
+  }
+}
+GateGeometryArray1D& GateGeometryArray1D::operator=(
+    const GateGeometryArray1D& other) {
+  if (this != &other) {
+    std::unique_lock<std::shared_timed_mutex> lock_linear_array(
+        _mu_linear_array, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_screening_gates(
+        _mu_screening_gates, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_raw_central_gates(
+        _mu_raw_central_gates, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_central_dot_gates(
+        _mu_central_dot_gates, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_gate_name_map(
+        _mu_gate_name_map, std::defer_lock);
+    std::lock(lock_linear_array,
+              lock_screening_gates,
+              lock_raw_central_gates,
+              lock_central_dot_gates,
+              lock_gate_name_map);
+    _linear_array =
+        std::make_shared<device_structures::Connections>(*other._linear_array);
+    _screening_gates = std::make_shared<device_structures::Connections>(
+        *other._screening_gates);
+    _raw_central_gates = *std::make_shared<device_structures::Connections>(
+        other._raw_central_gates);
+    _central_dot_gates =
+        std::make_shared<DotGatesWithNeighbors>(*other._central_dot_gates);
+    _gate_name_map.clear();
+    for (const auto& kv : other._gate_name_map) {
+      _gate_name_map.emplace(
+          kv.first,
+          std::make_shared<device_structures::Connection>(*kv.second));
+    }
+  }
+  return *this;
+}
+
 GateGeometryArray1D::GateGeometryArray1D() = default;
 GateGeometryArray1D::GateGeometryArray1D(
     device_structures::ConnectionsSP lineararray,
     device_structures::ConnectionsSP screening_gates)
-    : _linear_array(lineararray), _screening_gates(screening_gates) {
+    : _linear_array(lineararray),
+      _screening_gates(screening_gates),
+      _central_dot_gates(std::make_shared<DotGatesWithNeighbors>()) {
   if (!lineararray) {
     throw std::invalid_argument(
         "GateGeometryArray1D: The lineararray cannot be null.");
@@ -72,7 +154,6 @@ GateGeometryArray1D::GateGeometryArray1D(
         "Expected Plunger Gates at the correct positions.");
   }
 
-  _central_dot_gates = std::make_shared<DotGatesWithNeighbors>();
   // Central dot gates logic (example, adjust as needed)
   for (size_t i = 1; i + 1 < dot_gates.size(); ++i) {
     auto left_neighbor  = dot_gates[i - 1];
@@ -82,51 +163,62 @@ GateGeometryArray1D::GateGeometryArray1D(
   }
 
   // Build the gate name map
-  for (const auto& screening_gate : *_screening_gates) {
+  auto s_gates = *this->screening_gates();
+  for (const auto& screening_gate : s_gates) {
     _gate_name_map[screening_gate->name()] = screening_gate;
   }
   _gate_name_map[left_reservoir()->name()]  = left_reservoir();
   _gate_name_map[right_reservoir()->name()] = right_reservoir();
-  auto all_dot                              = all_dot_gates();
-  for (const auto& dot_gate : *all_dot) {
+  auto all_dot                              = *all_dot_gates();
+  for (const auto& dot_gate : all_dot) {
     _gate_name_map[dot_gate->name()] = dot_gate;
   }
 }
 GateGeometryArray1D::iterator GateGeometryArray1D::begin() {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_linear_array);
   return _linear_array->begin();
 }
 GateGeometryArray1D::iterator GateGeometryArray1D::end() {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_linear_array);
   return _linear_array->end();
 }
 GateGeometryArray1D::const_iterator GateGeometryArray1D::begin() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_linear_array);
   return _linear_array->begin();
 }
 GateGeometryArray1D::const_iterator GateGeometryArray1D::end() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_linear_array);
   return _linear_array->end();
 }
 const device_structures::ConnectionsSP& GateGeometryArray1D::lineararray()
     const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_linear_array);
   return _linear_array;
 }
 const device_structures::ConnectionsSP& GateGeometryArray1D::screening_gates()
     const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_screening_gates);
   if (!_screening_gates->is_screening_gates()) {
     throw std::runtime_error(
         "Expected the screening_gates to only be screening_gates");
   }
+
   return _screening_gates;
 }
 device_structures::ConnectionsSP GateGeometryArray1D::raw_central_gates()
     const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_raw_central_gates);
   return std::make_shared<device_structures::Connections>(_raw_central_gates);
 }
 DotGatesWithNeighborsSP GateGeometryArray1D::central_dot_gates() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_central_dot_gates);
   return _central_dot_gates;
 }
 void GateGeometryArray1D::append_central_gate(
     const device_structures::ConnectionSP& left_neighbor,
     const device_structures::ConnectionSP& selected_gate,
     const device_structures::ConnectionSP& right_neighbor) {
+  std::unique_lock<std::shared_timed_mutex> lock(_mu_central_dot_gates);
   if (!left_neighbor || !selected_gate || !right_neighbor) {
     throw std::invalid_argument(
         "GateGeometryArray1D: neighbors and selected_gate must not be null");
@@ -159,7 +251,8 @@ void GateGeometryArray1D::append_central_gate(
 DotGatesWithNeighborsSP GateGeometryArray1D::all_dot_gates() const {
   DotGatesWithNeighbors all_dot_gates;
   all_dot_gates.push_back(left_barrier());
-  for (const auto& gate : *_central_dot_gates) {
+  auto central_dot_gates = *this->central_dot_gates();
+  for (const auto& gate : central_dot_gates) {
     all_dot_gates.push_back(gate);
   }
   all_dot_gates.push_back(right_barrier());
@@ -167,6 +260,7 @@ DotGatesWithNeighborsSP GateGeometryArray1D::all_dot_gates() const {
 }
 device_structures::ConnectionsSP GateGeometryArray1D::query_neighbors(
     const device_structures::ConnectionSP& gate) const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_gate_name_map);
   auto it = _gate_name_map.find(gate->name());
   if (it == _gate_name_map.end()) {
     throw std::invalid_argument("Gate " + gate->name() +
@@ -178,7 +272,8 @@ device_structures::ConnectionsSP GateGeometryArray1D::query_neighbors(
       std::make_shared<device_structures::Connections>();
 
   // If gate_geometry is in screening_gates
-  for (const auto& sg : *screening_gates()) {
+  auto screening_gates = *this->screening_gates();
+  for (const auto& sg : screening_gates) {
     if (sg->name() == gate_geometry->name()) {
       auto lbar      = left_barrier();
       auto lneighbor = lbar->left_neighbor();
@@ -197,7 +292,7 @@ device_structures::ConnectionsSP GateGeometryArray1D::query_neighbors(
     auto lres      = left_reservoir();
     auto rneighbor = lres->right_neighbor();
     result->push_back(rneighbor);
-    for (const auto& sg : *screening_gates()) {
+    for (const auto& sg : screening_gates) {
       result->push_back(sg);
     }
     return result;
@@ -205,7 +300,7 @@ device_structures::ConnectionsSP GateGeometryArray1D::query_neighbors(
     auto rres      = right_reservoir();
     auto lneighbor = rres->left_neighbor();
     result->push_back(lneighbor);
-    for (const auto& sg : *screening_gates()) {
+    for (const auto& sg : screening_gates) {
       result->push_back(sg);
     }
     return result;
@@ -214,7 +309,7 @@ device_structures::ConnectionsSP GateGeometryArray1D::query_neighbors(
       std::dynamic_pointer_cast<DotGateWithNeighbors>(gate_geometry);
   result->push_back(gate_geom->left_neighbor());
   result->push_back(gate_geom->right_neighbor());
-  for (const auto& sg : *screening_gates()) {
+  for (const auto& sg : screening_gates) {
     result->push_back(sg);
   }
   return result;

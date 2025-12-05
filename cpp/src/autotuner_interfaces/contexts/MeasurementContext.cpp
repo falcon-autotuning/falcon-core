@@ -3,6 +3,15 @@
 namespace falcon_core {
 namespace autotuner_interfaces {
 namespace contexts {
+MeasurementContext::MeasurementContext(const MeasurementContext& other)
+    : BaseContext(other) {}
+MeasurementContext& MeasurementContext::operator=(
+    const MeasurementContext& other) {
+  if (this != &other) {
+    BaseContext::operator=(other);
+  }
+  return *this;
+}
 MeasurementContext::MeasurementContext() = default;
 MeasurementContext::MeasurementContext(
     const physics::device_structures::ConnectionSP& connection,

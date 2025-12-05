@@ -176,36 +176,6 @@ PairMeasurementResponseMeasurementRequestHandle HDF5Data_to_communications(
   FALCON_C_API_END(nullptr)
 }
 
-bool HDF5Data_equal(HDF5DataHandle handle, HDF5DataHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Null handle passed to HDF5Data_equal: handle");
-  }
-  if (!other) {
-    throw std::invalid_argument("Null handle passed to HDF5Data_equal: other");
-  }
-  HDF5Data* hdf5_data = static_cast<HDF5Data*>(handle);
-  HDF5Data* odata     = static_cast<HDF5Data*>(other);
-  return (*hdf5_data) == (*odata);
-  FALCON_C_API_END(false)
-}
-
-bool HDF5Data_not_equal(HDF5DataHandle handle, HDF5DataHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to HDF5Data_not_equal: handle");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "Null handle passed to HDF5Data_not_equal: other");
-  }
-  HDF5Data* hdf5_data = static_cast<HDF5Data*>(handle);
-  HDF5Data* odata     = static_cast<HDF5Data*>(other);
-  return (*hdf5_data) != (*odata);
-  FALCON_C_API_END(false)
-}
-
 StringHandle HDF5Data_to_json_string(HDF5DataHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {
@@ -228,5 +198,128 @@ HDF5DataHandle HDF5Data_from_json_string(StringHandle json) {
   auto        ptr = HDF5Data::from_json_string<HDF5Data>(raw_json);
   return new HDF5Data(*ptr);
   FALCON_C_API_END(nullptr)
+}
+
+AxesIntHandle HDF5Data_shape(HDF5DataHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument("Null handle passed to HDF5Data_shape");
+  }
+  HDF5Data*         hdf5_data = static_cast<HDF5Data*>(handle);
+  math::AxesSP<int> shape     = hdf5_data->shape();
+  return new math::Axes<int>(*shape);
+  FALCON_C_API_END(nullptr)
+}
+
+AxesControlArrayHandle HDF5Data_unit_domain(HDF5DataHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument("Null handle passed to HDF5Data_unit_domain");
+  }
+  HDF5Data* hdf5_data = static_cast<HDF5Data*>(handle);
+  math::AxesSP<math::arrays::ControlArray> unit_domain =
+      hdf5_data->unit_domain();
+  return new math::Axes<math::arrays::ControlArray>(*unit_domain);
+  FALCON_C_API_END(nullptr)
+}
+
+AxesCoupledLabelledDomainHandle HDF5Data_domain_labels(HDF5DataHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument("Null handle passed to HDF5Data_domain_labels");
+  }
+  HDF5Data* hdf5_data = static_cast<HDF5Data*>(handle);
+  math::AxesSP<math::domains::CoupledLabelledDomain> domain_labels =
+      hdf5_data->domain_labels();
+  return new math::Axes<math::domains::CoupledLabelledDomain>(*domain_labels);
+  FALCON_C_API_END(nullptr)
+}
+
+LabelledArraysLabelledMeasuredArrayHandle HDF5Data_ranges(
+    HDF5DataHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument("Null handle passed to HDF5Data_ranges");
+  }
+  HDF5Data* hdf5_data = static_cast<HDF5Data*>(handle);
+  auto      ranges    = hdf5_data->ranges();
+  return new math::arrays::LabelledArrays<math::arrays::LabelledMeasuredArray>(
+      *ranges);
+  FALCON_C_API_END(nullptr)
+}
+
+MapStringStringHandle HDF5Data_metadata(HDF5DataHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument("Null handle passed to HDF5Data_metadata");
+  }
+  HDF5Data* hdf5_data = static_cast<HDF5Data*>(handle);
+  auto      metadata  = hdf5_data->metadata();
+  return new generic::Map<std::string, std::string>(*metadata);
+  FALCON_C_API_END(nullptr)
+}
+
+StringHandle HDF5Data_measurement_title(HDF5DataHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to HDF5Data_measurement_title");
+  }
+  HDF5Data*   hdf5_data = static_cast<HDF5Data*>(handle);
+  std::string title     = hdf5_data->measurement_title();
+  return String_create(title.c_str(), title.size());
+  FALCON_C_API_END(nullptr)
+}
+
+int HDF5Data_unique_id(HDF5DataHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument("Null handle passed to HDF5Data_unique_id");
+  }
+  HDF5Data* hdf5_data = static_cast<HDF5Data*>(handle);
+  return hdf5_data->unique_id();
+  FALCON_C_API_END(0)
+}
+
+int HDF5Data_timestamp(HDF5DataHandle handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument("Null handle passed to HDF5Data_timestamp");
+  }
+  HDF5Data* hdf5_data = static_cast<HDF5Data*>(handle);
+  return hdf5_data->timestamp();
+  FALCON_C_API_END(0)
+}
+
+bool HDF5Data_equal(HDF5DataHandle handle, HDF5DataHandle other_handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to HDF5Data_equals: handle");
+  }
+  if (!other_handle) {
+    throw std::invalid_argument(
+        "Null handle passed to HDF5Data_equals: other_handle");
+  }
+  HDF5Data* hdf5_data       = static_cast<HDF5Data*>(handle);
+  HDF5Data* other_hdf5_data = static_cast<HDF5Data*>(other_handle);
+  return (*hdf5_data == *other_hdf5_data);
+  FALCON_C_API_END(false)
+}
+
+bool HDF5Data_not_equal(HDF5DataHandle handle, HDF5DataHandle other_handle) {
+  FALCON_C_API_BEGIN
+  if (!handle) {
+    throw std::invalid_argument(
+        "Null handle passed to HDF5Data_not_equals: handle");
+  }
+  if (!other_handle) {
+    throw std::invalid_argument(
+        "Null handle passed to HDF5Data_not_equals: other_handle");
+  }
+  HDF5Data* hdf5_data       = static_cast<HDF5Data*>(handle);
+  HDF5Data* other_hdf5_data = static_cast<HDF5Data*>(other_handle);
+  return (*hdf5_data != *other_hdf5_data);
+  FALCON_C_API_END(false)
 }
 }

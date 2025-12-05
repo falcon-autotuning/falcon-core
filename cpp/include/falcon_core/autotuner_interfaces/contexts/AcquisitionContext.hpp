@@ -8,17 +8,21 @@ namespace autotuner_interfaces {
 namespace contexts {
 
 class AcquisitionContext : public BaseContext {
-  physics::units::SymbolUnitSP _units;
+  physics::units::SymbolUnitSP    _units;
+  mutable std::shared_timed_mutex _mu_units;
 
  protected:
   friend class cereal::access;
   AcquisitionContext();
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_u(_mu_units);
     ar(cereal::base_class<BaseContext>(this), _units);
   }
 
  public:
+  AcquisitionContext(const AcquisitionContext& other);
+  AcquisitionContext& operator=(const AcquisitionContext& other);
   /**
    * @brief Initialize an AcquisitionContext with a connection, instrument type,
    * and units.

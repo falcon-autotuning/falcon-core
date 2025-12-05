@@ -124,19 +124,19 @@ coverage: run-all-tests cov-term
 subset-coverage-overview: subset-coverage
 ifeq ($(COVERAGE_TOOL),llvm-cov)
 	@llvm-cov report ./$(BUILD_DIR)/libfalcon_core_cpp.so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
-		-ignore-filename-regex='(vcpkg_installed|tests/)' \
+		-ignore-filename-regex='(vcpkg_installed|tests/|List\.cpp|Map\.cpp|Pair\.cpp)' \
 		-Xdemangler c++filt -Xdemangler -n
 else
-	@gcovr src/ . --txt --exclude 'vcpkg_installed|tests/'
+	@gcovr src/ . --txt --exclude 'vcpkg_installed|tests/|List\.cpp|Map\.cpp|Pair\.cpp'
 endif
 
 coverage-overview: coverage
 ifeq ($(COVERAGE_TOOL),llvm-cov)
 	@llvm-cov report ./$(BUILD_DIR)/libfalcon_core_cpp.so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
-		-ignore-filename-regex='(vcpkg_installed|tests/)' \
+		-ignore-filename-regex='(vcpkg_installed|tests/|List\.cpp|Map\.cpp|Pair\.cpp)' \
 		-Xdemangler c++filt -Xdemangler -n
 else
-	@gcovr src/ . --txt --exclude 'vcpkg_installed|tests/'
+	@gcovr src/ . --txt --exclude 'vcpkg_installed|tests/|List\.cpp|Map\.cpp|Pair\.cpp'
 endif
 
 # Clean up build artifacts

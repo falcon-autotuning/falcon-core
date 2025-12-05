@@ -162,8 +162,8 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringBool_items");
 }
     auto map = static_cast<falcon_core::generic::Map<std::string,bool>*>(handle);
-    falcon_core::generic::List<falcon_core::generic::Pair<std::string,bool>> items_sp = map->items(); 
-    return new falcon_core::generic::List<falcon_core::generic::Pair<std::string,bool>>(items_sp);
+    falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string,bool>> items_sp = map->items(); 
+    return new falcon_core::generic::List<falcon_core::generic::Pair<std::string,bool>>(*items_sp);
     FALCON_C_API_END(nullptr)
 }
 

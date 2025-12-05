@@ -8,7 +8,29 @@
 namespace falcon_core {
 namespace instrument_interfaces {
 namespace port_transforms {
-
+PortTransform::PortTransform(const PortTransform& other)
+    : AnalyticFunction(other) {
+  std::unique_lock<std::shared_timed_mutex> lock_o(_mu_port);
+  if (!other.port()) {
+    throw std::invalid_argument(
+        "PortTransform copy constructor: Other PortTransform contains null "
+        "shared pointer.");
+  }
+  _port = std::make_shared<names::InstrumentPort>(*other.port());
+}
+PortTransform& PortTransform::operator=(const PortTransform& other) {
+  if (this != &other) {
+    std::unique_lock<std::shared_timed_mutex> lock_o(_mu_port);
+    if (!other.port()) {
+      throw std::invalid_argument(
+          "PortTransform copy constructor: Other PortTransform contains null "
+          "shared pointer.");
+    }
+    _port = std::make_shared<names::InstrumentPort>(*other.port());
+    math::AnalyticFunction::operator=(other);
+  }
+  return *this;
+}
 PortTransform::PortTransform(const names::InstrumentPortSP&  port,
                              const math::AnalyticFunctionSP& transform)
     : AnalyticFunction(transform ? *transform : *Identity()), _port(port) {
@@ -36,7 +58,10 @@ PortTransformSP PortTransform::IdentityTransform(
                                          math::AnalyticFunction::Identity());
 }
 
-const names::InstrumentPortSP PortTransform::port() const { return _port; }
+const names::InstrumentPortSP PortTransform::port() const {
+  std::shared_lock<std::shared_timed_mutex> lock_port(_mu_port);
+  return _port;
+}
 bool PortTransform::operator==(const PortTransform& other) const {
   return (*port() == *other.port()) &&
          math::AnalyticFunction::operator==(other);

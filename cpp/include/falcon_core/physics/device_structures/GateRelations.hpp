@@ -23,14 +23,9 @@ class GateRelations : public generic::Map<Connection, Connections> {
    */
   std::pair<generic::List<generic::Pair<Connection, Connections>>::iterator,
             bool>
-  insert(const ConnectionSP& key, const ConnectionsSP& value);
-
- protected:
-  friend class cereal::access;
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<Map<Connection, Connections>>(this));
-  }
+       insert(const ConnectionSP& key, const ConnectionsSP& value);
+  bool operator==(const GateRelations& other) const;
+  bool operator!=(const GateRelations& other) const;
 };
 using GateRelationsSP = std::shared_ptr<GateRelations>;
 }  // namespace device_structures

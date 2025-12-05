@@ -209,6 +209,13 @@ bool Unit::is_compatible_with(const UnitSP& other) const {
   return dimensions() == other->dimensions();
 }
 
+bool Unit::operator==(const Unit& other) const {
+  return (this->dimensions() == other.dimensions()) &&
+         (std::abs(this->scale_factor() - other.scale_factor()) < 1e-12) &&
+         (std::abs(this->offset() - other.offset()) < 1e-12) &&
+         (this->prefix() == other.prefix());
+}
+bool Unit::operator!=(const Unit& other) const { return !(*this == other); }
 }  // namespace units
 }  // namespace physics
 }  // namespace falcon_core

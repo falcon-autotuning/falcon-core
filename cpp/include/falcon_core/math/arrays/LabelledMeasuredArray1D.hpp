@@ -40,11 +40,6 @@ class LabelledMeasuredArray1D : public LabelledMeasuredArray,
   LabelledMeasuredArray1D(
       const generic::FArraySP<double>&                            array,
       const autotuner_interfaces::contexts::AcquisitionContextSP& label);
-  LabelledMeasuredArray1D(const LabelledMeasuredArray1D&)            = default;
-  LabelledMeasuredArray1D(LabelledMeasuredArray1D&&) noexcept        = default;
-  LabelledMeasuredArray1D& operator=(const LabelledMeasuredArray1D&) = default;
-  LabelledMeasuredArray1D& operator=(LabelledMeasuredArray1D&&) noexcept =
-      default;
   // Arithmetic operators
   std::shared_ptr<LabelledMeasuredArray1D> operator+(const double other) const;
 

@@ -108,35 +108,14 @@ void FArrayDouble_remove_offset(FArrayDoubleHandle handle,  double offset);
 // @category:read
 double FArrayDouble_sum(FArrayDoubleHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: FArrayDouble_reshape | falcon_core::generic::FArray::reshape */
-/**
- * @brief Return a new Array with the given shape.
- * @param shape The new shape.
- * @return A reshaped FArray.
- */
 FArrayDoubleHandle FArrayDouble_reshape(FArrayDoubleHandle handle, const size_t* shape, size_t ndims);
 // @category:read
 ListListSizeTHandle FArrayDouble_where(FArrayDoubleHandle handle,  double value);
 // @category:read
-/* AUTO-DOC from cpp: FArrayDouble_flip | falcon_core::generic::FArray::flip */
-/**
- * @brief Flip the data along the given axis.
- * @param axis The axis to flip.
- * @return A flipped FArray.
- */
 FArrayDoubleHandle FArrayDouble_flip(FArrayDoubleHandle handle, size_t axis);
 // @category:read
 size_t FArrayDouble_full_gradient(FArrayDoubleHandle handle, FArrayDoubleHandle* out_buffer, size_t buffer_size);
 // @category:read
-/* AUTO-DOC from cpp: FArrayDouble_gradient | falcon_core::generic::FArray::gradient */
-/**
- * @brief Return the gradient of the data along all axes.
- * Computes the gradient for each axis of the array using finite differences:
- * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
- * - For boundary points, uses forward (first element) or backward (last
- * element) difference.
- * @return A vector of FArray gradients (one for each axis).
- */
 FArrayDoubleHandle FArrayDouble_gradient(FArrayDoubleHandle handle, size_t axis);
 // @category:read
 double FArrayDouble_get_sum_of_squares(FArrayDoubleHandle handle);

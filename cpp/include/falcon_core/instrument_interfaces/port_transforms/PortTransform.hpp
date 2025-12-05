@@ -11,9 +11,12 @@ namespace instrument_interfaces {
 namespace port_transforms {
 
 class PortTransform : public math::AnalyticFunction {
-  names::InstrumentPortSP _port;
+  names::InstrumentPortSP         _port;
+  mutable std::shared_timed_mutex _mu_port;
 
  public:
+  PortTransform(const PortTransform& other);
+  PortTransform& operator=(const PortTransform& other);
   /**
    * @brief Construct a port transform
    * @param port the port that the transform applies to.
@@ -44,6 +47,7 @@ class PortTransform : public math::AnalyticFunction {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_p(_mu_port);
     ar(cereal::base_class<math::AnalyticFunction>(this), _port);
   };
   PortTransform();

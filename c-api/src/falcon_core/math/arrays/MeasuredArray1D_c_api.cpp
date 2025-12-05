@@ -86,7 +86,7 @@ FArrayDoubleHandle MeasuredArray1D_as_1D(MeasuredArray1DHandle handle) {
   }
   MeasuredArray1D* measured_array = static_cast<MeasuredArray1D*>(handle);
   auto             farray         = measured_array->as_1D();
-  return new generic::FArray<double>(farray->xtensor());
+  return new generic::FArray<double>(farray->data());
   FALCON_C_API_END(nullptr)
 }
 

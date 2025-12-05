@@ -11,26 +11,12 @@ typedef void* PairInterpretationContextDoubleHandle;
 // Function declarations
 
 // @category:allocation
-/* AUTO-DOC from cpp: PairInterpretationContextDouble_create | falcon_core::generic::Pair::create */
-/**
- * @brief Store a pair of values.
- * @param first The first value.
- * @param second The second value.
- */
 PairInterpretationContextDoubleHandle PairInterpretationContextDouble_create(InterpretationContextHandle first, double second);
 // @category:deallocation
 void PairInterpretationContextDouble_destroy(PairInterpretationContextDoubleHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: PairInterpretationContextDouble_first | falcon_core::generic::Pair::first */
-/**
- * @brief Get the stored first value.
- */
 InterpretationContextHandle PairInterpretationContextDouble_first(PairInterpretationContextDoubleHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: PairInterpretationContextDouble_second | falcon_core::generic::Pair::second */
-/**
- * @brief Get the stored second value.
- */
 double PairInterpretationContextDouble_second(PairInterpretationContextDoubleHandle handle);
 // @category:read
 bool PairInterpretationContextDouble_equal(PairInterpretationContextDoubleHandle a, PairInterpretationContextDoubleHandle b);

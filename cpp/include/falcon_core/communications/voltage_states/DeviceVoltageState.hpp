@@ -9,8 +9,11 @@ namespace voltage_states {
 
 class DeviceVoltageState : public math::Quantity {
   physics::device_structures::ConnectionSP _connection;
+  mutable std::shared_timed_mutex          _mu_connection;
 
  public:
+  DeviceVoltageState(const DeviceVoltageState& other);
+  DeviceVoltageState& operator=(const DeviceVoltageState& other);
   DeviceVoltageState(const physics::device_structures::ConnectionSP& connection,
                      const double&                                   voltage,
                      const physics::units::SymbolUnitSP&             unit);
@@ -25,6 +28,7 @@ class DeviceVoltageState : public math::Quantity {
   DeviceVoltageState();
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_c(_mu_connection);
     ar(cereal::base_class<math::Quantity>(this), _connection);
   }
 };

@@ -36,16 +36,8 @@ void MapStringDouble_clear(MapStringDoubleHandle handle);
 // @category:read
 bool MapStringDouble_contains(MapStringDoubleHandle handle, StringHandle key);
 // @category:read
-/* AUTO-DOC from cpp: MapStringDouble_keys | falcon_core::generic::Map::keys */
-/**
- * @brief Return the keys of the Map.
- */
 ListStringHandle MapStringDouble_keys(MapStringDoubleHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: MapStringDouble_values | falcon_core::generic::Map::values */
-/**
- * @brief Return the values of the Map.
- */
 ListDoubleHandle MapStringDouble_values(MapStringDoubleHandle handle);
 // @category:read
 ListPairStringDoubleHandle MapStringDouble_items(MapStringDoubleHandle handle);

@@ -17,6 +17,40 @@ const std::map<std::string, std::string> Dimension_Symbols{
     {SI::DIMENSION_LUMINOSITY, SI::UNIT_SYMBOL_CANDELA},
 };
 
+SymbolUnit::SymbolUnit(const SymbolUnit& other) {
+  std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
+                                                      std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_symbol(_mu_symbol,
+                                                        std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,
+                                                      std::defer_lock);
+  std::lock(lock_unit, lock_symbol, lock_name);
+  if (!other.unit()) {
+    throw std::invalid_argument("SymbolUnit: other.unit() cannot be null.");
+  }
+  _unit   = std::make_shared<Unit>(*other.unit());
+  _symbol = other.symbol();
+  _name   = other.name();
+}
+SymbolUnit& SymbolUnit::operator=(const SymbolUnit& other) {
+  if (this != &other) {
+    std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
+                                                        std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_symbol(_mu_symbol,
+                                                          std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,
+                                                        std::defer_lock);
+    std::lock(lock_unit, lock_symbol, lock_name);
+    if (!other.unit()) {
+      throw std::invalid_argument("SymbolUnit: other.unit() cannot be null.");
+    }
+    _unit   = std::make_shared<Unit>(*other.unit());
+    _symbol = other.symbol();
+    _name   = other.name();
+  }
+  return *this;
+}
+
 SymbolUnit::SymbolUnit() = default;
 SymbolUnit::SymbolUnit(UnitSP unit) : _unit(unit) {
   auto results = this->_find_matching_common_unit();
@@ -192,17 +226,26 @@ SymbolUnitSP SymbolUnit::WattsPerMeterKelvin() {
   return std::make_shared<SymbolUnit>(*Unit::Watt() /
                                       (*Unit::Meter() * Unit::Kelvin()));
 }
-const UnitSP SymbolUnit::unit() const { return _unit; }
+const UnitSP SymbolUnit::unit() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_unit);
+  return _unit;
+}
 /*
  * @brief Get the name of the unit.
  * @return The name as a string.
  */
-const std::string SymbolUnit::symbol() const { return _symbol; }
+const std::string SymbolUnit::symbol() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_symbol);
+  return _symbol;
+}
 /*
  * @brief Get the name of the unit.
  * @return The name as a string.
  */
-const std::string  SymbolUnit::name() const { return _name; }
+const std::string SymbolUnit::name() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_name);
+  return _name;
+}
 const SymbolUnitSP SymbolUnit::operator*(const SymbolUnitSP& other) const {
   if (!other) {
     throw std::invalid_argument("SymbolUnit: Cannot multiple by null.");
@@ -240,7 +283,9 @@ const double SymbolUnit::convert_value_to(
   if (!target_unit) {
     throw std::invalid_argument("SymbolUnit: Cannot convert to null.");
   }
-  return unit()->convert_value_to(value, target_unit->unit());
+  auto                                      unit = target_unit->unit();
+  std::unique_lock<std::shared_timed_mutex> lock_this(_mu_unit);
+  return _unit->convert_value_to(value, unit);
 }
 const bool SymbolUnit::is_compatible_with(const SymbolUnitSP& other) const {
   if (!other) {

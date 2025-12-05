@@ -35,16 +35,8 @@ void MapInstrumentPortPortTransform_clear(MapInstrumentPortPortTransformHandle h
 // @category:read
 bool MapInstrumentPortPortTransform_contains(MapInstrumentPortPortTransformHandle handle, InstrumentPortHandle key);
 // @category:read
-/* AUTO-DOC from cpp: MapInstrumentPortPortTransform_keys | falcon_core::generic::Map::keys */
-/**
- * @brief Return the keys of the Map.
- */
 ListInstrumentPortHandle MapInstrumentPortPortTransform_keys(MapInstrumentPortPortTransformHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: MapInstrumentPortPortTransform_values | falcon_core::generic::Map::values */
-/**
- * @brief Return the values of the Map.
- */
 ListPortTransformHandle MapInstrumentPortPortTransform_values(MapInstrumentPortPortTransformHandle handle);
 // @category:read
 ListPairInstrumentPortPortTransformHandle MapInstrumentPortPortTransform_items(MapInstrumentPortPortTransformHandle handle);

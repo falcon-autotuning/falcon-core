@@ -34,16 +34,8 @@ void MapFloatFloat_clear(MapFloatFloatHandle handle);
 // @category:read
 bool MapFloatFloat_contains(MapFloatFloatHandle handle, float key);
 // @category:read
-/* AUTO-DOC from cpp: MapFloatFloat_keys | falcon_core::generic::Map::keys */
-/**
- * @brief Return the keys of the Map.
- */
 ListFloatHandle MapFloatFloat_keys(MapFloatFloatHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: MapFloatFloat_values | falcon_core::generic::Map::values */
-/**
- * @brief Return the values of the Map.
- */
 ListFloatHandle MapFloatFloat_values(MapFloatFloatHandle handle);
 // @category:read
 ListPairFloatFloatHandle MapFloatFloat_items(MapFloatFloatHandle handle);

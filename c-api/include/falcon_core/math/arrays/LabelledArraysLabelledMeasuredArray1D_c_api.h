@@ -19,31 +19,15 @@ LabelledArraysLabelledMeasuredArray1DHandle LabelledArraysLabelledMeasuredArray1
 void LabelledArraysLabelledMeasuredArray1D_destroy(
     LabelledArraysLabelledMeasuredArray1DHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: LabelledArraysLabelledMeasuredArray1D_arrays | falcon_core::math::arrays::LabelledArrays::arrays */
-/**
- * @brief Returns the internal vector of labelled arrays.
- */
 ListLabelledMeasuredArray1DHandle LabelledArraysLabelledMeasuredArray1D_arrays(
     LabelledArraysLabelledMeasuredArray1DHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: LabelledArraysLabelledMeasuredArray1D_labels | falcon_core::math::arrays::LabelledArrays::labels */
-/**
- * @brief Returns the labels of all labelled arrays.
- */
 ListAcquisitionContextHandle LabelledArraysLabelledMeasuredArray1D_labels(
     LabelledArraysLabelledMeasuredArray1DHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: LabelledArraysLabelledMeasuredArray1D_is_control_arrays | falcon_core::math::arrays::LabelledArrays::is_control_arrays */
-/**
- * @brief Checks if the contents are of control arrays.
- */
 bool LabelledArraysLabelledMeasuredArray1D_is_control_arrays(
     LabelledArraysLabelledMeasuredArray1DHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: LabelledArraysLabelledMeasuredArray1D_is_measured_arrays | falcon_core::math::arrays::LabelledArrays::is_measured_arrays */
-/**
- * @brief Checks if the contents are of measured arrays.
- */
 bool LabelledArraysLabelledMeasuredArray1D_is_measured_arrays(
     LabelledArraysLabelledMeasuredArray1DHandle handle);
 // @category:write

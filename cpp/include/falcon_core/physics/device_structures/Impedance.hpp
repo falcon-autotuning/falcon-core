@@ -8,11 +8,16 @@ namespace physics {
 namespace device_structures {
 
 class Impedance : public generic::Song {
-  std::shared_ptr<Connection> _connection;
-  double                      _resistance;
-  double                      _capacitance;
+  std::shared_ptr<Connection>     _connection;
+  double                          _resistance;
+  double                          _capacitance;
+  mutable std::shared_timed_mutex _mu_connection;
+  mutable std::shared_timed_mutex _mu_resistance;
+  mutable std::shared_timed_mutex _mu_capacitance;
 
  public:
+  Impedance(const Impedance& other);
+  Impedance& operator=(const Impedance& other);
   Impedance(std::shared_ptr<Connection> connection,
             double                      resistance,
             double                      capacitance);
@@ -36,6 +41,13 @@ class Impedance : public generic::Song {
   double capacitance() const;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_connection(_mu_connection,
+                                                              std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_resistance(_mu_resistance,
+                                                              std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_capacitance(_mu_capacitance,
+                                                               std::defer_lock);
+    std::lock(lock_connection, lock_resistance, lock_capacitance);
     ar(cereal::base_class<generic::Song>(this),
        _connection,
        _resistance,

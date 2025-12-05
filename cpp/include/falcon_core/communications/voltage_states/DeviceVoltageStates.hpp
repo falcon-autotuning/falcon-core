@@ -35,13 +35,6 @@ class DeviceVoltageStates : public generic::List<DeviceVoltageState> {
    * @brief Conversion to the Point datatype.
    */
   const math::PointSP to_point() const;
-
- private:
-  friend class cereal::access;
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::List<DeviceVoltageState>>(this));
-  }
 };
 using DeviceVoltageStatesSP = std::shared_ptr<DeviceVoltageStates>;
 }  // namespace voltage_states

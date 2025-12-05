@@ -49,11 +49,6 @@ class Axes : public generic::List<Value> {
   bool operator!=(const Axes<Value>& other) const { return !(*this == other); }
 
  protected:
-  friend class cereal::access;
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<generic::List<Value>>(this));
-  }
   bool operator_equal_impl(const Axes<Value>& other,
                            generic::category::song_tag) const {
     if (this->size() != other.size()) {

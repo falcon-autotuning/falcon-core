@@ -19,10 +19,15 @@ class InterpretationContext : public generic::Song {
   math::AxesSP<autotuner_interfaces::contexts::MeasurementContext>
       _independent_variables;
   generic::ListSP<autotuner_interfaces::contexts::MeasurementContext>
-                               _dependent_variables;
-  physics::units::SymbolUnitSP _unit;
+                                  _dependent_variables;
+  physics::units::SymbolUnitSP    _unit;
+  mutable std::shared_timed_mutex _mu_independent_variables;
+  mutable std::shared_timed_mutex _mu_dependent_variables;
+  mutable std::shared_timed_mutex _mu_unit;
 
  public:
+  InterpretationContext(const InterpretationContext& other);
+  InterpretationContext& operator=(const InterpretationContext& other);
   /**
    * @brief Creates the InterpretationContext.
    * @param independent_variables The independent variables (sweep parameters).
@@ -85,12 +90,20 @@ class InterpretationContext : public generic::Song {
    */
   const std::shared_ptr<InterpretationContext> with_unit(
       physics::units::SymbolUnitSP unit) const;
+  bool operator==(const InterpretationContext& other) const;
+  bool operator!=(const InterpretationContext& other) const;
 
  protected:
   friend class cereal::access;
   InterpretationContext();
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_iv(_mu_independent_variables,
+                                                      std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_dv(_mu_dependent_variables,
+                                                      std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_u(_mu_unit, std::defer_lock);
+    std::lock(lock_iv, lock_dv, lock_u);
     ar(cereal::base_class<generic::Song>(this),
        _independent_variables,
        _dependent_variables,

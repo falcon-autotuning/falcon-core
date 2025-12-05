@@ -6,7 +6,29 @@ namespace falcon_core {
 namespace physics {
 namespace config {
 namespace geometries {
-
+HasRightNeighbor::HasRightNeighbor(const HasRightNeighbor& other) {
+  std::unique_lock<std::shared_timed_mutex> lock_right_neighbor(
+      _mu_right_neighbor);
+  if (!other.right_neighbor()) {
+    throw std::invalid_argument(
+        "HasRightNeighbor: right_neighbor is null in copy");
+  }
+  _right_neighbor =
+      std::make_shared<device_structures::Connection>(*other.right_neighbor());
+}
+HasRightNeighbor& HasRightNeighbor::operator=(const HasRightNeighbor& other) {
+  if (this != &other) {
+    std::unique_lock<std::shared_timed_mutex> lock_right_neighbor(
+        _mu_right_neighbor);
+    if (!other.right_neighbor()) {
+      throw std::invalid_argument(
+          "HasRightNeighbor: right_neighbor is null in copy");
+    }
+    _right_neighbor = std::make_shared<device_structures::Connection>(
+        *other.right_neighbor());
+  }
+  return *this;
+}
 HasRightNeighbor::HasRightNeighbor() = default;
 HasRightNeighbor::HasRightNeighbor(
     device_structures::ConnectionSP right_neighbor)
@@ -18,6 +40,7 @@ HasRightNeighbor::HasRightNeighbor(
 }
 
 device_structures::ConnectionSP HasRightNeighbor::right_neighbor() const {
+  std::shared_lock<std::shared_timed_mutex> lock(_mu_right_neighbor);
   return _right_neighbor;
 }
 

@@ -23,29 +23,12 @@ InterpretationContainerStringHandle InterpretationContainerString_create(MapInte
 // @category:deallocation
 void InterpretationContainerString_destroy(InterpretationContainerStringHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: InterpretationContainerString_unit | falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::unit */
-/**
- * @brief Returns the unit that all contexts in this constainer must have.
- */
 SymbolUnitHandle InterpretationContainerString_unit(
      InterpretationContainerStringHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: InterpretationContainerString_select_by_connection | falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connection */
-/**
- * @brief Select contexts that involve a specific connection.
- * @param connection The connection to search for.
- * @returns A list of contexts that involve the specified connection in either
- * independant or dependant variables.
- */
 ListInterpretationContextHandle InterpretationContainerString_select_by_connection(
     InterpretationContainerStringHandle handle, ConnectionHandle connection);
 // @category:read
-/* AUTO-DOC from cpp: InterpretationContainerString_select_by_connections | falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connections */
-/**
- * @brief Select contexts that involve all of the specified connections.
- * @param connections List of connections to search for.
- * @returns A list of contexts that involve all specified connections.
- */
 ListInterpretationContextHandle InterpretationContainerString_select_by_connections(
                     InterpretationContainerStringHandle handle, ConnectionsHandle connections);
 // @category:read

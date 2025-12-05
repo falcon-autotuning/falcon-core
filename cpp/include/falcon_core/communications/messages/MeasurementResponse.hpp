@@ -11,8 +11,11 @@ namespace messages {
 
 class MeasurementResponse : public BaseMessage {
   math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray> _arrays;
+  mutable std::shared_timed_mutex _mu_arrays;
 
  public:
+  MeasurementResponse(const MeasurementResponse& other);
+  MeasurementResponse& operator=(const MeasurementResponse& other);
   MeasurementResponse(
       const math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>&
           arrays);
@@ -27,6 +30,7 @@ class MeasurementResponse : public BaseMessage {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_a(_mu_arrays);
     ar(cereal::base_class<BaseMessage>(this), _arrays);
   }
 };

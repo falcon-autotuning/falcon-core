@@ -26,8 +26,12 @@ class Vector : public generic::Map<physics::device_structures::Connection,
                                    generic::Pair<Quantity, Quantity>> {
   physics::units::SymbolUnitSP              _unit;
   physics::device_structures::ConnectionsSP _connections;
+  mutable std::shared_timed_mutex           _mu_unit;
+  mutable std::shared_timed_mutex           _mu_connections;
 
  public:
+  Vector(const Vector& other);
+  Vector& operator=(const Vector& other);
   Vector(const PointSP& start, const PointSP& end);
   Vector(const PointSP& end);
   Vector(const generic::MapSP<physics::device_structures::Connection, Quantity>&
@@ -173,6 +177,11 @@ class Vector : public generic::Map<physics::device_structures::Connection,
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
+                                                        std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_connections(_mu_connections,
+                                                               std::defer_lock);
+    std::lock(lock_unit, lock_connections);
     ar(cereal::base_class<generic::Map<physics::device_structures::Connection,
                                        generic::Pair<Quantity, Quantity>>>(
            this),

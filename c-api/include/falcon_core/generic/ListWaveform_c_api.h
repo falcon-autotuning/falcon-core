@@ -27,17 +27,8 @@ size_t ListWaveform_size(ListWaveformHandle handle);
 // @category:read
 bool ListWaveform_empty(ListWaveformHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListWaveform_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListWaveform_erase_at(ListWaveformHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListWaveform_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListWaveform_clear(ListWaveformHandle handle);
 // @category:read
 WaveformHandle ListWaveform_at(ListWaveformHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListWaveform_contains(ListWaveformHandle handle, WaveformHandle value);
 // @category:read
 size_t ListWaveform_index(ListWaveformHandle handle, WaveformHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListWaveform_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListWaveformHandle ListWaveform_intersection(ListWaveformHandle handle, ListWaveformHandle other);
 // @category:read
 bool ListWaveform_equal(ListWaveformHandle a, ListWaveformHandle b);

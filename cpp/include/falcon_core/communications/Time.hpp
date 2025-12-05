@@ -1,5 +1,7 @@
 #pragma once
 
+#include <shared_mutex>
+
 #include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core {
@@ -8,7 +10,8 @@ namespace communications {
  * @brief Represents a point in time with microsecond precision.
  */
 class Time : public generic::Song {
-  long long _micro_seconds_since_epoch;
+  long long                       _micro_seconds_since_epoch;
+  mutable std::shared_timed_mutex _mu_time;
 
  protected:
   friend class cereal::access;
@@ -18,6 +21,8 @@ class Time : public generic::Song {
   }
 
  public:
+  Time(const Time& other);
+  Time& operator=(const Time& other);
   /**
    * @brief Construct a Tiem object at the current time.
    */
@@ -45,6 +50,8 @@ class Time : public generic::Song {
    * @return A string representation of the Time.
    */
   const std::string to_string() const;
+  bool              operator==(const Time& other);
+  bool              operator!=(const Time& other);
 };
 }  // namespace communications
 }  // namespace falcon_core

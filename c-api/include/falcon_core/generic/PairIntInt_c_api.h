@@ -10,26 +10,12 @@ typedef void* PairIntIntHandle;
 // Function declarations
 
 // @category:allocation
-/* AUTO-DOC from cpp: PairIntInt_create | falcon_core::generic::Pair::create */
-/**
- * @brief Store a pair of values.
- * @param first The first value.
- * @param second The second value.
- */
 PairIntIntHandle PairIntInt_create(int first, int second);
 // @category:deallocation
 void PairIntInt_destroy(PairIntIntHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: PairIntInt_first | falcon_core::generic::Pair::first */
-/**
- * @brief Get the stored first value.
- */
 int PairIntInt_first(PairIntIntHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: PairIntInt_second | falcon_core::generic::Pair::second */
-/**
- * @brief Get the stored second value.
- */
 int PairIntInt_second(PairIntIntHandle handle);
 // @category:read
 bool PairIntInt_equal(PairIntIntHandle a, PairIntIntHandle b);

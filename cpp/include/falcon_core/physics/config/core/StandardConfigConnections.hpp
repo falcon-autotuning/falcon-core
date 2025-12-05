@@ -17,8 +17,15 @@ class StandardConfigConnections : public generic::Song {
   device_structures::ConnectionsSP _plunger_gates;
   device_structures::ConnectionsSP _barrier_gates;
   device_structures::ConnectionsSP _ohmics;
+  mutable std::shared_timed_mutex  _mu_screening_gates;
+  mutable std::shared_timed_mutex  _mu_reservoir_gates;
+  mutable std::shared_timed_mutex  _mu_plunger_gates;
+  mutable std::shared_timed_mutex  _mu_barrier_gates;
+  mutable std::shared_timed_mutex  _mu_ohmics;
 
  public:
+  StandardConfigConnections(const StandardConfigConnections& other);
+  StandardConfigConnections& operator=(const StandardConfigConnections& other);
   /**
    * @brief Constructs the differet gate types holders.
    * @param screening_gates The screening gates.
@@ -136,6 +143,21 @@ class StandardConfigConnections : public generic::Song {
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_screening_gates(
+        _mu_screening_gates, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_reservoir_gates(
+        _mu_reservoir_gates, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_plunger_gates(
+        _mu_plunger_gates, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_barrier_gates(
+        _mu_barrier_gates, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_ohmics(_mu_ohmics,
+                                                          std::defer_lock);
+    std::lock(lock_screening_gates,
+              lock_reservoir_gates,
+              lock_plunger_gates,
+              lock_barrier_gates,
+              lock_ohmics);
     ar(cereal::base_class<generic::Song>(this),
        _screening_gates,
        _reservoir_gates,

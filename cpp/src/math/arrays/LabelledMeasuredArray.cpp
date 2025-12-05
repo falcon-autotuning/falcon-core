@@ -21,6 +21,18 @@ const generic::FArray<double>& lma_check_and_defref(
         "LabelledControlArray: The array must not be null.");
   return *array;
 }
+LabelledMeasuredArray::LabelledMeasuredArray(const LabelledMeasuredArray& other)
+    : MeasuredArray(other) {
+  _label = other.label();
+}
+LabelledMeasuredArray& LabelledMeasuredArray::operator=(
+    const LabelledMeasuredArray& other) {
+  if (this != &other) {
+    MeasuredArray::operator=(other);
+    _label = other.label();
+  }
+  return *this;
+}
 LabelledMeasuredArray::LabelledMeasuredArray() : MeasuredArray() {}
 LabelledMeasuredArray::LabelledMeasuredArray(
     const arrays::MeasuredArraySP&                              array,

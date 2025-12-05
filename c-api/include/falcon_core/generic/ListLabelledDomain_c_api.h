@@ -27,17 +27,8 @@ size_t ListLabelledDomain_size(ListLabelledDomainHandle handle);
 // @category:read
 bool ListLabelledDomain_empty(ListLabelledDomainHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListLabelledDomain_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListLabelledDomain_erase_at(ListLabelledDomainHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListLabelledDomain_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListLabelledDomain_clear(ListLabelledDomainHandle handle);
 // @category:read
 LabelledDomainHandle ListLabelledDomain_at(ListLabelledDomainHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListLabelledDomain_contains(ListLabelledDomainHandle handle, LabelledDomain
 // @category:read
 size_t ListLabelledDomain_index(ListLabelledDomainHandle handle, LabelledDomainHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListLabelledDomain_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListLabelledDomainHandle ListLabelledDomain_intersection(ListLabelledDomainHandle handle, ListLabelledDomainHandle other);
 // @category:read
 bool ListLabelledDomain_equal(ListLabelledDomainHandle a, ListLabelledDomainHandle b);

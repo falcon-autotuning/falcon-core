@@ -13,6 +13,8 @@ class DotGateWithNeighbors : public device_structures::Connection,
                              public HasLeftNeighbor,
                              public HasRightNeighbor {
  public:
+  DotGateWithNeighbors(const DotGateWithNeighbors& other);
+  DotGateWithNeighbors& operator=(const DotGateWithNeighbors& other);
   DotGateWithNeighbors(std::string                      name,
                        device_structures::DeviceFeature type,
                        device_structures::ConnectionSP  left_neighbor,

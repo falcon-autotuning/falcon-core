@@ -4,6 +4,7 @@
 
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
+#include "falcon_core/generic/CategoryTags.hpp"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/generic/Pair.hpp"
@@ -15,18 +16,53 @@ namespace interpretations {
 template <typename Value>
 class InterpretationContainer
     : public generic::Map<InterpretationContext, Value> {
-  physics::units::SymbolUnitSP _unit;
+  physics::units::SymbolUnitSP    _unit;
+  mutable std::shared_timed_mutex _mu_unit;
 
  protected:
   InterpretationContainer() = default;
   friend class cereal::access;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_u(_mu_unit);
     ar(cereal::base_class<generic::Map<InterpretationContext, Value>>(this),
        _unit);
   }
 
  public:
+  InterpretationContainer(const InterpretationContainer<Value>& other)
+      : generic::Map<InterpretationContext, Value>(other) {
+    std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_unit,
+                                                     std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_u(_mu_unit, std::defer_lock);
+    std::lock(lock_o, lock_u);
+    if (!other._unit) {
+      throw std::invalid_argument(
+          "InterpretationContainer copy constructor: Other "
+          "InterpretationContainer "
+          "contains null shared pointer.");
+    }
+    _unit = std::make_shared<physics::units::SymbolUnit>(*other._unit);
+  }
+  InterpretationContext& operator=(
+      const InterpretationContainer<Value>& other) {
+    if (this != &other) {
+      std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_unit,
+                                                       std::defer_lock);
+      std::unique_lock<std::shared_timed_mutex> lock_u(_mu_unit,
+                                                       std::defer_lock);
+      std::lock(lock_o, lock_u);
+      if (!other._unit) {
+        throw std::invalid_argument(
+            "InterpretationContainer copy constructor: Other "
+            "InterpretationContainer "
+            "contains null shared pointer.");
+      }
+      _unit = std::make_shared<physics::units::SymbolUnit>(*other._unit);
+      generic::Map<InterpretationContext, Value>::operator=(other);
+    }
+    return *this;
+  }
   /**
    * @brief A container for interpretations of the contents.
    * @param contexts The list of contexts.
@@ -52,7 +88,10 @@ class InterpretationContainer
   /**
    * @brief Returns the unit that all contexts in this constainer must have.
    */
-  const physics::units::SymbolUnitSP unit() const { return _unit; }
+  const physics::units::SymbolUnitSP unit() const {
+    std::shared_lock<std::shared_timed_mutex> lock_u(_mu_unit);
+    return _unit;
+  }
   /**
    * @brief Select contexts that involve a specific connection.
    * @param connection The connection to search for.
@@ -186,7 +225,7 @@ class InterpretationContainer
     std::vector<InterpretationContextSP> matching_contexts =
         std::vector<InterpretationContextSP>();
     generic::List<generic::Pair<InterpretationContext, Value>> items =
-        this->items();
+        *this->items();
     for (generic::PairSP<InterpretationContext, Value>& kv : items) {
       matching_contexts.push_back(kv->first());
     }
@@ -247,6 +286,48 @@ class InterpretationContainer
     auto result = std::make_shared<generic::List<InterpretationContext>>(
         matching_contexts);
     return result;
+  }
+  bool operator==(const InterpretationContainer<Value>& other) const {
+    if (this->size() != other.size()) return false;
+    std::vector<size_t> unmatched_indexes(this->size());
+    for (size_t i = 0; i < this->size(); ++i) {
+      unmatched_indexes[i] = i;
+    }
+    auto our_items   = this->items();
+    auto other_items = other.items();
+    for (size_t i = 0; i < our_items->size(); ++i) {
+      const auto& our_pair = our_items->at(i);
+      bool        matched  = false;
+      for (size_t j = 0; j < other_items->size(); ++j) {
+        if (std::find(unmatched_indexes.begin(), unmatched_indexes.end(), j) ==
+            unmatched_indexes.end()) {
+          continue;
+        }
+        const auto& other_pair = other_items->at(j);
+        if (*our_pair->first() == *other_pair->first()) {
+          if (!compare_value(our_pair->second(),
+                             other_pair->second(),
+                             generic::category::is_shared_ptr<
+                                 typename std::remove_reference<
+                                     decltype(our_pair->second())>::type>())) {
+            return false;
+          }
+          matched = true;
+          unmatched_indexes.erase(
+              std::remove(
+                  unmatched_indexes.begin(), unmatched_indexes.end(), j),
+              unmatched_indexes.end());
+          break;
+        }
+      }
+      if (!matched) {
+        return false;
+      }
+    }
+    return true;
+  }
+  bool operator!=(const InterpretationContainer<Value>& other) const {
+    return !(*this == other);
   }
 };
 template <typename Value>

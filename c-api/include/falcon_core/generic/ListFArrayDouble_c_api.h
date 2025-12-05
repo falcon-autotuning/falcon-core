@@ -27,17 +27,8 @@ size_t ListFArrayDouble_size(ListFArrayDoubleHandle handle);
 // @category:read
 bool ListFArrayDouble_empty(ListFArrayDoubleHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: ListFArrayDouble_erase_at | falcon_core::generic::List::erase_at */
-/**
- * @brief Allows for targetted eraseall of elements at an index.
- * @param idx The index to erase at.
- */
 void ListFArrayDouble_erase_at(ListFArrayDoubleHandle handle, size_t idx);
 // @category:write
-/* AUTO-DOC from cpp: ListFArrayDouble_clear | falcon_core::generic::List::clear */
-/**
- * @brief clears to contents of the list.
- */
 void ListFArrayDouble_clear(ListFArrayDoubleHandle handle);
 // @category:read
 FArrayDoubleHandle ListFArrayDouble_at(ListFArrayDoubleHandle handle, size_t idx);
@@ -48,12 +39,6 @@ bool ListFArrayDouble_contains(ListFArrayDoubleHandle handle, FArrayDoubleHandle
 // @category:read
 size_t ListFArrayDouble_index(ListFArrayDoubleHandle handle, FArrayDoubleHandle value);
 // @category:read
-/* AUTO-DOC from cpp: ListFArrayDouble_intersection | falcon_core::generic::List::intersection */
-/**
- * @brief Finds the intersection between this list and another.
- * @param other the other list to compare again.
- * @returns A list of values containing elements from both.
- */
 ListFArrayDoubleHandle ListFArrayDouble_intersection(ListFArrayDoubleHandle handle, ListFArrayDoubleHandle other);
 // @category:read
 bool ListFArrayDouble_equal(ListFArrayDoubleHandle a, ListFArrayDoubleHandle b);

@@ -49,22 +49,9 @@ class Song {
  public:
   virtual ~Song() = default;
   /**
-   * @brief cereal serialization interface.
-   * Override in derived classes.
-   */
-  template <class Archive>
-  void serialize(Archive&) {}
-
-  /**
    * @brief Serialize this object to a JSON string.
    */
   std::string to_json_string() const;
-
-  /**
-   * @brief Serialize this object to a JSON archive (output stream).
-   */
-  void to_json_stream(std::ostream& os) const;
-
   /**
    * @brief Deserialize an object from a JSON string.
    * @return std::shared_ptr<Song> (actually the derived type)
@@ -74,6 +61,19 @@ class Song {
     std::istringstream iss(json);
     return from_json_stream<T>(iss);
   }
+
+  /**
+   * @brief cereal serialization interface.
+   * Override in derived classes.
+   */
+  template <class Archive>
+  void serialize(Archive&) {}
+
+ private:
+  /**
+   * @brief Serialize this object to a JSON archive (output stream).
+   */
+  void to_json_stream(std::ostream& os) const;
 
   /**
    * @brief Deserialize an object from a JSON archive (input stream).
@@ -91,12 +91,6 @@ class Song {
     }
     return casted;
   }
-  /**
-   * @brief Equality operator.
-   * Override in derived classes to compare member variables.
-   */
-  bool operator==(const Song& other) const;
-  bool operator!=(const Song& other) const;
 };
 using SongSP = std::shared_ptr<Song>;
 }  // namespace generic

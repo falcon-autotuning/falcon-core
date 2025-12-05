@@ -4,22 +4,13 @@ namespace falcon_core {
 namespace physics {
 namespace device_structures {
 
-Impedances::Impedances() = default;
+Impedances::Impedances() : generic::List<Impedance>() {}
 
 Impedances::Impedances(const std::vector<ImpedanceSP>& vec)
     : List<Impedance>(vec) {}
 bool Impedances::operator==(const Impedances& other) const {
-  if (size() != other.size()) {
-    return false;
-  }
-  for (size_t i = 0; i < size(); i++) {
-    const ImpedanceSP our_conn   = this->at(i);
-    const ImpedanceSP other_conn = other.at(i);
-    if (*our_conn != *other_conn) {
-      return false;
-    }
-  }
-  return true;
+  return static_cast<const List<Impedance>&>(*this) ==
+         static_cast<const List<Impedance>&>(other);
 }
 bool Impedances::operator!=(const Impedances& other) const {
   return !(*this == other);

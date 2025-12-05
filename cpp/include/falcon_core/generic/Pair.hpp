@@ -1,5 +1,6 @@
 #pragma once
-#include <memory>
+#include <mutex>
+#include <shared_mutex>
 
 #include "falcon_core/generic/CategoryTags.hpp"
 #include "falcon_core/generic/Song.hpp"
@@ -27,10 +28,35 @@ class Pair : public generic::Song {
                                 T2>::type;
 
  private:
-  StoredT1 _first;
-  StoredT2 _second;
+  StoredT1                        _first;
+  StoredT2                        _second;
+  mutable std::shared_timed_mutex _mu_first;
+  mutable std::shared_timed_mutex _mu_second;
 
  public:
+  Pair<T1, T2>(const Pair<T1, T2>& other) {
+    std::shared_lock<std::shared_timed_mutex> lock_first(_mu_first,
+                                                         std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_second(_mu_second,
+                                                          std::defer_lock);
+    std::lock(lock_first, lock_second);
+    copy_impl(other,
+              typename category::determine_tag<T1>::type{},
+              typename category::determine_tag<T2>::type{});
+  }
+  Pair<T1, T2>& operator=(const Pair<T1, T2>& other) {
+    if (this != &other) {
+      std::shared_lock<std::shared_timed_mutex> lock_first(_mu_first,
+                                                           std::defer_lock);
+      std::shared_lock<std::shared_timed_mutex> lock_second(_mu_second,
+                                                            std::defer_lock);
+      std::lock(lock_first, lock_second);
+      copy_impl(other,
+                typename category::determine_tag<T1>::type{},
+                typename category::determine_tag<T2>::type{});
+    }
+    return *this;
+  }
   /**
    * @brief Store a pair of values.
    * @param first The first value.
@@ -51,19 +77,31 @@ class Pair : public generic::Song {
   /**
    * @brief Get the stored first value.
    */
-  const StoredT1& first() const { return _first; }
+  const StoredT1& first() const {
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_first);
+    return _first;
+  }
   /**
    * @brief Get the stored second value.
    */
-  const StoredT2& second() const { return _second; }
+  const StoredT2& second() const {
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_second);
+    return _second;
+  }
   /**
    * @brief Get the stored first value.
    */
-  StoredT1& first() { return _first; }
+  StoredT1& first() {
+    std::unique_lock<std::shared_timed_mutex> lock(_mu_first);
+    return _first;
+  }
   /**
    * @brief Get the stored second value.
    */
-  StoredT2& second() { return _second; }
+  StoredT2& second() {
+    std::unique_lock<std::shared_timed_mutex> lock(_mu_second);
+    return _second;
+  }
 
   bool operator==(const Pair<T1, T2>& other) const {
     return operator_equal_impl(other,
@@ -77,6 +115,11 @@ class Pair : public generic::Song {
   Pair() = default;
   template <class Archive>
   void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_first(_mu_first,
+                                                         std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_second(_mu_second,
+                                                          std::defer_lock);
+    std::lock(lock_first, lock_second);
     ar(cereal::base_class<generic::Song>(this), _first, _second);
   }
   // Case 1: Both T1 and T2 are primitive
@@ -84,28 +127,53 @@ class Pair : public generic::Song {
   bool operator_equal_impl(const Pair<U1, U2>& other,
                            category::primitive_tag,
                            category::primitive_tag) const {
-    return (_first == other._first) && (_second == other._second);
+    return (first() == other.first()) && (second() == other.second());
   }
   // Case 2: T1 is primitive, T2 is Song
   template <typename U1, typename U2>
   bool operator_equal_impl(const Pair<U1, U2>& other,
                            category::primitive_tag,
                            category::song_tag) const {
-    return (_first == other._first) && (*_second == *other._second);
+    return (first() == other.first()) && (*second() == *other.second());
   }
   // Case 3: U1 is a Song and U2 is primitive
   template <typename U1, typename U2>
   bool operator_equal_impl(const Pair<U1, U2>& other,
                            category::song_tag,
                            category::primitive_tag) const {
-    return (*_first == *other._first) && (_second == other._second);
+    return (*first() == *other.first()) && (second() == other.second());
   }
   // Case 4: Both U1 and U2 are Song
   template <typename U1, typename U2>
   bool operator_equal_impl(const Pair<U1, U2>& other,
                            category::song_tag,
                            category::song_tag) const {
-    return (*_first == *other._first) && (*_second == *other._second);
+    return (*first() == *other.first()) && (*second() == *other.second());
+  }
+  // Tag dispatch for deep copy
+  void copy_impl(const Pair<T1, T2>& other,
+                 category::primitive_tag,
+                 category::primitive_tag) {
+    _first  = other.first();
+    _second = other.second();
+  }
+  void copy_impl(const Pair<T1, T2>& other,
+                 category::primitive_tag,
+                 category::song_tag) {
+    _first  = other.first();
+    _second = std::make_shared<T2>(*other.second());
+  }
+  void copy_impl(const Pair<T1, T2>& other,
+                 category::song_tag,
+                 category::primitive_tag) {
+    _first  = std::make_shared<T1>(*other.first());
+    _second = other._second;
+  }
+  void copy_impl(const Pair<T1, T2>& other,
+                 category::song_tag,
+                 category::song_tag) {
+    _first  = std::make_shared<T1>(*other.first());
+    _second = std::make_shared<T2>(*other.second());
   }
 };
 template <typename T1, typename T2>

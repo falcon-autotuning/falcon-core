@@ -66,14 +66,6 @@ class DotGatesWithNeighbors
   bool is_barrier_gates() const;
   bool operator==(const DotGatesWithNeighbors& other) const;
   bool operator!=(const DotGatesWithNeighbors& other) const;
-
- protected:
-  friend class cereal::access;
-  template <class Archive>
-  void serialize(Archive& ar) {
-    ar(cereal::base_class<falcon_core::generic::List<DotGateWithNeighbors>>(
-        this));
-  }
 };
 using DotGatesWithNeighborsSP = std::shared_ptr<DotGatesWithNeighbors>;
 }  // namespace geometries

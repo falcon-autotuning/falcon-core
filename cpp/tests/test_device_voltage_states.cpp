@@ -46,7 +46,7 @@ TEST_F(DeviceVoltageStatesTest, StatesGetter) {
   DeviceVoltageStates dvs(list);
   auto                states = dvs.states();
   EXPECT_EQ(states->size(), 1);
-  EXPECT_EQ(states->at(0), dvsA);
+  EXPECT_EQ(*states->at(0), *dvsA);
 }
 
 TEST_F(DeviceVoltageStatesTest, AddStateAndFindState) {
