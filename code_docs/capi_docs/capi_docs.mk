@@ -1,5 +1,5 @@
 # docs.mk
-.PHONY: docs-all docs-setup docs-run docs-coverage docs-teardown
+.PHONY: docs-all docs-setup docs-run docs-coverage docs-teardown docs-clean
 
 docs-all: docs-setup docs-run docs-coverage
 
