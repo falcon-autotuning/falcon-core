@@ -116,7 +116,13 @@ endif()
 
 file(GLOB_RECURSE C_API_SOURCES "src/*.cpp" "src/*.c")
 
-add_library(${C_API_LIB_NAME} SHARED ${C_API_SOURCES})
+# add_library(${C_API_LIB_NAME} SHARED ${C_API_SOURCES})
+if (WIN32)
+  add_library(${C_API_LIB_NAME} STATIC ${C_API_SOURCES})
+else()
+  add_library(${C_API_LIB_NAME} SHARED ${C_API_SOURCES})
+endif()
+
 set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD ON)
 set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD_BATCH_SIZE
                                                    ${BATCH_SIZE})
