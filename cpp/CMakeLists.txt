@@ -111,14 +111,7 @@ endif()
 
 file(GLOB_RECURSE FALCON_CORE_SOURCES CONFIGURE_DEPENDS "src/*.cpp")
 
-# add_library(${CPP_LIB_NAME} SHARED ${FALCON_CORE_SOURCES})
-if (WIN32)
-  # On Windows, avoid DLL export issues – build a static library
-  add_library(${CPP_LIB_NAME} STATIC ${FALCON_CORE_SOURCES})
-else()
-  add_library(${CPP_LIB_NAME} SHARED ${FALCON_CORE_SOURCES})
-endif()
-
+add_library(${CPP_LIB_NAME} SHARED ${FALCON_CORE_SOURCES})
 set_target_properties(${CPP_LIB_NAME} PROPERTIES UNITY_BUILD ON)
 set_target_properties(${CPP_LIB_NAME} PROPERTIES UNITY_BUILD_BATCH_SIZE
                                                  ${BATCH_SIZE})
