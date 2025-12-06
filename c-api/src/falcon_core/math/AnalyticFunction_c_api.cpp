@@ -22,21 +22,22 @@ AnalyticFunctionHandle AnalyticFunction_create(ListStringHandle labels,
   std::string expression_str(expression->raw, expression->length);
   falcon_core::generic::ListSP<std::string> labels_list =
       std::make_shared<falcon_core::generic::List<std::string>>(
-          static_cast<falcon_core::generic::List<std::string>*>(labels)
+          (*static_cast<falcon_core::generic::ListSP<std::string>*>(labels))
               ->items());
-  return new AnalyticFunction(labels_list, expression_str);
+  return new AnalyticFunctionSP(
+      std::make_shared<AnalyticFunction>(labels_list, expression_str));
   FALCON_C_API_END(nullptr)
 }
 
 AnalyticFunctionHandle AnalyticFunction_create_identity() {
   FALCON_C_API_BEGIN
-  return new AnalyticFunction(*AnalyticFunction::Identity());
+  return new AnalyticFunctionSP(AnalyticFunction::Identity());
   FALCON_C_API_END(nullptr)
 }
 
 AnalyticFunctionHandle AnalyticFunction_create_constant(double value) {
   FALCON_C_API_BEGIN
-  return new AnalyticFunction(*AnalyticFunction::Constant(value));
+  return new AnalyticFunctionSP(AnalyticFunction::Constant(value));
   FALCON_C_API_END(nullptr)
 }
 
@@ -46,7 +47,7 @@ void AnalyticFunction_destroy(AnalyticFunctionHandle handle) {
     throw std::invalid_argument(
         "AnalyticFunction_destroy: handle cannot be null");
   }
-  delete static_cast<AnalyticFunction*>(handle);
+  delete static_cast<AnalyticFunctionSP*>(handle);
   FALCON_C_API_END()
 }
 
@@ -56,8 +57,8 @@ ListStringHandle AnalyticFunction_labels(AnalyticFunctionHandle handle) {
     throw std::invalid_argument(
         "AnalyticFunction_labels: handle cannot be null");
   }
-  AnalyticFunction self = *static_cast<AnalyticFunction*>(handle);
-  return new falcon_core::generic::List<std::string>(*self.labels());
+  AnalyticFunctionSP self = *static_cast<AnalyticFunctionSP*>(handle);
+  return new falcon_core::generic::ListSP<std::string>(self->labels());
   FALCON_C_API_END(nullptr)
 }
 
@@ -73,11 +74,10 @@ double AnalyticFunction_evaluate(AnalyticFunctionHandle handle,
     throw std::invalid_argument(
         "AnalyticFunction_evaluate: args cannot be null");
   }
-  AnalyticFunction self = *static_cast<AnalyticFunction*>(handle);
+  AnalyticFunctionSP self = *static_cast<AnalyticFunctionSP*>(handle);
   falcon_core::generic::MapSP<std::string, double> args_map =
-      std::make_shared<falcon_core::generic::Map<std::string, double>>(
-          *static_cast<falcon_core::generic::Map<std::string, double>*>(args));
-  return self.evaluate(args_map, time);
+      *static_cast<falcon_core::generic::MapSP<std::string, double>*>(args);
+  return self->evaluate(args_map, time);
   FALCON_C_API_END(0.0)
 }
 
@@ -95,42 +95,41 @@ FArrayDoubleHandle AnalyticFunction_evaluate_arraywise(
     throw std::invalid_argument(
         "AnalyticFunction_evaluate_arraywise: args cannot be null");
   }
-  AnalyticFunction self = *static_cast<AnalyticFunction*>(handle);
+  AnalyticFunctionSP self = *static_cast<AnalyticFunctionSP*>(handle);
   falcon_core::generic::MapSP<std::string, double> args_map =
-      std::make_shared<falcon_core::generic::Map<std::string, double>>(
-          *static_cast<falcon_core::generic::Map<std::string, double>*>(args));
-  return new falcon_core::generic::FArray<double>(
-      *self.evaluate(args_map, deltaT, maxTime));
+      *static_cast<falcon_core::generic::MapSP<std::string, double>*>(args);
+  return new falcon_core::generic::FArraySP<double>(
+      self->evaluate(args_map, deltaT, maxTime));
   FALCON_C_API_END(nullptr)
 }
 
-bool AnalyticFunction_equal(AnalyticFunctionHandle a,
-                            AnalyticFunctionHandle b) {
+bool AnalyticFunction_equal(AnalyticFunctionHandle handle,
+                            AnalyticFunctionHandle other) {
   FALCON_C_API_BEGIN
-  if (!a) {
+  if (!handle) {
     throw std::invalid_argument("AnalyticFunction_equal: a cannot be null");
   }
-  if (!b) {
+  if (!other) {
     throw std::invalid_argument("AnalyticFunction_equal: b cannot be null");
   }
-  AnalyticFunction self_a = *static_cast<AnalyticFunction*>(a);
-  AnalyticFunction self_b = *static_cast<AnalyticFunction*>(b);
-  return self_a == self_b;
+  AnalyticFunctionSP self_a = *static_cast<AnalyticFunctionSP*>(handle);
+  AnalyticFunctionSP self_b = *static_cast<AnalyticFunctionSP*>(other);
+  return *self_a == *self_b;
   FALCON_C_API_END(false)
 }
 
-bool AnalyticFunction_not_equal(AnalyticFunctionHandle a,
-                                AnalyticFunctionHandle b) {
+bool AnalyticFunction_not_equal(AnalyticFunctionHandle handle,
+                                AnalyticFunctionHandle other) {
   FALCON_C_API_BEGIN
-  if (!a) {
+  if (!handle) {
     throw std::invalid_argument("AnalyticFunction_not_equal: a cannot be null");
   }
-  if (!b) {
+  if (!other) {
     throw std::invalid_argument("AnalyticFunction_not_equal: b cannot be null");
   }
-  AnalyticFunction self_a = *static_cast<AnalyticFunction*>(a);
-  AnalyticFunction self_b = *static_cast<AnalyticFunction*>(b);
-  return self_a != self_b;
+  AnalyticFunctionSP self_a = *static_cast<AnalyticFunctionSP*>(handle);
+  AnalyticFunctionSP self_b = *static_cast<AnalyticFunctionSP*>(other);
+  return *self_a != *self_b;
   FALCON_C_API_END(false)
 }
 
@@ -140,8 +139,8 @@ StringHandle AnalyticFunction_to_json_string(AnalyticFunctionHandle handle) {
     throw std::invalid_argument(
         "AnalyticFunction_to_json_string: handle cannot be null");
   }
-  AnalyticFunction self = *static_cast<AnalyticFunction*>(handle);
-  std::string      json = self.to_json_string();
+  AnalyticFunctionSP self = *static_cast<AnalyticFunctionSP*>(handle);
+  std::string        json = self->to_json_string();
   return String_create(json.c_str(), json.size());
   FALCON_C_API_END(nullptr)
 }
@@ -154,7 +153,7 @@ AnalyticFunctionHandle AnalyticFunction_from_json_string(StringHandle json) {
   }
   std::string json_str(json->raw, json->length);
   auto ptr = AnalyticFunction::from_json_string<AnalyticFunction>(json_str);
-  return new AnalyticFunction(*ptr);
+  return new AnalyticFunctionSP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }

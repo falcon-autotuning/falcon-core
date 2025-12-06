@@ -18,13 +18,11 @@ UnitSpaceHandle UnitSpace_create(AxesDiscretizerHandle axes,
     throw std::invalid_argument("UnitSpace_create: domain cannot be null");
   }
   AxesSP<falcon_core::math::discrete_spaces::Discretizer> real_axes =
-      std::make_shared<Axes<falcon_core::math::discrete_spaces::Discretizer>>(
-          *static_cast<Axes<falcon_core::math::discrete_spaces::Discretizer>*>(
-              axes));
+      *static_cast<AxesSP<falcon_core::math::discrete_spaces::Discretizer>*>(
+          axes);
   falcon_core::math::domains::DomainSP real_domain =
-      std::make_shared<falcon_core::math::domains::Domain>(
-          *static_cast<falcon_core::math::domains::Domain*>(domain));
-  return new UnitSpace(real_axes, real_domain);
+      *static_cast<falcon_core::math::domains::DomainSP*>(domain);
+  return new UnitSpaceSP(std::make_shared<UnitSpace>(real_axes, real_domain));
   FALCON_C_API_END(nullptr)
 }
 
@@ -37,9 +35,8 @@ UnitSpaceHandle UnitSpace_create_ray_space(double       dr,
         "UnitSpace_create_rayspace: domain cannot be null");
   }
   falcon_core::math::domains::DomainSP real_domain =
-      std::make_shared<falcon_core::math::domains::Domain>(
-          *static_cast<falcon_core::math::domains::Domain*>(domain));
-  return new UnitSpace(*UnitSpace::RaySpace(dr, dtheta, real_domain));
+      *static_cast<falcon_core::math::domains::DomainSP*>(domain);
+  return new UnitSpaceSP(UnitSpace::RaySpace(dr, dtheta, real_domain));
   FALCON_C_API_END(nullptr)
 }
 
@@ -54,12 +51,10 @@ UnitSpaceHandle UnitSpace_create_cartesian_space(AxesDoubleHandle deltas,
     throw std::invalid_argument(
         "UnitSpace_create_cartesianspace: deltas cannot be null");
   }
-  AxesSP<double> real_deltas =
-      std::make_shared<Axes<double>>(*static_cast<Axes<double>*>(deltas));
+  AxesSP<double> real_deltas = *static_cast<AxesSP<double>*>(deltas);
   falcon_core::math::domains::DomainSP real_domain =
-      std::make_shared<falcon_core::math::domains::Domain>(
-          *static_cast<falcon_core::math::domains::Domain*>(domain));
-  return new UnitSpace(*UnitSpace::CartesianSpace(real_deltas, real_domain));
+      *static_cast<falcon_core::math::domains::DomainSP*>(domain);
+  return new UnitSpaceSP(UnitSpace::CartesianSpace(real_deltas, real_domain));
   FALCON_C_API_END(nullptr)
 }
 
@@ -73,9 +68,8 @@ UnitSpaceHandle UnitSpace_create_cartesian_1D_space(double       delta,
   AxesSP<double> real_deltas =
       std::make_shared<Axes<double>>(Axes<double>(std::vector<double>{delta}));
   falcon_core::math::domains::DomainSP real_domain =
-      std::make_shared<falcon_core::math::domains::Domain>(
-          *static_cast<falcon_core::math::domains::Domain*>(domain));
-  return new UnitSpace(*UnitSpace::CartesianSpace(real_deltas, real_domain));
+      *static_cast<falcon_core::math::domains::DomainSP*>(domain);
+  return new UnitSpaceSP(UnitSpace::CartesianSpace(real_deltas, real_domain));
   FALCON_C_API_END(nullptr)
 }
 
@@ -93,9 +87,8 @@ UnitSpaceHandle UnitSpace_create_cartesian_2D_space(AxesDoubleHandle deltas,
   AxesSP<double> real_deltas =
       std::make_shared<Axes<double>>(*static_cast<Axes<double>*>(deltas));
   falcon_core::math::domains::DomainSP real_domain =
-      std::make_shared<falcon_core::math::domains::Domain>(
-          *static_cast<falcon_core::math::domains::Domain*>(domain));
-  return new UnitSpace(*UnitSpace::CartesianSpace(real_deltas, real_domain));
+      *static_cast<falcon_core::math::domains::DomainSP*>(domain);
+  return new UnitSpaceSP(UnitSpace::CartesianSpace(real_deltas, real_domain));
   FALCON_C_API_END(nullptr)
 }
 
@@ -104,7 +97,7 @@ void UnitSpace_destroy(UnitSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_destroy: handle cannot be null");
   }
-  delete static_cast<UnitSpace*>(handle);
+  delete static_cast<UnitSpaceSP*>(handle);
   FALCON_C_API_END()
 }
 
@@ -113,9 +106,9 @@ AxesDiscretizerHandle UnitSpace_axes(UnitSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_axes: handle cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
-  return new Axes<falcon_core::math::discrete_spaces::Discretizer>(
-      *self.axes());
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
+  return new AxesSP<falcon_core::math::discrete_spaces::Discretizer>(
+      self->axes());
   FALCON_C_API_END(nullptr)
 }
 
@@ -124,8 +117,8 @@ DomainHandle UnitSpace_domain(UnitSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_domain: handle cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
-  return new falcon_core::math::domains::Domain(*self.domain());
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
+  return new falcon_core::math::domains::DomainSP(self->domain());
   FALCON_C_API_END(nullptr)
 }
 
@@ -134,12 +127,12 @@ UnitSpaceHandle UnitSpace_space(UnitSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_space: handle cannot be null");
   }
-  UnitSpace self      = *static_cast<UnitSpace*>(handle);
-  auto      space_ptr = self.space();
+  UnitSpaceSP self      = *static_cast<UnitSpaceSP*>(handle);
+  auto        space_ptr = self->space();
   if (!space_ptr) {
     throw std::runtime_error("UnitSpace_space: space() returned nullptr");
   }
-  return new falcon_core::generic::FArray<double>(*space_ptr);
+  return new falcon_core::generic::FArraySP<double>(space_ptr);
   FALCON_C_API_END(nullptr)
 }
 
@@ -148,8 +141,8 @@ ListIntHandle UnitSpace_shape(UnitSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_shape: handle cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
-  return new falcon_core::generic::List<int>(*self.shape());
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
+  return new falcon_core::generic::ListSP<int>(self->shape());
   FALCON_C_API_END(nullptr)
 }
 
@@ -158,7 +151,7 @@ size_t UnitSpace_dimension(UnitSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_dimension: handle cannot be null");
   }
-  UnitSpace* self = static_cast<UnitSpace*>(handle);
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
   return self->dimension();
   FALCON_C_API_END(0)
 }
@@ -168,7 +161,7 @@ void UnitSpace_compile(UnitSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_compile: handle cannot be null");
   }
-  UnitSpace* self = static_cast<UnitSpace*>(handle);
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
   self->compile();
   FALCON_C_API_END()
 }
@@ -183,11 +176,10 @@ AxesControlArrayHandle UnitSpace_create_array(UnitSpaceHandle handle,
   if (!axes) {
     throw std::invalid_argument("UnitSpace_create_array: axes cannot be null");
   }
-  UnitSpace   self = *static_cast<UnitSpace*>(handle);
-  AxesSP<int> real_axes =
-      std::make_shared<Axes<int>>(*static_cast<Axes<int>*>(axes));
-  return new Axes<falcon_core::math::arrays::ControlArray>(
-      *self.create_array(real_axes));
+  UnitSpaceSP self      = *static_cast<UnitSpaceSP*>(handle);
+  AxesSP<int> real_axes = *static_cast<AxesSP<int>*>(axes);
+  return new AxesSP<falcon_core::math::arrays::ControlArray>(
+      self->create_array(real_axes));
   FALCON_C_API_END(nullptr)
 }
 
@@ -199,11 +191,9 @@ void UnitSpace_push_back(UnitSpaceHandle handle, DiscretizerHandle value) {
   if (!value) {
     throw std::invalid_argument("UnitSpace_push_back: value cannot be null");
   }
-  UnitSpace* self = static_cast<UnitSpace*>(handle);
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
   falcon_core::math::discrete_spaces::DiscretizerSP real_value =
-      std::make_shared<falcon_core::math::discrete_spaces::Discretizer>(
-          *static_cast<falcon_core::math::discrete_spaces::Discretizer*>(
-              value));
+      *static_cast<falcon_core::math::discrete_spaces::DiscretizerSP*>(value);
   self->push_back(real_value);
   FALCON_C_API_END()
 }
@@ -213,8 +203,8 @@ size_t UnitSpace_size(UnitSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_size: handle cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
-  return self.size();
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
+  return self->size();
   FALCON_C_API_END(0)
 }
 
@@ -223,8 +213,8 @@ bool UnitSpace_empty(UnitSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_empty: handle cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
-  return self.empty();
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
+  return self->empty();
   FALCON_C_API_END(false)
 }
 
@@ -233,8 +223,8 @@ void UnitSpace_erase_at(UnitSpaceHandle handle, size_t idx) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_erase_at: handle cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
-  self.erase_at(idx);
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
+  self->erase_at(idx);
   FALCON_C_API_END()
 }
 
@@ -243,7 +233,7 @@ void UnitSpace_clear(UnitSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_clear: handle cannot be null");
   }
-  UnitSpace* self = static_cast<UnitSpace*>(handle);
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
   self->clear();
   FALCON_C_API_END()
 }
@@ -253,9 +243,9 @@ DiscretizerHandle UnitSpace_at(UnitSpaceHandle handle, size_t idx) {
   if (!handle) {
     throw std::invalid_argument("UnitSpace_at: handle cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
-  falcon_core::math::discrete_spaces::DiscretizerSP result = self.at(idx);
-  return new falcon_core::math::discrete_spaces::Discretizer(*result);
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
+  falcon_core::math::discrete_spaces::DiscretizerSP result = self->at(idx);
+  return new falcon_core::math::discrete_spaces::DiscretizerSP(result);
   FALCON_C_API_END(nullptr)
 }
 
@@ -269,17 +259,16 @@ size_t UnitSpace_items(UnitSpaceHandle    handle,
   if (!out_buffer) {
     throw std::invalid_argument("UnitSpace_items: out_buffer cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
-  if (self.size() > buffer_size) {
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
+  if (self->size() > buffer_size) {
     throw std::runtime_error(
         "Trying to store more datapoints than buffer allocated.");
   }
-  for (size_t i = 0; i < self.size(); ++i) {
-    falcon_core::math::discrete_spaces::DiscretizerSP result = self.items()[i];
+  for (size_t i = 0; i < self->size(); ++i) {
     out_buffer[i] =
-        new falcon_core::math::discrete_spaces::Discretizer(*result);
+        new falcon_core::math::discrete_spaces::DiscretizerSP(self->items()[i]);
   }
-  return self.size();
+  return self->size();
   FALCON_C_API_END(0)
 }
 
@@ -291,12 +280,10 @@ bool UnitSpace_contains(UnitSpaceHandle handle, DiscretizerHandle value) {
   if (!value) {
     throw std::invalid_argument("UnitSpace_contains: value cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
   falcon_core::math::discrete_spaces::DiscretizerSP real_value =
-      std::make_shared<falcon_core::math::discrete_spaces::Discretizer>(
-          *static_cast<falcon_core::math::discrete_spaces::Discretizer*>(
-              value));
-  return self.contains(real_value);
+      *static_cast<falcon_core::math::discrete_spaces::DiscretizerSP*>(value);
+  return self->contains(real_value);
   FALCON_C_API_END(false)
 }
 
@@ -308,12 +295,10 @@ size_t UnitSpace_index(UnitSpaceHandle handle, DiscretizerHandle value) {
   if (!value) {
     throw std::invalid_argument("UnitSpace_index: value cannot be null");
   }
-  UnitSpace self = *static_cast<UnitSpace*>(handle);
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
   falcon_core::math::discrete_spaces::DiscretizerSP real_value =
-      std::make_shared<falcon_core::math::discrete_spaces::Discretizer>(
-          *static_cast<falcon_core::math::discrete_spaces::Discretizer*>(
-              value));
-  return self.index(real_value);
+      *static_cast<falcon_core::math::discrete_spaces::DiscretizerSP*>(value);
+  return self->index(real_value);
   FALCON_C_API_END(0)
 }
 
@@ -327,42 +312,42 @@ UnitSpaceHandle UnitSpace_intersection(UnitSpaceHandle handle,
   if (!other) {
     throw std::invalid_argument("UnitSpace_intersection: other cannot be null");
   }
-  UnitSpace self  = *static_cast<UnitSpace*>(handle);
-  UnitSpace oself = *static_cast<UnitSpace*>(other);
+  UnitSpaceSP self  = *static_cast<UnitSpaceSP*>(handle);
+  UnitSpaceSP oself = *static_cast<UnitSpaceSP*>(other);
   falcon_core::generic::ListSP<falcon_core::math::discrete_spaces::Discretizer>
-      result = self.intersection(std::make_shared<UnitSpace>(oself));
-  return new UnitSpace(
+      result = self->intersection(oself);
+  return new UnitSpaceSP(std::make_shared<UnitSpace>(
       std::make_shared<Axes<falcon_core::math::discrete_spaces::Discretizer>>(
           result),
-      self.domain());
+      self->domain()));
   FALCON_C_API_END(nullptr)
 }
 
-bool UnitSpace_equal(UnitSpaceHandle a, UnitSpaceHandle b) {
+bool UnitSpace_equal(UnitSpaceHandle handle, UnitSpaceHandle other) {
   FALCON_C_API_BEGIN
-  if (!a) {
+  if (!handle) {
     throw std::invalid_argument("UnitSpace_equal: a cannot be null");
   }
-  if (!b) {
+  if (!other) {
     throw std::invalid_argument("UnitSpace_equal: b cannot be null");
   }
-  UnitSpace self_a = *static_cast<UnitSpace*>(a);
-  UnitSpace self_b = *static_cast<UnitSpace*>(b);
-  return self_a == self_b;
+  UnitSpaceSP self_a = *static_cast<UnitSpaceSP*>(handle);
+  UnitSpaceSP self_b = *static_cast<UnitSpaceSP*>(other);
+  return *self_a == *self_b;
   FALCON_C_API_END(false)
 }
 
-bool UnitSpace_not_equal(UnitSpaceHandle a, UnitSpaceHandle b) {
+bool UnitSpace_not_equal(UnitSpaceHandle handle, UnitSpaceHandle other) {
   FALCON_C_API_BEGIN
-  if (!a) {
+  if (!handle) {
     throw std::invalid_argument("UnitSpace_not_equal: a cannot be null");
   }
-  if (!b) {
+  if (!other) {
     throw std::invalid_argument("UnitSpace_not_equal: b cannot be null");
   }
-  UnitSpace self_a = *static_cast<UnitSpace*>(a);
-  UnitSpace self_b = *static_cast<UnitSpace*>(b);
-  return self_a != self_b;
+  UnitSpaceSP self_a = *static_cast<UnitSpaceSP*>(handle);
+  UnitSpaceSP self_b = *static_cast<UnitSpaceSP*>(other);
+  return *self_a != *self_b;
   FALCON_C_API_END(false)
 }
 
@@ -372,8 +357,8 @@ StringHandle UnitSpace_to_json_string(UnitSpaceHandle handle) {
     throw std::invalid_argument(
         "UnitSpace_to_json_string: handle cannot be null");
   }
-  UnitSpace   self = *static_cast<UnitSpace*>(handle);
-  std::string json = self.to_json_string();
+  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
+  std::string json = self->to_json_string();
   return String_create(json.c_str(), json.size());
   FALCON_C_API_END(nullptr)
 }
@@ -385,7 +370,7 @@ UnitSpaceHandle UnitSpace_from_json_string(StringHandle json) {
         "UnitSpace_from_json_string: json cannot be null");
   }
   std::string json_str = json->raw;
-  return new UnitSpace(*UnitSpace::from_json_string<UnitSpace>(json_str));
+  return new UnitSpaceSP(UnitSpace::from_json_string<UnitSpace>(json_str));
   FALCON_C_API_END(nullptr)
 }
 }

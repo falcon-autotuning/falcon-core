@@ -32,7 +32,7 @@ MeasuredArrayHandle MeasuredArray_from_data(const double* data,
   }
   xt::xarray<double> arr =
       xt::adapt(data, total_size, xt::no_ownership(), shapeVec);
-  return new MeasuredArray(arr);
+  return new MeasuredArraySP(std::make_shared<MeasuredArray>(arr));
   FALCON_C_API_END(nullptr)
 }
 
@@ -42,10 +42,9 @@ MeasuredArrayHandle MeasuredArray_from_farray(FArrayDoubleHandle farray) {
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_from_farray");
   }
-  generic::FArray<double>* real_farray =
-      static_cast<generic::FArray<double>*>(farray);
-  return new MeasuredArray(
-      MeasuredArray(std::make_shared<generic::FArray<double>>(*real_farray)));
+  generic::FArraySP<double> real_farray =
+      *static_cast<generic::FArraySP<double>*>(farray);
+  return new MeasuredArraySP(std::make_shared<MeasuredArray>(real_farray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -54,7 +53,7 @@ void MeasuredArray_destroy(MeasuredArrayHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_destroy");
   }
-  delete static_cast<MeasuredArray*>(handle);
+  delete static_cast<MeasuredArraySP*>(handle);
   FALCON_C_API_END()
 }
 
@@ -63,7 +62,7 @@ size_t MeasuredArray_size(MeasuredArrayHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_size");
   }
-  auto measured_array = static_cast<MeasuredArray*>(handle);
+  auto measured_array = *static_cast<MeasuredArraySP*>(handle);
   return measured_array->size();
   FALCON_C_API_END(0)
 }
@@ -74,7 +73,7 @@ size_t MeasuredArray_dimension(MeasuredArrayHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_dimension");
   }
-  auto measured_array = static_cast<MeasuredArray*>(handle);
+  auto measured_array = *static_cast<MeasuredArraySP*>(handle);
   return measured_array->dimension();
   FALCON_C_API_END(0)
 }
@@ -86,7 +85,7 @@ size_t MeasuredArray_shape(MeasuredArrayHandle handle,
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_shape");
   }
-  auto   measured_array = static_cast<MeasuredArray*>(handle);
+  auto   measured_array = *static_cast<MeasuredArraySP*>(handle);
   auto   shape          = measured_array->shape();
   size_t count          = shape.size();
   size_t to_copy        = (ndim < count) ? ndim : count;
@@ -104,7 +103,7 @@ size_t MeasuredArray_data(MeasuredArrayHandle handle,
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_data");
   }
-  auto   measured_array = static_cast<MeasuredArray*>(handle);
+  auto   measured_array = *static_cast<MeasuredArraySP*>(handle);
   auto   data           = measured_array->data();
   size_t count          = measured_array->size();
   size_t to_copy        = (numdata < count) ? numdata : count;
@@ -122,10 +121,10 @@ void MeasuredArray_plus_equals_farray(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_plus_equals_farray");
   }
-  MeasuredArray*           measured_array = static_cast<MeasuredArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  measured_array->operator+=(generic::FArray<double>(*oarray));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  measured_array->operator+=(*oarray);
   FALCON_C_API_END()
 }
 
@@ -136,7 +135,7 @@ void MeasuredArray_plus_equals_double(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_plus_equals_double");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   measured_array->operator+=(other);
   FALCON_C_API_END()
 }
@@ -148,7 +147,7 @@ void MeasuredArray_plus_equals_int(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_plus_equals_int");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   measured_array->operator+=(other);
   FALCON_C_API_END()
 }
@@ -160,10 +159,9 @@ MeasuredArrayHandle MeasuredArray_plus_measured_array(
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_plus_measured_array");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);
-  return new MeasuredArray(
-      measured_array->operator+(std::make_shared<MeasuredArray>(*oarray)));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  MeasuredArraySP oarray         = *static_cast<MeasuredArraySP*>(other);
+  return new MeasuredArraySP(measured_array->operator+(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -174,11 +172,10 @@ MeasuredArrayHandle MeasuredArray_plus_farray(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_plus_farray");
   }
-  MeasuredArray*           measured_array = static_cast<MeasuredArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  return new MeasuredArray(measured_array->operator+(
-      std::make_shared<generic::FArray<double>>(*oarray)));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  return new MeasuredArraySP(measured_array->operator+(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -189,8 +186,8 @@ MeasuredArrayHandle MeasuredArray_plus_double(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_plus_double");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  return new MeasuredArray(measured_array->operator+(other));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  return new MeasuredArraySP(measured_array->operator+(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -200,8 +197,8 @@ MeasuredArrayHandle MeasuredArray_plus_int(MeasuredArrayHandle handle,
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_plus_int");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  return new MeasuredArray(measured_array->operator+(other));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  return new MeasuredArraySP(measured_array->operator+(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -212,9 +209,9 @@ void MeasuredArray_minus_equals_farray(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_minus_equals_farray");
   }
-  MeasuredArray*           measured_array = static_cast<MeasuredArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
   measured_array->operator-=(generic::FArray<double>(*oarray));
   FALCON_C_API_END()
 }
@@ -226,7 +223,7 @@ void MeasuredArray_minus_equals_double(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_minus_equals_double");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   measured_array->operator-=(other);
   FALCON_C_API_END()
 }
@@ -238,7 +235,7 @@ void MeasuredArray_minus_equals_int(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_minus_equals_int");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   measured_array->operator-=(other);
   FALCON_C_API_END()
 }
@@ -250,10 +247,9 @@ MeasuredArrayHandle MeasuredArray_minus_measured_array(
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_minus_measured_array");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);
-  return new MeasuredArray(
-      measured_array->operator-(std::make_shared<MeasuredArray>(*oarray)));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  MeasuredArraySP oarray         = *static_cast<MeasuredArraySP*>(other);
+  return new MeasuredArraySP(measured_array->operator-(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -264,11 +260,10 @@ MeasuredArrayHandle MeasuredArray_minus_farray(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_minus_farray");
   }
-  MeasuredArray*           measured_array = static_cast<MeasuredArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  return new MeasuredArray(measured_array->operator-(
-      std::make_shared<generic::FArray<double>>(*oarray)));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  return new MeasuredArraySP(measured_array->operator-(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -279,8 +274,8 @@ MeasuredArrayHandle MeasuredArray_minus_double(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_minus_double");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  return new MeasuredArray(measured_array->operator-(other));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  return new MeasuredArraySP(measured_array->operator-(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -291,8 +286,8 @@ MeasuredArrayHandle MeasuredArray_minus_int(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_minus_int");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  return new MeasuredArray(measured_array->operator-(other));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  return new MeasuredArraySP(measured_array->operator-(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -301,8 +296,8 @@ MeasuredArrayHandle MeasuredArray_negation(MeasuredArrayHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_negation");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  return new MeasuredArray(-*measured_array);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  return new MeasuredArraySP(-*measured_array);
   FALCON_C_API_END(nullptr)
 }
 
@@ -313,9 +308,9 @@ MeasuredArrayHandle MeasuredArray_times_equals_measured_array(
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_times_equals_measured_array");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);
-  measured_array->operator*=(MeasuredArray(*oarray));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  MeasuredArraySP oarray         = *static_cast<MeasuredArraySP*>(other);
+  measured_array->operator*=(*oarray);
   return handle;
   FALCON_C_API_END(nullptr)
 }
@@ -327,10 +322,10 @@ MeasuredArrayHandle MeasuredArray_times_equals_farray(
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_times_equals_farray");
   }
-  MeasuredArray*           measured_array = static_cast<MeasuredArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  measured_array->operator*=(generic::FArray<double>(*oarray));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  measured_array->operator*=(*oarray);
   return handle;
   FALCON_C_API_END(nullptr)
 }
@@ -342,7 +337,7 @@ void MeasuredArray_times_equals_double(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_times_equals_double");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   measured_array->operator*=(other);
   FALCON_C_API_END()
 }
@@ -354,7 +349,7 @@ void MeasuredArray_times_equals_int(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_times_equals_int");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   measured_array->operator*=(other);
   FALCON_C_API_END()
 }
@@ -366,10 +361,9 @@ MeasuredArrayHandle MeasuredArray_times_measured_array(
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_times_measured_array");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);
-  return new MeasuredArray(
-      measured_array->operator*(std::make_shared<MeasuredArray>(*oarray)));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  MeasuredArraySP oarray         = *static_cast<MeasuredArraySP*>(other);
+  return new MeasuredArraySP(measured_array->operator*(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -380,11 +374,10 @@ MeasuredArrayHandle MeasuredArray_times_farray(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_times_farray");
   }
-  MeasuredArray*           measured_array = static_cast<MeasuredArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  return new MeasuredArray(measured_array->operator*(
-      std::make_shared<generic::FArray<double>>(*oarray)));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  return new MeasuredArraySP(measured_array->operator*(oarray));
   FALCON_C_API_END(nullptr)
 }
 MeasuredArrayHandle MeasuredArray_times_double(MeasuredArrayHandle handle,
@@ -394,8 +387,8 @@ MeasuredArrayHandle MeasuredArray_times_double(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_times_double");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  return new MeasuredArray(measured_array->operator*(other));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  return new MeasuredArraySP(measured_array->operator*(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -406,8 +399,8 @@ MeasuredArrayHandle MeasuredArray_times_int(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_times_int");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  return new MeasuredArray(measured_array->operator*(other));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  return new MeasuredArraySP(measured_array->operator*(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -418,9 +411,9 @@ MeasuredArrayHandle MeasuredArray_divides_equals_measured_array(
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_divides_equals_measured_array");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);
-  measured_array->operator/=(MeasuredArray(*oarray));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  MeasuredArraySP oarray         = *static_cast<MeasuredArraySP*>(other);
+  measured_array->operator/=(*oarray);
   return handle;
   FALCON_C_API_END(nullptr)
 }
@@ -432,10 +425,10 @@ MeasuredArrayHandle MeasuredArray_divides_equals_farray(
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_divides_equals_farray");
   }
-  MeasuredArray*           measured_array = static_cast<MeasuredArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  measured_array->operator/=(generic::FArray<double>(*oarray));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  measured_array->operator/=(*oarray);
   return handle;
   FALCON_C_API_END(nullptr)
 }
@@ -447,7 +440,7 @@ void MeasuredArray_divides_equals_double(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_divides_equals_double");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   measured_array->operator/=(other);
   FALCON_C_API_END()
 }
@@ -459,7 +452,7 @@ void MeasuredArray_divides_equals_int(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_divides_equals_int");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   measured_array->operator/=(other);
   FALCON_C_API_END()
 }
@@ -471,10 +464,9 @@ MeasuredArrayHandle MeasuredArray_divides_measured_array(
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_divides_measured_array");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);
-  return new MeasuredArray(
-      measured_array->operator/(std::make_shared<MeasuredArray>(*oarray)));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  MeasuredArraySP oarray         = *static_cast<MeasuredArraySP*>(other);
+  return new MeasuredArraySP(measured_array->operator/(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -485,11 +477,10 @@ MeasuredArrayHandle MeasuredArray_divides_farray(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_divides_farray");
   }
-  MeasuredArray*           measured_array = static_cast<MeasuredArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  return new MeasuredArray(measured_array->operator/(
-      std::make_shared<generic::FArray<double>>(*oarray)));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  return new MeasuredArraySP(measured_array->operator/(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -500,8 +491,8 @@ MeasuredArrayHandle MeasuredArray_divides_double(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_divides_double");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  return new MeasuredArray(measured_array->operator/(other));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  return new MeasuredArraySP(measured_array->operator/(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -512,8 +503,8 @@ MeasuredArrayHandle MeasuredArray_divides_int(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_divides_int");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  return new MeasuredArray(measured_array->operator/(other));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  return new MeasuredArraySP(measured_array->operator/(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -523,8 +514,8 @@ MeasuredArrayHandle MeasuredArray_pow(MeasuredArrayHandle handle,
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_pow");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  return new MeasuredArray(measured_array->operator^(other));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  return new MeasuredArraySP(measured_array->operator^(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -533,8 +524,8 @@ MeasuredArrayHandle MeasuredArray_abs(MeasuredArrayHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_abs");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  return new MeasuredArray(measured_array->abs());
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  return new MeasuredArraySP(measured_array->abs());
   FALCON_C_API_END(nullptr)
 }
 
@@ -543,7 +534,7 @@ double MeasuredArray_min(MeasuredArrayHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_min");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   return measured_array->min();
   FALCON_C_API_END(0.0)
 }
@@ -555,11 +546,10 @@ MeasuredArrayHandle MeasuredArray_min_farray(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_min_farray");
   }
-  MeasuredArray*           measured_array = static_cast<MeasuredArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  return new MeasuredArray(
-      measured_array->min(std::make_shared<generic::FArray<double>>(*oarray)));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  return new MeasuredArraySP(measured_array->min(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -570,10 +560,9 @@ MeasuredArrayHandle MeasuredArray_min_measured_array(
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_min_measured_array");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);
-  return new MeasuredArray(
-      measured_array->min(std::make_shared<MeasuredArray>(*oarray)));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  MeasuredArraySP oarray         = *static_cast<MeasuredArraySP*>(other);
+  return new MeasuredArraySP(measured_array->min(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -582,7 +571,7 @@ double MeasuredArray_max(MeasuredArrayHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_max");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   return measured_array->max();
   FALCON_C_API_END(0.0)
 }
@@ -594,11 +583,11 @@ MeasuredArrayHandle MeasuredArray_max_farray(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_max_farray");
   }
-  MeasuredArray*           measured_array = static_cast<MeasuredArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  return new MeasuredArray(
-      measured_array->max(std::make_shared<generic::FArray<double>>(*oarray)));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  return new MeasuredArraySP(measured_array->max(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -609,10 +598,9 @@ MeasuredArrayHandle MeasuredArray_max_measured_array(
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_max_measured_array");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);
-  return new MeasuredArray(
-      measured_array->max(std::make_shared<MeasuredArray>(*oarray)));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  MeasuredArraySP oarray         = *static_cast<MeasuredArraySP*>(other);
+  return new MeasuredArraySP(measured_array->max(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -622,9 +610,9 @@ bool MeasuredArray_equal(MeasuredArrayHandle handle,
   if (!handle || !other) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_equal");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);
-  return measured_array->operator==(MeasuredArray(*oarray));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  MeasuredArraySP oarray         = *static_cast<MeasuredArraySP*>(other);
+  return measured_array->operator==(*oarray);
   FALCON_C_API_END(false)
 }
 
@@ -635,9 +623,9 @@ bool MeasuredArray_not_equal(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_not_equal");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);
-  return measured_array->operator!=(MeasuredArray(*oarray));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  MeasuredArraySP oarray         = *static_cast<MeasuredArraySP*>(other);
+  return measured_array->operator!=(*oarray);
   FALCON_C_API_END(false)
 }
 
@@ -648,7 +636,7 @@ bool MeasuredArray_greater_than(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_greater_than");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   return measured_array->operator>(value);
   FALCON_C_API_END(false)
 }
@@ -659,7 +647,7 @@ bool MeasuredArray_less_than(MeasuredArrayHandle handle, const double value) {
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_less_than");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   return measured_array->operator<(value);
   FALCON_C_API_END(false)
 }
@@ -670,7 +658,7 @@ void MeasuredArray_remove_offset(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_remove_offset");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   measured_array->remove_offset(offset);
   FALCON_C_API_END()
 }
@@ -680,7 +668,7 @@ double MeasuredArray_sum(MeasuredArrayHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_sum");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   return measured_array->sum();
   FALCON_C_API_END(0.0)
 }
@@ -692,12 +680,12 @@ MeasuredArrayHandle MeasuredArray_reshape(MeasuredArrayHandle handle,
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_reshape");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   std::vector<std::vector<double>::size_type> shapeVec;
   for (size_t i = 0; i < ndims; ++i) {
     shapeVec.push_back(shape[i]);
   }
-  return new MeasuredArray(measured_array->reshape(shapeVec));
+  return new MeasuredArraySP(measured_array->reshape(shapeVec));
   FALCON_C_API_END(nullptr)
 }
 
@@ -707,8 +695,8 @@ ListListSizeTHandle MeasuredArray_where(MeasuredArrayHandle handle,
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_where");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  auto           indices        = measured_array->where(value);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  auto            indices        = measured_array->where(value);
   return new generic::List<generic::List<size_t>>(*indices);
   FALCON_C_API_END(nullptr)
 }
@@ -719,8 +707,8 @@ MeasuredArrayHandle MeasuredArray_flip(MeasuredArrayHandle handle,
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_flip");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  return new MeasuredArray(measured_array->flip(axis));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  return new MeasuredArraySP(measured_array->flip(axis));
   FALCON_C_API_END(nullptr)
 }
 
@@ -736,12 +724,13 @@ size_t MeasuredArray_full_gradient(MeasuredArrayHandle  handle,
     throw std::invalid_argument(
         "Null output buffer passed to MeasuredArray_full_gradient");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  auto           gradients      = measured_array->gradient();
-  size_t         count          = gradients->size();
-  size_t         to_copy        = (buffer_size < count) ? buffer_size : count;
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  auto            gradients      = measured_array->gradient();
+  size_t          count          = gradients->size();
+  size_t          to_copy        = (buffer_size < count) ? buffer_size : count;
   for (size_t i = 0; i < to_copy; ++i) {
-    out_buffer[i] = new MeasuredArray(*gradients->items()[i]);
+    out_buffer[i] = new MeasuredArraySP(
+        std::make_shared<MeasuredArray>(gradients->items()[i]));
   }
   return to_copy;
   FALCON_C_API_END(0)
@@ -753,8 +742,9 @@ MeasuredArrayHandle MeasuredArray_gradient(MeasuredArrayHandle handle,
   if (!handle) {
     throw std::invalid_argument("Null handle passed to MeasuredArray_gradient");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  return new MeasuredArray(measured_array->gradient(axis));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  return new MeasuredArraySP(
+      std::make_shared<MeasuredArray>(measured_array->gradient(axis)));
   FALCON_C_API_END(nullptr)
 }
 
@@ -764,7 +754,7 @@ double MeasuredArray_get_sum_of_squares(MeasuredArrayHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_get_sum_of_squares");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   return measured_array->get_sum_of_squares();
   FALCON_C_API_END(0.0)
 }
@@ -776,7 +766,7 @@ double MeasuredArray_get_summed_diff_int_of_squares(MeasuredArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_get_summed_diff_int_of_squares");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   return measured_array->get_sum_of_squares(other);
   FALCON_C_API_END(0.0)
 }
@@ -789,7 +779,7 @@ double MeasuredArray_get_summed_diff_double_of_squares(
         "Null handle passed to "
         "MeasuredArray_get_summed_diff_double_of_squares");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   return measured_array->get_sum_of_squares(other);
   FALCON_C_API_END(0.0)
 }
@@ -801,10 +791,9 @@ double MeasuredArray_get_summed_diff_array_of_squares(
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_get_summed_diff_array_of_squares");
   }
-  MeasuredArray* measured_array = static_cast<MeasuredArray*>(handle);
-  MeasuredArray* oarray         = static_cast<MeasuredArray*>(other);
-  return measured_array->get_sum_of_squares(
-      std::make_shared<MeasuredArray>(*oarray));
+  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
+  MeasuredArraySP oarray         = *static_cast<MeasuredArraySP*>(other);
+  return measured_array->get_sum_of_squares(oarray);
   FALCON_C_API_END(0.0)
 }
 
@@ -814,7 +803,7 @@ StringHandle MeasuredArray_to_json_string(MeasuredArrayHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to MeasuredArray_to_json_string");
   }
-  std::string json = static_cast<MeasuredArray*>(handle)->to_json_string();
+  std::string json = (*static_cast<MeasuredArraySP*>(handle))->to_json_string();
   return String_create(json.c_str(), json.size());
   FALCON_C_API_END(nullptr)
 }
@@ -827,7 +816,7 @@ MeasuredArrayHandle MeasuredArray_from_json_string(StringHandle json) {
   }
   std::string raw_json(json->raw);
   auto        ptr = MeasuredArray::from_json_string<MeasuredArray>(raw_json);
-  return new MeasuredArray(*ptr);
+  return new MeasuredArraySP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }

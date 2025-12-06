@@ -18,8 +18,7 @@ VectorHandle Vector_create(PointHandle start, PointHandle end) {
   }
   PointSP real_start = *static_cast<PointSP*>(start);
   PointSP real_end   = *static_cast<PointSP*>(end);
-  return new std::shared_ptr<Vector>(
-      std::make_shared<Vector>(real_start, real_end));
+  return new VectorSP(std::make_shared<Vector>(real_start, real_end));
   FALCON_C_API_END(nullptr)
 }
 
@@ -29,7 +28,7 @@ VectorHandle Vector_create_from_end(PointHandle end) {
     throw std::invalid_argument("Vector_create_from_end: end cannot be null");
   }
   PointSP real_end = *static_cast<PointSP*>(end);
-  return new std::shared_ptr<Vector>(std::make_shared<Vector>(real_end));
+  return new VectorSP(std::make_shared<Vector>(real_end));
   FALCON_C_API_END(nullptr)
 }
 
@@ -46,22 +45,15 @@ VectorHandle Vector_create_from_quantities(MapConnectionQuantityHandle start,
   }
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, Quantity>
-          real_start = std::make_shared<falcon_core::generic::Map<
+          real_start = *static_cast<falcon_core::generic::MapSP<
               falcon_core::physics::device_structures::Connection,
-              Quantity>>(
-              *static_cast<falcon_core::generic::Map<
-                  falcon_core::physics::device_structures::Connection,
-                  Quantity>*>(start));
+              Quantity>*>(start);
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, Quantity>
-          real_end = std::make_shared<falcon_core::generic::Map<
+          real_end = *static_cast<falcon_core::generic::MapSP<
               falcon_core::physics::device_structures::Connection,
-              Quantity>>(
-              *static_cast<falcon_core::generic::Map<
-                  falcon_core::physics::device_structures::Connection,
-                  Quantity>*>(end));
-  return new std::shared_ptr<Vector>(
-      std::make_shared<Vector>(real_start, real_end));
+              Quantity>*>(end);
+  return new VectorSP(std::make_shared<Vector>(real_start, real_end));
   FALCON_C_API_END(nullptr)
 }
 
@@ -74,13 +66,10 @@ VectorHandle Vector_create_from_end_quantities(
   }
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, Quantity>
-          real_end = std::make_shared<falcon_core::generic::Map<
+          real_end = *static_cast<falcon_core::generic::MapSP<
               falcon_core::physics::device_structures::Connection,
-              Quantity>>(
-              *static_cast<falcon_core::generic::Map<
-                  falcon_core::physics::device_structures::Connection,
-                  Quantity>*>(end));
-  return new std::shared_ptr<Vector>(std::make_shared<Vector>(real_end));
+              Quantity>*>(end);
+  return new VectorSP(std::make_shared<Vector>(real_end));
   FALCON_C_API_END(nullptr)
 }
 
@@ -102,24 +91,17 @@ VectorHandle Vector_create_from_doubles(MapConnectionDoubleHandle start,
   }
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, double>
-          real_start = std::make_shared<falcon_core::generic::Map<
+          real_start = *static_cast<falcon_core::generic::MapSP<
               falcon_core::physics::device_structures::Connection,
-              double>>(
-              *static_cast<falcon_core::generic::Map<
-                  falcon_core::physics::device_structures::Connection,
-                  double>*>(start));
+              double>*>(start);
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, double>
-          real_end = std::make_shared<falcon_core::generic::Map<
+          real_end = *static_cast<falcon_core::generic::MapSP<
               falcon_core::physics::device_structures::Connection,
-              double>>(
-              *static_cast<falcon_core::generic::Map<
-                  falcon_core::physics::device_structures::Connection,
-                  double>*>(end));
+              double>*>(end);
   falcon_core::physics::units::SymbolUnitSP real_unit =
-      std::make_shared<falcon_core::physics::units::SymbolUnit>(
-          *static_cast<falcon_core::physics::units::SymbolUnit*>(unit));
-  return new std::shared_ptr<Vector>(
+      *static_cast<falcon_core::physics::units::SymbolUnitSP*>(unit);
+  return new VectorSP(
       std::make_shared<Vector>(real_start, real_end, real_unit));
   FALCON_C_API_END(nullptr)
 }
@@ -137,17 +119,12 @@ VectorHandle Vector_create_from_end_doubles(MapConnectionDoubleHandle end,
   }
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, double>
-          real_end = std::make_shared<falcon_core::generic::Map<
+          real_end = *static_cast<falcon_core::generic::MapSP<
               falcon_core::physics::device_structures::Connection,
-              double>>(
-              *static_cast<falcon_core::generic::Map<
-                  falcon_core::physics::device_structures::Connection,
-                  double>*>(end));
+              double>*>(end);
   falcon_core::physics::units::SymbolUnitSP real_unit =
-      std::make_shared<falcon_core::physics::units::SymbolUnit>(
-          *static_cast<falcon_core::physics::units::SymbolUnit*>(unit));
-  return new std::shared_ptr<Vector>(
-      std::make_shared<Vector>(real_end, real_unit));
+      *static_cast<falcon_core::physics::units::SymbolUnitSP*>(unit);
+  return new VectorSP(std::make_shared<Vector>(real_end, real_unit));
   FALCON_C_API_END(nullptr)
 }
 
@@ -159,13 +136,10 @@ VectorHandle Vector_create_from_parent(MapConnectionQuantityHandle items) {
   }
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, Quantity>
-          real_items = std::make_shared<falcon_core::generic::Map<
+          real_items = *static_cast<falcon_core::generic::MapSP<
               falcon_core::physics::device_structures::Connection,
-              Quantity>>(
-              *static_cast<falcon_core::generic::Map<
-                  falcon_core::physics::device_structures::Connection,
-                  Quantity>*>(items));
-  return new std::shared_ptr<Vector>(std::make_shared<Vector>(real_items));
+              Quantity>*>(items);
+  return new VectorSP(std::make_shared<Vector>(real_items));
   FALCON_C_API_END(nullptr)
 }
 
@@ -205,8 +179,8 @@ MapConnectionQuantityHandle Vector_end_quantities(VectorHandle handle) {
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
   return new falcon_core::generic::
-      Map<falcon_core::physics::device_structures::Connection, Quantity>(
-          *self->end_quantities());
+      MapSP<falcon_core::physics::device_structures::Connection, Quantity>(
+          self->end_quantities());
   FALCON_C_API_END(nullptr)
 }
 
@@ -218,8 +192,8 @@ MapConnectionQuantityHandle Vector_start_quantities(VectorHandle handle) {
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
   return new falcon_core::generic::
-      Map<falcon_core::physics::device_structures::Connection, Quantity>(
-          *self->start_quantities());
+      MapSP<falcon_core::physics::device_structures::Connection, Quantity>(
+          self->start_quantities());
   FALCON_C_API_END(nullptr)
 }
 
@@ -230,8 +204,8 @@ MapConnectionDoubleHandle Vector_end_map(VectorHandle handle) {
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
   return new falcon_core::generic::
-      Map<falcon_core::physics::device_structures::Connection, double>(
-          *self->end_map());
+      MapSP<falcon_core::physics::device_structures::Connection, double>(
+          self->end_map());
   FALCON_C_API_END(nullptr)
 }
 
@@ -242,8 +216,8 @@ MapConnectionDoubleHandle Vector_start_map(VectorHandle handle) {
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
   return new falcon_core::generic::
-      Map<falcon_core::physics::device_structures::Connection, double>(
-          *self->start_map());
+      MapSP<falcon_core::physics::device_structures::Connection, double>(
+          self->start_map());
   FALCON_C_API_END(nullptr)
 }
 
@@ -253,9 +227,8 @@ ListConnectionHandle Vector_connections(VectorHandle handle) {
     throw std::invalid_argument("Vector_connections: handle cannot be null");
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
-  return new falcon_core::generic::List<
-      falcon_core::physics::device_structures::Connection>(
-      *self->connections());
+  return new falcon_core::generic::ListSP<
+      falcon_core::physics::device_structures::Connection>(self->connections());
   FALCON_C_API_END(nullptr)
 }
 
@@ -265,7 +238,7 @@ SymbolUnitHandle Vector_unit(VectorHandle handle) {
     throw std::invalid_argument("Vector_unit: handle cannot be null");
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
-  return new falcon_core::physics::units::SymbolUnit(*self->unit());
+  return new falcon_core::physics::units::SymbolUnitSP(self->unit());
   FALCON_C_API_END(nullptr)
 }
 
@@ -276,8 +249,8 @@ ConnectionHandle Vector_principle_connection(VectorHandle handle) {
         "Vector_principle_connection: handle cannot be null");
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
-  return new falcon_core::physics::device_structures::Connection(
-      *self->principle_connection());
+  return new falcon_core::physics::device_structures::ConnectionSP(
+      self->principle_connection());
   FALCON_C_API_END(nullptr)
 }
 
@@ -308,12 +281,9 @@ void Vector_insert_or_assign(VectorHandle               handle,
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
   falcon_core::generic::PairSP<Quantity, Quantity> real_value =
-      std::make_shared<falcon_core::generic::Pair<Quantity, Quantity>>(
-          *static_cast<falcon_core::generic::Pair<Quantity, Quantity>*>(value));
+      *static_cast<falcon_core::generic::PairSP<Quantity, Quantity>*>(value);
   falcon_core::physics::device_structures::ConnectionSP real_key =
-      std::make_shared<falcon_core::physics::device_structures::Connection>(
-          *static_cast<falcon_core::physics::device_structures::Connection*>(
-              key));
+      *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(key);
   self->insert_or_assign(real_key, real_value);
   FALCON_C_API_END()
 }
@@ -333,12 +303,9 @@ void Vector_insert(VectorHandle               handle,
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
   falcon_core::generic::PairSP<Quantity, Quantity> real_value =
-      std::make_shared<falcon_core::generic::Pair<Quantity, Quantity>>(
-          *static_cast<falcon_core::generic::Pair<Quantity, Quantity>*>(value));
+      *static_cast<falcon_core::generic::PairSP<Quantity, Quantity>*>(value);
   falcon_core::physics::device_structures::ConnectionSP real_key =
-      std::make_shared<falcon_core::physics::device_structures::Connection>(
-          *static_cast<falcon_core::physics::device_structures::Connection*>(
-              key));
+      *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(key);
   self->insert(real_key, real_value);
   FALCON_C_API_END()
 }
@@ -354,11 +321,9 @@ PairQuantityQuantityHandle Vector_at(VectorHandle     handle,
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
   falcon_core::physics::device_structures::ConnectionSP real_key =
-      std::make_shared<falcon_core::physics::device_structures::Connection>(
-          *static_cast<falcon_core::physics::device_structures::Connection*>(
-              key));
-  return new falcon_core::generic::Pair<Quantity, Quantity>(
-      *self->at(real_key));
+      *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(key);
+  return new falcon_core::generic::PairSP<Quantity, Quantity>(
+      self->at(real_key));
   FALCON_C_API_END(nullptr)
 }
 
@@ -372,9 +337,7 @@ void Vector_erase(VectorHandle handle, ConnectionHandle key) {
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
   falcon_core::physics::device_structures::ConnectionSP real_key =
-      std::make_shared<falcon_core::physics::device_structures::Connection>(
-          *static_cast<falcon_core::physics::device_structures::Connection*>(
-              key));
+      *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(key);
   FALCON_C_API_END()
 }
 
@@ -418,9 +381,7 @@ bool Vector_contains(VectorHandle handle, ConnectionHandle key) {
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
   falcon_core::physics::device_structures::ConnectionSP real_key =
-      std::make_shared<falcon_core::physics::device_structures::Connection>(
-          *static_cast<falcon_core::physics::device_structures::Connection*>(
-              key));
+      *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(key);
   return self->contains(real_key);
   FALCON_C_API_END(false)
 }
@@ -431,8 +392,8 @@ ListConnectionHandle Vector_keys(VectorHandle handle) {
     throw std::invalid_argument("Vector_keys: handle cannot be null");
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
-  return new falcon_core::generic::List<
-      falcon_core::physics::device_structures::Connection>(*self->keys());
+  return new falcon_core::generic::ListSP<
+      falcon_core::physics::device_structures::Connection>(self->keys());
   FALCON_C_API_END(nullptr)
 }
 ListPairQuantityQuantityHandle Vector_values(VectorHandle handle) {
@@ -441,8 +402,8 @@ ListPairQuantityQuantityHandle Vector_values(VectorHandle handle) {
     throw std::invalid_argument("Vector_values: handle cannot be null");
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
-  return new falcon_core::generic::List<
-      falcon_core::generic::Pair<Quantity, Quantity>>(*self->values());
+  return new falcon_core::generic::ListSP<
+      falcon_core::generic::Pair<Quantity, Quantity>>(self->values());
   FALCON_C_API_END(nullptr)
 }
 
@@ -452,9 +413,9 @@ ListPairConnectionPairQuantityQuantityHandle Vector_items(VectorHandle handle) {
     throw std::invalid_argument("Vector_items: handle cannot be null");
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
-  return new falcon_core::generic::List<falcon_core::generic::Pair<
+  return new falcon_core::generic::ListSP<falcon_core::generic::Pair<
       falcon_core::physics::device_structures::Connection,
-      falcon_core::generic::Pair<Quantity, Quantity>>>(*self->items());
+      falcon_core::generic::Pair<Quantity, Quantity>>>(self->items());
   FALCON_C_API_END(nullptr)
 }
 
@@ -559,10 +520,9 @@ VectorHandle Vector_update_start_from_states(VectorHandle              handle,
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
   falcon_core::communications::voltage_states::DeviceVoltageStatesSP
-      real_state = std::make_shared<
-          falcon_core::communications::voltage_states::DeviceVoltageStates>(
-          *static_cast<falcon_core::communications::voltage_states::
-                           DeviceVoltageStates*>(state));
+      real_state = *static_cast<
+          falcon_core::communications::voltage_states::DeviceVoltageStatesSP*>(
+          state);
   VectorSP result = self->update_start_from_states(real_state);
   return new VectorSP(result);
   FALCON_C_API_END(nullptr)
@@ -586,15 +546,11 @@ VectorHandle Vector_translate_doubles(VectorHandle              handle,
   VectorSP self = *static_cast<VectorSP*>(handle);
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, double>
-          real_point = std::make_shared<falcon_core::generic::Map<
+          real_point = *static_cast<falcon_core::generic::MapSP<
               falcon_core::physics::device_structures::Connection,
-              double>>(
-              *static_cast<falcon_core::generic::Map<
-                  falcon_core::physics::device_structures::Connection,
-                  double>*>(point));
+              double>*>(point);
   falcon_core::physics::units::SymbolUnitSP real_unit =
-      std::make_shared<falcon_core::physics::units::SymbolUnit>(
-          *static_cast<falcon_core::physics::units::SymbolUnit*>(unit));
+      *static_cast<falcon_core::physics::units::SymbolUnitSP*>(unit);
   VectorSP result = self->translate(real_point, real_unit);
   return new VectorSP(result);
   FALCON_C_API_END(nullptr)
@@ -614,13 +570,10 @@ VectorHandle Vector_translate_quantities(VectorHandle                handle,
   VectorSP self = *static_cast<VectorSP*>(handle);
   falcon_core::generic::
       MapSP<falcon_core::physics::device_structures::Connection, Quantity>
-          real_point = std::make_shared<falcon_core::generic::Map<
-              falcon_core::physics::device_structures::Connection,
-              Quantity>>(
-              *static_cast<falcon_core::generic::Map<
-                  falcon_core::physics::device_structures::Connection,
-                  Quantity>*>(point));
-  VectorSP result = self->translate(real_point);
+           real_point = *static_cast<falcon_core::generic::MapSP<
+               falcon_core::physics::device_structures::Connection,
+               Quantity>*>(point);
+  VectorSP result     = self->translate(real_point);
   return new VectorSP(result);
   FALCON_C_API_END(nullptr)
 }
@@ -743,8 +696,7 @@ void Vector_update_unit(VectorHandle handle, SymbolUnitHandle unit) {
   }
   VectorSP self = *static_cast<VectorSP*>(handle);
   falcon_core::physics::units::SymbolUnitSP real_unit =
-      std::make_shared<falcon_core::physics::units::SymbolUnit>(
-          *static_cast<falcon_core::physics::units::SymbolUnit*>(unit));
+      *static_cast<falcon_core::physics::units::SymbolUnitSP*>(unit);
   self->update_unit(real_unit);
   FALCON_C_API_END()
 }

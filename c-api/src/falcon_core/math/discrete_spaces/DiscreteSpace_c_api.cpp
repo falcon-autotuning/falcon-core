@@ -25,8 +25,7 @@ DiscreteSpaceHandle DiscreteSpace_create(UnitSpaceHandle                 space,
         "DiscreteSpace_create: increasing cannot be null");
   }
   falcon_core::math::UnitSpaceSP real_space =
-      std::make_shared<falcon_core::math::UnitSpace>(
-          *static_cast<falcon_core::math::UnitSpace*>(space));
+      *static_cast<falcon_core::math::UnitSpaceSP*>(space);
   falcon_core::math::AxesSP<falcon_core::math::domains::CoupledLabelledDomain>
       real_axes = std::make_shared<falcon_core::math::Axes<
           falcon_core::math::domains::CoupledLabelledDomain>>(
@@ -133,7 +132,7 @@ UnitSpaceHandle DiscreteSpace_space(DiscreteSpaceHandle handle) {
     throw std::invalid_argument("DiscreteSpace_space: handle cannot be null");
   }
   DiscreteSpace self = *static_cast<DiscreteSpace*>(handle);
-  return new falcon_core::math::UnitSpace(*self.space());
+  return new falcon_core::math::UnitSpaceSP(self.space());
   FALCON_C_API_END(nullptr)
 }
 

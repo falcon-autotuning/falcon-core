@@ -18,6 +18,7 @@ class StandardResponse : public BaseMessage {
     ar(cereal::base_class<BaseMessage>(this));
   }
 };
+using StandardResponseSP = std::shared_ptr<StandardResponse>;
 
 }  // namespace messages
 }  // namespace communications

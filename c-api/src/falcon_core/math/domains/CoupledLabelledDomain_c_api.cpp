@@ -12,7 +12,7 @@ using namespace falcon_core::math::domains;
 extern "C" {
 CoupledLabelledDomainHandle CoupledLabelledDomain_create_empty() {
   FALCON_C_API_BEGIN
-  return new CoupledLabelledDomain(CoupledLabelledDomain());
+  return new CoupledLabelledDomainSP(std::make_shared<CoupledLabelledDomain>());
   FALCON_C_API_END(nullptr)
 }
 
@@ -26,7 +26,8 @@ CoupledLabelledDomainHandle CoupledLabelledDomain_create(
   falcon_core::generic::ListSP<LabelledDomain> list =
       std::make_shared<falcon_core::generic::List<LabelledDomain>>(
           *static_cast<falcon_core::generic::List<LabelledDomain>*>(items));
-  return new CoupledLabelledDomain(list->items());
+  return new CoupledLabelledDomainSP(
+      std::make_shared<CoupledLabelledDomain>(list->items()));
   FALCON_C_API_END(nullptr)
 }
 
@@ -36,7 +37,7 @@ void CoupledLabelledDomain_destroy(CoupledLabelledDomainHandle handle) {
     throw std::invalid_argument(
         "CoupledLabelledDomain_destroy: handle cannot be null");
   }
-  delete static_cast<CoupledLabelledDomain*>(handle);
+  delete static_cast<CoupledLabelledDomainSP*>(handle);
   FALCON_C_API_END()
 }
 
@@ -47,10 +48,12 @@ ListLabelledDomainHandle CoupledLabelledDomain_domains(
     throw std::invalid_argument(
         "CoupledLabelledDomain_domains: handle cannot be null");
   }
-  CoupledLabelledDomain self = *static_cast<CoupledLabelledDomain*>(handle);
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
   auto list = std::make_shared<falcon_core::generic::List<LabelledDomain>>(
-      self.domains());
-  return new falcon_core::generic::List<LabelledDomain>(list->items());
+      self->domains());
+  return new falcon_core::generic::ListSP<LabelledDomain>(
+      std::make_shared<falcon_core::generic::List<LabelledDomain>>(
+          list->items()));
   FALCON_C_API_END(nullptr)
 }
 
@@ -60,12 +63,15 @@ PortsHandle CoupledLabelledDomain_labels(CoupledLabelledDomainHandle handle) {
     throw std::invalid_argument(
         "CoupledLabelledDomain_labels: handle cannot be null");
   }
-  CoupledLabelledDomain self = *static_cast<CoupledLabelledDomain*>(handle);
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
   falcon_core::generic::ListSP<
       falcon_core::instrument_interfaces::names::InstrumentPort>
-      list = (self.labels());
-  return new falcon_core::generic::List<
-      falcon_core::instrument_interfaces::names::InstrumentPort>(list->items());
+      list = (self->labels());
+  return new falcon_core::generic::ListSP<
+      falcon_core::instrument_interfaces::names::InstrumentPort>(
+      std::make_shared<falcon_core::generic::List<
+          falcon_core::instrument_interfaces::names::InstrumentPort>>(
+          list->items()));
   FALCON_C_API_END(nullptr)
 }
 
@@ -80,15 +86,12 @@ LabelledDomainHandle CoupledLabelledDomain_get_domain(
     throw std::invalid_argument(
         "CoupledLabelledDomain_get_domain: search cannot be null");
   }
-  CoupledLabelledDomain self = *static_cast<CoupledLabelledDomain*>(handle);
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
   falcon_core::instrument_interfaces::names::InstrumentPortSP real_search =
-      std::make_shared<
-          falcon_core::instrument_interfaces::names::InstrumentPort>(
-          *static_cast<
-              falcon_core::instrument_interfaces::names::InstrumentPort*>(
-              search));
-  LabelledDomainSP result = self.get_domain(real_search);
-  return new LabelledDomain(*result);
+      *static_cast<
+          falcon_core::instrument_interfaces::names::InstrumentPortSP*>(search);
+  LabelledDomainSP result = self->get_domain(real_search);
+  return new LabelledDomainSP(result);
   FALCON_C_API_END(nullptr)
 }
 
@@ -103,10 +106,11 @@ CoupledLabelledDomainHandle CoupledLabelledDomain_intersection(
     throw std::invalid_argument(
         "CoupledLabelledDomain_intersection: other cannot be null");
   }
-  CoupledLabelledDomain   self = *static_cast<CoupledLabelledDomain*>(handle);
-  CoupledLabelledDomainSP real_other = std::make_shared<CoupledLabelledDomain>(
-      *static_cast<CoupledLabelledDomain*>(other));
-  return new CoupledLabelledDomain(self.intersection(real_other)->items());
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
+  CoupledLabelledDomainSP real_other =
+      *static_cast<CoupledLabelledDomainSP*>(other);
+  return new CoupledLabelledDomainSP(std::make_shared<CoupledLabelledDomain>(
+      self->intersection(real_other)->items()));
   FALCON_C_API_END(nullptr)
 }
 
@@ -121,9 +125,8 @@ void CoupledLabelledDomain_push_back(CoupledLabelledDomainHandle handle,
     throw std::invalid_argument(
         "CoupledLabelledDomain_push_back: value cannot be null");
   }
-  CoupledLabelledDomain* self = static_cast<CoupledLabelledDomain*>(handle);
-  LabelledDomainSP       real_value =
-      std::make_shared<LabelledDomain>(*static_cast<LabelledDomain*>(value));
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
+  LabelledDomainSP        real_value = *static_cast<LabelledDomainSP*>(value);
   self->push_back(real_value);
   FALCON_C_API_END()
 }
@@ -134,8 +137,8 @@ size_t CoupledLabelledDomain_size(CoupledLabelledDomainHandle handle) {
     throw std::invalid_argument(
         "CoupledLabelledDomain_size: handle cannot be null");
   }
-  CoupledLabelledDomain self = *static_cast<CoupledLabelledDomain*>(handle);
-  return self.size();
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
+  return self->size();
   FALCON_C_API_END(0)
 }
 
@@ -145,8 +148,8 @@ bool CoupledLabelledDomain_empty(CoupledLabelledDomainHandle handle) {
     throw std::invalid_argument(
         "CoupledLabelledDomain_empty: handle cannot be null");
   }
-  CoupledLabelledDomain self = *static_cast<CoupledLabelledDomain*>(handle);
-  return self.empty();
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
+  return self->empty();
   FALCON_C_API_END(false)
 }
 
@@ -157,7 +160,7 @@ void CoupledLabelledDomain_erase_at(CoupledLabelledDomainHandle handle,
     throw std::invalid_argument(
         "CoupledLabelledDomain_erase_at: handle cannot be null");
   }
-  CoupledLabelledDomain* self = static_cast<CoupledLabelledDomain*>(handle);
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
   self->erase_at(idx);
   FALCON_C_API_END()
 }
@@ -168,7 +171,7 @@ void CoupledLabelledDomain_clear(CoupledLabelledDomainHandle handle) {
     throw std::invalid_argument(
         "CoupledLabelledDomain_clear: handle cannot be null");
   }
-  CoupledLabelledDomain* self = static_cast<CoupledLabelledDomain*>(handle);
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
   self->clear();
   FALCON_C_API_END()
 }
@@ -180,8 +183,8 @@ LabelledDomainHandle CoupledLabelledDomain_const_at(
     throw std::invalid_argument(
         "CoupledLabelledDomain_const_at: handle cannot be null");
   }
-  CoupledLabelledDomain self = *static_cast<CoupledLabelledDomain*>(handle);
-  return new LabelledDomain(*(self.at(idx)));
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
+  return new LabelledDomainSP(self->at(idx));
   FALCON_C_API_END(nullptr)
 }
 
@@ -192,8 +195,8 @@ LabelledDomainHandle CoupledLabelledDomain_at(
     throw std::invalid_argument(
         "CoupledLabelledDomain_at: handle cannot be null");
   }
-  CoupledLabelledDomain self = *static_cast<CoupledLabelledDomain*>(handle);
-  return new LabelledDomain(*(self.at(idx)));
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
+  return new LabelledDomainSP(self->at(idx));
   FALCON_C_API_END(nullptr)
 }
 
@@ -204,10 +207,12 @@ ListLabelledDomainHandle CoupledLabelledDomain_items(
     throw std::invalid_argument(
         "CoupledLabelledDomain_items: handle cannot be null");
   }
-  CoupledLabelledDomain self = *static_cast<CoupledLabelledDomain*>(handle);
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
   auto list = std::make_shared<falcon_core::generic::List<LabelledDomain>>(
-      self.items());
-  return new falcon_core::generic::List<LabelledDomain>(list->items());
+      self->items());
+  return new falcon_core::generic::ListSP<LabelledDomain>(
+      std::make_shared<falcon_core::generic::List<LabelledDomain>>(
+          list->items()));
   FALCON_C_API_END(nullptr)
 }
 
@@ -222,10 +227,9 @@ bool CoupledLabelledDomain_contains(CoupledLabelledDomainHandle handle,
     throw std::invalid_argument(
         "CoupledLabelledDomain_contains: value cannot be null");
   }
-  CoupledLabelledDomain self = *static_cast<CoupledLabelledDomain*>(handle);
-  LabelledDomainSP      real_value =
-      std::make_shared<LabelledDomain>(*static_cast<LabelledDomain*>(value));
-  return self.contains(real_value);
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
+  LabelledDomainSP        real_value = *static_cast<LabelledDomainSP*>(value);
+  return self->contains(real_value);
   FALCON_C_API_END(false)
 }
 
@@ -240,43 +244,42 @@ size_t CoupledLabelledDomain_index(CoupledLabelledDomainHandle handle,
     throw std::invalid_argument(
         "CoupledLabelledDomain_index: value cannot be null");
   }
-  CoupledLabelledDomain self = *static_cast<CoupledLabelledDomain*>(handle);
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
   falcon_core::generic::ListSP<LabelledDomain> real_value =
-      std::make_shared<falcon_core::generic::List<LabelledDomain>>(
-          *static_cast<falcon_core::generic::List<LabelledDomain>*>(value));
-  return self.index(real_value->at(0));
+      *static_cast<falcon_core::generic::ListSP<LabelledDomain>*>(value);
+  return self->index(real_value->at(0));
   FALCON_C_API_END(0)
 }
 
-bool CoupledLabelledDomain_equal(CoupledLabelledDomainHandle a,
-                                 CoupledLabelledDomainHandle b) {
+bool CoupledLabelledDomain_equal(CoupledLabelledDomainHandle handle,
+                                 CoupledLabelledDomainHandle other) {
   FALCON_C_API_BEGIN
-  if (!a) {
+  if (!handle) {
     throw std::invalid_argument(
         "CoupledLabelledDomain_equal: handle a cannot be null");
   }
-  if (!b) {
+  if (!other) {
     throw std::invalid_argument(
         "CoupledLabelledDomain_equal: handle b cannot be null");
   }
-  return *(static_cast<CoupledLabelledDomain*>(a)) ==
-         *(static_cast<CoupledLabelledDomain*>(b));
+  return *(static_cast<CoupledLabelledDomainSP*>(handle)) ==
+         *(static_cast<CoupledLabelledDomainSP*>(other));
   FALCON_C_API_END(false)
 }
 
-bool CoupledLabelledDomain_not_equal(CoupledLabelledDomainHandle a,
-                                     CoupledLabelledDomainHandle b) {
+bool CoupledLabelledDomain_not_equal(CoupledLabelledDomainHandle handle,
+                                     CoupledLabelledDomainHandle other) {
   FALCON_C_API_BEGIN
-  if (!a) {
+  if (!handle) {
     throw std::invalid_argument(
         "CoupledLabelledDomain_not_equal: handle a cannot be null");
   }
-  if (!b) {
+  if (!other) {
     throw std::invalid_argument(
         "CoupledLabelledDomain_not_equal: handle b cannot be null");
   }
-  return *(static_cast<CoupledLabelledDomain*>(a)) !=
-         *(static_cast<CoupledLabelledDomain*>(b));
+  return *(static_cast<CoupledLabelledDomainSP*>(handle)) !=
+         *(static_cast<CoupledLabelledDomainSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -287,8 +290,8 @@ StringHandle CoupledLabelledDomain_to_json_string(
     throw std::invalid_argument(
         "CoupledLabelledDomain_to_json_string: handle cannot be null");
   }
-  CoupledLabelledDomain self = *static_cast<CoupledLabelledDomain*>(handle);
-  std::string           json = self.to_json_string();
+  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
+  std::string             json = self->to_json_string();
   return String_create(json.c_str(), json.size());
   FALCON_C_API_END(nullptr)
 }
@@ -301,9 +304,8 @@ CoupledLabelledDomainHandle CoupledLabelledDomain_from_json_string(
         "CoupledLabelledDomain_from_json_string: json cannot be null");
   }
   std::string json_str = json->raw;
-  return new CoupledLabelledDomain(
-      *CoupledLabelledDomain::from_json_string<CoupledLabelledDomain>(
-          json_str));
+  return new CoupledLabelledDomainSP(
+      CoupledLabelledDomain::from_json_string<CoupledLabelledDomain>(json_str));
   FALCON_C_API_END(nullptr)
 }
 }
