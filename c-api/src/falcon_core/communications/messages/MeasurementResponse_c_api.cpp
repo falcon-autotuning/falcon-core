@@ -20,10 +20,9 @@ MeasurementResponseHandle MeasurementResponse_create(
         "Null handle passed to MeasurementResponse_create");
   }
   math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>
-      real_arrays = std::make_shared<
-          math::arrays::LabelledArrays<math::arrays::LabelledMeasuredArray>>(
-          *static_cast<math::arrays::LabelledArrays<
-              math::arrays::LabelledMeasuredArray>*>(arrays));
+      real_arrays = *static_cast<
+          math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>*>(
+          arrays);
   return new MeasurementResponseSP(
       std::make_shared<MeasurementResponse>(real_arrays));
   FALCON_C_API_END(nullptr)
@@ -48,8 +47,8 @@ LabelledArraysLabelledMeasuredArrayHandle MeasurementResponse_arrays(
   }
   MeasurementResponseSP measurement_response =
       *static_cast<MeasurementResponseSP*>(handle);
-  return new math::arrays::LabelledArrays<math::arrays::LabelledMeasuredArray>(
-      *(measurement_response->arrays()));
+  return new math::arrays::LabelledArraysSP<
+      math::arrays::LabelledMeasuredArray>(measurement_response->arrays());
   FALCON_C_API_END(nullptr)
 }
 

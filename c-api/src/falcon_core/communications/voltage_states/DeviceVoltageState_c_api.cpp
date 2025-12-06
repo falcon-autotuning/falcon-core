@@ -22,15 +22,12 @@ DeviceVoltageStateHandle DeviceVoltageState_create(ConnectionHandle connection,
         "DeviceVoltageState_create: unit cannot be null");
   }
   falcon_core::physics::device_structures::ConnectionSP real_connection =
-      std::make_shared<falcon_core::physics::device_structures::Connection>(
-          *static_cast<falcon_core::physics::device_structures::Connection*>(
-              connection));
+      *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(
+          connection);
   falcon_core::physics::units::SymbolUnitSP real_unit =
-      std::make_shared<falcon_core::physics::units::SymbolUnit>(
-          *static_cast<falcon_core::physics::units::SymbolUnit*>(unit));
-  return new std::shared_ptr<DeviceVoltageState>(
-      std::make_shared<DeviceVoltageState>(
-          real_connection, voltage, real_unit));
+      *static_cast<falcon_core::physics::units::SymbolUnitSP*>(unit);
+  return new DeviceVoltageStateSP(std::make_shared<DeviceVoltageState>(
+      real_connection, voltage, real_unit));
   FALCON_C_API_END(nullptr)
 }
 
@@ -61,7 +58,7 @@ SymbolUnitHandle DeviceVoltageState_unit(DeviceVoltageStateHandle handle) {
     throw std::invalid_argument(
         "DeviceVoltageState_unit: handle cannot be null");
   const auto unit = (*static_cast<DeviceVoltageStateSP*>(handle))->unit();
-  return new falcon_core::physics::units::SymbolUnit(*unit);
+  return new falcon_core::physics::units::SymbolUnitSP(unit);
   FALCON_C_API_END(nullptr)
 }
 
@@ -99,8 +96,7 @@ void DeviceVoltageState_convert_to(DeviceVoltageStateHandle handle,
         "DeviceVoltageState_convert_to: target_unit cannot be null");
   }
   falcon_core::physics::units::SymbolUnitSP real_target_unit =
-      std::make_shared<falcon_core::physics::units::SymbolUnit>(
-          *static_cast<falcon_core::physics::units::SymbolUnit*>(target_unit));
+      *static_cast<falcon_core::physics::units::SymbolUnitSP*>(target_unit);
   (*static_cast<DeviceVoltageStateSP*>(handle))->convert_to(real_target_unit);
   FALCON_C_API_END()
 }
@@ -410,8 +406,8 @@ bool DeviceVoltageState_equal(DeviceVoltageStateHandle handle,
     throw std::invalid_argument(
         "DeviceVoltageState_equal: handle b cannot be null");
   }
-  return *(static_cast<DeviceVoltageStateSP*>(handle)) ==
-         *(static_cast<DeviceVoltageStateSP*>(other));
+  return *(*static_cast<DeviceVoltageStateSP*>(handle)) ==
+         *(*static_cast<DeviceVoltageStateSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -426,8 +422,8 @@ bool DeviceVoltageState_not_equal(DeviceVoltageStateHandle handle,
     throw std::invalid_argument(
         "DeviceVoltageState_not_equal: handle b cannot be null");
   }
-  return *(static_cast<DeviceVoltageStateSP*>(handle)) !=
-         *(static_cast<DeviceVoltageStateSP*>(other));
+  return *(*static_cast<DeviceVoltageStateSP*>(handle)) !=
+         *(*static_cast<DeviceVoltageStateSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -453,7 +449,7 @@ DeviceVoltageStateHandle DeviceVoltageState_from_json_string(
   }
   auto ptr =
       DeviceVoltageState::from_json_string<DeviceVoltageState>(json->raw);
-  return new DeviceVoltageStateSP(std::make_shared<DeviceVoltageState>(*ptr));
+  return new DeviceVoltageStateSP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }

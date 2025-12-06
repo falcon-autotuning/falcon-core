@@ -5,6 +5,7 @@
 #include <falcon_core/communications/HDF5Data.hpp>
 #include <string>
 
+#include "falcon_core/communications/messages/MeasurementRequest.hpp"
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 using namespace falcon_core;
@@ -43,23 +44,18 @@ HDF5DataHandle HDF5Data_create(AxesIntHandle                   shape,
     throw std::invalid_argument(
         "Null handle passed to HDF5Data_create: measurement_title");
   }
-  math::AxesSP<int> real_shape =
-      std::make_shared<math::Axes<int>>(*static_cast<math::Axes<int>*>(shape));
+  math::AxesSP<int> real_shape = *static_cast<math::AxesSP<int>*>(shape);
   math::AxesSP<math::arrays::ControlArray> real_control_arrays =
-      std::make_shared<math::Axes<math::arrays::ControlArray>>(
-          *static_cast<math::Axes<math::arrays::ControlArray>*>(unit_domain));
+      *static_cast<math::AxesSP<math::arrays::ControlArray>*>(unit_domain);
   math::AxesSP<math::domains::CoupledLabelledDomain> real_domain_labels =
-      std::make_shared<math::Axes<math::domains::CoupledLabelledDomain>>(
-          *static_cast<math::Axes<math::domains::CoupledLabelledDomain>*>(
-              domain_labels));
+      *static_cast<math::AxesSP<math::domains::CoupledLabelledDomain>*>(
+          domain_labels);
   math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>
-      real_ranges = std::make_shared<
-          math::arrays::LabelledArrays<math::arrays::LabelledMeasuredArray>>(
-          *static_cast<math::arrays::LabelledArrays<
-              math::arrays::LabelledMeasuredArray>*>(ranges));
+      real_ranges = *static_cast<
+          math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>*>(
+          ranges);
   generic::MapSP<std::string, std::string> real_metadata =
-      std::make_shared<generic::Map<std::string, std::string>>(
-          *static_cast<generic::Map<std::string, std::string>*>(metadata));
+      *static_cast<generic::MapSP<std::string, std::string>*>(metadata);
   std::string measurement_title_str =
       std::string(measurement_title->raw, measurement_title->length);
   return new HDF5DataSP(std::make_shared<HDF5Data>(real_shape,
@@ -168,9 +164,11 @@ PairMeasurementResponseMeasurementRequestHandle HDF5Data_to_communications(
   }
   HDF5DataSP hdf5_data = *static_cast<HDF5DataSP*>(handle);
   auto       pair      = hdf5_data->to_communications();
-  return new generic::Pair<messages::MeasurementResponse,
-                           messages::MeasurementRequest>(pair.first,
-                                                         pair.second);
+  return new generic::PairSP<messages::MeasurementResponse,
+                             messages::MeasurementRequest>(
+      std::make_shared<generic::Pair<messages::MeasurementResponse,
+                                     messages::MeasurementRequest>>(
+          pair.first, pair.second));
   FALCON_C_API_END(nullptr)
 }
 
@@ -205,7 +203,7 @@ AxesIntHandle HDF5Data_shape(HDF5DataHandle handle) {
   }
   HDF5DataSP        hdf5_data = *static_cast<HDF5DataSP*>(handle);
   math::AxesSP<int> shape     = hdf5_data->shape();
-  return new math::Axes<int>(*shape);
+  return new math::AxesSP<int>(shape);
   FALCON_C_API_END(nullptr)
 }
 
@@ -217,7 +215,7 @@ AxesControlArrayHandle HDF5Data_unit_domain(HDF5DataHandle handle) {
   HDF5DataSP hdf5_data = *static_cast<HDF5DataSP*>(handle);
   math::AxesSP<math::arrays::ControlArray> unit_domain =
       hdf5_data->unit_domain();
-  return new math::Axes<math::arrays::ControlArray>(*unit_domain);
+  return new math::AxesSP<math::arrays::ControlArray>(unit_domain);
   FALCON_C_API_END(nullptr)
 }
 
@@ -229,7 +227,7 @@ AxesCoupledLabelledDomainHandle HDF5Data_domain_labels(HDF5DataHandle handle) {
   HDF5DataSP hdf5_data = *static_cast<HDF5DataSP*>(handle);
   math::AxesSP<math::domains::CoupledLabelledDomain> domain_labels =
       hdf5_data->domain_labels();
-  return new math::Axes<math::domains::CoupledLabelledDomain>(*domain_labels);
+  return new math::AxesSP<math::domains::CoupledLabelledDomain>(domain_labels);
   FALCON_C_API_END(nullptr)
 }
 
@@ -241,8 +239,8 @@ LabelledArraysLabelledMeasuredArrayHandle HDF5Data_ranges(
   }
   HDF5DataSP hdf5_data = *static_cast<HDF5DataSP*>(handle);
   auto       ranges    = hdf5_data->ranges();
-  return new math::arrays::LabelledArrays<math::arrays::LabelledMeasuredArray>(
-      *ranges);
+  return new math::arrays::LabelledArraysSP<
+      math::arrays::LabelledMeasuredArray>(ranges);
   FALCON_C_API_END(nullptr)
 }
 
@@ -253,7 +251,7 @@ MapStringStringHandle HDF5Data_metadata(HDF5DataHandle handle) {
   }
   HDF5DataSP hdf5_data = *static_cast<HDF5DataSP*>(handle);
   auto       metadata  = hdf5_data->metadata();
-  return new generic::Map<std::string, std::string>(*metadata);
+  return new generic::MapSP<std::string, std::string>(metadata);
   FALCON_C_API_END(nullptr)
 }
 

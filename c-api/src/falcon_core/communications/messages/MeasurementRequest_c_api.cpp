@@ -48,21 +48,16 @@ MeasurementRequestHandle MeasurementRequest_create(
   std::string real_measurement_name =
       std::string(measurement_name->raw, measurement_name->length);
   generic::ListSP<instrument_interfaces::Waveform> real_waveforms =
-      std::make_shared<generic::List<instrument_interfaces::Waveform>>(
-          *static_cast<generic::List<instrument_interfaces::Waveform>*>(
-              waveforms));
+      *static_cast<generic::ListSP<instrument_interfaces::Waveform>*>(
+          waveforms);
   instrument_interfaces::names::PortsSP real_getters =
-      std::make_shared<instrument_interfaces::names::Ports>(
-          *static_cast<instrument_interfaces::names::Ports*>(getters));
+      *static_cast<instrument_interfaces::names::PortsSP*>(getters);
   generic::MapSP<instrument_interfaces::names::InstrumentPort,
                  instrument_interfaces::port_transforms::PortTransform>
-      real_meter_transforms = std::make_shared<
-          generic::Map<instrument_interfaces::names::InstrumentPort,
-                       instrument_interfaces::port_transforms::PortTransform>>(
-          *static_cast<generic::Map<
-              instrument_interfaces::names::InstrumentPort,
-              instrument_interfaces::port_transforms::PortTransform>*>(
-              meter_transforms));
+      real_meter_transforms = *static_cast<generic::MapSP<
+          instrument_interfaces::names::InstrumentPort,
+          instrument_interfaces::port_transforms::PortTransform>*>(
+          meter_transforms);
   math::domains::LabelledDomainSP real_time_domain =
       *static_cast<math::domains::LabelledDomainSP*>(time_domain);
   return new MeasurementRequestSP(
@@ -107,8 +102,8 @@ PortsHandle MeasurementRequest_getters(MeasurementRequestHandle handle) {
   }
   MeasurementRequestSP measurement_request =
       *static_cast<MeasurementRequestSP*>(handle);
-  return new instrument_interfaces::names::Ports(
-      *(measurement_request->getters()));
+  return new instrument_interfaces::names::PortsSP(
+      measurement_request->getters());
   FALCON_C_API_END(nullptr)
 }
 
@@ -121,8 +116,8 @@ ListWaveformHandle MeasurementRequest_waveforms(
   }
   MeasurementRequestSP measurement_request =
       *static_cast<MeasurementRequestSP*>(handle);
-  return new generic::List<instrument_interfaces::Waveform>(
-      *(measurement_request->waveforms()));
+  return new generic::ListSP<instrument_interfaces::Waveform>(
+      measurement_request->waveforms());
   FALCON_C_API_END(nullptr)
 }
 
@@ -135,10 +130,10 @@ MapInstrumentPortPortTransformHandle MeasurementRequest_meter_transforms(
   }
   MeasurementRequestSP measurement_request =
       *static_cast<MeasurementRequestSP*>(handle);
-  return new generic::Map<
+  return new generic::MapSP<
       instrument_interfaces::names::InstrumentPort,
       instrument_interfaces::port_transforms::PortTransform>(
-      *(measurement_request->meter_transforms()));
+      measurement_request->meter_transforms());
   FALCON_C_API_END(nullptr)
 }
 

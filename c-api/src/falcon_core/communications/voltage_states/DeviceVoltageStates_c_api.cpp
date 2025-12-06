@@ -23,8 +23,7 @@ DeviceVoltageStatesHandle DeviceVoltageStates_create(
         "DeviceVoltageStates_create: items cannot be null");
   }
   falcon_core::generic::ListSP<DeviceVoltageState> list =
-      std::make_shared<falcon_core::generic::List<DeviceVoltageState>>(
-          *static_cast<falcon_core::generic::List<DeviceVoltageState>*>(items));
+      *static_cast<falcon_core::generic::ListSP<DeviceVoltageState>*>(items);
   return new DeviceVoltageStatesSP(std::make_shared<DeviceVoltageStates>(list));
   FALCON_C_API_END(nullptr)
 }
@@ -47,7 +46,7 @@ ListDeviceVoltageStateHandle DeviceVoltageStates_states(
         "DeviceVoltageStates_states: handle cannot be null");
   }
   DeviceVoltageStatesSP self = *static_cast<DeviceVoltageStatesSP*>(handle);
-  return new falcon_core::generic::List<DeviceVoltageState>(*self->states());
+  return new falcon_core::generic::ListSP<DeviceVoltageState>(self->states());
   FALCON_C_API_END(nullptr)
 }
 
@@ -81,11 +80,10 @@ DeviceVoltageStatesHandle DeviceVoltageStates_find_state(
   }
   DeviceVoltageStatesSP self = *static_cast<DeviceVoltageStatesSP*>(handle);
   falcon_core::physics::device_structures::ConnectionSP real_connection =
-      std::make_shared<falcon_core::physics::device_structures::Connection>(
-          *static_cast<falcon_core::physics::device_structures::Connection*>(
-              connection));
+      *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(
+          connection);
   DeviceVoltageStateSP result = self->find_state(real_connection);
-  return new DeviceVoltageState(*result);
+  return new DeviceVoltageStateSP(result);
   FALCON_C_API_END(nullptr)
 }
 
@@ -97,7 +95,7 @@ PointHandle DeviceVoltageStates_to_point(DeviceVoltageStatesHandle handle) {
   }
   DeviceVoltageStatesSP self = *static_cast<DeviceVoltageStatesSP*>(handle);
   falcon_core::math::PointSP result = self->to_point();
-  return new falcon_core::math::Point(*result);
+  return new falcon_core::math::PointSP(result);
   FALCON_C_API_END(nullptr)
 }
 
@@ -205,7 +203,9 @@ ListDeviceVoltageStateHandle DeviceVoltageStates_items(
         "DeviceVoltageStates_items: handle cannot be null");
   }
   DeviceVoltageStatesSP self = *static_cast<DeviceVoltageStatesSP*>(handle);
-  return new falcon_core::generic::List<DeviceVoltageState>(self->items());
+  return new falcon_core::generic::ListSP<DeviceVoltageState>(
+      std::make_shared<falcon_core::generic::List<DeviceVoltageState>>(
+          self->items()));
   FALCON_C_API_END(nullptr)
 }
 
