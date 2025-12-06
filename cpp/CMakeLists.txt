@@ -108,7 +108,13 @@ if(USE_VCPKG)
 endif()
 
 file(GLOB_RECURSE FALCON_CORE_SOURCES CONFIGURE_DEPENDS "src/*.cpp")
-add_library(${CPP_LIB_NAME} SHARED ${FALCON_CORE_SOURCES})
+if (WIN32)
+  # On Windows, avoid DLL export issues – build a static library
+  add_library(${CPP_LIB_NAME} STATIC ${FALCON_CORE_SOURCES})
+else()
+  add_library(${CPP_LIB_NAME} SHARED ${FALCON_CORE_SOURCES})
+endif()
+
 target_include_directories(
   ${CPP_LIB_NAME}
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
