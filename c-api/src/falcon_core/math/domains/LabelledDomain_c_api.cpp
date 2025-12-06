@@ -7,6 +7,7 @@
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 using namespace falcon_core::math::domains;
 
 extern "C" {
@@ -41,17 +42,15 @@ LabelledDomainHandle LabelledDomain_create_primitive_knob(
     throw std::invalid_argument(
         "LabelledDomain_create_primitive_knob: description cannot be null");
   }
-  return new LabelledDomain(LabelledDomain(
+  return new LabelledDomainSP(std::make_shared<LabelledDomain>(
       std::string(default_name->raw, default_name->length),
       std::pair<double, double>(min_val, max_val),
-      std::make_shared<falcon_core::physics::device_structures::Connection>(
-          *static_cast<falcon_core::physics::device_structures::Connection*>(
-              psuedo_name)),
+      *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(
+          psuedo_name),
       std::string(instrument_type->raw, instrument_type->length),
       lesser_bound_contained,
       greater_bound_contained,
-      std::make_shared<falcon_core::physics::units::SymbolUnit>(
-          *static_cast<falcon_core::physics::units::SymbolUnit*>(units)),
+      *static_cast<falcon_core::physics::units::SymbolUnitSP*>(units),
       std::string(description->raw, description->length),
       falcon_core::instrument_interfaces::names::PortType::Knob));
   FALCON_C_API_END(nullptr)
@@ -89,17 +88,15 @@ LabelledDomainHandle LabelledDomain_create_primitive_meter(
     throw std::invalid_argument(
         "LabelledDomain_create_primitive_meter: description cannot be null");
   }
-  return new LabelledDomain(LabelledDomain(
+  return new LabelledDomainSP(std::make_shared<LabelledDomain>(
       std::string(default_name->raw, default_name->length),
       std::pair<double, double>(min_val, max_val),
-      std::make_shared<falcon_core::physics::device_structures::Connection>(
-          *static_cast<falcon_core::physics::device_structures::Connection*>(
-              psuedo_name)),
+      *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(
+          psuedo_name),
       std::string(instrument_type->raw, instrument_type->length),
       lesser_bound_contained,
       greater_bound_contained,
-      std::make_shared<falcon_core::physics::units::SymbolUnit>(
-          *static_cast<falcon_core::physics::units::SymbolUnit*>(units)),
+      *static_cast<falcon_core::physics::units::SymbolUnitSP*>(units),
       std::string(description->raw, description->length),
       falcon_core::instrument_interfaces::names::PortType::Meter));
   FALCON_C_API_END(nullptr)
@@ -136,18 +133,15 @@ LabelledDomainHandle LabelledDomain_create_primitive_port(
     throw std::invalid_argument(
         "LabelledDomain_create_primitive_port: description cannot be null");
   }
-  return new LabelledDomain(LabelledDomain(
+  return new LabelledDomainSP(std::make_shared<LabelledDomain>(
       std::string(default_name->raw, default_name->length),
       std::pair<double, double>(min_val, max_val),
-      std::shared_ptr<falcon_core::physics::device_structures::Connection>(
-          static_cast<falcon_core::physics::device_structures::Connection*>(
-              psuedo_name),
-          [](falcon_core::physics::device_structures::Connection*) {}),
+      *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(
+          psuedo_name),
       std::string(instrument_type->raw, instrument_type->length),
       lesser_bound_contained,
       greater_bound_contained,
-      std::make_shared<falcon_core::physics::units::SymbolUnit>(
-          *static_cast<falcon_core::physics::units::SymbolUnit*>(units)),
+      *static_cast<falcon_core::physics::units::SymbolUnitSP*>(units),
       std::string(description->raw, description->length),
       falcon_core::instrument_interfaces::names::PortType::InstrumentPort));
   FALCON_C_API_END(nullptr)
@@ -169,13 +163,10 @@ LabelledDomainHandle LabelledDomain_create_from_port(
     throw std::invalid_argument(
         "LabelledDomain_create_from_port: port cannot be null");
   }
-  return new LabelledDomain(*LabelledDomain::from_port(
+  return new LabelledDomainSP(LabelledDomain::from_port(
       std::pair<double, double>(min_val, max_val),
-      std::make_shared<
-          falcon_core::instrument_interfaces::names::InstrumentPort>(
-          *static_cast<
-              falcon_core::instrument_interfaces::names::InstrumentPort*>(
-              port)),
+      *static_cast<
+          falcon_core::instrument_interfaces::names::InstrumentPortSP*>(port),
       lesser_bound_contained,
       greater_bound_contained));
   FALCON_C_API_END(nullptr)
@@ -192,13 +183,10 @@ LabelledDomainHandle LabelledDomain_create_from_port_and_domain(
     throw std::invalid_argument(
         "LabelledDomain_create_from_port_and_domain: domain cannot be null");
   }
-  return new LabelledDomain(*LabelledDomain::from_port_and_domain(
-      std::shared_ptr<
-          falcon_core::instrument_interfaces::names::InstrumentPort>(
-          static_cast<
-              falcon_core::instrument_interfaces::names::InstrumentPort*>(port),
-          [](falcon_core::instrument_interfaces::names::InstrumentPort*) {}),
-      std::shared_ptr<Domain>(static_cast<Domain*>(domain), [](Domain*) {})));
+  return new LabelledDomainSP(LabelledDomain::from_port_and_domain(
+      *static_cast<
+          falcon_core::instrument_interfaces::names::InstrumentPortSP*>(port),
+      *static_cast<DomainSP*>(domain)));
   FALCON_C_API_END(nullptr)
 }
 
@@ -234,17 +222,13 @@ LabelledDomainHandle LabelledDomain_create_from_domain(
     throw std::invalid_argument(
         "LabelledDomain_create_from_domain: description cannot be null");
   }
-  return new LabelledDomain(*LabelledDomain::from_domain(
-      std::shared_ptr<Domain>(static_cast<Domain*>(domain), [](Domain*) {}),
+  return new LabelledDomainSP(LabelledDomain::from_domain(
+      *static_cast<DomainSP*>(domain),
       std::string(default_name->raw, default_name->length),
-      std::shared_ptr<falcon_core::physics::device_structures::Connection>(
-          static_cast<falcon_core::physics::device_structures::Connection*>(
-              psuedo_name),
-          [](falcon_core::physics::device_structures::Connection*) {}),
+      *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(
+          psuedo_name),
       std::string(instrument_type->raw, instrument_type->length),
-      std::shared_ptr<falcon_core::physics::units::SymbolUnit>(
-          static_cast<falcon_core::physics::units::SymbolUnit*>(units),
-          [](falcon_core::physics::units::SymbolUnit*) {}),
+      *static_cast<falcon_core::physics::units::SymbolUnitSP*>(units),
       std::string(description->raw, description->length)));
   FALCON_C_API_END(nullptr)
 }
@@ -255,7 +239,7 @@ void LabelledDomain_destroy(LabelledDomainHandle handle) {
     throw std::invalid_argument(
         "LabelledDomain_destroy: handle cannot be null");
   }
-  delete static_cast<LabelledDomain*>(handle);
+  delete static_cast<LabelledDomainSP*>(handle);
   FALCON_C_API_END()
 }
 
@@ -264,8 +248,9 @@ InstrumentPortHandle LabelledDomain_port(LabelledDomainHandle handle) {
   if (!handle) {
     throw std::invalid_argument("LabelledDomain_port: handle cannot be null");
   }
-  const auto port = static_cast<LabelledDomain*>(handle)->port();
-  return new falcon_core::instrument_interfaces::names::InstrumentPort(*port);
+  falcon_core::instrument_interfaces::names::InstrumentPortSP port =
+      (*static_cast<LabelledDomainSP*>(handle))->port();
+  return new falcon_core::instrument_interfaces::names::InstrumentPortSP(port);
   FALCON_C_API_END(nullptr)
 }
 
@@ -274,8 +259,8 @@ DomainHandle LabelledDomain_domain(LabelledDomainHandle handle) {
   if (!handle) {
     throw std::invalid_argument("LabelledDomain_domain: handle cannot be null");
   }
-  const auto domain = static_cast<LabelledDomain*>(handle)->domain();
-  return new Domain(*domain);
+  auto domain = (*static_cast<LabelledDomainSP*>(handle))->domain();
+  return new DomainSP(domain);
   FALCON_C_API_END(nullptr)
 }
 
@@ -290,14 +275,11 @@ bool LabelledDomain_matching_port(LabelledDomainHandle handle,
     throw std::invalid_argument(
         "LabelledDomain_matching_port: port cannot be null");
   }
-  LabelledDomain self = *static_cast<LabelledDomain*>(handle);
+  LabelledDomainSP self = *static_cast<LabelledDomainSP*>(handle);
   falcon_core::instrument_interfaces::names::InstrumentPortSP real_port =
-      std::make_shared<
-          falcon_core::instrument_interfaces::names::InstrumentPort>(
-          *static_cast<
-              falcon_core::instrument_interfaces::names::InstrumentPort*>(
-              port));
-  return self.matching_port(real_port);
+      *static_cast<
+          falcon_core::instrument_interfaces::names::InstrumentPortSP*>(port);
+  return self->matching_port(real_port);
   FALCON_C_API_END(false)
 }
 
@@ -307,8 +289,8 @@ double LabelledDomain_lesser_bound(LabelledDomainHandle handle) {
     throw std::invalid_argument(
         "LabelledDomain_lesser_bound: handle cannot be null");
   }
-  LabelledDomain self = *static_cast<LabelledDomain*>(handle);
-  return self.lesser_bound();
+  LabelledDomainSP self = *static_cast<LabelledDomainSP*>(handle);
+  return self->lesser_bound();
   FALCON_C_API_END(0.0)
 }
 
@@ -318,8 +300,8 @@ double LabelledDomain_greater_bound(LabelledDomainHandle handle) {
     throw std::invalid_argument(
         "LabelledDomain_greater_bound: handle cannot be null");
   }
-  LabelledDomain self = *static_cast<LabelledDomain*>(handle);
-  return self.greater_bound();
+  LabelledDomainSP self = *static_cast<LabelledDomainSP*>(handle);
+  return self->greater_bound();
   FALCON_C_API_END(0.0)
 }
 
@@ -329,8 +311,8 @@ bool LabelledDomain_lesser_bound_contained(LabelledDomainHandle handle) {
     throw std::invalid_argument(
         "LabelledDomain_lesser_bound_contained: handle cannot be null");
   }
-  LabelledDomain self = *static_cast<LabelledDomain*>(handle);
-  return self.lesser_bound_contained();
+  LabelledDomainSP self = *static_cast<LabelledDomainSP*>(handle);
+  return self->lesser_bound_contained();
   FALCON_C_API_END(false)
 }
 
@@ -340,8 +322,8 @@ bool LabelledDomain_greater_bound_contained(LabelledDomainHandle handle) {
     throw std::invalid_argument(
         "LabelledDomain_greater_bound_contained: handle cannot be null");
   }
-  LabelledDomain self = *static_cast<LabelledDomain*>(handle);
-  return self.greater_bound_contained();
+  LabelledDomainSP self = *static_cast<LabelledDomainSP*>(handle);
+  return self->greater_bound_contained();
   FALCON_C_API_END(false)
 }
 
@@ -350,8 +332,8 @@ bool LabelledDomain_in(LabelledDomainHandle handle, double value) {
   if (!handle) {
     throw std::invalid_argument("LabelledDomain_in: handle cannot be null");
   }
-  LabelledDomain self = *static_cast<LabelledDomain*>(handle);
-  return self.in(value);
+  LabelledDomainSP self = *static_cast<LabelledDomainSP*>(handle);
+  return self->in(value);
   FALCON_C_API_END(false)
 }
 
@@ -360,8 +342,8 @@ double LabelledDomain_range(LabelledDomainHandle handle) {
   if (!handle) {
     throw std::invalid_argument("LabelledDomain_range: handle cannot be null");
   }
-  LabelledDomain self = *static_cast<LabelledDomain*>(handle);
-  return self.range();
+  LabelledDomainSP self = *static_cast<LabelledDomainSP*>(handle);
+  return self->range();
   FALCON_C_API_END(0.0)
 }
 
@@ -370,8 +352,8 @@ double LabelledDomain_center(LabelledDomainHandle handle) {
   if (!handle) {
     throw std::invalid_argument("LabelledDomain_center: handle cannot be null");
   }
-  LabelledDomain self = *static_cast<LabelledDomain*>(handle);
-  return self.get_center();
+  LabelledDomainSP self = *static_cast<LabelledDomainSP*>(handle);
+  return self->get_center();
   FALCON_C_API_END(0.0)
 }
 
@@ -386,12 +368,11 @@ LabelledDomainHandle LabelledDomain_intersection(LabelledDomainHandle handle,
     throw std::invalid_argument(
         "LabelledDomain_intersection: other cannot be null");
   }
-  auto lhs = static_cast<LabelledDomain*>(handle);
-  auto rhs = static_cast<LabelledDomain*>(other);
-  auto result_ptr =
-      *lhs & std::shared_ptr<LabelledDomain>(rhs, [](LabelledDomain*) {});
-  return new LabelledDomain(
-      *LabelledDomain::from_port_and_domain(lhs->port(), result_ptr));
+  LabelledDomainSP lhs        = *static_cast<LabelledDomainSP*>(handle);
+  LabelledDomainSP rhs        = *static_cast<LabelledDomainSP*>(other);
+  DomainSP         result_ptr = *lhs & rhs;
+  return new LabelledDomainSP(
+      LabelledDomain::from_port_and_domain(lhs->port(), result_ptr));
   FALCON_C_API_END(nullptr)
 }
 
@@ -404,12 +385,11 @@ LabelledDomainHandle LabelledDomain_union(LabelledDomainHandle handle,
   if (!other) {
     throw std::invalid_argument("LabelledDomain_union: other cannot be null");
   }
-  auto lhs = static_cast<LabelledDomain*>(handle);
-  auto rhs = static_cast<LabelledDomain*>(other);
-  auto result_ptr =
-      *lhs | std::shared_ptr<LabelledDomain>(rhs, [](LabelledDomain*) {});
-  return new LabelledDomain(
-      *LabelledDomain::from_port_and_domain(lhs->port(), result_ptr));
+  LabelledDomainSP lhs        = *static_cast<LabelledDomainSP*>(handle);
+  LabelledDomainSP rhs        = *static_cast<LabelledDomainSP*>(other);
+  DomainSP         result_ptr = *lhs | rhs;
+  return new LabelledDomainSP(
+      LabelledDomain::from_port_and_domain(lhs->port(), result_ptr));
   FALCON_C_API_END(nullptr)
 }
 
@@ -419,8 +399,8 @@ bool LabelledDomain_is_empty(LabelledDomainHandle handle) {
     throw std::invalid_argument(
         "LabelledDomain_is_empty: handle cannot be null");
   }
-  LabelledDomain self = *static_cast<LabelledDomain*>(handle);
-  return self.is_empty();
+  LabelledDomainSP self = *static_cast<LabelledDomainSP*>(handle);
+  return self->is_empty();
   FALCON_C_API_END(false)
 }
 
@@ -435,10 +415,9 @@ bool LabelledDomain_contains_domain(LabelledDomainHandle handle,
     throw std::invalid_argument(
         "LabelledDomain_contains_domain: other cannot be null");
   }
-  LabelledDomain   self = *static_cast<LabelledDomain*>(handle);
-  LabelledDomainSP real_other =
-      std::make_shared<LabelledDomain>(*static_cast<LabelledDomain*>(other));
-  return self.contains_domain(real_other);
+  LabelledDomainSP self       = *static_cast<LabelledDomainSP*>(handle);
+  LabelledDomainSP real_other = *static_cast<LabelledDomainSP*>(other);
+  return self->contains_domain(real_other);
   FALCON_C_API_END(false)
 }
 
@@ -448,9 +427,9 @@ LabelledDomainHandle LabelledDomain_shift(LabelledDomainHandle handle,
   if (!handle) {
     throw std::invalid_argument("LabelledDomain_shift: handle cannot be null");
   }
-  auto result_ptr = static_cast<LabelledDomain*>(handle)->shift(offset);
-  return new LabelledDomain(*LabelledDomain::from_port_and_domain(
-      static_cast<LabelledDomain*>(handle)->port(), result_ptr));
+  auto result_ptr = (*static_cast<LabelledDomainSP*>(handle))->shift(offset);
+  return new LabelledDomainSP(LabelledDomain::from_port_and_domain(
+      (*static_cast<LabelledDomainSP*>(handle))->port(), result_ptr));
   FALCON_C_API_END(nullptr)
 }
 
@@ -460,9 +439,9 @@ LabelledDomainHandle LabelledDomain_scale(LabelledDomainHandle handle,
   if (!handle) {
     throw std::invalid_argument("LabelledDomain_scale: handle cannot be null");
   }
-  auto result_ptr = static_cast<LabelledDomain*>(handle)->scale(scale);
-  return new LabelledDomain(*LabelledDomain::from_port_and_domain(
-      static_cast<LabelledDomain*>(handle)->port(), result_ptr));
+  auto result_ptr = (*static_cast<LabelledDomainSP*>(handle))->scale(scale);
+  return new LabelledDomainSP(LabelledDomain::from_port_and_domain(
+      (*static_cast<LabelledDomainSP*>(handle))->port(), result_ptr));
   FALCON_C_API_END(nullptr)
 }
 
@@ -478,10 +457,8 @@ double LabelledDomain_transform(LabelledDomainHandle handle,
     throw std::invalid_argument(
         "LabelledDomain_transform: other cannot be null");
   }
-  return static_cast<LabelledDomain*>(handle)->transform(
-      std::shared_ptr<LabelledDomain>(static_cast<LabelledDomain*>(other),
-                                      [](LabelledDomain*) {}),
-      value);
+  return (*static_cast<LabelledDomainSP*>(handle))
+      ->transform(*static_cast<LabelledDomainSP*>(other), value);
   FALCON_C_API_END(0.0)
 }
 
@@ -494,8 +471,8 @@ bool LabelledDomain_equal(LabelledDomainHandle handle,
   if (!other) {
     throw std::invalid_argument("LabelledDomain_equal: other cannot be null");
   }
-  return *(static_cast<LabelledDomain*>(handle)) ==
-         *(static_cast<LabelledDomain*>(other));
+  return *(*static_cast<LabelledDomainSP*>(handle)) ==
+         *(*static_cast<LabelledDomainSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -510,8 +487,8 @@ bool LabelledDomain_not_equal(LabelledDomainHandle handle,
     throw std::invalid_argument(
         "LabelledDomain_not_equal: other cannot be null");
   }
-  return *(static_cast<LabelledDomain*>(handle)) !=
-         *(static_cast<LabelledDomain*>(other));
+  return *(*static_cast<LabelledDomainSP*>(handle)) !=
+         *(*static_cast<LabelledDomainSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -521,7 +498,8 @@ StringHandle LabelledDomain_to_json_string(LabelledDomainHandle handle) {
     throw std::invalid_argument(
         "LabelledDomain_to_json_string: handle cannot be null");
   }
-  std::string json = static_cast<LabelledDomain*>(handle)->to_json_string();
+  std::string json =
+      (*static_cast<LabelledDomainSP*>(handle))->to_json_string();
   return String_create(json.c_str(), json.size());
   FALCON_C_API_END(nullptr)
 }
@@ -532,8 +510,8 @@ LabelledDomainHandle LabelledDomain_from_json_string(StringHandle json) {
         "LabelledDomain_from_json_string: json cannot be null");
   }
   std::string json_str = json->raw;
-  return new LabelledDomain(
-      *LabelledDomain::from_json_string<LabelledDomain>(json_str));
+  return new LabelledDomainSP(
+      LabelledDomain::from_json_string<LabelledDomain>(json_str));
   FALCON_C_API_END(nullptr)
 }
 }

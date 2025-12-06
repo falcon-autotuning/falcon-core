@@ -26,13 +26,12 @@ LabelledControlArrayHandle LabelledControlArray_from_farray(
         "Null label handle passed to LabelledControlArray_from_farray");
   }
   generic::FArraySP<double> real_farray =
-      std::make_shared<generic::FArray<double>>(
-          *static_cast<generic::FArray<double>*>(farray));
+      *static_cast<generic::FArraySP<double>*>(farray);
   autotuner_interfaces::contexts::AcquisitionContextSP real_label =
-      std::make_shared<autotuner_interfaces::contexts::AcquisitionContext>(
-          *static_cast<autotuner_interfaces::contexts::AcquisitionContext*>(
-              label));
-  return new LabelledControlArray(real_farray, real_label);
+      *static_cast<autotuner_interfaces::contexts::AcquisitionContextSP*>(
+          label);
+  return new LabelledControlArraySP(
+      std::make_shared<LabelledControlArray>(real_farray, real_label));
   FALCON_C_API_END(nullptr)
 }
 
@@ -48,12 +47,12 @@ LabelledControlArrayHandle LabelledControlArray_from_control_array(
         "Null label handle passed to LabelledControlArray_from_controlarray");
   }
   ControlArraySP real_controlarray =
-      std::make_shared<ControlArray>(*static_cast<ControlArray*>(controlarray));
+      *static_cast<ControlArraySP*>(controlarray);
   autotuner_interfaces::contexts::AcquisitionContextSP real_label =
-      std::make_shared<autotuner_interfaces::contexts::AcquisitionContext>(
-          *static_cast<autotuner_interfaces::contexts::AcquisitionContext*>(
-              label));
-  return new LabelledControlArray(real_controlarray, real_label);
+      *static_cast<autotuner_interfaces::contexts::AcquisitionContextSP*>(
+          label);
+  return new LabelledControlArraySP(
+      std::make_shared<LabelledControlArray>(real_controlarray, real_label));
   FALCON_C_API_END(nullptr)
 }
 
@@ -63,7 +62,7 @@ void LabelledControlArray_destroy(LabelledControlArrayHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_destroy");
   }
-  delete static_cast<LabelledControlArray*>(handle);
+  delete static_cast<LabelledControlArraySP*>(handle);
   FALCON_C_API_END()
 }
 
@@ -74,10 +73,10 @@ AcquisitionContextHandle LabelledControlArray_label(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_label");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new autotuner_interfaces::contexts::AcquisitionContext(
-      *labelled_control_array->label());
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new autotuner_interfaces::contexts::AcquisitionContextSP(
+      labelled_control_array->label());
   FALCON_C_API_END(nullptr)
 }
 
@@ -88,10 +87,10 @@ ConnectionHandle LabelledControlArray_connection(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_connection");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new physics::device_structures::Connection(
-      *(labelled_control_array->connection()));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new physics::device_structures::ConnectionSP(
+      labelled_control_array->connection());
   FALCON_C_API_END(nullptr)
 }
 
@@ -102,8 +101,8 @@ StringHandle LabelledControlArray_instrument_type(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_instrument_type");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   return String_create(labelled_control_array->instrument_type().c_str(),
                        labelled_control_array->instrument_type().size());
   FALCON_C_API_END(nullptr)
@@ -115,9 +114,9 @@ SymbolUnitHandle LabelledControlArray_units(LabelledControlArrayHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_units");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new physics::units::SymbolUnit(*(labelled_control_array->units()));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new physics::units::SymbolUnitSP(labelled_control_array->units());
   FALCON_C_API_END(nullptr)
 }
 
@@ -127,7 +126,7 @@ size_t LabelledControlArray_size(LabelledControlArrayHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_size");
   }
-  auto labelled_control_array = static_cast<LabelledControlArray*>(handle);
+  auto labelled_control_array = *static_cast<LabelledControlArraySP*>(handle);
   return labelled_control_array->size();
   FALCON_C_API_END(0)
 }
@@ -138,7 +137,7 @@ size_t LabelledControlArray_dimension(LabelledControlArrayHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_dimension");
   }
-  auto labelled_control_array = static_cast<LabelledControlArray*>(handle);
+  auto labelled_control_array = *static_cast<LabelledControlArraySP*>(handle);
   return labelled_control_array->dimension();
   FALCON_C_API_END(0)
 }
@@ -151,7 +150,7 @@ size_t LabelledControlArray_shape(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_shape");
   }
-  auto   labelled_control_array = static_cast<LabelledControlArray*>(handle);
+  auto   labelled_control_array = *static_cast<LabelledControlArraySP*>(handle);
   auto   shape                  = labelled_control_array->shape();
   size_t count                  = shape.size();
   size_t to_copy                = (ndim < count) ? ndim : count;
@@ -170,7 +169,7 @@ size_t LabelledControlArray_data(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_data");
   }
-  auto   labelled_control_array = static_cast<LabelledControlArray*>(handle);
+  auto   labelled_control_array = *static_cast<LabelledControlArraySP*>(handle);
   auto   data                   = labelled_control_array->data();
   size_t count                  = labelled_control_array->size();
   size_t to_copy                = (numdata < count) ? numdata : count;
@@ -188,10 +187,10 @@ void LabelledControlArray_plus_equals_farray(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_plus_equals_farray");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
   labelled_control_array->operator+=(*oarray);
   FALCON_C_API_END()
 }
@@ -203,8 +202,8 @@ void LabelledControlArray_plus_equals_double(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_plus_equals_double");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   labelled_control_array->operator+=(other);
   FALCON_C_API_END()
 }
@@ -216,8 +215,8 @@ void LabelledControlArray_plus_equals_int(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_plus_equals_int");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   labelled_control_array->operator+=(other);
   FALCON_C_API_END()
 }
@@ -229,11 +228,10 @@ LabelledControlArrayHandle LabelledControlArray_plus_control_array(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_plus_control_array");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  LabelledControlArraySP oarray = std::make_shared<LabelledControlArray>(
-      *static_cast<LabelledControlArray*>(other));
-  return new LabelledControlArray(*labelled_control_array->operator+(oarray));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  LabelledControlArraySP oarray = *static_cast<LabelledControlArraySP*>(other);
+  return new LabelledControlArraySP(labelled_control_array->operator+(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -244,11 +242,11 @@ LabelledControlArrayHandle LabelledControlArray_plus_farray(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_plus_farray");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  return new LabelledControlArray(*labelled_control_array->operator+(
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  return new LabelledControlArraySP(labelled_control_array->operator+(
       std::make_shared<generic::FArray<double>>(*oarray)));
   FALCON_C_API_END(nullptr)
 }
@@ -260,9 +258,9 @@ LabelledControlArrayHandle LabelledControlArray_plus_double(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_plus_double");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new LabelledControlArray(*labelled_control_array->operator+(other));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new LabelledControlArraySP(labelled_control_array->operator+(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -273,9 +271,9 @@ LabelledControlArrayHandle LabelledControlArray_plus_int(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_plus_int");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new LabelledControlArray(*labelled_control_array->operator+(other));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new LabelledControlArraySP(labelled_control_array->operator+(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -287,10 +285,10 @@ void LabelledControlArray_minus_equals_control_array(
         "Null handle passed to "
         "LabelledControlArray_minus_equals_control_array");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  LabelledControlArray oarray = *static_cast<LabelledControlArray*>(other);
-  labelled_control_array->operator-=(oarray);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  LabelledControlArraySP oarray = *static_cast<LabelledControlArraySP*>(other);
+  labelled_control_array->operator-=(*oarray);
   FALCON_C_API_END()
 }
 
@@ -301,11 +299,11 @@ void LabelledControlArray_minus_equals_farray(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_minus_equals_farray");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  labelled_control_array->operator-=(generic::FArray<double>(*oarray));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  labelled_control_array->operator-=(*oarray);
   FALCON_C_API_END()
 }
 
@@ -316,8 +314,8 @@ void LabelledControlArray_minus_equals_double(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_minus_equals_double");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   labelled_control_array->operator-=(other);
   FALCON_C_API_END()
 }
@@ -329,8 +327,8 @@ void LabelledControlArray_minus_equals_int(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_minus_equals_int");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   labelled_control_array->operator-=(other);
   FALCON_C_API_END()
 }
@@ -342,11 +340,10 @@ LabelledControlArrayHandle LabelledControlArray_minus_control_array(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_minus_control_array");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  LabelledControlArraySP oarray = std::make_shared<LabelledControlArray>(
-      *static_cast<LabelledControlArray*>(other));
-  return new LabelledControlArray(*labelled_control_array->operator-(oarray));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  LabelledControlArraySP oarray = *static_cast<LabelledControlArraySP*>(other);
+  return new LabelledControlArraySP(labelled_control_array->operator-(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -357,11 +354,11 @@ LabelledControlArrayHandle LabelledControlArray_minus_farray(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_minus_farray");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  return new LabelledControlArray(*labelled_control_array->operator-(
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  return new LabelledControlArraySP(labelled_control_array->operator-(
       std::make_shared<generic::FArray<double>>(*oarray)));
   FALCON_C_API_END(nullptr)
 }
@@ -373,9 +370,9 @@ LabelledControlArrayHandle LabelledControlArray_minus_double(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_minus_double");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new LabelledControlArray(*labelled_control_array->operator-(other));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new LabelledControlArraySP(labelled_control_array->operator-(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -386,9 +383,9 @@ LabelledControlArrayHandle LabelledControlArray_minus_int(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_minus_int");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new LabelledControlArray(*labelled_control_array->operator-(other));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new LabelledControlArraySP(labelled_control_array->operator-(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -399,9 +396,9 @@ LabelledControlArrayHandle LabelledControlArray_negation(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_negation");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new LabelledControlArray(*-*labelled_control_array);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new LabelledControlArraySP(-*labelled_control_array);
   FALCON_C_API_END(nullptr)
 }
 
@@ -412,8 +409,8 @@ void LabelledControlArray_times_equals_double(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_times_equals_double");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   labelled_control_array->operator*=(other);
   FALCON_C_API_END()
 }
@@ -425,8 +422,8 @@ void LabelledControlArray_times_equals_int(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_times_equals_int");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   labelled_control_array->operator*=(other);
   FALCON_C_API_END()
 }
@@ -438,9 +435,9 @@ LabelledControlArrayHandle LabelledControlArray_times_double(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_times_double");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new LabelledControlArray(*labelled_control_array->operator*(other));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new LabelledControlArraySP(labelled_control_array->operator*(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -451,9 +448,9 @@ LabelledControlArrayHandle LabelledControlArray_times_int(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_times_int");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new LabelledControlArray(*labelled_control_array->operator*(other));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new LabelledControlArraySP(labelled_control_array->operator*(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -464,8 +461,8 @@ void LabelledControlArray_divides_equals_double(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_divides_equals_double");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   labelled_control_array->operator/=(other);
   FALCON_C_API_END()
 }
@@ -477,8 +474,8 @@ void LabelledControlArray_divides_equals_int(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_divides_equals_int");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   labelled_control_array->operator/=(other);
   FALCON_C_API_END()
 }
@@ -490,9 +487,9 @@ LabelledControlArrayHandle LabelledControlArray_divides_double(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_divides_double");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new LabelledControlArray(*labelled_control_array->operator/(other));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new LabelledControlArraySP(labelled_control_array->operator/(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -503,9 +500,9 @@ LabelledControlArrayHandle LabelledControlArray_divides_int(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_divides_int");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new LabelledControlArray(*labelled_control_array->operator/(other));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new LabelledControlArraySP(labelled_control_array->operator/(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -516,9 +513,9 @@ LabelledControlArrayHandle LabelledControlArray_pow(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_pow");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new LabelledControlArray(*labelled_control_array->operator^(other));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new LabelledControlArraySP(labelled_control_array->operator^(other));
   FALCON_C_API_END(nullptr)
 }
 
@@ -529,9 +526,9 @@ LabelledControlArrayHandle LabelledControlArray_abs(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_abs");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new LabelledControlArray(*labelled_control_array->abs());
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new LabelledControlArraySP(labelled_control_array->abs());
   FALCON_C_API_END(nullptr)
 }
 
@@ -541,8 +538,8 @@ double LabelledControlArray_min(LabelledControlArrayHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_min");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   return labelled_control_array->min();
   FALCON_C_API_END(0.0)
 }
@@ -554,11 +551,11 @@ LabelledControlArrayHandle LabelledControlArray_min_farray(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_min_farray");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  return new LabelledControlArray(*labelled_control_array->min(
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  return new LabelledControlArraySP(labelled_control_array->min(
       std::make_shared<generic::FArray<double>>(*oarray)));
   FALCON_C_API_END(nullptr)
 }
@@ -570,11 +567,10 @@ LabelledControlArrayHandle LabelledControlArray_min_control_array(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_min_control_array");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  LabelledControlArraySP oarray = std::make_shared<LabelledControlArray>(
-      *static_cast<LabelledControlArray*>(other));
-  return new LabelledControlArray(*labelled_control_array->min(oarray));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  LabelledControlArraySP oarray = *static_cast<LabelledControlArraySP*>(other);
+  return new LabelledControlArraySP(labelled_control_array->min(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -584,8 +580,8 @@ double LabelledControlArray_max(LabelledControlArrayHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_max");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   return labelled_control_array->max();
   FALCON_C_API_END(0.0)
 }
@@ -597,11 +593,11 @@ LabelledControlArrayHandle LabelledControlArray_max_farray(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_max_farray");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  return new LabelledControlArray(*labelled_control_array->max(
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  return new LabelledControlArraySP(labelled_control_array->max(
       std::make_shared<generic::FArray<double>>(*oarray)));
   FALCON_C_API_END(nullptr)
 }
@@ -613,11 +609,10 @@ LabelledControlArrayHandle LabelledControlArray_max_control_array(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_max_control_array");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  LabelledControlArraySP oarray = std::make_shared<LabelledControlArray>(
-      *static_cast<LabelledControlArray*>(other));
-  return new LabelledControlArray(*labelled_control_array->max(oarray));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  LabelledControlArraySP oarray = *static_cast<LabelledControlArraySP*>(other);
+  return new LabelledControlArraySP(labelled_control_array->max(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -628,10 +623,10 @@ bool LabelledControlArray_equal(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_equal");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return labelled_control_array->operator==(
-      *static_cast<LabelledControlArray*>(other));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return *labelled_control_array ==
+         *(*static_cast<LabelledControlArraySP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -642,7 +637,10 @@ bool LabelledControlArray_not_equal(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_not_equal");
   }
-  return !LabelledControlArray_equal(handle, other);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return *labelled_control_array !=
+         *(*static_cast<LabelledControlArraySP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -653,8 +651,8 @@ bool LabelledControlArray_greater_than(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_greater_than");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   return labelled_control_array->operator>(value);
   FALCON_C_API_END(false)
 }
@@ -666,8 +664,8 @@ bool LabelledControlArray_less_than(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_less_than");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   return labelled_control_array->operator<(value);
   FALCON_C_API_END(false)
 }
@@ -679,8 +677,8 @@ void LabelledControlArray_remove_offset(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_remove_offset");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   labelled_control_array->remove_offset(offset);
   FALCON_C_API_END()
 }
@@ -691,8 +689,8 @@ double LabelledControlArray_sum(LabelledControlArrayHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_sum");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   return labelled_control_array->sum();
   FALCON_C_API_END(0.0)
 }
@@ -704,10 +702,10 @@ LabelledControlArrayHandle LabelledControlArray_reshape(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_reshape");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   std::vector<size_t> new_shape(shape, shape + ndims);
-  return new LabelledControlArray(*labelled_control_array->reshape(new_shape));
+  return new LabelledControlArraySP(labelled_control_array->reshape(new_shape));
   FALCON_C_API_END(nullptr)
 }
 
@@ -718,10 +716,10 @@ ListListSizeTHandle LabelledControlArray_where(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_where");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   auto indices = labelled_control_array->where(value);
-  return new generic::List<generic::List<size_t>>(*indices);
+  return new generic::ListSP<generic::List<size_t>>(indices);
   FALCON_C_API_END(nullptr)
 }
 
@@ -732,9 +730,9 @@ LabelledControlArrayHandle LabelledControlArray_flip(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_flip");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new LabelledControlArray(*labelled_control_array->flip(axis));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new LabelledControlArraySP(labelled_control_array->flip(axis));
   FALCON_C_API_END(nullptr)
 }
 
@@ -746,13 +744,13 @@ size_t LabelledControlArray_full_gradient(LabelledControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_full_gradient");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   auto   gradients = labelled_control_array->gradient();
   size_t count     = gradients->size();
   size_t to_copy   = (buffer_size < count) ? buffer_size : count;
   for (size_t i = 0; i < to_copy; ++i) {
-    out_buffer[i] = new generic::FArray<double>(*gradients->items()[i]);
+    out_buffer[i] = new generic::FArraySP<double>(gradients->items()[i]);
   }
   return to_copy;
   FALCON_C_API_END(0)
@@ -765,9 +763,9 @@ FArrayDoubleHandle LabelledControlArray_gradient(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_gradient");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  return new generic::FArray<double>(*labelled_control_array->gradient(axis));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  return new generic::FArraySP<double>(labelled_control_array->gradient(axis));
   FALCON_C_API_END(nullptr)
 }
 
@@ -778,8 +776,8 @@ double LabelledControlArray_get_sum_of_squares(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_get_sum_of_squares");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   return labelled_control_array->get_sum_of_squares();
   FALCON_C_API_END(0.0)
 }
@@ -792,8 +790,8 @@ double LabelledControlArray_get_summed_diff_int_of_squares(
         "Null handle passed to "
         "LabelledControlArray_get_summed_diff_int_of_squares");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   return labelled_control_array->get_sum_of_squares(other);
   FALCON_C_API_END(0.0)
 }
@@ -806,8 +804,8 @@ double LabelledControlArray_get_summed_diff_double_of_squares(
         "Null handle passed to "
         "LabelledControlArray_get_summed_diff_double_of_squares");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   return labelled_control_array->get_sum_of_squares(other);
   FALCON_C_API_END(0.0)
 }
@@ -820,10 +818,9 @@ double LabelledControlArray_get_summed_diff_array_of_squares(
         "Null handle passed to "
         "LabelledControlArray_get_summed_diff_array_of_squares");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
-  LabelledControlArraySP oarray = std::make_shared<LabelledControlArray>(
-      *static_cast<LabelledControlArray*>(other));
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
+  LabelledControlArraySP oarray = *static_cast<LabelledControlArraySP*>(other);
   return labelled_control_array->get_sum_of_squares(oarray);
   FALCON_C_API_END(0.0)
 }
@@ -835,8 +832,8 @@ StringHandle LabelledControlArray_to_json_string(
     throw std::invalid_argument(
         "Null handle passed to LabelledControlArray_to_json_string");
   }
-  LabelledControlArray* labelled_control_array =
-      static_cast<LabelledControlArray*>(handle);
+  LabelledControlArraySP labelled_control_array =
+      *static_cast<LabelledControlArraySP*>(handle);
   std::string json_str = labelled_control_array->to_json_string();
   return String_create(json_str.c_str(), json_str.size());
   FALCON_C_API_END(nullptr)
@@ -852,7 +849,7 @@ LabelledControlArrayHandle LabelledControlArray_from_json_string(
   std::string raw_json(json->raw);
   auto        ptr =
       LabelledControlArray::from_json_string<LabelledControlArray>(raw_json);
-  return new LabelledControlArray(*ptr);
+  return new LabelledControlArraySP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }

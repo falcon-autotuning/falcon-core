@@ -17,7 +17,7 @@ StandardRequestHandle StandardRequest_create(StringHandle message) {
     throw std::invalid_argument("Null handle passed to StandardRequest_create");
   }
   std::string real_message = std::string(message->raw, message->length);
-  return new StandardRequest(StandardRequest(real_message));
+  return new StandardRequestSP(std::make_shared<StandardRequest>(real_message));
   FALCON_C_API_END(nullptr)
 }
 
@@ -27,7 +27,7 @@ void StandardRequest_destroy(StandardRequestHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to StandardRequest_destroy");
   }
-  delete static_cast<StandardRequest*>(handle);
+  delete static_cast<StandardRequestSP*>(handle);
   FALCON_C_API_END()
 }
 
@@ -37,8 +37,8 @@ StringHandle StandardRequest_message(StandardRequestHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to StandardRequest_message");
   }
-  StandardRequest* standard_request = static_cast<StandardRequest*>(handle);
-  std::string      msg              = standard_request->message();
+  StandardRequestSP standard_request = *static_cast<StandardRequestSP*>(handle);
+  std::string       msg              = standard_request->message();
   return String_create(msg.c_str(), msg.size());
   FALCON_C_API_END(nullptr)
 }
@@ -53,8 +53,8 @@ bool StandardRequest_equal(StandardRequestHandle handle,
     throw std::invalid_argument(
         "Null other handle passed to StandardRequest_equal");
   }
-  StandardRequest* standard_request = static_cast<StandardRequest*>(handle);
-  StandardRequest* other_request    = static_cast<StandardRequest*>(other);
+  StandardRequestSP standard_request = *static_cast<StandardRequestSP*>(handle);
+  StandardRequestSP other_request    = *static_cast<StandardRequestSP*>(other);
   return (*standard_request) == (*other_request);
   FALCON_C_API_END(false)
 }
@@ -70,8 +70,8 @@ bool StandardRequest_not_equal(StandardRequestHandle handle,
     throw std::invalid_argument(
         "Null other handle passed to StandardRequest_not_equal");
   }
-  StandardRequest* standard_request = static_cast<StandardRequest*>(handle);
-  StandardRequest* other_request    = static_cast<StandardRequest*>(other);
+  StandardRequestSP standard_request = *static_cast<StandardRequestSP*>(handle);
+  StandardRequestSP other_request    = *static_cast<StandardRequestSP*>(other);
   return (*standard_request) != (*other_request);
   FALCON_C_API_END(false)
 }
@@ -82,8 +82,8 @@ StringHandle StandardRequest_to_json_string(StandardRequestHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to StandardRequest_to_json_string");
   }
-  StandardRequest* standard_request = static_cast<StandardRequest*>(handle);
-  std::string      json             = standard_request->to_json_string();
+  StandardRequestSP standard_request = *static_cast<StandardRequestSP*>(handle);
+  std::string       json             = standard_request->to_json_string();
   return String_create(json.c_str(), json.size());
   FALCON_C_API_END(nullptr)
 }
@@ -95,8 +95,8 @@ StandardRequestHandle StandardRequest_from_json_string(StringHandle json) {
         "Null handle passed to StandardRequest_from_json_string");
   }
   std::string real_json = std::string(json->raw, json->length);
-  return new StandardRequest(
-      *StandardRequest::from_json_string<StandardRequest>(real_json));
+  return new StandardRequestSP(
+      StandardRequest::from_json_string<StandardRequest>(real_json));
   FALCON_C_API_END(nullptr)
 }
 }

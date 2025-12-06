@@ -64,14 +64,14 @@ MeasurementRequestHandle MeasurementRequest_create(
               instrument_interfaces::port_transforms::PortTransform>*>(
               meter_transforms));
   math::domains::LabelledDomainSP real_time_domain =
-      std::make_shared<math::domains::LabelledDomain>(
-          *static_cast<math::domains::LabelledDomain*>(time_domain));
-  return new MeasurementRequest(real_msg,
-                                real_measurement_name,
-                                real_waveforms,
-                                real_getters,
-                                real_meter_transforms,
-                                real_time_domain);
+      *static_cast<math::domains::LabelledDomainSP*>(time_domain);
+  return new MeasurementRequestSP(
+      std::make_shared<MeasurementRequest>(real_msg,
+                                           real_measurement_name,
+                                           real_waveforms,
+                                           real_getters,
+                                           real_meter_transforms,
+                                           real_time_domain));
   FALCON_C_API_END(nullptr)
 }
 
@@ -81,7 +81,7 @@ void MeasurementRequest_destroy(MeasurementRequestHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to MeasurementRequest_destroy");
   }
-  delete static_cast<MeasurementRequest*>(handle);
+  delete static_cast<MeasurementRequestSP*>(handle);
   FALCON_C_API_END()
 }
 
@@ -92,8 +92,8 @@ StringHandle MeasurementRequest_measurement_name(
     throw std::invalid_argument(
         "Null handle passed to MeasurementRequest_measurement_name");
   }
-  MeasurementRequest* measurement_request =
-      static_cast<MeasurementRequest*>(handle);
+  MeasurementRequestSP measurement_request =
+      *static_cast<MeasurementRequestSP*>(handle);
   std::string name = measurement_request->measurement_name();
   return String_create(name.c_str(), name.size());
   FALCON_C_API_END(nullptr)
@@ -105,8 +105,8 @@ PortsHandle MeasurementRequest_getters(MeasurementRequestHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to MeasurementRequest_getters");
   }
-  MeasurementRequest* measurement_request =
-      static_cast<MeasurementRequest*>(handle);
+  MeasurementRequestSP measurement_request =
+      *static_cast<MeasurementRequestSP*>(handle);
   return new instrument_interfaces::names::Ports(
       *(measurement_request->getters()));
   FALCON_C_API_END(nullptr)
@@ -119,8 +119,8 @@ ListWaveformHandle MeasurementRequest_waveforms(
     throw std::invalid_argument(
         "Null handle passed to MeasurementRequest_waveforms");
   }
-  MeasurementRequest* measurement_request =
-      static_cast<MeasurementRequest*>(handle);
+  MeasurementRequestSP measurement_request =
+      *static_cast<MeasurementRequestSP*>(handle);
   return new generic::List<instrument_interfaces::Waveform>(
       *(measurement_request->waveforms()));
   FALCON_C_API_END(nullptr)
@@ -133,8 +133,8 @@ MapInstrumentPortPortTransformHandle MeasurementRequest_meter_transforms(
     throw std::invalid_argument(
         "Null handle passed to MeasurementRequest_meter_transforms");
   }
-  MeasurementRequest* measurement_request =
-      static_cast<MeasurementRequest*>(handle);
+  MeasurementRequestSP measurement_request =
+      *static_cast<MeasurementRequestSP*>(handle);
   return new generic::Map<
       instrument_interfaces::names::InstrumentPort,
       instrument_interfaces::port_transforms::PortTransform>(
@@ -149,10 +149,10 @@ LabelledDomainHandle MeasurementRequest_time_domain(
     throw std::invalid_argument(
         "Null handle passed to MeasurementRequest_time_domain");
   }
-  MeasurementRequest* measurement_request =
-      static_cast<MeasurementRequest*>(handle);
-  return new math::domains::LabelledDomain(
-      *(measurement_request->time_domain()));
+  MeasurementRequestSP measurement_request =
+      *static_cast<MeasurementRequestSP*>(handle);
+  return new math::domains::LabelledDomainSP(
+      (measurement_request->time_domain()));
   FALCON_C_API_END(nullptr)
 }
 
@@ -162,8 +162,8 @@ StringHandle MeasurementRequest_message(MeasurementRequestHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to MeasurementRequest_message");
   }
-  MeasurementRequest* measurement_request =
-      static_cast<MeasurementRequest*>(handle);
+  MeasurementRequestSP measurement_request =
+      *static_cast<MeasurementRequestSP*>(handle);
   std::string message = measurement_request->message();
   return String_create(message.c_str(), message.size());
   FALCON_C_API_END(nullptr)
@@ -180,9 +180,10 @@ bool MeasurementRequest_equal(MeasurementRequestHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasurementRequest_equal: other");
   }
-  MeasurementRequest* measurement_request =
-      static_cast<MeasurementRequest*>(handle);
-  MeasurementRequest* other_request = static_cast<MeasurementRequest*>(other);
+  MeasurementRequestSP measurement_request =
+      *static_cast<MeasurementRequestSP*>(handle);
+  MeasurementRequestSP other_request =
+      *static_cast<MeasurementRequestSP*>(other);
   return *measurement_request == *other_request;
   FALCON_C_API_END(false)
 }
@@ -198,9 +199,10 @@ bool MeasurementRequest_not_equal(MeasurementRequestHandle handle,
     throw std::invalid_argument(
         "Null handle passed to MeasurementRequest_not_equal: other");
   }
-  MeasurementRequest* measurement_request =
-      static_cast<MeasurementRequest*>(handle);
-  MeasurementRequest* other_request = static_cast<MeasurementRequest*>(other);
+  MeasurementRequestSP measurement_request =
+      *static_cast<MeasurementRequestSP*>(handle);
+  MeasurementRequestSP other_request =
+      *static_cast<MeasurementRequestSP*>(other);
   return *measurement_request != *other_request;
   FALCON_C_API_END(false)
 }
@@ -212,8 +214,8 @@ StringHandle MeasurementRequest_to_json_string(
     throw std::invalid_argument(
         "Null handle passed to MeasurementRequest_to_json_string");
   }
-  MeasurementRequest* measurement_request =
-      static_cast<MeasurementRequest*>(handle);
+  MeasurementRequestSP measurement_request =
+      *static_cast<MeasurementRequestSP*>(handle);
   std::string json = measurement_request->to_json_string();
   return String_create(json.c_str(), json.size());
   FALCON_C_API_END(nullptr)
@@ -229,7 +231,7 @@ MeasurementRequestHandle MeasurementRequest_from_json_string(
   std::string          json_str = std::string(json->raw, json->length);
   MeasurementRequestSP request =
       MeasurementRequest::from_json_string<MeasurementRequest>(json_str);
-  return new MeasurementRequest(*request);
+  return new MeasurementRequestSP(request);
   FALCON_C_API_END(nullptr)
 }
 }

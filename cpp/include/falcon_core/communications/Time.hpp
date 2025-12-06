@@ -53,5 +53,6 @@ class Time : public generic::Song {
   bool              operator==(const Time& other);
   bool              operator!=(const Time& other);
 };
+using TimeSP = std::shared_ptr<Time>;
 }  // namespace communications
 }  // namespace falcon_core

@@ -33,6 +33,7 @@ class Loader : public ConfigManipulations {
    */
   core::ConfigSP config() const;
 };
+using LoaderSP = std::shared_ptr<Loader>;
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core

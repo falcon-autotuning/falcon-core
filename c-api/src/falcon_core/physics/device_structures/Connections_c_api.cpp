@@ -11,7 +11,7 @@ using namespace falcon_core::physics::device_structures;
 extern "C" {
 ConnectionsHandle Connections_create_empty() {
   FALCON_C_API_BEGIN
-  return new Connections();
+  return new ConnectionsSP(std::make_shared<Connections>());
   FALCON_C_API_END(nullptr)
 }
 
@@ -20,8 +20,9 @@ ConnectionsHandle Connections_create(const ListConnectionHandle items) {
   if (!items) {
     throw std::invalid_argument("Connections_create: items cannot be null");
   }
-  auto list_ptr = static_cast<falcon_core::generic::List<Connection>*>(items);
-  return new Connections(list_ptr->items());
+  auto list_ptr =
+      *static_cast<falcon_core::generic::ListSP<Connection>*>(items);
+  return new ConnectionsSP(std::make_shared<Connections>(list_ptr->items()));
   FALCON_C_API_END(nullptr)
 }
 
@@ -30,7 +31,7 @@ void Connections_destroy(ConnectionsHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Connections_destroy: handle cannot be null");
   }
-  delete static_cast<Connections*>(handle);
+  delete static_cast<ConnectionsSP*>(handle);
   FALCON_C_API_END()
 }
 
@@ -39,7 +40,7 @@ bool Connections_is_gates(ConnectionsHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Connections_is_gates: handle cannot be null");
   }
-  return static_cast<Connections*>(handle)->is_gates();
+  return (*static_cast<ConnectionsSP*>(handle))->is_gates();
   FALCON_C_API_END(false)
 }
 
@@ -48,7 +49,7 @@ bool Connections_is_ohmics(ConnectionsHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Connections_is_ohmics: handle cannot be null");
   }
-  return static_cast<Connections*>(handle)->is_ohmics();
+  return (*static_cast<ConnectionsSP*>(handle))->is_ohmics();
   FALCON_C_API_END(false)
 }
 
@@ -58,7 +59,7 @@ bool Connections_is_dot_gates(ConnectionsHandle handle) {
     throw std::invalid_argument(
         "Connections_is_dot_gates: handle cannot be null");
   }
-  return static_cast<Connections*>(handle)->is_dot_gates();
+  return (*static_cast<ConnectionsSP*>(handle))->is_dot_gates();
   FALCON_C_API_END(false)
 }
 
@@ -68,7 +69,7 @@ bool Connections_is_plunger_gates(ConnectionsHandle handle) {
     throw std::invalid_argument(
         "Connections_is_plunger_gates: handle cannot be null");
   }
-  return static_cast<Connections*>(handle)->is_plunger_gates();
+  return (*static_cast<ConnectionsSP*>(handle))->is_plunger_gates();
   FALCON_C_API_END(false)
 }
 
@@ -78,7 +79,7 @@ bool Connections_is_barrier_gates(ConnectionsHandle handle) {
     throw std::invalid_argument(
         "Connections_is_barrier_gates: handle cannot be null");
   }
-  return static_cast<Connections*>(handle)->is_barrier_gates();
+  return (*static_cast<ConnectionsSP*>(handle))->is_barrier_gates();
   FALCON_C_API_END(false)
 }
 
@@ -88,7 +89,7 @@ bool Connections_is_reservoir_gates(ConnectionsHandle handle) {
     throw std::invalid_argument(
         "Connections_is_reservoir_gates: handle cannot be null");
   }
-  return static_cast<Connections*>(handle)->is_reservoir_gates();
+  return (*static_cast<ConnectionsSP*>(handle))->is_reservoir_gates();
   FALCON_C_API_END(false)
 }
 
@@ -98,7 +99,7 @@ bool Connections_is_screening_gates(ConnectionsHandle handle) {
     throw std::invalid_argument(
         "Connections_is_screening_gates: handle cannot be null");
   }
-  return static_cast<Connections*>(handle)->is_screening_gates();
+  return (*static_cast<ConnectionsSP*>(handle))->is_screening_gates();
   FALCON_C_API_END(false)
 }
 
@@ -113,10 +114,9 @@ ConnectionsHandle Connections_intersection(ConnectionsHandle handle,
     throw std::invalid_argument(
         "Connections_is_intersection: other cannot be null");
   }
-  auto result = static_cast<Connections*>(handle)->intersection(
-      std::shared_ptr<Connections>(static_cast<Connections*>(other),
-                                   [](Connections*) {}));
-  return new Connections(*result);
+  auto result = (*static_cast<ConnectionsSP*>(handle))
+                    ->intersection(*static_cast<ConnectionsSP*>(other));
+  return new ConnectionsSP(result);
   FALCON_C_API_END(nullptr)
 }
 
@@ -128,9 +128,8 @@ void Connections_push_back(ConnectionsHandle handle, ConnectionHandle value) {
   if (!value) {
     throw std::invalid_argument("Connections_push_back: value cannot be null");
   }
-  Connections* connections = static_cast<Connections*>(handle);
-  ConnectionSP connection_ptr =
-      std::make_shared<Connection>(*static_cast<Connection*>(value));
+  ConnectionsSP connections    = *static_cast<ConnectionsSP*>(handle);
+  ConnectionSP  connection_ptr = *static_cast<ConnectionSP*>(value);
   connections->push_back(connection_ptr);
   FALCON_C_API_END()
 }
@@ -140,7 +139,7 @@ size_t Connections_size(ConnectionsHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Connections_size: handle cannot be null");
   }
-  return static_cast<Connections*>(handle)->size();
+  return (*static_cast<ConnectionsSP*>(handle))->size();
   FALCON_C_API_END(0)
 }
 
@@ -149,7 +148,7 @@ bool Connections_empty(ConnectionsHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Connections_empty: handle cannot be null");
   }
-  return static_cast<Connections*>(handle)->empty();
+  return (*static_cast<ConnectionsSP*>(handle))->empty();
   FALCON_C_API_END(false)
 }
 
@@ -158,7 +157,7 @@ void Connections_erase_at(ConnectionsHandle handle, size_t idx) {
   if (!handle) {
     throw std::invalid_argument("Connections_erase_at: handle cannot be null");
   }
-  static_cast<Connections*>(handle)->erase_at(idx);
+  (*static_cast<ConnectionsSP*>(handle))->erase_at(idx);
   FALCON_C_API_END()
 }
 
@@ -167,7 +166,7 @@ void Connections_clear(ConnectionsHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Connections_clear: handle cannot be null");
   }
-  static_cast<Connections*>(handle)->clear();
+  (*static_cast<ConnectionsSP*>(handle))->clear();
   FALCON_C_API_END()
 }
 
@@ -176,8 +175,8 @@ ConnectionHandle Connections_at(ConnectionsHandle handle, size_t idx) {
   if (!handle) {
     throw std::invalid_argument("Connections_at: handle cannot be null");
   }
-  auto conn = static_cast<Connections*>(handle)->at(idx);
-  return static_cast<ConnectionHandle>(conn.get());
+  auto conn = (*static_cast<ConnectionsSP*>(handle))->at(idx);
+  return new ConnectionSP(conn);
   FALCON_C_API_END(nullptr)
 }
 
@@ -186,8 +185,9 @@ ListConnectionHandle Connections_items(ConnectionsHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Connections_items: handle cannot be null");
   }
-  auto items = static_cast<Connections*>(handle)->items();
-  return new falcon_core::generic::List<Connection>(items);
+  auto items = (*static_cast<ConnectionsSP*>(handle))->items();
+  return new falcon_core::generic::ListSP<Connection>(
+      std::make_shared<falcon_core::generic::List<Connection>>(items));
   FALCON_C_API_END(nullptr)
 }
 
@@ -199,9 +199,8 @@ bool Connections_contains(ConnectionsHandle handle, ConnectionHandle value) {
   if (!value) {
     throw std::invalid_argument("Connections_contains: value cannot be null");
   }
-  return static_cast<Connections*>(handle)->contains(
-      std::shared_ptr<Connection>(static_cast<Connection*>(value),
-                                  [](Connection*) {}));
+  return (*static_cast<ConnectionsSP*>(handle))
+      ->contains(*static_cast<ConnectionSP*>(value));
   FALCON_C_API_END(false)
 }
 
@@ -213,32 +212,34 @@ size_t Connections_index(ConnectionsHandle handle, ConnectionHandle value) {
   if (!value) {
     throw std::invalid_argument("Connections_index: value cannot be null");
   }
-  return static_cast<Connections*>(handle)->index(std::shared_ptr<Connection>(
-      static_cast<Connection*>(value), [](Connection*) {}));
+  return (*static_cast<ConnectionsSP*>(handle))
+      ->index(*static_cast<ConnectionSP*>(value));
   FALCON_C_API_END(0)
 }
 
-bool Connections_equal(ConnectionsHandle a, ConnectionsHandle b) {
+bool Connections_equal(ConnectionsHandle handle, ConnectionsHandle other) {
   FALCON_C_API_BEGIN
-  if (!a) {
+  if (!handle) {
     throw std::invalid_argument("Connections_equal: a cannot be null");
   }
-  if (!b) {
+  if (!other) {
     throw std::invalid_argument("Connections_equal: b cannot be null");
   }
-  return *(static_cast<Connections*>(a)) == *(static_cast<Connections*>(b));
+  return *(static_cast<ConnectionsSP*>(handle)) ==
+         *(static_cast<ConnectionsSP*>(other));
   FALCON_C_API_END(false)
 }
 
-bool Connections_not_equal(ConnectionsHandle a, ConnectionsHandle b) {
+bool Connections_not_equal(ConnectionsHandle handle, ConnectionsHandle other) {
   FALCON_C_API_BEGIN
-  if (!a) {
+  if (!handle) {
     throw std::invalid_argument("Connections_not_equal: a cannot be null");
   }
-  if (!b) {
+  if (!other) {
     throw std::invalid_argument("Connections_not_equal: b cannot be null");
   }
-  return *(static_cast<Connections*>(a)) != *(static_cast<Connections*>(b));
+  return *(static_cast<ConnectionsSP*>(handle)) !=
+         *(static_cast<ConnectionsSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -248,7 +249,7 @@ StringHandle Connections_to_json_string(ConnectionsHandle handle) {
     throw std::invalid_argument(
         "Connections_to_json_string: handle cannot be null");
   }
-  std::string json = static_cast<Connections*>(handle)->to_json_string();
+  std::string json = (*static_cast<ConnectionsSP*>(handle))->to_json_string();
   return String_create(json.c_str(), json.size());
   FALCON_C_API_END(nullptr)
 }
@@ -260,7 +261,7 @@ ConnectionsHandle Connections_from_json_string(StringHandle json) {
         "Connections_from_json_string: json cannot be null");
   }
   auto ptr = Connections::from_json_string<Connections>(json->raw);
-  return new Connections(*ptr);
+  return new ConnectionsSP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }

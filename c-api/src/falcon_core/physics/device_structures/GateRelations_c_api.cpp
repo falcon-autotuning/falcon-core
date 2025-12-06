@@ -9,7 +9,7 @@ using namespace falcon_core::generic;
 extern "C" {
 GateRelationsHandle GateRelations_create_empty() {
   FALCON_C_API_BEGIN
-  return new GateRelations();
+  return new GateRelationsSP(std::make_shared<GateRelations>());
   FALCON_C_API_END(nullptr)
 }
 
@@ -26,7 +26,7 @@ GateRelationsHandle GateRelations_create(
     vec.push_back(std::make_pair(item->first(), item->second()));
   }
 
-  return new GateRelations(vec);
+  return new GateRelationsSP(std::make_shared<GateRelations>(vec));
   FALCON_C_API_END(nullptr)
 }
 
@@ -35,7 +35,7 @@ void GateRelations_destroy(GateRelationsHandle handle) {
   if (!handle) {
     throw std::invalid_argument("GateRelations_destroy: handle cannot be null");
   }
-  delete static_cast<GateRelations*>(handle);
+  delete static_cast<GateRelationsSP*>(handle);
   FALCON_C_API_END()
 }
 
@@ -55,11 +55,9 @@ void GateRelations_insert_or_assign(GateRelationsHandle handle,
     throw std::invalid_argument(
         "GateRelations_insert_or_assign: value cannot be null");
   }
-  static_cast<GateRelations*>(handle)->insert_or_assign(
-      std::shared_ptr<Connection>(static_cast<Connection*>(key),
-                                  [](Connection*) {}),
-      std::shared_ptr<Connections>(static_cast<Connections*>(value),
-                                   [](Connections*) {}));
+  (*static_cast<GateRelationsSP*>(handle))
+      ->insert_or_assign(*static_cast<ConnectionSP*>(key),
+                         *static_cast<ConnectionsSP*>(value));
   FALCON_C_API_END()
 }
 
@@ -76,11 +74,9 @@ void GateRelations_insert(GateRelationsHandle handle,
   if (!value) {
     throw std::invalid_argument("GateRelations_insert: value cannot be null");
   }
-  static_cast<GateRelations*>(handle)->insert(
-      std::shared_ptr<Connection>(static_cast<Connection*>(key),
-                                  [](Connection*) {}),
-      std::shared_ptr<Connections>(static_cast<Connections*>(value),
-                                   [](Connections*) {}));
+  (*static_cast<GateRelationsSP*>(handle))
+      ->insert(*static_cast<ConnectionSP*>(key),
+               *static_cast<ConnectionsSP*>(value));
   FALCON_C_API_END()
 }
 
@@ -93,9 +89,8 @@ ConnectionsHandle GateRelations_at(GateRelationsHandle handle,
   if (!key) {
     throw std::invalid_argument("GateRelations_at: key cannot be null");
   }
-  return new Connections(
-      static_cast<GateRelations*>(handle)->at(std::shared_ptr<Connection>(
-          static_cast<Connection*>(key), [](Connection*) {})));
+  return new ConnectionsSP((*static_cast<GateRelationsSP*>(handle))
+                               ->at(*static_cast<ConnectionSP*>(key)));
   FALCON_C_API_END(nullptr)
 }
 
@@ -107,8 +102,8 @@ void GateRelations_erase(GateRelationsHandle handle, ConnectionHandle key) {
   if (!key) {
     throw std::invalid_argument("GateRelations_erase: key cannot be null");
   }
-  static_cast<GateRelations*>(handle)->erase(std::shared_ptr<Connection>(
-      static_cast<Connection*>(key), [](Connection*) {}));
+  (*static_cast<GateRelationsSP*>(handle))
+      ->erase(*static_cast<ConnectionSP*>(key));
   FALCON_C_API_END()
 }
 
@@ -117,7 +112,7 @@ size_t GateRelations_size(GateRelationsHandle handle) {
   if (!handle) {
     throw std::invalid_argument("GateRelations_size: handle cannot be null");
   }
-  return static_cast<GateRelations*>(handle)->size();
+  return (*static_cast<GateRelationsSP*>(handle))->size();
   FALCON_C_API_END(0)
 }
 
@@ -126,7 +121,7 @@ bool GateRelations_empty(GateRelationsHandle handle) {
   if (!handle) {
     throw std::invalid_argument("GateRelations_empty: handle cannot be null");
   }
-  return static_cast<GateRelations*>(handle)->empty();
+  return (*static_cast<GateRelationsSP*>(handle))->empty();
   FALCON_C_API_END(false)
 }
 
@@ -135,7 +130,7 @@ void GateRelations_clear(GateRelationsHandle handle) {
   if (!handle) {
     throw std::invalid_argument("GateRelations_clear: handle cannot be null");
   }
-  static_cast<GateRelations*>(handle)->clear();
+  (*static_cast<GateRelationsSP*>(handle))->clear();
   FALCON_C_API_END()
 }
 
@@ -148,9 +143,8 @@ bool GateRelations_contains(GateRelationsHandle handle, ConnectionHandle key) {
   if (!key) {
     throw std::invalid_argument("GateRelations_contains: key cannot be null");
   }
-  return static_cast<GateRelations*>(handle)->contains(
-      std::shared_ptr<Connection>(static_cast<Connection*>(key),
-                                  [](Connection*) {}));
+  return (*static_cast<GateRelationsSP*>(handle))
+      ->contains(*static_cast<ConnectionSP*>(key));
   FALCON_C_API_END(false)
 }
 
@@ -159,8 +153,8 @@ ListConnectionHandle GateRelations_keys(GateRelationsHandle handle) {
   if (!handle) {
     throw std::invalid_argument("GateRelations_keys: handle cannot be null");
   }
-  ListSP<Connection> keys = static_cast<GateRelations*>(handle)->keys();
-  return new List<Connection>(*keys);
+  ListSP<Connection> keys = (*static_cast<GateRelationsSP*>(handle))->keys();
+  return new ListSP<Connection>(keys);
   FALCON_C_API_END(nullptr)
 }
 
@@ -169,8 +163,9 @@ ListConnectionsHandle GateRelations_values(GateRelationsHandle handle) {
   if (!handle) {
     throw std::invalid_argument("GateRelations_values: handle cannot be null");
   }
-  ListSP<Connections> values = static_cast<GateRelations*>(handle)->values();
-  return new List<Connections>(*values);
+  ListSP<Connections> values =
+      (*static_cast<GateRelationsSP*>(handle))->values();
+  return new ListSP<Connections>(values);
   FALCON_C_API_END(nullptr)
 }
 
@@ -181,34 +176,38 @@ ListPairConnectionConnectionsHandle GateRelations_items(
     throw std::invalid_argument("GateRelations_items: handle cannot be null");
   }
   ListSP<Pair<Connection, Connections>> items =
-      static_cast<GateRelations*>(handle)->items();
-  return new List<Pair<Connection, Connections>>(*items);
+      (*static_cast<GateRelationsSP*>(handle))->items();
+  return new ListSP<Pair<Connection, Connections>>(items);
   FALCON_C_API_END(nullptr)
 }
 
-bool GateRelations_equal(GateRelationsHandle a, GateRelationsHandle b) {
+bool GateRelations_equal(GateRelationsHandle handle,
+                         GateRelationsHandle other) {
   FALCON_C_API_BEGIN
-  if (!a) {
+  if (!handle) {
     throw std::invalid_argument("GateRelations_equal: handle a cannot be null");
   }
-  if (!b) {
+  if (!other) {
     throw std::invalid_argument("GateRelations_equal: handle b cannot be null");
   }
-  return *(static_cast<GateRelations*>(a)) == *(static_cast<GateRelations*>(b));
+  return *(static_cast<GateRelationsSP*>(handle)) ==
+         *(static_cast<GateRelationsSP*>(other));
   FALCON_C_API_END(false)
 }
 
-bool GateRelations_not_equal(GateRelationsHandle a, GateRelationsHandle b) {
+bool GateRelations_not_equal(GateRelationsHandle handle,
+                             GateRelationsHandle other) {
   FALCON_C_API_BEGIN
-  if (!a) {
+  if (!handle) {
     throw std::invalid_argument(
         "GateRelations_not_equal: handle a cannot be null");
   }
-  if (!b) {
+  if (!other) {
     throw std::invalid_argument(
         "GateRelations_not_equal: handle b cannot be null");
   }
-  return *(static_cast<GateRelations*>(a)) != *(static_cast<GateRelations*>(b));
+  return *(static_cast<GateRelationsSP*>(handle)) !=
+         *(static_cast<GateRelationsSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -218,7 +217,7 @@ StringHandle GateRelations_to_json_string(GateRelationsHandle handle) {
     throw std::invalid_argument(
         "GateRelations_to_json_string: handle cannot be null");
   }
-  std::string json = static_cast<GateRelations*>(handle)->to_json_string();
+  std::string json = (*static_cast<GateRelationsSP*>(handle))->to_json_string();
   return String_create(json.c_str(), json.size());
   FALCON_C_API_END(nullptr)
 }
@@ -230,7 +229,7 @@ GateRelationsHandle GateRelations_from_json_string(StringHandle json) {
         "GateRelations_from_json_string: json cannot be null");
   }
   auto ptr = GateRelations::from_json_string<GateRelations>(json->raw);
-  return new GateRelations(*ptr);
+  return new GateRelationsSP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }
