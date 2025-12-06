@@ -33,18 +33,15 @@ InterpretationContextHandle InterpretationContext_create(
         "Null handle passed to InterpretationContext_create: unit");
   }
   math::AxesSP<contexts::MeasurementContext> independant_vars =
-      std::make_shared<math::Axes<contexts::MeasurementContext>>(
-          *static_cast<math::Axes<contexts::MeasurementContext>*>(
-              independant_variables));
+      *static_cast<math::AxesSP<contexts::MeasurementContext>*>(
+          independant_variables);
   generic::ListSP<contexts::MeasurementContext> dependant_vars =
-      std::make_shared<generic::List<contexts::MeasurementContext>>(
-          *static_cast<generic::List<contexts::MeasurementContext>*>(
-              dependant_variables));
+      *static_cast<generic::ListSP<contexts::MeasurementContext>*>(
+          dependant_variables);
   physics::units::SymbolUnitSP symbol_unit =
-      std::make_shared<physics::units::SymbolUnit>(
-          *static_cast<physics::units::SymbolUnit*>(unit));
-  return new InterpretationContext(
-      InterpretationContext(independant_vars, dependant_vars, symbol_unit));
+      *static_cast<physics::units::SymbolUnitSP*>(unit);
+  return new InterpretationContextSP(std::make_shared<InterpretationContext>(
+      independant_vars, dependant_vars, symbol_unit));
   FALCON_C_API_END(nullptr)
 }
 
@@ -54,7 +51,7 @@ void InterpretationContext_destroy(InterpretationContextHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to InterpretationContext_destroy");
   }
-  delete static_cast<InterpretationContext*>(handle);
+  delete static_cast<InterpretationContextSP*>(handle);
   FALCON_C_API_END()
 }
 
@@ -65,9 +62,10 @@ AxesMeasurementContextHandle InterpretationContext_independent_variables(
     throw std::invalid_argument(
         "Null handle passed to InterpretationContext_independant_variables");
   }
-  InterpretationContext* context = static_cast<InterpretationContext*>(handle);
-  return new math::Axes<contexts::MeasurementContext>(
-      *(context->independent_variables()));
+  InterpretationContextSP context =
+      *static_cast<InterpretationContextSP*>(handle);
+  return new math::AxesSP<contexts::MeasurementContext>(
+      context->independent_variables());
   FALCON_C_API_END(nullptr)
 }
 
@@ -78,9 +76,10 @@ ListMeasurementContextHandle InterpretationContext_dependent_variables(
     throw std::invalid_argument(
         "Null handle passed to InterpretationContext_dependent_variables");
   }
-  InterpretationContext* context = static_cast<InterpretationContext*>(handle);
-  return new generic::List<contexts::MeasurementContext>(
-      *(context->dependent_variables()));
+  InterpretationContextSP context =
+      *static_cast<InterpretationContextSP*>(handle);
+  return new generic::ListSP<contexts::MeasurementContext>(
+      context->dependent_variables());
   FALCON_C_API_END(nullptr)
 }
 
@@ -91,8 +90,9 @@ SymbolUnitHandle InterpretationContext_unit(
     throw std::invalid_argument(
         "Null handle passed to InterpretationContext_unit");
   }
-  InterpretationContext* context = static_cast<InterpretationContext*>(handle);
-  return new physics::units::SymbolUnit(*(context->unit()));
+  InterpretationContextSP context =
+      *static_cast<InterpretationContextSP*>(handle);
+  return new physics::units::SymbolUnitSP(context->unit());
   FALCON_C_API_END(nullptr)
 }
 
@@ -102,7 +102,8 @@ int InterpretationContext_dimension(InterpretationContextHandle handle) {
     throw std::invalid_argument(
         "Null handle passed to InterpretationContext_dimension");
   }
-  InterpretationContext* context = static_cast<InterpretationContext*>(handle);
+  InterpretationContextSP context =
+      *static_cast<InterpretationContextSP*>(handle);
   return context->dimension();
   FALCON_C_API_END(0)
 }
@@ -120,10 +121,10 @@ void InterpretationContext_add_dependent_variable(
         "Null handle passed to InterpretationContext_dependent_variable: "
         "variable");
   }
-  InterpretationContext* context = static_cast<InterpretationContext*>(handle);
+  InterpretationContextSP context =
+      *static_cast<InterpretationContextSP*>(handle);
   contexts::MeasurementContextSP var =
-      std::make_shared<contexts::MeasurementContext>(
-          *static_cast<contexts::MeasurementContext*>(variable));
+      *static_cast<contexts::MeasurementContextSP*>(variable);
   context->add_dependent_variable(var);
   FALCON_C_API_END()
 }
@@ -143,10 +144,10 @@ void InterpretationContext_replace_dependent_variable(
         "Null handle passed to "
         "InterpretationContext_replace_dependent_variable: variable");
   }
-  InterpretationContext* context = static_cast<InterpretationContext*>(handle);
+  InterpretationContextSP context =
+      *static_cast<InterpretationContextSP*>(handle);
   contexts::MeasurementContextSP var =
-      std::make_shared<contexts::MeasurementContext>(
-          *static_cast<contexts::MeasurementContext*>(variable));
+      *static_cast<contexts::MeasurementContextSP*>(variable);
   context->replace_dependent_variable(index, var);
   FALCON_C_API_END()
 }
@@ -159,9 +160,10 @@ MeasurementContextHandle InterpretationContext_get_independent_variables(
         "Null handle passed to "
         "InterpretationContext_get_independent_variables");
   }
-  InterpretationContext* context = static_cast<InterpretationContext*>(handle);
+  InterpretationContextSP context =
+      *static_cast<InterpretationContextSP*>(handle);
   contexts::MeasurementContextSP var = context->get_independent_variable(index);
-  return new contexts::MeasurementContext(*var);
+  return new contexts::MeasurementContextSP(var);
   FALCON_C_API_END(nullptr)
 }
 
@@ -175,36 +177,36 @@ InterpretationContextHandle InterpretationContext_with_unit(
     throw std::invalid_argument(
         "Null handle passed to InterpretationContext_with_unit: unit");
   }
-  InterpretationContext* context = static_cast<InterpretationContext*>(handle);
+  InterpretationContextSP context =
+      *static_cast<InterpretationContextSP*>(handle);
   physics::units::SymbolUnitSP symbol_unit =
-      std::make_shared<physics::units::SymbolUnit>(
-          *static_cast<physics::units::SymbolUnit*>(unit));
-  return new InterpretationContext(*context->with_unit(symbol_unit));
+      *static_cast<physics::units::SymbolUnitSP*>(unit);
+  return new InterpretationContextSP(context->with_unit(symbol_unit));
   FALCON_C_API_END(nullptr)
 }
 
-bool InterpretationContext_equal(InterpretationContextHandle a,
-                                 InterpretationContextHandle b) {
+bool InterpretationContext_equal(InterpretationContextHandle handle,
+                                 InterpretationContextHandle other) {
   FALCON_C_API_BEGIN
-  if (!a || !b) {
+  if (!handle || !other) {
     throw std::invalid_argument(
         "Null handle passed to InterpretationContext_equal");
   }
-  auto context_a = static_cast<InterpretationContext*>(a);
-  auto context_b = static_cast<InterpretationContext*>(b);
+  auto context_a = *static_cast<InterpretationContextSP*>(handle);
+  auto context_b = *static_cast<InterpretationContextSP*>(other);
   return (*context_a == *context_b);
   FALCON_C_API_END(false)
 }
 
-bool InterpretationContext_not_equal(InterpretationContextHandle a,
-                                     InterpretationContextHandle b) {
+bool InterpretationContext_not_equal(InterpretationContextHandle handle,
+                                     InterpretationContextHandle other) {
   FALCON_C_API_BEGIN
-  if (!a || !b) {
+  if (!handle || !other) {
     throw std::invalid_argument(
         "Null handle passed to InterpretationContext_not_equal");
   }
-  auto context_a = static_cast<InterpretationContext*>(a);
-  auto context_b = static_cast<InterpretationContext*>(b);
+  auto context_a = *static_cast<InterpretationContextSP*>(handle);
+  auto context_b = *static_cast<InterpretationContextSP*>(other);
   return (*context_a != *context_b);
   FALCON_C_API_END(false)
 }
@@ -216,8 +218,9 @@ StringHandle InterpretationContext_to_json_string(
     throw std::invalid_argument(
         "Null handle passed to InterpretationContext_to_json_string");
   }
-  InterpretationContext* context = static_cast<InterpretationContext*>(handle);
-  std::string            json    = context->to_json_string();
+  InterpretationContextSP context =
+      *static_cast<InterpretationContextSP*>(handle);
+  std::string json = context->to_json_string();
   return String_create(json.c_str(), json.size());
   FALCON_C_API_END(nullptr)
 }
@@ -233,7 +236,7 @@ InterpretationContextHandle InterpretationContext_from_json_string(
   std::string raw_json(json->raw);
   auto        ptr =
       InterpretationContext::from_json_string<InterpretationContext>(raw_json);
-  return new InterpretationContext(*ptr);
+  return new InterpretationContextSP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }

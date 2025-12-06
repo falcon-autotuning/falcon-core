@@ -14,7 +14,7 @@ ChannelHandle Channel_create(StringHandle name) {
     throw std::invalid_argument("Channel_create: name cannot be null");
   }
   std::string real_name(name->raw, name->length);
-  return new Channel(real_name);
+  return new ChannelSP(std::make_shared<Channel>(real_name));
   FALCON_C_API_END(nullptr)
 }
 
@@ -23,8 +23,7 @@ void Channel_destroy(ChannelHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Channel_destroy: handle cannot be null");
   }
-  Channel self = *static_cast<Channel*>(handle);
-  delete static_cast<Channel*>(handle);
+  delete static_cast<ChannelSP*>(handle);
   FALCON_C_API_END()
 }
 
@@ -33,8 +32,8 @@ StringHandle Channel_name(ChannelHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Channel_name: handle cannot be null");
   }
-  Channel self = *static_cast<Channel*>(handle);
-  return String_create(self.name().c_str(), self.name().size());
+  ChannelSP self = *static_cast<ChannelSP*>(handle);
+  return String_create(self->name().c_str(), self->name().size());
   FALCON_C_API_END(nullptr)
 }
 
@@ -46,9 +45,9 @@ bool Channel_equal(ChannelHandle a, ChannelHandle b) {
   if (!b) {
     throw std::invalid_argument("Channel_equal: handle cannot be null");
   }
-  Channel self_a = *static_cast<Channel*>(a);
-  Channel self_b = *static_cast<Channel*>(b);
-  return self_a == self_b;
+  ChannelSP self_a = *static_cast<ChannelSP*>(a);
+  ChannelSP self_b = *static_cast<ChannelSP*>(b);
+  return *self_a == *self_b;
   FALCON_C_API_END(false)
 }
 
@@ -60,9 +59,9 @@ bool Channel_not_equal(ChannelHandle a, ChannelHandle b) {
   if (!b) {
     throw std::invalid_argument("Channel_not_equal: handle cannot be null");
   }
-  Channel self_a = *static_cast<Channel*>(a);
-  Channel self_b = *static_cast<Channel*>(b);
-  return self_a != self_b;
+  ChannelSP self_a = *static_cast<ChannelSP*>(a);
+  ChannelSP self_b = *static_cast<ChannelSP*>(b);
+  return *self_a != *self_b;
   FALCON_C_API_END(false)
 }
 
@@ -72,8 +71,8 @@ StringHandle Channel_to_json_string(ChannelHandle handle) {
     throw std::invalid_argument(
         "Channel_to_json_string: handle cannot be null");
   }
-  Channel     self = *static_cast<Channel*>(handle);
-  std::string json = self.to_json_string();
+  ChannelSP   self = *static_cast<ChannelSP*>(handle);
+  std::string json = self->to_json_string();
   return String_create(json.c_str(), json.size());
   FALCON_C_API_END(nullptr)
 }
@@ -86,7 +85,7 @@ ChannelHandle Channel_from_json_string(StringHandle json) {
   }
   std::string json_str(json->raw);
   auto        ptr = Channel::from_json_string<Channel>(json_str);
-  return new Channel(*ptr);
+  return new ChannelSP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }
