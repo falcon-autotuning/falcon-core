@@ -24,7 +24,7 @@ class PortTransforms : public generic::List<PortTransform> {
   PortTransforms(const std::vector<PortTransformSP>& init);
   const generic::ListSP<PortTransform> transforms() const;
 };
-
+using PortTransformsSP = std::shared_ptr<PortTransforms>;
 }  // namespace port_transforms
 }  // namespace instrument_interfaces
 }  // namespace falcon_core

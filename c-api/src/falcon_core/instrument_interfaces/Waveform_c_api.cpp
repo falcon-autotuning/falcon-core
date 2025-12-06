@@ -22,13 +22,12 @@ WaveformHandle Waveform_create(DiscreteSpaceHandle     space,
     throw std::invalid_argument("Waveform_create: transforms cannot be null");
   }
   math::discrete_spaces::DiscreteSpaceSP self_space =
-      std::make_shared<math::discrete_spaces::DiscreteSpace>(
-          *static_cast<math::discrete_spaces::DiscreteSpace*>(space));
+      *static_cast<math::discrete_spaces::DiscreteSpaceSP*>(space);
   generic::ListSP<port_transforms::PortTransform> self_transforms =
-      std::make_shared<generic::List<port_transforms::PortTransform>>(
-          *static_cast<generic::List<port_transforms::PortTransform>*>(
-              transforms));
-  return new Waveform(self_space, self_transforms);
+      *static_cast<generic::ListSP<port_transforms::PortTransform>*>(
+          transforms);
+  return new WaveformSP(
+      std::make_shared<Waveform>(self_space, self_transforms));
   FALCON_C_API_END(nullptr)
 }
 
@@ -62,27 +61,22 @@ WaveformHandle Waveform_create_cartesian_waveform(
     throw std::invalid_argument(
         "Waveform_create_cartesianwaveform: domain cannot be null");
   }
-  math::AxesSP<int> self_divisions = std::make_shared<math::Axes<int>>(
-      *static_cast<math::Axes<int>*>(divisions));
+  math::AxesSP<int> self_divisions =
+      *static_cast<math::AxesSP<int>*>(divisions);
   math::AxesSP<math::domains::CoupledLabelledDomain> self_axes =
-      std::make_shared<math::Axes<math::domains::CoupledLabelledDomain>>(
-          *static_cast<math::Axes<math::domains::CoupledLabelledDomain>*>(
-              axes));
+      *static_cast<math::AxesSP<math::domains::CoupledLabelledDomain>*>(axes);
   math::AxesSP<generic::Map<std::string, bool>> self_increasing =
-      std::make_shared<math::Axes<generic::Map<std::string, bool>>>(
-          *static_cast<math::Axes<generic::Map<std::string, bool>>*>(
-              increasing));
+      *static_cast<math::AxesSP<generic::Map<std::string, bool>>*>(increasing);
   generic::ListSP<port_transforms::PortTransform> self_transforms =
-      std::make_shared<generic::List<port_transforms::PortTransform>>(
-          *static_cast<generic::List<port_transforms::PortTransform>*>(
-              transforms));
-  math::domains::DomainSP self_domain = std::make_shared<math::domains::Domain>(
-      *static_cast<math::domains::Domain*>(domain));
-  return new Waveform(*Waveform::CartesianWaveform(self_divisions,
-                                                   self_axes,
-                                                   self_increasing,
-                                                   self_transforms,
-                                                   self_domain));
+      *static_cast<generic::ListSP<port_transforms::PortTransform>*>(
+          transforms);
+  math::domains::DomainSP self_domain =
+      *static_cast<math::domains::DomainSP*>(domain);
+  return new WaveformSP(Waveform::CartesianWaveform(self_divisions,
+                                                    self_axes,
+                                                    self_increasing,
+                                                    self_transforms,
+                                                    self_domain));
   FALCON_C_API_END(nullptr)
 }
 WaveformHandle Waveform_create_cartesian_identity_waveform(
@@ -105,19 +99,15 @@ WaveformHandle Waveform_create_cartesian_identity_waveform(
     throw std::invalid_argument(
         "Waveform_create_cartesianidentitywaveform: increasing cannot be null");
   }
-  math::AxesSP<int> self_divisions = std::make_shared<math::Axes<int>>(
-      *static_cast<math::Axes<int>*>(divisions));
+  math::AxesSP<int> self_divisions =
+      *static_cast<math::AxesSP<int>*>(divisions);
   math::AxesSP<math::domains::CoupledLabelledDomain> self_axes =
-      std::make_shared<math::Axes<math::domains::CoupledLabelledDomain>>(
-          *static_cast<math::Axes<math::domains::CoupledLabelledDomain>*>(
-              axes));
+      *static_cast<math::AxesSP<math::domains::CoupledLabelledDomain>*>(axes);
   math::AxesSP<generic::Map<std::string, bool>> self_increasing =
-      std::make_shared<math::Axes<generic::Map<std::string, bool>>>(
-          *static_cast<math::Axes<generic::Map<std::string, bool>>*>(
-              increasing));
-  math::domains::DomainSP self_domain = std::make_shared<math::domains::Domain>(
-      *static_cast<math::domains::Domain*>(domain));
-  return new Waveform(*Waveform::CartesianIdentityWaveform(
+      *static_cast<math::AxesSP<generic::Map<std::string, bool>>*>(increasing);
+  math::domains::DomainSP self_domain =
+      *static_cast<math::domains::DomainSP*>(domain);
+  return new WaveformSP(Waveform::CartesianIdentityWaveform(
       self_divisions, self_axes, self_increasing, self_domain));
   FALCON_C_API_END(nullptr)
 }
@@ -152,27 +142,22 @@ WaveformHandle Waveform_create_cartesian_waveform_2D(
     throw std::invalid_argument(
         "Waveform_create_cartesianwaveform2D: domain cannot be null");
   }
-  math::AxesSP<int> self_divisions = std::make_shared<math::Axes<int>>(
-      *static_cast<math::Axes<int>*>(divisions));
+  math::AxesSP<int> self_divisions =
+      *static_cast<math::AxesSP<int>*>(divisions);
   math::AxesSP<math::domains::CoupledLabelledDomain> self_axes =
-      std::make_shared<math::Axes<math::domains::CoupledLabelledDomain>>(
-          *static_cast<math::Axes<math::domains::CoupledLabelledDomain>*>(
-              axes));
+      *static_cast<math::AxesSP<math::domains::CoupledLabelledDomain>*>(axes);
   math::AxesSP<generic::Map<std::string, bool>> self_increasing =
-      std::make_shared<math::Axes<generic::Map<std::string, bool>>>(
-          *static_cast<math::Axes<generic::Map<std::string, bool>>*>(
-              increasing));
-  math::domains::DomainSP self_domain = std::make_shared<math::domains::Domain>(
-      *static_cast<math::domains::Domain*>(domain));
+      *static_cast<math::AxesSP<generic::Map<std::string, bool>>*>(increasing);
+  math::domains::DomainSP self_domain =
+      *static_cast<math::domains::DomainSP*>(domain);
   generic::ListSP<port_transforms::PortTransform> self_transforms =
-      std::make_shared<generic::List<port_transforms::PortTransform>>(
-          *static_cast<generic::List<port_transforms::PortTransform>*>(
-              transforms));
-  return new Waveform(*Waveform::CartesianWaveform2D(self_divisions,
-                                                     self_axes,
-                                                     self_increasing,
-                                                     self_transforms,
-                                                     self_domain));
+      *static_cast<generic::ListSP<port_transforms::PortTransform>*>(
+          transforms);
+  return new WaveformSP(Waveform::CartesianWaveform2D(self_divisions,
+                                                      self_axes,
+                                                      self_increasing,
+                                                      self_transforms,
+                                                      self_domain));
   FALCON_C_API_END(nullptr)
 }
 
@@ -201,19 +186,15 @@ WaveformHandle Waveform_create_cartesian_identity_waveform_2D(
     throw std::invalid_argument(
         "Waveform_create_cartesianidentitywaveform2D: domain cannot be null");
   }
-  math::AxesSP<int> self_divisions = std::make_shared<math::Axes<int>>(
-      *static_cast<math::Axes<int>*>(divisions));
+  math::AxesSP<int> self_divisions =
+      *static_cast<math::AxesSP<int>*>(divisions);
   math::AxesSP<math::domains::CoupledLabelledDomain> self_axes =
-      std::make_shared<math::Axes<math::domains::CoupledLabelledDomain>>(
-          *static_cast<math::Axes<math::domains::CoupledLabelledDomain>*>(
-              axes));
+      *static_cast<math::AxesSP<math::domains::CoupledLabelledDomain>*>(axes);
   math::AxesSP<generic::Map<std::string, bool>> self_increasing =
-      std::make_shared<math::Axes<generic::Map<std::string, bool>>>(
-          *static_cast<math::Axes<generic::Map<std::string, bool>>*>(
-              increasing));
-  math::domains::DomainSP self_domain = std::make_shared<math::domains::Domain>(
-      *static_cast<math::domains::Domain*>(domain));
-  return new Waveform(*Waveform::CartesianIdentityWaveform2D(
+      *static_cast<math::AxesSP<generic::Map<std::string, bool>>*>(increasing);
+  math::domains::DomainSP self_domain =
+      *static_cast<math::domains::DomainSP*>(domain);
+  return new WaveformSP(Waveform::CartesianIdentityWaveform2D(
       self_divisions, self_axes, self_increasing, self_domain));
   FALCON_C_API_END(nullptr)
 }
@@ -242,22 +223,19 @@ WaveformHandle Waveform_create_cartesian_waveform_1D(
         "Waveform_create_cartesianwaveform1D: domain cannot be null");
   }
   math::domains::CoupledLabelledDomainSP self_shared_domain =
-      std::make_shared<math::domains::CoupledLabelledDomain>(
-          *static_cast<math::domains::CoupledLabelledDomain*>(shared_domain));
+      *static_cast<math::domains::CoupledLabelledDomainSP*>(shared_domain);
   generic::MapSP<std::string, bool> self_increasing =
-      std::make_shared<generic::Map<std::string, bool>>(
-          *static_cast<generic::Map<std::string, bool>*>(increasing));
+      *static_cast<generic::MapSP<std::string, bool>*>(increasing);
   generic::ListSP<port_transforms::PortTransform> self_transforms =
-      std::make_shared<generic::List<port_transforms::PortTransform>>(
-          *static_cast<generic::List<port_transforms::PortTransform>*>(
-              transforms));
-  math::domains::DomainSP self_domain = std::make_shared<math::domains::Domain>(
-      *static_cast<math::domains::Domain*>(domain));
-  return new Waveform(*Waveform::CartesianWaveform1D(division,
-                                                     self_shared_domain,
-                                                     self_increasing,
-                                                     self_transforms,
-                                                     self_domain));
+      *static_cast<generic::ListSP<port_transforms::PortTransform>*>(
+          transforms);
+  math::domains::DomainSP self_domain =
+      *static_cast<math::domains::DomainSP*>(domain);
+  return new WaveformSP(Waveform::CartesianWaveform1D(division,
+                                                      self_shared_domain,
+                                                      self_increasing,
+                                                      self_transforms,
+                                                      self_domain));
   FALCON_C_API_END(nullptr)
 }
 
@@ -282,14 +260,12 @@ WaveformHandle Waveform_create_cartesian_identity_waveform_1D(
         "Waveform_create_cartesianidentitywaveform1D: domain cannot be null");
   }
   math::domains::CoupledLabelledDomainSP self_shared_domain =
-      std::make_shared<math::domains::CoupledLabelledDomain>(
-          *static_cast<math::domains::CoupledLabelledDomain*>(shared_domain));
+      *static_cast<math::domains::CoupledLabelledDomainSP*>(shared_domain);
   generic::MapSP<std::string, bool> self_increasing =
-      std::make_shared<generic::Map<std::string, bool>>(
-          *static_cast<generic::Map<std::string, bool>*>(increasing));
-  math::domains::DomainSP self_domain = std::make_shared<math::domains::Domain>(
-      *static_cast<math::domains::Domain*>(domain));
-  return new Waveform(*Waveform::CartesianIdentityWaveform1D(
+      *static_cast<generic::MapSP<std::string, bool>*>(increasing);
+  math::domains::DomainSP self_domain =
+      *static_cast<math::domains::DomainSP*>(domain);
+  return new WaveformSP(Waveform::CartesianIdentityWaveform1D(
       division, self_shared_domain, self_increasing, self_domain));
   FALCON_C_API_END(nullptr)
 }
@@ -299,7 +275,7 @@ void Waveform_destroy(WaveformHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Waveform_destroy: handle cannot be null");
   }
-  delete static_cast<Waveform*>(handle);
+  delete static_cast<WaveformSP*>(handle);
   FALCON_C_API_END()
 }
 
@@ -308,8 +284,8 @@ DiscreteSpaceHandle Waveform_space(WaveformHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Waveform_space: handle cannot be null");
   }
-  Waveform self = *static_cast<Waveform*>(handle);
-  return new math::discrete_spaces::DiscreteSpace(*self.space());
+  WaveformSP self = *static_cast<WaveformSP*>(handle);
+  return new math::discrete_spaces::DiscreteSpaceSP(self->space());
   FALCON_C_API_END(nullptr)
 }
 
@@ -318,8 +294,8 @@ ListPortTransformHandle Waveform_transforms(WaveformHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Waveform_transforms: handle cannot be null");
   }
-  return new generic::List<port_transforms::PortTransform>(
-      *static_cast<Waveform*>(handle)->transforms());
+  return new generic::ListSP<port_transforms::PortTransform>(
+      (*static_cast<WaveformSP*>(handle))->transforms());
   FALCON_C_API_END(nullptr)
 }
 
@@ -331,9 +307,8 @@ void Waveform_push_back(WaveformHandle handle, PortTransformHandle value) {
   if (!value) {
     throw std::invalid_argument("Waveform_push_back: value cannot be null");
   }
-  static_cast<Waveform*>(handle)->push_back(
-      std::make_shared<port_transforms::PortTransform>(
-          *static_cast<port_transforms::PortTransform*>(value)));
+  (*static_cast<WaveformSP*>(handle))
+      ->push_back(*static_cast<port_transforms::PortTransformSP*>(value));
   FALCON_C_API_END()
 }
 
@@ -342,8 +317,8 @@ size_t Waveform_size(WaveformHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Waveform_size: handle cannot be null");
   }
-  Waveform self = *static_cast<Waveform*>(handle);
-  return self.size();
+  WaveformSP self = *static_cast<WaveformSP*>(handle);
+  return self->size();
   FALCON_C_API_END(0)
 }
 
@@ -352,8 +327,8 @@ bool Waveform_empty(WaveformHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Waveform_empty: handle cannot be null");
   }
-  Waveform self = *static_cast<Waveform*>(handle);
-  return self.empty();
+  WaveformSP self = *static_cast<WaveformSP*>(handle);
+  return self->empty();
   FALCON_C_API_END(false)
 }
 
@@ -362,7 +337,7 @@ void Waveform_erase_at(WaveformHandle handle, size_t idx) {
   if (!handle) {
     throw std::invalid_argument("Waveform_erase_at: handle cannot be null");
   }
-  Waveform* self = static_cast<Waveform*>(handle);
+  WaveformSP self = *static_cast<WaveformSP*>(handle);
   self->erase_at(idx);
   FALCON_C_API_END()
 }
@@ -372,7 +347,7 @@ void Waveform_clear(WaveformHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Waveform_clear: handle cannot be null");
   }
-  Waveform* self = static_cast<Waveform*>(handle);
+  WaveformSP self = *static_cast<WaveformSP*>(handle);
   self->clear();
   FALCON_C_API_END()
 }
@@ -382,8 +357,8 @@ PortTransformHandle Waveform_at(WaveformHandle handle, size_t idx) {
   if (!handle) {
     throw std::invalid_argument("Waveform_at: handle cannot be null");
   }
-  Waveform self = *static_cast<Waveform*>(handle);
-  return new port_transforms::PortTransform(*self.at(idx));
+  WaveformSP self = *static_cast<WaveformSP*>(handle);
+  return new port_transforms::PortTransformSP(self->at(idx));
   FALCON_C_API_END(nullptr)
 }
 
@@ -392,8 +367,10 @@ ListPortTransformHandle Waveform_items(WaveformHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Waveform_items: handle cannot be null");
   }
-  Waveform self = *static_cast<Waveform*>(handle);
-  return new generic::List<port_transforms::PortTransform>(self.items());
+  WaveformSP self = *static_cast<WaveformSP*>(handle);
+  return new generic::ListSP<port_transforms::PortTransform>(
+      std::make_shared<generic::List<port_transforms::PortTransform>>(
+          self->items()));
   FALCON_C_API_END(nullptr)
 }
 
@@ -405,11 +382,10 @@ bool Waveform_contains(WaveformHandle handle, PortTransformHandle value) {
   if (!value) {
     throw std::invalid_argument("Waveform_contains: value cannot be null");
   }
-  Waveform                         self = *static_cast<Waveform*>(handle);
+  WaveformSP                       self = *static_cast<WaveformSP*>(handle);
   port_transforms::PortTransformSP real_value =
-      std::make_shared<port_transforms::PortTransform>(
-          *static_cast<port_transforms::PortTransform*>(value));
-  return self.contains(real_value);
+      *static_cast<port_transforms::PortTransformSP*>(value);
+  return self->contains(real_value);
   FALCON_C_API_END(false)
 }
 
@@ -421,11 +397,10 @@ size_t Waveform_index(WaveformHandle handle, PortTransformHandle value) {
   if (!value) {
     throw std::invalid_argument("Waveform_index: value cannot be null");
   }
-  Waveform                         self = *static_cast<Waveform*>(handle);
+  WaveformSP                       self = *static_cast<WaveformSP*>(handle);
   port_transforms::PortTransformSP real_value =
-      std::make_shared<port_transforms::PortTransform>(
-          *static_cast<port_transforms::PortTransform*>(value));
-  return self.index(real_value);
+      *static_cast<port_transforms::PortTransformSP*>(value);
+  return self->index(real_value);
   FALCON_C_API_END(0)
 }
 
@@ -438,12 +413,11 @@ WaveformHandle Waveform_intersection(WaveformHandle handle,
   if (!other) {
     throw std::invalid_argument("Waveform_intersection: other cannot be null");
   }
-  Waveform   self = *static_cast<Waveform*>(handle);
-  WaveformSP real_other =
-      std::make_shared<Waveform>(*static_cast<Waveform*>(other));
+  WaveformSP self       = *static_cast<WaveformSP*>(handle);
+  WaveformSP real_other = *static_cast<WaveformSP*>(other);
   generic::ListSP<port_transforms::PortTransform> result =
-      self.intersection(real_other);
-  return new Waveform(self.space(), result);
+      self->intersection(real_other);
+  return new WaveformSP(std::make_shared<Waveform>(self->space(), result));
   FALCON_C_API_END(nullptr)
 }
 
@@ -455,7 +429,8 @@ bool Waveform_equal(WaveformHandle handle, WaveformHandle other) {
   if (!other) {
     throw std::invalid_argument("Waveform_equal: other cannot be null");
   }
-  return *(static_cast<Waveform*>(handle)) == *(static_cast<Waveform*>(other));
+  return *(*static_cast<WaveformSP*>(handle)) ==
+         *(*static_cast<WaveformSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -467,7 +442,8 @@ bool Waveform_not_equal(WaveformHandle handle, WaveformHandle other) {
   if (!other) {
     throw std::invalid_argument("Waveform_not_equal: other cannot be null");
   }
-  return *(static_cast<Waveform*>(handle)) != *(static_cast<Waveform*>(other));
+  return *(*static_cast<WaveformSP*>(handle)) !=
+         *(*static_cast<WaveformSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -477,9 +453,9 @@ StringHandle Waveform_to_json_string(WaveformHandle handle) {
     throw std::invalid_argument(
         "Waveform_to_json_string: handle cannot be null");
   }
-  Waveform self = *static_cast<Waveform*>(handle);
-  return String_create(self.to_json_string().c_str(),
-                       self.to_json_string().size());
+  WaveformSP self = *static_cast<WaveformSP*>(handle);
+  return String_create(self->to_json_string().c_str(),
+                       self->to_json_string().size());
   FALCON_C_API_END(nullptr)
 }
 
@@ -491,7 +467,7 @@ WaveformHandle Waveform_from_json_string(StringHandle json) {
   }
   std::string real_json(json->raw, json->length);
   WaveformSP  real_waveform = Waveform::from_json_string<Waveform>(real_json);
-  return new Waveform(*real_waveform);
+  return new WaveformSP(real_waveform);
   FALCON_C_API_END(nullptr)
 }
 }
