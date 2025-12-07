@@ -74,19 +74,63 @@ jobs:
         run: cmake --build build
         working-directory: cpp
 
+      # - name: Test falcon-core-cpp-dev (with coverage)
+      #   shell: pwsh
+      #   run: |
+      #     $ErrorActionPreference = "Stop"
+      #     $buildDir = "build"
+      #     $coverageDir = "coverage"
+      #     New-Item -ItemType Directory -Force -Path $coverageDir | Out-Null
+      #     $env:PATH = "$env:GITHUB_WORKSPACE\cpp\$buildDir;$env:PATH"
+      #     $env:LLVM_PROFILE_FILE = "$env:GITHUB_WORKSPACE\cpp\$buildDir\falcon_core_cpp_run_tests.profraw"
+      #     .\$buildDir\falcon_core_cpp_run_tests.exe
+      #     llvm-profdata merge -sparse $buildDir\falcon_core_cpp_run_tests.profraw -o $buildDir\falcon_core_cpp_run_tests.profdata
+      #     llvm-cov report .\$buildDir\falcon_core_cpp_run_tests.exe -instr-profile=$buildDir\falcon_core_cpp_run_tests.profdata | Out-File -Encoding utf8 $coverageDir\falcon-core-cpp.txt
+      #   working-directory: cpp
       - name: Test falcon-core-cpp-dev (with coverage)
         shell: pwsh
+        working-directory: cpp
         run: |
           $ErrorActionPreference = "Stop"
-          $buildDir = "build"
+          $buildDir    = "build"
           $coverageDir = "coverage"
+
+          # Ensure coverage directory exists
           New-Item -ItemType Directory -Force -Path $coverageDir | Out-Null
-          $env:PATH = "$env:GITHUB_WORKSPACE\cpp\$buildDir;$env:PATH"
-          $env:LLVM_PROFILE_FILE = "$env:GITHUB_WORKSPACE\cpp\$buildDir\falcon_core_cpp_run_tests.profraw"
-          .\$buildDir\falcon_core_cpp_run_tests.exe
-          llvm-profdata merge -sparse $buildDir\falcon_core_cpp_run_tests.profraw -o $buildDir\falcon_core_cpp_run_tests.profdata
-          llvm-cov report .\$buildDir\falcon_core_cpp_run_tests.exe -instr-profile=$buildDir\falcon_core_cpp_run_tests.profdata | Out-File -Encoding utf8 $coverageDir\falcon-core-cpp.txt
-        working-directory: cpp
+
+          # (Optional) show what's actually in the build dir to debug path issues
+          Write-Host "Listing contents of '$buildDir'..."
+          Get-ChildItem -Recurse $buildDir
+
+          # Try to locate the test executable under build/
+          $exe = Get-ChildItem -Path $buildDir -Filter "falcon_core_cpp_run_tests*.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+
+          if (-not $exe) {
+            Write-Error "❌ Could not find 'falcon_core_cpp_run_tests.exe' anywhere under '$buildDir'."
+            exit 1
+          }
+
+          Write-Host "Found test executable at: $($exe.FullName)"
+
+          # Set up coverage env vars
+          $env:LLVM_PROFILE_FILE = Join-Path $exe.DirectoryName "falcon_core_cpp_run_tests.profraw"
+
+          # Make sure LLVM tools are on PATH (you already did this earlier, but it doesn't hurt)
+          $env:PATH = "$env:PATH"
+
+          # Run tests
+          & $exe.FullName
+
+          # Merge and report coverage
+          $profRaw    = Join-Path $exe.DirectoryName "falcon_core_cpp_run_tests.profraw"
+          $profData   = Join-Path $exe.DirectoryName "falcon_core_cpp_run_tests.profdata"
+          $reportFile = Join-Path $coverageDir "falcon-core-cpp.txt"
+
+          llvm-profdata merge -sparse $profRaw -o $profData
+
+          llvm-cov report $exe.FullName -instr-profile=$profData |
+            Out-File -Encoding utf8 $reportFile
+
 
       # Install vcpkg dependencies for c-api
       - name: Install vcpkg dependencies for c-api
