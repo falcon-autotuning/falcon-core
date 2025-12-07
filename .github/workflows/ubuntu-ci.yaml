@@ -2,19 +2,18 @@ name: Ubuntu 22.04 CI
 
 on:
   push:
-    branches: [main, new-dev]
+    branches: [main, windows-support]
   pull_request:
-    branches: [main, new-dev]
+    branches: [main, windows-support]
 
 jobs:
   build-and-test-ubuntu:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Install build dependencies
+      - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -25,74 +24,174 @@ jobs:
             ninja-build \
             cmake \
             ccache \
-            python3 python3-pip \
-            # core C++ deps that mirror Arch pacman packages
-            libcereal-dev \
+            curl \
             libhdf5-dev \
             libyaml-cpp-dev \
-            libboost-all-dev \
-            libbz2-dev \
-            libexpat1-dev \
-            libsqlite3-dev \
             libssl-dev \
-            zlib1g-dev \
+            libsqlite3-dev \
             nlohmann-json3-dev \
-            libxtensor-dev \
-            libxtl-dev \
-            libxsimd-dev \
-            libgtest-dev
+            libcereal-dev \
+            libboost-filesystem-dev \
+            libboost-system-dev \
+            libboost-program-options-dev \
+            libboost-test-dev \
+            libgtest-dev \
+            bc
 
-      # Optional: make sure clang/llvm are the compilers we use
-      - name: Set CC/CXX
+          # Build and install GoogleTest (Ubuntu installs only sources by default)
+          cd /usr/src/gtest
+          sudo cmake -S . -B build
+          sudo cmake --build build
+          sudo cmake --install build
+
+      - name: Build and install xtl/xsimd/xtensor/xtensor-io
         run: |
-          echo "CC=clang"  >> $GITHUB_ENV
-          echo "CXX=clang++" >> $GITHUB_ENV
+          set -e
+          mkdir -p "$HOME/deps"
+          cd "$HOME/deps"
 
-      - name: Configure and build C++ extension (dev, tests, coverage)
-        working-directory: cpp
-        env:
-          CC: ${{ env.CC }}
-          CXX: ${{ env.CXX }}
+          echo "=== Building xtl 0.7.5 ==="
+          curl -L -o xtl-0.7.5.tar.gz \
+            https://github.com/xtensor-stack/xtl/archive/refs/tags/0.7.5.tar.gz
+          tar xf xtl-0.7.5.tar.gz
+          cmake -S xtl-0.7.5 -B xtl-build \
+                -DCMAKE_INSTALL_PREFIX=/usr/local \
+                -DBUILD_TESTS=OFF
+          sudo cmake --build xtl-build --target install
+
+          echo "=== Building xsimd 10.0.0 ==="
+          curl -L -o xsimd-10.0.0.tar.gz \
+            https://github.com/xtensor-stack/xsimd/archive/refs/tags/10.0.0.tar.gz
+          tar xf xsimd-10.0.0.tar.gz
+          cmake -S xsimd-10.0.0 -B xsimd-build \
+                -DCMAKE_INSTALL_PREFIX=/usr/local \
+                -DBUILD_TESTS=OFF
+          sudo cmake --build xsimd-build --target install
+
+          echo "=== Building xtensor 0.25.0 ==="
+          curl -L -o xtensor-0.25.0.tar.gz \
+            https://github.com/xtensor-stack/xtensor/archive/refs/tags/0.25.0.tar.gz
+          tar xf xtensor-0.25.0.tar.gz
+          cmake -S xtensor-0.25.0 -B xtensor-build \
+                -DCMAKE_INSTALL_PREFIX=/usr/local \
+                -DBUILD_TESTS=OFF
+          sudo cmake --build xtensor-build --target install
+
+          echo "=== Building xtensor-io 0.13.0 ==="
+          curl -L -o xtensor-io-0.13.0.tar.gz \
+            https://github.com/xtensor-stack/xtensor-io/archive/refs/tags/0.13.0.tar.gz
+          tar xf xtensor-io-0.13.0.tar.gz
+          cmake -S xtensor-io-0.13.0 -B xtensor-io-build \
+                -DCMAKE_INSTALL_PREFIX=/usr/local \
+                -DBUILD_TESTS=OFF
+          sudo cmake --build xtensor-io-build --target install
+
+      - name: Cache ccache
+        uses: actions/cache@v4
+        with:
+          path: ~/.ccache
+          key: ${{ runner.os }}-ccache-ubuntu-${{ github.ref }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-ccache-ubuntu-${{ github.ref }}-
+            ${{ runner.os }}-ccache-ubuntu-
+            ${{ runner.os }}-ccache-
+
+      # ---- C++ core ----
+      - name: Build falcon-core-cpp-dev
         run: |
-          echo "--- Configuring and Building C++ Extension (dev, tests, coverage) ---"
-          # Match what you do in arch-ci: USE_VCPKG=0 and Makefile entrypoint
-          CC=${CC} CXX=${CXX} USE_VCPKG=0 make build-dev
+          cd cpp
+          CC=clang CXX=clang++ USE_VCPKG=0 make build-dev
 
-      - name: Run C++ tests
-        working-directory: cpp
-        env:
-          CC: ${{ env.CC }}
-          CXX: ${{ env.CXX }}
+      - name: Test falcon-core-cpp-dev
         run: |
-          # If your Makefile has a dedicated test target, use that; otherwise run ctest
-          if grep -q "test-dev:" Makefile; then
-            CC=${CC} CXX=${CXX} USE_VCPKG=0 make test-dev
-          else
-            ctest --test-dir build --output-on-failure
-          fi
+          cd cpp
+          make run-all-tests
+          mkdir -p coverage
+          make coverage-overview > coverage/falcon-core-cpp.txt
 
-      - name: Collect C++ coverage (optional, if your Makefile supports it)
-        working-directory: cpp
-        env:
-          CC: ${{ env.CC }}
-          CXX: ${{ env.CXX }}
+      # ---- C API ----
+      - name: Build falcon-core-c-api-dev
         run: |
-          if grep -q "coverage-dev:" Makefile; then
-            CC=${CC} CXX=${CXX} USE_VCPKG=0 make coverage-dev
-          else
-            echo "No coverage-dev target; skipping coverage step."
-          fi
+          cd c-api
+          CC=clang CXX=clang++ USE_VCPKG=0 make build-dev
 
-      # Add similar c-api build/test/coverage steps here if you want parity with Arch/Fedora
-      # - name: Build c-api ...
-      # - name: Run c-api tests ...
-      # - name: Collect c-api coverage ...
+      - name: Test falcon-core-c-api-dev
+        run: |
+          cd c-api
+          make run-all-tests
+          mkdir -p coverage
+          make coverage-overview > coverage/falcon-core-c-api.txt
 
-      - name: Upload coverage reports
-        if: always()
+      # ---- Artifacts ----
+      - name: Upload coverage reports (Ubuntu)
         uses: actions/upload-artifact@v4
         with:
           name: coverage-reports-ubuntu
           path: |
             cpp/coverage/*
             c-api/coverage/*
+
+      # ---- Coverage checks (mirrors Arch logic, tweak thresholds as you like) ----
+      - name: Check cpp coverage report (Ubuntu)
+        run: |
+          report="cpp/coverage/falcon-core-cpp.txt"
+
+          # Check for PASSED line
+          if ! grep -qE '\[  PASSED  \] [0-9]+ tests\.' "$report"; then
+            echo "❌ PASSED line not found in $report"
+            exit 1
+          fi
+
+          # Extract the TOTAL line
+          total_line=$(grep '^TOTAL' "$report")
+          if [ -z "$total_line" ]; then
+            echo "❌ TOTAL line not found in $report"
+            exit 1
+          fi
+
+          # Extract all percentages from the TOTAL line
+          percentages=($(echo "$total_line" | grep -oE '[0-9]+\.[0-9]+%'))
+
+          # Check each percentage is > 85%
+          for pct in "${percentages[@]}"; do
+            pct_num=$(echo "$pct" | tr -d '%')
+            if (( $(echo "$pct_num < 85.0" | bc -l) )); then
+              echo "❌ Coverage percent $pct is less than 85%"
+              exit 1
+            fi
+          done
+
+          echo "✅ All cpp coverage checks passed (Ubuntu)."
+        shell: bash
+
+      - name: Check c-api coverage report (Ubuntu)
+        run: |
+          report="c-api/coverage/falcon-core-c-api.txt"
+
+          # Check for PASSED line
+          if ! grep -qE '\[  PASSED  \] [0-9]+ tests\.' "$report"; then
+            echo "❌ PASSED line not found in $report"
+            exit 1
+          fi
+
+          # Extract the TOTAL line
+          total_line=$(grep '^TOTAL' "$report")
+          if [ -z "$total_line" ]; then
+            echo "❌ TOTAL line not found in $report"
+            exit 1
+          fi
+
+          # Extract all percentages from the TOTAL line
+          percentages=($(echo "$total_line" | grep -oE '[0-9]+\.[0-9]+%'))
+
+          # Check each percentage is > 90%
+          for pct in "${percentages[@]}"; do
+            pct_num=$(echo "$pct" | tr -d '%')
+            if (( $(echo "$pct_num < 90.0" | bc -l) )); then
+              echo "❌ Coverage percent $pct is less than 90%"
+              exit 1
+            fi
+          done
+
+          echo "✅ All c-api coverage checks passed (Ubuntu)."
+        shell: bash

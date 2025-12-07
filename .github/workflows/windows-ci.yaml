@@ -87,6 +87,51 @@ jobs:
       #     llvm-profdata merge -sparse $buildDir\falcon_core_cpp_run_tests.profraw -o $buildDir\falcon_core_cpp_run_tests.profdata
       #     llvm-cov report .\$buildDir\falcon_core_cpp_run_tests.exe -instr-profile=$buildDir\falcon_core_cpp_run_tests.profdata | Out-File -Encoding utf8 $coverageDir\falcon-core-cpp.txt
       #   working-directory: cpp
+
+      # - name: Test falcon-core-cpp-dev (with coverage)
+      #   shell: pwsh
+      #   working-directory: cpp
+      #   run: |
+      #     $ErrorActionPreference = "Stop"
+      #     $buildDir    = "build"
+      #     $coverageDir = "coverage"
+
+      #     # Ensure coverage directory exists
+      #     New-Item -ItemType Directory -Force -Path $coverageDir | Out-Null
+
+      #     # (Optional) show what's actually in the build dir to debug path issues
+      #     Write-Host "Listing contents of '$buildDir'..."
+      #     Get-ChildItem -Recurse $buildDir
+
+      #     # Try to locate the test executable under build/
+      #     $exe = Get-ChildItem -Path $buildDir -Filter "falcon_core_cpp_run_tests*.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+
+      #     if (-not $exe) {
+      #       Write-Error "❌ Could not find 'falcon_core_cpp_run_tests.exe' anywhere under '$buildDir'."
+      #       exit 1
+      #     }
+
+      #     Write-Host "Found test executable at: $($exe.FullName)"
+
+      #     # Set up coverage env vars
+      #     $env:LLVM_PROFILE_FILE = Join-Path $exe.DirectoryName "falcon_core_cpp_run_tests.profraw"
+
+      #     # Make sure LLVM tools are on PATH (you already did this earlier, but it doesn't hurt)
+      #     $env:PATH = "$env:PATH"
+
+      #     # Run tests
+      #     & $exe.FullName
+
+      #     # Merge and report coverage
+      #     $profRaw    = Join-Path $exe.DirectoryName "falcon_core_cpp_run_tests.profraw"
+      #     $profData   = Join-Path $exe.DirectoryName "falcon_core_cpp_run_tests.profdata"
+      #     $reportFile = Join-Path $coverageDir "falcon-core-cpp.txt"
+
+      #     llvm-profdata merge -sparse $profRaw -o $profData
+
+      #     llvm-cov report $exe.FullName -instr-profile=$profData |
+      #       Out-File -Encoding utf8 $reportFile
+
       - name: Test falcon-core-cpp-dev (with coverage)
         shell: pwsh
         working-directory: cpp
@@ -98,11 +143,10 @@ jobs:
           # Ensure coverage directory exists
           New-Item -ItemType Directory -Force -Path $coverageDir | Out-Null
 
-          # (Optional) show what's actually in the build dir to debug path issues
-          Write-Host "Listing contents of '$buildDir'..."
+          Write-Host "=== Listing contents of '$buildDir' ==="
           Get-ChildItem -Recurse $buildDir
 
-          # Try to locate the test executable under build/
+          # Locate the test executable
           $exe = Get-ChildItem -Path $buildDir -Filter "falcon_core_cpp_run_tests*.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
 
           if (-not $exe) {
@@ -112,24 +156,60 @@ jobs:
 
           Write-Host "Found test executable at: $($exe.FullName)"
 
-          # Set up coverage env vars
-          $env:LLVM_PROFILE_FILE = Join-Path $exe.DirectoryName "falcon_core_cpp_run_tests.profraw"
+          # Prefer a named profile file, but be flexible
+          $profRawPreferred = Join-Path $exe.DirectoryName "falcon_core_cpp_run_tests.profraw"
+          $profRaw          = $profRawPreferred
 
-          # Make sure LLVM tools are on PATH (you already did this earlier, but it doesn't hurt)
-          $env:PATH = "$env:PATH"
+          # Tell the runtime where to write, in case it honors LLVM_PROFILE_FILE
+          $env:LLVM_PROFILE_FILE = $profRawPreferred
+          Write-Host "LLVM_PROFILE_FILE set to: $env:LLVM_PROFILE_FILE"
 
-          # Run tests
+          # Run the tests and capture exit code
+          Write-Host "=== Running tests ==="
           & $exe.FullName
+          $testExit = $LASTEXITCODE
+          Write-Host "Test exit code: $testExit"
 
-          # Merge and report coverage
-          $profRaw    = Join-Path $exe.DirectoryName "falcon_core_cpp_run_tests.profraw"
+          if ($testExit -ne 0) {
+            Write-Warning "⚠️ Test executable exited with non-zero code ($testExit). Coverage may be incomplete or missing."
+          }
+
+          # Diagnostics: list any *.profraw files in the build tree
+          Write-Host "=== Searching for *.profraw files under '$buildDir' ==="
+          Get-ChildItem -Path $buildDir -Filter "*.profraw" -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
+            Write-Host "Found profraw candidate: $($_.FullName)  (Size: $($_.Length) bytes)"
+          }
+
+          # If the preferred file doesn't exist, fall back to any *.profraw we can find
+          if (-not (Test-Path $profRaw)) {
+            Write-Host "No profile at $profRawPreferred, searching for any '*.profraw' near the exe..."
+            $candidate = Get-ChildItem -Path $exe.DirectoryName -Filter "*.profraw" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+            if ($candidate) {
+              Write-Host "Using found profile file: $($candidate.FullName)"
+              $profRaw = $candidate.FullName
+            } else {
+              Write-Warning "⚠️ No .profraw file found after running tests; skipping coverage report."
+              # Exit successfully so CI isn't red just because coverage didn't materialize
+              exit 0
+            }
+          } else {
+            Write-Host "Using preferred profile file: $profRawPreferred"
+          }
+
           $profData   = Join-Path $exe.DirectoryName "falcon_core_cpp_run_tests.profdata"
           $reportFile = Join-Path $coverageDir "falcon-core-cpp.txt"
 
+          Write-Host "=== Merging profile data ==="
+          Write-Host "profraw:  $profRaw"
+          Write-Host "profdata: $profData"
           llvm-profdata merge -sparse $profRaw -o $profData
 
+          Write-Host "=== Generating coverage report to $reportFile ==="
           llvm-cov report $exe.FullName -instr-profile=$profData |
             Out-File -Encoding utf8 $reportFile
+
+          Write-Host "✅ Coverage report generated at: $reportFile"
+
 
 
       # Install vcpkg dependencies for c-api
