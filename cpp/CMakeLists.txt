@@ -157,6 +157,13 @@ if(FALCON_CORE_DEV)
                                         yaml-cpp::yaml-cpp ${CPP_LIB_NAME})
   endif()
   target_link_libraries(falcon_core_cpp_run_tests PUBLIC yaml-cpp::yaml-cpp)
-  include(GoogleTest)
-  gtest_discover_tests(falcon_core_cpp_run_tests)
+  if(WIN32)
+  # On Windows, don't use gtest_discover_tests (it runs the exe at build time
+  # and is currently crashing). Just register a simple CTest entry.
+  add_test(NAME falcon_core_cpp_run_tests
+            COMMAND falcon_core_cpp_run_tests)
+  else()
+    include(GoogleTest)
+    gtest_discover_tests(falcon_core_cpp_run_tests)
+  endif()
 endif()

@@ -1,0 +1,154 @@
+name: Ubuntu 22.04 CI
+
+on:
+  push:
+    branches: [main, windows-support]
+  pull_request:
+    branches: [main, windows-support]
+
+jobs:
+  build-and-test-ubuntu:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            clang \
+            llvm \
+            lld \
+            ninja-build \
+            cmake \
+            ccache \
+            libhdf5-dev \
+            libyaml-cpp-dev \
+            libssl-dev \
+            libsqlite3-dev \
+            nlohmann-json3-dev \
+            libcereal-dev \
+            libboost-filesystem-dev \
+            libboost-system-dev \
+            libboost-program-options-dev \
+            libboost-test-dev \
+            libgtest-dev \
+            bc
+
+          # Build and install GoogleTest (Ubuntu installs only sources by default)
+          cd /usr/src/gtest
+          sudo cmake -S . -B build
+          sudo cmake --build build
+          sudo cmake --install build
+
+      - name: Cache ccache
+        uses: actions/cache@v4
+        with:
+          path: ~/.ccache
+          key: ${{ runner.os }}-ccache-ubuntu-${{ github.ref }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-ccache-ubuntu-${{ github.ref }}-
+            ${{ runner.os }}-ccache-ubuntu-
+            ${{ runner.os }}-ccache-
+
+      # ---- C++ core ----
+      - name: Build falcon-core-cpp-dev
+        run: |
+          cd cpp
+          CC=clang CXX=clang++ USE_VCPKG=0 make build-dev
+
+      - name: Test falcon-core-cpp-dev
+        run: |
+          cd cpp
+          make run-all-tests
+          mkdir -p coverage
+          make coverage-overview > coverage/falcon-core-cpp.txt
+
+      # ---- C API ----
+      - name: Build falcon-core-c-api-dev
+        run: |
+          cd c-api
+          CC=clang CXX=clang++ USE_VCPKG=0 make build-dev
+
+      - name: Test falcon-core-c-api-dev
+        run: |
+          cd c-api
+          make run-all-tests
+          mkdir -p coverage
+          make coverage-overview > coverage/falcon-core-c-api.txt
+
+      # ---- Artifacts ----
+      - name: Upload coverage reports (Ubuntu)
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-reports-ubuntu
+          path: |
+            cpp/coverage/*
+            c-api/coverage/*
+
+      # ---- Coverage checks (mirrors Arch logic, tweak thresholds as you like) ----
+      - name: Check cpp coverage report (Ubuntu)
+        run: |
+          report="cpp/coverage/falcon-core-cpp.txt"
+
+          # Check for PASSED line
+          if ! grep -qE '\[  PASSED  \] [0-9]+ tests\.' "$report"; then
+            echo "❌ PASSED line not found in $report"
+            exit 1
+          fi
+
+          # Extract the TOTAL line
+          total_line=$(grep '^TOTAL' "$report")
+          if [ -z "$total_line" ]; then
+            echo "❌ TOTAL line not found in $report"
+            exit 1
+          fi
+
+          # Extract all percentages from the TOTAL line
+          percentages=($(echo "$total_line" | grep -oE '[0-9]+\.[0-9]+%'))
+
+          # Check each percentage is > 85%
+          for pct in "${percentages[@]}"; do
+            pct_num=$(echo "$pct" | tr -d '%')
+            if (( $(echo "$pct_num < 85.0" | bc -l) )); then
+              echo "❌ Coverage percent $pct is less than 85%"
+              exit 1
+            fi
+          done
+
+          echo "✅ All cpp coverage checks passed (Ubuntu)."
+        shell: bash
+
+      - name: Check c-api coverage report (Ubuntu)
+        run: |
+          report="c-api/coverage/falcon-core-c-api.txt"
+
+          # Check for PASSED line
+          if ! grep -qE '\[  PASSED  \] [0-9]+ tests\.' "$report"; then
+            echo "❌ PASSED line not found in $report"
+            exit 1
+          fi
+
+          # Extract the TOTAL line
+          total_line=$(grep '^TOTAL' "$report")
+          if [ -z "$total_line" ]; then
+            echo "❌ TOTAL line not found in $report"
+            exit 1
+          fi
+
+          # Extract all percentages from the TOTAL line
+          percentages=($(echo "$total_line" | grep -oE '[0-9]+\.[0-9]+%'))
+
+          # Check each percentage is > 90%
+          for pct in "${percentages[@]}"; do
+            pct_num=$(echo "$pct" | tr -d '%')
+            if (( $(echo "$pct_num < 90.0" | bc -l) )); then
+              echo "❌ Coverage percent $pct is less than 90%"
+              exit 1
+            fi
+          done
+
+          echo "✅ All c-api coverage checks passed (Ubuntu)."
+        shell: bash
