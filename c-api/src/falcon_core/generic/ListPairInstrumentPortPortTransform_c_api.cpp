@@ -18,7 +18,7 @@ ListPairInstrumentPortPortTransformHandle ListPairInstrumentPortPortTransform_fi
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairInstrumentPortPortTransform_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>SP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>*>(value);
     
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>(
         std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>>(
@@ -35,7 +35,7 @@ throw std::invalid_argument("Null data handle passed to ListPairInstrumentPortPo
     std::vector<falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(*static_cast<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>SP*>(data[i])); 
+        vec.push_back(*static_cast<std::shared_ptr<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>*>(data[i])); 
     }
 
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>(
@@ -97,7 +97,7 @@ throw std::invalid_argument("Null handle passed to ListPairInstrumentPortPortTra
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairInstrumentPortPortTransform_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>SP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>*>(value);
     
     (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
@@ -112,7 +112,7 @@ throw std::invalid_argument("Null handle passed to ListPairInstrumentPortPortTra
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairInstrumentPortPortTransform_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>SP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>*>(value);
     
     return (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
@@ -127,7 +127,7 @@ throw std::invalid_argument("Null handle passed to ListPairInstrumentPortPortTra
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairInstrumentPortPortTransform_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>SP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>*>(value);
     
     return (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
@@ -145,7 +145,7 @@ throw std::invalid_argument("Null output buffer passed to ListPairInstrumentPort
     size_t n = std::min(buffer_size, list->items().size());
     
 for (size_t i = 0; i < n; ++i) {
-    out_buffer[i] = new falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>SP(list->items()[i]);
+    out_buffer[i] = new std::shared_ptr<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>(list->items()[i]);
 }
     return n;
     FALCON_C_API_END(0)

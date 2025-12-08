@@ -16,7 +16,7 @@ ListPairStringStringHandle ListPairStringString_fill_value(size_t count, PairStr
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairStringString_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::generic::Pair<std::string, std::string>SP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::generic::Pair<std::string, std::string>>*>(value);
     
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, std::string>>(
         std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<std::string, std::string>>>(
@@ -33,7 +33,7 @@ throw std::invalid_argument("Null data handle passed to ListPairStringString_cre
     std::vector<falcon_core::generic::PairSP<std::string, std::string>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(*static_cast<falcon_core::generic::Pair<std::string, std::string>SP*>(data[i])); 
+        vec.push_back(*static_cast<std::shared_ptr<falcon_core::generic::Pair<std::string, std::string>>*>(data[i])); 
     }
 
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, std::string>>(
@@ -95,7 +95,7 @@ throw std::invalid_argument("Null handle passed to ListPairStringString_push_bac
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairStringString_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::generic::Pair<std::string, std::string>SP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::generic::Pair<std::string, std::string>>*>(value);
     
     (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, std::string>>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
@@ -110,7 +110,7 @@ throw std::invalid_argument("Null handle passed to ListPairStringString_contains
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairStringString_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::generic::Pair<std::string, std::string>SP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::generic::Pair<std::string, std::string>>*>(value);
     
     return (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, std::string>>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
@@ -125,7 +125,7 @@ throw std::invalid_argument("Null handle passed to ListPairStringString_index");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairStringString_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::generic::Pair<std::string, std::string>SP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::generic::Pair<std::string, std::string>>*>(value);
     
     return (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, std::string>>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
@@ -143,7 +143,7 @@ throw std::invalid_argument("Null output buffer passed to ListPairStringString_i
     size_t n = std::min(buffer_size, list->items().size());
     
 for (size_t i = 0; i < n; ++i) {
-    out_buffer[i] = new falcon_core::generic::Pair<std::string, std::string>SP(list->items()[i]);
+    out_buffer[i] = new std::shared_ptr<falcon_core::generic::Pair<std::string, std::string>>(list->items()[i]);
 }
     return n;
     FALCON_C_API_END(0)

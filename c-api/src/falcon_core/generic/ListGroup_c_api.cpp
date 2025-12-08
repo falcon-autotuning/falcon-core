@@ -16,7 +16,7 @@ ListGroupHandle ListGroup_fill_value(size_t count, GroupHandle value) {
     if (!value) {
     throw std::invalid_argument("Null value passed to ListGroup_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::physics::config::core::GroupSP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::physics::config::core::Group>*>(value);
     
     return new falcon_core::generic::ListSP<falcon_core::physics::config::core::Group>(
         std::make_shared<falcon_core::generic::List<falcon_core::physics::config::core::Group>>(
@@ -33,7 +33,7 @@ throw std::invalid_argument("Null data handle passed to ListGroup_create");
     std::vector<falcon_core::physics::config::core::GroupSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(*static_cast<falcon_core::physics::config::core::GroupSP*>(data[i])); 
+        vec.push_back(*static_cast<std::shared_ptr<falcon_core::physics::config::core::Group>*>(data[i])); 
     }
 
     return new falcon_core::generic::ListSP<falcon_core::physics::config::core::Group>(
@@ -95,7 +95,7 @@ throw std::invalid_argument("Null handle passed to ListGroup_push_back");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListGroup_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::physics::config::core::GroupSP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::physics::config::core::Group>*>(value);
     
     (*static_cast<falcon_core::generic::ListSP<falcon_core::physics::config::core::Group>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
@@ -110,7 +110,7 @@ throw std::invalid_argument("Null handle passed to ListGroup_contains");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListGroup_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::physics::config::core::GroupSP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::physics::config::core::Group>*>(value);
     
     return (*static_cast<falcon_core::generic::ListSP<falcon_core::physics::config::core::Group>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
@@ -125,7 +125,7 @@ throw std::invalid_argument("Null handle passed to ListGroup_index");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListGroup_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::physics::config::core::GroupSP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::physics::config::core::Group>*>(value);
     
     return (*static_cast<falcon_core::generic::ListSP<falcon_core::physics::config::core::Group>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
@@ -143,7 +143,7 @@ throw std::invalid_argument("Null output buffer passed to ListGroup_items");
     size_t n = std::min(buffer_size, list->items().size());
     
 for (size_t i = 0; i < n; ++i) {
-    out_buffer[i] = new falcon_core::physics::config::core::GroupSP(list->items()[i]);
+    out_buffer[i] = new std::shared_ptr<falcon_core::physics::config::core::Group>(list->items()[i]);
 }
     return n;
     FALCON_C_API_END(0)

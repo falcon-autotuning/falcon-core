@@ -17,7 +17,7 @@ ListPairConnectionDoubleHandle ListPairConnectionDouble_fill_value(size_t count,
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairConnectionDouble_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>SP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(value);
     
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(
         std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>>(
@@ -34,7 +34,7 @@ throw std::invalid_argument("Null data handle passed to ListPairConnectionDouble
     std::vector<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, double>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(*static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>SP*>(data[i])); 
+        vec.push_back(*static_cast<std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(data[i])); 
     }
 
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(
@@ -96,7 +96,7 @@ throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_push
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairConnectionDouble_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>SP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(value);
     
     (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
@@ -111,7 +111,7 @@ throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_cont
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairConnectionDouble_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>SP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(value);
     
     return (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
@@ -126,7 +126,7 @@ throw std::invalid_argument("Null handle passed to ListPairConnectionDouble_inde
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairConnectionDouble_fill_value");
     }
-    auto stored_obj = *static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>SP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(value);
     
     return (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
@@ -144,7 +144,7 @@ throw std::invalid_argument("Null output buffer passed to ListPairConnectionDoub
     size_t n = std::min(buffer_size, list->items().size());
     
 for (size_t i = 0; i < n; ++i) {
-    out_buffer[i] = new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>SP(list->items()[i]);
+    out_buffer[i] = new std::shared_ptr<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, double>>(list->items()[i]);
 }
     return n;
     FALCON_C_API_END(0)

@@ -709,16 +709,16 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
     if (!value) {{
     throw std::invalid_argument("Null value passed to {self.mangled_name()}_fill_value");
     }}
-    auto stored_obj = *static_cast<{cpp_real}SP*>(value);
+    auto stored_obj = *static_cast<std::shared_ptr<{cpp_real}>*>(value);
     """
             copy_to_out_buffer = f"""
 for (size_t i = 0; i < n; ++i) {{
-    out_buffer[i] = new {cpp_real}SP(list->items()[i]);
+    out_buffer[i] = new std::shared_ptr<{cpp_real}>(list->items()[i]);
 }}"""
             stored_out_value = f"return new {cpp_real}(*obj);"
             create_allocation = f"""    vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {{
-        vec.push_back(*static_cast<{cpp_real}SP*>(data[i])); 
+        vec.push_back(*static_cast<std::shared_ptr<{cpp_real}>*>(data[i])); 
     }}
 """
         with self.edit_implementation() as f:
