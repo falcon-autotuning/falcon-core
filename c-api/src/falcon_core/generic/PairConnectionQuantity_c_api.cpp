@@ -11,12 +11,12 @@ PairConnectionQuantityHandle PairConnectionQuantity_create(ConnectionHandle firs
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairConnectionQuantity_create");
                 }
-                auto first_obj= *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(first);
+                auto first_obj= *static_cast<std::shared_ptr<falcon_core::physics::device_structures::Connection>*>(first);
     
                 if (!second) {
                 throw std::invalid_argument("Null value passed to PairConnectionQuantity_create");
                 }
-                auto second_obj= *static_cast<falcon_core::math::QuantitySP*>(second);
+                auto second_obj= *static_cast<std::shared_ptr<falcon_core::math::Quantity>*>(second);
     return new falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>(
         std::make_shared<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>>
             (first_obj, second_obj));
@@ -38,7 +38,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to PairConnectionQuantity_first");
 }
     auto pair = *static_cast<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>*>(handle);
-    return new falcon_core::physics::device_structures::ConnectionSP(pair->first());
+    return new std::shared_ptr<falcon_core::physics::device_structures::Connection>(pair->first());
     FALCON_C_API_END(nullptr)
 }
 
@@ -48,7 +48,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to PairConnectionQuantity_second");
 }
     auto pair = *static_cast<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::math::Quantity>*>(handle);
-    return new falcon_core::math::QuantitySP(pair->second());
+    return new std::shared_ptr<falcon_core::math::Quantity>(pair->second());
     FALCON_C_API_END(nullptr)
 }
 

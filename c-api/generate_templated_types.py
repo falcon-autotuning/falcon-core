@@ -1354,7 +1354,7 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
                 if (!first) {{
                 throw std::invalid_argument("Null value passed to {self.mangled_name()}_create");
                 }}
-                auto first_obj= *static_cast<{cpp_real_1}SP*>(first);"""
+                auto first_obj= *static_cast<std::shared_ptr<{cpp_real_1}>*>(first);"""
             if c_type_2 == "StringHandle":
                 second_create_adjustment = f"""
                 if (!second) {{
@@ -1368,7 +1368,7 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
                 if (!second) {{
                 throw std::invalid_argument("Null value passed to {self.mangled_name()}_create");
                 }}
-                auto second_obj= *static_cast<{cpp_real_2}SP*>(second);"""
+                auto second_obj= *static_cast<std::shared_ptr<{cpp_real_2}>*>(second);"""
             # Generate first() function
             if c_type_1 == "StringHandle":
                 first_return = f"""
@@ -1379,7 +1379,7 @@ return cstr;"""
                 first_return = f"return (*static_cast<falcon_core::generic::PairSP<{cpp_real_1}, {cpp_real_2}>*>(handle))->first();"
             else:
                 first_return = f"""auto pair = *static_cast<falcon_core::generic::PairSP<{cpp_real_1}, {cpp_real_2}>*>(handle);
-    return new {cpp_real_1}SP(pair->first());"""
+    return new std::shared_ptr<{cpp_real_1}>(pair->first());"""
 
             # Generate second() function
             if c_type_2 == "StringHandle":
@@ -1391,7 +1391,7 @@ return cstr;"""
                 second_return = f"return (*static_cast<falcon_core::generic::PairSP<{cpp_real_1}, {cpp_real_2}>*>(handle))->second();"
             else:
                 second_return = f"""auto pair = *static_cast<falcon_core::generic::PairSP<{cpp_real_1}, {cpp_real_2}>*>(handle);
-    return new {cpp_real_2}SP(pair->second());"""
+    return new std::shared_ptr<{cpp_real_2}>(pair->second());"""
 
             # Write the complete implementation
             f.write(f"""

@@ -11,12 +11,12 @@ PairMeasurementResponseMeasurementRequestHandle PairMeasurementResponseMeasureme
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairMeasurementResponseMeasurementRequest_create");
                 }
-                auto first_obj= *static_cast<falcon_core::communications::messages::MeasurementResponseSP*>(first);
+                auto first_obj= *static_cast<std::shared_ptr<falcon_core::communications::messages::MeasurementResponse>*>(first);
     
                 if (!second) {
                 throw std::invalid_argument("Null value passed to PairMeasurementResponseMeasurementRequest_create");
                 }
-                auto second_obj= *static_cast<falcon_core::communications::messages::MeasurementRequestSP*>(second);
+                auto second_obj= *static_cast<std::shared_ptr<falcon_core::communications::messages::MeasurementRequest>*>(second);
     return new falcon_core::generic::PairSP<falcon_core::communications::messages::MeasurementResponse, falcon_core::communications::messages::MeasurementRequest>(
         std::make_shared<falcon_core::generic::Pair<falcon_core::communications::messages::MeasurementResponse, falcon_core::communications::messages::MeasurementRequest>>
             (first_obj, second_obj));
@@ -38,7 +38,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to PairMeasurementResponseMeasurementRequest_first");
 }
     auto pair = *static_cast<falcon_core::generic::PairSP<falcon_core::communications::messages::MeasurementResponse, falcon_core::communications::messages::MeasurementRequest>*>(handle);
-    return new falcon_core::communications::messages::MeasurementResponseSP(pair->first());
+    return new std::shared_ptr<falcon_core::communications::messages::MeasurementResponse>(pair->first());
     FALCON_C_API_END(nullptr)
 }
 
@@ -48,7 +48,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to PairMeasurementResponseMeasurementRequest_second");
 }
     auto pair = *static_cast<falcon_core::generic::PairSP<falcon_core::communications::messages::MeasurementResponse, falcon_core::communications::messages::MeasurementRequest>*>(handle);
-    return new falcon_core::communications::messages::MeasurementRequestSP(pair->second());
+    return new std::shared_ptr<falcon_core::communications::messages::MeasurementRequest>(pair->second());
     FALCON_C_API_END(nullptr)
 }
 

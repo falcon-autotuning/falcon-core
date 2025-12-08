@@ -11,12 +11,12 @@ PairInterpretationContextQuantityHandle PairInterpretationContextQuantity_create
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairInterpretationContextQuantity_create");
                 }
-                auto first_obj= *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP*>(first);
+                auto first_obj= *static_cast<std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>*>(first);
     
                 if (!second) {
                 throw std::invalid_argument("Null value passed to PairInterpretationContextQuantity_create");
                 }
-                auto second_obj= *static_cast<falcon_core::math::QuantitySP*>(second);
+                auto second_obj= *static_cast<std::shared_ptr<falcon_core::math::Quantity>*>(second);
     return new falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>(
         std::make_shared<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>
             (first_obj, second_obj));
@@ -38,7 +38,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to PairInterpretationContextQuantity_first");
 }
     auto pair = *static_cast<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>*>(handle);
-    return new falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP(pair->first());
+    return new std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(pair->first());
     FALCON_C_API_END(nullptr)
 }
 
@@ -48,7 +48,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to PairInterpretationContextQuantity_second");
 }
     auto pair = *static_cast<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>*>(handle);
-    return new falcon_core::math::QuantitySP(pair->second());
+    return new std::shared_ptr<falcon_core::math::Quantity>(pair->second());
     FALCON_C_API_END(nullptr)
 }
 

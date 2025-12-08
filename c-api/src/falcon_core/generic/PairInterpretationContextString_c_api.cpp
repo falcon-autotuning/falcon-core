@@ -10,7 +10,7 @@ PairInterpretationContextStringHandle PairInterpretationContextString_create(Int
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairInterpretationContextString_create");
                 }
-                auto first_obj= *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP*>(first);
+                auto first_obj= *static_cast<std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>*>(first);
     
                 if (!second) {
                 throw std::invalid_argument("Null string handle passed to PairInterpretationContextString_create");
@@ -37,7 +37,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to PairInterpretationContextString_first");
 }
     auto pair = *static_cast<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(handle);
-    return new falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP(pair->first());
+    return new std::shared_ptr<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(pair->first());
     FALCON_C_API_END(nullptr)
 }
 

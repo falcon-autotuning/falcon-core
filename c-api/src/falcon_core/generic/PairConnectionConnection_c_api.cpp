@@ -10,12 +10,12 @@ PairConnectionConnectionHandle PairConnectionConnection_create(ConnectionHandle 
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairConnectionConnection_create");
                 }
-                auto first_obj= *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(first);
+                auto first_obj= *static_cast<std::shared_ptr<falcon_core::physics::device_structures::Connection>*>(first);
     
                 if (!second) {
                 throw std::invalid_argument("Null value passed to PairConnectionConnection_create");
                 }
-                auto second_obj= *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(second);
+                auto second_obj= *static_cast<std::shared_ptr<falcon_core::physics::device_structures::Connection>*>(second);
     return new falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>(
         std::make_shared<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>>
             (first_obj, second_obj));
@@ -37,7 +37,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to PairConnectionConnection_first");
 }
     auto pair = *static_cast<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(handle);
-    return new falcon_core::physics::device_structures::ConnectionSP(pair->first());
+    return new std::shared_ptr<falcon_core::physics::device_structures::Connection>(pair->first());
     FALCON_C_API_END(nullptr)
 }
 
@@ -47,7 +47,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to PairConnectionConnection_second");
 }
     auto pair = *static_cast<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(handle);
-    return new falcon_core::physics::device_structures::ConnectionSP(pair->second());
+    return new std::shared_ptr<falcon_core::physics::device_structures::Connection>(pair->second());
     FALCON_C_API_END(nullptr)
 }
 
