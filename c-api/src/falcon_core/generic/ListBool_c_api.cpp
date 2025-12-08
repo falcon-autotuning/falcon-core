@@ -5,19 +5,20 @@
 extern "C" {
 ListBoolHandle ListBool_create_empty() {
     FALCON_C_API_BEGIN
-    return new falcon_core::generic::List<bool>();
+    return new falcon_core::generic::ListSP<bool>(std::make_shared<falcon_core::generic::List<bool>>());
     FALCON_C_API_END(nullptr)
 }
 
 ListBoolHandle ListBool_fill_value(size_t count, bool value) {
     FALCON_C_API_BEGIN
     auto stored_obj = value;
-    return new falcon_core::generic::List<bool>(
-        count, stored_obj);
+    return new falcon_core::generic::ListSP<bool>(
+        std::make_shared<falcon_core::generic::List<bool>>(
+            count, stored_obj));
     FALCON_C_API_END(nullptr)
 }
  ListBoolHandle ListBool_allocate(size_t count) {
-    return new falcon_core::generic::List<bool>(count);
+    return new falcon_core::generic::ListSP<bool>(std::make_shared<falcon_core::generic::List<bool>>(count));
 }
 
 
@@ -28,7 +29,8 @@ throw std::invalid_argument("Null data handle passed to ListBool_create");
 }
     std::vector<bool> vec;
     vec.insert(vec.end(), data, data + count);
-    return new falcon_core::generic::List<bool>(vec);
+    return new falcon_core::generic::ListSP<bool>(
+        std::make_shared<falcon_core::generic::List<bool>>(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -37,7 +39,7 @@ void ListBool_destroy(ListBoolHandle handle) {
     if (!handle) {
     throw std::invalid_argument("Null handle passed to ListBool_destroy");
     }
-    delete static_cast<falcon_core::generic::List<bool>*>(handle);
+    delete static_cast<falcon_core::generic::ListSP<bool>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -46,7 +48,7 @@ size_t ListBool_size(ListBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListBool_size");
 }
-    return static_cast<falcon_core::generic::List<bool>*>(handle)->size();
+    return (*static_cast<falcon_core::generic::ListSP<bool>*>(handle))->size();
     FALCON_C_API_END(0)
 }
 
@@ -55,7 +57,7 @@ bool ListBool_empty(ListBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListBool_empty");
 }
-    return static_cast<falcon_core::generic::List<bool>*>(handle)->empty();
+    return (*static_cast<falcon_core::generic::ListSP<bool>*>(handle))->empty();
     FALCON_C_API_END(false)
 }
 
@@ -64,7 +66,7 @@ void ListBool_erase_at(ListBoolHandle handle, size_t idx) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListBool_erase_at");
 }
-    static_cast<falcon_core::generic::List<bool>*>(handle)->erase_at(idx);
+    (*static_cast<falcon_core::generic::ListSP<bool>*>(handle))->erase_at(idx);
     FALCON_C_API_END()
 }
 
@@ -73,7 +75,7 @@ void ListBool_clear(ListBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListBool_clear");
 }
-    static_cast<falcon_core::generic::List<bool>*>(handle)->clear();
+    (*static_cast<falcon_core::generic::ListSP<bool>*>(handle))->clear();
     FALCON_C_API_END()
 }
 
@@ -83,7 +85,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to ListBool_push_back");
 }
     auto stored_obj = value;
-    static_cast<falcon_core::generic::List<bool>*>(handle)->push_back(stored_obj);
+    (*static_cast<falcon_core::generic::ListSP<bool>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
 }
 
@@ -93,7 +95,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to ListBool_contains");
 }
     auto stored_obj = value;
-    return static_cast<falcon_core::generic::List<bool>*>(handle)->contains(stored_obj);
+    return (*static_cast<falcon_core::generic::ListSP<bool>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
 }
 
@@ -103,7 +105,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to ListBool_index");
 }
     auto stored_obj = value;
-    return static_cast<falcon_core::generic::List<bool>*>(handle)->index(stored_obj);
+    return (*static_cast<falcon_core::generic::ListSP<bool>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
 }
 
@@ -115,7 +117,7 @@ throw std::invalid_argument("Null handle passed to ListBool_items");
 if (!out_buffer) {
 throw std::invalid_argument("Null output buffer passed to ListBool_items");
 }
-    auto list = static_cast<falcon_core::generic::List<bool>*>(handle);
+    auto list = *static_cast<falcon_core::generic::ListSP<bool>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     std::copy_n(list->items().begin(), n, out_buffer);
     return n;
@@ -127,28 +129,30 @@ bool ListBool_at(ListBoolHandle handle, size_t idx) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListBool_at");
 }
-    auto obj = static_cast<falcon_core::generic::List<bool>*>(handle)->at(idx);
+    auto obj = (*static_cast<falcon_core::generic::ListSP<bool>*>(handle))->at(idx);
     return obj;
     FALCON_C_API_END(false)
 }
 
-bool ListBool_equal(ListBoolHandle a, ListBoolHandle b) {
+bool ListBool_equal(ListBoolHandle handle, ListBoolHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListBool_equal");
 }
-    auto listA = static_cast<falcon_core::generic::List<bool>*>(a);
-    auto listB = static_cast<falcon_core::generic::List<bool>*>(b);
+    auto listA = *static_cast<falcon_core::generic::ListSP<bool>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<bool>*>(other);
     return *listA == *listB;
     FALCON_C_API_END(false)
 }
 
-bool ListBool_not_equal(ListBoolHandle a, ListBoolHandle b) {
+bool ListBool_not_equal(ListBoolHandle handle, ListBoolHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListBool_not_equal");
 }
-    return !ListBool_equal(a, b);
+    auto listA = *static_cast<falcon_core::generic::ListSP<bool>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<bool>*>(other);
+    return *listA != *listB;
     FALCON_C_API_END(false)
 }
 
@@ -157,10 +161,10 @@ ListBoolHandle ListBool_intersection(ListBoolHandle handle, ListBoolHandle other
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListBool_intersection");
 }
-    auto listA = static_cast<falcon_core::generic::List<bool>*>(handle);
-    auto listB = static_cast<falcon_core::generic::List<bool>*>(other);
-    auto result = listA->intersection(std::make_shared<falcon_core::generic::List<bool>>(*listB));
-    return new falcon_core::generic::List<bool>(*result);
+    auto listA = *static_cast<falcon_core::generic::ListSP<bool>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<bool>*>(other);
+    auto result = listA->intersection(listB);
+    return new falcon_core::generic::ListSP<bool>(result);
     FALCON_C_API_END(nullptr)
 }
 
@@ -169,7 +173,7 @@ StringHandle      ListBool_to_json_string(ListBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListBool_to_json_string");
 }
-    std::string json = static_cast<falcon_core::generic::List<bool>*>(handle)->to_json_string();
+    std::string json = (*static_cast<falcon_core::generic::ListSP<bool>*>(handle))->to_json_string();
     return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -180,7 +184,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to ListBool_from_json_string");
 }
   auto ptr = falcon_core::generic::List<bool>::from_json_string<falcon_core::generic::List<bool>>(json->raw);
-  return new falcon_core::generic::List<bool>(*ptr);
+  return new falcon_core::generic::ListSP<bool>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

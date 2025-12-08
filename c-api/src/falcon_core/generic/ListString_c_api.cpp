@@ -5,7 +5,7 @@
 extern "C" {
 ListStringHandle ListString_create_empty() {
     FALCON_C_API_BEGIN
-    return new falcon_core::generic::List<std::string>();
+    return new falcon_core::generic::ListSP<std::string>(std::make_shared<falcon_core::generic::List<std::string>>());
     FALCON_C_API_END(nullptr)
 }
 
@@ -16,12 +16,13 @@ ListStringHandle ListString_fill_value(size_t count, StringHandle value) {
     throw std::invalid_argument("Null string handle passed to ListString_fill_value");
     }
     std::string stored_obj(value->raw, value->length);
-    return new falcon_core::generic::List<std::string>(
-        count, stored_obj);
+    return new falcon_core::generic::ListSP<std::string>(
+        std::make_shared<falcon_core::generic::List<std::string>>(
+            count, stored_obj));
     FALCON_C_API_END(nullptr)
 }
  ListStringHandle ListString_allocate(size_t count) {
-    return new falcon_core::generic::List<std::string>(count);
+    return new falcon_core::generic::ListSP<std::string>(std::make_shared<falcon_core::generic::List<std::string>>(count));
 }
 
 
@@ -37,7 +38,8 @@ throw std::invalid_argument("Null data handle passed to ListString_create");
         vec.push_back(data[i]->raw);
     }
 
-    return new falcon_core::generic::List<std::string>(vec);
+    return new falcon_core::generic::ListSP<std::string>(
+        std::make_shared<falcon_core::generic::List<std::string>>(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -46,7 +48,7 @@ void ListString_destroy(ListStringHandle handle) {
     if (!handle) {
     throw std::invalid_argument("Null handle passed to ListString_destroy");
     }
-    delete static_cast<falcon_core::generic::List<std::string>*>(handle);
+    delete static_cast<falcon_core::generic::ListSP<std::string>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -55,7 +57,7 @@ size_t ListString_size(ListStringHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListString_size");
 }
-    return static_cast<falcon_core::generic::List<std::string>*>(handle)->size();
+    return (*static_cast<falcon_core::generic::ListSP<std::string>*>(handle))->size();
     FALCON_C_API_END(0)
 }
 
@@ -64,7 +66,7 @@ bool ListString_empty(ListStringHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListString_empty");
 }
-    return static_cast<falcon_core::generic::List<std::string>*>(handle)->empty();
+    return (*static_cast<falcon_core::generic::ListSP<std::string>*>(handle))->empty();
     FALCON_C_API_END(false)
 }
 
@@ -73,7 +75,7 @@ void ListString_erase_at(ListStringHandle handle, size_t idx) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListString_erase_at");
 }
-    static_cast<falcon_core::generic::List<std::string>*>(handle)->erase_at(idx);
+    (*static_cast<falcon_core::generic::ListSP<std::string>*>(handle))->erase_at(idx);
     FALCON_C_API_END()
 }
 
@@ -82,7 +84,7 @@ void ListString_clear(ListStringHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListString_clear");
 }
-    static_cast<falcon_core::generic::List<std::string>*>(handle)->clear();
+    (*static_cast<falcon_core::generic::ListSP<std::string>*>(handle))->clear();
     FALCON_C_API_END()
 }
 
@@ -96,7 +98,7 @@ throw std::invalid_argument("Null handle passed to ListString_push_back");
     throw std::invalid_argument("Null string handle passed to ListString_fill_value");
     }
     std::string stored_obj(value->raw, value->length);
-    static_cast<falcon_core::generic::List<std::string>*>(handle)->push_back(stored_obj);
+    (*static_cast<falcon_core::generic::ListSP<std::string>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
 }
 
@@ -110,7 +112,7 @@ throw std::invalid_argument("Null handle passed to ListString_contains");
     throw std::invalid_argument("Null string handle passed to ListString_fill_value");
     }
     std::string stored_obj(value->raw, value->length);
-    return static_cast<falcon_core::generic::List<std::string>*>(handle)->contains(stored_obj);
+    return (*static_cast<falcon_core::generic::ListSP<std::string>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
 }
 
@@ -124,7 +126,7 @@ throw std::invalid_argument("Null handle passed to ListString_index");
     throw std::invalid_argument("Null string handle passed to ListString_fill_value");
     }
     std::string stored_obj(value->raw, value->length);
-    return static_cast<falcon_core::generic::List<std::string>*>(handle)->index(stored_obj);
+    return (*static_cast<falcon_core::generic::ListSP<std::string>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
 }
 
@@ -136,7 +138,7 @@ throw std::invalid_argument("Null handle passed to ListString_items");
 if (!out_buffer) {
 throw std::invalid_argument("Null output buffer passed to ListString_items");
 }
-    auto list = static_cast<falcon_core::generic::List<std::string>*>(handle);
+    auto list = *static_cast<falcon_core::generic::ListSP<std::string>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     
     for (size_t i = 0; i < n; ++i) {
@@ -153,28 +155,30 @@ StringHandle ListString_at(ListStringHandle handle, size_t idx) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListString_at");
 }
-    auto obj = static_cast<falcon_core::generic::List<std::string>*>(handle)->at(idx);
+    auto obj = (*static_cast<falcon_core::generic::ListSP<std::string>*>(handle))->at(idx);
     return String_create(obj.data(), obj.size());
     FALCON_C_API_END(nullptr)
 }
 
-bool ListString_equal(ListStringHandle a, ListStringHandle b) {
+bool ListString_equal(ListStringHandle handle, ListStringHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListString_equal");
 }
-    auto listA = static_cast<falcon_core::generic::List<std::string>*>(a);
-    auto listB = static_cast<falcon_core::generic::List<std::string>*>(b);
+    auto listA = *static_cast<falcon_core::generic::ListSP<std::string>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<std::string>*>(other);
     return *listA == *listB;
     FALCON_C_API_END(false)
 }
 
-bool ListString_not_equal(ListStringHandle a, ListStringHandle b) {
+bool ListString_not_equal(ListStringHandle handle, ListStringHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListString_not_equal");
 }
-    return !ListString_equal(a, b);
+    auto listA = *static_cast<falcon_core::generic::ListSP<std::string>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<std::string>*>(other);
+    return *listA != *listB;
     FALCON_C_API_END(false)
 }
 
@@ -183,10 +187,10 @@ ListStringHandle ListString_intersection(ListStringHandle handle, ListStringHand
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListString_intersection");
 }
-    auto listA = static_cast<falcon_core::generic::List<std::string>*>(handle);
-    auto listB = static_cast<falcon_core::generic::List<std::string>*>(other);
-    auto result = listA->intersection(std::make_shared<falcon_core::generic::List<std::string>>(*listB));
-    return new falcon_core::generic::List<std::string>(*result);
+    auto listA = *static_cast<falcon_core::generic::ListSP<std::string>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<std::string>*>(other);
+    auto result = listA->intersection(listB);
+    return new falcon_core::generic::ListSP<std::string>(result);
     FALCON_C_API_END(nullptr)
 }
 
@@ -195,7 +199,7 @@ StringHandle      ListString_to_json_string(ListStringHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListString_to_json_string");
 }
-    std::string json = static_cast<falcon_core::generic::List<std::string>*>(handle)->to_json_string();
+    std::string json = (*static_cast<falcon_core::generic::ListSP<std::string>*>(handle))->to_json_string();
     return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -206,7 +210,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to ListString_from_json_string");
 }
   auto ptr = falcon_core::generic::List<std::string>::from_json_string<falcon_core::generic::List<std::string>>(json->raw);
-  return new falcon_core::generic::List<std::string>(*ptr);
+  return new falcon_core::generic::ListSP<std::string>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

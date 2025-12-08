@@ -7,8 +7,8 @@
 extern "C" {
 AxesMapStringBoolHandle AxesMapStringBool_create_empty() {
     FALCON_C_API_BEGIN
-    return new falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>(
-        falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>());
+    return new falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>(
+        std::make_shared<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>>());
     FALCON_C_API_END(nullptr)
 }
 
@@ -17,9 +17,9 @@ AxesMapStringBoolHandle AxesMapStringBool_create(ListMapStringBoolHandle data) {
 if (!data) {
 throw std::invalid_argument("Null data handle passed to AxesMapStringBool_create");
 }
-    auto list = *static_cast<falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>*>(data);
-    return new falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>(
-            std::make_shared<falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>>(list));
+    auto list = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Map<std::string, bool>>*>(data);
+    return new falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>(
+            std::make_shared<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>>(list));
     FALCON_C_API_END(nullptr)
 }
 
@@ -28,7 +28,7 @@ void AxesMapStringBool_destroy(AxesMapStringBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMapStringBool_destroy");
 }
-    delete static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle);
+    delete static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -37,7 +37,7 @@ size_t AxesMapStringBool_size(AxesMapStringBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMapStringBool_size");
 }
-    return static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle)->size();
+    return (*static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(handle))->size();
     FALCON_C_API_END(0)
 }
 
@@ -46,7 +46,7 @@ bool AxesMapStringBool_empty(AxesMapStringBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMapStringBool_empty");
 }
-    return static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle)->empty();
+    return (*static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(handle))->empty();
     FALCON_C_API_END(false)
 }
 
@@ -55,7 +55,7 @@ void AxesMapStringBool_erase_at(AxesMapStringBoolHandle handle, size_t idx) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMapStringBool_erase_at");
 }
-    static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle)->erase_at(idx);
+    (*static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(handle))->erase_at(idx);
     FALCON_C_API_END()
 }
 
@@ -64,7 +64,7 @@ void AxesMapStringBool_clear(AxesMapStringBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMapStringBool_clear");
 }
-    static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle)->clear();
+    (*static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(handle))->clear();
     FALCON_C_API_END()
 }
 
@@ -77,8 +77,8 @@ throw std::invalid_argument("Null handle passed to AxesMapStringBool_push_back")
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesMapStringBool_fill_value");
             }
-            auto stored_obj = std::make_shared<falcon_core::generic::Map<std::string, bool>>(*static_cast<falcon_core::generic::Map<std::string, bool>*>(value));
-    static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle)->push_back(stored_obj);
+            auto stored_obj = *static_cast<falcon_core::generic::Map<std::string, bool>SP*>(value);
+    (*static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
 }
 
@@ -91,8 +91,8 @@ throw std::invalid_argument("Null handle passed to AxesMapStringBool_contains");
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesMapStringBool_fill_value");
             }
-            auto stored_obj = std::make_shared<falcon_core::generic::Map<std::string, bool>>(*static_cast<falcon_core::generic::Map<std::string, bool>*>(value));
-    return static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle)->contains(stored_obj);
+            auto stored_obj = *static_cast<falcon_core::generic::Map<std::string, bool>SP*>(value);
+    return (*static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
 }
 
@@ -105,8 +105,8 @@ throw std::invalid_argument("Null handle passed to AxesMapStringBool_index");
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesMapStringBool_fill_value");
             }
-            auto stored_obj = std::make_shared<falcon_core::generic::Map<std::string, bool>>(*static_cast<falcon_core::generic::Map<std::string, bool>*>(value));
-    return static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle)->index(stored_obj);
+            auto stored_obj = *static_cast<falcon_core::generic::Map<std::string, bool>SP*>(value);
+    return (*static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
 }
 
@@ -118,11 +118,11 @@ throw std::invalid_argument("Null handle passed to AxesMapStringBool_items");
 if (!out_buffer) {
 throw std::invalid_argument("Null output buffer passed to AxesMapStringBool_items");
 }
-    auto list = static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle);
+    auto list = *static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     
 for (size_t i = 0; i < n; ++i) {
-    out_buffer[i] = new falcon_core::generic::Map<std::string, bool>(*list->items()[i]);
+    out_buffer[i] = new falcon_core::generic::Map<std::string, bool>SP(list->items()[i]);
 }
     return n;
     FALCON_C_API_END(0)
@@ -133,28 +133,30 @@ MapStringBoolHandle AxesMapStringBool_at(AxesMapStringBoolHandle handle, size_t 
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMapStringBool_at");
 }
-    auto obj = static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle)->at(idx);
-    return new falcon_core::generic::Map<std::string, bool>(*obj);
+    auto obj = (*static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(handle))->at(idx);
+    return new falcon_core::generic::Map<std::string, bool>SP(obj);
     FALCON_C_API_END(nullptr)
 }
 
-bool AxesMapStringBool_equal(AxesMapStringBoolHandle a, AxesMapStringBoolHandle b) {
+bool AxesMapStringBool_equal(AxesMapStringBoolHandle handle, AxesMapStringBoolHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to AxesMapStringBool_equal");
 }
-    auto listA = static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(a);
-    auto listB = static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(b);
+    auto listA = *static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(handle);
+    auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(other);
     return *listA == *listB;
     FALCON_C_API_END(false)
 }
 
-bool AxesMapStringBool_not_equal(AxesMapStringBoolHandle a, AxesMapStringBoolHandle b) {
+bool AxesMapStringBool_not_equal(AxesMapStringBoolHandle handle, AxesMapStringBoolHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to AxesMapStringBool_not_equal");
 }
-    return !AxesMapStringBool_equal(a, b);
+    auto listA = *static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(handle);
+    auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(other);
+    return *listA != *listB;
     FALCON_C_API_END(false)
 }
 
@@ -163,10 +165,10 @@ AxesMapStringBoolHandle AxesMapStringBool_intersection(AxesMapStringBoolHandle h
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to AxesMapStringBool_intersection");
 }
-    auto listA = static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle);
-    auto listB = static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(other);
-    auto result = listA->intersection(std::make_shared<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>>(*listB));
-    return new falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>(result);
+    auto listA = *static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(handle);
+    auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(other);
+    auto result = listA->intersection(listB);
+    return new falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>(std::make_shared<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>>(result));
     FALCON_C_API_END(nullptr)
 }
 
@@ -175,7 +177,7 @@ StringHandle      AxesMapStringBool_to_json_string(AxesMapStringBoolHandle handl
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesMapStringBool_to_json_string");
 }
-    std::string json = static_cast<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>*>(handle)->to_json_string();
+    std::string json = (*static_cast<falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>*>(handle))->to_json_string();
     return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -186,7 +188,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to AxesMapStringBool_from_json_string");
 }
   auto ptr = falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>::from_json_string<falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>>(json->raw);
-  return new falcon_core::math::Axes<falcon_core::generic::Map<std::string, bool>>(*ptr);
+  return new falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

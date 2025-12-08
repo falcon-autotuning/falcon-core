@@ -8,7 +8,7 @@
 extern "C" {
 ListPairChannelConnectionsHandle ListPairChannelConnections_create_empty() {
     FALCON_C_API_BEGIN
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>();
+    return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>>());
     FALCON_C_API_END(nullptr)
 }
 
@@ -18,10 +18,11 @@ ListPairChannelConnectionsHandle ListPairChannelConnections_fill_value(size_t co
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairChannelConnections_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(*static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>*>(value));
+    auto stored_obj = *static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>SP*>(value);
     
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(
-        count, stored_obj);
+    return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(
+        std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>>(
+            count, stored_obj));
     FALCON_C_API_END(nullptr)
 }
  
@@ -34,10 +35,11 @@ throw std::invalid_argument("Null data handle passed to ListPairChannelConnectio
     std::vector<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::make_shared<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(*static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>*>(data[i]))); 
+        vec.push_back(*static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>SP*>(data[i])); 
     }
 
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(vec);
+    return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(
+        std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>>(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -46,7 +48,7 @@ void ListPairChannelConnections_destroy(ListPairChannelConnectionsHandle handle)
     if (!handle) {
     throw std::invalid_argument("Null handle passed to ListPairChannelConnections_destroy");
     }
-    delete static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle);
+    delete static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -55,7 +57,7 @@ size_t ListPairChannelConnections_size(ListPairChannelConnectionsHandle handle) 
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairChannelConnections_size");
 }
-    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle)->size();
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle))->size();
     FALCON_C_API_END(0)
 }
 
@@ -64,7 +66,7 @@ bool ListPairChannelConnections_empty(ListPairChannelConnectionsHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairChannelConnections_empty");
 }
-    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle)->empty();
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle))->empty();
     FALCON_C_API_END(false)
 }
 
@@ -73,7 +75,7 @@ void ListPairChannelConnections_erase_at(ListPairChannelConnectionsHandle handle
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairChannelConnections_erase_at");
 }
-    static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle)->erase_at(idx);
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle))->erase_at(idx);
     FALCON_C_API_END()
 }
 
@@ -82,7 +84,7 @@ void ListPairChannelConnections_clear(ListPairChannelConnectionsHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairChannelConnections_clear");
 }
-    static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle)->clear();
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle))->clear();
     FALCON_C_API_END()
 }
 
@@ -95,9 +97,9 @@ throw std::invalid_argument("Null handle passed to ListPairChannelConnections_pu
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairChannelConnections_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(*static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>*>(value));
+    auto stored_obj = *static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>SP*>(value);
     
-    static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle)->push_back(stored_obj);
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
 }
 
@@ -110,9 +112,9 @@ throw std::invalid_argument("Null handle passed to ListPairChannelConnections_co
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairChannelConnections_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(*static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>*>(value));
+    auto stored_obj = *static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>SP*>(value);
     
-    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle)->contains(stored_obj);
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
 }
 
@@ -125,9 +127,9 @@ throw std::invalid_argument("Null handle passed to ListPairChannelConnections_in
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairChannelConnections_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(*static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>*>(value));
+    auto stored_obj = *static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>SP*>(value);
     
-    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle)->index(stored_obj);
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
 }
 
@@ -139,11 +141,11 @@ throw std::invalid_argument("Null handle passed to ListPairChannelConnections_it
 if (!out_buffer) {
 throw std::invalid_argument("Null output buffer passed to ListPairChannelConnections_items");
 }
-    auto list = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle);
+    auto list = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     
 for (size_t i = 0; i < n; ++i) {
-    out_buffer[i] = new falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>(*list->items()[i]);
+    out_buffer[i] = new falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>SP(list->items()[i]);
 }
     return n;
     FALCON_C_API_END(0)
@@ -154,28 +156,30 @@ PairChannelConnectionsHandle ListPairChannelConnections_at(ListPairChannelConnec
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairChannelConnections_at");
 }
-    auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle)->at(idx);
+    auto obj = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle))->at(idx);
     return new falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>(*obj);
     FALCON_C_API_END(nullptr)
 }
 
-bool ListPairChannelConnections_equal(ListPairChannelConnectionsHandle a, ListPairChannelConnectionsHandle b) {
+bool ListPairChannelConnections_equal(ListPairChannelConnectionsHandle handle, ListPairChannelConnectionsHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListPairChannelConnections_equal");
 }
-    auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(a);
-    auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(b);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(other);
     return *listA == *listB;
     FALCON_C_API_END(false)
 }
 
-bool ListPairChannelConnections_not_equal(ListPairChannelConnectionsHandle a, ListPairChannelConnectionsHandle b) {
+bool ListPairChannelConnections_not_equal(ListPairChannelConnectionsHandle handle, ListPairChannelConnectionsHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListPairChannelConnections_not_equal");
 }
-    return !ListPairChannelConnections_equal(a, b);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(other);
+    return *listA != *listB;
     FALCON_C_API_END(false)
 }
 
@@ -184,10 +188,10 @@ ListPairChannelConnectionsHandle ListPairChannelConnections_intersection(ListPai
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListPairChannelConnections_intersection");
 }
-    auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle);
-    auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(other);
-    auto result = listA->intersection(std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>>(*listB));
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(*result);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(other);
+    auto result = listA->intersection(listB);
+    return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(result);
     FALCON_C_API_END(nullptr)
 }
 
@@ -196,7 +200,7 @@ StringHandle      ListPairChannelConnections_to_json_string(ListPairChannelConne
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairChannelConnections_to_json_string");
 }
-    std::string json = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle)->to_json_string();
+    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>*>(handle))->to_json_string();
     return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -207,7 +211,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to ListPairChannelConnections_from_json_string");
 }
   auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>>(json->raw);
-  return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(*ptr);
+  return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Channel, falcon_core::physics::device_structures::Connections>>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

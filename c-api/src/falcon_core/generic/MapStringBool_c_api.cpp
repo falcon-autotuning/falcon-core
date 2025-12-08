@@ -6,7 +6,7 @@
 extern "C" {
 MapStringBoolHandle MapStringBool_create_empty() {
     FALCON_C_API_BEGIN
-    return new falcon_core::generic::Map<std::string,bool>(); 
+    return new falcon_core::generic::MapSP<std::string,bool>(std::make_shared<falcon_core::generic::Map<std::string,bool>>()); 
     FALCON_C_API_END(nullptr)
 }
 
@@ -18,11 +18,10 @@ throw std::invalid_argument("Null data pointer passed to MapStringBool_create");
     std::vector<falcon_core::generic::PairSP<std::string,bool>> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::make_shared<falcon_core::generic::Pair<std::string,bool>>
-        (*static_cast<falcon_core::generic::Pair<std::string,bool>*>(
-            data[i])));
+        vec.push_back(*static_cast<falcon_core::generic::PairSP<std::string,bool>*>(data[i]));
     }
-    return new falcon_core::generic::Map<std::string,bool>(vec);
+    return new falcon_core::generic::MapSP<std::string, bool>(
+        std::make_shared<falcon_core::generic::Map<std::string,bool>>(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -31,7 +30,7 @@ void MapStringBool_destroy(MapStringBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringBool_destroy");
 }
-    delete static_cast<falcon_core::generic::Map<std::string, bool>*>(handle);
+    delete static_cast<falcon_core::generic::MapSP<std::string, bool>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -46,7 +45,8 @@ throw std::invalid_argument("Null handle passed to MapStringBool_insert_or_assig
                                            }
             auto correct_key = std::string(key->raw, key->length);
     auto correct_value = value;
-    static_cast<falcon_core::generic::Map<std::string,bool>*>(handle)->insert_or_assign(correct_key,correct_value);
+    (*static_cast<falcon_core::generic::MapSP<std::string,bool>*>(handle))->
+        insert_or_assign(correct_key,correct_value);
     FALCON_C_API_END()
 }
 
@@ -61,7 +61,8 @@ throw std::invalid_argument("Null handle passed to MapStringBool_insert");
                                            }
             auto correct_key = std::string(key->raw, key->length);
     auto correct_value = value;
-    static_cast<falcon_core::generic::Map<std::string,bool>*>(handle)->insert(correct_key,correct_value);
+    (*static_cast<falcon_core::generic::MapSP<std::string,bool>*>(handle))->
+        insert(correct_key,correct_value);
     FALCON_C_API_END()
 }
 
@@ -75,7 +76,7 @@ throw std::invalid_argument("Null handle passed to MapStringBool_at");
             throw std::invalid_argument("Null string handle passed to MapStringBool_at");
                                            }
             auto correct_key = std::string(key->raw, key->length);
-    return static_cast<falcon_core::generic::Map<std::string,bool>*>(handle)->at(correct_key);
+    return (*static_cast<falcon_core::generic::MapSP<std::string,bool>*>(handle))->at(correct_key);
     FALCON_C_API_END(false)
 }
 
@@ -89,7 +90,8 @@ throw std::invalid_argument("Null handle passed to MapStringBool_erase");
             throw std::invalid_argument("Null string handle passed to MapStringBool_at");
                                            }
             auto correct_key = std::string(key->raw, key->length);
-    return static_cast<falcon_core::generic::Map<std::string,bool>*>(handle)->erase(correct_key);
+    return (*static_cast<falcon_core::generic::MapSP<std::string,bool>*>(handle))->
+        erase(correct_key);
     FALCON_C_API_END()
 }
 
@@ -98,7 +100,8 @@ size_t MapStringBool_size(MapStringBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringBool_size");
 }
-    return static_cast<falcon_core::generic::Map<std::string,bool>*>(handle)->size();
+    return (*static_cast<falcon_core::generic::MapSP<std::string,bool>*>(handle))->
+        size();
     FALCON_C_API_END(0)
 }
 
@@ -107,7 +110,8 @@ bool MapStringBool_empty(MapStringBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringBool_empty");
 }
-    return static_cast<falcon_core::generic::Map<std::string,bool>*>(handle)->empty();
+    return (*static_cast<falcon_core::generic::MapSP<std::string,bool>*>(handle))->
+        empty();
     FALCON_C_API_END(false)
 }
 
@@ -116,7 +120,8 @@ void MapStringBool_clear(MapStringBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringBool_clear");
 }
-    return static_cast<falcon_core::generic::Map<std::string,bool>*>(handle)->clear();
+    return (*static_cast<falcon_core::generic::MapSP<std::string,bool>*>(handle))->
+        clear();
     FALCON_C_API_END()
 }
 
@@ -130,7 +135,8 @@ throw std::invalid_argument("Null handle passed to MapStringBool_contains");
             throw std::invalid_argument("Null string handle passed to MapStringBool_at");
                                            }
             auto correct_key = std::string(key->raw, key->length);
-    return static_cast<falcon_core::generic::Map<std::string,bool>*>(handle)->contains(correct_key);
+    return (*static_cast<falcon_core::generic::MapSP<std::string,bool>*>(handle))->
+        contains(correct_key);
     FALCON_C_API_END(false)
 }
 
@@ -139,9 +145,8 @@ ListStringHandle MapStringBool_keys(MapStringBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringBool_keys");
 }
-    auto map = static_cast<falcon_core::generic::Map<std::string,bool>*>(handle);
-    auto keys_sp = map->keys(); // shared_ptr<falcon_core::generic::List<Key>>
-    return new falcon_core::generic::List<std::string>(*keys_sp);
+    auto map = *static_cast<falcon_core::generic::MapSP<std::string,bool>*>(handle);
+    return new falcon_core::generic::ListSP<std::string>(map->keys());
     FALCON_C_API_END(nullptr)
 }
 
@@ -150,9 +155,8 @@ ListBoolHandle MapStringBool_values(MapStringBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringBool_values");
 }
-    auto map = static_cast<falcon_core::generic::Map<std::string,bool>*>(handle);
-    auto values_sp = map->values(); // shared_ptr<falcon_core::generic::List<Value>>
-    return new falcon_core::generic::List<bool>(*values_sp);
+    auto map = *static_cast<falcon_core::generic::MapSP<std::string,bool>*>(handle);
+    return new falcon_core::generic::ListSP<bool>(map->values());
     FALCON_C_API_END(nullptr)
 }
 
@@ -161,29 +165,31 @@ ListPairStringBoolHandle MapStringBool_items(MapStringBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringBool_items");
 }
-    auto map = static_cast<falcon_core::generic::Map<std::string,bool>*>(handle);
+    auto map = *static_cast<falcon_core::generic::MapSP<std::string,bool>*>(handle);
     falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string,bool>> items_sp = map->items(); 
-    return new falcon_core::generic::List<falcon_core::generic::Pair<std::string,bool>>(*items_sp);
+    return new falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string,bool>>(items_sp);
     FALCON_C_API_END(nullptr)
 }
 
-bool MapStringBool_equal(MapStringBoolHandle a, MapStringBoolHandle b) {
+bool MapStringBool_equal(MapStringBoolHandle handle, MapStringBoolHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to MapStringBool_equal");
 }
-    auto listA = static_cast<falcon_core::generic::Map<std::string,bool>*>(a);
-    auto listB = static_cast<falcon_core::generic::Map<std::string,bool>*>(b);
+    auto listA = *static_cast<falcon_core::generic::MapSP<std::string,bool>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::MapSP<std::string,bool>*>(other);
     return *listA == *listB;
     FALCON_C_API_END(false)
 }
 
-bool MapStringBool_not_equal(MapStringBoolHandle a, MapStringBoolHandle b) {
+bool MapStringBool_not_equal(MapStringBoolHandle handle, MapStringBoolHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to MapStringBool_not_equal");
 }
-    return !MapStringBool_equal(a, b);
+    auto listA = *static_cast<falcon_core::generic::MapSP<std::string,bool>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::MapSP<std::string,bool>*>(other);
+    return *listA != *listB;
     FALCON_C_API_END(false)
 }
 
@@ -192,7 +198,7 @@ StringHandle      MapStringBool_to_json_string(MapStringBoolHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapStringBool_to_json_string");
 }
-std::string json = static_cast<falcon_core::generic::Map<std::string,bool>*>(handle)->to_json_string();
+std::string json = (*static_cast<falcon_core::generic::MapSP<std::string,bool>*>(handle))->to_json_string();
   return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -203,7 +209,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to MapStringBool_from_json_string");
 }
   auto ptr = falcon_core::generic::Map<std::string,bool>::from_json_string<falcon_core::generic::Map<std::string,bool>>(json->raw);
-  return new falcon_core::generic::Map<std::string,bool>(*ptr);
+  return new falcon_core::generic::MapSP<std::string,bool>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

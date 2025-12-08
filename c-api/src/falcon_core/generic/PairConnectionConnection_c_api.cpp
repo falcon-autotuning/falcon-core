@@ -10,13 +10,15 @@ PairConnectionConnectionHandle PairConnectionConnection_create(ConnectionHandle 
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairConnectionConnection_create");
                 }
-                auto first_obj= std::make_shared<falcon_core::physics::device_structures::Connection>(*static_cast<falcon_core::physics::device_structures::Connection*>(first));
+                auto first_obj= *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(first);
     
                 if (!second) {
                 throw std::invalid_argument("Null value passed to PairConnectionConnection_create");
                 }
-                auto second_obj= std::make_shared<falcon_core::physics::device_structures::Connection>(*static_cast<falcon_core::physics::device_structures::Connection*>(second));
-    return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>(first_obj, second_obj);
+                auto second_obj= *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(second);
+    return new falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>(
+        std::make_shared<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>>
+            (first_obj, second_obj));
     FALCON_C_API_END(nullptr)
 }
 
@@ -25,7 +27,7 @@ void PairConnectionConnection_destroy(PairConnectionConnectionHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to PairConnectionConnection_destroy");
 }
-    delete static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(handle);
+    delete static_cast<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -34,8 +36,8 @@ ConnectionHandle PairConnectionConnection_first(PairConnectionConnectionHandle h
 if (!handle) {
 throw std::invalid_argument("Null handle passed to PairConnectionConnection_first");
 }
-    auto pair = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(handle);
-    return new falcon_core::physics::device_structures::Connection(*pair->first());
+    auto pair = *static_cast<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(handle);
+    return new falcon_core::physics::device_structures::ConnectionSP(pair->first());
     FALCON_C_API_END(nullptr)
 }
 
@@ -44,29 +46,29 @@ ConnectionHandle PairConnectionConnection_second(PairConnectionConnectionHandle 
 if (!handle) {
 throw std::invalid_argument("Null handle passed to PairConnectionConnection_second");
 }
-    auto pair = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(handle);
-    return new falcon_core::physics::device_structures::Connection(*pair->second());
+    auto pair = *static_cast<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(handle);
+    return new falcon_core::physics::device_structures::ConnectionSP(pair->second());
     FALCON_C_API_END(nullptr)
 }
 
-bool PairConnectionConnection_equal(PairConnectionConnectionHandle a, PairConnectionConnectionHandle b) {
+bool PairConnectionConnection_equal(PairConnectionConnectionHandle handle, PairConnectionConnectionHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to PairConnectionConnection_equal");
 }
-    auto pair_a = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(a);
-    auto pair_b = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(b);
+    auto pair_a = *static_cast<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(handle);
+    auto pair_b = *static_cast<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(other);
     return *pair_a == *pair_b;
     FALCON_C_API_END(false)
 }
 
-bool PairConnectionConnection_not_equal(PairConnectionConnectionHandle a, PairConnectionConnectionHandle b) {
+bool PairConnectionConnection_not_equal(PairConnectionConnectionHandle handle, PairConnectionConnectionHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to PairConnectionConnection_not_equal");
 }
-    auto pair_a = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(a);
-    auto pair_b = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(b);
+    auto pair_a = *static_cast<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(handle);
+    auto pair_b = *static_cast<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection, falcon_core::physics::device_structures::Connection>*>(other);
     return *pair_a != *pair_b;
     FALCON_C_API_END(false)
 }
@@ -76,7 +78,7 @@ StringHandle      PairConnectionConnection_to_json_string(PairConnectionConnecti
 if (!handle) {
 throw std::invalid_argument("Null handle passed to PairConnectionConnection_to_json_string");
 }
-std::string json = static_cast<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,falcon_core::physics::device_structures::Connection>*>(handle)->to_json_string();
+std::string json = (*static_cast<falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection,falcon_core::physics::device_structures::Connection>*>(handle))->to_json_string();
   return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -87,7 +89,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to PairConnectionConnection_from_json_string");
 }
   auto ptr = falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,falcon_core::physics::device_structures::Connection>::from_json_string<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,falcon_core::physics::device_structures::Connection>>(json->raw);
-  return new falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,falcon_core::physics::device_structures::Connection>(*ptr);
+  return new falcon_core::generic::PairSP<falcon_core::physics::device_structures::Connection,falcon_core::physics::device_structures::Connection>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

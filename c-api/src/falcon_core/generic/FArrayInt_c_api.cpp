@@ -14,7 +14,7 @@ throw std::invalid_argument("Null shape passed to FArrayInt_create_empty");
     for (size_t i =0; i < ndim; ++i) {
         vec.push_back(shape[i]);
     }
-    return new falcon_core::generic::FArray<int>(*falcon_core::generic::FArray<int>::empty(vec));
+    return new falcon_core::generic::FArraySP<int>(falcon_core::generic::FArray<int>::empty(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -27,7 +27,7 @@ throw std::invalid_argument("Null shape passed to FArrayInt_create_zeros");
     for (size_t i =0; i < ndim; ++i) {
         vec.push_back(shape[i]);
     }
-    return new falcon_core::generic::FArray<int>(*falcon_core::generic::FArray<int>::zeros(vec));
+    return new falcon_core::generic::FArraySP<int>(falcon_core::generic::FArray<int>::zeros(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -40,7 +40,7 @@ throw std::invalid_argument("Null shape passed to FArrayInt_from_shape");
     for (size_t i =0; i < ndim; ++i) {
         vec.push_back(shape[i]);
     }
-    return new falcon_core::generic::FArray<int>(vec);
+    return new falcon_core::generic::FArraySP<int>(std::make_shared<falcon_core::generic::FArray<int>>(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -60,7 +60,7 @@ throw std::invalid_argument("Null shape passed to FArrayInt_from_data");
   }
   xt::xarray<int> arr =
       xt::adapt(data, total_size, xt::no_ownership(), shapeVec);
-  return new falcon_core::generic::FArray<int>(arr);
+    return new falcon_core::generic::FArraySP<int>(std::make_shared<falcon_core::generic::FArray<int>>(arr));
     FALCON_C_API_END(nullptr)
 }
 
@@ -69,7 +69,7 @@ void FArrayInt_destroy(FArrayIntHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_destroy");
 }
-    delete static_cast<falcon_core::generic::FArray<int>*>(handle);
+    delete static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -78,7 +78,7 @@ size_t FArrayInt_size(FArrayIntHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_size");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    auto farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     return farray->size();
     FALCON_C_API_END(0)
 }
@@ -88,7 +88,7 @@ size_t FArrayInt_dimension(FArrayIntHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_dimension");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    auto farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     return farray->dimension();
     FALCON_C_API_END(0)
 }
@@ -101,7 +101,7 @@ throw std::invalid_argument("Null handle passed to FArrayInt_shape");
 if (!out_buffer) {
 throw std::invalid_argument("Null out_buffer passed to FArrayInt_shape");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    auto farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     auto shape = farray->shape();
     size_t count   = shape.size();
     size_t to_copy = (ndim < count) ? ndim : count;
@@ -120,7 +120,7 @@ throw std::invalid_argument("Null handle passed to FArrayInt_data");
 if (!out_buffer) {
 throw std::invalid_argument("Null out_buffer passed to FArrayInt_shape");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    auto farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     if (farray->size() > numdata) {
     throw std::runtime_error(
         std::string("Trying to store more datapoints than buffer allocated.") +
@@ -138,8 +138,8 @@ void FArrayInt_plus_equals_farray(FArrayIntHandle handle, FArrayIntHandle other)
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to FArrayInt_plus_equals_farray");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
+    auto farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    auto oarray= *static_cast<falcon_core::generic::FArraySP<int>*>(other);
     *farray += *oarray;
     FALCON_C_API_END()
 }
@@ -149,7 +149,7 @@ void FArrayInt_plus_equals_double(FArrayIntHandle handle,  double other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_plus_equals_double");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    auto farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     *farray += other;
     FALCON_C_API_END()
 }
@@ -159,7 +159,7 @@ void FArrayInt_plus_equals_int(FArrayIntHandle handle,  int other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_plus_equals_int");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    auto farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     *farray += other;
     FALCON_C_API_END()
 }
@@ -169,11 +169,9 @@ FArrayIntHandle FArrayInt_plus_farray(FArrayIntHandle handle, FArrayIntHandle ot
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to FArrayInt_plus_farray");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
-    return new falcon_core::generic::FArray<int>(
-        *(*farray +
-            std::make_shared<falcon_core::generic::FArray<int>>(*oarray)));
+    auto farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    auto oarray = *static_cast<falcon_core::generic::FArraySP<int>*>(other);
+    return new falcon_core::generic::FArraySP<int>(*farray + oarray);
     FALCON_C_API_END(nullptr)
 }
 
@@ -182,8 +180,8 @@ FArrayIntHandle FArrayInt_plus_double(FArrayIntHandle handle,  double other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_plus_double");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*(*farray + other));
+    auto farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<int>(*farray + other);
     FALCON_C_API_END(nullptr)
 }
 
@@ -192,8 +190,8 @@ FArrayIntHandle FArrayInt_plus_int(FArrayIntHandle handle,  int other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_plus_int");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*(*farray + other));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<int>(*farray + other);
     FALCON_C_API_END(nullptr)
 }
 
@@ -202,8 +200,8 @@ void FArrayInt_minus_equals_farray(FArrayIntHandle handle, FArrayIntHandle other
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to FArrayInt_minus_equals_farray");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    auto oarray= *static_cast<falcon_core::generic::FArraySP<int>*>(other);
     *farray -= *oarray;
     FALCON_C_API_END()
 }
@@ -213,7 +211,7 @@ void FArrayInt_minus_equals_double(FArrayIntHandle handle,  double other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_minus_equals_double");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     *farray -= other;
     FALCON_C_API_END()
 }
@@ -223,7 +221,7 @@ void FArrayInt_minus_equals_int(FArrayIntHandle handle,  int other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_minus_equals_int");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     *farray -= other;
     FALCON_C_API_END()
 }
@@ -233,11 +231,9 @@ FArrayIntHandle FArrayInt_minus_farray(FArrayIntHandle handle, FArrayIntHandle o
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to FArrayInt_minus_farray");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
-    return new falcon_core::generic::FArray<int>(
-        *(*farray -
-            std::make_shared<falcon_core::generic::FArray<int>>(*oarray)));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    auto oarray= *static_cast<falcon_core::generic::FArraySP<int>*>(other);
+    return new falcon_core::generic::FArraySP<int>(*farray - oarray);
     FALCON_C_API_END(nullptr)
 }
 
@@ -246,8 +242,8 @@ FArrayIntHandle FArrayInt_minus_double(FArrayIntHandle handle,  double other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_minus_double");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*(*farray - other));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<int>(*farray - other);
     FALCON_C_API_END(nullptr)
 }
 
@@ -256,8 +252,8 @@ FArrayIntHandle FArrayInt_minus_int(FArrayIntHandle handle,  int other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_minus_int");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*(*farray - other));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<int>(*farray - other);
     FALCON_C_API_END(nullptr)
 }
 
@@ -266,8 +262,8 @@ FArrayIntHandle FArrayInt_negation(FArrayIntHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_negation");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*(-*farray));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<int>(-*farray);
     FALCON_C_API_END(nullptr)
 }
 
@@ -276,8 +272,8 @@ void FArrayInt_times_equals_farray(FArrayIntHandle handle, FArrayIntHandle other
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to FArrayInt_times_equals_farray");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    auto oarray= *static_cast<falcon_core::generic::FArraySP<int>*>(other);
     *farray *= *oarray;
     FALCON_C_API_END()
 }
@@ -287,7 +283,7 @@ void FArrayInt_times_equals_double(FArrayIntHandle handle,  double other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_times_equals_double");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     *farray *= other;
     FALCON_C_API_END()
 }
@@ -297,7 +293,7 @@ void FArrayInt_times_equals_int(FArrayIntHandle handle,  int other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_times_equals_int");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     *farray *= other;
     FALCON_C_API_END()
 }
@@ -307,11 +303,9 @@ FArrayIntHandle FArrayInt_times_farray(FArrayIntHandle handle, FArrayIntHandle o
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to FArrayInt_times_farray");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
-    return new falcon_core::generic::FArray<int>(
-        *(*farray *
-            std::make_shared<falcon_core::generic::FArray<int>>(*oarray)));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    auto oarray= *static_cast<falcon_core::generic::FArraySP<int>*>(other);
+    return new falcon_core::generic::FArraySP<int>(*farray * oarray);
     FALCON_C_API_END(nullptr)
 }
 
@@ -320,8 +314,8 @@ FArrayIntHandle FArrayInt_times_double(FArrayIntHandle handle,  double other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_times_double");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*(*farray * other));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<int>(*farray * other);
     FALCON_C_API_END(nullptr)
 }
 
@@ -330,8 +324,8 @@ FArrayIntHandle FArrayInt_times_int(FArrayIntHandle handle,  int other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_times_int");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*(*farray * other));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<int>(*farray * other);
     FALCON_C_API_END(nullptr)
 }
 
@@ -340,8 +334,8 @@ void FArrayInt_divides_equals_farray(FArrayIntHandle handle, FArrayIntHandle oth
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to FArrayInt_divides_equals_farray");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    auto oarray= *static_cast<falcon_core::generic::FArraySP<int>*>(other);
     *farray /= *oarray;
     FALCON_C_API_END()
 }
@@ -351,7 +345,7 @@ void FArrayInt_divides_equals_double(FArrayIntHandle handle,  double other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_divides_equals_double");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     *farray /= other;
     FALCON_C_API_END()
 }
@@ -361,7 +355,7 @@ void FArrayInt_divides_equals_int(FArrayIntHandle handle,  int other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_divides_equals_int");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     *farray /= other;
     FALCON_C_API_END()
 }
@@ -371,11 +365,9 @@ FArrayIntHandle FArrayInt_divides_farray(FArrayIntHandle handle, FArrayIntHandle
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to FArrayInt_divides_farray");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
-    return new falcon_core::generic::FArray<int>(
-        *(*farray /
-            std::make_shared<falcon_core::generic::FArray<int>>(*oarray)));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    auto oarray= *static_cast<falcon_core::generic::FArraySP<int>*>(other);
+    return new falcon_core::generic::FArraySP<int>(*farray / oarray);
     FALCON_C_API_END(nullptr)
 }
 
@@ -384,8 +376,8 @@ FArrayIntHandle FArrayInt_divides_double(FArrayIntHandle handle,  double other) 
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_divides_double");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*(*farray / other));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<int>(*farray / other);
     FALCON_C_API_END(nullptr)
 }
 
@@ -394,8 +386,8 @@ FArrayIntHandle FArrayInt_divides_int(FArrayIntHandle handle,  int other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_divides_int");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*(*farray / other));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<int>(*farray / other);
     FALCON_C_API_END(nullptr)
 }
 
@@ -404,8 +396,8 @@ FArrayIntHandle FArrayInt_pow(FArrayIntHandle handle,  int other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_pow");
 }
-     falcon_core::generic::FArray<int>* farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*(*farray ^ other));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<int>(*farray ^ other);
     FALCON_C_API_END(nullptr)
 }
 
@@ -414,8 +406,8 @@ FArrayDoubleHandle FArrayInt_double_pow(FArrayIntHandle handle,  double other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_pow");
 }
-     falcon_core::generic::FArray<int>* farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<double>(*(*farray ^ other));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<double>(*farray ^ other);
     FALCON_C_API_END(nullptr)
 }
 
@@ -424,7 +416,7 @@ void FArrayInt_pow_inplace(FArrayIntHandle handle,  int other) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_pow");
 }
-    falcon_core::generic::FArray<int>* farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     farray->pow_inplace(other);
     FALCON_C_API_END()
 }
@@ -434,8 +426,8 @@ FArrayIntHandle FArrayInt_abs(FArrayIntHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_abs");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*farray->abs());
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<int>(farray->abs());
     FALCON_C_API_END(nullptr)
 }
 
@@ -444,7 +436,7 @@ int FArrayInt_min(FArrayIntHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_min");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     return farray->min();
     FALCON_C_API_END(0)
 }
@@ -454,10 +446,9 @@ FArrayIntHandle FArrayInt_min_arraywise(FArrayIntHandle handle, FArrayIntHandle 
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to FArrayInt_min_arraywise");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
-    return new falcon_core::generic::FArray<int>(
-    *farray->min(std::make_shared<falcon_core::generic::FArray<int>>(*oarray)));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    auto oarray= *static_cast<falcon_core::generic::FArraySP<int>*>(other);
+    return new falcon_core::generic::FArraySP<int>(farray->min(oarray));
     FALCON_C_API_END(nullptr)
 }
 
@@ -466,7 +457,7 @@ int FArrayInt_max(FArrayIntHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_max");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     return farray->max();
     FALCON_C_API_END(0)
 }
@@ -476,10 +467,9 @@ FArrayIntHandle FArrayInt_max_arraywise(FArrayIntHandle handle, FArrayIntHandle 
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to FArrayInt_max_arraywise");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
-    return new falcon_core::generic::FArray<int>(
-    *farray->max(std::make_shared<falcon_core::generic::FArray<int>>(*oarray)));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    auto oarray= *static_cast<falcon_core::generic::FArraySP<int>*>(other);
+    return new falcon_core::generic::FArraySP<int>(farray->max(oarray));
     FALCON_C_API_END(nullptr)
 }
 
@@ -488,8 +478,8 @@ bool FArrayInt_equal(FArrayIntHandle handle, FArrayIntHandle other) {
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to FArrayInt_equal");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    auto oarray= *static_cast<falcon_core::generic::FArraySP<int>*>(other);
     return *farray == *oarray;
     FALCON_C_API_END(false)
 }
@@ -499,8 +489,8 @@ bool FArrayInt_not_equal(FArrayIntHandle handle, FArrayIntHandle other) {
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to FArrayInt_not_equal");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    auto oarray= static_cast<falcon_core::generic::FArray<int>*>(other);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    auto oarray= *static_cast<falcon_core::generic::FArraySP<int>*>(other);
     return *farray != *oarray;
     FALCON_C_API_END(false)
 }
@@ -510,7 +500,7 @@ bool FArrayInt_greater_than(FArrayIntHandle handle,  int value) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_greater_than");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     return *farray > value;
     FALCON_C_API_END(false)
 }
@@ -520,7 +510,7 @@ bool FArrayInt_less_than(FArrayIntHandle handle,  int value) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_less_than");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     return *farray < value;
     FALCON_C_API_END(false)
 }
@@ -530,7 +520,7 @@ void FArrayInt_remove_offset(FArrayIntHandle handle,  int offset) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_remove_offset");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     farray->remove_offset(offset);
     FALCON_C_API_END()
 }
@@ -540,7 +530,7 @@ int FArrayInt_sum(FArrayIntHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_sum");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     return farray->sum();
     FALCON_C_API_END(0)
 }
@@ -554,8 +544,8 @@ throw std::invalid_argument("Null handle passed to FArrayInt_reshape");
     for (size_t i =0; i < ndims; ++i) {
         vec.push_back(shape[i]);
     }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*farray->reshape(vec));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<int>(farray->reshape(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -564,8 +554,8 @@ ListListSizeTHandle FArrayInt_where(FArrayIntHandle handle,  int value) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_where");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::List<falcon_core::generic::List<size_t>>(*farray->where(value));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::ListSP<falcon_core::generic::List<size_t>>(farray->where(value));
     FALCON_C_API_END(nullptr)
 }
 
@@ -574,8 +564,8 @@ FArrayIntHandle FArrayInt_flip(FArrayIntHandle handle, size_t axis) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_flip");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*farray->flip(axis));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<int>(farray->flip(axis));
     FALCON_C_API_END(nullptr)
 }
 
@@ -587,13 +577,13 @@ throw std::invalid_argument("Null handle passed to FArrayInt_full_gradient");
 if (!out_buffer) {
 throw std::invalid_argument("Null out_buffer passed to FArrayInt_full_gradient");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     auto many_gradients = farray->gradient();
     if (many_gradients->size() > buffer_size) {
         throw std::runtime_error("Trying to store more int gradients than buffer allocated.");
     }
     for (size_t i = 0; i < many_gradients->size(); ++i) {
-        out_buffer[i] = new falcon_core::generic::FArray<int>(*(many_gradients->items()[i]));
+        out_buffer[i] = new falcon_core::generic::FArraySP<int>(many_gradients->items()[i]);
     }
     return many_gradients->size();
     FALCON_C_API_END(0)
@@ -604,8 +594,8 @@ FArrayIntHandle FArrayInt_gradient(FArrayIntHandle handle, size_t axis) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_gradient");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    return new falcon_core::generic::FArray<int>(*farray->gradient(axis));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    return new falcon_core::generic::FArraySP<int>(farray->gradient(axis));
     FALCON_C_API_END(nullptr)
 }
 
@@ -614,7 +604,7 @@ double FArrayInt_get_sum_of_squares(FArrayIntHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_get_sum_of_squares");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     return farray->get_sum_of_squares();
     FALCON_C_API_END(0.0)
 }
@@ -624,7 +614,7 @@ double FArrayInt_get_summed_diff_int_of_squares(FArrayIntHandle handle,  int oth
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_get_summed_diff_int_of_squares");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     return farray->get_sum_of_squares(other);
     FALCON_C_API_END(0.0)
 }
@@ -634,7 +624,7 @@ double FArrayInt_get_summed_diff_double_of_squares(FArrayIntHandle handle,  doub
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_get_summed_diff_double_of_squares");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
     return farray->get_sum_of_squares(other);
     FALCON_C_API_END(0.0)
 }
@@ -644,9 +634,9 @@ double FArrayInt_get_summed_diff_array_of_squares(FArrayIntHandle handle, FArray
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to FArrayInt_get_summed_diff_array_of_squares");
 }
-    auto farray = static_cast<falcon_core::generic::FArray<int>*>(handle);
-    auto oarray = static_cast<falcon_core::generic::FArray<int>*>(other);
-    return farray->get_sum_of_squares(std::make_shared<falcon_core::generic::FArray<int>>(*oarray));
+    falcon_core::generic::FArraySP<int> farray = *static_cast<falcon_core::generic::FArraySP<int>*>(handle);
+    auto oarray = *static_cast<falcon_core::generic::FArraySP<int>*>(other);
+    return farray->get_sum_of_squares(oarray);
     FALCON_C_API_END(0.0)
 }
 
@@ -655,7 +645,7 @@ StringHandle      FArrayInt_to_json_string(FArrayIntHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to FArrayInt_to_json_string");
 }
-  std::string json = static_cast<falcon_core::generic::FArray<int>*>(handle)->to_json_string();
+  std::string json = (*static_cast<falcon_core::generic::FArraySP<int>*>(handle))->to_json_string();
   return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -665,8 +655,8 @@ FArrayIntHandle FArrayInt_from_json_string(StringHandle json) {
 if (!json) {
 throw std::invalid_argument("Null string handle passed to FArrayInt_from_json_string");
 }
-  auto ptr = falcon_core::generic::FArray<int>::from_json_string<falcon_core::generic::FArray<int>>(json->raw);
-  return new falcon_core::generic::FArray<int>(*ptr);
+    auto ptr = falcon_core::generic::FArray<int>::from_json_string<falcon_core::generic::FArray<int>>(json->raw);
+    return new falcon_core::generic::FArraySP<int>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

@@ -6,7 +6,7 @@
 extern "C" {
 ListWaveformHandle ListWaveform_create_empty() {
     FALCON_C_API_BEGIN
-    return new falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>();
+    return new falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>(std::make_shared<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>>());
     FALCON_C_API_END(nullptr)
 }
 
@@ -16,10 +16,11 @@ ListWaveformHandle ListWaveform_fill_value(size_t count, WaveformHandle value) {
     if (!value) {
     throw std::invalid_argument("Null value passed to ListWaveform_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::instrument_interfaces::Waveform>(*static_cast<falcon_core::instrument_interfaces::Waveform*>(value));
+    auto stored_obj = *static_cast<falcon_core::instrument_interfaces::WaveformSP*>(value);
     
-    return new falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>(
-        count, stored_obj);
+    return new falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>(
+        std::make_shared<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>>(
+            count, stored_obj));
     FALCON_C_API_END(nullptr)
 }
  
@@ -32,10 +33,11 @@ throw std::invalid_argument("Null data handle passed to ListWaveform_create");
     std::vector<falcon_core::instrument_interfaces::WaveformSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::make_shared<falcon_core::instrument_interfaces::Waveform>(*static_cast<falcon_core::instrument_interfaces::Waveform*>(data[i]))); 
+        vec.push_back(*static_cast<falcon_core::instrument_interfaces::WaveformSP*>(data[i])); 
     }
 
-    return new falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>(vec);
+    return new falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>(
+        std::make_shared<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>>(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -44,7 +46,7 @@ void ListWaveform_destroy(ListWaveformHandle handle) {
     if (!handle) {
     throw std::invalid_argument("Null handle passed to ListWaveform_destroy");
     }
-    delete static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(handle);
+    delete static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -53,7 +55,7 @@ size_t ListWaveform_size(ListWaveformHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListWaveform_size");
 }
-    return static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(handle)->size();
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle))->size();
     FALCON_C_API_END(0)
 }
 
@@ -62,7 +64,7 @@ bool ListWaveform_empty(ListWaveformHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListWaveform_empty");
 }
-    return static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(handle)->empty();
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle))->empty();
     FALCON_C_API_END(false)
 }
 
@@ -71,7 +73,7 @@ void ListWaveform_erase_at(ListWaveformHandle handle, size_t idx) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListWaveform_erase_at");
 }
-    static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(handle)->erase_at(idx);
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle))->erase_at(idx);
     FALCON_C_API_END()
 }
 
@@ -80,7 +82,7 @@ void ListWaveform_clear(ListWaveformHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListWaveform_clear");
 }
-    static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(handle)->clear();
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle))->clear();
     FALCON_C_API_END()
 }
 
@@ -93,9 +95,9 @@ throw std::invalid_argument("Null handle passed to ListWaveform_push_back");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListWaveform_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::instrument_interfaces::Waveform>(*static_cast<falcon_core::instrument_interfaces::Waveform*>(value));
+    auto stored_obj = *static_cast<falcon_core::instrument_interfaces::WaveformSP*>(value);
     
-    static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(handle)->push_back(stored_obj);
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
 }
 
@@ -108,9 +110,9 @@ throw std::invalid_argument("Null handle passed to ListWaveform_contains");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListWaveform_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::instrument_interfaces::Waveform>(*static_cast<falcon_core::instrument_interfaces::Waveform*>(value));
+    auto stored_obj = *static_cast<falcon_core::instrument_interfaces::WaveformSP*>(value);
     
-    return static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(handle)->contains(stored_obj);
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
 }
 
@@ -123,9 +125,9 @@ throw std::invalid_argument("Null handle passed to ListWaveform_index");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListWaveform_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::instrument_interfaces::Waveform>(*static_cast<falcon_core::instrument_interfaces::Waveform*>(value));
+    auto stored_obj = *static_cast<falcon_core::instrument_interfaces::WaveformSP*>(value);
     
-    return static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(handle)->index(stored_obj);
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
 }
 
@@ -137,11 +139,11 @@ throw std::invalid_argument("Null handle passed to ListWaveform_items");
 if (!out_buffer) {
 throw std::invalid_argument("Null output buffer passed to ListWaveform_items");
 }
-    auto list = static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(handle);
+    auto list = *static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     
 for (size_t i = 0; i < n; ++i) {
-    out_buffer[i] = new falcon_core::instrument_interfaces::Waveform(*list->items()[i]);
+    out_buffer[i] = new falcon_core::instrument_interfaces::WaveformSP(list->items()[i]);
 }
     return n;
     FALCON_C_API_END(0)
@@ -152,28 +154,30 @@ WaveformHandle ListWaveform_at(ListWaveformHandle handle, size_t idx) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListWaveform_at");
 }
-    auto obj = static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(handle)->at(idx);
+    auto obj = (*static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle))->at(idx);
     return new falcon_core::instrument_interfaces::Waveform(*obj);
     FALCON_C_API_END(nullptr)
 }
 
-bool ListWaveform_equal(ListWaveformHandle a, ListWaveformHandle b) {
+bool ListWaveform_equal(ListWaveformHandle handle, ListWaveformHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListWaveform_equal");
 }
-    auto listA = static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(a);
-    auto listB = static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(b);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(other);
     return *listA == *listB;
     FALCON_C_API_END(false)
 }
 
-bool ListWaveform_not_equal(ListWaveformHandle a, ListWaveformHandle b) {
+bool ListWaveform_not_equal(ListWaveformHandle handle, ListWaveformHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListWaveform_not_equal");
 }
-    return !ListWaveform_equal(a, b);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(other);
+    return *listA != *listB;
     FALCON_C_API_END(false)
 }
 
@@ -182,10 +186,10 @@ ListWaveformHandle ListWaveform_intersection(ListWaveformHandle handle, ListWave
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListWaveform_intersection");
 }
-    auto listA = static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(handle);
-    auto listB = static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(other);
-    auto result = listA->intersection(std::make_shared<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>>(*listB));
-    return new falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>(*result);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(other);
+    auto result = listA->intersection(listB);
+    return new falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>(result);
     FALCON_C_API_END(nullptr)
 }
 
@@ -194,7 +198,7 @@ StringHandle      ListWaveform_to_json_string(ListWaveformHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListWaveform_to_json_string");
 }
-    std::string json = static_cast<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>*>(handle)->to_json_string();
+    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle))->to_json_string();
     return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -205,7 +209,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to ListWaveform_from_json_string");
 }
   auto ptr = falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>::from_json_string<falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>>(json->raw);
-  return new falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>(*ptr);
+  return new falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

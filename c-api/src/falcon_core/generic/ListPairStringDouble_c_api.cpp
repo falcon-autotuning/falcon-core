@@ -6,7 +6,7 @@
 extern "C" {
 ListPairStringDoubleHandle ListPairStringDouble_create_empty() {
     FALCON_C_API_BEGIN
-    return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>();
+    return new falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>(std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>>());
     FALCON_C_API_END(nullptr)
 }
 
@@ -16,10 +16,11 @@ ListPairStringDoubleHandle ListPairStringDouble_fill_value(size_t count, PairStr
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairStringDouble_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::generic::Pair<std::string, double>>(*static_cast<falcon_core::generic::Pair<std::string, double>*>(value));
+    auto stored_obj = *static_cast<falcon_core::generic::Pair<std::string, double>SP*>(value);
     
-    return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>(
-        count, stored_obj);
+    return new falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>(
+        std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>>(
+            count, stored_obj));
     FALCON_C_API_END(nullptr)
 }
  
@@ -32,10 +33,11 @@ throw std::invalid_argument("Null data handle passed to ListPairStringDouble_cre
     std::vector<falcon_core::generic::PairSP<std::string, double>> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::make_shared<falcon_core::generic::Pair<std::string, double>>(*static_cast<falcon_core::generic::Pair<std::string, double>*>(data[i]))); 
+        vec.push_back(*static_cast<falcon_core::generic::Pair<std::string, double>SP*>(data[i])); 
     }
 
-    return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>(vec);
+    return new falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>(
+        std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>>(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -44,7 +46,7 @@ void ListPairStringDouble_destroy(ListPairStringDoubleHandle handle) {
     if (!handle) {
     throw std::invalid_argument("Null handle passed to ListPairStringDouble_destroy");
     }
-    delete static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(handle);
+    delete static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -53,7 +55,7 @@ size_t ListPairStringDouble_size(ListPairStringDoubleHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairStringDouble_size");
 }
-    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(handle)->size();
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(handle))->size();
     FALCON_C_API_END(0)
 }
 
@@ -62,7 +64,7 @@ bool ListPairStringDouble_empty(ListPairStringDoubleHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairStringDouble_empty");
 }
-    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(handle)->empty();
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(handle))->empty();
     FALCON_C_API_END(false)
 }
 
@@ -71,7 +73,7 @@ void ListPairStringDouble_erase_at(ListPairStringDoubleHandle handle, size_t idx
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairStringDouble_erase_at");
 }
-    static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(handle)->erase_at(idx);
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(handle))->erase_at(idx);
     FALCON_C_API_END()
 }
 
@@ -80,7 +82,7 @@ void ListPairStringDouble_clear(ListPairStringDoubleHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairStringDouble_clear");
 }
-    static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(handle)->clear();
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(handle))->clear();
     FALCON_C_API_END()
 }
 
@@ -93,9 +95,9 @@ throw std::invalid_argument("Null handle passed to ListPairStringDouble_push_bac
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairStringDouble_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::generic::Pair<std::string, double>>(*static_cast<falcon_core::generic::Pair<std::string, double>*>(value));
+    auto stored_obj = *static_cast<falcon_core::generic::Pair<std::string, double>SP*>(value);
     
-    static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(handle)->push_back(stored_obj);
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
 }
 
@@ -108,9 +110,9 @@ throw std::invalid_argument("Null handle passed to ListPairStringDouble_contains
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairStringDouble_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::generic::Pair<std::string, double>>(*static_cast<falcon_core::generic::Pair<std::string, double>*>(value));
+    auto stored_obj = *static_cast<falcon_core::generic::Pair<std::string, double>SP*>(value);
     
-    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(handle)->contains(stored_obj);
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
 }
 
@@ -123,9 +125,9 @@ throw std::invalid_argument("Null handle passed to ListPairStringDouble_index");
     if (!value) {
     throw std::invalid_argument("Null value passed to ListPairStringDouble_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::generic::Pair<std::string, double>>(*static_cast<falcon_core::generic::Pair<std::string, double>*>(value));
+    auto stored_obj = *static_cast<falcon_core::generic::Pair<std::string, double>SP*>(value);
     
-    return static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(handle)->index(stored_obj);
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
 }
 
@@ -137,11 +139,11 @@ throw std::invalid_argument("Null handle passed to ListPairStringDouble_items");
 if (!out_buffer) {
 throw std::invalid_argument("Null output buffer passed to ListPairStringDouble_items");
 }
-    auto list = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(handle);
+    auto list = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     
 for (size_t i = 0; i < n; ++i) {
-    out_buffer[i] = new falcon_core::generic::Pair<std::string, double>(*list->items()[i]);
+    out_buffer[i] = new falcon_core::generic::Pair<std::string, double>SP(list->items()[i]);
 }
     return n;
     FALCON_C_API_END(0)
@@ -152,28 +154,30 @@ PairStringDoubleHandle ListPairStringDouble_at(ListPairStringDoubleHandle handle
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairStringDouble_at");
 }
-    auto obj = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(handle)->at(idx);
+    auto obj = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(handle))->at(idx);
     return new falcon_core::generic::Pair<std::string, double>(*obj);
     FALCON_C_API_END(nullptr)
 }
 
-bool ListPairStringDouble_equal(ListPairStringDoubleHandle a, ListPairStringDoubleHandle b) {
+bool ListPairStringDouble_equal(ListPairStringDoubleHandle handle, ListPairStringDoubleHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListPairStringDouble_equal");
 }
-    auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(a);
-    auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(b);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(other);
     return *listA == *listB;
     FALCON_C_API_END(false)
 }
 
-bool ListPairStringDouble_not_equal(ListPairStringDoubleHandle a, ListPairStringDoubleHandle b) {
+bool ListPairStringDouble_not_equal(ListPairStringDoubleHandle handle, ListPairStringDoubleHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListPairStringDouble_not_equal");
 }
-    return !ListPairStringDouble_equal(a, b);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(other);
+    return *listA != *listB;
     FALCON_C_API_END(false)
 }
 
@@ -182,10 +186,10 @@ ListPairStringDoubleHandle ListPairStringDouble_intersection(ListPairStringDoubl
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListPairStringDouble_intersection");
 }
-    auto listA = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(handle);
-    auto listB = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(other);
-    auto result = listA->intersection(std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>>(*listB));
-    return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>(*result);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(other);
+    auto result = listA->intersection(listB);
+    return new falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>(result);
     FALCON_C_API_END(nullptr)
 }
 
@@ -194,7 +198,7 @@ StringHandle      ListPairStringDouble_to_json_string(ListPairStringDoubleHandle
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairStringDouble_to_json_string");
 }
-    std::string json = static_cast<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>*>(handle)->to_json_string();
+    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>*>(handle))->to_json_string();
     return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -205,7 +209,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to ListPairStringDouble_from_json_string");
 }
   auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>>(json->raw);
-  return new falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>(*ptr);
+  return new falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, double>>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

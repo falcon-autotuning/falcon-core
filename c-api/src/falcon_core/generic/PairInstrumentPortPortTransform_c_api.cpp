@@ -11,13 +11,15 @@ PairInstrumentPortPortTransformHandle PairInstrumentPortPortTransform_create(Ins
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairInstrumentPortPortTransform_create");
                 }
-                auto first_obj= std::make_shared<falcon_core::instrument_interfaces::names::InstrumentPort>(*static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(first));
+                auto first_obj= *static_cast<falcon_core::instrument_interfaces::names::InstrumentPortSP*>(first);
     
                 if (!second) {
                 throw std::invalid_argument("Null value passed to PairInstrumentPortPortTransform_create");
                 }
-                auto second_obj= std::make_shared<falcon_core::instrument_interfaces::port_transforms::PortTransform>(*static_cast<falcon_core::instrument_interfaces::port_transforms::PortTransform*>(second));
-    return new falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>(first_obj, second_obj);
+                auto second_obj= *static_cast<falcon_core::instrument_interfaces::port_transforms::PortTransformSP*>(second);
+    return new falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>(
+        std::make_shared<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>
+            (first_obj, second_obj));
     FALCON_C_API_END(nullptr)
 }
 
@@ -26,7 +28,7 @@ void PairInstrumentPortPortTransform_destroy(PairInstrumentPortPortTransformHand
 if (!handle) {
 throw std::invalid_argument("Null handle passed to PairInstrumentPortPortTransform_destroy");
 }
-    delete static_cast<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
+    delete static_cast<falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -35,8 +37,8 @@ InstrumentPortHandle PairInstrumentPortPortTransform_first(PairInstrumentPortPor
 if (!handle) {
 throw std::invalid_argument("Null handle passed to PairInstrumentPortPortTransform_first");
 }
-    auto pair = static_cast<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
-    return new falcon_core::instrument_interfaces::names::InstrumentPort(*pair->first());
+    auto pair = *static_cast<falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
+    return new falcon_core::instrument_interfaces::names::InstrumentPortSP(pair->first());
     FALCON_C_API_END(nullptr)
 }
 
@@ -45,29 +47,29 @@ PortTransformHandle PairInstrumentPortPortTransform_second(PairInstrumentPortPor
 if (!handle) {
 throw std::invalid_argument("Null handle passed to PairInstrumentPortPortTransform_second");
 }
-    auto pair = static_cast<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
-    return new falcon_core::instrument_interfaces::port_transforms::PortTransform(*pair->second());
+    auto pair = *static_cast<falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
+    return new falcon_core::instrument_interfaces::port_transforms::PortTransformSP(pair->second());
     FALCON_C_API_END(nullptr)
 }
 
-bool PairInstrumentPortPortTransform_equal(PairInstrumentPortPortTransformHandle a, PairInstrumentPortPortTransformHandle b) {
+bool PairInstrumentPortPortTransform_equal(PairInstrumentPortPortTransformHandle handle, PairInstrumentPortPortTransformHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to PairInstrumentPortPortTransform_equal");
 }
-    auto pair_a = static_cast<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(a);
-    auto pair_b = static_cast<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(b);
+    auto pair_a = *static_cast<falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
+    auto pair_b = *static_cast<falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(other);
     return *pair_a == *pair_b;
     FALCON_C_API_END(false)
 }
 
-bool PairInstrumentPortPortTransform_not_equal(PairInstrumentPortPortTransformHandle a, PairInstrumentPortPortTransformHandle b) {
+bool PairInstrumentPortPortTransform_not_equal(PairInstrumentPortPortTransformHandle handle, PairInstrumentPortPortTransformHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to PairInstrumentPortPortTransform_not_equal");
 }
-    auto pair_a = static_cast<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(a);
-    auto pair_b = static_cast<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(b);
+    auto pair_a = *static_cast<falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
+    auto pair_b = *static_cast<falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(other);
     return *pair_a != *pair_b;
     FALCON_C_API_END(false)
 }
@@ -77,7 +79,7 @@ StringHandle      PairInstrumentPortPortTransform_to_json_string(PairInstrumentP
 if (!handle) {
 throw std::invalid_argument("Null handle passed to PairInstrumentPortPortTransform_to_json_string");
 }
-std::string json = static_cast<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle)->to_json_string();
+std::string json = (*static_cast<falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle))->to_json_string();
   return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -88,7 +90,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to PairInstrumentPortPortTransform_from_json_string");
 }
   auto ptr = falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>::from_json_string<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>>(json->raw);
-  return new falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>(*ptr);
+  return new falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

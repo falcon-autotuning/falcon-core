@@ -8,7 +8,7 @@
 extern "C" {
 MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_create_empty() {
     FALCON_C_API_BEGIN
-    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>(); 
+    return new falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>(std::make_shared<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>>()); 
     FALCON_C_API_END(nullptr)
 }
 
@@ -20,11 +20,10 @@ throw std::invalid_argument("Null data pointer passed to MapInterpretationContex
     std::vector<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::make_shared<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>>
-        (*static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(
-            data[i])));
+        vec.push_back(*static_cast<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(data[i]));
     }
-    return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>(vec);
+    return new falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>(
+        std::make_shared<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>>(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -33,7 +32,7 @@ void MapInterpretationContextQuantity_destroy(MapInterpretationContextQuantityHa
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_destroy");
 }
-    delete static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>*>(handle);
+    delete static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -46,15 +45,14 @@ throw std::invalid_argument("Null handle passed to MapInterpretationContextQuant
             if (!key) {
             throw std::invalid_argument("Null key passed to MapInterpretationContextQuantity_at");
             }
-            auto temp_key = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key);
-auto correct_key = std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(temp_key);
+            auto correct_key = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP*>(key);
     
             if (!value) {
             throw std::invalid_argument("Null value passed to MapInterpretationContextQuantity_at");
             }
-            auto temp_value = *static_cast<falcon_core::math::Quantity*>(value);
-auto correct_value = std::make_shared<falcon_core::math::Quantity>(temp_value);
-    static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle)->insert_or_assign(correct_key,correct_value);
+            auto correct_value = *static_cast<falcon_core::math::QuantitySP*>(value);
+    (*static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle))->
+        insert_or_assign(correct_key,correct_value);
     FALCON_C_API_END()
 }
 
@@ -67,15 +65,14 @@ throw std::invalid_argument("Null handle passed to MapInterpretationContextQuant
             if (!key) {
             throw std::invalid_argument("Null key passed to MapInterpretationContextQuantity_at");
             }
-            auto temp_key = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key);
-auto correct_key = std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(temp_key);
+            auto correct_key = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP*>(key);
     
             if (!value) {
             throw std::invalid_argument("Null value passed to MapInterpretationContextQuantity_at");
             }
-            auto temp_value = *static_cast<falcon_core::math::Quantity*>(value);
-auto correct_value = std::make_shared<falcon_core::math::Quantity>(temp_value);
-    static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle)->insert(correct_key,correct_value);
+            auto correct_value = *static_cast<falcon_core::math::QuantitySP*>(value);
+    (*static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle))->
+        insert(correct_key,correct_value);
     FALCON_C_API_END()
 }
 
@@ -88,9 +85,8 @@ throw std::invalid_argument("Null handle passed to MapInterpretationContextQuant
             if (!key) {
             throw std::invalid_argument("Null key passed to MapInterpretationContextQuantity_at");
             }
-            auto temp_key = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key);
-auto correct_key = std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(temp_key);
-    return new falcon_core::math::Quantity(*static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle)->at(correct_key));
+            auto correct_key = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP*>(key);
+    return new falcon_core::math::QuantitySP((*static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle))->at(correct_key));
     FALCON_C_API_END(nullptr)
 }
 
@@ -103,9 +99,9 @@ throw std::invalid_argument("Null handle passed to MapInterpretationContextQuant
             if (!key) {
             throw std::invalid_argument("Null key passed to MapInterpretationContextQuantity_at");
             }
-            auto temp_key = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key);
-auto correct_key = std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(temp_key);
-    return static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle)->erase(correct_key);
+            auto correct_key = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP*>(key);
+    return (*static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle))->
+        erase(correct_key);
     FALCON_C_API_END()
 }
 
@@ -114,7 +110,8 @@ size_t MapInterpretationContextQuantity_size(MapInterpretationContextQuantityHan
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_size");
 }
-    return static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle)->size();
+    return (*static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle))->
+        size();
     FALCON_C_API_END(0)
 }
 
@@ -123,7 +120,8 @@ bool MapInterpretationContextQuantity_empty(MapInterpretationContextQuantityHand
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_empty");
 }
-    return static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle)->empty();
+    return (*static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle))->
+        empty();
     FALCON_C_API_END(false)
 }
 
@@ -132,7 +130,8 @@ void MapInterpretationContextQuantity_clear(MapInterpretationContextQuantityHand
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_clear");
 }
-    return static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle)->clear();
+    return (*static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle))->
+        clear();
     FALCON_C_API_END()
 }
 
@@ -145,9 +144,9 @@ throw std::invalid_argument("Null handle passed to MapInterpretationContextQuant
             if (!key) {
             throw std::invalid_argument("Null key passed to MapInterpretationContextQuantity_at");
             }
-            auto temp_key = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(key);
-auto correct_key = std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(temp_key);
-    return static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle)->contains(correct_key);
+            auto correct_key = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP*>(key);
+    return (*static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle))->
+        contains(correct_key);
     FALCON_C_API_END(false)
 }
 
@@ -156,9 +155,8 @@ ListInterpretationContextHandle MapInterpretationContextQuantity_keys(MapInterpr
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_keys");
 }
-    auto map = static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle);
-    auto keys_sp = map->keys(); // shared_ptr<falcon_core::generic::List<Key>>
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*keys_sp);
+    auto map = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle);
+    return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(map->keys());
     FALCON_C_API_END(nullptr)
 }
 
@@ -167,9 +165,8 @@ ListQuantityHandle MapInterpretationContextQuantity_values(MapInterpretationCont
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_values");
 }
-    auto map = static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle);
-    auto values_sp = map->values(); // shared_ptr<falcon_core::generic::List<Value>>
-    return new falcon_core::generic::List<falcon_core::math::Quantity>(*values_sp);
+    auto map = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle);
+    return new falcon_core::generic::ListSP<falcon_core::math::Quantity>(map->values());
     FALCON_C_API_END(nullptr)
 }
 
@@ -178,29 +175,31 @@ ListPairInterpretationContextQuantityHandle MapInterpretationContextQuantity_ite
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_items");
 }
-    auto map = static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle);
+    auto map = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle);
     falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>> items_sp = map->items(); 
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>>(*items_sp);
+    return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>>(items_sp);
     FALCON_C_API_END(nullptr)
 }
 
-bool MapInterpretationContextQuantity_equal(MapInterpretationContextQuantityHandle a, MapInterpretationContextQuantityHandle b) {
+bool MapInterpretationContextQuantity_equal(MapInterpretationContextQuantityHandle handle, MapInterpretationContextQuantityHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_equal");
 }
-    auto listA = static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(a);
-    auto listB = static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(b);
+    auto listA = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(other);
     return *listA == *listB;
     FALCON_C_API_END(false)
 }
 
-bool MapInterpretationContextQuantity_not_equal(MapInterpretationContextQuantityHandle a, MapInterpretationContextQuantityHandle b) {
+bool MapInterpretationContextQuantity_not_equal(MapInterpretationContextQuantityHandle handle, MapInterpretationContextQuantityHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_not_equal");
 }
-    return !MapInterpretationContextQuantity_equal(a, b);
+    auto listA = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(other);
+    return *listA != *listB;
     FALCON_C_API_END(false)
 }
 
@@ -209,7 +208,7 @@ StringHandle      MapInterpretationContextQuantity_to_json_string(MapInterpretat
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_to_json_string");
 }
-std::string json = static_cast<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle)->to_json_string();
+std::string json = (*static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle))->to_json_string();
   return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -220,7 +219,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to MapInterpretationContextQuantity_from_json_string");
 }
   auto ptr = falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>::from_json_string<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>>(json->raw);
-  return new falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>(*ptr);
+  return new falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

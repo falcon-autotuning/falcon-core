@@ -8,7 +8,7 @@
 extern "C" {
 MapInstrumentPortPortTransformHandle MapInstrumentPortPortTransform_create_empty() {
     FALCON_C_API_BEGIN
-    return new falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>(); 
+    return new falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>(std::make_shared<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>>()); 
     FALCON_C_API_END(nullptr)
 }
 
@@ -20,11 +20,10 @@ throw std::invalid_argument("Null data pointer passed to MapInstrumentPortPortTr
     std::vector<falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>> vec;
     vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::make_shared<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>>
-        (*static_cast<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(
-            data[i])));
+        vec.push_back(*static_cast<falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(data[i]));
     }
-    return new falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>(vec);
+    return new falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>(
+        std::make_shared<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>>(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -33,7 +32,7 @@ void MapInstrumentPortPortTransform_destroy(MapInstrumentPortPortTransformHandle
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransform_destroy");
 }
-    delete static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
+    delete static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -46,15 +45,14 @@ throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransfor
             if (!key) {
             throw std::invalid_argument("Null key passed to MapInstrumentPortPortTransform_at");
             }
-            auto temp_key = *static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(key);
-auto correct_key = std::make_shared<falcon_core::instrument_interfaces::names::InstrumentPort>(temp_key);
+            auto correct_key = *static_cast<falcon_core::instrument_interfaces::names::InstrumentPortSP*>(key);
     
             if (!value) {
             throw std::invalid_argument("Null value passed to MapInstrumentPortPortTransform_at");
             }
-            auto temp_value = *static_cast<falcon_core::instrument_interfaces::port_transforms::PortTransform*>(value);
-auto correct_value = std::make_shared<falcon_core::instrument_interfaces::port_transforms::PortTransform>(temp_value);
-    static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle)->insert_or_assign(correct_key,correct_value);
+            auto correct_value = *static_cast<falcon_core::instrument_interfaces::port_transforms::PortTransformSP*>(value);
+    (*static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle))->
+        insert_or_assign(correct_key,correct_value);
     FALCON_C_API_END()
 }
 
@@ -67,15 +65,14 @@ throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransfor
             if (!key) {
             throw std::invalid_argument("Null key passed to MapInstrumentPortPortTransform_at");
             }
-            auto temp_key = *static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(key);
-auto correct_key = std::make_shared<falcon_core::instrument_interfaces::names::InstrumentPort>(temp_key);
+            auto correct_key = *static_cast<falcon_core::instrument_interfaces::names::InstrumentPortSP*>(key);
     
             if (!value) {
             throw std::invalid_argument("Null value passed to MapInstrumentPortPortTransform_at");
             }
-            auto temp_value = *static_cast<falcon_core::instrument_interfaces::port_transforms::PortTransform*>(value);
-auto correct_value = std::make_shared<falcon_core::instrument_interfaces::port_transforms::PortTransform>(temp_value);
-    static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle)->insert(correct_key,correct_value);
+            auto correct_value = *static_cast<falcon_core::instrument_interfaces::port_transforms::PortTransformSP*>(value);
+    (*static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle))->
+        insert(correct_key,correct_value);
     FALCON_C_API_END()
 }
 
@@ -88,9 +85,8 @@ throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransfor
             if (!key) {
             throw std::invalid_argument("Null key passed to MapInstrumentPortPortTransform_at");
             }
-            auto temp_key = *static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(key);
-auto correct_key = std::make_shared<falcon_core::instrument_interfaces::names::InstrumentPort>(temp_key);
-    return new falcon_core::instrument_interfaces::port_transforms::PortTransform(*static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle)->at(correct_key));
+            auto correct_key = *static_cast<falcon_core::instrument_interfaces::names::InstrumentPortSP*>(key);
+    return new falcon_core::instrument_interfaces::port_transforms::PortTransformSP((*static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle))->at(correct_key));
     FALCON_C_API_END(nullptr)
 }
 
@@ -103,9 +99,9 @@ throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransfor
             if (!key) {
             throw std::invalid_argument("Null key passed to MapInstrumentPortPortTransform_at");
             }
-            auto temp_key = *static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(key);
-auto correct_key = std::make_shared<falcon_core::instrument_interfaces::names::InstrumentPort>(temp_key);
-    return static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle)->erase(correct_key);
+            auto correct_key = *static_cast<falcon_core::instrument_interfaces::names::InstrumentPortSP*>(key);
+    return (*static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle))->
+        erase(correct_key);
     FALCON_C_API_END()
 }
 
@@ -114,7 +110,8 @@ size_t MapInstrumentPortPortTransform_size(MapInstrumentPortPortTransformHandle 
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransform_size");
 }
-    return static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle)->size();
+    return (*static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle))->
+        size();
     FALCON_C_API_END(0)
 }
 
@@ -123,7 +120,8 @@ bool MapInstrumentPortPortTransform_empty(MapInstrumentPortPortTransformHandle h
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransform_empty");
 }
-    return static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle)->empty();
+    return (*static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle))->
+        empty();
     FALCON_C_API_END(false)
 }
 
@@ -132,7 +130,8 @@ void MapInstrumentPortPortTransform_clear(MapInstrumentPortPortTransformHandle h
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransform_clear");
 }
-    return static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle)->clear();
+    return (*static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle))->
+        clear();
     FALCON_C_API_END()
 }
 
@@ -145,9 +144,9 @@ throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransfor
             if (!key) {
             throw std::invalid_argument("Null key passed to MapInstrumentPortPortTransform_at");
             }
-            auto temp_key = *static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(key);
-auto correct_key = std::make_shared<falcon_core::instrument_interfaces::names::InstrumentPort>(temp_key);
-    return static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle)->contains(correct_key);
+            auto correct_key = *static_cast<falcon_core::instrument_interfaces::names::InstrumentPortSP*>(key);
+    return (*static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle))->
+        contains(correct_key);
     FALCON_C_API_END(false)
 }
 
@@ -156,9 +155,8 @@ ListInstrumentPortHandle MapInstrumentPortPortTransform_keys(MapInstrumentPortPo
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransform_keys");
 }
-    auto map = static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
-    auto keys_sp = map->keys(); // shared_ptr<falcon_core::generic::List<Key>>
-    return new falcon_core::generic::List<falcon_core::instrument_interfaces::names::InstrumentPort>(*keys_sp);
+    auto map = *static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
+    return new falcon_core::generic::ListSP<falcon_core::instrument_interfaces::names::InstrumentPort>(map->keys());
     FALCON_C_API_END(nullptr)
 }
 
@@ -167,9 +165,8 @@ ListPortTransformHandle MapInstrumentPortPortTransform_values(MapInstrumentPortP
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransform_values");
 }
-    auto map = static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
-    auto values_sp = map->values(); // shared_ptr<falcon_core::generic::List<Value>>
-    return new falcon_core::generic::List<falcon_core::instrument_interfaces::port_transforms::PortTransform>(*values_sp);
+    auto map = *static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
+    return new falcon_core::generic::ListSP<falcon_core::instrument_interfaces::port_transforms::PortTransform>(map->values());
     FALCON_C_API_END(nullptr)
 }
 
@@ -178,29 +175,31 @@ ListPairInstrumentPortPortTransformHandle MapInstrumentPortPortTransform_items(M
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransform_items");
 }
-    auto map = static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
+    auto map = *static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
     falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>> items_sp = map->items(); 
-    return new falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>>(*items_sp);
+    return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>>(items_sp);
     FALCON_C_API_END(nullptr)
 }
 
-bool MapInstrumentPortPortTransform_equal(MapInstrumentPortPortTransformHandle a, MapInstrumentPortPortTransformHandle b) {
+bool MapInstrumentPortPortTransform_equal(MapInstrumentPortPortTransformHandle handle, MapInstrumentPortPortTransformHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransform_equal");
 }
-    auto listA = static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(a);
-    auto listB = static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(b);
+    auto listA = *static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(other);
     return *listA == *listB;
     FALCON_C_API_END(false)
 }
 
-bool MapInstrumentPortPortTransform_not_equal(MapInstrumentPortPortTransformHandle a, MapInstrumentPortPortTransformHandle b) {
+bool MapInstrumentPortPortTransform_not_equal(MapInstrumentPortPortTransformHandle handle, MapInstrumentPortPortTransformHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransform_not_equal");
 }
-    return !MapInstrumentPortPortTransform_equal(a, b);
+    auto listA = *static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(other);
+    return *listA != *listB;
     FALCON_C_API_END(false)
 }
 
@@ -209,7 +208,7 @@ StringHandle      MapInstrumentPortPortTransform_to_json_string(MapInstrumentPor
 if (!handle) {
 throw std::invalid_argument("Null handle passed to MapInstrumentPortPortTransform_to_json_string");
 }
-std::string json = static_cast<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle)->to_json_string();
+std::string json = (*static_cast<falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle))->to_json_string();
   return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -220,7 +219,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to MapInstrumentPortPortTransform_from_json_string");
 }
   auto ptr = falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>::from_json_string<falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>>(json->raw);
-  return new falcon_core::generic::Map<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>(*ptr);
+  return new falcon_core::generic::MapSP<falcon_core::instrument_interfaces::names::InstrumentPort,falcon_core::instrument_interfaces::port_transforms::PortTransform>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

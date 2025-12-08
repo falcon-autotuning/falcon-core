@@ -6,7 +6,7 @@
 extern "C" {
 ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_create_empty() {
     FALCON_C_API_BEGIN
-    return new falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>();
+    return new falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>(std::make_shared<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>>());
     FALCON_C_API_END(nullptr)
 }
 
@@ -16,10 +16,11 @@ ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_fill_value(size_t coun
     if (!value) {
     throw std::invalid_argument("Null value passed to ListCoupledLabelledDomain_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value));
+    auto stored_obj = *static_cast<falcon_core::math::domains::CoupledLabelledDomainSP*>(value);
     
-    return new falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>(
-        count, stored_obj);
+    return new falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>(
+        std::make_shared<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>>(
+            count, stored_obj));
     FALCON_C_API_END(nullptr)
 }
  
@@ -32,10 +33,11 @@ throw std::invalid_argument("Null data handle passed to ListCoupledLabelledDomai
     std::vector<falcon_core::math::domains::CoupledLabelledDomainSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(data[i]))); 
+        vec.push_back(*static_cast<falcon_core::math::domains::CoupledLabelledDomainSP*>(data[i])); 
     }
 
-    return new falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>(vec);
+    return new falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>(
+        std::make_shared<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>>(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -44,7 +46,7 @@ void ListCoupledLabelledDomain_destroy(ListCoupledLabelledDomainHandle handle) {
     if (!handle) {
     throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_destroy");
     }
-    delete static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle);
+    delete static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -53,7 +55,7 @@ size_t ListCoupledLabelledDomain_size(ListCoupledLabelledDomainHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_size");
 }
-    return static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->size();
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle))->size();
     FALCON_C_API_END(0)
 }
 
@@ -62,7 +64,7 @@ bool ListCoupledLabelledDomain_empty(ListCoupledLabelledDomainHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_empty");
 }
-    return static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->empty();
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle))->empty();
     FALCON_C_API_END(false)
 }
 
@@ -71,7 +73,7 @@ void ListCoupledLabelledDomain_erase_at(ListCoupledLabelledDomainHandle handle, 
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_erase_at");
 }
-    static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->erase_at(idx);
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle))->erase_at(idx);
     FALCON_C_API_END()
 }
 
@@ -80,7 +82,7 @@ void ListCoupledLabelledDomain_clear(ListCoupledLabelledDomainHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_clear");
 }
-    static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->clear();
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle))->clear();
     FALCON_C_API_END()
 }
 
@@ -93,9 +95,9 @@ throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_pus
     if (!value) {
     throw std::invalid_argument("Null value passed to ListCoupledLabelledDomain_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value));
+    auto stored_obj = *static_cast<falcon_core::math::domains::CoupledLabelledDomainSP*>(value);
     
-    static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->push_back(stored_obj);
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
 }
 
@@ -108,9 +110,9 @@ throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_con
     if (!value) {
     throw std::invalid_argument("Null value passed to ListCoupledLabelledDomain_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value));
+    auto stored_obj = *static_cast<falcon_core::math::domains::CoupledLabelledDomainSP*>(value);
     
-    return static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->contains(stored_obj);
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
 }
 
@@ -123,9 +125,9 @@ throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_ind
     if (!value) {
     throw std::invalid_argument("Null value passed to ListCoupledLabelledDomain_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(*static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(value));
+    auto stored_obj = *static_cast<falcon_core::math::domains::CoupledLabelledDomainSP*>(value);
     
-    return static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->index(stored_obj);
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
 }
 
@@ -137,11 +139,11 @@ throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_ite
 if (!out_buffer) {
 throw std::invalid_argument("Null output buffer passed to ListCoupledLabelledDomain_items");
 }
-    auto list = static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle);
+    auto list = *static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     
 for (size_t i = 0; i < n; ++i) {
-    out_buffer[i] = new falcon_core::math::domains::CoupledLabelledDomain(*list->items()[i]);
+    out_buffer[i] = new falcon_core::math::domains::CoupledLabelledDomainSP(list->items()[i]);
 }
     return n;
     FALCON_C_API_END(0)
@@ -152,28 +154,30 @@ CoupledLabelledDomainHandle ListCoupledLabelledDomain_at(ListCoupledLabelledDoma
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_at");
 }
-    auto obj = static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->at(idx);
+    auto obj = (*static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle))->at(idx);
     return new falcon_core::math::domains::CoupledLabelledDomain(*obj);
     FALCON_C_API_END(nullptr)
 }
 
-bool ListCoupledLabelledDomain_equal(ListCoupledLabelledDomainHandle a, ListCoupledLabelledDomainHandle b) {
+bool ListCoupledLabelledDomain_equal(ListCoupledLabelledDomainHandle handle, ListCoupledLabelledDomainHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_equal");
 }
-    auto listA = static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(a);
-    auto listB = static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(b);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(other);
     return *listA == *listB;
     FALCON_C_API_END(false)
 }
 
-bool ListCoupledLabelledDomain_not_equal(ListCoupledLabelledDomainHandle a, ListCoupledLabelledDomainHandle b) {
+bool ListCoupledLabelledDomain_not_equal(ListCoupledLabelledDomainHandle handle, ListCoupledLabelledDomainHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_not_equal");
 }
-    return !ListCoupledLabelledDomain_equal(a, b);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(other);
+    return *listA != *listB;
     FALCON_C_API_END(false)
 }
 
@@ -182,10 +186,10 @@ ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_intersection(ListCoupl
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_intersection");
 }
-    auto listA = static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle);
-    auto listB = static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(other);
-    auto result = listA->intersection(std::make_shared<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>>(*listB));
-    return new falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>(*result);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(other);
+    auto result = listA->intersection(listB);
+    return new falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>(result);
     FALCON_C_API_END(nullptr)
 }
 
@@ -194,7 +198,7 @@ StringHandle      ListCoupledLabelledDomain_to_json_string(ListCoupledLabelledDo
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListCoupledLabelledDomain_to_json_string");
 }
-    std::string json = static_cast<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>*>(handle)->to_json_string();
+    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle))->to_json_string();
     return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -205,7 +209,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to ListCoupledLabelledDomain_from_json_string");
 }
   auto ptr = falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>::from_json_string<falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>>(json->raw);
-  return new falcon_core::generic::List<falcon_core::math::domains::CoupledLabelledDomain>(*ptr);
+  return new falcon_core::generic::ListSP<falcon_core::math::domains::CoupledLabelledDomain>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

@@ -7,8 +7,8 @@
 extern "C" {
 AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_create_empty() {
     FALCON_C_API_BEGIN
-    return new falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>(
-        falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>());
+    return new falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>(
+        std::make_shared<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>>());
     FALCON_C_API_END(nullptr)
 }
 
@@ -17,9 +17,9 @@ AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_create(ListLabelle
 if (!data) {
 throw std::invalid_argument("Null data handle passed to AxesLabelledMeasuredArray1D_create");
 }
-    auto list = *static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(data);
-    return new falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>(
-            std::make_shared<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>>(list));
+    auto list = *static_cast<falcon_core::generic::ListSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(data);
+    return new falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>(
+            std::make_shared<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>>(list));
     FALCON_C_API_END(nullptr)
 }
 
@@ -28,7 +28,7 @@ void AxesLabelledMeasuredArray1D_destroy(AxesLabelledMeasuredArray1DHandle handl
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray1D_destroy");
 }
-    delete static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle);
+    delete static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -37,7 +37,7 @@ size_t AxesLabelledMeasuredArray1D_size(AxesLabelledMeasuredArray1DHandle handle
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray1D_size");
 }
-    return static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle)->size();
+    return (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle))->size();
     FALCON_C_API_END(0)
 }
 
@@ -46,7 +46,7 @@ bool AxesLabelledMeasuredArray1D_empty(AxesLabelledMeasuredArray1DHandle handle)
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray1D_empty");
 }
-    return static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle)->empty();
+    return (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle))->empty();
     FALCON_C_API_END(false)
 }
 
@@ -55,7 +55,7 @@ void AxesLabelledMeasuredArray1D_erase_at(AxesLabelledMeasuredArray1DHandle hand
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray1D_erase_at");
 }
-    static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle)->erase_at(idx);
+    (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle))->erase_at(idx);
     FALCON_C_API_END()
 }
 
@@ -64,7 +64,7 @@ void AxesLabelledMeasuredArray1D_clear(AxesLabelledMeasuredArray1DHandle handle)
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray1D_clear");
 }
-    static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle)->clear();
+    (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle))->clear();
     FALCON_C_API_END()
 }
 
@@ -77,8 +77,8 @@ throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray1D_p
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesLabelledMeasuredArray1D_fill_value");
             }
-            auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray1D>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray1D*>(value));
-    static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle)->push_back(stored_obj);
+            auto stored_obj = *static_cast<falcon_core::math::arrays::LabelledMeasuredArray1DSP*>(value);
+    (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
 }
 
@@ -91,8 +91,8 @@ throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray1D_c
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesLabelledMeasuredArray1D_fill_value");
             }
-            auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray1D>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray1D*>(value));
-    return static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle)->contains(stored_obj);
+            auto stored_obj = *static_cast<falcon_core::math::arrays::LabelledMeasuredArray1DSP*>(value);
+    return (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
 }
 
@@ -105,8 +105,8 @@ throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray1D_i
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesLabelledMeasuredArray1D_fill_value");
             }
-            auto stored_obj = std::make_shared<falcon_core::math::arrays::LabelledMeasuredArray1D>(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray1D*>(value));
-    return static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle)->index(stored_obj);
+            auto stored_obj = *static_cast<falcon_core::math::arrays::LabelledMeasuredArray1DSP*>(value);
+    return (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
 }
 
@@ -118,11 +118,11 @@ throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray1D_i
 if (!out_buffer) {
 throw std::invalid_argument("Null output buffer passed to AxesLabelledMeasuredArray1D_items");
 }
-    auto list = static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle);
+    auto list = *static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     
 for (size_t i = 0; i < n; ++i) {
-    out_buffer[i] = new falcon_core::math::arrays::LabelledMeasuredArray1D(*list->items()[i]);
+    out_buffer[i] = new falcon_core::math::arrays::LabelledMeasuredArray1DSP(list->items()[i]);
 }
     return n;
     FALCON_C_API_END(0)
@@ -133,28 +133,30 @@ LabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_at(AxesLabelledMeasure
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray1D_at");
 }
-    auto obj = static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle)->at(idx);
-    return new falcon_core::math::arrays::LabelledMeasuredArray1D(*obj);
+    auto obj = (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle))->at(idx);
+    return new falcon_core::math::arrays::LabelledMeasuredArray1DSP(obj);
     FALCON_C_API_END(nullptr)
 }
 
-bool AxesLabelledMeasuredArray1D_equal(AxesLabelledMeasuredArray1DHandle a, AxesLabelledMeasuredArray1DHandle b) {
+bool AxesLabelledMeasuredArray1D_equal(AxesLabelledMeasuredArray1DHandle handle, AxesLabelledMeasuredArray1DHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray1D_equal");
 }
-    auto listA = static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(a);
-    auto listB = static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(b);
+    auto listA = *static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle);
+    auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(other);
     return *listA == *listB;
     FALCON_C_API_END(false)
 }
 
-bool AxesLabelledMeasuredArray1D_not_equal(AxesLabelledMeasuredArray1DHandle a, AxesLabelledMeasuredArray1DHandle b) {
+bool AxesLabelledMeasuredArray1D_not_equal(AxesLabelledMeasuredArray1DHandle handle, AxesLabelledMeasuredArray1DHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray1D_not_equal");
 }
-    return !AxesLabelledMeasuredArray1D_equal(a, b);
+    auto listA = *static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle);
+    auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(other);
+    return *listA != *listB;
     FALCON_C_API_END(false)
 }
 
@@ -163,10 +165,10 @@ AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_intersection(AxesL
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray1D_intersection");
 }
-    auto listA = static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle);
-    auto listB = static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(other);
-    auto result = listA->intersection(std::make_shared<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>>(*listB));
-    return new falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>(result);
+    auto listA = *static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle);
+    auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(other);
+    auto result = listA->intersection(listB);
+    return new falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>(std::make_shared<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>>(result));
     FALCON_C_API_END(nullptr)
 }
 
@@ -175,7 +177,7 @@ StringHandle      AxesLabelledMeasuredArray1D_to_json_string(AxesLabelledMeasure
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesLabelledMeasuredArray1D_to_json_string");
 }
-    std::string json = static_cast<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle)->to_json_string();
+    std::string json = (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle))->to_json_string();
     return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -186,7 +188,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to AxesLabelledMeasuredArray1D_from_json_string");
 }
   auto ptr = falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>::from_json_string<falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>>(json->raw);
-  return new falcon_core::math::Axes<falcon_core::math::arrays::LabelledMeasuredArray1D>(*ptr);
+  return new falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledMeasuredArray1D>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

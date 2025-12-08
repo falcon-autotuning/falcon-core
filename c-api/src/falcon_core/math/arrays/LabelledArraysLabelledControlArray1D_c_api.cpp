@@ -12,8 +12,9 @@ LabelledArraysLabelledControlArray1DHandle LabelledArraysLabelledControlArray1D_
     if (!arrays) {
     throw std::invalid_argument("Null arrays handle passed to LabelledArraysLabelledControlArray1D_create");
     }
-    auto list = static_cast<falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray1D>*>(arrays);
-    return new falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>(list->items());
+    auto list = *static_cast<falcon_core::generic::ListSP<falcon_core::math::arrays::LabelledControlArray1D>*>(arrays);
+    return new falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>(
+        std::make_shared<falcon_core::math::arrays::LabelledArrays<cpp_type>>(list->items()));
     FALCON_C_API_END(nullptr)
 }
 
@@ -22,7 +23,7 @@ void LabelledArraysLabelledControlArray1D_destroy(LabelledArraysLabelledControlA
 if (!handle) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray1D_destroy");
 }
-    delete static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle);
+    delete static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -32,7 +33,10 @@ ListLabelledControlArray1DHandle LabelledArraysLabelledControlArray1D_arrays(
 if (!handle) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray1D_arrays");
 }
-    return new falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray1D>(static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle)->items());
+    return new falcon_core::generic::ListSP<falcon_core::math::arrays::LabelledControlArray1D>(
+        std::make_shared<falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray1D>(
+            (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(
+                handle))->items()));
     FALCON_C_API_END(nullptr)
 }
 
@@ -42,7 +46,7 @@ ListAcquisitionContextHandle LabelledArraysLabelledControlArray1D_labels(
 if (!handle) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray1D_labels");
 }
-    return new falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(*static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle)->labels());
+    return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>((*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle))->labels());
     FALCON_C_API_END(nullptr)
 }
 
@@ -52,7 +56,7 @@ bool LabelledArraysLabelledControlArray1D_is_control_arrays(
 if (!handle) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray1D_is_control_arrays");
 }
-    return static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle)->is_control_arrays();
+    return (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle))->is_control_arrays();
     FALCON_C_API_END(false)
 }
 
@@ -62,7 +66,7 @@ bool LabelledArraysLabelledControlArray1D_is_measured_arrays(
     if (!handle) {
     throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray1D_is_measured_arrays");
     }
-    return static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle)->is_measured_arrays();
+    return (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle))->is_measured_arrays();
     FALCON_C_API_END(false)
 }
 
@@ -71,7 +75,7 @@ LabelledControlArray1DHandle LabelledArraysLabelledControlArray1D_at(LabelledArr
 if (!handle) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray1D_at");
 }
-    auto obj = static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle)->at(idx);
+    auto obj = (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle))->at(idx);
     return new falcon_core::math::arrays::LabelledControlArray1D(*obj);
     FALCON_C_API_END(nullptr)
 }
@@ -81,10 +85,12 @@ LabelledArraysLabelledControlArray1DHandle LabelledArraysLabelledControlArray1D_
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray1D_intersection");
 }
-    auto listA = static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle);
-    auto listB = static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(other);
-    falcon_core::generic::ListSP<falcon_core::math::arrays::LabelledControlArray1D> result = listA->intersection(std::make_shared<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>>(*listB));
-    return new falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>(result->items());
+    auto listA = *static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle);
+    auto listB = *static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(other);
+    falcon_core::generic::ListSP<falcon_core::math::arrays::LabelledControlArray1D> result = listA->intersection(listB);
+    return new falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>(
+        std::make_shared<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>>(
+            result->items()));
     FALCON_C_API_END(nullptr)
 }
 
@@ -93,7 +99,7 @@ size_t LabelledArraysLabelledControlArray1D_size(LabelledArraysLabelledControlAr
 if (!handle) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray1D_size");
 }
-    return static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle)->size();
+    return (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle))->size();
     FALCON_C_API_END(0)
 }
 
@@ -102,7 +108,7 @@ bool LabelledArraysLabelledControlArray1D_empty(LabelledArraysLabelledControlArr
 if (!handle) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray1D_empty");
 }
-    return static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle)->empty();
+    return (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle))->empty();
     FALCON_C_API_END(false)
 }
 
@@ -111,7 +117,7 @@ void LabelledArraysLabelledControlArray1D_erase_at(LabelledArraysLabelledControl
 if (!handle) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray1D_erase_at");
 }
-    static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle)->erase_at(idx);
+    (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle))->erase_at(idx);
     FALCON_C_API_END()
 }
 
@@ -120,7 +126,7 @@ void LabelledArraysLabelledControlArray1D_clear(LabelledArraysLabelledControlArr
 if (!handle) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray1D_clear");
 }
-    static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle)->clear();
+    (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle))->clear();
     FALCON_C_API_END()
 }
 
@@ -132,8 +138,8 @@ throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControl
 if (!value) {
 throw std::invalid_argument("Null value passed to LabelledArraysLabelledControlArray1D_push_back");
 }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledControlArray1D>(static_cast<falcon_core::math::arrays::LabelledControlArray1D*>(value), [](falcon_core::math::arrays::LabelledControlArray1D*) {} );
-    static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle)->push_back(stored_obj);
+    auto stored_obj = falcon_core::math::arrays::LabelledControlArray1DSP(*static_cast<falcon_core::math::arrays::LabelledControlArray1DSP*>(value));
+    (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
 }
 
@@ -145,8 +151,8 @@ throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControl
 if (!value) {
 throw std::invalid_argument("Null value passed to LabelledArraysLabelledControlArray1D_contains");
 }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledControlArray1D>(static_cast<falcon_core::math::arrays::LabelledControlArray1D*>(value), [](falcon_core::math::arrays::LabelledControlArray1D*) {} );
-    return static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle)->contains(stored_obj);
+    auto stored_obj = falcon_core::math::arrays::LabelledControlArray1DSP(*static_cast<falcon_core::math::arrays::LabelledControlArray1DSP*>(value));
+    return (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
 }
 
@@ -158,8 +164,8 @@ throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControl
 if (!value) {
 throw std::invalid_argument("Null value passed to LabelledArraysLabelledControlArray1D_index");
 }
-    auto stored_obj = std::shared_ptr<falcon_core::math::arrays::LabelledControlArray1D>(static_cast<falcon_core::math::arrays::LabelledControlArray1D*>(value), [](falcon_core::math::arrays::LabelledControlArray1D*) {} );
-    return static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle)->index(stored_obj);
+    auto stored_obj = falcon_core::math::arrays::LabelledControlArray1DSP(*static_cast<falcon_core::math::arrays::LabelledControlArray1DSP*>(value));
+    return (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
 }
 
@@ -168,8 +174,8 @@ bool LabelledArraysLabelledControlArray1D_equal(LabelledArraysLabelledControlArr
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray1D_equal");
 }
-    auto listA = static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle);
-    auto listB = static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(other);
+    auto listA = *static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle);
+    auto listB = *static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(other);
     return *listA == *listB;
     FALCON_C_API_END(false)
 }
@@ -179,7 +185,9 @@ bool LabelledArraysLabelledControlArray1D_not_equal(LabelledArraysLabelledContro
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray1D_not_equal");
 }
-    return !LabelledArraysLabelledControlArray1D_equal(handle, other);
+    auto listA = *static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle);
+    auto listB = *static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(other);
+    return *listA != *listB;
     FALCON_C_API_END(false)
 }
 
@@ -188,7 +196,7 @@ StringHandle      LabelledArraysLabelledControlArray1D_to_json_string(LabelledAr
 if (!handle) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray1D_to_json_string");
 }
-    std::string json = static_cast<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>*>(handle)->to_json_string();
+    std::string json = (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>*>(handle))->to_json_string();
     return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -199,7 +207,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to LabelledArraysLabelledControlArray1D_from_json_string");
 }
   auto ptr = falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>::from_json_string<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>>(json->raw);
-  return new falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray1D>(*ptr);
+  return new falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray1D>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

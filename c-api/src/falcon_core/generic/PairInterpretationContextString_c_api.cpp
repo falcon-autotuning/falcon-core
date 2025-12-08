@@ -10,13 +10,15 @@ PairInterpretationContextStringHandle PairInterpretationContextString_create(Int
                 if (!first) {
                 throw std::invalid_argument("Null value passed to PairInterpretationContextString_create");
                 }
-                auto first_obj= std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContext>(*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContext*>(first));
+                auto first_obj= *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP*>(first);
     
                 if (!second) {
                 throw std::invalid_argument("Null string handle passed to PairInterpretationContextString_create");
                 }
                 std::string second_obj(second->raw, second->length);
-    return new falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>(first_obj, second_obj);
+    return new falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>(
+        std::make_shared<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>>
+            (first_obj, second_obj));
     FALCON_C_API_END(nullptr)
 }
 
@@ -25,7 +27,7 @@ void PairInterpretationContextString_destroy(PairInterpretationContextStringHand
 if (!handle) {
 throw std::invalid_argument("Null handle passed to PairInterpretationContextString_destroy");
 }
-    delete static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(handle);
+    delete static_cast<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -34,8 +36,8 @@ InterpretationContextHandle PairInterpretationContextString_first(PairInterpreta
 if (!handle) {
 throw std::invalid_argument("Null handle passed to PairInterpretationContextString_first");
 }
-    auto pair = static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(handle);
-    return new falcon_core::autotuner_interfaces::interpretations::InterpretationContext(*pair->first());
+    auto pair = *static_cast<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(handle);
+    return new falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP(pair->first());
     FALCON_C_API_END(nullptr)
 }
 
@@ -45,30 +47,30 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to PairInterpretationContextString_second");
 }
     
-std::string cppstring = static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(handle)->second();
+std::string cppstring = (*static_cast<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(handle))->second();
 StringHandle cstr = String_create(cppstring.data(), cppstring.size());
 return cstr;
     FALCON_C_API_END(nullptr)
 }
 
-bool PairInterpretationContextString_equal(PairInterpretationContextStringHandle a, PairInterpretationContextStringHandle b) {
+bool PairInterpretationContextString_equal(PairInterpretationContextStringHandle handle, PairInterpretationContextStringHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to PairInterpretationContextString_equal");
 }
-    auto pair_a = static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(a);
-    auto pair_b = static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(b);
+    auto pair_a = *static_cast<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(handle);
+    auto pair_b = *static_cast<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(other);
     return *pair_a == *pair_b;
     FALCON_C_API_END(false)
 }
 
-bool PairInterpretationContextString_not_equal(PairInterpretationContextStringHandle a, PairInterpretationContextStringHandle b) {
+bool PairInterpretationContextString_not_equal(PairInterpretationContextStringHandle handle, PairInterpretationContextStringHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to PairInterpretationContextString_not_equal");
 }
-    auto pair_a = static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(a);
-    auto pair_b = static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(b);
+    auto pair_a = *static_cast<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(handle);
+    auto pair_b = *static_cast<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(other);
     return *pair_a != *pair_b;
     FALCON_C_API_END(false)
 }
@@ -78,7 +80,7 @@ StringHandle      PairInterpretationContextString_to_json_string(PairInterpretat
 if (!handle) {
 throw std::invalid_argument("Null handle passed to PairInterpretationContextString_to_json_string");
 }
-std::string json = static_cast<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>*>(handle)->to_json_string();
+std::string json = (*static_cast<falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>*>(handle))->to_json_string();
   return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -89,7 +91,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to PairInterpretationContextString_from_json_string");
 }
   auto ptr = falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>::from_json_string<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>>(json->raw);
-  return new falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>(*ptr);
+  return new falcon_core::generic::PairSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

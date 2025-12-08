@@ -7,8 +7,8 @@
 extern "C" {
 AxesControlArrayHandle AxesControlArray_create_empty() {
     FALCON_C_API_BEGIN
-    return new falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>(
-        falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>());
+    return new falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>(
+        std::make_shared<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>>());
     FALCON_C_API_END(nullptr)
 }
 
@@ -17,9 +17,9 @@ AxesControlArrayHandle AxesControlArray_create(ListControlArrayHandle data) {
 if (!data) {
 throw std::invalid_argument("Null data handle passed to AxesControlArray_create");
 }
-    auto list = *static_cast<falcon_core::generic::List<falcon_core::math::arrays::ControlArray>*>(data);
-    return new falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>(
-            std::make_shared<falcon_core::generic::List<falcon_core::math::arrays::ControlArray>>(list));
+    auto list = *static_cast<falcon_core::generic::ListSP<falcon_core::math::arrays::ControlArray>*>(data);
+    return new falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>(
+            std::make_shared<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>>(list));
     FALCON_C_API_END(nullptr)
 }
 
@@ -28,7 +28,7 @@ void AxesControlArray_destroy(AxesControlArrayHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesControlArray_destroy");
 }
-    delete static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle);
+    delete static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -37,7 +37,7 @@ size_t AxesControlArray_size(AxesControlArrayHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesControlArray_size");
 }
-    return static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle)->size();
+    return (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(handle))->size();
     FALCON_C_API_END(0)
 }
 
@@ -46,7 +46,7 @@ bool AxesControlArray_empty(AxesControlArrayHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesControlArray_empty");
 }
-    return static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle)->empty();
+    return (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(handle))->empty();
     FALCON_C_API_END(false)
 }
 
@@ -55,7 +55,7 @@ void AxesControlArray_erase_at(AxesControlArrayHandle handle, size_t idx) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesControlArray_erase_at");
 }
-    static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle)->erase_at(idx);
+    (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(handle))->erase_at(idx);
     FALCON_C_API_END()
 }
 
@@ -64,7 +64,7 @@ void AxesControlArray_clear(AxesControlArrayHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesControlArray_clear");
 }
-    static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle)->clear();
+    (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(handle))->clear();
     FALCON_C_API_END()
 }
 
@@ -77,8 +77,8 @@ throw std::invalid_argument("Null handle passed to AxesControlArray_push_back");
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesControlArray_fill_value");
             }
-            auto stored_obj = std::make_shared<falcon_core::math::arrays::ControlArray>(*static_cast<falcon_core::math::arrays::ControlArray*>(value));
-    static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle)->push_back(stored_obj);
+            auto stored_obj = *static_cast<falcon_core::math::arrays::ControlArraySP*>(value);
+    (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
 }
 
@@ -91,8 +91,8 @@ throw std::invalid_argument("Null handle passed to AxesControlArray_contains");
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesControlArray_fill_value");
             }
-            auto stored_obj = std::make_shared<falcon_core::math::arrays::ControlArray>(*static_cast<falcon_core::math::arrays::ControlArray*>(value));
-    return static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle)->contains(stored_obj);
+            auto stored_obj = *static_cast<falcon_core::math::arrays::ControlArraySP*>(value);
+    return (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
 }
 
@@ -105,8 +105,8 @@ throw std::invalid_argument("Null handle passed to AxesControlArray_index");
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesControlArray_fill_value");
             }
-            auto stored_obj = std::make_shared<falcon_core::math::arrays::ControlArray>(*static_cast<falcon_core::math::arrays::ControlArray*>(value));
-    return static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle)->index(stored_obj);
+            auto stored_obj = *static_cast<falcon_core::math::arrays::ControlArraySP*>(value);
+    return (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
 }
 
@@ -118,11 +118,11 @@ throw std::invalid_argument("Null handle passed to AxesControlArray_items");
 if (!out_buffer) {
 throw std::invalid_argument("Null output buffer passed to AxesControlArray_items");
 }
-    auto list = static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle);
+    auto list = *static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     
 for (size_t i = 0; i < n; ++i) {
-    out_buffer[i] = new falcon_core::math::arrays::ControlArray(*list->items()[i]);
+    out_buffer[i] = new falcon_core::math::arrays::ControlArraySP(list->items()[i]);
 }
     return n;
     FALCON_C_API_END(0)
@@ -133,28 +133,30 @@ ControlArrayHandle AxesControlArray_at(AxesControlArrayHandle handle, size_t idx
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesControlArray_at");
 }
-    auto obj = static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle)->at(idx);
-    return new falcon_core::math::arrays::ControlArray(*obj);
+    auto obj = (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(handle))->at(idx);
+    return new falcon_core::math::arrays::ControlArraySP(obj);
     FALCON_C_API_END(nullptr)
 }
 
-bool AxesControlArray_equal(AxesControlArrayHandle a, AxesControlArrayHandle b) {
+bool AxesControlArray_equal(AxesControlArrayHandle handle, AxesControlArrayHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to AxesControlArray_equal");
 }
-    auto listA = static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(a);
-    auto listB = static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(b);
+    auto listA = *static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(handle);
+    auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(other);
     return *listA == *listB;
     FALCON_C_API_END(false)
 }
 
-bool AxesControlArray_not_equal(AxesControlArrayHandle a, AxesControlArrayHandle b) {
+bool AxesControlArray_not_equal(AxesControlArrayHandle handle, AxesControlArrayHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to AxesControlArray_not_equal");
 }
-    return !AxesControlArray_equal(a, b);
+    auto listA = *static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(handle);
+    auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(other);
+    return *listA != *listB;
     FALCON_C_API_END(false)
 }
 
@@ -163,10 +165,10 @@ AxesControlArrayHandle AxesControlArray_intersection(AxesControlArrayHandle hand
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to AxesControlArray_intersection");
 }
-    auto listA = static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle);
-    auto listB = static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(other);
-    auto result = listA->intersection(std::make_shared<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>>(*listB));
-    return new falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>(result);
+    auto listA = *static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(handle);
+    auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(other);
+    auto result = listA->intersection(listB);
+    return new falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>(std::make_shared<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>>(result));
     FALCON_C_API_END(nullptr)
 }
 
@@ -175,7 +177,7 @@ StringHandle      AxesControlArray_to_json_string(AxesControlArrayHandle handle)
 if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesControlArray_to_json_string");
 }
-    std::string json = static_cast<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>*>(handle)->to_json_string();
+    std::string json = (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>*>(handle))->to_json_string();
     return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -186,7 +188,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to AxesControlArray_from_json_string");
 }
   auto ptr = falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>::from_json_string<falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>>(json->raw);
-  return new falcon_core::math::Axes<falcon_core::math::arrays::ControlArray>(*ptr);
+  return new falcon_core::math::AxesSP<falcon_core::math::arrays::ControlArray>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

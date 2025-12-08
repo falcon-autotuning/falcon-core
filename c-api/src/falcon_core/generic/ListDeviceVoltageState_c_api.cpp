@@ -6,7 +6,7 @@
 extern "C" {
 ListDeviceVoltageStateHandle ListDeviceVoltageState_create_empty() {
     FALCON_C_API_BEGIN
-    return new falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>();
+    return new falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>(std::make_shared<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>>());
     FALCON_C_API_END(nullptr)
 }
 
@@ -16,10 +16,11 @@ ListDeviceVoltageStateHandle ListDeviceVoltageState_fill_value(size_t count, Dev
     if (!value) {
     throw std::invalid_argument("Null value passed to ListDeviceVoltageState_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::communications::voltage_states::DeviceVoltageState>(*static_cast<falcon_core::communications::voltage_states::DeviceVoltageState*>(value));
+    auto stored_obj = *static_cast<falcon_core::communications::voltage_states::DeviceVoltageStateSP*>(value);
     
-    return new falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>(
-        count, stored_obj);
+    return new falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>(
+        std::make_shared<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>>(
+            count, stored_obj));
     FALCON_C_API_END(nullptr)
 }
  
@@ -32,10 +33,11 @@ throw std::invalid_argument("Null data handle passed to ListDeviceVoltageState_c
     std::vector<falcon_core::communications::voltage_states::DeviceVoltageStateSP> vec;
         vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {
-        vec.push_back(std::make_shared<falcon_core::communications::voltage_states::DeviceVoltageState>(*static_cast<falcon_core::communications::voltage_states::DeviceVoltageState*>(data[i]))); 
+        vec.push_back(*static_cast<falcon_core::communications::voltage_states::DeviceVoltageStateSP*>(data[i])); 
     }
 
-    return new falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>(vec);
+    return new falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>(
+        std::make_shared<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>>(vec));
     FALCON_C_API_END(nullptr)
 }
 
@@ -44,7 +46,7 @@ void ListDeviceVoltageState_destroy(ListDeviceVoltageStateHandle handle) {
     if (!handle) {
     throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_destroy");
     }
-    delete static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle);
+    delete static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle);
     FALCON_C_API_END()
 }
 
@@ -53,7 +55,7 @@ size_t ListDeviceVoltageState_size(ListDeviceVoltageStateHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_size");
 }
-    return static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle)->size();
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle))->size();
     FALCON_C_API_END(0)
 }
 
@@ -62,7 +64,7 @@ bool ListDeviceVoltageState_empty(ListDeviceVoltageStateHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_empty");
 }
-    return static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle)->empty();
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle))->empty();
     FALCON_C_API_END(false)
 }
 
@@ -71,7 +73,7 @@ void ListDeviceVoltageState_erase_at(ListDeviceVoltageStateHandle handle, size_t
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_erase_at");
 }
-    static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle)->erase_at(idx);
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle))->erase_at(idx);
     FALCON_C_API_END()
 }
 
@@ -80,7 +82,7 @@ void ListDeviceVoltageState_clear(ListDeviceVoltageStateHandle handle) {
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_clear");
 }
-    static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle)->clear();
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle))->clear();
     FALCON_C_API_END()
 }
 
@@ -93,9 +95,9 @@ throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_push_b
     if (!value) {
     throw std::invalid_argument("Null value passed to ListDeviceVoltageState_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::communications::voltage_states::DeviceVoltageState>(*static_cast<falcon_core::communications::voltage_states::DeviceVoltageState*>(value));
+    auto stored_obj = *static_cast<falcon_core::communications::voltage_states::DeviceVoltageStateSP*>(value);
     
-    static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle)->push_back(stored_obj);
+    (*static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
 }
 
@@ -108,9 +110,9 @@ throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_contai
     if (!value) {
     throw std::invalid_argument("Null value passed to ListDeviceVoltageState_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::communications::voltage_states::DeviceVoltageState>(*static_cast<falcon_core::communications::voltage_states::DeviceVoltageState*>(value));
+    auto stored_obj = *static_cast<falcon_core::communications::voltage_states::DeviceVoltageStateSP*>(value);
     
-    return static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle)->contains(stored_obj);
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
 }
 
@@ -123,9 +125,9 @@ throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_index"
     if (!value) {
     throw std::invalid_argument("Null value passed to ListDeviceVoltageState_fill_value");
     }
-    auto stored_obj = std::make_shared<falcon_core::communications::voltage_states::DeviceVoltageState>(*static_cast<falcon_core::communications::voltage_states::DeviceVoltageState*>(value));
+    auto stored_obj = *static_cast<falcon_core::communications::voltage_states::DeviceVoltageStateSP*>(value);
     
-    return static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle)->index(stored_obj);
+    return (*static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
 }
 
@@ -137,11 +139,11 @@ throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_items"
 if (!out_buffer) {
 throw std::invalid_argument("Null output buffer passed to ListDeviceVoltageState_items");
 }
-    auto list = static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle);
+    auto list = *static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle);
     size_t n = std::min(buffer_size, list->items().size());
     
 for (size_t i = 0; i < n; ++i) {
-    out_buffer[i] = new falcon_core::communications::voltage_states::DeviceVoltageState(*list->items()[i]);
+    out_buffer[i] = new falcon_core::communications::voltage_states::DeviceVoltageStateSP(list->items()[i]);
 }
     return n;
     FALCON_C_API_END(0)
@@ -152,28 +154,30 @@ DeviceVoltageStateHandle ListDeviceVoltageState_at(ListDeviceVoltageStateHandle 
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_at");
 }
-    auto obj = static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle)->at(idx);
+    auto obj = (*static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle))->at(idx);
     return new falcon_core::communications::voltage_states::DeviceVoltageState(*obj);
     FALCON_C_API_END(nullptr)
 }
 
-bool ListDeviceVoltageState_equal(ListDeviceVoltageStateHandle a, ListDeviceVoltageStateHandle b) {
+bool ListDeviceVoltageState_equal(ListDeviceVoltageStateHandle handle, ListDeviceVoltageStateHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_equal");
 }
-    auto listA = static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(a);
-    auto listB = static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(b);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(other);
     return *listA == *listB;
     FALCON_C_API_END(false)
 }
 
-bool ListDeviceVoltageState_not_equal(ListDeviceVoltageStateHandle a, ListDeviceVoltageStateHandle b) {
+bool ListDeviceVoltageState_not_equal(ListDeviceVoltageStateHandle handle, ListDeviceVoltageStateHandle other) {
     FALCON_C_API_BEGIN
-if (!a || !b) {
+if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_not_equal");
 }
-    return !ListDeviceVoltageState_equal(a, b);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(other);
+    return *listA != *listB;
     FALCON_C_API_END(false)
 }
 
@@ -182,10 +186,10 @@ ListDeviceVoltageStateHandle ListDeviceVoltageState_intersection(ListDeviceVolta
 if (!handle || !other) {
 throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_intersection");
 }
-    auto listA = static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle);
-    auto listB = static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(other);
-    auto result = listA->intersection(std::make_shared<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>>(*listB));
-    return new falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>(*result);
+    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle);
+    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(other);
+    auto result = listA->intersection(listB);
+    return new falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>(result);
     FALCON_C_API_END(nullptr)
 }
 
@@ -194,7 +198,7 @@ StringHandle      ListDeviceVoltageState_to_json_string(ListDeviceVoltageStateHa
 if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_to_json_string");
 }
-    std::string json = static_cast<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle)->to_json_string();
+    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle))->to_json_string();
     return String_create(json.c_str(), json.size());
     FALCON_C_API_END(nullptr)
 }
@@ -205,7 +209,7 @@ if (!json) {
 throw std::invalid_argument("Null string handle passed to ListDeviceVoltageState_from_json_string");
 }
   auto ptr = falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>::from_json_string<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>>(json->raw);
-  return new falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>(*ptr);
+  return new falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }
