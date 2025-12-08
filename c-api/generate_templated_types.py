@@ -922,7 +922,7 @@ extern "C" {{
     }}
     auto list = *static_cast<falcon_core::generic::ListSP<{cpp_type}>*>(arrays);
     return new falcon_core::math::arrays::LabelledArraysSP<{cpp_type}>(
-        std::make_shared<falcon_core::math::arrays::LabelledArrays<cpp_type>>(list->items()));
+        std::make_shared<falcon_core::math::arrays::LabelledArrays<{cpp_type}>>(list->items()));
     FALCON_C_API_END(nullptr)
 }}
 
@@ -942,7 +942,7 @@ if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_arrays");
 }}
     return new falcon_core::generic::ListSP<{cpp_type}>(
-        std::make_shared<falcon_core::generic::List<{cpp_type}>(
+        std::make_shared<falcon_core::generic::List<{cpp_type}>>(
             (*static_cast<falcon_core::math::arrays::LabelledArraysSP<{cpp_type}>*>(
                 handle))->items()));
     FALCON_C_API_END(nullptr)

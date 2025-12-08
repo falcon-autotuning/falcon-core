@@ -14,7 +14,7 @@ LabelledArraysLabelledMeasuredArray1DHandle LabelledArraysLabelledMeasuredArray1
     }
     auto list = *static_cast<falcon_core::generic::ListSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(arrays);
     return new falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledMeasuredArray1D>(
-        std::make_shared<falcon_core::math::arrays::LabelledArrays<cpp_type>>(list->items()));
+        std::make_shared<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledMeasuredArray1D>>(list->items()));
     FALCON_C_API_END(nullptr)
 }
 
@@ -34,7 +34,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledMeasuredArray1D_arrays");
 }
     return new falcon_core::generic::ListSP<falcon_core::math::arrays::LabelledMeasuredArray1D>(
-        std::make_shared<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>(
+        std::make_shared<falcon_core::generic::List<falcon_core::math::arrays::LabelledMeasuredArray1D>>(
             (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(
                 handle))->items()));
     FALCON_C_API_END(nullptr)
