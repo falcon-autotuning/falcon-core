@@ -41,7 +41,8 @@ Point::Point(
     throw std::invalid_argument(
         "Point: The initial map and unit cannot be null.");
   }
-  for (const auto pair : *init) {
+  auto map = *init;
+  for (const auto pair : map) {
     insert(pair->first(), std::make_shared<Quantity>(pair->second(), unit));
   }
 }
@@ -51,7 +52,8 @@ Point::Point(const generic::MapSP<physics::device_structures::Connection,
   if (!init) {
     throw std::invalid_argument("Point: The initial map cannot be null.");
   }
-  for (const auto pair : *init) {
+  auto map = *init;
+  for (const auto pair : map) {
     insert(pair->first(), pair->second());
   }
 }
