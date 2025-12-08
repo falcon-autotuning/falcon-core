@@ -77,7 +77,7 @@ throw std::invalid_argument("Null handle passed to AxesLabelledControlArray_push
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesLabelledControlArray_fill_value");
             }
-            auto stored_obj = *static_cast<falcon_core::math::arrays::LabelledControlArraySP*>(value);
+            auto stored_obj = *static_cast<std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>*>(value);
     (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledControlArray>*>(handle))->push_back(stored_obj);
     FALCON_C_API_END()
 }
@@ -91,7 +91,7 @@ throw std::invalid_argument("Null handle passed to AxesLabelledControlArray_cont
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesLabelledControlArray_fill_value");
             }
-            auto stored_obj = *static_cast<falcon_core::math::arrays::LabelledControlArraySP*>(value);
+            auto stored_obj = *static_cast<std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>*>(value);
     return (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledControlArray>*>(handle))->contains(stored_obj);
     FALCON_C_API_END(false)
 }
@@ -105,7 +105,7 @@ throw std::invalid_argument("Null handle passed to AxesLabelledControlArray_inde
             if (!value) {
             throw std::invalid_argument("Null value passed to AxesLabelledControlArray_fill_value");
             }
-            auto stored_obj = *static_cast<falcon_core::math::arrays::LabelledControlArraySP*>(value);
+            auto stored_obj = *static_cast<std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>*>(value);
     return (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledControlArray>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
 }
@@ -122,7 +122,7 @@ throw std::invalid_argument("Null output buffer passed to AxesLabelledControlArr
     size_t n = std::min(buffer_size, list->items().size());
     
 for (size_t i = 0; i < n; ++i) {
-    out_buffer[i] = new falcon_core::math::arrays::LabelledControlArraySP(list->items()[i]);
+    out_buffer[i] = new std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>(list->items()[i]);
 }
     return n;
     FALCON_C_API_END(0)
@@ -134,7 +134,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to AxesLabelledControlArray_at");
 }
     auto obj = (*static_cast<falcon_core::math::AxesSP<falcon_core::math::arrays::LabelledControlArray>*>(handle))->at(idx);
-    return new falcon_core::math::arrays::LabelledControlArraySP(obj);
+    return new std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>(obj);
     FALCON_C_API_END(nullptr)
 }
 

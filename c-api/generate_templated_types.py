@@ -1148,12 +1148,12 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
             if (!value) {{
             throw std::invalid_argument("Null value passed to {self.mangled_name()}_fill_value");
             }}
-            auto stored_obj = *static_cast<{cpp_real}SP*>(value);"""
+            auto stored_obj = *static_cast<std::shared_ptr<{cpp_real}>*>(value);"""
             copy_to_out_buffer = f"""
 for (size_t i = 0; i < n; ++i) {{
-    out_buffer[i] = new {cpp_real}SP(list->items()[i]);
+    out_buffer[i] = new std::shared_ptr<{cpp_real}>(list->items()[i]);
 }}"""
-            stored_out_value = f"return new {cpp_real}SP(obj);"
+            stored_out_value = f"return new std::shared_ptr<{cpp_real}>(obj);"
         with self.edit_implementation() as f:
             f.write(f"""
 extern "C" {{
