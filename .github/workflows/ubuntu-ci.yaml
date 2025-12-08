@@ -44,6 +44,35 @@ jobs:
           sudo cmake --build build
           sudo cmake --install build
 
+      # NEW: build yaml-cpp + HDF5 from source so CMake can use CONFIG mode
+      - name: Build and install yaml-cpp and HDF5
+        run: |
+          set -e
+          mkdir -p "$HOME/deps"
+          cd "$HOME/deps"
+
+          echo "=== Building yaml-cpp 0.8.0 ==="
+          curl -L -o yaml-cpp-0.8.0.tar.gz \
+            https://github.com/jbeder/yaml-cpp/archive/refs/tags/yaml-cpp-0.8.0.tar.gz
+          tar xf yaml-cpp-0.8.0.tar.gz
+          cmake -S yaml-cpp-yaml-cpp-0.8.0 -B yaml-cpp-build \
+                -DCMAKE_INSTALL_PREFIX=/usr/local \
+                -DYAML_BUILD_SHARED_LIBS=ON \
+                -DYAML_BUILD_TESTS=OFF
+          sudo cmake --build yaml-cpp-build --target install
+
+          echo "=== Building HDF5 1.14.3 ==="
+          curl -L -o hdf5-1.14.3.tar.gz \
+            https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_3.tar.gz
+          tar xf hdf5-1.14.3.tar.gz
+          cmake -S hdf5-hdf5-1_14_3 -B hdf5-build \
+                -DCMAKE_INSTALL_PREFIX=/usr/local \
+                -DBUILD_TESTING=OFF \
+                -DHDF5_ENABLE_Z_LIB_SUPPORT=ON \
+                -DHDF5_BUILD_CPP_LIB=ON \
+                -DHDF5_BUILD_HL_LIB=ON
+          sudo cmake --build hdf5-build --target install
+
       - name: Build and install xtl/xsimd/xtensor/xtensor-io
         run: |
           set -e
@@ -131,28 +160,20 @@ jobs:
             cpp/coverage/*
             c-api/coverage/*
 
-      # ---- Coverage checks (mirrors Arch logic, tweak thresholds as you like) ----
+      # ---- Coverage checks ----
       - name: Check cpp coverage report (Ubuntu)
         run: |
           report="cpp/coverage/falcon-core-cpp.txt"
-
-          # Check for PASSED line
           if ! grep -qE '\[  PASSED  \] [0-9]+ tests\.' "$report"; then
             echo "❌ PASSED line not found in $report"
             exit 1
           fi
-
-          # Extract the TOTAL line
           total_line=$(grep '^TOTAL' "$report")
           if [ -z "$total_line" ]; then
             echo "❌ TOTAL line not found in $report"
             exit 1
           fi
-
-          # Extract all percentages from the TOTAL line
           percentages=($(echo "$total_line" | grep -oE '[0-9]+\.[0-9]+%'))
-
-          # Check each percentage is > 85%
           for pct in "${percentages[@]}"; do
             pct_num=$(echo "$pct" | tr -d '%')
             if (( $(echo "$pct_num < 85.0" | bc -l) )); then
@@ -160,31 +181,22 @@ jobs:
               exit 1
             fi
           done
-
           echo "✅ All cpp coverage checks passed (Ubuntu)."
         shell: bash
 
       - name: Check c-api coverage report (Ubuntu)
         run: |
           report="c-api/coverage/falcon-core-c-api.txt"
-
-          # Check for PASSED line
           if ! grep -qE '\[  PASSED  \] [0-9]+ tests\.' "$report"; then
             echo "❌ PASSED line not found in $report"
             exit 1
           fi
-
-          # Extract the TOTAL line
           total_line=$(grep '^TOTAL' "$report")
           if [ -z "$total_line" ]; then
             echo "❌ TOTAL line not found in $report"
             exit 1
           fi
-
-          # Extract all percentages from the TOTAL line
           percentages=($(echo "$total_line" | grep -oE '[0-9]+\.[0-9]+%'))
-
-          # Check each percentage is > 90%
           for pct in "${percentages[@]}"; do
             pct_num=$(echo "$pct" | tr -d '%')
             if (( $(echo "$pct_num < 90.0" | bc -l) )); then
@@ -192,6 +204,5 @@ jobs:
               exit 1
             fi
           done
-
           echo "✅ All c-api coverage checks passed (Ubuntu)."
         shell: bash

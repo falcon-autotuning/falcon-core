@@ -88,50 +88,6 @@ jobs:
       #     llvm-cov report .\$buildDir\falcon_core_cpp_run_tests.exe -instr-profile=$buildDir\falcon_core_cpp_run_tests.profdata | Out-File -Encoding utf8 $coverageDir\falcon-core-cpp.txt
       #   working-directory: cpp
 
-      # - name: Test falcon-core-cpp-dev (with coverage)
-      #   shell: pwsh
-      #   working-directory: cpp
-      #   run: |
-      #     $ErrorActionPreference = "Stop"
-      #     $buildDir    = "build"
-      #     $coverageDir = "coverage"
-
-      #     # Ensure coverage directory exists
-      #     New-Item -ItemType Directory -Force -Path $coverageDir | Out-Null
-
-      #     # (Optional) show what's actually in the build dir to debug path issues
-      #     Write-Host "Listing contents of '$buildDir'..."
-      #     Get-ChildItem -Recurse $buildDir
-
-      #     # Try to locate the test executable under build/
-      #     $exe = Get-ChildItem -Path $buildDir -Filter "falcon_core_cpp_run_tests*.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
-
-      #     if (-not $exe) {
-      #       Write-Error "❌ Could not find 'falcon_core_cpp_run_tests.exe' anywhere under '$buildDir'."
-      #       exit 1
-      #     }
-
-      #     Write-Host "Found test executable at: $($exe.FullName)"
-
-      #     # Set up coverage env vars
-      #     $env:LLVM_PROFILE_FILE = Join-Path $exe.DirectoryName "falcon_core_cpp_run_tests.profraw"
-
-      #     # Make sure LLVM tools are on PATH (you already did this earlier, but it doesn't hurt)
-      #     $env:PATH = "$env:PATH"
-
-      #     # Run tests
-      #     & $exe.FullName
-
-      #     # Merge and report coverage
-      #     $profRaw    = Join-Path $exe.DirectoryName "falcon_core_cpp_run_tests.profraw"
-      #     $profData   = Join-Path $exe.DirectoryName "falcon_core_cpp_run_tests.profdata"
-      #     $reportFile = Join-Path $coverageDir "falcon-core-cpp.txt"
-
-      #     llvm-profdata merge -sparse $profRaw -o $profData
-
-      #     llvm-cov report $exe.FullName -instr-profile=$profData |
-      #       Out-File -Encoding utf8 $reportFile
-
       - name: Test falcon-core-cpp-dev (with coverage)
         shell: pwsh
         working-directory: cpp
@@ -139,8 +95,8 @@ jobs:
           $ErrorActionPreference = "Stop"
           $buildDir    = "build"
           $coverageDir = "coverage"
+          $minRequired = 85.0   # change this if you want stricter/looser checks
 
-          # Ensure coverage directory exists
           New-Item -ItemType Directory -Force -Path $coverageDir | Out-Null
 
           Write-Host "=== Listing contents of '$buildDir' ==="
@@ -148,39 +104,38 @@ jobs:
 
           # Locate the test executable
           $exe = Get-ChildItem -Path $buildDir -Filter "falcon_core_cpp_run_tests*.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
-
           if (-not $exe) {
             Write-Error "❌ Could not find 'falcon_core_cpp_run_tests.exe' anywhere under '$buildDir'."
             exit 1
           }
-
           Write-Host "Found test executable at: $($exe.FullName)"
 
-          # Prefer a named profile file, but be flexible
+          # Preferred profile file
           $profRawPreferred = Join-Path $exe.DirectoryName "falcon_core_cpp_run_tests.profraw"
           $profRaw          = $profRawPreferred
 
-          # Tell the runtime where to write, in case it honors LLVM_PROFILE_FILE
+          # Tell the runtime where to write
           $env:LLVM_PROFILE_FILE = $profRawPreferred
           Write-Host "LLVM_PROFILE_FILE set to: $env:LLVM_PROFILE_FILE"
 
-          # Run the tests and capture exit code
+          # Run tests
           Write-Host "=== Running tests ==="
           & $exe.FullName
           $testExit = $LASTEXITCODE
           Write-Host "Test exit code: $testExit"
-
           if ($testExit -ne 0) {
-            Write-Warning "⚠️ Test executable exited with non-zero code ($testExit). Coverage may be incomplete or missing."
+            Write-Error "❌ Test executable exited with non-zero code ($testExit)."
+            exit 1
           }
 
-          # Diagnostics: list any *.profraw files in the build tree
+          # Diagnostics: list any *.profraw files
           Write-Host "=== Searching for *.profraw files under '$buildDir' ==="
-          Get-ChildItem -Path $buildDir -Filter "*.profraw" -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
-            Write-Host "Found profraw candidate: $($_.FullName)  (Size: $($_.Length) bytes)"
+          $allProfraw = Get-ChildItem -Path $buildDir -Filter "*.profraw" -Recurse -ErrorAction SilentlyContinue
+          foreach ($p in $allProfraw) {
+            Write-Host "Found profraw candidate: $($p.FullName)  (Size: $($p.Length) bytes)"
           }
 
-          # If the preferred file doesn't exist, fall back to any *.profraw we can find
+          # Prefer the named profile; fall back to any profraw near the exe
           if (-not (Test-Path $profRaw)) {
             Write-Host "No profile at $profRawPreferred, searching for any '*.profraw' near the exe..."
             $candidate = Get-ChildItem -Path $exe.DirectoryName -Filter "*.profraw" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
@@ -188,9 +143,8 @@ jobs:
               Write-Host "Using found profile file: $($candidate.FullName)"
               $profRaw = $candidate.FullName
             } else {
-              Write-Warning "⚠️ No .profraw file found after running tests; skipping coverage report."
-              # Exit successfully so CI isn't red just because coverage didn't materialize
-              exit 0
+              Write-Error "❌ No .profraw file found after running tests; coverage instrumentation seems broken."
+              exit 1
             }
           } else {
             Write-Host "Using preferred profile file: $profRawPreferred"
@@ -206,9 +160,33 @@ jobs:
 
           Write-Host "=== Generating coverage report to $reportFile ==="
           llvm-cov report $exe.FullName -instr-profile=$profData |
-            Out-File -Encoding utf8 $reportFile
+            Tee-Object -FilePath $reportFile
 
-          Write-Host "✅ Coverage report generated at: $reportFile"
+          # ---- Enforce coverage threshold from TOTAL line ----
+          Write-Host "=== Checking coverage thresholds (>= $minRequired%) ==="
+          $totalLine = Select-String -Path $reportFile -Pattern '^TOTAL' | Select-Object -First 1
+          if (-not $totalLine) {
+            Write-Error "❌ TOTAL line not found in coverage report."
+            exit 1
+          }
+
+          $matches = [regex]::Matches($totalLine.Line, '([0-9]+(?:\.[0-9]+)?)%')
+          if ($matches.Count -eq 0) {
+            Write-Error "❌ No percentages found in coverage report TOTAL line."
+            Write-Host "TOTAL line was: $($totalLine.Line)"
+            exit 1
+          }
+
+          foreach ($m in $matches) {
+            $val = [double]$m.Groups[1].Value
+            if ($val -lt $minRequired) {
+              Write-Error "❌ Coverage $val% is below required $minRequired% (TOTAL line: $($totalLine.Line))"
+              exit 1
+            }
+          }
+
+          Write-Host "✅ Windows C++ coverage OK; all TOTAL percentages ≥ $minRequired%."
+
 
 
 
