@@ -468,8 +468,8 @@ bool SymbolUnit_equal(SymbolUnitHandle handle, SymbolUnitHandle other) {
   if (!other) {
     throw std::invalid_argument("SymbolUnit_equal: other cannot be null");
   }
-  return *(static_cast<SymbolUnitSP*>(handle)) ==
-         *(static_cast<SymbolUnitSP*>(other));
+  return *(*static_cast<SymbolUnitSP*>(handle)) ==
+         *(*static_cast<SymbolUnitSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -481,8 +481,8 @@ bool SymbolUnit_not_equal(SymbolUnitHandle handle, SymbolUnitHandle other) {
   if (!other) {
     throw std::invalid_argument("SymbolUnit_not_equal: other cannot be null");
   }
-  return *(static_cast<SymbolUnitSP*>(handle)) !=
-         *(static_cast<SymbolUnitSP*>(other));
+  return *(*static_cast<SymbolUnitSP*>(handle)) !=
+         *(*static_cast<SymbolUnitSP*>(other));
   FALCON_C_API_END(false)
 }
 

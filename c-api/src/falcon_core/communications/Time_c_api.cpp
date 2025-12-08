@@ -94,7 +94,7 @@ bool Time_equal(TimeHandle handle, TimeHandle other) {
   if (!other) {
     throw std::invalid_argument("Time_equal: handle b cannot be null");
   }
-  return *(static_cast<TimeSP*>(handle)) == *(static_cast<TimeSP*>(other));
+  return *(*static_cast<TimeSP*>(handle)) == *(*static_cast<TimeSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -106,7 +106,7 @@ bool Time_not_equal(TimeHandle handle, TimeHandle other) {
   if (!other) {
     throw std::invalid_argument("Time_not_equal: handle b cannot be null");
   }
-  return *(static_cast<TimeSP*>(handle)) != *(static_cast<TimeSP*>(other));
+  return *(*static_cast<TimeSP*>(handle)) != *(*static_cast<TimeSP*>(other));
   FALCON_C_API_END(false)
 }
 }

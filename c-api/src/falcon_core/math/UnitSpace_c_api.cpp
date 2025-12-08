@@ -84,8 +84,7 @@ UnitSpaceHandle UnitSpace_create_cartesian_2D_space(AxesDoubleHandle deltas,
     throw std::invalid_argument(
         "UnitSpace_create_cartesian2Dspace: deltas cannot be null");
   }
-  AxesSP<double> real_deltas =
-      std::make_shared<Axes<double>>(*static_cast<Axes<double>*>(deltas));
+  AxesSP<double> real_deltas = *static_cast<AxesSP<double>*>(deltas);
   falcon_core::math::domains::DomainSP real_domain =
       *static_cast<falcon_core::math::domains::DomainSP*>(domain);
   return new UnitSpaceSP(UnitSpace::CartesianSpace(real_deltas, real_domain));

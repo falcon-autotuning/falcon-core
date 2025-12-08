@@ -35,7 +35,7 @@ class Map : public virtual generic::Song {
     return *this;
   }
   Map() : _items(std::make_shared<Container>()) {}
-  std::shared_ptr<Map<Key, Value>> create_empty() {
+  static std::shared_ptr<Map<Key, Value>> create_empty() {
     return std::make_shared<Map<Key, Value>>();
   }
   Map(const std::vector<std::pair<typename ContainerItem::StoredT1,
