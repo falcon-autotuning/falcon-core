@@ -516,7 +516,8 @@ found_waveform:
 const std::pair<communications::messages::MeasurementResponseSP,
                 communications::messages::MeasurementRequestSP>
 HDF5Data::to_communications() const {
-  messages::MeasurementResponseSP response =
+  std::shared_lock<std::shared_timed_mutex> lock_a_metadata(_mu_metadata);
+  messages::MeasurementResponseSP           response =
       messages::MeasurementResponse::from_json_string<
           messages::MeasurementResponse>(
           std::string(_metadata->at("song_response")));
@@ -524,13 +525,13 @@ HDF5Data::to_communications() const {
       messages::MeasurementRequest::from_json_string<
           messages::MeasurementRequest>(
           std::string(_metadata->at("song_request")));
-  std::shared_lock<std::shared_timed_mutex> lock_a_metadata(_mu_metadata);
   return std::make_pair(response, request);
 }
 bool HDF5Data::operator==(const HDF5Data& other) {
-  return (shape() == other.shape() && unit_domain() == other.unit_domain() &&
-          domain_labels() == other.domain_labels() &&
-          ranges() == other.ranges() && metadata() == other.metadata() &&
+  return (*shape() == *other.shape() &&
+          *unit_domain() == *other.unit_domain() &&
+          *domain_labels() == *other.domain_labels() &&
+          *ranges() == *other.ranges() && *metadata() == *other.metadata() &&
           measurement_title() == other.measurement_title() &&
           unique_id() == other.unique_id() && timestamp() == other.timestamp());
 }

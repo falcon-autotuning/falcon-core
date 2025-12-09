@@ -204,12 +204,6 @@ TEST_F(HDF5DataTest, ToFileAndCreateFromFile) {
   StringHandle filename = String_wrap("test_hdf5_data.h5");
   HDF5Data_to_file(hdf5, filename);
   auto h2 = HDF5Data_create_from_file(filename);
-  std::cout << "Original HSD5Data " << std::endl;
-  auto string = HDF5Data_to_json_string(hdf5);
-  std::cout << std::string(string->raw, string->length) << std::endl;
-  std::cout << "Other HSD5Data " << std::endl;
-  auto otherstring = HDF5Data_to_json_string(h2);
-  std::cout << std::string(otherstring->raw, otherstring->length) << std::endl;
   EXPECT_TRUE(HDF5Data_equal(hdf5, h2));
   HDF5Data_destroy(h2);
   std::remove("test_hdf5_data.h5");
@@ -225,6 +219,7 @@ TEST_F(HDF5DataTest, ToFileAndCreateFromFile) {
   set_last_error(0, nullptr);
   HDF5Data_create_from_file(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
 }
 
 TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
@@ -308,6 +303,10 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
   StringHandle              title          = String_wrap("title");
   int                       unique_id      = 42;
   int                       timestamp      = 123456;
+  EXPECT_EQ(get_last_error_code(), 0);
+  if (get_last_error_msg() != 0) {
+    std::cerr << "Other Error: " << get_last_error_msg() << std::endl;
+  }
 
   // Create HDF5Data from communications
   auto hdf5 = HDF5Data_create_from_communications(request,
@@ -317,10 +316,19 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
                                                   title,
                                                   unique_id,
                                                   timestamp);
+  EXPECT_EQ(get_last_error_code(), 0);
+  if (get_last_error_msg() != 0) {
+    std::cerr << "From communications Error: " << get_last_error_msg()
+              << std::endl;
+  }
 
   // Convert back to communications
   auto comm_pair = HDF5Data_to_communications(hdf5);
-  ASSERT_NE(comm_pair, nullptr);
+  EXPECT_EQ(get_last_error_code(), 0);
+  if (get_last_error_msg() != 0) {
+    std::cerr << "To communications Error: " << get_last_error_msg()
+              << std::endl;
+  }
   EXPECT_NE(PairMeasurementResponseMeasurementRequest_first(comm_pair),
             nullptr);
   EXPECT_NE(PairMeasurementResponseMeasurementRequest_second(comm_pair),
