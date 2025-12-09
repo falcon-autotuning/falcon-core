@@ -230,8 +230,8 @@ generic::ListSP<Group> Config::get_all_groups() const {
 }
 
 void Config::compile_channels() const {
-  auto groupvalues = groups()->values();
-  for (const GroupSP& group : *groupvalues) {
+  auto groupvalues = *groups()->values();
+  for (const GroupSP& group : groupvalues) {
     channels()->push_back(group->name());
   }
 }
@@ -1184,7 +1184,7 @@ device_structures::GateRelationsSP Config::generate_gate_relations() const {
         neighbors->push_back(conn);
       }
     }
-    out[gate] = neighbors;
+    out.insert(gate, neighbors);
   }
   return std::make_shared<device_structures::GateRelations>(out);
 }

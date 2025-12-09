@@ -235,8 +235,8 @@ class InterpretationContainer
       generic::List<physics::device_structures::Connection> inds =
           *independent_connections;
       for (auto& connection : inds) {
-        auto  list_ptr = select_by_independent_connection(connection);
-        auto& items    = list_ptr->items();
+        auto list_ptr = select_by_independent_connection(connection);
+        auto items    = list_ptr->items();
         std::vector<InterpretationContextSP> intersection;
         for (const auto& ctx : matching_contexts) {
           auto it = std::find_if(items.begin(),
@@ -261,8 +261,8 @@ class InterpretationContainer
       generic::List<physics::device_structures::Connection> deps =
           *dependent_connections;
       for (auto& connection : deps) {
-        auto  list_ptr = select_by_dependent_connection(connection);
-        auto& items    = list_ptr->items();
+        auto list_ptr = select_by_dependent_connection(connection);
+        auto items    = list_ptr->items();
         std::vector<InterpretationContextSP> intersection;
         for (const auto& ctx : matching_contexts) {
           auto it = std::find_if(items.begin(),

@@ -16,7 +16,7 @@ CoupledLabelledDomain::CoupledLabelledDomain()
 CoupledLabelledDomain::CoupledLabelledDomain(
     const std::vector<LabelledDomainSP>& init)
     : generic::List<LabelledDomain>(init) {}
-const std::vector<LabelledDomainSP>& CoupledLabelledDomain::domains() const {
+const std::vector<LabelledDomainSP> CoupledLabelledDomain::domains() const {
   return this->items();
 }
 const instrument_interfaces::names::PortsSP CoupledLabelledDomain::labels()

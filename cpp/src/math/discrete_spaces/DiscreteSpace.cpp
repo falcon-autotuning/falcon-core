@@ -10,11 +10,11 @@ namespace falcon_core {
 namespace math {
 namespace discrete_spaces {
 DiscreteSpace::DiscreteSpace(const DiscreteSpace& other) {
-  std::unique_lock<std::shared_timed_mutex> lock_space(other._mu_space,
+  std::shared_lock<std::shared_timed_mutex> lock_space(other._mu_space,
                                                        std::defer_lock);
-  std::unique_lock<std::shared_timed_mutex> lock_axes(other._mu_axes,
+  std::shared_lock<std::shared_timed_mutex> lock_axes(other._mu_axes,
                                                       std::defer_lock);
-  std::unique_lock<std::shared_timed_mutex> lock_increasing(
+  std::shared_lock<std::shared_timed_mutex> lock_increasing(
       other._mu_increasing, std::defer_lock);
   std::lock(lock_space, lock_axes, lock_increasing);
   if (!other.space() || !other.axes() || !other.increasing()) {
@@ -29,13 +29,18 @@ DiscreteSpace::DiscreteSpace(const DiscreteSpace& other) {
 }
 DiscreteSpace& DiscreteSpace::operator=(const DiscreteSpace& other) {
   if (this != &other) {
-    std::unique_lock<std::shared_timed_mutex> lock_space(other._mu_space,
+    std::shared_lock<std::shared_timed_mutex> lock_space(other._mu_space,
                                                          std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_axes(other._mu_axes,
+    std::shared_lock<std::shared_timed_mutex> lock_axes(other._mu_axes,
                                                         std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_increasing(
+    std::shared_lock<std::shared_timed_mutex> lock_increasing(
         other._mu_increasing, std::defer_lock);
-    std::lock(lock_space, lock_axes, lock_increasing);
+    std::unique_lock<std::shared_timed_mutex> lock_o(_mu_space,
+                                                     std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_a(_mu_axes, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_i(_mu_increasing,
+                                                     std::defer_lock);
+    std::lock(lock_space, lock_axes, lock_increasing, lock_o, lock_a, lock_i);
     if (!other.space() || !other.axes() || !other.increasing()) {
       throw std::invalid_argument(
           "DiscreteSpace copy constructor: Other DiscreteSpace contains null "

@@ -34,8 +34,7 @@ class List : public generic::Song {
   using iterator       = typename Container::iterator;
   using const_iterator = typename Container::const_iterator;
   List<Value>(const List<Value>& other) {
-    clear();
-    std::shared_lock<std::shared_timed_mutex> lock_items(_mu_items);
+    std::shared_lock<std::shared_timed_mutex> lock_other(other._mu_items);
     _items.reserve(other.size());
     copy_items_impl(other.items(),
                     typename category::determine_tag<Value>::type{});
@@ -43,9 +42,13 @@ class List : public generic::Song {
   List operator=(const List<Value>& other) {
     if (this != &other) {
       clear();
-      std::shared_lock<std::shared_timed_mutex> lock_items(_mu_items);
+      std::unique_lock<std::shared_timed_mutex> lock_items(_mu_items,
+                                                           std::defer_lock);
+      std::shared_lock<std::shared_timed_mutex> lock_other_items(
+          other._mu_items, std::defer_lock);
+      std::lock(lock_items, lock_other_items);
       _items.reserve(other.size());
-      copy_items_impl(other.items(),
+      copy_items_impl(other._items,
                       typename category::determine_tag<Value>::type{});
     }
     return *this;
@@ -119,17 +122,21 @@ class List : public generic::Song {
   static std::shared_ptr<List<Value>> create(const Container& init) {
     return std::make_shared<List<Value>>(init);
   }
-  const Container& items() const {
+  const Container items() const {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     return _items;
   }
-  Container& items() {
+  Container items() {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     return _items;
   }
   void push_back(const StoredValue& item) {
     push_back_impl<Value>(item,
                           typename category::determine_tag<Value>::type{});
+  }
+  void replace_at(size_t idx, const StoredValue& value) {
+    std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
+    _items.at(idx) = value;
   }
   void insert(iterator pos, const_iterator first, const_iterator last)
   // FIXME: Might be broken for single items in list
@@ -162,13 +169,25 @@ class List : public generic::Song {
       StoredValue&> {
     return at_impl(idx, typename category::determine_bool_tag<Value>::type{});
   }
-  StoredValue&       operator[](const size_t idx) { return at(idx); }
+  StoredValue        operator[](const size_t idx) { return at(idx); }
   const StoredValue& operator[](const size_t idx) const { return at(idx); }
-  iterator           begin() { return items().begin(); }
-  iterator           end() { return items().end(); }
-  const_iterator     begin() const { return items().begin(); }
-  const_iterator     end() const { return items().end(); }
-  bool               contains(const StoredValue& value) const {
+  iterator           begin() {
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
+    return _items.begin();
+  }
+  iterator end() {
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
+    return _items.end();
+  }
+  const_iterator begin() const {
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
+    return _items.begin();
+  }
+  const_iterator end() const {
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
+    return _items.end();
+  }
+  bool contains(const StoredValue& value) const {
     return contains_impl(value,
                          typename category::determine_tag<Value>::type{});
   }
@@ -217,7 +236,7 @@ class List : public generic::Song {
   /**
    * @brief Return the last element of a list.
    */
-  StoredValue& back() {
+  StoredValue back() {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     if (_items.empty()) {
       throw std::out_of_range("List: back() called on empty list");

@@ -40,7 +40,7 @@ class MeasurementRequest : public BaseMessage {
 
   const std::string&                           measurement_name() const;
   const instrument_interfaces::names::PortsSP& getters() const;
-  const generic::ListSP<instrument_interfaces::Waveform>& waveforms() const;
+  const generic::ListSP<instrument_interfaces::Waveform> waveforms() const;
   const generic::MapSP<instrument_interfaces::names::InstrumentPort,
                        instrument_interfaces::port_transforms::PortTransform>&
                                          meter_transforms() const;

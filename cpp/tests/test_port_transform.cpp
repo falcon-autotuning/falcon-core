@@ -56,16 +56,16 @@ TEST_F(PortTransformTest, IdentityTransformFactory) {
   auto pt = PortTransform::IdentityTransform(portA);
   ASSERT_NE(pt, nullptr);
   EXPECT_EQ(pt->port(), portA);
-  auto args    = std::make_shared<Map<VariableName, double>>();
-  (*args)["x"] = 7.0;
+  auto args = std::make_shared<Map<VariableName, double>>();
+  args->insert("x", 7.0);
   EXPECT_DOUBLE_EQ(pt->evaluate(args, 0.0), 7.0);
 }
 
 TEST_F(PortTransformTest, QuadraticTransformEvaluation) {
   PortTransform pt(portA, quadratic);
   auto          args = std::make_shared<Map<VariableName, double>>();
-  (*args)["x0"]      = 2.0;
-  (*args)["x1"]      = 3.0;
+  args->insert("x0", 2.0);
+  args->insert("x1", 3.0);
   EXPECT_DOUBLE_EQ(pt.evaluate(args, 5.0), 2.0 * 25.0 + 3.0);  // 2*25+3 = 53
 }
 

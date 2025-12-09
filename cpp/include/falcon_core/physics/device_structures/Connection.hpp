@@ -72,7 +72,7 @@ class Connection : public virtual generic::Song {
    * @brief The name of the connection.
    * @return The name as a string.
    */
-  const std::string& name() const;
+  const std::string name() const;
   /**
    * @brief The type of the connection.
    * @return The type as a string.

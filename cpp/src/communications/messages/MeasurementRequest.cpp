@@ -117,7 +117,7 @@ const instrument_interfaces::names::PortsSP& MeasurementRequest::getters()
   std::shared_lock<std::shared_timed_mutex> lock(_mu_getters);
   return _getters;
 }
-const generic::ListSP<instrument_interfaces::Waveform>&
+const generic::ListSP<instrument_interfaces::Waveform>
 MeasurementRequest::waveforms() const {
   std::shared_lock<std::shared_timed_mutex> lock(_mu_waveforms);
   return _waveforms;

@@ -41,8 +41,8 @@ core::ConfigSP ConfigManipulations::unpack_device_config(
         group_connections->plunger_gates(),
         group_connections->barrier_gates(),
         order);
-    groups[std::make_shared<autotuner_interfaces::names::Gname>(key)] =
-        new_group;
+    groups.insert(std::make_shared<autotuner_interfaces::names::Gname>(key),
+                  new_group);
   }
   auto ohmics    = _extract_ohmics(config["Ohmics"].as<std::string>());
   auto wiring_DC = _extract_dcwiring(config, ohmics, connections);

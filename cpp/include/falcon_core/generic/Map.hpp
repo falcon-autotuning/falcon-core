@@ -97,7 +97,7 @@ class Map : public virtual generic::Song {
     return (*it)->second();
   }
 
-  typename ContainerItem::StoredT2& operator[](
+  typename ContainerItem::StoredT2 operator[](
       const typename ContainerItem::StoredT1& key) {
     std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
     auto                                      it = find(key);

@@ -184,7 +184,8 @@ TEST_F(GateGeometryArray1DTest, OhmicsReturnsExpected) {
 TEST_F(GateGeometryArray1DTest, LeftReservoirThrowsIfNotOhmic) {
   auto bad_linear = std::make_shared<Connections>(*linear);
   // Replace first element with a non-ohmic
-  (*bad_linear)[0] = Connection::BarrierGate("BX");
+  ConnectionSP value = Connection::BarrierGate("BX");
+  bad_linear->replace_at(0, value);
   EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
                std::invalid_argument);
 }
@@ -192,15 +193,8 @@ TEST_F(GateGeometryArray1DTest, LeftReservoirThrowsIfNotOhmic) {
 TEST_F(GateGeometryArray1DTest, LeftReservoirThrowsIfNotBarrier) {
   auto bad_linear = std::make_shared<Connections>(*linear);
   // Replace second element with a non-barrier
-  (*bad_linear)[2] = Connection::PlungerGate("PX");
-  EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
-               std::invalid_argument);
-}
-
-TEST_F(GateGeometryArray1DTest, RightReservoirThrowsIfNotReservoir) {
-  auto bad_linear = std::make_shared<Connections>(*linear);
-  // Replace second-to-last element with a non-reservoir
-  (*bad_linear)[bad_linear->size() - 2] = Connection::BarrierGate("BX");
+  ConnectionSP value = Connection::PlungerGate("PX");
+  bad_linear->replace_at(2, value);
   EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
                std::invalid_argument);
 }
@@ -208,7 +202,8 @@ TEST_F(GateGeometryArray1DTest, RightReservoirThrowsIfNotReservoir) {
 TEST_F(GateGeometryArray1DTest, RightReservoirThrowsIfNotBarrier) {
   auto bad_linear = std::make_shared<Connections>(*linear);
   // Replace third-to-last element with a non-barrier
-  (*bad_linear)[bad_linear->size() - 4] = Connection::ScreeningGate("PX");
+  auto value = Connection::PlungerGate("PX");
+  bad_linear->replace_at(bad_linear->size() - 3, value);
   EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
                std::invalid_argument);
 }
@@ -216,7 +211,8 @@ TEST_F(GateGeometryArray1DTest, RightReservoirThrowsIfNotBarrier) {
 TEST_F(GateGeometryArray1DTest, LeftBarrierThrowsIfNotReservoir) {
   auto bad_linear = std::make_shared<Connections>(*linear);
   // Replace second element with a non-reservoir
-  (*bad_linear)[1] = Connection::BarrierGate("BX");
+  auto value = Connection::BarrierGate("BX");
+  bad_linear->replace_at(1, value);
   EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
                std::invalid_argument);
 }
@@ -224,7 +220,8 @@ TEST_F(GateGeometryArray1DTest, LeftBarrierThrowsIfNotReservoir) {
 TEST_F(GateGeometryArray1DTest, LeftBarrierThrowsIfNotPlunger) {
   auto bad_linear = std::make_shared<Connections>(*linear);
   // Replace fourth element with a non-plunger
-  (*bad_linear)[3] = Connection::BarrierGate("BX");
+  auto value = Connection::BarrierGate("BX");
+  bad_linear->replace_at(3, value);
   EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
                std::invalid_argument);
 }
@@ -232,7 +229,8 @@ TEST_F(GateGeometryArray1DTest, LeftBarrierThrowsIfNotPlunger) {
 TEST_F(GateGeometryArray1DTest, RightBarrierThrowsIfNotReservoir) {
   auto bad_linear = std::make_shared<Connections>(*linear);
   // Replace second-to-last element with a non-reservoir
-  (*bad_linear)[bad_linear->size() - 2] = Connection::BarrierGate("BX");
+  auto value = Connection::BarrierGate("BX");
+  bad_linear->replace_at(bad_linear->size() - 2, value);
   EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
                std::invalid_argument);
 }
@@ -240,7 +238,8 @@ TEST_F(GateGeometryArray1DTest, RightBarrierThrowsIfNotReservoir) {
 TEST_F(GateGeometryArray1DTest, RightBarrierThrowsIfNotPlunger) {
   auto bad_linear = std::make_shared<Connections>(*linear);
   // Replace fourth-to-last element with a non-plunger
-  (*bad_linear)[bad_linear->size() - 4] = Connection::BarrierGate("BX");
+  auto value = Connection::BarrierGate("BX");
+  bad_linear->replace_at(bad_linear->size() - 4, value);
   EXPECT_THROW(GateGeometryArray1D(bad_linear, screening),
                std::invalid_argument);
 }

@@ -11,7 +11,8 @@ namespace falcon_core {
 namespace instrument_interfaces {
 Waveform::Waveform(const Waveform& other)
     : port_transforms::PortTransforms(other) {
-  std::unique_lock<std::shared_timed_mutex> lock_o(_mu_space);
+  // Only lock other._mu_dspace if needed
+  std::shared_lock<std::shared_timed_mutex> lock_other_space(other._mu_dspace);
   if (!other._space) {
     throw std::invalid_argument(
         "Waveform copy constructor: Other Waveform contains null shared "
@@ -23,7 +24,7 @@ Waveform::Waveform(const Waveform& other)
 Waveform& Waveform::operator=(const Waveform& other) {
   if (this != &other) {
     port_transforms::PortTransforms::         operator=(other);
-    std::unique_lock<std::shared_timed_mutex> lock_o(_mu_space);
+    std::unique_lock<std::shared_timed_mutex> lock_o(_mu_dspace);
     if (!other._space) {
       throw std::invalid_argument(
           "Waveform copy constructor: Other Waveform contains null shared "
@@ -166,7 +167,7 @@ const WaveformSP Waveform::CartesianIdentityWaveform1D(
       domain);
 }
 const math::discrete_spaces::DiscreteSpaceSP& Waveform::space() const {
-  std::shared_lock<std::shared_timed_mutex> lock_s(_mu_space);
+  std::shared_lock<std::shared_timed_mutex> lock_s(_mu_dspace);
   return _space;
 }
 void Waveform::confirm_knobs_match() const {

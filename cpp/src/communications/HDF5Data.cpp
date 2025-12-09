@@ -17,95 +17,147 @@
 namespace falcon_core {
 namespace communications {
 HDF5Data::HDF5Data(const HDF5Data& other) {
-  std::unique_lock<std::shared_timed_mutex> lock_metadata(_mu_metadata,
-                                                          std::defer_lock);
-  std::unique_lock<std::shared_timed_mutex> lock_shape(_mu_shape,
-                                                       std::defer_lock);
-  std::unique_lock<std::shared_timed_mutex> lock_unit_domain(_mu_unit_domain,
-                                                             std::defer_lock);
-  std::unique_lock<std::shared_timed_mutex> lock_domain_labels(
+  std::unique_lock<std::shared_timed_mutex> lock_metadata_this(_mu_metadata,
+                                                               std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_shape_this(_mu_shape,
+                                                            std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_unit_domain_this(
+      _mu_unit_domain, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_domain_labels_this(
       _mu_domain_labels, std::defer_lock);
-  std::unique_lock<std::shared_timed_mutex> lock_ranges(_mu_ranges,
-                                                        std::defer_lock);
-  std::unique_lock<std::shared_timed_mutex> lock_measurement_title(
+  std::unique_lock<std::shared_timed_mutex> lock_ranges_this(_mu_ranges,
+                                                             std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_measurement_title_this(
       _mu_measurement_title, std::defer_lock);
-  std::unique_lock<std::shared_timed_mutex> lock_unique_id(_mu_unique_id,
-                                                           std::defer_lock);
-  std::unique_lock<std::shared_timed_mutex> lock_timestamp(_mu_timestamp,
-                                                           std::defer_lock);
-  std::lock(lock_metadata,
-            lock_shape,
-            lock_unit_domain,
-            lock_domain_labels,
-            lock_ranges,
-            lock_measurement_title,
-            lock_unique_id,
-            lock_timestamp);
-  if (!other.metadata() || !other.shape() || !other.unit_domain() ||
-      !other.domain_labels() || !other.ranges()) {
+  std::unique_lock<std::shared_timed_mutex> lock_unique_id_this(
+      _mu_unique_id, std::defer_lock);
+  std::unique_lock<std::shared_timed_mutex> lock_timestamp_this(
+      _mu_timestamp, std::defer_lock);
+
+  std::shared_lock<std::shared_timed_mutex> lock_metadata_other(
+      other._mu_metadata, std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_shape_other(other._mu_shape,
+                                                             std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_unit_domain_other(
+      other._mu_unit_domain, std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_domain_labels_other(
+      other._mu_domain_labels, std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_ranges_other(other._mu_ranges,
+                                                              std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_measurement_title_other(
+      other._mu_measurement_title, std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_unique_id_other(
+      other._mu_unique_id, std::defer_lock);
+  std::shared_lock<std::shared_timed_mutex> lock_timestamp_other(
+      other._mu_timestamp, std::defer_lock);
+
+  std::lock(lock_metadata_this,
+            lock_shape_this,
+            lock_unit_domain_this,
+            lock_domain_labels_this,
+            lock_ranges_this,
+            lock_measurement_title_this,
+            lock_unique_id_this,
+            lock_timestamp_this,
+            lock_metadata_other,
+            lock_shape_other,
+            lock_unit_domain_other,
+            lock_domain_labels_other,
+            lock_ranges_other,
+            lock_measurement_title_other,
+            lock_unique_id_other,
+            lock_timestamp_other);
+  if (!other._metadata || !other._shape || !other._unit_domain ||
+      !other._domain_labels || !other._ranges) {
     throw std::invalid_argument(
         "HDF5Data copy constructor: Other HDF5Data contains null shared "
         "pointers.");
   }
-  _metadata    = std::make_shared<Metadata>(*other.metadata());
-  _shape       = std::make_shared<math::Axes<int>>(*other.shape());
+  _metadata    = std::make_shared<Metadata>(*other._metadata);
+  _shape       = std::make_shared<math::Axes<int>>(*other._shape);
   _unit_domain = std::make_shared<math::Axes<math::arrays::ControlArray>>(
-      *other.unit_domain());
+      *other._unit_domain);
   _domain_labels =
       std::make_shared<math::Axes<math::domains::CoupledLabelledDomain>>(
-          *other.domain_labels());
+          *other._domain_labels);
   _ranges = std::make_shared<
       math::arrays::LabelledArrays<math::arrays::LabelledMeasuredArray>>(
-      *other.ranges());
-  _measurement_title = other.measurement_title();
-  _unique_id         = other.unique_id();
-  _timestamp         = other.timestamp();
+      *other._ranges);
+  _measurement_title = other._measurement_title;
+  _unique_id         = other._unique_id;
+  _timestamp         = other._timestamp;
 }
 HDF5Data& HDF5Data::operator=(const HDF5Data& other) {
   if (this != &other) {
-    std::unique_lock<std::shared_timed_mutex> lock_metadata(_mu_metadata,
-                                                            std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_shape(_mu_shape,
-                                                         std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_unit_domain(_mu_unit_domain,
-                                                               std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_domain_labels(
+    std::unique_lock<std::shared_timed_mutex> lock_metadata_this(
+        _mu_metadata, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_shape_this(_mu_shape,
+                                                              std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_unit_domain_this(
+        _mu_unit_domain, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_domain_labels_this(
         _mu_domain_labels, std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_ranges(_mu_ranges,
-                                                          std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_measurement_title(
+    std::unique_lock<std::shared_timed_mutex> lock_ranges_this(_mu_ranges,
+                                                               std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_measurement_title_this(
         _mu_measurement_title, std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_unique_id(_mu_unique_id,
-                                                             std::defer_lock);
-    std::unique_lock<std::shared_timed_mutex> lock_timestamp(_mu_timestamp,
-                                                             std::defer_lock);
-    std::lock(lock_metadata,
-              lock_shape,
-              lock_unit_domain,
-              lock_domain_labels,
-              lock_ranges,
-              lock_measurement_title,
-              lock_unique_id,
-              lock_timestamp);
-    if (!other.metadata() || !other.shape() || !other.unit_domain() ||
-        !other.domain_labels() || !other.ranges()) {
+    std::unique_lock<std::shared_timed_mutex> lock_unique_id_this(
+        _mu_unique_id, std::defer_lock);
+    std::unique_lock<std::shared_timed_mutex> lock_timestamp_this(
+        _mu_timestamp, std::defer_lock);
+
+    std::shared_lock<std::shared_timed_mutex> lock_metadata_other(
+        other._mu_metadata, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_shape_other(other._mu_shape,
+                                                               std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_unit_domain_other(
+        other._mu_unit_domain, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_domain_labels_other(
+        other._mu_domain_labels, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_ranges_other(
+        other._mu_ranges, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_measurement_title_other(
+        other._mu_measurement_title, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_unique_id_other(
+        other._mu_unique_id, std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_timestamp_other(
+        other._mu_timestamp, std::defer_lock);
+
+    std::lock(lock_metadata_this,
+              lock_shape_this,
+              lock_unit_domain_this,
+              lock_domain_labels_this,
+              lock_ranges_this,
+              lock_measurement_title_this,
+              lock_unique_id_this,
+              lock_timestamp_this,
+              lock_metadata_other,
+              lock_shape_other,
+              lock_unit_domain_other,
+              lock_domain_labels_other,
+              lock_ranges_other,
+              lock_measurement_title_other,
+              lock_unique_id_other,
+              lock_timestamp_other);
+    if (!other._metadata || !other._shape || !other._unit_domain ||
+        !other._domain_labels || !other._ranges) {
       throw std::invalid_argument(
           "HDF5Data copy constructor: Other HDF5Data contains null shared "
           "pointers.");
     }
-    _metadata    = std::make_shared<Metadata>(*other.metadata());
-    _shape       = std::make_shared<math::Axes<int>>(*other.shape());
+    _metadata    = std::make_shared<Metadata>(*other._metadata);
+    _shape       = std::make_shared<math::Axes<int>>(*other._shape);
     _unit_domain = std::make_shared<math::Axes<math::arrays::ControlArray>>(
-        *other.unit_domain());
+        *other._unit_domain);
     _domain_labels =
         std::make_shared<math::Axes<math::domains::CoupledLabelledDomain>>(
-            *other.domain_labels());
+            *other._domain_labels);
     _ranges = std::make_shared<
         math::arrays::LabelledArrays<math::arrays::LabelledMeasuredArray>>(
-        *other.ranges());
-    _measurement_title = other.measurement_title();
-    _unique_id         = other.unique_id();
-    _timestamp         = other.timestamp();
+        *other._ranges);
+    _measurement_title = other._measurement_title;
+    _unique_id         = other._unique_id;
+    _timestamp         = other._timestamp;
   }
   return *this;
 }
@@ -454,42 +506,33 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_communications(
   // Find a valid waveform
   instrument_interfaces::WaveformSP valid_waveform;
   for (const instrument_interfaces::WaveformSP& waveform : waveforms) {
-    // std::cout
-    //     << std::string("The space shape is ") +
-    //            std::to_string(waveform->space()->space()->space()->shape()[0])
-    //            +
-    //            "," +
-    //            std::to_string(waveform->space()->space()->space()->shape()[1])
-    //     << std::endl;
-    // std::cout << std::string("The axes size is ") +
-    //                  std::to_string(waveform->space()->axes()->size())
-    //           << std::endl;
-    if (waveform->space()->space()->space()->shape()[1] ==
-        waveform->space()->axes()->size()) {
+    auto dSpace = waveform->space();
+    if (dSpace->space()->space()->shape()[1] == dSpace->axes()->size()) {
       valid_waveform = waveform;
       goto found_waveform;
     }
   }
   throw std::runtime_error("No valid waveform found in request.");
 found_waveform:
+  auto dSpace = valid_waveform->space();
+
+  // Domain labels
+  auto domain_labels = dSpace->axes();
 
   // Build axes
-  int              count = valid_waveform->space()->axes()->size();
+  int              count = domain_labels->size();
   std::vector<int> axes_vec(count);
   std::iota(axes_vec.begin(), axes_vec.end(), 0);
   math::AxesSP<int> axes = std::make_shared<math::Axes<int>>(axes_vec);
 
   // Build unit_domain
   math::AxesSP<math::arrays::ControlArray> unit_domain =
-      valid_waveform->space()->space()->create_array(axes);
+      dSpace->space()->create_array(axes);
 
   // Build shape
   const auto&      shape_sz = unit_domain->at(0)->shape();
   std::vector<int> shape(shape_sz.begin(), shape_sz.end());
   auto             shape_axes = std::make_shared<math::Axes<int>>(shape);
-
-  // Domain labels
-  auto domain_labels = valid_waveform->space()->axes();
 
   // Ranges from response
   auto ranges = response->arrays();

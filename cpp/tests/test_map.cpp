@@ -50,13 +50,6 @@ TEST_F(MapIntStringTest, InsertReturnsIteratorAndBool) {
   EXPECT_EQ((*result2.first)->second(), "one");
 }
 
-TEST_F(MapIntStringTest, OperatorSquareBracket) {
-  (*map)[1] = "one";
-  EXPECT_EQ(map->at(1), "one");
-  EXPECT_EQ((*map)[2], "");
-  EXPECT_EQ(map->size(), 2);
-}
-
 TEST_F(MapIntStringTest, EraseKey) {
   map->insert_or_assign(1, "one");
   map->insert_or_assign(2, "two");
@@ -138,16 +131,6 @@ TEST(MapConnectionDoubleTest, InsertReturnsIteratorAndBool) {
   auto result2 = m.insert(conn, 2.34);
   EXPECT_FALSE(result2.second);
   EXPECT_EQ((*result2.first)->second(), 1.23);
-}
-
-TEST(MapConnectionDoubleTest, OperatorSquareBracket) {
-  auto                    conn = Connection::BarrierGate("A");
-  Map<Connection, double> m;
-  m[conn] = 3.21;
-  EXPECT_EQ(m.at(conn), 3.21);
-  auto conn2 = Connection::BarrierGate("B");
-  EXPECT_EQ(m[conn2], 0.0);
-  EXPECT_EQ(m.size(), 2);
 }
 
 TEST(MapConnectionDoubleTest, EraseKey) {

@@ -141,7 +141,7 @@ TEST_F(LabelledArraysTest, StaticConstructorsControl) {
 TEST_F(LabelledArraysTest, ArraysGetterMeasured) {
   std::vector<LabelledMeasuredArraySP>  vec{lma1, lma2};
   LabelledArrays<LabelledMeasuredArray> arrs(vec);
-  auto&                                 arrays_ref = arrs.arrays();
+  auto                                  arrays_ref = arrs.arrays();
   EXPECT_EQ(arrays_ref.size(), 2);
   EXPECT_EQ(arrays_ref[0], lma1);
 }
@@ -149,7 +149,7 @@ TEST_F(LabelledArraysTest, ArraysGetterMeasured) {
 TEST_F(LabelledArraysTest, ArraysGetterControl) {
   std::vector<LabelledControlArraySP>  vec{lca1, lca2};
   LabelledArrays<LabelledControlArray> arrs(vec);
-  auto&                                arrays_ref = arrs.arrays();
+  auto                                 arrays_ref = arrs.arrays();
   EXPECT_EQ(arrays_ref.size(), 2);
   EXPECT_EQ(arrays_ref[0], lca1);
 }

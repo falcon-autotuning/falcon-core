@@ -217,8 +217,8 @@ TEST_F(ListTest, BracketSongsOOB) {
 TEST_F(ListTest, ItemsAccess) {
   List<double> list(double_data);
   EXPECT_EQ(list.items(), double_data);
-  list.items()[0] = 42.0;
-  EXPECT_EQ(list.items()[0], 42.0);
+  list.replace_at(0, 32.0);
+  EXPECT_EQ(list.items()[0], 32.0);
 }
 
 TEST_F(ListTest, OOBAtPrimitive) {

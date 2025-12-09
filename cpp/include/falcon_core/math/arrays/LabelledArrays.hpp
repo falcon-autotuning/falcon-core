@@ -55,7 +55,7 @@ class LabelledArrays : public generic::List<ArrayType> {
   /**
    * @brief Returns the internal vector of labelled arrays.
    */
-  std::vector<std::shared_ptr<ArrayType>>& arrays() { return this->items(); }
+  std::vector<std::shared_ptr<ArrayType>> arrays() { return this->items(); }
   /**
    * @brief Returns the labels of all labelled arrays.
    */

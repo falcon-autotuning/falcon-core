@@ -326,24 +326,23 @@ TEST_F(ConfigTest, JsonRoundTrip) {
 }
 
 TEST_F(ConfigTest, BasicQueries) {
-  auto gnames = original_config.get_all_gnames();
+  auto gnames = *original_config.get_all_gnames();
   auto groups = original_config.get_all_groups();
-  ASSERT_EQ(gnames->size(), groups->size());
-  for (size_t i = 0; i < gnames->size(); ++i) {
+  ASSERT_EQ(gnames.size(), groups->size());
+  for (size_t i = 0; i < gnames.size(); ++i) {
     ASSERT_TRUE(groups->items()[i]);
-    ASSERT_TRUE(gnames->items()[i]);
+    ASSERT_TRUE(gnames.items()[i]);
   }
-  auto channels = original_config.get_current_channels();
-  ASSERT_TRUE(channels);
-  for (const auto& ch : *channels) {
+  auto channels = *original_config.get_current_channels();
+  for (const auto& ch : channels) {
     ASSERT_TRUE(original_config.has_channel(ch));
   }
-  for (const auto& gn : *gnames) {
+  for (const auto& gn : gnames) {
     ASSERT_TRUE(original_config.has_gname(gn));
     auto group = original_config.select_group(gn);
     ASSERT_TRUE(group);
   }
-  for (const auto& ch : *channels) {
+  for (const auto& ch : channels) {
     int dots = original_config.get_dot_number(ch);
     ASSERT_GE(dots, 0);
   }
@@ -356,7 +355,7 @@ TEST_F(ConfigTest, BasicQueries) {
   for (const auto& r : reservoir_gates) {
     original_config.get_associated_ohmic(r);
   }
-  for (const auto& ch : *channels) {
+  for (const auto& ch : channels) {
     auto gn = original_config.get_gname(ch);
     if (gn) {
       auto bg = original_config.get_channel_barrier_gates(ch);
@@ -367,7 +366,7 @@ TEST_F(ConfigTest, BasicQueries) {
   }
   auto isolated_barriers = original_config.get_isolated_barrier_gates();
   auto shared_barriers   = original_config.get_shared_barrier_gates();
-  for (const auto& ch : *channels) {
+  for (const auto& ch : channels) {
     auto iso = original_config.get_isolated_channel_gates(ch);
   }
   auto iso_map   = original_config.get_isolated_gates_by_channel();

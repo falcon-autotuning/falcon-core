@@ -46,7 +46,7 @@ ConnectionSP Connection::ScreeningGate(const std::string& name) {
 ConnectionSP Connection::Ohmic(const std::string& name) {
   return std::make_shared<Connection>(name, DeviceFeature::Ohmic);
 }
-const std::string& Connection::name() const {
+const std::string Connection::name() const {
   std::shared_lock<std::shared_timed_mutex> lock(_mu_name);
   return _name;
 }

@@ -35,11 +35,6 @@ class Pair : public generic::Song {
 
  public:
   Pair<T1, T2>(const Pair<T1, T2>& other) {
-    std::shared_lock<std::shared_timed_mutex> lock_first(_mu_first,
-                                                         std::defer_lock);
-    std::shared_lock<std::shared_timed_mutex> lock_second(_mu_second,
-                                                          std::defer_lock);
-    std::lock(lock_first, lock_second);
     copy_impl(other,
               typename category::determine_tag<T1>::type{},
               typename category::determine_tag<T2>::type{});
@@ -50,7 +45,11 @@ class Pair : public generic::Song {
                                                            std::defer_lock);
       std::shared_lock<std::shared_timed_mutex> lock_second(_mu_second,
                                                             std::defer_lock);
-      std::lock(lock_first, lock_second);
+      std::shared_lock<std::shared_timed_mutex> lock_other_first(
+          other._mu_first, std::defer_lock);
+      std::shared_lock<std::shared_timed_mutex> lock_other_second(
+          other._mu_second, std::defer_lock);
+      std::lock(lock_first, lock_second, lock_other_first, lock_other_second);
       copy_impl(other,
                 typename category::determine_tag<T1>::type{},
                 typename category::determine_tag<T2>::type{});
@@ -77,28 +76,28 @@ class Pair : public generic::Song {
   /**
    * @brief Get the stored first value.
    */
-  const StoredT1& first() const {
+  const StoredT1 first() const {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_first);
     return _first;
   }
   /**
    * @brief Get the stored second value.
    */
-  const StoredT2& second() const {
+  const StoredT2 second() const {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_second);
     return _second;
   }
   /**
    * @brief Get the stored first value.
    */
-  StoredT1& first() {
+  StoredT1 first() {
     std::unique_lock<std::shared_timed_mutex> lock(_mu_first);
     return _first;
   }
   /**
    * @brief Get the stored second value.
    */
-  StoredT2& second() {
+  StoredT2 second() {
     std::unique_lock<std::shared_timed_mutex> lock(_mu_second);
     return _second;
   }
@@ -160,18 +159,30 @@ class Pair : public generic::Song {
   void copy_impl(const Pair<T1, T2>& other,
                  category::primitive_tag,
                  category::song_tag) {
+    if (!other.second()) {
+      throw std::invalid_argument(
+          "Pair copy constructor: Other Pair contains null shared pointer.");
+    }
     _first  = other.first();
     _second = std::make_shared<T2>(*other.second());
   }
   void copy_impl(const Pair<T1, T2>& other,
                  category::song_tag,
                  category::primitive_tag) {
+    if (!other.first()) {
+      throw std::invalid_argument(
+          "Pair copy constructor: Other Pair contains null shared pointer.");
+    }
     _first  = std::make_shared<T1>(*other.first());
     _second = other._second;
   }
   void copy_impl(const Pair<T1, T2>& other,
                  category::song_tag,
                  category::song_tag) {
+    if (!other.first() || !other.second()) {
+      throw std::invalid_argument(
+          "Pair copy constructor: Other Pair contains null shared pointer.");
+    }
     _first  = std::make_shared<T1>(*other.first());
     _second = std::make_shared<T2>(*other.second());
   }

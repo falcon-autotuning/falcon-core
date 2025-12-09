@@ -13,7 +13,7 @@ namespace instrument_interfaces {
 
 class Waveform : public port_transforms::PortTransforms {
   math::discrete_spaces::DiscreteSpaceSP _space;
-  mutable std::shared_timed_mutex        _mu_space;
+  mutable std::shared_timed_mutex        _mu_dspace;
 
  public:
   Waveform(const Waveform& other);
@@ -134,7 +134,7 @@ class Waveform : public port_transforms::PortTransforms {
   Waveform();
   template <class Archive>
   void serialize(Archive& ar) {
-    std::shared_lock<std::shared_timed_mutex> lock_space(_mu_space);
+    std::shared_lock<std::shared_timed_mutex> lock_space(_mu_dspace);
     ar(cereal::base_class<port_transforms::PortTransforms>(this), _space);
   }
 };

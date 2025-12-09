@@ -27,7 +27,7 @@ class CoupledLabelledDomain : public generic::List<LabelledDomain> {
   /**
    * @brief Get all domains.
    */
-  const std::vector<LabelledDomainSP>& domains() const;
+  const std::vector<LabelledDomainSP> domains() const;
   /**
    * @brief Get all labels.
    * @return Vector of shared pointers to labels.
