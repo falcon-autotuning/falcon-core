@@ -453,9 +453,8 @@ StringHandle Waveform_to_json_string(WaveformHandle handle) {
     throw std::invalid_argument(
         "Waveform_to_json_string: handle cannot be null");
   }
-  WaveformSP self = *static_cast<WaveformSP*>(handle);
-  return String_create(self->to_json_string().c_str(),
-                       self->to_json_string().size());
+  std::string json = (*static_cast<WaveformSP*>(handle))->to_json_string();
+  return String_create(json.c_str(), json.size());
   FALCON_C_API_END(nullptr)
 }
 

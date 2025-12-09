@@ -80,7 +80,7 @@ FArrayDoubleHandle LabelledMeasuredArray1D_as_1D(
   auto labelled_measured_array =
       *static_cast<LabelledMeasuredArray1DSP*>(handle);
   generic::FArraySP<double> arr = labelled_measured_array->as_1D();
-  return new generic::FArray<double>(*arr);
+  return new generic::FArraySP<double>(arr);
   FALCON_C_API_END(nullptr)
 }
 
@@ -207,7 +207,7 @@ ListFArrayDoubleHandle LabelledMeasuredArray1D_even_divisions(
       *static_cast<LabelledMeasuredArray1DSP*>(handle);
   generic::ListSP<generic::FArray<double>> divisions_array =
       labelled_measured_array->even_divisions(divisions);
-  return new generic::List<generic::FArray<double>>(*divisions_array);
+  return new generic::ListSP<generic::FArray<double>>(divisions_array);
   FALCON_C_API_END(nullptr)
 }
 
@@ -220,8 +220,8 @@ AcquisitionContextHandle LabelledMeasuredArray1D_label(
   }
   auto labelled_measured_array =
       *static_cast<LabelledMeasuredArray1DSP*>(handle);
-  return new autotuner_interfaces::contexts::AcquisitionContext(
-      *labelled_measured_array->label());
+  return new autotuner_interfaces::contexts::AcquisitionContextSP(
+      labelled_measured_array->label());
   FALCON_C_API_END(nullptr)
 }
 
@@ -497,8 +497,7 @@ LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_minus_measured_array(
   }
   LabelledMeasuredArray1DSP labelled_measured_array =
       *static_cast<LabelledMeasuredArray1DSP*>(handle);
-  MeasuredArraySP oarray =
-      std::make_shared<MeasuredArray>(*static_cast<MeasuredArray*>(other));
+  MeasuredArraySP oarray = *static_cast<MeasuredArraySP*>(other);
   return new LabelledMeasuredArray1DSP(
       labelled_measured_array->operator-(oarray));
   FALCON_C_API_END(nullptr)

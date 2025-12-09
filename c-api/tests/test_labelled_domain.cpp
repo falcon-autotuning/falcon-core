@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h"
 #include "falcon_core/math/domains/Domain_c_api.h"
 #include "falcon_core/math/domains/LabelledDomain_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
@@ -13,7 +13,7 @@ class LabelledDomainTest : public ::testing::Test {
  protected:
   void SetUp() override {
     name   = String_wrap("knob");
-    type   = String_wrap("type");
+    type   = InstrumentTypes_voltmeter();
     desc   = String_wrap("desc");
     unit   = SymbolUnit_create_volt();
     conn   = Connection_create_plunger_gate(String_wrap("A"));
@@ -23,7 +23,7 @@ class LabelledDomainTest : public ::testing::Test {
     knob = LabelledDomain_create_primitive_knob(
         name, 0.0, 1.0, conn, type, true, false, unit, desc);
     meter = LabelledDomain_create_primitive_meter(
-        name, 0.0, 1.0, conn, type, true, false, unit, desc);
+        name, 0.0, 1.0, conn, type, true, true, unit, desc);
     portdom = LabelledDomain_create_primitive_port(
         name, 0.0, 1.0, conn, type, true, false, unit, desc);
   }
@@ -53,62 +53,74 @@ class LabelledDomainTest : public ::testing::Test {
 
 TEST_F(LabelledDomainTest, CreatePrimitive) {
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_knob(                   nullptr, 0.0, 1.0, conn, type, true, false, unit, desc);
+  LabelledDomain_create_primitive_knob(
+      nullptr, 0.0, 1.0, conn, type, true, false, unit, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_knob(                   name, 0.0, 1.0, nullptr, type, true, false, unit, desc);
+  LabelledDomain_create_primitive_knob(
+      name, 0.0, 1.0, nullptr, type, true, false, unit, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_knob(                   name, 0.0, 1.0, conn, nullptr, true, false, unit, desc);
+  LabelledDomain_create_primitive_knob(
+      name, 0.0, 1.0, conn, nullptr, true, false, unit, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_knob(                   name, 0.0, 1.0, conn, type, true, false, nullptr, desc);
+  LabelledDomain_create_primitive_knob(
+      name, 0.0, 1.0, conn, type, true, false, nullptr, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_knob(                   name, 0.0, 1.0, conn, type, true, false, unit, nullptr);
-  EXPECT_EQ(get_last_error_code(), 1);
-
-  set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_meter(                   nullptr, 0.0, 1.0, conn, type, true, false, unit, desc);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_meter(                   name, 0.0, 1.0, nullptr, type, true, false, unit, desc);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_meter(                   name, 0.0, 1.0, conn, nullptr, true, false, unit, desc);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_meter(                   name, 0.0, 1.0, conn, type, true, false, nullptr, desc);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_meter(                   name, 0.0, 1.0, conn, type, true, false, unit, nullptr);
+  LabelledDomain_create_primitive_knob(
+      name, 0.0, 1.0, conn, type, true, false, unit, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_port(                   nullptr, 0.0, 1.0, conn, type, true, false, unit, desc);
+  LabelledDomain_create_primitive_meter(
+      nullptr, 0.0, 1.0, conn, type, true, false, unit, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_port(                   name, 0.0, 1.0, nullptr, type, true, false, unit, desc);
+  LabelledDomain_create_primitive_meter(
+      name, 0.0, 1.0, nullptr, type, true, false, unit, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_port(                   name, 0.0, 1.0, conn, nullptr, true, false, unit, desc);
+  LabelledDomain_create_primitive_meter(
+      name, 0.0, 1.0, conn, nullptr, true, false, unit, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_port(                   name, 0.0, 1.0, conn, type, true, false, nullptr, desc);
+  LabelledDomain_create_primitive_meter(
+      name, 0.0, 1.0, conn, type, true, false, nullptr, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_port(                   name, 0.0, 1.0, conn, type, true, false, unit, nullptr);
+  LabelledDomain_create_primitive_meter(
+      name, 0.0, 1.0, conn, type, true, false, unit, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+
+  set_last_error(0, nullptr);
+  LabelledDomain_create_primitive_port(
+      nullptr, 0.0, 1.0, conn, type, true, false, unit, desc);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledDomain_create_primitive_port(
+      name, 0.0, 1.0, nullptr, type, true, false, unit, desc);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledDomain_create_primitive_port(
+      name, 0.0, 1.0, conn, nullptr, true, false, unit, desc);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledDomain_create_primitive_port(
+      name, 0.0, 1.0, conn, type, true, false, nullptr, desc);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  LabelledDomain_create_primitive_port(
+      name, 0.0, 1.0, conn, type, true, false, unit, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(LabelledDomainTest, CreateFromPortAndDomain) {
-  auto ldp = LabelledDomain_create_from_port(0.0, 1.0, type, port, true, false);
+  auto ldp = LabelledDomain_create_from_port(0.0, 1.0, port, true, false);
   LabelledDomain_destroy(ldp);
   set_last_error(0, nullptr);
-  LabelledDomain_create_from_port(0.0, 1.0, nullptr, port, true, false);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
-  LabelledDomain_create_from_port(0.0, 1.0, type, nullptr, true, false);
+  LabelledDomain_create_from_port(0.0, 1.0, nullptr, true, false);
   EXPECT_EQ(get_last_error_code(), 1);
 
   auto ldpd = LabelledDomain_create_from_port_and_domain(port, domain);
@@ -129,19 +141,19 @@ TEST_F(LabelledDomainTest, CreateFromDomain) {
   LabelledDomain_create_from_domain(nullptr, name, conn, type, unit, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_from_domain(                   domain, nullptr, conn, type, unit, desc);
+  LabelledDomain_create_from_domain(domain, nullptr, conn, type, unit, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_from_domain(                   domain, name, nullptr, type, unit, desc);
+  LabelledDomain_create_from_domain(domain, name, nullptr, type, unit, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_from_domain(                   domain, name, conn, nullptr, unit, desc);
+  LabelledDomain_create_from_domain(domain, name, conn, nullptr, unit, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_from_domain(                   domain, name, conn, type, nullptr, desc);
+  LabelledDomain_create_from_domain(domain, name, conn, type, nullptr, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_from_domain(                   domain, name, conn, type, unit, nullptr);
+  LabelledDomain_create_from_domain(domain, name, conn, type, unit, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -231,7 +243,7 @@ TEST_F(LabelledDomainTest, IntersectionUnion) {
 
 TEST_F(LabelledDomainTest, IsEmptyContainsDomain) {
   EXPECT_FALSE(LabelledDomain_is_empty(knob));
-  EXPECT_FALSE(LabelledDomain_contains_domain(meter, knob));
+  EXPECT_TRUE(LabelledDomain_contains_domain(meter, knob));
   set_last_error(0, nullptr);
   LabelledDomain_is_empty(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);

@@ -85,7 +85,8 @@ FArrayDoubleHandle MeasuredArray1D_as_1D(MeasuredArray1DHandle handle) {
   }
   MeasuredArray1DSP measured_array = *static_cast<MeasuredArray1DSP*>(handle);
   auto              farray         = measured_array->as_1D();
-  return new generic::FArray<double>(farray->data());
+  return new generic::FArraySP<double>(
+      std::make_shared<generic::FArray<double>>(farray->data()));
   FALCON_C_API_END(nullptr)
 }
 
@@ -358,7 +359,7 @@ void MeasuredArray1D_minus_equals_farray(MeasuredArray1DHandle handle,
   MeasuredArray1DSP measured_array = *static_cast<MeasuredArray1DSP*>(handle);
   generic::FArraySP<double> oarray =
       *static_cast<generic::FArraySP<double>*>(other);
-  measured_array->operator-=(generic::FArray<double>(*oarray));
+  measured_array->operator-=(*oarray);
   FALCON_C_API_END()
 }
 

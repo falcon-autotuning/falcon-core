@@ -181,8 +181,8 @@ bool AcquisitionContext_equal(AcquisitionContextHandle handle,
     throw std::invalid_argument(
         "AcquisitionContext_equal: handle b cannot be null");
   }
-  return *(static_cast<AcquisitionContextSP*>(handle)) ==
-         *(static_cast<AcquisitionContextSP*>(other));
+  return *(*static_cast<AcquisitionContextSP*>(handle)) ==
+         *(*static_cast<AcquisitionContextSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -197,8 +197,8 @@ bool AcquisitionContext_not_equal(AcquisitionContextHandle handle,
     throw std::invalid_argument(
         "AcquisitionContext_not_equal: handle b cannot be null");
   }
-  return *(static_cast<AcquisitionContextSP*>(handle)) !=
-         *(static_cast<AcquisitionContextSP*>(other));
+  return *(*static_cast<AcquisitionContextSP*>(handle)) !=
+         *(*static_cast<AcquisitionContextSP*>(other));
   FALCON_C_API_END(false)
 }
 

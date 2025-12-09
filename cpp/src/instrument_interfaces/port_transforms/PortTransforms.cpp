@@ -12,6 +12,8 @@ const generic::List<PortTransform>& pts_check_and_deref(
     throw std::invalid_argument("PortTransforms: init must not be null.");
   return *init;
 }
+PortTransforms::PortTransforms(const PortTransforms& other)
+    : List<PortTransform>(other) {}
 PortTransforms::PortTransforms() = default;
 PortTransforms::PortTransforms(const generic::ListSP<PortTransform>& init)
     : List(pts_check_and_deref(init)) {}

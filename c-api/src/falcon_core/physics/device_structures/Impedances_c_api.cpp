@@ -19,8 +19,7 @@ ImpedancesHandle Impedances_create(const ListImpedanceHandle items) {
     throw std::invalid_argument("Impedances_create: items cannot be null");
   }
   falcon_core::generic::ListSP<Impedance> list =
-      std::make_shared<falcon_core::generic::List<Impedance>>(
-          *static_cast<falcon_core::generic::List<Impedance>*>(items));
+      *static_cast<falcon_core::generic::ListSP<Impedance>*>(items);
   return new ImpedancesSP(std::make_shared<Impedances>(list->items()));
   FALCON_C_API_END(nullptr)
 }
@@ -148,27 +147,29 @@ size_t Impedances_index(ImpedancesHandle handle, ImpedanceHandle value) {
   FALCON_C_API_END(0)
 }
 
-bool Impedances_equal(ImpedancesHandle a, ImpedancesHandle b) {
+bool Impedances_equal(ImpedancesHandle handle, ImpedancesHandle other) {
   FALCON_C_API_BEGIN
-  if (!a) {
+  if (!handle) {
     throw std::invalid_argument("Impedances_equal: handle cannot be null");
   }
-  if (!b) {
+  if (!other) {
     throw std::invalid_argument("Impedances_equal: handle cannot be null");
   }
-  return *(static_cast<ImpedancesSP*>(a)) == *(static_cast<ImpedancesSP*>(b));
+  return *(*static_cast<ImpedancesSP*>(handle)) ==
+         *(*static_cast<ImpedancesSP*>(other));
   FALCON_C_API_END(false)
 }
 
-bool Impedances_not_equal(ImpedancesHandle a, ImpedancesHandle b) {
+bool Impedances_not_equal(ImpedancesHandle handle, ImpedancesHandle other) {
   FALCON_C_API_BEGIN
-  if (!a) {
+  if (!handle) {
     throw std::invalid_argument("Impedances_not_equal: handle cannot be null");
   }
-  if (!b) {
+  if (!other) {
     throw std::invalid_argument("Impedances_not_equal: handle cannot be null");
   }
-  return *(static_cast<ImpedancesSP*>(a)) != *(static_cast<ImpedancesSP*>(b));
+  return *(*static_cast<ImpedancesSP*>(handle)) !=
+         *(*static_cast<ImpedancesSP*>(other));
   FALCON_C_API_END(false)
 }
 

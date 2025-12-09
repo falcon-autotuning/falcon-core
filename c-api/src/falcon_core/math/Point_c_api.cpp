@@ -302,8 +302,7 @@ void Point_set_unit(PointHandle handle, SymbolUnitHandle unit) {
     throw std::invalid_argument("Point_set_unit: unit cannot be null");
   }
   PointSP             self      = *static_cast<PointSP*>(handle);
-  units::SymbolUnitSP real_unit = std::make_shared<units::SymbolUnit>(
-      *static_cast<units::SymbolUnit*>(unit));
+  units::SymbolUnitSP real_unit = *static_cast<units::SymbolUnitSP*>(unit);
   self->set_unit(real_unit);
   FALCON_C_API_END()
 }

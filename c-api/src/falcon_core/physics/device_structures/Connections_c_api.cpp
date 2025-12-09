@@ -225,8 +225,8 @@ bool Connections_equal(ConnectionsHandle handle, ConnectionsHandle other) {
   if (!other) {
     throw std::invalid_argument("Connections_equal: b cannot be null");
   }
-  return *(static_cast<ConnectionsSP*>(handle)) ==
-         *(static_cast<ConnectionsSP*>(other));
+  return *(*static_cast<ConnectionsSP*>(handle)) ==
+         *(*static_cast<ConnectionsSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -238,8 +238,8 @@ bool Connections_not_equal(ConnectionsHandle handle, ConnectionsHandle other) {
   if (!other) {
     throw std::invalid_argument("Connections_not_equal: b cannot be null");
   }
-  return *(static_cast<ConnectionsSP*>(handle)) !=
-         *(static_cast<ConnectionsSP*>(other));
+  return *(*static_cast<ConnectionsSP*>(handle)) !=
+         *(*static_cast<ConnectionsSP*>(other));
   FALCON_C_API_END(false)
 }
 

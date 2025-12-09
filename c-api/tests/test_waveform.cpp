@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/ListPortTransform_c_api.h"
 #include "falcon_core/instrument_interfaces/Waveform_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h"
 #include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
@@ -148,7 +149,6 @@ TEST_F(WaveformTest, Accessors) {
 
   auto s = Waveform_space(w);
   EXPECT_NE(s, nullptr);
-  DiscreteSpace_destroy(s);
 
   auto t = Waveform_transforms(w);
   EXPECT_NE(t, nullptr);

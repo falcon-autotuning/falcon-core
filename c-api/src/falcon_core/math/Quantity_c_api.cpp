@@ -33,8 +33,7 @@ double Quantity_value(QuantityHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Quantity_value: handle cannot be null");
   }
-  QuantitySP self = *static_cast<QuantitySP*>(handle);
-  return self->value();
+  return (*static_cast<QuantitySP*>(handle))->value();
   FALCON_C_API_END(0.0)
 }
 

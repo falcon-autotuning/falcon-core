@@ -157,7 +157,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairGnameGroup_at");
 }
     auto obj = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>*>(handle))->at(idx);
-    return new falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>(*obj);
+    return new std::shared_ptr<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>(obj);
     FALCON_C_API_END(nullptr)
 }
 

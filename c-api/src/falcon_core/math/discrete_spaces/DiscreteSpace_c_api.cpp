@@ -27,16 +27,13 @@ DiscreteSpaceHandle DiscreteSpace_create(UnitSpaceHandle                 space,
   falcon_core::math::UnitSpaceSP real_space =
       *static_cast<falcon_core::math::UnitSpaceSP*>(space);
   falcon_core::math::AxesSP<falcon_core::math::domains::CoupledLabelledDomain>
-      real_axes = std::make_shared<falcon_core::math::Axes<
-          falcon_core::math::domains::CoupledLabelledDomain>>(
-          *static_cast<falcon_core::math::Axes<
-              falcon_core::math::domains::CoupledLabelledDomain>*>(axes));
+      real_axes = *static_cast<falcon_core::math::AxesSP<
+          falcon_core::math::domains::CoupledLabelledDomain>*>(axes);
   falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>
-      real_increasing = std::make_shared<falcon_core::math::Axes<
-          falcon_core::generic::Map<std::string, bool>>>(
-          *static_cast<falcon_core::math::Axes<
-              falcon_core::generic::Map<std::string, bool>>*>(increasing));
-  return new DiscreteSpace(real_space, real_axes, real_increasing);
+      real_increasing = *static_cast<falcon_core::math::AxesSP<
+          falcon_core::generic::Map<std::string, bool>>*>(increasing);
+  return new DiscreteSpaceSP(
+      std::make_shared<DiscreteSpace>(real_space, real_axes, real_increasing));
   FALCON_C_API_END(nullptr)
 }
 
@@ -61,22 +58,16 @@ DiscreteSpaceHandle DiscreteSpace_create_cartesian_discrete_space(
         "null");
   }
   falcon_core::math::AxesSP<int> real_divisions =
-      std::make_shared<falcon_core::math::Axes<int>>(
-          *static_cast<falcon_core::math::Axes<int>*>(divisions));
+      *static_cast<falcon_core::math::AxesSP<int>*>(divisions);
   falcon_core::math::AxesSP<falcon_core::math::domains::CoupledLabelledDomain>
-      real_axes = std::make_shared<falcon_core::math::Axes<
-          falcon_core::math::domains::CoupledLabelledDomain>>(
-          *static_cast<falcon_core::math::Axes<
-              falcon_core::math::domains::CoupledLabelledDomain>*>(axes));
+      real_axes = *static_cast<falcon_core::math::AxesSP<
+          falcon_core::math::domains::CoupledLabelledDomain>*>(axes);
   falcon_core::math::AxesSP<falcon_core::generic::Map<std::string, bool>>
-      real_increasing = std::make_shared<falcon_core::math::Axes<
-          falcon_core::generic::Map<std::string, bool>>>(
-          *static_cast<falcon_core::math::Axes<
-              falcon_core::generic::Map<std::string, bool>>*>(increasing));
+      real_increasing = *static_cast<falcon_core::math::AxesSP<
+          falcon_core::generic::Map<std::string, bool>>*>(increasing);
   falcon_core::math::domains::DomainSP real_domain =
-      std::make_shared<falcon_core::math::domains::Domain>(
-          *static_cast<falcon_core::math::domains::Domain*>(domain));
-  return new DiscreteSpace(*DiscreteSpace::CartesianDiscreteSpace(
+      *static_cast<falcon_core::math::domains::DomainSP*>(domain);
+  return new DiscreteSpaceSP(DiscreteSpace::CartesianDiscreteSpace(
       real_divisions, real_axes, real_increasing, real_domain));
   FALCON_C_API_END(nullptr)
 }
@@ -102,17 +93,13 @@ DiscreteSpaceHandle DiscreteSpace_create_cartesian_discrete_space_1D(
         "DiscreteSpace_create_cartesiandiscretespace1D: domain cannot be null");
   }
   falcon_core::math::domains::CoupledLabelledDomainSP real_shared_domain =
-      std::make_shared<falcon_core::math::domains::CoupledLabelledDomain>(
-          *static_cast<falcon_core::math::domains::CoupledLabelledDomain*>(
-              shared_domain));
+      *static_cast<falcon_core::math::domains::CoupledLabelledDomainSP*>(
+          shared_domain);
   falcon_core::generic::MapSP<std::string, bool> real_increasing =
-      std::make_shared<falcon_core::generic::Map<std::string, bool>>(
-          *static_cast<falcon_core::generic::Map<std::string, bool>*>(
-              increasing));
+      *static_cast<falcon_core::generic::MapSP<std::string, bool>*>(increasing);
   falcon_core::math::domains::DomainSP real_domain =
-      std::make_shared<falcon_core::math::domains::Domain>(
-          *static_cast<falcon_core::math::domains::Domain*>(domain));
-  return new DiscreteSpace(*DiscreteSpace::CartesianDiscreteSpace1D(
+      *static_cast<falcon_core::math::domains::DomainSP*>(domain);
+  return new DiscreteSpaceSP(DiscreteSpace::CartesianDiscreteSpace1D(
       division, real_shared_domain, real_increasing, real_domain));
   FALCON_C_API_END(nullptr)
 }
@@ -122,7 +109,7 @@ void DiscreteSpace_destroy(DiscreteSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("DiscreteSpace_destroy: handle cannot be null");
   }
-  delete static_cast<DiscreteSpace*>(handle);
+  delete static_cast<DiscreteSpaceSP*>(handle);
   FALCON_C_API_END()
 }
 
@@ -131,8 +118,8 @@ UnitSpaceHandle DiscreteSpace_space(DiscreteSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("DiscreteSpace_space: handle cannot be null");
   }
-  DiscreteSpace self = *static_cast<DiscreteSpace*>(handle);
-  return new falcon_core::math::UnitSpaceSP(self.space());
+  DiscreteSpaceSP self = *static_cast<DiscreteSpaceSP*>(handle);
+  return new falcon_core::math::UnitSpaceSP(self->space());
   FALCON_C_API_END(nullptr)
 }
 
@@ -141,9 +128,9 @@ AxesCoupledLabelledDomainHandle DiscreteSpace_axes(DiscreteSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("DiscreteSpace_axes: handle cannot be null");
   }
-  DiscreteSpace self = *static_cast<DiscreteSpace*>(handle);
-  return new falcon_core::math::Axes<
-      falcon_core::math::domains::CoupledLabelledDomain>(*self.axes());
+  DiscreteSpaceSP self = *static_cast<DiscreteSpaceSP*>(handle);
+  return new falcon_core::math::AxesSP<
+      falcon_core::math::domains::CoupledLabelledDomain>(self->axes());
   FALCON_C_API_END(nullptr)
 }
 
@@ -153,9 +140,9 @@ AxesMapStringBoolHandle DiscreteSpace_increasing(DiscreteSpaceHandle handle) {
     throw std::invalid_argument(
         "DiscreteSpace_increasing: handle cannot be null");
   }
-  DiscreteSpace self = *static_cast<DiscreteSpace*>(handle);
-  return new falcon_core::math::Axes<
-      falcon_core::generic::Map<std::string, bool>>(*self.increasing());
+  DiscreteSpaceSP self = *static_cast<DiscreteSpaceSP*>(handle);
+  return new falcon_core::math::AxesSP<
+      falcon_core::generic::Map<std::string, bool>>(self->increasing());
   FALCON_C_API_END(nullptr)
 }
 
@@ -164,8 +151,8 @@ PortsHandle DiscreteSpace_knobs(DiscreteSpaceHandle handle) {
   if (!handle) {
     throw std::invalid_argument("DiscreteSpace_knobs: handle cannot be null");
   }
-  DiscreteSpace self = *static_cast<DiscreteSpace*>(handle);
-  return new falcon_core::instrument_interfaces::names::Ports(*(self.knobs()));
+  DiscreteSpaceSP self = *static_cast<DiscreteSpaceSP*>(handle);
+  return new falcon_core::instrument_interfaces::names::PortsSP(self->knobs());
   FALCON_C_API_END(nullptr)
 }
 
@@ -177,8 +164,8 @@ void DiscreteSpace_validate_unit_space_dimensionality_matches_knobs(
         "DiscreteSpace_validate_unit_space_dimensionality_matches_knobs: "
         "handle cannot be null");
   }
-  DiscreteSpace self = *static_cast<DiscreteSpace*>(handle);
-  self.validate_unit_space_dimensionality_matches_knobs();
+  DiscreteSpaceSP self = *static_cast<DiscreteSpaceSP*>(handle);
+  self->validate_unit_space_dimensionality_matches_knobs();
   FALCON_C_API_END()
 }
 
@@ -188,8 +175,8 @@ void DiscreteSpace_validate_knob_uniqueness(DiscreteSpaceHandle handle) {
     throw std::invalid_argument(
         "DiscreteSpace_validate_knob_uniqueness: handle cannot be null");
   }
-  DiscreteSpace self = *static_cast<DiscreteSpace*>(handle);
-  self.validate_knob_uniqueness();
+  DiscreteSpaceSP self = *static_cast<DiscreteSpaceSP*>(handle);
+  self->validate_knob_uniqueness();
   FALCON_C_API_END()
 }
 
@@ -203,11 +190,10 @@ int DiscreteSpace_get_axis(DiscreteSpaceHandle  handle,
   if (!knob) {
     throw std::invalid_argument("DiscreteSpace_get_axis: knob cannot be null");
   }
-  DiscreteSpace self = *static_cast<DiscreteSpace*>(handle);
-  return self.get_axis(std::make_shared<falcon_core::instrument_interfaces::
-                                            names::InstrumentPort>(
-      *static_cast<falcon_core::instrument_interfaces::names::InstrumentPort*>(
-          knob)));
+  DiscreteSpaceSP self = *static_cast<DiscreteSpaceSP*>(handle);
+  return self->get_axis(
+      *static_cast<
+          falcon_core::instrument_interfaces::names::InstrumentPortSP*>(knob));
   FALCON_C_API_END(0)
 }
 
@@ -222,13 +208,10 @@ DomainHandle DiscreteSpace_get_domain(DiscreteSpaceHandle  handle,
     throw std::invalid_argument(
         "DiscreteSpace_get_domain: knob cannot be null");
   }
-  DiscreteSpace self = *static_cast<DiscreteSpace*>(handle);
-  return new falcon_core::math::domains::Domain(*(self.get_domain(
-      std::make_shared<
-          falcon_core::instrument_interfaces::names::InstrumentPort>(
-          *static_cast<
-              falcon_core::instrument_interfaces::names::InstrumentPort*>(
-              knob)))));
+  DiscreteSpaceSP self = *static_cast<DiscreteSpaceSP*>(handle);
+  return new falcon_core::math::domains::DomainSP(self->get_domain(
+      *static_cast<
+          falcon_core::instrument_interfaces::names::InstrumentPortSP*>(knob)));
   FALCON_C_API_END(nullptr)
 }
 
@@ -243,14 +226,12 @@ AxesLabelledControlArrayHandle DiscreteSpace_get_projection(
     throw std::invalid_argument(
         "DiscreteSpace_get_projection: projection cannot be null");
   }
-  DiscreteSpace self = *static_cast<DiscreteSpace*>(handle);
-  return new falcon_core::math::Axes<
-      falcon_core::math::arrays::LabelledControlArray>(*(self.get_projection(
-      std::make_shared<falcon_core::math::Axes<
-          falcon_core::instrument_interfaces::names::InstrumentPort>>(
-          *static_cast<falcon_core::math::Axes<
-              falcon_core::instrument_interfaces::names::InstrumentPort>*>(
-              projection)))));
+  DiscreteSpaceSP self = *static_cast<DiscreteSpaceSP*>(handle);
+  return new falcon_core::math::AxesSP<
+      falcon_core::math::arrays::LabelledControlArray>(self->get_projection(
+      *static_cast<falcon_core::math::AxesSP<
+          falcon_core::instrument_interfaces::names::InstrumentPort>*>(
+          projection)));
   FALCON_C_API_END(nullptr)
 }
 
@@ -263,9 +244,9 @@ bool DiscreteSpace_equal(DiscreteSpaceHandle handle,
   if (!other) {
     throw std::invalid_argument("DiscreteSpace_equal: other cannot be null");
   }
-  DiscreteSpace self  = *static_cast<DiscreteSpace*>(handle);
-  DiscreteSpace oself = *static_cast<DiscreteSpace*>(other);
-  return self == oself;
+  DiscreteSpaceSP self  = *static_cast<DiscreteSpaceSP*>(handle);
+  DiscreteSpaceSP oself = *static_cast<DiscreteSpaceSP*>(other);
+  return *self == *oself;
   FALCON_C_API_END(false)
 }
 
@@ -280,9 +261,9 @@ bool DiscreteSpace_not_equal(DiscreteSpaceHandle handle,
     throw std::invalid_argument(
         "DiscreteSpace_not_equal: other cannot be null");
   }
-  DiscreteSpace self  = *static_cast<DiscreteSpace*>(handle);
-  DiscreteSpace oself = *static_cast<DiscreteSpace*>(other);
-  return self != oself;
+  DiscreteSpaceSP self  = *static_cast<DiscreteSpaceSP*>(handle);
+  DiscreteSpaceSP oself = *static_cast<DiscreteSpaceSP*>(other);
+  return *self != *oself;
   FALCON_C_API_END(false)
 }
 
@@ -292,8 +273,8 @@ StringHandle DiscreteSpace_to_json_string(DiscreteSpaceHandle handle) {
     throw std::invalid_argument(
         "DiscreteSpace_to_json_string: handle cannot be null");
   }
-  DiscreteSpace self = *static_cast<DiscreteSpace*>(handle);
-  std::string   json = self.to_json_string();
+  DiscreteSpaceSP self = *static_cast<DiscreteSpaceSP*>(handle);
+  std::string     json = self->to_json_string();
   return String_create(json.c_str(), json.size());
   FALCON_C_API_END(nullptr)
 }
@@ -305,8 +286,8 @@ DiscreteSpaceHandle DiscreteSpace_from_json_string(StringHandle json) {
         "DiscreteSpace_from_json_string: json cannot be null");
   }
   std::string json_str(json->raw);
-  return new DiscreteSpace(
-      *DiscreteSpace::from_json_string<DiscreteSpace>(json_str));
+  return new DiscreteSpaceSP(
+      DiscreteSpace::from_json_string<DiscreteSpace>(json_str));
   FALCON_C_API_END(nullptr)
 }
 }

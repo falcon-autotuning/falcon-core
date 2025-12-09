@@ -47,7 +47,6 @@ LabelledDomainHandle LabelledDomain_create_primitive_port(
 LabelledDomainHandle LabelledDomain_create_from_port(
     double               min_val,
     double               max_val,
-    StringHandle         instrument_type,
     InstrumentPortHandle port,
     bool                 lesser_bound_contained,
     bool                 greater_bound_contained);
@@ -65,20 +64,23 @@ LabelledDomainHandle LabelledDomain_create_from_domain(
 // @category:deallocation
 void LabelledDomain_destroy(LabelledDomainHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: LabelledDomain_port | falcon_core::math::domains::LabelledDomain::port */
+/* AUTO-DOC from cpp: LabelledDomain_port |
+ * falcon_core::math::domains::LabelledDomain::port */
 /**
  * @brief Get the port.
  * @return Shared pointer to the port.
  */
 InstrumentPortHandle LabelledDomain_port(LabelledDomainHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: LabelledDomain_domain | falcon_core::math::domains::LabelledDomain::domain */
+/* AUTO-DOC from cpp: LabelledDomain_domain |
+ * falcon_core::math::domains::LabelledDomain::domain */
 /**
  * @brief Gets the domain associated with the port.
  */
 DomainHandle LabelledDomain_domain(LabelledDomainHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: LabelledDomain_matching_port | falcon_core::math::domains::LabelledDomain::matching_port */
+/* AUTO-DOC from cpp: LabelledDomain_matching_port |
+ * falcon_core::math::domains::LabelledDomain::matching_port */
 /**
  * @brief Checks if the port matches the given port.
  * @param port The port to compare with.

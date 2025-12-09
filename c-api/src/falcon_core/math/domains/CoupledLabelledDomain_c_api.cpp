@@ -24,8 +24,7 @@ CoupledLabelledDomainHandle CoupledLabelledDomain_create(
         "CoupledLabelledDomain_create: items cannot be null");
   }
   falcon_core::generic::ListSP<LabelledDomain> list =
-      std::make_shared<falcon_core::generic::List<LabelledDomain>>(
-          *static_cast<falcon_core::generic::List<LabelledDomain>*>(items));
+      *static_cast<falcon_core::generic::ListSP<LabelledDomain>*>(items);
   return new CoupledLabelledDomainSP(
       std::make_shared<CoupledLabelledDomain>(list->items()));
   FALCON_C_API_END(nullptr)
@@ -245,9 +244,8 @@ size_t CoupledLabelledDomain_index(CoupledLabelledDomainHandle handle,
         "CoupledLabelledDomain_index: value cannot be null");
   }
   CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
-  falcon_core::generic::ListSP<LabelledDomain> real_value =
-      *static_cast<falcon_core::generic::ListSP<LabelledDomain>*>(value);
-  return self->index(real_value->at(0));
+  LabelledDomainSP        real_value = *static_cast<LabelledDomainSP*>(value);
+  return self->index(real_value);
   FALCON_C_API_END(0)
 }
 
@@ -262,8 +260,8 @@ bool CoupledLabelledDomain_equal(CoupledLabelledDomainHandle handle,
     throw std::invalid_argument(
         "CoupledLabelledDomain_equal: handle b cannot be null");
   }
-  return *(static_cast<CoupledLabelledDomainSP*>(handle)) ==
-         *(static_cast<CoupledLabelledDomainSP*>(other));
+  return *(*static_cast<CoupledLabelledDomainSP*>(handle)) ==
+         *(*static_cast<CoupledLabelledDomainSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -278,8 +276,8 @@ bool CoupledLabelledDomain_not_equal(CoupledLabelledDomainHandle handle,
     throw std::invalid_argument(
         "CoupledLabelledDomain_not_equal: handle b cannot be null");
   }
-  return *(static_cast<CoupledLabelledDomainSP*>(handle)) !=
-         *(static_cast<CoupledLabelledDomainSP*>(other));
+  return *(*static_cast<CoupledLabelledDomainSP*>(handle)) !=
+         *(*static_cast<CoupledLabelledDomainSP*>(other));
   FALCON_C_API_END(false)
 }
 

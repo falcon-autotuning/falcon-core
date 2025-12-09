@@ -120,13 +120,14 @@ ListStringHandle Channels_items(ChannelsHandle handle) {
   if (!handle) {
     throw std::invalid_argument("Channels_items: handle cannot be null");
   }
-  ChannelsSP self            = *static_cast<ChannelsSP*>(handle);
-  auto       list_of_strings = new falcon_core::generic::List<std::string>();
-  for (const auto& channel : self->items()) {
+  ChannelsSP self = *static_cast<ChannelsSP*>(handle);
+  auto strings    = std::make_shared<falcon_core::generic::List<std::string>>();
+  auto items      = self->items();
+  for (const auto& channel : items) {
     std::string name = channel->name();
-    list_of_strings->push_back(name);
+    strings->push_back(name);
   }
-  return list_of_strings;
+  return new falcon_core::generic::ListSP<std::string>(strings);
   FALCON_C_API_END(nullptr)
 }
 

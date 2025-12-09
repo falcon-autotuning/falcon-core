@@ -212,7 +212,7 @@ void MeasuredArray_minus_equals_farray(MeasuredArrayHandle handle,
   MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
   generic::FArraySP<double> oarray =
       *static_cast<generic::FArraySP<double>*>(other);
-  measured_array->operator-=(generic::FArray<double>(*oarray));
+  measured_array->operator-=(*oarray);
   FALCON_C_API_END()
 }
 

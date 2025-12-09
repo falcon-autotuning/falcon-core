@@ -256,9 +256,9 @@ ControlArrayHandle ControlArray_minus_farray(ControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to ControlArray_minus_farray");
   }
-  ControlArraySP control_array     = *static_cast<ControlArraySP*>(handle);
-  generic::FArraySP<double> oarray = std::make_shared<generic::FArray<double>>(
-      *static_cast<generic::FArray<double>*>(other));
+  ControlArraySP control_array = *static_cast<ControlArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
   return new ControlArraySP(control_array->operator-(oarray));
   FALCON_C_API_END(nullptr)
 }
@@ -428,9 +428,9 @@ ControlArrayHandle ControlArray_min_farray(ControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to ControlArray_min_farray");
   }
-  ControlArraySP control_array     = *static_cast<ControlArraySP*>(handle);
-  generic::FArraySP<double> oarray = std::make_shared<generic::FArray<double>>(
-      *static_cast<generic::FArray<double>*>(other));
+  ControlArraySP control_array = *static_cast<ControlArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
   return new ControlArraySP(control_array->min(oarray));
   FALCON_C_API_END(nullptr)
 }
@@ -466,9 +466,9 @@ ControlArrayHandle ControlArray_max_farray(ControlArrayHandle handle,
     throw std::invalid_argument(
         "Null handle passed to ControlArray_max_farray");
   }
-  ControlArraySP control_array     = *static_cast<ControlArraySP*>(handle);
-  generic::FArraySP<double> oarray = std::make_shared<generic::FArray<double>>(
-      *static_cast<generic::FArray<double>*>(other));
+  ControlArraySP control_array = *static_cast<ControlArraySP*>(handle);
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
   return new ControlArraySP(control_array->max(oarray));
   FALCON_C_API_END(nullptr)
 }
@@ -594,7 +594,7 @@ size_t ControlArray_full_gradient(ControlArrayHandle  handle,
                               ? buffer_size
                               : many_gradients->size();
   for (size_t i = 0; i < to_copy; ++i) {
-    out_buffer[i] = new generic::FArray<double>(*many_gradients->items()[i]);
+    out_buffer[i] = new generic::FArraySP<double>(many_gradients->items()[i]);
   }
   return to_copy;
   FALCON_C_API_END(0)
@@ -607,7 +607,7 @@ FArrayDoubleHandle ControlArray_gradient(ControlArrayHandle handle,
     throw std::invalid_argument("Null handle passed to ControlArray_gradient");
   }
   auto control_array = *static_cast<ControlArraySP*>(handle);
-  return new generic::FArray<double>(*control_array->gradient(axis));
+  return new generic::FArraySP<double>(control_array->gradient(axis));
   FALCON_C_API_END(nullptr)
 }
 

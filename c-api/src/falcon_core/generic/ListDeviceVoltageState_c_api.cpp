@@ -155,7 +155,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_at");
 }
     auto obj = (*static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle))->at(idx);
-    return new falcon_core::communications::voltage_states::DeviceVoltageState(*obj);
+    return new std::shared_ptr<falcon_core::communications::voltage_states::DeviceVoltageState>(obj);
     FALCON_C_API_END(nullptr)
 }
 

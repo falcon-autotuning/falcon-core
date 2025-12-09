@@ -11,6 +11,7 @@ namespace port_transforms {
 
 class PortTransforms : public generic::List<PortTransform> {
  public:
+  PortTransforms(const PortTransforms& other);
   PortTransforms();
   /**
    * @brief Constructor for a collection of port transforms.

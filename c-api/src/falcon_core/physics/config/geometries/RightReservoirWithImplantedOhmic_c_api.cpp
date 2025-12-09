@@ -144,7 +144,7 @@ bool RightReservoirWithImplantedOhmic_not_equal(
       *static_cast<RightReservoirWithImplantedOhmicSP*>(handle);
   RightReservoirWithImplantedOhmicSP real_other =
       *static_cast<RightReservoirWithImplantedOhmicSP*>(other);
-  return self != real_other;
+  return *self != *real_other;
   FALCON_C_API_END(false)
 }
 

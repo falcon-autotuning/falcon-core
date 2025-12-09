@@ -204,6 +204,12 @@ TEST_F(HDF5DataTest, ToFileAndCreateFromFile) {
   StringHandle filename = String_wrap("test_hdf5_data.h5");
   HDF5Data_to_file(hdf5, filename);
   auto h2 = HDF5Data_create_from_file(filename);
+  std::cout << "Original HSD5Data " << std::endl;
+  auto string = HDF5Data_to_json_string(hdf5);
+  std::cout << std::string(string->raw, string->length) << std::endl;
+  std::cout << "Other HSD5Data " << std::endl;
+  auto otherstring = HDF5Data_to_json_string(h2);
+  std::cout << std::string(otherstring->raw, otherstring->length) << std::endl;
   EXPECT_TRUE(HDF5Data_equal(hdf5, h2));
   HDF5Data_destroy(h2);
   std::remove("test_hdf5_data.h5");
@@ -289,13 +295,8 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
       MapInstrumentPortPortTransform_create_empty();
   MapInstrumentPortPortTransform_insert(meter_transforms, port, pt);
 
-  LabelledDomainHandle time_domain =
-      LabelledDomain_create_from_port(0.0,
-                                      1.0,
-                                      InstrumentTypes_clock(),
-                                      InstrumentPort_create_execution_clock(),
-                                      true,
-                                      true);
+  LabelledDomainHandle time_domain = LabelledDomain_create_from_port(
+      0.0, 1.0, InstrumentPort_create_execution_clock(), true, true);
 
   MeasurementRequestHandle request = MeasurementRequest_create(
       msg, name, waveforms, getters, meter_transforms, time_domain);

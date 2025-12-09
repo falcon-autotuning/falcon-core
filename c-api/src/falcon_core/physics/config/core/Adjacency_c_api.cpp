@@ -62,10 +62,12 @@ ListPairSizeTSizeTHandle Adjacency_get_true_pairs(AdjacencyHandle handle) {
     throw std::invalid_argument(
         "Adjacency_get_true_pairs: handle cannot be null");
   }
-  AdjacencySP self          = *static_cast<AdjacencySP*>(handle);
-  auto        pairs         = self->get_true_pairs();
-  auto        list_of_pairs = falcon_core::generic::ListSP<
-             falcon_core::generic::Pair<size_t, size_t>>();
+  AdjacencySP self  = *static_cast<AdjacencySP*>(handle);
+  auto        pairs = self->get_true_pairs();
+  auto        list_of_pairs =
+      falcon_core::generic::ListSP<falcon_core::generic::Pair<size_t, size_t>>(
+          std::make_shared<falcon_core::generic::List<
+              falcon_core::generic::Pair<size_t, size_t>>>());
   for (const auto& pair : pairs) {
     list_of_pairs->push_back(falcon_core::generic::PairSP<size_t, size_t>(
         std::make_shared<falcon_core::generic::Pair<size_t, size_t>>(

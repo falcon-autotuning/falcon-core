@@ -155,7 +155,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to ListWaveform_at");
 }
     auto obj = (*static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::Waveform>*>(handle))->at(idx);
-    return new falcon_core::instrument_interfaces::Waveform(*obj);
+    return new std::shared_ptr<falcon_core::instrument_interfaces::Waveform>(obj);
     FALCON_C_API_END(nullptr)
 }
 

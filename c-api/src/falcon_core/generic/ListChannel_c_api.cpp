@@ -155,7 +155,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to ListChannel_at");
 }
     auto obj = (*static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Channel>*>(handle))->at(idx);
-    return new falcon_core::autotuner_interfaces::names::Channel(*obj);
+    return new std::shared_ptr<falcon_core::autotuner_interfaces::names::Channel>(obj);
     FALCON_C_API_END(nullptr)
 }
 

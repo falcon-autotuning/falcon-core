@@ -64,8 +64,8 @@ bool Impedance_equal(ImpedanceHandle handle, ImpedanceHandle other) {
     throw std::invalid_argument(
         "Impedance_equal: second handle cannot be null");
   }
-  return *(static_cast<ImpedanceSP*>(handle)) ==
-         *(static_cast<ImpedanceSP*>(other));
+  return *(*static_cast<ImpedanceSP*>(handle)) ==
+         *(*static_cast<ImpedanceSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -79,8 +79,8 @@ bool Impedance_not_equal(ImpedanceHandle handle, ImpedanceHandle other) {
     throw std::invalid_argument(
         "Impedance_not_equal: second handle cannot be null");
   }
-  return *(static_cast<ImpedanceSP*>(handle)) !=
-         *(static_cast<ImpedanceSP*>(other));
+  return *(*static_cast<ImpedanceSP*>(handle)) !=
+         *(*static_cast<ImpedanceSP*>(other));
   FALCON_C_API_END(false)
 }
 

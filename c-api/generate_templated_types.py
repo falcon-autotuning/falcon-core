@@ -715,7 +715,7 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
 for (size_t i = 0; i < n; ++i) {{
     out_buffer[i] = new std::shared_ptr<{cpp_real}>(list->items()[i]);
 }}"""
-            stored_out_value = f"return new {cpp_real}(*obj);"
+            stored_out_value = f"return new std::shared_ptr<{cpp_real}>(obj);"
             create_allocation = f"""    vec.reserve(count);
     for (size_t i = 0; i < count; ++i) {{
         vec.push_back(*static_cast<std::shared_ptr<{cpp_real}>*>(data[i])); 

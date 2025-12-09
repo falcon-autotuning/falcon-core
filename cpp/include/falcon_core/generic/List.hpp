@@ -35,16 +35,16 @@ class List : public generic::Song {
   using const_iterator = typename Container::const_iterator;
   List<Value>(const List<Value>& other) {
     clear();
-    _items.reserve(other.size());
     std::shared_lock<std::shared_timed_mutex> lock_items(_mu_items);
+    _items.reserve(other.size());
     copy_items_impl(other.items(),
                     typename category::determine_tag<Value>::type{});
   }
-  List& operator=(const List<Value>& other) {
+  List operator=(const List<Value>& other) {
     if (this != &other) {
       clear();
+      std::shared_lock<std::shared_timed_mutex> lock_items(_mu_items);
       _items.reserve(other.size());
-      std::unique_lock<std::shared_timed_mutex> lock_items(_mu_items);
       copy_items_impl(other.items(),
                       typename category::determine_tag<Value>::type{});
     }

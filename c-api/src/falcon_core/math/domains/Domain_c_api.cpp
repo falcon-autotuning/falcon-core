@@ -114,7 +114,7 @@ DomainHandle Domain_intersection(DomainHandle handle, DomainHandle other) {
   DomainSP self       = *static_cast<DomainSP*>(handle);
   DomainSP real_other = *static_cast<DomainSP*>(other);
   DomainSP result     = *self & real_other;
-  return new Domain(*result);
+  return new DomainSP(result);
   FALCON_C_API_END(nullptr)
 }
 
@@ -165,7 +165,7 @@ DomainHandle Domain_shift(DomainHandle handle, double offset) {
     throw std::invalid_argument("Domain_shift: handle cannot be null");
   }
   DomainSP self = *static_cast<DomainSP*>(handle);
-  return new Domain(*self->shift(offset));
+  return new DomainSP(self->shift(offset));
   FALCON_C_API_END(nullptr)
 }
 
@@ -175,7 +175,7 @@ DomainHandle Domain_scale(DomainHandle handle, double scale) {
     throw std::invalid_argument("Domain_scale: handle cannot be null");
   }
   DomainSP self = *static_cast<DomainSP*>(handle);
-  return new Domain(*self->scale(scale));
+  return new DomainSP(self->scale(scale));
   FALCON_C_API_END(nullptr)
 }
 
@@ -203,7 +203,8 @@ bool Domain_equal(DomainHandle handle, DomainHandle other) {
   if (!other) {
     throw std::invalid_argument("Domain_equal: second handle cannot be null");
   }
-  return *(static_cast<DomainSP*>(handle)) == *(static_cast<DomainSP*>(other));
+  return *(*static_cast<DomainSP*>(handle)) ==
+         *(*static_cast<DomainSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -217,7 +218,8 @@ bool Domain_not_equal(DomainHandle handle, DomainHandle other) {
     throw std::invalid_argument(
         "Domain_not_equal: second handle cannot be null");
   }
-  return *(static_cast<DomainSP*>(handle)) != *(static_cast<DomainSP*>(other));
+  return *(*static_cast<DomainSP*>(handle)) !=
+         *(*static_cast<DomainSP*>(other));
   FALCON_C_API_END(false)
 }
 

@@ -88,8 +88,8 @@ bool Discretizer_equal(DiscretizerHandle handle, DiscretizerHandle other) {
     throw std::invalid_argument(
         "Discretizer_equal: second handle cannot be null");
   }
-  return *(static_cast<DiscretizerSP*>(handle)) ==
-         *(static_cast<DiscretizerSP*>(other));
+  return *(*static_cast<DiscretizerSP*>(handle)) ==
+         *(*static_cast<DiscretizerSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -103,8 +103,8 @@ bool Discretizer_not_equal(DiscretizerHandle handle, DiscretizerHandle other) {
     throw std::invalid_argument(
         "Discretizer_not_equal: second handle cannot be null");
   }
-  return *(static_cast<DiscretizerSP*>(handle)) !=
-         *(static_cast<DiscretizerSP*>(other));
+  return *(*static_cast<DiscretizerSP*>(handle)) !=
+         *(*static_cast<DiscretizerSP*>(other));
   FALCON_C_API_END(false)
 }
 

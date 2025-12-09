@@ -55,8 +55,7 @@ ControlArray1DHandle ControlArray1D_from_farray(FArrayDoubleHandle farray) {
   }
   generic::FArraySP<double> real_farray =
       *static_cast<generic::FArraySP<double>*>(farray);
-  return new ControlArray1DSP(std::make_shared<ControlArray1D>(
-      std::make_shared<generic::FArray<double>>(*real_farray)));
+  return new ControlArray1DSP(std::make_shared<ControlArray1D>(*real_farray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -86,7 +85,7 @@ FArrayDoubleHandle ControlArray1D_as_1D(ControlArray1DHandle handle) {
   }
   ControlArray1DSP control_array = *static_cast<ControlArray1DSP*>(handle);
   generic::FArraySP<double> arr  = control_array->as_1D();
-  return new generic::FArray<double>(*arr);
+  return new generic::FArraySP<double>(arr);
   FALCON_C_API_END(nullptr)
 }
 
@@ -327,8 +326,7 @@ ControlArray1DHandle ControlArray1D_plus_farray(ControlArray1DHandle handle,
   ControlArray1DSP control_array = *static_cast<ControlArray1DSP*>(handle);
   generic::FArraySP<double> oarray =
       *static_cast<generic::FArraySP<double>*>(other);
-  return new ControlArray1DSP(control_array->operator+(
-      std::make_shared<generic::FArray<double>>(*oarray)));
+  return new ControlArray1DSP(control_array->operator+(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -590,10 +588,9 @@ ControlArray1DHandle ControlArray1D_min_farray(ControlArray1DHandle handle,
         "Null handle passed to ControlArray1D_min_farray");
   }
   ControlArray1DSP control_array = *static_cast<ControlArray1DSP*>(handle);
-  generic::FArray<double>* oarray =
-      static_cast<generic::FArray<double>*>(other);
-  return new ControlArray1DSP(control_array->operator-(
-      std::make_shared<generic::FArray<double>>(*oarray)));
+  generic::FArraySP<double> oarray =
+      *static_cast<generic::FArraySP<double>*>(other);
+  return new ControlArray1DSP(control_array->operator-(oarray));
   FALCON_C_API_END(nullptr)
 }
 
@@ -779,7 +776,7 @@ FArrayDoubleHandle ControlArray1D_gradient(ControlArray1DHandle handle,
         "Null handle passed to ControlArray1D_gradient");
   }
   ControlArray1DSP control_array = *static_cast<ControlArray1DSP*>(handle);
-  return new generic::FArray<double>(*control_array->gradient(axis));
+  return new generic::FArraySP<double>(control_array->gradient(axis));
   FALCON_C_API_END(nullptr)
 }
 

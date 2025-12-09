@@ -1,10 +1,8 @@
 #include <gtest/gtest.h>
 
 #include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/ListDotGateWithNeighbors_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
-#include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h"
 #include "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h"
 #include "falcon_core/physics/device_structures/Connection.hpp"
@@ -17,6 +15,9 @@ class DotGatesWithNeighborsTest : public ::testing::Test {
   DotGateWithNeighborsHandle     gate2;
   ListDotGateWithNeighborsHandle list;
   DotGatesWithNeighborsHandle    gates;
+  ConnectionHandle               b1;
+  ConnectionHandle               b2;
+  ConnectionHandle               b3;
 
   void SetUp() override {
     StringHandle     name = String_create("g", 1);
@@ -36,10 +37,6 @@ class DotGatesWithNeighborsTest : public ::testing::Test {
     gates = DotGatesWithNeighbors_create(list);
 
     // Clean up handles not owned by the fixture
-    delete static_cast<Connection*>(b1);
-    delete static_cast<Connection*>(b2);
-    delete static_cast<Connection*>(b3);
-    String_destroy(name);
   }
 
   void TearDown() override {

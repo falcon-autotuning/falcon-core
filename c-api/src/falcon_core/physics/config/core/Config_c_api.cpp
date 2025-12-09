@@ -1494,8 +1494,8 @@ bool Config_equal(ConfigHandle handle, ConfigHandle other) {
   if (!other) {
     throw std::invalid_argument("Config_equal: other cannot be null");
   }
-  ConfigSP* self         = static_cast<ConfigSP*>(handle);
-  ConfigSP* other_config = static_cast<ConfigSP*>(other);
+  ConfigSP self         = *static_cast<ConfigSP*>(handle);
+  ConfigSP other_config = *static_cast<ConfigSP*>(other);
   return *self == *other_config;
   FALCON_C_API_END(false)
 }
@@ -1510,7 +1510,7 @@ bool Config_not_equal(ConfigHandle handle, ConfigHandle other) {
   }
   ConfigSP self{*static_cast<ConfigSP*>(handle)};
   ConfigSP other_config{*static_cast<ConfigSP*>(other)};
-  return self != other_config;
+  return *self != *other_config;
   FALCON_C_API_END(false)
 }
 

@@ -19,10 +19,11 @@ GateRelationsHandle GateRelations_create(
   if (!items) {
     throw std::invalid_argument("GateRelations_create: items cannot be null");
   }
-  auto* raw_list = static_cast<List<Pair<Connection, Connections>>*>(items);
+  auto raw_list =
+      *(*static_cast<ListSP<Pair<Connection, Connections>>*>(items));
 
   std::vector<std::pair<ConnectionSP, ConnectionsSP>> vec;
-  for (const auto& item : *raw_list) {
+  for (const auto& item : raw_list) {
     vec.push_back(std::make_pair(item->first(), item->second()));
   }
 
@@ -190,8 +191,8 @@ bool GateRelations_equal(GateRelationsHandle handle,
   if (!other) {
     throw std::invalid_argument("GateRelations_equal: handle b cannot be null");
   }
-  return *(static_cast<GateRelationsSP*>(handle)) ==
-         *(static_cast<GateRelationsSP*>(other));
+  return *(*static_cast<GateRelationsSP*>(handle)) ==
+         *(*static_cast<GateRelationsSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -206,8 +207,8 @@ bool GateRelations_not_equal(GateRelationsHandle handle,
     throw std::invalid_argument(
         "GateRelations_not_equal: handle b cannot be null");
   }
-  return *(static_cast<GateRelationsSP*>(handle)) !=
-         *(static_cast<GateRelationsSP*>(other));
+  return *(*static_cast<GateRelationsSP*>(handle)) !=
+         *(*static_cast<GateRelationsSP*>(other));
   FALCON_C_API_END(false)
 }
 

@@ -150,15 +150,10 @@ LabelledDomainHandle LabelledDomain_create_primitive_port(
 LabelledDomainHandle LabelledDomain_create_from_port(
     double               min_val,
     double               max_val,
-    StringHandle         instrument_type,
     InstrumentPortHandle port,
     bool                 lesser_bound_contained,
     bool                 greater_bound_contained) {
   FALCON_C_API_BEGIN
-  if (!instrument_type) {
-    throw std::invalid_argument(
-        "LabelledDomain_create_from_port: instrument_type cannot be null");
-  }
   if (!port) {
     throw std::invalid_argument(
         "LabelledDomain_create_from_port: port cannot be null");

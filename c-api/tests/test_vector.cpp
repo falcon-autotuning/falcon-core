@@ -20,13 +20,9 @@ class VectorTest : public ::testing::Test {
     qty    = Quantity_create(2.0, unit);
     MapConnectionQuantity_insert(map_cq, conn, qty);
 
-    std::cout << "Creating start and end points\n";
-    start = Point_create(map_cd, unit);
-    std::cout << "Start point created\n";
-    end = Point_create(map_cq, unit);
-    std::cout << "End point created\n";
+    start  = Point_create(map_cd, unit);
+    end    = Point_create(map_cq, unit);
     vector = Vector_create(start, end);
-    std::cout << "Vector created\n";
   }
   void TearDown() override {
     Vector_destroy(vector);

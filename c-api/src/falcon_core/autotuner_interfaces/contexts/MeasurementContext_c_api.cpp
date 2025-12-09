@@ -91,8 +91,8 @@ bool MeasurementContext_equal(MeasurementContextHandle handle,
     throw std::invalid_argument(
         "MeasurementContext_equal: handle b cannot be null");
   }
-  return *(static_cast<MeasurementContextSP*>(handle)) ==
-         *(static_cast<MeasurementContextSP*>(other));
+  return *(*static_cast<MeasurementContextSP*>(handle)) ==
+         *(*static_cast<MeasurementContextSP*>(other));
   FALCON_C_API_END(false)
 }
 
@@ -107,8 +107,8 @@ bool MeasurementContext_not_equal(MeasurementContextHandle handle,
     throw std::invalid_argument(
         "MeasurementContext_not_equal: handle b cannot be null");
   }
-  return *(static_cast<MeasurementContextSP*>(handle)) !=
-         *(static_cast<MeasurementContextSP*>(other));
+  return *(*static_cast<MeasurementContextSP*>(handle)) !=
+         *(*static_cast<MeasurementContextSP*>(other));
   FALCON_C_API_END(false)
 }
 

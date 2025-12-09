@@ -38,13 +38,13 @@ InstrumentPortHandle InstrumentPort_create_port(StringHandle     default_name,
         *static_cast<falcon_core::physics::device_structures::ConnectionSP*>(
             psuedo_name);
   }
-  return new InstrumentPort(
+  return new InstrumentPortSP(std::make_shared<InstrumentPort>(
       std::string(default_name->raw, default_name->length),
       real_psuedo_name,
       std::string(instrument_type->raw, instrument_type->length),
       *static_cast<falcon_core::physics::units::SymbolUnitSP*>(units),
       std::string(description->raw, description->length),
-      PortType::InstrumentPort);
+      PortType::InstrumentPort));
   FALCON_C_API_END(nullptr)
 }
 

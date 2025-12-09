@@ -157,7 +157,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to ListPairInstrumentPortPortTransform_at");
 }
     auto obj = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>*>(handle))->at(idx);
-    return new falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>(*obj);
+    return new std::shared_ptr<falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::instrument_interfaces::port_transforms::PortTransform>>(obj);
     FALCON_C_API_END(nullptr)
 }
 
