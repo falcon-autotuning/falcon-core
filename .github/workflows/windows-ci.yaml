@@ -75,7 +75,7 @@ jobs:
         working-directory: cpp
 
       # TO REMOVE: Debug step to list gtest tests
-      - name: Debug: list gtest tests on Windows
+      - name: Debug - list gtest tests on Windows
         shell: pwsh
         working-directory: cpp
         run: |
