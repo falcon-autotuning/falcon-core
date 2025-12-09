@@ -53,9 +53,12 @@ jobs:
 
           echo "=== Building yaml-cpp 0.8.0 ==="
           curl -L -o yaml-cpp-0.8.0.tar.gz \
-            https://github.com/jbeder/yaml-cpp/archive/refs/tags/yaml-cpp-0.8.0.tar.gz
+            https://github.com/jbeder/yaml-cpp/archive/refs/tags/0.8.0.tar.gz
+
           tar xf yaml-cpp-0.8.0.tar.gz
-          cmake -S yaml-cpp-yaml-cpp-0.8.0 -B yaml-cpp-build \
+
+          # Option A: hard-code the directory name (works for this tag):
+          cmake -S yaml-cpp-0.8.0 -B yaml-cpp-build \
                 -DCMAKE_INSTALL_PREFIX=/usr/local \
                 -DYAML_BUILD_SHARED_LIBS=ON \
                 -DYAML_BUILD_TESTS=OFF

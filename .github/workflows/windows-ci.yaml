@@ -74,6 +74,26 @@ jobs:
         run: cmake --build build
         working-directory: cpp
 
+      # TO REMOVE: Debug step to list gtest tests
+      - name: Debug: list gtest tests on Windows
+        shell: pwsh
+        working-directory: cpp
+        run: |
+          $ErrorActionPreference = "Stop"
+          $exe = Get-ChildItem -Path build -Filter "falcon_core_cpp_run_tests*.exe" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $exe) {
+            Write-Error "❌ Could not find test exe."
+            exit 1
+          }
+          Write-Host "Running: $($exe.FullName) --gtest_list_tests"
+          & $exe.FullName --gtest_list_tests
+          $code = $LASTEXITCODE
+          Write-Host "Exit code: $code"
+          if ($code -ne 0) {
+            Write-Error "❌ gtest_list_tests crashed/failed (exit $code = $(('{0:X}' -f ($code -bor 0))))"
+            exit 1
+          }
+
       # - name: Test falcon-core-cpp-dev (with coverage)
       #   shell: pwsh
       #   run: |

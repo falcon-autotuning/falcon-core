@@ -2,9 +2,9 @@ name: Arch Linux CI
 
 on:
   push:
-    branches: [main, windows-support]
+    branches: [main]
   pull_request:
-    branches: [main, windows-support]
+    branches: [main]
 
 jobs:
   build-and-test-arch:
