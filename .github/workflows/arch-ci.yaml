@@ -42,6 +42,36 @@ jobs:
         run: |
           pacman -Syu --noconfirm
           pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm ccache clang gtest glibc
+      - name: Debug pthread and toolchain
+        run: |
+          echo "== glibc and pthread files =="
+          pacman -Qi glibc || true
+          ls -l /usr/lib/libpthread* || true
+          ls -l /usr/include/pthread.h || true
+
+          echo "== Compiler versions =="
+          clang --version
+          clang++ --version
+          gcc --version
+          g++ --version
+
+          echo "== Clang test compile =="
+          echo '#include <pthread.h>
+          void* f(void*) { return nullptr; }
+          int main() { pthread_t t; pthread_create(&t, 0, f, 0); pthread_join(t, 0); return 0; }' > test.cpp
+          clang++ test.cpp -pthread -v || echo "Clang failed"
+
+          echo "== GCC test compile =="
+          g++ test.cpp -pthread -v || echo "GCC failed"
+
+          echo "== ldd on clang =="
+          ldd /usr/bin/clang || true
+
+          echo "== ldd on clang++ =="
+          ldd /usr/bin/clang++ || true
+
+          echo "== Environment =="
+          env
       - name: Set clang as default compiler for makepkg
         run: |
           grep -q '^CC=' /etc/makepkg.conf && \
